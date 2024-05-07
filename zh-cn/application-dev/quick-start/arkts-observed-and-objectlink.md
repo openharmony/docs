@@ -17,7 +17,7 @@
 
 - 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
 
-- 单独使用\@Observed是没有任何作用的，需要搭配\@ObjectLink或者[\@Prop](arkts-prop.md)使用。
+- \@Observed用于嵌套类场景中，观察对象类属性变化，要配合自定义组件使用（示例详见[嵌套对象](#嵌套对象)），如果要做数据双/单向同步，需要搭配\@ObjectLink或者\@Prop使用（示例详见[\@Prop与\@ObjectLink的差异](#prop与objectlink的差异)）。
 
 
 ## 限制条件
@@ -872,7 +872,7 @@ struct Parent {
 
 在应用开发中，有很多嵌套对象场景，例如，开发者更新了某个属性，但UI没有进行对应的更新。
 
-每个装饰器都有自己可以观察的能力，并不是所有的改变都可以被观察到，只有可以被观察到的变化才会进行UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第二层的变化。
+每个装饰器都有自己可以观察的能力，并不是所有的改变都可以被观察到，只有可以被观察到的变化才会进行UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第一层的变化。
 
 【反例】
 
@@ -1682,65 +1682,3 @@ struct Index {
 
 因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
 
-### 在@Observed装饰的类内使用static方法进行初始化
-
-在@Observed装饰的类内，尽量避免使用static方法进行初始化，在创建时会绕过Observed的实现，导致无法被代理，UI不刷新。
-
-```ts
-@Entry
-@Component
-struct MainPage {
-  @State viewModel: ViewModel = ViewModel.build();
-
-  build() {
-    Column() {
-      Button("Click")
-        .onClick((event) => {
-          this.viewModel.subViewModel.isShow = !this.viewModel.subViewModel.isShow;
-        })
-      SubComponent({ viewModel: this.viewModel.subViewModel })
-    }
-    .padding({ top: 60 })
-    .width('100%')
-    .alignItems(HorizontalAlign.Center)
-  }
-}
-
-@Component
-struct SubComponent {
-  @ObjectLink viewModel: SubViewModel;
-
-  build() {
-    Column() {
-      if (this.viewModel.isShow) {
-        Text("click to take effect");
-      }
-    }
-  }
-}
-
-class ViewModel {
-  subViewModel: SubViewModel = SubViewModel.build(); //内部静态方法创建
-
-  static build() {
-    console.log("ViewModel build()")
-    return new ViewModel();
-  }
-}
-
-@Observed
-class SubViewModel {
-  isShow?: boolean = false;
-
-  static build() {
-    //只有在SubViewModel内部的静态方法创建对象，会影响关联
-    console.log("SubViewModel build()")
-    let viewModel = new SubViewModel();
-    return viewModel;
-  }
-}
-```
-
-上文的示例中，在自定义组件ViewModel中使用static方法进行初始化，此时点击Click按钮，页面中并不会显示click to take effect。
-
-因此，不推荐开发者在自定义的类装饰器内使用static方法进行初始化。

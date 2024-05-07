@@ -193,7 +193,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 ### 变量
 
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | AVC(H.264)视频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AAC](#oh_avcodec_mimetype_audio_aac) | AAC音频编解码器的MIME类型。 |
@@ -261,9 +261,15 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](#oh_md_key_video_is_hdr_vivid) | 是否是hdr vivid的键，值类型为bool。 |
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](#oh_md_key_audio_object_number) | 音频对象数目的键. 值类型为int32_t。 |
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](#oh_md_key_audio_vivid_metadata) | audio vivid元数据的键，值类型为uint8_t\*。 |
+| const char \* [OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT](#oh_feature_property_key_video_encoder_max_ltr_frame_count) | 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](#oh_md_key_video_encoder_enable_temporal_scalability) | 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](#oh_md_key_video_encoder_temporal_gop_size) | 传递图片组大小的键, 值类型为int32_t，只在使能分层编码时生效。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode)，只在使能分层编码时生效。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count) | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr) | 标记当前帧为长期参考帧的键，值类型为int32_t，1表示被标记，0表示其它情况。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr) | 描述当前帧参考的长期参考帧帧号的键，值类型为int32_t。  | 
+| const char \* [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr) | 指示当前帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。  | 
+| const char \* [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc) | 描述帧的POC的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top) | 描述裁剪矩形顶部坐标(y)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom) | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。  | 
@@ -734,7 +740,6 @@ typedef enum OH_TemporalGopReferenceMode OH_TemporalGopReferenceMode
 ```
 typedef enum OH_TransferCharacteristic OH_TransferCharacteristic
 ```
-
 **描述**
 
 转移特性。
@@ -1504,6 +1509,23 @@ const char* OH_ED_KEY_TIME_STAMP
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 9
+
+
+### OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
+
+```
+const char* OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
+```
+
+**描述**
+
+在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。 
+
+可以通过**OH_AVCapability_GetFeatureProperties**接口和枚举值**VIDEO_ENCODER_LONG_TERM_REFERENCE**来查询这个最大值。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
 
 
 ### OH_MD_KEY_AAC_IS_ADTS
@@ -2279,6 +2301,58 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
 **起始版本：** 12
 
 
+### OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT
+```
+**描述**
+
+描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。 
+
+使用前可以通过**OH_AVCapability_GetFeatureProperties**接口和枚举值**VIDEO_ENCODER_LONG_TERM_REFERENCE**来查询支持的LTR数目。 
+
+该键是可选的且只用于视频编码，在configure阶段使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR
+```
+**描述**
+
+标记当前帧为长期参考帧的键，值类型为int32_t，1表示被标记，0表示其它情况。 
+
+只在长期参考帧个数被配置后生效。 
+
+该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR
+```
+**描述**
+
+描述当前帧参考的长期参考帧帧号的键，值类型为int32_t。
+
+该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
 ### OH_MD_KEY_VIDEO_ENCODER_QP_MAX
 
 ```
@@ -2360,6 +2434,42 @@ const char* OH_MD_KEY_VIDEO_IS_HDR_VIVID
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 11
+
+### OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR
+
+```
+const char* OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR
+```
+**描述**
+
+指示当前帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。 
+
+该键是可选的且只用于视频编码输出轮转中。
+
+表示帧的属性。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
+
+### OH_MD_KEY_VIDEO_PER_FRAME_POC
+
+```
+const char* OH_MD_KEY_VIDEO_PER_FRAME_POC
+```
+**描述**
+
+描述帧的POC的键，值类型为int32_t。 
+
+该键是可选的且只用于视频编码输出轮转中。 
+
+表示帧的属性。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 12
+
 
 ### OH_MD_KEY_VIDEO_SLICE_HEIGHT
 

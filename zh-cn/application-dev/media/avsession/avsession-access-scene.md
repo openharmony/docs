@@ -400,26 +400,26 @@ async function setListener() {
  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
  // 应用启动时/内部切换循环模式，需要把应用内的当前的循环模式设置给AVSession
- let playBackState: AVSessionManager.AVPlayBackState = {
+ let playBackState: AVSessionManager.AVPlaybackState = {
    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
  };
- session.setAVPlayBackState(playBackState).then(() => {
-   console.info(`set AVPlayBackState successfully`);
+ session.setAVPlaybackState(playBackState).then(() => {
+   console.info(`set AVPlaybackState successfully`);
  }).catch((err: BusinessError) => {
-   console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+   console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
  });
 
  // 应用注册循环模式的控制监听
  session.on('setLoopMode', (mode) => {
    console.info(`on setLoopMode ${mode}`);
-   // 应用收到设置循环模式的指令后，应用自定下一个模式，切换完毕后通过AVPlayBackState上报切换后的LoopMode
-   let playBackState: AVSessionManager.AVPlayBackState = {
+   // 应用收到设置循环模式的指令后，应用自定下一个模式，切换完毕后通过AVPlaybackState上报切换后的LoopMode
+   let playBackState: AVSessionManager.AVPlaybackState = {
     loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
    };
-   session.setAVPlayBackState(playBackState).then(() => {
-     console.info(`set AVPlayBackState successfully`);
+   session.setAVPlaybackState(playBackState).then(() => {
+     console.info(`set AVPlaybackState successfully`);
    }).catch((err: BusinessError) => {
-     console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+     console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
    });
  });
 

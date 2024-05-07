@@ -32,13 +32,16 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 ## BaseEvent对象说明
 | 名称    | 类型                                      | 描述         |
 | ---------| ----------------------------------------  | -----------|
-| target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。  |
-| timestamp| number | 事件时间戳。  |
-| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。  |
-| pressure | number | 按压的压力大小。  |
-| titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。  |
-| titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。  |
-| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。  |
+| target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| timestamp| number | 事件时间戳。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| pressure | number | 按压的压力大小。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| axisHorizontal<sup>12+</sup> | number | 水平轴值。  |
+| axisVertical<sup>12+</sup> | number | 垂直轴值。  |
+
 ## BaseGestureEvent对象说明
 继承于[BaseEvent](#baseevent对象说明)。
 | 名称      | 类型                                      | 描述         |

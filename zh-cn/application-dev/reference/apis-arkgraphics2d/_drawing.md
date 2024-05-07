@@ -3,7 +3,7 @@
 
 ## 概述
 
-Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。 本模块不提供像素单位，和应用上下文环境保持一致。如果处于ArkUI开发环境中，采用框架默认像素单位vp。
+Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能函数。本模块采用屏幕物理像素单位px。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -94,6 +94,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | typedef enum [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)  [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode) | 用于指定路径添加模式的枚举类型。 | 
 | typedef enum [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle)  [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle) | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 | 
 | typedef enum [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)  [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle) | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 | 
+| typedef enum [OH_Drawing_CornerPos](#oh_drawing_cornerpos)[OH_Drawing_CornerPos](#oh_drawing_cornerpos) | 用于描述圆角位置的枚举。 | 
 | typedef enum [OH_Drawing_FilterMode](#oh_drawing_filtermode)  [OH_Drawing_FilterMode](#oh_drawing_filtermode) | 过滤模式枚举。 | 
 | typedef enum [OH_Drawing_MipmapMode](#oh_drawing_mipmapmode)  [OH_Drawing_MipmapMode](#oh_drawing_mipmapmode) | 多级渐远纹理模式枚举。 | 
 | typedef enum [OH_Drawing_TileMode](#oh_drawing_tilemode)  [OH_Drawing_TileMode](#oh_drawing_tilemode) | 着色器效果平铺模式的枚举。 | 
@@ -136,6 +137,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | typedef struct [OH_Drawing_Point](#oh_drawing_point)  [OH_Drawing_Point](#oh_drawing_point) | 定义一个点，用于描述坐标点。 | 
 | typedef struct [OH_Drawing_ColorSpace](#oh_drawing_colorspace)  [OH_Drawing_ColorSpace](#oh_drawing_colorspace) | 定义色彩空间，用于解释颜色信息。 | 
 | typedef struct [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)  [OH_Drawing_Point2D](#oh_drawing_point2d) | 定义一个二维的坐标点。 | 
+| typedef [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)[OH_Drawing_Corner_Radii](#oh_drawing_corner_radii) | 定义一个圆角半径，该圆角半径由x轴方向和y轴方向上的半径组成。 | 
 | typedef struct [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)  [OH_Drawing_Point3D](#oh_drawing_point3d) | 定义一个三维的坐标点。 | 
 | typedef struct [OH_Drawing_PathEffect](#oh_drawing_patheffect)  [OH_Drawing_PathEffect](#oh_drawing_patheffect) | 定义一个路径效果，用于影响描边路径。 | 
 | typedef struct [OH_Drawing_Rect](#oh_drawing_rect)  [OH_Drawing_Rect](#oh_drawing_rect) | 用于描述矩形。 | 
@@ -179,6 +181,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode) { PATH_ADD_MODE_APPEND, PATH_ADD_MODE_EXTEND } | 用于指定路径添加模式的枚举类型。 | 
 | [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle) { LINE_FLAT_CAP, LINE_SQUARE_CAP, LINE_ROUND_CAP } | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 | 
 | [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle) { LINE_MITER_JOIN, LINE_ROUND_JOIN, LINE_BEVEL_JOIN } | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 | 
+| [OH_Drawing_CornerPos](#oh_drawing_cornerpos) { CORNER_POS_TOP_LEFT, CORNER_POS_TOP_RIGHT, CORNER_POS_BOTTOM_RIGHT, CORNER_POS_BOTTOM_LEFT } | 用于描述圆角位置的枚举。 |
 | [OH_Drawing_FilterMode](#oh_drawing_filtermode) { FILTER_MODE_NEAREST, FILTER_MODE_LINEAR } | 过滤模式枚举。 | 
 | [OH_Drawing_MipmapMode](#oh_drawing_mipmapmode) { MIPMAP_MODE_NONE, MIPMAP_MODE_NEAREST, MIPMAP_MODE_LINEAR } | 多级渐远纹理模式枚举。 | 
 | [OH_Drawing_TileMode](#oh_drawing_tilemode) { CLAMP, REPEAT, MIRROR, DECAL } | 着色器效果平铺模式的枚举。 | 
@@ -369,6 +372,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PathAddPathWithMatrixAndMode](#oh_drawing_pathaddpathwithmatrixandmode) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)) | 将源路径矩阵变换后，以规定模式添加到当前路径中。 | 
 | void [OH_Drawing_PathAddPathWithMode](#oh_drawing_pathaddpathwithmode) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*src, [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)) | 将源路径以规定模式添加到当前路径中。 | 
 | void [OH_Drawing_PathAddPathWithOffsetAndMode](#oh_drawing_pathaddpathwithoffsetandmode) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*src, float dx, float dy, [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode)) | 将源路径偏移后，以规定模式添加到当前路径中。 | 
+| void [OH_Drawing_PathAddOval](#oh_drawing_pathaddoval) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，向路径添加椭圆。 | 
 | bool [OH_Drawing_PathContains](#oh_drawing_pathcontains) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 判断指定坐标点是否被路径包含。 | 
 | void [OH_Drawing_PathTransform](#oh_drawing_pathtransform) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 对路径进行矩阵变换。 | 
 | void [OH_Drawing_PathTransformWithPerspectiveClip](#oh_drawing_pathtransformwithperspectiveclip) ([OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Path](#oh_drawing_path) \*dst, bool applyPerspectiveClip) | 对路径进行矩阵变换。用转换后的路径替换目标路径，如果目标路径为空，则替换源路径。 | 
@@ -423,6 +427,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | uint32_t [OH_Drawing_RegisterFont](#oh_drawing_registerfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, const char \*familySrc) | 用于在字体管理器中注册自定义字体。 | 
 | uint32_t [OH_Drawing_RegisterFontBuffer](#oh_drawing_registerfontbuffer) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*, const char \*fontFamily, uint8_t \*fontBuffer, size_t length) | 用于在字体管理器中注册字体缓冲区。 | 
 | [OH_Drawing_RoundRect](#oh_drawing_roundrect) \* [OH_Drawing_RoundRectCreate](#oh_drawing_roundrectcreate) (const [OH_Drawing_Rect](#oh_drawing_rect) \*, float xRad, float yRad) | 用于创建一个圆角矩形对象。 | 
+| void [OH_Drawing_RoundRectSetCorner](#oh_drawing_roundrectsetcorner) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*, [OH_Drawing_CornerPos](#oh_drawing_cornerpos) pos, [OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)) | 用于设置圆角矩形中指定圆角位置的圆角半径。 | 
+| [OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)[OH_Drawing_RoundRectGetCorner](#oh_drawing_roundrectgetcorner) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*, [OH_Drawing_CornerPos](#oh_drawing_cornerpos) pos) | 用于获取圆角矩形中指定圆角位置的圆角半径。 | 
 | void [OH_Drawing_RoundRectDestroy](#oh_drawing_roundrectdestroy) ([OH_Drawing_RoundRect](#oh_drawing_roundrect) \*) | 用于销毁圆角矩形对象并回收该对象占有的内存。 | 
 | [OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \* [OH_Drawing_SamplingOptionsCreate](#oh_drawing_samplingoptionscreate) ([OH_Drawing_FilterMode](#oh_drawing_filtermode), [OH_Drawing_MipmapMode](#oh_drawing_mipmapmode)) | 创建一个采样选项对象。 | 
 | void [OH_Drawing_SamplingOptionsDestroy](#oh_drawing_samplingoptionsdestroy) ([OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions) \*) | 销毁采样选项对象并回收该对象占有内存。 | 
@@ -632,6 +638,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | enum  [OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags) { SHADOW_FLAGS_NONE, SHADOW_FLAGS_TRANSPARENT_OCCLUDER, SHADOW_FLAGS_GEOMETRIC_ONLY, SHADOW_FLAGS_ALL } | 阴影标志枚举。 | 
 | typedef enum [OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags)[OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags) | 阴影标志枚举。 | 
 | void [OH_Drawing_CanvasClipRect](#oh_drawing_canvascliprect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | 用于裁剪一个矩形。 | 
+| void [OH_Drawing_CanvasClipRoundRect](#oh_drawing_canvascliproundrect) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | 用于裁剪一个圆角矩形。 | 
 | void [OH_Drawing_CanvasClipPath](#oh_drawing_canvasclippath) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp, bool doAntiAlias) | 用于裁剪一个自定义路径。 | 
 | void [OH_Drawing_CanvasRotate](#oh_drawing_canvasrotate) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float degrees, float px, float py) | 用于画布旋转一定的角度，正数表示顺时针旋转，负数反之。 | 
 | void [OH_Drawing_CanvasTranslate](#oh_drawing_canvastranslate) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float dx, float dy) | 用于平移画布一段距离。 | 
@@ -832,6 +839,30 @@ typedef struct OH_Drawing_ColorSpace OH_Drawing_ColorSpace
 **描述**
 
 定义色彩空间，用于解释颜色信息。
+
+**起始版本：** 12
+
+### OH_Drawing_Corner_Radii
+
+```
+typedef OH_Drawing_Point2D OH_Drawing_Corner_Radii
+```
+
+**描述**
+
+定义一个圆角半径，该圆角半径由x轴方向和y轴方向上的半径组成。
+
+**起始版本：** 12
+
+### OH_Drawing_CornerPos
+
+```
+typedef enum OH_Drawing_CornerPos OH_Drawing_CornerPos
+```
+
+**描述**
+
+用于描述圆角位置的枚举。
 
 **起始版本：** 12
 
@@ -1927,6 +1958,25 @@ enum OH_Drawing_ColorFormat
 | COLOR_FORMAT_ARGB_4444 | 每个像素用一个16位的量表示，高位到低位依次是4个比特位表示透明度，4个比特位表示红，4个比特位表示绿，4个比特位表示蓝 | 
 | COLOR_FORMAT_RGBA_8888 | 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示透明度，8个比特位表示红，8个比特位表示绿，8个比特位表示蓝 | 
 | COLOR_FORMAT_BGRA_8888 | 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示蓝，8个比特位表示绿，8个比特位表示红，8个比特位表示透明度 | 
+
+### OH_Drawing_CornerPos
+
+```
+enum OH_Drawing_CornerPos
+```
+
+**描述**
+
+用于描述圆角位置的枚举。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| CORNER_POS_TOP_LEFT | 左上角圆角位置。 | 
+| CORNER_POS_TOP_RIGHT | 右上角圆角位置。 | 
+| CORNER_POS_BOTTOM_RIGHT | 右下角圆角位置。 | 
+| CORNER_POS_BOTTOM_LEFT | 左下角圆角位置。 | 
 
 
 ### OH_Drawing_EllipsisModal
@@ -3180,6 +3230,28 @@ void OH_Drawing_CanvasClipRect (OH_Drawing_Canvas* , const OH_Drawing_Rect* , OH
 | clipOp | 裁剪方式。支持可选的具体裁剪方式可见[OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop)枚举。 | 
 | doAntiAlias | 值为true则做抗锯齿处理，反之不做。 | 
 
+### OH_Drawing_CanvasClipRoundRect()
+
+```
+void OH_Drawing_CanvasClipRoundRect (OH_Drawing_Canvas* , const OH_Drawing_RoundRect* , OH_Drawing_CanvasClipOp clipOp, bool doAntiAlias )
+```
+
+**描述**
+
+用于裁剪一个圆角矩形。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Canvas | 指向画布对象的指针。 | 
+| OH_Drawing_RoundRect | 指向圆角矩形对象的指针。 | 
+| clipOp | 裁剪方式。支持可选的具体裁剪方式可见[OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop)枚举。 | 
+| doAntiAlias | 表示是否需要做抗锯齿处理，值为true时为需要，为false时为不需要。 | 
 
 ### OH_Drawing_CanvasConcatMatrix()
 
@@ -6797,6 +6869,27 @@ void OH_Drawing_PathAddArc (OH_Drawing_Path* , const OH_Drawing_Rect* , float st
 | startAngle | 弧的起始角度，单位为度。 | 
 | sweepAngle | 扫掠角度，单位为度。正数表示顺时针方向，负数表示逆时针方向。 | 
 
+### OH_Drawing_PathAddOval()
+
+```
+void OH_Drawing_PathAddOval (OH_Drawing_Path* , const OH_Drawing_Rect* , OH_Drawing_PathDirection  )
+```
+
+**描述**
+
+按指定方向，向路径添加椭圆。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
+| OH_Drawing_PathDirection | 路径方向[OH_Drawing_PathDirection](#oh_drawing_pathdirection)。 | 
 
 ### OH_Drawing_PathAddOvalWithInitialPoint()
 
@@ -8586,6 +8679,55 @@ void OH_Drawing_RoundRectDestroy (OH_Drawing_RoundRect* )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_RoundRect | 指向圆角矩形对象的指针。 | 
+
+
+### OH_Drawing_RoundRectGetCorner()
+
+```
+OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner (OH_Drawing_RoundRect* , OH_Drawing_CornerPos pos )
+```
+
+**描述**
+
+用于获取圆角矩形中指定圆角位置的圆角半径。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_RoundRect | 指向圆角矩形对象的指针。 | 
+| pos | 圆角位置的枚举，支持类型可见[OH_Drawing_CornerPos](#oh_drawing_cornerpos)。 | 
+
+**返回：**
+
+返回指定圆角位置的圆角半径结构体[OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)，其中包含x轴方向和y轴方向上的半径。
+
+
+### OH_Drawing_RoundRectSetCorner()
+
+```
+void OH_Drawing_RoundRectSetCorner (OH_Drawing_RoundRect* , OH_Drawing_CornerPos pos, OH_Drawing_Corner_Radii  )
+```
+
+**描述**
+
+用于设置圆角矩形中指定圆角位置的圆角半径。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_RoundRect | 指向圆角矩形对象的指针。 | 
+| pos | 圆角位置的枚举，支持类型可见[OH_Drawing_CornerPos](#oh_drawing_cornerpos)。 | 
+| OH_Drawing_Corner_Radii | 圆角半径结构体[OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)，其中包含x轴方向和y轴方向上的半径。 | 
 
 
 ### OH_Drawing_SamplingOptionsCreate()

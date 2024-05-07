@@ -34,47 +34,50 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | 左侧按钮类型。 | 
-| imageItem<sup>12+</sup> | [EditableTitleBarItem](#editabletitlebaritem12) | 否 | 用于左侧头像的单个菜单项目。 | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 | 
-| subtitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 | 
-| menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 | 
-| isSaveIconRequired<sup>12+</sup> | boolean | 否 | 是否需要右侧的保存按钮。<br />默认值：true，表示需要右侧的保存按钮。 | 
-| onSave | ()&nbsp;=&gt;&nbsp;void | 否 | 保存时的动作闭包。 | 
-| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。 | 
-| options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | 标题样式。 | 
+| leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | 左侧按钮类型。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| imageItem<sup>12+</sup> | [EditableTitleBarItem](#editabletitlebaritem12) | 否 | 用于左侧头像的单个菜单项目。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| subtitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
+| menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| isSaveIconRequired<sup>12+</sup> | boolean | 否 | 是否需要右侧的保存按钮。<br />默认值：true，表示需要右侧的保存按钮。 |
+| onSave | ()&nbsp;=&gt;&nbsp;void | 否 | 保存时的动作闭包。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | 标题样式。 |
 
 ## EditableLeftIconType
 
-| 名称 | 值 | 说明 | 
-| -------- | -------- | -------- |
-| Back | 0 | 返回按钮。 | 
-| Cancel | 1 | 取消按钮。 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| Back | 0 | 返回按钮。 |
+| Cancel | 1 | 取消按钮。 |
 
 ## EditableTitleBarMenuItem
 
-| 名称 | 类型 | 必填 | 说明 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
-| isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 |
+| isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 |
 
 ## EditableTitleBarItem<sup>12+</sup>
 
-| 名称 | 类型 | 说明 | 
+| 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
-| EditableTitleBarItem | [EditableTitleBarMenuItem](#editabletitlebarmenuitem) | 左侧头像的单个菜单类型。 | 
+| EditableTitleBarItem | [EditableTitleBarMenuItem](#editabletitlebarmenuitem) | 左侧头像的单个菜单类型。 |
 
 ## EditableTitleBarOptions<sup>12+</sup>
 
-| 名称 | 类型 | 必填 | 说明 | 
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | 否 | 标题栏背景色。 | 
-| backgroundBlurstyle | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 标题栏背景模糊样式。 | 
-| safeAreaTypes | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。<br />默认值: [SafeAreaType.SYSTEM] | 
+| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | 否 | 标题栏背景色。 |
+| backgroundBlurstyle | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 标题栏背景模糊样式。 |
+| safeAreaTypes | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。<br />默认值: [SafeAreaType.SYSTEM] |
 | safeAreaEdges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 否   | 非必填，配置扩展安全区域的方向。<br />默认值: [SafeAreaEdge.TOP] |
 
 ## 事件

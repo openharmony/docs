@@ -103,6 +103,7 @@
         - [前景色设置](arkui-ts/ts-universal-attributes-foreground-color.md)
         - [前景属性设置](arkui-ts/ts-universal-attributes-foreground-effect.md)
         - [组件内容模糊](arkui-ts/ts-universal-attributes-foreground-blur-style.md)
+        - [运动模糊](arkui-ts/ts-universal-attributes-motionBlur.md)
         - [点击回弹效果](arkui-ts/ts-universal-attributes-click-effect.md)
         - [无障碍属性](arkui-ts/ts-universal-attributes-accessibility.md)
         - [动态属性设置](arkui-ts/ts-universal-attributes-attribute-modifier.md)
@@ -110,6 +111,7 @@
         - [外描边设置](arkui-ts/ts-universal-attributes-outline.md)
         - [自定义绘制](arkui-ts/ts-universal-attributes-draw-modifier.md)
         - [自定义内容](arkui-ts/ts-universal-attributes-content-modifier.md)
+        - [自定义属性设置](arkui-ts/ts-universal-attributes-custom-property.md)
         - 触摸交互控制
           - [触摸热区设置](arkui-ts/ts-universal-attributes-touch-target.md)
           - [触摸测试控制](arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -254,6 +256,7 @@
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
+      - [@ohos.arkui.advanced.ChipGroup (操作块组)](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
       - [@ohos.arkui.advanced.ComposeListItem (列表)](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
       - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
       - [@ohos.arkui.advanced.Counter (计数器组件)](arkui-ts/ohos-arkui-advanced-Counter.md)
@@ -327,8 +330,10 @@
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
+    - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
   - 头文件和结构体
     - 头文件
+      - [native_animate.h](native__animate_8h.md)
       - [native_dialog.h](native__dialog_8h.md)
       - [native_gesture.h](native__gesture_8h.md)
       - [native_interface.h](native__interface_8h.md)
@@ -338,12 +343,18 @@
       - [native_type.h](native__type_8h.md)
       - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
       - [ui_input_event.h](ui__input__event_8h.md)
+      - [oh_window_comm.h](oh__window__comm_8h.md)
+      - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
     - 结构体
+      - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
       - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
+      - [ArkUI_ContextCallback](_ark_u_i___context_callback.md)
+      - [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md)
       - [ArkUI_IntOffset](_ark_u_i___int_offset.md)
       - [ArkUI_IntSize](_ark_u_i___int_size.md)
       - [ArkUI_Margin](_ark_u_i___margin.md)
+      - [ArkUI_NativeAnimateAPI_1](_ark_u_i___native_animate_a_p_i__1.md)
       - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
       - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
       - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)

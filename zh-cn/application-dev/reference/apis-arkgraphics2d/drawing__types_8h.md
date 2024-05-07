@@ -41,6 +41,7 @@
 | typedef struct [OH_Drawing_Point](_drawing.md#oh_drawing_point)  [OH_Drawing_Point](_drawing.md#oh_drawing_point) | 定义一个点，用于描述坐标点。 | 
 | typedef struct [OH_Drawing_ColorSpace](_drawing.md#oh_drawing_colorspace)  [OH_Drawing_ColorSpace](_drawing.md#oh_drawing_colorspace) | 定义色彩空间，用于解释颜色信息。 | 
 | typedef struct [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)  [OH_Drawing_Point2D](_drawing.md#oh_drawing_point2d) | 定义一个二维的坐标点。 | 
+| typedef [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)[OH_Drawing_Corner_Radii](_drawing.md#oh_drawing_corner_radii) | 定义一个圆角半径，该圆角半径由x轴方向和y轴方向上的半径组成。 | 
 | typedef struct [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)  [OH_Drawing_Point3D](_drawing.md#oh_drawing_point3d) | 定义一个三维的坐标点。 | 
 | typedef struct [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect)  [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect) | 定义一个路径效果，用于影响描边路径。 | 
 | typedef struct [OH_Drawing_Rect](_drawing.md#oh_drawing_rect)  [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) | 用于描述矩形。 | 

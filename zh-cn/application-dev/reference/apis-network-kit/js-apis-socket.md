@@ -730,8 +730,7 @@ udp.off('error');
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address<sup>11+</sup> | string | 是   | 本地绑定的ip地址。                                           |
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
-| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。 |
-
+| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。如果地址为IPV6类型，该字段必须被显式指定为2。 |
 ## UDPSendOptions
 
 UDPSocket发送参数。
@@ -3461,7 +3460,7 @@ let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]]
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -5945,12 +5944,15 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
-    console.log("getRemoteCertificate callback = " + data);
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getRemoteCertificate callback = " + str);
   }
 });
 ```
@@ -5981,9 +5983,12 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
-  console.log(data);
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });

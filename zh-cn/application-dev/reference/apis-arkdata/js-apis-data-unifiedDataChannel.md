@@ -16,6 +16,8 @@ import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 
 表示UDMF统一数据对象，提供封装一组数据记录的方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 ### constructor
@@ -24,6 +26,8 @@ constructor(record: UnifiedRecord)
 
 用于创建带有一条数据记录的统一数据对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -31,6 +35,14 @@ constructor(record: UnifiedRecord)
 | 参数名 | 类型                            | 必填 | 说明                                      |
 | ------ | ------------------------------- | ---- |-----------------------------------------|
 | record | [UnifiedRecord](#unifiedrecord) | 是   | 要添加到统一数据对象中的数据记录，该记录为UnifiedRecord子类对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -46,6 +58,8 @@ addRecord(record: UnifiedRecord): void
 
 在当前统一数据对象中添加一条数据记录。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -53,6 +67,14 @@ addRecord(record: UnifiedRecord): void
 | 参数名 | 类型                            | 必填 | 说明                                          |
 | ------ | ------------------------------- | ---- |---------------------------------------------|
 | record | [UnifiedRecord](#unifiedrecord) | 是   | 要添加到统一数据对象中的数据记录，该记录为UnifiedRecord子类对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -71,6 +93,8 @@ unifiedData.addRecord(text2);
 getRecords(): Array\<UnifiedRecord\>
 
 将当前统一数据对象中的所有数据记录取出。通过本接口取出的数据为UnifiedRecord类型，需通过[getType](#gettype)获取数据类型后转为子类再使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -110,6 +134,8 @@ for (let i = 0; i < records.length; i++) {
 
 描述某一统一数据对象的数据摘要，包括所含数据类型及大小，当前暂不支持。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称      | 类型                      | 可读 | 可写 | 说明                                                                                |
@@ -128,6 +154,8 @@ UnifiedRecord是一个抽象父类，无法保存具体数据内容，应用在�
 getType(): string
 
 获取当前数据记录的类型。由于从统一数据对象中调用[getRecords](#getrecords)所取出的数据是UnifiedRecord对象，因此需要通过本接口查询此记录的具体类型，再将该UnifiedRecord对象转换为其子类，调用子类接口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -157,6 +185,8 @@ if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
 
 文本类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文本类型数据的基类，用于描述文本类数据，推荐开发者优先使用Text的子类描述数据，如[PlainText](#plaintext)、[Hyperlink](#hyperlink)、[HTML](#html)等具体子类。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称    | 类型                      | 可读 | 可写 | 说明                                                                                                                                                  |
@@ -178,6 +208,8 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
 纯文本类型数据，是[Text](#text)的子类，用于描述纯文本类数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称        | 类型   | 可读 | 可写 | 说明                    |
@@ -196,6 +228,8 @@ text.abstract = 'this is abstract';
 ## Hyperlink
 
 超链接类型数据，是[Text](#text)的子类，用于描述超链接类型数据。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -216,6 +250,8 @@ link.description = 'this is description';
 
 HTML类型数据，是[Text](#text)的子类，用于描述超文本标记语言数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称         | 类型   | 可读 | 可写 | 说明                    |
@@ -234,6 +270,8 @@ html.plainContent = 'this is plainContent';
 ## File
 
 File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类型数据的基类，用于描述文件类型数据，推荐开发者优先使用File的子类描述数据，如[Image](#image)、[Video](#video)、[Folder](#folder)等具体子类。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -257,6 +295,8 @@ file.uri = 'schema://com.samples.test/files/test.txt';
 
 图片类型数据，是[File](#file)的子类，用于描述图片文件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称     | 类型   | 可读 | 可写 | 说明       |
@@ -273,6 +313,8 @@ image.imageUri = 'schema://com.samples.test/files/test.jpg';
 ## Video
 
 视频类型数据，是[File](#file)的子类，用于描述视频文件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -291,6 +333,8 @@ video.videoUri = 'schema://com.samples.test/files/test.mp4';
 
 音频类型数据，是[File](#file)的子类，用于描述音频文件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称       | 类型     | 可读 | 可写 | 说明       |
@@ -308,6 +352,8 @@ audio.audioUri = 'schema://com.samples.test/files/test.mp3';
 
 文件夹类型数据，是[File](#file)的子类，用于描述文件夹。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称     | 类型   | 可读 | 可写 | 说明      |
@@ -324,6 +370,8 @@ folder.folderUri = 'schema://com.samples.test/files/folder/';
 ## SystemDefinedRecord
 
 SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmony系统特有数据类型的基类，用于描述仅在OpenHarmony系统范围内流通的特有数据类型，推荐开发者优先使用SystemDefinedRecord的子类描述数据，如[SystemDefinedForm](#systemdefinedform)、[SystemDefinedAppItem](#systemdefinedappitem)、[SystemDefinedPixelMap](#systemdefinedpixelmap)等具体子类。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -347,6 +395,8 @@ let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 ## SystemDefinedForm
 
 系统定义的桌面卡片类型数据，是[SystemDefinedRecord](#systemdefinedrecord)的子类。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -379,6 +429,8 @@ let unifiedData = new unifiedDataChannel.UnifiedData(form);
 ## SystemDefinedAppItem
 
 系统定义的桌面图标类型数据，是[SystemDefinedRecord](#systemdefinedrecord)的子类。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -413,6 +465,8 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 ## SystemDefinedPixelMap
 
 与系统侧定义的[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)数据类型对应的图片数据类型，是[SystemDefinedRecord](#systemdefinedrecord)的子类，仅保存PixelMap的二进制数据。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -450,6 +504,8 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应用自定义数据类型的基类，用于描述仅在应用生态内部流通的自定义数据类型，应用可基于此类进行自定义数据类型的扩展。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称                     | 类型         | 可读 | 可写 | 说明                                    |
@@ -471,6 +527,8 @@ let unifiedData = new unifiedDataChannel.UnifiedData(record);
 
 UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF数据通路所面向的不同业务场景。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称       | 值         | 说明      |
@@ -480,6 +538,8 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 ## Options
 
 UDMF提供的数据操作接口可选项，包含intention和key两个可选参数。无默认值，当对应接口不需要此参数时可不填，具体要求参照方法接口的参数说明。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -497,6 +557,8 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 
 将数据写入UDMF的公共数据通路中，并生成数据的唯一标识符，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -506,6 +568,15 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 | options  | [Options](#options)        | 是  | 配置项参数，仅需要intention的值。        |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                        |
 | callback | AsyncCallback&lt;string&gt; | 是  | 回调函数，返回写入UDMF的数据的唯一标识符key的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -541,6 +612,8 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
 将数据写入UDMF的公共数据通路中，并生成数据的唯一标识符，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -555,6 +628,15 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 | 类型                    | 说明                                |
 |-----------------------|-----------------------------------|
 | Promise&lt;string&gt; | Promise对象，返回写入UDMF的数据的唯一标识符key的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -587,6 +669,8 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 
 更新已写入UDMF的公共数据通路的数据，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -596,6 +680,15 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 | options  | [Options](#options)         | 是  | 配置项参数，仅需要key的值。                     |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                               |
 | callback | AsyncCallback&lt;void&gt;   | 是  | 回调函数。当更新数据成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -631,6 +724,8 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
 更新已写入UDMF的公共数据通路的数据，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -645,6 +740,15 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 | 类型                  | 说明                         |
 |---------------------|----------------------------|
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -678,6 +782,8 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 
 查询UDMF公共数据通路的数据，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -686,6 +792,15 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 |----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                    |
 | callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据。<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -727,6 +842,8 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 查询UDMF公共数据通路的数据，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -740,6 +857,15 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 | 类型                                                      | 说明                                                                                                                                  |
 |---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise对象，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据。<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -779,6 +905,8 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 
 删除UDMF公共数据通路的数据，返回删除的数据集，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -787,6 +915,15 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 |----------|---------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                                          |
 | callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回删除的所有数据。<br>如果options中填入的是key，则删除key对应的数据并返回该数据。<br>如果options中填入的是intention，则删除intention下所有数据并返回删除的数据。<br>如intention和key均填写了，取两者数据的交集进行删除，并返回删除的数据，与options只填入key的结果一致；如没有交集报错。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -828,6 +965,8 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 删除UDMF公共数据通路的数据，返回删除的数据集，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
@@ -841,6 +980,15 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 | 类型                                                      | 说明                                                                                                                                                          |
 |---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise对象，返回删除的所有数据。<br>如果options中填入的是key，则删除key对应的数据并返回该数据。<br>如果options中填入的是intention，则删除intention下所有数据并返回删除的数据。<br>如intention和key均填写了，取两者数据的交集进行删除，并返回删除的数据，与options只填入key的结果一致；如没有交集报错。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | Permission denied. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 

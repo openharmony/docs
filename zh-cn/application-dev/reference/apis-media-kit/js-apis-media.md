@@ -167,7 +167,7 @@ createAVRecorder(): Promise\<AVRecorder>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -213,7 +213,7 @@ createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVMetadataExtractor](#avmetadataextractor11)> | 是   | 回调函数。异步返回AVMetadataExtractor实例，失败时返回null。可用于获取音视频元信息。 |
+| callback | AsyncCallback\<[AVMetadataExtractor](#avmetadataextractor11)> | 是   | 回调函数。异步返回AVMetadataExtractor实例，失败时返回null。可用于获取音视频元数据。 |
 
 **错误码：**
 
@@ -461,7 +461,7 @@ Codec MIME类型枚举。
 | VIDEO_MPEG4  | 'video/mp4v-es'         | 表示视频/mpeg4类型。     |
 | VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
 | VIDEO_HEVC<sup>11+</sup>   | 'video/hevc'          | 表示视频/H265类型。|
-| AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 
@@ -548,7 +548,7 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -624,7 +624,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -640,7 +640,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
 | 201      | Permission denied     |
-| 401      | The parameter check failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. |
 | 5400101  | No Memory. Return by callback. |
 | 5400102  | Operation not allowed.|
@@ -707,7 +707,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 5400102  | Operation not allowed. Return by callback. |
 
 **示例：**
@@ -1949,7 +1949,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 
 **示例：**
 
@@ -1980,7 +1980,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 
 **示例：**
 
@@ -2127,7 +2127,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 | 名称    | 类型                                 | 可读 | 可写 | 说明               |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| state9+ | [AVRecorderState](#avrecorderstate9) | 是   | 否   | 音视频录制的状态。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| state9+ | [AVRecorderState](#avrecorderstate9) | 是   | 否   | 音视频录制的状态。<br>**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 
 ### prepare<sup>9+</sup>
 
@@ -2157,7 +2157,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
 | 201      | Permission denied. Return by callback.  |
-| 401      | Parameter error. Return by callback.    |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 5400102  | Operate not permit. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -2211,7 +2211,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2232,7 +2232,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 201      | Permission denied. Return by promise.  |
-| 401      | Parameter error. Return by promise.    |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -2385,7 +2385,7 @@ updateRotation(rotation: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-|   401    | Parameter error. Return by callback.   |
+|   401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.   |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
@@ -2454,7 +2454,7 @@ start(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2534,7 +2534,7 @@ pause(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2614,7 +2614,7 @@ resume(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2698,7 +2698,7 @@ stop(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2852,7 +2852,7 @@ release(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -3240,7 +3240,7 @@ off(type: 'stateChange'): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3336,7 +3336,7 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 
 **示例：**
 
@@ -3375,7 +3375,7 @@ avRecorder.off('audioCapturerChange');
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 | 名称     | 类型   | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
@@ -3397,10 +3397,10 @@ avRecorder.off('audioCapturerChange');
 
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。                  |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。                  |
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
-| profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。                                   |
-| url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。                                   |
+| url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 | rotation        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。       |
 | location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。                     |
 
@@ -3412,10 +3412,10 @@ avRecorder.off('audioCapturerChange');
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填，支持范围[8000 - 384000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填，支持范围[1 - 2]。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前仅支持AUDIO_AAC。 <br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填，支持范围[8000 - 384000]。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填，支持范围[1 - 2]。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。       |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前仅支持AUDIO_AAC。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。     |
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000]。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。 <br>                                   |
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[1 - 3000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。        |
@@ -3423,7 +3423,7 @@ avRecorder.off('audioCapturerChange');
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
-| enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。|
+| enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -3434,7 +3434,7 @@ avRecorder.off('audioCapturerChange');
 | 名称                      | 值   | 说明                   |
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | 默认的音频输入源类型。 |
-| AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 
 ## VideoSourceType<sup>9+</sup>
 
@@ -3456,7 +3456,7 @@ avRecorder.off('audioCapturerChange');
 | 名称        | 值    | 说明                  |
 | ----------- | ----- | --------------------- |
 | CFT_MPEG_4  | 'mp4' | 视频的容器格式，MP4。 |
-| CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 
 ## Location
 
@@ -3511,8 +3511,8 @@ avRecorder.off('audioCapturerChange');
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元信息之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
-| dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，通过该属性设置数据源。在获取元信息之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> 当应用从远端获取音视频媒体文件，在应用未下载完整音视频资源时，可以设置dataSrc提前获取该资源的元信息。|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，通过该属性设置数据源。在获取元数据之前，必须设置数据源属性，只能设置fdSrc和dataSrc的其中一个。<br/> 当应用从远端获取音视频媒体文件，在应用未下载完整音视频资源时，可以设置dataSrc提前获取该资源的元数据。|
 
 ### fetchMetadata<sup>11+</sup>
 
@@ -6036,7 +6036,7 @@ createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSo
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 5400101  | No memory. Return by callback. |
 
 **示例：**
@@ -6142,7 +6142,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 401      | The parameter check failed. Return by promise. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. Return by promise. |
 | 5400103  | IO error. Return by promise.                   |
 | 5400105  | Service died. Return by promise.               |
 

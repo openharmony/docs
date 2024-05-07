@@ -20,7 +20,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
-| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif和pixelmap。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
+| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
 | controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
 
 ## 属性
@@ -355,9 +355,6 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
->  **说明：**     
->   如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
-
 ### inputFilter<sup>12+</sup>
 
 inputFilter(value: ResourceStr, error?: &nbsp;Callback<&nbsp;string&nbsp;>)
@@ -375,20 +372,6 @@ inputFilter(value: ResourceStr, error?: &nbsp;Callback<&nbsp;string&nbsp;>)
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 正则表达式。                       |
 | error  | &nbsp;Callback<&nbsp;string&nbsp;>     | 否   | 正则匹配失败时，返回被过滤的内容。 |
 
-### onEditChange<sup>12+</sup>
-
-onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
-
-输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名    | 类型                                | 必填 | 说明                 |
-| --------- | ---------------------------------- | ---- | -------------------- |
-| isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
-
 ### textIndent<sup>12+</sup>
 
 textIndent(value: Dimension)
@@ -399,9 +382,9 @@ textIndent(value: Dimension)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
+| 参数名 | 类型                                 | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 首行文本缩进。<br/>默认值：0   |
 
 ### minFontSize<sup>12+</sup>
 
@@ -467,6 +450,7 @@ maxFontSize(value: number | string | Resource)
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
@@ -607,6 +591,20 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | ------------ | ------ | ---- | ---------------------------------- |
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
 | totalOffsetY | number | 否   | 文本在内容区的纵坐标偏移，单位px。 |
+
+### onEditChange<sup>12+</sup>
+
+onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
+
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                | 必填 | 说明                 |
+| --------- | ---------------------------------- | ---- | -------------------- |
+| isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
 
 ## SearchController
 
@@ -921,12 +919,12 @@ struct SearchExample {
         Search({value: 'LineThrough, Red'})
           .border({ width: 1 }).padding(5)
           .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        Search({value: 'Overline, Red'})
+        Search({value: 'Overline, Red, DOTTED'})
           .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        Search({value: 'Underline, Red'})
+          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED})
+        Search({value: 'Underline, Red, WAVY'})
           .border({ width: 1 }).padding(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
+          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
       }.height('90%')
     }
     .width('90%')

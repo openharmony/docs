@@ -45,7 +45,7 @@ let screenClass: screen.Screen | null = null;
 screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
+    console.error(`Failed to get all screens. Code:${err.code},message is ${err.message}`);
     return;
   }
   console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
@@ -105,17 +105,21 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 | eventType | string                 | 是   | 监听事件。<br/>-eventType为"connect"表示屏幕连接事件。<br/>-eventType为"disconnect"表示断开屏幕连接事件。<br/>-eventType为"change"表示屏幕状态改变事件。 |
 | callback  | Callback&lt;number&gt; | 是   | 回调函数。返回屏幕的id，该参数应为整数。                                    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **示例：**
 
 ```ts
-try {
-  let callback: Callback<number> = (data: number) => {
-    console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
-  };
-  screen.on('connect', callback);
-} catch (exception) {
-  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+let callback: Callback<number> = (data: number) => {
+  console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
 };
+screen.on('connect', callback);
 ```
 
 ## screen.off('connect' | 'disconnect' | 'change')
@@ -133,17 +137,22 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 | eventType | string                 | 是   | 监听事件。<br/>-eventType为"connect"表示屏幕连接事件。<br/>-eventType为"disconnect"表示断开屏幕连接事件。<br/>-eventType为"change"表示屏幕状态改变事件。 |
 | callback  | Callback&lt;number&gt; | 否   | 回调函数。返回屏幕的id，该参数应为整数。                                     |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **示例：**
 
 ```ts
-try {
-  let callback: Callback<number> = (data: number) => {
-    console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
-  };
-  screen.off('connect', callback);
-} catch (exception) {
-  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+let callback: Callback<number> = (data: number) => {
+  console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
 };
+screen.off('connect', callback);
+screen.off('connect');
 ```
 
 ## screen.makeExpand
@@ -163,10 +172,11 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -174,28 +184,24 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let groupId: number | null = null;
-  class ExpandOption {
-    screenId: number = 0;
-    startX: number = 0;
-    startY: number = 0;
+let groupId: number | null = null;
+class ExpandOption {
+  screenId: number = 0;
+  startX: number = 0;
+  startY: number = 0;
+}
+let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
+    return;
   }
-  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
-  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
-  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
-  screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-      return;
-    }
-    groupId = data;
-    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
-};
+  groupId = data;
+  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## screen.makeExpand
@@ -220,10 +226,11 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -231,24 +238,20 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  class ExpandOption {
-    screenId: number = 0;
-    startX: number = 0;
-    startY: number = 0;
-  }
-  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
-  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
-  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
-  screen.makeExpand(expandOptionArray).then((
-    data: number) => {
-    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
-};
+class ExpandOption {
+  screenId: number = 0;
+  startX: number = 0;
+  startY: number = 0;
+}
+let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+screen.makeExpand(expandOptionArray).then((
+  data: number) => {
+  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.stopExpand<sup>10+</sup>
@@ -263,15 +266,16 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                      |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id应为整数。                      |
+| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id应为整数。 expandScreen数组大小不应超过1000。  |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕扩展模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -279,19 +283,15 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let expandScreenIds: Array<number> = [1, 2, 3];
-  screen.stopExpand(expandScreenIds, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in stopping expand screens.');
-  });
-} catch (exception) {
-  console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
-};
+let expandScreenIds: Array<number> = [1, 2, 3];
+screen.stopExpand(expandScreenIds, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in stopping expand screens.');
+});
 ```
 
 ## screen.stopExpand<sup>10+</sup>
@@ -306,7 +306,7 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------------ | ------------------- | --- |--------------------|
-| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id应为整数。 |
+| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id应为整数。expandScreen数组大小不应超过1000。 |
 
 **返回值：**
 
@@ -316,10 +316,11 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -327,16 +328,12 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let expandScreenIds: Array<number> = [1, 2, 3];
-  screen.stopExpand(expandScreenIds).then(() => {
-    console.info('Succeeded in stopping expand screens.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
-};
+let expandScreenIds: Array<number> = [1, 2, 3];
+screen.stopExpand(expandScreenIds).then(() => {
+  console.info('Succeeded in stopping expand screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.makeMirror
@@ -357,10 +354,11 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -370,18 +368,14 @@ import { BusinessError } from '@ohos.base';
 
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
-try {
-  screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: number) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
-};
+screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: number) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## screen.makeMirror
@@ -407,10 +401,11 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -420,15 +415,11 @@ import { BusinessError } from '@ohos.base';
 
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
-try {
-  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: number) => {
-    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
-};
+screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: number) => {
+  console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.stopMirror<sup>10+</sup>
@@ -443,15 +434,16 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                                      |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。                      |
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。 mirrorScreen数组大小不应超过1000。 |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕镜像模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -459,19 +451,15 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let mirrorScreenIds: Array<number> = [1, 2, 3];
-  screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in stopping mirror screens.');
-  });
-} catch (exception) {
-  console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
-};
+let mirrorScreenIds: Array<number> = [1, 2, 3];
+screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to stop mirror screens. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in stopping mirror screens.');
+});
 ```
 
 ## screen.stopMirror<sup>10+</sup>
@@ -486,7 +474,7 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------------ | ------------------- | --- |--------------------|
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合，其中id应为整数。 |
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合，其中id应为整数。mirrorScreen数组大小不应超过1000。 |
 
 **返回值：**
 
@@ -496,10 +484,11 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -507,16 +496,12 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let mirrorScreenIds: Array<number> = [1, 2, 3];
-  screen.stopMirror(mirrorScreenIds).then(() => {
-    console.info('Succeeded in stopping mirror screens.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
-};
+let mirrorScreenIds: Array<number> = [1, 2, 3];
+screen.stopMirror(mirrorScreenIds).then(() => {
+  console.info('Succeeded in stopping mirror screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to stop mirror screens.Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.createVirtualScreen
@@ -538,10 +523,12 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -550,34 +537,30 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = { 
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-  screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-      return;
-    }
-    screenClass = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = { 
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  screenClass = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## screen.createVirtualScreen
@@ -604,10 +587,12 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -616,32 +601,28 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = { 
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    screenClass = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = { 
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  screenClass = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.destroyVirtualScreen
@@ -661,10 +642,11 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400002 | Unauthorized operation. |
 
 **示例：**
@@ -673,18 +655,14 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 import { BusinessError } from '@ohos.base';
 
 let screenId: number = 1;
-try {
-  screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in destroying the virtual screen.');
-  });
-} catch (exception) {
-  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
-};
+screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to destroy the virtual screen. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in destroying the virtual screen.');
+});
 ```
 
 ## screen.destroyVirtualScreen
@@ -709,10 +687,11 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400002 | Unauthorized operation. |
 
 **示例：**
@@ -721,15 +700,11 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let screenId: number = 1;
-try {
-  screen.destroyVirtualScreen(screenId).then(() => {
-    console.info('Succeeded in destroying the virtual screen.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
-};
+screen.destroyVirtualScreen(screenId).then(() => {
+  console.info('Succeeded in destroying the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to destroy the virtual screen.Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.setVirtualScreenSurface
@@ -747,15 +722,17 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | screenId  | number                    | 是   | 屏幕的id，该参数仅支持整数输入。                                                   |
-| surfaceId | string                    | 是   | surface的id。                                                |
+| surfaceId | string                    | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义。                                                |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置虚拟屏幕surface成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -765,18 +742,14 @@ import { BusinessError } from '@ohos.base';
 
 let screenId: number = 1;
 let surfaceId: string = '2048';
-try {
-  screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in setting the surface for the virtual screen.');
-  });
-} catch (exception) {
-  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
-};
+screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting the surface for the virtual screen.');
+});
 ```
 
 ## screen.setVirtualScreenSurface
@@ -794,7 +767,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
 | screenId  | number | 是   | 屏幕的id，该参数仅支持整数输入。    |
-| surfaceId | string | 是   | surface的id。 |
+| surfaceId | string | 是   | 代表虚拟屏幕的surface标识符，surfaceId值可自行定义。 |
 
 **返回值：**
 
@@ -804,10 +777,12 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -817,15 +792,11 @@ import { BusinessError } from '@ohos.base';
 
 let screenId: number = 1;
 let surfaceId: string = '2048';
-try {
-  screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
-    console.info('Succeeded in setting the surface for the virtual screen.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
-};
+screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
+  console.info('Succeeded in setting the surface for the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.isScreenRotationLocked
@@ -850,7 +821,7 @@ import { BusinessError } from '@ohos.base';
 screen.isScreenRotationLocked().then((isLocked: boolean) => {
   console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 }).catch((err: BusinessError) => {
-  console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
+  console.error(`Failed to get the screen rotation lock status. Code:${err.code},message is ${err.message}`);
 });
 ```
 
@@ -874,12 +845,12 @@ isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@ohos.base';
 
 screen.isScreenRotationLocked((err: BusinessError, isLocked: boolean) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+const errCode: number = err.code;
+if (errCode) {
+  console.error(`Failed to get the screen rotation lock status. Code:${err.code},message is ${err.message}`);
+  return;
+}
+console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 });
 ```
 
@@ -903,21 +874,25 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
 let isLocked: boolean = false;
-try {
-  screen.setScreenRotationLocked(isLocked).then(() => {
-    console.info('Succeeded in unlocking auto rotate');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
-};
+screen.setScreenRotationLocked(isLocked).then(() => {
+  console.info('Succeeded in unlocking auto rotate');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to unlock auto rotate. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.setScreenRotationLocked
@@ -935,24 +910,28 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 | isLocked  | boolean                   | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定.                 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置自动转屏是否锁定成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
 let isLocked: boolean = false;
-try {
-  screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in unlocking auto rotate.');
-  });
-} catch (exception) {
-  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
-};
+screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to unlock auto rotate. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in unlocking auto rotate.');
+});
 ```
 
 ## ExpandOption
@@ -1010,15 +989,16 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| orientation | [Orientation](#orientation) | 是   | 屏幕方向。                                                   |
+| orientation | [Orientation](#orientation) | 是   | 屏幕方向。orientation值必须来自Orientation枚举方向。                |
 | callback    | AsyncCallback&lt;void&gt;   | 是   | 回调函数。当设置屏幕方向成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -1026,40 +1006,36 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 ```ts
 import { BusinessError } from '@ohos.base';
 
-  try {
-    class VirtualScreenOption {
-      name : string = '';
-      width : number =  0;
-      height : number = 0;
-      density : number = 0;
-      surfaceId : string = '';
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
+
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to set the vertical orientation. Code:${err.code},message is ${err.message}`);
+      return;
     }
-
-    let option : VirtualScreenOption = {
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    };
-
-    screen.createVirtualScreen(option).then((data: screen.Screen) => {
-      let screenClass: screen.Screen = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-      screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the vertical orientation.');
-      });
-    }).catch((err: BusinessError) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-    });
-  } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
-  };
+    console.info('Succeeded in setting the vertical orientation.');
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setOrientation
@@ -1072,7 +1048,7 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 | 参数名      | 类型                        | 必填 | 说明       |
 | ----------- | --------------------------- | ---- | ---------- |
-| orientation | [Orientation](#orientation) | 是   | 屏幕方向。 |
+| orientation | [Orientation](#orientation) | 是   | 屏幕方向。orientation值必须来自Orientation枚举方向。 |
 
 **返回值：**
 
@@ -1082,10 +1058,11 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -1093,38 +1070,34 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-  try {
-    class VirtualScreenOption {
-      name : string = '';
-      width : number =  0;
-      height : number = 0;
-      density : number = 0;
-      surfaceId : string = '';
-    }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-    let option : VirtualScreenOption = {
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    };
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
 
-    screen.createVirtualScreen(option).then((data: screen.Screen) => {
-      let screenClass: screen.Screen = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-      let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
-      promise.then(() => {
-        console.info('Succeeded in setting the vertical orientation.');
-      }).catch((err: BusinessError) => {
-        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
-      });
-    }).catch((err: BusinessError) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-    });
-  } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
-  };
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
+  promise.then(() => {
+    console.info('Succeeded in setting the vertical orientation.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the vertical orientation. Code:${err.code},message is ${err.message}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setScreenActiveMode
@@ -1142,10 +1115,11 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -1153,41 +1127,37 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = {
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    let screenClass: screen.Screen = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    let modeIndex: number = 0;
-    screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in setting the vertical orientation.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  let modeIndex: number = 0;
+  screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to set screen active mode 0. Code:${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setScreenActiveMode
@@ -1210,10 +1180,11 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -1221,39 +1192,35 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = {
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    let screenClass: screen.Screen = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    let modeIndex: number = 0;
-    let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
-    promise.then(() => {
-      console.info('Succeeded in setting screen active mode 0.');
-    }).catch((err: BusinessError) => {
-      console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-    });
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  let modeIndex: number = 0;
+  let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
+  promise.then(() => {
+    console.info('Succeeded in setting screen active mode 0.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set screen active mode 0.Code:${err.code},message is ${err.message}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setDensityDpi
@@ -1271,10 +1238,11 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -1283,40 +1251,36 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 import { BusinessError } from '@ohos.base';
 
 let densityDpi: number = 320;
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = {
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    let screenClass: screen.Screen = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in setting the vertical orientation.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setDensityDpi
@@ -1339,10 +1303,11 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -1351,37 +1316,33 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let densityDpi: number = 320;
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = {
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    let screenClass: screen.Screen = data;
-    let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
-    promise.then(() => {
-      console.info('Succeeded in setting the pixel density of the screen to 320.');
-    }).catch((err: BusinessError) => {
-      console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-    });
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
+  promise.then(() => {
+    console.info('Succeeded in setting the pixel density of the screen to 320.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code},message is ${err.message}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## Orientation
@@ -1422,4 +1383,4 @@ try {
 | id          | number   | 是   | 是   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数应为整数。 | 
 | width       | number   | 是   | 是   | 屏幕的宽度，单位为px，该参数应为整数。                                |
 | height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数应为整数。                                |
-| refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数，该参数应为整数。                                     |
+| refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数。                                     |

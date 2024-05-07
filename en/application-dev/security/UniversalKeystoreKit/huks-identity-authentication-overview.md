@@ -60,7 +60,7 @@ HUKS provides refined access control, which includes the following modes:
 
 - **AuthToken**-based access control
   
-  ![] (figures/access_control.png)
+  ![](figures/access_control.png)
 
   The preceding figure illustrates the user identity authentication and access control process.
 

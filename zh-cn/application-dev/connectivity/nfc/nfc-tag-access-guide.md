@@ -88,6 +88,7 @@ NFC标签读写完整的JS API说明以及实例代码请参考：[NFC标签接�
 import tag from '@ohos.nfc.tag';
 import { BusinessError } from '@ohos.base';
 import bundleManager from '@ohos.bundle.bundleManager'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 let nfcTagElementName: bundleManager.ElementName;
 let foregroundRegister: boolean;
@@ -110,7 +111,7 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
 
     // 执行读写接口完成标签数据的读取或写入数据到标签
     // use the IsoDep technology to access this nfc tag.
-    let isoDep : tag.IsoDepTag;
+    let isoDep : tag.IsoDepTag | null = null;
     for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
         try {
@@ -162,7 +163,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -288,7 +289,7 @@ export default class EntryAbility extends UIAbility {
 
     // 执行读写接口完成标签数据的读取或写入数据到标签
     // use the IsoDep technology to access this nfc tag.
-    let isoDep : tag.IsoDepTag;
+    let isoDep : tag.IsoDepTag | null = null;
     for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
         try {

@@ -287,6 +287,51 @@ try {
 }
 ```
 
+## appManager.on<sup>12+</sup>
+
+on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bundleName?: string): void
+
+Registers an observer to listen for the complete of the first frame rendering of a given ability.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                        |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | Yes  | Event type. It is fixed at **'abilityFirstFrameState'**.        |
+| observer   | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | Yes  | Observer used to listen for the complete of the first frame rendering of the ability.             |
+| bundleName | string                                                       | No  | Bundle name of the ability to be listened for. If this parameter is left blank, the event is listened for all applications.|
+
+**Error codes**
+
+| ID| Error Message       |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+abilityFirstFrameStateObserverForAll: 	 	      		   appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData:             		appManager.AbilityFirstFrameStateData) {
+	  console.log("abilityFirstFrame: ",      	              		  JSON.stringify(abilityStateData));
+    }
+  };
+try {
+  appManager.on('abilityFirstFrameState',      				  	  this.abilityFirstFrameStateObserverForAll);
+} catch(e) {
+  console.log('error log:' + e.code)
+}
+```
+
 ## appManager.off
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void
@@ -506,6 +551,45 @@ try {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
   console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
+## appManager.off<sup>12+</sup>
+
+off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): void
+
+Deregisters the observer used to listen for the complete of the first frame rendering of a given ability.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. It is fixed at **'abilityFirstFrameState'**.        |
+| observer | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | No  | Callback used for deregistration. If this parameter is left blank, all subscriptions to the specified event are canceled.|
+
+**Error codes**
+
+| ID| Error Message       |
+| -------- | --------------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+try {
+  appManager.off('abilityFirstFrameState', 		          		this.abilityFirstFrameStateObserverForAll)
+} catch (e) {
+  console.log('error log:' + e.code)
 }
 ```
 

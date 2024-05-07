@@ -164,7 +164,7 @@ let dateStyle = options.dateStyle; // dateStyle: full
 
 5. 获取相对时间格式化选项，查看对象的设置信息。
    ```ts
-   let options: IntlRelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
+   let options: Intl.RelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
    ```
 
 **相对时间格式化选项**

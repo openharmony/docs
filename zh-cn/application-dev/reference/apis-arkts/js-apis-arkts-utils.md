@@ -26,6 +26,8 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 
 这是一个补充类型别名，表示[lockAsync](#lockasync)函数所有重载中的回调。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 ### AsyncLock
@@ -33,6 +35,8 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 实现异步锁功能的类，允许在锁下执行异步操作。
 
 #### 属性
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -76,6 +80,8 @@ constructor()
 
 默认构造函数。创建一个匿名锁。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -95,6 +101,8 @@ let lock = new utils.locks.AsyncLock();
 static request(name: string): AsyncLock
 
 使用指定的名称查找或创建（如果未找到）异步锁实例。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -122,6 +130,8 @@ let lock = utils.locks.AsyncLock.request(lockName);
 static query(name: string): AsyncLockState
 
 查询指定异步锁的信息。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -164,6 +174,8 @@ static queryAll(): AsyncLockState[]
 
 查询所有现有锁的信息。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -186,6 +198,8 @@ if (states.length == 0) {
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 在获取的锁下独占执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -224,6 +238,8 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -261,6 +277,8 @@ let p1 = lock.lockAsync<void>(() => {
 lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: AsyncLockOptions\<U>): Promise\<T | U>
 
 在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用 lockAsync 的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -306,6 +324,8 @@ let p: Promise<void> = lock.lockAsync<void, void>(
 
 锁操作对应的模式枚举。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 值  | 说明                                                     |
@@ -319,6 +339,8 @@ class AsyncLockOptions\<T>
 
 表示锁操作选项的类。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 #### constructor
@@ -326,6 +348,8 @@ class AsyncLockOptions\<T>
 constructor()
 
 默认构造函数。创建一个所有属性均具有默认值的异步锁配置项实例。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -360,6 +384,8 @@ options.signal = s;
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
 | held    | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 持有的锁信息。   |
 | pending | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 等待中的锁信息。 |
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **示例：**
 
@@ -399,6 +425,8 @@ function queryTest() {
 
 关于锁的信息。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 #### 属性
@@ -412,6 +440,8 @@ function queryTest() {
 ### AbortSignal
 
 用于中止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

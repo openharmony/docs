@@ -163,7 +163,7 @@ try {
 
 当前色域对象实例。
 
-下列API示例中都需先使用[create()](#colorspacemanagercreate)获取到ColorSpaceManager实例（i.e. `colorSpace`），再通过此实例调用对应方法。
+下列API示例中都需先使用[create()](#colorspacemanagercreate)获取到ColorSpaceManager实例，再通过此实例调用对应方法。
 
 ### getColorSpaceName
 

@@ -1,6 +1,6 @@
 # ApplicationContext
 
-The **ApplicationContext** module provides application-level context. You can use the APIs of this module to register and deregister the ability lifecycle listener in an application.
+The ApplicationContext module, inherited from [Context](js-apis-inner-application-context.md), provides application-level context capabilities, including APIs for registering and deregistering the lifecycle of application components.
 
 > **NOTE**
 >
@@ -21,7 +21,9 @@ Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContex
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-Registers a listener to monitor the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
+Registers a listener to monitor the ability lifecycle of the application. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -95,7 +97,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-Deregisters the listener that monitors the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
+Deregisters the listener that monitors the ability lifecycle of the application. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -105,7 +109,7 @@ Deregisters the listener that monitors the ability lifecycle of the application.
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'abilityLifecycle' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                  |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the deregistration is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
 
@@ -133,7 +137,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-Deregisters the listener that monitors the ability lifecycle of the application. Multi-thread concurrent calls are not supported.
+Deregisters the listener that monitors the ability lifecycle of the application. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -172,6 +178,8 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 Registers a listener for system environment changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -179,7 +187,7 @@ Registers a listener for system environment changes. This API uses an asynchrono
 | Name                  | Type    | Mandatory| Description                          |
 | ------------------------ | -------- | ---- | ------------------------------ |
 | type | 'environment' | Yes  | Event type.|
-| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | Yes  | Callback used to return the ID of the registered listener.|
+| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | Yes  | Callback used to return the system environment changes.|
 
 **Return value**
 
@@ -221,6 +229,8 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -229,7 +239,7 @@ Deregisters the listener for system environment changes. This API uses an asynch
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                 |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the deregistration is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
 
@@ -256,7 +266,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-Deregisters the listener for system environment changes. Multi-thread concurrent calls are not supported.
+Deregisters the listener for system environment changes. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -294,6 +306,8 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 
 Registers a listener for application foreground/background state changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -301,7 +315,7 @@ Registers a listener for application foreground/background state changes. This A
 | Name  | Type                                                        | Mandatory| Description            |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
 | type     | 'applicationStateChange'                                     | Yes  | Event type.|
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result.      |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | Yes  | Callback used to return the result. You can define a callback for switching from the background to the foreground and a callback for switching from the foreground to the background.      |
 
 **Example**
 
@@ -330,11 +344,13 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
+## ApplicationContext.off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback)<sup>10+</sup>
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-Deregisters all the listeners for application foreground/background state changes. Multi-thread concurrent calls are not supported.
+Deregisters all the listeners for application foreground/background state changes. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -343,7 +359,7 @@ Deregisters all the listeners for application foreground/background state change
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
 | type   | 'applicationStateChange' | Yes  | Event type.|
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result.      |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | No  | Callback used to return the result. You can define a callback for switching from the background to the foreground and a callback for switching from the foreground to the background.      |
 
 **Example**
 
@@ -363,6 +379,8 @@ export default class MyAbility extends UIAbility {
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 Obtains information about the running processes. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -405,13 +423,15 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 Obtains information about the running processes. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | Yes  | Callback used to return the process information.|
+| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | Yes  | Callback used to return the information about the running processes.|
 
 **Error codes**
 
@@ -447,13 +467,15 @@ killAllProcesses(): Promise\<void\>
 
 Kills all the processes where the application is located. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<void\> | Promise used to return the result.|
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -482,13 +504,15 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 Kills all the processes where the application is located. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<void\>   | Yes  | Callback used to return the result.|
+| callback    | AsyncCallback\<void\>   | Yes  | Callback used to return the result. If all the processes are killed, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -519,6 +543,8 @@ export default class MyAbility extends UIAbility {
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 Sets the color mode for the application.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -557,6 +583,8 @@ setLanguage(language: string): void
 
 Sets the language for the application.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -593,6 +621,10 @@ clearUpApplicationData(): Promise\<void\>
 
 Clears up the application data and revokes the permissions that the application has requested from users. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> This API stops the application process. After the application process is stopped, all subsequent callbacks will not be triggered.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -628,6 +660,10 @@ export default class MyAbility extends UIAbility {
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
 Clears up the application data and revokes the permissions that the application has requested from users. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API stops the application process. After the application process is stopped, all subsequent callbacks will not be triggered.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -666,6 +702,8 @@ export default class MyAbility extends UIAbility {
 restartApp(want: Want): void
 
 Restarts the application and starts the specified UIAbility. The **onDestroy** callback is not triggered during the restart.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

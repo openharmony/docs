@@ -175,10 +175,10 @@ export default class OnC {
     app.setImageFileCacheSize(209715200)
     // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
     console.info('Application onCreate')
-  },
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
 }
 ```
 

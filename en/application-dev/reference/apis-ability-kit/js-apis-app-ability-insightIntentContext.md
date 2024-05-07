@@ -22,6 +22,8 @@ Starts an ability. The ability can be started only when it has the same bundle n
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -99,6 +101,8 @@ startAbility(want: Want): Promise\<void\>
 Starts an ability. The ability can be started only when it has the same bundle name as the base class for InsightIntent call execution. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
