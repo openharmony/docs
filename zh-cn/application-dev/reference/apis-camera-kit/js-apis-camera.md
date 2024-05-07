@@ -2088,7 +2088,7 @@ isMovingPhotoSupported(): boolean
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| boolean | 返回是否支持镜像拍照，true表示支持，false表示不支持。 |
+| boolean | 返回是否支持动态照片拍照，true表示支持，false表示不支持。 |
 
 **错误码：**
 
@@ -2173,17 +2173,18 @@ on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
-function callback(err: BusinessError, photoAsset: media.PhotoAsset): void {
-  let photoHelper = photoAccessHelper.getPhotoAccessHelper(this.globalContext.getCameraSettingContext());
-  let fileName = Date.now() + '.jpg';
-  let photoAsset = await photoHelper.createAsset(fileName);
-}
-
-function registerPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
-  photoOutput.on('photoAssetAvailable', callback);
+function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
+    if (err) {
+      console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+      return;
+    }
+    console.info('photoOutPutCallBack photoAssetAvailable');
+    // 保存或使用照片，需开发者实现
+    photoAsset.saveCameraPhoto();
+  });
 }
 ```
 
