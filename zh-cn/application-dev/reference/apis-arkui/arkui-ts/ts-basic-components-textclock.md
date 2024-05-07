@@ -130,6 +130,20 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<TextClockConfiguration>)
+
+定制TextClock内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<TextClockConfiguration>](#textclockconfiguration12对象说明) | 是   | 在TextClock组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -183,6 +197,16 @@ stop()
 停止文本时钟。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+## TextClockConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    |    默认值      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |
+| timeZoneOffset | number | - | 当前文本时钟时区偏移量。 |
+| started | boolean | true | 指示文本时钟是否启动。 |
+| timeValue | number | - | 当前文本时钟时区的UTC秒数。 |
 
 ## 示例
 ### 示例1
@@ -240,3 +264,83 @@ struct TextClockExample {
 }
 ```
 ![TextshadowExample](figures/text_clock_textshadow.png)
+
+### 示例3
+该示例实现了自定义文本时钟样式的功能，自定义样式实现了一个时间选择器组件：通过文本时钟的时区偏移量与UTC秒数，来动态改变时间选择器的选中值，实现时钟效果。同时，根据文本时钟的启动状态，实现文本选择器的12小时制与24小时制的切换。
+
+``` ts
+class MyTextClockStyle implements ContentModifier<TextClockConfiguration> {
+  currentTimeZoneOffset: number = new Date().getTimezoneOffset() / 60
+  title: string = ''
+
+  constructor(title: string) {
+    this.title = title
+  }
+
+  applyContent(): WrappedBuilder<[TextClockConfiguration]> {
+    return wrapBuilder(buildTextClock)
+  }
+}
+
+@Builder
+function buildTextClock(config: TextClockConfiguration) {
+  Row() {
+    Column() {
+      Text((config.contentModifier as MyTextClockStyle).title)
+        .fontSize(20)
+        .margin(20)
+      TimePicker({
+        selected: (new Date(config.timeValue * 1000 + ((config.contentModifier as MyTextClockStyle).currentTimeZoneOffset - config.timeZoneOffset) * 60 * 60 * 1000)),
+        format: TimePickerFormat.HOUR_MINUTE_SECOND
+      })
+        .useMilitaryTime(!config.started)
+    }
+  }
+}
+
+@Entry
+@Component
+struct TextClockExample {
+  @State accumulateTime1: number = 0
+  @State timeZoneOffset: number = -8
+  controller1: TextClockController = new TextClockController()
+  controller2: TextClockController = new TextClockController()
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('Current milliseconds is ' + this.accumulateTime1)
+        .fontSize(20)
+        .margin({ top: 20 })
+      TextClock({ timeZoneOffset: this.timeZoneOffset, controller: this.controller1 })
+        .format('aa hh:mm:ss')
+        .onDateChange((value: number) => {
+          this.accumulateTime1 = value
+        })
+        .margin(20)
+        .fontSize(30)
+      TextClock({ timeZoneOffset: this.timeZoneOffset, controller: this.controller2 })
+        .format('aa hh:mm:ss')
+        .fontSize(30)
+        .contentModifier(new MyTextClockStyle('ContentModifier:'))
+      Button("start TextClock")
+        .margin({ top: 20, bottom: 10 })
+        .onClick(() => {
+          // 启动文本时钟
+          this.controller1.start()
+          this.controller2.start()
+        })
+      Button("stop TextClock")
+        .margin({ bottom: 30 })
+        .onClick(() => {
+          // 停止文本时钟
+          this.controller1.stop()
+          this.controller2.stop()
+        })
+
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![ContentModifierExample](figures/text_clock_contentmodifier.gif)

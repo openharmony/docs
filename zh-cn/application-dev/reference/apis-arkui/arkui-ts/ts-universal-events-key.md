@@ -1,6 +1,7 @@
 # 按键事件
 
 按键事件指组件与键盘、遥控器等按键设备交互时触发的事件，适用于所有可获焦组件，例如Button。对于Text，Image等默认不可获焦的组件，可以设置focusable属性为true后使用按键事件。
+按键事件触发的流程和具体时机参考[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
 
 >  **说明：**
 >
@@ -19,6 +20,28 @@ onKeyEvent(event: (event: KeyEvent) => void): T
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
 | event  | [KeyEvent](#keyevent对象说明) | 是   | 获得KeyEvent对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
+## onKeyPreIme<sup>12+</sup>
+
+onKeyPreIme(event: Callback<KeyEvent, boolean>): T
+
+绑定该方法的组件获焦后，按键动作优先触发该回调。
+
+该回调的返回值为`true`时，视作该按键事件已被消费，后续的事件回调（`keyboardShortcut`、输入法事件、`onKeyEvent`）会被拦截，不再触发。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| event  | [Callback](./ts-types.md#callback12)<[KeyEvent](#keyevent对象说明), boolean> | 是   | 处理按键事件的回调。 |
 
 **返回值：**
 

@@ -14,11 +14,13 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## Usage
 
-**AbilityMonitor** can be used as an input parameter of [addAbilityMonitor](js-apis-inner-application-abilityDelegator.md#addabilitymonitor9) in **abilityDelegator** to listen for lifecycle changes of an ability.
+**AbilityMonitor** can be used as an input parameter of [addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9) in **abilityDelegator** to listen for lifecycle changes of an ability.
 
 ## AbilityMonitor
 
 Describes an ability monitor.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

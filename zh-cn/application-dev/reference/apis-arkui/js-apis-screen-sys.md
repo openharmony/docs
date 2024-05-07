@@ -45,7 +45,7 @@ let screenClass: screen.Screen | null = null;
 screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
+    console.error(`Failed to get all screens. Code:${err.code},message is ${err.message}`);
     return;
   }
   console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
@@ -114,7 +114,7 @@ try {
   };
   screen.on('connect', callback);
 } catch (exception) {
-  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to register the callback for screen changes. Code:${exception.code},message is ${exception.message} `);
 };
 ```
 
@@ -142,7 +142,7 @@ try {
   };
   screen.off('connect', callback);
 } catch (exception) {
-  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to register the callback for screen changes.Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -187,14 +187,14 @@ try {
   screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+      console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
       return;
     }
     groupId = data;
     console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to expand the screen. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -244,10 +244,10 @@ try {
     data: number) => {
     console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
+    console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to expand the screen. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -284,13 +284,13 @@ try {
   screen.stopExpand(expandScreenIds, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+      console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in stopping expand screens.');
   });
 } catch (exception) {
-  console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to stop expand screens. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -332,10 +332,10 @@ try {
   screen.stopExpand(expandScreenIds).then(() => {
     console.info('Succeeded in stopping expand screens.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+    console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
+  console.error(`Failed to stop expand screens.Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -374,13 +374,13 @@ try {
   screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: number) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+      console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to set screen mirroring. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -424,10 +424,10 @@ try {
   screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: number) => {
     console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
+    console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to set screen mirroring. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -464,13 +464,13 @@ try {
   screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+      console.error(`Failed to stop mirror screens. Code:${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in stopping mirror screens.');
   });
 } catch (exception) {
-  console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to stop mirror screens. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -512,10 +512,10 @@ try {
   screen.stopMirror(mirrorScreenIds).then(() => {
     console.info('Succeeded in stopping mirror screens.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+    console.error(`Failed to stop mirror screens.Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
+  console.error(`Failed to stop mirror screens. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -569,14 +569,14 @@ try {
   screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+      console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
       return;
     }
     screenClass = data;
     console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
   });
 } catch (exception) {
-  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to create the virtual screen. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -637,10 +637,10 @@ try {
     screenClass = data;
     console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+    console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to create the virtual screen. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -677,13 +677,13 @@ try {
   screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+      console.error(`Failed to destroy the virtual screen. Code:${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in destroying the virtual screen.');
   });
 } catch (exception) {
-  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to destroy the virtual screen. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -725,10 +725,10 @@ try {
   screen.destroyVirtualScreen(screenId).then(() => {
     console.info('Succeeded in destroying the virtual screen.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
+    console.error(`Failed to destroy the virtual screen.Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to destroy the virtual screen.Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -769,13 +769,13 @@ try {
   screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
+      console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in setting the surface for the virtual screen.');
   });
 } catch (exception) {
-  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to set the surface for the virtual screen. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -821,10 +821,10 @@ try {
   screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
     console.info('Succeeded in setting the surface for the virtual screen.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
+    console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to set the surface for the virtual screen. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -850,7 +850,7 @@ import { BusinessError } from '@ohos.base';
 screen.isScreenRotationLocked().then((isLocked: boolean) => {
   console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 }).catch((err: BusinessError) => {
-  console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
+  console.error(`Failed to get the screen rotation lock status. Code:${err.code},message is ${err.message}`);
 });
 ```
 
@@ -876,7 +876,7 @@ import { BusinessError } from '@ohos.base';
 screen.isScreenRotationLocked((err: BusinessError, isLocked: boolean) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
+    console.error(`Failed to get the screen rotation lock status. Code:${err.code},message is ${err.message}`);
     return;
   }
   console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
@@ -913,10 +913,10 @@ try {
   screen.setScreenRotationLocked(isLocked).then(() => {
     console.info('Succeeded in unlocking auto rotate');
   }).catch((err: BusinessError) => {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
+    console.error(`Failed to unlock auto rotate. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to unlock auto rotate. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -945,13 +945,13 @@ try {
   screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
+      console.error(`Failed to unlock auto rotate. Code:${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in unlocking auto rotate.');
   });
 } catch (exception) {
-  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to unlock auto rotate. Code:${exception.code},message is ${exception.message}`n));
 };
 ```
 
@@ -1049,16 +1049,16 @@ import { BusinessError } from '@ohos.base';
       screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
         const errCode: number = err.code;
         if (errCode) {
-          console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
+          console.error(`Failed to set the vertical orientation. Code:${err.code},message is ${err.message}`);
           return;
         }
         console.info('Succeeded in setting the vertical orientation.');
       });
     }).catch((err: BusinessError) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+      console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
     });
   } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+    console.error(`Failed to set the vertical orientation. Code:${exception.code},message is ${exception.message}`);
   };
 ```
 
@@ -1117,13 +1117,13 @@ import { BusinessError } from '@ohos.base';
       promise.then(() => {
         console.info('Succeeded in setting the vertical orientation.');
       }).catch((err: BusinessError) => {
-        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to set the vertical orientation. Code:${err.code},message is ${err.message}`));
       });
     }).catch((err: BusinessError) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+      console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
     });
   } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+    console.error(`Failed to set the vertical orientation. Code:${exception.code},message is ${exception.message}`);
   };
 ```
 
@@ -1177,16 +1177,16 @@ try {
     screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+        console.error(`Failed to set screen active mode 0. Code:${err.code},message is ${err.message}`);
         return;
       }
       console.info('Succeeded in setting the vertical orientation.');
     });
   }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+    console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to set the vertical orientation. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -1246,13 +1246,13 @@ try {
     promise.then(() => {
       console.info('Succeeded in setting screen active mode 0.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
+      console.error(`Failed to set screen active mode 0.Code:${err.code},message is ${err.message}`);
     });
   }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+    console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to set the vertical orientation. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -1306,16 +1306,16 @@ try {
     screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+        console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code},message is ${err.message}`);
         return;
       }
       console.info('Succeeded in setting the vertical orientation.');
     });
   }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+    console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to set the vertical orientation. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 
@@ -1374,13 +1374,13 @@ try {
     promise.then(() => {
       console.info('Succeeded in setting the pixel density of the screen to 320.');
     }).catch((err: BusinessError) => {
-      console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
+      console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code},message is ${err.message}`);
     });
   }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
+    console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
   });
 } catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+  console.error(`Failed to set the vertical orientation. Code:${exception.code},message is ${exception.message}`);
 };
 ```
 

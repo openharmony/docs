@@ -28,9 +28,9 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了两个装饰器：
 
-- [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单向同步关系。
+- [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量与LocalStorage中给定属性建立单向同步关系。
 
-- [@LocalStorageLink](#localstoragelink)：\@LocalStorageLink装饰的变量和在\@Component中创建与LocalStorage中给定属性建立双向同步关系。
+- [@LocalStorageLink](#localstoragelink)：\@LocalStorageLink装饰的变量与LocalStorage中给定属性建立双向同步关系。
 
 
 ## 限制条件

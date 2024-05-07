@@ -41,6 +41,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.      |
 
@@ -97,6 +101,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.       |
 
@@ -151,6 +159,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.       |
 
@@ -195,6 +207,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700004 | The specified user ID is not found.      |
 
 Example
@@ -248,6 +264,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700004 | The specified user ID is not found.      |
 
 **Example**
@@ -295,6 +315,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 
 **Example**
@@ -349,6 +373,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 
 **Example**
@@ -401,6 +429,10 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 
 **Example**
@@ -412,6 +444,67 @@ import { BusinessError } from '@ohos.base';
 try {
     let data = launcherBundleManager.getShortcutInfoSync("com.example.demo");
     console.log("data is " + JSON.stringify(data));
+} catch (errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```
+
+## launcherBundleManager.startShortcut<sup>12+</sup>
+
+startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise<void>;
+
+Starts the ability in the specified [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md).
+
+**Required permissions**: ohos.permission.START_SHORTCUT
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description        |
+| ------------ | ------ | ---- | -------------- |
+| shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | Yes  | Shortcut information of the application.|
+| options      | [StartOptions](js-apis-app-ability-startOptions-sys.md)   | No  | Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                               |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not support. |
+| 17700065 | The specified shortcut want in shortcut info is not supported to be started.  |
+
+**Example**
+
+```ts
+import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+    let data : Array<launcherBundleManager.ShortcutInfo> = launcherBundleManager.getShortcutInfoSync("com.example.demo");
+    console.log("data is " + JSON.stringify(data));
+    if (data) {
+        try {
+            launcherBundleManager.startShortcut(data[0])
+                .then(() => {
+                console.log("startShortcut success");
+            }).catch ((err: BusinessError) => {
+                console.error(`errData is errCode:${err.code}  message:${err.message}`);
+            });
+        } catch (error) {
+            let code = (error as BusinessError).code;
+            let message = (error as BusinessError).message;
+            console.error(`error is errCode:${code}  message:${message}`);
+        }
+    }
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;

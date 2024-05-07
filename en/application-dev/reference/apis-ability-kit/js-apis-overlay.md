@@ -39,6 +39,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700033 | The specified module is not an overlay module. |
 
@@ -86,6 +87,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700033 | The specified module is not an overlay module. |
 
@@ -138,6 +140,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -182,6 +185,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -233,6 +237,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 
@@ -276,6 +281,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found.  |
 | 17700034 | The specified module is an overlay module. |
 

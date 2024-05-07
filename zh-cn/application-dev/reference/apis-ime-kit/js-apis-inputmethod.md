@@ -186,6 +186,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -240,6 +241,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -311,6 +313,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -379,6 +382,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -460,6 +464,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -519,6 +524,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -778,6 +784,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -836,6 +843,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -1126,6 +1134,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1179,6 +1188,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1221,6 +1231,7 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1270,6 +1281,7 @@ updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1314,6 +1326,7 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1364,6 +1377,7 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1405,6 +1419,7 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1454,6 +1469,7 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -2638,6 +2654,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2693,6 +2710,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2740,6 +2758,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2783,6 +2802,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2831,6 +2851,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -2884,6 +2905,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
 | 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -2935,6 +2957,7 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800001 | bundle manager error.                 |
 | 12800008 |input method manager service error. |
 
@@ -2968,6 +2991,7 @@ getAllInputMethods(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&g
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -3009,6 +3033,7 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
 

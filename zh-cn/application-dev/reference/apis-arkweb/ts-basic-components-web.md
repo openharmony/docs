@@ -1952,6 +1952,35 @@ struct WebComponent {
     }
   }
   ```
+### enableNativeMediaPlayer<sup>12+</sup>
+
+开启应用接管网页媒体播放功能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述 |
+| ---- | ------ | ---- | ---- | ---------------------|
+| config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | 是    |  {enable: false, shouldOverlay: false} | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。|
+
+  **示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
+      }
+    }
+  }
+  ```
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -2999,12 +3028,20 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
             }
             let length = this.heads.push(head1)
             length = this.heads.push(head2)
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
+            const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
+              this.responseweb.setResponseHeader(this.heads)
+              this.responseweb.setResponseData(this.webdata)
+              this.responseweb.setResponseEncoding('utf-8')
+              this.responseweb.setResponseMimeType('text/html')
+              this.responseweb.setResponseCode(200)
+              this.responseweb.setReasonMessage('OK')
+              resolve("success");
+            })
+            promise.then(() => {
+              console.log("prepare response ready")
+              this.responseweb.setResponseIsReady(true)
+            })
+            this.responseweb.setResponseIsReady(false)
             return this.responseweb
           })
       }
@@ -4516,14 +4553,14 @@ onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => 
 
 onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
-通知网页过滚动偏移量。
+该接口在网页过度滚动时触发，用于通知网页过度滚动的偏移量。
 
 **参数：**
 
 | 参数名     | 参数类型   | 参数描述                |
 | ------- | ------ | ------------------- |
-| xOffset | number | 以网页最左端为基准，水平过滚动偏移量。 |
-| yOffset | number | 以网页最上端为基准，竖直过滚动偏移量。 |
+| xOffset | number | 以网页最左端为基准，水平过度滚动的偏移量。 |
+| yOffset | number | 以网页最上端为基准，竖直过度滚动的偏移量。 |
 
 **示例：**
 
@@ -5881,6 +5918,10 @@ selectAll(): void
 
 Web组件返回授权或拒绝权限功能的对象。示例代码参考[onGeolocationShow事件](#ongeolocationshow)。
 
+### constructor
+
+constructor()
+
 ### invoke
 
 invoke(origin: string, allow: boolean, retain: boolean): void
@@ -6968,15 +7009,15 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 | 名称                | 类型                                  | 必填   | 描述                        |
 |-------------------| ------------------------------------ | ---- |---------------------------|
-| id                | string             | 是    | Embed标签的id信息。             |
-| type              | string                              | 是    | Embed标签的type信息，统一为小写字符。   |
-| src               | string                              | 是    | Embed标签的src信息。            |
-| width             | number  | 是    | Embed标签的宽，单位为px。          |
-| height            | number                              | 是    | Embed标签的高，单位为px。          |
-| url               | string                              | 是    | Embed标签的url信息。            |
-| tag<sup>12+</sup> | string              | 是    | 标签名，统一为大写字符。              |
+| id                | string             | 否    | Embed标签的id信息。             |
+| type              | string                              | 否    | Embed标签的type信息，统一为小写字符。   |
+| src               | string                              | 否    | Embed标签的src信息。            |
+| width             | number  | 否    | Embed标签的宽，单位为px。          |
+| height            | number                              | 否    | Embed标签的高，单位为px。          |
+| url               | string                              | 否    | Embed标签的url信息。            |
+| tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
 | params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表。  |
-| position<sup>12+</sup>          | Position            | 是    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
+| position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
@@ -6984,19 +7025,19 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 是    | Embed标签生命周期状态。 |
-| surfaceId  | string                              | 是    | NativeImage的psurfaceid。  |
-| embedId | string                              | 是    | Embed标签的唯一id。  |
-| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 是    | Embed标签的详细信息。       |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 否    | Embed标签生命周期状态。 |
+| surfaceId  | string                              | 否    | NativeImage的psurfaceid。  |
+| embedId | string                              | 否    | Embed标签的唯一id。  |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 否    | Embed标签的详细信息。       |
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
 提供手指触摸到Embed标签的详细信息。
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| embedId     | string   | 是    | Embed标签的唯一id。 |
-| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。 |
-| result<sup>12+</sup>     | [EventResult](#eventresult12)   | 是    | 通知Web组件手势事件的消费结果。 |
+| embedId     | string   | 否    | Embed标签的唯一id。 |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否    | 手指触摸动作信息。 |
+| result<sup>12+</sup>     | [EventResult](#eventresult12)   | 否    | 通知Web组件手势事件的消费结果。 |
 
 ## FirstMeaningfulPaint<sup>12+</sup>
 
@@ -7004,8 +7045,8 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 | 名称                     | 类型   | 必填 | 描述                                   |
 | ------------------------ | ------ | ---- | -------------------------------------- |
-| navigationStartTime      | number | 是   | 导航条加载时间，单位以微秒表示。       |
-| firstMeaningfulPaintTime | number | 是   | 绘制页面主要内容时间，单位以毫秒表示。 |
+| navigationStartTime      | number | 否  | 导航条加载时间，单位以微秒表示。       |
+| firstMeaningfulPaintTime | number | 否   | 绘制页面主要内容时间，单位以毫秒表示。 |
 
 ## OnFirstMeaningfulPaintCallback<sup>12+</sup>
 
@@ -7023,7 +7064,7 @@ type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPai
 
 | 名称                      | 类型   | 必填 | 描述                                     |
 | ------------------------- | ------ | ---- | ---------------------------------------- |
-| navigationStartTime       | number | 是   | 导航条加载时间，单位以微秒表示。         |
+| navigationStartTime       | number | 否   | 导航条加载时间，单位以微秒表示。         |
 | largestImagePaintTime     | number | 否   | 最大图片加载的时间，单位是以毫秒表示。   |
 | largestTextPaintTime      | number | 否   | 最大文本加载时间，单位是以毫秒表示。     |
 | largestImageLoadStartTime | number | 否   | 最大图片开始加载时间，单位是以毫秒表示。 |
@@ -7086,3 +7127,19 @@ onOverrideUrlLoading的回调。
 | ----------------------------- | -- | ------------ |
 | ASYNC_RENDER                        | 0 | Web组件自渲染模式。   |
 | SYNC_RENDER                        | 1 | Web组件统一渲染模式。   |
+
+## NativeMediaPlayerConfig<sup>12+</sup>
+
+type NativeMediaPlayerConfig = {
+  enable: boolean,
+  shouldOverlay: boolean
+}
+
+用于[开启应用接管网页媒体播放功能](#enablenativemediaplayer12)的配置信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+|  enable  | boolean | 否 | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
+|  shouldOverlay | boolean | 否 | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |

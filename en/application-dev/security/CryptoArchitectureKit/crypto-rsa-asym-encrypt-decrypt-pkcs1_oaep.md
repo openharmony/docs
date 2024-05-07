@@ -11,7 +11,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
    
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Generating an Asymmetric Key Pair Based on Key Parameters](crypto-generate-asym-key-pair-from-key-spec.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'RSA|PKCS1_OAEP|SHA256|MGF1_SHA1'** to create a **Cipher** instance. The key type is **RSA1024**, padding mode is **PKCS1_OAEP**, MD algorithm is **SHA256**, and mask digest algorithm is **MGF1_SHA1**.
+2. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1'** to create a **Cipher** instance. The key type is **RSA2048**, padding mode is **PKCS1_OAEP**, MD algorithm is **SHA256**, and mask digest algorithm is **MGF1_SHA1**.
 
 3. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In **Cipher.init**, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption) and **key** to **KeyPair.PubKey** (the key used for encryption).
    
@@ -68,8 +68,8 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
     // Generate an RSA key pair based on the RSA key pair parameter.
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
-    let cipher = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
-    let decoder = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
+    let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
+    let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // Set pSource, which defines the encoding input P filled by OAEP.
     let pSource = new Uint8Array([1, 2, 3, 4]);
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
@@ -156,8 +156,8 @@ For details about the algorithm specifications, see [RSA](crypto-asym-encrypt-de
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
     // Generate an RSA key pair based on the RSA key pair parameter.
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
-    let cipher = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
-    let decoder = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
+    let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
+    let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // Set pSource, which defines the encoding input P filled by OAEP.
     let pSource = new Uint8Array([1, 2, 3, 4]);
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };

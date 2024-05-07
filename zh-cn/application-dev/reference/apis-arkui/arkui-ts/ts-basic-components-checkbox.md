@@ -118,7 +118,7 @@ shape(value: CheckBoxShape)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [CheckBoxShape](#checkboxshape11枚举类型说明) | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
@@ -153,6 +153,8 @@ onChange(callback: (value: boolean) => void)
 | value  | boolean | 是   | 返回true时，表示已选中。返回false时，表示未选中。 |
 
 ## MarkStyle<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 类型                                       | 必填 | 默认值      | 描述                                                         |
 | ----------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
@@ -323,7 +325,7 @@ struct Index {
           } else {
             this.checkboxEnabled = false
           }
-        }
+        })
       }
     }.margin({top : 30})
   }

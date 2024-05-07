@@ -1188,10 +1188,10 @@ struct Index {
         Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Pink).borderRadius('12vp')
-          }.tabBar(new SubTabBarStyle(this.tabBar1.getFrameNode()))
+          }.tabBar(new SubTabBarStyle(this.tabBar1))
           TabContent() {
             Column().width('100%').height('100%').backgroundColor(Color.Blue).borderRadius('12vp')
-          }.tabBar(SubTabBarStyle.of(this.tabBar2.getFrameNode()))
+          }.tabBar(SubTabBarStyle.of(this.tabBar2))
         }
         .vertical(false)
         .barWidth(414)

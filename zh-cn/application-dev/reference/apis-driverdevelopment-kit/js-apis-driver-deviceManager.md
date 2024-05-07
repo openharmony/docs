@@ -373,7 +373,7 @@ try {
 
 ## USBDevice
 
-USB设备信息。
+USB设备信息，继承自[Device](#device)。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 

@@ -41,11 +41,14 @@ isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -84,11 +87,14 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -133,11 +139,14 @@ on(type: 'applicationState', observer: ApplicationStateObserver): number
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -200,11 +209,14 @@ on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList:
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -261,11 +273,14 @@ on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -284,6 +299,54 @@ try {
     let code = (paramError as BusinessError).code;
     let message = (paramError as BusinessError).message;
     console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
+## appManager.on<sup>12+</sup>
+
+on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bundleName?: string): void
+
+注册监听Ability首帧绘制完成事件观察者对象，可用于系统应用监听Ability首帧绘制事件。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | 是   | 调用接口类型，固定填'abilityFirstFrameState'字符串。         |
+| observer   | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | 是   | 表示待注册的Ability首帧绘制完成事件观察者对象。              |
+| bundleName | string                                                       | 否   | 表示待监听的Ability的应用bundleName，不填表示注册监听所有应用ability首帧绘制完成事件。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+abilityFirstFrameStateObserverForAll: 	 	      		   appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData:             		appManager.AbilityFirstFrameStateData) {
+	  console.log("abilityFirstFrame: ",      	              		  JSON.stringify(abilityStateData));
+    }
+  };
+try {
+  appManager.on('abilityFirstFrameState',      				  	  this.abilityFirstFrameStateObserverForAll);
+} catch(e) {
+  console.log('error log:' + e.code)
 }
 ```
 
@@ -309,11 +372,14 @@ off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -395,11 +461,14 @@ off(type: 'applicationState', observerId: number): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -471,11 +540,14 @@ off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -509,6 +581,48 @@ try {
 }
 ```
 
+## appManager.off<sup>12+</sup>
+
+off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): void
+
+取消注册监听Ability首帧绘制完成事件观察者对象。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 调用接口类型，固定填'abilityFirstFrameState'字符串。         |
+| observer | [AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md) | 否   | 表示待取消的Ability首帧绘制完成事件观察者对象，不填表示取消所有监听对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+try {
+  appManager.off('abilityFirstFrameState', 		          		this.abilityFirstFrameStateObserverForAll)
+} catch (e) {
+  console.log('error log:' + e.code)
+}
+```
+
 ## appManager.getForegroundApplications
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
@@ -529,11 +643,14 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -577,11 +694,13 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -621,11 +740,14 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -675,11 +797,14 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -720,11 +845,14 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -775,11 +903,14 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -822,11 +953,14 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -877,11 +1011,14 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -922,11 +1059,13 @@ getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -975,11 +1114,13 @@ getProcessMemoryByPid(pid: number): Promise\<number>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1020,11 +1161,13 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1073,11 +1216,13 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1119,11 +1264,13 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1174,11 +1321,13 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1227,11 +1376,14 @@ isApplicationRunning(bundleName: string): Promise\<boolean>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
@@ -1268,11 +1420,14 @@ isApplicationRunning(bundleName: string, callback: AsyncCallback\<boolean>): voi
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
@@ -1325,3 +1480,59 @@ try {
 | STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
 | STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
 | STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
+
+## appManager.getRunningProcessInformationByBundleType<sup>12+</sup>
+
+getRunningProcessInformationByBundleType(bundleType: bundleManager.BundleType): Promise\<Array\<ProcessInformation>>
+
+根据包类型获取当前运行进程的有关信息。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleType    | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype)  | 是    | 表示要查询的包类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise对象，返回特定包类型的运行进程的信息。 |
+
+**错误码**：
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+    appManager.getRunningProcessInformationByBundleType(bundleManager.BundleType.ATOMIC_SERVICE)
+        .then((data) => {
+            console.log(`The running process information is: ${JSON.stringify(data)}`);
+        }).catch((error: BusinessError) => {
+            console.error(`error: ${JSON.stringify(error)}`);
+        });
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```

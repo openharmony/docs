@@ -636,6 +636,13 @@ Nullable\<T> {
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
+## LineBreakStrategy<sup>12+</sup>
+| 名称         | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| GREEDY       | 使每一行尽量显示多的字符，直到这一行不能显示更多字符再进行折行。 |
+| HIGH_QUALITY | 在BALANCED的基础上，尽可能填满行，在最后一行的权重上比较低，可能会出现最后一行留白比较多。 |
+| BALANCED     | 尽可能保证在不拆词的情况下，使一个段落中每一行的宽度相同。   |
+
 ## GestureJudgeResult<sup>11+</sup>
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
@@ -666,7 +673,13 @@ Nullable\<T> {
 灰阶模糊参数。
 | 名称        |   类型   |   必填 | 说明                        |
 | ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
+| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,25]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
+
+## ForegroundEffectOptions<sup>12+<sup>
+前景效果参数。
+| 名称        |   类型         |   必填 |  说明                        |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
 
 ## BackgroundEffectOptions<sup>11+<sup>
 背景效果参数。
@@ -796,4 +809,10 @@ Nullable\<T> {
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
+| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
+| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
+| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
+| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|

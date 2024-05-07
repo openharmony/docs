@@ -39,6 +39,9 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。  |
 | titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。  |
 | sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。  |
+| axisHorizontal<sup>12+</sup> | number | 水平轴值。  |
+| axisVertical<sup>12+</sup> | number | 垂直轴值。  |
+
 ## BaseGestureEvent对象说明
 继承于[BaseEvent](#baseevent对象说明)。
 | 名称      | 类型                                      | 描述         |

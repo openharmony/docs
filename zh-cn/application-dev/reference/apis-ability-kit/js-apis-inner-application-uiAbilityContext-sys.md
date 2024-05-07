@@ -62,6 +62,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -153,6 +154,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -252,6 +254,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -352,15 +355,15 @@ export default class EntryAbility extends UIAbility {
     };
 
     try {
-      this.context.startServiceExtensionAbility(want)
-        .then(() => {
-          // 执行正常业务
-          console.info('startServiceExtensionAbility succeed');
-        })
-        .catch((err: BusinessError) => {
+      this.context.startServiceExtensionAbility(want, (error: BusinessError) => {
+        if (error.code) {
           // 处理业务逻辑错误
-          console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-        });
+          console.error(`startServiceExtensionAbility failed, code is ${error.code}, message is ${error.message}`);
+          return;
+        }
+        // 执行正常业务
+        console.info('startServiceExtensionAbility succeed');
+      });
     } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
@@ -1019,6 +1022,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1108,6 +1112,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -1200,6 +1205,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |

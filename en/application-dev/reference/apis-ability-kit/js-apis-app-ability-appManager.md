@@ -12,11 +12,29 @@ The **appManager** module implements application management. You can use the API
 import appManager from '@ohos.app.ability.appManager';
 ```
 
+## ProcessState<sup>10+</sup>
+
+Enumerates the processes states.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                | Value | Description                              |
+| -------------------- | --- | --------------------------------- |
+| STATE_CREATE    | 0   |      The process is being created.      |
+| STATE_FOREGROUND          | 1   |            The process is running in the foreground.     |
+| STATE_ACTIVE  | 2   |          The process is active.  |
+| STATE_BACKGROUND        | 3   |       The process is running in the background.          |
+| STATE_DESTROY        | 4   |         The process is destroyed.        |
+
 ## appManager.isRunningInStabilityTest
 
 isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this application is undergoing a stability test. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -55,6 +73,8 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 Checks whether this application is undergoing a stability test. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -91,6 +111,8 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 Checks whether this application is running on a RAM constrained device. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -125,6 +147,8 @@ appManager.isRamConstrainedDevice().then((data) => {
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 Checks whether this application is running on a RAM constrained device. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -162,6 +186,8 @@ getAppMemorySize(): Promise\<number>
 
 Obtains the memory size of this application. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -182,7 +208,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
-import { BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base';
 
 appManager.getAppMemorySize().then((data) => {
     console.log(`The size of app memory is: ${JSON.stringify(data)}`);
@@ -196,6 +222,8 @@ appManager.getAppMemorySize().then((data) => {
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
 Obtains the memory size of this application. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -233,11 +261,11 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 Obtains information about the running processes. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
-
 > **NOTE**
 >
-> Since API version 11, the **ohos.permission.GET_RUNNING_INFO** permission is no longer required for calling this API.
+> In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications. Since API version 11, no permission is required for calling this API.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -265,5 +293,47 @@ appManager.getRunningProcessInformation().then((data) => {
     console.log(`The running process information is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
+});
+```
+
+## appManager.getRunningProcessInformation
+
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
+
+Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> In versions earlier than API version 11, this API requires the **ohos.permission.GET_RUNNING_INFO** permission, which is available only for system applications. Since API version 11, no permission is required for calling this API.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Yes|Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getRunningProcessInformation((err, data) => {
+    if (err) {
+        console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
+    } else {
+        console.log(`The running process information is: ${JSON.stringify(data)}`);
+    }
 });
 ```

@@ -63,7 +63,7 @@ import fileShare from '@ohos.fileshare';
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果，该接口仅对特定设备（非特定设备是兼容的）开放。
+异步方法对所选择的多个文件或目录URI持久化授权，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -133,7 +133,7 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对特定设备（非特定设备是兼容的）开放。
+异步方法对所选择的多个文件或目录uri取消持久化授权，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -203,7 +203,7 @@ revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对特定设备开放（非特定设备是兼容的）。
+异步方法使能多个已经永久授权过的文件或目录，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 
@@ -274,7 +274,7 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对特定设备开放（非特定设备是兼容的）。
+异步方法取消使能授权过的多个文件或目录，以promise形式返回结果，该接口仅对具有该系统能力的设备开放。
 
 **需要权限**：ohos.permission.FILE_ACCESS_PERSIST
 

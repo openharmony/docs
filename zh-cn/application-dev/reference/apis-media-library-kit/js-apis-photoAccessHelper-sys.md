@@ -4629,7 +4629,7 @@ async function example() {
 | DATE_MONTH<sup>11+</sup>  | 'date_month'            | 创建文件的月份。**系统接口**：此接口为系统接口。           |
 | DATE_DAY<sup>11+</sup>  | 'date_day'            | 创建文件的日期。**系统接口**：此接口为系统接口。           |
 | PENDING<sup>11+</sup>  | 'pending'            | pending状态。**系统接口**：此接口为系统接口。           |
-| DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | 删除日期（删除文件时间距1970年1月1日的毫秒数值）。**系统接口**：此接口为系统接口。                 |
+| DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | 删除日期（删除文件时间距1970年1月1日的毫秒数值）。**系统接口**：此接口为系统接口。<br>注意：查询照片时，不支持基于该字段排序。 |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -4760,3 +4760,6 @@ async function example() {
 | ANALYSIS\_COMPOSITION         | 7  | 美学构图分析类别。**系统接口**：此接口为系统接口。   |
 | ANALYSIS\_SALIENCY            | 8  | 最佳呈现主体中心分析类别。**系统接口**：此接口为系统接口。   |
 | ANALYSIS\_DETAIL\_ADDRESS     | 9  | 详细地址分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_HUMAN\_FACE\_TAG<sup>12+</sup>    | 10 | 人像聚类信息分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_HEAD\_POSITION<sup>12+</sup>      | 11 | 人头、宠物头位置分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_BONE\_POSE<sup>12+</sup>        | 12 | 人体骨骼点信息分析类别。**系统接口**：此接口为系统接口。    |

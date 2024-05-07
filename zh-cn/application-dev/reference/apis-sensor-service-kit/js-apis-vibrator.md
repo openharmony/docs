@@ -21,6 +21,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **需要权限：** ohos.permission.VIBRATE
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
@@ -134,6 +136,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 根据指定的振动效果和振动属性触发马达振动。使用promise异步回调。
 
 **需要权限：** ohos.permission.VIBRATE
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -449,6 +453,8 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限：** ohos.permission.VIBRATE
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
@@ -485,6 +491,8 @@ stopVibration(): Promise&lt;void&gt;
 停止所有模式的马达振动。使用promise异步回调。
 
 **需要权限：** ohos.permission.VIBRATE
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -657,13 +665,15 @@ try {
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。 |
+| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
 | [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
 | [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
 固定时长振动类型。
+
+**元服务API：** 从API Version 11开始，该接口在支持元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -711,6 +721,8 @@ try {
 
 马达振动属性。
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称  | 类型 | 必填 | 说明           |
@@ -721,6 +733,8 @@ try {
 ## Usage<sup>9+</sup>
 
 振动使用场景。
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 

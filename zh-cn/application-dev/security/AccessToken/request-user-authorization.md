@@ -32,7 +32,7 @@
 
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 
-- 系统不鼓励频繁弹窗打扰用户，如果用户拒绝授权，将无法再次拉起弹窗。需要应用引导用户在系统应用“设置”的界面中手动授予权限。
+- 系统不鼓励频繁弹窗打扰用户，如果用户拒绝授权，将无法再次拉起弹窗，需要应用引导用户在系统应用“设置”的界面中手动授予权限。
 
 
 ## 开发步骤
@@ -99,12 +99,9 @@
 
    可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来动态申请权限，也可以根据业务需要在UI中向用户申请授权。
 
-   应用在UIExtensionAbility申请授权时，需要在onWindowStageCreate函数执行结束后或在onWindowStageCreate函数回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)，否则在ability加载完成前，requestPermissionsFromUser会调用失败。
-
    - 在UIAbility中向用户申请授权。
       
       ```ts
-      // 使用UIExtensionAbility：将import UIAbility from '@ohos.app.ability.UIAbility' 替换为import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
       import UIAbility from '@ohos.app.ability.UIAbility';
       import window from '@ohos.window';
       import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
@@ -112,7 +109,6 @@
       import { BusinessError } from '@ohos.base';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
-      // 使用UIExtensionAbility：将common.UIAbilityContext 替换为common.UIExtensionContext
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
@@ -132,7 +128,6 @@
           console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
         })
       }
-      // 使用UIExtensionAbility：将 UIAbility 替换为UIExtensionAbility
       export default class EntryAbility extends UIAbility {
         onWindowStageCreate(windowStage: window.WindowStage): void {
           reqPermissionsFromUser(permissions, this.context);
@@ -151,7 +146,6 @@
       import { BusinessError } from '@ohos.base';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
-      // 使用UIExtensionAbility：将common.UIAbilityContext 替换为common.UIExtensionContext
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
@@ -176,7 +170,6 @@
       @Component
       struct Index {
         aboutToAppear() {
-          // 使用UIExtensionAbility：将common.UIAbilityContext 替换为common.UIExtensionContext
           const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
           reqPermissionsFromUser(permissions, context);
         }
@@ -195,7 +188,6 @@
    import Want from '@ohos.app.ability.Want';
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
-   // 使用UIExtensionAbility：将common.UIAbilityContext 替换为common.UIExtensionContext
    function openPermissionsInSystemSettings(context: common.UIAbilityContext): void {
      let wantInfo: Want = {
        action: 'action.settings.app.info',

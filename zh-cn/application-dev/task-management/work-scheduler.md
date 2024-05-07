@@ -54,7 +54,7 @@
 
 **表2** 延迟任务主要接口
 
-以下是延迟任务开发使用的相关接口，更多接口及使用方式请见[延迟任务](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)文档。
+以下是延迟任务开发使用的相关接口，更多接口及使用方式请见[延迟任务调度](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | startWork(work: WorkInfo): void; | 申请延迟任务 |
@@ -99,7 +99,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 **表4** 延迟任务回调接口
 
-以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务回调](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)文档。
+以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务调度回调](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | onWorkStart(work: workScheduler.WorkInfo): void | 延迟调度任务开始的回调 |

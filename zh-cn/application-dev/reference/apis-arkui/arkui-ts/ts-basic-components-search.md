@@ -20,7 +20,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
-| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif和pixelmap。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
+| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif、pixelmap和heif。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], 其中[base64 data]为Base64字符串数据。<br/>如果与属性searchIcon同时设置，则searchIcon优先。 |
 | controller  | [SearchController](#searchcontroller) | 否   | 设置Search组件控制器。                                       |
 
 ## 属性
@@ -171,7 +171,7 @@ caretStyle(value: CaretStyle)
 | value  | [CaretStyle](#caretstyle10对象说明) | 是   | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
 
 >  **说明：**     
->   从API version 12开始，此接口支持设置文本手柄颜色和文本选中底板颜色，光标、文本手柄和文本选中底板颜色保持一致。<br/>文本手柄透明度为设置透明度，文本选中底板透明度，默认20%，如果设置透明度，文本选中底板颜色透明度在设置色透明度的基础上再叠加20%。例如，设置透明度50%，文本选中底板颜色透明度为10%。
+>   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
 
 ### enableKeyboardOnFocus<sup>10+</sup>
 
@@ -355,9 +355,6 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
->  **说明：**     
->   如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
-
 ### inputFilter<sup>12+</sup>
 
 inputFilter(value: ResourceStr, error?: &nbsp;Callback<&nbsp;string&nbsp;>)
@@ -375,20 +372,6 @@ inputFilter(value: ResourceStr, error?: &nbsp;Callback<&nbsp;string&nbsp;>)
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 正则表达式。                       |
 | error  | &nbsp;Callback<&nbsp;string&nbsp;>     | 否   | 正则匹配失败时，返回被过滤的内容。 |
 
-### onEditChange<sup>12+</sup>
-
-onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
-
-输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名    | 类型                                | 必填 | 说明                 |
-| --------- | ---------------------------------- | ---- | -------------------- |
-| isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
-
 ### textIndent<sup>12+</sup>
 
 textIndent(value: Dimension)
@@ -399,9 +382,45 @@ textIndent(value: Dimension)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
+| 参数名 | 类型                                 | 必填 | 说明                         |
+| ------ | ----------------------------------- | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 首行文本缩进。<br/>默认值：0   |
+
+### minFontSize<sup>12+</sup>
+
+minFontSize(value: number | string | Resource)
+
+设置文本最小显示字号。
+
+需配合[maxFontSize](#maxfontsize12)以及布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。 |
+
+### maxFontSize<sup>12+</sup>
+
+maxFontSize(value: number | string | Resource)
+
+设置文本最大显示字号。
+
+需配合[minFontSize](#minfontsize12)以及布局大小限制使用，单独设置不生效。
+
+自适应字号生效时，fontSize设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -448,6 +467,24 @@ textIndent(value: Dimension)
 | EMAIL    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
 | NUMBER   | 纯数字输入模式。      |
 | PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
+
+## SelectionOptions<sup>12+</sup>
+
+setTextSelection的选中文字时的配置。
+
+| 名称       | 类型                        | 必填 | 说明             |
+| ---------- | --------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 描述                     |
+| ------- | ------------------------ |
+| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
+| NEVER   | 始终不弹出菜单。         |
+| ALWAYS  | 始终弹出菜单。           |
 
 ## 事件
 
@@ -554,6 +591,20 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
 | totalOffsetY | number | 否   | 文本在内容区的纵坐标偏移，单位px。 |
 
+### onEditChange<sup>12+</sup>
+
+onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
+
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                | 必填 | 说明                 |
+| --------- | ---------------------------------- | ---- | -------------------- |
+| isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
+
 ## SearchController
 
 Search组件的控制器，目前通过它可控制Search组件的光标位置。
@@ -609,15 +660,6 @@ getTextContentRect(): RectResult
 | width | number | 内容宽度大小。|
 | height | number | 内容高度大小。|
 
-## KeyboardOptions<sup>12+</sup>
-
-设置自定义键盘是否支持避让功能。
-
-| 名称            | 类型              | 必填 | 描述                               |
-| --------------- | ---------------  |---- | ---------------------------------   |
-| supportAvoidance |  boolean        | 否  | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
-
-
 ### getTextContentLineCount<sup>10+</sup>
 
 getTextContentLineCount(): number
@@ -668,23 +710,13 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 >
 >  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
 
-##  SelectionOptions<sup>12+</sup>
+## KeyboardOptions<sup>12+</sup>
 
-setTextSelection的选中文字时的配置。
+设置自定义键盘是否支持避让功能。
 
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
+| 名称             | 类型    | 必填 | 描述                                                         |
+| ---------------- | ------- | ---- | ------------------------------------------------------------ |
+| supportAvoidance | boolean | 否   | 设置自定义键盘是否支持避让功能；默认值为false不支持避让，true为支持避让。 |
 
 ##  示例
 
@@ -992,4 +1024,34 @@ struct SearchExample {
 }
 ```
 
-![CustomSearchKeyType](figures/Custom_Search.gif)
+![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
+
+### 示例8
+
+该示例实现了使用minFontSize及maxFontSize设置文本自适应字号。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  build() {
+    Row() {
+      Column() {
+        Text('adaptive font').fontSize(9).fontColor(0xCCCCCC)
+
+        Search({value: 'This is the text without the adaptive font'})
+          .width('80%').height(90).borderWidth(1)
+        Search({value: 'This is the text without the adaptive font'})
+          .width('80%').height(90).borderWidth(1)
+          .minFontSize(4)
+          .maxFontSize(40)
+      }.height('90%')
+    }
+    .width('90%')
+    .margin(10)
+  }
+}
+```
+
+![searchAdaptFont](figures/search_adapt_font.png)

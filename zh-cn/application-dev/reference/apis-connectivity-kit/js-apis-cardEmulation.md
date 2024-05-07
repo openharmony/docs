@@ -78,6 +78,8 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称      | 值         | 说明                |
 | ------- | --------- | ----------------- |
 | PAYMENT | "payment" | 卡模拟应用所使用的业务是支付类型。 |
@@ -116,7 +118,7 @@ hasHceCapability(): boolean
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -129,12 +131,12 @@ hasHceCapability(): boolean
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
 
-let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
     console.log('this device is not supported for HCE, ignore it.');
 }
 
-let hasHceCap = cardEmulation.hasHceCapability();
+let hasHceCap: boolean = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
 }
@@ -150,7 +152,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -169,12 +171,21 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import bundleManager from '@ohos.bundle.bundleManager';
-
-let elementName : bundleManager.ElementName;
+import Want from '@ohos.app.ability.Want';
 
 // init elementName here, bundleName and abilityName are required.
+let want: Want = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let elementName: bundleManager.ElementName = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
 
-let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
+let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 // do something according to the isDefaultService value
 ```
 
@@ -218,7 +229,7 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -268,7 +279,7 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -294,7 +305,7 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -310,16 +321,18 @@ import hilog from '@ohos.hilog';
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import { AsyncCallback } from '@ohos.base';
 import { ElementName } from './bundleManager/ElementName'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
     element = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
@@ -366,7 +379,7 @@ transmit(response: number[]): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -415,7 +428,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -445,14 +458,14 @@ try {
 
   hceService.transmit(responseData, (err : BusinessError)=> {
     if (err) {
-      console.error("transmit AsyncCallback err Code: ${err.code}, message: ${err.message}");
+      console.error(`transmit AsyncCallback err Code: ${err.code}, message: ${err.message}`);
     } else {
       console.log("transmit AsyncCallback success.");
     }
   });
-} catch (busiError) {
-  console.error("transmit AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-    "message: ${(busiError as Businsess).message}");
+} catch (error) {
+  console.error(`transmit AsyncCallback catch Code: ${(error as BusinessError).code}, ` +
+    `message: ${(error as BusinessError).message}`);
 }
 ```
 

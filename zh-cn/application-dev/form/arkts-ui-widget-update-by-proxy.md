@@ -105,7 +105,7 @@
   }
   ```
   
-- 在[卡片页面文件](arkts-ui-widget-creation.md)中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'detail'获取订阅的数据，并在Text组件显示。
+- 在[卡片页面文件](arkts-ui-widget-creation.md)中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'city'获取订阅的数据，并在Text组件显示。
   ```ts
   let storageProcess = new LocalStorage();
   
