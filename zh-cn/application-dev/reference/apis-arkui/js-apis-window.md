@@ -2319,38 +2319,25 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+console.info('onWindowStageCreate');
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+try {
+  (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
-};
+    console.info('Succeeded in loading the content.');
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -2404,36 +2391,22 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+try {  
+  (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
-};
+    console.info('Succeeded in loading the content.');
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -2493,36 +2466,22 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        let promise = (windowClass as window.Window).loadContentByName(Index.entryName, storage);
-        promise.then(() => {
-          console.info('Succeeded in loading the content.');
-        }).catch((err: BusinessError) => {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-    }
-  }
-};
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+try {
+  let promise = (windowClass as window.Window).loadContentByName(Index.entryName, storage);
+  promise.then(() => {
+    console.info('Succeeded in loading the content.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -4096,18 +4055,31 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let ratio = 1.0;
-  let promise = windowClass.setAspectRatio(ratio);
-  promise.then(() => {
-    console.info('Succeeded in setting aspect ratio of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    if (!windowClass) {
+      console.info('windowClass is null');
+    }
+    try {
+      let ratio = 1.0;
+      let promise = windowClass.setAspectRatio(ratio);
+      promise.then(() => {
+        console.info('Succeeded in setting aspect ratio of window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -4140,20 +4112,33 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let ratio = 1.0;
-  windowClass.setAspectRatio(ratio, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-      return;
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
     }
-    console.info('Succeeded in setting the aspect ratio of window.');
-  });
-} catch (exception) {
-  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+    try {
+      let ratio = 1.0;
+      windowClass.setAspectRatio(ratio, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the aspect ratio of window.');
+      });
+    } catch (exception) {
+      console.error(`Failed to set the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -4185,17 +4170,30 @@ resetAspectRatio(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let promise = windowClass.resetAspectRatio();
-  promise.then(() => {
-    console.info('Succeeded in resetting aspect ratio of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
+    }
+    try {
+      let promise = windowClass.resetAspectRatio();
+      promise.then(() => {
+        console.info('Succeeded in resetting aspect ratio of window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to reset the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to reset the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -4227,19 +4225,32 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  windowClass.resetAspectRatio((err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-      return;
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
     }
-    console.info('Succeeded in resetting aspect ratio of window.');
-  });
-} catch (exception) {
-  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+    try {
+      windowClass.resetAspectRatio((err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to reset the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in resetting aspect ratio of window.');
+      });
+    } catch (exception) {
+      console.error(`Failed to reset the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
