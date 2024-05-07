@@ -128,7 +128,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -190,7 +190,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ------------------------------------- |
@@ -247,7 +247,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -308,7 +308,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | ------ | ------------------------------------- |
@@ -363,7 +363,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -416,7 +416,7 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                               |
 | ------ | ------------------------------------- |
@@ -523,7 +523,7 @@ adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -572,7 +572,7 @@ adler32Combine(adler1: number, adler2: number, len2: number): Promise&lt;number&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -635,7 +635,7 @@ crc32(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -687,7 +687,7 @@ crc32Combine(crc1: number, crc2: number, len2: number): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
@@ -750,7 +750,7 @@ crc64(crc: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
