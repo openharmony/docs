@@ -722,11 +722,11 @@ UX样式变更
 
 - 变更前
   1. NavDestination标题栏按钮无背板。
-  2. NavDestination标题栏主标题自重为MEDIUM。
+  2. NavDestination标题栏主标题字重为MEDIUM。
   
 - 变更后
   1. NavDestination标题栏按钮增加圆形背板。
-  2. NavDestination标题栏主标题自重为BOLD。
+  2. NavDestination标题栏主标题字重为BOLD。
   3. NavDestination默认返回按钮图标更新。
 
   如下图所示为变更前后效果对比：
