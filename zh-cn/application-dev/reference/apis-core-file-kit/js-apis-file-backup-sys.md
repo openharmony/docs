@@ -1144,7 +1144,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 | -------------------- | -------- | ---- | ---------------------------------- |
 | remoteCapabilitiesFd | number   | 是   | 用于恢复所需能力文件的文件描述符。 |
 | bundlesToBackup      | string[] | 是   | 需要恢复的应用包名称的数组。       |
-| infos                | string[] | 否   | 备份所需信息的数组，需与bundlesToBackup数组相同索引的内容对应。从API version 12开始支持。 |
+| infos<sup>12+</sup>  | string[] | 否   | 备份所需信息的数组，需与bundlesToBackup数组相同索引的内容对应。从API version 12开始支持。 |
 
 **返回值：**
 
