@@ -95,7 +95,7 @@
    documentSelectOptions.maxSelectNumber = 5;
    // 指定选择的文件或者目录路径（可选）
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
-   // 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选）
+   // 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选），后缀类型名不能超过100
    documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4'];
    //选择是否对指定文件或目录授权，true为授权，当为true时，defaultFilePathUri为必选参数，拉起文管授权界面；false为非授权，拉起常规文管界面（可选）
    documentSelectOptions.authMode = true;
@@ -164,7 +164,7 @@
 
    select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
-   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
+   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（fd），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
    ```ts
    

@@ -705,6 +705,52 @@ RichEditor组件。
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响
+
+## cl.arkui.14 NavDestination标题栏按钮默认背板、标题字体字号等默认样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更，只影响NavDestination组件的默认样式。
+
+- 变更前
+  1. NavDestination标题栏按钮无背板。
+  2. NavDestination标题栏主标题字重为MEDIUM。
+  
+- 变更后
+  1. NavDestination标题栏按钮增加圆形背板。
+  2. NavDestination标题栏主标题字重为BOLD。
+  3. NavDestination默认返回按钮图标更新。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/NavDestination_Before.png)  |  ![](figures/NavDestination_After.png)  |
+
+**起始 API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+NavDestination组件。
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
 ## cl.arkui.15 EditableTitleBar默认样式变化
 
 **访问级别**
