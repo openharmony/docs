@@ -1485,81 +1485,81 @@ import image from '@ohos.multimedia.image'
 import { LengthMetrics } from '@ohos.arkui.node';
 
 class MyCustomSpan extends CustomSpan {
-  constructor(word: string, width: number, height?: number) {
+  constructor(word: string, width: number, height: number) {
     super();
     this.word = word;
-    this.width = width
-    this.height = height
+    this.width = width;
+    this.height = height;
   }
 
   onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
-    return { width: this.width, height: this.height }
+    return { width: this.width, height: this.height };
   }
 
   onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
     let canvas = context.canvas;
 
     const brush = new drawing.Brush();
-    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 })
-    const font = new drawing.Font()
-    font.setSize(25)
-    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
-    canvas.attachBrush(brush)
+    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 });
+    const font = new drawing.Font();
+    font.setSize(25);
+    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.attachBrush(brush);
     canvas.drawRect({
       left: options.x + 10,
       right: options.x + vp2px(this.width) - 10,
       top: options.lineTop + 10,
       bottom: options.lineBottom - 10
-    })
+    });
 
-    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 })
-    canvas.attachBrush(brush)
-    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15)
-    canvas.detachBrush()
+    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 });
+    canvas.attachBrush(brush);
+    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
+    canvas.detachBrush();
   }
 
   setWord(word: string) {
     this.word = word;
   }
 
-  width: number = 160
-  word: string = "drawing"
-  height: number = 10
+  width: number = 160;
+  word: string = "drawing";
+  height: number = 10;
 }
 
 @Entry
 @Component
 struct styled_string_demo6 {
-  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130)
-  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80)
-  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40)
+  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130, 10);
+  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
+  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40);
   style2: MutableStyledString = new MutableStyledString(this.customSpan2);
   style1: MutableStyledString = new MutableStyledString(this.customSpan1);
   textStyle: MutableStyledString = new MutableStyledString("123");
-  textController: TextController = new TextController()
-  imagePixelMap: image.PixelMap | undefined = undefined
-  isPageShow: boolean = true
+  textController: TextController = new TextController();
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  isPageShow: boolean = true;
 
   private async getPixmapFromMedia(resource: Resource) {
     let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
       desiredSize: { width: 50, height: 50 }
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 
   async onPageShow() {
     if (!this.isPageShow) {
       return
     }
-    this.isPageShow = false
+    this.isPageShow = false;
 
     this.style1.appendStyledString(new MutableStyledString("文本绘制 示例代码 CustomSpan", [
       {
