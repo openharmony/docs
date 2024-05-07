@@ -10,7 +10,7 @@
 
 > **说明：**
 > 
-> - 使能动态照片前需要**分段式拍照能力**。
+> - 使能动态照片前需要使能**分段式拍照能力**。
 
 ## 开发步骤
 
@@ -83,7 +83,7 @@
 
 ## 状态监听
 
-1. 注册photoAsset监听回调。
+注册photoAsset监听回调。
 
    ```ts
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
@@ -98,4 +98,3 @@
      });
    }
    ```
-
