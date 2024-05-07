@@ -3067,7 +3067,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
+**ACL使能**：API version 10-11为false；从API version 12开始为true
 
 **起始版本**：10
 
