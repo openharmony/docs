@@ -4,7 +4,7 @@ animateToImmediately接口用来提供[显式动画](ts-explicit-animation.md)�
 
 > **说明：**
 >
-> 从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 
 animateToImmediately(value: [AnimateParam](ts-explicit-animation.md#animateparam对象说明) , event: () => void): void
