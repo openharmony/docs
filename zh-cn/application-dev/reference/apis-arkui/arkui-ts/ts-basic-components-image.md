@@ -297,7 +297,7 @@ draggable(value: boolean)
 
 ### enableAnalyzer<sup>11+</sup>
 
-edgeAntialiasing(value:&nbsp;boolean)
+enableAnalyzer(enable:&nbsp;boolean)
 
 设置组件支持AI分析。不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。  
 
@@ -313,7 +313,7 @@ alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
+| enable  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
 
 ### resizable<sup>11+</sup>
 
