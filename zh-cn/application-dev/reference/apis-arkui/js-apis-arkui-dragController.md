@@ -33,9 +33,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | if the parameters checking failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -136,9 +138,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | if the parameters checking failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -284,9 +288,11 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | If the parameters checking failed |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | If some internal handling failed |
 
 **示例：**
