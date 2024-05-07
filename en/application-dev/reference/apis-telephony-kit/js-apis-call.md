@@ -25,7 +25,7 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -57,7 +57,7 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -92,7 +92,7 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -129,6 +129,8 @@ call.dial("138xxxxxxxx", dialOptions).then((data: boolean) => {
 makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 Launches the call screen and displays the dialed number. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -171,6 +173,8 @@ call.makeCall("138xxxxxxxx", (err: BusinessError) => {
 makeCall\(phoneNumber: string\): Promise\<void\>
 
 Launches the call screen and displays the dialed number. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.Contacts
 
