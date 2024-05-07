@@ -37,6 +37,10 @@
 
 描述长文本通知。
 
+> **说明：**
+>
+> 实际显示效果依赖于设备能力和通知中心UI样式。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 类型    | 只读 | 必填 | 说明                             |
@@ -54,6 +58,10 @@
 
 描述多行文本通知。
 
+> **说明：**
+>
+> 实际显示效果依赖于设备能力和通知中心UI样式。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 类型            | 只读 | 必填 | 说明                             |
@@ -70,6 +78,10 @@
 ## NotificationPictureContent
 
 描述附有图片的通知。
+
+> **说明：**
+>
+> 实际显示效果依赖于设备能力和通知中心UI样式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 

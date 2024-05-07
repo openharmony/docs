@@ -141,6 +141,20 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 | ------ | ------ | ---- | ------------ |
 | modifier | [ContentModifier\<ProgressConfiguration\>](#progressconfiguration12) | 是   | 在progress组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
+### privacySensitive<sup>12+</sup>
+
+privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
+
+设置隐私敏感。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明                                                  |
+| ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+
 ## ProgressConfiguration<sup>12+</sup>
 | 名称 | 参数类型  | 描述         |
 | ------ | ------ | ------------|
@@ -201,20 +215,6 @@ contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
 | ----------------------- | ---------------- |
 | LOADING  | 加载中。 |
 | PROGRESSING | 进度更新中。 |
-
-## privacySensitive<sup>12+</sup>
-
-privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
-
-设置隐私敏感。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                      | 必填 | 说明                                                  |
-| ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
-| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
 
 ## 事件
 

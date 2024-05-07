@@ -402,6 +402,48 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 | Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
 
 
+## util.getHash<sup>12+</sup>
+
+getHash(object: object): number
+
+获取对象的Hash值。如果是第一次获取，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；如果不是第一次获取，则从Hash域中获取并返回Hash值（同一对象多次返回值保持不变）。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| object | object | 是 | 希望获取Hash值的对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | Hash值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let obj = {};
+let result1 = util.getHash(obj);
+console.info('result1 is ' + result1);
+let result2 = util.getHash(obj);
+console.info('result2 is ' + result2);
+// 输出：result1 与 result2 的值相等，且为随机的Hash值。
+```
+
+
 ## TextDecoderOptions<sup>11+</sup>
 
 解码相关选项参数，存在两个属性fatal和ignoreBOM。
