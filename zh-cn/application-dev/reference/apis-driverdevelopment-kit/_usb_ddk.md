@@ -73,10 +73,10 @@
 #### 函数参数deviceId转换指导
 
 通过外设查询接口queryDevices()获取到的deviceId，还需要通过数据转换，才能得到上面函数的入参deviceId；
-转换原理：提取前32位作为C_API的deviceId；
-<br>以下代码仅供参考：
+<p>转换原理：提取前32位作为C_API的deviceId；</p>
+<p>以下代码仅供参考：</p>
 
-~~~
+ ~~~
 uint64_t JsDeviceIdToNative(uint64_t deviceId)
 {
     uint32_t busNum = (uint32_t)(deviceId >> PARAM_48);
