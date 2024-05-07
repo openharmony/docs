@@ -782,7 +782,7 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 | options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 >  **说明：**
 >
->  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
+>  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
 
 ### stopEditing<sup>10+</sup>
 
@@ -912,8 +912,8 @@ setTextSelection选中文字时的配置。
 | 名称    | 描述                     |
 | ------- | ------------------------ |
 | DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
+| HIDE   | 始终不弹出菜单。         |
+| SHOW  | 始终弹出菜单。           |
 
 ## KeyboardOptions<sup>12+</sup>
 
