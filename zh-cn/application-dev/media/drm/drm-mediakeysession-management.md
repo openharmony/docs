@@ -256,7 +256,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
        ```
 
        ```ts
-       function unRegisterExpirationUpdated(mediaKeySession: drm.MediaKeysession): void {
+       function unRegisterExpirationUpdated(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.off('expirationUpdate');
          return;
        }
@@ -266,8 +266,10 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
        ```ts
        function onRegisterKeyChanged(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.on('keysChange', (eventInfo: drm.EventInfo) => {
-           console.log('keysChange' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+         mediaKeySession.on('keysChange', (keyInfo : drm.KeysInfo[], newKeyAvailable:boolean) => {
+           for(let i = 0; i<keyInfo.length; i++){
+             console.log('keysChange' + 'info:' + keyInfo[i].keyId + ' extraInfo:' + keyInfo[i].value);
+           }
          });
          return;
        }
