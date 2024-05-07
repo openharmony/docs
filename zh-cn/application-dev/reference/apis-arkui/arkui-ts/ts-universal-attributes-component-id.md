@@ -26,7 +26,7 @@ id(value: string): T
 | ------ | -------- | -----|---------------------- |
 | value  | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
 
-### key
+### key<sup>12+</sup>
 
 key(value: string): T
 
