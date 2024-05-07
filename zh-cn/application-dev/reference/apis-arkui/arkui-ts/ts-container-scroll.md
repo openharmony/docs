@@ -18,6 +18,8 @@
 
 Scroll(scroller?: Scroller)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -34,6 +36,8 @@ scrollable(value: ScrollDirection)
 
 设置滚动方向。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -47,6 +51,8 @@ scrollable(value: ScrollDirection)
 scrollBar(barState: BarState)
 
 设置滚动条状态。如果容器组件无法滚动，则滚动条不显示。如果容器组件的子组件大小为无穷大，则滚动条不支持拖动和伴随滚动。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,6 +68,8 @@ scrollBarColor(color: Color | number | string)
 
 设置滚动条的颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -75,6 +83,8 @@ scrollBarColor(color: Color | number | string)
 scrollBarWidth(value: number | string)
 
 设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过Scroll组件主轴方向的高度，则滚动条的宽度会变为默认值。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -90,6 +100,8 @@ scrollSnap(value: ScrollSnapOptions)
 
 设置Scroll组件的限位滚动模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -103,6 +115,8 @@ scrollSnap(value: ScrollSnapOptions)
 edgeEffect(edgeEffect: EdgeEffect, options?: EdgeEffectOptions)
 
 设置边缘滑动效果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -119,6 +133,8 @@ enableScrollInteraction(value: boolean)
 
 设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -133,6 +149,8 @@ nestedScroll(value: NestedScrollOptions)
 
 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -146,6 +164,8 @@ nestedScroll(value: NestedScrollOptions)
 friction(value: number | Resource)
 
 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -198,6 +218,9 @@ initialOffset(value: OffsetOptions)
 | value  | [OffsetOptions](#offsetoptions12对象说明)  | 是   |当输入的大小为百分比时，初始滚动偏移量为Scroll组件主轴方向大小与百分比数值之积。|
 
 ## ScrollDirection枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
 | Horizontal | 仅支持水平方向滚动。     |
@@ -206,6 +229,9 @@ initialOffset(value: OffsetOptions)
 | Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃|
 
 ## ScrollSnapOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 参数类型    | 必填   | 描述       |
 | ---------- | --------------------|-------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对齐方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
@@ -228,6 +254,8 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 触发该事件的条件：
 
 1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用控制器接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -339,6 +367,8 @@ onScrollEdge(event: (side: Edge) => void)
 
 1、滚动组件滚动到边缘时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -371,6 +401,8 @@ onScrollStart(event: () => void)
 
 1、滚动组件开始滚动时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onScrollStop<sup>9+</sup>
@@ -382,6 +414,8 @@ onScrollStop(event: () => void)
 触发该事件的条件 ：
 
 1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后开始，带过渡动效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -424,6 +458,8 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 滑动到指定位置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数名    | 参数类型                                                     | 必填 | 参数描述                                                     |
@@ -444,7 +480,7 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 
 | 参数名   | 参数类型 | 必填   | 参数描述      |
 | ----- | ---- | ---- | --------- |
-| value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
+| value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 |
 
 ### fling<sup>12+</sup>
@@ -465,6 +501,8 @@ fling(velocity: number): void
 scrollPage(value:   ScrollPageOptions)
 
 滚动到下一页或者上一页。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -489,6 +527,8 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 
 currentOffset(): OffsetResult
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 类型  | 描述 |
 | -------- | -------- |
 |  [OffsetResult<sup>11+</sup>](#offsetresult11) | 返回当前的滚动偏移量。<br/>**说明：**<br/>当scroller控制器未绑定容器组件或者容器组件被异常释放时，currentOffset的返回值为空。|
@@ -505,6 +545,8 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 >  **说明：**
 >
 >  仅支持Grid、List、WaterFlow组件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -526,6 +568,8 @@ scrollBy(dx: Length, dy: Length): void
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
@@ -542,6 +586,8 @@ isAtEnd(): boolean
 >  **说明：**
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值**
 
@@ -578,6 +624,8 @@ getItemRect(index: number): RectResult
 
 ## OffsetResult<sup>11+</sup>
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型                                                       | 描述                                                         |
 | --------------|-------------------------------------------- | ------------------------------------------------------------ |
 | xOffset | number | 水平滑动偏移;<br/>返回值单位为vp。 |
@@ -592,6 +640,8 @@ getItemRect(index: number): RectResult
 | canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false。<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画。|
 
 ## ScrollAlign<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
