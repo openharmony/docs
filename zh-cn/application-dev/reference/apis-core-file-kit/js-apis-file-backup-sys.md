@@ -183,7 +183,7 @@ onBundleBegin : AsyncCallback&lt;string, void | string&gt;
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |
-| 401      | The input parameter is invalid.                       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13500001 | The application is not added to the backup or restore |
 | 13500002 | Failed to start application extension Procedure       |
 | 13600001 | IPC error                                             |
@@ -239,7 +239,7 @@ onBundleEnd : AsyncCallback&lt;string, void | string&gt;
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
-| 401      | The input parameter is invalid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13500003 | Backup or restore timed out     |
 | 13500004 | Application extension death     |
 | 13600001 | IPC error                       |
@@ -532,7 +532,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900005 | I/O error                                                                                      |
 | 13900011 | Out of memory                                                                                  |
@@ -938,7 +938,7 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
@@ -1735,7 +1735,7 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
@@ -1837,7 +1837,7 @@ constructor(callbacks: GeneralCallbacks);
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 
 **示例：**
 
@@ -1912,7 +1912,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): promise&lt;v
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
@@ -1999,7 +1999,7 @@ release(): Promise&lt;void&gt;
 | -------- | ---------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
-| 401      | The input parameter is invalid.                                                                |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verifcation faild|
 | 13600001 | IPC error                                                                                      |
 | 13900001 | Operation not permitted                                                                        |
 | 13900005 | I/O error                                                                                      |
