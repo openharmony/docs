@@ -533,7 +533,7 @@ UX设计优化
 
 API version 12开始，Tabs组件底部页签样式去除按压态动效，默认高度从56vp变更为52vp
 
-**API Level**
+**起始API Level**
 
 12
 
@@ -587,7 +587,7 @@ UX样式变更
 |---------|---------|
 | ![](figures/SubHeader_Margin_Before.png) |  ![](figures/SubHeader_Margin_After.png) |
 
-**API Level**
+**起始API Level**
 
 API 12
 
@@ -636,7 +636,7 @@ UX样式变更
 |---------|---------|
 | ![](figures/SelectDialog_Before.png)  |  ![](figures/SelectDialog_After.png)  |
 
-**API Level**
+**起始API Level**
 
 10
 
