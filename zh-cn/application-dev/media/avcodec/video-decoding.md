@@ -53,6 +53,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/player_framework/native_avcodec_base.h>
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
+    #include <fstream>
     ```
 
 2. 创建解码器实例对象。
@@ -392,6 +393,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
     #include <native_buffer/native_buffer.h>
+    #include <fstream>
     ```
 
 2. 创建解码器实例对象。
