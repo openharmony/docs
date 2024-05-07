@@ -1013,24 +1013,24 @@ setResidentProcessEnabled(bundleName: string, enable: boolean): Promise\<void>
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 常驻进程的包名。 |
-| enable | boolean | 是 | 需要更新的使能状态, true代表开机启动常驻进程或把停止的常驻进程拉起来, false代表开机不拉起常驻进程并失去常驻进程属性不在进行保活。 |
+| enable | boolean | 是 | 常驻进程的使能状态。 true：表示该进程为常驻进程。 false：表示该进程为普通进程，不会进行保活。|
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 202 | Not a system application. |
 | 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
 | 16000050 | Internal error. |
-| 16200006 | The caller application can only set the resident status of the configured process|
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16200006 | The caller application can only set the resident status of the configured process |
 
 **示例：**
 

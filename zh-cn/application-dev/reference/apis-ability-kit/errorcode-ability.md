@@ -902,6 +902,24 @@ Method not registered. The method has not registered.
 
 请检查是否未注册该方法。
 
+## 16200006 没有权限设置常驻进程使能状态
+
+**错误信息**
+
+The caller application can only set the resident status of the configured process.
+
+**错误描述**
+
+当调用者没有权限设置常驻进程使能状态时返回。
+
+**可能原因**
+
+调用者没有常驻进程使能配置权限。
+
+**处理步骤**
+
+接口调用时从数据库查询调用者的常驻进程使能配置权限。
+
 ## 16300001 指定的任务不存在
 
 **错误信息**
