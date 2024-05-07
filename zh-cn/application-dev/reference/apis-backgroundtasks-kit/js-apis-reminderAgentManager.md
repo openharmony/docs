@@ -607,9 +607,11 @@ addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                     |
-| -------- | ---------------------------- |
-| 1700003  | The reminder does not exist. |
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 401      | Parameter error.                |
+| 1700003  | The reminder does not exist.    |
 
 **示例**：
 
@@ -649,9 +651,11 @@ deleteExcludeDates(reminderId: number): Promise\<void>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                     |
-| -------- | ---------------------------- |
-| 1700003  | The reminder does not exist. |
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 401      | Parameter error.                |
+| 1700003  | The reminder does not exist.    |
 
 **示例**：
 
@@ -690,9 +694,11 @@ getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                     |
-| -------- | ---------------------------- |
-| 1700003  | The reminder does not exist. |
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 401      | Parameter error.                |
+| 1700003  | The reminder does not exist.    |
 
 **示例**：
 
