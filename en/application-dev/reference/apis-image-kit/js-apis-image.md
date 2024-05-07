@@ -1804,7 +1804,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, .dng, [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
 
 **Return value**
 
@@ -1832,7 +1832,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, .dng, [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
@@ -2061,7 +2061,7 @@ Provides APIs to obtain image information. Before calling any API in **ImageSour
 
 | Name            | Type          | Readable| Writable| Description                                                        |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including PNG, JPEG, BMP, GIF, WebP, and RAW.|
+| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including PNG, JPEG, BMP, GIF, WebP, and DNG.|
 
 ### getImageInfo
 
