@@ -533,3 +533,13 @@ import(harLibrary).then((ns: ESObject) => {  // 动态import变量是新增特�
 **参考链接**
 
 1. [TaskPool和Worker的对比 (TaskPool和Worker)](../arkts-utils/taskpool-vs-worker.md)
+
+## taskpool线程中是否可以使用emitter.on等长时间监听接口
+
+不推荐。
+
+**原理澄清**
+
+1. 由于长时间的监听，可能会影响线程回收或复用。
+2. 如果线程被回收会导致线程回调失效或者发生不可预期的错误。
+3. 如果任务函数多次执行，可能会在不同的线程产生监听，导致结果不符合预期。
