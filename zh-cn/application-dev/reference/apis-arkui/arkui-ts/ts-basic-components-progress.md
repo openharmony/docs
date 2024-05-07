@@ -20,6 +20,8 @@ Progress(options: ProgressOptions\<Type\>)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -27,6 +29,8 @@ Progress(options: ProgressOptions\<Type\>)
 | options |  ProgressOptions\<Type\> | 是 | 进度条组件参数。 |
 
 ## ProgressOptions\<Type\>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名                        | 参数类型                                | 必填   | 参数描述                                     |
 | -------------------------- | ----------------------------------- | ---- | ---------------------------------------- |
@@ -39,6 +43,8 @@ Progress(options: ProgressOptions\<Type\>)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                     | 描述                                       |
 | ---------------------- | ---------------------------------------- |
 | Linear                 | 线性样式。从API version9开始，高度大于宽度的时候自适应垂直显示。   |
@@ -50,6 +56,8 @@ Progress(options: ProgressOptions\<Type\>)
 ##  ProgressStyle枚举说明 
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
@@ -71,6 +79,8 @@ value(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -88,6 +98,8 @@ color(value: ResourceColor | LinearGradient)
 从API version 10开始支持利用LinearGradient设置Ring样式的渐变色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，暂不支持LinearGradient。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -120,6 +132,8 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 设置组件的样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -161,6 +175,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | value  | number | 当前进度值。 |
 | total  | number | 进度总长。   |
 ## ProgressStyleOptions<sup>8+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
@@ -169,6 +186,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | enableSmoothEffect<sup>10+</sup> | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## CapsuleStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 内描边颜色。<br/>默认值：<br/>API version 10：'\#33006cde'<br/>API version 11及以上：'\#33007dff' |
@@ -181,6 +201,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## RingStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置），宽度大于等于半径时，默认修改宽度至半径值的二分之一。<br/>默认值：4.0vp |
@@ -190,6 +213,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## LinearStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp |
@@ -198,6 +224,9 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## ScaleRingStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
@@ -206,11 +235,17 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## EclipseStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## ProgressStatus<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |
 | LOADING  | 加载中。 |
