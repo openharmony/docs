@@ -165,7 +165,7 @@ SubTabBarStyle的静态构造函数。
 
 ### constructor
 
-constructor(icon: ResourceStr, text: ResourceStr)
+constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr)
 
 BottomTabBarStyle的构造函数。
 
@@ -175,7 +175,7 @@ BottomTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的图片内容。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol<sup>12+</sup>](#tabbarsymbol12) | 是 | 页签内的图片内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
 ### of<sup>10+</sup>
@@ -190,9 +190,14 @@ BottomTabBarStyle的静态构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的图片内容。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) \| [TabBarSymbol<sup>12+</sup>](#tabbarsymbol12) | 是 | 页签内的图片内容。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 是 | 页签内的文字内容。 |
 
+## TabBarSymbol<sup>12+</sup>
+| 参数名 | 参数类型         | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| normal | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。 |
+| selected | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。 |
 ### 属性
 
 支持以下属性：
@@ -1239,3 +1244,85 @@ struct Index {
 ```
 
 ![tabContent7](figures/tabContent7.gif)
+
+### 示例9
+该示例实现了BottomTabBarStyle图片传入Symbol。
+```ts
+// xxx.ets
+import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+
+@Entry
+@Component
+struct Index {
+  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
+  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ellipsis_bubble'));
+  @State symbolModifier3: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.dot_video'));
+  @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure'));
+  build() {
+    Column({space: 5}) {
+      Text("底部页签样式")
+      Column(){
+        Tabs({barPosition: BarPosition.End}) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle({
+            normal: this.symbolModifier1,
+          }, 'Pink'))
+          .onWillShow(() => {
+            console.info("Pink will show")
+          })
+          .onWillHide(() => {
+            console.info("Pink will hide")
+          })
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Orange)
+          }.tabBar(new BottomTabBarStyle({
+            normal: this.symbolModifier2,
+          }, 'Orange'))
+          .onWillShow(() => {
+            console.info("Orange will show")
+          })
+          .onWillHide(() => {
+            console.info("Orange will hide")
+          })
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle({
+            normal: this.symbolModifier3,
+          }, 'Blue'))
+          .onWillShow(() => {
+            console.info("Blue will show")
+          })
+          .onWillHide(() => {
+            console.info("Blue will hide")
+          })
+
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle({
+            normal: this.symbolModifier4,
+          }, 'Green'))
+          .onWillShow(() => {
+            console.info("Green will show")
+          })
+          .onWillHide(() => {
+            console.info("Green will hide")
+          })
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index:number)=>{
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('100%').height(200)
+    }
+  }
+}
+```
+
+![tabContent8](figures/tabBarSymbol.gif)
