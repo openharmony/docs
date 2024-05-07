@@ -71,7 +71,7 @@
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | startupTasks | 待初始化组件配置信息。 | 对象数组 | 该标签不可缺省。 |
-| configEntry | [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig)文件路径。 | 字符串 | 该标签不可缺省。 |
+| configEntry | [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)文件路径。 | 字符串 | 该标签不可缺省。 |
 
 `startupTasks`标签说明
 
@@ -107,7 +107,7 @@ export default class Sample_001 extends StartupTask {
 
 ### 添加启动框架配置
 
-应用需要在工程的`ets`目录下的`startup`文件夹下添加启动框架配置,开发者可以在该文件中配置超时时间以及组件初始化的监听器，启动框架配置需要在[StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)中设置[StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)与[StartupListener](../reference/apis-ability-kit/js-apis-app-appstartup-startupListener)。
+应用需要在工程的`ets`目录下的`startup`文件夹下添加启动框架配置,开发者可以在该文件中配置超时时间以及组件初始化的监听器，启动框架配置需要在[StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)中设置[StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)与[StartupListener](../reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)。
 
 ```ts
 import StartupConfig from '@ohos.app.appstartup.StartupConfig';
