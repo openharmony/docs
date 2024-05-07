@@ -29,7 +29,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_REDNER表示Web组件自渲染，RenderMode.SYNC_REDNER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_REDNER |
+| renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 **示例：**
@@ -1700,6 +1700,8 @@ layoutMode(mode: WebLayoutMode)
 >
 > 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
 > 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
+> Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
+> 全量展开模式下，频繁更改页面宽高会触发web组件重新布局，影响性能和体验。
 
 **参数：**
 
@@ -1916,6 +1918,35 @@ struct WebComponent {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .textAutosizing(false)
+      }
+    }
+  }
+  ```
+### enableNativeMediaPlayer<sup>12+</sup>
+
+开启应用接管网页媒体播放功能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述 |
+| ---- | ------ | ---- | ---- | ---------------------|
+| config | [NativeMediaPlayerConfig](#nativemediaplayerconfig12) | 是    |  {enable: false, shouldOverlay: false} | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。|
+
+  **示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
       }
     }
   }
@@ -7066,3 +7097,19 @@ onOverrideUrlLoading的回调。
 | ----------------------------- | -- | ------------ |
 | ASYNC_RENDER                        | 0 | Web组件自渲染模式。   |
 | SYNC_RENDER                        | 1 | Web组件统一渲染模式。   |
+
+## NativeMediaPlayerConfig<sup>12+</sup>
+
+type NativeMediaPlayerConfig = {
+  enable: boolean,
+  shouldOverlay: boolean
+}
+
+用于[开启应用接管网页媒体播放功能](#enablenativemediaplayer12)的配置信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+|  enable  | boolean | 否 | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
+|  shouldOverlay | boolean | 否 | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |

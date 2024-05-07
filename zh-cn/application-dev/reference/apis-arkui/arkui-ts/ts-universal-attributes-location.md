@@ -40,7 +40,7 @@ direction(value: Direction)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                |
 | ------ | ------------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [Direction](ts-appendix-enums.md#direction) | 是   | 设置容器元素内主轴方向上的布局。<br/>例：Column组件的主轴为纵轴。<br/>默认值：Direction.Auto |
+| value  | [Direction](ts-appendix-enums.md#direction) | 是   | 设置容器元素内主轴方向上的布局。<br/>该属性在Column组件上不生效。<br/>默认值：Direction.Auto |
 
 ## position
 
