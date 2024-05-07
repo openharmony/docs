@@ -38,7 +38,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) {<br/>OH_ARKWEB_SCHEME_OPTION_NONE = 0, [ARKWEB_SCHEME_OPTION_STANDARD](_web.md) = 1 &lt;&lt; 0, [ARKWEB_SCHEME_OPTION_LOCAL](_web.md) = 1 &lt;&lt; 1, [ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED](_web.md) = 1 &lt;&lt; 2,<br/>[ARKWEB_SCHEME_OPTION_SECURE](_web.md) = 1 &lt;&lt; 3, [ARKWEB_SCHEME_OPTION_CORS_ENABLED](_web.md) = 1 &lt;&lt; 4, [ARKWEB_SCHEME_OPTION_CSP_BYPASSING](_web.md) = 1 &lt;&lt; 5, [ARKWEB_SCHEME_OPTION_FETCH_ENABLED](_web.md) = 1 &lt;&lt; 6<br/>} | custom scheme的配置信息。  | 
+| [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) {<br/>OH_ARKWEB_SCHEME_OPTION_NONE = 0, [ARKWEB_SCHEME_OPTION_STANDARD](_web.md) = 1 &lt;&lt; 0, [ARKWEB_SCHEME_OPTION_LOCAL](_web.md) = 1 &lt;&lt; 1, [ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED](_web.md) = 1 &lt;&lt; 2,<br/>[ARKWEB_SCHEME_OPTION_SECURE](_web.md) = 1 &lt;&lt; 3, [ARKWEB_SCHEME_OPTION_CORS_ENABLED](_web.md) = 1 &lt;&lt; 4, [ARKWEB_SCHEME_OPTION_CSP_BYPASSING](_web.md) = 1 &lt;&lt; 5, [ARKWEB_SCHEME_OPTION_FETCH_ENABLED](_web.md) = 1 &lt;&lt; 6, [ARKWEB_SCHEME_OPTION_CODE_CACHE_ENABLED](_web.md) = 1 &lt;&lt; 7<br/>} | custom scheme的配置信息。  | 
 
 
 ### 函数
