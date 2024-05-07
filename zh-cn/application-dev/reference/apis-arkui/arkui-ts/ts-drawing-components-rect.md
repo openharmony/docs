@@ -19,6 +19,8 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
@@ -41,6 +43,8 @@ radiusWidth(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -57,6 +61,8 @@ radiusHeight(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -72,6 +78,8 @@ radius(value: number | string | Array&lt;string&nbsp;|&nbsp;number&gt;)
 设置圆角半径大小。  异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

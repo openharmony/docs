@@ -16,6 +16,8 @@
 
 ScrollBar(value: ScrollBarOptions)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -23,6 +25,8 @@ ScrollBar(value: ScrollBarOptions)
 | value |  [ScrollBarOptions](#scrollbaroptions对象说明)| 是 | 滚动条组件参数。 |
 
 ## ScrollBarOptions对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -37,6 +41,8 @@ ScrollBar(value: ScrollBarOptions)
 > 滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。
 
 ## ScrollBarDirection枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |

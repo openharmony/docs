@@ -83,6 +83,8 @@ interface ParticleOptions<
 }
 ```
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | emitter | [EmitterOptions](#emitteroptions)<[PARTICLE](#particletype)> | 是 | 粒子发射器配置。 |
@@ -129,6 +131,7 @@ interface ParticleConfigs {
 }
 ```
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
@@ -141,6 +144,9 @@ interface PointParticleParameters {
   radius: VP;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
 | radius      | [VP](ts-types.md#vp10)| 是    | 粒子半径。 |
@@ -153,6 +159,9 @@ interface ImageParticleParameters {
   objectFit?: ImageFit;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
 | src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg图片类型。 |
@@ -189,6 +198,9 @@ interface ParticleColorPropertyUpdaterConfigs {
   [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<ResourceColor>>;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 |[ParticleUpdater.NONE]|void | 是 | 无变化。|
@@ -205,6 +217,9 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
   };
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | range | [TYPE, TYPE] | 是 | 粒子初始属性值区间，粒子发射器生成粒子的属性值在range区间随机取值。<br/>**说明**<br/>各项属性的非法输入取默认值，当最大值小于最小值的时候取默认区间。TYPE为number。<br/>不同属性的默认值不同：<br>1、opacity属性：range:[1.0,1.0]，取值范围0到1，默认值为0.0。<br/>2、scale属性：range:[1.0,1.0]，取值范围大于等于0，默认值为1.0。<br/>3、acceleration加速度speed属性：range:[0.0,0.0]，取值范围大于等于0，默认值为0.0。<br/>4、acceleration加速度angle属性：range:[0.0,0.0]，取值范围大于等于0，默认值为0.0。<br/>5、spin属性：range:[0.0,0.0]，默认值为0.0。
@@ -219,6 +234,9 @@ interface ParticlePropertyUpdaterConfigs<T> {
     [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<T>>;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 [[ParticleUpdater.NONE]|void | 是 | 无变化。|
@@ -237,6 +255,9 @@ interface ParticlePropertyAnimation<T> {
   curve?: Curve | ICurve;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 |from| T | 是 | 属性起始值。非法输入取对应属性的默认值。|
@@ -253,6 +274,8 @@ enum ParticleType {
   IMAGE = 'image',
 }
 ```
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 描述 |
 | -------- |  -------- | 
 POINT |点状粒子|
@@ -268,6 +291,9 @@ enum ParticleEmitterShape {
   ELLIPSE = 'ellipse',
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 描述 |
 | -------- |  -------- | 
 RECTANGLE |粒子发射器为矩形|
