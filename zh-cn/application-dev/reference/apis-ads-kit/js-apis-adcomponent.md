@@ -1,7 +1,7 @@
-# @ohos.advertising.AdComponent (非全屏广告展示组件)
+# @ohos.advertising.AdComponent (广告展示组件)
 
 
-本模块提供展示非全屏广告的能力。
+本模块提供展示广告的能力，覆盖了原生、贴片、开屏等广告样式。
 
 
 > **说明：**
