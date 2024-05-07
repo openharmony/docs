@@ -552,7 +552,7 @@ async function Demo() {
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
+| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -560,6 +560,8 @@ async function Demo() {
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -598,6 +600,8 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -632,6 +636,8 @@ async function Demo() {
 readPixelsToBufferSync(dst: ArrayBuffer): void
 
 以同步方法读取PixelMap到Buffer里。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -668,6 +674,8 @@ async function Demo() {
 readPixels(area: PositionArea): Promise\<void>
 
 读取区域内的图片数据，使用Promise形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -711,6 +719,8 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读取区域内的图片数据，使用callback形式返回读取结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -751,6 +761,8 @@ readPixelsSync(area: PositionArea): void
 
 读取区域内的图片数据并同步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -782,6 +794,8 @@ async function Demo() {
 writePixels(area: PositionArea): Promise\<void>
 
 将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -829,6 +843,8 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 将PixelMap写入指定区域内，使用callback形式返回写入结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -871,6 +887,8 @@ async function Demo() {
 writePixelsSync(area: PositionArea): void
 
 以同步方法将PixelMap写入指定区域内。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -917,6 +935,8 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -958,6 +978,8 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -996,6 +1018,8 @@ async function Demo() {
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
 读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1037,6 +1061,8 @@ getImageInfo(): Promise\<ImageInfo>
 
 获取图像像素信息，使用Promise形式返回获取的图像像素信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -1069,6 +1095,8 @@ async function Demo() {
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图像像素信息，使用callback形式返回获取的图像像素信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1103,6 +1131,8 @@ async function Demo() {
 getImageInfoSync(): ImageInfo
 
 以同步方法获取图像像素信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1139,6 +1169,8 @@ getBytesNumberPerRow(): number
 
 获取图像像素每行字节数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -1158,6 +1190,8 @@ let rowCount: number = pixelMap.getBytesNumberPerRow();
 getPixelBytesNumber(): number
 
 获取图像像素的总字节数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1179,6 +1213,8 @@ getDensity():number
 
 获取当前图像像素的密度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -1198,6 +1234,8 @@ let getDensity: number = pixelMap.getDensity();
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
 通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1233,6 +1271,8 @@ async function Demo() {
 opacity(rate: number): Promise\<void>
 
 通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1271,6 +1311,8 @@ opacitySync(rate: number): void
 
 设置PixelMap的透明比率，初始化PixelMap并同步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1307,6 +1349,8 @@ createAlphaPixelmap(): Promise\<PixelMap>
 
 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -1336,6 +1380,8 @@ async function Demo() {
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1370,6 +1416,8 @@ createAlphaPixelmapSync(): PixelMap
 
 根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，同步返回PixelMap类型的结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -1403,6 +1451,8 @@ async function Demo() {
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 根据输入的宽高对图片进行缩放，使用callback形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1440,6 +1490,8 @@ async function Demo() {
 scale(x: number, y: number): Promise\<void>
 
 根据输入的宽高对图片进行缩放，使用Promise形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1480,6 +1532,8 @@ scaleSync(x: number, y: number): void
 
 以同步方法根据输入的宽高对图片进行缩放。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1518,6 +1572,8 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 根据输入的坐标对图片进行位置变换，使用callback形式返回。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1554,6 +1610,8 @@ async function Demo() {
 translate(x: number, y: number): Promise\<void>
 
 根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1594,6 +1652,8 @@ translateSync(x: number, y: number): void
 
 根据输入的坐标对图片进行位置变换并同步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1632,6 +1692,8 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 根据输入的角度对图片进行旋转，使用callback形式返回。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1666,6 +1728,8 @@ async function Demo() {
 rotate(angle: number): Promise\<void>
 
 根据输入的角度对图片进行旋转，使用Promise形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1704,6 +1768,8 @@ rotateSync(angle: number): void
 
 根据输入的角度对图片进行旋转并同步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1739,6 +1805,8 @@ async function Demo() {
 flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): void
 
 根据输入的条件对图片进行翻转，使用callback形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1776,6 +1844,8 @@ async function Demo() {
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 根据输入的条件对图片进行翻转，使用Promise形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1816,6 +1886,8 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 根据输入的条件对图片进行翻转并同步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1854,6 +1926,8 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 根据输入的尺寸对图片进行裁剪，使用callback形式返回。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1888,6 +1962,8 @@ async function Demo() {
 crop(region: Region): Promise\<void>
 
 根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1925,6 +2001,8 @@ async function Demo() {
 cropSync(region: Region): void
 
 根据输入的尺寸裁剪图片。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2298,6 +2376,8 @@ release():Promise\<void>
 
 释放PixelMap对象，使用Promise形式返回释放结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -2327,6 +2407,8 @@ async function Demo() {
 release(callback: AsyncCallback\<void>): void
 
 释放PixelMap对象，使用callback形式返回释放结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2361,6 +2443,8 @@ createImageSource(uri: string): ImageSource
 
 通过传入的uri创建图片源实例。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2388,6 +2472,8 @@ const imageSourceApi: image.ImageSource = image.createImageSource(path);
 createImageSource(uri: string, options: SourceOptions): ImageSource
 
 通过传入的uri创建图片源实例。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2417,6 +2503,8 @@ createImageSource(fd: number): ImageSource
 
 通过传入文件描述符来创建图片源实例。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2442,6 +2530,8 @@ const imageSourceApi: image.ImageSource = image.createImageSource(0);
 createImageSource(fd: number, options: SourceOptions): ImageSource
 
 通过传入文件描述符来创建图片源实例。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2471,6 +2561,8 @@ createImageSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区创建图片源实例。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2498,6 +2590,8 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
 通过缓冲区创建图片源实例。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2527,6 +2621,8 @@ const imageSourceApi: image.ImageSource = image.createImageSource(data, sourceOp
 createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOptions): ImageSource
 
 通过图像资源文件的RawFileDescriptor创建图片源实例。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2632,6 +2728,8 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 获取指定序号的图片信息，使用callback形式返回图片信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2661,6 +2759,8 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图片信息，使用callback形式返回图片信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2688,6 +2788,8 @@ imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => 
 getImageInfo(index?: number): Promise\<ImageInfo>
 
 获取图片信息，使用Promise形式返回图片信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3114,6 +3216,8 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 通过图片解码参数创建PixelMap对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -3146,6 +3250,8 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 通过默认参数创建PixelMap对象，使用callback形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -3173,6 +3279,8 @@ imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => 
 createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过图片解码参数创建PixelMap对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3702,6 +3810,8 @@ createImagePacker(): ImagePacker
 
 创建ImagePacker实例。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
@@ -3734,6 +3844,8 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 图片压缩或重新打包，使用callback形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
@@ -3765,6 +3877,8 @@ imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: Arra
 packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -3802,6 +3916,8 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 图片压缩或重新打包，使用callback形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
@@ -3834,6 +3950,8 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4868,6 +4986,8 @@ img.release().then(() => {
 
 表示图片指定区域内的数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
@@ -4885,16 +5005,18 @@ img.release().then(() => {
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
-| size | [Size](#size) | 是   | 是   | 图片大小。 |
-| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。 |
-| stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4  |
-| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。 |
-| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。  |
+| size | [Size](#size) | 是   | 是   | 图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。  |
 | mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式（MIME type）。  |
 
 ## Size
 
 表示图片尺寸。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -4906,6 +5028,8 @@ img.release().then(() => {
 ## PixelMapFormat<sup>7+</sup>
 
 枚举，图片像素格式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -4925,6 +5049,8 @@ img.release().then(() => {
 
 枚举，图像的透明度类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     |   值   | 说明                    |
@@ -4938,6 +5064,8 @@ img.release().then(() => {
 
 枚举，图像的缩放模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称            |   值   | 说明                                               |
@@ -4948,6 +5076,8 @@ img.release().then(() => {
 ## SourceOptions<sup>9+</sup>
 
 ImageSource的初始化选项。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -4966,12 +5096,12 @@ PixelMap的初始化选项。
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明           |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
-| editable                 | boolean                            | 是   | 是   | 是否可编辑。   |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
+| editable                 | boolean                            | 是   | 是   | 是否可编辑。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 传入的原始数据像素格式。|
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
-| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。     |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
+| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ## DecodingOptions<sup>7+</sup>
 
@@ -4981,19 +5111,21 @@ PixelMap的初始化选项。
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。 |
-| rotate             | number                             | 是   | 是   | 旋转角度。       |
-| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。  |
-| desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
-| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。 |
-| index              | number                             | 是   | 是   | 解码图片序号。   |
-| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
+| sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| rotate             | number                             | 是   | 是   | 旋转角度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
+| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| index              | number                             | 是   | 是   | 解码图片序号。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
 
 ## Region<sup>7+</sup>
 
 表示区域信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5006,6 +5138,8 @@ PixelMap的初始化选项。
 ## PackingOption
 
 表示图片打包选项。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
