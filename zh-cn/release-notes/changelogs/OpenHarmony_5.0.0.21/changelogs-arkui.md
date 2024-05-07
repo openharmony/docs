@@ -690,7 +690,11 @@ API version 12及以后：
 
 SetSelection接口start=end!=-1时，视为选中失败，不改变光标位置。
 
-**API Level**
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/richeditor_setselection_before.gif) | ![](figures/richeditor_setselection_after.gif) |
+
+**起始 API Level**
 
 12 
 
@@ -704,7 +708,7 @@ RichEditor组件。
 
 **适配指导**
 
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
 ## cl.arkui.14 NavDestination标题栏按钮默认背板、标题字体字号等默认样式变更
 
