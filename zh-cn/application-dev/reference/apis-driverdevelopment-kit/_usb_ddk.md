@@ -79,9 +79,9 @@
  ~~~
 uint64_t JsDeviceIdToNative(uint64_t deviceId)
 {
-    uint32_t busNum = (uint32_t)(deviceId >> PARAM_48);
-    uint32_t devNum = (uint32_t)((deviceId & 0x0000FFFF00000000) >> PARAM_32);
-    return (((static_cast<uint64_t>(busNum)) << PARAM_32) | devNum);
+    uint32_t busNum = (uint32_t)(deviceId >> 48);
+    uint32_t devNum = (uint32_t)((deviceId & 0x0000FFFF00000000) >> 32);
+    return (((static_cast<uint64_t>(busNum)) << 32) | devNum);
 }
 ~~~
 
