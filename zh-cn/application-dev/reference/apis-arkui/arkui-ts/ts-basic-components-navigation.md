@@ -479,9 +479,9 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
@@ -509,9 +509,9 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
@@ -541,9 +541,9 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### replacePath<sup>11+</sup>
 
