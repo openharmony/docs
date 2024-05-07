@@ -586,16 +586,16 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 
 addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
-为指定Id的日历类型的代理提醒添加不提醒日期，即提醒时间在date范围内，则不提醒。使用Promise异步回调。
+为指定id的日历添加不提醒日期，即在设定的日期范围内不提醒。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                                |
-| ---------- | ------ | ---- | ----------------------------------- |
-| reminderId | number | 是   | 需要添加ExcludeDate的代理提醒的Id。 |
-| date       | Date   | 是   | 无需提醒的日期。                    |
+| 参数名     | 类型   | 必填 | 说明                         |
+| ---------- | ------ | ---- | ---------------------------- |
+| reminderId | number | 是   | 需要添加不提醒日期的日历Id。 |
+| date       | Date   | 是   | 不提醒的日期。               |
 
 **返回值**：
 
@@ -605,7 +605,7 @@ addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ---------------------------- |
@@ -629,15 +629,15 @@ reminderAgentManager.addExcludeDate(reminderId, date).then(() => {
 
 deleteExcludeDates(reminderId: number): Promise\<void>
 
-删除指定Id的日历类型的代理提醒的所有ExcludeDate。使用Promise异步回调。
+删除日历设置的所有不提醒日期，通过Id指定具体日历。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                                |
-| ---------- | ------ | ---- | ----------------------------------- |
-| reminderId | number | 是   | 需要删除ExcludeDate的代理提醒的Id。 |
+| 参数名     | 类型   | 必填 | 说明                         |
+| ---------- | ------ | ---- | ---------------------------- |
+| reminderId | number | 是   | 需要删除不提醒日期的日历Id。 |
 
 **返回值**：
 
@@ -647,7 +647,7 @@ deleteExcludeDates(reminderId: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ---------------------------- |
@@ -670,25 +670,25 @@ reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
 
 getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
-查询指定Id的代理提醒的ExcludeDate。使用Promise异步回调。
+查询日历设置的所有不提醒日期，通过Id指定具体日历。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                                |
-| ---------- | ------ | ---- | ----------------------------------- |
-| reminderId | number | 是   | 需要查询ExcludeDate的代理提醒的Id。 |
+| 参数名     | 类型   | 必填 | 说明                         |
+| ---------- | ------ | ---- | ---------------------------- |
+| reminderId | number | 是   | 需要查询不提醒日期的日历Id。 |
 
 **返回值**：
 
 | 类型                   | 说明                              |
 | ---------------------- | --------------------------------- |
-| Promise\<Array\<Date>> | 提醒id下的所有的ExcludeDate。 |
+| Promise\<Array\<Date>> | Promise对象。返回特定日历设置的所有不提醒日期。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ---------------------------- |
@@ -751,10 +751,6 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 
 跳转目标的ability信息。
 
-> **说明**
->
-> 从API version12开始，uri对所有应用开放。
-
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 
@@ -763,7 +759,7 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 | pkgName | string | 是 | 指明跳转目标的包名。 |
 | abilityName | string | 是 | 指明跳转目标的ability名称。 |
 | parameters<sup>12+</sup> | Record\<string, Object> | 否 | 需要传递到目标的参数。 |
-| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。 |
+| uri<sup>12+</sup> | string | 否 | 指明跳转目标的uri信息。 |
 
 
 ## MaxScreenWantAgent

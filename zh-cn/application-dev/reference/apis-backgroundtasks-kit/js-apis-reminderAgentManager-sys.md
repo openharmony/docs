@@ -36,21 +36,6 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 | wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。 |
 | dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate11) | 否 | 点击按钮将更新应用数据库。 |
 
-
-## WantAgent
-
-跳转目标的ability信息。
-
-> **说明**
->
-> 从API version12开始，uri对所有应用开放。
-
-**系统能力**：SystemCapability.Notification.ReminderAgent
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。 |
-
 ## DataShareUpdate<sup>11+</sup>
 
 更新数据库需要的参数信息。<br/>
