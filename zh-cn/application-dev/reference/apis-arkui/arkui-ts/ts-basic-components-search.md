@@ -541,6 +541,8 @@ getTextContentRect(): RectResult
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型       | 说明       |
@@ -570,6 +572,8 @@ getTextContentRect(): RectResult
 getTextContentLineCount(): number
 
 获取已编辑文本内容的行数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 

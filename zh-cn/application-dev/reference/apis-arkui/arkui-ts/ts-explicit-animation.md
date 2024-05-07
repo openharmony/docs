@@ -11,6 +11,7 @@
 >从API version 9开始，该接口支持在ArkTS卡片中使用。
 >
 >  从API version 10开始，可以通过使用[UIContext](../js-apis-arkui-UIContext.md#uicontext)中的[animateTo](../js-apis-arkui-UIContext.md#animateto)来明确UI的执行上下文。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 ## 接口
 animateTo(value: AnimateParam, event: () => void): void
