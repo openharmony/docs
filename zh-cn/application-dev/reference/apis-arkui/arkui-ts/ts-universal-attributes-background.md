@@ -170,7 +170,7 @@ backgroundBrightness(params: BackgroundBrightnessOptions)
 
 | 参数名            | 类型                                     | 必填   | 说明                                       |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| params        | [BackgroundBrightnessOptions](#backgroundbrightnessoptions11对象说明) | 是    |  设置组件背景提亮效果，包括：亮度变化速率，提亮程度。      |
+| params        | [BackgroundBrightnessOptions](#backgroundbrightnessoptions12对象说明) | 是    |  设置组件背景提亮效果，包括：亮度变化速率，提亮程度。      |
 
 ## BackgroundBrightnessOptions<sup>12+</sup>对象说明
 
