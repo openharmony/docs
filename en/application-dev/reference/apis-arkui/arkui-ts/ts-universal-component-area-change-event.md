@@ -8,9 +8,9 @@ The area change event is triggered when the component's size, position, or any o
 
 ## onAreaChange
 
-onAreaChange(event: (oldValue: Area, newValue: Area) => void)
+onAreaChange(event: (oldValue: Area, newValue: Area) => void): T
 
-Triggered when the component area changes in size or position due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of **translate** and **offset**.
+Triggered when the component area changes in size or position due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of [translate](ts-universal-attributes-transformation.md#translate) and [offset](ts-types.md#offset).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -21,6 +21,11 @@ Triggered when the component area changes in size or position due to layout upda
 | oldValue | [Area](ts-types.md#area8) | Yes  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page before the change.|
 | newValue | [Area](ts-types.md#area8) | Yes  | Width and height of the target element as well as its coordinates relative to the parent element and the upper left corner of the page after the change.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## Example
 

@@ -6,7 +6,7 @@ The Advanced Notification Manager enables you to print notifications and set not
 >
 > Before using this tool, you must obtain the [hdc tool](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md) and run the hdc shell command.
 
-### help
+## help
 
 * **Function**
 
@@ -18,7 +18,7 @@ The Advanced Notification Manager enables you to print notifications and set not
   anm help
   ```
 
-### dump
+## dump
 
 * **Function**
 
@@ -48,7 +48,7 @@ The Advanced Notification Manager enables you to print notifications and set not
   ```
   ![anm-dump-A](figures/anm-dump-A.png)
 
-### Setting
+## Setting
 
 > **NOTE**
 > 

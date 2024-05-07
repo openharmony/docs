@@ -566,3 +566,21 @@ Concurrent modification error.
 **处理步骤**
 
 使用collections提供的非并发安全的容器时，使用异步锁进行保护。
+
+## 10200034 监听任务未注册回调函数
+
+**错误信息**
+
+The executed task does not support the registration of listeners.
+
+**错误描述**
+
+执行的任务不支持注册监听器。
+
+**可能原因**
+
+未注册回调函数或在执行任务之后注册回调函数。
+
+**处理步骤**
+
+确保在任务执行之前注册回调函数。

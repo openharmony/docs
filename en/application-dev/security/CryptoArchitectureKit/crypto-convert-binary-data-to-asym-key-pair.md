@@ -27,7 +27,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
-- Example: Convert binary data into an RSA key pair (using ballback-based APIs).
+- Example: Convert binary data into an RSA key pair (using callback-based APIs).
   ```ts
   import cryptoFramework from '@ohos.security.cryptoFramework';
 
@@ -77,7 +77,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
 3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
-- Example: Convert binary data into an ECC key pair (using ballback-based APIs).
+- Example: Convert binary data into an ECC key pair (using callback-based APIs).
   ```ts
   import cryptoFramework from '@ohos.security.cryptoFramework';
 
@@ -131,7 +131,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 3. Use [AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3) to convert the binary data into an asymmetric key pair (**KeyPair**).
 
-- Example: Convert binary data into an SM2 key pair (using ballback-based APIs).
+- Example: Convert binary data into an SM2 key pair (using callback-based APIs).
   ```ts
   import cryptoFramework from '@ohos.security.cryptoFramework';
 

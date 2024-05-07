@@ -14,6 +14,8 @@ rotate(value: RotateOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -60,6 +62,8 @@ transform(value: Matrix4Transit)
 
 设置组件的变换矩阵。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -70,7 +74,7 @@ transform(value: Matrix4Transit)
 
 ## RotateOptions对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称                      | 类型                       | 必填 | 说明                                                         |
 | ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
@@ -85,7 +89,7 @@ transform(value: Matrix4Transit)
 
 ## TranslateOptions对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 类型                       | 必填 | 说明            |
 | ---- | -------------------------- | ---- | --------------- |
@@ -95,7 +99,7 @@ transform(value: Matrix4Transit)
 
 ## ScaleOptions对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称    | 类型                       | 必填 | 说明                                                         |
 | ------- | -------------------------- | ---- | ------------------------------------------------------------ |

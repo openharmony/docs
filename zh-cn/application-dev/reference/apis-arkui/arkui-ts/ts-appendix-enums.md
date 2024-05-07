@@ -6,7 +6,7 @@
 
 ## Color
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 颜色名称                     | 颜色值           | 颜色示意                                     |
 | ------------------------ | ------------- | ---------------------------------------- |
@@ -25,7 +25,7 @@
 
 ## ImageFit
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称        | 描述                              |
 | --------- | ------------------------------- |
@@ -38,7 +38,7 @@
 
 ## BorderStyle
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -47,7 +47,7 @@
 | Solid  | 显示为一条实线。                      |
 
 ## OutlineStyle<sup>11+</sup>
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -57,7 +57,7 @@
 
 ## LineJoinStyle
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称    | 描述         |
 | ----- | ---------- |
@@ -96,7 +96,7 @@
 
 ## Curve
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称                  | 描述                                       |
 | ------------------- | ---------------------------------------- |
@@ -116,7 +116,7 @@
 
 ## AnimationStatus
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述        |
 | ------- | --------- |
@@ -127,7 +127,7 @@
 
 ## FillMode
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
@@ -138,7 +138,7 @@
 
 ## PlayMode
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称               | 描述                                       |
 | ---------------- | ---------------------------------------- |
@@ -165,13 +165,13 @@
 
 | 名称                               | 描述                                       |
 | -------------------------------- | ---------------------------------------- |
-| Top                              | 竖直方向上边缘。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Top                              | 竖直方向上边缘。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Center<sup>(deprecated) </sup>   | 竖直方向居中位置。<br/> 从API version 9开始废弃。         |
-| Bottom                           | 竖直方向下边缘。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Bottom                           | 竖直方向下边缘。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置。<br/> 从API version 9开始废弃。    |
-| Start                            | 水平方向起始位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Start                            | 水平方向起始位置。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Middle<sup>(deprecated) </sup>   | 水平方向居中位置。<br/> 从API version 9开始废弃。      |
-| End                              | 水平方向末尾位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| End                              | 水平方向末尾位置。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## Week
 
@@ -187,7 +187,7 @@
 
 ## Direction
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称   | 描述          |
 | ---- | ----------- |
@@ -197,7 +197,7 @@
 
 ## BarState
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称   | 描述                 |
 | ---- | ------------------ |
@@ -207,7 +207,7 @@
 
 ## EdgeEffect
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                                       |
 | ------ | ---------------------------------------- |
@@ -217,7 +217,7 @@
 
 ## Alignment
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称          | 描述       |
 | ----------- | -------- |
@@ -233,7 +233,7 @@
 
 ## TransitionType
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
@@ -250,7 +250,7 @@
 
 ## Visibility
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述               |
 | ------- | ---------------- |
@@ -260,7 +260,7 @@
 
 ## LineCapStyle
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -270,7 +270,7 @@
 
 ## Axis
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称         | 描述     |
 | ---------- | ------ |
@@ -279,7 +279,7 @@
 
 ## HorizontalAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述           |
 | ------ | ------------ |
@@ -289,7 +289,7 @@
 
 ## FlexAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称           | 描述                                       |
 | ------------ | ---------------------------------------- |
@@ -302,7 +302,7 @@
 
 ## ItemAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称       | 描述                                       |
 | -------- | ---------------------------------------- |
@@ -315,7 +315,7 @@
 
 ## FlexDirection
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称            | 描述               |
 | ------------- | ---------------- |
@@ -326,7 +326,7 @@
 
 ## FlexWrap
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称          | 描述                          |
 | ----------- | --------------------------- |
@@ -336,7 +336,7 @@
 
 ## VerticalAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述           |
 | ------ | ------------ |
@@ -346,7 +346,7 @@
 
 ## ImageRepeat
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称       | 描述            |
 | -------- | ------------- |
@@ -357,17 +357,18 @@
 
 ## ImageSize
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 类型      | 描述                                  |
 | ------- | ----------------------------------- |
 | Cover   | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
 | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。       |
 | Auto    | 保持原图的比例不变。                          |
+| FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。|
 
 ## GradientDirection
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称          | 描述    |
 | ----------- | ----- |
@@ -397,7 +398,7 @@
 
 ## FontStyle
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述       |
 | ------ | -------- |
@@ -406,7 +407,7 @@
 
 ## FontWeight
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述      |
 | ------- | ------- |
@@ -419,7 +420,7 @@
 
 ## TextAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称                    | 描述      |
 | --------------------- | ------- |
@@ -430,7 +431,7 @@
 
 ## TextOverflow
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称                    | 描述                  |
 | --------------------- | ------------------- |
@@ -441,7 +442,7 @@
 
 ## TextDecorationType
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称          | 描述        |
 | ----------- | --------- |
@@ -452,7 +453,7 @@
 
 ## TextCase
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称        | 描述         |
 | --------- | ---------- |
@@ -503,7 +504,7 @@
 
 ## CopyOptions<sup>9+</sup>
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称          | 描述       |
 | ----------- | -------- |
@@ -527,14 +528,14 @@
 
 | 名称                   | 描述        |
 | -------------------- | --------- |
-| Thin                 | 轻薄材质模糊。   |
-| Regular              | 普通厚度材质模糊。 |
-| Thick                | 厚材质模糊。    |
-| BACKGROUND_THIN       | 近距景深模糊。   |
-| BACKGROUND_REGULAR    | 中距景深模糊。   |
-| BACKGROUND_THICK      | 远距景深模糊。   |
-| BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
-| NONE<sup>10+</sup> | 关闭模糊。  |
+| Thin                 | 轻薄材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| Regular              | 普通厚度材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Thick                | 厚材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
+| BACKGROUND_THIN       | 近距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_REGULAR    | 中距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_THICK      | 远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| NONE<sup>10+</sup> | 关闭模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
 | COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
 | COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
@@ -550,6 +551,8 @@
 | DARK   | 固定使用深色模式。  |
 
 ## AdaptiveColor<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述                        |
 | ------- | ------------------------- |
@@ -635,6 +638,13 @@ Nullable\<T> {
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
+## LineBreakStrategy<sup>12+</sup>
+| 名称         | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| GREEDY       | 使每一行尽量显示多的字符，直到这一行不能显示更多字符再进行折行。 |
+| HIGH_QUALITY | 在BALANCED的基础上，尽可能填满行，在最后一行的权重上比较低，可能会出现最后一行留白比较多。 |
+| BALANCED     | 尽可能保证在不拆词的情况下，使一个段落中每一行的宽度相同。   |
+
 ## GestureJudgeResult<sup>11+</sup>
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
@@ -654,7 +664,7 @@ Nullable\<T> {
 | CLICK   | 点击|
 ## FinishCallbackType<sup>11+</sup>
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称       | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
@@ -665,7 +675,13 @@ Nullable\<T> {
 灰阶模糊参数。
 | 名称        |   类型   |   必填 | 说明                        |
 | ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
+| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,25]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
+
+## ForegroundEffectOptions<sup>12+<sup>
+前景效果参数。
+| 名称        |   类型         |   必填 |  说明                        |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
 
 ## BackgroundEffectOptions<sup>11+<sup>
 背景效果参数。
@@ -679,7 +695,7 @@ Nullable\<T> {
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
@@ -697,6 +713,8 @@ Nullable\<T> {
 
 ## TextDataDetectorType<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | PHONE_NUMBER  | 电话号码 |
@@ -708,6 +726,8 @@ Nullable\<T> {
 
 [Span](ts-basic-components-span.md)类型信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 说明 |
 | -------- | -------- |
 | TEXT | Span为文字类型。 |
@@ -715,6 +735,8 @@ Nullable\<T> {
 | MIXED | Span为图文混合类型。|
 
 ## TextResponseType<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 描述            |
 | ---------- | ------------- |
@@ -735,6 +757,8 @@ Nullable\<T> {
 
 动效类型的枚举值。设置动效后启动即生效，无需触发。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | NONE | 无动效（默认值）。 |
@@ -744,6 +768,8 @@ Nullable\<T> {
 ## SymbolRenderingStrategy<sup>11+</sup>
 
 渲染模式的枚举值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -795,4 +821,22 @@ Nullable\<T> {
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
+| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
+| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
+| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
+| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
+| IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
+| CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
+
+## TextDecorationStyle<sup>12+</sup>
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| SOLID   | 单实线（默认值）。  |
+| DOUBLE | 双实线。 |
+| DOTTED    | 点线。  |
+| DASHED        | 虚线。 |
+| WAVY        | 波浪线。 |

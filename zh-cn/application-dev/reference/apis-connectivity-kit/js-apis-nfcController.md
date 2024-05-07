@@ -18,6 +18,8 @@ import controller from '@ohos.nfc.controller';
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | STATE_OFF | 1 | NFC已关闭状态。 |
@@ -52,7 +54,7 @@ openNfc(): boolean
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[enableNfc](#controllerenablenfc9)替代。
 
-**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -68,7 +70,7 @@ enableNfc(): void
 
 打开NFC开关。
 
-**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -89,7 +91,7 @@ closeNfc(): boolean
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[disableNfc](#controllerdisablenfc9)替代。
 
-**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -105,7 +107,7 @@ disableNfc(): void
 
 关闭NFC开关。
 
-**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限：** ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -125,7 +127,7 @@ isNfcOpen(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -141,7 +143,7 @@ getNfcState(): [NfcState](#nfcstate)
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -151,13 +153,13 @@ getNfcState(): [NfcState](#nfcstate)
 
 ## controller.on('nfcStateChange')
 
-on(type: "nfcStateChange", callback: Callback&lt;[NfcState](#nfcstate)&gt;): void
+on(type: 'nfcStateChange', callback: Callback&lt;[NfcState](#nfcstate)&gt;): void
 
 注册NFC开关状态事件，通过Callback方式获取NFC状态的变化通知。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数**
   
@@ -168,13 +170,13 @@ on(type: "nfcStateChange", callback: Callback&lt;[NfcState](#nfcstate)&gt;): voi
 
 ## controller.off('nfcStateChange')
 
-off(type: "nfcStateChange", callback?: Callback&lt;[NfcState](#nfcstate)&gt;): void
+off(type: 'nfcStateChange', callback?: Callback&lt;[NfcState](#nfcstate)&gt;): void
 
 取消NFC开关状态事件的注册，取消后NFC状态变化时，就不会再收到Callback的通知。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数**
 
@@ -193,7 +195,7 @@ controller.on("nfcStateChange", (nfcState : number)=> {
   console.log("controller on callback nfcState: " + nfcState);
 });
 
-// open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
+// open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (!controller.isNfcOpen()) {
   let ret = controller.openNfc();
   console.log("controller openNfc ret: " + ret);
@@ -207,7 +209,7 @@ try {
   console.error("controller enableNfc busiError: " + busiError);
 }
 
-// close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
+// close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (controller.isNfcOpen()) {
   let ret = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);

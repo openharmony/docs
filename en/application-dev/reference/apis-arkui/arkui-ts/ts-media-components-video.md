@@ -102,9 +102,9 @@ Sets the video scale type.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description                            |
-| ------ | ------- | ---- | -------------------------------- |
-| value  | boolean | Yes  | Video scale type.<br>Default value: **Cover**|
+| Name| Type                                     | Mandatory| Description                            |
+| ------ | ----------------------------------------- | ---- | -------------------------------- |
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes  | Video scale type.<br>Default value: **Cover**|
 
 ### loop
 
@@ -153,6 +153,14 @@ Triggered when the video playback is finished.
 onError(event:() =&gt; void)
 
 Triggered when the video playback fails.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onStop<sup>12+</sup>
+
+onStop(event:() =&gt; void)
+
+Triggered when the video playback is stopped (after **stop()** is called).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -346,6 +354,9 @@ struct VideoCreateComponent {
         })
         .onError(() => {
           console.info('onError')
+        })
+        .onStop(() => {
+          console.info('onStop')
         })
         .onPrepared((e?: DurationObject) => {
           if (e != undefined) {

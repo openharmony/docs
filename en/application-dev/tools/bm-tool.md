@@ -16,9 +16,9 @@ The Bundle Manager enables you to install, uninstall, update, and query a bundle
 | install | Installs a bundle.|
 | uninstall | Uninstalls a bundle.|
 | dump | Displays bundle information.|
-| clean | Clears the cache and data of a bundle.|
-| enable | Enables a bundle. A bundle can be used after being enabled.|
-| disable | Disables a bundle. A bundle cannot be used after being disabled.|
+| clean | Clears the cache and data of a bundle. This command is available in the root version and is available in the user version with developer mode enabled. It is unavailable in other cases.|
+| enable | Enables a bundle. A bundle can be used after being enabled. This command is available in the root version but unavailable in the user version.|
+| disable | Disables a bundle. A bundle cannot be used after being disabled. This command is available in the root version but unavailable in the user version.|
 | get | Obtains the UDID of a device.|
 | quickfix | Performs patch-related operations, such as installing or querying a patch.|
 

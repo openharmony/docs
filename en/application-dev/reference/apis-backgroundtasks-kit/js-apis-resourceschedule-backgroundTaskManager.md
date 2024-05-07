@@ -3,14 +3,14 @@
 The **backgroundTaskManager** module provides APIs to request background tasks. You can use the APIs to request transient tasks, continuous tasks, or efficiency resources to prevent the application process from being terminated or suspended when your application is switched to the background.
 
 >  **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 ```
 
 ## backgroundTaskManager.requestSuspendDelay
@@ -20,7 +20,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 Requests a transient task.
 
 >  **NOTE**
-> 
+>
 > The maximum duration of a transient task is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
@@ -53,7 +53,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](error
 
 **Example**
 
-```ts 
+```ts
 import { BusinessError } from '@ohos.base';
 
 let myReason = 'test requestSuspendDelay';
@@ -102,7 +102,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](error
 
 **Example**
 
-```ts 
+```ts
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -151,7 +151,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](error
 
 **Example**
 
-```ts 
+```ts
 import { BusinessError } from '@ohos.base';
 
 let id = 1;
@@ -240,7 +240,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](error
 
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -265,7 +265,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // Type of the operation to perform after the notification is clicked.
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // Custom request code.
             requestCode: 0,
             // Execution attribute of the operation to perform after the notification is clicked.
@@ -331,7 +331,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](error
 
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager'; 
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -348,7 +348,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // Type of the operation to perform after the notification is clicked.
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // Custom request code.
             requestCode: 0,
             // Execution attribute of the operation to perform after the notification is clicked.
@@ -409,7 +409,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](error
 
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
@@ -471,7 +471,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](error
 
 ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
@@ -486,6 +486,160 @@ export default class EntryAbility extends UIAbility {
             });
         } catch (error) {
             console.error(`Operation stopBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+
+## backgroundTaskManager.startBackgroundRunning<sup>12+</sup>
+
+startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;void&gt;
+
+Requests a continuous task. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**Parameters**
+
+| Name      | Type                                | Mandatory  | Description                                      |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | Yes   | Application context.|
+| bgModes    | string[] | Yes   | Continuous task mode. The options are as follows:<br>**dataTransfer**: data transfer.<br>**audioPlayback**: audio playback.<br>**audioRecording**: audio recording.<br>**location**: location and navigation.<br>**bluetoothInteraction**: Bluetooth-related task<br>**multiDeviceConnection**: multi-device connection.<br>One or more modes can be passed in.|
+| wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.                |
+
+**Return value**
+
+| Type            | Description              |
+| -------------- | ---------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9800005 | Background task verification failed. |
+| 9800006 | Notification verification failed. |
+| 9800007 | Task storage failed. |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        let wantAgentInfo: wantAgent.WantAgentInfo = {
+            // List of operations to be executed after the notification is clicked.
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "EntryAbility"
+                }
+            ],
+            // Type of the operation to perform after the notification is clicked.
+            actionType: wantAgent.OperationType.START_ABILITY,
+            // Custom request code.
+            requestCode: 0,
+            // Execution attribute of the operation to perform after the notification is clicked.
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
+
+        try {
+            // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
+            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+                try {
+                    let list: Array<string> = ["audioPlayback", "location"];
+                    backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then(() => {
+                        console.info("Operation startBackgroundRunning succeeded");
+                    }).catch((error: BusinessError) => {
+                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+                }
+            });
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+    }
+};
+```
+## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
+
+updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt;
+
+Updates a continuous task. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**Parameters**
+
+| Name      | Type                                | Mandatory  | Description                                      |
+| --------- | ---------------------------------- | ---- | ---------------------------------------- |
+| context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | Yes   | Application context.|
+| bgModes    | string[] | Yes   | Continuous task mode. The options are as follows:<br>**dataTransfer**: data transfer.<br>**audioPlayback**: audio playback.<br>**audioRecording**: audio recording.<br>**location**: location and navigation.<br>**bluetoothInteraction**: Bluetooth-related task<br>**multiDeviceConnection**: multi-device connection.<br>One or more modes can be passed in.
+
+**Return value**
+
+| Type            | Description              |
+| -------------- | ---------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9800005 | Background task verification failed. |
+| 9800006 | Notification verification failed. |
+| 9800007 | Task storage failed. |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        try {
+                try {
+                    // You must call startBackgroundRunning before updateBackgroundRunning. Here it is assumed that you have called startBackgroundRunning.
+                    let list: Array<string> = ["audioPlayback"];
+                    backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
+                        console.info("Operation updateBackgroundRunning succeeded");
+                    }).catch((error: BusinessError) => {
+                        console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+                    });
+                } catch (error) {
+                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+                }
+        } catch (error) {
+            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
         }
     }
 };
@@ -517,5 +671,3 @@ Enumerates the continuous task modes.
 | BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
 | MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.                |
 | TASK_KEEPING            | 9    | Computing task (for specific devices only).       |
-
- <!--no_check--> 

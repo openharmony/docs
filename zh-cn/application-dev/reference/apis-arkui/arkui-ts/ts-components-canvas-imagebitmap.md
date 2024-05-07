@@ -10,7 +10,7 @@ ImageBitmap对象可以存储canvas渲染的像素数据。
 
 ImageBitmap(src: string)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -24,8 +24,8 @@ ImageBitmap(src: string)
 
 | 属性     | 类型     | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
-| width | number | 只读属性，ImageBitmap的像素宽度，单位为vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | 只读属性，ImageBitmap的像素高度，单位为vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| width | number | 只读属性，ImageBitmap的像素宽度，单位为vp。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| height | number | 只读属性，ImageBitmap的像素高度，单位为vp。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 **示例：**
 
@@ -67,4 +67,4 @@ close()
 
 释放ImageBitmap对象相关联的所有图形资源，并将ImageBitmap对象的宽高置为0。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。

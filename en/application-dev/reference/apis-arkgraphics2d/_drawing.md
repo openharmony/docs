@@ -172,7 +172,10 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | void [OH_Drawing_BitmapBuild](#oh_drawing_bitmapbuild) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const uint32_t width, const uint32_t height, const [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) \*) | Initializes the width and height of a bitmap and sets the pixel format for the bitmap.| 
 | uint32_t [OH_Drawing_BitmapGetWidth](#oh_drawing_bitmapgetwidth) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Obtains the width of a bitmap.| 
 | uint32_t [OH_Drawing_BitmapGetHeight](#oh_drawing_bitmapgetheight) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Obtains the height of a bitmap.| 
+| [OH_Drawing_ColorFormat](#oh_drawing_colorformat)[OH_Drawing_BitmapGetColorFormat](#oh_drawing_bitmapgetcolorformat) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Obtains the pixel format of a bitmap.| 
+| [OH_Drawing_AlphaFormat](#oh_drawing_alphaformat)[OH_Drawing_BitmapGetAlphaFormat](#oh_drawing_bitmapgetalphaformat) ([OH_Drawing_Bitmap](#oh_drawing_bitmap)\*) | Obtains the alpha component of a bitmap.| 
 | void \* [OH_Drawing_BitmapGetPixels](#oh_drawing_bitmapgetpixels) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Obtains the pixel address of a bitmap. You can use this address to obtain the pixel data of the bitmap.| 
+| void [OH_Drawing_BitmapGetImageInfo](#oh_drawing_bitmapgetimageinfo) ([OH_Drawing_Bitmap](#oh_drawing_bitmap)\*, [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)\*) | Obtains the image information of a bitmap.| 
 | [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCreate](#oh_drawing_brushcreate) (void) | Creates an **OH_Drawing_Brush** object.| 
 | void [OH_Drawing_BrushDestroy](#oh_drawing_brushdestroy) ([OH_Drawing_Brush](#oh_drawing_brush) \*) | Destroys an **OH_Drawing_Brush** object and reclaims the memory occupied by the object.| 
 | bool [OH_Drawing_BrushIsAntiAlias](#oh_drawing_brushisantialias) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | Checks whether anti-aliasing is enabled for a brush. Anti-aliasing makes the pixels around the shape edges semi-transparent.| 
@@ -235,7 +238,8 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | Creates an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object.| 
 | void [OH_Drawing_DestroyFontCollection](#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | Destroys an **OH_Drawing_FontCollection** object and reclaims the memory occupied by the object.| 
 | void [OH_Drawing_DisableFontCollectionFallback](#oh_drawing_disablefontcollectionfallback) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | Disables the alternate fonts.| 
-| void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | Disables the system fonts.| 
+| void [OH_Drawing_DisableFontCollectionSystemFont](#oh_drawing_disablefontcollectionsystemfont) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*fontCollection) | Disables the system fonts.|
+| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \* [OH_Drawing_CreateSharedFontCollection](#oh_drawing_createsharedfontcollection) (void) | Creates an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object.| 
 | [OH_Drawing_Image](#oh_drawing_image) \* [OH_Drawing_ImageCreate](#oh_drawing_imagecreate) (void) | Creates an **OH_Drawing_Image** object that describes an array of two-dimensional pixels to draw.| 
 | void [OH_Drawing_ImageDestroy](#oh_drawing_imagedestroy) ([OH_Drawing_Image](#oh_drawing_image) \*) | Destroys an **OH_Drawing_Image** object and reclaims the memory occupied by the object.| 
 | bool [OH_Drawing_ImageBuildFromBitmap](#oh_drawing_imagebuildfrombitmap) ([OH_Drawing_Image](#oh_drawing_image) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | Builds an image from a bitmap by sharing or copying bitmap pixels. If the bitmap is marked as immutable, the pixel memory is shared, not copied.| 
@@ -245,9 +249,9 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | [OH_Drawing_MaskFilter](#oh_drawing_maskfilter) \* [OH_Drawing_MaskFilterCreateBlur](#oh_drawing_maskfiltercreateblur) ([OH_Drawing_BlurType](#oh_drawing_blurtype) blurType, float sigma, bool respectCTM) | Creates an **OH_Drawing_MaskFilter** object with a given blur type.| 
 | void [OH_Drawing_MaskFilterDestroy](#oh_drawing_maskfilterdestroy) ([OH_Drawing_MaskFilter](#oh_drawing_maskfilter) \*) | Destroys an **OH_Drawing_MaskFilter** object and reclaims the memory occupied by the object.| 
 | [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreate](#oh_drawing_matrixcreate) (void) | Creates an **OH_Drawing_Matrix** object.| 
-| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateRotation](#oh_drawing_matrixcreaterotation) (float deg, float x, float y) | Creates an **OH_Drawing_Matrix** with the rotation attribute. The matrix can rotate by a given degree around the rotation point (x, y).| 
-| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateScale](#oh_drawing_matrixcreatescale) (float sx, float sy, float px, float py) | Creates an **OH_Drawing_Matrix** with the scale attribute. The matrix can be scaled with the factor (sx, sy) at the rotation point (px, py).| 
-| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateTranslation](#oh_drawing_matrixcreatetranslation) (float dx, float dy) | Creates an **OH_Drawing_Matrix** with the translation attribute.|
+| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateRotation](#oh_drawing_matrixcreaterotation) (float deg, float x, float y) | Creates an **OH_Drawing_Matrix** with the rotation attribute. The matrix is obtained by rotating an identity matrix by a given degree around the rotation point (x, y).| 
+| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateScale](#oh_drawing_matrixcreatescale) (float sx, float sy, float px, float py) | Creates an **OH_Drawing_Matrix** with the scale attribute. The matrix is obtained by scaling an identity matrix with the factor (sx, sy) at the rotation point (px, py).| 
+| [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateTranslation](#oh_drawing_matrixcreatetranslation) (float dx, float dy) | Creates an **OH_Drawing_Matrix** with the translation attribute. The matrix is obtained by translating the identity matrix by the distance (dx, dy).|
 | void [OH_Drawing_MatrixSetMatrix](#oh_drawing_matrixsetmatrix) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float scaleX, float skewX, float transX, float skewY, float scaleY, float transY, float persp0, float persp1, float persp2) | Sets matrix parameters for an **OH_Drawing_Matrix** object.| 
 | void [OH_Drawing_MatrixConcat](#oh_drawing_matrixconcat) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*total, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*a, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*b) | Multiplies two matrices to produce a new matrix.| 
 | float [OH_Drawing_MatrixGetValue](#oh_drawing_matrixgetvalue) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, int index) | Obtains a matrix value of a given index. The index ranges from 0 to 8.| 
@@ -255,6 +259,7 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | void [OH_Drawing_MatrixTranslate](#oh_drawing_matrixtranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | Sets a matrix as an identity matrix and translates it by a given distance (dx, dy).| 
 | void [OH_Drawing_MatrixScale](#oh_drawing_matrixscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | Sets a matrix as an identity matrix and scales it with the factor (sx, sy) at the rotation point (px, py).| 
 | bool [OH_Drawing_MatrixInvert](#oh_drawing_matrixinvert) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*inverse) | Inverts a matrix and returns the result.| 
+| bool [OH_Drawing_MatrixSetPolyToPoly](#oh_drawing_matrixsetpolytopoly) ([OH_Drawing_Matrix](#oh_drawing_matrix)\*, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)\* src, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)\* dst, uint32_t count) | Generates a transform matrix by setting source points and destination points. Both the number of source points and that of destination points must be in the range [0, 4].| 
 | bool [OH_Drawing_MatrixIsEqual](#oh_drawing_matrixisequal) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*other) | Checks whether two **OH_Drawing_Matrix** objects are the same.| 
 | bool [OH_Drawing_MatrixIsIdentity](#oh_drawing_matrixisidentity) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Checks whether an **OH_Drawing_Matrix** object is an identity matrix.| 
 | void [OH_Drawing_MatrixDestroy](#oh_drawing_matrixdestroy) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | Destroys an **OH_Drawing_Matrix** object and reclaims the memory occupied by the object.| 
@@ -1933,6 +1938,54 @@ Destroys an **OH_Drawing_Bitmap** object and reclaims the memory occupied by the
 | -------- | -------- |
 | OH_Drawing_Bitmap | Pointer to an **OH_Drawing_Bitmap** object.| 
 
+### OH_Drawing_BitmapGetAlphaFormat()
+
+```
+OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat (OH_Drawing_Bitmap * )
+```
+
+**Description**
+
+Obtains the alpha component of a bitmap.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| OH_Drawing_Bitmap | Pointer to an **OH_Drawing_Bitmap** object.| 
+
+**Returns**
+
+Returns the alpha component. For details about the supported formats, see [OH_Drawing_AlphaFormat](#oh_drawing_alphaformat).
+
+
+### OH_Drawing_BitmapGetColorFormat()
+
+```
+OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat (OH_Drawing_Bitmap* )
+```
+
+**Description**
+
+Obtains the pixel format of a bitmap.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| OH_Drawing_Bitmap | Pointer to an **OH_Drawing_Bitmap** object.| 
+
+**Returns**
+
+Returns the pixel format. For details about the supported formats, see [OH_Drawing_ColorFormat](#oh_drawing_colorformat).
 
 ### OH_Drawing_BitmapGetHeight()
 
@@ -1957,6 +2010,27 @@ Obtains the height of a bitmap.
 **Returns**
 
 Returns the height.
+
+### OH_Drawing_BitmapGetImageInfo()
+
+```
+void OH_Drawing_BitmapGetImageInfo (OH_Drawing_Bitmap* , OH_Drawing_Image_Info*  )
+```
+
+**Description**
+
+Obtains the image information of a bitmap.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| OH_Drawing_Bitmap | Pointer to an [OH_Drawing_Bitmap](#oh_drawing_bitmap) object.| 
+| [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | Pointer to an [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) object.| 
 
 
 ### OH_Drawing_BitmapGetPixels()
@@ -2231,7 +2305,7 @@ Sets a filter for a brush. The filter is a container that holds a mask filter an
 | Name| Description| 
 | -------- | -------- |
 | OH_Drawing_Brush | Pointer to an **OH_Drawing_Brush** object.| 
-| OH_Drawing_Filter | Pointer to an **OH_Drawing_Filter** object.| 
+| OH_Drawing_Filter | Pointer to an **OH_Drawing_Filter** object. If null is passed in, the filter will be cleared.| 
 
 
 ### OH_Drawing_BrushSetShaderEffect()
@@ -3403,6 +3477,23 @@ Creates an **OH_Drawing_FontParser** object to parse a system font.
 
 Returns the pointer to the [OH_Drawing_FontParser](#oh_drawing_fontparser) object created.
 
+### OH_Drawing_CreateSharedFontCollection()
+
+```
+OH_Drawing_FontCollection* OH_Drawing_CreateSharedFontCollection (void)
+```
+
+**Description**
+
+Creates an [OH_Drawing_FontCollection](#oh_drawing_fontcollection) object.
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 12
+
+**Returns**
+
+Returns the pointer to the **OH_Drawing_FontCollection** object created.
 
 ### OH_Drawing_CreateTextShadow()
 
@@ -4663,7 +4754,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateRotation (float deg, float x, float y 
 
 **Description**
 
-Creates an **OH_Drawing_Matrix** with the rotation attribute. The matrix can rotate by a given degree around the rotation point (x, y).
+Creates an **OH_Drawing_Matrix** with the rotation attribute. The matrix is obtained by rotating an identity matrix by a given degree around the rotation point (x, y).
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4687,7 +4778,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateScale (float sx, float sy, float px, f
 
 **Description**
 
-Creates an **OH_Drawing_Matrix** with the scale attribute. The matrix can be scaled with the factor (sx, sy) at the rotation point (px, py).
+Creates an **OH_Drawing_Matrix** with the scale attribute. The matrix is obtained by scaling an identity matrix with the factor (sx, sy) at the rotation point (px, py).
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4715,7 +4806,7 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation (float dx, float dy )
 
 **Description**
 
-Creates an **OH_Drawing_Matrix** with the translation attribute.
+Creates an **OH_Drawing_Matrix** with the translation attribute. The matrix is obtained by translating the identity matrix by the distance (dx, dy).
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4935,6 +5026,32 @@ Sets matrix parameters for an **OH_Drawing_Matrix** object.
 | persp1 | Perspective coefficient of the Y axis.| 
 | persp2 | Perspective scale coefficient.| 
 
+### OH_Drawing_MatrixSetPolyToPoly()
+
+```
+bool OH_Drawing_MatrixSetPolyToPoly (OH_Drawing_Matrix* , const OH_Drawing_Point2D* src, const OH_Drawing_Point2D* dst, uint32_t count )
+```
+
+**Description**
+
+Generates a transform matrix by setting source points and destination points. Both the number of source points and that of destination points must be in the range [0, 4].
+
+**System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object.| 
+| src | Array of source points.| 
+| dst | Array of destination points. The number of destination points must be the same as that of source points.| 
+| count | Number of source points or destination points.| 
+
+**Returns**
+
+Returns **true** if the matrix is generated; returns **false** otherwise.
 
 ### OH_Drawing_MatrixTranslate()
 
@@ -5051,7 +5168,7 @@ Adds a copy of src to the path, transformed by matrix.
 | -------- | -------- |
 | OH_Drawing_Path | Pointer to the current path, which is an [OH_Drawing_Path](#oh_drawing_path) object.| 
 | src | Pointer to an [OH_Drawing_Path](#oh_drawing_path) object.| 
-| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object.| 
+| OH_Drawing_Matrix | Pointer to an [OH_Drawing_Matrix](#oh_drawing_matrix) object. If null is passed in, it is the identity matrix.| 
 
 
 ### OH_Drawing_PathAddRect()
@@ -5771,7 +5888,7 @@ Sets a filter for a pen.
 | Name| Description| 
 | -------- | -------- |
 | OH_Drawing_Pen | Pointer to an [OH_Drawing_Pen](#oh_drawing_pen) object.| 
-| OH_Drawing_Filter | Pointer to an [OH_Drawing_Filter](#oh_drawing_filter) object.| 
+| OH_Drawing_Filter | Pointer to an [OH_Drawing_Filter](#oh_drawing_filter) object. If null is passed in, the filter will be cleared.| 
 
 
 ### OH_Drawing_PenSetJoin()

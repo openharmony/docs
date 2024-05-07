@@ -2,6 +2,9 @@
 
 在申请目标权限前，建议开发者先阅读[申请应用权限](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
 
+> **说明：**
+> 权限级别为normal的权限，不涉及ACL使能字段。
+
 ## system_grant（系统授权）权限列表
 
 以下权限的授权方式均为[system_grant](app-permission-mgmt-overview.md#system_grant系统授权)，申请方式请参考[声明权限](declare-permissions.md)。
@@ -14,8 +17,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.GET_BUNDLE_INFO
@@ -25,8 +26,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -38,8 +37,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：10
 
 ### ohos.permission.PRINT
@@ -49,8 +46,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：10
 
@@ -62,8 +57,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.ACCELEROMETER
@@ -74,8 +67,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.ACCESS_BIOMETRIC
@@ -85,8 +76,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：6
 
@@ -100,8 +89,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：7
 
 ### ohos.permission.GET_NETWORK_INFO
@@ -111,8 +98,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -124,8 +109,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.GYROSCOPE
@@ -135,8 +118,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -148,8 +129,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.KEEP_BACKGROUND_RUNNING
@@ -159,8 +138,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -172,8 +149,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：8
 
 ### ohos.permission.NFC_TAG
@@ -183,8 +158,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：7
 
@@ -196,8 +169,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.PUBLISH_AGENT_REMINDER
@@ -207,8 +178,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -220,8 +189,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.VIBRATE
@@ -231,8 +198,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -244,8 +209,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.COMMONEVENT_STICKY
@@ -255,8 +218,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -268,8 +229,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.RUNNING_LOCK
@@ -279,8 +238,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -292,8 +249,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.ACCESS_CERT_MANAGER
@@ -303,8 +258,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：9
 
@@ -316,8 +269,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：10
 
 ### ohos.permission.RUN_DYN_CODE
@@ -327,8 +278,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：11
 
@@ -340,8 +289,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：11
 
 ### ohos.permission.STORE_PERSISTENT_DATA
@@ -351,8 +298,6 @@
 **权限级别**: normal
 
 **授权方式**：system_grant
-
-**ACL使能**: false
 
 **起始版本**: 11
 
@@ -364,8 +309,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：11
 
 ### ohos.permission.READ_ACCOUNT_LOGIN_STATE
@@ -376,8 +319,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：12
 
 ### ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO
@@ -387,8 +328,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：12
 
@@ -404,8 +343,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：false
-
 **起始版本**：10
 
 ### ohos.permission.MEDIA_LOCATION
@@ -415,8 +352,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -428,8 +363,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.ACTIVITY_MOTION
@@ -439,8 +372,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -452,8 +383,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.DISTRIBUTED_DATASYNC
@@ -463,8 +392,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -486,8 +413,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：false
-
 **起始版本**：7
 
 ### ohos.permission.LOCATION
@@ -500,8 +425,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.APPROXIMATELY_LOCATION
@@ -511,8 +434,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：false
 
 **起始版本**：9
 
@@ -524,8 +445,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.READ_CALENDAR
@@ -535,8 +454,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -548,8 +465,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.READ_MEDIA
@@ -559,8 +474,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -572,8 +485,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.WRITE_MEDIA
@@ -584,8 +495,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.ACCESS_NEARLINK
@@ -595,7 +504,5 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：false
 
 **起始版本**：12

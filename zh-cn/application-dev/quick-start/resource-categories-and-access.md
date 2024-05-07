@@ -451,6 +451,8 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 > - targetPriority： 整数类型，指定overlay优先级
 >
 > - 不支持Ability、ExtensionAbility、Permission等其他字段的配置
+>
+> - overlay不支持json类型的图片配置。
 
 在IDE中创建应用工程时，module的配置文件module.json5中包含targetModuleName和targetPriority字段时，该module将会在安装阶段被识别为overlay特征的module。overlay特征的module一般是为设备上存在的非overlay特征的module提供覆盖的资源文件，以便于targetModuleName指向的module在运行阶段可以使用overlay资源文件展示不同的颜色，标签，主题等等。
 

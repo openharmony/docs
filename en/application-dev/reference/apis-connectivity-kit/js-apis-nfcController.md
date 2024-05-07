@@ -125,7 +125,7 @@ Checks whether NFC is open.
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -141,7 +141,7 @@ Obtains the NFC state.
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -157,7 +157,7 @@ Subscribes to NFC state changes. A callback will be invoked to return the NFC st
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
   
@@ -174,7 +174,7 @@ Unsubscribes from the NFC state changes. The subscriber will not receive NFC sta
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 

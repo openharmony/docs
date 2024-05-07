@@ -22,7 +22,7 @@ import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbi
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context of the ExtensionAbility.|
 
-## UIExtensionAbility.onCreate
+## EmbeddedUIExtensionAbility.onCreate
 
 onCreate(): void
 
@@ -44,7 +44,7 @@ Called to initialize the service logic when an EmbeddedUIExtensionAbility is cre
   }
   ```
 
-## UIExtensionAbility.onSessionCreate
+## EmbeddedUIExtensionAbility.onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -75,7 +75,7 @@ Called when a **UIExtensionContentSession** instance is created for this Embedde
   }
   ```
 
-## UIExtensionAbility.onSessionDestroy
+## EmbeddedUIExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -104,7 +104,7 @@ Called when a **UIExtensionContentSession** instance is destroyed for this Embed
   }
   ```
 
-## UIExtensionAbility.onForeground
+## EmbeddedUIExtensionAbility.onForeground
 
 onForeground(): void
 
@@ -126,7 +126,7 @@ Called when this EmbeddedUIExtensionAbility is switched from the background to t
   }
   ```
 
-## UIExtensionAbility.onBackground
+## EmbeddedUIExtensionAbility.onBackground
 
 onBackground(): void
 
@@ -148,12 +148,11 @@ Called when this EmbeddedUIExtensionAbility is switched from the foreground to t
   }
   ```
 
-## UIExtensionAbility.onDestroy
+## EmbeddedUIExtensionAbility.onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
 Called to clear resources when this EmbeddedUIExtensionAbility is destroyed.
-
 After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core

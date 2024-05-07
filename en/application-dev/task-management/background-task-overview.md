@@ -3,7 +3,7 @@
 
 ## Introduction
 
-When you return to the home screen, lock the screen, or switch to another application, the current application is switched to the background. If the application continues all the activities when running in the background, the power consumption of the device may be high and the UI may freeze. To reduce the power consumption and deliver a positive user experience, the system manages the application running in the background. For example, the system can suspend the application process by stopping allocating CPU resources. It can also stop distributing [common events](../application-models/common-event-overview.md) to the application process or terminate the process.
+When you return to the home screen, lock the screen, or switch to another application, the current application is switched to the background. If the application continues all the activities when running in the background, the power consumption of the device may be high and the UI may freeze. To reduce the power consumption and deliver a positive user experience, the system manages the application running in the background. For example, the system can suspend the application process by stopping allocating CPU resources. It can also stop distributing [common events](../basic-services/common-event/common-event-overview.md) to the application process or terminate the process.
 
 - After an application is switched to the background for a short period of time (defined by the system), the system suspends the application process.
 
@@ -42,3 +42,5 @@ For system applications that provide basic capabilities, the system provides an 
 > - The system supports only constrained background tasks. If an application does not use a constrained background task or selects an inappropriate type of background task after switching to the background, its process will be suspended or terminated.
 > 
 > - For an application that requests a constrained background task, only the priority of reclaiming the application process is increased. If system resources are severely insufficient, the application process may still be terminated.
+
+ <!--no_check--> 

@@ -30,32 +30,36 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 
 **装饰器类型：**\@Component
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | 是 | - | 左侧页签项目列表，定义标题栏左侧的页签项目。 | 
-| menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目。 | 
-| swiperContent | ()&nbsp;=&gt;&nbsp;void | 是 | \@BuilderParam | 页签列表关联的页面内容构造器。 | 
-
+| tabItems | Array&lt;[TabTitleBarTabItem](#tabtitlebartabitem)&gt; | 是 | - | 左侧页签项目列表，定义标题栏左侧的页签项目。 |
+| menuItems | Array&lt;[TabTitleBarMenuItem](#tabtitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目。 |
+| swiperContent | ()&nbsp;=&gt;&nbsp;void | 是 | \@BuilderParam | 页签列表关联的页面内容构造器。 |
 
 ## TabTitleBarMenuItem
 
-| 名称 | 类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
-| isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 |
+| isEnabled | boolean | 否 | 是否启用。默认启用。true：启用，false：禁用。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 |
 
 ## TabTitleBarTabItem
 
-| 名称 | 类型 | 必填 | 说明 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 文字页签。 | 
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图片页签资源。 | 
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 文字页签。 |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图片页签资源。 |
 
 
 ## 事件

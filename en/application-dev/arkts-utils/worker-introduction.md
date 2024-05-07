@@ -1,6 +1,6 @@
 # Worker Introduction
 
-With the Worker module, you can provide a multithreading environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the main thread. For details about the APIs and their usage, see [Worker](../reference/apis-arkts/js-apis-worker.md).
+With the Worker module, you can provide a multithreaded environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the main thread. For details about the APIs and their usage, see [Worker](../reference/apis-arkts/js-apis-worker.md).
 
 
 ## Worker Operating Mechanism

@@ -28,9 +28,9 @@ LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内“
 
 LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了两个装饰器：
 
-- [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量和与LocalStorage中给定属性建立单向同步关系。
+- [@LocalStorageProp](#localstorageprop)：\@LocalStorageProp装饰的变量与LocalStorage中给定属性建立单向同步关系。
 
-- [@LocalStorageLink](#localstoragelink)：\@LocalStorageLink装饰的变量和在\@Component中创建与LocalStorage中给定属性建立双向同步关系。
+- [@LocalStorageLink](#localstoragelink)：\@LocalStorageLink装饰的变量与LocalStorage中给定属性建立双向同步关系。
 
 
 ## 限制条件
@@ -99,13 +99,13 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 **框架行为**
 
 
-- 当\@LocalStorageProp(key)装饰的数值改变被观察到时，修改不会被同步回LocalStorage对应属性键值key的属性中。
+- 被\@LocalStorageProp装饰的变量的值的变化不会同步回LocalStorage里。
 
-- 当前\@LocalStorageProp(key)单向绑定的数据会被修改，即仅限于当前组件的私有成员变量改变，其他的绑定该key的数据不会同步改变。
+- \@LocalStorageProp装饰的变量变化会使当前自定义组件中关联的组件刷新。
 
-- 当\@LocalStorageProp(key)装饰的数据本身是状态变量，它的改变虽然不会同步回LocalStorage中，但是会引起所属的自定义组件的重新渲染。
+- LocalStorage(key)中值的变化会引发所有被\@LocalStorageProp对应key装饰的变量的变化，会覆盖\@LocalStorageProp本地的改变。
 
-- 当LocalStorage中key对应的属性发生改变时，会同步给所有\@LocalStorageProp(key)装饰的数据，\@LocalStorageProp(key)本地的修改将被覆盖。
+![LocalStorageProp_framework_behavior](figures/LocalStorageProp_framework_behavior.png)
 
 
 ## \@LocalStorageLink
@@ -170,6 +170,8 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 2. LocalStorage中属性键值key对应的数据一旦改变，属性键值key绑定的所有的数据（包括双向\@LocalStorageLink和单向\@LocalStorageProp）都将同步修改。
 
 3. 当\@LocalStorageLink(key)装饰的数据本身是状态变量，它的改变不仅仅会同步回LocalStorage中，还会引起所属的自定义组件的重新渲染。
+
+![LocalStorageLink_framework_behavior](figures/LocalStorageLink_framework_behavior.png)
 
 
 ## 使用场景

@@ -261,10 +261,10 @@ export class AVPlayerDemo {
   async preDownloadDemo() {
     // Create an AVPlayer instance.
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  {"aa" : "bb", "cc" : "dd"});
+    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  {"User-Agent" : "User-Agent-Value"});
     let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
     // Set the media source and playback policy.
-    avPlayer.setMediaSource(mediaSource, playbackStrategy)
+    avPlayer.setMediaSource(mediaSource, playbackStrategy);
   }
 }
 ```

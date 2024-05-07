@@ -12,6 +12,8 @@
 通过如下属性给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。
 可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | gesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。 |
@@ -59,7 +61,7 @@
 | pinchCenterY | number | 捏合手势中心点的y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
 | speed<sup>8+</sup> | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。 |
 | fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明8)[] | 输入源为触屏产生的手势，fingerList中会包含触发事件的所有触点信息；由鼠标发起的手势，fingerList中只会有一条记录；触摸板的事件大类与鼠标一致，所以由触摸板发起的手势，fingerList只会携带一条记录。<br/>**说明：**<br/>手指索引编号与位置对应，即fingerList[index]的id为index。先按下且未参与当前手势触发的手指在fingerList中对应位置为空。 |
-| timestamp<sup>8+</sup> | number | 事件时间戳。<br/>**说明：**<br/>单位：纳秒 |
+| timestamp<sup>8+</sup> | number | 事件时间戳。<br/>**说明：**<br/>单位：ns |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |
 | pressure<sup>9+</sup> | number | 按压的压力大小。 |

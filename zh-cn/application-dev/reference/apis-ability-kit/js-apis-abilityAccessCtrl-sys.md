@@ -49,6 +49,9 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
@@ -67,7 +70,7 @@ let permissionFlags: number = 1;
 atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
   console.log('grantUserGrantedPermission success');
 }).catch((err: BusinessError) => {
-  console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -98,6 +101,9 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
@@ -115,7 +121,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 let permissionFlags: number = 1;
 atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
   if (err) {
-    console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+    console.error(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
   } else {
     console.log('grantUserGrantedPermission success');
   }
@@ -154,6 +160,9 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
@@ -172,7 +181,7 @@ let permissionFlags: number = 1;
 atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
   console.log('revokeUserGrantedPermission success');
 }).catch((err: BusinessError) => {
-  console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  console.error(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -203,6 +212,9 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
@@ -220,7 +232,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 let permissionFlags: number = 1;
 atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
   if (err) {
-    console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+    console.error(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
   } else {
     console.log('revokeUserGrantedPermission success');
   }
@@ -258,6 +270,9 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
@@ -275,7 +290,7 @@ let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplication
 atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
   console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -310,6 +325,9 @@ setPermissionRequestToggleStatus(permissionName: Permissions, status: Permission
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The string size of permissionName is larger than 256, or the status value is invalid. |
 | 12100003 | The specified permission does not exist. |
 | 12100007 | Service is abnormal. |
@@ -360,6 +378,9 @@ getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;Permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The string size of permissionName is larger than 256. |
 | 12100003 | The specified permission does not exist. |
 | 12100007 | Service is abnormal. |
@@ -400,6 +421,10 @@ getVersion(): Promise&lt;number&gt;
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回查询到的版本号。 |
 
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+
 **示例：**
 
 ```ts
@@ -424,6 +449,13 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 
 **系统能力：** SystemCapability.Security.AccessToken
 
+**参数：**
+
+| 参数名    | 类型                | 必填 | 说明                          |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 待获取权限状态的权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
+
 **返回值：**
 
 | 类型          | 说明                                |
@@ -436,6 +468,9 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100007 | Service is abnormal. |
@@ -448,10 +483,10 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
+atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: Array<abilityAccessCtrl.PermissionStatus>) => {
   console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
+  console.error(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -486,6 +521,9 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
@@ -507,7 +545,7 @@ try {
         console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
+    console.error(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
@@ -540,6 +578,9 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | The parameter is invalid. The tokenIDs or permissionNames in the list are all invalid. |
 | 12100004 | The interface is not used together with 'on'. |
 | 12100007 | Service is abnormal. |
@@ -558,7 +599,7 @@ let permissionList: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'
 try {
     atManager.off('permissionStateChange', tokenIDList, permissionList);
 } catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
+    console.error(`catch err->${JSON.stringify(err)}`);
 }
 ```
 

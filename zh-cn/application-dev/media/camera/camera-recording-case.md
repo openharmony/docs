@@ -19,7 +19,7 @@ import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
 import media from '@ohos.multimedia.media';
 import common from '@ohos.app.ability.common';
-import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import fs from '@ohos.file.fs';
 
 async function videoRecording(context: common.Context, surfaceId: string): Promise<void> {
@@ -105,11 +105,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoFrameHeight: videoSize.height,
     videoFrameRate: 30
   };
-  let options: PhotoAccessHelper.CreateOptions = {
+  let options: photoAccessHelper.CreateOptions = {
     title: Date.now().toString()
   };
-  let photoAccessHelper: PhotoAccessHelper.PhotoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
-  let videoUri: string = await photoAccessHelper.createAsset(PhotoAccessHelper.PhotoType.VIDEO, 'mp4', options);
+  let accessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+  let videoUri: string = await accessHelper.createAsset(photoAccessHelper.PhotoType.VIDEO, 'mp4', options);
   let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
@@ -166,7 +166,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   });
 
   //创建会话
-  let videoSession: camera.CaptureSession | undefined = undefined;
+  let videoSession: camera.VideoSession | undefined = undefined;
   try {
     videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
   } catch (error) {
