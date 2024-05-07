@@ -599,10 +599,12 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | DecorationStyle | 文本装饰线样式。 |
 | BaselineOffsetStyle | 文本基线偏移量样式。 |
 | LetterSpacingStyle | 文本字符间距样式。 |
+| LineHeightStyle | 文本行高样式。 |
 | TextShadowStyle | 文本阴影样式。 |
 | GestureStyle | 事件手势样式。 |
 | ParagraphStyle | 文本段落样式。 |
 | ImageAttachment | 图片样式。 |
+| CustomSpan | 自定义绘制Span样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 

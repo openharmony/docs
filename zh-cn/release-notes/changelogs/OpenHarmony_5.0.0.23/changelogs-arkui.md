@@ -117,9 +117,9 @@ Dialog组件。
 
 **适配指导**
 
-UX默认行为变更，无需适配。
+默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.4 相对布局对Visibility.None的处理规则变更
+## cl.arkui.4 拖拽预览图支持透明度效果及应用自定义
 
 **访问级别**
 
@@ -127,19 +127,19 @@ UX默认行为变更，无需适配。
 
 **变更原因**
 
-UX规格增强
+依照UX规范
 
 **变更影响**
 
 该变更为非兼容性变更。
 
-变更前：组件A的任一锚点的Visibility为None，组件A不被Measure。
+API version 11及以前：可拖拽组件长按浮起预览图后没有透明度。
 
-变更后：组件A的任一锚点的Visibility为None，组件A依旧被Measure，锚点组件的位置不变，宽高均视为0。
+API version 12及以后：可拖拽组件长按浮起预览图默认为95%透明度，应用可自定义透明度数值。
 
 **API Level**
 
-该特性版本为API 7,变更版本为API 12。
+12
 
 **变更发生版本**
 
@@ -147,4 +147,69 @@ UX规格增强
 
 **适配指导**
 
-如果需要组件A在锚点组件的Visibility设置为None之后不被Measure，可将组件A的Visibility设置为Hidden或者None。
+默认样式变更调整，无需适配。
+
+## cl.arkui.5 @Observed/@Track/@ObservedV2新增校验变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+深度观察的装饰器存在新旧两个接口，增加编译校验，防止开发者混用，导致运行时功能异常。
+
+**变更影响**
+
+变更前：不校验报错。
+
+变更后：
+如果开发者存在以下场景，不按规范使用，编译会报错。
+1. @Track使用在@ObservedV2修饰的class内；
+2. 一个class同时被@Observed和@ObservedV2装饰；
+3. 装饰子类和父类的@Observed和@ObservedV2不一致。
+
+错误示例如下：
+
+```ts
+// @Track不能使用在@ObservedV2修饰的class内
+@ObservedV2
+class TestObserved {
+  @Track value: string = "hello"
+}
+// 一个class不能同时被@Observed和@ObservedV2装饰
+@Observed
+@ObservedV2
+class TestObserved1 {
+  value: string = "hello"
+}
+// 装饰子类和父类的@Observed和@ObservedV2需要保持一致
+@Observed
+class TestObserved3 {
+  @Track value: string = "hello"
+}
+@ObservedV2
+class TestObserved4 extends TestObserved3 {
+  @Trace value: string = "hello"
+}
+
+@ObservedV2
+class TestObserved5 {
+  @Trace value: string = "hello"
+}
+@Observed
+class TestObserved6 extends TestObserved5 {
+  @Track value: string = "hello"
+}
+```
+
+**起始API Level**
+
+起始支持版本为 API 12。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+开发者需要根据错误提示信息，进行适配整改。

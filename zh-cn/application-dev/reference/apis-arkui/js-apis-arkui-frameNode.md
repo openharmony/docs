@@ -902,7 +902,7 @@ FrameNode的自定义布局方法，该方法会重写默认布局方法，在Fr
 
 setMeasuredSize(size: Size): void
 
-设置FrameNode的测量后的尺寸，默认单位PX。
+设置FrameNode的测量后的尺寸，默认单位PX。若设置的宽高为负数，自动取零。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

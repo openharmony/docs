@@ -203,7 +203,7 @@ navBarWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                      |
 | ------ | ---------------------------- | ---- | ----------------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>undefined：行为不做处理，导航栏宽度与默认值保持一致。 |
 
 ### navBarPosition<sup>9+</sup>
 
@@ -321,7 +321,7 @@ minContentWidth(value: Dimension)
 
 | 参数名  | 类型                                 | 必填 | 说明                                                         |
 | ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>undefined：行为不做处理，导航栏内容区最小宽度与默认值保持一致。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
 
 >  **说明：**
 >
@@ -474,14 +474,14 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
@@ -505,14 +505,14 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
@@ -537,14 +537,14 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### replacePath<sup>11+</sup>
 

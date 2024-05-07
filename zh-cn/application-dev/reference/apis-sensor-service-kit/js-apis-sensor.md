@@ -3767,6 +3767,45 @@ try {
 }
 ```
 
+## sensor.getSensorListSync<sup>12+</sup>
+
+getSensorListSync(): Array&lt;Sensor&gt;
+
+获取设备上的所有传感器信息，使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Sensors.Sensor
+
+**返回值：** 
+
+| 类型                                    | 必填 | 说明                             |
+| --------------------------------------- | ---- | -------------------------------- |
+| &lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 使用同步方式返回传感器属性列表。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见 [sensor.getSensorList错误码](errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**示例：** 
+
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+try {
+  let ret = sensor.getSensorListSync()
+  for (let i = 0; i < ret.length; i++) {
+    console.info('Succeeded in getting sensor: ' + JSON.stringify(ret[i]));
+  }
+} catch(error) {
+    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ##  sensor.getSingleSensor<sup>9+</sup>
 
 getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
@@ -3786,9 +3825,11 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
 
 **示例：** 
 
@@ -3834,9 +3875,11 @@ try {
 
 以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
 
 **示例：** 
 
@@ -3850,6 +3893,51 @@ try {
   }, (err: BusinessError.BusinessError) => {
     console.error(`Failed to get singleSensor . Code: ${err.code}, message: ${err.message}`);
   });
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## sensor.getSingleSensorSync<sup>12+</sup>
+
+getSingleSensorSync(type: SensorId): Sensor
+
+获取指定类型的传感器信息，使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名 | 类型                   | 必填 | 说明         |
+| ------ | ---------------------- | ---- | ------------ |
+| type   | [SensorId](#sensorid9) | 是   | 传感器类型。 |
+
+**返回值：** 
+
+| 类型   | 必填 | 说明                         |
+| ------ | ---- | ---------------------------- |
+| Sensor | 是   | 使用同步方式返回传感器信息。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
+
+**示例：** 
+
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+try {
+  let ret = sensor.getSingleSensorSync(sensor.SensorId.ACCELEROMETER);
+  console.info('Succeeded in getting sensor: ' + JSON.stringify(ret));
 } catch (error) {
   let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
   console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
@@ -4120,9 +4208,11 @@ try {
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称      | 类型   | 可读 | 可写 | 说明                   |
-| --------- | ------ | ---- | ---- | ---------------------- |
-| intensity | number | 是   | 是   | 光强（单位：勒克斯）。 |
+| 名称                            | 类型   | 可读 | 可写 | 说明                                                         |
+| ------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| intensity                       | number | 是   | 是   | 光强（单位：勒克斯）。                                       |
+| colorTemperature<sup>12+</sup>  | number | 是   | 是   | 色温（单位：开尔文），可选参数，如果该参数不支持在js层返回未定义，支持则返回正常数值。 |
+| infraredLuminance<sup>12+</sup> | number | 是   | 是   | 红外亮度（单位：cd/m²），可选参数，如果该参数不支持在js层返回未定义，支持则返回正常数值。 |
 
 
 ## HallResponse
