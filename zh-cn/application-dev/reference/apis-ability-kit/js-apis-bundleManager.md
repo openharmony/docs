@@ -209,7 +209,7 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -254,7 +254,7 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -306,7 +306,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -369,7 +369,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -448,7 +448,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -516,7 +516,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -578,7 +578,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -649,7 +649,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -710,7 +710,7 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -752,7 +752,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -807,7 +807,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
@@ -859,7 +859,7 @@ deleteAbc(abcPath: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
@@ -911,7 +911,7 @@ canOpenLink(link: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |

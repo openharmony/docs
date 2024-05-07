@@ -132,7 +132,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -215,7 +215,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -279,7 +279,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
@@ -358,7 +358,7 @@ getApplicationInfo(bundleName: string, appFlags: number, userId: number, callbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
@@ -417,7 +417,7 @@ getApplicationInfo(bundleName: string, appFlags: number, callback: AsyncCallback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
@@ -480,7 +480,7 @@ getApplicationInfo(bundleName: string, appFlags: number, userId?: number): Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
@@ -535,7 +535,7 @@ getAllBundleInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Ar
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | --------------------------------- |
@@ -588,7 +588,7 @@ getAllBundleInfo(bundleFlags: number, callback: AsyncCallback<Array\<BundleInfo>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
@@ -645,7 +645,7 @@ getAllBundleInfo(bundleFlags: number, userId?: number): Promise<Array\<BundleInf
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
@@ -696,7 +696,7 @@ getAllApplicationInfo(appFlags: number, userId: number, callback: AsyncCallback<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
@@ -749,7 +749,7 @@ getAllApplicationInfo(appFlags: number, callback: AsyncCallback<Array\<Applicati
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
@@ -806,7 +806,7 @@ getAllApplicationInfo(appFlags: number, userId?: number): Promise<Array\<Applica
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | ---------------------------------- |
@@ -859,7 +859,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: Asy
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -922,7 +922,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -989,7 +989,7 @@ queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Arr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
@@ -1079,7 +1079,7 @@ queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
@@ -1160,7 +1160,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -1224,7 +1224,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -1292,7 +1292,7 @@ queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
@@ -1385,7 +1385,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbility
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
@@ -1464,7 +1464,7 @@ getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | --------------------- |
@@ -1520,7 +1520,7 @@ getBundleNameByUid(uid: number): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
@@ -1574,7 +1574,7 @@ getBundleNameByUidSync(uid: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ---------------------|
@@ -1621,7 +1621,7 @@ getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | --------------------------- |
@@ -1680,7 +1680,7 @@ getBundleArchiveInfo(hapFilePath: string,  bundleFlags: number): Promise\<Bundle
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -1737,7 +1737,7 @@ getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
@@ -1785,7 +1785,7 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1843,7 +1843,7 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
@@ -1895,7 +1895,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -1953,7 +1953,7 @@ setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2003,7 +2003,7 @@ setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2051,7 +2051,7 @@ setAbilityEnabled(info: AbilityInfo, isEnabled: boolean, callback: AsyncCallback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ---------------------------------------|
@@ -2123,7 +2123,7 @@ setAbilityEnabled(info: AbilityInfo, isEnabled: boolean): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | -------------------------------------- |
@@ -2187,7 +2187,7 @@ setAbilityEnabledSync(info: AbilityInfo, isEnabled: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ---------------------------------------|
@@ -2251,7 +2251,7 @@ isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2305,7 +2305,7 @@ isApplicationEnabled(bundleName: string): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2357,7 +2357,7 @@ isApplicationEnabledSync(bundleName: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -2401,7 +2401,7 @@ isAbilityEnabled(info: AbilityInfo], callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
@@ -2469,7 +2469,7 @@ isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
@@ -2535,7 +2535,7 @@ isAbilityEnabledSync(info: AbilityInfo): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
@@ -2601,7 +2601,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
@@ -2656,7 +2656,7 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
@@ -2715,7 +2715,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
@@ -2775,7 +2775,7 @@ getLaunchWantForBundleSync(bundleName: string, userId?: number): Want
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
@@ -2843,7 +2843,7 @@ getPermissionDef(permissionName: string, callback: AsyncCallback\<PermissionDef>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -2899,7 +2899,7 @@ getPermissionDef(permissionName: string): Promise\<PermissionDef>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -2953,7 +2953,7 @@ getPermissionDefSync(permissionName: string): PermissionDef;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -3001,7 +3001,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, cal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3067,7 +3067,7 @@ getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
@@ -3131,7 +3131,7 @@ getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | --------------------------------------- |
@@ -3192,7 +3192,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: num
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
@@ -3249,7 +3249,7 @@ getApplicationInfoSync(bundleName: string, applicationFlags: number) : Applicati
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3305,7 +3305,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
@@ -3362,7 +3362,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3411,7 +3411,7 @@ getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCall
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3471,7 +3471,7 @@ getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<Sha
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3522,6 +3522,8 @@ getAllSharedBundleInfo(callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
@@ -3568,6 +3570,8 @@ getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
@@ -3613,7 +3617,7 @@ getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInf
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3667,7 +3671,7 @@ getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3728,7 +3732,7 @@ getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionI
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3798,7 +3802,7 @@ getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
@@ -3859,7 +3863,7 @@ getSpecifiedDistributionType(bundleName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3910,7 +3914,7 @@ getAdditionalInfo(bundleName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3964,7 +3968,7 @@ queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensio
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -4055,7 +4059,7 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -4107,6 +4111,8 @@ getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplica
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
@@ -4153,6 +4159,8 @@ getRecoverableApplicationInfo(): Promise\<Array\<RecoverableApplicationInfo\>\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
 | 201 | Permission denied. |
@@ -4198,7 +4206,7 @@ setAdditionalInfo(bundleName: string, additionalInfo: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                    |
 | -------- | ---------------------------------------------------------- |
@@ -4255,7 +4263,7 @@ queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlag
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -4330,7 +4338,7 @@ getAllBundleInfoByDeveloperId(developerId: string): Array\<BundleInfo>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
@@ -4383,7 +4391,7 @@ getDeveloperIds(appDistributionType?: number): Array<String>
 
 **错误码：**
 
-错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
@@ -4433,7 +4441,7 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
@@ -4492,7 +4500,7 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
@@ -4550,7 +4558,7 @@ disableDynamicIcon(bundleName: string): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
@@ -4606,7 +4614,7 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
