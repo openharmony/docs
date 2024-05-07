@@ -22,6 +22,8 @@ Counter()
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性。 
