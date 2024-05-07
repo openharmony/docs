@@ -729,6 +729,12 @@ UX样式变更
   2. NavDestination标题栏主标题自重为BOLD。
   3. NavDestination默认返回按钮更新。
 
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/NavDestination_Before.png)  |  ![](figures/NavDestination_After.png)  |
+
 **API Level**
 
 API 12
