@@ -669,3 +669,39 @@ Select组件
 **适配指导**
 
 请查阅[select组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-select.md)文档进行适配。
+
+## cl.arkui.13 富文本的SetSelection接口，光标行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+依照UX规范
+
+**变更影响**
+
+该变更为非兼容性变更。API version 11及以前：
+
+SetSelection接口start=end!=-1时，将光标移动到start位置。
+
+API version 12及以后：
+
+SetSelection接口start=end!=-1时，视为选中失败，不改变光标位置。
+
+**API Level**
+
+12 
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+RichEditor组件。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响
