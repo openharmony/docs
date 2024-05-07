@@ -735,7 +735,7 @@ UX样式变更
 |---------|---------|
 | ![](figures/NavDestination_Before.png)  |  ![](figures/NavDestination_After.png)  |
 
-**API Level**
+**起始 API Level**
 
 API 12
 
