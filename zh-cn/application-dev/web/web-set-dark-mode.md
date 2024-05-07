@@ -18,7 +18,7 @@ Web组件支持对前端页面进行深色模式配置。
       @State mode: WebDarkMode = WebDarkMode.Auto;
       build() {
         Column() {
-          Web({ src: 'www.example.com', controller: this.controller })
+          Web({ src: $rawfile('index.html'), controller: this.controller })
             .darkMode(this.mode)
         }
       }
@@ -41,10 +41,22 @@ Web组件支持对前端页面进行深色模式配置。
       @State access: boolean = true;
       build() {
         Column() {
-          Web({ src: 'www.example.com', controller: this.controller })
+          Web({ src: $rawfile('index.html'), controller: this.controller })
             .darkMode(this.mode)
             .forceDarkAccess(this.access)
         }
       }
     }
     ```
+
+- index.html页面代码。
+
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+    <body>
+      <p>Dark mode debug page</p>
+    </body>
+  </html>
+  ```

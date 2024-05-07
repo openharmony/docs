@@ -1,4 +1,4 @@
-# Video Recording (ArkTS)
+# Video Recording
 
 The system provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
@@ -20,7 +20,7 @@ For details about the state, see [AVRecorderState](../../reference/apis-media-ki
 
 Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
 
-1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
+1. Create an **AVRecorder** instance. The AVRecorder is in the **idle** state.
      
    ```ts
    import media from '@ohos.multimedia.media';
@@ -60,7 +60,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    > - In pure video recording scenarios, set only video-related parameters in **avConfig** of **prepare()**.
    >   If audio-related parameters are configured, the system regards it as audio and video recording.
    > 
-   > - The [recording specifications]((media-kit-intro.md#supported-formats) in use must be those supported. The video bit rate, resolution, and frame rate are subject to the ranges supported by the hardware device.
+   > - The [recording specifications](media-kit-intro.md#supported-formats) in use must be those supported. The video bit rate, resolution, and frame rate are subject to the ranges supported by the hardware device.
    > 
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
 

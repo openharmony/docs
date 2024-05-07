@@ -8,9 +8,9 @@ The visible area change event of a component refers to the change in the visual 
 
 ## onVisibleAreaChange
 
-onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void)
+onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void): T
 
-Called when the visual area of the component changes.
+Called when the visible area of the component changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -20,6 +20,12 @@ Called when the visual area of the component changes.
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | ratios | Array&lt;number&gt;                                 | Yes  | Threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen; only the area within the parent component is counted) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.|
 | event  | (isVisible: boolean, currentRatio: number) => void) | Yes  | - **isVisible**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 > **NOTE**
 >

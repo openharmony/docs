@@ -1,4 +1,4 @@
-# 查询用户注册凭据的状态。
+# 查询用户注册凭据的状态
 
 
 调用者需感知用户注册凭据（人脸、指纹、口令）的变化，可以通过该接口查询当前用户注册凭据的状态。
@@ -10,7 +10,7 @@
 
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
-| getEnrolledState(authType : UserAuthType): EnrolledStated | 根据指定的认证类型，查询用户注册凭据的状态，感知注册凭据变化。 | 
+| getEnrolledState(authType : UserAuthType): EnrolledState | 根据指定的认证类型，查询用户注册凭据的状态，用于感知注册凭据变化。 | 
 
 
 ## 开发步骤

@@ -32,7 +32,7 @@ The pre-loading mechanism of **\<Swiper>** is designed to offer an uninterrupted
 
 ## How to Use
 
-- Set the number of elements to load ahead of time through the [cachedCount](../reference/arkui-ts/ts-container-swiper.md#attributes) attribute of **\<Swiper>**.
+- Set the number of elements to load ahead of time through the [cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#attributes) attribute of **\<Swiper>**.
 
 Below shows the pre-loading result of the **\<Swiper>** component that contains five pages and its **cacheCount** attribute set to **1** and **loop** attribute set to **false**.
  ![loop=false](figures/swiper_loop_false.png)
@@ -149,7 +149,8 @@ struct SwiperExample {
 
 To better demonstrate the performance improvements brought by the **\<Swiper>** component's pre-loading mechanism, the following prerequisites are used:
 
-- The **\<Swiper>** component contains 10 \<List> components.
+- The **\<Swiper>** component contains 10 **\<List>** components.
+
 - Each of the **\<List>** component contains 100 list items.
 
 Under these prerequisites, using the **\<Swiper>** component's pre-loading mechanism can save about 40% time for each page turning action and ensure that no frame is lost during page turning.
@@ -158,7 +159,7 @@ Under these prerequisites, using the **\<Swiper>** component's pre-loading mecha
 
 Component building and layout calculation take some time. Therefore, the value of **cachedCount** cannot be as large as possible. If the value of **cachedCount** is too large, the application performance may deteriorate. Currently, the duration of the animation for finger lifting is about 400 ms for the **\<Swiper>** component. If the time for the application to load a child component ranges from 100 ms to 200 ms, you are advised to set **cachedCount** to **1** or **2**, so that the pre-loading can be completed before the animation ends.
 
-In light of this, the [OnAnimationStart](../reference/arkui-ts/ts-container-swiper.md#events) callback provided by **\<Swiper>** can be used, which is called when the switching animation starts. At this time, the main thread is idle, and the application can make full use of this period to preload resources such as images, reducing the time required for preloading nodes specified by **cachedCount**.
+In light of this, the [OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#events) callback provided by **\<Swiper>** can be used, which is called when the switching animation starts. At this time, the main thread is idle, and the application can make full use of this period to preload resources such as images, reducing the time required for preloading nodes specified by **cachedCount**.
 
 **Example**
 
@@ -184,7 +185,7 @@ export struct PhotoItem { // Child component in <Swiper>
       try {
         // Obtain a resource manager.
         const resourceMgr = this.context.resourceManager;
-        // Obtain the ArrayBuffer instance of icon.png in the rawfile folder.
+        // Obtain the ArrayBuffer instance of item.jpg in the rawfile folder.
         let str = "item" + (this.myIndex + 1) + ".jpg";
         resourceMgr.getRawFileContent(str).then((value) => {
           // Create an ImageSource instance.
@@ -286,7 +287,7 @@ struct Index {
         try {
           // Obtain a resource manager.
           const resourceMgr = this.context.resourceManager;
-          // Obtain the ArrayBuffer instance of icon.png in the rawfile folder.
+          // Obtain the ArrayBuffer instance of item.jpg in the rawfile folder.
           let str = "item" + (targetIndex + this.cacheCount + 2) + ".jpg";
           resourceMgr.getRawFileContent(str).then((value) => {
             // Create an ImageSource instance.

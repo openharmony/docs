@@ -16,6 +16,7 @@
 | AES/CBC/NoPadding<br/>AES/CBC/PKCS7<br/>AES/CTR/NoPadding | IV参数必选 | 8+ | 是 | 
 | AES/GCM/NoPadding | 加密：Nonce参数必选<br/>解密：Nonce、AEAD参数必选 | 8+ | 是 | 
 | RSA/ECB/NoPadding<br/>RSA/ECB/PKCS1_V1_5<br/>RSA/ECB/OAEP | OAEP填充模式支持的摘要算法：SHA256/SHA384/SHA512 | 8+ | 是 |
-| SM4/ECB/NoPadding<br/>SM4/ECB/PKCS7<br/>SM4/CBC/PKCS7 | CBC模式下 IV 参数必选 | 9+ | 否 | 
-| SM4/CTR/NoPadding<br/>SM4/CBC/NoPadding | IV 参数必选 | 9+ | 是 | 
+| SM4/ECB/NoPadding<br/>SM4/ECB/PKCS7<br/>SM4/CBC/PKCS7 | CBC模式下 IV 参数必选, ECB模式不推荐使用 | 9+ | 否 | 
+| SM4/CTR/NoPadding<br/>SM4/CBC/NoPadding<br/>SM4/CFB/NoPadding | IV 参数必选 | 12+ | 是 | 
+| SM4/OFB/NoPadding | Nonce 参数必选 | 12+ | 是 | 
 | SM2/-/NoPadding | 摘要算法SM3 | 11+ | 是 | 

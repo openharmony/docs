@@ -4,7 +4,7 @@ This topic describes how to obtain statistics on the space occupied by your appl
 
 ## Available APIs
 
-For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-file-statvfs.md) and [ohos.file.storageStatistics](../reference/apis/js-apis-file-storage-statistics.md).
+For details about the APIs, see [ohos.file.statvfs](../reference/apis-core-file-kit/js-apis-file-statvfs.md) and [ohos.file.storageStatistics](../reference/apis-core-file-kit/js-apis-file-storage-statistics.md).
 
 **Table 1** APIs for application and file system space statistics
 

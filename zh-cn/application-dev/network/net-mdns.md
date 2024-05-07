@@ -99,6 +99,7 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 
 ```ts
 // 从@ohos.net.mdns中导入mdns命名空间
+import common from '@ohos.app.ability.common';
 import mdns from '@ohos.net.mdns';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
@@ -135,21 +136,17 @@ class EntryAbility extends UIAbility {
   }
 }
 
-let context = GlobalContext.getContext().getObject("value");
+let context = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 // 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 
-class DataServiceInfo{
-  serviceInfo: mdns.LocalServiceInfo|null = null
-  errorCode?: mdns.MdnsError = mdns.MdnsError.INTERNAL_ERROR
-}
 // 订阅MDNS服务发现相关状态变化
-discoveryService.on('discoveryStart', (data: DataServiceInfo) => {
+discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.on('discoveryStop', (data: DataServiceInfo) => {
+discoveryService.on('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
@@ -166,10 +163,10 @@ discoveryService.startSearchingMDNS();
 discoveryService.stopSearchingMDNS();
 
 // 取消订阅的MDNS服务
-discoveryService.off('discoveryStart', (data: DataServiceInfo) => {
+discoveryService.off('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
-discoveryService.off('discoveryStop', (data: DataServiceInfo) => {
+discoveryService.off('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 discoveryService.off('serviceFound', (data: mdns.LocalServiceInfo) => {

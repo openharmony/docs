@@ -21,7 +21,7 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | context<sup>10+</sup> | [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)  | Yes| No|Context of the DataShare ExtensionAbility.|
 
@@ -71,6 +71,16 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
   }
 };
 ```
+
+## UpdateOperation<sup>12+</sup>
+
+Represents the batch update operation information.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+| Name           | Type                                                        | Mandatory| Description          |
+| --------------- | ------------------------------------------------------------ | ---- | -------------- |
+| UpdateOperation | [dataShare.UpdateOperation](js-apis-data-dataShare-sys.md#updateoperation12) | Yes  | Data to update.|
 
 ## insert
 
@@ -151,6 +161,53 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
       }
     });
   }
+};
+```
+
+## batchUpdate<sup>12+</sup>
+
+batchUpdate?( operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt; , callback:  AsyncCallback&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;): void
+
+Batch updates data into the database. This API is called by the server and can be overridden as required.
+
+**System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
+
+**Parameters**
+
+| Name    | Type                                                        | Mandatory| Description                                                  |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------ |
+| operations | Record&lt;string, Array&lt;[UpdateOperation](#updateoperation12)&gt;&gt; | Yes  | Collection of the path of the data to update, update conditions, and new data.                |
+| callback   | AsyncCallback&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;  | Yes  | Callback used to return an array of updated data records. The value **-1** means the update operation fails.|
+
+**Example**
+
+```ts
+import relationalStore from '@ohos.data.relationalStore';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { ValuesBucket } from '@ohos.data.ValuesBucket'
+
+let TBL_NAME = 'TBL00';
+let rdbStore: relationalStore.RdbStore;
+
+export default class DataShareExtAbility extends DataShareExtensionAbility {
+  batchUpdate(operations, callback) {
+        let recordOps : Record<string, Array<UpdateOperation>> = operations;
+        let results : Record<string, Array<number>> = {};
+        for (const [key, values] of Object.entries(recordOps)) {
+            let result : number[] = [];
+            for (const value of values) {
+                await rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
+                    console.info('Update row count is ' + rows);
+                    result.push(rows);
+                }).catch((err) => {
+                    console.info('Update failed, err is ' + JSON.stringify(err));
+                    result.push(-1)
+                })
+            }
+            results[key] = result;
+        }
+        callback(null, results);
+    }
 };
 ```
 

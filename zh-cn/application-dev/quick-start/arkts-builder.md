@@ -77,18 +77,6 @@ MyGlobalBuilderFunction()
 
 按引用传递参数时，传递的参数可为状态变量，且状态变量的改变会引起\@Builder方法内的UI刷新。
 
-
-```ts
-class Tmp {
-  paramA1: string = ''
-  paramB1: string = ''
-}
-
-@Builder function overBuilder(params : Tmp) {...}
-```
-
-
-
 ```ts
 class Tmp {
   paramA1: string = ''
@@ -116,19 +104,7 @@ struct Parent {
 }
 ```
 
-
-按引用传递参数时，如果在\@Builder方法内调用自定义组件，ArkUI提供$$作为按引用传递参数的范式。
-
-```ts
-class Tmp {
-  paramA1: string = ''
-  paramB1: string = ''
-}
-
-@Builder function overBuilder($$ : Tmp) {...}
-```
-
-
+按引用传递参数时，如果在\@Builder方法内调用自定义组件，ArkUI提供[$$](arkts-two-way-sync.md)作为按引用传递参数的范式。
 
 ```ts
 class Tmp {
@@ -165,6 +141,103 @@ struct Parent {
       overBuilder({paramA1: this.label})
       Button('Click me').onClick(() => {
         // After Click me is clicked, the UI text changes from Hello to ArkUI.
+        this.label = 'ArkUI';
+      })
+    }
+  }
+}
+```
+
+按引用传递参数时，如果在\@Builder方法内调用自定义组件或者其他\@Builder方法，ArkUI提供[$$](arkts-two-way-sync.md)作为按引用传递参数的范式。
+
+多层\@Builder方法嵌套使用示例如下：
+
+```ts
+class Tmp {
+  paramA1: string = '';
+}
+
+@Builder function parentBuilder($$: Tmp) {
+  Row() {
+    Column() {
+      Text(`parentBuilder===${$$.paramA1}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      HelloComponent({message: $$.paramA1})
+      childBuilder({paramA1: $$.paramA1})
+    }
+  }
+}
+
+@Component
+struct HelloComponent {
+  @Prop message: string = '';
+
+  build() {
+    Row() {
+      Text(`HelloComponent===${this.message}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Builder
+function childBuilder($$: Tmp) {
+  Row() {
+    Column() {
+      Text(`childBuilder===${$$.paramA1}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      HelloChildComponent({message: $$.paramA1})
+      grandsonBuilder({paramA1: $$.paramA1})
+    }
+  }
+}
+
+@Component
+struct HelloChildComponent {
+  @State message: string = '';
+  build() {
+    Row() {
+      Text(`HelloChildComponent===${this.message}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Builder function grandsonBuilder($$: Tmp) {
+  Row() {
+    Column() {
+      Text(`grandsonBuilder===${$$.paramA1}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      HelloGrandsonComponent({message: $$.paramA1})
+    }
+  }
+}
+
+@Component
+struct HelloGrandsonComponent {
+  @Link message: string;
+  build() {
+    Row() {
+      Text(`HelloGrandsonComponent===${this.message}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+  build() {
+    Column() {
+      parentBuilder({paramA1: this.label})
+      Button('Click me').onClick(() => {
         this.label = 'ArkUI';
       })
     }

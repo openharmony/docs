@@ -6,7 +6,7 @@ The sorting function allows list content, for example, the language list in **Se
 
 ## How to Develop
 
-The sorting function is implemented by the [compare](../reference/apis/js-apis-intl.md#compare8) API of the [Collator](../reference/apis/js-apis-intl.md#collator8) class. The development procedure is as follows:
+The sorting function is implemented by the [compare](../reference/apis-localization-kit/js-apis-intl.md#compare8) API of the [Collator](../reference/apis-localization-kit/js-apis-intl.md#collator8) class. The development procedure is as follows:
 
 1. Import the **intl** module.
    ```ts

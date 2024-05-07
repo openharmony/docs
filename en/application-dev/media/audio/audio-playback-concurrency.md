@@ -1,4 +1,4 @@
-# Audio Playback Concurrency Policy (ArkTS)
+# Audio Playback Concurrency Policy
 
 ## Audio Interruption Policy
 

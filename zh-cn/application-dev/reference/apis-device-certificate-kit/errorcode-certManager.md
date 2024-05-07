@@ -45,3 +45,31 @@ The keystore is not valid format or keystorePwd is not correct.
 **处理步骤**
 
 检查证书或凭据的有效性。
+
+## 17500004 证书或凭据数量达到上限
+
+**错误信息**
+
+The count of certificates or credentials reach the max.
+
+**可能原因**
+
+已安装的证书或凭据数量达到最大值。
+
+**处理步骤**
+
+清理过期的证书或凭据。
+
+## 17500005 应用未经用户授权
+
+**错误信息**
+
+The application is not authorized by user.
+
+**可能原因**
+
+用户没有将输入的凭据授权给当前应用使用。
+
+**处理步骤**
+
+检查输入的凭据是否正确或当前应用申请授权。

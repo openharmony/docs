@@ -1,6 +1,6 @@
 # XComponentNode
 
-提供XComponent节点XComponentNode，表示组件树中的XComponent组件，用于EGL/OpenGLES和媒体数据写入，并支持动态修改节点渲染类型。
+提供XComponent节点XComponentNode，表示组件树中的[XComponent组件](arkui-ts/ts-basic-components-xcomponent.md#xcomponent)，用于[EGL](../native-lib/egl.md)/[OpenGLES](../native-lib/opengles.md)和媒体数据写入，并支持动态修改节点渲染类型。
 
 > **说明：**
 >
@@ -36,7 +36,7 @@ XComponentNode的构造函数。
 
 > **说明：**
 >
-> 需要显式指定RenderOptions中的selfIdealSize，否则XComponentNode内容大小为空，不显示任何内容。
+> 需要显式指定[RenderOptions](./js-apis-arkui-builderNode.md#renderoptions)中的selfIdealSize，否则XComponentNode内容大小为空，不显示任何内容。
 
 ### onCreate
 
@@ -50,7 +50,7 @@ XComponentNode加载完成时触发该回调。
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| event  | object | 否   | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
+| event  | Object | 否   | 获取XComponent实例对象的context，context上挂载的方法由开发者在c++层定义。 |
 
 ### onDestroy
 
@@ -133,3 +133,10 @@ struct Index {
   }
 }
 ```
+
+![XComponentNodeSample](figures/xcomponent_node.jpg)
+
+> **说明：**
+>
+> 示例中的Native层编译输出动态库参考自[OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
+

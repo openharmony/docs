@@ -16,7 +16,9 @@
 
 Polygon(value?: {width?: string | number, height?: string | number})
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -36,6 +38,8 @@ points(value: Array&lt;Point&gt;)
 设置多边形的顶点坐标列表。异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,7 +231,7 @@ antiAlias(value: boolean)
 
 点坐标类型。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 类型定义             | 描述                                                         |
 | --------- | -------------------- | ------------------------------------------------------------ |

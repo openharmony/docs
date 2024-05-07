@@ -17,24 +17,22 @@
 ## 汇总
 
 
-### 结构体
+### 宏定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) | 定义任意版本的Native接口类型。  | 
+| [OH_ArkUI_GetModuleInterface](_ark_u_i___native_module.md#oh_arkui_getmoduleinterface)(nativeAPIVariantKind, structType, structPtr) | 基于结构体类型获取对应结构体指针的宏函数。  | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) { [ARKUI_NATIVE_NODE](_ark_u_i___native_module.md), [ARKUI_NATIVE_DIALOG](_ark_u_i___native_module.md) } | 定义Native接口集合类型。  | 
-| [ArkUI_NativeNodeAPIVersion](_ark_u_i___native_module.md#arkui_nativenodeapiversion) { [ARKUI_NATIVE_NODE_VERSION_1](_ark_u_i___native_module.md) = 1 } | 定义ARKUI_NATIVE_NODE类型支持的版本号信息。  | 
+| [ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) { [ARKUI_NATIVE_NODE](_ark_u_i___native_module.md), [ARKUI_NATIVE_DIALOG](_ark_u_i___native_module.md), [ARKUI_NATIVE_GESTURE](_ark_u_i___native_module.md), [ARKUI_NATIVE_ANIMATE](_ark_u_i___native_module.md) } | 定义Native接口集合类型。  | 
 
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) \* [OH_ArkUI_GetNativeAPI](_ark_u_i___native_module.md#oh_arkui_getnativeapi) ([ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) type, int32_t version) | 获取指定版本的Native接口集合。  | 
-| [ArkUI_AnyNativeAPI](_ark_u_i___any_native_a_p_i.md) \* [OH_ArkUI_QueryModuleInterface](_ark_u_i___native_module.md#oh_arkui_querymoduleinterface) ([ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) type, int32_t version) | 获取指定版本的Native模块接口集合。  | 
+| void \* [OH_ArkUI_QueryModuleInterfaceByName](_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname) ([ArkUI_NativeAPIVariantKind](_ark_u_i___native_module.md#arkui_nativeapivariantkind) type, const char \*structName) | 获取指定类型的Native模块接口集合。  | 

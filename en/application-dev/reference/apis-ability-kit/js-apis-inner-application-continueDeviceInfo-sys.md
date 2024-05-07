@@ -1,6 +1,6 @@
 # ContinueDeviceInfo (System API)
 
-The **ContinueDeviceInfo** module defines the parameters required for initiating mission continuation. For details about mission continuation, see [continueMission](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission).
+The ContinueDeviceInfo module defines the parameters required for initiating mission continuation. For details about mission continuation, see [continueMission](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission).
 
 > **NOTE**
 > 

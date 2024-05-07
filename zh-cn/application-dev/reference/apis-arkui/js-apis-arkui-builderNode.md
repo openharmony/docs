@@ -11,12 +11,14 @@
 ## 导入模块
 
 ```ts
-import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
+import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 ```
 
 ## NodeRenderType
 
 节点渲染类型枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -25,9 +27,21 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 | RENDER_TYPE_DISPLAY | 0   | 表示该节点将被显示到屏幕上。 |
 | RENDER_TYPE_TEXTURE | 1   | 表示该节点将被导出为纹理。   |
 
+> **说明：**
+>
+> RENDER_TYPE_TEXTURE类型目前仅在[BuilderNode](#buildernode-1)持有组件树的根节点为自定义组件时以及[XComponentNode](./js-apis-arkui-xcomponentNode.md)中设置生效。
+>
+> 在[BuilderNode](#buildernode-1)的情况下，目前在作为根节点的自定义组件中支持纹理导出的有以下组件：Badge、Blank、Button、CanvasGradient、CanvasPattern、CanvasRenderingContext2D、Canvas、CheckboxGroup、Checkbox、Circle、ColumnSplit、Column、ContainerSpan、Counter、DataPanel、Divider、Ellipse、Flex、Gauge、Hyperlink、ImageBitmap、ImageData、Image、Line、LoadingProgress、Marquee、Matrix2D、OffscreenCanvasRenderingContext2D、OffscreenCanvas、Path2D、Path、PatternLock、Polygon、Polyline、Progress、QRCode、Radio、Rating、Rect、RelativeContainer、RowSplit、Row、Shape、Slider、Span、Stack、TextArea、TextClock、TextInput、TextTimer、Text、Toggle、Video（不支持原生的全屏模式）、Web、XComponent。
+>
+> 从API version 12开始，新增以下组件支持纹理导出：DatePicker、ForEach、Grid、IfElse、LazyForEach、List、Scroll、Swiper、TimePicker、@Component修饰的自定义组件、NodeContainer以及NodeContainer下挂载的FrameNode和RenderNode。
+>
+> 使用方式可参考[同层渲染绘制](../../web/web-same-layer.md)。
+
 ## RenderOptions
 
 创建BuilderNode时的可选参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -43,6 +57,8 @@ class BuilderNode<Args extends Object[]>
 
 BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
@@ -50,6 +66,8 @@ BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-bu
 constructor(uiContext: UIContext, options?: RenderOptions)
 
 当将BuilderNode生成的内容嵌入到其它RenderNode中显示时，即将BuilderNode对应的RenderNode挂载到另一个RenderNode中显示，需要显式指定RenderOptions中的selfIdealSize，否则Builder内的节点默认父组件布局约束为[0,0],即不设置selfIdealSize则认为BuilderNode中子树的根节点大小为[0,0]。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -64,6 +82,8 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
 支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Prop](../../quick-start/arkts-prop.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -81,6 +101,8 @@ getFrameNode(): FrameNode | null
 
 获取BuilderNode中的FrameNode。在BuilderNode执行build操作之后，才会生成FrameNode。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -94,8 +116,7 @@ getFrameNode(): FrameNode | null
 BuilderNode作为NodeContainer的根节点返回。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -157,8 +178,7 @@ struct Index {
 BuilderNode的RenderNode挂到其它RenderNode下。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -231,6 +251,8 @@ update(arg: Object): void
 
 根据提供的参数更新BuilderNode，该参数为[build](#build)方法调用时传入的参数类型相同。对自定义组件进行updaete的时候需要在自定义组件中使用的变量定义为@Prop类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -241,8 +263,7 @@ update(arg: Object): void
 
 **示例：**
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from "@ohos.arkui.node"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
 
 class Params {
   text: string = ""
@@ -338,6 +359,8 @@ postTouchEvent(event: TouchEvent): boolean
 
 将原始事件派发到某个BuilderNode创建出的FrameNode上。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -355,8 +378,7 @@ postTouchEvent(event: TouchEvent): boolean
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
   text: string = "this is a text"
@@ -432,10 +454,12 @@ dispose(): void
 
 立即释放当前BuilderNode。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ```ts
-import { RenderNode, FrameNode, NodeController, BuilderNode } from "@ohos.arkui.node"
+import { RenderNode, FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
 
 @Component
 struct TestComponent {
@@ -472,7 +496,7 @@ class MyNodeController extends NodeController {
     this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
     this.builderNode.build(new WrappedBuilder(buildComponent));
 
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.size = { width: 200, height: 200 };
       rootRenderNode.backgroundColor = 0xff00ff00;
@@ -483,11 +507,13 @@ class MyNodeController extends NodeController {
   }
 
   dispose() {
-    this.builderNode.dispose();
+    if (this.builderNode !== null) {
+      this.builderNode.dispose();
+    }
   }
 
   removeBuilderNode() {
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
       rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
     }

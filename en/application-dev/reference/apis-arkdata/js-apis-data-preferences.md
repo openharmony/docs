@@ -42,6 +42,14 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 | name     | string                                           | Yes  | Name of the **Preferences** instance.                                     |
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and the **Preferences** instance obtained is returned. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
 **Example**
 
 FA model:
@@ -106,6 +114,14 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 | Type                                      | Description                              |
 | ------------------------------------------ | ---------------------------------- |
 | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -172,6 +188,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 15500000 | Inner error.                  |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
 
@@ -250,6 +267,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
 
@@ -325,6 +343,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode.   |
 | 15501002 | The data group id is not valid. |
 
@@ -365,7 +384,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 Deletes a **Preferences** instance from the cache. If the **Preferences** instance has a persistent file, the persistent file will also be deleted. This API uses an asynchronous callback to return the result.
 
-After the **Preferences** instance is deleted, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the deleted **Preferences** instance to null. The system will reclaim the deleted **Preferences** instances in a unified manner.
+Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -383,6 +402,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                      |
 | -------- | ------------------------------|
+| 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 
 **Example**
@@ -431,7 +451,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 Deletes a **Preferences** instance from the cache. If the **Preferences** instance has a persistent file, the persistent file will also be deleted. This API uses a promise to return the result.
 
-After the **Preferences** instance is deleted, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the deleted **Preferences** instance to null. The system will reclaim the deleted **Preferences** instances in a unified manner.
+Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -454,6 +474,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                      |
 | -------- | ------------------------------|
+| 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 
 **Example**
@@ -500,7 +521,7 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 Deletes a **Preferences** instance from the cache. If the **Preferences** instance has a persistent file, the persistent file will also be deleted. This API uses an asynchronous callback to return the result.
 
-After the **Preferences** instance is deleted, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the deleted **Preferences** instance to null. The system will reclaim the deleted **Preferences** instances in a unified manner.
+Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -518,6 +539,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                          |
 | -------- | ---------------------------------- |
+| 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid. |
@@ -571,7 +593,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 Deletes a **Preferences** instance from the cache. If the **Preferences** instance has a persistent file, the persistent file will also be deleted. This API uses a promise to return the result.
 
-After the **Preferences** instance is deleted, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the deleted **Preferences** instance to null. The system will reclaim the deleted **Preferences** instances in a unified manner.
+Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -594,6 +616,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                          |
 | -------- | ---------------------------------- |
+| 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid. |
@@ -647,7 +670,7 @@ Removes a **Preferences** instance from the cache. This API uses an asynchronous
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -658,6 +681,14 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance.                             |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -706,7 +737,7 @@ Removes a **Preferences** instance from the cache. This API uses a promise to re
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -722,6 +753,14 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -768,7 +807,7 @@ Removes a **Preferences** instance from the cache. This API returns the result s
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -778,6 +817,14 @@ After the **Preferences** instance is removed, do not use it to perform data ope
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -811,7 +858,7 @@ Removes a **Preferences** instance from the cache. This API uses an asynchronous
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -829,6 +876,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
 
@@ -881,7 +929,7 @@ Removes a **Preferences** instance from the cache. This API uses a promise to re
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -904,6 +952,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
 
@@ -954,7 +1003,7 @@ Removes a **Preferences** instance from the cache. This API returns the result s
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -971,6 +1020,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode.   |
 | 15501002 | The data group id is not valid. |
 
@@ -1002,7 +1052,7 @@ class EntryAbility extends UIAbility {
 
 ## Options<sup>10+</sup>
 
-Represents the configuration options of a **Preferences** instance.
+Represents the configuration of a **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1029,11 +1079,19 @@ Obtains the value of a key from this **Preferences** instance. This API uses an 
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
-| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.|
+| Name  | Type                                        | Mandatory| Description              |
+| -------- | -------------------------------------------- | ---- |---------------------------|
+| key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.  |
+| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned.|
+| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.  |
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1059,16 +1117,24 @@ Obtains the value of a key from this **Preferences** instance. This API uses a p
 
  **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                                        |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
+| Name  | Type                   | Mandatory| Description |
+| -------- | ----------------------- | ---- |--------|
+| key      | string                  | Yes  | Key of the data to obtain. It cannot be empty. |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned.|
 
 **Return value**
 
 | Type                               | Description                         |
 | ----------------------------------- | ----------------------------- |
 | Promise<[ValueType](#valuetype)&gt; | Promise used to return the value obtained.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1093,16 +1159,24 @@ Obtains the value of a key from this **Preferences** instance. This API returns 
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                                        |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
+| Name  | Type                   | Mandatory| Description           |
+| -------- | ----------------------- | ---- |---------------------|
+| key      | string                  | Yes  | Key of the data to obtain. It cannot be empty. |
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned.|
 
 **Return value**
 
 | Type                               | Description                         |
 | ----------------------------------- | ----------------------------- |
 | [ValueType](#valuetype) | Returns the value obtained.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1123,6 +1197,14 @@ Obtains all KV pairs from this **Preferences** instance. This API uses an asynch
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** provides all KV pairs obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1162,6 +1244,14 @@ Obtains all KV pairs from this **Preferences** instance. This API uses a promise
 | --------------------- | ------------------------------------------- |
 | Promise&lt;Object&gt; | Promise used to return the KV pairs obtained.|
 
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
 **Example**
 
 ```ts
@@ -1198,6 +1288,14 @@ Obtains all KV pairs from this **Preferences** instance. This API returns the re
 | --------------------- | ------------------------------------------- |
 | Object | Returns all KV pairs obtained.|
 
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
 **Example**
 
 ```ts
@@ -1224,11 +1322,19 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description                                                        |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
-| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| Name  | Type                     | Mandatory| Description                      |
+| -------- | ------------------------- | ---- |-------------------------|
+| key      | string                    | Yes  | Key of the data. It cannot be empty.|
+| value    | [ValueType](#valuetype)   | Yes  | Value to write.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1255,16 +1361,24 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 
 **Parameters**
 
-| Name| Type                   | Mandatory| Description                                                        |
-| ------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
+| Name| Type                   | Mandatory| Description                        |
+| ------ | ----------------------- | ---- |--------------------------|
+| key    | string                  | Yes  | Key of the data. It cannot be empty. |
+| value  | [ValueType](#valuetype) | Yes  | Value to write.|
 
 **Return value**
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1291,9 +1405,17 @@ Writes data to this **Preferences** instance. This API returns the result synchr
 **Parameters**
 
 | Name| Type                   | Mandatory| Description                                                        |
-| ------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
+| ------ | ----------------------- | ---- | ------------------------ |
+| key    | string                  | Yes  | Key of the data. It cannot be empty.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1316,6 +1438,14 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                       | Yes  | Key of the data to check. It cannot be empty.                             |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1356,6 +1486,14 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
 **Example**
 
 ```ts
@@ -1394,6 +1532,14 @@ Checks whether this **Preferences** instance contains the KV pair of the given k
 | ---------------------- | ------------------------------------------------------------ |
 | boolean | If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
 **Example**
 
 ```ts
@@ -1420,6 +1566,14 @@ Deletes a KV pair from this **Preferences** instance. This API uses an asynchron
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty.                     |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1456,6 +1610,14 @@ Deletes a KV pair from this **Preferences** instance. This API uses a promise to
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
 **Example**
 
 ```ts
@@ -1484,6 +1646,14 @@ Deletes a KV pair from this **Preferences** instance. This API returns the resul
 | ------ | ------ | ---- | ------------------------------- |
 | key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
 
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
 **Example**
 
 ```ts
@@ -1504,6 +1674,14 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1534,6 +1712,14 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
 **Example**
 
 ```ts
@@ -1561,6 +1747,14 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1590,6 +1784,14 @@ Clears this **Preferences** instance. This API uses a promise to return the resu
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1624,7 +1826,7 @@ preferences.clearSync();
 
 on(type: 'change', callback: Callback&lt;string&gt;): void
 
-Subscribes to data changes. A callback will be triggered to return the new value if the value of the subscribed key is changed and [flushed](#flush).
+Subscribes to data changes. The registered callback will be invoked to return the new value if the data change is [flushed](#flush).
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1632,8 +1834,16 @@ Subscribes to data changes. A callback will be triggered to return the new value
 
 | Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
-| type     | string   | Yes  | Event type. The value **change** indicates data changes.|
-| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return data changes.    |
+| type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes.|
+| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return the data change.    |
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1666,8 +1876,8 @@ Subscribes to inter-process data changes. For the multiple processes holding the
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return inter-process data changes.                        |
+| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes.|
+| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return the inter-process data change.                        |
 
 **Error codes**
 
@@ -1675,6 +1885,7 @@ For details about the error codes, see [User Preference Error Codes](errorcode-p
 
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
+| 15500000 | Inner error.                           |
 | 15500019 | Failed to obtain subscription service. |
 
 **Example**
@@ -1696,6 +1907,56 @@ preferences.flush((err: BusinessError) => {
 })
 ```
 
+### on('dataChange')<sup>12+</sup>
+
+on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&lt;string, ValueType&gt;&gt;): void
+
+Subscribes to changes of specific data. The registered callback will be invoked only after the values of the specified keys are changed and [flushed](#flush).
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.          |
+| keys     | Array&lt;string&gt;                                          | Yes  | Array of the keys to be observed.                                         |
+| callback | Callback&lt;Record&lt;string, [ValueType](#valuetype)&gt;&gt; | Yes  | Callback invoked to return the changed data, in an array of KV pairs. The keys identify the data changed, and the values are the new values. The values support the following data types: number, string, boolean, Array\<number>, Array\<string>, Array\< boolean>, Uint8Array, and object.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
+**Example**
+
+```ts
+import {BusinessError} from '@ohos.base';
+
+let observer = (data) => {
+    for (const key in data)  {
+        if (data.hasOwnProperty(key)) {
+            console.info(`observer Key: ${key}, Value: ${data[key]}`)
+        }
+    }
+  console.info("The observer called.")
+}
+let keys = ['name', 'age']
+preferences.on('dataChange', keys, observer);
+preferences.putSync('name', 'xiaohong');
+preferences.putSync('weight', 125);
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
+```
+
 ### off('change')
 
 off(type: 'change', callback?: Callback&lt;string&gt;): void
@@ -1708,8 +1969,16 @@ Unsubscribes from data changes.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value **change** indicates data changes.                    |
-| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.|
+| type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes.                    |
+| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1743,8 +2012,16 @@ Unsubscribes from inter-process data changes.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for inter-process data changes will be unregistered.|
+| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes.|
+| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for inter-process data changes.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **Example**
 
@@ -1765,18 +2042,71 @@ preferences.flush((err: BusinessError) => {
 })
 preferences.off('multiProcessChange', observer);
 ```
+### off('dataChange')<sup>12+</sup>
+
+off(type: 'dataChange', keys: Array&lt;string&gt;,  callback?: Callback&lt;Record&lt;string, ValueType&gt;&gt;): void
+
+Unsubscribes from changes of specific data.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is **'dataChange'**, which indicates data changes.          |
+| keys     | Array&lt;string&gt;                                          | Yes  | Array of keys to be unsubscribed from. If this parameter is left empty, all keys are unsubscribed from.|
+| callback | Callback&lt;Record&lt;string, [ValueType](#valuetype)&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the changes of the specified data.|
+
+**Error codes**
+
+For details about the error codes, see [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
+
+**Example**
+
+```ts
+import {BusinessError} from '@ohos.base';
+
+let observer = (data) => {
+    for (const key in data)  {
+        if (data.hasOwnProperty(key)) {
+            console.info(`observer Key: ${key}, Value: ${data[key]}`)
+        }
+    }
+  console.info("The observer called.")
+}
+let keys = ['name', 'age']
+preferences.on('dataChange', keys, observer);
+preferences.putSync('name', 'xiaohong');
+preferences.putSync('weight', 125);
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Successfully flushed data.");
+})
+preferences.off('dataChange', keys, observer);
+```
+
 ## ValueType
 
 Enumerates the value types.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
-| Type           | Description                             |
-| --------------- | --------------------------------- |
-| number          | The value is a number.               |
-| string          | The value is a string.             |
-| boolean         | The value is true or false.             |
-| Array\<number>  | The value is an array of numbers.     |
-| Array\<boolean> | The value is a Boolean array.     |
-| Array\<string>  | The value is an array of strings.   |
-| Uint8Array<sup>11+</sup>      | The value is an array of 8-bit unsigned integers.|
+| Type                      | Description               |
+|--------------------------|-------------------|
+| number                   | The value is a number.        |
+| string                   | The value is a string.       |
+| boolean                  | The value is true or false.       |
+| Array\<number>           | The value is an array of numbers.   |
+| Array\<boolean>          | The value is a Boolean array.   |
+| Array\<string>           | The value is an array of strings.  |
+| Uint8Array<sup>11+</sup> | The value is an array of 8-bit unsigned integers.|
+| object<sup>12+</sup>     | The value is an object.|
+| bigint<sup>12+</sup>     | The value is an integer in any format. |

@@ -66,7 +66,17 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter, callback: AsyncCallback\
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | filter | [BusinessAbilityFilter](#businessabilityfilter) | 是    | 支持按业务类型过滤的对象。 |
-| callback | AsyncCallback\<Array\<[BusinessAbilityInfo](../apis/js-apis-bundleManager-businessAbilityInfo.md#businessabilityinfo)\>\> | 是 | 回调函数。返回查询到的ability信息，否则为错误对象。 |
+| callback | AsyncCallback\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | 是 | 回调函数。返回查询到的ability信息，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -112,7 +122,17 @@ queryBusinessAbilityInfo(filter: BusinessAbilityFilter): Promise\<Array\<Busines
 
 | 类型                                                         | 说明                                        |
 | ------------------------------------------------------------ | ------------------------------------------- |
-| Promise\<Array\<[BusinessAbilityInfo](../apis/js-apis-bundleManager-businessAbilityInfo.md#businessabilityinfo)\>\> | Promise对象，返回符合过滤条件的ability信息。 |
+| Promise\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | Promise对象，返回符合过滤条件的ability信息。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 

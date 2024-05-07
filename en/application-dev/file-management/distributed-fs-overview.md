@@ -22,7 +22,7 @@ The hmdfs provides a globally consistent access view across devices dynamically 
     - The hmdfs ensures close-to-open cache consistency, which allows data to be flushed when a client closes a file. Then, the latest data can be read when the file is opened on any other client. The hmdfs does not ensure real-time consistency of the file content.
     - If data written at the remote end has not been flushed to the local end in a timely manner due to network problems, the file system flushes the data to the local end upon the next network access. However, if the data has been modified on the remote end, only the latest data can be flushed.
   - File access
-    - OpenHarmony provides the unified [ohos.file.fs](../reference/apis/js-apis-file-fs.md) APIs for accessing files in the local and distributed file systems.
+    - OpenHarmony provides the unified [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) APIs for accessing the local and distributed file systems.
     - The files in the local file system are accessed in overlay mode.
     - The files on another device are accessed over a synchronous network.
         > **NOTE**

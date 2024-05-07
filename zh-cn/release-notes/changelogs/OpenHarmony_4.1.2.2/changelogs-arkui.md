@@ -29,7 +29,7 @@ API 11及以后，二维码默认颜色是系统资源中的`ohos_id_color_foreg
 
 **适配指导**
 
-请查阅[QRCode组件](../../../application-dev/reference/arkui-ts/ts-basic-components-qrcode.md)文档进行适配。
+请查阅[QRCode组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md)文档进行适配。
 
 示例代码:
 ```ts
@@ -77,6 +77,16 @@ API 11及以后，Refresh组件嵌套子组件，刷新组件下拉，子组件�
 
 ![refresh](figures/refreshApi11Builder.gif)
 
+3、friction接口变更
+
+API 11以前，Refresh下拉使用固定跟手系数，跟手系数可以通过friction接口设置。
+API 11及以后，Refresh下拉使用动态跟手系数，下拉距离越大，跟手系数越小。通过friction设置的跟手系数不生效。
+
+4、offset接口变更
+
+API 11以前，Refresh组件可以使用offset接口设置loadingProgress开始显示时的下拉距离。
+API 11以后，Refresh组件下拉16vp后开始显示loadingProgress图标，offset接口设置不生效。
+
 **API Level**
 
 8
@@ -93,7 +103,7 @@ Refresh
 
 1、默认刷新场景
 
-请查阅[Refresh组件](../../../application-dev/reference/arkui-ts/ts-container-refresh.md)文档进行适配
+请查阅[Refresh组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md)文档进行适配
 
 示例代码:
 
@@ -142,7 +152,7 @@ struct RefreshExample {
 
 2、使用builder接口自定义刷新组件
 
-请查阅[Refresh组件](../../../application-dev/reference/arkui-ts/ts-container-refresh.md)文档进行适配
+请查阅[Refresh组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md)文档进行适配
 
 示例代码:
 
@@ -202,3 +212,7 @@ struct RefreshExample {
   }
 }
 ```
+
+3、friction和offset接口变更
+
+API 11及以后，friction和offset设置不生效，按系统默认UX效果实现，无需适配。

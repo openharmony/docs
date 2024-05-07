@@ -21,7 +21,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let uiAbilityContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -37,7 +37,7 @@
      export default class MyService extends ServiceExtensionAbility {
        onCreate(want: Want) {
          let serviceExtensionContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -48,7 +48,7 @@
      export default class MyAbilityStage extends AbilityStage {
        onCreate(): void {
          let abilityStageContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -61,7 +61,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let applicationContext = this.context.getApplicationContext();
-         ...
+         //...
        }
      }
      ```
@@ -74,7 +74,7 @@
 
 - [获取应用文件路径](#获取应用文件路径)
 - [获取和修改加密分区](#获取和修改加密分区)
-- [创建其他应用或其他Module的Context](#创建其他应用或其他module的context)
+- [获取本应用中其他module的context](#获取本应用中其他module的context)
 - [订阅进程内UIAbility生命周期变化](#订阅进程内uiability生命周期变化)
 
 
@@ -95,6 +95,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/temp |
   | databaseDir | <路径前缀>/<加密等级>/database |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data |
 
   示例代码如下所示。
 
@@ -112,7 +113,7 @@
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      ...
+      //...
       Button()
         .onClick(() => {
           let applicationContext = this.context.getApplicationContext();
@@ -123,6 +124,7 @@
           let bundleCodeDir = applicationContext.bundleCodeDir;
           let distributedFilesDir = applicationContext.distributedFilesDir;
           let preferencesDir = applicationContext.preferencesDir;
+          let cloudFileDir = applicationContext.cloudFileDir;
           // 获取应用文件路径
           let filePath = tempDir + 'test.txt';
           hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
@@ -147,6 +149,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
   | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>** |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>** |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data/**\<module-name>** |
 
   示例代码如下所示。
 
@@ -164,7 +167,7 @@
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      ...
+      //...
       Button()
         .onClick(() => {
           let cacheDir = this.context.cacheDir;
@@ -174,6 +177,7 @@
           let bundleCodeDir = this.context.bundleCodeDir;
           let distributedFilesDir = this.context.distributedFilesDir;
           let preferencesDir = this.context.preferencesDir;
+          let cloudFileDir = this.context.cloudFileDir;
           // 获取应用文件路径
           let filePath = tempDir + 'test.txt';
           hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
@@ -240,20 +244,20 @@ struct Page_Context {
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    ...
+    //...
     Button()
       .onClick(() => {
         // 存储普通信息前，切换到EL1设备级加密
         if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
           this.context.area = contextConstant.AreaMode.EL1; // 修改area
           promptAction.showToast({
-            message: $r('app.string.SwitchToEL1')
+            message: 'SwitchToEL1'
           });
         }
         // 存储普通信息
       })
     
-    ...
+    //...
 
     Button()
       .onClick(() => {
@@ -261,95 +265,21 @@ struct Page_Context {
         if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
           this.context.area = contextConstant.AreaMode.EL2; // 修改area
           promptAction.showToast({
-            message: $r('app.string.SwitchToEL2')
+            message: 'SwitchToEL2'
           });
         }
         // 存储敏感信息
       })
     
-    ...
+    //...
   }
 }
 ```
 
 
-### 创建其他应用或其他Module的Context
+### 获取本应用中其他Module的Context
 
-基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context-sys.md#contextcreatebundlecontext)、[createModuleContext(moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName: string, moduleName: string)](../reference/apis-ability-kit/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用文件路径](#获取应用文件路径)信息）。
-
-- 调用`createBundleContext(bundleName:string)`方法，创建其他应用的Context信息。
-  > **说明：**
-  >
-  > 当获取的是其他应用的Context时：
-  >
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
-  >
-  > - 接口为系统接口，三方应用不支持调用。
-  
-  例如在桌面上显示的应用信息，包括应用名称和应用图标等，桌面应用可以通过调用上述的方法获取相应应用的Context信息从而获取到相应的应用名称、图标等资源信息。
-  
-  ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
-  let storageEventCall = new LocalStorage();
-  
-  @Entry(storageEventCall)
-  @Component
-  struct Page_ContextAbility {
-    private context = getContext(this) as common.UIAbilityContext;
-    build() {
-      Button()
-        .onClick(() => {
-          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
-          let bundleContext: Context = this.context.createBundleContext(bundleName2);
-          let label2: string = bundleContext.applicationInfo.label;
-          if (bundleContext && label2 !== null) {
-            promptAction.showToast({
-              message: ('成功获取Context')
-            });
-          }
-        })
-    }
-  }
-  ```
-  
-- 调用`createModuleContext(bundleName:string, moduleName:string)`方法，获取指定应用指定Module的上下文信息。获取到指定应用指定Module的Context之后，即可获取到相应应用Module的资源信息。
-  > **说明：**
-  >
-  > 当获取的是其他应用的指定Module的Context时：
-  >
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
-  >
-  > - 接口为系统接口，三方应用不支持调用。
-  
-  ```ts
-  import promptAction from '@ohos.promptAction';
-  import common from '@ohos.app.ability.common';
-  
-  let storageEventCall = new LocalStorage();
-  
-  @Entry(storageEventCall)
-  @Component
-  struct Page_ContextAbility {
-    private context = getContext(this) as common.UIAbilityContext;
-    build() {
-      Button()
-        .onClick(() => {
-          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
-          let moduleName2: string  = 'entry';
-          let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
-          if (moduleContext !== null) {
-            promptAction.showToast({
-              message: ('成功获取Context')
-            });
-          }
-        })
-    }
-  }
-  ```
-  
-- 调用`createModuleContext(moduleName:string)`方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
+调用`createModuleContext(moduleName:string)`方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
   
   ```ts
   import promptAction from '@ohos.promptAction';
@@ -450,7 +380,7 @@ export default class LifecycleAbility extends UIAbility {
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
 
-  ...
+  //...
 
   onDestroy() : void {
     // 获取应用上下文

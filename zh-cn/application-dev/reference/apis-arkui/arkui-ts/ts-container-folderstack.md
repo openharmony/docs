@@ -16,7 +16,7 @@ FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力�
 
 FolderStack(value?: { upperItems?:  Array<string\>})
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 

@@ -14,16 +14,31 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 ## Size
 
-用于返回组件布局大小的宽和高，单位为vp。
+用于返回组件布局大小的宽和高。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | 是   | 是   | 组件的宽度，单位为vp。 |
-| height | number | 是   | 是   | 组件的高度，单位为vp。 |
+| width  | number | 是   | 是   | 组件大小的宽度。 |
+| height | number | 是   | 是   | 组件大小的高度。 |
 
 ## Position
+
+用于设置或返回组件的位置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| x    | number | 是   | 是   | 水平方向位置。 |
+| y    | number | 是   | 是   | 垂直方向位置。 |
+
+## PositionT<sup>12+</sup>
 
 用于设置或返回组件的位置。
 
@@ -38,6 +53,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 用于设置或返回组件的布局大小和位置，单位为vp。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 可读 | 可写 | 说明                     |
@@ -51,6 +68,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 用于设置组件的轴心坐标，轴心会作为组件的旋转/缩放中心点，影响旋转和缩放效果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型   | 可读 | 可写 | 说明                                                                |
@@ -61,6 +80,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 ## Scale
 
 用于设置组件的缩放比例。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -73,16 +94,20 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 用于设置组件的平移量。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| x    | number | 是   | 是   | 水平方向的平移量，单位为vp。 |
-| y    | number | 是   | 是   | 垂直方向的平移量，单位为vp。 |
+| x    | number | 是   | 是   | 水平方向的平移量，单位为px。 |
+| y    | number | 是   | 是   | 垂直方向的平移量，单位为px。 |
 
 ## Rotation
 
 用于设置组件的旋转角度。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,6 +120,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 ## Offset
 
 用于设置组件或效果的偏移。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -115,11 +142,15 @@ const transform: Matrix4 = [
 ]
 ```
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## Vector2
 
 用于表示包含x和y两个值的向量。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -138,6 +169,8 @@ get size(): Size
 
 获取画布的宽度和高度。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -151,6 +184,8 @@ get size(): Size
 get canvas(): Canvas
 
 获取用于绘制的画布。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -221,6 +256,131 @@ Edges\<T>
 | right  | T    | 是   | 是   | 右侧边框的属性。 |
 | bottom | T    | 是   | 是   | 底部边框的属性。 |
 
+## LengthUnit<sup>12+</sup>
+
+长度属性单位枚举。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| [PX](arkui-ts/ts-types.md#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
+| [VP](arkui-ts/ts-types.md#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
+| [FP](arkui-ts/ts-types.md#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
+| [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
+| [LPX](arkui-ts/ts-types.md#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+
+## SizeT<sup>12+</sup>
+
+SizeT\<T>
+
+用于设置宽高的属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型 | 可读 | 可写 | 说明             |
+| ------ | ---- | ---- | ---- | ---------------- |
+| width   | T    | 是   | 是   | 宽度的属性。 |
+| height    | T    | 是   | 是   | 高度的属性。 |
+
+## LengthMetrics<sup>12+</sup>
+
+用于设置长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**属性：**
+
+| 名称   | 类型 | 可读 | 可写 | 说明             |
+| ------------ | ---------------------------------------- | ---- | ---- | ------ |
+| value       | number | 是   | 是   | 长度属性的值。   |
+| unit | [LengthUnit](#lengthunit12)                                   | 是   | 是   | 长度属性的单位，默认为VP。|
+
+### constructor<sup>12+</sup>
+
+constructor(value: number, unit?: LengthUnit)
+
+LengthMetrics的构造函数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+| unit   | [LengthUnit](#lengthunit12) | 否   | 长度属性的单位。 |
+
+### px<sup>12+</sup>
+
+px(value: number): void
+
+用于生成单位为PX的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
+### vp<sup>12+</sup>
+
+vp(value: number): void
+
+用于生成单位为VP的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
+### fp<sup>12+</sup>
+
+fp(value: number): void
+
+用于生成单位为FP的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
+### percent<sup>12+</sup>
+
+percent(value: number): void
+
+用于生成单位为PERCENT的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
+### lpx<sup>12+</sup>
+
+lpx(value: number): void
+
+用于生成单位为LPX的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | 长度属性的值。 |
+
 ## Corners<sup>12+</sup>
 
 Corners\<T>
@@ -238,16 +398,16 @@ Corners\<T>
 
 ## CornerRadius<sup>12+</sup>
 
-类型定义为[Corners](#corners12)[<Vector2>](#vector2)，用于设置四个角的圆角度数。
+类型定义为[Corners](#corners12)[\<Vector2>](#vector2)，用于设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                | 可读 | 可写 | 说明                             |
 | ----------- | ------------------- | ---- | ---- | -------------------------------- |
-| topLeft     | [Vector2](#vector2) | 是   | 是   | 左上边框的圆角度数，单位为vp。   |
-| topRight    | [Vector2](#vector2) | 是   | 是   | 右上上边框的圆角度数，单位为vp。 |
-| bottomLeft  | [Vector2](#vector2) | 是   | 是   | 左下边框的圆角度数，单位为vp。   |
-| bottomRight | [Vector2](#vector2) | 是   | 是   | 右下边框的圆角度数，单位为vp。   |
+| topLeft     | [Vector2](#vector2) | 是   | 是   | 左上边框的圆角度数，单位为px。   |
+| topRight    | [Vector2](#vector2) | 是   | 是   | 右上上边框的圆角度数，单位为px。 |
+| bottomLeft  | [Vector2](#vector2) | 是   | 是   | 左下边框的圆角度数，单位为px。   |
+| bottomRight | [Vector2](#vector2) | 是   | 是   | 右下边框的圆角度数，单位为px。   |
 
 ## BorderRadiuses<sup>12+</sup>
 
@@ -270,10 +430,10 @@ Corners\<T>
 
 | 名称   | 类型   | 可读 | 可写 | 说明                     |
 | ------ | ------ | ---- | ---- | ------------------------ |
-| left   | number | 是   | 是   | 左部边的位置，单位为vp。 |
-| top    | number | 是   | 是   | 顶部边的位置，单位为vp。 |
-| right  | number | 是   | 是   | 右部边的位置，单位为vp。 |
-| bottom | number | 是   | 是   | 底部边的位置，单位为vp。 |
+| left   | number | 是   | 是   | 左部边的位置，单位为px。 |
+| top    | number | 是   | 是   | 顶部边的位置，单位为px。 |
+| right  | number | 是   | 是   | 右部边的位置，单位为px。 |
+| bottom | number | 是   | 是   | 底部边的位置，单位为px。 |
 
 ## RoundRect<sup>12+</sup>
 
@@ -294,9 +454,9 @@ Corners\<T>
 
 | 名称    | 类型   | 可读 | 可写 | 说明                      |
 | ------- | ------ | ---- | ---- | ------------------------- |
-| centerX | number | 是   | 是   | 圆心x轴的位置，单位为vp。 |
-| centerY | number | 是   | 是   | 圆心y轴的位置，单位为vp。 |
-| radius  | number | 是   | 是   | 圆形的半径，单位为vp。    |
+| centerX | number | 是   | 是   | 圆心x轴的位置，单位为px。 |
+| centerY | number | 是   | 是   | 圆心y轴的位置，单位为px。 |
+| radius  | number | 是   | 是   | 圆形的半径，单位为px。    |
 
 ## CommandPath<sup>12+</sup>
 
@@ -306,7 +466,7 @@ Corners\<T>
 
 | 名称     | 类型   | 可读 | 可写 | 说明                                                                                                                |
 | -------- | ------ | ---- | ---- | ------------------------------------------------------------------------------------------------------------------- |
-| commands | string | 是   | 是   | 路径绘制的指令字符串，单位为px。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。 |
+| [commands](./arkui-ts/ts-drawing-components-path.md#commands-1) | string | 是   | 是   | 路径绘制的指令字符串，单位为px。像素单位的转换方法请参考[像素单位转换](./arkui-ts/ts-pixel-units.md#像素单位转换)。 |
 
 ## ShapeMask<sup>12+</sup>
 
@@ -340,7 +500,7 @@ setRectShape(rect: Rect): void
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
+mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -398,7 +558,7 @@ import { RenderNode, ShapeMask, FrameNode, NodeController, RoundRect } from "@oh
 
 const mask = new ShapeMask();
 const roundRect: RoundRect = {
-  rect: { left: 0, top: 0, right: 150, bottom: 150 },
+  rect: { left: 0, top: 0, right: vp2px(150), bottom: vp2px(150) },
   corners: {
     topLeft: { x: 32, y: 32 },
     topRight: { x: 32, y: 32 },
@@ -463,7 +623,7 @@ setCircleShape(circle: Circle): void
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
+mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -520,7 +680,7 @@ setOvalShape(oval: Rect): void
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setOvalShape({ left: 0, right: 150, top: 0, bottom: 100 });
+mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -616,9 +776,9 @@ struct Index {
 
 ### fillColor<sup>12+</sup>
 
-遮罩的填充颜色，使用ARGB格式。
-
 fillColor: number
+
+遮罩的填充颜色，使用ARGB格式。默认值为`0XFF000000`。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -669,7 +829,7 @@ struct Index {
 
 strokeColor: number
 
-遮罩的边框颜色，使用ARGB格式。
+遮罩的边框颜色，使用ARGB格式。默认值为`0XFF000000`。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -721,7 +881,7 @@ struct Index {
 
 strokeWidth: number
 
-遮罩的边框宽度，单位为vp。
+遮罩的边框宽度，单位为px。默认值为0。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

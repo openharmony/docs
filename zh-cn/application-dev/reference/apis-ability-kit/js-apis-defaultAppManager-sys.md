@@ -53,6 +53,10 @@ getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
@@ -106,6 +110,10 @@ getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<Bun
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
@@ -159,6 +167,10 @@ getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -215,6 +227,10 @@ getDefaultApplicationSync(type: string, userId?: number): BundleInfo
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
@@ -270,6 +286,10 @@ setDefaultApplication(type: string, elementName: ElementName, userId?: number): 
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
@@ -339,6 +359,10 @@ setDefaultApplication(type: string, elementName: ElementName, userId: number, ca
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
@@ -401,6 +425,10 @@ setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCal
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
 
@@ -461,6 +489,10 @@ setDefaultApplicationSync(type: string, elementName: ElementName, userId?: numbe
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
@@ -529,6 +561,10 @@ resetDefaultApplication(type: string, userId?: number): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
@@ -582,6 +618,10 @@ resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
@@ -634,6 +674,10 @@ resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700025 | The specified type is invalid.      |
 
 **示例：**
@@ -684,6 +728,10 @@ resetDefaultApplicationSync(type: string, userId?: number): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 

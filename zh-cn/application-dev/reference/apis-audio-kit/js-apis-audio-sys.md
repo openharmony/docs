@@ -466,6 +466,61 @@ import audio from '@ohos.multimedia.audio';
 let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
+### disableSafeMediaVolume<sup>12+</sup>
+
+disableSafeMediaVolume(): Promise&lt;void&gt;
+
+设置安全音量为非激活状态。使用Promise方式异步返回结果。
+
+设置为非激活状态后，当设备长时间高音量播放时，不再自动提醒用户降低到安全音量。
+
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                       | 说明                          |
+|------------------------------------------| ----------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+"reqPermissions": [
+    {
+        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
+        "reason": "use ohos.permission.MODIFY_AUDIO_SETTINGS"
+    }
+]
+let audioManager = audio.getAudioManager();
+try {
+    await audioManager.disableSafeMediaVolume().then(() => {
+        expect(true).assertTrue();
+        done();
+    }).catch((err) => {
+        console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+        expect(err.code).assertEqual(201);
+        done();
+    });
+} catch (error) {
+    expect(false).assertTrue();
+    done();
+}
+```
+
 ### on('volumeChange')<sup>(deprecated)</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
@@ -1625,7 +1680,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -1723,7 +1778,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -2223,6 +2278,87 @@ try {
 }
 ```
 
+### setSpatializationSceneType<sup>12+</sup>
+
+setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType): void
+
+设置空间音频渲染场景类型，同步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| spatializationSceneType     | [AudioSpatializationSceneType](#audiospatializationscenetype12)     | 是   | 需要设置的空间音频渲染场景类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
+  console.info(`AudioSpatializationManager setSpatializationSceneType success`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### getSpatializationSceneType<sup>12+</sup>
+
+getSpatializationSceneType(): AudioSpatializationSceneType
+
+查询当前空间音频渲染场景类型，同步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| [AudioSpatializationSceneType](#audiospatializationscenetype12) | 返回当前空间音频渲染场景类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+  console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
 ## AudioSpatialDeviceState<sup>11+</sup>
 
 空间化设备状态。
@@ -2267,6 +2403,21 @@ let spatialDeviceState: audio.AudioSpatialDeviceState = {
 | SPATIAL_DEVICE_TYPE_OVER_EAR_HEADPHONE     | 3      |  头戴式耳机。       |
 | SPATIAL_DEVICE_TYPE_GLASSES                | 4      |  眼镜式耳机。       |
 | SPATIAL_DEVICE_TYPE_OTHERS                 | 5      |  其他空间化设备类型。|
+
+## AudioSpatializationSceneType<sup>12+</sup>
+
+枚举，空间音频渲染场景类型。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+| 名称                               |  值     | 说明                       |
+| ---------------------------------- | ------ | ------------------------- |
+| DEFAULT                            | 0      |  空间音频默认渲染场景。            |
+| MUSIC                              | 1      |  空间音频音乐渲染场景。            |
+| MOVIE                              | 2      |  空间音频电影渲染场景。            |
+| AUDIOBOOK                          | 3      |  空间音频有声读物渲染场景。          |
 
 ## ToneType<sup>9+</sup>
 

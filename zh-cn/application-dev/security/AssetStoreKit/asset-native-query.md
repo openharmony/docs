@@ -7,6 +7,10 @@
 
 在查询关键资产时，关键资产属性的内容参数如下表所示：
 
+>**注意：**
+>
+>下表中名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+
 | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | ASSET_TAG_ALIAS                 | 类型为uint8[]，长度为1-256字节。                               | 可选     | 关键资产别名，每条关键资产的唯一索引。                       |
@@ -15,14 +19,18 @@
 | ASSET_TAG_AUTH_TYPE             | 类型为uint32_t，取值范围详见[Asset_AuthType](../../reference/apis-asset-store-kit/_asset_type.md#asset_authtype)。 | 可选     | 访问关键资产所需的用户认证类型。                               |
 | ASSET_TAG_SYNC_TYPE             | 类型为uint32_t，取值范围详见[Asset_SyncType](../../reference/apis-asset-store-kit/_asset_type.md#asset_synctype)。 | 可选     | 关键资产支持的同步类型。                                       |
 | ASSET_TAG_IS_PERSISTENT         | 类型为bool。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。                             |
-| ASSET_TAG_DATA_LABEL_CRITICAL_1 | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
-| ASSET_TAG_DATA_LABEL_CRITICAL_2 | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护             |
-| ASSET_TAG_DATA_LABEL_CRITICAL_3 | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
-| ASSET_TAG_DATA_LABEL_CRITICAL_4 | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
-| ASSET_TAG_DATA_LABEL_NORMAL_1   | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
-| ASSET_TAG_DATA_LABEL_NORMAL_2   | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
-| ASSET_TAG_DATA_LABEL_NORMAL_3   | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
-| ASSET_TAG_DATA_LABEL_NORMAL_4   | 类型为uint8[]，长度为1-512字节。                               | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+| ASSET_TAG_DATA_LABEL_CRITICAL_1 | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| ASSET_TAG_DATA_LABEL_CRITICAL_2 | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| ASSET_TAG_DATA_LABEL_CRITICAL_3 | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| ASSET_TAG_DATA_LABEL_CRITICAL_4 | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| ASSET_TAG_DATA_LABEL_NORMAL_1   | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| ASSET_TAG_DATA_LABEL_NORMAL_2   | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| ASSET_TAG_DATA_LABEL_NORMAL_3   | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| ASSET_TAG_DATA_LABEL_NORMAL_4   | 类型为uint8[]，长度为1-2048字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+| ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+| ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+| ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为uint8[]，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | ASSET_TAG_RETURN_TYPE           | 类型为uint32_t，取值范围详见[Asset_ReturnType](../../reference/apis-asset-store-kit/_asset_type.md#asset_returntype)。 | 可选     | 关键资产查询返回的结果类型。                                         |
 | ASSET_TAG_RETURN_LIMIT          | 类型为uint32_t。                                               | 可选     | 关键资产查询返回的结果数量。                                         |
 | ASSET_TAG_RETURN_OFFSET         | 类型为uint32_t，取值范围：1-65536。                            | 可选     | 关键资产查询返回的结果偏移量。<br>**说明：** 用于分批查询场景，指定从第几个开始返回。                  |
@@ -38,92 +46,110 @@
 
 查询别名是demo_alias的关键资产明文。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void QueryAsset() {
-    static const char *ALIAS = "demo_alias";
-    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_ALIAS, .value.blob = alias },  // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-        { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL },  // 此处表示需要返回关键资产的所有信息，即属性+明文
-    };
+   #include "asset/asset_api.h"
 
-    Asset_ResultSet resultSet = {0};
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
-        // Parse the resultSet.
-        for (uint32_t i = 0; i < resultSet.count; i++) {
-            // Parse the secret: the data is secret->blob.data, the size is secret->blob.size.
-            Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
-        }
-    }
-    OH_Asset_FreeResultSet(&resultSet);
-}
-```
+   void QueryAsset() {
+      static const char *ALIAS = "demo_alias";
+      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+      Asset_Attr attr[] = {
+         { .tag = ASSET_TAG_ALIAS, .value.blob = alias },  // 指定了关键资产别名，最多查询到一条满足条件的关键资产
+         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ALL },  // 此处表示需要返回关键资产的所有信息，即属性+明文
+      };
+
+      Asset_ResultSet resultSet = {0};
+      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+      if (ret == ASSET_SUCCESS) {
+         // Parse the resultSet.
+         for (uint32_t i = 0; i < resultSet.count; i++) {
+               // Parse the secret: the data is secret->blob.data, the size is secret->blob.size.
+               Asset_Attr *secret = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_SECRET);
+         }
+      }
+      OH_Asset_FreeResultSet(&resultSet);
+   }
+   ```
 
 ### 查询单条关键资产属性
 
 查询别名是demo_alias的关键资产属性。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void QueryAttributes() {
-    static const char *ALIAS = "demo_alias";
-    Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 指定了关键资产别名，最多查询到一条满足条件的关键资产
-        { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES }, // 此处表示仅返回关键资产属性，不包含关键资产明文
-    };
+   #include "asset/asset_api.h"
 
-    Asset_ResultSet resultSet = {0};
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
-        // Parse the result.
-        for (uint32_t i = 0; i < resultSet.count; i++) {
-        // Parse the data label: the data is label->blob.data, the size is label->blob.size.
-            Asset_Attr *label = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_DATA_LABEL_NORMAL_1);
-        }
-    }
-    OH_Asset_FreeResultSet(&resultSet);
-}
-```
+   void QueryAttributes() {
+      static const char *ALIAS = "demo_alias";
+      Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
+      Asset_Attr attr[] = {
+         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // 指定了关键资产别名，最多查询到一条满足条件的关键资产
+         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES }, // 此处表示仅返回关键资产属性，不包含关键资产明文
+      };
+
+      Asset_ResultSet resultSet = {0};
+      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+      if (ret == ASSET_SUCCESS) {
+         // Parse the result.
+         for (uint32_t i = 0; i < resultSet.count; i++) {
+         // Parse the data label: the data is label->blob.data, the size is label->blob.size.
+               Asset_Attr *label = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_DATA_LABEL_NORMAL_1);
+         }
+      }
+      OH_Asset_FreeResultSet(&resultSet);
+   }
+   ```
 
 ### 批量查询关键资产属性
 
 批量查询附属信息是demo_label的关键资产属性，从第5条满足条件的结果开始返回，一共返回10条，且返回结果以DATA_LABEL_NORMAL_1属性内容排序。
 
-```c
-#include <string.h>
+1. 在CMake脚本中链接相关动态库
+   ```txt
+   target_link_libraries(entry PUBLIC libasset_ndk.z.so)
+   ```
 
-#include "asset_api.h"
+2. 参考如下示例代码，进行业务功能开发
+   ```c
+   #include <string.h>
 
-void BatchQuery() {
-    static const char *LABEL = "demo_label";
-    Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
+   #include "asset/asset_api.h"
 
-    Asset_Attr attr[] = {
-        { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES },
-        { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
-        { .tag = ASSET_TAG_RETURN_OFFSET, .value.u32 = 5 },
-        { .tag = ASSET_TAG_RETURN_LIMIT, .value.u32 = 10 },
-        { .tag = ASSET_TAG_RETURN_ORDERED_BY, .value.u32 = ASSET_TAG_DATA_LABEL_NORMAL_1 },
-    };
+   void BatchQuery() {
+      static const char *LABEL = "demo_label";
+      Asset_Blob label = { (uint32_t)(strlen(LABEL)), (uint8_t *)LABEL };
 
-    Asset_ResultSet resultSet = { 0 };
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
-        // Parse the result.
-        for (uint32_t i = 0; i < resultSet.count; i++) {
-            // Parse the data alias: the data is alias->blob.data, the size is alias->blob.size..
-            Asset_Attr *alias = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_ALIAS);
-        }
-    }
-    OH_Asset_FreeResultSet(&resultSet);
-}
-```
+      Asset_Attr attr[] = {
+         { .tag = ASSET_TAG_RETURN_TYPE, .value.u32 = ASSET_RETURN_ATTRIBUTES },
+         { .tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label },
+         { .tag = ASSET_TAG_RETURN_OFFSET, .value.u32 = 5 },
+         { .tag = ASSET_TAG_RETURN_LIMIT, .value.u32 = 10 },
+         { .tag = ASSET_TAG_RETURN_ORDERED_BY, .value.u32 = ASSET_TAG_DATA_LABEL_NORMAL_1 },
+      };
+
+      Asset_ResultSet resultSet = { 0 };
+      int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+      if (ret == ASSET_SUCCESS) {
+         // Parse the result.
+         for (uint32_t i = 0; i < resultSet.count; i++) {
+               // Parse the data alias: the data is alias->blob.data, the size is alias->blob.size..
+               Asset_Attr *alias = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_ALIAS);
+         }
+      }
+      OH_Asset_FreeResultSet(&resultSet);
+   }
+   ```

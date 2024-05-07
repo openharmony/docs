@@ -59,7 +59,7 @@ Files can be shared between applications by uniform resource identifier (URI) or
 
 ### Application File Access Framework
 
-The application file access framework is implemented through [ohos.file.fs](../reference/apis/js-apis-file-fs.md). You do not need to care about the internal implementation. For details about the basic file operation APIs, see [Available APIs](app-file-access.md#available-apis).
+The application file access framework is implemented through [ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md). You do not need to care about the internal implementation. For details about the basic file operation APIs, see [Available APIs](app-file-access.md#available-apis).
 
 ### User File Access Framework
 
@@ -83,4 +83,4 @@ You can use the user file access framework to access and manage user files. This
 
 ## Related Kits
 
-Ability Kit: The user file access framework of Core File Kit depends on the Extension capability provided by Ability Kit and is scheduled and managed by Ability Kit. 
+Ability Kit: The user file access framework of Core File Kit depends on the Extension capability provided by Ability Kit and is scheduled and managed by Ability Kit.

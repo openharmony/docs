@@ -1,13 +1,11 @@
 # @system.file (File Storage)
 
 > **NOTE**
+>
 > - The APIs provided by this module are no longer maintained since API Version 10. You are advised to use [@ohos.file.fs](js-apis-file-fs.md).
-> 
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 ## Modules to Import
-
 
 ```
 import file from '@system.file';
@@ -18,7 +16,7 @@ import file from '@system.file';
 
 move(Object): void
 
-Moves a specified file to a given location.
+Moves a file to the given location.
 
 > **NOTE**
 >
@@ -31,7 +29,7 @@ Moves a specified file to a given location.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | srcUri | string | Yes| Uniform resource identifier (URI) of the file to move. <br/>The URI can contain a maximum of 128 characters, excluding the following characters: "\*+,:;&lt;=&gt;?[]\|\x7F |
-| dstUri | string | Yes| URI of the location to which the file is to move. <br/>The URI can contain a maximum of 128 characters, excluding the following characters: "\*+,:;&lt;=&gt;?[]\|\x7F |
+| dstUri | string | Yes| URI of the location to which the file is to move. <br/>The URI can contain a maximum of 128 characters, excluding the following characters: "\*+,:;&lt;=&gt;?[]\|\x7F|
 | success | Function | No| Called when the file is moved to the specified location. This API returns the URI of the destination location.|
 | fail | Function | No| Called when the file fails to be moved.|
 | complete | Function | No| Called when the execution is complete.|
@@ -62,7 +60,6 @@ export default {
   }
 }
 ```
-
 
 ## file.copy
 
@@ -148,7 +145,7 @@ Obtains all files in the specified directory.
 | uri | string | URI of the file.|
 | lastModifiedTime | number | Timestamp when the file is saved the last time, which is the number of milliseconds elapsed since 1970/01/01 00:00:00 GMT.|
 | length | number | File size, in bytes.|
-| type | string | File type. Available values are as follows:<br>- **dir**: directory<br>-&nbsp;**file**: file |
+| type | string | File type. Available values are as follows:<br>- **dir**: directory<br>-&nbsp;**file**: file|
 
 **Error codes**
 

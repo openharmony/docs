@@ -20,14 +20,15 @@
 
 ## 接口
 
-
 WaterFlow(options?:  WaterFlowOptions)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 是 | 瀑布流组件参数。 |
+| options |  [WaterFlowOptions](#waterflowoptions对象说明)| 否 | 瀑布流组件参数。 |
 
 
 ## WaterFlowOptions对象说明
@@ -35,8 +36,8 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | 参数名     | 参数类型                                        | 必填 | 参数描述                                     |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
-| footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。  |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
+| footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。  |
 
 
@@ -85,7 +86,7 @@ push(section: SectionOptions): boolean
 
 ### update<sup>12+</sup>
 
-update(sectionIndex:number, section: SectionOptions): boolean
+update(sectionIndex: number, section: SectionOptions): boolean
 
 修改指定索引分组的配置信息。
 
@@ -174,6 +175,8 @@ columnsTemplate(value: string)
 
 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -192,6 +195,8 @@ rowsTemplate(value: string)
 
 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -205,6 +210,8 @@ rowsTemplate(value: string)
 itemConstraintSize(value: ConstraintSizeOptions)
 
 设置约束尺寸，子组件布局时，进行尺寸范围限制。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -220,6 +227,8 @@ columnsGap(value: Length)
 
 设置列与列的间距。 
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -234,6 +243,8 @@ rowsGap(value: Length)
 
 设置行与行的间距。 
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -247,6 +258,8 @@ rowsGap(value: Length)
 layoutDirection(value: FlexDirection)
 
 设置布局的主轴方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -276,6 +289,8 @@ enableScrollInteraction(value: boolean)
 
 设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -289,6 +304,8 @@ enableScrollInteraction(value: boolean)
 nestedScroll(value: NestedScrollOptions)
 
 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -304,19 +321,23 @@ friction(value: number | Resource)
 
 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                      |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。 |
 
 ### cachedCount<sup>11+</sup>
 
 cachedCount(value: number)
 
 设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。设置为小于0的值时，按默认值显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -344,7 +365,7 @@ scrollBar(barState: BarState)
 
 scrollBarWidth(value: number | string)
 
-设置滚动条的宽度，不支持百分比设置。如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。
+设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过WaterFlow组件主轴方向的高度，则滚动条的宽度会变为默认值。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -409,6 +430,8 @@ onReachStart(event: () => void)
 
 瀑布流组件到达起始位置时触发。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onReachEnd
@@ -416,6 +439,8 @@ onReachStart(event: () => void)
 onReachEnd(event: () => void)
 
 瀑布流组件到底末尾位置时触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -426,6 +451,8 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
 
 触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -449,6 +476,8 @@ onScrollIndex(event: (first: number, last: number) => void)
 当前瀑布流显示的起始位置/终止位置的子组件发生变化时触发。瀑布流初始化时会触发一次。
 
 瀑布流显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

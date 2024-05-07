@@ -18,6 +18,8 @@ import InsightIntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
@@ -32,6 +34,8 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 当意图调用是将UIAbility在前台显示时，触发该回调。支持同步返回和使用Promise异步返回。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -142,6 +146,8 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
 当意图调用是将UIAbility在后台拉起时，触发该回调。支持同步返回和使用Promise异步返回。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

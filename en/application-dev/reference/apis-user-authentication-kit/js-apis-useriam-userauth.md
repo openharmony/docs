@@ -2,15 +2,109 @@
 
 The **userIAM.userAuth** module provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app login.
 
-> **NOTE**
->
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
+```
+
+## Constant
+
+Represents the maximum period for which the device unlocking result can be reused.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name       | Value  | Description      |
+| ----------- | ---- | ---------- |
+| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | Maximum period for which the device unlocking result can be reused. The value is **300,000** ms.|
+
+## EnrolledState<sup>12+</sup>
+
+Represents information about the enrolled credentials.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name        | Type   | Readable| Writable| Description                |
+| ------------ | ---------- | ---- | ---- | -------------------- |
+| credentialDigest       | number | Yes  |  No| Credential digest, which is randomly generated when a credential is added.|
+| credentialCount        | number | Yes  |  No| Number of enrolled credentials.      |
+
+## ReuseMode<sup>12+</sup>
+
+Represents the mode for reusing the device unlocking result.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name       | Value  | Description      |
+| ----------- | ---- | ---------- |
+| AUTH_TYPE_RELEVANT    | 1   | The device unlocking result can be reused only within the specified period when the authentication type matches one of the specified authentication types.|
+| AUTH_TYPE_IRRELEVANT  | 2   | The device unlocking result can be reused within the specified period irrespective of the authentication type.|
+
+## ReuseUnlockResult<sup>12+</sup>
+
+Represents the device unlocking result.
+> **NOTE**
+>
+> If the credential changes within the validity period after the screen is unlocked, the screen lock authentication result can still be reused, and the actual **EnrolledState** is returned in the authentication result. If the credential is completely deleted when the lock screen authentication result is reused,
+> both **credentialCount** and **credentialDigest** in **EnrolledState** are **0**.
+
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name        | Type  | Mandatory| Description                |
+| ------------ | ---------- | ---- | -------------------- |
+| reuseMode        | [ReuseMode](#reusemode12) | Yes  | Mode for reusing the device unlocking result.      |
+| reuseDuration    | number | Yes  | Period for which the device unlocking result can be reused. <br>Value range: 0 to [MAX_ALLOWABLE_REUSE_DURATION](#constant)|
+
+## userAuth.getEnrolledState<sup>12+</sup>
+
+getEnrolledState(authType : UserAuthType): EnrolledState
+
+Obtains information about the credentials enrolled. With this API, you can obtain the change of the credentials. 
+
+**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+**Parameters**
+
+| Name        | Type                              | Mandatory| Description                      |
+| -------------- | ---------------------------------- | ---- | -------------------------- |
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type.|
+
+**Return value**
+
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
+| [EnrolledState](#enrolledstate12) | Information about the enrolled credentials.|
+
+**Error codes**
+
+For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
+
+| ID| Error Message|
+| -------- | ------- |
+| 201 | Permission verification failed. |
+| 401 | Incorrect parameters. |
+| 12500002 | General operation error. |
+| 12500005 | The authentication type is not supported. |
+| 12500010 | The type of credential has not been enrolled. |
+
+**Example**
+
+```ts
+import userAuth from '@ohos.userIAM.userAuth';
+
+try {
+  let enrolledState = userAuth.getEnrolledState(userAuth.UserAuthType.FACE);
+  console.info('get current enrolled state success, enrolledState = ' + JSON.stringify(enrolledState));
+} catch (error) {
+  console.error('get current enrolled state failed, error = ' + JSON.stringify(error));
+}
 ```
 
 ## AuthParam<sup>10+</sup>
@@ -24,6 +118,7 @@ Defines the user authentication parameters.
 | challenge      | Uint8Array                         | Yes  | Challenge value, which is used to prevent replay attacks. It cannot exceed 32 bytes and can be passed in **Uint8Array([])** format.|
 | authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the types of authentication provided on the user authentication page.          |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.                                              |
+| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | No  |Device unlocking result that can be reused.|
 
 ## WidgetParam<sup>10+</sup>
 
@@ -47,7 +142,7 @@ Defines the user authentication result. If the authentication is successful, the
 | result   | number                         | Yes  | User authentication result. If the operation is successful, **SUCCESS** is returned. If the operation fails, an error code is returned. For details, see [UserAuthResultCode](#userauthresultcode9).|
 | token    | Uint8Array                     | No  | Token that has passed the authentication.                |
 | authType | [UserAuthType](#userauthtype8) | No  | Type of the authentication.                          |
-
+| enrolledState<sup>12+</sup> | [EnrolledState](#enrolledstate12) | No  |  Enrolled credential information.        |
 
 ## IAuthCallback<sup>10+</sup>
 
@@ -67,7 +162,7 @@ Called to return the authentication result. If the authentication is successful,
 | ------ | ----------------------------------- | ---- | ---------- |
 | result | [UserAuthResult](#userauthresult10) | Yes  | Authentication result.|
 
-**Example**
+**Example 1**
 
 ```ts
 import userAuth from '@ohos.userIAM.userAuth';
@@ -76,6 +171,39 @@ const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
   authType: [userAuth.UserAuthType.PIN],
   authTrustLevel: userAuth.AuthTrustLevel.ATL1,
+};
+const widgetParam :userAuth.WidgetParam = {
+  title:'Enter password',
+};
+try {
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.log('get userAuth instance success');
+  // The authentication result is returned by onResult only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+    }
+  });
+  console.log('auth on success');
+} catch (error) {
+  console.error('auth catch error: ' + JSON.stringify(error));
+}
+```
+
+**Example 2**
+
+```ts
+import userAuth from '@ohos.userIAM.userAuth';
+
+let reuseUnlockResult: userAuth.ReuseUnlockResult = {
+  reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
+  reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
+}
+const authParam : userAuth.AuthParam = {
+  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+  authType: [userAuth.UserAuthType.PIN],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
+  reuseUnlockResult: reuseUnlockResult,
 };
 const widgetParam :userAuth.WidgetParam = {
   title:'Enter password',
@@ -399,7 +527,7 @@ Defines the authentication tip information.
 Enumerates the authentication event information types.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 11. Use [UserAuthResult](#userauthresult10) instead.
+> This parameter is supported since API version 9 and deprecated since API version 11. Use [UserAuthResult](#userauthresult10) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -449,22 +577,22 @@ Called to return the authentication result or authentication tip information.
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 // Obtain the authentication result through a callback.
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.on('result', {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+    callback: (result: userAuth.AuthResultInfo) => {
       console.log('authV9 result ' + result.result);
       console.log('authV9 token ' + result.token);
       console.log('authV9 remainAttempts ' + result.remainAttempts);
       console.log('authV9 lockoutDuration ' + result.lockoutDuration);
     }
-  } as userIAM_userAuth.AuthEvent);
+  } as userAuth.AuthEvent);
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
@@ -473,19 +601,19 @@ try {
 }
 // Obtain the authentication tip information through a callback.
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.on('tip', {
-    callback : (result : userIAM_userAuth.TipInfo) => {
+    callback : (result : userAuth.TipInfo) => {
       switch (result.tip) {
-        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+        case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // Do something.
-        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+        case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // Do something.
         default:
           // Do others.
       }
     }
-  } as userIAM_userAuth.AuthEvent);
+  } as userAuth.AuthEvent);
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
@@ -532,16 +660,16 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   // Subscribe to the authentication result.
   auth.on('result', {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+    callback: (result: userAuth.AuthResultInfo) => {
       console.log('authV9 result ' + result.result);
       console.log('authV9 token ' + result.token);
       console.log('authV9 remainAttempts ' + result.remainAttempts);
@@ -550,17 +678,17 @@ try {
   });
   // Subscribe to authentication tip information.
   auth.on('tip', {
-    callback : (result : userIAM_userAuth.TipInfo) => {
+    callback : (result : userAuth.TipInfo) => {
       switch (result.tip) {
-        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+        case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // Do something.
-        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+        case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // Do something.
         default:
           // Do others.
       }
     }
-  } as userIAM_userAuth.AuthEvent);
+  } as userAuth.AuthEvent);
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
@@ -597,16 +725,16 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   // Subscribe to the authentication result.
   auth.on('result', {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+    callback: (result: userAuth.AuthResultInfo) => {
       console.log('authV9 result ' + result.result);
       console.log('authV9 token ' + result.token);
       console.log('authV9 remainAttempts ' + result.remainAttempts);
@@ -657,14 +785,14 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.start();
   console.info('authV9 start auth success');
 } catch (error) {
@@ -700,14 +828,14 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.cancel();
   console.info('cancel auth success');
 } catch (error) {
@@ -715,7 +843,7 @@ try {
 }
 ```
 
-## userIAM_userAuth.getAuthInstance<sup>(deprecated)</sup>
+## userAuth.getAuthInstance<sup>(deprecated)</sup>
 
 getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel : AuthTrustLevel): AuthInstance
 
@@ -757,21 +885,21 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   console.info('let auth instance success');
 } catch (error) {
   console.error('get auth instance success failed, error = ' + error);
 }
 ```
 
-## userIAM_userAuth.getAvailableStatus<sup>9+</sup>
+## userAuth.getAvailableStatus<sup>9+</sup>
 
 getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void
 
@@ -804,10 +932,10 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 try {
-  userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
   console.info('current auth trust level is supported');
 } catch (error) {
   console.error('current auth trust level is not supported, error = ' + error);
@@ -845,16 +973,16 @@ constructor()
 A constructor used to create a **UserAuth** instance.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthInstance](#useriam_userauthgetauthinstancedeprecated) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAuthInstance](#userauthgetauthinstancedeprecated) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 ```
 
 ### getVersion<sup>(deprecated)</sup>
@@ -879,9 +1007,9 @@ Obtains the version of this authenticator.
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let version = auth.getVersion();
 console.info('auth version = ' + version);
 ```
@@ -893,7 +1021,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 Checks whether the specified authentication capability is supported.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. Use [getAvailableStatus](#useriam_userauthgetavailablestatus9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAvailableStatus](#userauthgetavailablestatus9) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -915,11 +1043,11 @@ Checks whether the specified authentication capability is supported.
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
-let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
+let auth = new userAuth.UserAuth();
+let checkCode = auth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
+if (checkCode == userAuth.ResultCode.SUCCESS) {
   console.info('check auth support success');
 } else {
   console.error('check auth support fail, code = ' + checkCode);
@@ -957,16 +1085,16 @@ Starts user authentication. This API uses a callback to return the result.
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
-auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
       console.info('auth onResult result = ' + result);
       console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
-      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+      if (result == userAuth.ResultCode.SUCCESS) {
         // Add the logic to be executed when the authentication is successful.
       } else {
         // Add the logic to be executed when the authentication fails.
@@ -1006,13 +1134,13 @@ Cancels an authentication based on the context ID.
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 // contextId can be obtained by auth(). In this example, it is defined here.
 let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let cancelCode = auth.cancelAuth(contextId);
-if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
+if (cancelCode == userAuth.ResultCode.SUCCESS) {
   console.info('cancel auth success');
 } else {
   console.error('cancel auth fail');
@@ -1047,16 +1175,16 @@ Called to return the authentication result.
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
-auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
       console.info('auth onResult result = ' + result);
       console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
-      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+      if (result == userAuth.ResultCode.SUCCESS) {
         // Add the logic to be executed when the authentication is successful.
       }  else {
         // Add the logic to be executed when the authentication fails.
@@ -1090,16 +1218,16 @@ Called to acquire authentication tip information. This API is optional.
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
-auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
       console.info('auth onResult result = ' + result);
       console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
-      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+      if (result == userAuth.ResultCode.SUCCESS) {
         // Add the logic to be executed when the authentication is successful.
       }  else {
         // Add the logic to be executed when the authentication fails.
@@ -1108,7 +1236,7 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       console.error('auth onResult error = ' + error);
     }
   },
-  onAcquireInfo: (module, acquire, extraInfo : userIAM_userAuth.AuthResult) => {
+  onAcquireInfo: (module, acquire, extraInfo : userAuth.AuthResult) => {
     try {
       console.info('auth onAcquireInfo module = ' + module);
       console.info('auth onAcquireInfo acquire = ' + acquire);
@@ -1222,11 +1350,11 @@ Enumerates the trust levels of the authentication result.
 | Name| Value   | Description                                                        |
 | ---- | ----- | ------------------------------------------------------------ |
 | ATL1 | 10000 | Authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.|
-| ATL2 | 20000 | Authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as logins to apps and keeping a device in unlocked state. |
+| ATL2 | 20000 | Authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as application logins and keeping the unlocking state of a device.|
 | ATL3 | 30000 | Authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.|
 | ATL4 | 40000 | Authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
 
-## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
+## userAuth.getAuthenticator<sup>(deprecated)</sup>
 
 getAuthenticator(): Authenticator
 
@@ -1245,9 +1373,9 @@ Obtains an **Authenticator** instance for user authentication.
 
 **Example**
   ```ts
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+  import userAuth from '@ohos.userIAM.userAuth';
   
-  let authenticator = userIAM_userAuth.getAuthenticator();
+  let authenticator = userAuth.getAuthenticator();
   ```
 
 ## Authenticator<sup>(deprecated)</sup>
@@ -1281,11 +1409,11 @@ Starts user authentication. This API uses an asynchronous callback to return the
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let authenticator = userIAM_userAuth.getAuthenticator();
+let authenticator = userAuth.getAuthenticator();
 authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
-  if (code === userIAM_userAuth.ResultCode.SUCCESS) {
+  if (code === userAuth.ResultCode.SUCCESS) {
     console.info('auth success');
     return;
   }
@@ -1323,10 +1451,10 @@ Starts user authentication. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 try {
-  let authenticator = userIAM_userAuth.getAuthenticator();
+  let authenticator = userAuth.getAuthenticator();
   authenticator.execute('FACE_ONLY', 'S2').then((code)=>{
     console.info('auth success');
   })

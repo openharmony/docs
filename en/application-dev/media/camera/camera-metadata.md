@@ -66,7 +66,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    }
    ```
 
-4. Call [Session.stop](../../reference/apis-camera-kit/js-apis-camera.md#stop11) to stop outputting metadata. If the call fails, an error code is returned. For details, see [Camera Error Codes](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+4. Call [Session.stop](../../reference/apis-camera-kit/js-apis-camera.md#stop11) to stop outputting metadata. If the call fails, an error code is returned. For details, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
      
    ```ts
    function stopMetadataOutput(session: camera.Session): void {

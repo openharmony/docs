@@ -1,6 +1,6 @@
 # @ohos.app.ability.wantConstant (wantConstant)
 
-The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
+The wantConstant module provides the actions, entities, and flags used in **Want** objects.
 
 > **NOTE**
 >
@@ -20,14 +20,15 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 
 | Name                   | Value                                | Description                                                                          |
 | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
-| ABILITY_BACK_TO_OTHER_MISSION_STACK   | ability.params.backToOtherMissionStack     | Whether to support redirection back across mission stacks. |
-| ABILITY_RECOVERY_RESTART<sup>10+</sup> | ohos.ability.params.abilityRecoveryRestart | Action of recovering an ability from a fault and restarting it.|
-| CONTENT_TITLE_KEY<sup>10+</sup>       | ohos.extra.param.key.contentTitle  | Action of sharing the content title. |
-| SHARE_ABSTRACT_KEY<sup>10+</sup>      | ohos.extra.param.key.shareAbstract | Action of sharing the abstract. |
-| SHARE_URL_KEY<sup>10+</sup>           | ohos.extra.param.key.shareUrl      | Action of sharing the URL. |
-| SUPPORT_CONTINUE_PAGE_STACK_KEY<sup>10+</sup>    | ohos.extra.param.key.supportContinuePageStack  | Whether to migrate page stack information during cross-device migration. The default value is **true**, indicating that page stack information is automatically migrated.|
-| SUPPORT_CONTINUE_SOURCE_EXIT_KEY<sup>10+</sup>  | ohos.extra.param.key.supportContinueSourceExit      | Whether to exit the application on the source device during cross-device migration. The default value is **true**, indicating that the application on the source device automatically exits.|
-| SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | Show mode. For details, see **wantConstant.ShowMode**.|
+| ABILITY_BACK_TO_OTHER_MISSION_STACK   | ability.params.backToOtherMissionStack     | Action of redirection back across mission stacks.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| ABILITY_RECOVERY_RESTART<sup>10+</sup> | ohos.ability.params.abilityRecoveryRestart | Action of recovering an ability from a fault and restarting it.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| CONTENT_TITLE_KEY<sup>10+</sup>       | ohos.extra.param.key.contentTitle  | Action of sharing the content title.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| SHARE_ABSTRACT_KEY<sup>10+</sup>      | ohos.extra.param.key.shareAbstract | Action of sharing the abstract.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| SHARE_URL_KEY<sup>10+</sup>           | ohos.extra.param.key.shareUrl      | Action of sharing the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| SUPPORT_CONTINUE_PAGE_STACK_KEY<sup>10+</sup>    | ohos.extra.param.key.supportContinuePageStack  | Action of migrating page stack information during cross-device migration. The default value is **true**, indicating that page stack information is automatically migrated.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SUPPORT_CONTINUE_SOURCE_EXIT_KEY<sup>10+</sup>  | ohos.extra.param.key.supportContinueSourceExit      | Action of exiting the application on the source device during cross-device migration. The default value is **true**, indicating that the application on the source device automatically exits.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | Show mode. For details, see **wantConstant.ShowMode**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | File URIs to be authorized to the target ability. The value must be an array of file URIs of the string type. For details about how to obtain the file URI, see [fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## wantConstant.Flags
 
@@ -37,14 +38,16 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 
 | Name                                | Value      | Description                                                        |
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                                 |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write data to the URI.                                 |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |
-| FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | Indicates that no tips are displayed if the ability implicitly started does not match any application.      |
-
+| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Grant the permission to read the URI.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                 |
+| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Grant the permission to write data to the URI.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                 |
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>12+</sup> | 0x00000040 | Make the URI persisted. It takes effect only on tablets.|
+| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Install the ability if it has not been installed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                             |
+| FLAG_START_WITHOUT_TIPS<sup>11+</sup>              | 0x40000000 | Do not display any tips if the ability implicitly started does not match any application.      |
 ## wantConstant.ShowMode<sup>12+</sup>
 
 Enumerates the modes used to show the ability startup.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 

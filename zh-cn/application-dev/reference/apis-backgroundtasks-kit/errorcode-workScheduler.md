@@ -10,6 +10,10 @@
 
 Memory operation failed.
 
+**错误描述**
+
+内存操作失败。
+
 **可能原因**
 
 1. 系统内存泄漏。
@@ -26,6 +30,10 @@ Memory operation failed.
 
 Parcel operation failed.
 
+**错误描述**
+
+IPC通信读写Parcel数据失败。
+
 **可能原因**
 
 调用MessageParcel对象读取或写入对象异常。
@@ -39,6 +47,10 @@ Parcel operation failed.
 **错误信息**
 
 System service operation failed.
+
+**错误描述**
+
+客户端进程请求服务进程时，获取系统服务操作失败。
 
 **可能原因**
 
@@ -55,6 +67,10 @@ System service operation failed.
 
 Check workInfo failed.
 
+**错误描述**
+
+延迟任务信息参数异常。
+
 **可能原因**
 
 1. workInfo中的bundleName和应用的uid不匹配。
@@ -69,6 +85,10 @@ Check workInfo failed.
 **错误信息**
 
 StartWork failed.
+
+**错误描述**
+
+延迟任务申请失败。
 
 **可能原因**
 

@@ -22,15 +22,19 @@ registerFont(options: FontOptions): void
 
 在字体管理中注册自定义字体。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名     | 类型                          | 必填   | 说明          |
 | ------- | --------------------------- | ---- | ----------- |
 | options | [FontOptions](#fontoptions) | 是    | 注册的自定义字体信息。 |
 
 ## FontOptions
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,12 +59,6 @@ struct FontExample {
   @State codePoint: string = String.fromCharCode(0x0000)
 
   aboutToAppear() {
-    // familyName和familySrc都支持string
-    font.registerFont({
-      familyName: 'medium',
-      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
-    })
-
     // familyName和familySrc都支持系统Resource
     font.registerFont({
       familyName: $r('app.string.font_name'),
@@ -78,6 +76,12 @@ struct FontExample {
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
     })
+
+    // familyName和familySrc都支持string
+    font.registerFont({
+      familyName: 'medium',
+      familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
+    })
   }
 
   build() {
@@ -86,7 +90,7 @@ struct FontExample {
         .align(Alignment.Center)
         .fontSize(20)
         .fontFamily('medium') // medium：注册自定义字体的名字（$r('app.string.mediumFamilyName')、'mediumRawFile'等已注册字体也能正常使用）
-      
+
       // 使用iconFont的两种方式
       Text(this.unicode)
         .align(Alignment.Center)
@@ -100,15 +104,19 @@ struct FontExample {
   }
 }
 ```
-> **说明：** 
+> **说明：**
 >
-> 若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
+> 应用若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
+>
+> 在HSP工程中，不推荐采用相对路径的方式注册自定义字体，详见[HSP资源引用](../../quick-start/in-app-hsp.md#通过$r访问hsp中的资源)。
 
 ## font.getSystemFontList<sup>10+</sup>
 
 getSystemFontList(): Array\<string>
 
-获取系统支持的字体名称列表。
+获取系统字体列表。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -147,9 +155,11 @@ getFontByName(fontName: string): FontInfo
 
 根据传入的系统字体名称获取系统字体的相关信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名      | 类型      | 必填    | 说明          |
 | ---------- | --------- | ------- | ------------ |
@@ -162,6 +172,8 @@ getFontByName(fontName: string): FontInfo
 | FontInfo         | 字体的详细信息                 |
 
 ## FontInfo<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -193,7 +205,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('Sans Italic')
+          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
@@ -215,6 +227,8 @@ getUIFontConfig() : UIFontConfig
 
 获取系统的UI字体配置。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -223,6 +237,9 @@ getUIFontConfig() : UIFontConfig
 | [UIFontConfig](#uifontconfig11)     | 系统的UI字体配置信息。          |
 
 ## UIFontConfig<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -231,6 +248,9 @@ getUIFontConfig() : UIFontConfig
 | fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | 是 | 备用字体集。           |
 
 ## UIFontGenericInfo<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -239,6 +259,9 @@ getUIFontConfig() : UIFontConfig
 | adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | 否 | 字体原本的weight值对应需显示的值。 |
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -246,6 +269,9 @@ getUIFontConfig() : UIFontConfig
 | fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | 是 | 表示以下列表为该字体集的备用字体，如果fontSetName为""，表示可以作为所有字体集的备用字体。 |
 
 ## UIFontAliasInfo<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -253,6 +279,9 @@ getUIFontConfig() : UIFontConfig
 | weight        | number  | 是 | 当weight>0时表示此字体集只包含所指定weight的字体，当weight=0时，表示此字体集包含所有字体。 |
 
 ## UIFontAdjustInfo<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |
@@ -260,6 +289,9 @@ getUIFontConfig() : UIFontConfig
 | to            | number  | 是 | 字体在应用中显示的weight值。 |
 
 ## UIFontFallbackInfo<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
 | -------------- | ------- | ------------------------- | ------------------------- |

@@ -26,35 +26,35 @@ HUKS provides the following key management functionalities throughout their life
 
 ### Key Generation
 
-| Functionality| Description| Supported Algorithms| 
-| -------- | -------- | -------- |
-| **[Key generation](huks-key-generation-overview.md)**| Generates a key randomly. During the lifecycle of the key, the plaintext of the key can be accessed only in the secure environment and cannot be exposed out of the secure environment.| AES, HMAC, RSA, X25519, ED25519, SM2, SM4, DH, ECC, DSA| 
-| **[Key import](huks-key-import-overview.md)**| Imports an externally generated key to HUKS for management.| - | 
+| Functionality| Description|
+| -------- | -------- |
+| **[Key generation](huks-key-generation-overview.md)**| Generates a key randomly. During the lifecycle of the key, the plaintext of the key can be accessed only in the secure environment and cannot be exposed out of the secure environment.|
+| **[Key import](huks-key-import-overview.md)**| Imports an externally generated key to HUKS for management.|
 
 
 ### Key Use
 
-| Functionality| Description| Supported Algorithms| 
-| -------- | -------- | -------- |
-| [Encryption/Decryption](huks-encryption-decryption-overview.md)| Encrypts plaintext into ciphertext using a key, or decrypts ciphertext into plaintext using a key.| DH, ECDH, X25519, SM2| 
-| **[Signing/Signature Verification](huks-signing-signature-verification-overview.md)**| Generates a digital signature, which confirms the data authenticity (the message came from the stated sender).| RSA, DSA, ECC, SM2, ED25519| 
-| **[Key agreement](huks-key-agreement-overview.md)**| Allows two or more parties to jointly establish a shared key in a non-secure environment.| DH, ECDH, X25519| 
-| **[Key derivation](huks-key-derivation-overview.md)**| Derives one or more secrete keys from a key.| AES, HMAC, SM4| 
-| **[Key access control](huks-identity-authentication-overview.md)**| Prevents unauthorized access to the keys in HUKS.| - | 
+| Functionality| Description|
+| -------- | -------- |
+| [Encryption/Decryption](huks-encryption-decryption-overview.md)| Encrypts plaintext into ciphertext using a key, or decrypts ciphertext into plaintext using a key.|
+| **[Signing/Signature Verification](huks-signing-signature-verification-overview.md)**| Generates a digital signature, which confirms the data authenticity (the message came from the stated sender).|
+| **[Key agreement](huks-key-agreement-overview.md)**| Allows two or more parties to jointly establish a shared key in a non-secure environment.|
+| **[Key derivation](huks-key-derivation-overview.md)**| Derives one or more secrete keys from a key.|
+| **[Key Access control](huks-identity-authentication-overview.md)**| Prevents unauthorized access to the keys in HUKS.|
 
 
 ### Key Deletion
 
-| Functionality| Description| Supported Algorithms| 
-| -------- | -------- | -------- |
-| **[Key deletion](huks-delete-key-arkts.md)**| Securely deletes key data from HUKS.| - | 
+| Functionality| Description|
+| -------- | -------- |
+| **[Key deletion](huks-delete-key-arkts.md)**| Securely deletes key data from HUKS.|
 
 
 ### Key Attestation
 
-| Functionality| Description| Supported Algorithms| 
-| -------- | -------- | -------- |
-| **[Key attestation](huks-key-attestation-overview.md)**| Issues a certificate for the public key in an asymmetric key pair stored in HUKS to prove the validity of the key (the key is generated in a secure environment).| RSA, ECC, X25519| 
+| Functionality| Description|
+| -------- | -------- |
+| **[Key attestation](huks-key-attestation-overview.md)**| Issues a certificate for the public key in an asymmetric key pair stored in HUKS to prove the validity of the key (the key is generated in a secure environment).|
 
 
 ## Related Kits

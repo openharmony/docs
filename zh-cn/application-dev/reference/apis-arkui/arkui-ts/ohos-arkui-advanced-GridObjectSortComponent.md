@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType }from '@ohos.arkui.advanced.GridObjectSortComponent'
+import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType } from '@ohos.arkui.advanced.GridObjectSortComponent'
 ```
 
 ##  子组件
@@ -25,9 +25,11 @@ import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortCom
 
 ## GridObjectSortComponent
 
-GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array<GridObjectSortComponentItem>, onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => void, onCancel: () => void })
+GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array\<GridObjectSortComponentItem>, onSave: (select: Array\<GridObjectSortComponentItem>, unselect: Array\<GridObjectSortComponentItem>) => void, onCancel: () => void })
 
 **装饰器类型：**\@Component
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -42,8 +44,9 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | onCancel | () => void | - | 是 | 取消保存数据的回调。 |
 | build() | void | - | 是 | 构建函数。 |
 
-
 ##  GridObjectSortComponentOptions
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
@@ -54,16 +57,18 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认：点击添加。            |
 | editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认：编辑。             |
 
-
 ## GridObjectSortComponentType 
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 类型   | 值           | 说明           |
 | -------- | ------ | ------------ | -------------- |
 | IMAGE_TEXT | string | 'image_text' | 图片文字类型。 |
 | TEXT     | string | 'text'       | 文字类型。     |
 
-
 ## GridObjectSortComponentItem
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |

@@ -1,4 +1,4 @@
-# Using AudioCapturer for Audio Recording (ArkTS)
+# Using AudioCapturer for Audio Recording
 
 The AudioCapturer is used to record Pulse Code Modulation (PCM) audio data. It is suitable if you have extensive audio development experience and want to implement more flexible recording features.
 

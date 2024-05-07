@@ -8,11 +8,35 @@
 
 **变更原因**
 
-该变更为不兼容性变更。
+部分状态变量装饰器的key值在使用未定义的变量时并未被校验，不符合TS语法规则，为了匹配TS语法规则，需要对这些状态变量装饰器的key值启动语法校验。
+
+涉及的装饰器包括：
+
+@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch。
 
 **变更影响**
 
-@LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
+@LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值不存在时，编译报错。
+
+该变更为非兼容性修改。
+
+**起始API Level**
+
+@LocalStorageLink：API9，
+
+@LocalStorageProp：API9，
+
+@StorageProp：API7，
+
+@StorageLink：API7，
+
+@Provide：API7，
+
+@Consume：API7，
+
+@Watch：API7。
+
+
 
 **变更发生版本**
 
@@ -47,11 +71,17 @@ struct ComA {
 
 **适配指导**
 
- @LocalStorageLink,@LocalStorageProp,@StorageProp(),@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
+ @LocalStorageLink,@LocalStorageProp,@StorageProp,@StorageLink,@Provide,@Consume,@Watch key值需要准确定义。
 
 ```
 // test.ts
 export let oneKey = 'string';
+```
+
+
+
+```
+
 // index.ets
 import { oneKey } from './test';
 @Entry
@@ -130,9 +160,42 @@ struct TestPage {
 }
 ```
 
-**API Level**
+**变更涉及接口**
 
-12 
+AppStorage：set，setOrCreate，setAndLink，setAndProp
+
+LocalStorage：set，setOrCreate，setAndLink，setAndProp
+
+PersistentStorage：persistProp
+
+
+**起始API Level**
+
+该变更从API12开始生效，API11及之前不受影响。
+
+AppStorage
+
+set：API10，
+
+setOrCreate：API10，
+
+setAndLink：API10，
+
+setAndProp：API10
+
+LocalStorage
+
+set：API9，
+
+setOrCreate：API9，
+
+setAndLink：API9，
+
+setAndProp：API9
+
+PersistentStorage
+
+persistProp：API10
 
 **变更发生版本**
 

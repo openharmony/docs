@@ -45,15 +45,24 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 **参数：**
 
-| 参数名          | 类型                                       | 必填        | 说明             |
-|--------------|------------------------------------------|-----------|----------------|
-| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。   |
+| 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                     |
+|--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。该参数不能为空，并且构造该参数的context和componentController不能为空。构造该参数时，如果指定了templateType，需保证templateType是[PiPTemplateType](#piptemplatetype)类型；如果指定了controlGroups，需保证controlGroups与templateType匹配，详见[PiPControlGroup](#pipcontrolgroup12)。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                       |
 |------------------------------------------------------------|--------------------------|
 | Promise&lt;[PiPController](#pipcontroller)&gt;  | Promise对象。返回当前创建的画中画控制器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                                                         |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+| 801   | Capability not supported                                                                                                                     |
 
 **示例：**
 
@@ -71,6 +80,7 @@ let config: pipWindow.PiPConfiguration = {
   templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
   contentHeight: contentHeight,
+  controlGroups: [pipWinodw.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
 };
 
 let promise : Promise<pipWindow.PiPController> = pipWindow.create(config);
@@ -96,6 +106,7 @@ promise.then((data : pipWindow.PiPController) => {
 | templateType        | [PiPTemplateType](#piptemplatetype)                                   | 否   | 模板类型，用以区分视频播放、视频通话或视频会议。                                                                                                                                                                                                                                                                                                                     |
 | contentWidth        | number                                                                | 否   | 原始内容宽度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                    |
 | contentHeight       | number                                                                | 否   | 原始内容高度，单位为px。用于确定画中画窗口比例。                                                                                                                                                                                                                                                                                                                    |
+| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                                                                | 否   | 画中画控制面板的可选控件组列表，应用可以配置是否显示可选控件。应用不配置，则显示模板的基础控件（如视频播放控件组的播放/暂停控件）。从API version 12开始支持此参数。 |
 
 ## PiPTemplateType
 
@@ -125,6 +136,55 @@ promise.then((data : pipWindow.PiPController) => {
 | ABOUT_TO_RESTORE     | 5   | 表示画中画将从小窗播放恢复到原始播放界面。 |
 | ERROR                | 6   | 表示画中画生命周期执行过程出现了异常。   |
 
+## PiPControlGroup<sup>12+</sup>
+
+画中画控制面板的可选控件组列表，应用可以配置是否显示可选控件。默认情况下控制面板只显示基础控件（如视频播放控件组的播放/暂停控件）。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 类型                                              | 说明          |
+|-------------------------------------------------|-------------|
+| [VideoPlayControlGroup](#videoplaycontrolgroup12)     | 视频播放控件组。 |
+| [VideoCallControlGroup](#videocallcontrolgroup12)       | 视频通话控件组。 |
+| [VideoMeetingControlGroup](#videomeetingcontrolgroup12) | 视频会议控件组。 |
+
+
+## VideoPlayControlGroup<sup>12+</sup>
+
+视频播放控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_PLAY时使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                   | 值   | 说明                    |
+|----------------------|-----|-----------------------|
+| VIDEO_PREVIOUS_NEXT       | 101   | 视频上一个/下一个控件组。<br/>与视频快进/后退控件组为互斥控件组。如添加视频快进/后退控件组，则不可添加该控件组。           |
+| FAST_FORWARD_BACKWARD    | 102   | 视频快进/后退控件组。<br/>与视频上一个/下一个控件组为互斥控件组。如添加视频上一个/下一个控件组，则不可添加该控件组。           |
+
+## VideoCallControlGroup<sup>12+</sup>
+
+视频通话控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_CALL时使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                   | 值   | 说明                    |
+|----------------------|-----|-----------------------|
+| MICROPHONE_SWITCH       | 201   | 打开/关闭麦克风控件组。            |
+| HANG_UP_BUTTON    | 202   | 挂断控件组。           |
+| CAMERA_SWITCH    | 203   | 打开/关闭摄像头控件组。            |
+
+## VideoMeetingControlGroup<sup>12+</sup>
+
+视频会议控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_MEETING时使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                   | 值   | 说明                    |
+|----------------------|-----|-----------------------|
+| HANG_UP_BUTTON       | 301   | 挂断控件组。          |
+| CAMERA_SWITCH    | 302   | 打开/关闭摄像头控件组。           |
+| MUTE_SWITCH    | 303   | 静音控件组。            |
+
+
 ## PiPActionEventType
 
 画中画控制事件类型，支持以下四种。
@@ -146,7 +206,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 | 名称                     | 类型       | 说明                                                                                                  |
 |------------------------|----------|-----------------------------------------------------------------------------------------------------|
-| PiPVideoActionEvent    | string   | 有以下取值：<br/>-'playbackStateChanged'：播放状态发生了变化。<br>-'nextVideo'：播放下一个视频。<br>-'previousVideo'：播放上一个视频。 |
+| PiPVideoActionEvent    | string   | 有以下取值：<br/>-'playbackStateChanged'：播放状态发生了变化。<br/>-'nextVideo'：播放下一个视频。<br/>-'previousVideo'：播放上一个视频。<br/>-'fastForward'：视频进度快进。从API version 12 开始支持。<br/>-'fastBackward'：视频进度后退。从API version 12 开始支持。  |
 
 ## PiPCallActionEvent
 
@@ -156,7 +216,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 | 名称                     | 类型     | 说明                                                                                             |
 |------------------------|--------|------------------------------------------------------------------------------------------------|
-| PiPCallActionEvent     | string | 有以下取值：<br/>-'hangUp'：挂断视频通话。<br>-'micStateChanged'：打开或关闭麦克风。<br>-'videoStateChanged'：打开或关闭摄像头。 |
+| PiPCallActionEvent     | string | 有以下取值：<br/>-'hangUp'：挂断视频通话。<br/>-'micStateChanged'：打开或关闭麦克风。<br/>-'videoStateChanged'：打开或关闭摄像头。 |
 
 ## PiPMeetingActionEvent
 
@@ -166,7 +226,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 | 名称                         | 类型         | 说明                                                                                              |
 |----------------------------|------------|-------------------------------------------------------------------------------------------------|
-| PiPMeetingActionEvent      | string     | 有以下取值：<br/>-'hangUp'：挂断视频会议。<br>-'voiceStateChanged'：静音或解除静音。<br>-'videoStateChanged'：打开或关闭摄像头。 |
+| PiPMeetingActionEvent      | string     | 有以下取值：<br/>-'hangUp'：挂断视频会议。<br/>-'voiceStateChanged'：静音或解除静音。<br/>-'videoStateChanged'：打开或关闭摄像头。 |
 
 ## PiPLiveActionEvent
 
@@ -177,6 +237,16 @@ promise.then((data : pipWindow.PiPController) => {
 | 名称                       | 类型           | 说明                                |
 |--------------------------|--------------|-----------------------------------|
 | PiPLiveActionEvent       | string       | 值为'playbackStateChanged'：播放或暂停直播。 |
+
+## ControlPanelActionEventCallback<sup>12+</sup>
+
+描述画中画控制面板动作事件回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                       | 类型           | 说明                                |
+|--------------------------|--------------|-----------------------------------|
+| ControlPanelActionEventCallback       | (event: [PiPActionEventType](#pipactioneventtype), status?: number) => void       | 回调画中画控制事件。<br/>event表示控制事件类型。应用依据控制事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频；<br/>status表示可切换状态的控件当前的状态，如具备打开和关闭两种状态的麦克风控件组、摄像头控件组和静音控件组，打开为1，关闭为0。其余控件该参数返回默认值-1。 |
 
 ## PiPController
 
@@ -269,7 +339,7 @@ setAutoStartEnabled(enable: boolean): void
 
 | 参数名      | 类型        | 必填    | 说明                              |
 |----------|-----------|-------|---------------------------------|
-| enable   | boolean   | 是     | true表示设置返回桌面时自动启动画中画，否则为false。  |
+| enable   | boolean   | 是     | 如返回桌面时需自动启动画中画，则该参数配置为true，否则为false。若设置中自动启动画中画开关为关闭状态，就算该参数配置为true，应用返回桌面时也不会自动启动画中画窗口。  |
 
 ```ts
 let enable: boolean = true;
@@ -286,10 +356,18 @@ updateContentSize(width: number, height: number): void
 
 **参数：**
 
-| 参数名    | 类型     | 必填  | 说明                           |
-|--------|--------|-----|------------------------------|
-| width  | number | 是   | 表示媒体内容宽度，单位为px。用于更新画中画窗口比例。   |
-| height | number | 是   | 表示媒体内容高度，单位为px。用于更新画中画窗口比例。   |
+| 参数名    | 类型     | 必填  | 说明                                     |
+|--------|--------|-----|----------------------------------------|
+| width  | number | 是   | 表示媒体内容宽度，必须为大于0的数字，单位为px。用于更新画中画窗口比例。  |
+| height | number | 是   | 表示媒体内容高度，必须为大于0的数字，单位为px。用于更新画中画窗口比例。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 ```ts
 let width: number = 540; // 假设当前内容宽度变为540px。
@@ -363,7 +441,7 @@ pipController.off('stateChange');
 
 ### on('controlPanelActionEvent')
 
-on(type: 'controlPanelActionEvent', callback: (event: PiPActionEventType) => void): void
+on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): void
 
 开启画中画控制事件的监听。
 
@@ -374,19 +452,29 @@ on(type: 'controlPanelActionEvent', callback: (event: PiPActionEventType) => voi
 | 参数名      | 类型         | 必填    | 说明                                                                                                                             |
 |----------|------------|-------|--------------------------------------------------------------------------------------------------------------------------------|
 | type     | string     | 是     | 监听事件，固定为'controlPanelActionEvent'，即画中画控制事件。                                                                                    |
-| callback | function   | 是     | 回调画中画控制事件:<br/>event: [PiPActionEventType](#pipactioneventtype)，表示控制事件类型。应用依据控制事件做相应处理，如触发'playbackStateChanged'事件时，需要开始或停止视频。 |
+| callback | [ControlPanelActionEventCallback](#controlpanelactioneventcallback12)  | 是     | 描述画中画控制面板动作事件回调。 |
 
 ```ts
-pipController.on('controlPanelActionEvent', (event: pipWindow.PiPActionEventType) => {
+pipController.on('controlPanelActionEvent', (event: pipWindow.PiPActionEventType, status?: number) => {
   switch (event) {
     case 'playbackStateChanged':
-      // 开始或停止视频
+      if (status === 0) {
+        //停止视频
+      } else if (status === 1) {
+        //播放视频
+      }
       break;
     case 'nextVideo':
       // 切换到下一个视频
       break;
     case 'previousVideo':
       // 切换到上一个视频
+      break;
+    case 'fastForward':
+      // 视频进度快进
+      break;
+    case 'fastBackward':
+      // 视频进度后退
       break;
     default:
       break;

@@ -134,6 +134,135 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
    ```
 
       ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
+   
+   3.可通过弹窗中的按钮实现路由跳转，同时获取跳转页面向当前页传入的参数。
+   
+   ```ts
+   // Index.ets
+   import { router } from '@kit.ArkUI';
+   
+   @CustomDialog
+   struct CustomDialogExample {
+     @Link textValue: string
+     controller?: CustomDialogController
+     cancel: () => void = () => {
+     }
+     confirm: () => void = () => {
+     }
+   
+     build() {
+       Column({ space: 20 }) {
+         if (this.textValue != '') {
+           Text(`第二个页面的内容为：${this.textValue}`)
+             .fontSize(20)
+         } else {
+           Text('是否获取第二个页面的内容')
+             .fontSize(20)
+         }
+         Flex({ justifyContent: FlexAlign.SpaceAround }) {
+           Button('cancel')
+             .onClick(() => {
+               if (this.controller != undefined) {
+                 this.controller.close()
+                 this.cancel()
+               }
+             }).backgroundColor(0xffffff).fontColor(Color.Black)
+           Button('confirm')
+             .onClick(() => {
+               if (this.controller != undefined && this.textValue != '') {
+                 this.controller.close()
+               } else if (this.controller != undefined) {
+                 router.pushUrl({
+                   url: 'pages/Index2'
+                 })
+                 this.controller.close()
+               }
+             }).backgroundColor(0xffffff).fontColor(Color.Red)
+         }.margin({ bottom: 10 })
+       }.borderRadius(10).padding({ top: 20 })
+     }
+   }
+   
+   @Entry
+   @Component
+   struct CustomDialogUser {
+     @State textValue: string = ''
+     dialogController: CustomDialogController | null = new CustomDialogController({
+       builder: CustomDialogExample({
+         cancel: () => {
+           this.onCancel()
+         },
+         confirm: () => {
+           this.onAccept()
+         },
+         textValue: $textValue
+       })
+     })
+   
+     // 在自定义组件即将析构销毁时将dialogControlle置空
+     aboutToDisappear() {
+       this.dialogController = null // 将dialogController置空
+     }
+   
+     onPageShow() {
+       const params = router.getParams() as Record<string, string>; // 获取传递过来的参数对象
+       if (params) {
+         this.dialogController?.open()
+         this.textValue = params.info as string; // 获取info属性的值
+       }
+     }
+   
+     onCancel() {
+       console.info('Callback when the first button is clicked')
+     }
+   
+     onAccept() {
+       console.info('Callback when the second button is clicked')
+     }
+   
+     exitApp() {
+       console.info('Click the callback in the blank area')
+     }
+   
+     build() {
+       Column() {
+         Button('click me')
+           .onClick(() => {
+             if (this.dialogController != null) {
+               this.dialogController.open()
+             }
+           }).backgroundColor(0x317aff)
+       }.width('100%').margin({ top: 5 })
+     }
+   }
+   ```
+   
+   ```ts
+   // Index2.ets
+   import { router } from '@kit.ArkUI';
+   
+   @Entry
+   @Component
+   struct Index2 {
+     @State message: string = '点击返回';
+     build() {
+       Column() {
+         Button(this.message)
+           .fontSize(50)
+           .fontWeight(FontWeight.Bold).onClick(() => {
+           router.back({
+             url: 'pages/Index',
+             params: {
+               info: 'Hello World'
+             }
+           });
+         })
+       }.width('100%').height('100%').margin({ top: 20 })
+     }
+   }
+   ```
+   
+   ![DialogRouter](figures/DialogRouter.gif)
 
 ## 弹窗的动画
 
@@ -196,47 +325,84 @@ struct CustomDialogUser {
 
 ![openAnimator](figures/openAnimator.gif)
 
-## 完整示例
+## 嵌套自定义弹窗
+
+通过第一个弹窗打开第二个弹窗时，最好将第二个弹窗定义在第一个弹窗的父组件处，通过父组件传给第一个弹窗的回调来打开第二个弹窗。
 
 ```ts
 @CustomDialog
-struct CustomDialogExample {
-  cancel?: () => void
-  confirm?: () => void
-  controller: CustomDialogController
-
+struct CustomDialogExampleTwo {
+  controllerTwo?: CustomDialogController
+  @State message: string = "I'm the second dialog box."
+  @State showIf: boolean = false;
   build() {
     Column() {
-      Text('我是内容').fontSize(20).margin({ top: 10, bottom: 10 })
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Button('cancel')
-          .onClick(() => {
-            this.controller.close()
-            if (this.cancel) {
-              this.cancel()
-            }
-          }).backgroundColor(0xffffff).fontColor(Color.Black)
-        Button('confirm')
-          .onClick(() => {
-            this.controller.close()
-            if (this.confirm) {
-              this.confirm()
-            }
-          }).backgroundColor(0xffffff).fontColor(Color.Red)
-      }.margin({ bottom: 10 })
+      if (this.showIf) {
+        Text("Text")
+          .fontSize(30)
+          .height(100)
+      }
+      Text(this.message)
+        .fontSize(30)
+        .height(100)
+      Button("Create Text")
+        .onClick(()=>{
+          this.showIf = true;
+        })
+      Button ('Close Second Dialog Box')
+        .onClick(() => {
+          if (this.controllerTwo != undefined) {
+            this.controllerTwo.close()
+          }
+        })
+        .margin(20)
     }
   }
 }
+@CustomDialog
+struct CustomDialogExample {
+  openSecondBox?: ()=>void
+  controller?: CustomDialogController
 
+  build() {
+    Column() {
+      Button ('Open Second Dialog Box and close this box')
+        .onClick(() => {
+          this.controller!.close();
+          this.openSecondBox!();
+        })
+        .margin(20)
+    }.borderRadius(10)
+  }
+}
 @Entry
 @Component
 struct CustomDialogUser {
-  dialogController: CustomDialogController = new CustomDialogController({
+  @State inputValue: string = 'Click Me'
+  dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() },
+      openSecondBox: ()=>{
+        if (this.dialogControllerTwo != null) {
+          this.dialogControllerTwo.open()
+        }
+      }
     }),
+    cancel: this.exitApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false
   })
+  dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExampleTwo(),
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -25 } })
+
+  aboutToDisappear() {
+    this.dialogController = null
+    this.dialogControllerTwo = null
+  }
 
   onCancel() {
     console.info('Callback when the first button is clicked')
@@ -246,16 +412,24 @@ struct CustomDialogUser {
     console.info('Callback when the second button is clicked')
   }
 
+  exitApp() {
+    console.info('Click the callback in the blank area')
+  }
   build() {
     Column() {
-      Button('click me')
+      Button(this.inputValue)
         .onClick(() => {
-          this.dialogController.open()
-        })
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
   }
 }
 ```
+![nested_dialog](figures/nested_dialog.gif)
+
+由于自定义弹窗在状态管理侧有父子关系，如果将第二个弹窗定义在第一个弹窗内，那么当父组件（第一个弹窗）被销毁（关闭）时，子组件（第二个弹窗）内无法再继续创建新的组件。
 
 ## 相关实例
 

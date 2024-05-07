@@ -1,6 +1,6 @@
 # @ohos.arkui.componentSnapshot (组件截图)
 
-本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。
+本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。兄弟节点堆叠在组件区域内，截图不会显示兄弟组件。
 
 > **说明：**
 >
@@ -38,8 +38,11 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | if id is not valid. |
 
 **示例：**
@@ -51,36 +54,33 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap|undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   build() {
     Column() {
-      Image(this.pixmap)
-        .width(300).height(300)
-      // ...Component
-      // ...Component
-      // ...Component
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
-                if(error){
-                  console.log("error: " + JSON.stringify(error))
-                  return;
-                }
-                this.pixmap = pixmap
-                // save pixmap to file
-                // ....
-             })
-        })
+            if (error) {
+              console.log("error: " + JSON.stringify(error))
+              return;
+            }
+            this.pixmap = pixmap
+          })
+        }).margin(10)
     }
-    .width('80%')
-    .margin({ left: 10, top: 5, bottom: 5 })
-    .height(200)
-    .border({ color: '#880606', width: 2 })
-    .id("root")
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
+
+![componentget](figures/componentget.gif) 
 
 ## componentSnapshot.get
 
@@ -108,8 +108,11 @@ get(id: string): Promise<image.PixelMap>
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if id is not valid. |
 
 **示例：**
@@ -121,35 +124,32 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap|undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined
 
   build() {
     Column() {
-      Image(this.pixmap)
-        .width(300).height(300)
-      // ...Component
-      // ...Component
-      // ...Component
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+      }
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root")
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
-              // save pixmap to file
-              // ....
             }).catch((err:Error) => {
             console.log("error: " + err)
           })
-        })
+        }).margin(10)
     }
-    .width('80%')
-    .margin({ left: 10, top: 5, bottom: 5 })
-    .height(200)
-    .border({ color: '#880606', width: 2 })
-    .id("root")
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
   }
 }
 ```
+
+![componentget](figures/componentget.gif) 
 
 ## componentSnapshot.createFromBuilder
 
@@ -175,8 +175,11 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | if builder is not a valid build function. |
 
 **示例：**
@@ -217,8 +220,8 @@ struct OffscreenSnapshotExample {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
               if(error){
-                  console.log("error: " + JSON.stringify(error))
-                  return;
+                console.log("error: " + JSON.stringify(error))
+                return;
               }
               this.pixmap = pixmap
               // save pixmap to file
@@ -230,13 +233,15 @@ struct OffscreenSnapshotExample {
         })
       Image(this.pixmap)
         .margin(10)
-        .height(100)
-        .width(100)
-    }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
-    .border({ color: '#880606', width: 2 })
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
   }
 }
 ```
+
+![componentcreate](figures/componentcreate.gif) 
 
 ## componentSnapshot.createFromBuilder
 
@@ -265,9 +270,11 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if builder is not a valid build function. |
 
 **示例：**
@@ -319,10 +326,12 @@ struct OffscreenSnapshotExample {
         })
       Image(this.pixmap)
         .margin(10)
-        .height(100)
-        .width(100)
-    }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
-    .border({ color: '#880606', width: 2 })
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
   }
 }
 ```
+
+![componentcreate](figures/componentcreate.gif) 

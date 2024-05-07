@@ -29,7 +29,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                     | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | contact  | [Contact](#contact)         | Yes  | Contact information.                                                |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result, which is a contact ID.                              |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result. If the operation is successful, the ID of the added contact is returned. If the operation fails, an invalid contact ID is returned.                              |
 
 **Error codes**
 
@@ -198,7 +198,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| key      | string                    | Yes  | Contact key. Each contact corresponds to one key.                        |
+| key      | string                    | Yes  | Unique query key of a contact. One contact corresponds to one key.                        |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
@@ -241,7 +241,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 
 | Name  | Type                     | Mandatory| Description                                |
 | -------- | ------------------------- | ---- | ------------------------------------ |
-| key      | string                    | Yes  | Contact key. Each contact corresponds to one key.|
+| key      | string                    | Yes  | Unique query key of a contact. One contact corresponds to one key.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.    |
 
 **Example**
@@ -273,7 +273,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 | Name | Type   | Mandatory| Description                                                        |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| key     | string  | Yes  | Contact key. Each contact corresponds to one key.                      |
+| key     | string  | Yes  | Unique query key of a contact. One contact corresponds to one key.                      |
 
 **Return Value**
 
@@ -320,7 +320,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| key    | string | Yes  | Contact key. Each contact corresponds to one key.|
+| key    | string | Yes  | Unique query key of a contact. One contact corresponds to one key.|
 
 **Return Value**
 
@@ -356,7 +356,7 @@ Updates a contact based on the specified contact information. This API uses an a
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| contact  | [Contact](#contact)       | Yes  | Contact information.                                                |
+| contact  | [Contact](#contact)       | Yes  | Contact information. Contact ID, which is mandatory.                                                |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                        |
 
 **Error codes**
@@ -403,7 +403,7 @@ Updates a contact based on the specified contact information. This API uses an a
 
 | Name  | Type                     | Mandatory| Description                                |
 | -------- | ------------------------- | ---- | ------------------------------------ |
-| contact  | [Contact](#contact)       | Yes  | Contact information.                        |
+| contact  | [Contact](#contact)       | Yes  | Contact information. Contact ID, which is mandatory.                        |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
@@ -439,7 +439,7 @@ Updates a contact based on the specified contact information. This API uses an a
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| contact  | [Contact](#contact)                     | Yes  | Contact information.                                                |
+| contact  | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.                                                |
 | attrs    | [ContactAttributes](#contactattributes) | Yes  | List of contact attributes.                                          |
 | callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result.                        |
 
@@ -489,7 +489,7 @@ Updates a contact based on the specified contact information. This API uses an a
 
 | Name  | Type                                   | Mandatory| Description                                |
 | -------- | --------------------------------------- | ---- | ------------------------------------ |
-| contact  | [Contact](#contact)                     | Yes  | Contact information.                        |
+| contact  | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.                        |
 | attrs    | [ContactAttributes](#contactattributes) | Yes  | List of contact attributes.                  |
 | callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result.|
 
@@ -528,7 +528,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 | Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| contact | [Contact](#contact)                     | Yes  | Contact information.                                                |
+| contact | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.                                                |
 | attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
 
 **Return Value**
@@ -582,7 +582,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 | Name | Type                                   | Mandatory| Description              |
 | ------- | --------------------------------------- | ---- | ------------------ |
-| contact | [Contact](#contact)                     | Yes  | Contact information.      |
+| contact | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.      |
 | attrs   | [ContactAttributes](#contactattributes) | No  | List of contact attributes.|
 
 **Return Value**
@@ -4155,7 +4155,7 @@ Defines a contact's organization.
 | Name |   Type  | Readable| Writable| Description      |
 | ----- | -------- | ---- | ---- | ---------- |
 | name  | string   | Yes  | Yes  | Organization name.|
-| title | string   | Yes  | Yes  | Organization title.|
+| title | string   | Yes  | Yes  | Job title.|
 
 
 **Example**
@@ -4449,4 +4449,3 @@ let website: contact.Website = {
 let website = new contact.Website();
 website.website = "website";
 ```
-<!--no_check-->

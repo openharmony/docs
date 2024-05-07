@@ -1,6 +1,6 @@
 # Context
 
-Context模块提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
+Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
 
 > **说明：**
 >
@@ -14,6 +14,8 @@ import common from '@ohos.app.ability.common';
 ```
 
 ## 属性
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -29,6 +31,7 @@ import common from '@ohos.app.ability.common';
 | preferencesDir      | string | 否    | 是    | preferences目录。                                                   |
 | bundleCodeDir       | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。 |
 | distributedFilesDir | string | 是    | 是    | 分布式文件目录。                                                         |
+| cloudFileDir<sup>12+</sup>        | string | 是    | 是    | 云文件目录。                                                        |
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。                                           |
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。                                                          |
 
@@ -37,6 +40,8 @@ import common from '@ohos.app.ability.common';
 createModuleContext(moduleName: string): Context
 
 根据模块名创建上下文。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -71,13 +76,15 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-> 说明：仅支持获取本应用中其他Module的Context和[应用内HSP](../../../application-dev/quick-start/in-app-hsp.md)的Context，不支持获取其他应用的Context。
+> 说明：仅支持获取本应用中其他Module的Context和应用内HSP的Context，不支持获取其他应用的Context。
 
 ## Context.getApplicationContext
 
 getApplicationContext(): ApplicationContext
 
 获取本应用的应用上下文。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -111,6 +118,8 @@ export default class EntryAbility extends UIAbility {
 getGroupDir(dataGroupID: string): Promise\<string>
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -162,6 +171,8 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -197,47 +208,6 @@ export default class EntryAbility extends UIAbility {
         console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
       }
     });
-  }
-}
-```
-
-## Context.createSystemHspModuleResourceManager<sup>12+</sup>
-
-createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
-
-创建系统级Hsp的某个模块的资源管理对象。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名       | 类型     | 必填   | 说明   |
-| -------- |--------| ---- |------|
-| bundleName | string | 是    | 包名。  |
-| moduleName | string | 是    | 模块名。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-|  | -------- |
-| 401 | 参数错误. |
-| 16400001 | 传入的包名和模块名不是系统级HSP. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-
-export default class EntryAbility extends UIAbility {
-  onCreate() {
-    console.log('MyAbility onCreate');
-    let hspContext: common.Context = this.context;
-    let resourceManager = hspContext.createSystemHspModuleResourceManager("com.example.myapplication", "library");
   }
 }
 ```

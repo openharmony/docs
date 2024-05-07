@@ -5,6 +5,13 @@ If you opt to embed a **\<Web>** component in a scrollable container (such as **
 
 **nestedScroll** is a [NestedScrollOptions](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrolloptions11) object that has two attributes: **scrollForward** and **scrollBackward**, both of which are [NestedScrollMode](../reference/apis-arkweb/ts-basic-components-web.md#nestedscrollmode11) enum values.
 
+When a **\<Web>** component is nested in multiple scrollable containers, the offset and speed values that are not consumed by the **\<Web>** component are passed to the parent container that is closest to the **\<Web>** component in the same direction so that the parent container can continue to scroll. A swipe gesture can initiate scrolling along either the x-axis or y-axis. If the finger moves between the x-axis and y-axis, the scrolling occurs along the axis where the offset or speed has a larger absolute value. If the absolute values of the offset or speed on the x-axis and y-axis are the same, the scrolling occurs in the direction of the scrollable component closest to the **\<Web>** component.
+
+> **NOTE**
+>
+> - Containers that support nested scrolling: **\<Grid>**, **\<List>**, **\<Scroll>**, **\<Swiper>**, **\<Tabs>**, and **\<WaterFlow>**.
+> - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
+
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';

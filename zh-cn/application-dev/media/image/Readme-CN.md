@@ -12,3 +12,4 @@
 - [图片编码(ArkTS)](image-encoding.md)
 - [图片编码(C/C++)](image-encoding-native.md)
 - [图片工具](image-tool.md)
+- [ImageEffect开发指导 (C/C++)](image-effect-guidelines.md)

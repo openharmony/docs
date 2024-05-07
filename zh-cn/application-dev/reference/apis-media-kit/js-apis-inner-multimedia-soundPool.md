@@ -25,11 +25,11 @@ import audio from '@ohos.multimedia.audio';
 
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。                   |
-| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8)。 |
-| leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。                                    |
-| rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。 |
-| priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。      |
+| loop | number   | 否  | 设置循环参数，0为循环一次，-1表示一直循环。默认值：0。                   |
+| rate | number    | 否  | 设置音频播放的倍速，具体倍速范围参照[AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8)。默认值：0。 |
+| leftVolume  | number | 否  | 设置左声道音量，设置范围（0.0~1.0）。默认值：1.0。                                    |
+| rightVolume | number  | 否  | 设置右声道音量。（当前不支持左右分别设置，将以左声道音量为准）。默认值：1.0。 |
+| priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级。默认值：0。      |
 
 ## SoundPool
 
@@ -332,7 +332,7 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -397,7 +397,7 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -461,7 +461,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -525,7 +525,7 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -587,7 +587,7 @@ stop(streamID: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -642,7 +642,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -706,7 +706,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -763,7 +763,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -827,7 +827,7 @@ setPriority(streamID: number, priority: number): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -888,7 +888,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -955,7 +955,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
@@ -1013,7 +1013,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by callback. |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
@@ -1078,7 +1078,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 
 | 错误码ID | 错误信息                                |
 | -------- | --------------------------------------- |
-| 401  | The parameter check failed. |
+| 401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.  Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 

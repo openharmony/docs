@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-UIAbility is an application component that has the UI. The **UIAbility** module, inherited from [Ability](js-apis-app-ability-ability.md), provides lifecycle callbacks such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
+UIAbility is an application component that has the UI. The UIAbility module, inherited from [Ability](js-apis-app-ability-ability.md), provides lifecycle callbacks such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
 
 - [Caller](#caller): an object returned by [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall). The CallerAbility (caller) uses this object to communicate with the CalleeAbility (callee).
 - [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
@@ -23,9 +23,9 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.|
-| launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.|
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters used when the UIAbility was started last time.|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | No| Yes| Context of the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| launchWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters for starting the UIAbility.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | No| Yes| Parameters carried in the last request.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | callee | [Callee](#callee) | No| Yes| Object that invokes the stub service.|
 
 ## UIAbility.onCreate
@@ -34,13 +34,15 @@ onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 Called to initialize the service logic when a UIAbility instance in the completely closed state is created. In other words, a UIAbility instance enters this lifecycle callback from a [cold start](../../application-models/uiability-intra-device-interaction.md#cold-starting-uiability). This API returns the result synchronously and does not support asynchronous callback.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information related to this UIAbility, including the ability name and bundle name.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information, including the ability name and bundle name.|
 | launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | Yes| Parameters for starting the UIAbility, and the reason for the last abnormal exit.|
 
 **Example**
@@ -63,6 +65,8 @@ Called to initialize the service logic when a UIAbility instance in the complete
 onWindowStageCreate(windowStage: window.WindowStage): void
 
 Called when a **WindowStage** is created for this UIAbility.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -92,6 +96,8 @@ onWindowStageDestroy(): void
 
 Called when the **WindowStage** is destroyed for this UIAbility.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
@@ -112,6 +118,8 @@ Called when the **WindowStage** is destroyed for this UIAbility.
 onWindowStageRestore(windowStage: window.WindowStage): void
 
 Called when the **WindowStage** is restored during the migration of this UIAbility, which is a multi-instance ability.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -139,7 +147,9 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 
 onDestroy(): void | Promise&lt;void&gt;
 
-Called when this UIAbility is destroyed to clear resources. This API returns the result synchronously or uses a promise to return the result.
+Called to clear resources when this UIAbility is destroyed. This API returns the result synchronously or uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -181,6 +191,8 @@ onForeground(): void
 
 Called when this UIAbility is switched from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
@@ -202,6 +214,8 @@ onBackground(): void
 
 Called when this UIAbility is switched from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
@@ -219,9 +233,15 @@ Called when this UIAbility is switched from the foreground to the background. Th
 
 ## UIAbility.onContinue
 
-onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult
+onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult | Promise&lt;AbilityConstant.OnContinueResult&gt;
 
 Called to save data during the UIAbility migration preparation process.
+
+**NOTE**
+> 
+> Since API version 12, **UIAbility.onContinue** supports the return value in the form of Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)\>.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -235,7 +255,7 @@ Called to save data during the UIAbility migration preparation process.
 
 | Type| Description|
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | Continuation result.|
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&gt;  | Continuation result or Promise used to return the continuation result.|
 
 **Example**
 
@@ -252,12 +272,38 @@ Called to save data during the UIAbility migration preparation process.
   }
   ```
 
+An asynchronous API can be used to save data during ability continuation.
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+  class MyUIAbility extends UIAbility {
+    async setWant(wantParams: Record<string, Object>) {
+      console.log('setWant start');
+      for (let time = 0; time < 1000; ++time) {
+        wantParams[time] = time;
+      }
+      console.log('setWant end');
+    }
+
+    async onContinue(wantParams: Record<string, Object>) {
+        console.log('onContinue');
+        return this.setWant(wantParams).then(()=>{
+          return AbilityConstant.OnContinueResult.AGREE;
+        });
+    }
+  }
+  ```
+
 
 ## UIAbility.onNewWant
 
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 Called when a UIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background. In other words, a UIAbility instance enters this lifecycle callback from a [hot start](../../application-models/uiability-intra-device-interaction.md#hot-starting-uiability).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -288,6 +334,8 @@ Called when a UIAbility instance that has undergone the following states is star
 onDump(params: Array\<string>): Array\<string>
 
 Called to dump the client information. This API can be used to dump non-sensitive information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -322,6 +370,8 @@ Called to dump the client information. This API can be used to dump non-sensitiv
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
 Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -359,6 +409,8 @@ onShare(wantParam: Record&lt;string, Object&gt;): void
 
 Called by this UIAbility to set data to share in the cross-device sharing scenario.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -388,6 +440,8 @@ onPrepareToTerminate(): boolean
 Called when this UIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the UIAbility. If a confirmation from the user is required, you can define a pre-termination operation in the callback and use it together with [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), for example, displaying a dialog box to ask the user whether to terminate the UIAbility. The UIAbility termination process is canceled when **persist.sys.prepare_terminate** is set to **true**.
 
 **Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -435,7 +489,12 @@ Called when this UIAbility is about to terminate in case that the system paramet
 
 onBackPressed(): boolean
 
-Called when an operation of going back to a previous page is triggered on this UIAbility. The return value determines whether to destroy the UIAbility instance. By default, the UIAbility instance is destroyed. This API returns the result synchronously and does not support asynchronous callback.
+Called when an operation of going back to the previous page is triggered on this UIAbility. The return value determines whether to destroy the UIAbility instance.
+
+- When the target SDK version is earlier than 12, the default return value is **false**, indicating that the UIAbility will be destroyed.
+- When the target SDK version is 12 or later, the default return value is **true**, indicating that the UIAbility will be moved to the background and will not be destroyed.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -459,13 +518,13 @@ Called when an operation of going back to a previous page is triggered on this U
 
 ## Caller
 
-Implements sending of sequenceable data to the target ability when the CallerAbility invokes the target ability (CalleeAbility).
+Implements sending of parcelable data to the target UIAbility when the CallerAbility invokes the target UIAbility (CalleeAbility).
 
 ### Caller.call
 
 call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
-Sends sequenceable data to the target ability. This API uses a promise to return the result.
+Sends parcelable data to the target UIAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -473,7 +532,7 @@ Sends sequenceable data to the target ability. This API uses a promise to return
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
+| method | string | Yes| Notification message string negotiated between the two UIAbilities. The message is used to instruct the callee to register a function to receive the parcelable data.|
 | data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
@@ -552,7 +611,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
-Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability. This API uses a promise to return the result.
+Sends parcelable data to the target UIAbility and obtains the parcelable data returned by the target UIAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -560,14 +619,14 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities. The message is used to instruct the callee to register a function to receive the sequenceable data.|
+| method | string | Yes| Notification message string negotiated between the two UIAbilities. The message is used to instruct the callee to register a function to receive the parcelable data.|
 | data | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | Yes| Parcelable data. You need to customize the data.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the sequenceable data from the target ability.|
+| Promise&lt;[rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)&gt; | Promise used to return the parcelable data from the target UIAbility.|
 
 **Error codes**
 
@@ -641,7 +700,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 release(): void
 
-Releases the caller interface of the target ability.
+Releases the caller interface of the target UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -687,7 +746,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
  onRelease(callback: OnReleaseCallback): void
 
-Called when the stub on the target ability is disconnected. This API uses an asynchronous callback to return the result.
+Called when the stub on the target UIAbility is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -740,7 +799,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
-Called when the remote ability state changes in the collaboration scenario. This API uses an asynchronous callback to return the result.
+Called when the remote UIAbility state changes in the collaboration scenario. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -794,7 +853,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 on(type: 'release', callback: OnReleaseCallback): void
 
-Called when the stub on the target ability is disconnected. This API uses an asynchronous callback to return the result.
+Called when the stub on the target UIAbility is disconnected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -848,7 +907,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 off(type: 'release', callback: OnReleaseCallback): void
 
-Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
+Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -896,7 +955,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 
 off(type: 'release'): void
 
-Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved.
+Deregisters a callback that is invoked when the stub on the target UIAbility is disconnected. This capability is reserved.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -947,7 +1006,7 @@ Implements callbacks for caller notification registration and deregistration.
 
 on(method: string, callback: CalleeCallback): void
 
-Registers a caller notification callback, which is invoked when the target ability registers a function.
+Registers a caller notification callback, which is invoked when the target UIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -955,7 +1014,7 @@ Registers a caller notification callback, which is invoked when the target abili
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| method | string | Yes| Notification message string negotiated between the two abilities.|
+| method | string | Yes| Notification message string negotiated between the two UIAbilities.|
 | callback | [CalleeCallback](#calleecallback) | Yes| JS notification synchronization callback of the [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) type. The callback must return at least one empty [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) object. Otherwise, the function execution fails.|
 
 **Error codes**
@@ -1019,7 +1078,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 
 off(method: string): void
 
-Deregisters a caller notification callback, which is invoked when the target ability registers a function.
+Deregisters a caller notification callback, which is invoked when the target UIAbility registers a function.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1071,13 +1130,13 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
-| msg | string | Yes| Message used for disconnection.|
+| msg | string | Yes| Message used for disconnection.| 
 
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 
-Defines the callback that is invoked when the remote ability state changes in the collaboration scenario.
+Defines the callback that is invoked when the remote UIAbility state changes in the collaboration scenario.
 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -1086,7 +1145,7 @@ Defines the callback that is invoked when the remote ability state changes in th
 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
-| msg | string | Yes| Message used for disconnection.|
+| msg | string | Yes| Message used for disconnection.| 
 
 
 ## CalleeCallback
@@ -1108,5 +1167,3 @@ Defines the callback of the registration message notification of the UIAbility.
 | Type  | Description                                 |
 | ------------ | ------------------------------------- |
 | [rpc.Parcelable](../apis-ipc-kit/js-apis-rpc.md#parcelable9) | Returned data object.|
-
- <!--no_check--> 

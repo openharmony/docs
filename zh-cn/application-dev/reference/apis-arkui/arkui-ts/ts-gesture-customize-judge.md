@@ -8,36 +8,45 @@
 
 
 ## onGestureJudgeBegin
-onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult)
+onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
 
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | (gestureInfo: [GestureInfo](#gestureinfo对象说明), event: [BaseGestureEvent](#basegestureevent对象说明)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | 是     |  给组件绑定自定义手势判定回调，当绑定到该组件的手势被接受时，会触发用户定义的回调来获取结果。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## GestureInfo对象说明
 
 | 名称            | 类型                        | 描述         |
 | ---------------  | -------------------------   | -----------|
-| tag              | string                      | 手势标记。  |
+| tag              | string                      | 手势标记。<br/>**说明：**<br/>如果未设置事件标识tag属性的情况下，此处tag不返回或者返回undefined。  |
 | type             | [GestureControl.GestureType](ts-appendix-enums.md#gesturetype11)  | 手势类型。 |
 | isSystemGesture  | boolean                     | 判断当前手势是否为系统手势。|
 
 ## BaseEvent对象说明
 | 名称    | 类型                                      | 描述         |
 | ---------| ----------------------------------------  | -----------|
-| target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。  |
-| timestamp| number | 事件时间戳。  |
-| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。  |
-| pressure | number | 按压的压力大小。  |
-| titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。  |
-| titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。  |
-| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明) | 事件输入源。  |
+| target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| timestamp| number | 事件时间戳。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| pressure | number | 按压的压力大小。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| axisHorizontal<sup>12+</sup> | number | 水平轴值。  |
+| axisVertical<sup>12+</sup> | number | 垂直轴值。  |
+
 ## BaseGestureEvent对象说明
 继承于[BaseEvent](#baseevent对象说明)。
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
-| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明) | 触发事件的所有手指信息。  |
+| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8) | 触发事件的所有手指信息。  |
 
 ## TapGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
@@ -91,7 +100,8 @@ struct Index {
   build() {
     Column() {
       Row({ space: 20 }) {
-        Text(this.message).width(100).height(40).backgroundColor(Color.Pink)
+        Text(this.message).width(200).height(80).backgroundColor(Color.Pink)
+          .fontSize(25)
       }.margin(20)
     }
     .width('100%')
@@ -104,6 +114,9 @@ struct Index {
     .gesture(
       TapGesture()
         .tag("tap1")// 设置点击手势标志
+        .onAction(() => {
+          this.message = 'tap1'
+        })
     )
     .gesture(
       LongPressGesture()
@@ -115,10 +128,16 @@ struct Index {
     .gesture(
       SwipeGesture()
         .tag("swipe1")// 设置滑动手势标志
+        .onAction(() => {
+          this.message = 'swipe1'
+        })
     )
     .gesture(
       PanGesture()
         .tag("pan1")// 设置拖动手势标志
+        .onActionStart(() => {
+          this.message = 'pan1'
+        })
     )
     .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
       // 若该手势类型为长按手势，转换为长按手势事件
@@ -149,6 +168,7 @@ struct Index {
   }
 }
 ```
+![gestures1](figures/gestures1.gif)
 ### 示例2
 ```ts
 // xxx.ets
@@ -172,6 +192,7 @@ struct Index {
           }.width('200vp').height('200vp')
           // Stack的下半区是绑定了拖动手势的图像区域。
           Image($r('sys.media.ohos_app_icon'))
+            .draggable(true)
             .onDragStart(()=>{
               promptAction.showToast({ message: "Drag 下半区蓝色区域，Image响应" })
             })
@@ -189,7 +210,7 @@ struct Index {
             }
             console.log("gestureInfo Type " + gestureInfo.type.toString() + " isSystemGesture " + gestureInfo.isSystemGesture);
             console.log("pressure " + event.pressure + " fingerList.length " + event.fingerList.length
-              + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " sourcePool " + event.sourceTool.toString());
+            + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " sourcePool " + event.sourceTool.toString());
             // 如果是长按类型手势，判断点击的位置是否在上半区
             if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
               if (event.fingerList.length > 0 && event.fingerList[0].localY < 100) {
@@ -214,3 +235,4 @@ struct Index {
   }
 }
 ```
+![gestures2](figures/gestures2.gif)

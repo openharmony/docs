@@ -3,17 +3,15 @@
 
 ## Overview
 
-The **OH_AudioInfo** struct defines audio capture parameters.
+The OH_AudioInfo struct describes the audio information.
+
+To perform both external capture (using microphones) and internal capture, **audioSampleRate** and **audioChannels** must be the same for both audio channels.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -23,9 +21,9 @@ The **OH_AudioInfo** struct defines audio capture parameters.
 
 | Name| Description| 
 | -------- | -------- |
-| [micCapInfo](#miccapinfo) | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md)<br>Defines the audio parameters of the microphone.| 
-| [innerCapInfo](#innercapinfo) | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md)<br>Defines the audio parameters for internal capture.| 
-| [audioEncInfo](#audioencinfo) | [OH_AudioEncInfo](_o_h___audio_enc_info.md)<br>Defines the audio encoding information. This member variable does not need to be set when **dataType** is set to **OH_ORIGINAL_STREAM**.<br>**NOTE**: This member variable is reserved and will be provided in later versions.| 
+| [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [micCapInfo](#miccapinfo) | External audio capture information.| 
+| [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [innerCapInfo](#innercapinfo) | Internal audio capture information.| 
+| [OH_AudioEncInfo](_o_h___audio_enc_info.md) [audioEncInfo](#audioencinfo) | Audio encoding information, which is not required for raw streams.| 
 
 
 ## Member Variable Description
@@ -39,11 +37,8 @@ OH_AudioEncInfo OH_AudioInfo::audioEncInfo
 
 **Description**
 
-Defines the audio encoding information. This member variable does not need to be set when **dataType** is set to **OH_ORIGINAL_STREAM**.
+Audio encoding information, which is not required for raw streams.
 
-> **NOTE**
-> 
-> This struct is reserved and will be provided in later versions.
 
 
 ### innerCapInfo
@@ -54,7 +49,7 @@ OH_AudioCaptureInfo OH_AudioInfo::innerCapInfo
 
 **Description**
 
-Defines the audio parameters for internal capture.
+Internal audio capture information.
 
 
 ### micCapInfo
@@ -65,4 +60,4 @@ OH_AudioCaptureInfo OH_AudioInfo::micCapInfo
 
 **Description**
 
-Defines the audio parameters of the microphone.
+External audio capture information.

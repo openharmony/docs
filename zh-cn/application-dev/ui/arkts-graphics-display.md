@@ -38,7 +38,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Image组件的src参数为网络图片的链接。
 
-  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount、setImageRawDataCacheSize、setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)。
+  Image组件首次加载网络图片时，需要请求网络资源，非首次加载时，默认从缓存中直接读取图片，更多图片缓存设置请参考[setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7)、[setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7)、[setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7)。
 
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址
@@ -85,7 +85,6 @@ Image支持加载存档图、多媒体像素图两种类型。
         @State imgDatas: string[] = [];
         // 获取照片url集
         getAllImg() {
-          let result = new Array<string>();
           try {
             let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
             PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -124,8 +123,8 @@ Image支持加载存档图、多媒体像素图两种类型。
         }
       }
       ```
-
-  2. 从媒体库获取的url格式通常如下。
+      
+2. 从媒体库获取的url格式通常如下。
       ```ts
       Image('file://media/Photos/5')
       .width(200)

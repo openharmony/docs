@@ -45,6 +45,15 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<BundleInstaller> | 是   | 回调函数，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission denied, non-system app called system api.              |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types.   |
+
 **示例：**
 
 ```ts
@@ -80,6 +89,14 @@ getBundleInstaller(): Promise\<BundleInstaller>
 | ------------------------------------------------------------ | ------------------------------------ |
 | Promise\<BundleInstaller> | Promise对象，返回BundleInstaller对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission denied, non-system app called system api.              |
+
 **示例：**
 
 ```ts
@@ -112,6 +129,14 @@ getBundleInstallerSync(): BundleInstaller
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
 | BundleInstaller | 返回BundleInstaller对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission denied, non-system app called system api.              |
 
 **示例：**
 
@@ -162,6 +187,9 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission denied, non-system app called system api.              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000.   |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -246,6 +274,9 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission denied, non-system app called system api.              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
 | 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
@@ -332,6 +363,9 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission denied, non-system app called system api.              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000.   |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -409,6 +443,9 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
@@ -471,6 +508,9 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
@@ -532,6 +572,9 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
@@ -593,6 +636,9 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 
@@ -653,6 +699,9 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 
 **示例：**
@@ -712,6 +761,9 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 
@@ -769,6 +821,9 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : voi
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700037 | The version of shared bundle is dependent on other applications. |
 | 17700038 | The specified shared bundle does not exist.                  |
@@ -831,6 +886,9 @@ uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700037 | The version of shared bundle is dependent on other applications. |
 | 17700038 | The specified shared bundle does not exist.                  |
@@ -853,6 +911,130 @@ try {
             } else {
                 console.info('uninstall successfully.');
             }
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.addExtResource<sup>12+</sup>
+
+addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
+
+根据给定的bundleName和hsp文件路径添加扩展资源，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 要添加扩展资源的应用名称。 |
+| filePaths | Array\<string> | 是   | 要添加扩展资源的资源路径。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700301 | AddExtResource failed due to parse file failed.                  |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
+
+let bundleName : string = 'com.ohos.demo';
+let filePaths : Array<string> = ['/data/storage/el2/base/a.hsp'];
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.addExtResource(bundleName, filePaths).then((data) => {
+            hilog.info(0x0000, 'testTag', 'addExtResource successfully');
+        }).catch((err: BusinessError) => {
+            hilog.error(0x0000, 'testTag', 'addExtResource failed. Cause: %{public}s', err.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.removeExtResource<sup>12+</sup>
+
+removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<void>;
+
+根据给定的bundleName和moduleNames删除扩展资源，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE or ohos.permission.UNINSTALL_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名         | 类型                                | 必填 | 说明                         |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | 是   | 要删除扩展资源的应用名称。 |
+| moduleNames | Array\<string> | 是   | 要删除扩展资源的moduleNames。 |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700302 | RemoveExtResource failed due to module does not exist.                  |
+
+**示例：**
+
+```ts
+import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
+import { BusinessError } from '@ohos.base';
+
+let bundleName : string = 'com.ohos.demo';
+let moduleNames : Array<string> = ['moduleTest'];
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.removeExtResource(bundleName, moduleNames).then((data) => {
+            hilog.info(0x0000, 'testTag', 'removeExtResource successfully');
+        }).catch((err: BusinessError) => {
+            hilog.error(0x0000, 'testTag', 'removeExtResource failed. Cause: %{public}s', err.message);
         });
     }).catch((error: BusinessError) => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);
@@ -889,6 +1071,9 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000. |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -964,6 +1149,9 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
 | 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
@@ -1039,6 +1227,9 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000. |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -1078,6 +1269,72 @@ try {
                 console.info('updateBundleForSelf successfully: ' + JSON.stringify(data));
         }).catch((error: BusinessError) => {
             console.error('updateBundleForSelf failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.uninstallUpdates<sup>12+</sup>
+
+uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void\>;
+
+以异步方法对预置应用进行卸载更新，恢复到初次安装时的状态，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.RECOVER_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                         |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | 是   | 待卸载更新应用的包名。                                                  |
+| installParam | [InstallParam](#installparam) | 否   | 指定卸载更新所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。其中userId无法指定，调用本接口将对所有已安装相应应用的用户进行卸载更新操作。 |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundle name is not found. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let installParam: installer.InstallParam = {
+    isKeepData: true,
+    installFlag: 1,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstallUpdates(bundleName, installParam)
+            .then(() => {
+                console.info('uninstallUpdates successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('uninstallUpdates failed:' + error.message);
         });
     }).catch((error: BusinessError) => {
         console.error('getBundleInstaller failed. Cause: ' + error.message);

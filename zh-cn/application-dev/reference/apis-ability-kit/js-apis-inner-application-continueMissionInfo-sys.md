@@ -1,6 +1,6 @@
 # ContinueMissionInfo (系统接口)
 
-表示发起按照包名迁移时所需参数的枚举，迁移Mission详见：[continueMission接口](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission10)。
+表示发起按照包名迁移时所需参数的枚举，迁移Mission详见：[continueMission接口](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission10)。
 
 > **说明：**
 >
@@ -13,9 +13,10 @@
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称       | 类型   | 可读   | 可写   | 说明      |
+| 名称       | 类型   | 只读   | 必填   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| srcDeviceId | string | 是    | 是    | 表示任务迁移源设备ID。 |
-| dstDeviceId | string | 是    | 是    | 表示任务迁移目标设备ID。 |
-| bundleName | string | 是    | 是    | 表示任务所属应用包名。 |
-| wantParam | Record<string, Object> | 是    | 是    | 表示扩展参数。 |
+| srcDeviceId | string | 否    | 是    | 表示任务迁移源设备ID。 |
+| dstDeviceId | string | 否    | 是    | 表示任务迁移目标设备ID。 |
+| bundleName | string | 否    | 是    | 表示任务所属应用包名。 |
+| wantParam | Record<string, Object> | 否    | 是    | 表示扩展参数。 |
+| continueType<sup>12+</sup> | string | 否    | 否    | 表示任务所属应用迁移类型。 |

@@ -18,6 +18,8 @@ import contextConstant from '@ohos.app.ability.contextConstant';
 
 Enumerates the data encryption levels.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name | Value| Description                                                                                                                  |
@@ -26,3 +28,76 @@ Enumerates the data encryption levels.
 | EL2 | 1 | User-level encryption. Directories with this encryption level are accessible only after the device is powered on and the password is entered (for the first time).                                                                                       |
 | EL3<sup>11+<sup> | 2 | User-level encryption. The file permissions vary according to their scenarios.<br>- An open file is always readable and writable regardless of whether the screen is locked.<br>- When the screen is locked, a closed file cannot be opened, read, or written. When the screen is unlocked, such a file can be opened, read, and written.<br>- When the screen is locked, a file can be created and then opened and written but not read. When the screen is unlocked, a file can be created and then opened, read, and written.|
 | EL4<sup>11+<sup> | 3 | User-level encryption. The file permissions vary according to their scenarios.<br>- When the screen is locked, an open file is readable and writable in FEB2.0, but not in FEB3.0. When the screen is unlocked, such a file is always readable and writable.<br>- When the screen is locked, a closed file cannot be opened, read, or written. When the screen is unlocked, such a file can be opened, read, and written.<br>- When the screen is locked, a file cannot be created. When the screen is unlocked, a file can be created and then opened, read, and written.       |
+
+
+## ContextConstant.ProcessMode<sup>12+</sup>
+
+Enumerates the process modes. It takes effect only on tablets.
+
+As an attribute of [StartOptions](js-apis-app-ability-startOptions.md), **ProcessMode** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and is used to specify the process mode of the target ability.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name | Value| Description                                                                                                                  |
+|-----| -------- |----------------------------------------------------------------------------------------------------------------------|
+| NEW_PROCESS_ATTACH_TO_PARENT | 1 | A new process is created, the ability is started on the process, and the process exits with the parent process.<br>**Constraints**:<br>In this mode, the target ability and caller must be in the same application.                    |
+| NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM | 2 | A new process is created, and the ability is started on the process.<br>**Constraints**:<br>In this mode, the target ability and caller must be in the same application, and the application must have an icon in the status bar.                 |
+
+**Example**
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import contextConstant from '@ohos.app.ability.contextConstant';
+  import { BusinessError } from '@ohos.base';
+
+  export default class EntryAbility extends UIAbility {
+
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'MainAbility2'
+      };
+      let options: StartOptions = {
+        processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM,
+        startupVisibility: contextConstant.StartupVisibility.STARTUP_HIDE
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // Process service logic errors.
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // Carry out normal service processing.
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // Process input parameter errors.
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
+  }
+  ```
+
+## ContextConstant.StartupVisibility<sup>12+</sup>
+
+Enumerates the visibility statuses of the ability after it is started in a new process. It takes effect only on tablets.
+
+As an attribute of [StartOptions](js-apis-app-ability-startOptions.md), **StartupVisibility** takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1) and specifies the visibility of the target ability after it is started in a new process.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name | Value| Description                                                                                                                  |
+|-----| -------- |----------------------------------------------------------------------------------------------------------------------|
+| STARTUP_HIDE | 0 | The target ability is hidden after it is started in the new process. The **onForeground** lifecycle of the ability is not invoked.       |
+| STARTUP_SHOW | 1 | The target ability is displayed normally after it is started in the new process.    |
+
+**Example**
+
+  See [ContextConstant.ProcessMode](#contextconstantprocessmode12).

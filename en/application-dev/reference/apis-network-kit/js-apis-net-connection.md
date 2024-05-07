@@ -80,8 +80,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data " + JSON.stringify(data));
 });
 ```
 
@@ -115,7 +118,7 @@ Obtains the default active data network. This API uses a promise to return the r
 ```ts
 import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -344,8 +347,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
-  console.info(JSON.stringify(error));
-  console.info(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get default http proxy. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.log("Succeeded to get data" + JSON.stringify(data));
 });
 ```
 
@@ -414,8 +420,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get app net. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -519,8 +528,11 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get default net. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -604,8 +616,11 @@ import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
 connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get all nets. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 }); 
 ```
 
@@ -640,7 +655,7 @@ Obtains the list of all connected networks. This API uses a promise to return th
 import connection from '@ohos.net.connection';
 
 connection.getAllNets().then((data: connection.NetHandle[]) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -712,8 +727,11 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get connection properties. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -757,7 +775,7 @@ import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -838,8 +856,11 @@ import { BusinessError } from '@ohos.base';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get net capabilities. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -883,7 +904,7 @@ import connection from '@ohos.net.connection';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   })
 });
 ```
@@ -1048,7 +1069,7 @@ Checks whether the default data network is activated. This API uses an asynchron
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** indicates the default data network is activated.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** indicates that the default data network is activated.|
 
 **Error codes**
 
@@ -1119,7 +1140,7 @@ Checks whether the default data network is activated. This API returns the resul
 
 | Type             | Description                                           |
 | ----------------- | ----------------------------------------------- |
-| boolean | The value **true** indicates the default data network is activated.|
+| boolean | The value **true** indicates that the default data network is activated.|
 
 **Error codes**
 
@@ -1334,8 +1355,11 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 import connection from '@ohos.net.connection';
 import { BusinessError } from "@ohos.base";
 connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get addresses. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -1376,7 +1400,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 ```ts
 import connection from '@ohos.net.connection';
 connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 ```
 
@@ -1414,8 +1438,11 @@ Adds the mapping between a custom host and the corresponding IP address for the 
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to get add custom dns rule. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1457,10 +1484,10 @@ Adds the mapping between a custom host and the corresponding IP address for the 
 ```ts
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
-connection.addCustomDNSRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
-    console.log("success");
+connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
+    console.info("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1497,8 +1524,11 @@ Removes the custom DNS rules of the specified host from the current application.
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to remove custom dns rule. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1578,8 +1608,11 @@ Removes all custom DNS rules from the current application. This API uses an asyn
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 connection.clearCustomDnsRules((error: BusinessError, data: void) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  if (error) {
+    console.error(`Failed to clear custom dns rules. Code:${error.code}, message:${error.message}`);
+    return;
+  }
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 })
 ```
 
@@ -1737,7 +1770,7 @@ netCon.register((error: BusinessError) => {
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
 netCon.on('netAvailable', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // Call unregister to unregister the listener.
@@ -1778,12 +1811,8 @@ netCon.register((error: BusinessError) => {
 });
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-class Value {
-    netHandle: NetHandle = connection.NetHandle
-    blocked: boolean = false
-}
-netCon.on('netBlockStatusChange', (data: Value) => {
-  console.log(JSON.stringify(data));
+netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // Call unregister to unregister the listener.
@@ -1825,7 +1854,7 @@ netCon.register((error: BusinessError) => {
 
 // Subscribe to netCapabilitiesChange events. Event notifications can be received only after register is called.
 netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // Call unregister to unregister the listener.
@@ -1865,14 +1894,9 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-class Value {
-    netHandle: NetHandle = connection.NetHandle
-    connectionProperties: ConnectionProperties = connection.ConnectionProperties
-}
-
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netConnectionPropertiesChange', (data: Value) => {
-  console.log(JSON.stringify(data));
+netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionPropertyInfo) => {
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // Call unregister to unregister the listener.
@@ -1914,7 +1938,7 @@ netCon.register((error: BusinessError) => {
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
 netCon.on('netLost', (data: connection.NetHandle) => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
 // Call unregister to unregister the listener.
@@ -1956,7 +1980,7 @@ netCon.register((error: BusinessError) => {
 
 // Subscribe to netUnavailable events. Event notifications can be received only after register is called.
 netCon.on('netUnavailable', () => {
-  console.log(JSON.stringify(data));
+  console.info("Succeeded to get unavailable net event");
 });
 
 // Call unregister to unregister the listener.
@@ -2029,9 +2053,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2043,17 +2067,17 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
       if (error) {
-        console.log('bind fail');
+        console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
         return;
       }
       udp.on('message', (data: Data) => {
-        console.log(JSON.stringify(data));
+        console.info("Succeeded to get data: " + JSON.stringify(data));
       });
       netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2115,9 +2139,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
         if (error) {
-          console.log(JSON.stringify(error));
+          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
         } else {
-          console.log(JSON.stringify(data));
+          console.info(JSON.stringify(data));
         }
       });
     });
@@ -2129,17 +2153,17 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: BusinessError) => {
     if (error) {
-      console.log('bind fail');
+      console.error(`Failed to bind. Code:${error.code}, message:${error.message}`);
       return;
     }
     udp.on('message', (data: Data) => {
-      console.log(JSON.stringify(data));
+      console.info("Succeeded to get data: " + JSON.stringify(data));
     });
     netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
       if (error) {
-        console.log(JSON.stringify(error));
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);;
       } else {
-        console.log(JSON.stringify(data));
+        console.info(JSON.stringify(data));
       }
     });
   });
@@ -2183,8 +2207,11 @@ import { BusinessError } from "@ohos.base";
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host, (error: BusinessError, data: connection.NetAddress[]) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get addresses. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2229,7 +2256,7 @@ import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressesByName(host).then((data: connection.NetAddress[]) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2270,8 +2297,11 @@ import { BusinessError } from "@ohos.base";
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host, (error: BusinessError, data: connection.NetAddress) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+    if (error) {
+      console.error(`Failed to get address. Code:${error.code}, message:${error.message}`);
+      return;
+    }
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2316,7 +2346,7 @@ import connection from '@ohos.net.connection';
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
   netHandle.getAddressByName(host).then((data: connection.NetAddress) => {
-    console.log(JSON.stringify(data));
+    console.info("Succeeded to get data: " + JSON.stringify(data));
   });
 });
 ```
@@ -2334,6 +2364,7 @@ Defines the network capability.
 | NET_CAPABILITY_INTERNET  | 12   | The network has the Internet access capability, which is set by the network provider.|
 | NET_CAPABILITY_NOT_VPN | 15 | The network does not use a virtual private network (VPN).|
 | NET_CAPABILITY_VALIDATED | 16   | The Internet access capability of the network is successfully verified by the connection management module.|
+| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | The network is found to have a captive portal and user login authentication is required. This capability is set by the connection management module.|
 
 ## NetBearType
 
@@ -2341,11 +2372,12 @@ Enumerates network types.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name        | Value  | Description       |
-| --------------- | ---- | ----------- |
-| BEARER_CELLULAR | 0    | Cellular network. |
-| BEARER_WIFI     | 1    | Wi-Fi network.|
-| BEARER_ETHERNET | 3 | Ethernet network.|
+|            Name        | Value  | Description       |
+| ----------------------- | ---- | ---------- |
+| BEARER_CELLULAR         | 0    | Cellular network. |
+| BEARER_WIFI             | 1    | Wi-Fi network.|
+| BEARER_ETHERNET         | 3    | Ethernet network.|
+| BEARER_VPN<sup>12+</sup>| 4    | VPN.  |
 
 ## HttpProxy<sup>10+</sup>
 
@@ -2355,9 +2387,9 @@ Represents the HTTP proxy configuration.
 
 | Name   | Type  | Mandatory| Description                     |
 | ------ | ------ | --- |------------------------- |
-| host  | string | No |  Host name of the proxy server.|
-| port  | number | No |  Host port.|
-| exclusionList  | Array<string> | No | List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.|
+| host  | string | Yes |  Host name of the proxy server.|
+| port  | number | Yes |  Host port.|
+| exclusionList  | Array<string> | Yes | List of the names of hosts that do not use a proxy. Host names can be domain names, IP addresses, or wildcards. The detailed matching rules are as follows:<br>- Domain name matching:<br>  - Exact match: The host name of the proxy server exactly matches any host name in the list.<br>  - Partial match: The host name of the proxy server contains any host name in the list.<br>For example, if **ample.com** is set in the host name list, **ample.com**, **www.ample.com**, and **ample.com:80** are matched, and **www.example.com** and **ample.com.org** are not matched.<br>- IP address matching: The host name of the proxy server exactly matches any IP address in the list.<br>- Both the domain name and IP address are added to the list for matching.<br>- A single asterisk (*) is the only valid wildcard. If the list contains only wildcards, the wildcards match all host names; that is, the HTTP proxy is disabled. A wildcard can only be added independently. It cannot be added to the list together with other domain names or IP addresses. Otherwise, the wildcard does not take effect.<br>- Host names are case insensitive.<br>- Protocol prefixes such as **http** and **https** are ignored during matching.|
 | username<sup>12+</sup>  | string | No|  Name of the user who uses the proxy.|
 | password<sup>12+</sup>  | string | No|  Password of the user who uses the proxy.|
 
@@ -2391,8 +2423,8 @@ Defines the network capability set.
 
 | Name                 | Type                               | Mandatory| Description                    |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| linkUpBandwidthKbps   | number                             |  No|  Uplink (device-to-network) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated. |
-| linkDownBandwidthKbps | number                             |  No|  Downlink (network-to-device) bandwidth. The value **0** indicates that the current network bandwidth cannot be evaluated.  |
+| linkUpBandwidthKbps   | number                             |  No|  Uplink (device-to-network) bandwidth, in kbit/s. The value **0** indicates that the network bandwidth cannot be evaluated.|
+| linkDownBandwidthKbps | number                             |  No|  Downlink (network-to-device) bandwidth, in kbit/s. The value **0** indicates that the network bandwidth cannot be evaluated.|
 | networkCap            | Array\<[NetCap](#netcap)>           |  No|  Network capability.          |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  Yes|  Network type. The array contains only one specific network type.     |
 

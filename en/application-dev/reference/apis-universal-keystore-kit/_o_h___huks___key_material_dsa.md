@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the structure of a DSA key.
+Defines the struct of a DSA key.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -18,85 +15,80 @@ Defines the structure of a DSA key.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [keyAlg](#keyalg) |Algorithm of the key.  | 
-| [keySize](#keysize) | Length of the key.  | 
-| [xSize](#xsize) | Length of the x value.  | 
-| [ySize](#ysize) | Length of the y value.  | 
-| [pSize](#psize) | Length of the p value.  | 
-| [qSize](#qsize) | Length of the q value.  | 
-| [gSize](#gsize) | Length of the g value.  | 
+| enum [OH_Huks_KeyAlg](_huks_type_api.md#oh_huks_keyalg) [keyAlg](#keyalg) | Algorithm of the key. |
+| uint32_t [keySize](#keysize) | Length of the key. |
+| uint32_t [xSize](#xsize) | Length of **x**. |
+| uint32_t [ySize](#ysize) | Length of **y**. |
+| uint32_t [pSize](#psize) | Length of **p**. |
+| uint32_t [qSize](#qsize) | Length of **q**. |
+| uint32_t [gSize](#gsize) | Length of **g**. |
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### gSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialDsa::gSize
 ```
-**Description**<br>
-Length of the g value.
+**Description**
+
+Length of **g**.
 
 
 ### keyAlg
 
-  
 ```
 enum OH_Huks_KeyAlg OH_Huks_KeyMaterialDsa::keyAlg
 ```
-**Description**<br>
+**Description**
+
 Algorithm of the key.
 
 
 ### keySize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialDsa::keySize
 ```
-**Description**<br>
+**Description**
 Length of the key.
 
 
 ### pSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialDsa::pSize
 ```
-**Description**<br>
-Length of the p value.
+**Description**
+Length of **p**.
 
 
 ### qSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialDsa::qSize
 ```
-**Description**<br>
-Length of the q value.
+**Description**
+Length of **q**.
 
 
 ### xSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialDsa::xSize
 ```
-**Description**<br>
-Length of the x value.
+**Description**
+Length of **x**.
 
 
 ### ySize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialDsa::ySize
 ```
-**Description**<br>
-Length of the y value.
+**Description**
+Length of **y**.

@@ -7,36 +7,36 @@ For details about the algorithm specifications, see [RSA](crypto-sign-sig-verify
 **Signing**
 
 
-1. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) and [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis/js-apis-cryptoFramework.md#generatekeypair-3) to generate an RSA asymmetric key pair (**KeyPair**) based on the specified key parameters.
+1. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) and [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an RSA asymmetric key pair (**KeyPair**) based on the specified key parameters.
    In addition to the example in this topic, [RSA](crypto-asym-key-generation-conversion-spec.md#rsa) and [Generating an Asymmetric Key Pair Based on Key Parameters](crypto-generate-asym-key-pair-from-key-spec.md) may help you better understand how to generate an RSA asymmetric key pair. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createSign](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatesign) with the string parameter **'RSA|PSS|SHA256|MGF1_SHA256'** to create a **Sign** instance. As indicated by the string parameter, the key type is RSA without length, the padding mode is **PSS**, the MD algorithm is **SHA256**, and the mask algorithm is **MGF1_SHA256**.
+2. Use [cryptoFramework.createSign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesign) with the string parameter **'RSA|PSS|SHA256|MGF1_SHA256'** to create a **Sign** instance. As indicated by the string parameter, the key type is RSA without length, the padding mode is **PSS**, the MD algorithm is **SHA256**, and the mask algorithm is **MGF1_SHA256**.
 
-3. Use [Sign.init](../../reference/apis/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
+3. Use [Sign.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-3) to initialize the **Sign** instance with the private key (**PriKey**).
 
-4. Use [Sign.setSignSpec](../../reference/apis/js-apis-cryptoFramework.md#setsignspec10) to set parameters for signing. In this example, the salt length (**SignSpecItem.PSS_SALT_LEN_NUM**) is set to 32 bytes. The data will be verified in signature verification.
+4. Use [Sign.setSignSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setsignspec10) to set parameters for signing. In this example, the salt length (**SignSpecItem.PSS_SALT_LEN_NUM**) is set to 32 bytes. The data will be verified in signature verification.
 
-5. Use [Sign.getSignSpec](../../reference/apis/js-apis-cryptoFramework.md#getsignspec10) to obtain other parameters for signing.
+5. Use [Sign.getSignSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getsignspec10) to obtain other parameters for signing.
 
-6. Use [Sign.update](../../reference/apis/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.
+6. Use [Sign.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-3) to pass in the data to be signed.
    Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
 
-7. Use [Sign.sign](../../reference/apis/js-apis-cryptoFramework.md#sign-2) to generate a signature.
+7. Use [Sign.sign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#sign-2) to generate a signature.
 
 
 **Signature Verification**
 
 
-1. Use [cryptoFramework.createVerify](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA2048|PSS|SHA256|MGF1_SHA256'** to create a **Verify** instance. As indicated by the string parameter, the asymmetric key type is **RSA2048**, the padding mode is **PSS**, the MD algorithm is **SHA256**, and mask algorithm is **MGF1_SHA256**.
+1. Use [cryptoFramework.createVerify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateverify) with the string parameter **'RSA2048|PSS|SHA256|MGF1_SHA256'** to create a **Verify** instance. As indicated by the string parameter, the asymmetric key type is **RSA2048**, the padding mode is **PSS**, the MD algorithm is **SHA256**, and mask algorithm is **MGF1_SHA256**.
 
-2. Use [Verify.setVerifySpec](../../reference/apis/js-apis-cryptoFramework.md#setverifyspec10) to set the parameters for signature verification. The parameter value must be the same as that set for signing.
+2. Use [Verify.setVerifySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#setverifyspec10) to set the parameters for signature verification. The parameter value must be the same as that set for signing.
 
-3. Use [Verify.init](../../reference/apis/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
+3. Use [Verify.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-5) to initialize the **Verify** instance using the public key (**PubKey**).
 
-4. Use [Verify.update](../../reference/apis/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
+4. Use [Verify.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-5) to pass in the data to be verified.
    Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
 
-5. Use [Verify.verify](../../reference/apis/js-apis-cryptoFramework.md#verify-2) to verify the data signature.
+5. Use [Verify.verify](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#verify-2) to verify the data signature.
 
 
 ```ts

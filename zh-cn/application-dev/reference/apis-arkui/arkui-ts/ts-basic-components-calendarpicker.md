@@ -17,6 +17,8 @@ CalendarPicker(options?: CalendarOptions)
 
 日历选择器。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -35,6 +37,8 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 
 设置选择器与入口组件的对齐方式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -42,13 +46,15 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 | 参数名    | 类型                                    | 必填 | 说明                                                         |
 | --------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END                |
-| offset    | [Offset](ts-types.md#offset)            | 是   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
+| offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
 
 ### textStyle
 
 textStyle(value: PickerTextStyle)
 
 设置选择器与入口组件的对齐方式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,6 +74,8 @@ onChange(callback: (value: Date) => void)
 
 选择日期时触发该事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -78,6 +86,8 @@ onChange(callback: (value: Date) => void)
 
 ##  CalendarOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
 | hintRadius | number \| [Resource](ts-types.md#resource) | 否    | 描述日期选中态底板样式。<br/>默认值：底板样式为圆形。<br />**说明：**<br />hintRadius为0，底板样式为直角矩形。hintRadius为0 ~ 16，底板样式为圆角矩形。hintRadius>=16，底板样式为圆形 |
@@ -85,7 +95,7 @@ onChange(callback: (value: Date) => void)
 
 ## CalendarAlign枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述                     |
 | ------ | ------------------------ |

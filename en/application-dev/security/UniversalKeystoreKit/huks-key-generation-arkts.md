@@ -10,12 +10,12 @@ This topic walks you through on how to randomly generate a DH key. For details a
    - The key alias cannot exceed 64 bytes.
    - For the keys generated for different services, HUKS isolates the storage paths based on the service identity information to prevent conflicts caused by the same key alias.
 
-2. Initialize the key property set. Use [HuksParam](../../reference/apis/js-apis-huks.md#huksparam) to encapsulate key properties and use a **HuksParam** array to assign values to the **properties** field of [HuksOptions](../../reference/apis/js-apis-huks.md#huksoptions).
-   The key property set must contain [HuksKeyAlg](../../reference/apis/js-apis-huks.md#hukskeyalg), [HuksKeySize](../../reference/apis/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../../reference/apis/js-apis-huks.md#hukskeypurpose). That is, **TAG**, **HUKS_TAG_ALGORITHM**, **HUKS_TAG_PURPOSE**, and **HUKS_TAG_KEY_SIZE** are mandatory.
+2. Initialize the key property set. Encapsulate key properties in [HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) and use a **HuksParam** array to assign values to the **properties** field of [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions).
+   The key property set must contain [HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg), [HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose). That is, **TAG**, **HUKS_TAG_ALGORITHM**, **HUKS_TAG_PURPOSE**, and **HUKS_TAG_KEY_SIZE** are mandatory.
 
-3. Use [huks.generateKeyItem](../../reference/apis/js-apis-huks.md#huksgeneratekeyitem9) to generate a key based on the key alias and key properties specified.
+3. Use [huks.generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9) to generate a key based on the key alias and key properties specified.
 
-> **NOTE**
+> **NOTE**<br>
 > If the service uses the same key alias to call the HUKS API to generate a key again, HUKS will generate a new key and overwrite the historical key file.
 
 

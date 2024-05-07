@@ -640,7 +640,7 @@ setDevicePairingConfirmation(device: string, accept: boolean): void
 > **说明：**<br/>
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[connection.setDevicePairingConfirmation](js-apis-bluetooth-connection.md#connectionsetdevicepairingconfirmation)替代。
 
-**需要权限**：ohos.permission.MANAGE_BLUETOOTH
+**需要权限**：ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1254,7 +1254,6 @@ sppCloseClientSocket(socket: number): void
 
 | 参数名    | 类型     | 必填   | 说明            |
 | ------ | ------ | ---- | ------------- |
-| 参数名    | 类型     | 必填   | 说明            |
 | socket | number | 是    | 客户端socket的id。 |
 
 **错误码**：
@@ -1464,6 +1463,8 @@ try {
 
 ## bluetoothManager.BLE
 
+BLE模块提供了对蓝牙操作和管理的方法。
+
 ### createGattServer<sup>(deprecated)</sup>
 
 createGattServer(): GattServer
@@ -1573,7 +1574,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 > **说明：**<br/>
 > 从API version 9开始支持，从API version 10开始废弃。建议使用[ble.startBLEScan](js-apis-bluetooth-ble.md#blestartblescan)替代。
 
-**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH 和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）和 ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3698,7 +3699,6 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 | 参数名        | 类型                              | 必填   | 说明                 |
 | ---------- | ------------------------------- | ---- | ------------------ |
 | descriptor | [BLEDescriptor](#bledescriptordeprecated) | 是    | 蓝牙设备描述符的二进制值及其它参数。 |
-| boolean | 写描述符操作成功返回true，操作失败返回false。 |
 
 **错误码**：
 

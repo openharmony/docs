@@ -30,7 +30,7 @@
 
 8. 调用[X509CRL.getRevokedCert](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevokedcert11)获取被吊销证书对象。
 
-9.  调用[X509CRLEntry.getRevocationDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crlentry11)获取被吊销日期。
+9.  调用[X509CRLEntry.getRevocationDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevocationdate11)获取被吊销日期。
 
 ```ts
 import certFramework from '@ohos.security.cert';

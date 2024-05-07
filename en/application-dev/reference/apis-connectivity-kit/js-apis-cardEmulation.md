@@ -116,6 +116,8 @@ Checks whether the device supports HCE.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | **Type** | **Description**                          |
@@ -148,18 +150,20 @@ Checks whether an application is the default application of the specified servic
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name        | Type                                      | Mandatory  | Description                     |
 | ----------- | ---------------------------------------- | ---- |-------------------------|
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes   | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName**, and cannot be empty. |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes   | Information about the page, on which the application declares the NFC card emulation capability. It cannot be empty and must contain at least **bundleName** and **abilityName**.|
 | type        | [CardType](#cardtype9)                   | Yes   | Card emulation service type. Currently, only the default payment application can be queried.  |
 
 **Return value**
 
 | **Type** | **Description**                              |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the application is the default application; returns **false** otherwise. |
+| boolean | Returns **true** if the application is the default payment application; returns **false** otherwise.|
 
 **Example**
 ```js
@@ -168,39 +172,12 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 let elementName : bundleManager.ElementName;
 
-// init elementName here. bundleName and abilityName are required.
+// Initialize elementName here. bundleName and abilityName are required.
 
 let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 // Do something according to the isDefaultService value.
 ```
-## getPaymentServices<sup>11+</sup>
 
-getPaymentServices(): [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md)[]
-
-Obtains all payment services. If an application declares the support for the HCE feature and **payment-aid**, the application is contained in the payment service list. For details, see [HCE and AID Declaration](#hce-and-aid-declaration).
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Communication.NFC.CardEmulation
-
-**Required permissions**: ohos.permission.NFC_CARD_EMULATION
-
-**Return value**
-
-| **Type** | **Description**                              |
-| ------- | ------------------------------------ |
-| [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md)[] | List of payment services obtained.|
-
-**Example**
-```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-
-let paymentServices = cardEmulation.getPaymentServices();
-if (paymentServices == undefined || paymentServices.length == 0) {
-  console.log('paymentServices is null.');
-}
-
-```
 
 ## HceService<sup>8+</sup>
 
@@ -241,12 +218,14 @@ Starts HCE, including enabling this application to run in the foreground prefere
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes  | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName**, and cannot be empty. |
-| aidList | string[] | Yes  | List of AIDs to register. This parameter can be left empty. |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes  | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName**, and cannot be empty.|
+| aidList | string[] | Yes  | List of AIDs to register. This parameter can be left empty.|
 
 **Error codes**
 
@@ -283,17 +262,19 @@ For details, see the example of [on](#on8).
 
 stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname)): void 
 
-Stops HCE, including canceling the subscription of APDUs, exiting this application from the foreground, and releasing the dynamically registered AID list. The application needs to call this API in **onDestroy** of the HCE page.
+Stops HCE, including canceling the subscription of APDU data, exiting this application from the foreground, and releasing the dynamically registered AID list. The application needs to call this API in **onDestroy** of the HCE page.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes  | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName**, and cannot be empty. |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | Yes  | Information about the page, on which the application declares the NFC card emulation capability. It must contain at least **bundleName** and **abilityName**, and cannot be empty.|
 
 **Error codes**
 
@@ -305,13 +286,15 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 ### on<sup>8+</sup>
 
-on(type: "hceCmd", callback: AsyncCallback\<number[]>): void
+on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 
-Registers a callback to receive APDUs from the peer card reader. The application needs to call this API in **onCreate** of the HCE page.
+Registers a callback to receive APDUs from the peer card reader. The application needs to call this API in **onCreate()** of the HCE page.
 
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -383,6 +366,8 @@ Transmits an APDU to the peer card reader. This API uses a promise to return the
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name      | Type    | Mandatory| Description                                              |
@@ -429,6 +414,8 @@ Transmits an APDU to the peer card reader. This API uses an asynchronous callbac
 **Required permissions**: ohos.permission.NFC_CARD_EMULATION
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 

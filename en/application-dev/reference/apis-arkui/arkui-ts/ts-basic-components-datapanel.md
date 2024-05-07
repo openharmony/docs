@@ -18,7 +18,7 @@ Not supported
 
 DataPanel(options: DataPanelOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -37,7 +37,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## DataPanelType<sup>8+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Description|
 | -------| ------------ |
@@ -49,14 +49,77 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
+### closeEffect
 
-| Name         | Type| Description|
-| ------------- | ------- | -------- |
-| closeEffect | boolean | Whether to disable the rotation and shadow effects for the component.<br>Default value: **false**<br>**NOTE**<br> This attribute enables or disables the shadow effect only when **trackShadow** is not set.<br> The shadow effect enabled through this attribute is in the default style.|
-| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | Array of data segment colors. A value of the **ResourceColor** type indicates a solid color, and A value of the **LinearGradient** type indicates a color gradient.|
-| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color.<br>The value is in hexadecimal ARGB notation. The first two digits indicate opacity.<br>Default value: **'#08182431'**|
-| strokeWidth<sup>10+</sup> | [Length](ts-types.md#length) | Stroke width of the border.<br>Default value: **24**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>This attribute does not take effect when the data panel type is **DataPanelType.Line**.|
-| trackShadow<sup>10+</sup> | [DataPanelShadowOptions](#datapanelshadowoptions10) | Shadow style.<br>**NOTE**<br>If this attribute is set to **null**, the shadow effect is disabled.|
+closeEffect(value: boolean)
+
+Sets whether to disable the rotation and shadow effects for the component. This attribute enables or disables the shadow effect only when [trackShadow](#trackshadow10) is not set. The shadow effect enabled through this attribute is in the default style.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                  |
+| ------ | ------- | ---- | ------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to disable the rotation and shadow effects for the component.<br>Default value: **false**|
+
+### valueColors<sup>10+</sup>
+
+valueColors(value: Array<ResourceColor | LinearGradient>)
+
+Sets an array of data segment colors.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                       |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| value  | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | Yes  | Array of data segment colors. A value of the **ResourceColor** type indicates a solid color, and A value of the **LinearGradient** type indicates a color gradient.|
+
+### trackBackgroundColor<sup>10+</sup>
+
+trackBackgroundColor(value: ResourceColor)
+
+Sets the background color.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                                        |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color.<br>The value is in hexadecimal ARGB notation. The first two digits indicate opacity.<br>Default value: **'#08182431'**|
+
+### strokeWidth<sup>10+</sup>
+
+strokeWidth(value: Length)
+
+Sets the stroke width of the border. This attribute does not take effect when the data panel type is **DataPanelType.Line**.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                                                        |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width of the border.<br>Default value: **24**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
+
+### trackShadow<sup>10+</sup>
+
+trackShadow(value: DataPanelShadowOptions)
+
+Sets the shadow style.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                       | Mandatory| Description                                                 |
+| ------ | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| value  | [DataPanelShadowOptions](#datapanelshadowoptions10) | Yes  | Shadow style.<br>**NOTE**<br>If this attribute is set to **null**, the shadow effect is disabled.|
 
 
 ## DataPanelShadowOptions<sup>10+</sup>
@@ -87,8 +150,6 @@ Describes the gradient color stop.
 | color | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color value.|
 | offset | [Length](ts-types.md#length) | Yes| Gradient color stop (proportion value between 0 and 1). A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.<br>**NOTE**<br>If the value is a string that represents a number, it will be converted to a number.<br>For example, **'10vp'** is converted to 10, and **'10%'** is converted to 0.1.|
 
-
-
 ## Example
 
 ### Example 1
@@ -104,7 +165,7 @@ struct DataPanelExample {
     Column({ space: 5 }) {
       Row() {
         Stack() {
-          DataPanel({ values: [25], max: 100, type: DataPanelType.Circle }).width(168).height(168)
+          DataPanel({ values: [30], max: 100, type: DataPanelType.Circle }).width(168).height(168)
           Column() {
             Text('30').fontSize(35).fontColor('#182431')
             Text('1.0.0').fontSize(9.33).lineHeight(12.83).fontWeight(500).opacity(0.6)

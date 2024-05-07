@@ -184,6 +184,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     }
   });
   ```
+
 ## ExtraData<sup>11+</sup>
 
 Represents the cloud data change information.
@@ -195,8 +196,7 @@ Represents the cloud data change information.
 | eventId | string | Yes  | Change event ID.|
 | extraData | ExtraData | Yes  | Change of the cloud data.|
 
-
-## cloudSyncManager.notifyDataChange<sup>11+</sup> 
+## cloudSyncManager.notifyDataChange<sup>11+</sup>
 
 notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 
@@ -210,7 +210,7 @@ Notifies the cloud sync service of the application data change in the cloud. Thi
 
 | Name    | Type  | Mandatory| Description|
 | ---------- | ------ | ---- | ---- |
-| userId | number | Yes  | Account ID.|
+| userId | number | Yes  | User ID.|
 | extraData | ExtraData | Yes  | Change of the cloud data.|
 
 **Return value**
@@ -338,7 +338,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ## cloudSyncManager.enableCloud
 
-enableCloud(accountId: string, switches: switches: Record<string, boolean>, callback: AsyncCallback&lt;void&gt;): void
+enableCloud(accountId: string, switches: Record<string, boolean>, callback: AsyncCallback&lt;void&gt;): void
 
 Enables device-cloud synergy. This API uses an asynchronous callback to return the result.
 

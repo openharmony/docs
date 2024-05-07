@@ -8,7 +8,7 @@ The **url** module provides APIs for constructing [URLParams](#urlparams9) and [
 
 ## Modules to Import
 
-```
+```ts
 import Url from '@ohos.url'
 ```
 ## URLParams<sup>9+</sup>
@@ -405,6 +405,25 @@ Provides APIs for parsing, constructing, standardizing, and encoding URL strings
 | searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| No| **URLSearchParams** object allowing access to the query parameters in a URL.<br>- **NOTE**: This attribute is supported since API version 7 and is deprecated since API version 9. You are advised to use params<sup>9+</sup> instead.|
 | params<sup>9+</sup> | [URLParams](#urlparams9) | Yes| No| **URLParams** object allowing access to the query parameters in a URL.|
 | username | string | Yes| Yes| Username in a URL.|
+
+**Example**
+
+```ts
+let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
+console.log("hash " + that.hash) // hash #fragment
+console.log("host " + that.host) // host host:8080
+console.log("hostname " + that.hostname) // hostname host
+console.log("href " + that.href) // href http://username:password@host:8080/directory/file?foo=1&bar=2#fragment
+console.log("origin " + that.origin) // origin http://host:8080
+console.log("password " + that.password) // password password
+console.log("pathname " + that.pathname) // pathname /directory/file
+console.log("port " + that.port) // port 8080
+console.log("protocol " + that.protocol) // protocol http:
+console.log("search " + that.search) // search ?foo=1&bar=2
+console.log("username " + that.username) // username username
+// The return value of that.params is a URLParams object.
+console.log("params: foo " + that.params.get("foo")) // params: foo 1
+```
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -939,4 +958,4 @@ let params = new Url.URLSearchParams(url.search.slice(1));
 params.append('fod', '3');
 console.log(params.toString());
 ```
-
+<!--no_check-->

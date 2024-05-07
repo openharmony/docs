@@ -11,6 +11,8 @@
 
 RotationGesture(value?: { fingers?: number, angle?: number })
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
@@ -23,10 +25,10 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onActionStart(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功回调。 |
-| onActionUpdate(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势移动过程中回调。 |
-| onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 |
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，接收到触摸取消事件触发回调。<br/>**说明：** <br/>在窗口失焦的时候会触发。 |
+| onActionStart(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功回调。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| onActionUpdate(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势移动过程中回调。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| onActionEnd(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，接收到触摸取消事件触发回调。<br/>**说明：** <br/>在窗口失焦的时候会触发。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 
 ## 属性
 
@@ -57,15 +59,15 @@ struct RotationGestureExample {
       // 双指旋转触发该手势事件
       .gesture(
       RotationGesture()
-        .onActionStart((event?: GestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Rotation start')
         })
-        .onActionUpdate((event?: GestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           if (event) {
             this.angle = this.rotateValue + event.angle
           }
         })
-        .onActionEnd(() => {
+        .onActionEnd((event: GestureEvent) => {
           this.rotateValue = this.angle
           console.info('Rotation end')
         })

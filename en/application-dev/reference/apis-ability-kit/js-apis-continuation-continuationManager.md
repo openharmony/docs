@@ -274,9 +274,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
   ```
 
 
-## continuationManager.on("deviceConnect")<sup>(deprecated)</sup>
+## continuationManager.on('deviceConnect')<sup>(deprecated)</sup>
 
-on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
+on(type: 'deviceConnect', callback: Callback\<ContinuationResult>): void
 
 Subscribes to device connection events. This API uses an asynchronous callback to return the result.
 
@@ -305,9 +305,9 @@ Subscribes to device connection events. This API uses an asynchronous callback t
   });
   ```
 
-## continuationManager.on("deviceDisconnect")<sup>(deprecated)</sup>
+## continuationManager.on('deviceDisconnect')<sup>(deprecated)</sup>
 
-on(type: "deviceDisconnect", callback: Callback\<string>): void
+on(type: 'deviceDisconnect', callback: Callback\<string>): void
 
 Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.
 
@@ -334,9 +334,9 @@ Subscribes to device disconnection events. This API uses an asynchronous callbac
   });
   ```
 
-## continuationManager.off("deviceConnect")<sup>(deprecated)</sup>
+## continuationManager.off('deviceConnect')<sup>(deprecated)</sup>
 
-off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
+off(type: 'deviceConnect', callback?: Callback\<ContinuationResult>): void
 
 Unsubscribes from device connection events. This API uses an asynchronous callback to return the result.
 
@@ -365,9 +365,9 @@ Unsubscribes from device connection events. This API uses an asynchronous callba
   });
   ```
 
-## continuationManager.off("deviceDisconnect")<sup>(deprecated)</sup>
+## continuationManager.off('deviceDisconnect')<sup>(deprecated)</sup>
 
-off(type: "deviceDisconnect", callback?: Callback\<string>): void
+off(type: 'deviceDisconnect', callback?: Callback\<string>): void
 
 Unsubscribes from device disconnection events. This API uses an asynchronous callback to return the result.
 
@@ -394,9 +394,9 @@ Unsubscribes from device disconnection events. This API uses an asynchronous cal
   });
   ```
 
-## continuationManager.on("deviceSelected")<sup>9+</sup>
+## continuationManager.on('deviceSelected')<sup>9+</sup>
 
-on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceSelected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 Subscribes to device connection events. This API uses an asynchronous callback to return the result.
 
@@ -442,9 +442,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
   }
   ```
 
-## continuationManager.on("deviceUnselected")<sup>9+</sup>
+## continuationManager.on('deviceUnselected')<sup>9+</sup>
 
-on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceUnselected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.
 
@@ -491,9 +491,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
   }
   ```
 
-## continuationManager.off("deviceSelected")<sup>9+</sup>
+## continuationManager.off('deviceSelected')<sup>9+</sup>
 
-off(type: "deviceSelected", token: number): void
+off(type: 'deviceSelected', token: number): void
 
 Unsubscribes from device connection events.
 
@@ -531,9 +531,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](error
   }
   ```
 
-## continuationManager.off("deviceUnselected")<sup>9+</sup>
+## continuationManager.off('deviceUnselected')<sup>9+</sup>
 
-off(type: "deviceUnselected", token: number): void
+off(type: 'deviceUnselected', token: number): void
 
 Unsubscribes from device disconnection events.
 

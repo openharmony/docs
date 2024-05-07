@@ -1,4 +1,4 @@
-# Video Decoding (C/C++)
+# Video Decoding
 
 You can call the native APIs provided by the VideoDecoder module to decode video, that is, to decode media data into a YUV file or render it.
 
@@ -152,13 +152,14 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     constexpr uint32_t DEFAULT_WIDTH = 320; 
     // (Mandatory) Configure the video frame height.
     constexpr uint32_t DEFAULT_HEIGHT = 240;
-    // (Optional) Configure the video color format.
+    // (Mandatory) Configure the video color format.
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
-    
+
     OH_AVFormat *format = OH_AVFormat_Create();
     // Set the format.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
     // Configure the decoder.
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
     if (ret != AV_ERR_OK) {
@@ -168,6 +169,8 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     ```
 
 5. Set the surface. The application obtains the native window from the **\<XComponent>**. For details about the process, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+
+    You perform this step during decoding, that is, dynamically switch the surface.
 
     ```c++
     // Set the window parameters.
@@ -185,7 +188,6 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
     OH_AVFormat_Destroy(format);
     ```
-    
 7. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Audio and Video Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM Kit APIs](../../reference/apis-drm-kit).
 
     Add the header files.
@@ -226,15 +228,17 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
     ```
 
-8. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.  
+8. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
 
-   ```c++
-ret = OH_VideoDecoder_Prepare(videoDec);
+     
+
+    ```c++
+    ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
     ```
-    
+
 9. Call **OH_VideoDecoder_Start()** to start the decoder.
 
     ```c++
@@ -278,11 +282,11 @@ ret = OH_VideoDecoder_Prepare(videoDec);
 
 11. Call **OH_VideoDecoder_RenderOutputBuffer()** to render the data and free the output buffer, or call **OH_VideoDecoder_FreeOutputBuffer()** to directly free the output buffer.
     
-In the code snippet below, the following variables are used:
-    
+    In the code snippet below, the following variables are used:
+
     - **index**: index of the data queue, which is passed in by the callback function **OnNewOutputBuffer**.
-- **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
-    
+    - **buffer**: parameter passed in by the callback function **OnNewOutputBuffer**. You can call **OH_AVBuffer_GetAddr()** to obtain the pointer to the shared memory address.
+
     ```c++
     int32_t ret;
     // Obtain the decoded information.
@@ -294,90 +298,90 @@ In the code snippet below, the following variables are used:
     if (isRender) {
         // Render the data and free the output buffer. index is the index of the buffer.
         ret = OH_VideoDecoder_RenderOutputBuffer(videoDec, index);
-    } else  {
+    } else {
         // Free the output buffer.
         ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, index);
     }
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-```
-    
+    ```
+
 12. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
 
-     > **NOTE**
-     >
-     > After **OH_VideoDecoder_Flush()** and **OH_VideoDecoder_Start()** are called, the XPS must be transferred again.
-     >
+    > **NOTE**
+    >
+    > After **OH_VideoDecoder_Flush()** and **OH_VideoDecoder_Start()** are called, the XPS must be transferred again.
+    >
 
-     After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
+    After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
 
-     To continue decoding, you must call **OH_VideoDecoder_Start()** again.
+    To continue decoding, you must call **OH_VideoDecoder_Start()** again.
 
-     ```c++
-     int32_t ret;
-     // Refresh the decoder.
-     ret = OH_VideoDecoder_Flush(videoDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     // Start decoding again.
-     ret = OH_VideoDecoder_Start(videoDec);
-     if (ret != AV_ERR_OK) {
-         // Exception handling.
-     }
-     ```
+    ```c++
+    int32_t ret;
+    // Refresh the decoder.
+    ret = OH_VideoDecoder_Flush(videoDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Start decoding again.
+    ret = OH_VideoDecoder_Start(videoDec);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
 
 13. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
 
-     After **OH_VideoDecoder_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_SetSurface()**.
+    After **OH_VideoDecoder_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_SetSurface()**.
 
-     ```c++
-      int32_t ret;
-      // Reset the decoder.
-      ret = OH_VideoDecoder_Reset(videoDec);
-      if (ret != AV_ERR_OK) {
-          // Exception handling.
-      }
-      // Reconfigure the decoder.
-      ret = OH_VideoDecoder_Configure(videoDec, format);
-      if (ret != AV_ERR_OK) {
-          // Exception handling.
-      }
-      // Reconfigure the surface in surface mode. This is not required in buffer mode.
-      ret = OH_VideoDecoder_SetSurface(videoDec, window);
-      if (ret != AV_ERR_OK) {
-          // Exception handling.
-      }
-     ```
+    ```c++
+     int32_t ret;
+     // Reset the decoder.
+     ret = OH_VideoDecoder_Reset(videoDec);
+     if (ret != AV_ERR_OK) {
+         // Exception handling.
+     }
+     // Reconfigure the decoder.
+     ret = OH_VideoDecoder_Configure(videoDec, format);
+     if (ret != AV_ERR_OK) {
+         // Exception handling.
+     }
+     // Reconfigure the surface in surface mode. This is not required in buffer mode.
+     ret = OH_VideoDecoder_SetSurface(videoDec, window);
+     if (ret != AV_ERR_OK) {
+         // Exception handling.
+     }
+    ```
 
 14. (Optional) Call **OH_VideoDecoder_Stop()** to stop the decoder.
 
-     ```c++
-      int32_t ret;
-      // Stop the decoder.
-      ret = OH_VideoDecoder_Stop(videoDec);
-      if (ret != AV_ERR_OK) {
-          // Exception handling.
-      }
-     ```
+    ```c++
+     int32_t ret;
+     // Stop the decoder.
+     ret = OH_VideoDecoder_Stop(videoDec);
+     if (ret != AV_ERR_OK) {
+         // Exception handling.
+     }
+    ```
 
 15. Call **OH_VideoDecoder_Destroy()** to destroy the decoder instance and release resources.
 
-     > **NOTE**
-     >
-     > This API cannot be called in the callback function.
-     > After the call, you must set a null pointer to the decoder to prevent program errors caused by wild pointers.
-     >
+    > **NOTE**
+    >
+    > This API cannot be called in the callback function.
+    > After the call, you must set a null pointer to the decoder to prevent program errors caused by wild pointers.
+    >
 
-     ```c++
-      int32_t ret;
-      // Call OH_VideoDecoder_Destroy to destroy the decoder.
-      ret = OH_VideoDecoder_Destroy(videoDec);
-      if (ret != AV_ERR_OK) {
-          // Exception handling.
-      }
-     ```
+    ```c++
+     int32_t ret;
+     // Call OH_VideoDecoder_Destroy to destroy the decoder.
+     ret = OH_VideoDecoder_Destroy(videoDec);
+     if (ret != AV_ERR_OK) {
+         // Exception handling.
+     }
+    ```
 
 ### Buffer Output
 
@@ -480,7 +484,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     constexpr uint32_t DEFAULT_WIDTH = 320; 
     // (Mandatory) Configure the video frame height.
     constexpr uint32_t DEFAULT_HEIGHT = 240;
-    // (Optional) Configure the video color format.
+    // (Mandatory) Configure the video color format.
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 
     OH_AVFormat *format = OH_AVFormat_Create();
@@ -496,15 +500,17 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_AVFormat_Destroy(format);
     ```
 
-5. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.  
+5. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
 
-   ```c++
-ret = OH_VideoDecoder_Prepare(videoDec);
+     
+
+    ```c++
+    ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
     ```
-    
+
 6. Call **OH_VideoDecoder_Start()** to start the decoder.
 
     ```c++
@@ -588,4 +594,3 @@ ret = OH_VideoDecoder_Prepare(videoDec);
     ```
 
 The subsequent processes (including refreshing, resetting, stopping, and destroying the decoder) are basically the same as those in surface mode. For details, see steps 11-14 in [Surface Output](#surface-output).
-

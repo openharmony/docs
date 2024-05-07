@@ -1,4 +1,4 @@
-# Using AudioHaptic for Audio-Haptic Playback (ArkTS)
+# Using AudioHaptic for Audio-Haptic Playback
 
 AudioHaptic<sup>11+</sup> provides APIs for audio-haptic playback and management. It applies to scenarios where haptic feedback needs to be initiated synchronously during audio playback, for example, when there are incoming calls or messages or users are typing.
 

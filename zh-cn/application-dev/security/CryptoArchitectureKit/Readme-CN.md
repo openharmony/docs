@@ -12,17 +12,23 @@
     - [随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)
     - [指定二进制数据转换非对称密钥对](crypto-convert-binary-data-to-asym-key-pair.md)
     - [指定密钥参数生成非对称密钥对](crypto-generate-asym-key-pair-from-key-spec.md)
+    - [使用ECC压缩/非压缩公钥格式转换](crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
+    - [使用ECC压缩/非压缩点格式转换](crypto-convert-compressed-or-uncompressed-ECC-point.md)
+    - [指定PEM格式字符串数据转换非对称密钥对](crypto-convert-string-data-to-asym-key-pair.md)
 - 加解密
   - [加解密介绍](crypto-encryption-decryption-overview.md)
   - 加解密算法规格
     - [对称密钥加解密算法规格](crypto-sym-encrypt-decrypt-spec.md)
     - [非对称密钥加解密算法规格](crypto-asym-encrypt-decrypt-spec.md)
+    - [分段加解密说明](crypto-encrypt-decrypt-by-segment.md)
   - 加解密开发指导
     - [使用AES对称密钥（GCM模式）加解密](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [使用AES对称密钥（CBC模式）加解密](crypto-aes-sym-encrypt-decrypt-cbc.md)
+    - [使用AES对称密钥（ECB模式）加解密](crypto-aes-sym-encrypt-decrypt-ecb.md)
     - [使用AES对称密钥（GCM模式）分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)
     - [使用3DES对称密钥（ECB模式）加解密](crypto-3des-sym-encrypt-decrypt-ecb.md)
     - [使用SM4对称密钥（ECB模式）加解密](crypto-sm4-sym-encrypt-decrypt-ecb.md)
+    - [使用SM4对称密钥（CBC模式）加解密](crypto-sm4-sym-encrypt-decrypt-cbc.md)
     - [使用RSA非对称密钥（PKCS1模式）加解密](crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
     - [使用RSA非对称密钥分段加解密](crypto-rsa-asym-encrypt-decrypt-by-segment.md)
     - [使用RSA非对称密钥（PKCS1_OAEP模式）加解密](crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
@@ -46,4 +52,7 @@
 - [消息摘要计算](crypto-generate-message-digest.md)
 - [消息认证码计算](crypto-compute-mac.md)
 - [安全随机数生成](crypto-generate-random-number.md)
-- [密钥派生](crypto-key-derivation.md)
+- 密钥派生
+  - [密钥派生介绍及算法规格](crypto-key-derivation-overview.md)
+  - [使用PBKDF2进行密钥派生](crypto-key-derivation-using-pbkdf2.md)
+  - [使用HKDF进行密钥派生](crypto-key-derivation-using-hkdf.md)

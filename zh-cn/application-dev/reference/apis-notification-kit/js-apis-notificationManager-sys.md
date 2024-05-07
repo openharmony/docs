@@ -46,7 +46,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600004  | Notification is not enabled.                         |
 | 1600005  | Notification slot is not enabled.                    |
 | 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
+| 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No relevant right.                                   |
@@ -121,7 +121,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600004  | Notification is not enabled.                         |
 | 1600005  | Notification slot is not enabled.                    |
 | 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
+| 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No relevant right.                                   |
@@ -632,7 +632,7 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -656,7 +656,7 @@ notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback)
 
 isNotificationEnabled(userId: number): Promise\<boolean\>
 
-获取制定用户下的通知使能状态。使用Promise异步回调。
+获取指定用户下的通知使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -685,7 +685,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist..                  |
+| 1600008  | The user does not exist..                  |
 
 **示例：**
 
@@ -1149,7 +1149,7 @@ import Base from '@ohos.base';
 
 let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotsByBundle success, data is ${JSON.stringify(data)}`);
     }
@@ -1248,7 +1248,7 @@ import Base from '@ohos.base';
 
 let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
@@ -1308,7 +1308,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotNumByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1749,7 +1749,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -1810,7 +1810,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -1949,7 +1949,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -2003,7 +2003,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -2169,6 +2169,12 @@ setDistributedEnable(enable: boolean): Promise\<void>
 | -------- | ------------------------ | ---- | -------------------------- |
 | enable   | boolean                  | 是   | 是否支持（true：支持，false：不支持）。 |
 
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
@@ -2264,6 +2270,12 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                |
 | enable   | boolean                  | 是   | 指定应用是否支持分布式通知（true：支持，false：不支持）。                  |
+
+**返回值：**
+
+| 类型              | 说明        | 
+|-----------------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2510,7 +2522,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2584,7 +2596,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2632,6 +2644,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 
 | 参数名               | 类型                                        | 必填 | 说明                                          |
+|----------------------|--------------------------------------------|------|-----------------------------------------------|
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
 | request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
@@ -2652,7 +2665,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2703,7 +2716,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | id                   | number        | 是   | 通知ID。                 |
 | representativeBundle | string        | 是   | 被代理应用的包名。       |
 | userId               | number        | 是   | 用户ID。       |
-| callback             | AsyncCallback | 是   | 取消代理通知的回调方法。 |
+| callback             | AsyncCallback\<void\> | 是   | 取消代理通知的回调方法。 |
 
 **错误码：**
 
@@ -2715,7 +2728,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -2773,7 +2786,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -2828,7 +2841,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
 | 1600007  | The notification is not exist.            |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2881,6 +2894,7 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
 | 1600012  | No memory space.                    |
+| 1600017  | There is no corresponding agent relationship configuration.    |
 
 **示例：**
 
@@ -3186,7 +3200,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -3240,7 +3254,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -3285,7 +3299,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -3337,7 +3351,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -3440,7 +3454,7 @@ try{
   notificationManager.on('checkNotification',{
     contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
     slotType: notificationManager.SlotType.LIVE_VIEW ,
-    extraKeys: ["event"],
+    extraInfoKeys: ["event"],
   },
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
@@ -3601,7 +3615,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 });
 ```
 
-## notificationManager.setDistributedEnableByBundle<sup>12+</sup>
+## notificationManager.setDistributedEnabledByBundle<sup>12+</sup>
 
 setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void>
 
@@ -3618,7 +3632,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
-| deviceType | string | 是   | 设备类型|
+| deviceType | string | 是   | 设备类型。|
 | enable   | boolean                  | 是   | 指定应用是否支持跨设备协同（true：支持，false：不支持）。|
 
 **返回值：**
@@ -3674,7 +3688,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 
 **返回值：**
 
@@ -3727,7 +3741,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 | enable   | boolean                  | 是   | 指定应用是否支持设备是否与其他设备协同智能提醒（true：支持，false：不支持）。|
 
 **返回值：**
@@ -3778,7 +3792,7 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean>
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| deviceType | string | 是   | 设备类型 |
+| deviceType | string | 是   | 设备类型。 |
 
 **返回值：**
 
@@ -3844,6 +3858,7 @@ setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600012  | No memory space.                    |
+| 1600017  | There is no corresponding agent relationship configuration.     |
 | 17700001 | The specified bundle name was not found.   |
 
 **示例：**
@@ -4055,3 +4070,133 @@ notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationMa
 | NOTIFICATION_STATUS_CLOSE_VIBRATION     |   1<<4   |     关闭振动提示功能。     |
 | NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON     |  1<<5    |     关闭状态栏图标提示功能。     |
 
+
+## notificationManager.addDoNotDisturbProfile<sup>12+</sup>
+
+addDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
+
+添加勿扰模式配置信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是 | 勿扰模式的配置信息。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let trustlist: Array<notificationManager.BundleOption> = [
+  {
+    bundle: 'com.example.bundleName',
+    uid: 0
+  },
+  {
+    bundle: 'com.example.bundleName1',
+    uid: 1
+  }
+]
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: '工作模式',
+    trustlist: trustlist
+  }
+]
+
+notificationManager.addDoNotDisturbProfile(templates).then(() => {
+  console.info("Add do not disturb templates success.");
+}).catch((error: Base.BusinessError) => {
+  console.error(`Add do not disturb templates fail: ${JSON.stringify(error)}`);
+});
+```
+
+## notificationManager.removeDoNotDisturbProfile<sup>12+</sup>
+
+removeDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprofile12)>): Promise\<void\>
+
+删除勿扰模式配置。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| templates   | Array\<[DoNotDisturbProfile](#donotdisturbprofile12)> | 是  | 勿扰模式的配置信息。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let templates: Array<notificationManager.DoNotDisturbProfile> = [
+  {
+    id: 3,
+    name: '工作模式'
+  }
+]
+notificationManager.removeDoNotDisturbProfile(templates).then(() => {
+  console.info("Remove do not disturb templates success.");
+}).catch((error: Base.BusinessError) => {
+  console.error(`Remove do not disturb templates fail: ${JSON.stringify(error)}`);
+});
+```
+
+## DoNotDisturbProfile<sup>12+</sup>
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称  | 类型                                  | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---------------------- |
+| id | Number | 是 | 勿扰模式编号。 |
+| name | string  | 是 | 勿扰模式名称。 |
+| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |

@@ -1,6 +1,6 @@
 # AbilityStartCallback
 
-定义拉起UIExtensionAbility失败后的回调。
+定义拉起UIExtensionAbility执行结果的回调。
 
 > **说明：**
 >
@@ -19,28 +19,38 @@ import common from '@ohos.app.ability.common';
 
 | 名称        |  类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| onError<sup>11+</sup>  | function               | 是   | 拉起UIExtensionAbility失败后的回调函数。                                |
+| onError  | function               | 是   | 拉起UIExtensionAbility失败后的回调函数。**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                |
+| onResult<sup>12+</sup> | function               | 否   | 拉起UIExtensionAbility后，UIExtensionAbility调用terminateSelfWithResult的回调函数。**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                        |
 
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45',
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err: BusinessError) => {
+        if (err) {
+          console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+        } else {
+          console.log(`success`);
+        }
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err: BusinessError) => {
-    if (err) {
-      console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-    } else {
-      console.log(`success`);
-    }
-  });
   ```
 

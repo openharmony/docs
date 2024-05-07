@@ -10,6 +10,7 @@
   - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
   - [Volume Management](volume-management.md)
   - [Audio Effect Management](audio-effect-management.md)
+  - [Spatial Audio Management (for System Applications Only)](audio-spatialization-management.md)
   - [Audio Playback Stream Management](audio-playback-stream-management.md)
   - [Audio Output Device Management](audio-output-device-management.md)
   - [Distributed Audio Playback (for System Applications Only)](distributed-audio-playback.md)

@@ -84,7 +84,7 @@ Can not start invisible component.
 **处理步骤**
 
 1. Stage模型下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
-2. 若应用需要拉起exported为false的ability，请申请[ohos.permission.START_INVISIBLE_ABILITY](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_invisible_ability)权限。
+2. 若应用需要拉起exported为false的ability，请申请ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用可申请）。
 
 ## 16000005 指定的进程权限校验失败
 
@@ -283,6 +283,34 @@ The previous ability is starting, wait start later.
 **处理步骤**
 
 无需处理，等待启动即可。
+
+## 16000018 限制API11以上版本三方应用跳转
+
+**错误信息**
+
+The application is not allow jumping to other applications when api version is above 11.
+
+**错误描述**
+
+当应用API版本大于11的时候，不允许显式跳转到其他三方应用。
+
+**处理步骤**
+
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+
+## 16000019 隐式启动未查找到匹配应用
+
+**错误信息**
+
+Can not match any component.
+
+**错误描述**
+
+隐式启动无法查找到匹配的Ability。
+
+**处理步骤**
+
+修改隐式启动的匹配项。
 
 ## 16000050 内部错误
 
@@ -1114,3 +1142,21 @@ observer not found.
 **处理步骤**
 
 请检查是否有重复注销监听器。
+
+## 16300005 指定的包信息不存在。
+
+**错误信息**
+
+The target bundle does not exist.
+
+**错误描述**
+
+预加载应用的包信息不存在时，方法将返回该错误码。
+
+**可能原因**
+
+预加载的bundleName、userId或appIndex错误，导致查询不到相关包信息。
+
+**处理步骤**
+
+检查传入的bundleName、userId和appIndex参数是否正确。

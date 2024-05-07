@@ -66,6 +66,7 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -104,6 +105,7 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -132,7 +134,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -147,6 +149,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -180,7 +183,7 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -200,6 +203,7 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -245,6 +249,7 @@ isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
@@ -274,7 +279,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -290,6 +295,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
@@ -324,7 +330,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -345,6 +351,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
@@ -385,6 +392,7 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -423,6 +431,7 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -459,6 +468,7 @@ isOsAccountUnlocked(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -499,6 +509,7 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -541,6 +552,7 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -569,7 +581,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -584,6 +596,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -617,7 +630,7 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -637,6 +650,7 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -676,6 +690,7 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -700,7 +715,7 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
 获取已创建的系统帐号数量。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -714,6 +729,7 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -740,7 +756,7 @@ getOsAccountCount(): Promise&lt;number&gt;
 
 获取已创建的系统帐号数量。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -754,6 +770,7 @@ getOsAccountCount(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -790,6 +807,7 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -828,6 +846,7 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -865,6 +884,7 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
 
 | 错误码ID | 错误信息         |
 | -------- | --------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid.    |
 
@@ -910,6 +930,7 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid. |
 
@@ -954,6 +975,7 @@ getOsAccountLocalIdForUidSync(uid: number): number
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300002 | Invalid uid. |
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
@@ -975,7 +997,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 根据域帐号信息，获取与其关联的系统帐号ID。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -990,6 +1012,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainInfo. |
 
@@ -1018,7 +1041,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1038,6 +1061,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainInfo. |
 
@@ -1068,7 +1092,7 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1083,6 +1107,7 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1116,7 +1141,7 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1136,6 +1161,7 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1175,6 +1201,7 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1213,6 +1240,7 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1241,7 +1269,7 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1255,6 +1283,7 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1282,7 +1311,7 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1296,6 +1325,7 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1332,6 +1362,7 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1367,6 +1398,7 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1391,7 +1423,7 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID。使用callback异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1405,6 +1437,7 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1428,7 +1461,7 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID。使用Promise异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1442,6 +1475,7 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1479,6 +1513,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid serialNumber. |
 | 12300003 | The account indicated by serialNumber dose not exist. |
@@ -1523,6 +1558,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid serialNumber. |
 | 12300003 | The account indicated by serialNumber dose not exist. |
@@ -1563,6 +1599,7 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1607,6 +1644,7 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1700,7 +1738,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 >
 > 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1736,7 +1774,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1775,7 +1813,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1813,7 +1851,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1916,7 +1954,7 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1948,9 +1986,9 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1984,9 +2022,9 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-2)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2024,7 +2062,7 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2058,7 +2096,7 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9-1)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2223,7 +2261,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2259,7 +2297,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2298,7 +2336,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2325,13 +2363,13 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
+获取指定系统帐号的全部约束。使用Promise异步回调。
+
 > **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-获取指定系统帐号的全部约束。使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2432,7 +2470,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2463,7 +2501,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2554,7 +2592,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2585,7 +2623,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2743,11 +2781,46 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
   });
   ```
 
+### getOsAccountName<sup>12+</sup>
+
+getOsAccountName(): Promise&lt;string&gt;
+
+查询调用方所属系统帐号的名称。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;string&gt; | Promise对象，返回调用方所属系统帐号的名称。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.getOsAccountName().then((name: string) => {
+      console.log('getOsAccountName, name: ' + name);
+    }).catch((err: BusinessError) => {
+      console.log('getOsAccountName err: ' + err);
+    });
+  } catch (e) {
+    console.log('getOsAccountName exception: ' + e);
+  }
+  ```
+
 ## OsAccountInfo
 
 表示系统帐号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称                         | 类型                                                         | 必填 | 说明                              |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
@@ -2771,7 +2844,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 表示域帐号信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
@@ -2836,7 +2909,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 | constraint.autofill | 禁止使用自动填充服务 |
 | constraint.content.capture | 禁止捕获用户屏幕 |
 | constraint.content.suggestions | 禁止接收内容建议 |
-| constraint.os.account.start | 禁止切换用户 |
+| constraint.os.account.activate | 禁止前台启动用户 |
 | constraint.location.set | 禁止配置位置服务 |
 | constraint.airplane.mode.set | 禁止飞行模式 |
 | constraint.brightness.set | 禁止配置亮度 |

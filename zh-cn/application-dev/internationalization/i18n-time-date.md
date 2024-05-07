@@ -129,7 +129,7 @@ let formattedDate6 = dateFormat6.format(date); // formattedDate6: ٢٠٢١/٩/١
 
 // 格式化时间段
 let dataFormat7 = new Intl.DateTimeFormat('en-GB');
-let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/9/2021 - 18/9/2021
+let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/09/2021 - 18/09/2021
 
 // 获取格式化选项
 let dataFormat8 = new Intl.DateTimeFormat('en-GB', {dateStyle: 'full'});
@@ -164,7 +164,7 @@ let dateStyle = options.dateStyle; // dateStyle: full
 
 5. 获取相对时间格式化选项，查看对象的设置信息。
    ```ts
-   let options: IntlRelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
+   let options: Intl.RelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
    ```
 
 **相对时间格式化选项**

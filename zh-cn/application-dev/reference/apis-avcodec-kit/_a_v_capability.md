@@ -203,9 +203,9 @@ bool OH_AVCapability_AreProfileAndLevelSupported (OH_AVCapability *capability, i
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 编解码能力指针 | 
-| profile | 编解码器配置文件 | 
-| level | 编解码器级别 | 
+| capability | 编解码能力指针。 | 
+| profile | 编解码器配置文件。 | 
+| level | 编解码器级别。 | 
 
 **返回：**
 
@@ -706,7 +706,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment (OH_AVCapability *capability
 | 名称 | 描述 | 
 | -------- | -------- |
 | capability | 视频编解码能力指针。不能填入音频编解码器能力指针。 | 
-| widthAlignment | 输出参数。视频宽度对齐 | 
+| widthAlignment | 输出参数。视频宽度对齐。 | 
 
 **返回：**
 
@@ -735,7 +735,7 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRange (OH_AVCapability *capability, OH
 | 名称 | 描述 | 
 | -------- | -------- |
 | capability | 视频编解码能力指针。不能填入音频编解码器能力指针。 | 
-| widthRange | 输出参数。视频宽度范围 | 
+| widthRange | 输出参数。视频宽度范围。 | 
 
 **返回：**
 

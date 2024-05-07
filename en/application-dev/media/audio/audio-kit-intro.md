@@ -66,7 +66,7 @@ The APIs of the audio module support PCM encoding, including AudioRenderer, Audi
 
 Be familiar with the following about the audio format:
 
-- The common audio sampling rates are supported: 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, and 96000, in units of Hz. For details, see [AudioSamplingRate](../../reference/apis-audio-kit/js-apis-audio.md#audiosamplingrate8).
+- The common audio sampling rates are supported: 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200<sup>12+</sup>, 96000, 176400<sup>12+</sup>, and 192000<sup>12+</sup>, in units of Hz. For details, see [AudioSamplingRate](../../reference/apis-audio-kit/js-apis-audio.md#audiosamplingrate8).
   
   The sampling rate varies according to the device type.
 

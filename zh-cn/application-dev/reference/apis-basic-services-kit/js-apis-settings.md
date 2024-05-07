@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。 
+> 
+>  - 如果访问的数据项没有获取到值，表示当前系统应用没有将该数据项的值添加到数据库。
 
 ## 导入模块
 
@@ -17,13 +19,13 @@ import settings from '@ohos.settings';
 
 ### 属性
 
-**系统能力：**SystemCapability.Applications.Settings.Core
+**系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                | 类型   | 可读 | 可写 | 说明                                                         |
-| ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| DEVICE_SHARED       | string | 是   | 是   | 设备属性共享域                                          |
-| USER_PROPERTY       | string | 是   | 是   | 为用户属性域                                           |
-| USER_SECURITY       | string | 是   | 是   | 为用户安全属性域                                        |
+| 名称                          | 类型   | 可读 | 可写 | 说明                                                         |
+|-----------------------------| ------ | ---- | ---- | ------------------------------------------------------------ |
+| DEVICE_SHARED<sup>11+</sup> | string | 是   | 是   | 设备属性共享域                                          |
+| USER_PROPERTY<sup>11+</sup> | string | 是   | 是   | 为用户属性域                                           |
+| USER_SECURITY<sup>11+</sup> | string | 是   | 是   | 为用户安全属性域                                        |
 
 ## date
 
@@ -48,19 +50,19 @@ import settings from '@ohos.settings';
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                          | 类型   | 可读 | 可写 | 说明                                                         |
-| ----------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。                                 |
-| SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。该值的范围从0到255。                               |
-| AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整；<br/>值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。 |
-| AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。           |
-| MANUAL_SCREEN_BRIGHTNESS_MODE | number | 是   | 是   | 使用屏幕亮度手动调整时的AUTO_SCREEN_BRIGHTNESS值。           |
-| SCREEN_OFF_TIMEOUT            | string | 是   | 是   | 设备在一段时间不活动后进入睡眠状态的等待时间（单位：ms）。   |
+| 名称                          | 类型   | 可读 | 可写 | 说明                                                                                                          |
+| ----------------------------- | ------ | ---- | ---- |-------------------------------------------------------------------------------------------------------------|
+| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。（当前版本参数仅支持固定值查询）                                                                              |
+| SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。该值的范围从0到255。                                                                                           |
+| AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整；<br/>值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。    |
+| AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。                                                                        |
+| MANUAL_SCREEN_BRIGHTNESS_MODE | number | 是   | 是   | 使用屏幕亮度手动调整时的AUTO_SCREEN_BRIGHTNESS值。                                                                        |
+| SCREEN_OFF_TIMEOUT            | string | 是   | 是   | 设备在一段时间不活动后进入睡眠状态的等待时间（单位：ms）。                                                                              |
 | DEFAULT_SCREEN_ROTATION       | string | 是   | 是   | 启用屏幕的自动旋转时，此属性无效；不启用自动旋转时，以下值可用：<br>值为0，表示屏幕旋转0度；<br>值为1，表示屏幕旋转90度；<br/>值为2，表示屏幕旋转180度；<br/>值为3，表示屏幕旋转270度。 |
-| ANIMATOR_DURATION_SCALE       | string | 是   | 是   | 动画持续时间的比例因子。这会影响所有此类动画的开始延迟和持续时间。<br/>值为0，表示动画将立即结束，默认值为1。 |
-| TRANSITION_ANIMATION_SCALE    | string | 是   | 是   | 过渡动画的比例因子。<br/>值为0，表示禁用过渡动画。           |
-| WINDOW_ANIMATION_SCALE        | string | 是   | 是   | 普通窗口动画的比例因子。<br/>值为0，表示禁用窗口动画。       |
-| DISPLAY_INVERSION_STATUS      | string | 是   | 是   | 是否启用显示颜色反转。<br/>值为1，表示启用显示颜色反转；<br/>值为0，表示不启用显示颜色反转。 |
+| ANIMATOR_DURATION_SCALE       | string | 是   | 是   | 动画持续时间的比例因子。这会影响所有此类动画的开始延迟和持续时间。<br/>值为0，表示动画将立即结束，默认值为1。                                                  |
+| TRANSITION_ANIMATION_SCALE    | string | 是   | 是   | 过渡动画的比例因子。<br/>值为0，表示禁用过渡动画。                                                                                |
+| WINDOW_ANIMATION_SCALE        | string | 是   | 是   | 普通窗口动画的比例因子。<br/>值为0，表示禁用窗口动画。                                                                              |
+| DISPLAY_INVERSION_STATUS      | string | 是   | 是   | 是否启用显示颜色反转。<br/>值为1，表示启用显示颜色反转；<br/>值为0，表示不启用显示颜色反转。                                                        |
 
 ## general
 
@@ -209,7 +211,7 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -242,7 +244,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -278,7 +280,7 @@ setValue(context: Context, name: string, domainName: string): Promise\<boolean>
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -491,7 +493,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 
@@ -529,7 +531,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **系统能力**：SystemCapability.Applications.Settings.Core
 
-**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS
+**需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
 
 **参数**：
 

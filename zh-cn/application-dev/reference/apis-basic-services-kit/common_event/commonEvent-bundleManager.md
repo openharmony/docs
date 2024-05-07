@@ -10,7 +10,6 @@
 
 在设备上指定用户下安装了新的应用程序，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：install，具体参看[接口文档](../../apis-ability-kit/Readme-CN.md)。
 
 ## COMMON_EVENT_PACKAGE_REMOVED
 
@@ -21,7 +20,6 @@
 
 在设备指定用户下卸载指定的应用程序包，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：uninstall，具体参看[接口文档](../../apis-ability-kit/Readme-CN.md)。
 
 ## COMMON_EVENT_PACKAGE_CHANGED
 
@@ -32,7 +30,6 @@
 
 在设备上安装的应用程序包更新或者包的组件被禁用使能，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：setApplicationEnabled 和 setAbilityEnabled，具体参看[接口文档](../../apis-ability-kit/Readme-CN.md)。
 
 ## COMMON_EVENT_PACKAGE_CACHE_CLEARED
 
@@ -43,7 +40,6 @@
 
 对设备上安装的应用程序包清除缓存时，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：cleanBundleCacheFiles，具体参看[接口文档](../../apis-ability-kit/Readme-CN.md)。
 
 ## COMMON_EVENT_PACKAGE_INSTALLATION_STARTED
 
@@ -53,5 +49,3 @@
 - 订阅方需要的权限：无
 
 在设备上指定用户下开始安装应用程序，将会触发事件通知服务发布该系统公共事件。
-
-与这个公共事件相关的接口：install，具体参看[接口文档](../../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)；recover，具体参看[接口文档](../../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerrecover)

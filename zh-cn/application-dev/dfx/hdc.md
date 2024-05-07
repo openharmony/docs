@@ -231,7 +231,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    | -------- | -------- |
    | 命令执行返回内容 | 请参考对应命令的返回值 |
    | [Fail]Not match target founded, check connect-key please | 连接的设备不存在 |
-   | [Fail]ExecuteCommand need connect-key? | 连接的设备不存在 |
+   | [Fail]ExecuteCommand need connect-key? | 连接的设备不存在或同时连接多台设备时，未指定连接设备标识 |
    | Unknown operation command... | 不支持的命令 |
 
    **使用方法**：

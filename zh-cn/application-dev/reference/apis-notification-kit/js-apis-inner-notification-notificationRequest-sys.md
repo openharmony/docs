@@ -14,7 +14,7 @@
 
 | 名称                            | 类型                                                    |  只读 | 必填 | 说明                                                                    |
 |-------------------------------| -------------------------------------------------------- | ----- | --- |-----------------------------------------------------------------------|
-| overlayIcon<sup>11+<sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 否  | 通知重叠图标。可选字段，大小不超过30KB。<br>**系统接口**: 此接口为系统接口。                                                 |
+| overlayIcon<sup>11+<sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 否  | 通知重叠图标。可选字段，图像像素的总字节数不超过100KB。<br>**系统接口**: 此接口为系统接口。                                                 |
 | classification                | string                                                   |   否  | 否  | 通知分类。<br>**系统接口**: 此接口为系统接口。                               |
 | isRemoveAllowed<sup>8+<sup>   | boolean                                                  |   否  | 否  | 通知是否能被移除（点击通知下方删除按钮无法删除，左滑不出现删除按钮）。<br>**系统接口**: 此接口为系统接口。<br>**需要权限**: ohos.permission.SET_UNREMOVABLE_NOTIFICATION |
 | source<sup>8+<sup>            | number                                                   |   是  | 否  | 通知源。<br>**系统接口**: 此接口为系统接口。                                |

@@ -2,7 +2,7 @@
 
 The main process of camera application development includes development preparations, device input management, session management, preview, photographing, and video recording.
 
-Before developing a camera application, you must request camera-related permissions (as described in the table below) to ensure that the application has the permission to access the camera hardware and other services. Before requesting the permission, ensure that the [basic principles for using permissions](../../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met.
+Before developing a camera application, you must request camera-related permissions (as described in the table below) to ensure that the application has the permission to access the camera hardware and other services. Before requesting permissions, ensure that the [basic principles for using permissions](../../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met.
 
 
 | Permission| Description| Authorization Mode| 

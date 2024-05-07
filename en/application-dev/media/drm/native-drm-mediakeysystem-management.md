@@ -1,4 +1,4 @@
-# DRM System Management (C/C++)
+# Media Key System Management (C/C++)
 
 Using the **MediaKeySystem** class of the DRM module, you can manage **MediaKeySystem** instances, generate media key system requests, process responses to these requests, create media key sessions, manage offline media keys, and obtain DRM statistics and device configuration information.
 

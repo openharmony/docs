@@ -8,21 +8,37 @@
 
 ## onAppear
 
-onAppear(event: () => void)
+onAppear(event: () => void): T
 
 组件挂载显示时触发此回调。
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## onDisAppear
 
-onDisAppear(event: () => void)
+onDisAppear(event: () => void): T
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 组件卸载消失时触发此回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

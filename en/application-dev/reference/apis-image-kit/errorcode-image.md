@@ -5,6 +5,20 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
+## 501 API Call Failed
+
+**Error Message**
+
+Resource Unavailable.
+
+**Possible Cause**
+
+The image is transferred across threads, and the original object cannot call the API.
+
+**Solution**
+
+Check the image and follow the instructions to decode it.
+
 ## 62980096 Operation Failed
 
 **Error Message**

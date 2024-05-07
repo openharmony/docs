@@ -635,7 +635,7 @@ Subscribes to PiP status change events. This API uses an asynchronous callback t
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'sketchStatusChanged'**. The event can be listened for when a PiP preview stream is created. This event is triggered when PiP preview is enabled or disabled or the zoom ratio changes while PiP preview is enabled.|
-| callback | AsyncCallback\<SketchStatusData\> | Yes  | Callback used to return the PiP status data.           |
+| callback | AsyncCallback\<[SketchStatusData](#sketchstatusdata11)\> | Yes  | Callback used to return the PiP status data.           |
 
 **Example**
 
@@ -666,7 +666,7 @@ Unsubscribes from PiP status change events. This API uses an asynchronous callba
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'sketchStatusChanged'**. The event can be listened for when a PiP preview stream is created.|
-| callback | AsyncCallback\<SketchStatusData\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('sketchStatusChanged') with the specified callback is canceled. (The callback object cannot be an anonymous function.)          |
+| callback | AsyncCallback\<[SketchStatusData](#sketchstatusdata11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('sketchStatusChanged') with the specified callback is canceled. (The callback object cannot be an anonymous function.)          |
 
 **Example**
 
@@ -1333,7 +1333,7 @@ Checks whether macro photography is supported in the current state. This API mus
 **Example**
 
 ```ts
-function isMacroSupported(photoSession: camera.PhotoSession): boolean {
+function isMacroSupported(photoSession: camera.PhotoSessionForSys): boolean {
   let isSupported: boolean = photoSession.isMacroSupported();
   return isSupported;
 }
@@ -1367,7 +1367,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function enableMacro(photoSession: camera.PhotoSession): void {
+function enableMacro(photoSession: camera.PhotoSessionForSys): void {
   let isSupported: boolean = photoSession.isMacroSupported();
   if (isSupported) {
     photoSession.enableMacro(true);
@@ -1670,7 +1670,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function getSupportedColorEffects(session: camera.PhotoSession): Array<camera.ColorEffectType> {
+function getSupportedColorEffects(session: camera.PhotoSessionForSys): Array<camera.ColorEffectType> {
   let colorEffects: Array<camera.ColorEffectType> = session.getSupportedColorEffects();
   return colorEffects;
 }
@@ -1704,7 +1704,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function setColorEffect(session: camera.PhotoSession, colorEffect: camera.ColorEffectType): void {
+function setColorEffect(session: camera.PhotoSessionForSys, colorEffect: camera.ColorEffectType): void {
   session.setColorEffect(colorEffect);
 }
 ```
@@ -1737,7 +1737,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function getColorEffect(session: camera.PhotoSession): camera.ColorEffectType {
+function getColorEffect(session: camera.PhotoSessionForSys): camera.ColorEffectType {
   let colorEffect: camera.ColorEffectType = session.getColorEffect();
   return colorEffect;
 }
@@ -1791,7 +1791,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
+function getSupportedColorSpaces(session: camera.PhotoSessionForSys): Array<colorSpaceManager.ColorSpace> {
   let colorSpaces: Array<colorSpaceManager.ColorSpace> = session.getSupportedColorSpaces();
   return colorSpaces;
 }
@@ -1829,7 +1829,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 import { BusinessError } from '@ohos.base';
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
+function setColorSpace(session: camera.PhotoSessionForSys, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
   if (colorSpaces === undefined || colorSpaces.length <= 0) {
     return;
   }
@@ -1872,7 +1872,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
+function getActiveColorSpace(session: camera.PhotoSessionForSys): colorSpaceManager.ColorSpace {
   let colorSpace: colorSpaceManager.ColorSpace = session.getActiveColorSpace();
   return colorSpace;
 }
@@ -2573,7 +2573,7 @@ Subscribes to **PortraitSession** error events. This API uses a callback to retu
 | Name    | Type       | Mandatory| Description                          |
 | -------- | --------------------------------- | ---- | ------------------------------ |
 | type     | string                               | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | ErrorCallback| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).       |
 
 **Example**
 
@@ -2604,7 +2604,7 @@ Unsubscribes from **PortraitSession** error events. This API uses a callback to 
 | Name    | Type       | Mandatory| Description                          |
 | -------- | -------------------------- | ---- | ------------------------------ |
 | type     | string                     | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
-| callback | ErrorCallback| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)   |
 
 **Example**
 
@@ -2747,7 +2747,7 @@ Subscribes to **NightSession** error events. This API uses a callback to return 
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created. This event is triggered and the error message is returned when an error occurs during the calling of a session-related API such as [beginConfig](js-apis-camera.md#beginconfig11), [commitConfig](js-apis-camera.md#commitconfig11-1), and [addInput](js-apis-camera.md#addinput11).|
-| callback | ErrorCallback| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| Yes  | Callback used to return an error code defined in [CameraErrorCode](js-apis-camera.md#cameraerrorcode).|
 
 **Example**
 
@@ -2778,7 +2778,7 @@ Unsubscribes from **NightSession** error events. This API uses a callback to ret
 | Name    | Type                       | Mandatory| Description                          |
 | -------- | ------------------------ | ---- | ------------------------------ |
 | type     | string    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
-| callback | ErrorCallback| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)      |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)      |
 
 **Example**
 

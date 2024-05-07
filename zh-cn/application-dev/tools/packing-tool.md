@@ -13,7 +13,7 @@
 
 
     ```
-    java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true --compress-level 5
+    java -jar app_packing_tool.jar --mode hap --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path <option> --force true --compress-level 5 --pkg-context-path <option>
     ```
 
 - FA模型示例：
@@ -46,28 +46,7 @@
 | --ap-path        | 否         | NA            | 存放ap文件的路径。                                           | 仅stage模型生效 |
 | --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
 | --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
-
-## HAR打包指令
-
-开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的HAR包。
-
-示例：
-
-```
-java -jar app_packing_tool.jar --mode har --json-path [option] --jar-path [option] --lib-path [option] --resources-path [option] --out-path [option] --force [option]
-```
-
-**表2** HAR打包指令参数说明
-
-| 指令              | 是否必选项 | 选项          | 描述                                                        |
-|-----------------|-------|-------------|-----------------------------------------------------------|
-| --mode          | 是     | har         | 打包类型。                                                     |
-| --json-path     | 是     | NA          | .json文件路径，FA模型文件名必须为config.json；stage模型文件名必须为module.json。 |
-| --jar-path      | 否     | NA          | jar文件路径，文件名必须以.jar为后缀。如果是多个jar需要用“，”分隔。<br/>jar文件路径也可以为目录。 |
-| --lib-path      | 否     | NA          | lib库文件路径。                                                 |
-| --resource-path | 是     | NA          | resources资源包路径。                                           |
-| --out-path      | 是     | NA          | 目标文件路径，文件名必须以.har为后缀。                                     |
-| --force         | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。                        |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 | 仅stage模型生效              |
 
 ## HSP打包指令
 
@@ -75,10 +54,10 @@ HSP包实现了多个HAP对文件的共享，开发者可以使用打包工具�
 
 示例：
 ```
-java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true --compress-level 5
+java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-path <option> --ets-path <option> --index-path <option> --pack-info-path <option> --out-path path\out\library.hsp --force true --compress-level 5 --pkg-context-path <option>
 ```
 
-**表3** HSP打包指令参数说明
+**表2** HSP打包指令参数说明
 
 | 指令             | 是否必选项 | 选项          | 描述                                                         |
 | ---------------- | ---------- | ------------- | ------------------------------------------------------------ |
@@ -95,12 +74,13 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hsp为后缀。                       |
 | --force          | 否         | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。  |
 | --compress-level | 否         | number        | 压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 |
 
 ## App打包指令
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时HAP合法性校验：** 在对工程内的HAP包打包生成App包时，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、versionName、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，moduleName唯一。对于FA模型，还需要保证json文件中配置的package唯一。
+**App打包时HAP合法性校验：** 在对工程内的HAP包打包生成App包时，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，moduleName唯一。对于FA模型，还需要保证json文件中配置的package唯一。
 
 
 示例：
@@ -109,7 +89,7 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option> --out-path <option> --signature-path [option] --certificate-path [option] --pack-info-path [option] --force [option]
 ```
 
-**表4** App打包指令参数说明
+**表3** App打包指令参数说明
 
 | 指令                 | 是否必选项 | 选项          | 描述                                                           |
 |--------------------|-------|-------------|--------------------------------------------------------------|
@@ -128,7 +108,7 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 
 多工程打包适用于多个团队开发同一个应用，但不方便共享代码的情况。开发者通过传入已经打好的HAP、HSP和App包，将多个包打成一个最终的App包，并上架应用市场。
 
-**多工程打包HAP合法性校验：** 需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、versionName、minCompatibleVersionCode、debug属性相同，minAPIVersion、targetAPIVersion、apiReleaseType、compileSdkVersion、compileSdkType相同，moduleName唯一，同一设备entry唯一。对于FA模型，还需要保证json文件中配置的package唯一。
+**多工程打包HAP合法性校验：** 需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug属性相同，minAPIVersion、targetAPIVersion、apiReleaseType、compileSdkVersion、compileSdkType相同，moduleName唯一，同一设备entry唯一。对于FA模型，还需要保证json文件中配置的package唯一。
 
 示例：
 
@@ -136,7 +116,7 @@ java -jar app_packing_tool.jar --mode app --hap-path <option> --hsp-path <option
 java -jar app_packing_tool.jar --mode multiApp --hap-list [option] --hsp-list [option] --app-list [option] --out-path <option>
 ```
 
-**表5** 多工程打包指令参数说明
+**表4** 多工程打包指令参数说明
 
 | 指令         | 是否必选项 | 选项        | 描述                                                                                                  |
 |------------|-------|-----------|-----------------------------------------------------------------------------------------------------|
@@ -156,10 +136,10 @@ HQF包适用于应用存在一些问题，需要紧急修复的场景。开发�
 示例:
 
 ```
-java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --out-path <option>
+java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <option> --ets-path <option> --resources-path <option> --out-path <option>
 ```
 
-**表6** HQF打包指令参数说明
+**表5** HQF打包指令参数说明
 
 | 指令          | 是否必选项 | 选项          | 描述                                 |
 |-------------|-------|-------------|------------------------------------|
@@ -167,6 +147,7 @@ java -jar app_packing_tool.jar --mode hqf --json-path <option> --lib-path <optio
 | --json-path | 是     | NA          | .json文件路径，文件名必须为patch.json。        |
 | --lib-path  | 否     | NA          | lib库文件的路径。                         |
 | --ets-path  | 否     | NA          | 存放ets文件目录路径。                       |
+| --resources-path  | 否     | NA          | resources资源包路径。                       |
 | --out-path  | 是     | NA          | 目标文件路径，文件名必须以.hqf为后缀。              |
 | --force     | 否     | true或者false | 默认值为false，如果为true，表示当目标文件存在时，强制删除。 |
 
@@ -180,7 +161,7 @@ APPQF包由一个或多个HQF文件组成。这些HQF包在应用市场会从APP
 java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <option>
 ```
 
-**表7** APPQF打包指令参数说明
+**表6** APPQF打包指令参数说明
 
 | 指令         | 是否必选项 | 选项          | 描述                                 |
 |------------|-------|-------------|------------------------------------|
@@ -201,7 +182,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <option> --out-path <opti
 java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path path\out\
 ```
 
-**表8** versionNormalize指令参数说明
+**表7** versionNormalize指令参数说明
 
 | 指令             | 是否必选项 | 选项               | 描述                                                                |
 |----------------|-------|------------------|-------------------------------------------------------------------|
@@ -210,3 +191,22 @@ java -jar path\app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2
 | --version-code | 是     | 版本号              | 指定的版本号，HAP、HSP的版本号会被修改为该版本。需要为整数，且不小于所有传入的HAP、HSP的版本号。            |
 | --version-name | 是     | 版本名称             | 指定的版本名称，HAP、HSP的版本名称会被修改为该版本名称。                                    |
 | --out-path     | 是     | NA               | 目标文件路径，需要为一个目录。                                                   |
+
+## 包名归一指令（packageNormalize）
+
+此命令可以修改传入的HSP的包名和版本号，并在指定目录生成修改后的同名HSP。
+
+示例：
+```
+java -jar path\app_packing_tool.jar --mode packageNormalize --hsp-list path\1.hsp,path\2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path path\out\
+```
+
+**表8**  参数含义及规范
+
+| 指令             | 是否必选项 | 选项            | 描述                                                  |
+|----------------|-------|---------------|-----------------------------------------------------|
+| --mode         | 是     | packageNormalize | 命令类型。                                               |
+| --hsp-list     | 是     | HSP的路径      | 1.HSP包文件路径，文件名必须以.hsp为后缀。如果是多个HSP包需要“,”分隔。2.HSP包目录。 |
+| --bundle-name  | 是     | 包名            | 指定的包名，HSP的包名会被修改为指定的包名。                             |
+| --version-code | 是     | 版本号           | 指定的版本号，HSP的版本号会被修改为该版本号。需要为整数，且大于0。                 |
+| --out-path     | 是     | NA            | 目标文件路径，需要为一个目录。                                     |

@@ -30,6 +30,8 @@ ExceptionPrompt({ options: PromptOptions })
 
 **装饰器类型：**\@Component
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -46,6 +48,8 @@ ExceptionPrompt({ options: PromptOptions })
 
 PromptOptions定义options的类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -60,6 +64,8 @@ PromptOptions定义options的类型。
 ## MarginType
 
 MarginType定义marginType的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,8 +128,8 @@ struct CustomDialogExample {
     marginTop: 5,
     isShown: true
   }
-  cancel: () => void
-  confirm: () => void
+  cancel: () => void = () => {}
+  confirm: () => void = () => {}
   controller: CustomDialogController
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在最后
   build() {
@@ -161,8 +167,8 @@ struct Index1 {
   @State tips: string = ''
   @State actionText: string = ''
   controller: TextInputController = new TextInputController()
-  cancel: () => void
-  confirm: () => void
+  cancel: () => void = () => {}
+  confirm: () => void = () => {}
   @State options: PromptOptions = {
     icon: $r('app.media.ic_public_fail'),
     tip: '',
@@ -173,7 +179,7 @@ struct Index1 {
   }
   @State textValue: string = ''
   @State inputValue: string = 'click me'
-  dialogController: CustomDialogController = new CustomDialogController({
+  dialogController: CustomDialogController | undefined = new CustomDialogController({
     builder: CustomDialogExample({
       cancel: this.onCancel,
       confirm: this.onAccept,

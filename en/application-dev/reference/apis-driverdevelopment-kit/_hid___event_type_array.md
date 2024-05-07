@@ -5,9 +5,13 @@
 
 Defines an array of event types.
 
-**Since**: 11
+**Since**
 
-**Related module**: [HidDdk](_hid_ddk.md)
+11
+
+**Related module**
+
+[HID DDK](_hid_ddk.md)
 
 
 ## Summary
@@ -17,5 +21,32 @@ Defines an array of event types.
 
 | Name| Description| 
 | -------- | -------- |
-| [hidEventType](_hid_ddk.md#hideventtype) | [Hid_EventType](_hid_ddk.md#hid_eventtype) \* | 
-| [length](_hid_ddk.md#length-15) | uint16_t | 
+| [hidEventType](#hideventtype) | Array of event types.| 
+| [length](#length) | Length of the array.| 
+
+
+## Member Variable Description
+
+
+### hidEventType
+
+
+```
+Hid_EventType Hid_EventTypeArray::*hidEventType
+```
+
+**Description**
+
+Array of event types.
+
+
+### length
+
+
+```
+uint16_t Hid_EventTypeArray::length
+```
+
+**Description**
+
+Length of the array.

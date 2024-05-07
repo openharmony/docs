@@ -3,17 +3,15 @@
 
 ## 概述
 
-音频录制参数。
+音频信息。
 
-**系统能力**：SystemCapability.Multimedia.Media.AVScreenCapture
+同时采集音频麦克风和音频内录数据时，两路音频的audioSampleRate和audioChannels采样参数需要相同。
 
-**起始版本：**
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
-10
+**起始版本：** 10
 
-**相关模块:**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**相关模块：**[AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## 汇总
@@ -23,9 +21,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [micCapInfo](#miccapinfo) | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md)<br/>麦克风的音频参数。 | 
-| [innerCapInfo](#innercapinfo) | [OH_AudioCaptureInfo](_o_h___audio_capture_info.md)<br/>内录的音频参数。 | 
-| [audioEncInfo](#audioencinfo) | [OH_AudioEncInfo](_o_h___audio_enc_info.md)<br/>音频录制信息， 当dataType为OH_ORIGINAL_STREAM时不需要设置。<br>**说明：** 预留接口，将在后续版本提供。 | 
+| [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [micCapInfo](#miccapinfo) | 音频麦克风采样信息。 | 
+| [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [innerCapInfo](#innercapinfo) | 音频内录采样信息 。 | 
+| [OH_AudioEncInfo](_o_h___audio_enc_info.md) [audioEncInfo](#audioencinfo) | 音频编码信息，原始码流时不需要设置。 | 
 
 
 ## 结构体成员变量说明
@@ -37,13 +35,10 @@
 OH_AudioEncInfo OH_AudioInfo::audioEncInfo
 ```
 
-**描述:**
+**描述**
 
-音频录制信息， 当dataType为OH_ORIGINAL_STREAM时不需要设置。
+音频编码信息，原始码流时不需要设置。
 
-> **说明：** 
-> 
-> 预留接口，将在后续版本提供。
 
 
 ### innerCapInfo
@@ -52,9 +47,9 @@ OH_AudioEncInfo OH_AudioInfo::audioEncInfo
 OH_AudioCaptureInfo OH_AudioInfo::innerCapInfo
 ```
 
-**描述:**
+**描述**
 
-内录的音频参数。
+音频内录采样信息 。
 
 
 ### micCapInfo
@@ -63,6 +58,6 @@ OH_AudioCaptureInfo OH_AudioInfo::innerCapInfo
 OH_AudioCaptureInfo OH_AudioInfo::micCapInfo
 ```
 
-**描述:**
+**描述**
 
-麦克风的音频参数。
+音频麦克风采样信息。

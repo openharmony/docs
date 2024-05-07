@@ -28,7 +28,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -67,5 +67,65 @@ promise?.then(()=> {
   console.log(`Succeeded in showing the non-secure windows.`);
 }).catch((err: BusinessError)=> {
   console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+})
+```
+
+### setWaterMarkFlag
+
+setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
+
+为当前窗口添加或删除安全水印标志，使用Promise异步回调。
+> **说明：**
+>
+> 添加安全水印标志后，窗口在前台时会将当前全屏幕覆盖水印。全屏、悬浮窗、分屏等场景下只要有添加了安全水印标志的窗口在前台，就会显示全屏水印。
+
+**系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**系统接口**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                            |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+
+**示例**
+
+```ts
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import uiExtension from '@ohos.arkui.uiExtension';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
+session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
+extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
+// 添加安全水印标志
+let promise = this.extensionWindow?.setWaterMarkFlag(true);
+promise?.then(() => {
+  console.log(`Succeeded in setting water mark flag of window.`);
+}).catch((err: BusinessError) => {
+  console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+})
+// 删除安全水印标志
+let promise = this.extensionWindow?.setWaterMarkFlag(false);
+promise?.then(() => {
+  console.log(`Succeeded in deleting water mark flag of window.`);
+}).catch((err: BusinessError) => {
+  console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
 })
 ```

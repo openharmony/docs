@@ -20,9 +20,9 @@ onShareForm?(formId: string): Record\<string, Object>
 
 Called to notify the widget provider that the widget host is sharing the widget data.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -59,9 +59,9 @@ onAcquireFormData?(formId: string): Record\<string, Object>
 
 Called to notify the widget provider that the widget host is requesting the custom data.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API.
 
 **Parameters**
 

@@ -8,18 +8,9 @@
 
 使用AVScreenCapture录制屏幕涉及到AVScreenCapture实例的创建、音视频采集参数的配置、采集的开始与停止、资源的释放等。
 
+开始屏幕录制时正在通话中或者屏幕录制过程中来电，录屏将自动停止。因通话中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL状态。
+
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
-
-## 申请权限
-
-在开发此功能前，开发者应根据实际需求申请相应权限，申请方式请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md)。
-
-| 权限名 | 说明 | 授权方式 | 权限级别 |
-| ------ | ----- | --------| ------- |
-| ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。| user_grant | normal |
-| ohos.permission.READ_MEDIA | 允许应用读取用户外部存储中的媒体文件信息。| user_grant | normal |
-| ohos.permission.WRITE_MEDIA | 允许应用读写用户外部存储中的媒体文件信息。| user_grant | normal |
-| ohos.permission.SYSTEM_FLOAT_WINDOW | 允许应用使用悬浮窗的能力。| system_grant | system_basic |
 
 ## 开发步骤及注意事项
 
@@ -54,12 +45,18 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
     创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
 
-    其中，录屏存文件仅仅能够在OH_AVScreenCapture_Init时期设置是否录制麦克风音频，在录制的过程中，无法控制麦克风的开启与关闭。
+    其中，录屏存文件时默认录制内录，麦克风可以动态开关，可以同时内外录制。
 
-    同时，录屏存文件无需设置回调函数。
+    同时，录屏存文件需要设置状态回调，感知录制状态。
 
     ```c++
-    //录屏时获取麦克风或者内录，二者选择其一，如果都设置了，优先取内录的参数设置，如果内录参数设置失败，取麦克风的参数设置
+    //录屏时获取麦克风或者内录，内录参数必填，如果都设置了，内录和麦克风的参数设置需要一致
+    OH_AudioCaptureInfo micCapInfo = {
+        .audioSampleRate = 48000,
+        .audioChannels = 2,
+        .audioSource = OH_MIC
+    };
+
     OH_AudioCaptureInfo innerCapInfo = {
         .audioSampleRate = 48000,
         .audioChannels = 2,
@@ -106,13 +103,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 4. 调用StartScreenRecording()方法开始进行屏幕录制。
 
     ```c++
-    OH_AVScreenCapture_StartScreenCapture(capture);
+    OH_AVScreenCapture_StartScreenRecording(capture);
     ```
 
 5. 调用StopScreenRecording()方法停止录制。
 
     ```c++
-    OH_AVScreenCapture_StopScreenCapture(capture);
+    OH_AVScreenCapture_StopScreenRecording(capture);
     ```
 
 6. 调用Release()方法销毁实例，释放资源。
@@ -141,6 +138,12 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
         .audioSampleRate = 48000, 
         .audioChannels = 2, 
         .audioSource = OH_MIC
+    };
+
+    OH_AudioCaptureInfo innerCapInfo = {
+        .audioSampleRate = 48000, 
+        .audioChannels = 2, 
+        .audioSource = OH_ALL_PLAYBACK
     };
 
     OH_AudioEncInfo audioEncInfo = {

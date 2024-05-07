@@ -218,9 +218,9 @@ The DLP file is read-only.
 
 **Possible Causes**
 
-- You cannot modify the permission on a DLP file, which is read-only.
+- You cannot modify the permission on a DLP file that is read-only.
 
-- You cannot write a DLP file, which is read-only.
+- You cannot write a DLP file that is read-only.
 
 **Solution**
 
@@ -318,7 +318,7 @@ The system needs to be upgraded.
 Upgrade the system.
 
 
-## 19100016 URI Missing
+## 19100016 URI Missing in Want
 
 **Error Message**
 
@@ -333,7 +333,7 @@ The **want** parameter does not contain the URI.
 Set parameters correctly.
 
 
-## 19100017 displayName Missing
+## 19100017 displayName Missing in Want
 
 **Error Message**
 

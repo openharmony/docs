@@ -7,6 +7,12 @@ The **userIAM.userAuth** module provides user authentication capabilities in ide
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md).
 
+## Modules to Import
+
+```ts
+import userAuth from '@ohos.userIAM.userAuth';
+```
+
 ## WindowModeType<sup>10+</sup>
 
 Enumerates the window types of the authentication widget.

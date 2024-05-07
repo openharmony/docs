@@ -1,6 +1,6 @@
 # @ohos.reminderAgentManager (Agent-Powered Reminders)
 
-The **reminderAgentManager** module provides APIs related to agent-powered reminders. When your application is frozen or exits, the timing and notification functions of your application will be taken over by a system service running in the background. You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks.
+The reminderAgentManager module provides APIs related to agent-powered reminders. When your application is frozen or exits, the timing and notification functions of your application will be taken over by a system service running in the background. You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks.
 
 > **NOTE**
 >
@@ -83,7 +83,7 @@ Publishes a reminder. This API uses a promise to return the result.
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise\<number> | Promise used to return the published reminder's ID.|
+  | Promise\<number> | Promise used to return the published reminder ID.|
 
 **Error codes**
 
@@ -526,6 +526,62 @@ reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORM
 });
 ```
 
+## reminderAgentManager.getAllValidReminders<sup>12+</sup>
+
+getAllValidReminders(): Promise\<Array\<ReminderInfo>>
+
+Obtains all valid (not yet expired) reminders set by the current application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> When the preset reminder time arrives, a notification message is displayed in the notification center. The reminder is valid before the user touches the CLOSE button to close the message.
+>
+> For an alarm reminder that repeats every day, the reminder is valid regardless of whether the user touches the CLOSE button.
+
+**Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+**Return value**
+
+| Type                                             | Description                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise used to return all the valid reminders.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgentManager.ReminderInfo>) => {
+  console.log("promise, getAllValidReminders length = " + reminders.length);
+  for (let i = 0; i < reminders.length; i++) {
+    console.log("getAllValidReminders, reminderId = " + reminders[i].reminderId);
+    console.log("getAllValidReminders, reminderType = " + reminders[i].reminderReq.reminderType);
+    const actionButton = reminders[i].reminderReq.actionButton || [];
+    for (let j = 0; j < actionButton.length; j++) {
+      console.log("getAllValidReminders, actionButton.title = " + actionButton[j]?.title);
+      console.log("getAllValidReminders, actionButton.type = " + actionButton[j]?.type);
+    }
+    console.log("getAllValidReminders, wantAgent.pkgName = " + reminders[i].reminderReq.wantAgent?.pkgName);
+    console.log("getAllValidReminders, wantAgent.abilityName = " + reminders[i].reminderReq.wantAgent?.abilityName);
+    console.log("getAllValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].reminderReq.maxScreenWantAgent?.pkgName);
+    console.log("getAllValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].reminderReq.maxScreenWantAgent?.abilityName);
+    console.log("getAllValidReminders, ringDuration = " + reminders[i].reminderReq.ringDuration);
+    console.log("getAllValidReminders, snoozeTimes = " + reminders[i].reminderReq.snoozeTimes);
+    console.log("getAllValidReminders, timeInterval = " + reminders[i].reminderReq.timeInterval);
+    console.log("getAllValidReminders, title = " + reminders[i].reminderReq.title);
+    console.log("getAllValidReminders, content = " + reminders[i].reminderReq.content);
+    console.log("getAllValidReminders, expiredContent = " + reminders[i].reminderReq.expiredContent);
+    console.log("getAllValidReminders, snoozeContent = " + reminders[i].reminderReq.snoozeContent);
+    console.log("getAllValidReminders, notificationId = " + reminders[i].reminderReq.notificationId);
+    console.log("getAllValidReminders, slotType = " + reminders[i].reminderReq.slotType);
+  }
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+}); 
+```
+
 ## ActionButtonType
 
 Enumerates the button types.
@@ -567,6 +623,10 @@ Defines the button on the reminder displayed.
 
 Defines the information about the redirected-to ability.
 
+> **NOTE**
+>
+> Since API version 12, the **uri** parameter is open to all applications.
+
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 
@@ -574,6 +634,8 @@ Defines the information about the redirected-to ability.
 | -------- | -------- | -------- | -------- |
 | pkgName | string | Yes| Name of the target package.|
 | abilityName | string | Yes| Name of the target ability.|
+| parameters<sup>12+</sup> | Record\<string, Object> | No| Parameters to be transferred to the target.|
+| uri<sup>10+</sup> | string | No| URI of the target ability.|
 
 
 ## MaxScreenWantAgent
@@ -597,7 +659,7 @@ Defines the request for publishing a reminder.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | No| Buttons displayed for the reminder in the notification panel.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | No| Buttons displayed for the reminder notification.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
 | wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is started automatically and displayed in full-screen mode when the reminder arrives. If the device is in use, only a notification banner is displayed.<br> This API is reserved.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
@@ -607,7 +669,7 @@ Defines the request for publishing a reminder.
 | content | string | No| Reminder content.|
 | expiredContent | string | No| Content to be displayed after the reminder expires.|
 | snoozeContent | string | No| Content to be displayed when the reminder is snoozing. (It is not applicable to countdown reminders.)|
-| notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
+| notificationId | number | No| Notification ID used by the reminder. You must pass in a notification ID. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
 | groupId<sup>11+</sup> | string | No| Group ID used for the reminder. If "Don't ask again" or similar information is selected for the reminder, other reminders with the same group ID are also canceled.|
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
 | tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). |
@@ -661,7 +723,7 @@ Defines a reminder for a scheduled timer.
 
 ## LocalDateTime
 
-Sets the time information for a calendar reminder.
+Defines the time information for a calendar reminder.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -673,3 +735,14 @@ Sets the time information for a calendar reminder.
 | hour | number | Yes| Hour. The value ranges from 0 to 23.|
 | minute | number | Yes| Minute. The value ranges from 0 to 59.|
 | second | number | No| Second. The value ranges from 0 to 59.|
+
+## ReminderInfo<sup>12+</sup>
+
+Defines the reminder information.
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+| Name       | Type                               | Mandatory| Description                 |
+| ----------- | ----------------------------------- | ---- | --------------------- |
+| reminderId  | number                              | No  | ID of the reminder.|
+| reminderReq | [ReminderRequest](#reminderrequest) | No  | Request used for publishing the reminder.       |

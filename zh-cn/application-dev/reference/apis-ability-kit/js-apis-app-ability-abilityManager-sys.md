@@ -65,11 +65,14 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -129,11 +132,14 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -185,11 +191,13 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -232,11 +240,12 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -278,11 +287,13 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -333,11 +344,13 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -378,11 +391,13 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -417,11 +432,12 @@ getTopAbility(): Promise\<ElementName>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -455,11 +471,13 @@ acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Obj
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -507,11 +525,13 @@ acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -554,11 +574,13 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -620,11 +642,13 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
@@ -678,11 +702,14 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -725,11 +752,14 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -782,11 +812,14 @@ getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): vo
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
@@ -823,11 +856,13 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
@@ -844,7 +879,7 @@ abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.Abili
 
 ## abilityManager.notifyDebugAssertResult<sup>12+</sup>
 
-notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promise\<void>
+notifyDebugAssertResult(sessionId: string, status: UserStatus): Promise\<void>
 
 将断言调试结果通知应用程序。使用Promise异步回调。
 
@@ -869,25 +904,96 @@ notifyDebugAssertResult(requestAssertFaultId: string, status: UserStatus): Promi
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
+import type Want from '@ohos.app.ability.Want';
+import type UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-onSessionCreate(want, session) {
-    let sessionId = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID];
-    abilityManager.notifyDebugAssertResult(sessionId, abilityManager.UserStatus.ASSERT_TERMINATE).then(() => {
-        console.log('notifyUserActionResult success.');
+export default class UiExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let sessionId:string = '';
+    if(want.parameters){
+      sessionId  = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string;
+    }
+    let status = abilityManager.UserStatus.ASSERT_TERMINATE;
+    abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
+      console.log('notifyDebugAssertResult success.');
     }).catch((err: BusinessError) => {
-        console.error(`notifyUserActionResult failed, error: ${JSON.stringify(err)}`);
-    })
+      console.error(`notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
+    });
+  }
+}
+
+```
+
+## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+
+isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
+
+判断是否允许嵌入式拉起[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | -------- | -------- | -------- |
+| context | [Context](js-apis-inner-application-context.md) | 是 | 嵌入式拉起EmbeddableUIAbility的调用方Context。 |
+| appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<boolean> | Promise对象。返回true表示允许嵌入式启动，返回false表示不允许嵌入式启动。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let appId: string = '6918661953712445909';
+
+    try {
+      abilityManager.isEmbeddedOpenAllowed(this.context, appId).then((data) => {
+        console.info(`isEmbeddedOpenAllowed data: ${JSON.stringify(data)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`isEmbeddedOpenAllowed failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      console.error(`param is invalid, code is ${err.code}, message is ${err.message}`);
+    }
+  }
 }
 ```

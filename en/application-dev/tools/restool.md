@@ -3,7 +3,7 @@
 
 ## Overview
 
-restool is a resource compilation tool that creates resource indexes and parses resources by compiling resource files. You can call the [resource management APIs](../reference/apis/js-apis-resource-manager.md) to obtain resources. The tool is stored in the **toolchains** subdirectory of the SDK installation directory.
+restool is a resource compilation tool that creates resource indexes and parses resources by compiling resource files. You can call the [resource management APIs](../reference/apis-localization-kit/js-apis-resource-manager.md) to obtain resources. The tool is stored in the **toolchains** subdirectory of the SDK installation directory.
 
 ## Description
 

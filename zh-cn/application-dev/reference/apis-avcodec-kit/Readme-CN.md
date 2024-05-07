@@ -35,4 +35,5 @@
     - [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)
     - [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)
     - [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)
+    - [OH_AVDataSource](_o_h___a_v_data_source.md)
     - [OH_AVRange](_o_h___a_v_range.md)

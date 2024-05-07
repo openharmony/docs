@@ -141,7 +141,7 @@ export struct VideoPlayer {
 
 ## 事件调用
 
-  Video组件回调事件主要为播放开始、暂停结束、播放失败、视频准备和操作进度条等事件，除此之外，Video组件也支持通用事件的调用，如点击、触摸等事件的调用。详细事件请参考[事件说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#事件)。
+  Video组件回调事件主要为播放开始、暂停结束、播放失败、播放停止、视频准备和操作进度条等事件，除此之外，Video组件也支持通用事件的调用，如点击、触摸等事件的调用。详细事件请参考[事件说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#事件)。
 
 ```ts
 @Entry
@@ -165,6 +165,9 @@ struct VideoPlayer{
         })
         .onError(() => {          //失败事件回调
           console.info("Video error.");
+        })
+        .onStop(() => {          //停止事件回调
+          console.info("Video stoped.");
         })
     }
   }

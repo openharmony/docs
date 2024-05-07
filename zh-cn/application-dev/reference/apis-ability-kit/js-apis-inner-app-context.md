@@ -5,7 +5,8 @@ Context模块提供了ability或application的上下文的能力，包括允许�
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口**仅可在FA模型**下使用。
+> 
+> 本模块接口仅可在FA模型下使用。
 
 ## 导入模块
 
@@ -30,7 +31,7 @@ context.getOrCreateLocalDir().then((data) => {
 
 getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
-获取应用程序的本地根目录（callback形式）。
+获取应用程序的本地根目录。使用callback异步回调。
 
 如果是第一次调用，将创建目录。
 
@@ -40,7 +41,7 @@ getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| callback | AsyncCallback\<string> | 是    | 返回应用程序的本地根目录。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回应用程序的本地根目录。 |
 
 **示例：**
 
@@ -63,7 +64,7 @@ context.getOrCreateLocalDir((error, data)=>{
 
 getOrCreateLocalDir(): Promise\<string>
 
-获取应用程序的本地根目录（Promise形式）。
+获取应用程序的本地根目录。使用Promise异步回调。
 
 如果是第一次调用，将创建目录。
 
@@ -73,7 +74,7 @@ getOrCreateLocalDir(): Promise\<string>
 
 | 类型               | 说明          |
 | ---------------- | ----------- |
-| Promise\<string> | 应用程序的本地根目录。 |
+| Promise\<string> | Promise对象，返回应用程序的本地根目录。 |
 
 **示例：**
 
@@ -90,7 +91,7 @@ context.getOrCreateLocalDir().then((data) => {
 
 verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>): void
 
-验证系统中运行的特定pid和uid是否允许指定的权限（callback形式）。
+验证系统中运行的特定pid和uid是否允许指定的权限。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -99,8 +100,8 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 | 参数名         | 类型                                      | 必填   | 说明                   |
 | ---------- | --------------------------------------- | ---- | -------------------- |
 | permission | string                                  | 是    | 指定权限的名称。             |
-| options    | [PermissionOptions](../apis/#permissionoptions7) | 是    | 权限选项。                |
-| callback   | AsyncCallback\<number>                  | 是    | 返回权限验证结果，0有权限，-1无权限。 |
+| options    | [PermissionOptions](#permissionoptions7) | 是    | 权限选项。                |
+| callback   | AsyncCallback\<number>                  | 是    | 回调函数，返回权限验证结果，0有权限，-1无权限。 |
 
 **示例：**
 
@@ -128,7 +129,7 @@ bundle.getBundleInfo('com.context.test', 1, (err: BusinessError, datainfo: bundl
 
 verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 
-验证系统中运行的当前pid和uid是否具有指定的权限（callback形式）。
+验证系统中运行的当前pid和uid是否具有指定的权限。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -137,7 +138,7 @@ verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 | 参数名         | 类型                     | 必填   | 说明                   |
 | ---------- | ---------------------- | ---- | -------------------- |
 | permission | string                 | 是    | 指定权限的名称。             |
-| callback   | AsyncCallback\<number> | 是    | 返回权限验证结果，0有权限，-1无权限。 |
+| callback   | AsyncCallback\<number> | 是    | 回调函数，返回权限验证结果，0有权限，-1无权限。 |
 
 **示例：**
 
@@ -158,7 +159,7 @@ context.verifyPermission('com.example.permission', (error, data) =>{
 
 verifyPermission(permission: string, options?: PermissionOptions): Promise\<number>
 
-验证系统中运行的特定pid和uid是否具有指定的权限（Promise形式）。
+验证系统中运行的特定pid和uid是否具有指定的权限。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -167,13 +168,13 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 | 参数名         | 类型                                      | 必填   | 说明       |
 | ---------- | --------------------------------------- | ---- | -------- |
 | permission | string                                  | 是    | 指定权限的名称。 |
-| options    | [PermissionOptions](../apis/#permissionoptions7) | 否    | 权限选项。    |
+| options    | [PermissionOptions](#permissionoptions7) | 否    | 权限选项。    |
 
 **返回值：**
 
 | 类型               | 说明                                 |
 | ---------------- | ---------------------------------- |
-| Promise\<number> | 如果pid和uid具有权限，则使用0进行异步回调；否则使用-1回调。 |
+| Promise\<number> | Promise对象，如果pid和uid具有权限，则使用0进行异步回调；否则使用-1回调。 |
 
 **示例：**
 
@@ -190,9 +191,9 @@ context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](../apis/#permissionrequestresult7)>): void
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback\<PermissionRequestResult>): void
 
-从系统请求某些权限（callback形式）。
+从系统请求某些权限。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -201,8 +202,8 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, res
 | 参数名             | 类型                                       | 必填   | 说明                                  |
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | 是    | 指示要请求的权限列表。此参数不能为null。              |
-| requestCode    | number                                   | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
-| resultCallback | AsyncCallback<[PermissionRequestResult](../apis/#permissionrequestresult7)> | 是    | 返回授权结果信息。                           |
+| requestCode    | number                                   | 是    | 指示要传递给[PermissionRequestResult](#permissionrequestresult7)的请求代码。 |
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | 是    | 回调函数，返回授权结果信息。                           |
 
 **示例：**
 
@@ -230,9 +231,9 @@ context.requestPermissionsFromUser(
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<[PermissionRequestResult](../apis/#permissionrequestresult7)>
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<PermissionRequestResult>
 
-从系统请求某些权限（promise形式）。
+从系统请求某些权限。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -241,13 +242,13 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Pr
 | 参数名           | 类型                 | 必填  | 说明                                          |
 | -------------- | ------------------- | ----- | -------------------------------------------- |
 | permissions    | Array\<string>      | 是    | 指示要请求的权限列表。此参数不能为null。         |
-| requestCode    | number              | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
+| requestCode    | number              | 是    | 指示要传递给[PermissionRequestResult](#permissionrequestresult7)的请求代码。 |
 
 **返回值：**
 
 | 类型                                                           | 说明             |
 | ------------------------------------------------------------- | ---------------- |
-| Promise\<[PermissionRequestResult](../apis/#permissionrequestresult7)> | 返回授权结果信息。 |
+| Promise\<[PermissionRequestResult](#permissionrequestresult7)> | Promise对象，返回授权结果信息。 |
 
 **示例：**
 
@@ -273,7 +274,7 @@ context.requestPermissionsFromUser(
 
 getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
-获取有关当前应用程序的信息（callback形式）。
+获取有关当前应用程序的信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -281,7 +282,7 @@ getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
 | 参数名       | 类型                              | 必填   | 说明           |
 | -------- | ------------------------------- | ---- | ------------ |
-| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是    | 返回当前应用程序的信息。 |
+| callback | AsyncCallback\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)> | 是    | 回调函数，返回当前应用程序的信息。 |
 
 **示例：**
 
@@ -304,7 +305,7 @@ context.getApplicationInfo((error, data) => {
 
 getApplicationInfo(): Promise\<ApplicationInfo>
 
-获取有关当前应用程序的信息（Promise形式）。
+获取有关当前应用程序的信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -312,7 +313,7 @@ getApplicationInfo(): Promise\<ApplicationInfo>
 
 | 类型                        | 说明        |
 | ------------------------- | --------- |
-| Promise\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | 当前应用程序的信息 |
+| Promise\<[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)> | Promise对象，返回当前应用程序的信息。 |
 
 **示例：**
 
@@ -331,7 +332,7 @@ context.getApplicationInfo().then((data) => {
 
 getBundleName(callback: AsyncCallback\<string>): void
 
-获取当前ability的Bundle名称（callback形式）。
+获取当前ability的Bundle名称。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -339,7 +340,7 @@ getBundleName(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明                 |
 | -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<string> | 是    | 返回当前ability的Bundle名称。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回当前ability的Bundle名称。 |
 
 **示例：**
 
@@ -362,7 +363,7 @@ context.getBundleName((error, data) => {
 
 getBundleName(): Promise\<string>
 
-获取当前ability的Bundle名称（Promise形式）。
+获取当前ability的Bundle名称。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -370,7 +371,7 @@ getBundleName(): Promise\<string>
 
 | 类型               | 说明               |
 | ---------------- | ---------------- |
-| Promise\<string> | 当前ability的Bundle名称。 |
+| Promise\<string> | Promise对象，返回当前ability的Bundle名称。 |
 
 **示例：**
 
@@ -387,7 +388,7 @@ context.getBundleName().then((data) => {
 
 getDisplayOrientation(callback: AsyncCallback\<bundle.DisplayOrientation>): void
 
-获取当前ability的显示方向（callback形式）。
+获取当前ability的显示方向。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -395,7 +396,7 @@ getDisplayOrientation(callback: AsyncCallback\<bundle.DisplayOrientation>): void
 
 | 参数名     | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | 是   | 表示屏幕显示方向。 |
+| callback | AsyncCallback\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | 是   | 回调函数，返回屏幕显示方向。 |
 
 **示例：**
 
@@ -416,7 +417,7 @@ context.getDisplayOrientation((error, data) => {
 
 getDisplayOrientation(): Promise\<bundle.DisplayOrientation>
 
-获取此能力的当前显示方向（Promise形式）。
+获取此能力的当前显示方向。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -424,7 +425,7 @@ getDisplayOrientation(): Promise\<bundle.DisplayOrientation>
 
 | 类型                                       | 说明        |
 | ---------------------------------------- | --------- |
-| Promise\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | 表示屏幕显示方向。 |
+| Promise\<[bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation)> | Promise对象，返回屏幕显示方向。 |
 
 **示例：**
 
@@ -441,7 +442,10 @@ context.getDisplayOrientation().then((data) => {
 
 getExternalCacheDir(callback: AsyncCallback\<string>): void
 
-获取应用程序的外部缓存目录（callback形式）。
+获取应用程序的外部缓存目录。使用callback异步回调。
+
+**说明：**
+>
 > 从API version 7开始不再支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -450,7 +454,7 @@ getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明                 |
 | -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<string> | 是    | 返回应用程序的缓存目录的绝对路径。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回应用程序的缓存目录的绝对路径。 |
 
 **示例：**
 
@@ -471,7 +475,10 @@ context.getExternalCacheDir((error, data) => {
 
 getExternalCacheDir(): Promise\<string>
 
-获取应用程序的外部缓存目录（Promise形式）。
+获取应用程序的外部缓存目录。使用Promise异步回调。
+
+**说明：**
+>
 > 从API version 7开始不再支持。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
@@ -480,7 +487,7 @@ getExternalCacheDir(): Promise\<string>
 
 | 类型               | 说明               |
 | ---------------- | ---------------- |
-| Promise\<string> | 返回应用程序的缓存目录的绝对路径。 |
+| Promise\<string> | Promise对象，返回应用程序的缓存目录的绝对路径。 |
 
 **示例：**
 
@@ -497,7 +504,7 @@ context.getExternalCacheDir().then((data) => {
 
 setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCallback\<void>): void
 
-设置当前能力的显示方向（callback形式）。
+设置当前Ability的显示方向。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -506,7 +513,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 | 参数名          | 类型                                       | 必填   | 说明           |
 | ----------- | ---------------------------------------- | ---- | ------------ |
 | orientation | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | 是    | 指示当前能力的新方向。 |
-| callback    | AsyncCallback\<void> | 是    | 表示屏幕显示方向。    |
+| callback    | AsyncCallback\<void> | 是    | 回调函数。当设置当前Ability的显示方向成功，err为undefined，否则为错误对象。    |
 
 **示例：**
 
@@ -525,7 +532,7 @@ context.setDisplayOrientation(orientation, (error) => {
 
 setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>
 
-设置当前能力的显示方向（Promise形式）。
+设置当前Ability的显示方向。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -558,8 +565,11 @@ context.setDisplayOrientation(orientation).then((data) => {
 
 setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
-设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态（callback形式）。
-> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9)替代。
+设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态。使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -568,7 +578,7 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 | 参数名       | 类型                   | 必填   | 说明                                       |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | show     | boolean              | 是    | 指定是否在锁屏顶部显示此功能。值true表示在锁屏上显示，值false表示不显示。 |
-| callback | AsyncCallback\<void> | 是    | 返回回调结果。                                  |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当设置每当显示锁屏时是否在锁屏顶部显示此功能并使该功能保持激活状态的操作成功，err为undefined，否则为错误对象。   |
 
 **示例：**
 
@@ -586,8 +596,11 @@ context.setShowOnLockScreen(show, (error) => {
 
 setShowOnLockScreen(show: boolean): Promise\<void>
 
-设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态（Promise形式）。
-> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9)替代。
+设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态。使用Promise异步回调。
+
+**说明：**
+>
+> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -601,7 +614,7 @@ setShowOnLockScreen(show: boolean): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 使用Promise形式返回结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -619,7 +632,7 @@ context.setShowOnLockScreen(show).then((data) => {
 
 setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
-设置恢复此功能时是否唤醒屏幕（callback形式）。
+设置恢复此功能时是否唤醒屏幕。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -628,7 +641,7 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 | 参数名       | 类型                   | 必填   | 说明                                |
 | -------- | -------------------- | ---- | --------------------------------- |
 | wakeUp   | boolean              | 是    | 指定是否唤醒屏幕。值true表示唤醒它，值false表示不唤醒它。 |
-| callback | AsyncCallback\<void> | 是    | 返回回调结果。                           |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当设置恢复此功能时是否唤醒屏幕成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -646,7 +659,7 @@ context.setWakeUpScreen(wakeUp, (error) => {
 
 setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
-设置恢复此功能时是否唤醒屏幕（Promise形式）。
+设置恢复此功能时是否唤醒屏幕。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -660,7 +673,7 @@ setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 使用Promise形式返回结果 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -681,7 +694,7 @@ context.setWakeUpScreen(wakeUp).then((data) => {
 
 getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 
-获取有关当前进程的信息，包括进程ID和名称（callback形式）。
+获取有关当前进程的信息，包括进程ID和名称。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -689,7 +702,7 @@ getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 
 | 参数名       | 类型                          | 必填   | 说明         |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | 是    | 返回当前进程的信息。 |
+| callback | AsyncCallback\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | 是    | 回调函数，返回当前进程的信息。 |
 
 **示例：**
 
@@ -712,7 +725,7 @@ context.getProcessInfo((error, data) => {
 
 getProcessInfo(): Promise\<ProcessInfo>
 
-获取有关当前进程的信息，包括进程id和名称（Promise形式）。
+获取有关当前进程的信息，包括进程id和名称。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -720,7 +733,7 @@ getProcessInfo(): Promise\<ProcessInfo>
 
 | 类型                    | 说明      |
 | --------------------- | ------- |
-| Promise\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | 当前进程的信息 |
+| Promise\<[ProcessInfo](js-apis-inner-app-processInfo.md)> | Promise对象，返回当前进程的信息。 |
 
 **示例：**
 
@@ -739,7 +752,7 @@ context.getProcessInfo().then((data) => {
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
-获取当前ability的ohos.bundleManager.ElementName对象（callback形式）。
+获取当前ability的ohos.bundleManager.ElementName对象。使用callback异步回调。
 
 此方法仅适用于页面功能。
 
@@ -749,7 +762,7 @@ getElementName(callback: AsyncCallback\<ElementName>): void
 
 | 参数名       | 类型                          | 必填   | 说明                                     |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | 是    | 返回当前ability的ohos.bundleManager.ElementName对象。 |
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | 是    | 回调函数，返回当前ability的ohos.bundleManager.ElementName对象。 |
 
 **示例：**
 
@@ -772,7 +785,7 @@ context.getElementName((error, data) => {
 
 getElementName(): Promise\<ElementName>
 
-获取当前能力的ohos.bundleManager.ElementName对象（Promise形式）。
+获取当前能力的ohos.bundleManager.ElementName对象。使用Promise异步回调。
 
 此方法仅适用于页面功能。
 
@@ -782,7 +795,7 @@ getElementName(): Promise\<ElementName>
 
 | 类型                    | 说明                                   |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | 当前ability的ohos.bundleManager.ElementName对象。 |
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise对象，返回当前ability的ohos.bundleManager.ElementName对象。 |
 
 **示例：**
 
@@ -799,7 +812,7 @@ context.getElementName().then((data) => {
 
 getProcessName(callback: AsyncCallback\<string>): void
 
-获取当前进程的名称（callback形式）。
+获取当前进程的名称。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -807,7 +820,7 @@ getProcessName(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明         |
 | -------- | ---------------------- | ---- | ---------- |
-| callback | AsyncCallback\<string> | 是    | 返回当前进程的名称。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回当前进程的名称。 |
 
 **示例：**
 
@@ -830,7 +843,7 @@ context.getProcessName((error, data) => {
 
 getProcessName(): Promise\<string>
 
-获取当前进程的名称（Promise形式）。
+获取当前进程的名称。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -838,7 +851,7 @@ getProcessName(): Promise\<string>
 
 | 类型               | 说明         |
 | ---------------- | ---------- |
-| Promise\<string> | 返回当前进程的名称。 |
+| Promise\<string> | Promise对象，返回当前进程的名称。 |
 
 **示例：**
 
@@ -857,7 +870,7 @@ context.getProcessName().then((data) => {
 
 getCallingBundle(callback: AsyncCallback\<string>): void
 
-获取ability调用方的Bundle名称（callback形式）。
+获取ability调用方的Bundle名称。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -865,7 +878,7 @@ getCallingBundle(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明               |
 | -------- | ---------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<string> | 是    | 返回ability调用方的Bundle名称。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回ability调用方的Bundle名称。 |
 
 **示例：**
 
@@ -888,7 +901,7 @@ context.getCallingBundle((error, data) => {
 
 getCallingBundle(): Promise\<string>
 
-获取ability调用方的Bundle名称（Promise形式）。
+获取ability调用方的Bundle名称。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -896,7 +909,7 @@ getCallingBundle(): Promise\<string>
 
 | 类型               | 说明             |
 | ---------------- | -------------- |
-| Promise\<string> | 返回ability调用方的Bundle名称。 |
+| Promise\<string> | Promise对象，返回ability调用方的Bundle名称。 |
 
 **示例：**
 
@@ -913,7 +926,7 @@ context.getCallingBundle().then((data) => {
 
 getCacheDir(callback: AsyncCallback\<string>): void
 
-获取该应用程序的内部存储目录（callback形式）。
+获取该应用程序的内部存储目录。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -921,7 +934,7 @@ getCacheDir(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明              |
 | -------- | ---------------------- | ---- | --------------- |
-| callback | AsyncCallback\<string> | 是    | 返回该应用程序的内部存储目录。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回该应用程序的内部存储目录。 |
 
 **示例：**
 
@@ -942,7 +955,7 @@ context.getCacheDir((error, data) => {
 
 getCacheDir(): Promise\<string>
 
-获取该应用程序的内部存储目录（Promise形式）。
+获取该应用程序的内部存储目录。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -950,7 +963,7 @@ getCacheDir(): Promise\<string>
 
 | 类型               | 说明              |
 | ---------------- | --------------- |
-| Promise\<string> | 返回该应用程序的内部存储目录。 |
+| Promise\<string> | Promise对象，返回该应用程序的内部存储目录。 |
 
 **示例：**
 
@@ -967,7 +980,7 @@ context.getCacheDir().then((data) => {
 
 getFilesDir(callback: AsyncCallback\<string>): void
 
-获取内部存储器上此应用程序的文件目录（callback形式）。
+获取内部存储器上此应用程序的文件目录。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -975,7 +988,7 @@ getFilesDir(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明                  |
 | -------- | ---------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<string> | 是    | 返回内部存储器上此应用程序的文件目录。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回内部存储器上此应用程序的文件目录。 |
 
 **示例：**
 
@@ -996,7 +1009,7 @@ context.getFilesDir((error, data) => {
 
 getFilesDir(): Promise\<string>
 
-获取内部存储器上此应用程序的文件目录（Promise形式）。
+获取内部存储器上此应用程序的文件目录。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1004,7 +1017,7 @@ getFilesDir(): Promise\<string>
 
 | 类型               | 说明                  |
 | ---------------- | ------------------- |
-| Promise\<string> | 返回内部存储器上此应用程序的文件目录。 |
+| Promise\<string> | Promise对象，返回内部存储器上此应用程序的文件目录。 |
 
 **示例：**
 
@@ -1021,9 +1034,9 @@ context.getFilesDir().then((data) => {
 
 getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
 
-获取Ability或应用的分布式文件路径。
+获取Ability或应用的分布式文件路径。使用callback异步回调。
 
-如果分布式文件路径不存在，系统将创建一个路径并返回创建的路径（callback形式）。
+如果分布式文件路径不存在，系统将创建一个路径并返回创建的路径。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1031,7 +1044,7 @@ getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明                                       |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<string> | 是    | 返回Ability或应用的分布式文件路径。<br>若路径不存在，系统将创建一个路径并返回创建的路径。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回Ability或应用的分布式文件路径。<br>若路径不存在，系统将创建一个路径并返回创建的路径。 |
 
 **示例：**
 
@@ -1052,9 +1065,9 @@ context.getOrCreateDistributedDir((error, data) => {
 
 getOrCreateDistributedDir(): Promise\<string>
 
-获取Ability或应用的分布式文件路径。
+获取Ability或应用的分布式文件路径。使用Promise异步回调。
 
-如果分布式文件路径不存在，系统将创建一个路径并返回创建的路径（Promise形式）。
+如果分布式文件路径不存在，系统将创建一个路径并返回创建的路径。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1062,7 +1075,7 @@ getOrCreateDistributedDir(): Promise\<string>
 
 | 类型               | 说明                                  |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | 返回Ability或应用的分布式文件路径。若为首次调用，则将创建目录。 |
+| Promise\<string> | Promise对象，返回Ability或应用的分布式文件路径。若为首次调用，则将创建目录。 |
 
 **示例：**
 
@@ -1079,7 +1092,7 @@ context.getOrCreateDistributedDir().then((data) => {
 
 getAppType(callback: AsyncCallback\<string>): void
 
-获取此应用的类型（callback形式）。
+获取此应用的类型。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1087,7 +1100,7 @@ getAppType(callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明                               |
 | -------- | ---------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<string> | 是    | 返回此应用程序的类型。 |
+| callback | AsyncCallback\<string> | 是    | 回调函数，返回此应用程序的类型。 |
 
 **示例：**
 
@@ -1108,7 +1121,7 @@ context.getAppType((error, data) => {
 
 getAppType(): Promise\<string>
 
-获取此应用的类型（Promise形式）。
+获取此应用的类型。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1116,7 +1129,7 @@ getAppType(): Promise\<string>
 
 | 类型               | 说明                 |
 | ---------------- | ------------------ |
-| Promise\<string> | 返回此应用的类型。 |
+| Promise\<string> | Promise对象，返回此应用的类型。 |
 
 **示例：**
 
@@ -1133,7 +1146,7 @@ context.getAppType().then((data) => {
 
 getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
-获取应用的ModuleInfo对象（callback形式）。
+获取应用的ModuleInfo对象。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1141,7 +1154,7 @@ getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
 | 参数名       | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | 是    | 返回应用的ModuleInfo对象。 |
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | 是    | 回调函数，返回应用的ModuleInfo对象。 |
 
 **示例：**
 
@@ -1162,7 +1175,7 @@ context.getHapModuleInfo((error, data) => {
 
 getHapModuleInfo(): Promise\<HapModuleInfo>
 
-获取应用的ModuleInfo对象（Promise形式）。
+获取应用的ModuleInfo对象。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1170,7 +1183,7 @@ getHapModuleInfo(): Promise\<HapModuleInfo>
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | 返回应用的ModuleInfo对象。 |
+| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise对象，返回应用的ModuleInfo对象。 |
 
 **示例：**
 
@@ -1187,7 +1200,7 @@ context.getHapModuleInfo().then((data) => {
 
 getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 
-获取应用的版本信息（callback形式）。
+获取应用的版本信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1195,7 +1208,7 @@ getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 
 | 参数名       | 类型                                       | 必填   | 说明                             |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | 是    | 返回应用版本信息。 |
+| callback | AsyncCallback\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | 是    | 回调函数，返回应用版本信息。 |
 
 **示例：**
 
@@ -1216,7 +1229,7 @@ context.getAppVersionInfo((error, data) => {
 
 getAppVersionInfo(): Promise\<AppVersionInfo>
 
-获取应用的版本信息（Promise形式）。
+获取应用的版本信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1224,7 +1237,7 @@ getAppVersionInfo(): Promise\<AppVersionInfo>
 
 | 类型                                       | 说明        |
 | ---------------------------------------- | --------- |
-| Promise\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | 返回应用版本信息。 |
+| Promise\<[AppVersionInfo](js-apis-inner-app-appVersionInfo.md)> | Promise对象，返回应用版本信息。 |
 
 **示例：**
 
@@ -1241,7 +1254,7 @@ context.getAppVersionInfo().then((data) => {
 
 getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
-查询当前归属Ability详细信息（callback形式）。
+查询当前归属Ability详细信息。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1249,7 +1262,7 @@ getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
 | 参数名       | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | 是    | 返回当前归属Ability详细信息。 |
+| callback | AsyncCallback\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | 是    | 回调函数，返回当前归属Ability详细信息。 |
 
 **示例：**
 
@@ -1270,7 +1283,7 @@ context.getAbilityInfo((error, data) => {
 
 getAbilityInfo(): Promise\<AbilityInfo>
 
-查询当前归属Ability详细信息（Promise形式）。
+查询当前归属Ability详细信息。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1278,7 +1291,7 @@ getAbilityInfo(): Promise\<AbilityInfo>
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Promise\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | 返回当前归属Ability详细信息。 |
+| Promise\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | Promise对象，返回当前归属Ability详细信息。 |
 
 **示例：**
 
@@ -1317,7 +1330,7 @@ let context: featureAbility.Context = featureAbility.getContext().getApplication
 
 isUpdatingConfigurations(callback: AsyncCallback\<boolean>): void
 
-检查此能力的配置是否正在更改（callback形式）。
+检查此能力的配置是否正在更改。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1325,7 +1338,7 @@ isUpdatingConfigurations(callback: AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                      | 必填   | 说明                            |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<boolean> | 是    | 如果该能力的配置正在更改，则为true，否则为false。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，返回true表示该Ability的配置正在更改，否则返回false。 |
 
 **示例：**
 
@@ -1346,7 +1359,7 @@ context.isUpdatingConfigurations((error, data) => {
 
 isUpdatingConfigurations(): Promise\<boolean>
 
-检查此能力的配置是否正在更改（Promise形式）。
+检查此能力的配置是否正在更改。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1354,7 +1367,7 @@ isUpdatingConfigurations(): Promise\<boolean>
 
 | 类型                | 说明                            |
 | ----------------- | ----------------------------- |
-| Promise\<boolean> | 如果该能力的配置正在更改，则为true，否则为false。 |
+| Promise\<boolean> | Promise对象，返回true表示该Ability的配置正在更改，否则返回false。 |
 
 **示例：**
 
@@ -1371,7 +1384,7 @@ context.isUpdatingConfigurations().then((data) => {
 
 printDrawnCompleted(callback: AsyncCallback\<void>): void
 
-通知系统绘制此页面功能所需的时间（callback形式）。
+通知系统绘制此页面功能所需的时间。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1379,7 +1392,7 @@ printDrawnCompleted(callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                   | 必填   | 说明          |
 | -------- | -------------------- | ---- | ----------- |
-| callback | AsyncCallback\<void> | 是    | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当通知系统绘制此页面功能所需的时间成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1396,7 +1409,7 @@ context.printDrawnCompleted((err) => {
 
 printDrawnCompleted(): Promise\<void>
 
-通知系统绘制此页面功能所需的时间（Promise形式）。
+通知系统绘制此页面功能所需的时间。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1404,7 +1417,7 @@ printDrawnCompleted(): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 

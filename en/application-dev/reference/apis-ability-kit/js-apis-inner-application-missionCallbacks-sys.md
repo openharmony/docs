@@ -1,6 +1,6 @@
 # MissionCallback (System API)
 
-The **MissionCallback** module defines the callbacks invoked after synchronization starts. These callbacks can be used as input parameters in [registerMissionListener](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener).
+The MissionCallback module defines the callbacks invoked after synchronization starts. These callbacks can be used as input parameters in [registerMissionListener](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerregistermissionlistener).
 
 > **NOTE**
 >

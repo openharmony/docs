@@ -980,7 +980,7 @@ taskpool.execute(task3).then(() => {
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
 | function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
 | arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
-| name<sup>11+</sup>   | string    | Yes  | Yes  | Name of the task specified when the task is created.                                   |
+| name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created.                                   |
 | totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task.                                   |
 | ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task.                                   |
 | cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task.                                   |
@@ -1229,6 +1229,7 @@ Describes the internal information about a task.
 
 | Name    | Type               | Readable| Writable| Description                                                          |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| name<sup>12+</sup> | string             | Yes  | No  | Task name.                                                    |
 | taskId   | number             | Yes  | No  | Task ID.                                                    |
 | state    | [State](#state10)  | Yes  | No  | Task state.                                                   |
 | duration | number             | Yes  | No  | Duration that the task has been executed, in ms. If the return value is **0**, the task is not running. If the return value is empty, no task is running. |
@@ -1561,6 +1562,7 @@ let priority: number = 0;
 let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
+let name: string = "";
 let threadIS = Array.from(taskpoolInfo.threadInfos)
 for(let threadInfo of threadIS) {
   tid = threadInfo.tid;
@@ -1578,7 +1580,8 @@ for(let taskInfo of taskIS) {
   if (taskInfo.duration != undefined )
   {
     duration = taskInfo.duration;
+    name = taskInfo.name;
   }
-  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration);
+  console.info("taskpool---taskId is:" + taskId + ", state is:" + state + ", duration is:" + duration + ", name is:" + name);
 }
 ```
