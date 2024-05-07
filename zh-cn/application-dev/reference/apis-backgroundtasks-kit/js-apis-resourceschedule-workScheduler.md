@@ -85,7 +85,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)）。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
