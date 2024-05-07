@@ -35,6 +35,8 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
@@ -78,6 +80,8 @@ createAVPlayer(): Promise\<AVPlayer>
 > - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -420,6 +424,8 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                                  | 值      | 说明                                 |
 | :------------------------------------ | ------- | ------------------------------------ |
 | AVERR_OK                              | 0       | 表示操作成功。                       |
@@ -439,6 +445,8 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 媒体类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称           | 值   | 说明       |
 | -------------- | ---- | ---------- |
@@ -471,17 +479,17 @@ Codec MIME类型枚举。
 
 | 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | 'track_index'   | 表示轨道序号，其对应键值类型为number。                       |
-| MD_KEY_TRACK_TYPE        | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
-| MD_KEY_CODEC_MIME        | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。                 |
-| MD_KEY_DURATION          | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
-| MD_KEY_BITRATE           | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
-| MD_KEY_WIDTH             | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_HEIGHT            | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_FRAME_RATE        | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
-| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。                         |
-| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
-| MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。          |
+| MD_KEY_TRACK_INDEX       | 'track_index'   | 表示轨道序号，其对应键值类型为number。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| MD_KEY_TRACK_TYPE        | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| MD_KEY_CODEC_MIME        | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| MD_KEY_DURATION          | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| MD_KEY_BITRATE           | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| MD_KEY_WIDTH             | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| MD_KEY_HEIGHT            | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| MD_KEY_FRAME_RATE        | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -502,6 +510,8 @@ Codec MIME类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
 | USER       | 1    | 表示用户行为造成的状态切换，由用户或客户端主动调用接口产生。 |
@@ -519,9 +529,9 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | 是   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>从API version 11开始不支持webm。 |
-| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。 |
-| dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。 |
+| url<sup>9+</sup>                                    | string                                                       | 是   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>从API version 11开始不支持webm。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | surfaceId<sup>9+</sup>                              | string                                                       | 是   | 是   | 视频窗口ID，默认无窗口。<br/>支持在**initialized**状态下设置。<br/>支持在**prepared**/**playing**/**paused**/**completed**/**stopped**状态下重新设置，重新设置时确保已经在**initialized**状态下进行设置，否则重新设置失败，重新设置后视频播放在新的窗口渲染。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。 |
 | loop<sup>9+</sup>                                   | boolean                                                      | 是   | 是   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>直播场景不支持loop设置。 |
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
@@ -530,7 +540,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 | audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](../apis-audio-kit/js-apis-audio.md#audioeffectmode10)  | 是   | 是   | 设置音频音效模式，默认值为EFFECT_DEFAULT，动态属性。audioRendererInfo的usage变动时会恢复为默认值，只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。                   |
 | currentTime<sup>9+</sup>                            | number                                                       | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
-| duration<sup>9+</sup> | number                                                       | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
+| duration<sup>9+</sup> | number                                                       | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | width<sup>9+</sup>                                  | number                                                       | 是   | 否   | 视频宽，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
 | height<sup>9+</sup>                                 | number                                                       | 是   | 否   | 视频高，单位为像素（px），可查询参数。<br/>返回为(0)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。 |
 
@@ -545,6 +555,8 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 监听播放状态机AVPlayerState切换的事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -600,6 +612,8 @@ off(type: 'stateChange'): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                  |
@@ -619,6 +633,8 @@ on(type: 'error', callback: ErrorCallback): void
 监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出播放操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -661,6 +677,8 @@ off(type: 'error'): void
 取消监听播放的错误事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -724,6 +742,8 @@ prepare(callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                 |
@@ -761,6 +781,8 @@ prepare(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                      |
@@ -795,6 +817,8 @@ play(callback: AsyncCallback\<void>): void
 通过回调方式开始播放音视频资源，只能在prepared/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -832,6 +856,8 @@ play(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                      |
@@ -865,6 +891,8 @@ pause(callback: AsyncCallback\<void>): void
 通过回调方式暂停播放音视频资源，只能在playing状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -902,6 +930,8 @@ pause(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                      |
@@ -935,6 +965,8 @@ stop(callback: AsyncCallback\<void>): void
 通过回调方式停止播放音视频资源，只能在prepared/playing/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -972,6 +1004,8 @@ stop(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                      |
@@ -1005,6 +1039,8 @@ reset(callback: AsyncCallback\<void>): void
 通过回调方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1042,6 +1078,8 @@ reset(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                      |
@@ -1075,6 +1113,8 @@ release(callback: AsyncCallback\<void>): void
 通过回调方式销毁播放资源，除released状态，都可以调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1112,6 +1152,8 @@ release(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                      |
@@ -1145,6 +1187,8 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 通过回调方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。获取所有音视轨道信息，应在数据加载回调后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1181,6 +1225,8 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 通过Promise方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1275,6 +1321,8 @@ seek(timeMs: number, mode?:SeekMode): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                   | 必填 | 说明                                                         |
@@ -1296,6 +1344,8 @@ on(type: 'seekDone', callback: Callback\<number>): void
 监听seek生效的事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1319,6 +1369,8 @@ off(type: 'seekDone'): void
 取消监听seek生效的事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1670,6 +1722,8 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                                           |
@@ -1693,6 +1747,8 @@ off(type: 'timeUpdate'): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                               |
@@ -1714,6 +1770,8 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 注：直播场景不支持durationUpdate上报。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1988,6 +2046,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 |              名称               |  类型  | 说明                                                         |
 | :-----------------------------: | :----: | :----------------------------------------------------------- |
 |              idle               | string | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了[reset()](#reset9)方法之后，进入Idle状态。<br/>首次创建[createAVPlayer()](#mediacreateavplayer9)，所有属性都为默认值。<br/>调用[reset()](#reset9)方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
@@ -2006,6 +2066,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fd     | number | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。     |
@@ -2018,6 +2080,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | 是   | 待播放文件大小（字节），-1代表大小未知。如果fileSize设置为-1, 播放模式类似于直播，不能进行seek及setSpeed操作，不能设置loop属性，因此不能重新播放。 |
@@ -2029,6 +2093,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 视频播放的Seek模式枚举，可通过seek方法作为参数传递下去。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称           | 值   | 说明                                                         |
 | -------------- | ---- | ------------------------------------------------------------ |
@@ -2068,6 +2134,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 通过key-value方式获取媒体信息。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
@@ -3190,6 +3258,8 @@ on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeRe
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
@@ -3244,6 +3314,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
@@ -3282,6 +3354,8 @@ off(type: 'error'): void
 取消订阅录制错误事件，取消后不再接收到AVRecorder的错误事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3394,9 +3468,9 @@ avRecorder.off('audioCapturerChange');
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填，支持范围[1 - 2]。        |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前仅支持AUDIO_AAC。      |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000]。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。                                   |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[1 - 3000000]。  |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。        |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[2 - 1920]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
