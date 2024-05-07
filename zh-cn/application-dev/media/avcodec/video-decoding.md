@@ -53,6 +53,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/player_framework/native_avcodec_base.h>
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
+    #include <fstream>
     ```
 
 2. 创建解码器实例对象。
@@ -195,6 +196,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/drm_framework/native_mediakeysession.h>
     #include <multimedia/drm_framework/native_drm_err.h>
     #include <multimedia/drm_framework/native_drm_common.h>
+    #include <fstream>
     ```
     在 CMake 脚本中链接动态库
 
