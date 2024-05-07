@@ -603,6 +603,7 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | GestureStyle | 事件手势样式。 |
 | ParagraphStyle | 文本段落样式。 |
 | ImageAttachment | 图片样式。 |
+| CustomSpan | 自定义绘制Span样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 
