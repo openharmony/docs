@@ -92,6 +92,14 @@ subStyledString(start: number , length?: number): StyledString
 | ------- | --------------------------------- | 
 | [StyledString](#styledstring) | 子属性字符串。<br/>**说明：** <br/>当start为合法入参时，length的默认值是被查询属性字符串对象的长度与start的值的差。<br/>当start和length越界或者必填传入undefined时，会抛出异常。|
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### getStyles
 
 获取指定范围属性字符串的样式集合。
@@ -113,6 +121,14 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
 | Array<[SpanStyle](#spanstyle对象说明)> | 各样式对象的数组。<br/>**说明：** <br/>当指定范围属性字符串未设置任何样式，则返回空数组。<br/>当start和length越界或者必填传入undefined时，会抛出异常；<br/>当styledKey传入异常值或undefined时，会抛出异常。<br/>当styledKey为CustomSpan时，返回的是创建CustomSpan时传入的样式对象，即修改该样式对象也会影响实际的显示效果。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ## MutableStyledString
 
@@ -141,6 +157,14 @@ replaceString(start: number , length: number , other: string): void
 | length | number | 是   | 指定范围的长度。 |
 | other | string | 是   | 替换的新文本内容。<br/>**说明：** <br/>替换的字符串使用的是start位置字符的样式。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### insertString
 
 插入字符串。
@@ -155,6 +179,14 @@ insertString(start: number , other: string): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 插入位置的下标。 |
 | other | string | 是   | 插入的新文本内容。<br/>**说明：** <br/>插入的字符串使用的是start-1位置字符的样式。若start-1位置字符未设置样式，则使用start位置字符样式。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ### removeString
 
@@ -173,6 +205,14 @@ removeString(start: number , length: number): void
 | start | number | 是   | 指定范围的下标。 |
 | length | number | 是   | 指定范围的长度。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### replaceStyle
 
 替换指定范围内容为指定类型新样式。
@@ -186,6 +226,14 @@ replaceStyle(spanStyle: SpanStyle): void
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | spanStyle | [SpanStyle](#spanstyle对象说明) | 是   | 样式对象。<br/>**说明：** <br/>默认清空原有样式，替换为新样式。<br/>当SpanStyle的styledKey为IMAGE时，只有当start的位置当前是image且长度为1，才会生效，其余情况无效果。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ### setStyle
 
@@ -221,6 +269,14 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 | length | number | 是   | 指定范围的长度。 |
 | styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | 是   | 样式类型枚举值。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### removeStyles
 
 清除指定范围内容的所有样式。
@@ -239,6 +295,14 @@ removeStyles(start: number , length: number): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围开始位置的下标。 |
 | length | number | 是   | 指定范围的长度。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ### clearStyles
 
@@ -266,6 +330,14 @@ replaceStyledString(start: number , length: number , other: StyledString): void
 | length | number | 是   | 指定范围的长度。 |
 | other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### insertStyledString
 
 在指定位置插入新的属性字符串。
@@ -280,6 +352,14 @@ insertStyledString(start: number , other: StyledString): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 开始插入位置的下标。 |
 | other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ### appendStyledString
 

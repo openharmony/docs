@@ -825,6 +825,15 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 | ---------------------------------------- | ------------- |
 | [AnimatorResult](js-apis-animator.md#animatorresult) | Animator结果接口。 |
 
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 **示例：**
 
 ```ts
@@ -1091,6 +1100,15 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 | ------ | ---------------------------------- |
 | string | 获取组件树及组件属性的JSON字符串。 |
 
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 **示例：**
 
 ```ts
@@ -1118,6 +1136,15 @@ getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\
 | 类型   | 说明                                         |
 | ------ | -------------------------------------------- |
 | string | 获取指定的组件及其子组件的属性的JSON字符串。 |
+
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **示例：**
 
@@ -2498,10 +2525,11 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 | 100002 | if the uri is not exist.           |
 | 100003 | if the pages are pushed too much.  |
@@ -2548,10 +2576,11 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 | 100002 | if the uri is not exist.           |
 | 100003 | if the pages are pushed too much.  |
@@ -2606,10 +2635,11 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 | 100002 | if the uri is not exist.           |
 | 100003 | if the pages are pushed too much.  |
@@ -2662,10 +2692,11 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 | 100002 | if the uri is not exist.           |
 | 100003 | if the pages are pushed too much.  |
@@ -2724,10 +2755,11 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
 | 200002 | if the uri is not exist.                 |
 
@@ -2770,10 +2802,11 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
 | 200002 | if the uri is not exist.                 |
 
@@ -2824,10 +2857,11 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if can not get the delegate, only throw in standard system. |
 | 200002 | if the uri is not exist.                 |
 
@@ -2876,10 +2910,11 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
 | 200002 | if the uri is not exist.                 |
 
@@ -2934,10 +2969,11 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 | 100003 | if the pages are pushed too much.  |
 | 100004 | if the named route is not exist.   |
@@ -2984,10 +3020,11 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 | 100003 | if the pages are pushed too much.  |
 | 100004 | if the named route is not exist.   |
@@ -3041,10 +3078,11 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 | 100003 | if the pages are pushed too much.  |
 | 100004 | if the named route is not exist.   |
@@ -3097,10 +3135,11 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 | 100003 | if the pages are pushed too much.  |
 | 100004 | if the named route is not exist.   |
@@ -3159,10 +3198,11 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
 | 100004 | if the named route is not exist.         |
 
@@ -3205,10 +3245,11 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
 | 100004 | if the named route is not exist.         |
 
@@ -3260,10 +3301,11 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if can not get the delegate, only throw in standard system. |
 | 100004 | if the named route is not exist.         |
 
@@ -3312,10 +3354,11 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
 | 100004 | if the named route is not exist.         |
 
@@ -3561,10 +3604,11 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 
 **示例：**
@@ -3650,10 +3694,11 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 
 **示例：**
@@ -3693,10 +3738,11 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 
 **示例：**
@@ -3761,10 +3807,11 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ 通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 
 **示例：**
@@ -3820,10 +3867,11 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | if UI execution context not found. |
 
 **示例：**
@@ -3880,10 +3928,11 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 
 **示例：**
@@ -3939,10 +3988,11 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found. |
 
 **示例：**
@@ -4001,10 +4051,11 @@ openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDia
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103302 | the ComponentContent has already been opened. |
 
@@ -4083,10 +4134,11 @@ closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -4176,10 +4228,11 @@ updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -4268,9 +4321,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
 **错误码：**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -4351,9 +4406,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
 **错误码：**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -4462,9 +4519,11 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | [dragController.DragAction](js-apis-arkui-dragController.md#dragaction11)| 创建拖拽Action对象，主要用于后面实现注册监听拖拽状态改变事件和启动拖拽服务。 |
 
 **错误码：**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
 | 100001   | if some internal handling failed. |
 
 **示例：**
