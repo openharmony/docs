@@ -727,6 +727,7 @@ UX样式变更
 - 变更后
   1. NavDestination标题栏按钮增加圆形背板。
   2. NavDestination标题栏主标题自重为BOLD。
+  3. NavDestination默认返回按钮更新。
 
 **API Level**
 
