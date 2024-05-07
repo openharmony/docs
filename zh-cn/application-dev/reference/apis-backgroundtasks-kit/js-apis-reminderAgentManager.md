@@ -678,13 +678,13 @@ getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
 | 参数名     | 类型   | 必填 | 说明                                |
 | ---------- | ------ | ---- | ----------------------------------- |
-| reminderId | number | 是   | 需要添加ExcludeDate的代理提醒的Id。 |
+| reminderId | number | 是   | 需要查询ExcludeDate的代理提醒的Id。 |
 
 **返回值**：
 
 | 类型                   | 说明                              |
 | ---------------------- | --------------------------------- |
-| Promise\<Array\<Date>> | 执行提醒id下的所有的ExcludeDate。 |
+| Promise\<Array\<Date>> | 提醒id下的所有的ExcludeDate。 |
 
 **错误码：**
 
