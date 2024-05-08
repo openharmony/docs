@@ -15,10 +15,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_drm_common.h](native__drm__common_8h.md) | 定义DRM数据类型。<br/>**引用文件：** &lt;multimedia/drm_framework/native_drm_common.h&gt;<br/>**库：** libnative_drm.z.so | 
-| [native_drm_err.h](native__drm__err_8h.md) | 定义DRM错误码。<br/>**引用文件：** &lt;multimedia/drm_framework/native_drm_err.h&gt;<br/>**库：** libnative_drm.z.so | 
-| [native_mediakeysession.h](native__mediakeysession_8h.md) | 定义Drm MediaKeySession API。<br/>**引用文件：** &lt;multimedia/drm_framework/native_mediakeysession.h&gt;<br/>**库：** libnative_drm.z.so | 
-| [native_mediakeysystem.h](native__mediakeysystem_8h.md) | 定义Drm MediaKeySystem API。<br/>**引用文件：** &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;<br/>**库：** libnative_drm.z.so | 
+| [native_drm_common.h](native__drm__common_8h.md) | 定义DRM数据类型。<br/>**引用文件：** &lt;multimedia/drm_framework/native_drm_common.h&gt;<br/>**库：** libnative_drm.so | 
+| [native_drm_err.h](native__drm__err_8h.md) | 定义DRM错误码。<br/>**引用文件：** &lt;multimedia/drm_framework/native_drm_err.h&gt;<br/>**库：** libnative_drm.so | 
+| [native_mediakeysession.h](native__mediakeysession_8h.md) | 定义Drm MediaKeySession API。<br/>**引用文件：** &lt;multimedia/drm_framework/native_mediakeysession.h&gt;<br/>**库：** libnative_drm.so | 
+| [native_mediakeysystem.h](native__mediakeysystem_8h.md) | 定义Drm MediaKeySystem API。<br/>**引用文件：** &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;<br/>**库：** libnative_drm.so | 
 
 
 ### 结构体
