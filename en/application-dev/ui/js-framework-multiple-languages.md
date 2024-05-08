@@ -186,4 +186,4 @@ Table 3 $t function parameters
 
 ## Obtaining the Language
 
-For details about how to obtain the language, see [Configuration](../reference/apis/js-apis-app-ability-configuration.md).
+For details about how to obtain the language, see [Configuration](../reference/apis-ability-kit/js-apis-app-ability-configuration.md).

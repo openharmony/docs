@@ -10,7 +10,7 @@
       - [Flex Layout (Flex)](arkts-layout-development-flex-layout.md)
       - [Relative Layout (RelativeContainer)](arkts-layout-development-relative-layout.md)
       - [Responsive Grid Layout (GridRow/GridCol)](arkts-layout-development-grid-layout.md)
-      - [Media Query (mediaquery)](arkts-layout-development-media-query.md)
+      - [Media Query (@ohos.mediaquery)](arkts-layout-development-media-query.md)
       - [Creating a List (List)](arkts-layout-development-create-list.md)
       - [Creating a Grid (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [Creating a Swiper (Swiper)](arkts-layout-development-create-looping.md)
@@ -22,10 +22,11 @@
       - [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)
       - [Text Display (Text/Span)](arkts-common-components-text-display.md)
       - [Text Input (TextInput/TextArea)](arkts-common-components-text-input.md)
-      - [Displaying Images (Image)](arkts-graphics-display.md)
+      - [Image Display](arkts-graphics-display.md)
       - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
-      - [Video Playback (Video](arkts-common-components-video-player.md)
-      - [XComponent](arkts-common-components-xcomponent.md)
+      - [Video Playback (Video)](arkts-common-components-video-player.md)
+      - [Custom Drawing (XComponent)](arkts-common-components-xcomponent.md)
+      - [Native XComponent](napi-xcomponent-guidelines.md)
     - Adding a Popup and Menu
       - [Popup](arkts-popup-and-menu-components-popup.md)
       - [Menu](arkts-popup-and-menu-components-menu.md)
@@ -70,6 +71,7 @@
       - [Gesture Binding](arkts-gesture-events-binding.md)
       - [Single Gesture](arkts-gesture-events-single-gesture.md)
       - [Combined Gestures](arkts-gesture-events-combined-gestures.md)
+      - [Multi-level Gesture Events](arkts-gesture-events-multi-level-gesture.md)
 - UI Development (JavaScript-compatible Web-like Development Paradigm)
   - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui-js-overview.md)
   - Framework Overview
@@ -85,7 +87,7 @@
     - [Multi-Language Capability](js-framework-multiple-languages.md)
   - Building the UI
     - [Component Overview](ui-js-building-ui-component.md)
-    - Building the Layout
+    - Building a Layout
       - [Layout Description](ui-js-building-ui-layout-intro.md)
       - [Adding Title and Paragraph Text](ui-js-building-ui-layout-text.md)
       - [Adding an Image](ui-js-building-ui-layout-image.md)
@@ -123,8 +125,8 @@
       - [Canvas](ui-js-components-canvas.md)
       - [CanvasRenderingContext2D](ui-js-components-canvasrenderingcontext2d.md)
       - [Path2D](ui-js-components-path2d.md)
-      - [OffscreenCanvas](ui-js-components-offscreencanvas.md)
-    - [Grid Container Development](ui-js-components-grid.md)
+      - [OffscreenCanvasRenderingContext2D](ui-js-components-offscreencanvas.md)
+    - [Grid Container Layout](ui-js-components-grid.md)
     - SVG Development
       - [Basics](ui-js-components-svg-overview.md)
       - [Graph Drawing](ui-js-components-svg-graphics.md)
@@ -142,3 +144,4 @@
         - [Animation Effect](ui-js-animate-dynamic-effects.md)
         - [Animation Frame](ui-js-animate-frame.md)
   - [Custom Components](ui-js-custom-components.md)
+- [Window Manager](../windowmanager/Readme-EN.md)

@@ -1,6 +1,6 @@
 # OffscreenCanvasRenderingContext2D
 
-**OffscreenCanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on an offscreen canvas, which is a new buffer created by the GPU outside of the current buffer. For details, see [OffscreenCanvasRenderingContext2D](../reference/arkui-js/js-offscreencanvasrenderingcontext2d.md).
+**OffscreenCanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on an offscreen canvas, which is a new buffer created by the GPU outside of the current buffer. For details, see [OffscreenCanvasRenderingContext2D](../reference/apis-arkui/arkui-js/js-offscreencanvasrenderingcontext2d.md).
 
 In the following example, you first create an offscreen canvas, and then create a **getContext2d** object on the canvas, which is an image, and finally set the **filter** attribute for the image.
 

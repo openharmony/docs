@@ -1,7 +1,7 @@
 # &lt;marquee&gt; Development
 
 
-The **&lt;marquee&gt;** component displays single-line scrolling text. For details, see [marquee](../reference/arkui-js/js-components-basic-marquee.md).
+The **&lt;marquee&gt;** component displays single-line scrolling text. For details, see [marquee](../reference/apis-arkui/arkui-js/js-components-basic-marquee.md).
 
 
 ## Creating a &lt;marquee&gt; Component
