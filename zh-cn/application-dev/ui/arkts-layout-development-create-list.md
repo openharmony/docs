@@ -252,7 +252,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, (item: Contact) => item.key.toString())
+      }, (item: Contact) => JSON.stringify(item))
     }
     .width('100%')
   }
@@ -465,10 +465,10 @@ struct ContactsList {
               ListItem() {
                 // ...
               }
-            }, (item: Contact) => item.key.toString())
+            }, (item: Contact) => JSON.stringify(item))
           }
         }
-      }, (itemGroup: ContactsGroup) => itemGroup.key.toString())
+      }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
     }.sticky(StickyStyle.Header)  // 设置吸顶，实现粘性标题效果
   }
 }
