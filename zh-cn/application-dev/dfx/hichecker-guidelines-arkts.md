@@ -1,4 +1,4 @@
-# 使用HiChecker检测问题（ArkTS/JS）
+# 使用HiChecker检测问题（ArkTS）
 
 ## 简介
 
@@ -46,7 +46,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
    
    export default class EntryAbility extends UIAbility {
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       // 添加检测规则
+       // 添加检测规则，规则意义见检测模式API参考
        hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG|hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
        let filePath: string = this.context.cacheDir + '/test.JPG';
        const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
@@ -98,7 +98,7 @@ HiChecker可以作为应用开发阶段使用的检测工具，用于检测代�
    hilog|grep -i hichecker
    ```
 
-   安装hap后运行，shell窗口有如下调用栈信息说明检测成功
+   安装hap后运行，shell窗口有如下调用栈信息说明检测成功（调用栈为触发检测规则时的调用栈）
 
    ```shell
    08-05 23:11:07.206  1799  1799 I C02d0b/HICHECKER: StackTrace:
