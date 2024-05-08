@@ -1,17 +1,12 @@
 # 通过startAbilityByType拉起特定场景的意图面板
-开发者可通过特定的垂域业务类型如导航、金融等垂域类型，调用startAbilityByType接口拉起对应的垂域面板，该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。垂域面板为调用方提供统一的安全、可信的目标方应用，同时降低调用方的接入成本。  
+## 使用场景
+开发者可通过特定的业务类型如导航、金融等，调用startAbilityByType接口拉起对应的垂域面板，该面板将展示目标方接入的垂域应用，由用户选择打开指定应用以实现相应的垂类意图。垂域面板为调用方提供统一的安全、可信的目标方应用，同时降低调用方的接入成本。  
 ![](./figures/process-start-intent-panel.png)
-## 使用约束
+## 约束限制
 **设备限制**
 HarmonyOS NEXT Developer Preview0及以上版本的设备
-## 接口介绍
+## 接口说明
 接口**startAbilityByType<sup>11+</sup>** 是[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybytype11)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionstartabilitybytype11)提供的支持基于垂域业务类型拉起垂域面板，调用方通过指定特定的垂域业务类型即可拉起对应的垂域面板，在垂域面板上将展示目标方接入的垂域应用。
-
-## 场景参数
-|   参数名|  类型 | 说明  |
-| ----- | ------------ | ------------ |
-| type  |  string |  垂域业务类型：导航类型取值navigation，金融类型取值finance |
-| wantParam  | Record<string, Object>  |  与type垂域业务类型相对应的扩展参数 |
 
 **type为navigation导航对应的wantParam:**
 
@@ -21,27 +16,21 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 | destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
 | sceneType            | 意图取值 ：1：路线规划 2：导航 3： 地点搜索                                | number   | 可缺省，缺省时默认为1   |
 | destinationName      | 终点名称                                                     | string   | 可缺省   |
-| originName           | 起点名称(路线规划场景有效)                                   | string   | 可缺省   |
-| originLatitude       | 起点纬度<sup>GCJ-02</sup>(路线规划场景有效)                                   | number   | 可缺省   |
-| originLongitude      | 起点经度<sup>GCJ-02</sup>(路线规划场景有效)                                   | number   | 可缺省   |
-| vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交(路线规划场景有效) | number   | 可缺省,缺省时由应用自行处理   |
-
-## 垂域场景
-垂域场景是指与特定行业或者特定专业领域的相关的场景，比如导航、金融等，每个垂域场景又可细分为多个子场景，目前仅支持导航场景，以导航场景举例，可细分为路线规划、导航、地点搜索等类型。
+| originName           | 起点名称（路线规划场景有效）                                   | string   | 可缺省   |
+| originLatitude       | 起点纬度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
+| originLongitude      | 起点经度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
+| vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交（路线规划场景有效） | number   | 可缺省,缺省时由应用自行处理   |
 
 ## 接入步骤
-**调用方接入步骤** 
+### 调用方接入步骤
 
-1.导入ohos.app.ability.common模块。 
-```
-import common from '@ohos.app.ability.common';
-```
-2.构造接口参数并调用startAbilityByType接口。
-```
-- type 固定取值为"navigation"，指定为导航场景。
-- wantParam 垂域业务类型对应的扩展参数，参考接口场景参数填写。
-```
-**调用示例**
+1. 导入ohos.app.ability.common模块。 
+    ```
+    import common from '@ohos.app.ability.common';
+    ```
+2. 构造接口参数并调用startAbilityByType接口。
+
+**示例**
   ~~~typescript
   import common from '@ohos.app.ability.common';
   let context = getContext(this) as common.UIAbilityContext;
@@ -73,7 +62,7 @@ import common from '@ohos.app.ability.common';
 
 ![效果示例图](./figures/start-navigation-panel.png)
 
-**目标方接入步骤** 
+### 目标方接入步骤
 
 1. 导入ohos.app.ability.UIAbility模块。
     ~~~typescript
@@ -122,7 +111,7 @@ import common from '@ohos.app.ability.common';
     UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ~~~
 
-    在参数**want.parameters**中会携带Caller方传入的参数(与调用方传入的有些差异)，如下表所示：
+    在参数**want.parameters**中会携带Caller方传入的参数（与调用方传入的有些差异），如下表所示：
 
     | 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
     | -------------------- | ------------------------------------------------------------ | -------- | -------- |
@@ -132,11 +121,11 @@ import common from '@ohos.app.ability.common';
     | originName           | 起点名称                                   | string   | 可缺省，存在时可用于展示路线规划页面   |
     | originLatitude       | 起点纬度<sup>GCJ-02</sup>                                 | number   | 可缺省，存在时可用于展示路线规划页面   |
     | originLongitude      | 起点经度<sup>GCJ-02</sup>                                  | number   | 可缺省，存在时可用于展示路线规划页面   |
-    | vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交(路线规划场景有效) | number   | 可缺省，缺省时由应用自行处理   |
+    | vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
 
-    应用可根据linkFeature中定义的特性功能比如路线规划和导航结合接收到的参数开发不同的样式页面。
+    应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如路线规划和导航结合接收到的参数开发不同的样式页面。
 
-**解析示例：**
+**示例：**
 
 ```
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
