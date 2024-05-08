@@ -24,6 +24,8 @@ clickEffect(value: ClickEffect | null)
 
 ## ClickEffect对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 参数类型                                                    | 必填 | 描述                                                         |
 | ----- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | level | [ClickEffectLevel](ts-appendix-enums.md#clickeffectlevel10) | 是   | 设置当前组件点击回弹效果。<br/>**说明：**<br/>level等于undefined或者null时， ClickEffect采用ClickEffectLevel.LIGHT对应的回弹效果, 缩放比参照scale说明。 |

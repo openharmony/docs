@@ -149,6 +149,8 @@ confirm参数优先级：fontColor、backgroundColor  > style > defaultFocus
 
 Rectangle是各种Dialog中maskRect参数的类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型                           | 必填 | 描述                                |
 |--------|------------------------------|----|-----------------------------------|
 | x      | [Length](ts-types.md#length) | 否  | 弹窗遮蔽层区域相对于窗口左上角的x轴坐标。<br/>默认值：0vp |

@@ -150,6 +150,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragItemInfo说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。                     |
@@ -172,12 +174,16 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ### 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
 | useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义动效。<br/>当不配置或设置为false时，系统默认落位动效生效，此情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
 |dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
 
 ### 方法
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 返回值类型                            | 描述                           |
 | ----------- | ------------------------------- | ------------------------------ |
@@ -209,6 +215,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragResult<sup>10+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | ----- | ----------------- |
 | DRAG_SUCCESSFUL | 拖拽成功，在onDrop中使用。 |
@@ -220,6 +228,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 ## DragBehavior<sup>10+</sup>
 
 需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | ----- | ----------------- |

@@ -44,6 +44,8 @@ animateTo(value: AnimateParam, event: () => void): void
 
 ## ExpectedFrameRateRange<sup>11+</sup>
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 类型     | 说明      |
 |-----|--------|---------|
 | min | number | 期望的最小帧率。 |

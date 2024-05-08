@@ -1719,7 +1719,7 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 | -------------------- | --------------- | ------------------------------------------------------------ |
 | accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。当无法获取环境变量中的accessibilityEnabled的值时，将通过envProp、envProps等接口传入的开发者指定的默认值添加到AppStorage中。 |
 | colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| fontScale            | number          | 字体大小比例。                                               |
+| fontScale            | number          | 字体大小比例。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                               |
 | fontWeightScale      | number          | 字重比例。                                                   |
 | layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |

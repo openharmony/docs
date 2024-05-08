@@ -118,6 +118,8 @@ selectedTextStyle(value: PickerTextStyle)
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |

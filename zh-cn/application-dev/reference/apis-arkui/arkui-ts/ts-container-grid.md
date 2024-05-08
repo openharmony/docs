@@ -729,6 +729,8 @@ onDidScroll(handler: OnScrollCallback)
 
 ## ItemDragInfo对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称         | 类型         |   描述         |
 | ---------- | ---------- | ---------- |
 | x | number |  当前拖拽点的x坐标，单位vp。    |
