@@ -33,11 +33,11 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **示例：**
 
@@ -77,11 +77,11 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **示例：**
 
@@ -115,11 +115,11 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **示例：**
 
@@ -159,11 +159,11 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **示例：**
 
@@ -195,11 +195,11 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **示例：**
 
@@ -232,11 +232,11 @@ getCellularRxBytes(): Promise\<number>;
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **示例：**
 
@@ -268,11 +268,11 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **示例：**
 
@@ -305,11 +305,11 @@ getCellularTxBytes(): Promise\<number>;
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **示例：**
 
@@ -341,10 +341,10 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service. |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **示例：**
 
@@ -377,10 +377,10 @@ getAllRxBytes(): Promise\<number>;
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **示例：**
 
@@ -412,10 +412,10 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **示例：**
 
@@ -448,10 +448,10 @@ getAllTxBytes(): Promise\<number>;
 
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **示例：**
 
@@ -485,10 +485,10 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **示例：**
 
@@ -528,10 +528,10 @@ getUidRxBytes(uid: number): Promise\<number>;
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **示例：**
 
@@ -565,10 +565,10 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **示例：**
 
@@ -608,10 +608,10 @@ getUidTxBytes(uid: number): Promise\<number>;
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **示例：**
 
@@ -647,7 +647,7 @@ getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -691,7 +691,7 @@ getSockfdRxBytes(sockfd: number): Promise\<number\>;
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -731,7 +731,7 @@ getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -775,7 +775,7 @@ getSockfdTxBytes(sockfd: number): Promise\<number\>;
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
