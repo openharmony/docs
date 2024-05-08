@@ -12,10 +12,10 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
 | 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| destinationLatitude  | 终点纬度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
-| destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
+| destinationLatitude  | 终点纬度<sup>GCJ-02</sup>                                                     | number   | sceneType=1或2时不可缺省 |
+| destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | sceneType=1或2时不可缺省 |
 | sceneType            | 意图取值 ：1：路线规划 2：导航 3： 地点搜索                                | number   | 可缺省，缺省时默认为1   |
-| destinationName      | 终点名称                                                     | string   | 可缺省   |
+| destinationName      | 终点名称                                                     | string   | showLocation=true或sceneType=3时不可缺省   |
 | originName           | 起点名称（路线规划场景有效）                                   | string   | 可缺省   |
 | originLatitude       | 起点纬度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
 | originLongitude      | 起点经度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
@@ -115,9 +115,9 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
     | 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
     | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | destinationLatitude  | 终点纬度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
-    | destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | 不可缺省 |
-    | destinationName      | 终点名称                                                     | string   | 可缺省   |
+    | destinationLatitude  | 终点纬度<sup>GCJ-02</sup>                                                     | number   | sceneType=1或2时不可缺省 |
+    | destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | sceneType=1或2时不可缺省 |
+    | destinationName      | 终点名称                                                     | string   | sceneType=3时不可缺省   |
     | originName           | 起点名称                                   | string   | 可缺省，存在时可用于展示路线规划页面   |
     | originLatitude       | 起点纬度<sup>GCJ-02</sup>                                 | number   | 可缺省，存在时可用于展示路线规划页面   |
     | originLongitude      | 起点经度<sup>GCJ-02</sup>                                  | number   | 可缺省，存在时可用于展示路线规划页面   |
