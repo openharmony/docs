@@ -694,7 +694,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **示例：**
 
@@ -747,7 +747,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **示例：**
 
@@ -797,7 +797,7 @@ deleteAbc(abcPath: string): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
-| 17700202 | deleteAbc failed. |
+| 17700202 | Failed to delete the abc file. |
 
 **示例：**
 
