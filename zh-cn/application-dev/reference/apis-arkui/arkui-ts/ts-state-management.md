@@ -1747,5 +1747,5 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 | colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | fontScale            | number          | 字体大小比例。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                               |
 | fontWeightScale      | number          | 字重比例。                                                   |
-| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。 |
+| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |

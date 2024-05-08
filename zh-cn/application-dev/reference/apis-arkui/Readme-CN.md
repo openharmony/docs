@@ -121,10 +121,7 @@
         - [组件内容填充方式](arkui-ts/ts-universal-attributes-renderfit.md)
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
-        - [特效绘制合并 (系统接口)](arkui-ts/ts-universal-attributes-use-effect-sys.md)
-        - [图像效果 (系统接口)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
-        - [背景设置 (系统接口)](arkui-ts/ts-universal-attributes-background-sys.md)
-        - [组件内容模糊 (系统接口)](arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md)
+        - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
         - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
@@ -286,7 +283,7 @@
         - [组件内隐式共享元素转场 (geometryTransition)](arkui-ts/ts-transition-animation-geometrytransition.md)
       - [路径动画 (motionPath)](arkui-ts/ts-motion-path-animation.md)
       - [粒子动画 (Particle)](arkui-ts/ts-particle-animation.md)
-      - [显式动画立即下发 (animateToImmediately)(系统接口)](arkui-ts/ts-explicit-animatetoimmediately-sys.md)
+      - [显式动画立即下发 (animateToImmediately)](arkui-ts/ts-explicit-animatetoimmediately.md)
     - 全局UI方法
       - 弹窗
         - [警告弹窗 (AlertDialog)](arkui-ts/ts-methods-alert-dialog-box.md)
@@ -321,8 +318,10 @@
     - [ArkUI_NativeModule](_ark_u_i___native_module.md)
     - [Native XComponent](_o_h___native_x_component.md)
     - [ArkUI_EventModule](_ark_u_i___event_module.md)
+    - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
   - 头文件和结构体
     - 头文件
+      - [native_animate.h](native__animate_8h.md)
       - [native_dialog.h](native__dialog_8h.md)
       - [native_event.h](native__event_8h.md)
       - [native_gesture.h](native__gesture_8h.md)
@@ -333,11 +332,17 @@
       - [native_type.h](native__type_8h.md)
       - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
       - [ui_input_event.h](ui__input__event_8h.md)
+      - [oh_window_comm.h](oh__window__comm_8h.md)
+      - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
     - 结构体
+      - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
       - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
       - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
+      - [ArkUI_ContextCallback](_ark_u_i___context_callback.md)
+      - [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md)
       - [ArkUI_IntOffset](_ark_u_i___int_offset.md)
       - [ArkUI_IntSize](_ark_u_i___int_size.md)
+      - [ArkUI_NativeAnimateAPI_1](_ark_u_i___native_animate_a_p_i__1.md)
       - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
       - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
       - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)

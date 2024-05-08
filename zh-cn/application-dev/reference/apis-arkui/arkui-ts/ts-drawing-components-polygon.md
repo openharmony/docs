@@ -18,6 +18,8 @@ Polygon(value?: {width?: string | number, height?: string | number})
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
@@ -36,6 +38,8 @@ points(value: Array&lt;Point&gt;)
 设置多边形的顶点坐标列表。异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

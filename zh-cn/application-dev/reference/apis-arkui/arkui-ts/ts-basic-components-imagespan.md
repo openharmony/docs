@@ -33,6 +33,8 @@ verticalAlign(value: ImageSpanAlignment)
 
 设置图片基于文本的对齐方式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -46,6 +48,8 @@ verticalAlign(value: ImageSpanAlignment)
 objectFit(value: ImageFit)
 
 设置图片的缩放类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,6 +72,20 @@ textBackgroundStyle(value: TextBackgroundStyle)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br /> {<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+
+### baselineOffset<sup>12+</sup>
+
+baselineOffset(value: LengthMetrics)
+
+设置ImageSpan基线的偏移量。此属性与父组件的baselineOffset是共存的。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置ImageSpan基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0<br/>设置为非0时会导致设置verticalAlign失效。 |
 
 ## ImageSpanAlignment
 
@@ -143,6 +161,9 @@ type ImageCompleteCallback = (result: ImageLoadResult) => void
 ## 示例
 
 ### 示例1
+
+该示例实现了设置ImageSpan的基本属性和图片基于文本的对齐方式。
+
 ```ts
 // xxx.ets
 @Entry
@@ -191,6 +212,9 @@ struct SpanExample {
 ![imagespan](figures/imagespan.png)
 
 ### 示例2
+
+该示例实现了如何设置ImageSpan图片的背景样式。
+
 ```ts
 // xxx.ets
 @Component

@@ -14,6 +14,8 @@
 
 Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, controller?: SearchController })
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数:**
 
 | 参数名      | 参数类型                                             | 必填 | 参数描述                                                     |
@@ -33,6 +35,8 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 设置搜索框末尾搜索按钮。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -48,6 +52,8 @@ placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -61,6 +67,8 @@ placeholderColor(value: ResourceColor)
 placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,6 +84,8 @@ textFont(value?: Font)
 
 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -89,6 +99,8 @@ textFont(value?: Font)
 textAlign(value: TextAlign)
 
 设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -106,6 +118,8 @@ copyOption(value: CopyOptions)
 
 copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -119,6 +133,8 @@ copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 searchIcon(value: IconOptions)
 
 设置左侧搜索图标样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -134,6 +150,8 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 设置右侧清除按钮样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -148,6 +166,8 @@ fontColor(value: ResourceColor)
 
 设置输入文本的字体颜色。[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -161,6 +181,8 @@ fontColor(value: ResourceColor)
 caretStyle(value: CaretStyle)
 
 设置光标样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -181,6 +203,8 @@ enableKeyboardOnFocus(value: boolean)
 
 从API version 10开始，获焦默认绑定输入法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -194,6 +218,8 @@ enableKeyboardOnFocus(value: boolean)
 selectionMenuHidden(value: boolean)
 
 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -220,6 +246,8 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -360,6 +388,8 @@ selectedBackgroundColor(value: ResourceColor)
 
 ## IconOptions<sup>10+</sup>对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 参数类型                                   | 必填 | 参数描述    |
 | ------ | ------------------------------------------ | ---- | ----------- |
 | size   | [Length](ts-types.md#length)               | 否   | 图标尺寸，不支持百分比。    |
@@ -368,12 +398,16 @@ selectedBackgroundColor(value: ResourceColor)
 
 ## CaretStyle<sup>10+</sup>对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 参数类型                                   | 必填 | 参数描述 |
 | ------ | ------------------------------------------ | ---- | -------- |
 | width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
 
 ## SearchButtonOptions<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名    | 参数类型                                   | 必填 | 参数描述         |
 | --------- | ------------------------------------------ | ---- | ---------------- |
@@ -388,6 +422,8 @@ selectedBackgroundColor(value: ResourceColor)
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |
@@ -414,6 +450,8 @@ onSubmit(callback: (value: string) => void)
 
 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -427,6 +465,8 @@ onSubmit(callback: (value: string) => void)
 onChange(callback: (value: string) => void)
 
 输入内容发生变化时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -442,6 +482,8 @@ onCopy(callback: (value: string) => void)
 
 长按搜索框弹出剪切板之后，点击剪切板的复制按钮触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -456,6 +498,8 @@ onCut(callback: (value: string) => void)
 
 长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -469,6 +513,8 @@ onCut(callback: (value: string) => void)
 onPaste(callback: (value: string, event: PasteEvent]) => void)
 
 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -485,6 +531,8 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 文本选择的位置发生变化时，触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -499,6 +547,8 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 文本内容滚动时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -523,6 +573,8 @@ caretPosition(value: number): void
 
 设置输入光标的位置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数:**
 
 | 参数名 | 参数类型 | 必填 | 参数描述                           |
@@ -534,6 +586,8 @@ caretPosition(value: number): void
 stopEditing(): void
 
 退出编辑态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ### getTextContentRect<sup>10+</sup>
 

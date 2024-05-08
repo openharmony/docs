@@ -22,6 +22,7 @@
 
 NavDestination()
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ## 属性
 
@@ -32,6 +33,8 @@ NavDestination()
 title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestinationCustomTitle)
 
 设置页面标题。使用NavigationCustomTitle类型设置height高度时，titleMode属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行2行后以...截断。如果设置副标题，先缩小后以...截断。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,6 +49,8 @@ title(value: string | CustomBuilder | NavDestinationCommonTitle | NavDestination
 hideTitleBar(value: boolean)
 
 设置是否隐藏标题栏。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,6 +118,8 @@ onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 当该NavDestination页面显示时触发此回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onHidden<sup>10+</sup>
@@ -120,6 +127,40 @@ onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 当该NavDestination页面隐藏时触发此回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onWillAppear<sup>12+</sup>
+
+onWillAppear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+当该Destination挂载之前触发此回调。在该回调中允许修改页面栈，当前帧生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onWillShow<sup>12+</sup>
+
+onWillShow(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+当该Destination显示之前触发此回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onWillHide<sup>12+</sup>
+
+onWillHide(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+当该Destination隐藏之前触发此回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onWillDisappear<sup>12+</sup>
+
+onWillDisappear(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+
+当该Destination卸载之前触发的生命周期(有转场动画时，在转场动画开始之前触发)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,6 +170,8 @@ onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onReady<sup>11+</sup>
@@ -137,14 +180,16 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 当NavDestination即将构建子组件之前会触发此回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## NavDestinationContext<sup>11+</sup>类型说明
 
 | 名称   | 类型     | 描述     |
 | ---- | ------ | ------ |
-| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 跳转NavDestination时指定的参数。 |
-| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 当前NavDestination所处的页面栈。 |
+| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 跳转NavDestination时指定的参数。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 当前NavDestination所处的页面栈。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ### getConfigInRouteMap<sup>12+</sup>
 

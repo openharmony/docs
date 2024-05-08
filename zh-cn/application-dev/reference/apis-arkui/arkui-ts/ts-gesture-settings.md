@@ -12,6 +12,8 @@
 通过如下属性给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。
 可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | gesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。 |
@@ -32,6 +34,9 @@
 
 
 ## GestureMask枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Normal | 不屏蔽子组件的手势，按照默认手势识别顺序进行识别。 |
@@ -48,6 +53,9 @@
 | onAction((event:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
 
 ## GestureEvent对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。 |
@@ -81,6 +89,9 @@
 | TouchScreen | 触摸屏。 |
 
 ## FingerInfo对象说明<sup>8+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | id | number | 手指的索引编号。 |

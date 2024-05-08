@@ -133,6 +133,24 @@ backgroundEffect(options: BackgroundEffectOptions)
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
 
+## backgroundImageResizable<sup>12+</sup>
+
+backgroundImageResizable(value: ResizableOptions)
+
+设置背景图在拉伸时可调整大小的图像选项。
+
+设置合法的ResizableOptions时，[backgroundImage](#backgroundimage)属性中的repeat参数设置不生效。
+
+当设置top+bottom大于原图的高或者left+right大于原图的宽时，ResizableOptions属性设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                             |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| value  | [ResizableOptions](ts-basic-components-image.md#resizableoptions11) | 是   | 图像拉伸时可调整大小的图像选项。 |
+
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
 继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)
@@ -156,6 +174,28 @@ backgroundImageResizable(value: ResizableOptions)
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | value  | [ResizableOptions](ts-basic-components-image.md#resizableoptions11) | 是   | 图像拉伸时可调整大小的图像选项。 |
+
+## backgroundBrightness<sup>12+</sup> 
+
+backgroundBrightness(params: BackgroundBrightnessOptions)
+
+设置组件背景提亮效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名            | 类型                                     | 必填   | 说明                                       |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| params        | [BackgroundBrightnessOptions](#backgroundbrightnessoptions12对象说明) | 是    |  设置组件背景提亮效果，包括：亮度变化速率，提亮程度。      |
+
+## BackgroundBrightnessOptions<sup>12+</sup>对象说明
+
+
+| 名称            | 参数类型                                     | 必填   | 描述                                       |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| rate          | number | 是    | 亮度变化速率。亮度变化速率越大，亮度下降速度越快，亮度提升程度越低。<br/>默认值：0.0 <br/>取值范围：(0.0, +∞)<br/> |
+| lightUpDegree | number | 是    | 提亮程度。提亮程度越大，亮度提升程度越大。<br/> 默认值：0.0 <br/>取值范围：[-1.0, 1.0]<br/> |
 
 ## 示例
 

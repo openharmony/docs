@@ -19,13 +19,15 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 | 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ## onAddForm
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
 卡片提供方接收创建卡片的通知接口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -68,6 +70,8 @@ onCastToNormalForm(formId: string): void
 
 卡片提供方接收临时卡片转常态卡片的通知接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -93,6 +97,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
 卡片提供方接收携带参数的更新卡片的通知接口。获取最新数据后调用formProvider的[updateForm](js-apis-app-form-formProvider.md#updateform)接口刷新卡片数据。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -188,6 +194,8 @@ onFormEvent(formId: string, message: string): void
 
 卡片提供方接收处理卡片事件的通知接口（此方法仅可在JS卡片中使用）。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -215,6 +223,8 @@ onRemoveForm(formId: string): void
 
 卡片提供方接收销毁卡片的通知接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -241,6 +251,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。  
 仅当前formExtensionAbility存活时更新配置才会触发此生命周期。需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -271,6 +283,8 @@ onAcquireFormState?(want: Want): formInfo.FormState
 
 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态(该方法可以选择性重写)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -299,6 +313,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onStop?(): void
 
 当卡片提供方的卡片进程退出时，触发该回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
   
 **系统能力：** SystemCapability.Ability.Form
 

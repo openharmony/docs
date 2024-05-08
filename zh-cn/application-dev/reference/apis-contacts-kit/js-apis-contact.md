@@ -19,6 +19,8 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 添加联系人，使用callback方式作为异步方法。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
 **系统能力**：SystemCapability.Applications.ContactsData
@@ -99,6 +101,8 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 addContact(context: Context, contact: Contact): Promise<number&gt;
 
 添加联系人，使用Promise方式作为异步方法。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -1230,6 +1234,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -1263,6 +1269,8 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
@@ -1294,6 +1302,8 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback方式作为异步方法。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1330,6 +1340,8 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt;&gt;
 
 调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise方式作为异步方法。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -3697,6 +3709,8 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 选择联系人条件。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 |                名称               |                  类型                 | 必填  |        说明      |
@@ -3708,6 +3722,8 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 ## Contact
 
 联系人对象类。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3780,6 +3796,8 @@ myContact.phoneNumbers = [phoneNumber];
 联系人属性列表，一般作为入参用来标识希望查询的联系人属性。
 当传入为null时，默认查询全部属性。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称       |            类型           | 可读 | 可写 | 说明             |
@@ -3815,6 +3833,8 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 
 枚举，联系人属性列表。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称                  | 说明                               |
@@ -3847,6 +3867,8 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 ## Email
 
 联系人的邮箱。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -3928,6 +3950,8 @@ holder.holderId = 0;
 
 联系人事件类。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 ### 常量
@@ -3972,6 +3996,8 @@ event.eventDate = "xxxxxx";
 
 联系人的群组类。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称    |   类型   | 可读 | 可写 | 说明               |
@@ -4002,6 +4028,8 @@ group.title = "title";
 ## ImAddress
 
 联系人的即时消息地址。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4053,6 +4081,8 @@ imAddress.imAddress = "imAddress";
 
 联系人的名字类。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称               |   类型   | 可读 | 可写 | 说明                        |
@@ -4092,6 +4122,8 @@ name.fullName = "fullName";
 
 联系人的昵称类。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称     |   类型   | 可读 | 可写 | 说明           |
@@ -4121,6 +4153,8 @@ nickName.nickName = "nickName";
 
 联系人的备注类。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称        |   类型   | 可读 | 可写 | 说明               |
@@ -4149,6 +4183,8 @@ note.noteContent = "noteContent";
 ## Organization
 
 联系人的组织类。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4181,6 +4217,8 @@ organization.title = "title";
 ## PhoneNumber
 
 联系人电话号码类。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4244,6 +4282,8 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
 联系人的头像类。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 | 名称 |   类型   | 可读 | 可写 | 说明           |
@@ -4272,6 +4312,8 @@ portrait.uri = "uri";
 ## PostalAddress
 
 联系人的邮政地址类。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4325,6 +4367,8 @@ postalAddress.postalAddress = "postalAddress";
 ## Relation
 
 联系人的关系类。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
@@ -4383,6 +4427,8 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
 联系人的会话发起协议（SIP）地址类。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
 ### 常量
@@ -4425,6 +4471,8 @@ sipAddress.sipAddress = "sipAddress";
 ## Website
 
 联系人的网站信息类。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 

@@ -25,6 +25,8 @@ create(options: AnimatorOptions): AnimatorResult
 
 定义Animator类。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -38,6 +40,14 @@ create(options: AnimatorOptions): AnimatorResult
 | 类型                                | 说明            |
 | --------------------------------- | ------------- |
 | [AnimatorResult](#animatorresult) | Animator结果接口。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **示例：** 
 
@@ -66,6 +76,8 @@ reset(options: AnimatorOptions): void
 
 更新当前动画器。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -76,10 +88,11 @@ reset(options: AnimatorOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.animator(动画)](errorcode-animator.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.animator(动画)](errorcode-animator.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | if no page is found for pageId or fail to get object property list. |
 
 
@@ -124,6 +137,8 @@ play(): void
 
 启动动画。动画会保留上一次的播放状态，比如播放状态设置reverse后，再次播放会保留reverse的播放状态。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -137,6 +152,8 @@ animator.play();
 finish(): void
 
 结束动画。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -152,6 +169,8 @@ pause(): void
 
 暂停动画。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -166,6 +185,8 @@ cancel(): void
 
 取消动画。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -179,6 +200,8 @@ animator.cancel();
 reverse(): void
 
 以相反的顺序播放动画。使用interpolating-spring曲线时此接口无效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -397,11 +420,11 @@ let expectedFrameRate: ExpectedFrameRateRange = {
 animatorResult.setExpectedFrameRateRange(expectedFrameRate);
 ```
 
-
-
 ## AnimatorOptions
 
 定义动画选项。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

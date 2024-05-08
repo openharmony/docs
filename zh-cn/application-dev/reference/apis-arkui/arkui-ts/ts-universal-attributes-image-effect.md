@@ -14,6 +14,8 @@ blur(value: number, options?: BlurOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -66,6 +68,8 @@ grayscale(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -81,6 +85,8 @@ brightness(value: number)
 为组件添加高光效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -98,6 +104,8 @@ saturate(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -113,6 +121,8 @@ contrast(value: number)
 为组件添加对比度效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -130,6 +140,8 @@ invert(value: number | InvertOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -145,6 +157,8 @@ sepia(value: number)
 将图像转换为深褐色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -162,6 +176,8 @@ hueRotate(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -177,6 +193,8 @@ colorBlend(value: Color | string | Resource)
 为组件添加颜色叠加效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -247,6 +265,49 @@ useShadowBatching(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。<br/>默认值：false<br/>**说明：**<br/>1. 默认不开启，如果子节点的阴影半径较大，节点各自的阴影会互相重叠。 当开启时，元素的阴影将不会重叠。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。 |
+
+## sphericalEffect<sup>12+</sup>
+
+sphericalEffect(value: number)
+
+设置组件的图像球面化程度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 设置组件的图像球面化程度。<br/>取值范围：[0,1]。<br/>**说明：**<br/>1. 如果value等于0则图像保持原样，如果value等于1则图像为完全球面化效果。在0和1之间，数值越大，则球面化程度越高。<br/>`value < 0 `或者` value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。<br/>2. 如果组件的图像使用异步加载，则不支持球面效果。例如Image组件默认使用异步加载，如果要使用球面效果，就要设置`syncLoad`为`true`，但是这种做法不推荐。`backgroundImage`也是使用异步加载，所以如果设置了`backgroundImage`，不支持球面效果。<br/>3. 如果组件设置了阴影，不支持球面效果。<br>4. 设置value大于0时，组件冻屏不更新并且把组件内容绘制到透明离屏buffer上，如果要更新组件属性则需要把value设置为0。 |
+
+## lightUpEffect<sup>12+</sup> 
+
+lightUpEffect(value: number)
+
+设置组件图像亮起程度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 设置组件图像亮起程度。<br/>取值范围：[0,1]。<br/>如果value等于0则图像为全黑，如果value等于1则图像为全亮效果。0到1之间数值越大，表示图像亮度越高。`value < 0` 或者 `value > 1`为异常情况，`value < 0`按0处理，`value > 1`按1处理。 |
+
+## pixelStretchEffect<sup>12+</sup> 
+
+pixelStretchEffect(options: PixelStretchEffectOptions)
+
+设置组件的图像边缘像素扩展距离。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | 是   | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。 |
+
 
 ## ShadowOptions对象说明
 
@@ -755,3 +816,111 @@ struct UseShadowBatchingExample {
 ```
 
 ![testUseShadowBatchingDemo](figures/testUseShadowBatching.png)
+
+### 示例9
+
+设置组件的图像球面效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SphericalEffectExample {
+  build() {
+    Stack() {
+      TextInput({ placeholder: "请输入变化范围百分比（[0%,100%]）"})
+        .width('50%')
+        .height(35)
+        .type(InputType.Number)
+        .enterKeyType(EnterKeyType.Done)
+        .caretColor(Color.Red)
+        .placeholderColor(Color.Blue)
+        .placeholderFont({
+          size: 20,
+          style: FontStyle.Italic,
+          weight: FontWeight.Bold
+        })
+        .sphericalEffect(0.5)
+    }.alignContent(Alignment.Center).width("100%").height("100%")
+  }
+}
+
+```
+
+效果图如下：
+
+![textInputSpherical1](figures/textInputSpherical1.png)
+
+去掉sphericalEffect的设置，效果如下：
+
+![textInputSpherical2](figures/textInputSpherical2.png)
+
+### 示例10
+
+设置组件的图像渐亮效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LightUpExample {
+  build() {
+    Stack() {
+      Text('This is the text content with letterSpacing 0.')
+        .letterSpacing(0)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('50%')
+        .lightUpEffect(0.6)
+    }.alignContent(Alignment.Center).width("100%").height("100%")
+  }
+}
+
+```
+
+效果图如下：
+
+![textLightUp3](figures/textLightUp3.png)
+
+修改lightUpEffect参数值为0.2：
+
+![textLightUp2](figures/textLightUp2.png)
+
+去掉lightUpEffect的设置，效果如下：
+
+![textLightUp1](figures/textLightUp1.png)
+
+### 示例11
+
+设置组件的图像边缘像素扩展效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PixelStretchExample {
+  build() {
+    Stack() {
+      Text('This is the text content with letterSpacing 0.')
+        .letterSpacing(0)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .clip(false)
+        .width('50%')
+        .pixelStretchEffect({top:10,left:10,right:10,bottom:10 })
+    }.alignContent(Alignment.Center).width("100%").height("100%")
+  }
+}
+
+```
+
+效果图如下：
+
+![textPixelStretch1](figures/textPixelStretch1.png)
+
+去掉pixelStretchEffect的设置，原图效果如下：
+
+![textPixelStretch2](figures/textPixelStretch2.png)
+

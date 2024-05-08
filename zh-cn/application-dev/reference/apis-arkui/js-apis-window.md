@@ -68,8 +68,6 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 | 名称                                   | 类型 |  必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
 | statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
@@ -79,26 +77,30 @@ import window from '@ohos.window';
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
 | navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF`。 |
 
+
 ## Orientation<sup>9+</sup>
 
 窗口显示方向类型枚举。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 | 名称                                  | 值   | 说明                          |
 | ------------------------------------- | ---- | ----------------------------- |
-| UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。 |
-| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| LANDSCAPE                             | 2    | 表示横屏显示模式。   |
-| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。   |
-| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。 |
-| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。 |
-| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。 |
-| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。 |
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。 |
-| LOCKED                                | 11   | 表示锁定模式。 |
+| UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| LOCKED                                | 11   | 表示锁定模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | 表示受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | 表示临时竖屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | 表示临时横屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | 表示临时反向竖屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | 表示临时反向横屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 
 ## Rect<sup>7+</sup>
@@ -1750,8 +1752,6 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **参数：**
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
@@ -1801,8 +1801,6 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1856,8 +1854,6 @@ getWindowSystemBarProperties(): SystemBarProperties
 主窗口获取导航栏、状态栏的属性。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1999,6 +1995,62 @@ try {
   console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
 }
 ```
+
+
+### getPreferredOrientation<sup>12+</sup>
+
+getPreferredOrientation(): Orientation
+
+主窗口调用，获取窗口的显示方向属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+|------------------------------| ------------------ |
+| [Orientation](#orientation9) | 窗口显示方向的属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let orientation = windowClass.getPreferredOrientation();
+      } catch (exception) {
+        console.error(`Failed to get window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+};
+```
+
 
 ### getUIContext<sup>10+</sup>
 
@@ -2319,38 +2371,25 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+console.info('onWindowStageCreate');
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+try {
+  (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
-};
+    console.info('Succeeded in loading the content.');
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -2404,36 +2443,22 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+try {  
+  (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
-};
+    console.info('Succeeded in loading the content.');
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -2493,36 +2518,22 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        let promise = (windowClass as window.Window).loadContentByName(Index.entryName, storage);
-        promise.then(() => {
-          console.info('Succeeded in loading the content.');
-        }).catch((err: BusinessError) => {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-    }
-  }
-};
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+try {
+  let promise = (windowClass as window.Window).loadContentByName(Index.entryName, storage);
+  promise.then(() => {
+    console.info('Succeeded in loading the content.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -2813,7 +2824,7 @@ on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                | 必填 | 说明                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'screenshot'，即截屏事件。 |
+| type     | string              | 是   | 监听事件，固定为'screenshot'，对控制中心截屏、hdc命令截屏、整屏截屏接口生效。 |
 | callback | Callback&lt;void&gt; | 是   | 回调函数。发生截屏事件时的回调。                               |
 
 **示例：**
@@ -2867,7 +2878,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-开启模态窗口目标窗口的点击事件的监听。
+开启模态窗口所遮盖窗口的点击或触摸事件的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2875,8 +2886,8 @@ on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                          |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口目标窗口的点击事件。 |
-| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击事件发生在模态窗口目标窗口的回调。 |
+| type     | string              | 是   | 监听事件，固定为'dialogTargetTouch'，即模态窗口所遮盖窗口的点击或触摸事件。 |
+| callback | Callback&lt;void&gt;| 是   | 回调函数。当点击或触摸事件发生在模态窗口所遮盖窗口的回调。 |
 
 **示例：**
 
@@ -3616,7 +3627,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置点击时是否支持切换焦点窗口，使用callback异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从操作前的获焦窗口切换到该窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3660,7 +3671,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置点击时是否支持切换焦点窗口，使用Promise异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从操作前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4096,18 +4107,31 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let ratio = 1.0;
-  let promise = windowClass.setAspectRatio(ratio);
-  promise.then(() => {
-    console.info('Succeeded in setting aspect ratio of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    if (!windowClass) {
+      console.info('windowClass is null');
+    }
+    try {
+      let ratio = 1.0;
+      let promise = windowClass.setAspectRatio(ratio);
+      promise.then(() => {
+        console.info('Succeeded in setting aspect ratio of window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -4140,20 +4164,33 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let ratio = 1.0;
-  windowClass.setAspectRatio(ratio, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-      return;
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
     }
-    console.info('Succeeded in setting the aspect ratio of window.');
-  });
-} catch (exception) {
-  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+    try {
+      let ratio = 1.0;
+      windowClass.setAspectRatio(ratio, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the aspect ratio of window.');
+      });
+    } catch (exception) {
+      console.error(`Failed to set the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -4185,17 +4222,30 @@ resetAspectRatio(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let promise = windowClass.resetAspectRatio();
-  promise.then(() => {
-    console.info('Succeeded in resetting aspect ratio of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
+    }
+    try {
+      let promise = windowClass.resetAspectRatio();
+      promise.then(() => {
+        console.info('Succeeded in resetting aspect ratio of window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to reset the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to reset the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -4227,19 +4277,32 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  windowClass.resetAspectRatio((err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-      return;
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
     }
-    console.info('Succeeded in resetting aspect ratio of window.');
-  });
-} catch (exception) {
-  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+    try {
+      windowClass.resetAspectRatio((err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to reset the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in resetting aspect ratio of window.');
+      });
+    } catch (exception) {
+      console.error(`Failed to reset the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -4388,7 +4451,7 @@ export default class EntryAbility extends UIAbility {
 
 recover(): Promise&lt;void&gt;
 
-将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在部分设备类型下生效。
+将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4709,7 +4772,7 @@ setWindowDecorHeight(height: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[37,112]，单位为vp。 |
+| height | number | 是   | 设置的窗口标题栏高度，仅支持具有窗口标题栏的窗口。该参数为整数，浮点数输入将向下取整，取值范围为[37,112]，范围外为非法参数，单位为vp。|
 
 **错误码：**
 
@@ -6233,7 +6296,7 @@ promise.then(() => {
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置点击时是否支持切换焦点窗口，使用callback异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从操作前的获焦窗口切换到该窗口，使用callback异步回调。
 
 > **说明：**
 >
@@ -6268,7 +6331,7 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
 
 setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-设置点击时是否支持切换焦点窗口，使用Promise异步回调。
+设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从操作前的获焦窗口切换到该窗口，使用Promise异步回调。
 
 > **说明：**
 >

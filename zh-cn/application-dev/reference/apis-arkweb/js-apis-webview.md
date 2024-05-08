@@ -188,7 +188,7 @@ struct WebComponent {
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                              |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 否 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
+| isExtentionType | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
 
 ### postMessageEventExt<sup>10+</sup>
 
@@ -6860,7 +6860,8 @@ closeCamera(): void
 
 precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: CacheOptions): Promise\<number\>
 
-预编译JavaScript生成字节码缓存。
+预编译JavaScript生成字节码缓存或根据提供的参数更新已有的字节码缓存。   
+接口通过提供的文件信息、E-Tag响应头和Last-Modified响应头判断是否需要更新已有的字节码缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6868,7 +6869,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| url | string | 是   | 本地JavaScript文件对应的网络地址，即请求该文件的服务器版本时使用的网络地址。      |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
 | script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。      |
 | cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
 
@@ -6888,8 +6889,360 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 **示例：**
 
+接口推荐配合动态组件使用，使用离线的Web组件用于生成字节码缓存，并在适当的时机加载业务用Web组件使用这些字节码缓存。下方是代码示例：
+
+1. 首先，在EntryAbility中将UIContext存到localStorage中。
+
+   ```ts
+   // EntryAbility.ets
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+
+   const localStorage: LocalStorage = new LocalStorage('uiContext');
+
+   export default class EntryAbility extends UIAbility {
+     storage: LocalStorage = localStorage
+
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       windowStage.loadContent('pages/Index', this.storage, (err, data) => {
+         if (err.code) {
+           return;
+         }
+
+         this.storage.setOrCreate<UIContext>("uiContext", windowStage.getMainWindowSync().getUIContext());
+       });
+     }
+   }
+   ```
+
+2. 编写动态组件所需基础代码。
+
+   ```ts
+   // DynamicComponent.ets
+   import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
+   import { UIContext } from '@ohos.arkui.UIContext';
+   
+   export interface BuilderData {
+     url: string;
+     controller: WebviewController;
+   }
+
+   const storage = LocalStorage.getShared();
+
+   export class NodeControllerImpl extends NodeController {
+     private rootNode: BuilderNode<BuilderData[]> | null = null;
+     private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
+
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+       super();
+       this.wrappedBuilder = wrappedBuilder;
+     }
+
+     makeNode(): FrameNode | null {
+       if (this.rootNode != null) {
+         return this.rootNode.getFrameNode();
+       }
+       return null;
+     }
+
+     initWeb(url: string, controller: WebviewController) {
+       if(this.rootNode != null) {
+         return;
+       }
+
+       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       if (!uiContext) {
+         return;
+       }
+       this.rootNode = new BuilderNode(uiContext);
+       this.rootNode.build(this.wrappedBuilder, { url: url, controller: controller });
+     }
+   }
+
+   export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
+     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     baseNode.initWeb(data.url, data.controller);
+     return baseNode;
+   }
+   ```
+
+3. 编写用于生成字节码缓存的组件，本例中的本地Javascript资源内容通过文件读取接口读取rawfile目录下的本地文件。
+
+   ```ts
+   // PrecompileWebview.ets
+   import { BuilderData } from "./DynamicComponent";
+   import { Config, configs } from "./PrecompileConfig";
+
+   @Builder
+   function WebBuilder(data: BuilderData) {
+     Web({ src: data.url, controller: data.controller })
+       .onControllerAttached(() => {
+         precompile(data.controller, configs);
+       })
+       .fileAccess(true)
+   }
+
+   export const precompileWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+
+   export const precompile = async (controller: WebviewController, configs: Array<Config>) => {
+     for (const config of configs) {
+       let content = await readRawFile(config.localPath);
+
+       try {
+         controller.precompileJavaScript(config.url, content, config.options)
+           .then(errCode => {
+             console.error("precompile successfully! " + errCode);
+           }).catch((errCode: number) => {
+             console.error("precompile failed. " + errCode);
+         });
+       } catch (err) {
+         console.error("precompile failed. " + err.code + " " + err.message);
+       }
+     }
+   }
+
+   async function readRawFile(path: string) {
+     try {
+       return await getContext().resourceManager.getRawFileContent(path);;
+     } catch (err) {
+       return new Uint8Array(0);
+     }
+   }
+   ```
+
+JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js-apis-http.md)的方式获取，但此方法获取到的http响应头非标准HTTP响应头格式，需额外将响应头转换成标准HTTP响应头格式后使用。如通过网络请求获取到的响应头是e-tag，则需要将其转换成E-Tag后使用。
+
+4. 编写业务用组件代码。
+
+   ```ts
+   // BusinessWebview.ets
+   import { BuilderData } from "./DynamicComponent";
+
+   @Builder
+   function WebBuilder(data: BuilderData) {
+     // 此处组件可根据业务需要自行扩展
+     Web({ src: data.url, controller: data.controller })
+       .cacheMode(CacheMode.Default)
+   }
+
+   export const businessWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+   ```
+
+5. 编写资源配置信息。
+
+   ```ts
+   // PrecompileConfig.ets
+   import { webview } from '@kit.ArkWeb'
+
+   export interface Config {
+     url:  string,
+     localPath: string, // 本地资源路径
+     options: webview.CacheOptions
+   }
+
+   export let configs: Array<Config> = [
+     {
+       url: "https://www.example.com/example.js",
+       localPath: "example.js",
+       options: {
+         responseHeaders: [
+           { headerKey: "E-Tag", headerValue: "aWO42N9P9dG/5xqYQCxsx+vDOoU="},
+           { headerKey: "Last-Modified", headerValue: "Wed, 21 Mar 2024 10:38:41 GMT"}
+         ]
+       }
+     }
+   ]
+   ```
+
+6. 在页面中使用。
+
+   ```ts
+   // Index.ets
+   import web_webview from '@ohos.web.webview';
+   import { NodeController } from '@kit.ArkUI';
+   import { createNode } from "./DynamicComponent"
+   import { precompileWebview } from "./PrecompileWebview"
+   import { businessWebview } from "./BusinessWebview"
+   
+   @Entry
+   @Component
+   struct Index {
+     @State precompileNode: NodeController | undefined = undefined;
+     precompileController: web_webview.WebviewController = new web_webview.WebviewController();
+   
+     @State businessNode: NodeController | undefined = undefined;
+     businessController: web_webview.WebviewController = new web_webview.WebviewController();
+   
+     aboutToAppear(): void {
+       // 初始化用于注入本地资源的Web组件
+       this.precompileNode = createNode(precompileWebview,
+         { url: "https://www.example.com/empty.html", controller: this.precompileController});
+     }
+
+     build() {
+       Column() {
+         // 在适当的时机加载业务用Web组件，本例以Button点击触发为例
+         Button("加载页面")
+           .onClick(() => {
+             this.businessNode = createNode(businessWebview, {
+               url:  "https://www.example.com/business.html",
+               controller: this.businessController
+             });
+           })
+         // 用于业务的Web组件
+         NodeContainer(this.businessNode);
+       }
+     }
+   }
+   ```
+
+当需要更新本地已经生成的编译字节码时，修改cacheOptions参数中responseHeaders中的E-Tag或Last-Modified响应头对应的值，再次调用接口即可。
+
+### onCreateNativeMediaPlayer<sup>12+</sup>
+
+onCreateNativeMediaPlayer(callback: CreateNativeMediaPlayerCallback): void
+
+注册回调函数，开启[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)后，当网页中有播放媒体时，触发注册的回调函数。  
+如果应用接管网页媒体播放功能未开启，则注册的回调函数不会被触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| callback | [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) | 是 | 接管网页媒体播放的回调函数。 |
+
+**示例：**
+
 ```ts
+// xxx.ets
 import webview from '@ohos.web.webview'
+
+class ActualNativeMediaPlayerListener {
+  handler: webview.NativeMediaPlayerHandler;
+
+  constructor(handler: webview.NativeMediaPlayerHandler) {
+    this.handler = handler;
+  }
+
+  onPlaying() {
+    // 本地播放器开始播放。
+    this.handler.handleStatusChanged(webview.PlaybackStatus.PLAYING);
+  }
+  onPaused() {
+    // 本地播放器暂停播放。
+    this.handler.handleStatusChanged(webview.PlaybackStatus.PAUSED);
+  }
+  onSeeking() {
+    // 本地播放器开始执行跳转到目标时间点。
+    this.handler.handleSeeking();
+  }
+  onSeekDone() {
+    // 本地播放器 seek 完成。
+    this.handler.handleSeekFinished();
+  }
+  onEnded() {
+    // 本地播放器播放完成。
+    this.handler.handleEnded();
+  }
+  onVolumeChanged() {
+    // 获取本地播放器的音量。
+    let volume: number = getVolume();
+    this.handler.handleVolumeChanged(volume);
+  }
+  onCurrentPlayingTimeUpdate() {
+    // 更新播放时间。
+    let currentTime: number = getCurrentPlayingTime();
+    // 将时间单位换算成秒。
+    let currentTimeInSeconds = convertToSeconds(currentTime);
+    this.handler.handleTimeUpdate(currentTimeInSeconds);
+  }
+  onBufferedChanged() {
+    // 缓存发生了变化。
+    // 获取本地播放器的缓存时长。
+    let bufferedEndTime: number = getCurrentBufferedTime();
+    // 将时间单位换算成秒。
+    let bufferedEndTimeInSeconds = convertToSeconds(bufferedEndTime);
+    this.handler.handleBufferedEndTimeChanged(bufferedEndTimeInSeconds);
+
+    // 检查缓存状态。
+    // 如果缓存状态发生了变化，则向 ArkWeb 内核通知缓存状态。
+    let lastReadyState: webview.ReadyState = getLastReadyState();
+    let currentReadyState:  webview.ReadyState = getCurrentReadyState();
+    if (lastReadyState != currentReadyState) {
+      this.handler.handleReadyStateChanged(currentReadyState);
+    }
+  }
+  onEnterFullscreen() {
+    // 本地播放器进入了全屏状态。
+    let isFullscreen: boolean = true;
+    this.handler.handleFullscreenChanged(isFullscreen);
+  }
+  onExitFullscreen() {
+    // 本地播放器退出了全屏状态。
+    let isFullscreen: boolean = false;
+    this.handler.handleFullscreenChanged(isFullscreen);
+  }
+  onUpdateVideoSize(width: number, height: number) {
+    // 当本地播放器解析出视频宽高时， 通知 ArkWeb 内核。
+    this.handler.handleVideoSizeChanged(width, height);
+  }
+
+  // ... 监听本地播放器其他的状态 ...
+}
+
+class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
+  constructor(handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) {
+    // 1. 创建一个本地播放器的状态监听。
+    let listener: ActualNativeMediaPlayerListener = new ActualNativeMediaPlayerListener(handler);
+    // 2. 创建一个本地播放器。
+    // 3. 监听该本地播放器。
+    // ...
+  }
+
+  updateRect(x: number, y: number, width: number, height: number) {
+    // <video> 标签的位置和大小发生了变化。
+    // 根据该信息变化，作出相应的改变。
+  }
+
+  play() {
+    // 启动本地播放器播放。
+  }
+
+  pause() {
+    // 暂停本地播放器播放。
+  }
+
+  seek(targetTime: number) {
+    // 本地播放器跳转到指定的时间点。
+  }
+
+  release() {
+    // 销毁本地播放器。
+  }
+
+  setVolume(volume: number) {
+    // ArkWeb 内核要求调整本地播放器的音量。
+    // 设置本地播放器的音量。
+  }
+
+  setMuted(muted: boolean) {
+    // 将本地播放器静音或取消静音。
+  }
+
+  setPlaybackRate(playbackRate: number) {
+    // 调整本地播放器的播放速度。
+  }
+
+  enterFullscreen() {
+    // 将本地播放器设置为全屏播放。
+  }
+
+  exitFullscreen() {
+    // 将本地播放器退出全屏播放。
+  }
+}
 
 @Entry
 @Component
@@ -6898,25 +7251,43 @@ struct WebComponent {
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
-        .onControllerAttached(() => {
-          getContext().resourceManager.getRawFileContent("local.js")
-            .then((content) => {
-              this.controller.precompileJavaScript("https://exmaple.com/example.js", content, {
-                responseHeaders: [
-                  {
-                    headerKey: "E-Tag",
-                    headerValue: "68ZpTzuAFdm85xPNtr3EOzySP8Q"
-                  }
-                ]
-              }).then((res) => {
-                console.error("precompile result: " + res);
-              }).catch((err: number) => {
-                console.error("precompile error: " + err);
-              })
-            })
+        .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
+        .onPageBegin((event) => {
+          this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
+            if (!shouldHandle(mediaInfo)) {
+              // 本地播放器不接管该媒体。
+              // ArkWeb 内核将用自己的播放器来播放该媒体。
+              return null;
+            }
+            let nativePlayer: webview.NativeMediaPlayerBridge = new NativeMediaPlayerImpl(handler, mediaInfo);
+            return nativePlayer;
+          });
         })
     }
   }
+}
+
+// stub
+function getVolume() {
+  return 1;
+}
+function getCurrentPlayingTime() {
+  return 1;
+}
+function getCurrentBufferedTime() {
+  return 1;
+}
+function convertToSeconds(input: number) {
+  return input;
+}
+function getLastReadyState() {
+  return webview.ReadyState.HAVE_NOTHING;
+}
+function getCurrentReadyState() {
+  return webview.ReadyState.HAVE_NOTHING;
+}
+function shouldHandle(mediaInfo: webview.MediaInfo) {
+  return true;
 }
 ```
 
@@ -9240,8 +9611,8 @@ Web组件发送的资源请求信息。
 
 | 名称 | 类型 | 可读 | 可写 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | 是 | 否 | 当前被点击区域的元素类型。|
-| extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| type | [WebHitTestType](#webhittesttype) | 是 | 是 | 当前被点击区域的元素类型。|
+| extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
 
@@ -9730,9 +10101,9 @@ setError(message: Error): void
 
 | 名称   | 类型   | 可读 | 可写 | 说明 |
 | ------ | ------ | ---- | ---- | ---- |
-| origin | string | 是  | 否 | 指定源的字符串索引。 |
-| usage  | number | 是  | 否 | 指定源的存储量。     |
-| quota  | number | 是  | 否 | 指定源的存储配额。   |
+| origin | string | 是  | 是 | 指定源的字符串索引。 |
+| usage  | number | 是  | 是 | 指定源的存储量。     |
+| quota  | number | 是  | 是 | 指定源的存储配额。   |
 
 ## BackForwardList
 
@@ -9742,8 +10113,8 @@ setError(message: Error): void
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 是   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 是   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| currentIndex | number | 是   | 是   | 当前在页面历史列表中的索引。                                 |
+| size         | number | 是   | 是   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 
@@ -9808,9 +10179,9 @@ struct WebComponent {
 | 名称          | 类型                                   | 可读 | 可写 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
 | icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
-| historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
-| historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
-| title         | string                                 | 是   | 否   | 历史记录项的标题。           |
+| historyUrl    | string                                 | 是   | 是   | 历史记录项的url地址。        |
+| historyRawUrl | string                                 | 是   | 是   | 历史记录项的原始url地址。    |
+| title         | string                                 | 是   | 是   | 历史记录项的标题。           |
 
 ## WebCustomScheme
 
@@ -13022,3 +13393,579 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | 名称        | 类型   | 可读 | 可写 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
 | responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
+
+## PlaybackStatus<sup>12+</sup>
+
+[handleStatusChanged](#handlestatuschanged12) 接口参数， 用于表示播放器的播放状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| PAUSED  | 0 | 播放状态为播放状态。 |
+| PLAYING | 1 | 播放状态为暂停状态。 |
+
+## NetworkState<sup>12+<sup>
+
+播放器的网络状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| EMPTY         | 0 | 播放器还没有开始下载数据。 |
+| IDLE          | 1 | 播放器网络状态空闲，比如媒体分片下载完成，下一个分片还没有开始下载。 |
+| LOADING       | 2 | 播放器正在下载媒体数据。 |
+| NETWORK_ERROR | 3 | 发生了网络错误。 |
+
+## ReadyState<sup>12+<sup>
+
+播放器的缓存状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| HAVE_NOTHING      | 0 | 没有缓存。 |
+| HAVE_METADATA     | 1 | 只缓存了媒体元数据。 |
+| HAVE_CURRENT_DATA | 2 | 只缓存到当前的播放进度。 |
+| HAVE_FUTURE_DATA  | 3 | 缓存时长超过了当前的播放进度, 但是仍有可能导致卡顿。 |
+| HAVE_ENOUGH_DATA  | 4 | 缓存了足够的数据，保证播放流畅。 |
+
+## MediaError<sup>12+<sup>
+
+播放器的错误类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| NETWORK_ERROR | 1 | 网络错误。 |
+| FORMAT_ERROR  | 2 | 媒体格式错误。 |
+| DECODE_ERROR  | 3 | 解码错误。 |
+
+## NativeMediaPlayerHandler<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的参数。  
+应用通过该对象，将播放器的状态报告给ArkWeb内核。
+
+### handleStatusChanged<sup>12+<sup>
+
+handleStatusChanged(status: PlaybackStatus): void
+
+当播放器的播放状态发生变化时，调用该方法将播放状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| status | [PlaybackStatus](#playbackstatus12) | 是 | 播放器的播放状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleVolumeChanged<sup>12+<sup>
+
+handleVolumeChanged(volume: number): void
+
+当播放器的音量发生变化时，调用该方法将音量通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| volume | number | 是 | 播放器的音量。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleMutedChanged<sup>12+<sup>
+
+handleMutedChanged(muted: boolean): void
+
+当播放器的静音状态发生变化时，调用该方法将静音状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| muted | boolean | 是 | 当前播放器是否静音。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handlePlaybackRateChanged<sup>12+<sup>
+
+handlePlaybackRateChanged(playbackRate: number): void
+
+当播放器的播放速度发生变化时，调用该方法将播放速度通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| playbackRate | number | 是 | 播放速率。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleDurationChanged<sup>12+<sup>
+
+handleDurationChanged(duration: number): void
+
+当播放器解析出媒体的总时长时，调用该方法将媒体的总时长通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| duration | number | 是 | 媒体的总时长。单位： 秒 。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleTimeUpdate<sup>12+<sup>
+
+handleTimeUpdate(currentPlayTime: number): void
+
+当媒体的播放进度发生变化时，调用该方法将媒体的播放进度通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| currentPlayTime | number | 是 | 当前播放时间。单位： 秒。  |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleBufferedEndTimeChanged<sup>12+<sup>
+
+handleBufferedEndTimeChanged(bufferedEndTime: number): void
+
+当媒体的缓冲时长发生变化时，调用该方法将媒体的缓冲时长通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| bufferedEndTime | number | 是 | 媒体缓冲的时长。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleEnded<sup>12+<sup>
+
+handleEnded(): void
+
+当媒体播放结束时，调用该方法通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleNetworkStateChanged<sup>12+<sup>
+
+handleNetworkStateChanged(state: NetworkState): void
+
+当播放器的网络状态发生变化时，调用该方法将播放器的网络状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| state | [NetworkState](#networkstate12) | 是 | 播放器的网络状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleReadyStateChanged<sup>12+<sup>
+
+handleReadyStateChanged(state: ReadyState): void
+
+当播放器的缓存状态发生变化时，调用该方法将播放器的缓存状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| state | [ReadyState](#readystate12) | 是 | 播放器的缓存状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleFullscreenChanged<sup>12+<sup>
+
+handleFullscreenChanged(fullscreen: boolean): void
+
+当播放器的全屏状态发生变化时，调用该方法将播放器的全屏状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| fullscreen | boolean | 是 | 是否全屏。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleSeeking<sup>12+<sup>
+
+handleSeeking(): void
+
+当播放器进入seek 状态时，调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleSeekFinished<sup>12+<sup>
+
+handleSeekFinished(): void
+
+当播放器 seek 完成后，调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleError<sup>12+<sup>
+
+handleError(error: MediaError, errorMessage: string): void
+
+当播放器发生错误时， 调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| error | [MediaError](#mediaerror12) | 是 | 错误类型。 |
+| errorMessage | string | 是 | 错误的详细描述。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleVideoSizeChanged<sup>12+<sup>
+
+handleVideoSizeChanged(width: number, height: number): void
+
+当播放器解析出视频的尺寸时， 调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| width  | number | 是 | 视频的宽。 |
+| height | number | 是 | 视频的高。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+
+## NativeMediaPlayerBridge<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的返回值类型。  
+接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。  
+ArkWeb 内核通过该接口类的实例对象来控制应用创建的用来接管网页媒体的播放器。
+
+### updateRect<sup>12+<sup>
+
+updateRect(x: number, y: number, width: number, height: number): void
+
+更新 surface 位置信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| x | number | 是 | surface 相对于 Web 组件的 x 坐标信息。 |
+| y | number | 是 | surface 相对于 Web 组件的 y 坐标信息。 |
+| width  | number | 是 | surface 的宽度。 |
+| height | number | 是 | surface 的高度。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### play<sup>12+<sup>
+
+play(): void
+
+播放视频。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### pause<sup>12+<sup>
+
+pause(): void
+
+暂停播放。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### seek<sup>12+<sup>
+
+seek(targetTime: number): void
+
+播放跳转到某个时间点。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| targetTime | number | 是 | 单位： 秒。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setVolume<sup>12+<sup>
+
+setVolume(volume: number): void
+
+设置播放器音量值。  
+取值范围: [0, 1.0]
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| volume | number | 是 | 播放器的音量。取值范围是从 0 到 1.0 。 其中 0 表示静音， 1.0 表示最大音量。 |
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setMuted<sup>12+<sup>
+
+setMuted(muted: boolean): void
+
+设置静音状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| muted | boolean | 是 | 是否静音。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setPlaybackRate<sup>12+<sup>
+
+setPlaybackRate(playbackRate: number): void
+
+设置播放速度。  
+取值范围: [0, 10.0]
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| playbackRate | number | 是 | 播放倍率。取值范围是从 0 到 10.0 。其中 1 表示原速播放。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### release<sup>12+<sup>
+
+release(): void
+
+销毁播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### enterFullscreen<sup>12+<sup>
+
+enterFullscreen(): void
+
+播放器进入全屏。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### exitFullscreen<sup>12+<sup>
+
+exitFullscreen(): void
+
+播放器退出全屏。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+## MediaType<sup>12+<sup>
+
+表示媒体类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| VIDEO | 0 | 视频。 |
+| AUDIO | 1 | 音频。 |
+
+## SourceType<sup>12+<sup>
+
+表示媒体源的类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| URL | 0 | 媒体源的类型是 URL 。 |
+| MSE | 1 | 媒体源的类型是 blob 。 |
+
+## MediaSourceInfo<sup>12+<sup>
+
+表示媒体源的信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| type | [SourceType](#sourcetype12) | 否 | N/A | 媒体源的类型。 |
+| source | string | 否 | N/A | 媒体源地址。 |
+| format | string | 否 | N/A | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+
+## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
+
+[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)中用于同层渲染的 surface 信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | {<br/>x: number, <br/>y: number, <br/>width: number, <br/>height: number<br/>} | 否 | N/A | surface 的位置信息。 |
+
+## Preload<sup>12+<sup>
+
+播放器预加载媒体数据。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| NONE     | 0 | 不预加载。 |
+| METADATA | 1 | 只预加载媒体的元数据。 |
+| AUTO     | 2 | 预加载足够多的媒体数据，以保证能流畅地播放。 |
+
+## MediaInfo<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12)回调函数的一个参数。  
+包含了网页中媒体的信息。应用可以根据这些信息来创建接管网页媒体播放的播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| embedID | string | 否 | N/A | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](#mediatype12) | 否 | N/A | 媒体的类型。 |
+| mediaSrcList | Array\<[MediaSourceInfo](#mediasourceinfo12)\> | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | N/A | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | N/A | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | Array\<string\> | 否 | N/A | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | N/A | 是否要求静音播放。 |
+| posterUrl | string | 否 | N/A | 海报的地址。 |
+| preload | [Preload](#preload12) | 否 | N/A | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | N/A | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | N/A | `<video>` 或 `<audio>` 标签中的属性。 |
+
+
+## CreateNativeMediaPlayerCallback<sup>12+<sup>
+
+[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。  
+一个回调函数， 创建一个播放器, 用于接管网页中的媒体播放。
+
+type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| handler | [NativeMediaPlayerHandler](#nativemediaplayerhandler12) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。 |
+| mediaInfo | [MediaInfo](#mediainfo12) | 是 | 网页媒体的信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+|------|------|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | 接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。<br/>应用需要实现该接口类。<br/> ArkWeb 内核通过该接口类的对象来控制应用创建的用来接管网页媒体的播放器。<br/>如果应用返回了 null ， 则表示应用不接管这个媒体，由 ArkWeb 内核来播放该媒体。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。

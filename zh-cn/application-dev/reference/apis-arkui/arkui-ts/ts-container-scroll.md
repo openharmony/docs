@@ -18,6 +18,8 @@
 
 Scroll(scroller?: Scroller)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -33,6 +35,8 @@ Scroll(scroller?: Scroller)
 scrollable(value: ScrollDirection)
 
 设置滚动方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,6 +99,8 @@ scrollBarWidth(value: number | string)
 scrollSnap(value: ScrollSnapOptions)
 
 设置Scroll组件的限位滚动模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -214,6 +220,9 @@ initialOffset(value: OffsetOptions)
 | value  | [OffsetOptions](#offsetoptions12对象说明)  | 是   |当输入的大小为百分比时，初始滚动偏移量为Scroll组件主轴方向大小与百分比数值之积。|
 
 ## ScrollDirection枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 描述                     |
 | ---------- | ------------------------ |
 | Horizontal | 仅支持水平方向滚动。     |
@@ -222,6 +231,9 @@ initialOffset(value: OffsetOptions)
 | Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动<br/> 从API version 9开始废弃|
 
 ## ScrollSnapOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 参数类型    | 必填   | 描述       |
 | ---------- | --------------------|-------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对齐方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。<br/>2.该接口仅当snapPagination属性为Dimension时生效，不支持Array\<Dimension\>。 |
@@ -244,6 +256,8 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 触发该事件的条件：
 
 1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用控制器接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -355,6 +369,8 @@ onScrollEdge(event: (side: Edge) => void)
 
 1、滚动组件滚动到边缘时触发，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用。<br/>3、越界回弹。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -448,6 +464,8 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 滑动到指定位置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数名    | 参数类型                                                     | 必填 | 参数描述                                                     |
@@ -468,7 +486,8 @@ scrollEdge(value: Edge): void
 
 | 参数名   | 参数类型 | 必填   | 参数描述      |
 | ----- | ---- | ---- | --------- |
-| value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
+| value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 |
 
 ### fling<sup>12+</sup>
 
@@ -483,11 +502,21 @@ fling(velocity: number): void
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | velocity | number   | 是   | 惯性滚动的初始速度值。单位：vp/s<br/>**说明：**<br/>velocity值设置为0，视为异常值，本次滚动不生效。如果值为正数，则向下滚动；如果值为负数，则向上滚动。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### scrollPage<sup>9+</sup>
 
 scrollPage(value:   ScrollPageOptions)
 
 滚动到下一页或者上一页。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -512,6 +541,8 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 
 currentOffset(): OffsetResult
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 类型  | 描述 |
 | -------- | -------- |
 |  [OffsetResult<sup>11+</sup>](#offsetresult11) | 返回当前的滚动偏移量。<br/>**说明：**<br/>当scroller控制器未绑定容器组件或者容器组件被异常释放时，currentOffset的返回值为空。|
@@ -528,6 +559,8 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign): void
 >  **说明：**
 >
 >  仅支持Grid、List、WaterFlow组件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -549,6 +582,8 @@ scrollBy(dx: Length, dy: Length): void
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
@@ -565,6 +600,8 @@ isAtEnd(): boolean
 >  **说明：**
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值**
 
@@ -599,7 +636,18 @@ getItemRect(index: number): RectResult
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+
 ## OffsetResult<sup>11+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 类型                                                       | 描述                                                         |
 | --------------|-------------------------------------------- | ------------------------------------------------------------ |
@@ -615,6 +663,8 @@ getItemRect(index: number): RectResult
 | canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false。<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画。|
 
 ## ScrollAlign<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |

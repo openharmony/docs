@@ -110,6 +110,8 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 位置信息请求参数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 可读|可写 | 说明 |
@@ -124,6 +126,8 @@ import geoLocationManager from '@ohos.geoLocationManager';
 ## CurrentLocationRequest
 
 当前位置信息请求参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -141,14 +145,16 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| satellitesNumber | number | 是 | 否 | 表示卫星个数。取值范围为大于等于0。 |
-| satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。取值范围为大于等于0。 |
-| carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 否 | 表示载波噪声功率谱密度比，即cn0。取值范围为大于0。 |
-| altitudes | Array&lt;number&gt; | 是 | 否 | 表示卫星高度角信息。单位是“度”，取值范围为-90到90。 |
-| azimuths | Array&lt;number&gt; | 是 | 否 | 表示方位角。单位是“度”，取值范围为0到360。 |
-| carrierFrequencies | Array&lt;number&gt; | 是 | 否 | 表示载波频率。单位是Hz，取值范围为大于等于0。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| satellitesNumber | number | 是 | 是 | 否 | 表示卫星个数。取值范围为大于等于0。 |
+| satelliteIds | Array&lt;number&gt; | 是 | 是 | 否 | 表示每个卫星的ID，数组类型。取值范围为大于等于0。 |
+| carrierToNoiseDensitys | Array&lt;number&gt; | 是 | 是 | 否 | 表示载波噪声功率谱密度比，即cn0。取值范围为大于0。 |
+| altitudes | Array&lt;number&gt; | 是 | 是 | 否 | 表示卫星高度角信息。单位是“度”，取值范围为-90到90。 |
+| azimuths | Array&lt;number&gt; | 是 | 是 | 否 | 表示方位角。单位是“度”，取值范围为0到360。 |
+| carrierFrequencies | Array&lt;number&gt; | 是 | 是 | 否 | 表示载波频率。单位是Hz，取值范围为大于等于0。 |
+| satelliteConstellation<sup>12+</sup> | Array&lt;[SatelliteConstellationCategory](#satelliteconstellationcategory12)&gt; | 是 | 是 | 否 | 表示卫星星座类型。 |
+| satelliteAdditionalInfo<sup>12+</sup> | Array&lt;number&gt; | 是 | 是 | 否 | 表示卫星的附加信息。<br/>每个比特位代表不同含义，具体定义参见[SatelliteAdditionalInfo](#satelliteadditionalinfo12)。 |
 
 
 ## CachedGnssLocationsRequest
@@ -207,19 +213,18 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
-| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
-| altitude | number | 是 | 否 | 表示高度信息，单位米。 |
-| accuracy | number | 是 | 否 | 表示精度信息，单位米。 |
-| speed | number | 是 | 否 |表示速度信息，单位米每秒。 |
-| timeStamp | number | 是 | 否 | 表示位置时间戳，UTC格式。 |
-| direction | number | 是 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。 |
-| timeSinceBoot | number | 是 | 否 | 表示位置时间戳，开机时间格式。 |
-| additions | Array&lt;string&gt; | 是 | 否 | 附加信息。 |
-| additionSize | number | 是 | 否 | 附加信息数量。取值范围为大于等于0。  
-
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| latitude | number| 是 | 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| longitude | number| 是 | 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| altitude | number | 是 | 是 | 否 | 表示高度信息，单位米。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| accuracy | number | 是 | 是 | 否 | 表示精度信息，单位米。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| speed | number | 是 | 是 | 否 |表示速度信息，单位米每秒。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| timeStamp | number | 是 | 是 | 否 | 表示位置时间戳，UTC格式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| direction | number | 是 | 是 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| timeSinceBoot | number | 是 | 是 | 否 | 表示位置时间戳，开机时间格式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| additions | Array&lt;string&gt;| 否 | 是 | 否 | 附加信息。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| additionSize | number| 否 | 是 | 否 | 附加信息数量。取值范围为大于等于0。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 | 
 
 
 
@@ -238,6 +243,8 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 位置请求中位置信息优先级类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 值 | 说明 |
@@ -250,7 +257,9 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## LocationRequestScenario
 
-  位置请求中定位场景类型。
+位置请求中定位场景类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -277,11 +286,46 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | COUNTRY_CODE_FROM_NETWORK | 4 | 从蜂窝网络注册信息中获取到的国家码。 |
 
 
+## SatelliteConstellationCategory<sup>12+</sup>
+
+卫星星座类型。
+
+**系统能力**：SystemCapability.Location.Location.Gnss
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| CONSTELLATION_CATEGORY_UNKNOWN   | 0 | 默认值。 |
+| CONSTELLATION_CATEGORY_GPS   | 1 | GPS（Global Positioning System），即全球定位系统，是美国研制发射的一种以人造地球卫星为基础的高精度无线电导航的定位系统。 |
+| CONSTELLATION_CATEGORY_SBAS    | 2 | SBAS（Satellite-Based Augmentation System），即星基增强系统，通过地球静止轨道（GEO）卫星搭载卫星导航增强信号转发器，可以向用户播发星历误差、卫星钟差、电离层延迟等多种修正信息，实现对于原有卫星导航系统定位精度的改进。 |
+| CONSTELLATION_CATEGORY_GLONASS    | 3 | GLONASS（GLOBAL NAVIGATION SATELLITE SYSTEM），是苏联/俄罗斯研制卫星导航系统。 |
+| CONSTELLATION_CATEGORY_QZSS    | 4 | QZSS（Quasi-Zenith Satellite System），即准天顶卫星系统，是以三颗人造卫星透过时间转移完成全球定位系统区域性功能的卫星扩增系统，是日本研发的卫星系统。 |
+| CONSTELLATION_CATEGORY_BEIDOU     | 5 | 北斗卫星导航系统（Beidou Navigation Satellite System）是中国自行研制的全球卫星导航系统。 |
+| CONSTELLATION_CATEGORY_GALILEO     | 6 | GALILEO（Galileo satellite navigation system），即伽利略卫星导航系统，是由欧盟研制和建立的全球卫星导航定位系统。 |
+| CONSTELLATION_CATEGORY_IRNSS     | 7 | IRNSS（Indian Regional Navigation Satellite System），即印度区域导航卫星系统，是一个由印度空间研究组织（ISRO）发展的自由区域型卫星导航系统。 |
+
+
+## SatelliteAdditionalInfo<sup>12+</sup>
+
+卫星附加信息类型。
+
+**系统能力**：SystemCapability.Location.Location.Gnss
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| SATELLITES_ADDITIONAL_INFO_NULL  | 0 | 默认值。 |
+| SATELLITES_ADDITIONAL_INFO_EPHEMERIS_DATA_EXIST  | 1 | 表示本卫星具有星历数据。 |
+| SATELLITES_ADDITIONAL_INFO_ALMANAC_DATA_EXIST   | 2 | 表示本卫星具有年历数据。 |
+| SATELLITES_ADDITIONAL_INFO_USED_IN_FIX   | 4 | 表示在最新的位置解算中使用了本卫星。 |
+| SATELLITES_ADDITIONAL_INFO_CARRIER_FREQUENCY_EXIST   | 8 | 表示本卫星具有载波频率。 |
+
+
 ## geoLocationManager.on('locationChange')
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
 开启位置变化订阅，并发起定位请求。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -328,6 +372,8 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 关闭位置变化订阅，并删除对应的定位请求。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -922,6 +968,8 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 获取当前位置，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -971,6 +1019,8 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 获取当前位置，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1017,6 +1067,8 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 获取当前位置，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1069,6 +1121,8 @@ getLastLocation(): Location
 
 获取上一次位置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
 **系统能力**：SystemCapability.Location.Location.Core
@@ -1107,6 +1161,8 @@ getLastLocation(): Location
 isLocationEnabled(): boolean
 
 判断位置服务是否已经使能。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 

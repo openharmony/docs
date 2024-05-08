@@ -1,6 +1,6 @@
 # @ohos.data.uniformTypeDescriptor (标准化数据定义与描述)
 
-本模块对OpenHarmony标准化数据类型进行了抽象定义与描述。
+本模块对标准化数据类型进行了抽象定义与描述。
 
 > **说明：**
 >
@@ -14,7 +14,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 ## UniformDataType
 
-OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
+标准化数据类型的枚举定义。标准化数据类型之间存在归属关系，例如JPEG图片类型归属于IMAGE类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -145,16 +145,16 @@ OpenHarmony标准化数据类型的枚举定义。标准化数据类型之间存
 | POSTSCRIPT_FONT<sup>12+</sup>                         | 'com.adobe.postscript-font'                    | PostScript 字体类型，归属类型为FONT。       |
 | POSTSCRIPT_PFB_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfb-font'                    | PostScript Font Binary字体类型，归属类型为FONT。       |
 | POSTSCRIPT_PFA_FONT<sup>12+</sup>                         | 'com.adobe.postscript-pfa-font'                    | Adobe Type 1 字体类型，归属类型为FONT。       |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | OpenHarmony系统定义的卡片类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。              |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | OpenHarmony系统定义的桌面图标类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。            |
-| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | OpenHarmony系统定义的像素图类型，归属类型为IMAGE。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | OpenHarmony系统定义的元服务类型，归属类型为OBJECT。             |
-| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | OpenHarmony系统定义的包（即目录的打包文件），归属类型为DIRECTORY。             |
-| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | OpenHarmony系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
-| OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | OpenHarmony系统定义的备忘录数据类型，归属类型为COMPOSITE_OBJECT。       |
-| OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | OpenHarmony系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。       |
-| OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | OpenHarmony系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。       |
-| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | OpenHarmony系统定义的Want类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | 系统定义的卡片类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。              |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | 系统定义的桌面图标类型，归属类型为OBJECT。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。            |
+| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | 系统定义的像素图类型，归属类型为IMAGE。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | 系统定义的元服务类型，归属类型为OBJECT。             |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | 系统定义的包（即目录的打包文件），归属类型为DIRECTORY。             |
+| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | 系统定义的能力包，归属类型为OPENHARMONY_PACKAGE。             |
+| OPENHARMONY_HDOC<sup>12+</sup>                         | 'openharmony.hdoc'                    | 系统定义的备忘录数据类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_HINOTE<sup>12+</sup>                         | 'openharmony.hinote'                    | 系统定义的笔记数据类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_STYLED_STRING<sup>12+</sup>                         | 'openharmony.styled-string'                    | 系统定义的样式字符串类型，归属类型为COMPOSITE_OBJECT。       |
+| OPENHARMONY_WANT<sup>12+</sup>                         | 'openharmony.want'                    | 系统定义的Want类型，归属类型为OBJECT。       |
 
 
 ## TypeDescriptor<sup>11+</sup> 
@@ -195,6 +195,14 @@ belongsTo(type: string): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 返回true表示当前的标准化数据类型归属于所指定的标准化数据类型，包括所指定类型与当前类型相同的情况；返回false则表示无归属关系。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **示例：**
 
 ```ts
@@ -232,6 +240,14 @@ isLowerLevelType(type: string): boolean
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 返回true表示当前的标准化数据类型是所指定标准化数据类型的低层级类型，否则返回false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -271,6 +287,14 @@ isHigherLevelType(type: string): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 返回true表示当前的标准化数据类型是所指定标准化数据类型的高层级类型，否则返回false。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **示例：**
 
 ```ts
@@ -309,6 +333,14 @@ equals(typeDescriptor: TypeDescriptor): boolean
 | ------- | ------------------------------------------------------------ |
 | boolean | 返回true表示所比较的标准化数据类型相同；返回false则表示不同。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
 **示例：**
 
 ```ts
@@ -346,6 +378,14 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | [TypeDescriptor](#typedescriptor11) | 返回标准化数据类型描述类对象，如果要查询的标准化数据类型不存在则返回null。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -393,6 +433,14 @@ getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: str
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | string | 返回与给定文件后缀名以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID，如果要查询的标准化数据类型不存在则返回根据入参按指定规则生成的动态类型。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 
@@ -442,6 +490,14 @@ getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | string | 返回与MIME类型名称以及归属类型ID（如果设置了belongsTo参数）匹配的标准化数据类型ID，如果要查询的标准化数据类型不存在则返回根据入参按指定规则生成的动态类型。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
 
 **示例：**
 

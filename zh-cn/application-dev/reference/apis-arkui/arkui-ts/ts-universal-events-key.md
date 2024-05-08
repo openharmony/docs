@@ -13,6 +13,8 @@ onKeyEvent(event: (event: KeyEvent) => void): T
 
 绑定该方法的组件获焦后，按键动作触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 

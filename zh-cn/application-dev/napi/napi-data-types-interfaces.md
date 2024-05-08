@@ -462,6 +462,9 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
 | napi_run_event_loop | 触发底层的事件循环。|
 | napi_stop_event_loop | 停止底层的事件循环。|
+| napi_serialize | 将ArkTS对象转换为native数据。|
+| napi_deserialize | 将native数据转为ArkTS对象。|
+| napi_delete_serialization_data | 删除序列化数据。|
 
 #### napi_queue_async_work_with_qos
 
@@ -527,6 +530,28 @@ napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
 #### napi_stop_event_loop
 ```c
 napi_status napi_stop_event_loop(napi_env env);
+```
+
+#### napi_serialize
+
+```c
+napi_status napi_serialize(napi_env env,
+                           napi_value object,
+                           napi_value transfer_list,
+                           napi_value clone_list,
+                           void** result);
+```
+
+#### napi_deserialize
+
+```c
+napi_status napi_deserialize(napi_env env, void* buffer, napi_value* object);
+```
+
+#### napi_delete_serialization_data
+
+```c
+napi_status napi_delete_serialization_data(napi_env env, void* buffer);
 ```
 
 ### 环境生命周期

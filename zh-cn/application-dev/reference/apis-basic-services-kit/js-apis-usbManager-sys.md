@@ -36,6 +36,15 @@ usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addRight�
 | deviceName | string | 是   | 设备名称。   |
 | bundleName | string | 是   | 软件包名称。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+
 **返回值：**
 
 | 类型    | 说明                                                                      |
@@ -72,6 +81,15 @@ usbFunctionsFromString(funcs: string): number
 | ------ | ------ | ---- | ---------------------- |
 | funcs  | string | 是   | 字符串形式的功能列表。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+
 **返回值：**
 
 | 类型   | 说明               |
@@ -104,6 +122,15 @@ usbFunctionsToString(funcs: FunctionType): string
 | 参数名 | 类型                          | 必填 | 说明              |
 | ------ | ----------------------------- | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | 是   | USB功能数字掩码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -142,9 +169,10 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 
 以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
 
-| 错误码ID | 错误信息                                             |
-| -------- | ---------------------------------------------------- |
-| 14400002 | Permission denied.The HDC is disabled by the system. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 14400002 | Permission denied.The HDC is disabled by the system.         |
 
 **返回值：**
 
@@ -178,6 +206,15 @@ getCurrentFunctions(): FunctionType
 
 **系统能力：**  SystemCapability.USB.USBManager
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. No parameters are required.                 |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+
 **返回值：**
 
 | 类型                          | 说明                              |
@@ -203,6 +240,15 @@ getPorts(): Array\<USBPort\>
 **系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. No parameters are required.                 |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -235,6 +281,15 @@ getSupportedModes(portId: number): PortModeType
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
 | portId | number | 是   | 端口号。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -269,6 +324,14 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 | portId    | number                          | 是   | 端口号。         |
 | powerRole | [PowerRoleType](#powerroletype) | 是   | 充电的角色。     |
 | dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输的角色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 
@@ -308,6 +371,15 @@ usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addDevice
 | ---------- | ------ | ---- | --------------- |
 | deviceName | string | 是   | 设备名称。      |
 | tokenId    | string | 是   | 软件包tokenId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -357,6 +429,15 @@ getFunctionsFromString(funcs: string): number
 | ------ | ------ | ---- | ---------------------- |
 | funcs  | string | 是   | 字符串形式的功能列表。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. No parameters are required.                 |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+
 **返回值：**
 
 | 类型   | 说明               |
@@ -387,6 +468,15 @@ getStringFromFunctions(funcs: FunctionType): string
 | 参数名 | 类型                          | 必填 | 说明              |
 | ------ | ----------------------------- | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | 是   | USB功能数字掩码。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -423,9 +513,10 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 
 以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
 
-| 错误码ID | 错误信息                                             |
-| -------- | ---------------------------------------------------- |
-| 201      | Permission denied.The HDC is disabled by the system. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -456,6 +547,15 @@ getDeviceFunctions(): FunctionType
 
 **系统能力：**  SystemCapability.USB.USBManager
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. No parameters are required.                 |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+
 **返回值：**
 
 | 类型                          | 说明                              |
@@ -479,6 +579,15 @@ getPortList(): Array\<USBPort\>
 **需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -509,6 +618,15 @@ getPortSupportModes(portId: number): PortModeType
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
 | portId | number | 是   | 端口号。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -541,6 +659,15 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 | portId    | number                          | 是   | 端口号。         |
 | powerRole | [PowerRoleType](#powerroletype) | 是   | 充电的角色。     |
 | dataRole  | [DataRoleType](#dataroletype)   | 是   | 数据传输的角色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
