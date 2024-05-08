@@ -387,6 +387,8 @@ customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, op
 
 自定义转场动画回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -444,6 +446,8 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，添加onPop回调接收入栈页面出栈时的返回结果，并进行处理。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -458,6 +462,8 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -489,6 +495,8 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -519,6 +527,8 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -552,6 +562,8 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 
 将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -564,6 +576,8 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 replacePathByName(name: string, param: Object, animated?: boolean): void
 
 将当前页面栈栈顶退出，将name指定的页面入栈。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -578,6 +592,8 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 removeByIndexes(indexes: Array<number\>): number
 
 将页面栈内索引值在indexes中的NavDestination页面删除。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -596,6 +612,8 @@ removeByIndexes(indexes: Array<number\>): number
 removeByName(name: string): number
 
 将页面栈内指定name的NavDestination页面删除。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -635,6 +653,8 @@ pop(animated?: boolean): NavPathInfo | undefined
 pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素，并触发onPop回调传入页面处理结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -676,6 +696,8 @@ popToName(name: string, animated?: boolean): number
 popToName(name: string, result: Object, animated?: boolean): number
 
 回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -867,6 +889,8 @@ disableAnimation(value: boolean): void
 
 关闭（true）或打开（false）当前Navigation中所有转场动画。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -921,6 +945,8 @@ constructor(name: string, param: unknown)
 
 下一个页面返回的回调信息载体。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -931,6 +957,8 @@ constructor(name: string, param: unknown)
 ## NavContentInfo<sup>11+</sup>
 
 跳转Destination信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -944,6 +972,8 @@ constructor(name: string, param: unknown)
 
 自定义转场动画协议，开发者需实现该协议来定义Navigation路由跳转的跳转动画。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|------|
@@ -955,6 +985,8 @@ constructor(name: string, param: unknown)
 
 自定义转场动画代理对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称 | 类型  | 必填 | 描述  |
@@ -965,6 +997,8 @@ constructor(name: string, param: unknown)
 ### finishTransition
 
 结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ## NavigationInterception<sup>12+</sup>
 
@@ -1070,6 +1104,9 @@ Navigation跳转拦截对象。
 | MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
 
 ## NavigationOperation<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称    | 描述  |
 |---------|------|
 |PUSH | 本次转场为页面进场。|

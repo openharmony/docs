@@ -181,6 +181,8 @@ enablePaging(value: boolean)
 
 设置是否支持划动翻页。如果同时设置了划动翻页enablePaging和限位滚动scrollSnap，则scrollSnap优先生效，enablePaging不生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -481,7 +483,7 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 | 参数名   | 参数类型 | 必填   | 参数描述      |
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 |
+| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ### fling<sup>12+</sup>
 
@@ -613,6 +615,8 @@ getItemRect(index: number): RectResult
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
@@ -648,6 +652,8 @@ getItemRect(index: number): RectResult
 | yOffset | number | 竖直滑动偏移。<br/>返回值单位为vp。 |
 
 ## ScrollAnimationOptions<sup>12+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
 | ----- | ------ | ------ | ----------------- |
