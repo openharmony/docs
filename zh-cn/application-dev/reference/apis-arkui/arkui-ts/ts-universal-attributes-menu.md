@@ -89,6 +89,8 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单项图标。                                                 |
 | enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。 |
 | action                | ()&nbsp;=&gt;&nbsp;void                | 是   | 点击菜单项的事件回调。                                       |
+| symbolIcon<sup>12+</sup>                | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)                | 是   | 点击菜单项的事件回调。                                       |
+
 
 ## MenuOptions<sup>10+</sup>
 
@@ -524,3 +526,43 @@ struct MenuExample {
 ```
 
 ![preview-builder](figures/menu2.gif)
+
+### 示例9
+
+普通菜单(使用symbol类型图标)
+
+```ts
+// xxx.ets
+import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+@Entry
+@Component
+struct MenuExample {
+  @State symbolIconModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_photo')).fontSize('24vp');
+  @State symbolIconModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_photo')).fontSize('24vp');
+  build() {
+    Column() {
+      Text('click for Menu')
+    }
+    .width('100%')
+    .margin({ top: 5 })
+    .bindMenu([
+      {
+        value: 'Menu1',
+        symbolIcon:this.symbolIconModifier1,
+        action: () => {
+          console.info('handle Menu1 select')
+        }
+      },
+      {
+        value: 'Menu2',
+        symbolIcon:this.symbolIconModifier2,
+        action: () => {
+          console.info('handle Menu2 select')
+        }
+      },
+    ])
+  }
+}
+```
+
+![zh-cn_image_0000001174582862](figures/preview-symbol.jpeg)
