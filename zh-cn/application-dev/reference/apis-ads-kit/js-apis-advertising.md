@@ -288,7 +288,7 @@ export struct ShowAd {
 | -------- | -------- | -------- | -------- |
 | tagForChildProtection | number | 否 | 设置儿童保护标签。<br/>- -1：您不希望表明您的广告内容是否需要符合COPPA的规定。<br/>- 0：表明您的广告内容不需要符合COPPA的规定。<br/>- 1：表明您的广告内容需要符合COPPA的规定（该广告请求无法获取到任何广告）。默认-1 | 
 | adContentClassification | string | 否 | 设置广告内容分级上限。<br/>- W：适合幼儿及以上年龄段观众的内容。<br/>- PI：适合少儿及以上年龄段观众的内容。<br/>- J：适合青少年及以上年龄段观众的内容。<br/>- A：仅适合成人观众的内容。 默认为""| 
-| nonPersonalizedAd | number | 否 | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。 | 
+| nonPersonalizedAd | number | 否 | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。不填以业务逻辑为准。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。<br/> - totalDuration：类型number，单位：s。贴片广告必填自定义参数，用于设置贴片广告展示时长。<br/> - placementAdCountDownDesc：类型string。贴片广告可选自定义参数，用于设置贴片广告倒计时文案，该参数需要使用encodeURI()方法编码。填写了该参数，则展示倒计时文案，否则只展示倒计时。<br/> - allowMobileTraffic：类型number。可选自定义参数，设置是否允许使用流量下载广告素材。0：不允许，1：允许 |
 
 
@@ -305,9 +305,9 @@ export struct ShowAd {
 | -------- | -------- | -------- | -------- |
 | adId | string | 是 | 广告位ID。 | 
 | adType | number | 否 | 请求的广告类型。<br/>- 1：开屏广告。<br/>- 3：原生广告。<br/>- 7：激励广告。<br/>- 8：banner广告。<br/>- 12：插屏广告。<br/>- 60：贴片广告。 |
-| adCount | number | 否 | 请求的广告数量。不填以云侧返回为主 | 
-| adWidth | number | 否 | 广告位宽度，必须大于0（banner广告必填）。不填以云侧返回为主 | 
-| adHeight | number | 否 | 广告位高度，必须大于0（banner广告必填）。不填以云侧返回为主 | 
+| adCount | number | 否 | 请求的广告数量。不填以业务逻辑为准 | 
+| adWidth | number | 否 | 广告位宽度，必须大于0。不填以业务逻辑为准 | 
+| adHeight | number | 否 | 广告位高度，必须大于0。不填以业务逻辑为准 | 
 | adSearchKeyword | string | 否 | 广告关键字。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。 | 
 
