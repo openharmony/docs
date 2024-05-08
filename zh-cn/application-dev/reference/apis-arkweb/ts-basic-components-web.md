@@ -2787,7 +2787,73 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
     }
   }
   ```
+### onRenderProcessNotResponding<sup>12+</sup>
 
+onRenderProcessNotRespondingCallback(callback: [OnRenderProcessNotRespondingCallback](#onRenderProcessNotRespondingCallback12))
+
+检测到网页进程无响应时触发该回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnRenderProcessNotRespondingCallback](#onRenderProcessNotRespondingCallback12) | 网页进程无响应时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onRenderProcessNotResponding((data) => {
+            console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
+              ", [process]=" + data.pid + ", [reason]=" + data.RenderProcessNotRespondingReason);
+        })
+      }
+    }
+  }
+  ```
+
+### onRenderProcessResponding<sup>12+</sup>
+
+onRenderProcessResponding(callback: [OnRenderProcessRespondingCallback](#onRenderProcessRespondingCallback12))
+
+检测到网页进程由无响应状态变回正常运行状态时触发该回调函数,该函数触发表明网页并非真正卡死。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnRenderProcessRespondingCallback](#onRenderProcessRespondingCallback12) | 网页进程由无响应状态变回正常运行状态时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onRenderProcessResponding(() => {
+            console.log("onRenderProcessResponding again");
+        })
+      }
+    }
+  }
+  ```
+  
 ### onShowFileSelector<sup>9+</sup>
 
 onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
@@ -7118,6 +7184,44 @@ onOverrideUrlLoading的回调。
 | 类型      | 说明                       |
 | ------- | ------------------------ |
 | boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
+
+
+## RenderProcessNotRespondingReason<sup>12+</sup>
+
+触发网页进程无响应检测的原因。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| INPUT_TIMEOUT                  | 0 | 发送给网页进程到input事件响应超时。   |
+| NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载跳转响应超时。   |
+
+## RenderProcessNotRespondingData<sup>12+</sup>
+
+提供网页进程无响应的详细信息。
+
+| 名称                     | 类型   | 必填 | 描述                                   |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| jsStack      | string | 是  | 网页的javascript调用栈信息。       |
+| pid | number | 是   | 网页的进程id。 |
+| reason | RenderProcessNotRespondingReason(#renderProcessNotRespondingReason) | 是   | 触发网页进程无响应检测的原因。 |
+
+
+## OnRenderProcessNotRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderProcessNotRespondingData12)) => void;
+
+检测到网页进程无响应时触发的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| data | [RenderProcessNotRespondingData](#renderProcessNotRespondingData12) | 网页进程无响应的详细信息。 |
+
+## OnRenderProcessNotRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessRespondingCallback = () => void;
+
+检测到网页进程由无响应状态变回正常运行状态时触发到回调。
+
 
 ## RenderMode<sup>12+</sup>枚举说明
 
