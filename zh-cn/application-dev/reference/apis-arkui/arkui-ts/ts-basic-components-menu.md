@@ -180,3 +180,39 @@ struct Index {
 ```
 
 ![menu1](figures/menu1.png)
+
+### 示例2
+
+普通菜单(使用symbol类型图标)
+
+```ts
+// xxx.ets
+import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+@Entry
+@Component
+struct MenuExample {
+  @State startIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_mic')).fontSize('24vp');
+  @State endIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontSize('24vp');
+  @State selectIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontSize('24vp');
+  @State select: boolean = true;
+  build() {
+    Column() {
+      Menu(){
+        MenuItem({symbolStartIcon: this.startIconModifier, content: "菜单选项", symbolEndIcon: this.endIconModifier })
+        MenuItem({content: "菜单选项" })
+          .selected(this.select).selectIcon(this.selectIconModifier)
+        MenuItemGroup({header: '小标题' }){
+          MenuItem({
+            symbolStartIcon: this.startIconModifier,
+            content: "菜单选项",
+            symbolEndIcon: this.endIconModifier
+          })
+        }
+      }
+    }
+    .width('100%')
+  }
+}
+```
+
+![zh-cn_image_0000001174582862](figures/normal-symbol.jpeg)
