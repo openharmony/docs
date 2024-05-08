@@ -160,7 +160,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -216,7 +216,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await image.createPixelMapFromSurface(surfaceId, region).then(() => {
+    image.createPixelMapFromSurface(surfaceId, region).then(() => {
         console.info('Succeeded in creating pixelmap from Surface');
     }).catch((error: BusinessError) => {
         console.error('Failed to create pixelmap');
@@ -238,8 +238,8 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the image pixel map is editable.|
-| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the image memory is the DMA memory.|
+| isEditable        | boolean | Yes  | No  | Indicates whether the image pixel map is editable.|
+| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Indicates whether the image memory is the DMA memory.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
@@ -754,7 +754,7 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let rate: number = 0.5;
     if (pixelMap != undefined) {
-        await pixelMap.opacity(rate).then(() => {
+        pixelMap.opacity(rate).then(() => {
             console.info('Sucessed in setting opacity.');
         }).catch((err: BusinessError) => {
             console.error('Failed to set opacity.');
@@ -784,7 +784,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
             console.info('Succeeded in creating alpha pixelmap.');
         }).catch((error: BusinessError) => {
             console.error('Failed to create alpha pixelmap.');
@@ -893,7 +893,7 @@ async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
     if (pixelMap != undefined) {
-        await pixelMap.scale(scaleX, scaleY).then(() => {
+        pixelMap.scale(scaleX, scaleY).then(() => {
             console.info('Sucessed in scaling pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to scale pixelmap.');
@@ -969,7 +969,7 @@ async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
     if (pixelMap != undefined) {
-        await pixelMap.translate(translateX, translateY).then(() => {
+        pixelMap.translate(translateX, translateY).then(() => {
             console.info('Sucessed in translating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to translate pixelmap.');
@@ -999,7 +999,7 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    let angle: number = 90.0;]
+    let angle: number = 90.0;
     if (pixelMap != undefined) {
         pixelMap.rotate(angle, (err: BusinessError) => {
             if (err != undefined) {
@@ -1041,7 +1041,7 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
-        await pixelMap.rotate(angle).then(() => {
+        pixelMap.rotate(angle).then(() => {
             console.info('Sucessed in rotating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to rotate pixelmap.');
@@ -1062,8 +1062,8 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 
 | Name    | Type                | Mandatory| Description                         |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally.                   |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically.                   |
+| horizontal | boolean              | Yes  | Indicates whether to flip the image horizontally.                   |
+| vertical   | boolean              | Yes  | Indicates whether to flip the image vertically.                   |
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -1099,8 +1099,8 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 | Name    | Type   | Mandatory| Description     |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | Yes  | Whether to flip the image horizontally.|
-| vertical   | boolean | Yes  | Whether to flip the image vertically.|
+| horizontal | boolean | Yes  | Indicates whether to flip the image horizontally.|
+| vertical   | boolean | Yes  | Indicates whether to flip the image vertically.|
 
 **Return value**
 
@@ -1117,7 +1117,7 @@ async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
     if (pixelMap != undefined) {
-        await pixelMap.flip(horizontal, vertical).then(() => {
+        pixelMap.flip(horizontal, vertical).then(() => {
             console.info('Sucessed in flipping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to flip pixelmap.');
@@ -1189,7 +1189,7 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     if (pixelMap != undefined) {
-        await pixelMap.crop(region).then(() => {
+        pixelMap.crop(region).then(() => {
             console.info('Sucessed in cropping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to crop pixelmap.');
@@ -1409,7 +1409,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1430,7 +1430,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1497,7 +1497,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1518,7 +1518,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1610,7 +1610,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw, [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
 
 **Return value**
 
@@ -1638,7 +1638,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw, [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
@@ -2257,7 +2257,7 @@ Updates incremental data. This API uses a promise to return the result.
 | Name    | Type       | Mandatory| Description        |
 | ---------- | ----------- | ---- | ------------ |
 | buf        | ArrayBuffer | Yes  | Incremental data.  |
-| isFinished | boolean     | Yes  | Whether the update is complete.|
+| isFinished | boolean     | Yes  | Indicates whether the update is complete.|
 | offset      | number      | Yes  | Offset for data reading.    |
 | length     | number      | Yes  | Array length.    |
 
@@ -2294,7 +2294,7 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 | Name    | Type               | Mandatory| Description                |
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | Yes  | Incremental data.          |
-| isFinished | boolean             | Yes  | Whether the update is complete.        |
+| isFinished | boolean             | Yes  | Indicates whether the update is complete.        |
 | offset      | number              | Yes  | Offset for data reading.            |
 | length     | number              | Yes  | Array length.            |
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.|
@@ -2593,7 +2593,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-Obtains an array of delay times. This API uses an asynchronous callback to return the result. It is used only for GIF images.
+Obtains an array of delay times. This API uses an asynchronous callback to return the result. This API applies only to images in GIF format.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2639,7 +2639,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-Obtains an array of delay times. This API uses a promise to return the result. It is used only for GIF images.
+Obtains an array of delay times. This API uses a promise to return the result. This API applies only to images in GIF format.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4088,14 +4088,14 @@ Defines pixel map initialization options.
 | Name                    | Type                              | Readable| Writable| Description          |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
 | alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
-| editable                 | boolean                            | Yes  | Yes  | Whether the image is editable.  |
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
+| editable                 | boolean                            | Yes  | Yes  | Indicates whether the image is editable.  |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel format.    |
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | Yes  | Yes  | Scale mode.      |
 | size                     | [Size](#size)                      | Yes  | Yes  | Image size.|
 
 ## DecodingOptions<sup>7+</sup>
 
-Defines image decoding options.
+Describes the image decoding options.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4103,12 +4103,12 @@ Defines image decoding options.
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
 | sampleSize         | number                             | Yes  | Yes  | Thumbnail sampling size. Currently, this option can only be set to **1**.|
 | rotate             | number                             | Yes  | Yes  | Rotation angle.      |
-| editable           | boolean                            | Yes  | Yes  | Whether the image is editable. If this option is set to **false**, the image cannot be edited again, and operations such as cropping will fail. |
+| editable           | boolean                            | Yes  | Yes  | Indicates whether the image is editable. If this option is set to **false**, the image cannot be edited again, and operations such as cropping will fail. |
 | desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding. RGB_565 is not supported for images with alpha channels, such as PNG, GIF, ICO, and WEBP.|
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel format for decoding. RGB_565 is not supported for images with alpha channels, such as PNG, GIF, ICO, and WEBP.|
 | index              | number                             | Yes  | Yes  | Index of the image to decode.  |
-| fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Image pixel density, in ppi.  |
+| fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Pixel density, in ppi.  |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Yes  | Target color space.|
 
 ## Region<sup>7+</sup>
@@ -4125,7 +4125,7 @@ Describes region information.
 
 ## PackingOption
 
-Defines the option for image packing.
+Describes the options for image packing.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4137,7 +4137,7 @@ Defines the option for image packing.
 
 ## ImagePropertyOptions<sup>11+</sup>
 
-Describes image properties.
+Describes the image properties.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4148,7 +4148,7 @@ Describes image properties.
 
 ## GetImagePropertyOptions<sup>(deprecated)</sup>
 
-Describes image properties.
+Describes the image properties.
 
 > **NOTE**
 >
@@ -4169,20 +4169,20 @@ Describes the exchangeable image file format (EXIF) data of an image.
 
 | Name             |   Value                   | Description                    |
 | ----------------- | ----------------------- | ------------------------ |
-| BITS_PER_SAMPLE                           | "BitsPerSample"              | Number of bits per pixel.                           |
+| BITS_PER_SAMPLE                           | "BitsPerSample"              | Number of bits per component.                           |
 | ORIENTATION                               | "Orientation"                | Image orientation.                                 |
 | IMAGE_LENGTH                              | "ImageLength"                | Image length.                                 |
 | IMAGE_WIDTH                               | "ImageWidth"                 | Image width.                                 |
 | GPS_LATITUDE                              | "GPSLatitude"                | Image latitude.                                 |
 | GPS_LONGITUDE                             | "GPSLongitude"               | Image longitude.                                 |
-| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | Latitude reference, for example, N or S.                       |
-| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | Longitude reference, for example, W or E.                       |
-| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | Shooting time, for example, 2022:09:06 15:48:00.        |
-| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | Exposure time, for example, 1/33 sec.                   |
-| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | Shooting scene type, for example, portrait, scenery, motion, and night.|
+| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | Indicates whether the latitude is north or south latitude.                       |
+| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | Indicates whether the longitude is east or west longitude.                       |
+| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | Time when the original image data was generated, for example, 2022:09:06 15:48:00.        |
+| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | Exposure time, for example, 1/33 seconds.                   |
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | Type of the scene, for example, portrait, scenery, motion, and night.|
 | ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"            | ISO sensitivity or ISO speed, for example, 400.                       |
-| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | Aperture, for example, f/1.8.                        |
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | Date and time.                                 |
+| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | F number, for example, f/1.8.                        |
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | Date and time of image creation.                                 |
 | GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"               | GPS timestamp.                                  |
 | GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"               | GPS date stamp.                                  |
 | IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"           | Image description.                               |
@@ -4193,33 +4193,33 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity"  | Standard output sensitivity.                             |
 | RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"   | Recommended exposure index.                               |
 | ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"            | ISO speed.                                |
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | Aperture value.                                     |
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | Exposure bias value.                                 |
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | Lens aperture.                                     |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | Exposure bias.                                 |
 | METERING_MODE<sup>10+</sup>               | "MeteringMode"               | Metering mode.                                   |
 | LIGHT_SOURCE<sup>10+</sup>                | "LightSource"                | Light source.                                       |
 | FLASH <sup>10+</sup>                      | "Flash"                      | Flash status.                      |
-| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | Focal length.                                       |
-| USER_COMMENT <sup>10+</sup>               | "UserComment"                | User comment.                                   |
+| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | Focal length of the lens.                                       |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"                | User comments.                                   |
 | PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"            | Pixel X dimension.                                  |
 | PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"            | Pixel Y dimension.                                  |
 | WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"               | White balance.                                     |
 | FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"      | Focal length in 35mm film.                             |
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | Capture mode. Currently, this attribute is read-only.                 |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | Physical aperture. Currently, this attribute is read-only.       |
-| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | Rolling angle. Currently, this attribute is read-only.                 |
-| PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | Pitch angle. Currently, this attribute is read-only.                 |
-| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | Photographing scene: food. Currently, this attribute is read-only.           |
-| SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | Photographing scene: stage. Currently, this attribute is read-only.           |
-| SCENE_BLUE_SKY_CONF<sup>11+</sup>       | "HwMnoteSceneBlueSkyConf"    | Photographing scene: blue sky. Currently, this attribute is read-only.           |
-| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | Photographing scene: green plants. Currently, this attribute is read-only.      |
-| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | Photographing scene: beach. Currently, this attribute is read-only.           |
-| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | Photographing scene: snow. Currently, this attribute is read-only.           |
-| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | Photographing scene: sunset. Currently, this attribute is read-only.           |
-| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | Photographing scene: flowers. Currently, this attribute is read-only.             |
-| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | Photographing scene: night. Currently, this attribute is read-only.           |
-| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | Photographing scene: text. Currently, this attribute is read-only.           |
-| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | Number of faces. Currently, this attribute is read-only.                 |
-| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | Focus mode. Currently, this attribute is read-only.                 |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | Capture mode. Currently, this property is read-only.                 |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | Physical aperture. Currently, this property is read-only.       |
+| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | Rolling angle. Currently, this property is read-only.                 |
+| PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | Pitch angle. Currently, this property is read-only.                 |
+| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | Photographing scene: food. Currently, this property is read-only.           |
+| SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | Photographing scene: stage. Currently, this property is read-only.           |
+| SCENE_BLUE_SKY_CONF<sup>11+</sup>       | "HwMnoteSceneBlueSkyConf"    | Photographing scene: blue sky. Currently, this property is read-only.           |
+| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | Photographing scene: green plants. Currently, this property is read-only.      |
+| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | Photographing scene: beach. Currently, this property is read-only.           |
+| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | Photographing scene: snow. Currently, this property is read-only.           |
+| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | Photographing scene: sunset. Currently, this property is read-only.           |
+| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | Photographing scene: flowers. Currently, this property is read-only.             |
+| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | Photographing scene: night. Currently, this property is read-only.           |
+| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | Photographing scene: text. Currently, this property is read-only.           |
+| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | Number of faces. Currently, this property is read-only.                 |
+| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | Focus mode. Currently, this property is read-only.                 |
 
 ## ImageFormat<sup>9+</sup>
 
