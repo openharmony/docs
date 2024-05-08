@@ -87,7 +87,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | value                 | [ResourceStr](ts-types.md#resourcestr) | 是   | 菜单项文本。                                                 |
 | icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单项图标。                                                 |
-| enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。 |
+| enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | action                | ()&nbsp;=&gt;&nbsp;void                | 是   | 点击菜单项的事件回调。                                       |
 
 ## MenuOptions<sup>10+</sup>
@@ -97,7 +97,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | 名称                          | 类型                                   | 必填 | 描述                                                         |
 | ----------------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单标题。<br>**说明：**<br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。 |
-| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：2in1设备为true，其他设备为false。                     |
+| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：2in1设备为true，其他设备为false。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                     |
 
 ## ContextMenuOptions<sup>10+</sup>
 
