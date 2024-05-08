@@ -600,6 +600,8 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void)
 
 网格滑动时触发。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -728,6 +730,8 @@ onDidScroll(handler: OnScrollCallback)
 | handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 网格滑动时触发的回调。 |
 
 ## ItemDragInfo对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称         | 类型         |   描述         |
 | ---------- | ---------- | ---------- |
