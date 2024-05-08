@@ -4288,7 +4288,7 @@ setAdditionalInfo(bundleName: string, additionalInfo: string): void
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter bundleName is empty. |
 | 17700001 | The specified bundleName is not found.                     |
-| 17700053 | Not app gallery call.                                      |
+| 17700053 | The caller is not AppGallery.                                     |
 
 **示例：**
 
@@ -4561,7 +4561,7 @@ switchUninstallState(bundleName: string, state: boolean): void
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.  |
-| 17700060 | The specified application can not be uninstalled.      |
+| 17700060 | The specified application cannot be uninstalled.      |
 
 **示例：**
 
@@ -4612,7 +4612,7 @@ getExtResource(bundleName: string): Promise\<Array\<string>>;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700303 | GetExtResource failed due to no extend resource. |
+| 17700303 | Failed to obtain extended resources. |
 
 **示例：**
 
@@ -4672,7 +4672,7 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
-| 17700304 | EnableDynamicIcon failed due to parse dynamic icon failed. |
+| 17700304 | Failed to enable the dynamic icon. |
 
 **示例：**
 
@@ -4729,7 +4729,7 @@ disableDynamicIcon(bundleName: string): Promise\<void>;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700305 | DisableDynamicIcon failed due to no dynamic icon. |
+| 17700305 | Failed to disable the dynamic icon. |
 
 **示例：**
 
@@ -4785,7 +4785,7 @@ getDynamicIcon(bundleName: string): Promise\<string>;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700306 | No dynamic icon. |
+| 17700306 | Failed to obtain the dynamic icon. |
 
 **示例：**
 

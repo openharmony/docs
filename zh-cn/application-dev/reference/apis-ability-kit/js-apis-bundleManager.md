@@ -759,7 +759,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **示例：**
 
@@ -814,7 +814,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **示例：**
 
@@ -866,7 +866,7 @@ deleteAbc(abcPath: string): Promise\<void>
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700202 | deleteAbc failed. |
+| 17700202 | Failed to delete the abc file. |
 
 **示例：**
 
