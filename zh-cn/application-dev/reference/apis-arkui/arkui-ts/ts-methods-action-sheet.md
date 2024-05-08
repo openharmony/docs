@@ -65,6 +65,8 @@ static show(value: ActionSheetOptions)
 
 ## DialogButtonStyle<sup>10+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述                              |
 | --------- | --------------------------------- |
 | DEFAULT   | 白底蓝字（深色主题：白底=黑底）。 |

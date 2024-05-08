@@ -676,6 +676,9 @@ getItemRect(index: number): RectResult
 | scrollBackward | NestedScrollMode | 是 | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
 ## NestedScrollMode<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
 | SELF_ONLY   | 只自身滚动，不与父组件联动。  |
