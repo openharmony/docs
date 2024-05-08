@@ -28,6 +28,8 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名            | 参数类型   | 必填  | 参数描述 |
 | ----------------- | -------- | ----- | -------- |
 | values            | number[]   | 是    | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
@@ -38,6 +40,8 @@ DataPanel(options: DataPanelOptions)
 ## DataPanelType<sup>8+</sup>枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------| ------------ |
@@ -57,6 +61,8 @@ closeEffect(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -70,6 +76,8 @@ closeEffect(value: boolean)
 valueColors(value: Array<ResourceColor | LinearGradient>)
 
 设置各数据段颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,6 +93,8 @@ trackBackgroundColor(value: ResourceColor)
 
 设置底板颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -99,6 +109,8 @@ strokeWidth(value: Length)
 
 设置圆环粗细。数据面板的类型为DataPanelType.Line时该属性不生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -112,6 +124,8 @@ strokeWidth(value: Length)
 trackShadow(value: DataPanelShadowOptions)
 
 设置投影样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -137,6 +151,9 @@ contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
 
 
 ## DataPanelShadowOptions<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
@@ -150,6 +167,8 @@ contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
 
 LinearGradient(colorStops: ColorStop[])
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | colorStops | [ColorStop](#colorstop10对象说明)[] | 是 | 存储渐变颜色和渐变点。|
@@ -158,6 +177,8 @@ LinearGradient(colorStops: ColorStop[])
 ## ColorStop<sup>10+</sup>对象说明
 
 颜色断点类型，用于描述渐进色颜色断点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
