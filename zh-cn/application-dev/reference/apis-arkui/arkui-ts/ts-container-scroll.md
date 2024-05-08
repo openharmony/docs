@@ -195,6 +195,8 @@ flingSpeedLimit(speedLimit: number)
 
 限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -427,6 +429,8 @@ Scroll到达起始位置时触发。
 
 Scroll初始化时会触发一次，滚动到起始位置时触发一次。Scroll边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onReachEnd<sup>11+</sup>
@@ -436,6 +440,8 @@ onReachEnd(event: () => void)
 Scroll到达末尾位置时触发。
 
 Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
