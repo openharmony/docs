@@ -38,19 +38,19 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000003 | The Asset already exists.                                  |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000003 | The asset already exists.                                  |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000014 | The operation of file is failed.                           |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.                           |
+| 24000015 | Getting the system time failed.            |
 
 **Example**
 
@@ -101,19 +101,19 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000003 | The Asset already exists.                                  |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000003 | The asset already exists.                                  |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000014 | The operation of file is failed.                           |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.                           |
+| 24000015 | Getting the system time failed.            |
 
 **Example**
 
@@ -165,16 +165,16 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
 **Example**
 
@@ -221,16 +221,16 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
 **Example**
 
@@ -280,18 +280,18 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **Example**
 
@@ -341,18 +341,18 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **Example**
 
@@ -403,17 +403,17 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The argument is invalid.                                     |
-| 24000001 | The ASSET Service is unavailable.                            |
-| 24000002 | The queried Asset can not be found.                          |
-| 24000005 | The screen lock status mismatches.                           |
+| 24000001 | The ASSET service is unavailable.                            |
+| 24000002 | The asset is not found.                          |
+| 24000005 | The screen lock status does not match.                           |
 | 24000006 | Insufficient memory.                                         |
-| 24000007 | The Asset is corrupted.                                      |
-| 24000008 | The database operation is failed.                            |
-| 24000009 | The cryptography operation is failed.                        |
-| 24000010 | IPC communication is failed                                  |
-| 24000011 | The operation of calling Bundle Manager Service is failed.   |
-| 24000012 | The operation of calling OS Account Service is failed.       |
-| 24000013 | The operation of calling Access Token Service is failed.     |
+| 24000007 | The asset is corrupted.                                      |
+| 24000008 | The database operation failed.                            |
+| 24000009 | The cryptography operation failed.                        |
+| 24000010 | IPC failed                                  |
+| 24000011 | Calling the Bundle Manager service failed.   |
+| 24000012 | Calling the OS Account service failed.       |
+| 24000013 | Calling the Access Token service failed.     |
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
@@ -468,17 +468,17 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 401      | The argument is invalid.                                     |
-| 24000001 | The ASSET Service is unavailable.                            |
-| 24000002 | The queried Asset can not be found.                          |
-| 24000005 | The screen lock status mismatches.                           |
+| 24000001 | The ASSET service is unavailable.                            |
+| 24000002 | The asset is not found.                          |
+| 24000005 | The screen lock status does not match.                           |
 | 24000006 | Insufficient memory.                                         |
-| 24000007 | The Asset is corrupted.                                      |
-| 24000008 | The database operation is failed.                            |
-| 24000009 | The cryptography operation is failed.                        |
-| 24000010 | IPC communication is failed                                  |
-| 24000011 | The operation of calling Bundle Manager Service is failed.   |
-| 24000012 | The operation of calling OS Account Service is failed.       |
-| 24000013 | The operation of calling Access Token Service is failed.     |
+| 24000007 | The asset is corrupted.                                      |
+| 24000008 | The database operation failed.                            |
+| 24000009 | The cryptography operation failed.                        |
+| 24000010 | IPC failed                                  |
+| 24000011 | Calling the Bundle Manager service failed.   |
+| 24000012 | Calling the OS Account service failed.       |
+| 24000013 | Calling the Access Token service failed.     |
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
@@ -529,18 +529,18 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000004 | The access to Asset is denied.                             |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000004 | Access to the asset is denied.                             |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
 **Example**
@@ -598,18 +598,18 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000004 | The access to Asset is denied.                             |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000004 | Access to the asset is denied.                             |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
 **Example**
@@ -666,12 +666,12 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
+| 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
 **Example**
 
@@ -713,12 +713,12 @@ For details about the error codes, see [Asset Store Service Error Codes](errorco
 | ID| Error Message                                                  |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
+| 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000010 | IPC failed                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
 **Example**
 
