@@ -22,6 +22,9 @@
 
 
 ## GestureType
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | 点击手势，支持单次点击、多次点击识别。 |
