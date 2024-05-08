@@ -2,7 +2,7 @@
 
 > **说明：**
 >
-> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](errorcode-universal.md)。
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 ## 17700001 指定的bundleName不存在
 
@@ -72,7 +72,7 @@ The specified user ID is not found.
 ## 17700005 指定的appId为空字符串
 
 **错误信息**<br/>
-The specified app ID is empty string.
+The specified app ID is an empty string.
 
 **错误描述**<br/>
 调用appControl模块中的相关接口时，传入的appId为空字符串。
@@ -217,7 +217,7 @@ Failed to install the HAP since the version of the HAP to install is too early.
 ## 17700018 安装失败，依赖的模块不存在
 
 **错误信息**<br/>
-Failed to install because the dependent module does not exist.
+Failed to install the HAP or HSP because the dependent module does not exist.
 
 **错误描述**<br/>
 安装hap或者hsp时，依赖的模块不存在。
@@ -242,7 +242,7 @@ The preinstalled app cannot be uninstalled.
 
 **处理步骤**<br/>
 1. 确认bundleName是否拼写正确。
-1. 确认对应的预置应用是否可卸载。
+2. 确认对应的预置应用是否可卸载。
 
 ## 17700021 指定的uid无效
 
@@ -293,7 +293,7 @@ The specified default app does not exist.
 ## 17700024 没有相应的配置文件
 
 **错误信息**<br/>
-Failed to get the profile because there is no profile in the HAP.
+Failed to get the profile because the specified profile is not found in the HAP.
 
 **错误描述**<br/>
 调用查询profile文件的相关接口时，没有相应的配置文件。
@@ -301,10 +301,12 @@ Failed to get the profile because there is no profile in the HAP.
 **可能原因**<br/>
 1. 输入的metadata name在配置文件中不存在。
 2. 配置文件的内容不是json格式。
+3. 查询的配置文件类型不存在。
 
 **处理步骤**<br/>
 1. 确认要查询的ability或者extensionAbility中的metadata name是否存在。
 2. 确认指定查询的profile文件的内容是否为json格式。
+3. 确认应用中是否存在与查询的profileType类型相符的配置文件。
 
 ## 17700025 输入的type无效
 
@@ -375,7 +377,7 @@ The specified ability is disabled.
 指定的ability被禁用。
 
 **处理步骤**<br/>
-确认指定的ability是否被禁用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息。
+确认指定的ability是否被禁用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息。
 
 ## 17700030 指定的应用不支持清除缓存文件
 
@@ -389,13 +391,13 @@ The specified bundle does not support clearing of cache files.
 指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
 
 **处理步骤**<br/>
-1.确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看isSystemApp是否为true。
-2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看userDataClearable是否为true。
+1. 确认指定的应用是否为系统应用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看isSystemApp是否为true。
+2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看userDataClearable是否为true。
 
 ## 17700031 Overlay特性校验失败导致HAP安装失败
 
 **错误信息**<br/>
-Failed to install the HAP because the overlay check of the HAP is failed.
+Failed to install the HAP because the overlay check of the HAP failed.
 
 **错误描述**<br/>
 当安装overlay特征的应用时，指定的应用和待安装的overlay特征应用不为预置应用，或者目标应用/目标module是overlay特征的应用/module。
@@ -471,7 +473,7 @@ The specified bundle is an overlay bundle.
 ## 17700036 共享库缺少AllowAppShareLibrary特权导致安装失败
 
 **错误信息**<br/>
-Failed to install the HSP because lacks appropriate permissions.
+Failed to install the HSP due to the lack of required permission.
 
 **错误描述**<br/>
 共享库未申请配置AllowAppShareLibrary特权，可能存在安全隐私风险，不允许安装。
@@ -485,7 +487,7 @@ Failed to install the HSP because lacks appropriate permissions.
 ## 17700037 被卸载的shared library版本被其他应用依赖
 
 **错误信息**<br/>
-The version of shared bundle is dependent on other applications.
+The version of the shared bundle is dependent on other applications.
 
 **错误描述**<br/>
 当卸载shared library某一版本时，指定的shared library的版本被其他应用依赖，卸载失败。
@@ -516,13 +518,13 @@ The specified shared bundle does not exist.
 
 ## 17700039 不允许安装应用间共享库
 **错误信息**<br/>
-Failed to install because disallow install a shared bundle by hapFilePaths.
+Failed to install the HSP because disallow install a shared bundle by hapFilePaths.
 
 **错误描述**<br/>
 安装应用时，传入的安装包为应用间共享库类型。
 
 **可能原因**<br/>
-1. 通过bm工具安装应用时，-p参数传入了应用间共享库的安装包路径。
+1. 通过[bm工具](../../tools/bm-tool.md)安装应用时，-p参数传入了应用间共享库的安装包路径。
 2. 通过install接口安装应用时，hapFilePaths参数传入了应用间共享库的安装包路径。
 
 **处理步骤**<br/>
@@ -537,7 +539,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 卸载应用时，传入的是应用间共享库的包名。
 
 **可能原因**<br/>
-1. 通过bm工具卸载应用时，-n参数传入了应用间共享库的包名。
+1. 通过[bm工具](../../tools/bm-tool.md)卸载应用时，-n参数传入了应用间共享库的包名。
 2. 通过uninstall接口卸载应用时，bundleName传入的是应用间共享库的包名。
 
 **处理步骤**<br/>
@@ -546,16 +548,16 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 
 ## 17700041 企业设备管理不允许安装该应用
 **错误信息**<br/>
-Failed to install because enterprise device management disallow install.
+Failed to install the HAP because enterprise device management disallow install.
 
 **错误描述**<br/>
 安装应用时，企业设备管理不允许安装。
 
 **可能原因**<br/>
-1. 企业设备管理不允许安装该应用。
+企业设备管理不允许安装该应用。
 
 **处理步骤**<br/>
-1. 请在设备中检查应用是否被企业设备管理禁止安装。
+请在设备中检查应用是否被企业设备管理禁止安装。
 
 ## 17700042 数据代理中的uri配置错误
 **错误信息**<br/>
@@ -581,7 +583,7 @@ Failed to install the HAP because of low APL in the non-system data proxy (requi
 
 **可能原因**<br/>
 1. 非系统应用的数据代理未配置权限。
-1. 非系统应用的数据代理的权限等级过低。
+2. 非系统应用的数据代理的权限等级过低。
 
 **处理步骤**<br/>
 1. 在数据代理中配置读权限和写权限。
@@ -599,20 +601,20 @@ Failed to install the HAP because the isolationMode configured is not supported.
 2. 设备不支持隔离模式，即persist.bms.supportIsolationMode为false时，HAP配置的isolationMode为isolationOnly。
 
 **处理步骤**<br/>
-1. 按照设备的隔离模式正确配置HAP字段isolationMode。
+按照设备的隔离模式正确配置HAP字段isolationMode。
 
 ## 17700045 企业设备管理不允许卸载该应用
 **错误信息**<br/>
-Failed to uninstall because enterprise device management disallow uninstall.
+Failed to uninstall the HAP because enterprise device management disallow uninstall.
 
 **错误描述**<br/>
 卸载应用时，企业设备管理不允许卸载。
 
 **可能原因**<br/>
-1. 企业设备管理不允许安装该应用。
+企业设备管理不允许安装该应用。
 
 **处理步骤**<br/>
-1. 请在设备中检查应用是否被企业设备管理禁止卸载安装。
+请在设备中检查应用是否被企业设备管理禁止卸载安装。
 
 ## 17700047 要更新的应用版本没有大于当前版本
 **错误信息**<br/>
@@ -631,7 +633,7 @@ Failed to install the HAP because the VersionCode to be updated is not greater t
 
 ## 17700048 代码签名校验失败
 **错误信息**<br/>
-Failed to install the HAP because the code signature verification is failed.
+Failed to install the HAP because the code signature verification failed.
 
 **错误描述**<br/>
 安装应用时，安装包的代码签名文件校验失败。
@@ -654,20 +656,20 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 企业mdm应用自升级时，安装的应用与调用方包名不同。
 
 **可能原因**<br/>
-1. 要安装的hap或hsp不属于当前应用。
+要安装的hap或hsp不属于当前应用。
 
 **处理步骤**<br/>
-1. 检查要安装的hap或hsp是否属于当前应用。
+检查要安装的hap或hsp是否属于当前应用。
 
 ## 17700050 企业设备校验失败
 **错误信息**<br/>
-Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **错误描述**<br/>
 安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
 
 **可能原因**<br/>
-1. 安装设备不是企业设备。
+安装设备不是企业设备。
 
 **处理步骤**<br/>
 1. 检查安装设备是否为企业设备。
@@ -675,13 +677,13 @@ Failed to install the HAP because enterprise normal/MDM bundle cannot be install
 
 ## 17700051 应用自升级时安装的应用与调用方包名不同
 **错误信息**<br/>
-Failed to install the HAP because the distribution type of caller application is not enterprise_mdm.
+Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
 **错误描述**<br/>
 企业mdm应用自升级时，调用方的分发类型不是企业mdm。
 
 **可能原因**<br/>
-1. 调用方的分发类型不是企业mdm。
+调用方的分发类型不是企业mdm。
 
 **处理步骤**<br/>
-1. 检查应用的签名文件是否正确配置。
+检查应用的签名文件是否正确配置。
