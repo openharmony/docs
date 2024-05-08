@@ -1713,7 +1713,7 @@ unregister(callback: AsyncCallback\<void>): void
 
 取消订阅默认网络状态变化的通知。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 

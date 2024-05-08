@@ -30,6 +30,15 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 | delay      | number              | 是   | 按下快捷键多长时间后拉起Ability，单位是毫秒（ms），仅支持快捷键按下触发。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数，设置成功时，err为undefined，否则为错误对象。  |                                               
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -67,6 +76,15 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 | 参数          | 说明          |
 | ------------- | ------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 

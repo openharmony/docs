@@ -33,10 +33,13 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201  | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. |
@@ -86,10 +89,13 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201  | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. |
@@ -131,10 +137,13 @@ requestExemptionResource(request: ResourceRequest): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201  | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. |
@@ -173,10 +182,13 @@ releaseExemptionResource(request: ResourceRequest): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201  | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. |

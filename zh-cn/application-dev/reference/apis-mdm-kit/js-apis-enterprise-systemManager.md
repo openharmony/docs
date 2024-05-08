@@ -1,16 +1,15 @@
-# @ohos.enterprise.systemManager （系统管理）(系统接口)
+# @ohos.enterprise.systemManager （系统管理）
 
 本模块提供系统管理能力。
 
 > **说明**：
 > 
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
 > 
-> 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -37,12 +36,14 @@ setNTPServer(admin: Want, server: string): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                       |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -56,7 +57,7 @@ let wantTemp: Want = {
 let server: string = "ntpserver.com";
 try {
   systemManager.setNTPServer(wantTemp, server);
-  console.info('Succeeded in setting NTPserver');
+  console.info('Succeeded in setting NTPserver.');
 } catch (err) {
   console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
 }
@@ -72,8 +73,6 @@ getNTPServer(admin: Want): string
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
 **参数：**
 
 | 参数名 | 类型                                | 必填 | 说明           |
@@ -88,12 +87,14 @@ getNTPServer(admin: Want): string
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 9200001  | the application is not an administrator of the device.       |
 | 9200002  | the administrator application does not have permission to manage the device. |
+| 201      | the application does not have permission to call this function. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -107,18 +108,16 @@ let wantTemp: Want = {
 };
 try {
   systemManager.getNTPServer(wantTemp);
-  console.info('Succeeded in getting NTP server');
+  console.info('Succeeded in getting NTP server.');
 } catch (err) {
   console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
 }
 ```
-## SystemUpdateInfo<sup>11+</sup>
+## SystemUpdateInfo
 
 待更新的系统版本信息。
 
  **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
- **系统接口：** 此接口为系统接口。
 
 | 名称                | 类型     | 必填  | 说明            |
 | ----------------- | ------ | --- | ------------- |

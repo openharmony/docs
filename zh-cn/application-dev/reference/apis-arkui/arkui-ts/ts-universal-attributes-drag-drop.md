@@ -81,6 +81,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11枚举说明) | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/> |
 | numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。当设置数量角标时取值范围为[0，2<sup>31</sup>-1]，当设置为浮点数时，只显示整数部分。<br/>注：在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true<br/> |
+| modifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md)| 否 | 用于配置拖拽背板图的样式Modifier对象，可使用图片组件所支持的属性和样式来配置背板图样式(参考示例6)，当前仅支持透明度。不透明度的取值范围为大于0并且小于等于1，1表示完全不透明，其它场合采用默认值0.95。<br/>默认值：空，无法修改属性<br/>|
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
 
@@ -381,3 +382,48 @@ struct Example {
 ```
 
 ![defaultAnimationBeforeLifting.gif](figures/defaultAnimationBeforeLifting.gif)
+
+### 示例6
+dragPreviewOptions属性中ImageModifier参数使用方法用例。
+```ts
+// xxx.ets
+import { ImageModifier } from '@ohos.arkui.modifier'
+
+@Entry
+@Component
+struct dragPreviewOptionsDemo{
+  @State myModifier: ImageAttribute = new ImageModifier().opacity(0.5)
+  @State vis: boolean = true
+  @State changeValue: string = ''
+  @State submitValue: string = ''
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
+  controller: SearchController = new SearchController()
+  @State OpacityIndex: number = 0
+  @State OpacityList:(number | undefined | null)[]=[
+    0.3,0.5,0.7,1,-50,0,10,undefined,null
+  ]
+  build() {
+    Row() {
+      Column() {
+        Text(this.OpacityList[this.OpacityIndex] + "")
+        Button("Opacity")
+          .onClick(()=> {
+            this.OpacityIndex++
+            if(this.OpacityIndex > this.OpacityList.length - 1){
+              this.OpacityIndex = 0
+            }
+          })
+        Image($r('app.media.image'))
+          .margin({ top: 10 })
+          .width("100%")
+          .draggable(true)
+          .dragPreviewOptions({modifier: this.myModifier.opacity(this.OpacityList[this.OpacityIndex]) as ImageModifier})
+      }
+      .width("50%")
+      .height("50%")
+    }
+  }
+}
+```
+
+![imageModifier.gif](figures/imageModifier.gif)

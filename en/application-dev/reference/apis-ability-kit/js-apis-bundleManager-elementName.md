@@ -8,6 +8,8 @@ The **ElementName** module provides element name information, which can be obtai
 
 ## ElementName
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                    | Type    | Readable| Writable| Description                      |
