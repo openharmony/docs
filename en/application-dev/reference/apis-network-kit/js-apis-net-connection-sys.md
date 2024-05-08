@@ -70,7 +70,6 @@ Obtains the global HTTP proxy configuration of the network. This API uses a prom
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -258,7 +257,6 @@ Enables the airplane mode. This API uses a promise to return the result.
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -335,7 +333,6 @@ Disables the airplane mode. This API uses a promise to return the result.
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -374,7 +371,6 @@ Resets the network settings to factory defaults. This API uses a promise to retu
 | ------- | ------------------------------------------  |
 | 201     | Permission denied.                          |
 | 202     | Non-system applications use system APIs.    |
-| 401     | Parameter error.                            |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.                      |
 
