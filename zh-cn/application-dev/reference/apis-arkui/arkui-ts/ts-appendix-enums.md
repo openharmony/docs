@@ -554,6 +554,8 @@
 
 ## RichEditorResponseType<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称         | 描述            |
 | ---------- | ------------- |
 | LONG_PRESS  | 通过长按触发菜单弹出。   |

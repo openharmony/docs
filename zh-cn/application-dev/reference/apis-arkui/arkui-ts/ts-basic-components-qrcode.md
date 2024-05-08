@@ -74,6 +74,8 @@ contentOpacity(value: number | Resource)
 
 设置二维码内容颜色的不透明度。不透明度最小值为0，最大值为1。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 

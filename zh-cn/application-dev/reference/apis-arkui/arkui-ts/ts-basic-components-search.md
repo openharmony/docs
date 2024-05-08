@@ -264,6 +264,8 @@ type(value: SearchType)
 
 设置输入框类型。
 
+<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -277,6 +279,8 @@ type(value: SearchType)
 maxLength(value: number)
 
 设置文本的最大输入字符数。默认不设置最大输入字符数限制。到达文本最大字符限制，将无法继续输入字符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -497,6 +501,8 @@ maxFontSize(value: number | string | Resource)
 | INPUT     | 清除按钮输入样式。 |
 
 ## SearchType<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                 | 描述            |
 | ------------------ | ------------- |
