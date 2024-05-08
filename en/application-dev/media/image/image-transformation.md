@@ -6,7 +6,7 @@ Image processing refers to a series of operations performed on the pixel map, su
 
 Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs related to image transformation.
 
-1. Complete [image decoding](image-decoding.md#how-to-develop) and obtain a **PixelMap** object.
+1. Complete [image decoding](image-decoding.md) and obtain a **PixelMap** object.
 
 2. Obtain image information.
      
