@@ -21,7 +21,7 @@
   }
   ```
 
-- 通过[isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode) 判断当前Web组件是否是隐私模式。
+- 通过[isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode11) 判断当前Web组件是否是隐私模式。
 
   ```ts
   // xxx.ets
@@ -183,7 +183,7 @@
   }
   ```
 
-- 通过[fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync)获取隐私模式下指定url对应cookie的值。
+- 通过[fetchCookieSync](../reference/apis-arkweb/js-apis-webview.md#fetchcookiesync11)获取隐私模式下指定url对应cookie的值。
 
   ```ts
   // xxx.ets
@@ -214,7 +214,7 @@
   }
   ```
 
-- 通过[configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync)设置隐私模式下指定url的单个cookie的值。
+- 通过[configCookieSync](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11)设置隐私模式下指定url的单个cookie的值。
 
   ```ts
   // xxx.ets
@@ -269,7 +269,7 @@
   }
   ```
 
-- 通过[clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync)清除隐私模式下所有cookie。 
+- 通过[clearAllCookiesSync](../reference/apis-arkweb/js-apis-webview.md#clearallcookiessync11)清除隐私模式下所有cookie。 
 
   ```ts
   // xxx.ets

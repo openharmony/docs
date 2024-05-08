@@ -183,7 +183,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -270,7 +270,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -359,7 +359,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -439,7 +439,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -504,7 +504,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -568,7 +568,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -632,7 +632,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -695,7 +695,7 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -746,9 +746,6 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | bundleName | string                          | 是   | 待卸载应用的包名。                                           |
 | installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
@@ -760,10 +757,13 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 
@@ -817,7 +817,7 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -882,7 +882,7 @@ uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -948,7 +948,7 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1010,7 +1010,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1067,7 +1067,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1145,7 +1145,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1223,7 +1223,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1306,7 +1306,7 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |

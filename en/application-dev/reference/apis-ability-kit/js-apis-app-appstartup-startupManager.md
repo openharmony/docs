@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-The @ohos.app.appstartup.startupManager module enables the application startup framework to manage startup tasks.
+The @ohos.app.appstartup.startupManager module enables the AppStartup framework to manage component initialization.
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import startupManager  from '@ohos.app.appstartup.startupManager';
 ## startupManager.run
 run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
-Runs startup tasks.
+Runs the AppStartup framework.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -25,8 +25,8 @@ Runs startup tasks.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | startupTasks | Array\<string\> | Yes| Array of startup tasks to run.|
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No| Startup configuration, including the timeout for starting the framework and listener for startup task initialization.|
+  | startupTasks | Array\<string\> | Yes| Array of class names of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the components to be initialized.|
+  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | No| Startup configuration, including the timeout for starting the framework and listener for component initialization.|
 
 **Return value**
 
@@ -36,16 +36,16 @@ Runs startup tasks.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
   | ID| Error Message|
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 16000050 | Internal error. |
   | 28800001 | Startup task or its dependency not found. |
   | 28800002  | The startup tasks have circular dependencies. |
   | 28800003 | An error occurred while running the startup tasks. |
   | 28800004 | Running startup tasks timeout. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -82,7 +82,7 @@ export default class EntryAbility extends UIAbility {
 
 removeAllStartupTaskResults(): void
 
-Removes the initialization results of all startup tasks.
+Removes the initialization results of all components.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -124,7 +124,7 @@ export default class EntryAbility extends UIAbility {
 
 getStartupTaskResult(startupTask: string): Object
 
-Obtains the initialization result of a startup task.
+Obtains the initialization result of a component.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -132,19 +132,21 @@ Obtains the initialization result of a startup task.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes| Name of the startup task.|
+  | startupTask | string | Yes| Class name of the [StartupTask](./js-apis-app-appstartup-startupTask.md) API implemented by the component to be initialized. All components to be initialized must implement the [StartupTask](./js-apis-app-appstartup-startupTask.md) API.|
 
 **Return value**
 
   | Type| Description|
   | -------- | -------- |
-  | Object | Initialization result of the startup task.|
+  | Object | Initialization result of the component.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
   | ID| Error Message|
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -184,7 +186,7 @@ export default class EntryAbility extends UIAbility {
 
 isStartupTaskInitialized(startupTask: string): boolean
 
-Checks whether a startup task has been initialized.
+Checks whether a component has been initialized.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -192,19 +194,21 @@ Checks whether a startup task has been initialized.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes| Name of the startup task.|
+  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the component to be initialized.|
 
 **Return value**
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | **true**: The startup task has been initialized.<br>**false**: The startup task has not been initialized.|
+  | boolean | **true**: The component has been initialized.<br>**false**: The component has not been initialized.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
   | ID| Error Message|
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -248,7 +252,7 @@ export default class EntryAbility extends UIAbility {
 
 removeStartupTaskResult(startupTask: string): void
 
-Removes the initialization result of a startup task.
+Removes the initialization result of a component.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -256,13 +260,15 @@ Removes the initialization result of a startup task.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | Yes| Name of the startup task.|
+  | startupTask | string | Yes| Class name of the [StartupTask](js-apis-app-appstartup-startupTask.md) API implemented by the component to be initialized.|
   
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
   | ID| Error Message|
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 

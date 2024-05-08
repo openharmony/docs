@@ -430,7 +430,7 @@ UX默认行为变更，无需适配。
 
 **变更原因**
 
-UX样式变更。
+原样式不符合UX规范。
 
 **变更影响**
 
@@ -471,7 +471,7 @@ API Level 8，在API 12进行版本隔离
 
 **适配指导**
 
-默认样式变更调整，无需适配。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
 ## cl.arkui.9 快捷键接口keyboardShortcut匹配规则变更为严格匹配，匹配成功后拦截后续按键事件处理
 
@@ -614,14 +614,23 @@ Select下拉按钮样式风格增强，通过设置ControlSize，来实现Select
 | 文本大小     | 16fp                              | 14fp                              |
 | 文本间距     | 上间距8vp 、左间距16vp、下间距8vp   | 上间距4vp 、左间距12vp、下间距4vp   |
 
-API version 11及以前，NORMAL的背板最小宽度是66vp；
-API version 12及以后，NORMAL的背板最小宽度是68vp；
+变更前，NORMAL的背板最小宽度是66vp；
+
+![select_min_width_66vp_api11](figures/select_min_width_66vp_api11.png)
+
+变更后，NORMAL的背板最小宽度是68vp；
+
+![select_min_width_68vp_api12](figures/select_min_width_68vp_api12.png)
 
 2. 修改select下拉按钮默认颜色，
 
-API version 11及以前，默认背景颜色是系统资源中的`ohos_id_color_card_bg`；
+变更前，默认背景颜色是系统资源中的`ohos_id_color_card_bg`；
 
-API version 12及以后，默认背景颜色是系统资源中的`ohos_id_color_button_normal`。
+![select_default_backgroundColor_api11](figures/select_default_backgroundColor_api11.png)
+
+变更后，默认背景颜色是系统资源中的`ohos_id_color_button_normal`。
+
+![select_default_backgroundColor_api12](figures/select_default_backgroundColor_api12.png)
 
 3. controlSize、width、height接口作用优先级：
 
@@ -631,13 +640,21 @@ API version 12及以后，默认背景颜色是系统资源中的`ohos_id_color_
 
    3）如果controlSize、width、height接口都设置了，width和height设置的值生效，但如果width和height设置的值小于controlSize设置的最小宽度minWidth和最小高度minHeight，width和height设置的值不生效，宽高仍保持controlSize设置的最小宽度minWidth和最小高度minHeight。
 
+      宽度和高度随字体大小自适应示意图：
+
+      ![select_adaptation](figures/select_adaptation.gif)
+
 4. disabled状态的select下拉按钮背景色的opacity：
 
-API version 11及以前，disabled状态的select下拉按钮背景色不透明。
+变更前，disabled状态的select下拉按钮背景色不透明。
 
-API version 12及以后，disabled状态的select下拉按钮背景色与字体的opacity一致。
+![select_disabled_opacity_api11](figures/select_disabled_opacity_api11.png)
 
-**API Level**
+变更后，disabled状态的select下拉按钮背景色与字体的opacity一致。
+
+![select_disabled_opacity_api12](figures/select_disabled_opacity_api12.png)
+
+**起始 API Level**
 
 12
 
@@ -652,3 +669,190 @@ Select组件
 **适配指导**
 
 请查阅[select组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-select.md)文档进行适配。
+
+## cl.arkui.13 富文本的SetSelection接口，光标行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+依照UX规范
+
+**变更影响**
+
+该变更为非兼容性变更。API version 11及以前：
+
+SetSelection接口start=end!=-1时，将光标移动到start位置。
+
+API version 12及以后：
+
+SetSelection接口start=end!=-1时，视为选中失败，不改变光标位置。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/richeditor_setselection_before.gif) | ![](figures/richeditor_setselection_after.gif) |
+
+**起始 API Level**
+
+12 
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+RichEditor组件。
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.14 NavDestination标题栏按钮默认背板、标题字体字号等默认样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更，只影响NavDestination组件的默认样式。
+
+- 变更前
+  1. NavDestination标题栏按钮无背板。
+  2. NavDestination标题栏主标题字重为MEDIUM。
+  
+- 变更后
+  1. NavDestination标题栏按钮增加圆形背板。
+  2. NavDestination标题栏主标题字重为BOLD。
+  3. NavDestination默认返回按钮图标更新。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/NavDestination_Before.png)  |  ![](figures/NavDestination_After.png)  |
+
+**起始 API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+NavDestination组件。
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.15 EditableTitleBar默认样式变化
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式增强
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：
+1. 主标题字重为Regular；
+2. 图标大小为24*24；
+3. 图标热区大小为48*48，圆角方形；
+4. 标题栏高度为56vp；
+5. 标题与左侧图标间距12vp。
+
+变更后：
+1. 主标题字重为Bold；
+2. 图标大小为20*20；
+3. 图标增加40*40灰色圆形背板；
+4. 标题栏最小高度为56vp，标题上下间距4vp，超过56vp时，高度自适应；
+5. 标题与左侧图标间距8vp。
+
+back图标样式变更。
+
+变更前后对比效果，如下图所示：
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/EditableTitleBar_Before.jpg) | ![](figures/EditableTitleBar_After.png) |
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+EditableTitleBar
+
+**适配指导**
+
+默认效果变更，无需适配。但应注意变更后的默认效果是否符合预期。
+
+
+## cl.arkui.16 Navigation默认样式变化
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式增强
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：
+1. Full、Free模式非自定义主标题字重为Medium；
+2. Menu图标大小为24*24；
+3. Menu图标热区大小为48*48，圆角方形；
+4. 标题栏左、右间距为24vp；
+5. Free模式收齐时，非自定义主标题字号为24fp。
+
+变更后：
+1. Full、Free模式非自定义主标题字重为Bold；
+2. Menu图标大小为20*20；
+3. Menu图标增加40*40灰色圆形背板；
+4. 标题栏左、右间距为16vp；
+5. Free模式收齐时，非自定义主标题字号为26fp。
+
+变更前后对比效果，如下图所示：
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/NavigationFull_Before.jpeg) | ![](figures/NavigationFull_After.jpeg) |
+| ![](figures/NavigationFree_Before.jpeg) | ![](figures/NavigationFree_After.jpeg) |
+
+**起始API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+EditableTitleBar
+
+**适配指导**
+
+默认效果变更，无需适配。但应注意变更后的默认效果是否符合预期。

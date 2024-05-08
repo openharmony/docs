@@ -34,6 +34,9 @@
 
 
 ## GestureMask枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Normal | 不屏蔽子组件的手势，按照默认手势识别顺序进行识别。 |
@@ -50,6 +53,9 @@
 | onAction((event:GestureEvent)&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
 
 ## GestureEvent对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。 |
@@ -80,6 +86,9 @@
 | TouchScreen | 触摸屏。 |
 
 ## FingerInfo对象说明<sup>8+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | id | number | 手指的索引编号。 |

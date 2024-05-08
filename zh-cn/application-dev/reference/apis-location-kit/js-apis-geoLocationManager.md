@@ -339,7 +339,7 @@ GNSS地理围栏请求参数。
 | SATELLITES_ADDITIONAL_INFO_EPHEMERIS_DATA_EXIST  | 1 | 表示本卫星具有星历数据。 |
 | SATELLITES_ADDITIONAL_INFO_ALMANAC_DATA_EXIST   | 2 | 表示本卫星具有年历数据。 |
 | SATELLITES_ADDITIONAL_INFO_USED_IN_FIX   | 4 | 表示在最新的位置解算中使用了本卫星。 |
-| SATELLITES_ADDITIONAL_INFO_CARRIER_FREQUENCY_EXIST   | 8 | 报告指定索引处的卫星是否具有载波频率。 |
+| SATELLITES_ADDITIONAL_INFO_CARRIER_FREQUENCY_EXIST   | 8 | 表示本卫星具有载波频率。 |
 
 
 ## geoLocationManager.on('locationChange')
@@ -1932,7 +1932,7 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
   ```ts
   import geoLocationManager from '@ohos.geoLocationManager';
   import BusinessError from "@ohos.base";
-  // fenceId是在[addGnssGeofence](#geolocationmanageraddgnssgeofence12)执行成功后获取的
+  // fenceId是在geoLocationManager.addGnssGeofence执行成功后获取的
   let fenceId = 1;
   try {
     await geoLocationManager.removeGnssGeofence(fenceId).then(() => {

@@ -26,7 +26,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | FORM_LOCATION_KEY    | 'ohos.extra.param.key.form_location'   | 卡片位置。  |
 | FORM_PERMISSION_NAME_KEY | 'ohos.extra.param.key.permission_name' | 用户授权权限名称 |
 | FORM_PERMISSION_GRANTED_KEY | 'ohos.extra.param.key.permission_granted' | 用户是否授权 |
-
+| THEME_KEY | 'ohos.extra.param.key.form_is_theme' | 是否是主题卡片 |
 
 ## FormUsageState
 
@@ -62,6 +62,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
 | formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
 | formLocation<sup>12+</sup> | [FormLocation](#formlocation)| 是    | 否     | 卡片位置信息。   |
+| extraData<sup>12+</sup> | Record<string, Object>| 是    | 否     | 卡片扩展信息。   |
 
 ## formProviderFilter<sup>10+</sup>
 

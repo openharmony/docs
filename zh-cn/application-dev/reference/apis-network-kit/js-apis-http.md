@@ -1289,6 +1289,42 @@ let httpResponseCache = http.createHttpResponseCache();
 
 存储HTTP访问请求响应的对象。在调用HttpResponseCache的方法前，需要先通过[createHttpResponseCache()](#httpcreatehttpresponsecache9)创建一个任务。
 
+**响应头中的相应关键字使用**
+
+- **`Cache-Control`**：用于指定缓存策略，如`no-cache`, `no-store`, `max-age`, `public`, `private`等。
+
+- **`Expires`**：指定资源的过期时间，格式为GMT时间。
+
+- **`ETag`**：用于资源版本标识，客户端可以使用`If-None-Match`请求头来验证资源是否已更改。
+
+- **`Last-Modified`**：指定资源最后修改时间，客户端可以使用`If-Modified-Since`请求头来验证资源是否已更改。
+
+- **`Vary`**：指定哪些请求头的值会影响缓存的响应，用于区分不同的缓存版本。
+
+使用这些关键字时，服务器端需要正确配置响应头，客户端则需要根据这些响应头来决定是否使用缓存的资源，以及如何验证资源是否是最新的。正确的缓存策略可以显著提高应用的性能和用户体验。
+
+**如何设置Cache-Control头**
+
+`Cache-Control`为通用报头，但通常是在服务器端进行的，它允许你定义一个响应资源应该何时、如何被缓存以及缓存多长时间。以下是一些常用的`Cache-Control`指令及其含义：
+
+1. **`no-cache`**：表示在使用缓存前，必须先去源服务器校验资源的有效性。如果资源未变更，则响应状态码为304（Not Modified），不发送资源内容，使用缓存中的资源。如果资源已经过期，则响应状态码为200，并发送资源内容。
+
+2. **`no-store`**：表示不允许缓存资源，每次请求都必须从服务器获取资源。
+
+3. **`max-age`**：指定缓存的最大时间（以秒为单位）。例如，`Cache-Control: max-age=3600`表示缓存的有效期为1小时。
+
+4. **`public`**：表明响应可以被任何对象（包括：发送请求的客户端，代理服务器等）缓存。
+
+5. **`private`**：表明响应只能被单个用户缓存，不能作为共享缓存（即代理服务器不能缓存它）。
+
+6. **`must-revalidate`**：表示缓存必须在使用前验证旧资源的状态，并且在缓存过期后，必须重新验证资源。
+
+7. **`no-transform`**：表示不允许代理服务器修改响应内容。
+
+8. **`proxy-revalidate`**：与`must-revalidate`类似，但仅适用于共享缓存。
+
+9. **`s-maxage`**：类似于`max-age`，但仅适用于共享缓存。
+
 ### flush<sup>9+</sup>
 
 flush(callback: AsyncCallback\<void\>): void

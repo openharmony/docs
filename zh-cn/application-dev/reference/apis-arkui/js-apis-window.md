@@ -2087,9 +2087,9 @@ getPreferredOrientation(): Orientation
 
 主窗口调用，获取窗口的显示方向属性。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -3166,7 +3166,7 @@ try {
 
 ### off('windowEvent')<sup>10+</sup>
 
-off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
+off(type: 'windowEvent', callback?: Callback&lt;WindowEventType&gt;): void
 
 关闭窗口生命周期变化的监听。
 
@@ -5183,7 +5183,7 @@ setWindowDecorHeight(height: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | 是   | 设置的窗口标题栏高度，支持所有窗口类型。该参数为整数，如入参为小数则为非法入参，取值范围为[37,112]，单位为vp。 |
+| height | number | 是   |设置的窗口标题栏高度，仅支持具有窗口标题栏的窗口。该参数为整数，浮点数输入将向下取整，取值范围为[37,112]，范围外为非法参数，单位为vp。 |
 
 **错误码：**
 

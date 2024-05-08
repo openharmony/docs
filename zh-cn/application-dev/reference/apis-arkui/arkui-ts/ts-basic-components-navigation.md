@@ -203,7 +203,7 @@ navBarWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                      |
 | ------ | ---------------------------- | ---- | ----------------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>undefined：行为不做处理，导航栏宽度与默认值保持一致。 |
 
 ### navBarPosition<sup>9+</sup>
 
@@ -321,7 +321,7 @@ minContentWidth(value: Dimension)
 
 | 参数名  | 类型                                 | 必填 | 说明                                                         |
 | ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>undefined：行为不做处理，导航栏内容区最小宽度与默认值保持一致。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
 
 >  **说明：**
 >
@@ -474,14 +474,14 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
@@ -505,14 +505,14 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
@@ -537,14 +537,14 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### replacePath<sup>11+</sup>
 
@@ -972,8 +972,8 @@ Navigation跳转拦截对象。
 
 | 名称    | 类型     | 必填 | 描述    |
 | ---- | ----- | ----- | ----   |
-| willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
-| didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为NavBar，则表示跳转目标页为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 | 否 | 发生页面跳转后回调。|
+| willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
+| didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为NavBar，则表示跳转目标页为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 | 否 | 发生页面跳转后回调。|
 | modeChange | (mode: [NavigationMode](#navigationmode9枚举说明)) =&gt;void | 否 | Navigation单双栏显示状态发生变更时触发该回调。|
 
 ## NavigationMenuItem类型说明

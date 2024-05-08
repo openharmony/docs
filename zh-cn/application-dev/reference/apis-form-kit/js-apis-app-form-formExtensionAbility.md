@@ -19,7 +19,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 | 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | 是   | 否   | FormExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 
 ## onAddForm
 
