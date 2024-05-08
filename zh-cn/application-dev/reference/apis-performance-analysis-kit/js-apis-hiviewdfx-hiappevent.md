@@ -19,6 +19,8 @@ addProcessor(processor: Processor): number
 
 开发者可添加数据处理者，该数据处理者用于提供事件上云功能，数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。
 
+Processor的配置信息需要由数据处理者提供，目前设备内暂未预置可供交互的数据处理者，因此当前事件上云功能不可用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **参数：**
