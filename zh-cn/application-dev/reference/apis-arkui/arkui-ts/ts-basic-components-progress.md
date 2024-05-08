@@ -510,3 +510,4 @@ struct ProgressExample {
   }
 }
 ```
+![progressSensitive](figures/progress-privacysensitive.gif)
