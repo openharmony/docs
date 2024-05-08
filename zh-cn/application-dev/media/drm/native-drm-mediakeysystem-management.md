@@ -41,20 +41,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
    ```
 
-4. 调用MediaKeySystem类中的OH_MediaKeySystem_GetMediaKeySystems方法获取设备支持对应的插件类型的name和uuid。
-
-   ```c++
-    uint32_t count = 10;
-    DRM_MediaKeySystemDescription infos[10];
-    memset(infos, 0, sizeof(infos));
-    Drm_ErrCode ret = OH_MediaKeySystem_GetMediaKeySystems(infos, &count);
-    if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetMediaKeySystems failed.");
-     return ret;
-    }
-   ```
-
-5. 调用MediaKeySystem类中的OH_MediaKeySystem_Create方法创建MediaKeySystem实例。
+4. 调用MediaKeySystem类中的OH_MediaKeySystem_Create方法创建MediaKeySystem实例。
 
    ```c++
     MediaKeySystem *keySystem = NULL;
@@ -70,7 +57,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
    ```
 
-6. 调用MediaKeySystem类中的OH_MediaKeySystem_SetConfigurationString和OH_MediaKeySystem_GetConfigurationString方法设置和获取设备的配置属性信息，不同的DRM方案的配置属性信息可能存在差别，一般分为三类：设备属性、会话属性、输出保护状态属性。
+5. 调用MediaKeySystem类中的OH_MediaKeySystem_SetConfigurationString和OH_MediaKeySystem_GetConfigurationString方法设置和获取设备的配置属性信息，不同的DRM方案的配置属性信息可能存在差别，一般分为三类：设备属性、会话属性、输出保护状态属性。
 
    属性名一般包含："vendor"、"version"、"description"、"algorithms"、"maxSessionNum"、"maxHDCPLevel"、"currentHDCPLevel"、"maxADCPLevel"、"currentADCPLevel"等。
 
@@ -122,7 +109,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
    ```
 
-7. 调用MediaKeySystem类中的OH_MediaKeySystem_GetMaxContentProtectionLevel方法获取最大的内容保护级别。
+6. 调用MediaKeySystem类中的OH_MediaKeySystem_GetMaxContentProtectionLevel方法获取最大的内容保护级别。
 
    ```c++
     MediaKeySystem *keySystem = NULL;
@@ -143,7 +130,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
    ```
 
-8. 调用MediaKeySystem类中的OH_MediaKeySystem_SetMediaKeySystemCallback方法设置MediaKeySystem监听回调。
+7. 调用MediaKeySystem类中的OH_MediaKeySystem_SetMediaKeySystemCallback方法设置MediaKeySystem监听回调。
 
    ```c++
     DRM_ErrCode TestSystemCallBack(DRM_EventType eventType, uint8_t *info,
@@ -173,7 +160,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
    }
    ```
 
-9. 调用MediaKeySystem类中的OH_MediaKeySystem_CreateMediaKeySession方法创建MediaKeySession会话实例。
+8. 调用MediaKeySystem类中的OH_MediaKeySystem_CreateMediaKeySession方法创建MediaKeySession会话实例。
 
    ```c++
     MediaKeySystem *keySystem = NULL;
@@ -200,7 +187,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
    ```
 
-10. 调用MediaKeySystem类中的OH_MediaKeySystem_GenerateKeySystemRequest方法生成设备证书请求，调用MediaKeySystem类中的OH_MediaKeySystem_ProcessKeySystemResponse方法生成设备证书响应。
+9. 调用MediaKeySystem类中的OH_MediaKeySystem_GenerateKeySystemRequest方法生成设备证书请求，调用MediaKeySystem类中的OH_MediaKeySystem_ProcessKeySystemResponse方法生成设备证书响应。
 
     ```c++
     DRM_ErrCode MediaKeySystem_SetAndProcessMediaKeySystem()
@@ -238,7 +225,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
     ```
 
-11. 调用MediaKeySystem类中的OH_MediaKeySystem_GetOfflineMediaKeyIds方法获取离线许可证Id。
+10. 调用MediaKeySystem类中的OH_MediaKeySystem_GetOfflineMediaKeyIds方法获取离线许可证Id。
 
     ```c++
     MediaKeySystem *keySystem = NULL;
@@ -257,7 +244,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
     ```
 
-12. 调用MediaKeySystem类中的OH_MediaKeySystem_GetOfflineMediaKeyStatus方法获取对应离线许可证状态。
+11. 调用MediaKeySystem类中的OH_MediaKeySystem_GetOfflineMediaKeyStatus方法获取对应离线许可证状态。
 
     ```c++
     MediaKeySystem *keySystem = NULL;
@@ -281,7 +268,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
     ```
 
-13. 调用MediaKeySystem类中的OH_MediaKeySystem_ClearOfflineMediaKeys方法清理离线许可证。
+12. 调用MediaKeySystem类中的OH_MediaKeySystem_ClearOfflineMediaKeys方法清理离线许可证。
 
     ```c++
     MediaKeySystem *keySystem = NULL;
@@ -305,7 +292,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
     ```
 
-14. 调用MediaKeySystem类中的OH_MediaKeySystem_GetCertificateStatus方法获取设备证书状态。
+13. 调用MediaKeySystem类中的OH_MediaKeySystem_GetCertificateStatus方法获取设备证书状态。
 
     ```c++
     MediaKeySystem *keySystem = NULL;
@@ -329,7 +316,7 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     }
     ```
 
-15. 调用MediaKeySystem类中的OH_MediaKeySystem_Destroy方法销毁MediaKeySystem实例。
+14. 调用MediaKeySystem类中的OH_MediaKeySystem_Destroy方法销毁MediaKeySystem实例。
 
     ```c++
     MediaKeySystem *keySystem = NULL;
