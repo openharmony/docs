@@ -391,6 +391,8 @@ contentStartOffset(value: number)
 
 设置内容区域起始偏移量。列表滚动到起始位置时，列表内容与列表显示区域边界保留指定距离。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -404,6 +406,8 @@ contentStartOffset(value: number)
 contentEndOffset(value: number)
 
 设置内容区末尾偏移量。列表滚动到末尾位置时，列表内容与列表显示区域边界保留指定距离。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -504,6 +508,8 @@ childrenMainSize(value: ChildrenMainSize)
 ## CloseAllSwipeActions<sup>11+</sup>对象说明
 
 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 类型     | 必填 | 说明                   |
 | :------- | -------- | ---- | ---------------------- |
@@ -876,6 +882,7 @@ List组件的滚动控制器，通过它控制List组件的滚动，仅支持一
 >
 >  ListScroller继承自[Scroller](ts-container-scroll.md#scroller)，具有[Scroller](ts-container-scroll.md#scroller)的全部方法。
 
+
 ### 导入对象
 
 ```
@@ -888,6 +895,8 @@ listScroller: ListScroller = new ListScroller()
 getItemRectInGroup(index: number, indexInGroup: number): RectResult
 
 获取[ListItemGroup](ts-container-listitemgroup.md)中的[ListItem](ts-container-listitem.md)的大小和相对于List的位置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -917,6 +926,8 @@ scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?
 
 开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名                | 参数类型 | 必填 | 参数描述                                                     |
@@ -931,6 +942,8 @@ scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?
 closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11对象说明)): void
 
 将[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
