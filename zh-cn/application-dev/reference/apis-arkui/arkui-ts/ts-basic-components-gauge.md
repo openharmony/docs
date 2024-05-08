@@ -49,11 +49,9 @@ Gauge(options:{value: number, min?: number, max?: number})
 | indicator<sup>11+</sup> | [GaugeIndicatorOptions](#gaugeindicatoroptions11对象说明) | 设置指针样式。<br/>**说明：** <br/>设置null则不显示指针。|
 
 ## GaugeShadowOptions<sup>11+</sup>对象说明
-| 名称          | 参数类型 | 必填 | 描述 |
-| ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+
+GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10)，具有MultiShadowOptions的全部属性。
+
 
 ## GaugeIndicatorOptions<sup>11+</sup>对象说明
 | 名称          | 参数类型 | 必填 | 描述 |
