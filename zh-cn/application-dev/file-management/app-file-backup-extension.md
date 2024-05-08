@@ -86,12 +86,12 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
     const TAG = `FileBackupExtensionAbility`;
     export default class BackupExtension extends  BackupExtensionAbility {
       async onBackup ()   {
-        Logger.info(TAG, `onBackup ok`);
+        hilog.info(TAG, `onBackup ok`);
       }
 
       async onRestore (bundleVersion : BundleVersion) {
-        Logger.info(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
-        Logger.info(TAG, `onRestore end`);
+        hilog.info(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
+        hilog.info(TAG, `onRestore end`);
       }
     }
     ```
