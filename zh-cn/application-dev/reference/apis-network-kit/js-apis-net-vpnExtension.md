@@ -193,9 +193,10 @@ Stage 模型示例：
 import vpnExt from '@ohos.net.vpnExtension';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
+import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
+  private VpnConnection: vpnExt.VpnConnection = vpnExt.createVpnConnection(this.context);
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
     console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
