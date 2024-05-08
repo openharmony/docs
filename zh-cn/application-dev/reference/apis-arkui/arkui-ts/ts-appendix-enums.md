@@ -841,3 +841,10 @@ Nullable\<T> {
 | DOTTED    | 点线。  |
 | DASHED        | 虚线。 |
 | WAVY        | 波浪线。 |
+
+## FlexSpaceOptions<sup>12+</sup>
+
+| 名称          | 类型        |  只读     | 必填      | 说明      |
+| ----------- | --------- | ----------- | --------- |----------- |
+| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。|
+| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。|
