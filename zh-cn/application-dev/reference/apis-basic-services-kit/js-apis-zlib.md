@@ -2874,3 +2874,1853 @@ async function demo() {
 | inDesc       | object | 是   | 否   | 用户定义数据对象     |
 | destLength   | number | 是   | 否   | 目标缓冲区的总长度。 |
 | sourceLength | number | 是   | 否   | 源数据缓冲区长度。   |
+
+## zlib.createGZip<sup>12+</sup>
+
+createGZip(): Promise&lt;Gzip&gt;
+
+创建GZip对象，使用Promise异步返回。成功时返回Gzip对象实例。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                           | 说明                            |
+| ------------------------------ | ------------------------------- |
+| Promise&lt;[GZip](#gzip12)&gt; | Promise对象。返回GZip对象实例。 |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+
+zlib.createGZip().then((data) => {
+   console.info('createGZip success');
+})
+```
+
+## zlib.createGZipSync<sup>12+</sup>
+
+createGZipSync():  GZip
+
+创建GZip对象。成功时返回GZip对象实例。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型            | 说明           |
+| --------------- | -------------- |
+| [GZip](#gzip12) | GZip对象实例。 |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+
+let gzip = zlib.createGZipSync();
+```
+
+## GZip<sup>12+</sup>
+
+Gzip相关接口。
+
+### gzdopen<sup>12+</sup>
+
+gzdopen(fd: number, mode: string): Promise&lt;void&gt;
+
+将gzFile与文件描述符fd相关联，打开文件，用于进行读取并解压缩，或者压缩并写入。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| fd     | number | 是   | 文件描述符。通常情况下，通过系统调用“open”或其他方法获得的。 |
+| mode   | string | 是   | 用于指定访问模式。                                           |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800002 | No such file or directory.                                   |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzdopenDemo(pathDir:string) {
+ fileio.mkdirSync(pathDir + "/gzdopen");
+ let path = pathDir + "/gzdopen/test.gz";
+ let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+ let gzip = zlib.createGZipSync();
+ await gzip.gzdopen(fd, "wb");
+ await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzdopenDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzbuffer<sup>12+</sup>
+
+gzbuffer(size: number):Promise&lt;number&gt;
+
+为当前库函数设置内部缓冲区尺寸。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| size   | number | 是   | 需要设置的内部缓冲区尺寸。 |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | ---------------------------- |
+| Promise&lt;number&gt; | Promise对象，成功时，返回0。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import fileio from '@ohos.fileio';
+import zlib from '@ohos.zlib'
+
+async function gzbufferDemo(pathDir:string) {
+ fileio.mkdirSync(pathDir + "/gzbuffer");
+ let path = pathDir + "/gzbuffer/test.gz";
+ let gzip = zlib.createGZipSync();
+ await gzip.gzopen(path, "wb");
+ await gzip.gzclose();
+ await gzip.gzopen(path, "rb");
+ let result = await gzip.gzbuffer(648);
+ await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzbufferDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzopen<sup>12+</sup>
+
+gzopen(path: string, mode: string): Promise&lt;void&gt;
+
+打开位于指定路径的gzip（.gz）文件，用于进行读取并解压缩，或者压缩并写入。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| path   | string | 是   | 需要打开的文件路径。 |
+| mode   | string | 是   | 指定文件打开方法。   |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800002 | No such file or directory.                                   |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzopenDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzopen");
+  let path = pathDir + "/gzopen/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzopenDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzeof<sup>12+</sup>
+
+gzeof(): Promise&lt;number&gt;
+
+检查gzip压缩文件的读取位置是否已到达文件的末尾。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | Promise对象，如果在读取时设置了文件的文件结束指示符，则返回1。 |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzeofDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzeof");
+  let path = pathDir + "/gzeof/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let writeBufferWithData = new ArrayBuffer(16);
+  let uint8View = new Uint8Array(writeBufferWithData);
+  for (let i = 0; i < uint8View.length; i++) {
+    uint8View[i] = i;
+  }
+  let writeNum = await gzip.gzwrite(writeBufferWithData, 16)
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let readBufferWithData = new ArrayBuffer(20);
+  let readNum = await gzip.gzread(readBufferWithData);
+  let eofNum = await gzip.gzeof();
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzeofDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzdirect<sup>12+</sup>
+
+gzdirect(): Promise&lt;number&gt;
+
+检查指定的gzip文件句柄文件是否直接访问原始未压缩数据，重新分配缓冲区。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                  | 说明                                               |
+| --------------------- | -------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，如果直接访问原始未压缩数据，则返回1。 |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzdirectDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzdirect");
+  let path = pathDir + "/gzdirect/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let directNum = await gzip.gzdirect();
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')ts
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzdirectDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzclose<sup>12+</sup>
+
+gzclose(): Promise&lt;ReturnStatus&gt;
+
+清除文件的所有挂起输出，如有必要，关闭文件和释放(解)压缩状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 17800004 | ZStream error. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzcloseDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzclose");
+  let path = pathDir + "/gzclose/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzcloseDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzclearerr<sup>12+</sup>
+
+gzclearerr(): Promise&lt;void&gt;
+
+清除文件的错误和文件结束标志。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回值。 |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzclearerrDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzclearerr");
+  let path = pathDir + "/gzclearerr/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let writeBufferWithData = new ArrayBuffer(16);
+  let uint8View = new Uint8Array(writeBufferWithData);
+  for (let i = 0; i < uint8View.length; i++) {
+    uint8View[i] = i;
+  }
+  let writeNum = await gzip.gzwrite(writeBufferWithData, 16)
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let readBufferWithData = new ArrayBuffer(20);
+  let readNum = await gzip.gzread(readBufferWithData);
+  let eofNum = await gzip.gzeof();
+  await gzip.gzclearerr();
+  let eofNumClear = await gzip.gzeof();
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzclearerrDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzerror<sup>12+</sup>
+
+gzerror(): Promise&lt;GzErrorOutputInfo&gt;
+
+文件上发生的最后一个错误的错误消息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                                                        | 说明                                                      |
+| ----------------------------------------------------------- | --------------------------------------------------------- |
+| Promise&lt;[GzErrorOutputInfo](#zipgzerroroutputinfo12)&gt; | Promise对象，返回结果状态和出现的最后一个状态的状态消息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 17800004 | ZStream error. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzerrorDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzerror");
+  let path = pathDir + "/gzerror/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let writeBufferWithData = new ArrayBuffer(16);
+  let uint8View = new Uint8Array(writeBufferWithData);
+  for (let i = 0; i < uint8View.length; i++) {
+    uint8View[i] = i;
+  }
+  try {
+    await gzip.gzwrite(writeBufferWithData, -1);
+  } catch (errData) {
+    await gzip.gzerror().then((GzErrorOutputInfo) => {
+      console.info('errCode', GzErrorOutputInfo.status);
+      console.info('errMsg', GzErrorOutputInfo.statusMsg);
+    })
+  }
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzerrorDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzgetc<sup>12+</sup>
+
+gzgetc(): Promise&lt;number&gt;
+
+从文件中读取并解压缩一个字节。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                  | 说明                                 |
+| --------------------- | ------------------------------------ |
+| Promise&lt;number&gt; | Promise对象，返回读取字符的ASCII值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800009 | Internal structure error. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzgetcDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzgetc");
+  let path = pathDir + "/gzgetc/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzputc(1);
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let resulit = await gzip.gzgetc();
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzgetcDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzflush<sup>12+</sup>
+
+gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
+
+将所有挂起的输出刷新到文件中。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| flush  | CompressFlushMode | 是   | 控制刷新操作的行为，参考[CompressFlushMode枚举](#zipcompressflushmode12)的定义。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzflushDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzflush");
+  let path = pathDir + "/gzflush/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let flushNum = await gzip.gzflush(zlib.CompressFlushMode.NO_FLUSH);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzflushDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzfwrite<sup>12+</sup>
+
+gzfwrite(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
+
+将大小为size，数量为nitems的数据块从buf压缩并写入文件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                   |
+| ------ | ----------- | ---- | ---------------------- |
+| buf    | ArrayBuffer | 是   | 要将数据写入的缓冲区。 |
+| size   | number      | 是   | 单个数据块中的字节数。 |
+| nitems | number      | 是   | 要写入的数据块数。     |
+
+**返回值：**
+
+| 类型                  | 说明                                                |
+| --------------------- | --------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回写入大小为size的完整数据块的数目。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzfwriteDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzfwrite");
+  let path = pathDir + "/gzfwrite/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let bufferWithData = new ArrayBuffer(16);
+  let uint8View = new Uint8Array(bufferWithData);
+  for (let i = 0; i < uint8View.length; i++) {
+    uint8View[i] = i;
+  }
+  let resulit = await gzip.gzfwrite(bufferWithData, 8, 2)
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzfwriteDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzfread<sup>12+</sup>
+
+gzfread(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
+
+从gzip压缩文件中解压缩并读取数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                           |
+| ------ | ----------- | ---- | ------------------------------ |
+| buf    | ArrayBuffer | 是   | 用于存储读取结果的目标缓冲区。 |
+| size   | number      | 是   | 单个数据块中的字节数。         |
+| nitems | number      | 是   | 要写入的数据块数。             |
+
+**返回值：**
+
+| 类型                  | 说明                                                |
+| --------------------- | --------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回读取大小为size的完整数据块的数目。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzfreadDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzfread");
+  let path = pathDir + "/gzfread/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let writeBuffer = new ArrayBuffer(16);
+  let uint8View = new Uint8Array(writeBuffer);
+  for (let i = 0; i < uint8View.length; i++) {
+    uint8View[i] = i;
+  }
+  await gzip.gzfwrite(writeBuffer, 8, 2);
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let readBuffer = new ArrayBuffer(16);
+  let result = await gzip.gzfread(readBuffer, 8, 2);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzfreadDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzclosew<sup>12+</sup>
+
+gzclosew(): Promise&lt;ReturnStatus&gt;
+
+与gzclose（）功能相同，仅适用于写入或追加时。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 17800004 | ZStream error. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzclosewDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzclosew");
+  let path = pathDir + "/gzclosew/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzclosew();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzclosewDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzcloser<sup>12+</sup>
+
+gzcloser(): Promise&lt;ReturnStatus&gt;
+
+与gzclose（）功能相同，仅适用于读取时。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 17800004 | ZStream error. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzcloserDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzcloser");
+  let path = pathDir + "/gzcloser/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  await gzip.gzcloser();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzcloserDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzwrite<sup>12+</sup>
+
+gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
+
+将buf中的len长度的未压缩字节进行压缩并将其写入文件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+| 参数名 | 类型        | 必填 | 说明                         |
+| ------ | ----------- | ---- | ---------------------------- |
+| buf    | ArrayBuffer | 是   | 对象指向要写入的数据缓冲区。 |
+| len    | number      | 是   | 未压缩字节长度。             |
+
+**返回值：**
+
+| 类型                  | 说明                                  |
+| --------------------- | ------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回写入的未压缩字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzwriteDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzwrite");
+  let path = pathDir + "/gzwrite/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let bufferWithData = new ArrayBuffer(16);
+  let uint8View = new Uint8Array(bufferWithData);
+  for (let i = 0; i < uint8View.length; i++) {
+    uint8View[i] = i;
+  }
+  let result = await gzip.gzwrite(bufferWithData, 16);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzwriteDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzungetc<sup>12+</sup>
+
+gzungetc(c: number): Promise&lt;number&gt;
+
+将c推回到流中，以便在下次读取文件时将作为第一个字符读取。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| c      | number | 是   | 回退到输入流之前的字符。 |
+
+**返回值：**
+
+| 类型                  | 说明                          |
+| --------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回推送的字符。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzungetcDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzungetc");
+  let path = pathDir + "/gzungetc/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  await gzip.gzread(new ArrayBuffer(1));
+  let result = await gzip.gzungetc(1);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzungetcDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gztell<sup>12+</sup>
+
+gztell(): Promise&lt;number&gt;
+
+返回文件中下一个gzread或gzwrite的起始位置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                  | 说明                                                     |
+| --------------------- | -------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回文件种下一个gzread或gzwrite的起始位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800009 | Internal structure error. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gztellDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gztell");
+  let path = pathDir + "/gztell/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let result = await gzip.gztell();
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gztellDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzsetparams<sup>12+</sup>
+
+gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;ReturnStatus&gt;
+
+动态更新文件的压缩级别和压缩策略。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| level    | CompressLevel    | 是   | 压缩级别，参考[zip.CompressLevel枚举定义](#zipcompresslevel)。 |
+| strategy | CompressStrategy | 是   | 压缩策略，参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzsetparamsDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzsetparams");
+  let path = pathDir + "/gzsetparams/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let result = await gzip.gzsetparams(zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+    zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzsetparamsDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzseek<sup>12+</sup>
+
+gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
+
+将起始位置设置为相对于文件中下一个gzread或gzwrite的偏移位置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型                 | 必填 | 说明                                                         |
+| ------ | -------------------- | ---- | ------------------------------------------------------------ |
+| offset | number               | 是   | 目标偏移位置。                                               |
+| whence | OffsetReferencePoint | 是   | 定义偏移的参考点，参考[zip.OffsetReferencePoint枚举定义](#zipoffsetreferencepoint12)。 |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;number&gt; | Promise对象，返回从未压缩流开始以字节为单位测量的结果偏移位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzseekDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzseek");
+  let path = pathDir + "/gzseek/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let result = await gzip.gzseek(2, zlib.OffsetReferencePoint.SEEK_CUR);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzseekDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzrewind<sup>12+</sup>
+
+gzrewind(): Promise&lt;ReturnStatus&gt;
+
+将文件指针重新定位到文件的开头，此功能仅用于读取。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象，返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800009 | Internal structure error. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzrewindDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzrewind");
+  let path = pathDir + "/gzrewind/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let result = await gzip.gzrewind();
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzrewindDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzread<sup>12+</sup>
+
+gzread(buf: ArrayBuffer): Promise&lt;number&gt;
+
+从文件中读取最多len个未压缩字节并将其解压缩到buf中。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明           |
+| ------ | ----------- | ---- | -------------- |
+| buf    | ArrayBuffer | 是   | 目标偏移位置。 |
+
+**返回值：**
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回实际读取的未压缩字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzreadDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzread");
+  let path = pathDir + "/gzread/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let writeBuffer = new ArrayBuffer(16);
+  let uint8View = new Uint8Array(writeBuffer);
+  for (let i = 0; i < uint8View.length; i++) {
+    uint8View[i] = i;
+  }
+  await gzip.gzwrite(writeBuffer, 16);
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let readBuffer = new ArrayBuffer(16);
+  let result = await gzip.gzread(readBuffer);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzreadDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzputs<sup>12+</sup>
+
+gzputs(str: string): Promise&lt;number&gt;
+
+压缩给定的以null结尾的字符串并将其写入文件，不包括终止的null字符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| str    | string | 是   | 格式化描述符和纯文本。 |
+
+**返回值：**
+
+| 类型                  | 说明                            |
+| --------------------- | ------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回写入的字符数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzputsDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzputs");
+  let path = pathDir + "/gzputs/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let result = await gzip.gzputs("hello");
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzputsDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzputc<sup>12+</sup>
+
+gzputc(char: number): Promise&lt;number&gt;
+
+将转换为无符号字符的c压缩并写入文件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| char   | number | 是   | 写入字符ASCII。 |
+
+**返回值：**
+
+| 类型                  | 说明                          |
+| --------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回已写入的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzputcDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzputc");
+  let path = pathDir + "/gzputc/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let result = await gzip.gzputc(0);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzputcDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzprintf<sup>12+</sup>
+
+gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;number&gt;
+
+在字符串格式的控制下，将参数转换和格式化后，压缩并写入文件，如fprintf中所示。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明                   |
+| ------ | ----------------------------- | ---- | ---------------------- |
+| format | string                        | 是   | 格式化描述符和纯文本。 |
+| args   | Array&lt;string \| number&gt; | 是   | 可变参数列表。         |
+
+**返回值：**
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回实际写入的未压缩字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzprintfDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzprintf");
+  let path = pathDir + "/gzprintf/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let result = await gzip.gzprintf("name is %s, age is %d", "Tom", 23);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzprintfDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzoffset<sup>12+</sup>
+
+gzoffset(): Promise&lt;number&gt;
+
+返回文件的当前压缩（实际）读或写偏移量。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**返回值：**
+
+| 类型                  | 说明                                                  |
+| --------------------- | ----------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回文件的当前压缩（实际）读或写偏移量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800009 | Internal structure error. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzoffsetDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzoffset");
+  let path = pathDir + "/gzoffset/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  let result = await gzip.gzoffset();
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzoffsetDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### gzgets<sup>12+</sup>
+
+gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
+
+从文件中读取字节并将其解压缩到buf中，直到读取len-1字符，或者直到读取换行符并将其传输到buf，或者遇到文件结束条件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明               |
+| ------ | ----------- | ---- | ------------------ |
+| buf    | ArrayBuffer | 是   | 存储读取的行数据。 |
+
+**返回值：**
+
+| 类型                  | 说明                                  |
+| --------------------- | ------------------------------------- |
+| Promise&lt;string&gt; | Promise对象，返回以null结尾的字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800009 | Internal structure error.                                    |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import fileio from '@ohos.fileio';
+
+async function gzgetsDemo(pathDir: string) {
+  fileio.mkdirSync(pathDir + "/gzgets");
+  let path = pathDir + "/gzgets/test.gz";
+  let gzip = zlib.createGZipSync();
+  await gzip.gzopen(path, "wb");
+  await gzip.gzputs("hello");
+  await gzip.gzclose();
+  await gzip.gzopen(path, "rb");
+  let bufferWithData = new ArrayBuffer(16);
+  let result = await gzip.gzgets(bufferWithData);
+  await gzip.gzclose();
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('test gzip interface')
+          .type(ButtonType.Capsule)
+          .height(60)
+          .width(200)
+          .onClick(() => {
+            let context = getContext(this);
+            let pathDir = context.cacheDir;
+            gzgetsDemo(pathDir);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## zip.GzErrorOutputInfo<sup>12+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+| 名称      | 类型         | 可读 | 可写 | 说明                                             |
+| --------- | ------------ | ---- | ---- | ------------------------------------------------ |
+| status    | ReturnStatus | 是   | 否   | 返回zlib文件状态码，参考zip.ReturnStatus的定义。 |
+| statusMsg | string       | 是   | 否   | zlib文件上发生的最后一个状态的状态消息。         |
+
+## zip.OffsetReferencePoint<sup>12+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+| 名称     | 值   | 说明             |
+| -------- | ---- | ---------------- |
+| SEEK_SET | 0    | 从文件开头查找。 |
+| SEEK_CUR | 1    | 从当前位置查找。 |
