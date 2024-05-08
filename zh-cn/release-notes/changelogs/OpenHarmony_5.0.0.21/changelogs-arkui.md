@@ -690,7 +690,11 @@ API version 12及以后：
 
 SetSelection接口start=end!=-1时，视为选中失败，不改变光标位置。
 
-**API Level**
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/richeditor_setselection_before.gif) | ![](figures/richeditor_setselection_after.gif) |
+
+**起始 API Level**
 
 12 
 
@@ -704,4 +708,151 @@ RichEditor组件。
 
 **适配指导**
 
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.14 NavDestination标题栏按钮默认背板、标题字体字号等默认样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更，只影响NavDestination组件的默认样式。
+
+- 变更前
+  1. NavDestination标题栏按钮无背板。
+  2. NavDestination标题栏主标题字重为MEDIUM。
+  
+- 变更后
+  1. NavDestination标题栏按钮增加圆形背板。
+  2. NavDestination标题栏主标题字重为BOLD。
+  3. NavDestination默认返回按钮图标更新。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/NavDestination_Before.png)  |  ![](figures/NavDestination_After.png)  |
+
+**起始 API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+NavDestination组件。
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.15 EditableTitleBar默认样式变化
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式增强
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：
+1. 主标题字重为Regular；
+2. 图标大小为24*24；
+3. 图标热区大小为48*48，圆角方形；
+4. 标题栏高度为56vp；
+5. 标题与左侧图标间距12vp。
+
+变更后：
+1. 主标题字重为Bold；
+2. 图标大小为20*20；
+3. 图标增加40*40灰色圆形背板；
+4. 标题栏最小高度为56vp，标题上下间距4vp，超过56vp时，高度自适应；
+5. 标题与左侧图标间距8vp。
+
+back图标样式变更。
+
+变更前后对比效果，如下图所示：
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/EditableTitleBar_Before.jpg) | ![](figures/EditableTitleBar_After.png) |
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+EditableTitleBar
+
+**适配指导**
+
+默认效果变更，无需适配。但应注意变更后的默认效果是否符合预期。
+
+
+## cl.arkui.16 Navigation默认样式变化
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式增强
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：
+1. Full、Free模式非自定义主标题字重为Medium；
+2. Menu图标大小为24*24；
+3. Menu图标热区大小为48*48，圆角方形；
+4. 标题栏左、右间距为24vp；
+5. Free模式收齐时，非自定义主标题字号为24fp。
+
+变更后：
+1. Full、Free模式非自定义主标题字重为Bold；
+2. Menu图标大小为20*20；
+3. Menu图标增加40*40灰色圆形背板；
+4. 标题栏左、右间距为16vp；
+5. Free模式收齐时，非自定义主标题字号为26fp。
+
+变更前后对比效果，如下图所示：
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/NavigationFull_Before.jpeg) | ![](figures/NavigationFull_After.jpeg) |
+| ![](figures/NavigationFree_Before.jpeg) | ![](figures/NavigationFree_After.jpeg) |
+
+**起始API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.21 版本开始。
+
+**变更的接口/组件**
+
+EditableTitleBar
+
+**适配指导**
+
+默认效果变更，无需适配。但应注意变更后的默认效果是否符合预期。

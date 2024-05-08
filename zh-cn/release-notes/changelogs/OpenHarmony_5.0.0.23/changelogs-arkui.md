@@ -117,39 +117,9 @@ Dialog组件。
 
 **适配指导**
 
-UX默认行为变更，无需适配。
+默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.4 相对布局对Visibility.None的处理规则变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-UX规格增强
-
-**变更影响**
-
-该变更为非兼容性变更。
-
-变更前：组件A的任一锚点的Visibility为None，组件A不被Measure。
-
-变更后：组件A的任一锚点的Visibility为None，组件A依旧被Measure，锚点组件的位置不变，宽高均视为0。
-
-**API Level**
-
-该特性版本为API 7,变更版本为API 12。
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.0.0.23开始。
-
-**适配指导**
-
-如果需要组件A在锚点组件的Visibility设置为None之后不被Measure，可将组件A的Visibility设置为Hidden或者None。
-
-## cl.arkui.5 拖拽预览图支持透明度效果及应用自定义
+## cl.arkui.4 拖拽预览图支持透明度效果及应用自定义
 
 **访问级别**
 
@@ -179,7 +149,7 @@ API version 12及以后：可拖拽组件长按浮起预览图默认为95%透明
 
 默认样式变更调整，无需适配。
 
-## cl.arkui.6 @Observed/@Track/@ObservedV2新增校验变更
+## cl.arkui.5 @Observed/@Track/@ObservedV2新增校验变更
 **访问级别**
 
 公开接口
@@ -243,3 +213,68 @@ class TestObserved6 extends TestObserved5 {
 **适配指导**
 
 开发者需要根据错误提示信息，进行适配整改。
+
+## cl.arkui.6 TextInput、TextArea、Search、RichEditor空间文本菜单样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+规格变更
+
+**变更影响**
+
+该变更为兼容性变更。
+API Version 11 以及之前的版本：文本选择菜单，包含分享、搜索、翻译按钮，三个按钮都是灰色，并且有拓展菜单。
+
+API Version 12 变更后：文本选择菜单，不包含分享、搜索、翻译按钮，不出现拓展菜单。
+
+**起始 API Level**
+
+文本菜单是系统能力，无对外接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+TextInput、TextArea、Search、RichEditor。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.7 ImageSpan、ContainerSpan单独使用在DevEco Studio中报错变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+规格变更
+
+**变更影响**
+
+该变更为非兼容性变更。
+变更前：Text子组件ImageSpan、ContainerSpan放在其他组件下使用，编译无报错。
+变更后：DevEco Studio中单独使用ImageSpan、ContainerSpan组件，而不是作为Text的子组件被使用，编译报错。
+
+**起始 API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+ImageSpan、ContainerSpan。
+
+**适配指导**
+
+默认行为变更，开发者按照报错提示修改。

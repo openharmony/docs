@@ -25,66 +25,70 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) | Defines the information about a media key request.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeyRequest](_d_r_m___media_key_request.md) | Defines a media key request.| 
-| struct&nbsp;&nbsp;[DRM_Statistics](_d_r_m___statistics.md) | Defines the statistics information about a media key system.| 
-| struct&nbsp;&nbsp;[DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md) | Defines an array holding the IDs of offline media keys.| 
-| struct&nbsp;&nbsp;[DRM_KeysInfo](_d_r_m___keys_info.md) | Defines the information about media keys.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | Defines the media key status.| 
-| struct&nbsp;&nbsp;[DRM_PsshInfo](_d_r_m___pssh_info.md) | Defines the Protection Scheme Specific Header (PSSH) information of the UUID.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | Defines the media key system information obtained from a media source.| 
-| struct&nbsp;&nbsp;[MediaKeySession_Callback](_media_key_session___callback.md) | Defines the callback used to listen for events such as media key expiry or change.| 
+| struct&nbsp;&nbsp;[DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) | Describes the information about a media key request.| 
+| struct&nbsp;&nbsp;[DRM_MediaKeyRequest](_d_r_m___media_key_request.md) | Describes a media key request.| 
+| struct&nbsp;&nbsp;[DRM_Statistics](_d_r_m___statistics.md) | Describes the statistics information about a media key system.| 
+| struct&nbsp;&nbsp;[DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md) | Describes an array holding the IDs of offline media keys.| 
+| struct&nbsp;&nbsp;[DRM_KeysInfo](_d_r_m___keys_info.md) | Describes the information about media keys.| 
+| struct&nbsp;&nbsp;[DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | Describes the media key status.| 
+| struct&nbsp;&nbsp;[DRM_PsshInfo](_d_r_m___pssh_info.md) | Describes the Protection Scheme Specific Header (PSSH) information of the UUID.| 
+| struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | Describes the media key system information obtained from a media source.| 
+| struct&nbsp;&nbsp;[MediaKeySession_Callback](_media_key_session___callback.md) | Describes the callback used to listen for events such as media key expiry or change.| 
+| struct&nbsp;&nbsp;[DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the name and UUID of a DRM plug-in. | 
 
 
 ### Macros
 
 | Name| Description| 
 | -------- | -------- |
-| [MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](#max_media_key_request_option_count)&nbsp;&nbsp;&nbsp;16 | Defines the maximum number of options in a media key request.| 
-| [MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN](#max_media_key_request_option_name_len)&nbsp;&nbsp;&nbsp;64 | Defines the maximum length of an option name in a media key request.| 
-| [MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN](#max_media_key_request_option_data_len)&nbsp;&nbsp;&nbsp;128 | Defines the maximum length of option data in a media key request.| 
-| [MAX_INIT_DATA_LEN](#max_init_data_len)&nbsp;&nbsp;&nbsp;2048 | Defines the maximum length of data in an initial request.| 
-| [MAX_MIMETYPE_LEN](#max_mimetype_len)&nbsp;&nbsp;&nbsp;64 | Defines the maximum length of a MIME type.| 
-| [MAX_MEDIA_KEY_REQUEST_DATA_LEN](#max_media_key_request_data_len)&nbsp;&nbsp;&nbsp;8192 | Defines the maximum length of a media key request.| 
-| [MAX_DEFAULT_URL_LEN](#max_default_url_len)&nbsp;&nbsp;&nbsp;2048 | Defines the maximum length of a URL.| 
-| [MAX_STATISTICS_COUNT](#max_statistics_count)&nbsp;&nbsp;&nbsp;10 | Defines the maximum number of statistical items.| 
-| [MAX_STATISTICS_NAME_LEN](#max_statistics_name_len)&nbsp;&nbsp;&nbsp;64 | Defines the maximum length of a statistical item name.| 
-| [MAX_STATISTICS_BUFFER_LEN](#max_statistics_buffer_len)&nbsp;&nbsp;&nbsp;256 | Defines the maximum length of a statistical item buffer.| 
-| [MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)&nbsp;&nbsp;&nbsp;512 | Defines the maximum number of offline media key IDs.| 
-| [MAX_OFFLINE_MEDIA_KEY_ID_LEN](#max_offline_media_key_id_len)&nbsp;&nbsp;&nbsp;64 | Defines the maximum length of an offline media key ID.| 
-| [MAX_KEY_INFO_COUNT](#max_key_info_count)&nbsp;&nbsp;&nbsp;64 | Defines the maximum number of pieces of media key information.| 
-| [MAX_KEY_ID_LEN](#max_key_id_len)&nbsp;&nbsp;&nbsp;16 | Defines the maximum length of a media key ID.| 
-| [MAX_KEY_STATUS_VALUE_LEN](#max_key_status_value_len)&nbsp;&nbsp;&nbsp;128 | Defines the maximum length of a key status value.| 
-| [MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)&nbsp;&nbsp;&nbsp;64 | Defines the maximum number of media key statuses.| 
-| [MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)&nbsp;&nbsp;&nbsp;64 | Defines the maximum length of a media key status name.| 
-| [MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)&nbsp;&nbsp;&nbsp;256 | Defines the maximum length of a media key status value.| 
-| [DRM_UUID_LEN](#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | Defines the UUID length.| 
-| [MAX_PSSH_DATA_LEN](#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | Defines the maximum length of PSSH data.| 
-| [MAX_PSSH_INFO_COUNT](#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | Defines the maximum number of pieces of PSSH information.| 
+| [MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](#max_media_key_request_option_count)&nbsp;&nbsp;&nbsp;16 | Maximum number of options in a media key request.| 
+| [MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN](#max_media_key_request_option_name_len)&nbsp;&nbsp;&nbsp;64 | Maximum length of an option name in a media key request.| 
+| [MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN](#max_media_key_request_option_data_len)&nbsp;&nbsp;&nbsp;128 | Maximum length of option data in a media key request.| 
+| [MAX_INIT_DATA_LEN](#max_init_data_len)&nbsp;&nbsp;&nbsp;2048 | Maximum length of data in an initial request.| 
+| [MAX_MIMETYPE_LEN](#max_mimetype_len)&nbsp;&nbsp;&nbsp;64 | Maximum length of a MIME type.| 
+| [MAX_MEDIA_KEY_REQUEST_DATA_LEN](#max_media_key_request_data_len)&nbsp;&nbsp;&nbsp;8192 | Maximum length of a media key request.| 
+| [MAX_DEFAULT_URL_LEN](#max_default_url_len)&nbsp;&nbsp;&nbsp;2048 | Maximum length of a URL.| 
+| [MAX_STATISTICS_COUNT](#max_statistics_count)&nbsp;&nbsp;&nbsp;10 | Maximum number of statistical items.| 
+| [MAX_STATISTICS_NAME_LEN](#max_statistics_name_len)&nbsp;&nbsp;&nbsp;64 | Maximum length of a statistical item name.| 
+| [MAX_STATISTICS_BUFFER_LEN](#max_statistics_buffer_len)&nbsp;&nbsp;&nbsp;256 | Maximum length of a statistical item buffer.| 
+| [MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)&nbsp;&nbsp;&nbsp;512 | Maximum number of offline media key IDs.| 
+| [MAX_OFFLINE_MEDIA_KEY_ID_LEN](#max_offline_media_key_id_len)&nbsp;&nbsp;&nbsp;64 | Maximum length of an offline media key ID.| 
+| [MAX_KEY_INFO_COUNT](#max_key_info_count)&nbsp;&nbsp;&nbsp;64 | Maximum number of pieces of media key information.| 
+| [MAX_KEY_ID_LEN](#max_key_id_len)&nbsp;&nbsp;&nbsp;16 | Maximum length of a media key ID.| 
+| [MAX_KEY_STATUS_VALUE_LEN](#max_key_status_value_len)&nbsp;&nbsp;&nbsp;128 | Maximum length of a key status value.| 
+| [MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)&nbsp;&nbsp;&nbsp;64 | Maximum number of media key statuses.| 
+| [MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)&nbsp;&nbsp;&nbsp;64 | Maximum length of a media key status name.| 
+| [MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)&nbsp;&nbsp;&nbsp;256 | Maximum length of a media key status value.| 
+| [DRM_UUID_LEN](#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | UUID length.| 
+| [MAX_PSSH_DATA_LEN](#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | Maximum length of PSSH data.| 
+| [MAX_PSSH_INFO_COUNT](#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | Maximum number of pieces of PSSH information.| 
+| [MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)&nbsp;&nbsp;&nbsp;128 | Maximum length of a media key system name. | 
+| [MAX_MEDIA_KEY_SYSTEM_NUM](#max_media_key_system_num)&nbsp;&nbsp;&nbsp;8 | Maximum number of supported media key systems. | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [DRM_EventType](#drm_eventtype-1) [DRM_EventType](#drm_eventtype) | Defines an enum that enumerates the types of events that can be subscribed to.| 
-| typedef enum [DRM_ContentProtectionLevel](#drm_contentprotectionlevel-1) [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) | Defines an enum that enumerates the content protection levels.| 
-| typedef enum [DRM_MediaKeyType](#drm_mediakeytype-1) [DRM_MediaKeyType](#drm_mediakeytype) | Defines an enum that enumerates the media key types.| 
-| typedef enum [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype-1) [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) | Defines an enum that enumerates the types of requests for media keys.| 
-| typedef enum [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus-1) [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus) | Defines an enum that enumerates the statuses of offline media keys.| 
-| typedef enum [DRM_CertificateStatus](#drm_certificatestatus-1) [DRM_CertificateStatus](#drm_certificatestatus) | Defines an enum that enumerates the certificate statuses.| 
-| typedef struct [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) [DRM_MediaKeyRequestInfo](#drm_mediakeyrequestinfo) | Defines the information about a media key request.| 
-| typedef struct [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) [DRM_MediaKeyRequest](#drm_mediakeyrequest) | Defines a media key request.| 
-| typedef struct [DRM_Statistics](_d_r_m___statistics.md) [DRM_Statistics](#drm_statistics) | Defines the statistics information about a media key system.| 
-| typedef struct [DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md) [DRM_OfflineMediakeyIdArray](#drm_offlinemediakeyidarray) | Defines an array holding the IDs of offline media keys.| 
-| typedef struct [DRM_KeysInfo](_d_r_m___keys_info.md) [DRM_KeysInfo](#drm_keysinfo) | Defines the information about media keys.| 
-| typedef struct [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) [DRM_MediaKeyStatus](#drm_mediakeystatus) | Defines the media key status.| 
-| typedef struct [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_PsshInfo](#drm_psshinfo) | Defines the PSSH information of the UUID.| 
-| typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) | Defines the media key system information obtained from a media source.| 
+| typedef enum [DRM_EventType](#drm_eventtype-1) [DRM_EventType](#drm_eventtype) | Defines an enum for the types of events that can be subscribed to.| 
+| typedef enum [DRM_ContentProtectionLevel](#drm_contentprotectionlevel-1) [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) | Defines an enum for the content protection levels.| 
+| typedef enum [DRM_MediaKeyType](#drm_mediakeytype-1) [DRM_MediaKeyType](#drm_mediakeytype) | Defines an enum for the media key types.| 
+| typedef enum [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype-1) [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) | Defines an enum for the types of requests for media keys.| 
+| typedef enum [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus-1) [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus) | Defines an enum for the statuses of offline media keys.| 
+| typedef enum [DRM_CertificateStatus](#drm_certificatestatus-1) [DRM_CertificateStatus](#drm_certificatestatus) | Defines an enum for the certificate statuses.| 
+| typedef struct [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) [DRM_MediaKeyRequestInfo](#drm_mediakeyrequestinfo) | Defines a struct for the information about a media key request.| 
+| typedef struct [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) [DRM_MediaKeyRequest](#drm_mediakeyrequest) | Defines a struct for a media key request.| 
+| typedef struct [DRM_Statistics](_d_r_m___statistics.md) [DRM_Statistics](#drm_statistics) | Defines a struct for the statistics information about a media key system.| 
+| typedef struct [DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md) [DRM_OfflineMediakeyIdArray](#drm_offlinemediakeyidarray) | Defines a struct for an array holding the IDs of offline media keys.| 
+| typedef struct [DRM_KeysInfo](_d_r_m___keys_info.md) [DRM_KeysInfo](#drm_keysinfo) | Defines a struct for the information about media keys.| 
+| typedef struct [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) [DRM_MediaKeyStatus](#drm_mediakeystatus) | Defines a struct for the media key status.| 
+| typedef struct [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_PsshInfo](#drm_psshinfo) | Defines a struct for the PSSH information of the UUID.| 
+| typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) | Defines a struct for the media key system information obtained from a media source.| 
+| typedef struct [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) [DRM_MediaKeySystemDescription](#drm_mediakeysystemdescription) | Defines a struct for the name and UUID of a DRM plug-in. | 
 | typedef void(\* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) ([DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | Defines the callback used to obtain media key system information from a media source.| 
-| typedef struct [MediaKeySystem](#mediakeysystem) [MediaKeySystem](#mediakeysystem) | Defines a media key system.| 
-| typedef struct [MediaKeySession](#mediakeysession) [MediaKeySession](#mediakeysession) | Defines a media key session.| 
-| typedef enum [Drm_ErrCode](#drm_errcode-1) [Drm_ErrCode](#drm_errcode) | Defines an enum that enumerates the DRM error codes.| 
+| typedef struct [MediaKeySystem](#mediakeysystem) [MediaKeySystem](#mediakeysystem) | Defines a struct for a media key system.| 
+| typedef struct [MediaKeySession](#mediakeysession) [MediaKeySession](#mediakeysession) | Defines a struct for a media key session.| 
+| typedef enum [Drm_ErrCode](#drm_errcode-1) [Drm_ErrCode](#drm_errcode) | Defines an enum for the DRM error codes.| 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_EventCallback](#mediakeysession_eventcallback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | Defines the callback that is invoked when a DRM event is triggered.| 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback)) ([DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | Defines the callback that is invoked when the key is changed.| 
 | typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](#mediakeysession_callback) | Defines the callback used to listen for events such as media key expiry or change.| 
@@ -144,36 +148,38 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 
 | Name| Description| 
 | -------- | -------- |
-| [DRM_MediaKeyType](#drm_mediakeytype) [DRM_MediaKeyRequestInfo::type](#type-12) | Defines the key type.| 
-| int32_t [DRM_MediaKeyRequestInfo::initDataLen](#initdatalen) | Defines the initial data length.| 
-| uint8_t [DRM_MediaKeyRequestInfo::initData](#initdata) [[MAX_INIT_DATA_LEN](#max_init_data_len)] | Defines the initial data in PSSH format after Base64 decoding.| 
-| char [DRM_MediaKeyRequestInfo::mimeType](#mimetype) [[MAX_MIMETYPE_LEN](#max_mimetype_len)] | Defines the MIME type of the media context.| 
-| uint32_t [DRM_MediaKeyRequestInfo::optionsCount](#optionscount) | Defines the number of options.| 
-| char [DRM_MediaKeyRequestInfo::optionName](#optionname) [[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](#max_media_key_request_option_count)][[MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN](#max_media_key_request_option_name_len)] | Defines the option name set.| 
-| char [DRM_MediaKeyRequestInfo::optionData](#optiondata) [[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](#max_media_key_request_option_count)][[MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN](#max_media_key_request_option_data_len)] | Defines the option data set.| 
-| [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) [DRM_MediaKeyRequest::type](#type-22) | Defines the type of a media key request.| 
-| int32_t [DRM_MediaKeyRequest::dataLen](#datalen-12) | Defines the length of data in a media key request.| 
-| uint8_t [DRM_MediaKeyRequest::data](#data-12) [[MAX_MEDIA_KEY_REQUEST_DATA_LEN](#max_media_key_request_data_len)] | Defines the data in a media key request sent to the media key server.| 
-| char [DRM_MediaKeyRequest::defaultUrl](#defaulturl) [[MAX_DEFAULT_URL_LEN](#max_default_url_len)] | Defines the URL of a media key server.| 
-| uint32_t [DRM_Statistics::statisticsCount](#statisticscount) | Defines the number of statistical items.| 
-| char [DRM_Statistics::statisticsName](#statisticsname) [[MAX_STATISTICS_COUNT](#max_statistics_count)][[MAX_STATISTICS_NAME_LEN](#max_statistics_name_len)] | Defines the statistical item name set.| 
-| char [DRM_Statistics::statisticsDescription](#statisticsdescription) [[MAX_STATISTICS_COUNT](#max_statistics_count)][[MAX_STATISTICS_BUFFER_LEN](#max_statistics_buffer_len)] | Defines the set of statistics information description.| 
-| uint32_t [DRM_OfflineMediakeyIdArray::idsCount](#idscount) | Defines the number of IDs.| 
-| int32_t [DRM_OfflineMediakeyIdArray::idsLen](#idslen) [[MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)] | Defines the ID length set.| 
-| uint8_t [DRM_OfflineMediakeyIdArray::ids](#ids) [[MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)][[MAX_OFFLINE_MEDIA_KEY_ID_LEN](#max_offline_media_key_id_len)] | Defines the ID data set.| 
-| uint32_t [DRM_KeysInfo::keysInfoCount](#keysinfocount) | Defines the number of keys.| 
-| uint8_t [DRM_KeysInfo::keyId](#keyid) [[MAX_KEY_INFO_COUNT](#max_key_info_count)][[MAX_KEY_ID_LEN](#max_key_id_len)] | Defines the key ID set.| 
-| char [DRM_KeysInfo::statusValue](#statusvalue-12) [[MAX_KEY_INFO_COUNT](#max_key_info_count)][[MAX_KEY_STATUS_VALUE_LEN](#max_key_status_value_len)] | Defines the key status value.| 
-| uint32_t [DRM_MediaKeyStatus::statusCount](#statuscount) | Defines the number of media key statuses.| 
-| char [DRM_MediaKeyStatus::statusName](#statusname) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)] | Defines the array of status names.| 
-| char [DRM_MediaKeyStatus::statusValue](#statusvalue-22) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)] | Defines the array of status values.| 
-| uint8_t [DRM_PsshInfo::uuid](#uuid) [[DRM_UUID_LEN](#drm_uuid_len)] | Defines the UUID.| 
-| int32_t [DRM_PsshInfo::dataLen](#datalen-22) | Defines the PSSH data length.| 
-| uint8_t [DRM_PsshInfo::data](#data-22) [[MAX_PSSH_DATA_LEN](#max_pssh_data_len)] | Defines the uint8_t PSSH data.| 
-| uint32_t [DRM_MediaKeySystemInfo::psshCount](#psshcount) | Defines the number of pieces of PSSH data.| 
-| [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | Defines the PSSH information.| 
-| [MediaKeySession_EventCallback](#mediakeysession_eventcallback) [MediaKeySession_Callback::eventCallback](#eventcallback) | Defines an event callback, for example, a media key expiry event.| 
-| [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback) [MediaKeySession_Callback::keyChangeCallback](#keychangecallback) | Defines the callback of the media key change event.| 
+| [DRM_MediaKeyType](#drm_mediakeytype) [DRM_MediaKeyRequestInfo::type](#type-12) | Key type.| 
+| int32_t [DRM_MediaKeyRequestInfo::initDataLen](#initdatalen) | Initial data length.| 
+| uint8_t [DRM_MediaKeyRequestInfo::initData](#initdata) [[MAX_INIT_DATA_LEN](#max_init_data_len)] | Initial data in PSSH format after Base64 decoding.| 
+| char [DRM_MediaKeyRequestInfo::mimeType](#mimetype) [[MAX_MIMETYPE_LEN](#max_mimetype_len)] | MIME type of the media context.| 
+| uint32_t [DRM_MediaKeyRequestInfo::optionsCount](#optionscount) | Number of options.| 
+| char [DRM_MediaKeyRequestInfo::optionName](#optionname) [[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](#max_media_key_request_option_count)][[MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN](#max_media_key_request_option_name_len)] | Option name set.| 
+| char [DRM_MediaKeyRequestInfo::optionData](#optiondata) [[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT](#max_media_key_request_option_count)][[MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN](#max_media_key_request_option_data_len)] | Option data set.| 
+| [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) [DRM_MediaKeyRequest::type](#type-22) | Type of a media key request.| 
+| int32_t [DRM_MediaKeyRequest::dataLen](#datalen-12) | Length of data in a media key request.| 
+| uint8_t [DRM_MediaKeyRequest::data](#data-12) [[MAX_MEDIA_KEY_REQUEST_DATA_LEN](#max_media_key_request_data_len)] | Data in a media key request sent to the media key server.| 
+| char [DRM_MediaKeyRequest::defaultUrl](#defaulturl) [[MAX_DEFAULT_URL_LEN](#max_default_url_len)] | URL of a media key server.| 
+| uint32_t [DRM_Statistics::statisticsCount](#statisticscount) | Number of statistical items.| 
+| char [DRM_Statistics::statisticsName](#statisticsname) [[MAX_STATISTICS_COUNT](#max_statistics_count)][[MAX_STATISTICS_NAME_LEN](#max_statistics_name_len)] | Statistical item name set.| 
+| char [DRM_Statistics::statisticsDescription](#statisticsdescription) [[MAX_STATISTICS_COUNT](#max_statistics_count)][[MAX_STATISTICS_BUFFER_LEN](#max_statistics_buffer_len)] | Set of statistics information description.| 
+| uint32_t [DRM_OfflineMediakeyIdArray::idsCount](#idscount) | Number of IDs.| 
+| int32_t [DRM_OfflineMediakeyIdArray::idsLen](#idslen) [[MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)] | ID length set.| 
+| uint8_t [DRM_OfflineMediakeyIdArray::ids](#ids) [[MAX_OFFLINE_MEDIA_KEY_ID_COUNT](#max_offline_media_key_id_count)][[MAX_OFFLINE_MEDIA_KEY_ID_LEN](#max_offline_media_key_id_len)] | ID data set.| 
+| uint32_t [DRM_KeysInfo::keysInfoCount](#keysinfocount) | Number of keys.| 
+| uint8_t [DRM_KeysInfo::keyId](#keyid) [[MAX_KEY_INFO_COUNT](#max_key_info_count)][[MAX_KEY_ID_LEN](#max_key_id_len)] | Key ID set.| 
+| char [DRM_KeysInfo::statusValue](#statusvalue-12) [[MAX_KEY_INFO_COUNT](#max_key_info_count)][[MAX_KEY_STATUS_VALUE_LEN](#max_key_status_value_len)] | Key status value.| 
+| uint32_t [DRM_MediaKeyStatus::statusCount](#statuscount) | Number of media key statuses.| 
+| char [DRM_MediaKeyStatus::statusName](#statusname) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)] | Array of status names.| 
+| char [DRM_MediaKeyStatus::statusValue](#statusvalue-22) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)] | Array of status values.| 
+| uint8_t [DRM_PsshInfo::uuid](#uuid-12) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID.| 
+| int32_t [DRM_PsshInfo::dataLen](#datalen-22) | PSSH data length.| 
+| uint8_t [DRM_PsshInfo::data](#data-22) [[MAX_PSSH_DATA_LEN](#max_pssh_data_len)] | uint8_t PSSH data.| 
+| uint32_t [DRM_MediaKeySystemInfo::psshCount](#psshcount) | Number of pieces of PSSH data.| 
+| [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | PSSH information.| 
+| char [DRM_MediaKeySystemDescription::name](#name) [[MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)] | Name of the DRM plug-in. | 
+| uint8_t [DRM_MediaKeySystemDescription::uuid](#uuid-22) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID of the DRM plug-in. | 
+| [MediaKeySession_EventCallback](#mediakeysession_eventcallback) [MediaKeySession_Callback::eventCallback](#eventcallback) | Event callback, for example, a media key expiry event.| 
+| [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback) [MediaKeySession_Callback::keyChangeCallback](#keychangecallback) | Callback of the media key change event.| 
 
 
 ## Macro Description
@@ -187,7 +193,7 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 
 **Description**
 
-Defines the UUID length.
+UUID length.
 
 **Since**: 11
 
@@ -200,7 +206,7 @@ Defines the UUID length.
 
 **Description**
 
-Defines the maximum length of a URL.
+Maximum length of a URL.
 
 **Since**: 11
 
@@ -213,7 +219,7 @@ Defines the maximum length of a URL.
 
 **Description**
 
-Defines the maximum length of data in an initial request.
+Maximum length of data in an initial request.
 
 **Since**: 11
 
@@ -226,7 +232,7 @@ Defines the maximum length of data in an initial request.
 
 **Description**
 
-Defines the maximum length of a media key ID.
+Maximum length of a media key ID.
 
 **Since**: 11
 
@@ -239,7 +245,7 @@ Defines the maximum length of a media key ID.
 
 **Description**
 
-Defines the maximum number of pieces of media key information.
+Maximum number of pieces of media key information.
 
 **Since**: 11
 
@@ -252,7 +258,7 @@ Defines the maximum number of pieces of media key information.
 
 **Description**
 
-Defines the maximum length of a key status value.
+Maximum length of a key status value.
 
 **Since**: 11
 
@@ -265,7 +271,7 @@ Defines the maximum length of a key status value.
 
 **Description**
 
-Defines the maximum length of a media key request.
+Maximum length of a media key request.
 
 **Since**: 11
 
@@ -278,7 +284,7 @@ Defines the maximum length of a media key request.
 
 **Description**
 
-Defines the maximum number of options in a media key request.
+Maximum number of options in a media key request.
 
 **Since**: 11
 
@@ -291,7 +297,7 @@ Defines the maximum number of options in a media key request.
 
 **Description**
 
-Defines the maximum length of option data in a media key request.
+Maximum length of option data in a media key request.
 
 **Since**: 11
 
@@ -304,7 +310,7 @@ Defines the maximum length of option data in a media key request.
 
 **Description**
 
-Defines the maximum length of an option name in a media key request.
+Maximum length of an option name in a media key request.
 
 **Since**: 11
 
@@ -317,7 +323,7 @@ Defines the maximum length of an option name in a media key request.
 
 **Description**
 
-Defines the maximum number of media key statuses.
+Maximum number of media key statuses.
 
 **Since**: 11
 
@@ -330,7 +336,7 @@ Defines the maximum number of media key statuses.
 
 **Description**
 
-Defines the maximum length of a media key status name.
+Maximum length of a media key status name.
 
 **Since**: 11
 
@@ -343,9 +349,33 @@ Defines the maximum length of a media key status name.
 
 **Description**
 
-Defines the maximum length of a media key status value.
+Maximum length of a media key status value.
 
 **Since**: 11
+
+
+### MAX_MEDIA_KEY_SYSTEM_NAME_LEN
+
+```
+#define MAX_MEDIA_KEY_SYSTEM_NAME_LEN   128
+```
+**Description**
+
+Maximum length of a media key system name.
+
+**Since**: 12
+
+
+### MAX_MEDIA_KEY_SYSTEM_NUM
+
+```
+#define MAX_MEDIA_KEY_SYSTEM_NUM   8
+```
+**Description**
+
+Maximum number of supported media key systems.
+
+**Since**: 12
 
 
 ### MAX_MIMETYPE_LEN
@@ -356,7 +386,7 @@ Defines the maximum length of a media key status value.
 
 **Description**
 
-Defines the maximum length of a MIME type.
+Maximum length of a MIME type.
 
 **Since**: 11
 
@@ -369,7 +399,7 @@ Defines the maximum length of a MIME type.
 
 **Description**
 
-Defines the maximum number of offline media key IDs.
+Maximum number of offline media key IDs.
 
 **Since**: 11
 
@@ -382,7 +412,7 @@ Defines the maximum number of offline media key IDs.
 
 **Description**
 
-Defines the maximum length of an offline media key ID.
+Maximum length of an offline media key ID.
 
 **Since**: 11
 
@@ -395,7 +425,7 @@ Defines the maximum length of an offline media key ID.
 
 **Description**
 
-Defines the maximum length of PSSH data.
+Maximum length of PSSH data.
 
 **Since**: 11
 
@@ -408,7 +438,7 @@ Defines the maximum length of PSSH data.
 
 **Description**
 
-Defines the maximum number of pieces of PSSH information.
+Maximum number of pieces of PSSH information.
 
 **Since**: 11
 
@@ -421,7 +451,7 @@ Defines the maximum number of pieces of PSSH information.
 
 **Description**
 
-Defines the maximum length of a statistical item buffer.
+Maximum length of a statistical item buffer.
 
 **Since**: 11
 
@@ -434,7 +464,7 @@ Defines the maximum length of a statistical item buffer.
 
 **Description**
 
-Defines the maximum number of statistical items.
+Maximum number of statistical items.
 
 **Since**: 11
 
@@ -447,7 +477,7 @@ Defines the maximum number of statistical items.
 
 **Description**
 
-Defines the maximum length of a statistical item name.
+Maximum length of a statistical item name.
 
 **Since**: 11
 
@@ -458,12 +488,12 @@ Defines the maximum length of a statistical item name.
 ### DRM_CertificateStatus
 
 ```
-typedef enum DRM_CertificateStatusDRM_CertificateStatus
+typedef enum DRM_CertificateStatus DRM_CertificateStatus
 ```
 
 **Description**
 
-Defines an enum that enumerates the certificate statuses.
+Defines an enum for the certificate statuses.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -473,12 +503,12 @@ Defines an enum that enumerates the certificate statuses.
 ### DRM_ContentProtectionLevel
 
 ```
-typedef enum DRM_ContentProtectionLevelDRM_ContentProtectionLevel
+typedef enum DRM_ContentProtectionLevel DRM_ContentProtectionLevel
 ```
 
 **Description**
 
-Defines an enum that enumerates the content protection levels.
+Defines an enum for the content protection levels.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -488,12 +518,12 @@ Defines an enum that enumerates the content protection levels.
 ### Drm_ErrCode
 
 ```
-typedef enum Drm_ErrCodeDrm_ErrCode
+typedef enum Drm_ErrCode Drm_ErrCode
 ```
 
 **Description**
 
-Defines an enum that enumerates the DRM error codes.
+Defines an enum for the DRM error codes.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -503,12 +533,12 @@ Defines an enum that enumerates the DRM error codes.
 ### DRM_EventType
 
 ```
-typedef enum DRM_EventTypeDRM_EventType
+typedef enum DRM_EventType DRM_EventType
 ```
 
 **Description**
 
-Defines an enum that enumerates the types of events that can be subscribed to.
+Defines an enum for the types of events that can be subscribed to.
 
 **Since**: 11
 
@@ -516,12 +546,12 @@ Defines an enum that enumerates the types of events that can be subscribed to.
 ### DRM_KeysInfo
 
 ```
-typedef struct DRM_KeysInfoDRM_KeysInfo
+typedef struct DRM_KeysInfo DRM_KeysInfo
 ```
 
 **Description**
 
-Defines the information about media keys.
+Defines a struct for the information about media keys.
 
 **Since**: 11
 
@@ -529,12 +559,12 @@ Defines the information about media keys.
 ### DRM_MediaKeyRequest
 
 ```
-typedef struct DRM_MediaKeyRequestDRM_MediaKeyRequest
+typedef struct DRM_MediaKeyRequest DRM_MediaKeyRequest
 ```
 
 **Description**
 
-Defines a media key request.
+Defines a struct for a media key request.
 
 **Since**: 11
 
@@ -542,12 +572,12 @@ Defines a media key request.
 ### DRM_MediaKeyRequestInfo
 
 ```
-typedef struct DRM_MediaKeyRequestInfoDRM_MediaKeyRequestInfo
+typedef struct DRM_MediaKeyRequestInfo DRM_MediaKeyRequestInfo
 ```
 
 **Description**
 
-Defines the information about a media key request.
+Defines a struct for the information about a media key request.
 
 **Since**: 11
 
@@ -555,12 +585,12 @@ Defines the information about a media key request.
 ### DRM_MediaKeyRequestType
 
 ```
-typedef enum DRM_MediaKeyRequestTypeDRM_MediaKeyRequestType
+typedef enum DRM_MediaKeyRequestType DRM_MediaKeyRequestType
 ```
 
 **Description**
 
-Defines an enum that enumerates the types of requests for media keys.
+Defines an enum for the types of requests for media keys.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -570,25 +600,37 @@ Defines an enum that enumerates the types of requests for media keys.
 ### DRM_MediaKeyStatus
 
 ```
-typedef struct DRM_MediaKeyStatusDRM_MediaKeyStatus
+typedef struct DRM_MediaKeyStatus DRM_MediaKeyStatus
 ```
 
 **Description**
 
-Defines the media key status.
+Defines a struct for the media key status.
 
 **Since**: 11
+
+
+### DRM_MediaKeySystemDescription
+
+```
+typedef struct DRM_MediaKeySystemDescription DRM_MediaKeySystemDescription
+```
+**Description**
+
+Defines a struct for the name and UUID of a DRM plug-in.
+
+**Since**: 12
 
 
 ### DRM_MediaKeySystemInfo
 
 ```
-typedef struct DRM_MediaKeySystemInfoDRM_MediaKeySystemInfo
+typedef struct DRM_MediaKeySystemInfo DRM_MediaKeySystemInfo
 ```
 
 **Description**
 
-Defines the media key system information obtained from a media source.
+Defines a struct for the media key system information obtained from a media source.
 
 **Since**: 11
 
@@ -611,16 +653,15 @@ Defines the callback used to obtain media key system information from a media so
 | -------- | -------- |
 | mediaKeySystemInfo | Pointer to the media key system information obtained from the media source.| 
 
-
 ### DRM_MediaKeyType
 
 ```
-typedef enum DRM_MediaKeyTypeDRM_MediaKeyType
+typedef enum DRM_MediaKeyType DRM_MediaKeyType
 ```
 
 **Description**
 
-Defines an enum that enumerates the media key types.
+Defines an enum for the media key types.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -630,12 +671,12 @@ Defines an enum that enumerates the media key types.
 ### DRM_OfflineMediakeyIdArray
 
 ```
-typedef struct DRM_OfflineMediakeyIdArrayDRM_OfflineMediakeyIdArray
+typedef struct DRM_OfflineMediakeyIdArray DRM_OfflineMediakeyIdArray
 ```
 
 **Description**
 
-Defines an array holding the IDs of offline media keys.
+Defines a struct for an array holding the IDs of offline media keys.
 
 **Since**: 11
 
@@ -643,12 +684,12 @@ Defines an array holding the IDs of offline media keys.
 ### DRM_OfflineMediaKeyStatus
 
 ```
-typedef enum DRM_OfflineMediaKeyStatusDRM_OfflineMediaKeyStatus
+typedef enum DRM_OfflineMediaKeyStatus DRM_OfflineMediaKeyStatus
 ```
 
 **Description**
 
-Defines an enum that enumerates the statuses of offline media keys.
+Defines an enum for the statuses of offline media keys.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -658,12 +699,12 @@ Defines an enum that enumerates the statuses of offline media keys.
 ### DRM_PsshInfo
 
 ```
-typedef struct DRM_PsshInfoDRM_PsshInfo
+typedef struct DRM_PsshInfo DRM_PsshInfo
 ```
 
 **Description**
 
-Defines the PSSH information of the UUID.
+Defines a struct for the PSSH information of the UUID.
 
 **Since**: 11
 
@@ -671,12 +712,12 @@ Defines the PSSH information of the UUID.
 ### DRM_Statistics
 
 ```
-typedef struct DRM_StatisticsDRM_Statistics
+typedef struct DRM_Statistics DRM_Statistics
 ```
 
 **Description**
 
-Defines the statistics information about a media key system.
+Defines a struct for the statistics information about a media key system.
 
 **Since**: 11
 
@@ -684,12 +725,12 @@ Defines the statistics information about a media key system.
 ### MediaKeySession
 
 ```
-typedef struct MediaKeySessionMediaKeySession
+typedef struct MediaKeySession MediaKeySession
 ```
 
 **Description**
 
-Defines a media key session.
+Defines a struct for a media key session.
 
 **Since**: 11
 
@@ -697,7 +738,7 @@ Defines a media key session.
 ### MediaKeySession_Callback
 
 ```
-typedef struct MediaKeySession_CallbackMediaKeySession_Callback
+typedef struct MediaKeySession_Callback MediaKeySession_Callback
 ```
 
 **Description**
@@ -760,12 +801,12 @@ Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL*
 ### MediaKeySystem
 
 ```
-typedef struct MediaKeySystemMediaKeySystem
+typedef struct MediaKeySystem MediaKeySystem
 ```
 
 **Description**
 
-Defines a media key system.
+Defines a struct for a media key system.
 
 **Since**: 11
 
@@ -864,7 +905,7 @@ Enumerates the DRM error codes.
 | DRM_ERR_OK | Operation successful.| 
 | DRM_CAPI_ERR_BASE | Basic error.| 
 | DRM_ERR_NO_MEMORY | Insufficient memory.| 
-| DRM_ERR_OPERATION_NOT_PERMITTED | Unsupported operation.| 
+| DRM_ERR_OPERATION_NOT_PERMITTED | Operation not allowed.| 
 | DRM_ERR_INVALID_VAL | Invalid parameters.| 
 | DRM_ERR_IO | I/O error.| 
 | DRM_ERR_TIMEOUT | Network timeout.| 
@@ -1463,6 +1504,29 @@ Obtains the media key system with the maximum content protection level supported
 Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
 
 
+### OH_MediaKeySystem_GetMediaKeySystems()
+
+```
+Drm_ErrCode OH_MediaKeySystem_GetMediaKeySystems (DRM_MediaKeySystemDescription * infos, uint32_t * count )
+```
+**Description**
+
+Obtains the names and UUIDs of the supported media key systems.
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| infos | Array holding the names and UUIDs of the media key systems. | 
+| count | Number of the DRM_MediaKeySystemMapInfo structs. | 
+
+**Returns**
+
+Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
+
+
 ### OH_MediaKeySystem_GetOfflineMediaKeyIds()
 
 ```
@@ -1589,7 +1653,6 @@ Returns **true** if the media key system is supported; returns **false** otherwi
 ```
 bool OH_MediaKeySystem_IsSupported3 (const char * name, const char * mimeType, DRM_ContentProtectionLevel contentProtectionLevel )
 ```
-
 **Description**
 
 Checks whether a media key system is supported.
@@ -1720,7 +1783,7 @@ uint8_t DRM_MediaKeyRequest::data[MAX_MEDIA_KEY_REQUEST_DATA_LEN]
 
 **Description**
 
-Defines the data in a media key request sent to the media key server.
+Data in a media key request sent to the media key server.
 
 
 ### data [2/2]
@@ -1731,7 +1794,7 @@ uint8_t DRM_PsshInfo::data[MAX_PSSH_DATA_LEN]
 
 **Description**
 
-Defines the uint8_t PSSH data.
+uint8_t PSSH data.
 
 
 ### dataLen [1/2]
@@ -1742,7 +1805,7 @@ int32_t DRM_MediaKeyRequest::dataLen
 
 **Description**
 
-Defines the length of data in a media key request.
+Length of data in a media key request.
 
 
 ### dataLen [2/2]
@@ -1753,7 +1816,7 @@ int32_t DRM_PsshInfo::dataLen
 
 **Description**
 
-Defines the PSSH data length.
+PSSH data length.
 
 
 ### defaultUrl
@@ -1764,7 +1827,7 @@ char DRM_MediaKeyRequest::defaultUrl[MAX_DEFAULT_URL_LEN]
 
 **Description**
 
-Defines the URL of a media key server.
+URL of a media key server.
 
 
 ### eventCallback
@@ -1775,7 +1838,7 @@ MediaKeySession_EventCallback MediaKeySession_Callback::eventCallback
 
 **Description**
 
-Defines an event callback, for example, a media key expiry event.
+Event callback, for example, a media key expiry event.
 
 
 ### ids
@@ -1786,7 +1849,7 @@ uint8_t DRM_OfflineMediakeyIdArray::ids[MAX_OFFLINE_MEDIA_KEY_ID_COUNT][MAX_OFFL
 
 **Description**
 
-Defines the ID data set.
+ID data set.
 
 
 ### idsCount
@@ -1797,7 +1860,7 @@ uint32_t DRM_OfflineMediakeyIdArray::idsCount
 
 **Description**
 
-Defines the number of IDs.
+Number of IDs.
 
 
 ### idsLen
@@ -1808,7 +1871,7 @@ int32_t DRM_OfflineMediakeyIdArray::idsLen[MAX_OFFLINE_MEDIA_KEY_ID_COUNT]
 
 **Description**
 
-Defines the ID length set.
+ID length set.
 
 
 ### initData
@@ -1819,7 +1882,7 @@ uint8_t DRM_MediaKeyRequestInfo::initData[MAX_INIT_DATA_LEN]
 
 **Description**
 
-Defines the initial data in PSSH format after Base64 decoding.
+Initial data in PSSH format after Base64 decoding.
 
 
 ### initDataLen
@@ -1830,7 +1893,7 @@ int32_t DRM_MediaKeyRequestInfo::initDataLen
 
 **Description**
 
-Defines the initial data length.
+Initial data length.
 
 
 ### keyChangeCallback
@@ -1841,7 +1904,7 @@ MediaKeySession_KeyChangeCallback MediaKeySession_Callback::keyChangeCallback
 
 **Description**
 
-Defines the callback of the media key change event.
+Callback of the media key change event.
 
 
 ### keyId
@@ -1852,7 +1915,7 @@ uint8_t DRM_KeysInfo::keyId[MAX_KEY_INFO_COUNT][MAX_KEY_ID_LEN]
 
 **Description**
 
-Defines the key ID set.
+Key ID set.
 
 
 ### keysInfoCount
@@ -1863,7 +1926,7 @@ uint32_t DRM_KeysInfo::keysInfoCount
 
 **Description**
 
-Defines the number of keys.
+Number of keys.
 
 
 ### mimeType
@@ -1874,7 +1937,16 @@ char DRM_MediaKeyRequestInfo::mimeType[MAX_MIMETYPE_LEN]
 
 **Description**
 
-Defines the MIME type of the media context.
+MIME type of the media context.
+
+
+### name
+
+```
+char DRM_MediaKeySystemDescription::name[MAX_MEDIA_KEY_SYSTEM_NAME_LEN]
+```
+**Description**
+Name of the DRM plug-in.
 
 
 ### optionData
@@ -1885,7 +1957,7 @@ char DRM_MediaKeyRequestInfo::optionData[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX
 
 **Description**
 
-Defines the option data set.
+Option data set.
 
 
 ### optionName
@@ -1896,7 +1968,7 @@ char DRM_MediaKeyRequestInfo::optionName[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX
 
 **Description**
 
-Defines the option name set.
+Option name set.
 
 
 ### optionsCount
@@ -1907,7 +1979,7 @@ uint32_t DRM_MediaKeyRequestInfo::optionsCount
 
 **Description**
 
-Defines the number of options.
+Number of options.
 
 
 ### psshCount
@@ -1918,7 +1990,7 @@ uint32_t DRM_MediaKeySystemInfo::psshCount
 
 **Description**
 
-Defines the number of pieces of PSSH data.
+Number of pieces of PSSH data.
 
 
 ### psshInfo
@@ -1929,7 +2001,7 @@ DRM_PsshInfo DRM_MediaKeySystemInfo::psshInfo[MAX_PSSH_INFO_COUNT]
 
 **Description**
 
-Defines the PSSH information.
+PSSH information.
 
 
 ### statisticsCount
@@ -1940,7 +2012,7 @@ uint32_t DRM_Statistics::statisticsCount
 
 **Description**
 
-Defines the number of statistical items.
+Number of statistical items.
 
 
 ### statisticsDescription
@@ -1951,7 +2023,7 @@ char DRM_Statistics::statisticsDescription[MAX_STATISTICS_COUNT][MAX_STATISTICS_
 
 **Description**
 
-Defines the set of statistics information description.
+Set of statistics information description.
 
 
 ### statisticsName
@@ -1962,7 +2034,7 @@ char DRM_Statistics::statisticsName[MAX_STATISTICS_COUNT][MAX_STATISTICS_NAME_LE
 
 **Description**
 
-Defines the statistical item name set.
+Statistical item name set.
 
 
 ### statusCount
@@ -1973,7 +2045,7 @@ uint32_t DRM_MediaKeyStatus::statusCount
 
 **Description**
 
-Defines the number of media key statuses.
+Number of media key statuses.
 
 
 ### statusName
@@ -1984,7 +2056,7 @@ char DRM_MediaKeyStatus::statusName[MAX_MEDIA_KEY_STATUS_COUNT][MAX_MEDIA_KEY_ST
 
 **Description**
 
-Defines the array of status names.
+Array of status names.
 
 
 ### statusValue [1/2]
@@ -1995,7 +2067,7 @@ char DRM_KeysInfo::statusValue[MAX_KEY_INFO_COUNT][MAX_KEY_STATUS_VALUE_LEN]
 
 **Description**
 
-Defines the key status value.
+Key status value.
 
 
 ### statusValue [2/2]
@@ -2006,7 +2078,7 @@ char DRM_MediaKeyStatus::statusValue[MAX_MEDIA_KEY_STATUS_COUNT][MAX_MEDIA_KEY_S
 
 **Description**
 
-Defines the array of status values.
+Array of status values.
 
 
 ### type [1/2]
@@ -2017,7 +2089,7 @@ DRM_MediaKeyType DRM_MediaKeyRequestInfo::type
 
 **Description**
 
-Defines the key type.
+Key type.
 
 
 ### type [2/2]
@@ -2028,10 +2100,10 @@ DRM_MediaKeyRequestType DRM_MediaKeyRequest::type
 
 **Description**
 
-Defines the type of a media key request.
+Type of a media key request.
 
 
-### uuid
+### uuid [1/2]
 
 ```
 uint8_t DRM_PsshInfo::uuid[DRM_UUID_LEN]
@@ -2039,4 +2111,14 @@ uint8_t DRM_PsshInfo::uuid[DRM_UUID_LEN]
 
 **Description**
 
-Defines the UUID.
+UUID.
+
+
+### uuid [2/2]
+
+```
+uint8_t DRM_MediaKeySystemDescription::uuid[DRM_UUID_LEN]
+```
+**Description**
+
+UUID.

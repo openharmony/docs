@@ -751,7 +751,7 @@ constructor(value?: ParagraphStyleInterface)
 | textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  否  | 设置文本段落在水平方向的对齐方式。 |
 | textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否    | 设置文本段落的首行文本缩进。 |
 | maxLines   | number   | 否    | 设置文本段落的最大行数。 |
-| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。 |
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。 |
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。 |
 | leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。 |
 
@@ -1370,7 +1370,7 @@ struct Index {
   paragraphStyleAttr2: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Start, leadingMargin:  this.leadingMarginPlaceholder1 });
   //第三段落不设置缩进配置最大行数及超长显示方式
   paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.End, maxLines: 1, wordBreak: WordBreak.BREAK_ALL, overflow: TextOverflow.Ellipsis});
-  //30vp行高样式对象
+  //行高样式对象
   lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
   //创建含段落样式的对象paragraphStyledString1
   paragraphStyledString1: StyledString = new StyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束\n正文第二段落开始hello world正文第二段落结束\n正文第三段落ABCDEFGHIJKLMNOPQRSTUVWXYZ。", [
@@ -1485,81 +1485,81 @@ import image from '@ohos.multimedia.image'
 import { LengthMetrics } from '@ohos.arkui.node';
 
 class MyCustomSpan extends CustomSpan {
-  constructor(word: string, width: number, height?: number) {
+  constructor(word: string, width: number, height: number) {
     super();
     this.word = word;
-    this.width = width
-    this.height = height
+    this.width = width;
+    this.height = height;
   }
 
   onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
-    return { width: this.width, height: this.height }
+    return { width: this.width, height: this.height };
   }
 
   onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
     let canvas = context.canvas;
 
     const brush = new drawing.Brush();
-    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 })
-    const font = new drawing.Font()
-    font.setSize(25)
-    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
-    canvas.attachBrush(brush)
+    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 });
+    const font = new drawing.Font();
+    font.setSize(25);
+    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.attachBrush(brush);
     canvas.drawRect({
       left: options.x + 10,
       right: options.x + vp2px(this.width) - 10,
       top: options.lineTop + 10,
       bottom: options.lineBottom - 10
-    })
+    });
 
-    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 })
-    canvas.attachBrush(brush)
-    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15)
-    canvas.detachBrush()
+    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 });
+    canvas.attachBrush(brush);
+    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
+    canvas.detachBrush();
   }
 
   setWord(word: string) {
     this.word = word;
   }
 
-  width: number = 160
-  word: string = "drawing"
-  height: number = 10
+  width: number = 160;
+  word: string = "drawing";
+  height: number = 10;
 }
 
 @Entry
 @Component
 struct styled_string_demo6 {
-  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130)
-  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80)
-  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40)
+  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130, 10);
+  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
+  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40);
   style2: MutableStyledString = new MutableStyledString(this.customSpan2);
   style1: MutableStyledString = new MutableStyledString(this.customSpan1);
   textStyle: MutableStyledString = new MutableStyledString("123");
-  textController: TextController = new TextController()
-  imagePixelMap: image.PixelMap | undefined = undefined
-  isPageShow: boolean = true
+  textController: TextController = new TextController();
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  isPageShow: boolean = true;
 
   private async getPixmapFromMedia(resource: Resource) {
     let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
       desiredSize: { width: 50, height: 50 }
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 
   async onPageShow() {
     if (!this.isPageShow) {
       return
     }
-    this.isPageShow = false
+    this.isPageShow = false;
 
     this.style1.appendStyledString(new MutableStyledString("文本绘制 示例代码 CustomSpan", [
       {

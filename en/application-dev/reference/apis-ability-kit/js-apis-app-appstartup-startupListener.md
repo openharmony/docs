@@ -1,7 +1,7 @@
 # @ohos.app.appstartup.StartupListener
 
 
-The @ohos.app.appstartup.StartupListener module provides the API to listen for startup task initialization events.
+The @ohos.app.appstartup.StartupListener module provides the API to listen for component initialization events.
 
 > **NOTE**
 >
@@ -19,7 +19,7 @@ import StartupListener from '@ohos.app.appstartup.StartupListener';
 
 onCompleted(error: BusinessError\<void\>): void
 
-Called when all the startup tasks are initialized.
+Called when all the components are initialized.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
