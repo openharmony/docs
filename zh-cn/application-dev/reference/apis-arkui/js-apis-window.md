@@ -2003,9 +2003,9 @@ getPreferredOrientation(): Orientation
 
 主窗口调用，获取窗口的显示方向属性。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2957,7 +2957,7 @@ try {
 
 ### off('windowEvent')<sup>10+</sup>
 
-off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
+off(type: 'windowEvent', callback?: Callback&lt;WindowEventType&gt;): void
 
 关闭窗口生命周期变化的监听。
 
