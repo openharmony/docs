@@ -54,12 +54,6 @@ onClick(event: (event: ClickEvent) => void): T
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 | 名称   | 参数类型                      | 描述         |
 | ---- | ------------------------- | ---------- |
 | area | [Area](ts-types.md#area8) | 目标元素的区域信息。 |
