@@ -16,7 +16,7 @@ skill标签对象，三方应用可以通过[bundleManager.getBundleInfoForSelf]
 | actions     | Array\<String> | 是   | 否   | Skill接收的Action集合。 |
 | entities    | Array\<String> | 是   | 否   | Skill接收的Entity集合。   |
 | uris | Array<\<SkillUri>> | 是   | 否   | Want匹配的Uri集合。 |
-| domainVerify     | String | 是   | 否   | Skill接收的DomainVerify值, 仅在AbilityInfo中存在。 |
+| domainVerify     | boolean | 是   | 否   | Skill接收的DomainVerify值, 仅在AbilityInfo中存在。 |
 | permissions     | Array\<String> | 是   | 否   | Skill接收的Permission集合。 |
 
 ## SkillUri
