@@ -327,6 +327,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | MIC                  | 15     | 麦克风。                                                  |
 | USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
 | DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。           |
+| REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。           |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
 
 ## CommunicationDeviceType<sup>9+</sup>
