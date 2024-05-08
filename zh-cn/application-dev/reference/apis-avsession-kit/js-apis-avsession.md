@@ -3034,7 +3034,7 @@ currentAVSession.getAllCastDisplays()
        console.info('There is not a cast display');
      }
    })
-   .catch((error: BusinessError) => {
+   .catch((err: BusinessError) => {
      console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
    });
 ```
@@ -3589,7 +3589,7 @@ import http from '@ohos.net.http'
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
    let licenseRequestStr: string = TypeConversion.byteToString(requestData);
    //get media key from DRM server
-   let licenseResponeStr: string = 'defaultStr';
+   let licenseResponseStr: string = 'defaultStr';
    let httpRequest = http.createHttp();
    let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
    try {
@@ -3604,7 +3604,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
       });
       if (response?.responseCode == http.ResponseCode.OK) {
         if (typeof response.result == 'string') {
-          licenseResponeStr = response.result;
+          licenseResponseStr = response.result;
         }
       }
       httpRequest.destroy();
@@ -3613,9 +3613,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
      return;
    }
 
-   let licenseResponeData: Unit8Array = TypeConversion.stringToByte(licenseResponeStr);
+   let licenseResponseData: Uint8Array = TypeConversion.stringToByte(licenseResponseStr);
    try {
-    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponeData);
+    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponseData);
    } catch (err) {
     let error = err as BusinessError;
     console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
