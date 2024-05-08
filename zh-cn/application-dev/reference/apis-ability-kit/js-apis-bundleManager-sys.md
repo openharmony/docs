@@ -3954,7 +3954,7 @@ setAdditionalInfo(bundleName: string, additionalInfo: string): void
 | 错误码ID | 错误信息                                                    |
 | -------- | ---------------------------------------------------------- |
 | 17700001 | The specified bundleName is not found.                     |
-| 17700053 | Not app gallery call.                                      |
+| 17700053 | The caller is not AppGallery.                                      |
 
 **示例：**
 
