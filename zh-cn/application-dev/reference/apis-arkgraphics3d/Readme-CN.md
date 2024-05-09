@@ -1,7 +1,7 @@
 # ArkGraphics 3D API参考
 
 - ArkTS API
-  - [@ohos.graphics.scene (ArkGraphics 3D 模块)](js-apis-scene.md)
+  - [@ohos.graphics.scene (ArkGraphics 3D模块)](js-apis-scene.md)
   - graphics3d
     - [Scene](js-apis-inner-scene.md)
     - [SceneNode](js-apis-inner-scene-nodes.md)
