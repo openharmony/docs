@@ -41,7 +41,7 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 | 名称                            |  值     | 说明                                         |
 | ------------------------------- | ------ | -------------------------------------------- |
 | AUDIO_LATENCY_MODE_NORMAL       | 0      | 普通时延模式。                                |
-| AUDIO_LATENCY_MODE_FAST         | 1      | 低时延模式。该模式适用于比较短的音频文件，音频文件过长时可能被截断，该特性与[SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool)一致。 |
+| AUDIO_LATENCY_MODE_FAST         | 1      | 低时延模式。该模式适用于比较短的音频文件，音频文件过长时可能被截断，该特性与SoundPool一致。 |
 
 ## AudioHapticPlayerOptions
 
@@ -70,8 +70,8 @@ registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源格式和路径格式的支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)；对低时延模式，音频资源格式支持可参考[SoundPool](../apis-media-kit/js-apis-inner-multimedia-soundPool.md#soundpool)，路径格式需满足[文件管理模块open函数]<!--start_del-->(../apis-core-file-kit/js-apis-file-fs.md#fsopen)<!--del_end-->的要求。对两种时延模式，均建议传入文件的绝对路径。           |
-| hapticUri | string                                  | 是   | 振动资源的Uri。振动资源格式支持可参考[vibrator]<!--start_del-->(../apis-sensor-service-kit/js-apis-vibrator.md#hapticfiledescriptor10)<!--del_end-->，路径格式需满足[文件管理模块open函数]<!--start_del-->(../apis-core-file-kit/js-apis-file-fs.md#fsopen)<!--del_end-->的要求。建议传入文件的绝对路径。         |
+| audioUri  | string                                  | 是   | 音频资源的Uri。对普通时延模式，音频资源格式和路径格式的支持可参考media.AVPlayer；对低时延模式，音频资源格式支持可参考SoundPool，路径格式需满足[文件管理模块open函数]的要求。对两种时延模式，均建议传入文件的绝对路径。           |
+| hapticUri | string                                  | 是   | 振动资源的Uri。振动资源格式支持可参考[vibrator]，路径格式需满足[文件管理模块open函数]的要求。建议传入文件的绝对路径。         |
 
 **返回值：**
 
