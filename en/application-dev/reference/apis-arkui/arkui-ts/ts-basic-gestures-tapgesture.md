@@ -11,6 +11,8 @@
 
 TapGesture(value?: { count?: number, fingers?: number })
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -23,7 +25,7 @@ TapGesture(value?: { count?: number, fingers?: number })
 
 | Name| Description|
 | -------- | -------- |
-| onAction(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Callback invoked when a tap gesture is recognized.|
+| onAction(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Callback invoked when a tap gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 

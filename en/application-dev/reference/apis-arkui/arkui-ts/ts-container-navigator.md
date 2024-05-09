@@ -16,6 +16,8 @@ Supported
 
 Navigator(value?: {target: string, type?: NavigationType})
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type      | Mandatory| Description                                      |
@@ -25,21 +27,78 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 ## NavigationType
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name     | Value | Description                        |
 | ------- | ------- | -------------------------- |
 | Push    | 1 | Navigates to the specified page in the application.              |
 | Replace | 2 | Replaces the current page with another one in the application and destroys the current page.|
 | Back    | 3 | Returns to the specified page. If the specified page does not exist in the stack, no response is returned. If no page is specified, the previous page is returned to.|
 
-
 ## Attributes
 
-| Name  | Parameter   | Description                                                        |
-| ------ | ------- | ------------------------------------------------------------ |
-| active | boolean | Whether the **\<Navigator>** component is activated. If the component is activated, the corresponding navigation takes effect.|
-| params | object  | Data that needs to be passed to the target page during redirection. You can use [router.getParams()](../apis/js-apis-router.md#routergetparams) to obtain the data on the target page.|
-| target | string         | Path of the target page to be redirected to. The target page must be added to the **main_pages.json** file.                        |
-| type   | [NavigationType](#navigationtype)  | Navigation type.<br>Default value: **NavigationType.Push**|
+### active
+
+active(value: boolean)
+
+Sets whether the **\<Navigator>** component is activated. If the component is activated, the corresponding navigation takes effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                      |
+| ------ | ------- | ---- | -------------------------- |
+| value  | boolean | Yes  | Whether the **\<Navigator>** component is activated.|
+
+### params
+
+params(value: object)
+
+Sets the data that needs to be passed to the target page during redirection.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | object | Yes  | Data that needs to be passed to the target page during redirection. You can use [router.getParams()](../js-apis-router.md#routergetparams) to obtain the data on the target page.|
+
+### target
+
+target(value: string)
+
+Path of the target page to be redirected to. The target page must be added to the **main_pages.json** file.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| value  | string | Yes  | Path of the target page to be redirected to.|
+
+### type
+type(value: NavigationType)
+
+Sets the navigation type.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                          |
+| ------ | ------ | ---- | ---------------------------------------------- |
+| value  | [NavigationType](#navigationtype) | Yes  | Navigation type.<br>Default value: **NavigationType.Push**|
 
 
 ## Example
