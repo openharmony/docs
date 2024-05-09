@@ -1734,8 +1734,6 @@ getImmersiveModeEnabledState(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let isEnabled = windowClass.getImmersiveModeEnabledState();
 ```
 
