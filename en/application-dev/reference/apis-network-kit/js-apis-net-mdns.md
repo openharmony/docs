@@ -17,6 +17,8 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 Adds an MDNS service. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -73,6 +75,8 @@ mdns.addLocalService(context, localServiceInfo, (error:BusinessError, data:mdns.
 addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
 Adds an MDNS service. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -135,6 +139,8 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 Removes an MDNS service. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -191,6 +197,8 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
 Removes an MDNS service. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -252,6 +260,8 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 Creates a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -293,6 +303,8 @@ let discoveryService : Object = mdns.createDiscoveryService(context, serviceType
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
 Resolves an MDNS service. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -350,6 +362,8 @@ mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data:
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
 Resolves an MDNS service. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -415,6 +429,8 @@ startSearchingMDNS(): void
 
 Searches for MDNS services on the LAN.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Example**
@@ -438,6 +454,8 @@ stopSearchingMDNS(): void
 
 Stops searching for MDNS services on the LAN.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Example**
@@ -460,6 +478,8 @@ discoveryService.stopSearchingMDNS();
 on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 
 Enables listening for **discoveryStart** events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -494,6 +514,8 @@ discoveryService.stopSearchingMDNS();
 off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 
 Disables listening for **discoveryStart** events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -533,6 +555,8 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 
 Enables listening for **discoveryStop** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -566,6 +590,8 @@ discoveryService.stopSearchingMDNS();
 off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 
 Disables listening for **discoveryStop** events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -605,6 +631,8 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 Enables listening for **serviceFound** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -638,6 +666,8 @@ discoveryService.stopSearchingMDNS();
 off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 Disables listening for **serviceFound** events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -677,6 +707,8 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 Enables listening for **serviceLost** events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 **Parameters**
@@ -710,6 +742,8 @@ discoveryService.stopSearchingMDNS();
 off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 Disables listening for **serviceLost** events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -747,6 +781,8 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 
 Defines the MDNS service information.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 | Name                 | Type                               | Mandatory| Description                    |
@@ -761,6 +797,8 @@ Defines the MDNS service information.
 
 Defines the MDNS service attribute information.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 | Name                 | Type                               | Mandatory| Description                    |
@@ -771,6 +809,8 @@ Defines the MDNS service attribute information.
 ## DiscoveryEventInfo<sup>11+</sup>
 
 Defines the MDNS service event information.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -783,6 +823,8 @@ Defines the MDNS service event information.
 
 Defines the MDNS error information.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 | Name        | Value  | Description       |
@@ -790,5 +832,3 @@ Defines the MDNS error information.
 | INTERNAL_ERROR  | 0    | Operation failed because of an internal error. (not supported currently) |
 | ALREADY_ACTIVE      | 1    | Operation failed because the service already exists. (not supported currently)|
 | MAX_LIMIT  | 2 | Operation failed because the number of requests exceeds the maximum value. (not supported currently)|
-
-<!--no_check-->

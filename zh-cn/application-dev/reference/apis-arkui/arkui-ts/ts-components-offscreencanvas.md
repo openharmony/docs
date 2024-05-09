@@ -166,6 +166,8 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 返回OffscreenCanvas组件的绘图上下文。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数        | 类型                                                         | 必填 | 默认值 | 说明                                                         |

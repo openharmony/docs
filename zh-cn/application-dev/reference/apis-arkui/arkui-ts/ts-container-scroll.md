@@ -181,6 +181,8 @@ enablePaging(value: boolean)
 
 设置是否支持划动翻页。如果同时设置了划动翻页enablePaging和限位滚动scrollSnap，则scrollSnap优先生效，enablePaging不生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -194,6 +196,8 @@ enablePaging(value: boolean)
 flingSpeedLimit(speedLimit: number)
 
 限制跟手滑动结束后，Fling动效开始时的最大初始速度。单位是vp/s。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -427,6 +431,8 @@ Scroll到达起始位置时触发。
 
 Scroll初始化时会触发一次，滚动到起始位置时触发一次。Scroll边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onReachEnd<sup>11+</sup>
@@ -436,6 +442,8 @@ onReachEnd(event: () => void)
 Scroll到达末尾位置时触发。
 
 Scroll边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -481,7 +489,7 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions): void
 | 参数名   | 参数类型 | 必填   | 参数描述      |
 | ----- | ---- | ---- | --------- |
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 |
+| options<sup>12+</sup>&nbsp; | [ScrollEdgeOptions](#scrolledgeoptions12对象说明) | 否    | 设置滚动到边缘位置的模式。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ### fling<sup>12+</sup>
 
@@ -613,6 +621,8 @@ getItemRect(index: number): RectResult
 >
 >  支持Scroll、List、Grid、WaterFlow组件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 参数类型   | 必填   | 参数描述              |
@@ -649,6 +659,8 @@ getItemRect(index: number): RectResult
 
 ## ScrollAnimationOptions<sup>12+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述              |
 | ----- | ------ | ------ | ----------------- |
 | duration | number | 否 | 设置滚动时长。<br/>默认值：1000。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
@@ -667,12 +679,18 @@ getItemRect(index: number): RectResult
 | AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List,使指定item完全处于显示区。|
 
 ## NestedScrollOptions<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型  | 必填 | 描述              |
 | ----- | ------ | ------ | ----------------- |
 | scrollForward | NestedScrollMode | 是 | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
 | scrollBackward | NestedScrollMode | 是 | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
 ## NestedScrollMode<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
 | SELF_ONLY   | 只自身滚动，不与父组件联动。  |

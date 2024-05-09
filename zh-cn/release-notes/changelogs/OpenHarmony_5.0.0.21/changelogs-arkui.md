@@ -394,6 +394,7 @@ AlphabetIndexer组件
 公开接口
 
 **变更原因**
+
 UX样式变更
 
 **变更影响**
@@ -402,7 +403,7 @@ API12变更之前：header、footer与菜单文本左对齐。
 
 ![MenuItemGroup组件默认值变更前效果图](figures/MenuItemGroup_HeaderAlign_Before.png)
 
-API12变更之后：header、footer与左侧图标左对齐。
+API12变更之后：header、footer与左侧图标左对齐。当header、footer较长时，变更后，菜单宽度可能自适应变窄。
 
 ![MenuItemGroup组件默认值变更后效果图](figures/MenuItemGroup_HeaderAlign_After.png)
 

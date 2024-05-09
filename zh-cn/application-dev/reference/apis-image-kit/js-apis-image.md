@@ -2452,7 +2452,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -2482,7 +2482,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
@@ -2721,7 +2721,7 @@ const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSou
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，RAW，dng。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng。 |
 
 ### getImageInfo
 

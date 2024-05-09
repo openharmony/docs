@@ -326,6 +326,8 @@ pixelStretchEffect(options: PixelStretchEffectOptions)
 
 ## ShadowStyle<sup>10+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                | 描述     |
 | ----------------- | ------ |
 | OUTER_DEFAULT_XS  | 超小阴影。  |

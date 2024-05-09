@@ -508,16 +508,10 @@ import audio from '@ohos.multimedia.audio';
 let audioManager = audio.getAudioManager();
 try {
     await audioManager.disableSafeMediaVolume().then(() => {
-        expect(true).assertTrue();
-        done();
-    }).catch((err) => {
-        console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
-        expect(err.code).assertEqual(201);
-        done();
-    });
-} catch (error) {
-    expect(false).assertTrue();
-    done();
+      console.info('disableSafeMediaVolume success.');
+    })
+} catch (err) {
+  console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
 }
 ```
 

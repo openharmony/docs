@@ -22,6 +22,9 @@
 
 
 ## GestureType
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | 点击手势，支持单次点击、多次点击识别。 |
@@ -79,6 +82,9 @@
 | velocity<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的主方向速度。为xy轴方向速度的平方和的算术平方根。 |
 
 ## SourceType枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Unknown | 未知设备。 |
@@ -98,6 +104,9 @@
 | localY | number | 相对于当前组件元素原始区域左上角的y轴坐标。 |
 
 ## SourceTool枚举说明<sup>9+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Unknown | 未知输入源。 |

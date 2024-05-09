@@ -163,6 +163,8 @@ description(value: CustomBuilder)
 
 设置说明内容。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -176,6 +178,8 @@ description(value: CustomBuilder)
 trackShadow(value: GaugeShadowOptions)
 
 设置阴影样式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -214,13 +218,15 @@ privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
 | isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下Gauge指针指向0位置，最大值最小值文本将被遮罩，量程显示灰色或者底色。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
 
 ## GaugeShadowOptions<sup>11+</sup>对象说明
-| 名称          | 参数类型 | 必填 | 描述 |
-| ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+
+GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10)，具有MultiShadowOptions的全部属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ## GaugeIndicatorOptions<sup>11+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | icon | [Resource](ts-types.md#resource类型) | 否 | 图标资源路径。<br/>**说明：** <br/>不配置则使用默认的三角形样式指针。<br/>支持使用svg格式的图标，若使用其他格式，则使用默认的三角形样式指针。 |

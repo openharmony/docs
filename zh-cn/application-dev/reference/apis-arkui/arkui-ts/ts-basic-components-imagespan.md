@@ -105,6 +105,8 @@ baselineOffset(value: LengthMetrics)
 
 ## ImageSpanAlignment
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                           |
 | -------- | ------------------------------ |
 | TOP      | 图片上边沿与文本上边沿对齐。   |

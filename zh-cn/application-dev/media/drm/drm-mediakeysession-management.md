@@ -101,7 +101,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    调用MediaKeySession类中的processOfflineReleaseResponse方法，处理离线许可证释放响应。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   async function processOfflineReleaseResponse(response: Uint8Array): void {
+   async function processOfflineReleaseResponse(response: Uint8Array): Promise<void> {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      let offlineReleaseRequest = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
@@ -120,7 +120,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
    调用MediaKeySession类中的restoreOfflineMediaKeys方法，恢复离线许可证。接口调用失败会返回相应错误码，错误码类型参见[DrmErrorCode](../../reference/apis-drm-kit/js-apis-drm.md#drmerrorcode)。
 
    ```ts
-   function restoreOfflineMediaKeys(mediakeyId: Uint8Array): Promise<void> {
+   function restoreOfflineMediaKeys(mediakeyId: Uint8Array): void {
      let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
      let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
      let response = new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
@@ -256,7 +256,7 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
        ```
 
        ```ts
-       function unRegisterExpirationUpdated(mediaKeySession: drm.MediaKeysession): void {
+       function unRegisterExpirationUpdated(mediaKeySession: drm.MediaKeySession): void {
          mediaKeySession.off('expirationUpdate');
          return;
        }
@@ -266,8 +266,10 @@ DRM会话管理（MediaKeySession）支持MediaKeySession实例管理、许可�
 
        ```ts
        function onRegisterKeyChanged(mediaKeySession: drm.MediaKeySession): void {
-         mediaKeySession.on('keysChange', (eventInfo: drm.EventInfo) => {
-           console.log('keysChange' + 'info:' + eventInfo.info + ' extraInfo:' + eventInfo.extraInfo);
+         mediaKeySession.on('keysChange', (keyInfo : drm.KeysInfo[], newKeyAvailable:boolean) => {
+           for(let i = 0; i<keyInfo.length; i++){
+             console.log('keysChange' + 'info:' + keyInfo[i].keyId + ' extraInfo:' + keyInfo[i].value);
+           }
          });
          return;
        }

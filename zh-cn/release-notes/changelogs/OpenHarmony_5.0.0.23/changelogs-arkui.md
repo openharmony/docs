@@ -213,3 +213,103 @@ class TestObserved6 extends TestObserved5 {
 **适配指导**
 
 开发者需要根据错误提示信息，进行适配整改。
+
+## cl.arkui.6 TextInput、TextArea、Search、RichEditor空间文本菜单样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+规格变更
+
+**变更影响**
+
+该变更为兼容性变更。
+API Version 11 以及之前的版本：文本选择菜单，包含分享、搜索、翻译按钮，三个按钮都是灰色，并且有拓展菜单。
+
+API Version 12 变更后：文本选择菜单，不包含分享、搜索、翻译按钮，不出现拓展菜单。
+
+**起始 API Level**
+
+文本菜单是系统能力，无对外接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+TextInput、TextArea、Search、RichEditor。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.7 ImageSpan、ContainerSpan单独使用在DevEco Studio中报错变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+规格变更
+
+**变更影响**
+
+该变更为非兼容性变更。
+变更前：Text子组件ImageSpan、ContainerSpan放在其他组件下使用，编译无报错。
+变更后：DevEco Studio中单独使用ImageSpan、ContainerSpan组件，而不是作为Text的子组件被使用，编译报错。
+
+**起始 API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+ImageSpan、ContainerSpan。
+
+**适配指导**
+
+默认行为变更，开发者按照报错提示修改。
+
+## cl.arkui.8 Popup组件宽度设置100%场景下避让位置变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Popup宽度大于等于100% - 6vp时，Popup会进行默认避让，且距离窗口有6vp左右边距。
+
+变更后，Popup宽度大于等于100% - 6vp时，Popup不会进行默认避让，且距离窗口没有6vp左右边距。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+Popup组件。
+
+**适配指导**
+
+默认效果变更，应注意变更后的默认效果是否符合开发者预期，如不符合可以使用offset属性自行调整Popup位置，请查阅[Popup控制](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)文档。
+
