@@ -22,7 +22,7 @@ import scene3d from '@ohos.graphics.scene'
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createShaderPromise() : Promise<scene3d.Shader> {
+function createShaderPromise() : Promise<scene3d.Shader> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -51,7 +51,7 @@ async function createShaderPromise() : Promise<scene3d.Shader> {
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createNodePromise() : Promise<scene3d.Node> {
+function createNodePromise() : Promise<scene3d.Node> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -90,7 +90,7 @@ createCamera(params: SceneNodeParameters): Promise\<Camera>
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createCameraPromise() : Promise<scene3d.Camera> {
+function createCameraPromise() : Promise<scene3d.Camera> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -126,7 +126,7 @@ createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createLightPromise() : Promise<scene3d.Light> {
+function createLightPromise() : Promise<scene3d.Light> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -161,7 +161,7 @@ createNode(params: SceneNodeParameters): Promise\<Node>
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createNodePromise() : Promise<scene3d.Node> {
+function createNodePromise() : Promise<scene3d.Node> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -198,7 +198,7 @@ createMaterial(params: SceneResourceParameters, materialType: MaterialType): Pro
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createMaterialPromise() : Promise<scene3d.Material> {
+function createMaterialPromise() : Promise<scene3d.Material> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -233,7 +233,7 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createShaderPromise() : Promise<scene3d.Shader> {
+function createShaderPromise() : Promise<scene3d.Shader> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -270,7 +270,7 @@ createImage(params: SceneResourceParameters): Promise\<Image>
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createImagePromise() : Promise<scene3d.Image> {
+function createImagePromise() : Promise<scene3d.Image> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -305,7 +305,7 @@ createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createEnvironmentPromise() : Promise<scene3d.Environment> {
+function createEnvironmentPromise() : Promise<scene3d.Environment> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
