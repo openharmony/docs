@@ -365,7 +365,7 @@ function getNode() : void {
   scene.then(async (result: scene3d.Scene) => {
     if (result) {
          // 寻找指定路径的节点
-        let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
+        let node : scene3d.Node | null = result.getNodeByPath("rootNode_");
     }
   });
 }
