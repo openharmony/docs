@@ -50,7 +50,7 @@
    > 
    > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考]<!--start_del--><!--del_end-->。
    > 
-   > - 需要使用[支持的播放格式与协议](media-kit-intro.md#支持的格式与协议)。
+   > - 需要使用支持的播放格式与协议。
 
 4. 设置窗口：获取并设置属性SurfaceID，用于设置显示画面。
    应用需要从XComponent组件获取surfaceID，获取方式请参考[XComponent]<!--start_del--><!--del_end-->。
