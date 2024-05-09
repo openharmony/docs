@@ -612,6 +612,8 @@ copyFile(src: string | number, dest: string | number, callback: AsyncCallback&lt
 
 复制文件，覆盖方式为完全覆盖目标文件，未覆盖部分将被裁切。使用callback异步回调。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -4906,6 +4908,8 @@ stop(): void
 
 open接口flags参数常量。文件打开标签。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 | 名称   | 类型   | 值  | 说明      |
@@ -4931,12 +4935,12 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 类型       | 必选       | 说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| suffix | Array&lt;string&gt;     | 否 | 文件后缀名完全匹配，各个关键词OR关系。     <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
-| displayName    | Array&lt;string&gt;     | 否 | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| mimeType    | Array&lt;string&gt; | 否 | mime类型完全匹配，各个关键词OR关系。   <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
-| fileSizeOver    | number | 否 | 文件大小匹配，大于等于指定大小的文件。  <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。     |
-| lastModifiedAfter    | number | 否 | 文件最近修改时间匹配，在指定时间点及之后的文件。   <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
-| excludeMedia    | boolean | 否 | 是否排除Media中已有的文件。   <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
+| suffix | Array&lt;string&gt;     | 否 | 文件后缀名完全匹配，各个关键词OR关系。           |
+| displayName    | Array&lt;string&gt;     | 否 | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。 |
+| mimeType    | Array&lt;string&gt; | 否 | mime类型完全匹配，各个关键词OR关系。       |
+| fileSizeOver    | number | 否 | 文件大小匹配，大于等于指定大小的文件。       |
+| lastModifiedAfter    | number | 否 | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
+| excludeMedia    | boolean | 否 | 是否排除Media中已有的文件。       |
 
 ## ConflictFiles<sup>10+</sup>
 
@@ -4986,12 +4990,14 @@ open接口flags参数常量。文件打开标签。
 
 可选项类型，支持read接口使用。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 | 名称        | 类型       | 必选       | 说明                |
 | ----------- | --------------- | ------------------ |------------------ |
-| length | number     | 否 | 期望读取数据的长度。可选，默认缓冲区长度。     <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
-|  offset    | number     | 否 | 期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| length | number     | 否 | 期望读取数据的长度。可选，默认缓冲区长度。           |
+|  offset    | number     | 否 | 期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。 |
 
 ## ReadTextOptions<sup>11+</sup>
 
@@ -5001,8 +5007,8 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 类型       | 必选       | 说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| length | number     | 否 | 期望读取数据的长度。可选，默认文件长度。    <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-|  offset    | number     | 否 | 期望读取文件的位置。可选，默认从当前位置开始读取。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| length | number     | 否 | 期望读取数据的长度。可选，默认文件长度。           |
+|  offset    | number     | 否 | 期望读取文件的位置。可选，默认从当前位置开始读取。 |
 | encoding    | string | 否 | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。   <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
 
 ## WriteOptions<sup>11+</sup>
@@ -5013,18 +5019,20 @@ open接口flags参数常量。文件打开标签。
 
 | 名称        | 类型       | 必选       | 说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| length | number     | 否 | 期望写入数据的长度。可选，默认缓冲区长度。           |
-|  offset    | number     | 否 | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。 |
+| length | number     | 否 | 期望写入数据的长度。可选，默认缓冲区长度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。           |
+|  offset    | number     | 否 | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | encoding    | string | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
 
 ## ListFileOptions<sup>11+</sup>
 
 可选项类型，支持listFile接口使用。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 | 名称        | 类型       | 必选       |  说明                |
 | ----------- | --------------- | ------------------ | ------------------ |
-| recursion | boolean     | 否 | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。    <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-|  listNum    | number     | 否 | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| filter    | [Filter](#filter10) | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。  <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。     |
+| recursion | boolean     | 否 | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。           |
+|  listNum    | number     | 否 | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。 |
+| filter    | [Filter](#filter10) | 否 | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
