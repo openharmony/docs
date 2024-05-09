@@ -4,7 +4,7 @@
 
 **错误信息**
 
-Permission verification failed, usually the result returned by VerifyAccessToken.
+Permission verification failed. The application does not have the permission required to call the API.
 
 **错误描述**
 
@@ -22,7 +22,7 @@ Permission verification failed, usually the result returned by VerifyAccessToken
 
 **错误信息**
 
-Permission verification failed, application which is not a system application uses system API.
+Permission verification failed. A non-system application calls a system API.
 
 **错误描述**
 
@@ -40,7 +40,7 @@ Permission verification failed, application which is not a system application us
 
 **错误信息**
 
-BusinessError 401: Parameter error. The type of `${参数名}` must be `${正确的类型}[or ${其他正确的输入}]`.
+Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.
 
 **错误描述**
 
@@ -58,7 +58,7 @@ BusinessError 401: Parameter error. The type of `${参数名}` must be `${正确
 
 **错误信息**
 
-BusinessError 801: Capability not supported. function `${函数名}` can not work correctly due to limited device capabilities.
+Capability not supported. Failed to call the API due to limited device capabilities.
 
 **错误描述**
 
