@@ -30,7 +30,7 @@ function loadModel() : void {
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createCameraPromise() : Promise<scene3d.Camera> {
+function createCameraPromise() : Promise<scene3d.Camera> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -68,7 +68,7 @@ async function createCameraPromise() : Promise<scene3d.Camera> {
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createLightPromise() : Promise<scene3d.Light> {
+function createLightPromise() : Promise<scene3d.Light> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
