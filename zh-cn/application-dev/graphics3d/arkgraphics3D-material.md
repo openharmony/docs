@@ -11,7 +11,7 @@
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createMaterialPromise() : Promise<scene3d.Material> {
+function createMaterialPromise() : Promise<scene3d.Material> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -29,7 +29,7 @@ async function createMaterialPromise() : Promise<scene3d.Material> {
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createShaderPromise() : Promise<scene3d.Shader> {
+function createShaderPromise() : Promise<scene3d.Shader> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -59,7 +59,7 @@ async function createShaderPromise() : Promise<scene3d.Shader> {
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createImagePromise() : Promise<scene3d.Image> {
+function createImagePromise() : Promise<scene3d.Image> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -88,7 +88,7 @@ async function createImagePromise() : Promise<scene3d.Image> {
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-async function createEnvironmentPromise() : Promise<scene3d.Environment> {
+function createEnvironmentPromise() : Promise<scene3d.Environment> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
