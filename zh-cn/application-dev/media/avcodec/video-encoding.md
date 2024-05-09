@@ -138,6 +138,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 4. 调用OH_VideoEncoder_Configure()配置编码器。
 
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    
     **Configure 参数校验规则**
     | Key                        | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
     | -------------------------- | -------- | -------- | ------ |

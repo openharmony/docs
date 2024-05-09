@@ -149,6 +149,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     | OH_MD_KEY_PIXEL_FORMAT | √        | ×        | √      |
     | OH_MD_KEY_FRAME_RATE   | √        | ×        | √      |
     | OH_MD_KEY_ROTATION     | √        | ×        | √      |
+    
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
