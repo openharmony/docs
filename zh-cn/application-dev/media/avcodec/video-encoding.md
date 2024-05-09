@@ -142,7 +142,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 输入帧parameter对应的index，送入InParameterIndexQueue队列
         // 输入帧的数据parameter送入InParameterQueue队列
         // 数据处理，请参考:
-        // - 写入编码码流
+        // - 写入编码图像
         // - 通知编码器码流结束
         // - 随帧参数写入
         // - 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
@@ -470,7 +470,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
             isFirstFrame = false;
         }
         // 数据处理，请参考:
-        // - 写入编码码流
+        // - 写入编码图像
         // - 通知编码器码流结束
     }
     
