@@ -2,7 +2,7 @@
 
  **1、一个链接替换** 
 
-Media Kit（媒体服务）提供了<!--RP1-->[AVPlayer](#avplayer)和[AVRecorder](#avrecorder)<!--RP1End-->用于播放、录制音视频。
+Media Kit（媒体服务）提供了<!--RP1-->[AVPlayer]和[AVRecorder]<!--RP1End-->用于播放、录制音视频。
 
  **2、一句话替换** 
 
