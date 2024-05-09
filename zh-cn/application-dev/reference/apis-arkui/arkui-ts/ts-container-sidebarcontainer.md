@@ -22,6 +22,8 @@
 
 SideBarContainer( type?: SideBarContainerType )
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -29,6 +31,8 @@ SideBarContainer( type?: SideBarContainerType )
 | type | [SideBarContainerType](#sidebarcontainertype枚举说明) | 否 | 设置侧边栏的显示类型。<br/>默认值：SideBarContainerType.Embed |
 
 ## SideBarContainerType枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -48,6 +52,8 @@ showSideBar(value: boolean)
 
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -61,6 +67,8 @@ showSideBar(value: boolean)
 controlButton(value: ButtonStyle)
 
 设置侧边栏控制按钮的属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,6 +84,8 @@ showControlButton(value: boolean)
 
 设置是否显示控制按钮。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -89,6 +99,8 @@ showControlButton(value: boolean)
 sideBarWidth(value: number&nbsp;|&nbsp;Length)
 
 设置侧边栏的宽度。设置为小于0的值时按默认值显示。受最小宽度和最大宽度限制，不在限制区域内取最近的点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -106,6 +118,8 @@ minSideBarWidth(value: number&nbsp;|&nbsp;Length)
 
 minSideBarWidth优先于侧边栏子组件minWidth，minSideBarWidth未设置时默认值优先级高于侧边栏子组件minWidth。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -122,6 +136,8 @@ maxSideBarWidth(value: number&nbsp;|&nbsp;Length)
 
 maxSideBarWidth优先于侧边栏子组件maxWidth，maxSideBarWidth未设置时默认值优先级高于侧边栏子组件maxWidth。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -136,7 +152,9 @@ autoHide(value: boolean)
 
 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。受minSideBarWidth属性方法影响，minSideBarWidth属性方法未设置值使用默认值。
 
-拖拽过程中判断是否要自动隐藏。小于最小宽度时需要阻尼效果触发隐藏（越界一段距离）
+拖拽过程中判断是否要自动隐藏。小于最小宽度时需要阻尼效果触发隐藏（越界一段距离）。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -152,6 +170,8 @@ sideBarPosition(value: SideBarPosition)
 
 设置侧边栏显示位置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -166,13 +186,15 @@ divider(value: DividerStyle | null)
 
 设置分割线的样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                      | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的样式。<br/>默认为DividerStyle：显示分割线。<br/>- null：不显示分割线。 |
+| value  | [DividerStyle](#dividerstyle10对象说明)&nbsp;\|&nbsp;null | 是   | 分割线的样式。<br/>默认为DividerStyle：显示分割线。<br/>- null：不显示分割线。<br/>undefined：行为不做处理，分割线样式与默认值保持一致。 |
 
 ### minContentWidth<sup>10+</sup>
 
@@ -193,6 +215,8 @@ Embed场景下，增大组件尺寸时仅增大内容区的尺寸。
 
 minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minContentWidth未设置时默认值优先级低于设置的minSideBarWidth与maxSideBarWidth属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -202,6 +226,8 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 | value  | [Dimension](ts-types.md#dimension10) | 是   | SideBarContainer组件内容区可显示的最小宽度。<br/>默认值：360vp<br/>单位：vp |
 
 ## ButtonStyle对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -213,12 +239,16 @@ minContentWidth优先于侧边栏的maxSideBarWidth与sideBarWidth属性，minCo
 
 ## SideBarPosition<sup>9+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | Start | 侧边栏位于容器左侧。 |
 | End | 侧边栏位于容器右侧。 |
 
 ## DividerStyle<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 参数类型      | 必填 | 描述                                     |
 | ----------- | ------------- | ---- | ---------------------------------------- |
@@ -253,6 +283,8 @@ onChange(callback: (value: boolean) =&gt; void)
 2、showSideBar属性自适应行为变化时；
 
 3、分割线拖拽触发autoHide时。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

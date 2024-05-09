@@ -61,7 +61,7 @@ import accessibility from '@ohos.accessibility';
 
 ## Action
 
-应用所支持的目标动作。
+应用所支持的目标动作，需要配置参数的目标动作已在描述中标明。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
@@ -80,9 +80,16 @@ import accessibility from '@ohos.accessibility';
 | copy                    | 表示复制操作。   |
 | paste                   | 表示粘贴操作。   |
 | select                  | 表示选择操作。当前版本暂不支持。   |
-| setText                 | 表示设置文本操作。当前版本暂不支持。 |
+| setText                 | 表示设置文本操作，需配置参数setText。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作。   |
+| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
+| common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
+| home<sup>12+</sup>                | 表示返回桌面操作。   |
+| back<sup>12+</sup>                | 表示返回上一级操作。   |
+| recentTask<sup>12+</sup>          | 表示打开最近任务操作。   |
+| notificationCenter<sup>12+</sup>  | 表示打开通知栏操作。   |
+| controlCenter<sup>12+</sup>       | 表示打开控制中心操作。   |
+| setCursorPosition<sup>12+</sup>   | 表示设置光标位置操作，需配置参数offset。   |
 
 ## Capability
 
@@ -174,6 +181,14 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 | type     | string                  | 是    | 监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 是    | 回调函数，在启用状态变化时将状态通过此函数进行通知。              |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -199,6 +214,14 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | 是    | 监听的事件名，固定为‘styleChange’，即字幕风格变化事件。 |
 | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 是    | 回调函数，在字幕风格变化时通过此函数进行通知。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
 
 **示例：**
 
@@ -227,6 +250,14 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 | type     | string                  | 是   | 取消监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与on('enableChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -253,6 +284,14 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                           | 是   | 取消监听的事件名，固定为‘styleChange’，即字幕风格变化事件。  |
 | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与on('styleChange')的callback一致。缺省时，表示注销所有已注册事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
 
 **示例：**
 
@@ -290,8 +329,9 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | currentIndex     | number                                | 否   | 当前条目序号。当前版本暂不支持。      |
 | endIndex         | number                                | 否   | 画面显示条目的结束序号。当前版本暂不支持。 |
 | itemCount        | number                                | 否   | 条目总数。当前版本暂不支持。        |
-| elementId<sup>12+</sup>        | number                                | 否   | 主动聚焦的组件ID。        |
+| elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
+| customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
 
 ### constructor
 
@@ -457,6 +497,14 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 | stateType   | [AbilityState](#abilitystate)            | 是    | 辅助应用的状态。         |
 | callback    | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | 是    | 回调函数，返回辅助应用信息列表。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -496,6 +544,14 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState)
 | ---------------------------------------- | --------------------- |
 | Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Promise对象，返回辅助应用信息列表。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -527,6 +583,14 @@ getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,
 | abilityType | [AbilityType](#abilitytype)              | 是    | 辅助应用的类型。         |
 | stateType   | [AbilityState](#abilitystate)            | 是    | 辅助应用的状态。         |
 | callback    | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | 是    | 回调函数，返回辅助应用信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -566,6 +630,14 @@ getAccessibilityExtensionListSync(abilityType: AbilityType, stateType: AbilitySt
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
 | Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt; | 返回辅助应用信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -623,6 +695,14 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 | type     | string                  | 是   | 监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 是   | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。此状态为全局辅助应用启用状态。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -647,6 +727,14 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | 是    | 监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 是    | 回调函数，在触摸浏览启用状态变化时将状态通过此函数进行通知。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
 
 **示例：**
 
@@ -673,6 +761,14 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 | type     | string                  | 是   | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与accessibility.on('accessibilityStateChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -697,6 +793,14 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                  | 是   | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 否   | 回调函数，取消指定callback对象的事件响应。需与accessibility.on('touchGuideStateChange')的callback一致。缺省时，表示注销所有已注册事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Parameter verification failed. |
 
 **示例：**
 
@@ -781,6 +885,8 @@ accessibility.isOpenAccessibility((err: BusinessError, data: boolean) => {
 isOpenAccessibilitySync(): boolean
 
 是否启用了辅助功能。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -872,6 +978,8 @@ accessibility.isOpenTouchGuide((err: BusinessError, data: boolean) => {
 isOpenTouchGuideSync(): boolean
 
 是否开启了触摸浏览模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -994,6 +1102,14 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -1028,6 +1144,14 @@ sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): v
 | event    | [EventInfo](#eventinfo)   | 是    | 辅助事件对象。                                  |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，如果发送无障碍事件失败，则 AsyncCallback中err有数据返回。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  | Input parameter error. 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -1038,6 +1162,41 @@ let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
   triggerAction: 'click',
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
+
+**主动聚焦示例：**
+
+```ts
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Column() {
+      // 待聚焦组件添加id属性，id唯一性由使用者保证
+      Button('待聚焦组件').id('click')
+    }
+  }
+}
+```
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'requestFocusForAccessibility',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'common',
+  customId: 'click' // 对应待聚焦组件id属性值
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {

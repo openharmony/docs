@@ -6,4 +6,3 @@
   - APIs No Longer Maintained
     - [@ohos.multimedia.medialibrary (Media Library Management)](js-apis-medialibrary.md)
     - [@ohos.multimedia.medialibrary (Media Library Management) (System API)](js-apis-medialibrary-sys.md)
-

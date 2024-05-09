@@ -6,7 +6,9 @@
 
 ## Color
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 颜色名称                     | 颜色值           | 颜色示意                                     |
 | ------------------------ | ------------- | ---------------------------------------- |
@@ -25,7 +27,9 @@
 
 ## ImageFit
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 描述                              |
 | --------- | ------------------------------- |
@@ -38,7 +42,9 @@
 
 ## BorderStyle
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -47,7 +53,7 @@
 | Solid  | 显示为一条实线。                      |
 
 ## OutlineStyle<sup>11+</sup>
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -57,7 +63,9 @@
 
 ## LineJoinStyle
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称    | 描述         |
 | ----- | ---------- |
@@ -67,6 +75,8 @@
 
 ## TouchType
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述              |
 | ------ | --------------- |
 | Down   | 手指按下时触发。        |
@@ -75,6 +85,8 @@
 | Cancel | 触摸事件取消时触发。      |
 
 ## MouseButton
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述       |
 | ------- | -------- |
@@ -87,6 +99,8 @@
 
 ## MouseAction
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述      |
 | ------- | ------- |
 | Press   | 鼠标按键按下。 |
@@ -96,7 +110,9 @@
 
 ## Curve
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                  | 描述                                       |
 | ------------------- | ---------------------------------------- |
@@ -116,7 +132,9 @@
 
 ## AnimationStatus
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述        |
 | ------- | --------- |
@@ -127,7 +145,9 @@
 
 ## FillMode
 
-从API version 10开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
@@ -138,7 +158,9 @@
 
 ## PlayMode
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称               | 描述                                       |
 | ---------------- | ---------------------------------------- |
@@ -149,12 +171,16 @@
 
 ## KeyType
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 描述    |
 | ---- | ----- |
 | Down | 按键按下。 |
 | Up   | 按键松开。 |
 
 ## KeySource
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称       | 描述         |
 | -------- | ---------- |
@@ -163,17 +189,21 @@
 
 ## Edge
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                               | 描述                                       |
 | -------------------------------- | ---------------------------------------- |
-| Top                              | 竖直方向上边缘。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Top                              | 竖直方向上边缘。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Center<sup>(deprecated) </sup>   | 竖直方向居中位置。<br/> 从API version 9开始废弃。         |
-| Bottom                           | 竖直方向下边缘。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Bottom                           | 竖直方向下边缘。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置。<br/> 从API version 9开始废弃。    |
-| Start                            | 水平方向起始位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Start                            | 水平方向起始位置。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | Middle<sup>(deprecated) </sup>   | 水平方向居中位置。<br/> 从API version 9开始废弃。      |
-| End                              | 水平方向末尾位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| End                              | 水平方向末尾位置。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## Week
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述   |
 | ---- | ---- |
@@ -187,7 +217,9 @@
 
 ## Direction
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述          |
 | ---- | ----------- |
@@ -197,7 +229,9 @@
 
 ## BarState
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述                 |
 | ---- | ------------------ |
@@ -207,7 +241,9 @@
 
 ## EdgeEffect
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                                       |
 | ------ | ---------------------------------------- |
@@ -217,7 +253,9 @@
 
 ## Alignment
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 描述       |
 | ----------- | -------- |
@@ -233,7 +271,9 @@
 
 ## TransitionType
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                             |
 | ------ | ------------------------------ |
@@ -243,6 +283,8 @@
 
 ## RelateType
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 描述             |
 | ---- | -------------- |
 | FILL | 缩放当前子组件以填充满父组件 |
@@ -250,7 +292,9 @@
 
 ## Visibility
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述               |
 | ------- | ---------------- |
@@ -260,7 +304,9 @@
 
 ## LineCapStyle
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -270,7 +316,9 @@
 
 ## Axis
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称         | 描述     |
 | ---------- | ------ |
@@ -279,7 +327,9 @@
 
 ## HorizontalAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述           |
 | ------ | ------------ |
@@ -289,7 +339,9 @@
 
 ## FlexAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称           | 描述                                       |
 | ------------ | ---------------------------------------- |
@@ -302,7 +354,9 @@
 
 ## ItemAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称       | 描述                                       |
 | -------- | ---------------------------------------- |
@@ -315,7 +369,9 @@
 
 ## FlexDirection
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称            | 描述               |
 | ------------- | ---------------- |
@@ -326,7 +382,9 @@
 
 ## FlexWrap
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 描述                          |
 | ----------- | --------------------------- |
@@ -336,7 +394,9 @@
 
 ## VerticalAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述           |
 | ------ | ------------ |
@@ -346,7 +406,9 @@
 
 ## ImageRepeat
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称       | 描述            |
 | -------- | ------------- |
@@ -357,17 +419,22 @@
 
 ## ImageSize
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 类型      | 描述                                  |
 | ------- | ----------------------------------- |
 | Cover   | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
 | Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。       |
 | Auto    | 保持原图的比例不变。                          |
+| FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。|
 
 ## GradientDirection
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 描述    |
 | ----------- | ----- |
@@ -383,12 +450,16 @@
 
 ## SharedTransitionEffectType
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 描述                                       |
 | -------- | ---------------------------------------- |
 | Static   | 目标页面元素的位置保持不变，可以配置透明度动画。目前，只有为重定向到目标页面而配置的静态效果才会生效。 |
 | Exchange | 将源页面元素移动到目标页面元素位置并适当缩放。                  |
 
 ## ShadowType<sup>10+<sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称       | 描述                                   |
 | -------- | ---------------------------------------- |
@@ -397,7 +468,9 @@
 
 ## FontStyle
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述       |
 | ------ | -------- |
@@ -406,7 +479,9 @@
 
 ## FontWeight
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述      |
 | ------- | ------- |
@@ -419,7 +494,9 @@
 
 ## TextAlign
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                    | 描述      |
 | --------------------- | ------- |
@@ -430,7 +507,9 @@
 
 ## TextOverflow
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                    | 描述                  |
 | --------------------- | ------------------- |
@@ -441,7 +520,9 @@
 
 ## TextDecorationType
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 描述        |
 | ----------- | --------- |
@@ -452,7 +533,9 @@
 
 ## TextCase
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 描述         |
 | --------- | ---------- |
@@ -462,12 +545,16 @@
 
 ## ResponseType<sup>8+</sup>
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称         | 描述            |
 | ---------- | ------------- |
 | LongPress  | 通过长按触发菜单弹出。   |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
 
 ## RichEditorResponseType<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 描述            |
 | ---------- | ------------- |
@@ -477,6 +564,8 @@
 
 ## HoverEffect<sup>8+</sup>
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称        | 描述             |
 | --------- | -------------- |
 | Auto      | 使用组件的系统默认悬浮效果。 |
@@ -485,6 +574,8 @@
 | None      | 不设置效果。         |
 
 ## Placement<sup>8+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称            | 描述                                     |
 | ------------- | -------------------------------------- |
@@ -503,16 +594,18 @@
 
 ## CopyOptions<sup>9+</sup>
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称          | 描述       |
 | ----------- | -------- |
-| None        | 不支持复制。   |
-| InApp       | 支持应用内复制。 |
-| LocalDevice | 支持设备内复制。 |
+| None        | 不支持复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| InApp       | 支持应用内复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| LocalDevice | 支持设备内复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。 |
 
 ## HitTestMode<sup>9+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 描述                                       |
 | ----------- | ---------------------------------------- |
@@ -527,14 +620,14 @@
 
 | 名称                   | 描述        |
 | -------------------- | --------- |
-| Thin                 | 轻薄材质模糊。   |
-| Regular              | 普通厚度材质模糊。 |
-| Thick                | 厚材质模糊。    |
-| BACKGROUND_THIN       | 近距景深模糊。   |
-| BACKGROUND_REGULAR    | 中距景深模糊。   |
-| BACKGROUND_THICK      | 远距景深模糊。   |
-| BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
-| NONE<sup>10+</sup> | 关闭模糊。  |
+| Thin                 | 轻薄材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| Regular              | 普通厚度材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Thick                | 厚材质模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
+| BACKGROUND_THIN       | 近距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_REGULAR    | 中距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_THICK      | 远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| NONE<sup>10+</sup> | 关闭模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
 | COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
 | COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
@@ -542,6 +635,8 @@
 | COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。 |
 
 ## ThemeColorMode<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述         |
 | ------ | ---------- |
@@ -551,12 +646,16 @@
 
 ## AdaptiveColor<sup>10+</sup>
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述                        |
 | ------- | ------------------------- |
 | DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。    |
 | AVERAGE | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                      | 描述                       |
 | ----------------------- | ------------------------ |
@@ -568,11 +667,15 @@
 
 该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称        | 描述                     |
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
 
 ## TransitionEdge<sup>10+<sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述     |
 | ------ | ------ |
@@ -582,6 +685,8 @@
 | END    | 窗口的右边缘 |
 
 ## ClickEffectLevel<sup>10+<sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述               | 动效参数                          | 默认缩放比                     |
 | ------ | --------------------------------- | --------------------------------- | --------------------------------- |
@@ -599,6 +704,8 @@
 | FOLD_STATUS_HALF_FOLDED | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
 
 ## TextContentStyle<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
@@ -629,13 +736,26 @@ Nullable\<T> {
 | data | T    | 是   | 该类型申明的对象可以是自定义类型，也可以是undefined。 |
 
 ## WordBreak<sup>11+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | NORMAL  | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。 |
 | BREAK_ALL | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 | BREAK_WORD | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
+## LineBreakStrategy<sup>12+</sup>
+| 名称         | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| GREEDY       | 使每一行尽量显示多的字符，直到这一行不能显示更多字符再进行折行。 |
+| HIGH_QUALITY | 在BALANCED的基础上，尽可能填满行，在最后一行的权重上比较低，可能会出现最后一行留白比较多。 |
+| BALANCED     | 尽可能保证在不拆词的情况下，使一个段落中每一行的宽度相同。   |
+
 ## GestureJudgeResult<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | CONTINUE  | 不影响系统手势判定流程。|
@@ -654,7 +774,7 @@ Nullable\<T> {
 | CLICK   | 点击|
 ## FinishCallbackType<sup>11+</sup>
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称       | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
@@ -665,7 +785,13 @@ Nullable\<T> {
 灰阶模糊参数。
 | 名称        |   类型   |   必填 | 说明                        |
 | ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
+| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,25]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
+
+## ForegroundEffectOptions<sup>12+<sup>
+前景效果参数。
+| 名称        |   类型         |   必填 |  说明                        |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
 
 ## BackgroundEffectOptions<sup>11+<sup>
 背景效果参数。
@@ -679,7 +805,7 @@ Nullable\<T> {
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
@@ -697,6 +823,8 @@ Nullable\<T> {
 
 ## TextDataDetectorType<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | PHONE_NUMBER  | 电话号码 |
@@ -708,6 +836,8 @@ Nullable\<T> {
 
 [Span](ts-basic-components-span.md)类型信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 说明 |
 | -------- | -------- |
 | TEXT | Span为文字类型。 |
@@ -715,6 +845,8 @@ Nullable\<T> {
 | MIXED | Span为图文混合类型。|
 
 ## TextResponseType<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 描述            |
 | ---------- | ------------- |
@@ -735,6 +867,8 @@ Nullable\<T> {
 
 动效类型的枚举值。设置动效后启动即生效，无需触发。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | NONE | 无动效（默认值）。 |
@@ -744,6 +878,8 @@ Nullable\<T> {
 ## SymbolRenderingStrategy<sup>11+</sup>
 
 渲染模式的枚举值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -760,7 +896,7 @@ Nullable\<T> {
 | FAST           |   在目标图像上按顺序混合视图的内容。                        |
 | OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
 
-## ChainStyle<sup>11+</sup>
+## ChainStyle<sup>12+</sup>
 
 定义链的风格。
 
@@ -770,20 +906,22 @@ Nullable\<T> {
 | SPREAD_INSIDE | 除首尾2个子组件的其他组件在约束锚点间均匀分布。详细用法请参考[RelativeContainer示例8](ts-container-relativecontainer.md#示例8)。                 |
 | PACKED  | 链内子组件无间隙。详细用法请参考[RelativeContainer示例9](ts-container-relativecontainer.md#示例9)。                      |
 
-## BarrierDirection<sup>11+</sup>
+## BarrierDirection<sup>12+</sup>
 
 定义屏障线的方向。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最左侧。    |
-| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最右侧。   |
-| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最上方。    |
-| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle11)的最下方。 |
+| LEFT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最左侧。    |
+| RIGHT | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最右侧。   |
+| TOP  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最上方。    |
+| BOTTOM  | 屏障在其所有[referencedId](ts-container-relativecontainer.md#barrierstyle12)的最下方。 |
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
 组件边界像素级取整计算策略。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
@@ -795,4 +933,23 @@ Nullable\<T> {
 
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
-| FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
+| DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|
+| BASELINE_OFFSET | 文本基线偏移量样式键。[BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle)所属键。|
+| LETTER_SPACING | 文本字符间距样式键。[LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle)所属键。|
+| LINE_HEIGHT | 文本行高样式键。[LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle)所属键。|
+| TEXT_SHADOW | 文本阴影样式键。[TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle)所属键。|
+| GESTURE | 事件手势键。[GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+| PARAGRAPH_STYLE | 段落样式键。[ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle)所属键。|
+| IMAGE | 图片键。[ImageAttachment](./ts-universal-styled-string.md#imageattachment)所属键。|
+| CUSTOM_SPAN | 自定义绘制Span键。[CustomSpan](./ts-universal-styled-string.md#customspan)所属键。|
+
+## TextDecorationStyle<sup>12+</sup>
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| SOLID   | 单实线（默认值）。  |
+| DOUBLE | 双实线。 |
+| DOTTED    | 点线。  |
+| DASHED        | 虚线。 |
+| WAVY        | 波浪线。 |

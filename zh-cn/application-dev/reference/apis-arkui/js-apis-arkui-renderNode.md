@@ -560,15 +560,15 @@ struct Index {
       NodeContainer(this.myNodeController)
         .width(200)
         .height(350)
-      Button('getNextSibling')
+      Button('getPreviousSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const previousSibling = child.getPreviousSibling()
+          const previousSibling = child!.getPreviousSibling()
           if (child === null || previousSibling === null) {
-            console.log('the child or nextChild is null');
+            console.log('the child or previousChild is null');
           } else {
             console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
-              `the position of nextSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
+              `the position of previousSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
           }
         })
     }
@@ -2218,7 +2218,7 @@ class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
 
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.size = { width: 200, height: 200 };
       rootRenderNode.backgroundColor = 0xff00ff00;

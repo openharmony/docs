@@ -16,7 +16,9 @@ import IntentionCode from '@ohos.multimodalInput.intentionCode';
 
 意图事件枚举值。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称                               | 值   |  说明        |
 | -------------------------------- | ------ | --------------------------- |

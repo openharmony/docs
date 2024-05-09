@@ -58,7 +58,7 @@ import cloudData from '@ohos.data.cloudData';
 //accountId:用户打开的云帐号ID
 //bundleName:应用包名
 //containerName:云上数据库名称
-//containerName:云上数据库表名
+//recordTypes:云上数据库表名
 
 interface ExtraData {
   eventId: "cloud_data_change",
@@ -79,6 +79,18 @@ interface ExtraData {
 | inserted   | number | 是   | 本地新增且云端还未同步数据的条数，如返回值为2，表示本地新增2条数据且云端还未同步。          |
 | updated   | number | 是   | 云端同步之后本地或云端修改还未同步的条数，如返回值为2，表示本地或云端修改还有2条数据未同步。     |
 | normal | number | 是   | 端云一致的数据。如返回值为2，表示本地与云端一致的数据为2条。                     |
+
+## SyncInfo<sup>12+</sup>
+
+返回数据，上一次端云同步所需要的信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称       | 类型                                                         | 必填 | 说明                       |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| startTime  | Date                                                         | 是   | 上一次端云同步的开始时间。 |
+| finishTime | Date                                                         | 是   | 上一次端云同步的结束时间。 |
+| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 上一次端云同步过程的状态。 |
 
 ## Config
 
@@ -571,7 +583,52 @@ cloudData.Config.queryStatistics(accountId, bundleName, storeId).then((result) =
 });
 ```
 
+### queryLastSyncInfo<sup>12+</sup>
+
+static queryLastSyncInfo(accountId: string, bundleName: string, storeId?: string): Promise&lt;Record<string, SyncInfo>>
+
+查询上一次端云同步信息，使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| ---------- | ------ | ---- | ------------------------------------------------------------ |
+| accountId  | string | 是   | 具体打开的云帐号ID。                                         |
+| bundleName | string | 是   | 应用包名。                                                   |
+| storeId    | string | 否   | 数据库名称。默认值为空字符串，此时查询当前应用下所有数据库上一次端云同步信息。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                         |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| Promise&lt;Record&lt;string, [SyncInfo](#syncinfo12)&gt;&gt; | 返回数据库名以及上一次端云同步的信息结果集。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+const accountId:string = "accountId";
+const bundleName:string = "bundleName";
+const storeId:string = "storeId";
+try {
+    cloudData.Config.queryLastSyncInfo(accountId, bundleName, storeId).then((result) => {
+    	console.info(`Succeeded in querying last syncinfo. Info is ${JSON.stringify(result)}`);
+	}).catch((err: BusinessError) => {
+    	console.error(`Failed to query last syncinfo. Error code is ${err.code}, message is ${err.message}`);
+	});
+} catch(e) {
+    let error = e as BusinessError;
+  	console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ### setGlobalCloudStrategy<sup>12+</sup>
+
 static setGlobalCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&gt;): Promise&lt;void&gt;
 
 设置全局云同步策略，使用Promise异步回调。

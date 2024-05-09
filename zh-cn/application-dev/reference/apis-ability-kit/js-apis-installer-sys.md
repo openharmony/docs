@@ -45,6 +45,15 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback\<BundleInstaller> | 是   | 回调函数，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission denied, non-system app called system api.              |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types.   |
+
 **示例：**
 
 ```ts
@@ -80,6 +89,14 @@ getBundleInstaller(): Promise\<BundleInstaller>
 | ------------------------------------------------------------ | ------------------------------------ |
 | Promise\<BundleInstaller> | Promise对象，返回BundleInstaller对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission denied, non-system app called system api.              |
+
 **示例：**
 
 ```ts
@@ -112,6 +129,14 @@ getBundleInstallerSync(): BundleInstaller
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
 | BundleInstaller | 返回BundleInstaller对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202 | Permission denied, non-system app called system api.              |
 
 **示例：**
 
@@ -158,10 +183,13 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission denied, non-system app called system api.              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000.   |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -169,18 +197,18 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
+| 17700036 | Failed to install the HSP due to the lack of required permission. |
+| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
 **示例：**
@@ -242,28 +270,31 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission denied, non-system app called system api.              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
 | 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
+| 17700036 | Failed to install the HSP due to the lack of required permission. |
+| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
 **示例：**
@@ -328,10 +359,13 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE' or 'ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE'.   |
+| 202 | Permission denied, non-system app called system api.              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000.   |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -339,18 +373,18 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700031 | Failed to install the HAP because the overlay check of the HAP is failed. |
-| 17700036 | Failed to install the HSP because lacks appropriate permissions. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
+| 17700036 | Failed to install the HSP due to the lack of required permission. |
+| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700052 | Failed to install the HAP because debug bundle cannot be installed under non-developer mode. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
 **示例：**
@@ -405,15 +439,18 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -467,14 +504,17 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -528,15 +568,18 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because enterprise device management disallow uninstall. |
 
 **示例：**
 ```ts
@@ -589,10 +632,13 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 
@@ -649,10 +695,13 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 
 **示例：**
@@ -708,10 +757,13 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.RECOVER_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
 | 17700004 | The specified user ID is not found. |
 
@@ -765,12 +817,15 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
-| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700037 | The version of the shared bundle is dependent on other applications. |
 | 17700038 | The specified shared bundle does not exist.                  |
 
 **示例：**
@@ -827,12 +882,15 @@ uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
-| 17700037 | The version of shared bundle is dependent on other applications. |
+| 17700037 | The version of the shared bundle is dependent on other applications. |
 | 17700038 | The specified shared bundle does not exist.                  |
 
 **示例：**
@@ -890,17 +948,21 @@ addExtResource(bundleName: string, filePaths: Array\<string>): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700301 | AddExtResource failed due to parse file failed.                  |
+| 17700301 | Failed to add extended resources.                 |
 
 **示例：**
 
 ```ts
 import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
@@ -929,7 +991,7 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE or ohos.permission.UNINSTALL_BUNDLE
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -948,17 +1010,21 @@ removeExtResource(bundleName: string, moduleNames: Array\<string>): Promise\<voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700302 | RemoveExtResource failed due to module does not exist.                  |
+| 17700302 | Failed to remove extended resources.                  |
 
 **示例：**
 
 ```ts
 import installer from '@ohos.bundle.installer';
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 
 let bundleName : string = 'com.ohos.demo';
@@ -1001,10 +1067,13 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000. |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -1012,17 +1081,17 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700051 | Failed to install the HAP because the distribution type of caller application is not enterprise_mdm. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **示例：**
 
@@ -1076,27 +1145,30 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
 | 17700012 | Failed to install the HAP because the HAP path is invalid or the HAP is too large. |
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700051 | Failed to install the HAP because the distribution type of caller application is not enterprise_mdm. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **示例：**
 
@@ -1151,10 +1223,13 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_SELF_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter hapFiles is needed for code signature; 4. The size of specifiedDistributionType is greater than 128; 5. The size of additionalInfo is greater than 3000. |
 | 17700004 | The specified user ID is not found.                          |
 | 17700010 | Failed to install the HAP because the HAP fails to be parsed. |
 | 17700011 | Failed to install the HAP because the HAP signature fails to be verified. |
@@ -1162,17 +1237,17 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 | 17700015 | Failed to install the HAPs because they have different configuration information. |
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
-| 17700018 | Failed to install because the dependent module does not exist. |
-| 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
+| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
+| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
-| 17700048 | Failed to install the HAP because the code signature verification is failed. |
+| 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
-| 17700051 | Failed to install the HAP because the distribution type of caller application is not enterprise_mdm. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **示例：**
 
@@ -1231,12 +1306,15 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_BUNDLE' or 'ohos.permission.UNINSTALL_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
-| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because enterprise device management disallow uninstall. |
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
 
 **示例：**

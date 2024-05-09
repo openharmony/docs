@@ -466,6 +466,55 @@ import audio from '@ohos.multimedia.audio';
 let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
+### disableSafeMediaVolume<sup>12+</sup>
+
+disableSafeMediaVolume(): Promise&lt;void&gt;
+
+设置安全音量为非激活状态。使用Promise方式异步返回结果。
+
+设置为非激活状态后，当设备长时间高音量播放时，不再自动提醒用户降低到安全音量。
+
+**需要权限：** ohos.permission.MODIFY_AUDIO_SETTINGS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                       | 说明                          |
+|------------------------------------------| ----------------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+"reqPermissions": [
+    {
+        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
+        "reason": "use ohos.permission.MODIFY_AUDIO_SETTINGS"
+    }
+]
+let audioManager = audio.getAudioManager();
+try {
+    await audioManager.disableSafeMediaVolume().then(() => {
+      console.info('disableSafeMediaVolume success.');
+    })
+} catch (err) {
+  console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+}
+```
+
 ### on('volumeChange')<sup>(deprecated)</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
@@ -1625,7 +1674,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -1723,7 +1772,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -2296,7 +2345,7 @@ getSpatializationSceneType(): AudioSpatializationSceneType
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 try {
-  let spatializationSceneType: AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+  let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
   console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
 } catch (err) {
   let error = err as BusinessError;

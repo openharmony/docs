@@ -728,10 +728,9 @@ udp.off('error');
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| address | string | 是   | 本地绑定的ip地址。                                           |
+| address<sup>11+</sup> | string | 是   | 本地绑定的ip地址。                                           |
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
-| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。 |
-
+| family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。如果地址为IPV6类型，该字段必须被显式指定为2。 |
 ## UDPSendOptions
 
 UDPSocket发送参数。
@@ -2638,7 +2637,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 
@@ -2695,7 +2694,7 @@ listen(address: NetAddress): Promise\<void\>
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 
@@ -3461,7 +3460,7 @@ let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]]
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -5590,17 +5589,17 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
-| 2303111 | Resource temporarily unavailable try again.  |
+| 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
-| 2303191 | Protocol wrong type for socket.              |
+| 2303191 | Incorrect socket protocol type.              |
 | 2303198 | Address already in use.                      |
 | 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
-| 2303502 | Error in tls reading.                        |
-| 2303503 | Error in tls writing                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
@@ -5693,17 +5692,17 @@ connect(options: TLSConnectOptions): Promise\<void\>
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
-| 2303111 | Resource temporarily unavailable try again.  |
+| 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
-| 2303191 | Protocol wrong type for socket.              |
+| 2303191 | Incorrect socket protocol type.              |
 | 2303198 | Address already in use.                      |
 | 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
-| 2303502 | Error in tls reading.                        |
-| 2303503 | Error in tls writing                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
@@ -5862,7 +5861,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303504 | Error looking up x509.         |
+| 2303504 | An error occurred when verifying the X.509 certificate.|
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -5899,7 +5898,7 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303504 | Error looking up x509.         |
+| 2303504 | An error occurred when verifying the X.509 certificate.|
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -5945,12 +5944,15 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
-    console.log("getRemoteCertificate callback = " + data);
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getRemoteCertificate callback = " + str);
   }
 });
 ```
@@ -5981,9 +5983,12 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
-  console.log(data);
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
@@ -6008,7 +6013,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 2303501 | SSL is null.                   |
-| 2303505 | Error occurred in the tls system call. |
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -6045,7 +6050,7 @@ getProtocol():Promise\<string\>
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303505 | Error occurred in the tls system call. |
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -6080,8 +6085,8 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303502 | Error in tls reading.          |
-| 2303505 | Error occurred in the tls system call. |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -6118,8 +6123,8 @@ getCipherSuite(): Promise\<Array\<string\>\>
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303502 | Error in tls reading.          |
-| 2303505 | Error occurred in the tls system call. |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **示例：**
@@ -6226,9 +6231,9 @@ send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing.                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
@@ -6266,9 +6271,9 @@ send(data: string \| ArrayBuffer): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing.                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **返回值：**
@@ -6310,8 +6315,8 @@ close(callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
@@ -6349,8 +6354,8 @@ close(): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
@@ -6463,14 +6468,14 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
-| 2303502  | Error in tls reading.                       |
-| 2303503  | Error in tls writing                        |
-| 2303505  | Error occurred in the tls system call.      |
-| 2303506  | Error clearing tls connection.              |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.   |
+| 2303506  | Failed to close the TLS connection.         |
 
 **示例：**
 
@@ -6531,14 +6536,14 @@ listen(options: TLSConnectOptions): Promise\<void\>
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
-| 2303502  | Error in tls reading.                       |
-| 2303503  | Error in tls writing                        |
-| 2303505  | Error occurred in the tls system call.      |
-| 2303506  | Error clearing tls connection.              |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.   |
+| 2303506  | Failed to close the TLS connection.         |
 
 **示例：**
 
@@ -6866,7 +6871,7 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 | -------- | ---------------------- |
 | 401      | Parameter error.       |
 | 2303501  | SSL is null.           |
-| 2303504  | Error looking up x509. |
+| 2303504  | An error occurred when verifying the X.509 certificate. |
 | 2300002  | System internal error. |
 
 **示例：**
@@ -6932,7 +6937,7 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 2303501  | SSL is null.           |
-| 2303504  | Error looking up x509. |
+| 2303504  | An error occurred when verifying the X.509 certificate. |
 | 2300002  | System internal error. |
 
 **示例：**
@@ -6997,7 +7002,7 @@ getProtocol(callback: AsyncCallback\<string\>): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **示例：**
@@ -7059,7 +7064,7 @@ getProtocol():Promise\<string\>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **示例：**
@@ -7373,9 +7378,9 @@ send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303503  | Error in tls writing.                  |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **示例：**
@@ -7444,9 +7449,9 @@ send(data: string \| ArrayBuffer): Promise\<void\>
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303503  | Error in tls writing.                  |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **示例：**
@@ -7507,8 +7512,8 @@ close(callback: AsyncCallback\<void\>): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303505  | An error occurred in the TLS system call. |
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **示例：**
@@ -7570,8 +7575,8 @@ close(): Promise\<void\>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303505  | An error occurred in the TLS system call. |
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **示例：**
@@ -7877,8 +7882,8 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303502  | Error in tls reading.                  |
-| 2303505  | Error occurred in the tls system call. |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
 | 2300002  | System internal error.                 |
 
 **示例：**
@@ -7939,8 +7944,8 @@ getCipherSuite(): Promise\<Array\<string\>\>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303502  | Error in tls reading.                  |
-| 2303505  | Error occurred in the tls system call. |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **示例：**

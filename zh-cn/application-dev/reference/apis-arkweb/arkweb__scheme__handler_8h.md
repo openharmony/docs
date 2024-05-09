@@ -38,7 +38,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) {<br/>OH_ARKWEB_SCHEME_OPTION_NONE = 0, [ARKWEB_SCHEME_OPTION_STANDARD](_web.md) = 1 &lt;&lt; 0, [ARKWEB_SCHEME_OPTION_LOCAL](_web.md) = 1 &lt;&lt; 1, [ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED](_web.md) = 1 &lt;&lt; 2,<br/>[ARKWEB_SCHEME_OPTION_SECURE](_web.md) = 1 &lt;&lt; 3, [ARKWEB_SCHEME_OPTION_CORS_ENABLED](_web.md) = 1 &lt;&lt; 4, [ARKWEB_SCHEME_OPTION_CSP_BYPASSING](_web.md) = 1 &lt;&lt; 5, [ARKWEB_SCHEME_OPTION_FETCH_ENABLED](_web.md) = 1 &lt;&lt; 6<br/>} | custom scheme的配置信息。  | 
+| [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) {<br/>OH_ARKWEB_SCHEME_OPTION_NONE = 0, [ARKWEB_SCHEME_OPTION_STANDARD](_web.md) = 1 &lt;&lt; 0, [ARKWEB_SCHEME_OPTION_LOCAL](_web.md) = 1 &lt;&lt; 1, [ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED](_web.md) = 1 &lt;&lt; 2,<br/>[ARKWEB_SCHEME_OPTION_SECURE](_web.md) = 1 &lt;&lt; 3, [ARKWEB_SCHEME_OPTION_CORS_ENABLED](_web.md) = 1 &lt;&lt; 4, [ARKWEB_SCHEME_OPTION_CSP_BYPASSING](_web.md) = 1 &lt;&lt; 5, [ARKWEB_SCHEME_OPTION_FETCH_ENABLED](_web.md) = 1 &lt;&lt; 6, [ARKWEB_SCHEME_OPTION_CODE_CACHE_ENABLED](_web.md) = 1 &lt;&lt; 7<br/>} | custom scheme的配置信息。  | 
 
 
 ### 函数
@@ -86,7 +86,7 @@
 | int32_t [OH_ArkWebResponse_SetUrl](_web.md#oh_arkwebresponse_seturl) ([ArkWeb_Response](_web.md#arkweb_response) \*response, const char \*url) | 设置经过重定向或由于HSTS而改变后的解析URL，设置后会触发跳转。  | 
 | void [OH_ArkWebResponse_GetUrl](_web.md#oh_arkwebresponse_geturl) (const [ArkWeb_Response](_web.md#arkweb_response) \*response, char \*\*url) | 获取经过重定向或由于HSTS而更改后的解析URL。  | 
 | int32_t [OH_ArkWebResponse_SetError](_web.md#oh_arkwebresponse_seterror) ([ArkWeb_Response](_web.md#arkweb_response) \*response, [ArkWeb_NetError](_web.md#arkweb_neterror) errorCode) | 给ArkWeb_Response对象设置一个错误码。  | 
-| [ArkWeb_NetError](_web.md#arkweb_neterror)[OH_ArkWebResponse_GetError](_web.md#oh_arkwebresponse_geterror) (const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 获取ArkWeb_Response的错误码。  | 
+| [ArkWeb_NetError](_web.md#arkweb_neterror) [OH_ArkWebResponse_GetError](_web.md#oh_arkwebresponse_geterror) (const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 获取ArkWeb_Response的错误码。  | 
 | int32_t [OH_ArkWebResponse_SetStatus](_web.md#oh_arkwebresponse_setstatus) ([ArkWeb_Response](_web.md#arkweb_response) \*response, int status) | 为ArkWeb_Response对象设置一个HTTP状态码。  | 
 | int [OH_ArkWebResponse_GetStatus](_web.md#oh_arkwebresponse_getstatus) (const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 获取ArkWeb_Response的HTTP状态码。  | 
 | int32_t [OH_ArkWebResponse_SetStatusText](_web.md#oh_arkwebresponse_setstatustext) ([ArkWeb_Response](_web.md#arkweb_response) \*response, const char \*statusText) | 为ArkWeb_Response设置状态文本。  | 

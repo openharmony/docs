@@ -117,30 +117,34 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 | 接口名称       | 功能介绍     |
 | --------------------------- | --------------------------- |
 | Init()           | 初始化缓存信息。                        |
-| AddExecutor(const ExecutorRegisterInfo& info, uint64_t& index, std::vector\<uint8_t>& publicKey,<br/>        std::vector\<uint64_t>& templateIds) | 添加认证执行器，获得此认证能力。           |
+| AddExecutor(const HdiExecutorRegisterInfo &info, uint64_t &index, std::vector<uint8_t> &publicKey, std::vector<uint64_t> &templateIds) |添加认证执行器，获得此认证能力。|
 | DeleteExecutor(uint64_t index)            | 根据索引值index删除认证执行器。       |
-| OpenSession(int32_t userId, std::vector\<uint8_t>& challenge) | 开启认证凭据管理Session。      |
+| OpenSession(int32_t userId, std::vector<uint8_t> &challenge) | 开启认证凭据管理Session。      |
 | CloseSession(int32_t userId)        | 关闭认证凭据管理Session。            |
-| BeginEnrollment(int32_t userId, const std::vector\<uint8_t>& authToken, const EnrollParam& param,<br/>        ScheduleInfo& info) | 发起用户的认证凭据的录入，当录入类型为PIN码且当前用户已录入PIN码的情况下会更新PIN码（V1_0版本）。 |
-| UpdateEnrollmentResult(int32_t userId, const std::vector\<uint8_t>& scheduleResult, uint64_t& credentialId,<br/>        CredentialInfo& oldInfo) | 更新录入结果，完成此次录入。   |
+| BeginEnrollment(const std::vector<uint8_t> &authToken, const HdiEnrollParam &param, HdiScheduleInfo &info) | 发起用户的认证凭据的录入，当录入类型为PIN码且当前用户已录入PIN码的情况下会更新PIN码。 |
+| UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t> & scheduleResult, EnrollResultInfo &info)| 更新录入结果，完成此次录入。   |
 | CancelEnrollment(int32_t userId)     | 取消此次录入。          |
-| DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector\<uint8_t>& authToken,<br/>        CredentialInfo& info) | 根据credentialId删除凭据信息。                               |
-| DeleteUser(int32_t userId, const std::vector\<uint8_t>& authToken,<br/>        std::vector\<CredentialInfo>& deletedInfos) | 删除PIN码即在用户认证框架中删除用户。                        |
-| EnforceDeleteUser(int32_t userId, std::vector\<CredentialInfo>& deletedInfos) | 强制删除用户，当系统内此用户被删除时强制调用。               |
-| GetCredential(int32_t userId, AuthType authType, std::vector\<CredentialInfo>& infos) | 查询用户某种认证类型下的凭据信息。             |
-| GetSecureInfo(int32_t userId, uint64_t& secureUid, std::vector\<EnrolledInfo>& infos) | 查询用户的安全用户Id和每种认证类型的录入标记Id。             |
-| BeginAuthentication(uint64_t contextId, const AuthSolution& param,<br/>        std::vector\<ScheduleInfo>& scheduleInfos) | 发起认证，生成认证方案和调度信息（V1_0版本）。                           |
-| UpdateAuthenticationResult(uint64_t contextId, const std::vector\<uint8_t>& scheduleResult,<br/>        AuthResultInfo& info) | 更新认证结果，进行此次认证方案结果的评估。                   |
+| DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector<uint8_t> &authToken, CredentialInfo &info) | 根据credentialId删除凭据信息。                               |
+| DeleteUser(int32_t userId, const std::vector<uint8_t> &authToken, std::vector<CredentialInfo> &deletedInfos, std::vector<uint8_t> &rootSecret) | 删除PIN码即在用户认证框架中删除用户。                        |
+| EnforceDeleteUser(int32_t userId, std::vector<CredentialInfo> &deletedInfos) | 强制删除用户，当系统内此用户被删除时强制调用。               |
+| GetCredential(int32_t userId, int32_t authType, std::vector<CredentialInfo> &infos) | 查询用户某种认证类型下的凭据信息。             |
+| BeginAuthentication(uint64_t contextId, const HdiAuthParam &param, std::vector<HdiScheduleInfo> &infos) | 发起认证，生成认证方案和调度信息。                           |
+| UpdateAuthenticationResult(uint64_t contextId, const std::vector<uint8_t> & scheduleResult, HdiAuthResultInfo &info, HdiEnrolledState &enrolledState)| 更新认证结果，进行此次认证方案结果的评估。                   |
 | CancelAuthentication(uint64_t contextId)      | 取消此次认证。             |
-| BeginIdentification(uint64_t contextId, AuthType authType, const std::vector\<int8_t>& challenge,<br/>        uint32_t executorId, ScheduleInfo& scheduleInfo) | 发起识别，生成识别方案和调度信息（V1_0版本）。                           |
-| UpdateIdentificationResult(uint64_t contextId, const std::vector\<uint8_t>& scheduleResult,<br/>        IdentifyResultInfo& info) | 更新识别结果，进行此次识别方案结果的评估。                   |
+| BeginIdentification(uint64_t contextId, int32_t authType, const std::vector<uint8_t> &challenge, uint32_t executorSensorHint, HdiScheduleInfo &scheduleInfo) | 发起识别，生成识别方案和调度信息。                           |
+| UpdateIdentificationResult(uint64_t contextId, const std::vector<uint8_t> &scheduleResult, IdentifyResultInfo &info) | 更新识别结果，进行此次识别方案结果的评估。                   |
 | CancelIdentification(uint64_t contextId)             | 取消此次识别。              |
-| GetAuthTrustLevel(int32_t userId, AuthType authType, uint32_t& authTrustLevel) | 获取此用户当前认证类型的认证可信等级。     |
-| GetValidSolution(int32_t userId, const std::vector\<AuthType>& authTypes, uint32_t authTrustLevel,<br/>        std::vector\<AuthType>& validTypes) | 筛选此用户当前认证可信等级下可用的认证方式。                   |
-| BeginEnrollmentV1_1(int32_t userId, const std::vector\<uint8_t>& authToken, const EnrollParam& param, ScheduleInfoV1_1& info) | 发起用户的认证凭据的录入，当录入类型为PIN码且当前用户已录入PIN码的情况下会更新PIN码（V1_1版本）。 |
-| BeginAuthenticationV1_1(uint64_t contextId, const AuthSolution& param,  std::vector\<ScheduleInfoV1_1>& scheduleInfos) | 发起认证，生成认证方案和调度信息（V1_1版本）。                           |
-| BeginIdentificationV1_1(uint64_t contextId, AuthType authType,
- const std::vector\<uint8_t>& challenge, uint32_t executorSensorHint, ScheduleInfoV1_1& scheduleInfo)| 发起识别，生成识别方案和调度信息（V1_1版本）。                           |
+| GetAuthTrustLevel(int32_t userId, int32_t authType, uint32_t &authTrustLevel) | 获取此用户当前认证类型的认证可信等级。     |
+| GetValidSolution(int32_t userId, const std::vector<int32_t> &authTypes, uint32_t authTrustLevel, std::vector<int32_t> &validTypes) | 筛选此用户当前认证可信等级下可用的认证方式。                   |
+| GetAllUserInfo(std::vector<UserInfo> &userInfos) | 查询所有用户信息(不包含userId)。 |
+| GetUserInfo(int32_t userId, uint64_t &secureUid, int32_t &pinSubType, std::vector<EnrolledInfo> &infos) | 查询用户信息。 |
+| GetAllExtUserInfo(std::vector<ExtUserInfo> &userInfos) | 查询所有用户信息(包含userId)。 |
+| GetEnrolledState(int32_t userId, int32_t authType, HdiEnrolledState &enrolledState) | 查询录入信息。 |
+| CheckReuseUnlockResult(const ReuseUnlockParam& param, ReuseUnlockInfo& info) | 检查是否复用设备解锁结果。 |
+| SendMessage(uint64_t scheduleId, int32_t srcRole, const std::vector<uint8_t>& msg) | 向执行器发消息。 |
+| RegisterMessageCallback(const sptr<IMessageCallback>& messageCallback) | 注册执行器消息回调。 |
+| GetLocalScheduleFromMessage(const std::vector<uint8_t>& remoteDeviceId, const std::vector<uint8_t>& message, HdiScheduleInfo& scheduleInfo) | 获取本地执行器调度信息。 |
+| GetSignedExecutorInfo(const std::vector<int32_t>& authTypes, int32_t executorRole, const std::vector<uint8_t>& remoteDeviceId, std::vector<uint8_t>& signedExecutorInfo) | 获取签名后的执行器信息。 |
 
 ### 开发步骤
 
@@ -261,8 +265,8 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 
    ```c++
    // 添加执行器
-   int32_t UserAuthInterfaceService::AddExecutor(const ExecutorRegisterInfo& info, uint64_t& index,
-       std::vector<uint8_t>& publicKey, std::vector<uint64_t>& templateIds)
+   int32_t UserAuthInterfaceService::AddExecutor(const HdiExecutorRegisterInfo &info, uint64_t &index,
+    std::vector<uint8_t> &publicKey, std::vector<uint64_t> &templateIds)
    {
        GlobalLock();
        ExecutorInfoHal executorInfoHal;
@@ -306,9 +310,9 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        return ret;
    }
 
-   // 发起录入，生成录入调度信息（V1_1版本）
-   int32_t UserAuthInterfaceService::BeginEnrollmentV1_1(int32_t userId, const std::vector<uint8_t>& authToken,
-       const EnrollParam& param, ScheduleInfoV1_1& info)
+   // 发起录入，生成录入调度信息
+   int32_t UserAuthInterfaceService::BeginEnrollment(
+    const std::vector<uint8_t> &authToken, const HdiEnrollParam &param, HdiScheduleInfo &info)
    {
        IAM_LOGI("start");
        GlobalLock();
@@ -347,17 +351,6 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        return ret;
    }
 
-   // 发起录入，生成录入调度信息（V1_0版本），通过调用 V1_1 版本相应接口实现功能
-   int32_t UserAuthInterfaceService::BeginEnrollment(int32_t userId, const std::vector<uint8_t> &authToken,
-       const EnrollParam &param, ScheduleInfo &info)
-   {
-       IAM_LOGI("start");
-       ScheduleInfoV1_1 infoV1_1;
-       int32_t ret = BeginEnrollmentV1_1(userId, authToken, param, infoV1_1);
-       CopyScheduleInfoV1_1ToV1_0(infoV1_1, info);
-       return ret;
-   }
-
    // 取消录入接口实现
    int32_t UserAuthInterfaceService::CancelEnrollment(int32_t userId)
    {
@@ -367,8 +360,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
    }
 
    // 录入凭据信息存储接口实现
-   int32_t UserAuthInterfaceService::UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t>& scheduleResult,
-       uint64_t& credentialId, CredentialInfo& oldInfo)
+   int32_t UserAuthInterfaceService::UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t> &scheduleResult, EnrollResultInfo &info)
    {
        IAM_LOGI("start");
        GlobalLock();
@@ -420,10 +412,10 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        }
        return userAuthInterfaceService;
    }
-
+   
    // 发起认证，生成认证方案和调度信息
-   int32_t UserAuthInterfaceService::BeginAuthenticationV1_1(uint64_t contextId, const AuthSolution& param,
-       std::vector<ScheduleInfoV1_1>& infos)
+   int32_t UserAuthInterfaceService::BeginAuthentication(uint64_t contextId, const HdiAuthParam &param,
+    std::vector<HdiScheduleInfo> &infos)
    {
        IAM_LOGI("start");
        if (param.challenge.size() != sizeof(uint64_t)) {
@@ -463,21 +455,10 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        GlobalUnLock();
        return ret;
    }
-
-   // 发起认证，生成认证方案和调度信息（V1_0版本），通过调用 V1_1 版本相应接口实现功能
-   int32_t UserAuthInterfaceService::BeginAuthentication(uint64_t contextId, const AuthSolution &param,
-       std::vector<ScheduleInfo> &infos)
-   {
-       IAM_LOGI("start");
-       std::vector<ScheduleInfoV1_1> infosV1_1;
-       int32_t ret = BeginAuthenticationV1_1(contextId, param, infosV1_1);
-       CopyScheduleInfosV1_1ToV1_0(infosV1_1, infos);
-       return ret;
-   }
-
+   
    // 更新认证结果，进行此次认证方案结果的评估
    int32_t UserAuthInterfaceService::UpdateAuthenticationResult(uint64_t contextId,
-       const std::vector<uint8_t>& scheduleResult, AuthResultInfo& info)
+    const std::vector<uint8_t> &scheduleResult, HdiAuthResultInfo &info, HdiEnrolledState &enrolledState)
    {
        IAM_LOGI("start");
        GlobalLock();
@@ -513,7 +494,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        GlobalUnLock();
        return RESULT_SUCCESS;
    }
-
+   
    // 取消认证
    int32_t UserAuthInterfaceService::CancelAuthentication(uint64_t contextId)
    {
@@ -533,61 +514,73 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 
 ### 调测验证
 
-驱动开发完成后，通过[用户认证API接口](../../application-dev/reference/apis/js-apis-useriam-userauth.md)开发JS应用，基于Hi3516DV300平台验证。认证和取消功能验证的JS测试代码如下：
+驱动开发完成后，通过[用户认证API接口](../../application-dev/reference/apis-user-authentication-kit/js-apis-useriam-userauth.md)开发HAP应用，基于RK3568平台验证。
 
-    ```js
-    // API version 9
-    import userIAM_userAuth from '@ohos.userIAM.userAuth';
+1.发起认证并获取认证结果的测试代码如下：
 
-    let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-    let authType = userIAM_userAuth.UserAuthType.FACE;
-    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+```ts
+  // API version 10
+  import type {BusinessError} from '@ohos.base';
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
+  // 设置认证参数
+  const authParam: userIAM_userAuth.AuthParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FACE],
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  };
+  // 配置认证界面
+  const widgetParam: userIAM_userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
+  try {
     // 获取认证对象
-    let auth;
-    try {
-        auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
-        console.log("get auth instance success");
-    } catch (error) {
-        console.log("get auth instance failed" + error);
-    }
-
+    let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info('get userAuth instance success');
     // 订阅认证结果
-    try {
-        auth.on("result", {
-            callback: (result: userIAM_userAuth.AuthResultInfo) => {
-                console.log("authV9 result " + result.result);
-                console.log("authV9 token " + result.token);
-                console.log("authV9 remainAttempts " + result.remainAttempts);
-                console.log("authV9 lockoutDuration " + result.lockoutDuration);
-            }
-        });
-        console.log("subscribe authentication event success");
-    } catch (error) {
-        console.log("subscribe authentication event failed " + error);
-    }
+    userAuthInstance.on('result', {
+      onResult(result) {
+        console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+        // 可在认证结束或其他业务需要场景，取消订阅认证结果
+        userAuthInstance.off('result');
+      }
+  });
+    console.info('auth on success');
+    userAuthInstance.start();
+    console.info('auth start success');
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  }
+```
 
+2.取消认证的测试代码如下：
+
+```ts
+  // API version 10
+  import type {BusinessError} from '@ohos.base';
+  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+  const authParam: userIAM_userAuth.AuthParam = {
+    challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
+    authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FACE],
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userIAM_userAuth.WidgetParam = {
+    title: '请进行身份认证',
+  };
+  try {
+    // 获取认证对象
+    let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info('get userAuth instance success');
     // 开始认证
-    try {
-        auth.start();
-        console.info("authV9 start auth success");
-    } catch (error) {
-        console.info("authV9 start auth failed, error = " + error);
-    }
-
+    userAuthInstance.start();
+    console.info('auth start success');
     // 取消认证
-    try {
-        auth.cancel();
-        console.info("cancel auth success");
-    } catch (error) {
-        console.info("cancel auth failed, error = " + error);
-    }
-
-    // 取消订阅认证结果
-    try {
-        auth.off("result");
-        console.info("cancel subscribe authentication event success");
-    } catch (error) {
-        console.info("cancel subscribe authentication event failed, error = " + error);
-    }
-    ```
+    userAuthInstance.cancel();
+    console.info('auth cancel success');
+  } catch (error) {
+    const err: BusinessError = error as BusinessError;
+    console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  }
+```

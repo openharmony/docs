@@ -40,11 +40,12 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
-| 12300009 | Account has been activated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **示例：** 激活ID为100的系统帐号
   ```ts
@@ -91,11 +92,12 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
-| 12300009 | Account has been activated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **示例：** 激活ID为100的系统帐号
   ```ts
@@ -110,6 +112,54 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
     });
   } catch (e) {
     console.log('activateOsAccount exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### deactivateOsAccount<sup>12+</sup>
+
+deactivateOsAccount(localId: number): Promise&lt;void&gt;
+
+注销（退出登录）指定系统帐号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                 |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | 是   | 系统帐号ID。 |
+
+**返回值：**
+
+| 类型                | 说明                                  |
+| ------------------- | ------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
+
+**示例：** 注销ID为100的系统帐号
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.deactivateOsAccount(localId).then(() => {
+      console.log('deactivateOsAccount successfully');
+    }).catch((err: BusinessError) => {
+      console.log('deactivateOsAccount failed, err:' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('deactivateOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -141,6 +191,7 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -190,6 +241,7 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -239,6 +291,7 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -282,6 +335,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -337,6 +391,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -387,6 +442,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
@@ -442,6 +498,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
@@ -488,6 +545,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or localName. |
 | 12300003 | Account not found. |
@@ -542,6 +600,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or localName.    |
 | 12300003 | Account not found. |
@@ -585,6 +644,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -625,6 +685,7 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -640,6 +701,44 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
     });
   } catch (err) {
     console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### queryMaxLoggedInOsAccountNumber<sup>12+</sup>
+
+queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
+
+查询允许同时登录的系统帐号的最大数量。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                  | 说明                                         |
+| --------------------- | ------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回允许登录的系统帐号的最大数量。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.queryMaxLoggedInOsAccountNumber().then((maxNum: number) => {
+      console.log('queryMaxLoggedInOsAccountNumber successfully, maxNum: ' + maxNum);
+    }).catch((err: BusinessError) => {
+      console.log('queryMaxLoggedInOsAccountNumber failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('queryMaxLoggedInOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -671,6 +770,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -713,6 +813,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -752,6 +853,7 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -790,6 +892,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -832,6 +935,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localName or type. |
 | 12300004 | Local name already exists. |
@@ -885,6 +989,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localName, type or options. |
 | 12300004 | Local name already exists. |
@@ -936,6 +1041,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
 | 12300004 | Account already exists. |
@@ -963,7 +1069,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 ### createOsAccountForDomain<sup>8+</sup>
 
-createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
+createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, options?: CreateOsAccountForDomainOptions): Promise&lt;OsAccountInfo&gt;
 
 根据传入的域帐号信息，创建与其关联的系统帐号。使用Promise异步回调。
 
@@ -979,6 +1085,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | ---------- | ---------------------------------------- | ---- | -------------------- |
 | type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | 是   | 创建的系统帐号的类型。 |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。          |
+| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | 否   | 创建帐号的可选参数，默认为空。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
@@ -990,12 +1097,14 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
-| 12300002 | Invalid type or domainInfo. |
+| 12300002 | Invalid type, domainInfo or options. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
+| 12300015 | Short name already exists. |
 
 **示例：**
 
@@ -1004,8 +1113,10 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
   let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
+  let options: account_osAccount.CreateOsAccountForDomainOptions;
+  options.shortName = 'myShortName';
   try {
-    accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then(
+    accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo, options).then(
       (accountInfo: account_osAccount.OsAccountInfo) => {
       console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
@@ -1079,6 +1190,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1127,6 +1239,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
@@ -1171,6 +1284,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1219,6 +1333,7 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1264,6 +1379,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
@@ -1317,6 +1433,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
@@ -1367,6 +1484,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
 
@@ -1408,6 +1526,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or name. |
 
@@ -1448,6 +1567,7 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
@@ -1488,6 +1608,7 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
@@ -1525,6 +1646,7 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
@@ -1565,6 +1687,7 @@ off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
@@ -1600,6 +1723,7 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid. |
 
@@ -1645,6 +1769,7 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid. |
 
@@ -1691,6 +1816,7 @@ getBundleIdForUidSync(uid: number): number
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid uid. |
 
 **示例：**
@@ -1728,6 +1854,7 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1767,6 +1894,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1809,6 +1937,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
@@ -1858,6 +1987,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
@@ -1907,6 +2037,7 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -2000,6 +2131,7 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
@@ -2039,8 +2171,10 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid request. |
+| 12300003 | Account not found. |
 
 **示例：**
   ```ts
@@ -2093,8 +2227,10 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid request. |
+| 12300003 | Account not found. |
 
 **示例：**
   ```ts
@@ -2143,6 +2279,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid request. |
 
@@ -2196,6 +2333,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid request. |
 
@@ -2250,6 +2388,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
@@ -2260,6 +2399,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
 | 12300112 | Authentication service is busy. |
+| 12300117 | PIN is expired. |
 
 **示例：**
   ```ts
@@ -2269,6 +2409,73 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
   let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
+      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+          console.log('auth result = ' + result);
+          console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
+      }
+    });
+  } catch (e) {
+    console.log('auth exception = ' + JSON.stringify(e));
+  }
+  ```
+
+
+### auth<sup>12+</sup>
+
+auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, options: AuthOptions, callback: IUserAuthCallback): Uint8Array
+
+基于指定的挑战值、认证类型（如口令、人脸、指纹等）、认证可信等级以及可选参数（如帐号标识、认证意图等）进行身份认证。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                |
+| --------------- | ---------------------------------------- | --- | ------------------------------------ |
+| challenge       | Uint8Array                               | 是  | 指示挑战值，挑战值为一个随机数，用于防止重放攻击，提升安全性。|
+| authType        | [AuthType](#authtype8)                   | 是  | 指示认证类型。                        |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | 是  | 指示认证结果的信任级别。               |
+| options         | [AuthOptions](#authoptions12) | 是 | 指示认证用户的可选参数集合。 |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | 是  | 回调对象，返回认证结果。  |
+
+**返回值：**
+
+| 类型        | 说明               |
+| ---------- | ------------------ |
+| Uint8Array | 返回取消的上下文ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| -------- | --------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid challenge, authType, authTrustLevel or options. |
+| 12300003 | Account not found. |
+| 12300101 | Credential is incorrect. |
+| 12300102 | Credential not enrolled. |
+| 12300105 | Unsupported authTrustLevel. |
+| 12300106 | Unsupported authType. |
+| 12300109 | Authentication is canceled. |
+| 12300110 | Authentication is locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service is busy. |
+| 12300117 | PIN is expired. |
+
+**示例：**
+  ```ts
+  let userAuth = new account_osAccount.UserAuth();
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let options: account_osAccount.AuthOptions = {
+    accountId: 100
+  };
+  try {
+    userAuth.auth(challenge, authType, authTrustLevel, options, {
       onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
           console.log('auth result = ' + result);
           console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
@@ -2311,16 +2518,19 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
-| 12300002 | Invalid userId, challenge, authType or authTrustLevel. |
+| 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300102 | Credential not enrolled. |
+| 12300003 | Account not found. |
 | 12300105 | Unsupported authTrustLevel. |
 | 12300106 | Unsupported authType. |
 | 12300109 | Authentication is canceled. |
 | 12300110 | Authentication is locked. |
 | 12300111 | Authentication timeout. |
 | 12300112 | Authentication service is busy. |
+| 12300117 | PIN is expired. |
 
 **示例：**
   ```ts
@@ -2427,6 +2637,7 @@ registerInputer(inputer: IInputer): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid inputer. |
 | 12300103 | Inputer already registered. |
@@ -2492,6 +2703,7 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType or inputer. |
 | 12300103 | The credential inputer has been registered. |
@@ -2534,6 +2746,7 @@ static unregisterInputer(authType: AuthType): void
 **错误码：**
 
 | 错误码ID | 错误信息                     |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | -------- | --------------------------- |
 | 12300002  | Invalid authType. |
 
@@ -3054,6 +3267,7 @@ static registerPlugin(plugin: DomainPlugin): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300201 | The domain plugin has been registered. |
 
 **示例：**
@@ -3131,6 +3345,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo or credential. |
 | 12300003 | Domain account does not exist. |
@@ -3186,6 +3401,7 @@ authWithPopup(callback: IUserAuthCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
@@ -3236,6 +3452,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId. |
 | 12300003 | No domain account is bound. |
@@ -3285,6 +3502,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
@@ -3338,6 +3556,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
@@ -3385,6 +3604,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
@@ -3440,6 +3660,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
@@ -3461,6 +3682,53 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
     });
   } catch (err) {
     console.log('updateAccountToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### updateAccountInfo<sup>12+</sup>
+
+updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+修改指定域帐号信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示旧域帐号信息。|
+| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示新域帐号信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300002 | The new account info is invalid. |
+| 12300003 | The old account not found. |
+| 12300004 | The new account already exists. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let oldDomainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'oldtestAccountName'};
+  let newDomainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'newtestAccountName'};
+  try {
+    account_osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
+      console.log('updateAccountInfo, success');
+    }).catch((err: BusinessError) => {
+      console.log('updateAccountInfo err: ' + err);
+    });
+  } catch (e) {
+    console.log('updateAccountInfo exception: ' + e);
   }
   ```
 
@@ -3487,6 +3755,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
@@ -3541,6 +3810,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
@@ -3586,6 +3856,7 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
@@ -3640,6 +3911,7 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
@@ -3663,6 +3935,217 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
     });
   } catch (err) {
     console.log('getAccessToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### isAuthenticationExpired<sup>12+</sup>
+
+isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;;
+
+判断指定域帐号是否登录超期。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;boolean&gt; | Promise对象，返回指定的域帐号是否登录超期。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300003 | Domain account not found. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let domainInfo: account_osAccount.DomainAccountInfo =
+    {domain: 'testDomain', accountName: 'testAccountName'};
+  try {
+    account_osAccount.DomainAccountManager.isAuthenticationExpired(domainInfo).then((result: boolean) => {
+      console.log('isAuthenticationExpired, result: ' + result);
+    }).catch((err: BusinessError) => {
+      console.log('isAuthenticationExpired err: ' + err);
+    });
+  } catch (e) {
+    console.log('isAuthenticationExpired exception: ' + e);
+  }
+  ```
+
+## DomainServerConfig<sup>12+</sup>
+
+域服务器配置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| parameters | Record<string, Object> | 是   | 服务器配置参数。 |
+| id | string | 是   | 服务器配置标识。|
+| domain | string | 是 | 服务器所属的域。 |
+
+## DomainServerConfigManager<sup>12+</sup>
+
+域服务器配置管理类。
+
+### addServerConfig<sup>12+</sup>
+
+static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
+
+添加域服务器配置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| parameters   | Record<string, Object>  | 是  | 指示域服务器配置参数。 |
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回新添加的域服务器配置。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | - System service exception. |
+| 12300002 | - Invalid server config parameters. |
+| 12300211 | - Server unreachable. |
+
+**示例：**
+  ```ts
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  try {
+    let serverConfig: account.DomainServerConfig =
+      await account.DomainServerConfigManager.addServerConfig(configParams);
+    console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
+  } catch (e) {
+    console.log('add server configuration failed, error: ' + JSON.stringify(e));
+  }
+  ```
+
+### removeServerConfig<sup>12+</sup>
+
+static removeServerConfig(configId: string): Promise&lt;void&gt;
+
+删除域服务器配置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| configId   | string  | 是  | 指示服务器配置标识。 |
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 |- System service exception. |
+| 12300212 | - Server config not found. |
+
+**示例：**
+  ```ts
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  try {
+    let serverConfig: account.DomainServerConfig =
+      await account.DomainServerConfigManager.addServerConfig(configParams);
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    await account.DomainServerConfigManager.removeServerConfig(serverConfig.id);
+    console.log('remove domain server configuration successfully');
+  } catch (e) {
+    console.log('add or remove server configuration failed, error: ' + JSON.stringify(e));
+  }
+  ```
+
+### getAccountServerConfig<sup>12+</sup>
+
+static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
+
+获取目标域帐号的服务器配置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是  | 指示目标域帐号信息。 |
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回目标帐号的域服务器配置。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300003 | Domain account not found. |
+
+**示例：**
+  ```ts
+  let accountInfo: account.DomainAccountInfo = {
+    'accountName': 'demoName',
+    'accountId': 'demoId',
+    'domain': 'demoDomain'
+  };
+  try {
+    let serverConfig: account.DomainServerConfig =
+      await account.DomainServerConfigManager.getAccountServerConfig(accountInfo);
+    console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
+  } catch (e) {
+    console.log('get account server configuration failed, error: ' + JSON.stringify(e));
   }
   ```
 
@@ -3709,6 +4192,7 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -3727,15 +4211,21 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 ### openSession<sup>8+</sup>
 
-openSession(): Promise&lt;Uint8Array&gt;;
+openSession(accountId?: number): Promise&lt;Uint8Array&gt;
 
-打开会话，获取挑战值。使用Promise异步回调。
+打开会话，获取挑战值（用于判断后续的身份认证场景是否处于该会话下，防止重放攻击）。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
 **需要权限：** ohos.permission.MANAGE_USER_IDM
+
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明        |
+| --------- | ------- | ---- | ----------- |
+| accountId<sup>12+</sup> | number  | 否   | 系统帐号标识，默认为空。 |
 
 **返回值：**
 
@@ -3747,14 +4237,18 @@ openSession(): Promise&lt;Uint8Array&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
 
 **示例：**
   ```ts
   import { BusinessError } from '@ohos.base';
   let userIDM = new account_osAccount.UserIdentityManager();
+  let accountId = 100;
   try {
-    userIDM.openSession().then((challenge: Uint8Array) => {
+    userIDM.openSession(accountId).then((challenge: Uint8Array) => {
         console.info('openSession challenge = ' + JSON.stringify(challenge));
     }).catch((err: BusinessError) => {
         console.info('openSession error = ' + JSON.stringify(err));
@@ -3787,13 +4281,17 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
 | 12300101 | Token is invalid. |
 | 12300106 | Unsupported authType. |
 | 12300109 | Operation is canceled. |
 | 12300111 | Operation timeout. |
 | 12300115 | The number of credentials reaches the upper limit. |
+| 12300116 | Credential complexity verification failed. |
 
 **示例：**
   ```ts
@@ -3848,13 +4346,16 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
+| 12300003 | Account not found. |
 | 12300101 | Token is invalid. |
 | 12300102 | Credential not enrolled.|
 | 12300106 | Unsupported authType. |
 | 12300109 | Operation is canceled. |
 | 12300111 | Operation timeout. |
+| 12300116 | Credential complexity verification failed. |
 
 **示例：**
   ```ts
@@ -3899,7 +4400,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 ### closeSession<sup>8+</sup>
 
-closeSession(): void
+closeSession(accountId?: number): void
 
 关闭会话，结束IDM操作。
 
@@ -3909,10 +4410,25 @@ closeSession(): void
 
 **需要权限：** ohos.permission.MANAGE_USER_IDM
 
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明        |
+| --------- | ------- | ---- | ----------- |
+| accountId<sup>12+</sup> | number  | 否   | 系统帐号标识，默认为空。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
+
 **示例：**
   ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
-  userIDM.closeSession();
+  let accountId = 100;
+  userIDM.closeSession(accountId);
   ```
 
 ### cancel<sup>8+</sup>
@@ -3937,6 +4453,7 @@ cancel(challenge: Uint8Array): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid challenge. |
 
@@ -3974,6 +4491,7 @@ delUser(token: Uint8Array, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息        |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300101 | Token is invalid. |
 
@@ -4017,6 +4535,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid credentialId. |
 | 12300101 | Token is invalid. |
@@ -4061,6 +4580,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 
 | 错误码ID | 错误信息               |
 | -------- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300102 | Credential not enrolled. |
 
@@ -4167,6 +4687,111 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
   }
   ```
 
+### getAuthInfo<sup>12+</sup>
+
+getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;
+
+依据提供的可选参数，获取认证信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.USE_USER_IDM
+
+**参数：**
+
+| 参数名    | 类型                                | 必填 | 说明      |
+| -------- | ----------------------------------- | ---- | -------- |
+| options | [GetAuthInfoOptions](#getauthinfooptions12)          | 否   | 获取认证信息的可选参数集合。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                                                     |
+| :------------------------------------------- | :----------------------------------------------------------------------- |
+| Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise对象，返回当前用户指定类型的所有已注册凭据信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ------------------- |
+| 401      | Parameters error. Possible causes: Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid options. |
+| 12300003 | Account not found. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let options: account_osAccount.GetAuthInfoOptions = {
+    authType: account_osAccount.AuthType.PIN,
+    accountId: 100,
+  };
+  try {
+    userIDM.getAuthInfo(options).then((result: account_osAccount.EnrolledCredInfo[]) => {
+      console.log('getAuthInfo result = ' + JSON.stringify(result))
+    }).catch((err: BusinessError) => {
+      console.log('getAuthInfo error = ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### getEnrolledId<sup>12+</sup>
+
+getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
+
+基于凭据类型，以及可选的帐号标识，获取已注册的凭据ID。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.USE_USER_IDM
+
+**参数：**
+
+| 参数名     | 类型                   | 必填 | 说明      |
+| --------  | ---------------------- | ---- | -------- |
+| authType  | [AuthType](#authtype8) | 是   | 认证凭据类型 |
+| accountId | number                 | 否   | 系统帐号标识，默认为空。 |
+
+**返回值：**
+
+| 类型                       | 说明                                                                     |
+| :------------------------ | :----------------------------------------------------------------------- |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回已注册的凭据ID。|
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ------------------- |
+| 401      | Parameters error. Parameters error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid authType. |
+| 12300003 | Account not found. |
+| 12300102 | Credential not enrolled. |
+| 12300106 | Unsupported authType. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
+  let accountId = 100;
+  try {
+    userIDM.getEnrolledId(authType, accountId).then((enrolledId: Uint8Array) => {
+        console.info('getEnrolledId enrolledId = ' + JSON.stringify(enrolledId));
+    }).catch((err: BusinessError) => {
+        console.info('getEnrolledId error = ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getEnrolledId exception = ' + JSON.stringify(e));
+  }
+  ```
+
 ## IInputData<sup>8+</sup>
 
 密码数据回调。
@@ -4194,6 +4819,7 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid pinSubType. |
 
 **示例：**
@@ -4219,9 +4845,9 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (authSubType: AuthSubType, callback: IInputData, options: GetInputDataOptions) => void;
 
-通知获取数据。
+通知调用者获取数据的回调函数。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4231,14 +4857,17 @@ onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
+| authSubType | [AuthSubType](#authsubtype8) | 是 | 认证凭据子类型。 |
 | callback   | [IInputData](#iinputdata8)  | 是   | 指示密码数据回调。|
+| options | [GetInputDataOptions](#getinputdataoptions-12) | 是 | 回调函数的可选参数集合。 |
 
 **示例：**
   ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
   let inputer: account_osAccount.IInputer = {
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+    onGetData: (authSubType: account_osAccount.AuthSubType,
+      callback: account_osAccount.IInputData, options: account_osAccount.GetInputDataOptions) => {
         if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
         } else {
@@ -4395,6 +5024,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
 | authType | [AuthType](#authtype8)                            | 是    | 身份验证凭据类型。        |
 | keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要获取的属性类型数组。 |
+| accountId<sup>12+</sup> | number | 否 | 系统帐号标识，默认为undefined。 |
 
 ## SetPropertyRequest<sup>8+</sup>
 
@@ -4426,6 +5056,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | freezingTime | number                       | 是    | 是   | 指示冻结时间。     |
 | enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
 | sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
+| nextPhaseFreezingTime<sup>12+</sup> | number | 是    | 是   | 指示下次冻结时间，默认为undefined。 |
 
 ## AuthResult<sup>8+</sup>
 
@@ -4440,6 +5071,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | token        | Uint8Array  | 否    | 指示认证令牌，默认为空。      |
 | remainTimes  | number      | 否    | 指示剩余次数，默认为空。      |
 | freezingTime | number      | 否    | 指示冻结时间，默认为空。      |
+| nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 指示下次冻结时间，默认为undefined。 |
+| credentialId<sup>12+</sup> | Uint8Array  | 否    | 指示凭据ID，默认为空。 |
+| accountId<sup>12+</sup>         | number | 否    | 指示系统帐号标识，默认为undefined。 |
+| pinValidityPeriod<sup>12+</sup> | number | 否    | 指示认证有效期，默认为undefined。 |
 
 ## CredentialInfo<sup>8+</sup>
 
@@ -4454,6 +5089,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
 | credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
 | token        | Uint8Array                           | 是    | 指示认证令牌。     |
+| accountId<sup>12+</sup>    | number | 否    | 系统帐号标识，默认为undefined。 |
 
 ## RequestResult<sup>8+</sup>
 
@@ -4497,6 +5133,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | FREEZING_TIME | 3      | 冻结时间。   |
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
 | SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |
+| NEXT_PHASE_FREEZING_TIME<sup>12+</sup> | 6 | 下次冻结时间。 |
 
 ## SetPropertyType<sup>8+</sup>
 
@@ -4523,6 +5160,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | PIN   | 1     | 表示PIN认证类型。 |
 | FACE  | 2     | 表示脸部认证类型。|
 | FINGERPRINT<sup>10+</sup>   | 4     | 表示指纹认证类型。 |
+| RECOVERY_KEY<sup>12+</sup> | 8 | 表示键恢复类型。 |
 | DOMAIN<sup>9+</sup>  | 1024     | 表示域认证类型。|
 
 ## AuthSubType<sup>8+</sup>
@@ -4644,6 +5282,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName<sup>12+</sup> | string | 否   | 系统帐号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| isLoggedIn<sup>12+</sup> | boolean | 否   | 是否登录。<br>**系统接口：** 此接口为系统接口，默认为false。 |
 
 ## OsAccountType
 
@@ -4663,8 +5302,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
 | isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
+| serverConfigId<sup>12+</sup>| boolean | 否 | 域帐号所属服务器标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -4733,7 +5373,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | accountName | string | 是   | 域帐号名。 |
-| domain      | string | 否   | 域名。     |
+| domain      | string | 否   | 域名。默认为undefined。|
+| serverConfigId<sup>12+</sup>| boolean | 否 | 域帐号所属服务器标识。默认为undefined。|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -4762,7 +5403,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
-表示创建系统帐号的选项。
+表示用于创建系统帐号的可选参数。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4771,3 +5412,80 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName | string | 是   | 表示帐号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+
+## CreateOsAccountForDomainOptions<sup>12+</sup>
+
+表示用于创建与指定域帐号绑定的系统帐号的可选参数。继承自[CreateOsAccountOptions](#createosaccountoptions12)。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| shortName | string | 是   | 表示帐号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+
+## GetAuthInfoOptions<sup>12+</sup>
+
+表示[查询认证凭据信息](#getauthinfo12)的可选参数集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称      | 类型                    | 必填 | 说明       |
+| --------- | ---------------------- | ---- | ---------- |
+| authType  | [AuthType](#authtype8) | 否   | 认证类型，默认为undefined。 |
+| accountId | number                 | 否   | 系统帐号标识，默认为undefined。 |
+
+## AuthIntent<sup>12+</sup>
+
+表示认证意图的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称     | 值   | 说明       |
+| -------- | --- | ---------- |
+| UNLOCK   | 1   | 解锁意图。 |
+
+## RemoteAuthOptions<sup>12+</sup>
+
+表示远程认证的可选参数集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称               | 类型    | 必填 | 说明       |
+| ------------------ | ------ | ---- | ---------- |
+| verifierNetworkId  | string | 否   | 凭据验证者的网络标识，默认为空。 |
+| collectorNetworkId | string | 否   | 凭据收集者的网络标识，默认为空。 |
+| collectorTokenId   | number | 否   | 凭据收集者的令牌标识，默认为undefined。 |
+
+## AuthOptions<sup>12+</sup>
+
+表示[认证用户](#auth12)的可选参数集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称               | 类型    | 必填 | 说明       |
+| ------------------ | ------ | ---- | ---------- |
+| accountId          | number | 否   | 系统帐号标识，默认为undefined。 |
+| authIntent         | [AuthIntent](#authintent12) | 否   | 认证意图，默认为undefined。 |
+| remoteAuthOptions  | [RemoteAuthOptions](#remoteauthoptions12) | 否   | 远程认证选项，默认为undefined。 |
+
+## GetInputDataOptions <sup>12+</sup>
+
+表示[通知调用者获取数据](#ongetdata8)的可选参数集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称               | 类型    | 必填 | 说明       |
+| ------------------ | ------ | ---- | ---------- |
+| challenge          | Uint8Array | 否   | 挑战值，默认为undefined。 |

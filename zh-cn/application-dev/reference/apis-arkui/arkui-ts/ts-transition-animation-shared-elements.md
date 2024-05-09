@@ -20,11 +20,13 @@
 > type为SharedTransitionEffectType.Exchange时motionPath才会生效。
 
 ## sharedTransitionOptions
- 
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称              | 参数类型      | 是否必填       | 参数描述                                                      |
 | ----------------- | -------------|-------------- | --------------------------------------------------------------|
 | duration          |     number   |  否           | 描述共享元素转场动效播放时长。<br>默认值：1000。 <br>单位：毫秒。 |
-| curve             |      [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+</sup>  | 否 | 描述共享元素转场动效播放时长。<br>默认值：1000。 <br>单位：毫秒。|
+| curve             |      [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve)<sup>10+</sup>  | 否 | 动画曲线。<br/>默认值：Curve.Linear |
 | delay          |     number   |  否           | 延迟播放时间。<br>默认值：0。 <br>单位：毫秒。 |
 | motionPath          | [MotionPathOptions](./ts-motion-path-animation.md)  |  否           | 运动路径信息。 |
 | zIndex          |     number   |  否              | 设置Z轴。 |

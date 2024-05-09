@@ -16,7 +16,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-key-genera
 
 4. Use [SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the key.
 
-Example: Convert binary data into a 192-bit 3DES key (using callback-based APIs).
+- Example: Convert binary data into a 192-bit 3DES key (using callback-based APIs).
 
   ```ts
   import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -51,7 +51,6 @@ Example: Convert binary data into a 192-bit 3DES key (using callback-based APIs)
     } catch (error) {// Throw an exception immediately when an error is detected during parameter check.
       let e: BusinessError = error as BusinessError;
       console.error(`convertKey failed, ${e.code}, ${e.message}`);
-      return;
     }
   }
   ```

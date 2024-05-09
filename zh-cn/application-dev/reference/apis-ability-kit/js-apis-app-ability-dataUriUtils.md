@@ -32,6 +32,14 @@ getId(uri: string): number
 | ------ | ------------------------ |
 | number | 返回uri路径末尾的ID。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -67,6 +75,14 @@ attachId(uri: string, id: number): string
 | 类型   | 说明                  |
 | ------ | --------------------- |
 | string | 返回附加ID之后的uri对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -108,6 +124,14 @@ deleteId(uri: string): string
 | ------ | ------------------- |
 | string | 返回删除ID之后的uri对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -144,6 +168,14 @@ updateId(uri: string, id: number): string
 | 类型   | 说明            |
 | ------ | --------------- |
 | string | 返回更新ID之后的uri对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 

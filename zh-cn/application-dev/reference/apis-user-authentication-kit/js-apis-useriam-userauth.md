@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 ```
 
 ## 常量
@@ -197,7 +197,7 @@ import userAuth from '@ohos.userIAM.userAuth';
 
 let reuseUnlockResult: userAuth.ReuseUnlockResult = {
   reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
-  reuseDuration: 300000,
+  reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
 }
 const authParam : userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
@@ -366,6 +366,7 @@ start(): void
 | 12500009 | The authenticator is locked.                     |
 | 12500010 | The type of credential has not been enrolled.    |
 | 12500011 | The authentication is canceled from widget's navigation button.      |
+| 12500013 | Indicates that current authentication failed because of PIN expired. |
 
 **示例：**
 
@@ -577,22 +578,22 @@ callback(result : EventInfo) : void
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 // 通过callback获取认证结果
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.on('result', {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+    callback: (result: userAuth.AuthResultInfo) => {
       console.log('authV9 result ' + result.result);
       console.log('authV9 token ' + result.token);
       console.log('authV9 remainAttempts ' + result.remainAttempts);
       console.log('authV9 lockoutDuration ' + result.lockoutDuration);
     }
-  } as userIAM_userAuth.AuthEvent);
+  } as userAuth.AuthEvent);
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
@@ -601,19 +602,19 @@ try {
 }
 // 通过callback获取认证过程中的提示信息
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.on('tip', {
-    callback : (result : userIAM_userAuth.TipInfo) => {
+    callback : (result : userAuth.TipInfo) => {
       switch (result.tip) {
-        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+        case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // do something;
-        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+        case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // do something;
         default:
           // do others
       }
     }
-  } as userIAM_userAuth.AuthEvent);
+  } as userAuth.AuthEvent);
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
@@ -660,16 +661,16 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   // 订阅认证结果
   auth.on('result', {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+    callback: (result: userAuth.AuthResultInfo) => {
       console.log('authV9 result ' + result.result);
       console.log('authV9 token ' + result.token);
       console.log('authV9 remainAttempts ' + result.remainAttempts);
@@ -678,17 +679,17 @@ try {
   });
   // 订阅认证过程中的提示信息
   auth.on('tip', {
-    callback : (result : userIAM_userAuth.TipInfo) => {
+    callback : (result : userAuth.TipInfo) => {
       switch (result.tip) {
-        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+        case userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
           // do something;
-        case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+        case userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // do something;
         default:
           // do others
       }
     }
-  } as userIAM_userAuth.AuthEvent);
+  } as userAuth.AuthEvent);
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
@@ -725,16 +726,16 @@ off : (name : AuthEventKey) => void
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   // 订阅认证结果
   auth.on('result', {
-    callback: (result: userIAM_userAuth.AuthResultInfo) => {
+    callback: (result: userAuth.AuthResultInfo) => {
       console.log('authV9 result ' + result.result);
       console.log('authV9 token ' + result.token);
       console.log('authV9 remainAttempts ' + result.remainAttempts);
@@ -785,14 +786,14 @@ start : () => void
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.start();
   console.info('authV9 start auth success');
 } catch (error) {
@@ -828,14 +829,14 @@ cancel : () => void
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   auth.cancel();
   console.info('cancel auth success');
 } catch (error) {
@@ -843,7 +844,7 @@ try {
 }
 ```
 
-## userIAM_userAuth.getAuthInstance<sup>(deprecated)</sup>
+## userAuth.getAuthInstance<sup>(deprecated)</sup>
 
 getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel : AuthTrustLevel): AuthInstance
 
@@ -885,21 +886,21 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 let challenge = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
-let authType = userIAM_userAuth.UserAuthType.FACE;
-let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
+let authType = userAuth.UserAuthType.FACE;
+let authTrustLevel = userAuth.AuthTrustLevel.ATL1;
 
 try {
-  let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
+  let auth = userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   console.info('let auth instance success');
 } catch (error) {
   console.error('get auth instance success failed, error = ' + error);
 }
 ```
 
-## userIAM_userAuth.getAvailableStatus<sup>9+</sup>
+## userAuth.getAvailableStatus<sup>9+</sup>
 
 getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): void
 
@@ -916,6 +917,13 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | authType       | [UserAuthType](#userauthtype8)     | 是   | 认证类型。从 API version 11 开始支持PIN查询。|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。       |
 
+> **错误码返回顺序说明：**
+>
+> - 无对应执行器注册时，判断系统不支持该认证能力，需返回12500005。
+> - 有对应执行器注册时，功能未禁用，但认证安全等级低于业务指定时，需返回12500006。
+> - 有对应执行器注册时，功能未禁用，但用户没有注册凭据时，需返回12500010。
+> - 有对应执行器注册时，功能未禁用，但密码过期时，需返回12500013。
+
 **错误码：**
 
 以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
@@ -928,14 +936,15 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
+| 12500013 | Indicates that current operation failed because of PIN expired. |
 
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 try {
-  userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
+  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
   console.info('current auth trust level is supported');
 } catch (error) {
   console.error('current auth trust level is not supported, error = ' + error);
@@ -961,6 +970,7 @@ try {
 | LOCKED                  | 12500009      | 认证器已锁定。       |
 | NOT_ENROLLED            | 12500010      | 用户未录入认证信息。 |
 | CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 当前的认证操作被用户从组件取消。返回这个错误码，表示使用应用自定义认证。 |
+| PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏密码过期。 |
 
 ## UserAuth<sup>(deprecated)</sup>
 
@@ -973,16 +983,16 @@ constructor()
 创建认证器对象。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAuthInstance](#useriam_userauthgetauthinstancedeprecated)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAuthInstance](#userauthgetauthinstancedeprecated)替代。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 ```
 
 ### getVersion<sup>(deprecated)</sup>
@@ -1007,9 +1017,9 @@ getVersion() : number
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let version = auth.getVersion();
 console.info('auth version = ' + version);
 ```
@@ -1021,7 +1031,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 查询指定类型和等级的认证能力是否支持。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAvailableStatus](#useriam_userauthgetavailablestatus9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAvailableStatus](#userauthgetavailablestatus9)替代。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -1043,11 +1053,11 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
-let checkCode = auth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
-if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
+let auth = new userAuth.UserAuth();
+let checkCode = auth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
+if (checkCode == userAuth.ResultCode.SUCCESS) {
   console.info('check auth support success');
 } else {
   console.error('check auth support fail, code = ' + checkCode);
@@ -1085,16 +1095,16 @@ auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLev
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
-auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
       console.info('auth onResult result = ' + result);
       console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
-      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+      if (result == userAuth.ResultCode.SUCCESS) {
         // 此处添加认证成功逻辑
       } else {
         // 此处添加认证失败逻辑
@@ -1134,13 +1144,13 @@ cancelAuth(contextID : Uint8Array) : number
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 // contextId可通过auth接口获取，此处直接定义
 let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let cancelCode = auth.cancelAuth(contextId);
-if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
+if (cancelCode == userAuth.ResultCode.SUCCESS) {
   console.info('cancel auth success');
 } else {
   console.error('cancel auth fail');
@@ -1175,16 +1185,16 @@ onResult: (result : number, extraInfo : AuthResult) => void
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
-auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
       console.info('auth onResult result = ' + result);
       console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
-      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+      if (result == userAuth.ResultCode.SUCCESS) {
         // 此处添加认证成功逻辑
       }  else {
         // 此处添加认证失败逻辑
@@ -1218,16 +1228,16 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let auth = new userIAM_userAuth.UserAuth();
+let auth = new userAuth.UserAuth();
 let challenge = new Uint8Array([]);
-auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1, {
+auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
   onResult: (result, extraInfo) => {
     try {
       console.info('auth onResult result = ' + result);
       console.info('auth onResult extraInfo = ' + JSON.stringify(extraInfo));
-      if (result == userIAM_userAuth.ResultCode.SUCCESS) {
+      if (result == userAuth.ResultCode.SUCCESS) {
         // 此处添加认证成功逻辑
       }  else {
         // 此处添加认证失败逻辑
@@ -1236,7 +1246,7 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       console.error('auth onResult error = ' + error);
     }
   },
-  onAcquireInfo: (module, acquire, extraInfo : userIAM_userAuth.AuthResult) => {
+  onAcquireInfo: (module, acquire, extraInfo : userAuth.AuthResult) => {
     try {
       console.info('auth onAcquireInfo module = ' + module);
       console.info('auth onAcquireInfo acquire = ' + acquire);
@@ -1354,7 +1364,7 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
 | ATL3 | 30000 | 认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 |
 | ATL4 | 40000 | 认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
 
-## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
+## userAuth.getAuthenticator<sup>(deprecated)</sup>
 
 getAuthenticator(): Authenticator
 
@@ -1373,9 +1383,9 @@ getAuthenticator(): Authenticator
 
 **示例：**
   ```ts
-  import userIAM_userAuth from '@ohos.userIAM.userAuth';
+  import userAuth from '@ohos.userIAM.userAuth';
   
-  let authenticator = userIAM_userAuth.getAuthenticator();
+  let authenticator = userAuth.getAuthenticator();
   ```
 
 ## Authenticator<sup>(deprecated)</sup>
@@ -1409,11 +1419,11 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-let authenticator = userIAM_userAuth.getAuthenticator();
+let authenticator = userAuth.getAuthenticator();
 authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
-  if (code === userIAM_userAuth.ResultCode.SUCCESS) {
+  if (code === userAuth.ResultCode.SUCCESS) {
     console.info('auth success');
     return;
   }
@@ -1451,10 +1461,10 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 try {
-  let authenticator = userIAM_userAuth.getAuthenticator();
+  let authenticator = userAuth.getAuthenticator();
   authenticator.execute('FACE_ONLY', 'S2').then((code)=>{
     console.info('auth success');
   })

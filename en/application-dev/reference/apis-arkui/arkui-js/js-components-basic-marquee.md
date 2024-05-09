@@ -19,7 +19,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name          | Type    | Default Value | Mandatory  | Description                                      |
 | ------------ | ------ | ---- | ---- | ---------------------------------------- |
@@ -30,20 +30,20 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name         | Type                        | Default Value       | Mandatory  | Description                                      |
 | ----------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
 | color       | &lt;color&gt;              | \#e5000000 | No   | Font color of the scrolling text.                          |
 | font-size   | &lt;length&gt;             | 37.5       | No   | Font size of the scrolling text.                          |
 | allow-scale | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
-| font-weight | number \| string | normal     | No   | Font weight of the scrolling text. For details, see **font-weight** of the **[\<text> component](../arkui-js/js-components-basic-text.md#styles)**.|
-| font-family | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-weight | number \| string | normal     | No   | Font weight of the scrolling text. For details, see **font-weight** of the **[\<text> component](js-components-basic-text.md#styles)**.|
+| font-family | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 
 
 ## Events
 
-In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
+In addition to the [universal events](js-components-common-events.md), the following events are supported.
 
 | Name    | Parameter  | Description                                      |
 | ------ | ---- | ---------------------------------------- |
@@ -53,7 +53,7 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 
 ## Methods
 
-In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
+In addition to the [universal methods](js-components-common-methods.md), the following methods are supported.
 
 | Name   | Parameter  | Description   |
 | ----- | ---- | ----- |

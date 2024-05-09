@@ -16,7 +16,9 @@
 
 Stack(value?: { alignContent?: Alignment })
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -33,6 +35,8 @@ Stack(value?: { alignContent?: Alignment })
 alignContent(value: Alignment)
 
 设置所有子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md)同时设置时，后设置的属性生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

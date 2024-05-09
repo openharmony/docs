@@ -141,7 +141,7 @@
    }
    properties[5] = {
        tag: huks.HuksTag.HUKS_TAG_IV,
-       value: StringToUint8Arry(IV),
+       value: StringToUint8Array(IV),
    }
    let huksOptions : huks.HuksOptions = {
        properties: properties,

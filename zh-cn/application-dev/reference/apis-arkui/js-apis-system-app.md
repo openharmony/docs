@@ -79,17 +79,30 @@ static setImageCacheCount(value: number): void
 **示例：**
 
 ```ts
-// app.ets
+// xxx.ets
 import app, { AppResponse } from '@system.app'
 
-export default class OnC {
-  onCreate() {
-    app.setImageCacheCount(100) // 设置解码后图片内存缓存上限为100张
-    console.info('Application onCreate')
-  },
+@Entry
+@Component
+struct Index {
+  //app.setImageCacheCount方法需要在由@Entry标记的页面，onPageShow或aboutToAppear里面设置才生效
+  onPageShow() {
+    // 设置解码后图片内存缓存上限为100张
+    app.setImageCacheCount(100) 
+    console.info('Application onPageShow')
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
+
+  build() {
+    Row(){
+      // xxxxxxxxxxxxx为图片地址
+      Image('xxxxxxxxxxxxx')
+        .width(200)
+        .height(50)
+    }.width('100%')
+  }
 }
 ```
 
@@ -110,18 +123,30 @@ static setImageRawDataCacheSize(value: number): void
 **示例：**
 
 ```ts
-// app.ets
+// xxx.ets
 import app, { AppResponse } from '@system.app'
 
-export default class OnC {
-  onCreate() {
-    app.setImageRawDataCacheSize(104857600)
+@Entry
+@Component
+struct Index {
+  //app.setImageRawDataCacheSize方法需要在由@Entry标记的页面，onPageShow或aboutToAppear里面设置才生效
+  onPageShow() {
     // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
-    console.info('Application onCreate')
-  },
+    app.setImageRawDataCacheSize(104857600) 
+    console.info('Application onPageShow')
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
+
+  build() {
+    Row(){
+      // xxxxxxxxxxxxx为图片地址
+      Image('xxxxxxxxxxxxx')
+        .width(200)
+        .height(50)
+    }.width('100%')
+  }
 }
 ```
 
@@ -129,7 +154,7 @@ export default class OnC {
 
 static setImageFileCacheSize(value: number): void
 
-设置图片文件缓存的大小上限，单位为字节，提升再次加载同源图片的加载速度，特别是对网络图源、缩略图会有较明显提升。如果不设置则默认为100MB。缓存采用内置的LRU策略，新图片加载后，如果超过文件缓存上限，会按照时间由远到近删除缓存图片文件直到缓存图片大小满足缓存上限。建议根据应用实际需求，设置合理文件缓存上限，数字过大可能导致磁盘空间占用过高。
+设置图片文件缓存的大小上限，单位为字节，提升再次加载同源图片的加载速度，特别是对网络图源会有较明显提升。如果不设置则默认为100MB。缓存采用内置的LRU策略，新图片加载后，如果超过文件缓存上限，会按照时间由远到近删除缓存图片文件直到缓存图片大小满足缓存上限。建议根据应用实际需求，设置合理文件缓存上限，数字过大可能导致磁盘空间占用过高。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,10 +175,10 @@ export default class OnC {
     app.setImageFileCacheSize(209715200)
     // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
     console.info('Application onCreate')
-  },
+  }
   onDestroy() {
     console.info('Application onDestroy')
-  },
+  }
 }
 ```
 

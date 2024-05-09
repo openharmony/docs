@@ -40,13 +40,14 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Inner transact failed. |
 | 9800004 | System service operation failed. |
 | 9900001 | Caller information verification failed. |
 | 9900002 | Background task verification failed. |
@@ -88,10 +89,11 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed.  |
@@ -138,10 +140,11 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |
@@ -179,10 +182,11 @@ cancelSuspendDelay(requestId: number): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID  | 错误信息             |
-| ---- | --------------------- |
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401    | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |
@@ -224,13 +228,16 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. | 
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Inner transact failed. | 
 | 9800004 | System service operation failed. |
 | 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
@@ -265,7 +272,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // 点击通知后，动作类型
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // 使用者自定义的一个私有值
             requestCode: 0,
             // 点击通知后，动作执行属性
@@ -315,10 +322,13 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. | 
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |
@@ -348,7 +358,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // 点击通知后，动作类型
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // 使用者自定义的一个私有值
             requestCode: 0,
             // 点击通知后，动作执行属性
@@ -393,10 +403,12 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |
@@ -455,10 +467,12 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |
@@ -517,10 +531,13 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |
@@ -550,7 +567,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // 点击通知后，动作类型
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // 使用者自定义的一个私有值
             requestCode: 0,
             // 点击通知后，动作执行属性
@@ -602,10 +619,13 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;void&gt
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |

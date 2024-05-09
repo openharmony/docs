@@ -8,7 +8,7 @@ This topic walks you through the process of canceling an authentication in proce
 
 For details about the parameters, return value, and error codes, see [cancel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#cancel10).
 
-This topic describes only the API for canceling authentication. For details about the APIs for initiating authentication, see [Initiating Authentication](start-authentication.md) and [User Authentication](../../reference/apis/js-apis-useriam-userauth.md).
+This topic describes only the API for canceling authentication. For details about the APIs for initiating authentication, see [Initiating Authentication](start-authentication.md) and [User Authentication](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md).
 
 | API| Description| 
 | -------- | -------- |
@@ -28,19 +28,19 @@ Example: Initiate the facial and lock screen password authentication with the au
 
 ```ts
 import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
-const authParam: userIAM_userAuth.AuthParam = {
+const authParam: userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
 };
-const widgetParam: userIAM_userAuth.WidgetParam = {
+const widgetParam: userAuth.WidgetParam = {
   title: 'Verify identity',
 };
 try {
   // Obtain a UserAuthInstance object.
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
   // Start user authentication.
   userAuthInstance.start();
@@ -50,6 +50,6 @@ try {
   console.log('auth cancel success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

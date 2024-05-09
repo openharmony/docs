@@ -42,7 +42,7 @@
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        // 获取文件的沙箱路径
-       let pathInSandbox = this.context.filesDir + "/test.txt";
+       let pathInSandbox = this.context.filesDir + "/test1.txt";
        // 将沙箱路径转换为uri
        let uri = fileUri.getUriFromPath(pathInSandbox);
        // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test.txt"
@@ -68,7 +68,7 @@
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        // 获取文件沙箱路径
-       let filePath = this.context.filesDir + '/test.txt';
+       let filePath = this.context.filesDir + '/test1.txt';
        // 将沙箱路径转换为uri
        let uri = fileUri.getUriFromPath(filePath);
        let want: Want  = {

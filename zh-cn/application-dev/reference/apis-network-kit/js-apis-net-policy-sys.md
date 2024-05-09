@@ -40,7 +40,7 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -78,7 +78,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **返回值：**
@@ -124,7 +124,7 @@ isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -163,7 +163,7 @@ isBackgroundAllowed(): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -208,7 +208,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -253,7 +253,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -297,7 +297,7 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -342,7 +342,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -386,7 +386,7 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -431,7 +431,7 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -474,7 +474,7 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -512,7 +512,7 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -556,7 +556,7 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -613,7 +613,7 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **返回值：**
@@ -683,7 +683,7 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -729,7 +729,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -774,7 +774,7 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -820,7 +820,7 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -865,7 +865,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -910,7 +910,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -953,7 +953,7 @@ getDeviceIdleTrustlist(callback: AsyncCallback\<Array\<number>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -991,7 +991,7 @@ getDeviceIdleTrustlist(): Promise\<Array\<number>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1035,7 +1035,7 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1080,7 +1080,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1124,7 +1124,7 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1168,7 +1168,7 @@ resetPolicies(simId: string): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1214,7 +1214,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1266,7 +1266,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1316,7 +1316,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1361,7 +1361,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1404,7 +1404,7 @@ getPowerSaveTrustlist(callback: AsyncCallback\<Array\<number>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1442,7 +1442,7 @@ getPowerSaveTrustlist(): Promise\<Array\<number>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1490,7 +1490,7 @@ on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
@@ -1501,9 +1501,14 @@ interface Data {
   uid: number,
   policy: policy.NetUidPolicy
 }
-policy.on('netUidPolicyChange', (data: Data) => {
-  console.log('on netUidPolicyChange: ' + JSON.stringify(data));
-});
+
+try {
+  policy.on('netUidPolicyChange', (data: Data) => {
+    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netUidPolicyChange')<sup>10+</sup>
@@ -1533,17 +1538,33 @@ off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-let callback = (data: object) => {
-  console.log('on netUidPolicyChange, data:' + JSON.stringify(data));
-};
-policy.on('netUidPolicyChange', callback);
-policy.off('netUidPolicyChange', callback);
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  policy: policy.NetUidPolicy
+}
+
+try {
+  policy.on('netUidPolicyChange', (data: Data) => {
+    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netUidPolicyChange', (data: Data) => {
+    console.log('off netUidPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netUidPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netUidRuleChange')<sup>10+</sup>
@@ -1573,15 +1594,25 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-policy.on('netUidRuleChange', (data: object) => {
-  console.log('on netUidRuleChange: ' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  rule: policy.NetUidRule
+}
+
+try {
+  policy.on('netUidRuleChange', (data: Data) => {
+    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidRuleChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netUidRuleChange')<sup>10+</sup>
@@ -1611,17 +1642,33 @@ off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-let callback = (data: object) => {
-  console.log('on netUidRuleChange, data:' + JSON.stringify(data));
-};
-policy.on('netUidRuleChange', callback);
-policy.off('netUidRuleChange', callback);
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  rule: policy.NetUidRule
+}
+
+try {
+  policy.on('netUidRuleChange', (data: Data) => {
+    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netUidRuleChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netUidRuleChange', (data: Data) => {
+    console.log('off netUidRuleChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netUidRuleChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netMeteredIfacesChange')<sup>10+</sup>
@@ -1651,15 +1698,20 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-policy.on('netMeteredIfacesChange', (data: string[]) => {
-  console.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+try {
+  policy.on('netMeteredIfacesChange', (data: string[]) => {
+    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netMeteredIfacesChange')<sup>10+</sup>
@@ -1689,17 +1741,29 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-let callback = (data: string[]) => {
-  console.log('on netMeteredIfacesChange, data:' + JSON.stringify(data));
-};
-policy.on('netMeteredIfacesChange', callback);
-policy.off('netMeteredIfacesChange', callback);
+import policy from '@ohos.net.policy';
+
+try {
+  policy.on('netMeteredIfacesChange', (data: string[]) => {
+    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netMeteredIfacesChange', (data: string[]) => {
+    console.log('off netMeteredIfacesChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netMeteredIfacesChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netQuotaPolicyChange')<sup>10+</sup>
@@ -1729,15 +1793,25 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
-  console.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+interface Data {
+  uid: number,
+  policy: policy.NetUidPolicy
+}
+
+try {
+  policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
+    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netQuotaPolicyChange')<sup>10+</sup>
@@ -1767,18 +1841,29 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-  console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
-});
-policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-  console.log('on netQuotaPolicyChange, data:' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+
+try {
+  policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
+    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
+    console.log('off netQuotaPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netQuotaPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### on('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1808,15 +1893,21 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-policy.on('netBackgroundPolicyChange', (data: boolean) => {
-  console.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
-});
+import policy from '@ohos.net.policy';
+
+try {
+  policy.on('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ### off('netBackgroundPolicyChange')<sup>10+</sup>
@@ -1846,17 +1937,29 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-let callback = (data: boolean) => {
-  console.log('on netBackgroundPolicyChange, data:' + JSON.stringify(data));
-};
-policy.on('netBackgroundPolicyChange', callback);
-policy.off('netBackgroundPolicyChange', callback);
+import policy from '@ohos.net.policy';
+
+try {
+  policy.on('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
+
+try {
+  policy.off('netBackgroundPolicyChange', (data: boolean) => {
+    console.log('off netBackgroundPolicyChange data: ' + JSON.stringify(data));
+  });
+} catch(err) {
+  console.error('off netBackgroundPolicyChange error: ' + JSON.stringify(err));
+}
 ```
 
 ## NetBackgroundPolicy<sup>10+</sup>

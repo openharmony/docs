@@ -8,6 +8,8 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 
 ## HapModuleInfo
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                             | Type                                                        | Readable| Writable| Description                |
@@ -30,7 +32,7 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 | preloads                          | Array\<[PreloadItem](#preloaditem)>                          | Yes  | No  | Preloaded modules in the atomic service.|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | Yes  | No  | Dynamic shared libraries on which the module depends. |
 | fileContextMenuConfig<sup>11+</sup>     | string                                                       | Yes  | No  | File menu configuration of the module. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_MENU** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
-| routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem)>                            | Yes  | No  | [Router table configuration of the module](../../quick-start/module-configuration-file.md#routermap). The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
+| routerMap<sup>12+</sup>           | Array\<[RouterItem](#routeritem12)>                            | Yes  | No  | [Router table configuration of the module](../../quick-start/module-configuration-file.md#routermap). The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
 | codePath<sup>12+</sup>            | string                                                       | Yes  | No  | Installation path of the module.             |
 | nativeLibraryPath<sup>12+</sup> | string                                                                     | Yes  | No  | Local library file path of a HAP module in the application.                                                                                                  |
 
@@ -56,7 +58,7 @@ Describes the information about the dynamic shared library on which the module d
 | moduleName  | string | Yes  | No  | Module name of the shared bundle on which the current module depends.|
 | versionCode | number | Yes  | No  | Version number of the shared bundle.  |
 
-## RouterItem
+## RouterItem<sup>12+</sup>
 
 Describes the router table configuration of the module.
 
@@ -65,12 +67,11 @@ Describes the router table configuration of the module.
 | Name          | Type  | Read-only| Mandatory| Description                  |
 | ------------- | ------ | ---- | ---- | ---------------------- |
 | name          | string | Yes  | Yes  | Name of the page to be redirected to.      |
-| pageModule    | string | Yes  | Yes  | Name of the module where the page is located.|
 | pageSourceFile| string | Yes  | Yes  | Path of the page in the module.  |
 | buildFunction | string | Yes  | Yes  | Function decorated by @Builder. The function describes the UI of the page.  |
-| data          | Array\<[DataItem](#dataitem)> | Yes  | Yes  | User-defined data.  |
+| data          | Array\<[DataItem](#dataitem12)> | Yes  | Yes  | User-defined data.  |
 
-## DataItem
+## DataItem<sup>12+</sup>
 
 Describes the user-defined data in the router table configuration of the module.
 

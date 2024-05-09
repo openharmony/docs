@@ -84,7 +84,7 @@ Visibility verification fails.
 **Solution**
 
 1. Check whether [exported](../../quick-start/module-configuration-file.md#abilities) under the **Ability** field in the **module.json5** file of the ability is set to **true**. If this parameter is set to **true**, the ability can be started by other applications. If this parameter is set to **false**, the ability cannot be started by other applications.
-2. To start the ability for which **exported** is set to **false**, the caller must request the [ohos.permission.START_INVISIBLE_ABILITY](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_invisible_ability) permission.
+2. To start the ability for which **exported** is set to **false**, the caller must request the **ohos.permission.START_INVISIBLE_ABILITY** permission, which is available only for system applications.
 
 ## 16000005 Process Permission Verification Failure
 
@@ -283,6 +283,34 @@ The system has a large number of concurrent requests.
 **Solution**
 
 No action is required. Wait for the previous abilities to finish startup.
+
+## 16000018 Restricting Redirection to Third-Party Applications of API Version 11 or Later
+
+**Error Message**
+
+The application is not allow jumping to other applications when api version is above 11.
+
+**Description**
+
+When the API version of an application is later than 11, the application cannot be explicitly redirected to a third-party application.
+
+**Solution**
+
+Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) for redirection.
+
+## 16000019 No Matching Application Is Found During Implicit Startup
+
+**Error Message**
+
+Can not match any component.
+
+**Description**
+
+A matching ability is not found during implicit startup.
+
+**Solution**
+
+Modify the items used for matching in implicit startup.
 
 ## 16000050 Internal Error
 
@@ -1114,3 +1142,21 @@ The observer does not exist or has been unregistered.
 **Solution**
 
 Check whether the observer exists.
+
+## 16300005 Bundle Information Does Not Exist
+
+**Error Message**
+
+The target bundle does not exist.
+
+**Description**
+
+This error code is reported when the bundle information of the preinstalled application does not exist.
+
+**Possible Causes**
+
+The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading to the query failure.
+
+**Solution**
+
+Pass in correct values for **bundleName**, **userId**, and **appIndex**.

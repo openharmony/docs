@@ -19,7 +19,7 @@
 * 桌面上需要显示图标时
 * 最近任务列表中显示时
 
-**图1** 应用图标和标签
+**图1** 图标和标签
 
 ![application-component-configuration-stage](figures/application-component-configuration-stage.png)
 

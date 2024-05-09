@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_avcodec_base.h** file declare the native APIs used for basic audio and video muxing, demuxing, encoding, and decoding.
+The **native_avcodec_base.h** file declares the native APIs used for basic audio and video muxing, demuxing, encoding, and decoding.
 
 **Library**: libnative_media_codecbase.so
 
@@ -19,8 +19,9 @@ The **native_avcodec_base.h** file declare the native APIs used for basic audio 
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
-| struct&nbsp;&nbsp;[OH_AVCodecCallback](_o_h___a_v_codec_callback.md) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
+| struct&nbsp;&nbsp;[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | Describes all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
+| struct&nbsp;&nbsp;[OH_AVCodecCallback](_o_h___a_v_codec_callback.md) | Describes all the callback function pointers of an **OH_AVCodec** instance.| 
+| struct&nbsp;&nbsp;[OH_AVDataSource](_o_h___a_v_data_source.md) | Describes a user-defined data source. | 
 
 
 ### Types
@@ -33,19 +34,24 @@ The **native_avcodec_base.h** file declare the native APIs used for basic audio 
 | typedef void(\* [OH_AVCodecOnNewOutputData](_codec_base.md#oh_avcodeconnewoutputdata)) (OH_AVCodec \*codec, uint32_t index, OH_AVMemory \*data, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
 | typedef void(\* [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)) (OH_AVCodec \*codec, uint32_t index, OH_AVBuffer \*buffer, void \*userData) | Defines the pointer to the function that is called when new input data is required during the running of an **OH_AVCodec** instance. The function carries a buffer to fill in new input data.| 
 | typedef void(\* [OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)) (OH_AVCodec \*codec, uint32_t index, OH_AVBuffer \*buffer, void \*userData) | Defines the pointer to the function that is called when new output data is generated during the running of an **OH_AVCodec** instance. The function carries a buffer filled with new output data.| 
-| typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](_codec_base.md#oh_avcodecasynccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
-| typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](_codec_base.md#oh_avcodeccallback) | Defines all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
-| typedef enum [OH_MediaType](_codec_base.md#oh_mediatype-1) [OH_MediaType](_codec_base.md#oh_mediatype) | Defines an enum that enumerates the media types.| 
-| typedef enum [OH_AACProfile](_codec_base.md#oh_aacprofile-1) [OH_AACProfile](_codec_base.md#oh_aacprofile) | Defines an enum that enumerates the AAC profiles.| 
-| typedef enum [OH_AVCProfile](_codec_base.md#oh_avcprofile-1) [OH_AVCProfile](_codec_base.md#oh_avcprofile) | Defines an enum that enumerates the AVC profiles.| 
-| typedef enum [OH_HEVCProfile](_codec_base.md#oh_hevcprofile-1) [OH_HEVCProfile](_codec_base.md#oh_hevcprofile) | Defines an enum that enumerates the HEVC profiles.| 
-| typedef enum [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1) [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) | Defines an enum that enumerates the output file formats of a muxer.| 
-| typedef enum [OH_AVSeekMode](_codec_base.md#oh_avseekmode-1) [OH_AVSeekMode](_codec_base.md#oh_avseekmode) | Defines an enum that enumerates the seek modes.| 
-| typedef enum [OH_ScalingMode](_codec_base.md#oh_scalingmode-1) [OH_ScalingMode](_codec_base.md#oh_scalingmode) | Defines an enum that enumerates the scaling modes.| 
-| typedef enum [OH_BitsPerSample](_codec_base.md#oh_bitspersample-1) [OH_BitsPerSample](_codec_base.md#oh_bitspersample) | Defines an enum that enumerates the number of audio bits for each coded sample.| 
-| typedef enum [OH_ColorPrimary](_codec_base.md#oh_colorprimary-1) [OH_ColorPrimary](_codec_base.md#oh_colorprimary) | Defines an enum that enumerates the primary colors.| 
-| typedef enum [OH_TransferCharacteristic](_codec_base.md#oh_transfercharacteristic-1) [OH_TransferCharacteristic](_codec_base.md#oh_transfercharacteristic) | Defines an enum that enumerates the transfer characteristics.| 
-| typedef enum [OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient-1) [OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient) | Defines an enum that enumerates the matrix coefficients.| 
+| typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](_codec_base.md#oh_avcodecasynccallback) | Defines a struct that describes all the asynchronous callback function pointers of an **OH_AVCodec** instance.| 
+| typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](_codec_base.md#oh_avcodeccallback) | Defines a struct that describes all the callback function pointers of an **OH_AVCodec** instance.| 
+| typedef int32_t(\* [OH_AVDataSourceReadAt](_codec_base.md#oh_avdatasourcereadat)) (OH_AVBuffer \*data, int32_t length, int64_t offset) | Defines a function pointer used to provide the capability of obtaining user-defined media data. | 
+| typedef struct [OH_AVDataSource](_o_h___a_v_data_source.md) [OH_AVDataSource](_codec_base.md#oh_avdatasource) | Defines a struct that describes the user-defined data source. | 
+| typedef enum [OH_MediaType](_codec_base.md#oh_mediatype-1) [OH_MediaType](_codec_base.md#oh_mediatype) | Defines an enum for media types.| 
+| typedef enum [OH_AACProfile](_codec_base.md#oh_aacprofile-1) [OH_AACProfile](_codec_base.md#oh_aacprofile) | Defines an enum for AAC profiles.| 
+| typedef enum [OH_AVCProfile](_codec_base.md#oh_avcprofile-1) [OH_AVCProfile](_codec_base.md#oh_avcprofile) | Defines an enum for AVC profiles.| 
+| typedef enum [OH_HEVCProfile](_codec_base.md#oh_hevcprofile-1) [OH_HEVCProfile](_codec_base.md#oh_hevcprofile) | Defines an enum for HEVC profiles.| 
+| typedef enum [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1) [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) | Defines an enum for output file formats of a muxer.| 
+| typedef enum [OH_AVSeekMode](_codec_base.md#oh_avseekmode-1) [OH_AVSeekMode](_codec_base.md#oh_avseekmode) | Defines an enum for seek modes.| 
+| typedef enum [OH_ScalingMode](_codec_base.md#oh_scalingmode-1) [OH_ScalingMode](_codec_base.md#oh_scalingmode) | Defines an enum for scaling modes.| 
+| typedef enum [OH_BitsPerSample](_codec_base.md#oh_bitspersample-1) [OH_BitsPerSample](_codec_base.md#oh_bitspersample) | Defines an enum for the number of audio bits for each coded sample.| 
+| typedef enum [OH_ColorPrimary](_codec_base.md#oh_colorprimary-1) [OH_ColorPrimary](_codec_base.md#oh_colorprimary) | Defines an enum for primary colors.| 
+| typedef enum [OH_TransferCharacteristic](_codec_base.md#oh_transfercharacteristic-1) [OH_TransferCharacteristic](_codec_base.md#oh_transfercharacteristic) | Defines an enum for transfer characteristics.| 
+| typedef enum [OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient-1) [OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient) | Defines an enum for matrix coefficients.| 
+| typedef enum [OH_AVCLevel](_codec_base.md#oh_avclevel-1) [OH_AVCLevel](_codec_base.md#oh_avclevel) | Defines an enum for AVC levels. | 
+| typedef enum [OH_HEVCLevel](_codec_base.md#oh_hevclevel-1) [OH_HEVCLevel](_codec_base.md#oh_hevclevel) | Defines an enum for HEVC levels. | 
+| typedef enum [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode) | Defines an enum for reference modes of temporal image groups. | 
 
 
 ### Enums
@@ -63,6 +69,9 @@ The **native_avcodec_base.h** file declare the native APIs used for basic audio 
 | [OH_ColorPrimary](_codec_base.md#oh_colorprimary-1) {<br>COLOR_PRIMARY_BT709 = 1,<br>COLOR_PRIMARY_UNSPECIFIED = 2,<br>COLOR_PRIMARY_BT470_M = 4,<br>COLOR_PRIMARY_BT601_625 = 5,<br>COLOR_PRIMARY_BT601_525 = 6,<br>COLOR_PRIMARY_SMPTE_ST240 = 7,<br>COLOR_PRIMARY_GENERIC_FILM = 8,<br>COLOR_PRIMARY_BT2020 = 9,<br>COLOR_PRIMARY_SMPTE_ST428 = 10,<br>COLOR_PRIMARY_P3DCI = 11,<br>COLOR_PRIMARY_P3D65 = 12<br>} | Enumerates the primary colors.| 
 | [OH_TransferCharacteristic](_codec_base.md#oh_transfercharacteristic-1) {<br>TRANSFER_CHARACTERISTIC_BT709 = 1,<br>TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,<br>TRANSFER_CHARACTERISTIC_BT601 = 6,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,<br>TRANSFER_CHARACTERISTIC_LINEAR = 8,<br>TRANSFER_CHARACTERISTIC_LOG = 9,<br>TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,<br>TRANSFER_CHARACTERISTIC_BT1361 = 12,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,<br>TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,<br>TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,<br>TRANSFER_CHARACTERISTIC_PQ = 16,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,<br>TRANSFER_CHARACTERISTIC_HLG = 18<br>} | Enumerates the transfer characteristics.| 
 | [OH_MatrixCoefficient](_codec_base.md#oh_matrixcoefficient-1) {<br>MATRIX_COEFFICIENT_IDENTITY = 0,<br>MATRIX_COEFFICIENT_BT709 = 1,<br>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br>MATRIX_COEFFICIENT_FCC = 4,<br>MATRIX_COEFFICIENT_BT601_625 = 5,<br>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br>MATRIX_COEFFICIENT_YCGCO = 8,<br>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br>MATRIX_COEFFICIENT_BT2020_CL = 10,<br>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br>MATRIX_COEFFICIENT_ICTCP = 14<br>} | Enumerates the matrix coefficients.| 
+| [OH_AVCLevel](_codec_base.md#oh_avclevel-1) {<br>AVC_LEVEL_1 = 0, <br>AVC_LEVEL_1b = 1, <br>AVC_LEVEL_11 = 2, <br>AVC_LEVEL_12 = 3,<br>AVC_LEVEL_13 = 4, <br>AVC_LEVEL_2 = 5, <br>AVC_LEVEL_21 = 6, <br>AVC_LEVEL_22 = 7,<br>AVC_LEVEL_3 = 8, <br>AVC_LEVEL_31 = 9, <br>AVC_LEVEL_32 = 10, <br>AVC_LEVEL_4 = 11,<br>AVC_LEVEL_41 = 12, <br>AVC_LEVEL_42 = 13, <br>AVC_LEVEL_5 = 14, <br>AVC_LEVEL_51 = 15<br>} | Enumerates the AVC levels. | 
+| [OH_HEVCLevel](_codec_base.md#oh_hevclevel-1) {<br>HEVC_LEVEL_1 = 0, <br>HEVC_LEVEL_2 = 1, <br>HEVC_LEVEL_21 = 2, <br>HEVC_LEVEL_3 = 3,<br>HEVC_LEVEL_31 = 4, <br>HEVC_LEVEL_4 = 5, <br>HEVC_LEVEL_41 = 6, <br>HEVC_LEVEL_5 = 7,<br>HEVC_LEVEL_51 = 8, <br>HEVC_LEVEL_52 = 9, <br>HEVC_LEVEL_6 = 10, <br>HEVC_LEVEL_61 = 11,<br>HEVC_LEVEL_62 = 12<br>} | Enumerates the HEVC levels. | 
+| [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode-1) { <br>ADJACENT_REFERENCE = 0, <br>JUMP_REFERENCE = 1 <br>} | Enumerates the reference modes of temporal image groups. | 
 
 
 ### Variables
@@ -70,18 +79,18 @@ The **native_avcodec_base.h** file declare the native APIs used for basic audio 
 | Name| Description| 
 | -------- | -------- |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](_codec_base.md#oh_avcodec_mimetype_video_avc) | Defines the pointer to the Multipurpose Internet Mail Extension (MIME) type of AVC (H.264) video codec.| 
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AAC](_codec_base.md#oh_avcodec_mimetype_audio_aac) | Defines the pointer to the MIME type for AAC audio codec.| 
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](_codec_base.md#oh_avcodec_mimetype_audio_flac) | Defines the pointer to the MIME type for FLAC audio codec.| 
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](_codec_base.md#oh_avcodec_mimetype_audio_vorbis) | Defines the pointer to the MIME type of Vorbis audio decoder.| 
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](_codec_base.md#oh_avcodec_mimetype_audio_mpeg) | Defines the pointer to the MIME type of MP3 audio decoder.| 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AAC](_codec_base.md#oh_avcodec_mimetype_audio_aac) | Defines the pointer to the MIME type of AAC audio codec.| 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_FLAC](_codec_base.md#oh_avcodec_mimetype_audio_flac) | Defines the pointer to the MIME type of FLAC audio codec.| 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](_codec_base.md#oh_avcodec_mimetype_audio_vorbis) | Defines the pointer to the MIME type of the Vorbis audio decoder.| 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](_codec_base.md#oh_avcodec_mimetype_audio_mpeg) | Defines the pointer to the MIME type of the MP3 audio decoder.| 
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](_codec_base.md#oh_avcodec_mimetype_video_hevc) | Defines the pointer to the MIME type of HEVC (H.265) video codec.| 
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](_codec_base.md#oh_avcodec_mimetype_video_mpeg4) | Defines the pointer to the MIME type of MPEG4 video encoder, which is used only for muxing MPEG4 video streams.| 
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](_codec_base.md#oh_avcodec_mimetype_image_jpg) | Defines the pointer to the MIME type of JPG image encoder, which is used only for muxing JPG covers.| 
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](_codec_base.md#oh_avcodec_mimetype_image_png) | Defines the pointer to the MIME type of PNG image encoder, which is used only for muxing PNG covers.| 
-| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](_codec_base.md#oh_avcodec_mimetype_image_bmp) | Defines the pointer to the MIME type of BMP image encoder, which is used only for muxing BMP covers.| 
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](_codec_base.md#oh_avcodec_mimetype_audio_vivid) | Defines the pointer to the MIME type of Audio Vivid audio decoder. (This specification is not available yet.)| 
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](_codec_base.md#oh_avcodec_mimetype_audio_amr_nb) | Defines the pointer to the MIME type of AMR-NB audio decoder.| 
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](_codec_base.md#oh_avcodec_mimetype_audio_amr_wb) | Defines the pointer to the MIME type of AMR-WB audio decoder.| 
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](_codec_base.md#oh_avcodec_mimetype_video_mpeg4) | Defines the pointer to the MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams.| 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_JPG](_codec_base.md#oh_avcodec_mimetype_image_jpg) | Defines the pointer to the MIME type of the JPG image encoder, which is used only for muxing JPG covers.| 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_PNG](_codec_base.md#oh_avcodec_mimetype_image_png) | Defines the pointer to the MIME type of the PNG image encoder, which is used only for muxing PNG covers.| 
+| const char \* [OH_AVCODEC_MIMETYPE_IMAGE_BMP](_codec_base.md#oh_avcodec_mimetype_image_bmp) | Defines the pointer to the MIME type of the BMP image encoder, which is used only for muxing BMP covers.| 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](_codec_base.md#oh_avcodec_mimetype_audio_vivid) | Defines the pointer to the MIME type of the Audio Vivid audio decoder. (This specification is not available yet.)| 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](_codec_base.md#oh_avcodec_mimetype_audio_amr_nb) | Defines the pointer to the MIME type of the AMR-NB audio decoder.| 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](_codec_base.md#oh_avcodec_mimetype_audio_amr_wb) | Defines the pointer to the MIME type of the AMR-WB audio decoder.| 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](_codec_base.md#oh_avcodec_mimetype_audio_opus) | Defines the pointer to the MIME type of Opus audio codec. (This specification is not available yet.)| 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](_codec_base.md#oh_avcodec_mimetype_audio_g711mu) | Defines the pointer to the MIME type of G.711 mu-law audio codec.| 
 | const char \* [OH_ED_KEY_TIME_STAMP](_codec_base.md#oh_ed_key_time_stamp) | Defines the pointer to the timestamp in the extra data of the surface. The value type is int64.| 
@@ -94,7 +103,7 @@ The **native_avcodec_base.h** file declare the native APIs used for basic audio 
 | const char \* [OH_MD_KEY_WIDTH](_codec_base.md#oh_md_key_width) | Defines the pointer to the video width. The value type is uint32_t.| 
 | const char \* [OH_MD_KEY_HEIGHT](_codec_base.md#oh_md_key_height) | Defines the pointer to the video height. The value type is uint32_t.| 
 | const char \* [OH_MD_KEY_PIXEL_FORMAT](_codec_base.md#oh_md_key_pixel_format) | Defines the pointer to the video pixel format. The value type is int32_t. For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).| 
-| const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](_codec_base.md#oh_md_key_audio_sample_format) | Defines the pointer to the original audio format. The value type is uint32_t. For details, see **AudioSampleFormat**.| 
+| const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](_codec_base.md#oh_md_key_audio_sample_format) | Defines the pointer to the original audio format. The value type is uint32_t. For details, see [OH_BitsPerSample](_codec_base.md#oh_bitspersample).| 
 | const char \* [OH_MD_KEY_FRAME_RATE](_codec_base.md#oh_md_key_frame_rate) | Defines the pointer to the video frame rate. The value type is double.| 
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](_codec_base.md#oh_md_key_video_encode_bitrate_mode) | Defines the pointer to the video encoding bit rate mode. The value type is int32_t. For details, see [OH_VideoEncodeBitrateMode](_video_encoder.md#oh_videoencodebitratemode).| 
 | const char \* [OH_MD_KEY_PROFILE](_codec_base.md#oh_md_key_profile) | Defines the pointer to the encoding grading. The value type is int32_t. For details, see [OH_HEVCProfile](_codec_base.md#oh_hevcprofile) and [OH_AACProfile](_codec_base.md#oh_aacprofile).| 
@@ -135,3 +144,15 @@ The **native_avcodec_base.h** file declare the native APIs used for basic audio 
 | const char \* [OH_MD_KEY_VIDEO_IS_HDR_VIVID](_codec_base.md#oh_md_key_video_is_hdr_vivid) | Defines the pointer to indicate whether it is HDR Vivid. The value type is Boolean.| 
 | const char \* [OH_MD_KEY_AUDIO_OBJECT_NUMBER](_codec_base.md#oh_md_key_audio_object_number) | Defines the pointer to the number of audio objects. The value type is int32_t.| 
 | const char \* [OH_MD_KEY_AUDIO_VIVID_METADATA](_codec_base.md#oh_md_key_audio_vivid_metadata) | Defines the pointer to the Audio Vivid metadata. The value type is uint8_t.| 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY](_codec_base.md#oh_md_key_video_encoder_enable_temporal_scalability) | Defines the pointer to the enabled status of layered encoding. The value type is int32_t. The value **1** means layered encoding is enabled, and **0** means the opposite.| 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_SIZE](_codec_base.md#oh_md_key_video_encoder_temporal_gop_size) | Defines the pointer to the size of a temporal image group. The value type is int32_t. This variable is valid only when layered encoding is enabled. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](_codec_base.md#oh_md_key_video_encoder_temporal_gop_reference_mode) | Defines the pointer to the reference mode in a temporal image group. The value type is int32_t. For details, see [OH_TemporalGopReferenceMode](_codec_base.md#oh_temporalgopreferencemode). This variable is valid only when layered encoding is enabled.| 
+| const char \* [OH_MD_KEY_VIDEO_CROP_TOP](_codec_base.md#oh_md_key_video_crop_top) | Defines the pointer to the top coordinate (y) of the cropped rectangle. The value type is int32_t.| 
+| const char \* [OH_MD_KEY_VIDEO_CROP_BOTTOM](_codec_base.md#oh_md_key_video_crop_bottom) | Defines the pointer to the bottom coordinate (y) of the cropped rectangle. The value type is int32_t.  | 
+| const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](_codec_base.md#oh_md_key_video_crop_left) | Defines the pointer to the left coordinate (x) of the cropped rectangle. The value type is int32_t. | 
+| const char \* [OH_MD_KEY_VIDEO_CROP_RIGHT](_codec_base.md#oh_md_key_video_crop_right) | Defines the pointer to the right coordinate (x) of the cropped rectangle. The value type is int32_t. | 
+| const char \* [OH_MD_KEY_VIDEO_STRIDE](_codec_base.md#oh_md_key_video_stride) | Defines the pointer to the stride of a video frame. The value type is int32_t. | 
+| const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](_codec_base.md#oh_md_key_video_slice_height) | Defines the pointer to the height of a video frame. The value type is int32_t. | 
+| const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](_codec_base.md#oh_md_key_video_enable_low_latency) | Defines the pointer to the enabled status of low-latency video codec. The value type is int32_t. The value **1** means that low-latency video codec is enabled, and **0** means the opposite. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](_codec_base.md#oh_md_key_video_encoder_qp_max) | Defines the pointer to the maximum quantization parameter allowed by a video encoder. The value type is int32_t. | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](_codec_base.md#oh_md_key_video_encoder_qp_min) | Defines the pointer to the minimum quantization parameter allowed by a video encoder. The value type is int32_t. | 

@@ -16,6 +16,8 @@
 
 AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -33,6 +35,8 @@ color(value: ResourceColor)
 
 设置文字颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -46,6 +50,8 @@ color(value: ResourceColor)
 selectedColor(value: ResourceColor)
 
 设置选中项文字颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -61,6 +67,8 @@ popupColor(value: ResourceColor)
 
 设置提示弹窗文字颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -74,6 +82,8 @@ popupColor(value: ResourceColor)
 selectedBackgroundColor(value: ResourceColor)
 
 设置选中项背景颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -89,6 +99,8 @@ popupBackground(value: ResourceColor)
 
 设置提示弹窗背景色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -102,6 +114,8 @@ popupBackground(value: ResourceColor)
 usingPopup(value: boolean)
 
 设置是否使用提示弹窗。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -117,6 +131,8 @@ selectedFont(value: Font)
 
 设置选中项文字样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -130,6 +146,8 @@ selectedFont(value: Font)
 popupFont(value: Font)
 
 设置提示弹窗字体样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -145,6 +163,8 @@ font(value: Font)
 
 设置字母索引条默认字体样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -159,6 +179,8 @@ itemSize(value: string&nbsp;|&nbsp;number)
 
 设置字母索引条字母区域大小。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -172,6 +194,8 @@ itemSize(value: string&nbsp;|&nbsp;number)
 alignStyle(value: IndexerAlign, offset?: Length)
 
 设置字母索引条弹框的对齐样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -190,6 +214,8 @@ selected(index: number)
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -203,6 +229,8 @@ selected(index: number)
 popupPosition(value: Position)
 
 设置弹出窗口相对于索引器条上边框中点的位置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -218,6 +246,8 @@ popupSelectedColor(value: ResourceColor)
 
 设置提示弹窗非字母部分选中文字色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -231,6 +261,8 @@ popupSelectedColor(value: ResourceColor)
 popupUnselectedColor(value: ResourceColor)
 
 设置提示弹窗非字母部分未选中文字色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -246,6 +278,8 @@ popupItemFont(value: Font)
 
 设置提示弹窗非字母部分字体样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -259,6 +293,8 @@ popupItemFont(value: Font)
 popupItemBackgroundColor(value: ResourceColor)
 
 设置提示弹窗非字母部分背景色。 
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -277,6 +313,8 @@ autoCollapse(value: boolean)
 如果字符串首字符为“#”，除去首字符。当剩余字符数 $\leq$ 9时，选择全显示模式。当9 < 剩余字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。当剩余字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
 
 如果字符串首字符不为“#”。当所有字符数 $\leq$ 9时，选择全显示模式。当9 < 所有字符数 $\leq$ 13时，根据索引条高度自适应选择全显示模式或者短折叠模式。当所有字符数 > 13时，根据索引条高度自适应选择短折叠模式或者长折叠模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -338,11 +376,13 @@ popupTitleBackground(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                                     |
-| ------ | ------------------------------------------ | ---- | -------------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置提示弹窗首个索引项背板颜色。<br/>默认值：#0c182431。 |
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置提示弹窗首个索引项背板颜色。<br/>默认值：<br/>提示弹窗只有一个索引项：#00FFFFFF。<br/>提示弹窗有多个索引项：#0c182431。 |
 
 ## IndexerAlign枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -361,6 +401,8 @@ onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 从API Version 8开始废弃，建议使用[onSelect](#onselect8)代替。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -374,6 +416,8 @@ onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 onSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 索引条选中回调，返回值为当前选中索引。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -389,19 +433,29 @@ onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;
 
 选中字母索引后，请求索引提示弹窗显示内容回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
+| index  | number | 是   | 当前选中的索引 |
+
+**返回值：** 
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| Array&lt;string&gt; | 索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
 
 ### onPopupSelect<sup>8+</sup>
 
 onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 字母索引提示弹窗字符串列表选中回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -600,7 +654,7 @@ struct AlphabetIndexerSample {
               .selectedFont({ size: 16, weight: FontWeight.Bolder })// 选中项字体样式
               .popupFont({ size: 30, weight: FontWeight.Bolder })// 弹出框内容的字体样式
               .itemSize(28)// 每一项的尺寸大小
-              .alignStyle(IndexerAlign.Right)// 弹出框在索引条右侧弹出
+              .alignStyle(IndexerAlign.Right)// 弹出框在索引条左侧弹出
               .popupTitleBackground("#D2B48C") // 弹出框首个索引项背板颜色
               .popupSelectedColor(0x00FF00)
               .popupUnselectedColor(0x0000FF)

@@ -129,7 +129,7 @@ let formattedDate6 = dateFormat6.format(date); // formattedDate6: ٢٠٢١/٩/١
 
 // Format a time segment.
 let dataFormat7 = new Intl.DateTimeFormat('en-GB');
-let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/9/2021 - 18/9/2021
+let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/09/2021 - 18/09/2021
 
 // Obtain formatting options.
 let dataFormat8 = new Intl.DateTimeFormat('en-GB', {dateStyle: 'full'});
@@ -164,7 +164,7 @@ Relative time formatting is implemented by the [format](../reference/apis-locali
 
 5. Obtain **RelativeTimeFormatInputOptions** and view the configuration of formatting options.
    ```ts
-   let options: IntlRelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
+   let options: Intl.RelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
    ```
 
 **Relative Time Formatting Options**

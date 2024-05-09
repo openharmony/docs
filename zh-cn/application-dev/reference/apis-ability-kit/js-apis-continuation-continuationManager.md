@@ -131,6 +131,8 @@ registerContinuation(callback: AsyncCallback\<number>): void
 
 注册流转管理服务，并获取对应的注册token，无过滤条件，使用AsyncCallback方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -175,6 +177,8 @@ registerContinuation(callback: AsyncCallback\<number>): void
 registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void
 
 连接流转管理服务，并获取对应的注册token，使用AsyncCallback方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -226,6 +230,8 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 连接流转管理服务，并获取对应的注册token，使用Promise方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -274,9 +280,9 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
   ```
 
 
-## continuationManager.on("deviceConnect")<sup>(deprecated)</sup>
+## continuationManager.on('deviceConnect')<sup>(deprecated)</sup>
 
-on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
+on(type: 'deviceConnect', callback: Callback\<ContinuationResult>): void
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
 
@@ -305,9 +311,9 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void
   });
   ```
 
-## continuationManager.on("deviceDisconnect")<sup>(deprecated)</sup>
+## continuationManager.on('deviceDisconnect')<sup>(deprecated)</sup>
 
-on(type: "deviceDisconnect", callback: Callback\<string>): void
+on(type: 'deviceDisconnect', callback: Callback\<string>): void
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
@@ -334,9 +340,9 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void
   });
   ```
 
-## continuationManager.off("deviceConnect")<sup>(deprecated)</sup>
+## continuationManager.off('deviceConnect')<sup>(deprecated)</sup>
 
-off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
+off(type: 'deviceConnect', callback?: Callback\<ContinuationResult>): void
 
 异步方法，取消监听设备连接状态，使用Callback形式返回连接的设备信息。
 
@@ -365,9 +371,9 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void
   });
   ```
 
-## continuationManager.off("deviceDisconnect")<sup>(deprecated)</sup>
+## continuationManager.off('deviceDisconnect')<sup>(deprecated)</sup>
 
-off(type: "deviceDisconnect", callback?: Callback\<string>): void
+off(type: 'deviceDisconnect', callback?: Callback\<string>): void
 
 异步方法，取消监听设备断开状态，使用Callback形式返回连接的设备信息。
 
@@ -394,11 +400,13 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void
   });
   ```
 
-## continuationManager.on("deviceSelected")<sup>9+</sup>
+## continuationManager.on('deviceSelected')<sup>9+</sup>
 
-on(type: "deviceSelected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceSelected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 异步方法，监听设备连接状态，使用Callback形式返回连接的设备信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -442,11 +450,13 @@ on(type: "deviceSelected", token: number, callback: Callback\<Array\<Continuatio
   }
   ```
 
-## continuationManager.on("deviceUnselected")<sup>9+</sup>
+## continuationManager.on('deviceUnselected')<sup>9+</sup>
 
-on(type: "deviceUnselected", token: number, callback: Callback\<Array\<ContinuationResult>>): void
+on(type: 'deviceUnselected', token: number, callback: Callback\<Array\<ContinuationResult>>): void
 
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -491,11 +501,13 @@ on(type: "deviceUnselected", token: number, callback: Callback\<Array\<Continuat
   }
   ```
 
-## continuationManager.off("deviceSelected")<sup>9+</sup>
+## continuationManager.off('deviceSelected')<sup>9+</sup>
 
-off(type: "deviceSelected", token: number): void
+off(type: 'deviceSelected', token: number): void
 
 取消监听设备连接状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -531,11 +543,13 @@ off(type: "deviceSelected", token: number): void
   }
   ```
 
-## continuationManager.off("deviceUnselected")<sup>9+</sup>
+## continuationManager.off('deviceUnselected')<sup>9+</sup>
 
-off(type: "deviceUnselected", token: number): void
+off(type: 'deviceUnselected', token: number): void
 
 取消监听设备断开状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -694,6 +708,8 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件，使用AsyncCallback方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -738,6 +754,8 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 startContinuationDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用AsyncCallback方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -789,6 +807,8 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 startContinuationDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void>
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用Promise方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -924,6 +944,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 通知设备选择模块，更新当前的连接状态，使用AsyncCallback方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -971,6 +993,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 updateContinuationState(token: number, deviceId: string, status: DeviceConnectState): Promise\<void>
 
 通知设备选择模块，更新当前的连接状态，使用Promise方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1100,6 +1124,8 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用AsyncCallback方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
@@ -1144,6 +1170,8 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 unregisterContinuation(token: number): Promise\<void>
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用Promise方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1193,6 +1221,8 @@ unregisterContinuation(token: number): Promise\<void>
 
 设备连接状态。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
 | 名称 | 值 | 说明 |
@@ -1205,6 +1235,8 @@ unregisterContinuation(token: number): Promise\<void>
 ## ContinuationMode
 
 设备选择模块连接模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 

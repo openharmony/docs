@@ -75,8 +75,8 @@
        };
 
        // 判断数据库版本，如果不匹配则需进行升降级操作
-       // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-       const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
+       // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, IDENTITY)
+       const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)'; // 建表Sql语句, IDENTITY为bigint类型，sql中指定类型为UNLIMITED INT
 
        relationalStore.getRdbStore(this.context, STORE_CONFIG, (err, store) => {
          if (err) {
@@ -131,8 +131,8 @@
      securityLevel: relationalStore.SecurityLevel.S1 // 数据库安全级别
    };
 
-   // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-   const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // 建表Sql语句
+   // 假设当前数据库版本为3，表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, IDENTITY)
+   const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)'; // 建表Sql语句，IDENTITY为bigint类型，sql中指定类型为UNLIMITED INT
 
    relationalStore.getRdbStore(context, STORE_CONFIG, (err, store) => {
      if (err) {
@@ -176,32 +176,34 @@
 2. 获取到RdbStore后，调用insert()接口插入数据。示例代码如下所示：
      
    ```ts
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
-   
    let store: relationalStore.RdbStore | undefined = undefined;
 
    let value1 = 'Lisa';
    let value2 = 18;
    let value3 = 100.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   let value5 = BigInt('15822401018187971961171');
    // 以下三种方式可用
-   const valueBucket1: ValuesBucket = {
+   const valueBucket1: relationalStore.ValuesBucket = {
      'NAME': value1,
      'AGE': value2,
      'SALARY': value3,
      'CODES': value4,
+     'IDENTITY': value5,
    };
-   const valueBucket2: ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
+     IDENTITY: value5,
    };
-   const valueBucket3: ValuesBucket = {
+   const valueBucket3: relationalStore.ValuesBucket = {
      "NAME": value1,
      "AGE": value2,
      "SALARY": value3,
      "CODES": value4,
+     "IDENTITY": value5,
    };
 
    if (store !== undefined) {
@@ -230,24 +232,28 @@
    let value2 = 22;
    let value3 = 200.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   let value5 = BigInt('15822401018187971967863');
    // 以下三种方式可用
-   const valueBucket1: ValuesBucket = {
+   const valueBucket1: relationalStore.ValuesBucket = {
      'NAME': value1,
      'AGE': value2,
      'SALARY': value3,
      'CODES': value4,
+     'IDENTITY': value5,
    };
-   const valueBucket2: ValuesBucket = {
+   const valueBucket2: relationalStore.ValuesBucket = {
      NAME: value1,
      AGE: value2,
      SALARY: value3,
      CODES: value4,
+     IDENTITY: value5,
    };
-   const valueBucket3: ValuesBucket = {
+   const valueBucket3: relationalStore.ValuesBucket = {
      "NAME": value1,
      "AGE": value2,
      "SALARY": value3,
      "CODES": value4,
+     "IDENTITY": value5,
    };
    
    // 修改数据
@@ -285,7 +291,7 @@
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
    if (store !== undefined) {
-     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err: BusinessError, resultSet) => {
+     (store as relationalStore.RdbStore).query(predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'IDENTITY'], (err: BusinessError, resultSet) => {
        if (err) {
          console.error(`Failed to query data. Code:${err.code}, message:${err.message}`);
          return;
@@ -297,7 +303,8 @@
          const name = resultSet.getString(resultSet.getColumnIndex('NAME'));
          const age = resultSet.getLong(resultSet.getColumnIndex('AGE'));
          const salary = resultSet.getDouble(resultSet.getColumnIndex('SALARY'));
-         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+         const identity = resultSet.getValue(resultSet.getColumnIndex('IDENTITY'));
+         console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}, identity=${identity}`);
        }
        // 释放数据集的内存
        resultSet.close();

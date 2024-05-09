@@ -6,7 +6,7 @@ You can use the **ImageReceiver** APIs to obtain the surface ID of a component, 
 
 ### Adding Dependencies
 
-Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_ndk.z.so**, **libimage_receiver_ndk.z.so**, **libnative_image.so**, and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
+Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libace_napi.z.so**, **libimage_ndk.z.so**, **libimage_receiver_ndk.z.so**, **libnative_image.so**, and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libimage_ndk.z.so libimage_receiver_ndk.z.so libnative_image.so)

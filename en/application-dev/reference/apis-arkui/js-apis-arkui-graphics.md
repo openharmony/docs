@@ -77,8 +77,8 @@ Sets the translation amount of the component.
 
 | Name| Type  | Readable| Writable| Description                        |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| x    | number | Yes  | Yes  | Horizontal translation amount, in vp.|
-| y    | number | Yes  | Yes  | Vertical translation amount, in vp.|
+| x    | number | Yes  | Yes  | Horizontal translation amount, in px.|
+| y    | number | Yes  | Yes  | Vertical translation amount, in px.|
 
 ## Rotation
 
@@ -100,8 +100,8 @@ Sets the offset of the component or effect.
 
 | Name| Type  | Readable| Writable| Description                       |
 | ---- | ------ | ---- | ---- | --------------------------- |
-| x    | number | Yes  | Yes  | Offset along the y-axis, in vp.|
-| y    | number | Yes  | Yes  | Offset along the y-axis, in vp.|
+| x    | number | Yes  | Yes  | Offset along the y-axis, in px.|
+| y    | number | Yes  | Yes  | Offset along the y-axis, in px.|
 
 ## Matrix4
 
@@ -117,7 +117,7 @@ const transform: Matrix4 = [
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## Vector2<sup>12+</sup>
+## Vector2
 
 Defines a vector that contains the x and y coordinate values.
 
@@ -238,20 +238,20 @@ Describes the four corners.
 
 ## CornerRadius<sup>12+</sup>
 
-Sets the radius for the four corners of the [Corners](#corners12)[<Vector2>](#vector212) type.
+Sets the radius for the four corners of the [Corners](#corners12)[\<Vector2>](#vector2) type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name       | Type               | Readable| Writable| Description                            |
 | ----------- | ------------------- | ---- | ---- | -------------------------------- |
-| topLeft     | [Vector2](#vector212) | Yes  | Yes  | Radius of the upper left corner, in vp.  |
-| topRight    | [Vector2](#vector212) | Yes  | Yes  | Radius of the upper right corner, in vp.|
-| bottomLeft  | [Vector2](#vector212) | Yes  | Yes  | Radius of the lower left corner, in vp.  |
-| bottomRight | [Vector2](#vector212) | Yes  | Yes  | Radius of the lower right corner, in vp.  |
+| topLeft     | [Vector2](#vector2) | Yes  | Yes  | Radius of the upper left corner, in px.  |
+| topRight    | [Vector2](#vector2) | Yes  | Yes  | Radius of the upper right corner, in px.|
+| bottomLeft  | [Vector2](#vector2) | Yes  | Yes  | Radius of the lower left corner, in px.  |
+| bottomRight | [Vector2](#vector2) | Yes  | Yes  | Radius of the lower right corner, in px.  |
 
 ## BorderRadiuses<sup>12+</sup>
 
-Sets the radius for the four corners of the Corners\<number>](#corners12) type.
+Sets the radius for the four corners of the [Corners\<number>](#corners12) type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -270,10 +270,10 @@ Describes a rectangle.
 
 | Name  | Type  | Readable| Writable| Description                    |
 | ------ | ------ | ---- | ---- | ------------------------ |
-| left   | number | Yes  | Yes  | Position of the left edge, in vp.|
-| top    | number | Yes  | Yes  | Position of the top edge, in vp.|
-| right  | number | Yes  | Yes  | Position of the right edge, in vp.|
-| bottom | number | Yes  | Yes  | Position of the bottom edge, in vp.|
+| left   | number | Yes  | Yes  | Position of the left edge, in px.|
+| top    | number | Yes  | Yes  | Position of the top edge, in px.|
+| right  | number | Yes  | Yes  | Position of the right edge, in px.|
+| bottom | number | Yes  | Yes  | Position of the bottom edge, in px.|
 
 ## RoundRect<sup>12+</sup>
 
@@ -294,9 +294,9 @@ Describes a circle.
 
 | Name   | Type  | Readable| Writable| Description                     |
 | ------- | ------ | ---- | ---- | ------------------------- |
-| centerX | number | Yes  | Yes  | X coordinate of the center of the circle, in vp.|
-| centerY | number | Yes  | Yes  | Y coordinate of the center of the circle, in vp.|
-| radius  | number | Yes  | Yes  | Radius of the circle, in vp.   |
+| centerX | number | Yes  | Yes  | X coordinate of the center of the circle, in px.|
+| centerY | number | Yes  | Yes  | Y coordinate of the center of the circle, in px.|
+| radius  | number | Yes  | Yes  | Radius of the circle, in px.   |
 
 ## CommandPath<sup>12+</sup>
 
@@ -306,7 +306,7 @@ Describes the command for drawing a path.
 
 | Name    | Type  | Readable| Writable| Description                                                                                                               |
 | -------- | ------ | ---- | ---- | ------------------------------------------------------------------------------------------------------------------- |
-| commands | string | Yes  | Yes  | Commands for drawing a path, in px. For details about how to convert the pixel unit, see [Pixel Unit Conversion](./arkui-ts/ts-pixel-units.md#pixel-unit-conversion).|
+| [commands](./arkui-ts/ts-drawing-components-path.md#commands-1) | string | Yes  | Yes  | Commands for drawing a path, in px. For details about how to convert the pixel unit, see [Pixel Unit Conversion](./arkui-ts/ts-pixel-units.md#pixel-unit-conversion).|
 
 ## ShapeMask<sup>12+</sup>
 
@@ -340,7 +340,7 @@ Sets a rectangle mask.
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
+mask.setRectShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(150) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -398,7 +398,7 @@ import { RenderNode, ShapeMask, FrameNode, NodeController, RoundRect } from "@oh
 
 const mask = new ShapeMask();
 const roundRect: RoundRect = {
-  rect: { left: 0, top: 0, right: 150, bottom: 150 },
+  rect: { left: 0, top: 0, right: vp2px(150), bottom: vp2px(150) },
   corners: {
     topLeft: { x: 32, y: 32 },
     topRight: { x: 32, y: 32 },
@@ -463,7 +463,7 @@ Sets a round mask.
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
+mask.setCircleShape({ centerY: vp2px(75), centerX: vp2px(75), radius: vp2px(75) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -520,7 +520,7 @@ Sets an oval mask.
 import { RenderNode, ShapeMask, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const mask = new ShapeMask();
-mask.setOvalShape({ left: 0, right: 150, top: 0, bottom: 100 });
+mask.setOvalShape({ left: 0, right: vp2px(150), top: 0, bottom: vp2px(100) });
 mask.fillColor = 0X55FF0000;
 
 const renderNode = new RenderNode();
@@ -616,9 +616,9 @@ struct Index {
 
 ### fillColor<sup>12+</sup>
 
-Describes the fill color of the mask, in ARGB format.
-
 fillColor: number
+
+Describes the fill color of the mask, in ARGB format. The default value is **0XFF000000**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -669,7 +669,7 @@ struct Index {
 
 strokeColor: number
 
-Sets the stroke color for the mask, in ARGB format.
+Sets the stroke color for the mask, in ARGB format. The default value is **0XFF000000**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -721,7 +721,7 @@ struct Index {
 
 strokeWidth: number
 
-Sets the stroke width for the mask, in vp.
+Sets the stroke width for the mask, in px. The default value is **0**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

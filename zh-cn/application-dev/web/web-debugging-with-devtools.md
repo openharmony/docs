@@ -43,7 +43,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    ```
    //查找 devtools 远程调试所需的应用browser进程号，重启调试应用后，需要重复此步骤，以完成端口转发
    hdc shell 
-   ps -ef | grep "应用名"
+   ps -ef | grep "应用包名"
    exit
    ```
    ```

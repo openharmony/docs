@@ -21,12 +21,12 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct  [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) | 音频录制信息。 | 
+| struct  [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) | 音频采样信息。 | 
 | struct  [OH_AudioEncInfo](_o_h___audio_enc_info.md) | 音频编码信息。 | 
-| struct  [OH_AudioInfo](_o_h___audio_info.md) | 音频录制参数。 | 
-| struct  [OH_VideoCaptureInfo](_o_h___video_capture_info.md) | 视频采集信息。 | 
+| struct  [OH_AudioInfo](_o_h___audio_info.md) | 音频信息。 | 
+| struct  [OH_VideoCaptureInfo](_o_h___video_capture_info.md) | 视频录制信息。 | 
 | struct  [OH_VideoEncInfo](_o_h___video_enc_info.md) | 视频编码信息。 | 
-| struct  [OH_VideoInfo](_o_h___video_info.md) | 视频录制参数。 | 
+| struct  [OH_VideoInfo](_o_h___video_info.md) | 视频信息。 | 
 | struct  [OH_RecorderInfo](_o_h___recorder_info.md) | 录制文件信息。 | 
 | struct  [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) | 屏幕录制配置参数。 | 
 | struct  [OH_AVScreenCaptureCallback](_o_h___a_v_screen_capture_callback.md) | OH_AVScreenCapture中所有异步回调函数指针的集合。 | 
@@ -48,12 +48,12 @@
 | typedef enum [OH_DataType](_a_v_screen_capture.md#oh_datatype-1) [OH_DataType](_a_v_screen_capture.md#oh_datatype) | 枚举，表示屏幕录制流的数据格式。 | 
 | typedef enum [OH_VideoSourceType](_a_v_screen_capture.md#oh_videosourcetype-1) [OH_VideoSourceType](_a_v_screen_capture.md#oh_videosourcetype) | 枚举，表示视频源格式。 | 
 | typedef enum [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype-1) [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype) | 枚举，表示屏幕录制生成的文件类型。 | 
-| typedef struct [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [OH_AudioCaptureInfo](_a_v_screen_capture.md#oh_audiocaptureinfo) | 音频录制信息。 | 
+| typedef struct [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [OH_AudioCaptureInfo](_a_v_screen_capture.md#oh_audiocaptureinfo) | 音频采样信息。 | 
 | typedef struct [OH_AudioEncInfo](_o_h___audio_enc_info.md) [OH_AudioEncInfo](_a_v_screen_capture.md#oh_audioencinfo) | 音频编码信息。 | 
-| typedef struct [OH_AudioInfo](_o_h___audio_info.md) [OH_AudioInfo](_a_v_screen_capture.md#oh_audioinfo) | 音频录制参数。 | 
-| typedef struct [OH_VideoCaptureInfo](_o_h___video_capture_info.md) [OH_VideoCaptureInfo](_a_v_screen_capture.md#oh_videocaptureinfo) | 视频采集信息。 | 
+| typedef struct [OH_AudioInfo](_o_h___audio_info.md) [OH_AudioInfo](_a_v_screen_capture.md#oh_audioinfo) | 音频信息。 | 
+| typedef struct [OH_VideoCaptureInfo](_o_h___video_capture_info.md) [OH_VideoCaptureInfo](_a_v_screen_capture.md#oh_videocaptureinfo) | 视频录制信息。 | 
 | typedef struct [OH_VideoEncInfo](_o_h___video_enc_info.md) [OH_VideoEncInfo](_a_v_screen_capture.md#oh_videoencinfo) | 视频编码信息。 | 
-| typedef struct [OH_VideoInfo](_o_h___video_info.md) [OH_VideoInfo](_a_v_screen_capture.md#oh_videoinfo) | 视频录制参数。 | 
+| typedef struct [OH_VideoInfo](_o_h___video_info.md) [OH_VideoInfo](_a_v_screen_capture.md#oh_videoinfo) | 视频信息。 | 
 | typedef struct [OH_RecorderInfo](_o_h___recorder_info.md) [OH_RecorderInfo](_a_v_screen_capture.md#oh_recorderinfo) | 录制文件信息。 | 
 | typedef struct [OH_AVScreenCaptureConfig](_o_h___a_v_screen_capture_config.md) [OH_AVScreenCaptureConfig](_a_v_screen_capture.md#oh_avscreencaptureconfig) | 屏幕录制配置参数。 | 
 | typedef void(\* [OH_AVScreenCaptureOnError](_a_v_screen_capture.md#oh_avscreencaptureonerror)) ([OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, int32_t errorCode) | 当OH_AVScreenCapture实例运行出错时，将调用函数指针。 | 
@@ -65,9 +65,9 @@
 | typedef enum [OH_AVScreenCaptureStateCode](_a_v_screen_capture.md#oh_avscreencapturestatecode-1) [OH_AVScreenCaptureStateCode](_a_v_screen_capture.md#oh_avscreencapturestatecode) | 枚举，表示状态码。 | 
 | typedef enum [OH_AVScreenCaptureBufferType](_a_v_screen_capture.md#oh_avscreencapturebuffertype-1) [OH_AVScreenCaptureBufferType](_a_v_screen_capture.md#oh_avscreencapturebuffertype) | 枚举，表示buffer类型。 | 
 | typedef enum [OH_AVScreenCaptureFilterableAudioContent](_a_v_screen_capture.md#oh_avscreencapturefilterableaudiocontent-1) [OH_AVScreenCaptureFilterableAudioContent](_a_v_screen_capture.md#oh_avscreencapturefilterableaudiocontent) | 枚举，表示可过滤的音频类型。 | 
-| typedef void(\* [OH_AVScreenCapture_OnStateChange](_a_v_screen_capture.md#oh_avscreencapture_onstatechange)) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, [OH_AVScreenCaptureStateCode](_a_v_screen_capture.md#oh_avscreencapturestatecode) stateCode, void \*userData) | 当OH_AVScreenCapture实例状态改变时，将调用函数指针。 | 
-| typedef void(\* [OH_AVScreenCapture_OnError](_a_v_screen_capture.md#oh_avscreencapture_onerror)) ([OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, int32_t errorCode, void \*userData) | 当OH_AVScreenCapture实例运行出错时，将调用函数指针。 | 
-| typedef void(\* [OH_AVScreenCapture_OnBufferAvailable](_a_v_screen_capture.md#oh_avscreencapture_onbufferavailable)) ([OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, OH_AVBuffer \*buffer, [OH_AVScreenCaptureBufferType](_a_v_screen_capture.md#oh_avscreencapturebuffertype) bufferType, int64_t timestamp, void \*userData) | 当OH_AVScreenCapture操作期间缓冲区可用时，将调用函数指针。 | 
+| typedef void(\* [OH_AVScreenCapture_OnStateChange](_a_v_screen_capture.md#oh_avscreencapture_onstatechange)) (struct [OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, [OH_AVScreenCaptureStateCode](_a_v_screen_capture.md#oh_avscreencapturestatecode) stateCode, void \*userData) | 当OH_AVScreenCapture实例操作期间发生状态变更时，将调用函数指针。 | 
+| typedef void(\* [OH_AVScreenCapture_OnError](_a_v_screen_capture.md#oh_avscreencapture_onerror)) ([OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, int32_t errorCode, void \*userData) | 当OH_AVScreenCapture实例操作期间发生错误时，将调用函数指针。 | 
+| typedef void(\* [OH_AVScreenCapture_OnBufferAvailable](_a_v_screen_capture.md#oh_avscreencapture_onbufferavailable)) ([OH_AVScreenCapture](_a_v_screen_capture.md#oh_avscreencapture) \*capture, OH_AVBuffer \*buffer, [OH_AVScreenCaptureBufferType](_a_v_screen_capture.md#oh_avscreencapturebuffertype) bufferType, int64_t timestamp, void \*userData) | 当OH_AVScreenCapture实例操作期间音频或视频缓存区可用时，将调用该函数指针。 | 
 
 
 ### 枚举

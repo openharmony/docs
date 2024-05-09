@@ -1,6 +1,6 @@
 # 实现一个自绘编辑框
 
-输入法框架提供了 InputMethodController，使用 InputMethodController可以绑定输入法，监听输入法应用的插入、删除、选择、光标移动等操作，从而实现一个自绘编辑框。
+输入法框架提供了[InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller)实例，通过[getController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodgetcontroller9)可获取到，使用 [InputMethodController](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodcontroller)实例可以绑定输入法，监听输入法应用的插入、删除、选择、光标移动等操作，从而实现一个自绘编辑框。
 
 ## 开发步骤
 

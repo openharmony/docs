@@ -12,6 +12,8 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 
 控制组件扩展其安全区域。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -139,7 +141,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
   });
 }
+```
 
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -177,7 +181,9 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
   });
 }
+```
 
+```ts
 // xxx.ets
 @Entry
 @Component

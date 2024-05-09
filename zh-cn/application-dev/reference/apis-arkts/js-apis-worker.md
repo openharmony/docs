@@ -24,7 +24,7 @@ import worker from '@ohos.worker';
 
 | 名称                              | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。                         |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。                         |
 | parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
 
 
@@ -36,8 +36,8 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
-| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。 |
+| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
+| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
 | shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 |
 
 ## ThreadWorker<sup>9+</sup>
@@ -49,6 +49,8 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 constructor(scriptURL: string, options?: WorkerOptions)
 
 ThreadWorker构造函数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -93,6 +95,8 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
@@ -124,6 +128,8 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 宿主线程通过转移对象所有权或者拷贝数据的方式向Worker线程发送消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -152,6 +158,73 @@ workerInstance.postMessage("hello world");
 let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
+
+
+### postMessageWithSharedSendable<sup>12+</sup>
+
+postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
+
+宿主线程向Worker线程发送消息，消息中的Sendable对象通过引用传递，消息中的非Sendable对象通过序列化传递。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。默认值为空数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+
+**示例：**
+
+```ts
+// index.ets
+// 新建SendableObject实例并通过宿主线程传递至worker线程
+
+import worker from '@ohos.worker';
+import { SendableObject } from './sendable'
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+let object: SendableObject = new SendableObject();
+workerInstance.postMessageWithSharedSendable(object);
+```
+
+```ts
+// sendable.ets
+// 定义SendableObject
+
+@Sendable
+export class SendableObject {
+  a:number = 45;
+}
+```
+
+```ts
+// worker文件路径为：entry/src/main/ets/workers/Worker.ets
+// Worker.ets
+// 接收宿主线程传递至worker线程的数据并访问
+
+import { SendableObject } from '../pages/sendable'
+import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  let obj: SendableObject = e.data;
+  console.info("sendable obj is: " + obj.a);
+}
+```
+
 
 ### on<sup>9+</sup>
 
@@ -343,6 +416,8 @@ terminate(): void
 
 销毁Worker线程，终止Worker接收消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -366,6 +441,8 @@ workerInstance.terminate();
 onexit?: (code: number) =&gt; void
 
 回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -401,6 +478,8 @@ onerror?: (err: ErrorEvent) =&gt; void
 
 回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -429,6 +508,8 @@ workerInstance.onerror = (err: ErrorEvent) => {
 onmessage?: (event: MessageEvents) =&gt; void
 
 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -460,6 +541,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 onmessageerror?: (event: MessageEvents) =&gt; void
 
 回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -848,6 +931,8 @@ postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -896,6 +981,8 @@ postMessage(messageObject: Object, options?: PostMessageOptions): void
 
 Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线程发送消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -936,6 +1023,76 @@ workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
 }
 ```
+
+
+### postMessageWithSharedSendable<sup>12+</sup>
+
+postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
+
+Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用传递，消息中的非Sendable对象通过序列化传递。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message   | Object	     | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。默认值为空数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+
+**示例：**
+
+```ts
+// worker文件路径为：entry/src/main/ets/workers/Worker.ets
+// Worker.ets
+// 新建SendableObject实例并通过worker线程传递至宿主线程
+
+import { SendableObject } from '../pages/sendable'
+import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  let object: SendableObject = new SendableObject();
+  workerPort.postMessageWithSharedSendable(object);
+}
+```
+
+```ts
+// sendable.ets
+// 定义SendableObject
+
+@Sendable
+export class SendableObject {
+  a:number = 45;
+}
+```
+
+```ts
+// Index.ets
+// 接收worker线程传递至宿主线程的数据并访问其属性
+
+import worker, { MessageEvents } from '@ohos.worker';
+import { SendableObject } from './sendable'
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+workerInstance.postMessage(1);
+workerInstance.onmessage = (e: MessageEvents) => {
+  let obj: SendableObject = e.data;
+  console.info("sendable index obj is: " + obj.a);
+}
+```
+
 
 ### callGlobalCallObjectMethod<sup>11+</sup>
 
@@ -1004,6 +1161,8 @@ close(): void
 
 销毁Worker线程，终止Worker接收消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -1039,6 +1198,8 @@ workerPort.onmessage = (e: MessageEvents): void => {
 onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 回调函数。ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1077,6 +1238,8 @@ workerPort.onmessage = (e: MessageEvents): void => {
 onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 回调函数。ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1152,6 +1315,8 @@ workerInstance.addEventListener("alert", (e)=>{
 
 Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1192,6 +1357,8 @@ workerPort.onerror = (err: ErrorEvent) => {
 ## MessageEvents<sup>9+</sup>
 
 消息类，持有Worker线程间传递的数据。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1919,6 +2086,8 @@ parentPort.onmessageerror = (e) => {
 
 明确数据传递过程中需要转移所有权对象的类，传递所有权的对象必须是ArrayBuffer，发送它的上下文中将会变为不可用，仅在接收方可用。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称     | 类型     | 可读 | 可写 | 说明                              |
@@ -1974,6 +2143,8 @@ workerInstance.addEventListener("alert", (e)=>{
 ## ErrorEvent
 
 错误事件类，用于表示Worker执行过程中出现异常的详细信息，ErrorEvent类继承[Event](#event)。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

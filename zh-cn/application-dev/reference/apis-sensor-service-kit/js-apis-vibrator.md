@@ -21,6 +21,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **需要权限：** ohos.permission.VIBRATE
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
@@ -134,6 +136,8 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 根据指定的振动效果和振动属性触发马达振动。使用promise异步回调。
 
 **需要权限：** ohos.permission.VIBRATE
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -449,6 +453,8 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限：** ohos.permission.VIBRATE
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 **参数：** 
@@ -486,6 +492,8 @@ stopVibration(): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.VIBRATE
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 **返回值：** 
@@ -507,6 +515,41 @@ try {
   }, (error: BusinessError) => {
     console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
   });
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## vibrator.stopVibrationSync<sup>12+</sup>
+
+stopVibrationSync(): void
+
+停止任何形式的马达振动。
+
+**需要权限：** ohos.permission.VIBRATE
+
+**元服务API：** 从API Version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Sensors.MiscDevice
+
+**错误码：**
+
+| 错误码ID | 说明                     |
+| -------- | ------------------------ |
+| 201      | Permission denied.       |
+| 14600101 | Device operation failed. |
+
+**示例：** 
+
+```
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // 停止任何形式的马达振动
+    vibrator.stopVibrationSync()
+    console.info('Succeed in stopping vibration');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -627,6 +670,49 @@ try {
 }
 ```
 
+## vibrator.isSupportEffectSync<sup>12+</sup>
+
+isSupportEffectSync(effectId: string): boolean
+
+查询是否支持预设的振动效果。
+
+**系统能力：** SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明                 |
+| -------- | ------ | ---- | -------------------- |
+| effectId | string | 是   | 是否预设的振动效果。 |
+
+**返回值：** 
+
+| 类型    | 说明                                                   |
+| ------- | ------------------------------------------------------ |
+| boolean | 返回对象。当返回true则表示支持该effectId，否则不支持。 |
+
+**错误码：**
+
+| 类型     | 说明                     |
+| -------- | ------------------------ |
+| 401      | Parameter error.         |
+| 14600101 | Device operation failed. |
+
+**示例：** 
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+    // 查询是否支持预设'haptic.clock.timer'
+    let ret = vibrator.isSupportEffectSync('haptic.clock.timer');
+    console.info(`The query result is ${ret}`);
+} catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## EffectId
 
 预置的振动效果。
@@ -657,13 +743,15 @@ try {
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。 |
+| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
 | [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
 | [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
 固定时长振动类型。
+
+**元服务API：** 从API Version 11开始，该接口在支持元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -711,6 +799,8 @@ try {
 
 马达振动属性。
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
 | 名称  | 类型 | 必填 | 说明           |
@@ -721,6 +811,8 @@ try {
 ## Usage<sup>9+</sup>
 
 振动使用场景。
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 

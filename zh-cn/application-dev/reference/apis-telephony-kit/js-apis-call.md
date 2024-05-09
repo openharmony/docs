@@ -25,7 +25,7 @@ dial\(phoneNumber: string, callback: AsyncCallback\<boolean\>\): void
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -57,7 +57,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -92,7 +92,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -129,6 +129,8 @@ call.dial("138xxxxxxxx", dialOptions).then((data: boolean) => {
 makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 跳转到拨号界面，并显示待拨出的号码。使用callback异步回调。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -171,6 +173,8 @@ call.makeCall("138xxxxxxxx", (err: BusinessError) => {
 makeCall\(phoneNumber: string\): Promise\<void\>
 
 跳转到拨号界面，并显示待拨出的号码。使用Promise异步回调。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 

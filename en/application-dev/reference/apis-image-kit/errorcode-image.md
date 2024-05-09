@@ -483,6 +483,34 @@ The image attribute is missing.
 
 Correct the image data or use another image.
 
+## 62980137 Invalid Image Operation
+
+**Error Message**
+
+Invalid media operation.
+
+**Possible Cause**
+
+The target image format does not support this operation.
+
+**Solution**
+
+Use another image.
+
+## 62980149 Invalid Image Parameter
+
+**Error Message**
+
+Invalid image source mime type.
+
+**Possible Cause**
+
+The target image format does not support this operation.
+
+**Solution**
+
+Use another image.
+
 ## 62980246 Failure in Reading the Pixel Map
 
 **Error Message**

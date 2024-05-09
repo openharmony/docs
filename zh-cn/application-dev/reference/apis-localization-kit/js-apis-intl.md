@@ -22,7 +22,7 @@ import Intl from '@ohos.intl';
 
 ### 属性
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -176,7 +176,8 @@ minimize(): Locale
 表示区域初始化选项。
 
 从API9开始，LocaleOptions中的属性改为可选。
-从API version 11开始，该类型支持在ArkTS卡片中使用。
+
+**卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -197,7 +198,7 @@ constructor()
 
 创建时间日期格式化对象。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -338,7 +339,8 @@ resolvedOptions(): DateTimeOptions
 表示时间日期格式化选项，参数取值和实现效果请参考[时间日期国际化](../../internationalization/i18n-time-date.md)。
 
 从API9开始，DateTimeOptions中的属性改为可选。
-从API version 11开始，该类型支持在ArkTS卡片中使用。
+
+**卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -474,7 +476,7 @@ resolvedOptions(): NumberOptions
 | currencyDisplay          | string  | 否    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。currencyDisplay属性默认值为symbol。 |
 | unit                     | string  | 否    | 单位名称，如："meter"，"inch"，“hectare”等。        |
 | unitDisplay              | string  | 否    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。unitDisplay属性默认值为short。 |
-| unitUsage<sup>8+</sup>   | string  | 否    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。unitUsage属性默认值为default。 |
+| unitUsage<sup>8+</sup>   | string  | 否    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte",&nbsp;"size-shortfile-byte"。unitUsage属性默认值为default。 |
 | signDisplay              | string  | 否    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。signDisplay属性默认值为auto。 |
 | compactDisplay           | string  | 否    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。compactDisplay属性默认值为short。      |
 | notation                 | string  | 否    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。notation属性默认值为standard。 |

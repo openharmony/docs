@@ -10,12 +10,16 @@
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
 
-**参数：**
+设置关键帧动画。
 
-| 名称         | 参数类型                                              | 是否必填 | 描述                         |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名        | 类型                                              | 必填 | 描述                         |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
-| keyframes    | Array&lt;[KeyframeState](#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |  
+| keyframes    | Array&lt;[KeyframeState](#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |
 
 ## KeyframeAnimateParam对象说明
 | 名称       | 参数类型    | 是否必填 | 描述                                    |

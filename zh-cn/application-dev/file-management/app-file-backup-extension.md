@@ -45,9 +45,9 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
                        "resource": "$profile:backup_config"
                    }
                ],
-               // 在BackupExtension.ts文件里自定义继承BackupExtensionAbility，重写其中的onBackup和onRestore方法。
+               // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup和onRestore方法。
                // 如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
-               "srcEntry": "./ets/BackupExtension/BackupExtension.ts", 
+               "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
            }      
        ]
    }
@@ -73,25 +73,25 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
    }
    ```
 
-3. 开发者可以在`BackupExtension.ts`文件中自定义类继承的`BackupExtensionAbility`，通过重写其`onBackup`和`onRestore`方法，使其达到在备份预加工应用数据或者在恢复阶段加工待恢复文件。
+3. 开发者可以在`BackupExtension.ets`文件中自定义类继承的`BackupExtensionAbility`，通过重写其`onBackup`和`onRestore`方法，使其达到在备份预加工应用数据或者在恢复阶段加工待恢复文件。
 
    如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
 
-   下面的示例展示了一个空实现的`BackupExtension.ts`文件。
+   下面的示例展示了一个空实现的`BackupExtension.ets`文件。
 
     ```ts
     import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
-    import Logger from '../common/Logger';
+    import {hilog} from '@Kit.PerformanceAnalysisKit';
     
     const TAG = `FileBackupExtensionAbility`;
     export default class BackupExtension extends  BackupExtensionAbility {
       async onBackup ()   {
-        Logger.info(TAG, `onBackup ok`);
+        hilog.info(TAG, `onBackup ok`);
       }
 
       async onRestore (bundleVersion : BundleVersion) {
-        Logger.info(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
-        Logger.info(TAG, `onRestore end`);
+        hilog.info(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
+        hilog.info(TAG, `onRestore end`);
       }
     }
     ```

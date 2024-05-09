@@ -27,6 +27,8 @@ Menu()
 >
 > 设置宽度的情况：菜单组件会对子组件MenuItem、MenuItemGroup设置减去padding后的固定宽度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -53,6 +55,8 @@ font(value: Font)
 
 统一设置Menu中所有文本的尺寸。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -67,6 +71,8 @@ fontColor(value: ResourceColor)
 
 统一设置Menu中所有文本的颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -80,6 +86,8 @@ fontColor(value: ResourceColor)
 radius(value: Dimension | BorderRadiuses)
 
 设置Menu边框圆角半径。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,7 +121,7 @@ width(value: Length)
 struct Index {
   @State select: boolean = true
   private iconStr: ResourceStr = $r("app.media.view_list_filled")
-  private iconStr2: ResourceStr = $r("app.media.view_list_filled")
+  private iconStr2: ResourceStr = $r("app.media.arrow_right_filled")
 
   @Builder
   SubMenu() {
@@ -132,28 +140,26 @@ struct Index {
       MenuItem({
         startIcon: this.iconStr,
         content: "菜单选项",
-        endIcon: $r("app.media.arrow_right_filled"),
+        endIcon: this.iconStr2,
         builder: ():void=>this.SubMenu()
       })
       MenuItemGroup({ header: '小标题' }) {
-        MenuItem({ content: "菜单选项" })
-          .selectIcon(true)
-          .selected(this.select)
-          .onChange((selected) => {
-            console.info("menuItem select" + selected);
-            this.iconStr2 = $r("app.media.icon");
-          })
         MenuItem({
-          startIcon: $r("app.media.view_list_filled"),
+          startIcon: this.iconStr,
           content: "菜单选项",
-          endIcon: $r("app.media.arrow_right_filled"),
+          endIcon: this.iconStr2,
+          builder: ():void=>this.SubMenu()
+        })
+        MenuItem({
+          startIcon: $r("app.media.app_icon"),
+          content: "菜单选项",
+          endIcon: this.iconStr2,
           builder: ():void=>this.SubMenu()
         })
       }
       MenuItem({
-        startIcon: this.iconStr2,
+        startIcon: this.iconStr,
         content: "菜单选项",
-        endIcon: $r("app.media.arrow_right_filled")
       })
     }
   }
@@ -174,3 +180,39 @@ struct Index {
 ```
 
 ![menu1](figures/menu1.png)
+
+### 示例2
+
+普通菜单(使用symbol类型图标)
+
+```ts
+// xxx.ets
+import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+@Entry
+@Component
+struct MenuExample {
+  @State startIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_mic')).fontSize('24vp');
+  @State endIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontSize('24vp');
+  @State selectIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontSize('24vp');
+  @State select: boolean = true;
+  build() {
+    Column() {
+      Menu(){
+        MenuItem({symbolStartIcon: this.startIconModifier, content: "菜单选项", symbolEndIcon: this.endIconModifier })
+        MenuItem({content: "菜单选项" })
+          .selected(this.select).selectIcon(this.selectIconModifier)
+        MenuItemGroup({header: '小标题' }){
+          MenuItem({
+            symbolStartIcon: this.startIconModifier,
+            content: "菜单选项",
+            symbolEndIcon: this.endIconModifier
+          })
+        }
+      }
+    }
+    .width('100%')
+  }
+}
+```
+
+![zh-cn_image_0000001174582862](figures/normal-symbol.jpeg)

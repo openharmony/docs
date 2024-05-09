@@ -24,5 +24,6 @@
         - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
         - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
         - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
+    - [卡片使用方开发指导（仅对系统应用开放）](widget-host-development-guide.md)
   - [开发基于JS UI的卡片](js-ui-widget-development.md)
 - [服务卡片开发指导（FA模型）](widget-development-fa.md)

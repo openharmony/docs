@@ -39,7 +39,7 @@ import systemTimer from '@ohos.systemTimer';
 | repeat    | boolean                                       | 是   | 是否为循环定时器。<br>true为循环定时器，false为单次定时器。                        |
 | interval  | number                                        | 否   | 定时器时间间隔。<br>如果是循环定时器，interval值应大于5000毫秒；单次定时器interval值为0。 |
 | wantAgent | WantAgent | 否   | 设置通知的WantAgent，定时器到期后通知。（支持拉起应用MainAbility，暂不支持拉起ServiceAbility。） |
-| callback  | number                                        | 是   | 以回调函数的形式返回定时器的ID。                             |
+| callback  | void                                          | 否  | 用户需要执行的回调函数                            |
 
 
 ## systemTimer.createTimer
@@ -56,6 +56,16 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 | -------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [TimerOptions](#timeroptions) | 是   | 创建系统定时器的初始化选项，包括定时器类型、是否循环触发、间隔时间、WantAgent通知机制等。 |
 | callback | AsyncCallback&lt;number>      | 是   | 回调函数，返回定时器的ID。                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+|-------|----------------------------------------------------------------------------------------------------------------|
+| -1    | System error.                                                                                                  |
+| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -101,6 +111,16 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 | --------------------- | ----------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回定时器的ID。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+|-------|----------------------------------------------------------------------------------------------------------------|
+| -1    | System error.                                                                                                  |
+| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -137,6 +157,16 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 | timer       | number                 | 是   | 定时器的ID。                   |
 | triggerTime | number                 | 是   | 定时器的触发时间，单位：毫秒。 |
 | callback    | AsyncCallback&lt;void> | 是   | 回调函数。                     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+|-------|----------------------------------------------------------------------------------------------------------------|
+| -1    | System error.                                                                                                  |
+| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -190,6 +220,16 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 | -------------- | ------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+|-------|----------------------------------------------------------------------------------------------------------------|
+| -1    | System error.                                                                                                  |
+| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -233,6 +273,16 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ---------------------- | ---- | ------------ |
 | timer    | number                 | 是   | 定时器的ID。 |
 | callback | AsyncCallback&lt;void> | 是   | 回调函数。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+|-------|----------------------------------------------------------------------------------------------------------------|
+| -1    | System error.                                                                                                  |
+| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -286,6 +336,16 @@ stopTimer(timer: number): Promise&lt;void&gt;
 | -------------- | ------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+|-------|----------------------------------------------------------------------------------------------------------------|
+| -1    | System error.                                                                                                  |
+| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -330,6 +390,16 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ---------------------- | ---- | ------------ |
 | timer    | number                 | 是   | 定时器的ID。 |
 | callback | AsyncCallback&lt;void> | 是   | 回调函数。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+|-------|----------------------------------------------------------------------------------------------------------------|
+| -1    | System error.                                                                                                  |
+| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -383,6 +453,16 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+|-------|----------------------------------------------------------------------------------------------------------------|
+| -1    | System error.                                                                                                  |
+| 202   | Permission denied, Non system application use system APIs.                                                                                             |
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 

@@ -8,11 +8,11 @@ An application is suspended after it runs in the background for a short period o
 
 ### Constraints
 
-- **When to request**: An application can request a transient task when it is running in the foreground or within 5 seconds after it switches to the background.
+- **When to request**: An application can request a transient task when it is running in the foreground or through the **onBackground** callback.
 
 - **Quantity limit**: An application can request a maximum of three transient tasks during a time segment. As shown in the figure below, the application requests two transient tasks in the time segments ①, ②, and ③, and one transient task in the time segment ④.
 
-- **Quota mechanism**: An application has a certain quota for transient tasks (adjusted based on the system status and user habits). The default quota for a single day (within 24 hours) is 10 minutes, and the maximum quota for each request is 3 minutes. In case of [low battery](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md), the default quota for each request is 1 minute. After the quota is used up, the application cannot request transient tasks anymore. The system also provides an API for an application to query the remaining duration of a transient task so as to determine whether to continue running other services.
+- **Quota mechanism**: An application has a certain quota for transient tasks (adjusted based on the system status and user habits). The default quota for a single day (within 24 hours) is 10 minutes, and the maximum quota for each request is 3 minutes. In case of [low battery](../reference/apis-basic-services-kit/js-apis-battery-info.md), the default quota for each request is 1 minute. After the quota is used up, the application cannot request transient tasks anymore. The system also provides an API for an application to query the remaining duration of a transient task so as to determine whether to continue running other services.
 
 - **Quota calculation**: Transient tasks are timed only when the application is running in the background. If the application has multiple transient tasks during the same time segment, no repeated timing is performed. As in the figure below, the application has two transient tasks, A and B. Task A is requested when the application is running in the foreground, and the timing starts when the application switches to the background (marked as ①). When the application switches to the foreground, the timing stops (marked as ②). When the application switches to the background again, the timing starts again (marked as ③). When task A is finished, task B still exists, and therefore the timing continues (marked as ④). In this process, the total time consumed by the transient tasks is ①+③+④. 
   
@@ -91,3 +91,4 @@ The table below lists the main APIs used for transient task development. For det
    }
    ```
 
+ <!--no_check--> 

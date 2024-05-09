@@ -12,6 +12,8 @@ focusable(value: boolean)
 
 设置当前组件是否可以获焦。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -25,6 +27,8 @@ focusable(value: boolean)
 tabIndex(index: number)
 
 自定义组件tab键走焦能力。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,6 +44,8 @@ defaultFocus(value: boolean)
 
 设置当前组件是否为当前页面上的默认焦点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -53,6 +59,8 @@ defaultFocus(value: boolean)
 groupDefaultFocus(value: boolean)
 
 设置当前组件是否为当前组件所在容器获焦时的默认焦点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,6 +76,8 @@ focusOnTouch(value: boolean)
 
 设置当前组件是否支持点击获焦能力。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -79,6 +89,8 @@ focusOnTouch(value: boolean)
 ## focusControl<sup>9+</sup>
 
 焦点控制模块
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ### requestFocus<sup>9+</sup>
 
@@ -102,7 +114,12 @@ requestFocus(value: string): boolean
 >
 >  支持焦点控制的组件：[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Search](ts-basic-components-search.md)、[Button](ts-basic-components-button.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。焦点事件当前仅支持在真机上显示运行效果。
 
-## clearFocus<sup>12+</sup>
+
+## FocusController<sup>12+</sup>
+以下API需先使用UIContext中的[getFocusController()](../js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
+
+
+### clearFocus<sup>12+</sup>
 
 clearFocus(): void
 
@@ -110,7 +127,17 @@ clearFocus(): void
 
 >  **说明：**
 >
->  调用该接口需要先获取[UIContext](../js-apis-arkui-UIContext.md)，具体使用方式可以参考[示例3](./ts-universal-attributes-focus.md#示例3)。
+>  详细介绍请参见[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)。
+
+### requestFocus<sup>12+</sup>
+
+requestFocus(key: string): void
+
+通过组件的id将焦点转移到组件树对应的实体节点。
+
+>  **说明：**
+>
+>  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
 
 ## 示例
 
@@ -351,62 +378,3 @@ struct RequestFocusExample {
 申请存在且可获焦的组件获焦：
 
 ![requestFocus3](figures/requestFocus3.png)
-
-### 示例3
-
-```ts
-
-@Entry
-@Component
-struct ClearFocusExample {
-  @State inputValue: string = ''
-  @State btColor: Color = Color.Blue
-
-  build() {
-    Column({ space: 20 }) {
-      Column({ space: 5 }) {
-        Button('button1')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .focusOnTouch(true)
-          .backgroundColor(Color.Blue)
-        Button('button2')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .focusOnTouch(true)
-          .backgroundColor(this.btColor)
-          .defaultFocus(true)
-          .onFocus(() => {
-            this.btColor = Color.Red
-          })
-          .onBlur(() => {
-            this.btColor = Color.Blue
-          })
-        Button('clearFocus')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .backgroundColor(Color.Blue)
-          .onClick(() => {
-            this.getUIContext().getFocusController().clearFocus()
-          })
-      }
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-
-```
-
-示意图：
-
-首次进入页面，Button2按钮获焦，背景颜色为红色
-
-![clearFocus1](figures/clearFocus1.jpg)
-
-点击ClearFocus按钮，清除焦点，Button2失焦，触发onBlur失焦回调将背景颜色变为蓝色。
-
-![clearFocus2](figures/clearFocus2.jpg)

@@ -22,6 +22,8 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 
 **需要权限：** ohos.permission.ACCELEROMETER
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -291,9 +293,11 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 
 订阅校准的陀螺仪传感器数据。
 
-**需要权限：** ohos.permission.GYROSCOPE 
+**需要权限：** ohos.permission.GYROSCOPE
 
-**系统能力：** SystemCapability.Sensors.Sensor 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -662,6 +666,8 @@ try {
 on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
 订阅方向传感器数据。
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor 
 
@@ -1846,7 +1852,9 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 
 取消订阅加速度传感器数据。
 
-**需要权限：** ohos.permission.ACCELEROMETER 
+**需要权限：** ohos.permission.ACCELEROMETER
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
@@ -2103,7 +2111,9 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 取消订阅陀螺仪传感器数据。
 
-**需要权限：** ohos.permission.GYROSCOPE 
+**需要权限：** ohos.permission.GYROSCOPE
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
@@ -2446,6 +2456,8 @@ try {
 off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
 
 取消订阅方向传感器数据。
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Sensors.Sensor
 
@@ -3755,6 +3767,45 @@ try {
 }
 ```
 
+## sensor.getSensorListSync<sup>12+</sup>
+
+getSensorListSync(): Array&lt;Sensor&gt;
+
+获取设备上的所有传感器信息，使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Sensors.Sensor
+
+**返回值：** 
+
+| 类型                                    | 必填 | 说明                             |
+| --------------------------------------- | ---- | -------------------------------- |
+| &lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | 是   | 使用同步方式返回传感器属性列表。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见 [sensor.getSensorList错误码](errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**示例：** 
+
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+try {
+  let ret = sensor.getSensorListSync()
+  for (let i = 0; i < ret.length; i++) {
+    console.info('Succeeded in getting sensor: ' + JSON.stringify(ret[i]));
+  }
+} catch(error) {
+    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ##  sensor.getSingleSensor<sup>9+</sup>
 
 getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
@@ -3774,9 +3825,11 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
 
 **示例：** 
 
@@ -3822,9 +3875,11 @@ try {
 
 以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
 
-| 错误码ID | 错误信息           |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
 
 **示例：** 
 
@@ -3844,35 +3899,80 @@ try {
 }
 ```
 
+## sensor.getSingleSensorSync<sup>12+</sup>
+
+getSingleSensorSync(type: SensorId): Sensor
+
+获取指定类型的传感器信息，使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名 | 类型                   | 必填 | 说明         |
+| ------ | ---------------------- | ---- | ------------ |
+| type   | [SensorId](#sensorid9) | 是   | 传感器类型。 |
+
+**返回值：** 
+
+| 类型   | 必填 | 说明                         |
+| ------ | ---- | ---------------------------- |
+| Sensor | 是   | 使用同步方式返回传感器信息。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
+
+**示例：** 
+
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+try {
+  let ret = sensor.getSingleSensorSync(sensor.SensorId.ACCELEROMETER);
+  console.info('Succeeded in getting sensor: ' + JSON.stringify(ret));
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## SensorId<sup>9+</sup>
 
 表示当前支持订阅或取消订阅的传感器类型。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称                        | 值   | 说明                   |
-| --------------------------- | ---- | ---------------------- |
-| ACCELEROMETER               | 1    | 加速度传感器。         |
-| GYROSCOPE                   | 2    | 陀螺仪传感器。         |
-| AMBIENT_LIGHT               | 5    | 环境光传感器。         |
-| MAGNETIC_FIELD              | 6    | 磁场传感器。           |
-| BAROMETER                   | 8    | 气压计传感器。         |
-| HALL                        | 10   | 霍尔传感器。           |
-| PROXIMITY                   | 12   | 接近光传感器。         |
-| HUMIDITY                    | 13   | 湿度传感器。           |
-| ORIENTATION                 | 256  | 方向传感器。           |
-| GRAVITY                     | 257  | 重力传感器。           |
-| LINEAR_ACCELEROMETER        | 258  | 线性加速度传感器。     |
-| ROTATION_VECTOR             | 259  | 旋转矢量传感器。       |
-| AMBIENT_TEMPERATURE         | 260  | 环境温度传感器。       |
-| MAGNETIC_FIELD_UNCALIBRATED | 261  | 未校准磁场传感器。     |
-| GYROSCOPE_UNCALIBRATED      | 263  | 未校准陀螺仪传感器。   |
-| SIGNIFICANT_MOTION          | 264  | 有效运动传感器。       |
-| PEDOMETER_DETECTION         | 265  | 计步检测传感器。       |
-| PEDOMETER                   | 266  | 计步传感器。           |
-| HEART_RATE                  | 278  | 心率传感器。           |
-| WEAR_DETECTION              | 280  | 佩戴检测传感器。       |
-| ACCELEROMETER_UNCALIBRATED  | 281  | 未校准加速度计传感器。 |
+| 名称                        | 值   | 说明                                                         |
+| --------------------------- | ---- | ------------------------------------------------------------ |
+| ACCELEROMETER               | 1    | 加速度传感器。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
+| GYROSCOPE                   | 2    | 陀螺仪传感器。<br/>**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。 |
+| AMBIENT_LIGHT               | 5    | 环境光传感器。                                               |
+| MAGNETIC_FIELD              | 6    | 磁场传感器。                                                 |
+| BAROMETER                   | 8    | 气压计传感器。                                               |
+| HALL                        | 10   | 霍尔传感器。                                                 |
+| PROXIMITY                   | 12   | 接近光传感器。                                               |
+| HUMIDITY                    | 13   | 湿度传感器。                                                 |
+| ORIENTATION                 | 256  | 方向传感器。<br/>**元服务API：** 从API Version 11开始，该接口在支持元服务中使用。 |
+| GRAVITY                     | 257  | 重力传感器。                                                 |
+| LINEAR_ACCELEROMETER        | 258  | 线性加速度传感器。                                           |
+| ROTATION_VECTOR             | 259  | 旋转矢量传感器。                                             |
+| AMBIENT_TEMPERATURE         | 260  | 环境温度传感器。                                             |
+| MAGNETIC_FIELD_UNCALIBRATED | 261  | 未校准磁场传感器。                                           |
+| GYROSCOPE_UNCALIBRATED      | 263  | 未校准陀螺仪传感器。                                         |
+| SIGNIFICANT_MOTION          | 264  | 有效运动传感器。                                             |
+| PEDOMETER_DETECTION         | 265  | 计步检测传感器。                                             |
+| PEDOMETER                   | 266  | 计步传感器。                                                 |
+| HEART_RATE                  | 278  | 心率传感器。                                                 |
+| WEAR_DETECTION              | 280  | 佩戴检测传感器。                                             |
+| ACCELEROMETER_UNCALIBRATED  | 281  | 未校准加速度计传感器。                                       |
 
 ## SensorType<sup>(deprecated)</sup>
 
@@ -3909,6 +4009,8 @@ try {
 
 传感器数据的精度。
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称    | 值 | 说明                     |
@@ -3921,6 +4023,8 @@ try {
 ## Response
 
 传感器数据的时间戳。
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -3951,6 +4055,8 @@ try {
 ## AccelerometerResponse
 
 加速度传感器数据，继承于[Response](#response)。
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -4011,6 +4117,8 @@ try {
 
 方向传感器数据，继承于[Response](#response)。
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
@@ -4039,6 +4147,8 @@ try {
 ## GyroscopeResponse
 
 陀螺仪传感器数据，继承于[Response](#response)。
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -4098,9 +4208,11 @@ try {
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称      | 类型   | 可读 | 可写 | 说明                   |
-| --------- | ------ | ---- | ---- | ---------------------- |
-| intensity | number | 是   | 是   | 光强（单位：勒克斯）。 |
+| 名称                            | 类型   | 可读 | 可写 | 说明                                                         |
+| ------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| intensity                       | number | 是   | 是   | 光强（单位：勒克斯）。                                       |
+| colorTemperature<sup>12+</sup>  | number | 是   | 是   | 色温（单位：开尔文），可选参数，如果该参数不支持在js层返回未定义，支持则返回正常数值。 |
+| infraredLuminance<sup>12+</sup> | number | 是   | 是   | 红外亮度（单位：cd/m²），可选参数，如果该参数不支持在js层返回未定义，支持则返回正常数值。 |
 
 
 ## HallResponse
@@ -4234,6 +4346,8 @@ try {
 
 设置传感器上报频率。
 
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 | 名称     | 类型                                                        | 可读 | 可写 | 说明                                                         |
@@ -4243,6 +4357,8 @@ try {
 ## SensorFrequency<sup>11+</sup>
 
 传感器上报频率模式。
+
+**元服务API：** 从API Version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 

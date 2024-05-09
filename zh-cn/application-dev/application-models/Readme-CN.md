@@ -15,6 +15,7 @@
       - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
     - [ExtensionAbility组件](extensionability-overview.md)
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
+      - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
@@ -24,6 +25,7 @@
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
+    - [AppStartup开发指南](app-startup.md)
     - 应用组件跨设备交互（流转）
       - [流转概述](inter-device-interaction-hop-overview.md)
       - [跨端迁移](hop-cross-device-migration.md)

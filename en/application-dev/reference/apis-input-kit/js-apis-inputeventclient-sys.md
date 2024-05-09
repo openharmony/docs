@@ -28,6 +28,14 @@ Injects keys (including single keys and combination keys).
 | -------- | --------------------- | ---- | --------- |
 | KeyEvent | [KeyEvent](#keyevent) | Yes   | Key event to inject.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -77,6 +85,15 @@ Injects key events (for both single keys and combination keys).
 | -------- | --------------------- | ---- | --------- |
 | keyEvent | [KeyEventData](#keyeventdata11) | Yes   | Key event to inject.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -125,6 +142,15 @@ Injects a mouse/touchpad event.
 | Name      | Type                   | Mandatory  | Description       |
 | -------- | --------------------- | ---- | --------- |
 | mouseEvent | [MouseEventData](#mouseeventdata11) | Yes   | Mouse/touchpad event to inject.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -216,6 +242,15 @@ Injects a touchscreen event.
 | Name      | Type                   | Mandatory  | Description       |
 | -------- | --------------------- | ---- | --------- |
 | touchEvent | [TouchEventData](#toucheventdata11) | Yes   | Touchscreen event to inject.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

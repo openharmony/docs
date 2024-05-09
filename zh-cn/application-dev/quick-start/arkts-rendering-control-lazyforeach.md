@@ -152,7 +152,7 @@ interface DataExchangeOperation {
 ### DataReloadOperation
 
 ```ts
-interface DataReloadOperation {     // 当onDatasetChange含有DataOperationType.RELOAD操作时，                                        其余操作全部失效，框架会自己调用keygenerator进行键值比对
+interface DataReloadOperation {     // 当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keygenerator进行键值比对
   type: DataOperationType.RELOAD    // 数据全部重载类型
 }
 ```
@@ -433,7 +433,7 @@ struct MyComponent {
 }
  ```
 
-运行效果如下图所示。可以看到`Hello 0`在滑动过程中被错误渲染为`Hello 13`。
+运行效果如下图所示。
 
 **图2**  LazyForEach存在相同键值  
 ![LazyForEach-Render-SameKey](./figures/LazyForEach-Render-SameKey.gif)

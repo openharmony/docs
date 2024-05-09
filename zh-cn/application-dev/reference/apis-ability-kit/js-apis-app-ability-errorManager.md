@@ -17,6 +17,8 @@ on(type: 'error', observer: ErrorObserver): number
 
 注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -34,11 +36,12 @@ on(type: 'error', observer: ErrorObserver): number
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | Id does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -72,7 +75,9 @@ try {
 
 off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
-注销错误观测器。
+注销错误观测器。使用callback异步返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -86,11 +91,12 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | Id does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -118,7 +124,9 @@ try {
 
 off(type: 'error', observerId: number): Promise\<void>
 
-注销错误观测器。
+注销错误观测器。使用Promise异步返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,15 +141,16 @@ off(type: 'error', observerId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | Id does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
@@ -171,6 +180,8 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
 注册主线程消息处理耗时监听器。注册后可以捕获到应用主线程处理消息的具体执行时间。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -178,8 +189,16 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'loopObserver'，表示注册主线程消息处理耗时监听器。 |
-| timeout | number | 是 |  表示事件执行阈值。 阈值必须大于0|
+| timeout | number | 是 |  表示事件执行阈值（单位：毫秒）。 阈值必须大于0。 |
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 是 | 注册主线程消息处理耗时监听器。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **示例：**
     
@@ -200,6 +219,8 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
 注册主线程被拒绝promise监听器。注册后可以捕获到应用主线程中未被捕获到的promise rejection。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -211,11 +232,12 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16200001 | Invalid caller. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 16200001 | If the caller is invalid. |
 
 **示例：**
     
@@ -235,7 +257,7 @@ let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise:
 
 errorManager.on("unhandledRejection", observer);
 
-promise1 = new Promise<void>(() => {}).then(() => {
+let promise1 = new Promise<void>(() => {}).then(() => {
     throw new Error("uncaught error")
 })
 ```
@@ -246,6 +268,8 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 
 注销主线程消息处理监听器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -253,7 +277,15 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 填写'loopObserver'，表示应用主线程观察器。 |
-| observer | LoopObserver | 否 | 应用主线程观察器标志。 |
+| observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 否 | 应用主线程观察器标志。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **示例：**
     
@@ -263,9 +295,13 @@ import errorManager from '@ohos.app.ability.errorManager';
 errorManager.off("loopObserver");
 ```
 
+## ErrorManager.off<sup>12+</sup>
+
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
 注销主线程被拒绝promise监听器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -278,10 +314,13 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16200001 | Invalid caller. |
-| 16300004 | observer not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 16200001 | If the caller is invalid. |
+| 16300004 | If the observer does not exist. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -303,7 +342,7 @@ let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise:
 
 errorManager.on("unhandledRejection", observer);
 
-promise1 = new Promise<void>(() => {}).then(() => {
+let promise1 = new Promise<void>(() => {}).then(() => {
   throw new Error("uncaught error")
 })
 
@@ -326,7 +365,7 @@ let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise:
 
 errorManager.on("unhandledRejection", observer);
 
-promise1 = new Promise<void>(() => {}).then(() => {
+let promise1 = new Promise<void>(() => {}).then(() => {
   throw new Error("uncaught error")
 })
 
@@ -338,6 +377,8 @@ errorManager.off("unhandledRejection", observer);
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
 
 将在js运行时应用主线程中用户未捕获到的rejection。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -14,6 +14,8 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
@@ -22,7 +24,8 @@ import appManager from '@ohos.app.ability.appManager';
 | uid | number | 是 | 否 | 用户ID。 |
 | processName | string | 是 | 否 | 进程名称。 |
 | bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的Bundle名称。 |
-| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager-sys.md#processstate10)| 是 | 否 | 当前进程运行状态。|
+| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| 是 | 否 | 当前进程运行状态。|
+| bundleType<sup>12+</sup> | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype) | 是 | 否 | 当前进程运行的包类型。 |
 
 ## 使用说明
 

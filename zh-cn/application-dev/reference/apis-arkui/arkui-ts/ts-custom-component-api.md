@@ -39,6 +39,36 @@ struct MyComponent {
 }
 ```
 
+## getUniqueId<sup>12+</sup>
+
+getUniqueId(): number
+
+获取当前Component的UniqueId。UniqueId为系统为每个组件分配的Id，可保证唯一性。若在组件未构建时获取，返回无效UniqueId：-1。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                      | 说明                    |
+| --------------------------------------------------------- | ----------------------- |
+| number | 返回当前Component的UniqueId。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let uniqueId: number = this.getUniqueId();
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+
 ## queryNavDestinationInfo
 
 queryNavDestinationInfo(): NavDestinationInfo | undefined;
@@ -70,3 +100,68 @@ struct MyComponent {
   }
 }
 ```
+
+## queryNavigationInfo<sup>12+</sup>
+
+queryNavigationInfo(): NavigationInfo | undefined
+
+获取NavigationInfo实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                                       | 说明      |
+| -------------------------------------------------------------------------- | --------- |
+| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo) \| undefined | 返回NavigationInfo实例对象。 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let info: observer.NavigationInfo | undefined = this.queryNavigationInfo();
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+
+## queryRouterPageInfo<sup>12+</sup>
+
+queryRouterPageInfo(): RouterPageInfo | undefined;
+
+获取RouterPageInfo实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                         | 说明                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [RouterPageInfo](../js-apis-arkui-observer.md#routerpageinfo) \| undefined | 返回RouterPageInfo实例对象。 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let info: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+

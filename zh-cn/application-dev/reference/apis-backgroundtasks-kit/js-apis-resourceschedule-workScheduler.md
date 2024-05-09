@@ -30,10 +30,11 @@ startWork(work: WorkInfo): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -84,10 +85,11 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -137,10 +139,11 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -182,10 +185,11 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -220,10 +224,11 @@ obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -248,6 +253,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -282,10 +288,11 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -312,10 +319,11 @@ stopAndClearWorks(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -352,10 +360,11 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -378,10 +387,11 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -423,10 +433,11 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)。
+以下错误码的详细介绍请参见[workScheduler错误码](errorcode-workScheduler.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -455,8 +466,8 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | 名称             | 类型                                | 必填   | 说明               |
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | 是    | 延迟任务ID。          |
-| bundleName      | string                            | 是    | 延迟任务包名。           |
-| abilityName     | string                            | 是    | 延迟任务回调通知的组件名。 |
+| bundleName      | string                            | 是    | 延迟任务所在应用的包名。           |
+| abilityName     | string                            | 是    | 包内ability名称。 |
 | networkType     | [NetworkType](#networktype)       | 否    | 网络类型。             |
 | isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调，false表示不充电触发延迟回调。|
 | chargerType     | [ChargingType](#chargingtype)     | 否    | 充电类型。             |

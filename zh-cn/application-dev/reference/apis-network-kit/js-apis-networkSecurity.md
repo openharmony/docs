@@ -10,6 +10,7 @@
 
 ```ts
 import networkSecurity from '@ohos.net.networkSecurity';
+import { BusinessError } from '@ohos.base';
 ```
 
 ## 完整实例
@@ -18,12 +19,12 @@ import networkSecurity from '@ohos.net.networkSecurity';
 import networkSecurity from '@ohos.net.networkSecurity';
 
 // Define certificate blobs
-const cert = {
+const cert: networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (certificate data) ...\n-----END CERTIFICATE-----',
 };
 
-const caCert = {
+const caCert: networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (CA certificate data) ...\n-----END CERTIFICATE-----',
 };
@@ -33,7 +34,7 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Certificate verification result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Certificate verification failed:', error);
   });
 ```
@@ -112,14 +113,15 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
 ```ts
 import networkSecurity from '@ohos.net.networkSecurity';
+import { BusinessError } from '@ohos.base';
 
 // Define certificate blobs
-const cert = {
+const cert:networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (certificate data) ...\n-----END CERTIFICATE-----',
 };
 
-const caCert = {
+const caCert:networkSecurity.CertBlob = {
   type: networkSecurity.CertType.CERT_TYPE_PEM,
   data: '-----BEGIN CERTIFICATE-----\n... (CA certificate data) ...\n-----END CERTIFICATE-----',
 };
@@ -129,7 +131,7 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Certificate verification result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Certificate verification failed:', error);
   });
 ```
@@ -185,6 +187,7 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 ```ts
 import networkSecurity from '@ohos.net.networkSecurity';
+import { BusinessError } from '@ohos.base';
 
 // Create certificate blobs
 const cert: networkSecurity.CertBlob = {
@@ -202,12 +205,12 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Verification Result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Verification Error:', error);
   });
 
 // Synchronous verification
-let resultSync ：number = networkSecurity.certVerificationSync(cert, caCert);
+let resultSync: number = networkSecurity.certVerificationSync(cert, caCert);
 console.info('Synchronous Verification Result:', resultSync);
 ```
 

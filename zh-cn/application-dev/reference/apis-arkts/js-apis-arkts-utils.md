@@ -14,13 +14,19 @@ import utils from '@arkts.utils';
 
 ## utils.locks
 
-异步锁功能，是一种同步机制，用于防止多个线程同时访问共享资源。
+为了解决多并发实例间的数据竞争问题，ArkTS语言基础库引入了异步锁能力。为了开发者的开发效率，AsyncLock对象支持跨并发实例引用传递。
+
+由于ArkTS语言支持异步操作，阻塞锁容易产生死锁问题，因此我们在ArkTS中仅支持异步锁（非阻塞式锁）。
+
+使用异步锁的方法需要标记为async，调用方需要await修饰调用，才能保证时序正确。因此会导致外层调用函数全部标记成async。
 
 ### AsyncLockCallback
 
 type AsyncLockCallback\<T> = () => T | Promise\<T>
 
 这是一个补充类型别名，表示[lockAsync](#lockasync)函数所有重载中的回调。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -30,17 +36,51 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 
 #### 属性
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型   | 可读 | 可写 | 说明       |
 | ---- | ------ | ---- | ---- | ---------- |
 | name | string | 是   | 否   | 锁的名称。 |
 
+**示例：**
+
+```ts
+@Sendable
+class A {
+  // 暂不支持AsyncLock跨线程共享，因此@Sendable不能持有AsyncLock，只能用AsyncLock.request。
+  // 如下一行示例代码是错误的。
+  // static lock_: utils.locks.AsyncLock = new utils.locks.AsyncLock();
+  count_: number = 0;
+  async getCount(): Promise<number> {
+    let lock: utils.locks.AsyncLock = utils.locks.AsyncLock.request("lock_1");
+    return lock.lockAsync(() => {
+      return this.count_;
+    })
+  }
+  async setCount(count: number) {
+    let lock: utils.locks.AsyncLock = utils.locks.AsyncLock.request("lock_1");
+    await lock.lockAsync(() => {
+      this.count_ = count;
+    })
+  }
+}
+
+@Concurrent
+async function foo(a: A) {
+  let unused = utils.locks.AsyncLock; // 4月版本临时规避代码，需要在@Concurrent函数中使用一下，否则后续逻辑使用异步锁会存在加载失败的异常问题。
+  await a.setNum(10)
+}
+```
+
 #### constructor
 
 constructor()
 
 默认构造函数。创建一个匿名锁。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -61,6 +101,8 @@ let lock = new utils.locks.AsyncLock();
 static request(name: string): AsyncLock
 
 使用指定的名称查找或创建（如果未找到）异步锁实例。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -88,6 +130,8 @@ let lock = utils.locks.AsyncLock.request(lockName);
 static query(name: string): AsyncLockState
 
 查询指定异步锁的信息。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -130,6 +174,8 @@ static queryAll(): AsyncLockState[]
 
 查询所有现有锁的信息。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -152,6 +198,8 @@ if (states.length == 0) {
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 在获取的锁下独占执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -190,6 +238,8 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -227,6 +277,8 @@ let p1 = lock.lockAsync<void>(() => {
 lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: AsyncLockOptions\<U>): Promise\<T | U>
 
 在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用 lockAsync 的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -272,6 +324,8 @@ let p: Promise<void> = lock.lockAsync<void, void>(
 
 锁操作对应的模式枚举。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 值  | 说明                                                     |
@@ -285,6 +339,8 @@ class AsyncLockOptions\<T>
 
 表示锁操作选项的类。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 #### constructor
@@ -292,6 +348,8 @@ class AsyncLockOptions\<T>
 constructor()
 
 默认构造函数。创建一个所有属性均具有默认值的异步锁配置项实例。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -304,27 +362,19 @@ constructor()
 **示例：**
 
 ```ts
-let lock = new utils.locks.AsyncLock();
 let s: utils.locks.AbortSignal<string> = { aborted: false, reason: 'Aborted' };
 let options = new utils.locks.AsyncLockOptions<string>();
 options.isAvailable = false;
 options.signal = s;
-let p: Promise<void> = lock.lockAsync<void, string>(
-    () => {
-        // 执行某些操作
-    },
-    utils.locks.AsyncLockMode.EXCLUSIVE,
-    options
-);
 ```
 
 #### 属性
 
-| 名称        | 类型                                  | 可读 | 可写 | 说明                                                                                                               |
-| ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------ |
-| isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true表示如果无法立即获取锁，则操作将被取消；为false时表示将等待当前锁被释放。默认为 false。                                   |
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。如果signal.aborted为true，则不会调用回调；为null时表示会调用回调。默认为 null。                                    |
-| timeout     | number                                | 是   | 是   | 锁操作的超时时间（毫秒）。如果该值大于零，且运行超过该时间，[lockAsync](#lockasync)将返回拒绝的Promise。默认为 0。 |
+| 名称        | 类型                                  | 可读 | 可写 | 说明                                                                                                                      |
+| ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
+| isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。如果signal.aborted为true，则锁请求将被丢弃；为null则请求正常排队运行。默认为 null。               |
+| timeout     | number                                | 是   | 是   | 锁操作的超时时间（毫秒）。如果该值大于零，且运行超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
 
 ### AsyncLockState
 
@@ -334,6 +384,8 @@ let p: Promise<void> = lock.lockAsync<void, string>(
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
 | held    | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 持有的锁信息。   |
 | pending | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 等待中的锁信息。 |
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **示例：**
 
@@ -373,6 +425,8 @@ function queryTest() {
 
 关于锁的信息。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 #### 属性
@@ -386,6 +440,8 @@ function queryTest() {
 ### AbortSignal
 
 用于中止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

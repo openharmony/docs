@@ -1,6 +1,6 @@
 # @ohos.telephony.radio (网络搜索)
 
-网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称、获取设备的指定卡槽的IMEI、获取设备的指定卡槽的MEID、获取设备的指定卡槽的唯一设备ID，判断当前设备是否支持5G\(NR\)、判断主卡的Radio是否打开等。
+网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称、获取设备的指定卡槽的IMEI、获取设备的指定卡槽的MEID、获取设备的指定卡槽的唯一设备ID，判断当前设备是否支持NR(New Radio)、判断主卡的Radio是否打开等。
 
 >**说明：**
 >
@@ -653,7 +653,7 @@ console.log(`signal information size is:` + signalInfo.length);
 
 isNrSupported\(\): boolean
 
-判断当前设备是否支持5G\(NR\)。
+判断当前设备是否支持NR(New Radio)。
 
 > **说明：**
 >
@@ -678,7 +678,7 @@ console.log("Result: "+ result);
 
 isNrSupported\(slotId: number\): boolean
 
-判断当前设备是否支持5G\(NR\)。
+判断当前设备是否支持NR(New Radio)。
 
 > **说明：**
 >
@@ -711,7 +711,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(\): boolean
 
-判断当前设备是否支持5G\(NR\)。
+判断当前设备是否支持NR(New Radio)。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -733,7 +733,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(slotId: number\): boolean
 
-判断当前设备是否支持5G\(NR\)。
+判断当前设备是否支持NR(New Radio)。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -1075,7 +1075,7 @@ console.log(`operator name is:` + operatorName);
 | NETWORK_TYPE_WCDMA   | 3    | 网络类型为WCDMA（Wideband Code Division Multiple Access）。  |
 | NETWORK_TYPE_TDSCDMA | 4    | 网络类型为TDSCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
 | NETWORK_TYPE_LTE     | 5    | 网络类型为LTE（Long Term Evolution）。                       |
-| NETWORK_TYPE_NR      | 6    | 网络类型为5G NR（New Radio）。                               |
+| NETWORK_TYPE_NR      | 6    | 网络类型为NR（New Radio）。                               |
 
 ## NetworkState
 

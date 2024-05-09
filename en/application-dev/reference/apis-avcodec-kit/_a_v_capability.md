@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **AVCapability** module provides the functions for querying the codec capability.
+The AVCapability module provides the functions for querying the codec capability.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -26,16 +26,16 @@ The **AVCapability** module provides the functions for querying the codec capabi
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[OH_AVRange](_o_h___a_v_range.md) | Defines the value range, which contains the minimum value and maximum value.| 
+| struct&nbsp;&nbsp;[OH_AVRange](_o_h___a_v_range.md) | Describes the value range, which contains the minimum value and maximum value.| 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | Defines an enum that enumerates the bit rate modes of an encoder.| 
-| typedef struct [OH_AVRange](#oh_avrange-1) [OH_AVRange](#oh_avrange) | Defines the value range, which contains the minimum value and maximum value.| 
-| typedef enum [OH_AVCodecCategory](#oh_avcodeccategory-1) [OH_AVCodecCategory](#oh_avcodeccategory) | Defines an enum that enumerates the codec categories.| 
+| typedef struct [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | Defines an enum for bit rate modes of an encoder.| 
+| typedef struct [OH_AVRange](#oh_avrange-1) [OH_AVRange](#oh_avrange) | Defines a struct that describes the value range, which contains the minimum value and maximum value.| 
+| typedef enum [OH_AVCodecCategory](#oh_avcodeccategory-1) [OH_AVCodecCategory](#oh_avcodeccategory) | Defines an enum for codec categories.| 
 
 
 ### Enums
@@ -88,7 +88,7 @@ typedef enum OH_AVCodecCategory OH_AVCodecCategory
 
 **Description**
 
-Defines an enum that enumerates the codec categories.
+Defines an enum for codec categories.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -124,7 +124,7 @@ typedef enum OH_BitrateMode OH_BitrateMode
 
 **Description**
 
-Defines an enum that enumerates the bit rate modes of an encoder.
+Defines an enum for bit rate modes of an encoder.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -145,7 +145,7 @@ enum OH_AVCodecCategory
 
 **Description**
 
-Defines an enum that enumerates the codec categories.
+Defines an enum for codec categories.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -168,7 +168,7 @@ enum OH_BitrateMode
 
 **Description**
 
-Defines an enum that enumerates the bit rate modes of an encoder.
+Defines an enum for bit rate modes of an encoder.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 

@@ -19,7 +19,7 @@ The following are supported: [animate](js-components-svg-animate.md), [animateMo
 
 ## Attributes
 
-The [universal attributes](../arkui-js/js-components-svg-common-attributes.md) and the attributes listed below are supported.
+The [universal attributes](js-components-svg-common-attributes.md) and the attributes listed below are supported.
 
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |

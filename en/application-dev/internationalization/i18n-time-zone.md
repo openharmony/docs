@@ -79,6 +79,8 @@ The local time of different countries and regions varies according to their long
 
 2. Add a time zone to the preferred time zone list of the application.
    ```ts
+   let timezone1 = I18n.getTimeZone("America/Sao_Paulo");
+   let timezone2 = I18n.getTimeZone();
    let appPreferredTimeZoneList = [] // Preferred time zone list of the application
    appPreferredTimeZoneList.push(timezone1);
    appPreferredTimeZoneList.push(timezone2);

@@ -9,9 +9,11 @@
 
 ## ContextMenu.close
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 |方法|描述|
 |----|---|
-| close() | 可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)给组件绑定的菜单。 |
+| static close() | 可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)给组件绑定的菜单。 |
 
 
 ## 示例

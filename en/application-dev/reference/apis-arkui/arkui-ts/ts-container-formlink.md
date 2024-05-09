@@ -35,7 +35,7 @@ FormLink(options: FormLinkOptions)
 | moduleName  | string   | No  | Name of the target module when action is **"router"** or **"call"**. |
 | bundleName  | string   | No  | Name of the target bundle when action is **"router"** or **"call"**.   |
 | abilityName | string   | No  | Name of the target UIAbility when action is **"router"** or **"call"**.|
-| uri<sup>11+</sup> | string   | No  | URI of the target UIAbility when action is **"router"** or **"call"**. If both **uri** and **abilityName** are set, **abilityName** takes precedence.|
+| uri<sup>11+</sup> | string   | No  | URI of the target UIAbility when action is **"router"**. If both **uri** and **abilityName** are set, **abilityName** takes precedence.|
 | params      | Object   | No  | Additional parameters carried in the current action. The value is a key-value pair in JSON format. For the **"call"** action type, the **method** parameter must be set and its value type must be string.<br>**NOTE**<br>Whenever possible, avoid using **params** to transfer internal state variables of widgets.|
 
 ## Attributes

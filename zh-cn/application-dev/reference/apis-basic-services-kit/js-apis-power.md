@@ -113,7 +113,7 @@ rebootDevice(reason: string): void
 
 重启设备。
 
-**需要权限：** ohos.permission.REBOOT 仅对系统应用开放
+**需要权限：** ohos.permission.REBOOT，仅对系统应用开放。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 

@@ -16,6 +16,8 @@
 
 GridItem(value?: GridItemOptions)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
@@ -29,6 +31,8 @@ GridItem(value?: GridItemOptions)
 rowStart(value: number)
 
 设置当前元素起始行号。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,6 +48,8 @@ rowEnd(value: number)
 
 设置当前元素终点行号。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -58,6 +64,8 @@ columnStart(value: number)
 
 设置当前元素起始列号。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -71,6 +79,8 @@ columnStart(value: number)
 columnEnd(value: number)
 
 设置当前元素终点列号。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -126,6 +136,8 @@ selectable(value: boolean)
 
 该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -142,6 +154,8 @@ selected(value: boolean)
 
 该属性需要在设置[选中态样式](./ts-universal-attributes-polymorphic-style.md#statestyles接口说明)前使用才能生效选中态样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -152,11 +166,15 @@ selected(value: boolean)
 
 ## GridItemOptions<sup>11+</sup>对象说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值: GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
 
 ## GridItemStyle<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称  |枚举值| 描述                     |
 | ----- |----| ------------------------ |
@@ -174,6 +192,8 @@ selected(value: boolean)
 onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 GridItem元素被鼠标框选的状态改变时触发回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

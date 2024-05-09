@@ -37,6 +37,10 @@
 
 描述长文本通知。
 
+> **说明：**
+>
+> 实际显示效果依赖于设备能力和通知中心UI样式。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 类型    | 只读 | 必填 | 说明                             |
@@ -53,6 +57,10 @@
 ## NotificationMultiLineContent
 
 描述多行文本通知。
+
+> **说明：**
+>
+> 实际显示效果依赖于设备能力和通知中心UI样式。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
@@ -71,6 +79,10 @@
 
 描述附有图片的通知。
 
+> **说明：**
+>
+> 实际显示效果依赖于设备能力和通知中心UI样式。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 | 名称           | 类型                                          | 只读 | 必填 | 说明                               |
@@ -81,7 +93,7 @@
 | lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
 | briefText      | string                                       |  否  | 是  | 通知概要内容，是对通知内容的总结（不可为空字符串）。 |
 | expandedTitle  | string                                       |  否  | 是  | 通知展开时的标题（不可为空字符串）。    |
-| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(最大支持2MB的图片文件)。|
+| picture        | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  | 是  | 通知的图片内容(图像像素的总字节数不能超过2MB)。|
 
 
 ## NotificationSystemLiveViewContent
