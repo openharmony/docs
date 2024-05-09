@@ -359,10 +359,10 @@ function getNode() : void {
 | enabled | boolean | 否 | 是 | 是否使能光源，true表示使用光源，false表示不使用。 |
 
 ## SpotLight
-点光源类型，继承自[Light](light)。
+点光源类型，继承自[Light](#light)。
 
 ## DirectionalLight
-平行光类型，继承自[Light](light)。
+平行光类型，继承自[Light](#light)。
 
 ### 属性
 
