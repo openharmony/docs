@@ -252,7 +252,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 
 **示例：**
 
@@ -292,10 +292,7 @@ createPixelMapSync(options: InitializationOptions): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401          | Invalid input parameter|
-|  62980103     | The image data is not supported |
-|  62980246      | Failed to read the pixelMap |
-|  62980248     | Pixelmap not allow modify |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 
 **示例：**
 
@@ -336,8 +333,8 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallbac
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
-|  401          | Invalid input parameter|
 |  62980246      | Failed to read the pixelMap |
 |  62980248     | Pixelmap not allow modify |
 
@@ -358,7 +355,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
     let srcPixelmap = image.createPixelMapSync(color, opts);
     let dstPixelMap = image.createPixelMapSync(opts);
-    image.createPremultiplyPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
         if(error) {
             console.error('Failed to convert pixelmap.');
             return;
@@ -396,7 +393,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401          | Invalid input parameter|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
 |  62980246      | Failed to read the pixelMap |
 |  62980248     | Pixelmap not allow modify |
@@ -418,7 +415,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
     let srcPixelmap = image.createPixelMapSync(color, opts);
     let dstPixelMap = image.createPixelMapSync(opts);
-    image.createUnPremultiplyPixelMap(srcPixelmap, dstPixelMap).then(() => {
+    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
         console.info('Succeeded in converting pixelmap.');
     }).catch((error: BusinessError) => {
         console.error('Failed to convert pixelmap.');
@@ -448,7 +445,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallb
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401          | Invalid input parameter|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
 |  62980246      | Failed to read the pixelMap |
 |  62980248     | Pixelmap not allow modify |
@@ -470,7 +467,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
     let srcPixelmap = image.createPixelMapSync(color, opts);
     let dstPixelMap = image.createPixelMapSync(opts);
-    image.createUnPremultiplyPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
         if(error) {
             console.error('Failed to convert pixelmap.');
             return;
@@ -508,7 +505,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103    | The image data is not supported |
 |  60980246    | Failed to read the PixelMap |
 |  60980248    | PixelMap does not allow modification |
@@ -530,7 +527,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
     let srcPixelmap = image.createPixelMapSync(color, opts);
     let dstPixelMap = image.createPixelMapSync(opts);
-    image.createPremultiplyPixelMap(srcPixelmap, dstPixelMap).then(() => {
+    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
         console.info('Succeeded in converting pixelmap.');
     }).catch((error: BusinessError) => {
         console.error('Failed to convert pixelmap.');
@@ -653,7 +650,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -770,6 +767,15 @@ readPixelsSync(area: PositionArea): void
 | 参数名 | 类型                           | 必填 | 说明                     |
 | ------ | ------------------------------ | ---- | ------------------------ |
 | area   | [PositionArea](#positionarea7) | 是   | 区域大小，根据区域读取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
 
 **示例：**
 
@@ -904,7 +910,7 @@ writePixelsSync(area: PositionArea): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1035,7 +1041,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1327,7 +1333,7 @@ opacitySync(rate: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1432,7 +1438,7 @@ createAlphaPixelmapSync(): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1549,7 +1555,7 @@ scaleSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1669,7 +1675,7 @@ translateSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1784,7 +1790,7 @@ rotateSync(angle: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1903,7 +1909,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -2018,7 +2024,7 @@ cropSync(region: Region): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -2126,7 +2132,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401 | The parameter check failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -2179,7 +2185,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401 | The parameter check failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
