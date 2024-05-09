@@ -373,3 +373,38 @@ API version 12及以后：非文本类组件长按浮起预览图，预览图有
 
 默认样式变更调整，无需适配。
 
+## cl.arkui.11 DatePickerDialog标题按钮大小及布局变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规格增强
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：DatePickerDialog标题按钮大小与文本大小一致，底部操作区距离弹窗边缘24vp。
+
+变更后：DatePickerDialog标题按钮高度为32vp，距离弹窗左右边界为16vp，底部操作区与离弹窗边缘无间距。
+
+如下图所示为变更前后效果对比：
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/DatePickerDialogTitle_Before.jpg) | ![](figures/DatePickerDialogTitle_After.jpg) |
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
