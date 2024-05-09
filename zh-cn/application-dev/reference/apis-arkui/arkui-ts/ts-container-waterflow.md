@@ -732,6 +732,19 @@ struct WaterFlowDemo {
       .backgroundColor(0xFAEEE0)
       .width('100%')
       .height('100%')
+      .onReachStart(() => {
+        console.info('waterFlow reach start')
+      })
+      .onScrollStart(() => {
+        console.info('waterFlow scroll start')
+      })
+      .onScrollStop(() => {
+        console.info('waterFlow scroll stop')
+      })
+      .onScrollFrameBegin((offset: number, state: ScrollState) => {
+        console.info('waterFlow scrollFrameBegin offset: ' + offset + ' state: ' + state.toString())
+        return { offsetRemain: offset }
+      })
     }
   }
 }
