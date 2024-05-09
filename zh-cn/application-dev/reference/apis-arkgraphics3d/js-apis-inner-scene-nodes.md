@@ -243,10 +243,12 @@ function count() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
-      let container: scene3d.Container<scene3d.Node> = node.children;
-      // 获取children中的节点数
-      let count: number = container.count();
+      let node : scene3d.Node | null = result.getNodeByPath("rootNode_");
+      if (node) {
+        let container: scene3d.Container<scene3d.Node> = node.children;
+        // 获取children中的节点数
+        let count: number = container.count();
+      }
     }
   });
 }
