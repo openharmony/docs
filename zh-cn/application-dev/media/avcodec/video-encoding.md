@@ -167,8 +167,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 23000;
-    // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
-    int32_t quality = 0;
     // 配置比特率
     int64_t bitRate = 3000000;
 
@@ -186,7 +184,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理

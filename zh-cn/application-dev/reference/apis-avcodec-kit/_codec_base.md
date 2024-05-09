@@ -1866,7 +1866,7 @@ const char* OH_MD_KEY_FRAME_RATE
 
 **描述**
 
-视频帧率的键，值类型为double。
+视频帧率的键，值类型为double。该值必须大于 0。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

@@ -76,6 +76,7 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+**参数校验：** 请参考[参数校验规则](#configure-参数校验规则)
 
 ### OH_VideoDecoder_CreateByMime()
 
@@ -649,3 +650,12 @@ OH_AVErrCode OH_VideoDecoder_Stop (OH_AVCodec *codec)
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+## Configure 参数校验规则
+| Key                    | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
+| ---------------------- | -------- | -------- | ------ |
+| OH_MD_KEY_WIDTH        | √        | ×        | ×      |
+| OH_MD_KEY_HEIGHT       | √        | ×        | ×      |
+| OH_MD_KEY_PIXEL_FORMAT | √        | ×        | √      |
+| OH_MD_KEY_FRAME_RATE   | √        | ×        | √      |
+| OH_MD_KEY_ROTATION     | √        | ×        | √      |
