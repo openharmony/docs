@@ -31,30 +31,30 @@ function loadModel() : void {
 import scene3d from '@ohos.graphics.scene'
 
 async function createCameraPromise() : Promise<scene3d.Camera> {
-    return new Promise(() => {
-      let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-      scene.then(async (result: scene3d.Scene) => {
-        let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-        let sceneCameraParameter: scene3d.SceneNodeParameters = { name: "camera1" };
-        // 创建相机
-        let camera: Promise<scene3d.Camera> = sceneFactory.createCamera(sceneCameraParameter);
-        camera.then(async (cameraEntity: scene3d.Camera) => {
-            // 使能相机节点
-            cameraEntity.enabled = true;
+  return new Promise(() => {
+    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: scene3d.Scene) => {
+      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
+      let sceneCameraParameter: scene3d.SceneNodeParameters = { name: "camera1" };
+      // 创建相机
+      let camera: Promise<scene3d.Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      camera.then(async (cameraEntity: scene3d.Camera) => {
+        // 使能相机节点
+        cameraEntity.enabled = true;
 
-            // 设置相机的位置
-            cameraEntity.position.z = 5;
+        // 设置相机的位置
+        cameraEntity.position.z = 5;
 
-            // 设置相机Fov参数
-            cameraEntity.fov = 60 * Math.PI / 180;
+        // 设置相机Fov参数
+        cameraEntity.fov = 60 * Math.PI / 180;
 
-            // 可以参照此方式设置相机很多其他的参数
-            // ...
-        });
-        return camera;
+        // 可以参照此方式设置相机很多其他的参数
+        // ...
       });
+      return camera;
     });
-  }
+  });
+}
 ```
 
 
@@ -68,25 +68,25 @@ async function createCameraPromise() : Promise<scene3d.Camera> {
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
-  async function createLightPromise() : Promise<scene3d.Light> {
-    return new Promise(() => {
-      let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-      scene.then(async (result: scene3d.Scene) => {
-        let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-        let sceneLightParameter: scene3d.SceneNodeParameters = { name: "light" };
-        // 创建平行光
-        let light: Promise<scene3d.Light> = sceneFactory.createLight(sceneLightParameter, scene3d.LightType.DIRECTIONAL);
-        light.then(async (lightEntity: scene3d.Light) => {
-            // 设置平行光的颜色属性
-            lightEntity.color = { r: 0.8, g: 0.1, b: 0.2, a: 1.0 };
+async function createLightPromise() : Promise<scene3d.Light> {
+  return new Promise(() => {
+    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: scene3d.Scene) => {
+      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
+      let sceneLightParameter: scene3d.SceneNodeParameters = { name: "light" };
+      // 创建平行光
+      let light: Promise<scene3d.Light> = sceneFactory.createLight(sceneLightParameter, scene3d.LightType.DIRECTIONAL);
+      light.then(async (lightEntity: scene3d.Light) => {
+        // 设置平行光的颜色属性
+        lightEntity.color = { r: 0.8, g: 0.1, b: 0.2, a: 1.0 };
 
-            // 可以参照此方式设置光源很多其他的参数
-            // ...
-        });
-        return light;
+        // 可以参照此方式设置光源很多其他的参数
+        // ...
       });
+      return light;
     });
-  }
+  });
+}
 ```
 
 
