@@ -1,4 +1,4 @@
-# 应用开发文档
+# OpenHarmony应用开发文档
 
 - 开发
   - Audio Kit（音频服务）
