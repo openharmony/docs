@@ -753,8 +753,8 @@ OH_AVErrCode OH_VideoEncoder_Stop (OH_AVCodec *codec)
 | OH_MD_KEY_PROFILE          | √        | ×        | √      |
 | OH_MD_KEY_I_FRAME_INTERVAL | √        | \\       | √      |
 
-| OH_MD_KEY_BITRATE | OH_MD_KEY_QUALITY | OH_MD_KEY_VIDEO_ENCODER_BITRATE_MODE | 校验结果 | 说明                     |
-| ----------------- | ----------------- | ------------------------------------ | ---- | ---------------------- |
+| OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | 校验结果 | 说明                     |
+| :----------------- | :----------------- | :------------------------------------ | ---- | ---------------------- |
 | \\                | \\                | \\                                   | √    | 使用编码器默认值               |
 | 超出范围              | 超出范围              | 不支持的模式                               | ×    | 异常值均报错                 |
 | 正常值               | 正常值               | \\                                   | ×    | Bitrate 与 Quality 冲突   |
