@@ -62,13 +62,13 @@ TextInput(value?: TextInputOptions)
 | cancelButton<sup>11+</sup>            | {<br/>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />}<br />不支持内联模式。 |
 | selectAll<sup>11+</sup>               | boolean                                                      | 初始状态，是否全选文本。<br />默认值：false<br />不支持内联模式。 |
 | showCounter<sup>11+</sup>             | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。 |
->  **说明：**    
->  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> } 
->  
->  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: 12 vp,<br>&nbsp;right: 0 vp,<br>&nbsp;bottom: 12 vp,<br>&nbsp;left: 0 vp<br> }
->  
->   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
+>  **说明：**    
+>  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
+>  
+>  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
+>
+>   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ## SubmitEvent<sup>11+</sup>
 
@@ -121,8 +121,8 @@ TextInput(value?: TextInputOptions)
 
 | 名称         | 类型                                       | 必填   | 描述                        |
 | ---------- | ---------------------------------------- | ---- | ------------------------- |
-| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
-| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
+| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
 ## 事件
 

@@ -39,7 +39,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 | 名称                         | 参数类型                                                | 描述                                                         |
 | ---------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| alt                          | string \| [Resource](ts-types.md#resource类型)          | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br>默认值：null<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| alt                          | string \| [Resource](ts-types.md#resource)          | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br>默认值：null<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | objectFit                    | [ImageFit](ts-appendix-enums.md#imagefit)               | 设置图片的填充效果。<br/>默认值：ImageFit.Cover<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | objectRepeat                 | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。从中心点向两边重复，剩余空间不足放下一张图片时会截断。<br/>默认值：ImageRepeat.NoRepeat<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | interpolation                | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即缓解图片在缩放时的锯齿问题。<br/>默认值：ImageInterpolation.Low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
