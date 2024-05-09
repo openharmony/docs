@@ -14,6 +14,8 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 动态设置组件的属性方法。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**

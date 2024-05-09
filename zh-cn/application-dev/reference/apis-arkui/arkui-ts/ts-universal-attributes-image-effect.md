@@ -52,6 +52,8 @@ shadow(value: ShadowOptions | ShadowStyle)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，ArkTS卡片上不支持参数为 [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -225,6 +227,8 @@ renderGroup(value: boolean)
 
 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -392,6 +396,8 @@ FractionStop = [ number, number ]
 ## InvertOptions<sup>11+</sup>对象说明
 
 前景智能取反色。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称            |  类型  | 必填  | 说明                                       |
 | -------------- | ------ | ----- | ------------------------------------------ |

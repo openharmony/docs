@@ -13,6 +13,8 @@ getUIContext(): UIContext
 
 获取UIContext对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -74,6 +76,8 @@ struct MyComponent {
 queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
 获取NavDestinationInfo实例对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

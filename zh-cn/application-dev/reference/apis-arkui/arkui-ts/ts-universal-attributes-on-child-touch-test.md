@@ -12,6 +12,8 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 当前组件可通过设置回调来自定义子节点如何去做触摸测试。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -32,6 +34,8 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## TouchTestInfo说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称          | 类型   | 描述                                       |
 | ------------- | ------ | ---------------------------------------- |
 | windowX | number | 按压点相对于窗口左上角的x轴坐标。 |
@@ -45,6 +49,8 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## TouchResult说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | --------- | ---- |--------------------------------------- |
 | strategy  | [TouchTestStrategy](#touchteststrategy枚举说明) | 是    | 事件派发策略。                     |
@@ -52,6 +58,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## TouchTestStrategy枚举说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称          | 描述                                       |
 | ------------| ----------------------------------------- |
