@@ -12,6 +12,8 @@ glTF是一种对于3D场景描述的格式，就像图片有png格式一样，gl
 
 glTF模型的加载示例代码如下：
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function loadModel() : void {
   // 加载模型
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -26,6 +28,8 @@ function loadModel() : void {
 
 相机相关控制的示例代码如下：
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createCameraPromise() : Promise<scene3d.Camera> {
     return new Promise(() => {
       let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -62,6 +66,8 @@ async function createCameraPromise() : Promise<scene3d.Camera> {
 
 光源相关控制的示例代码如下：
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
   async function createLightPromise() : Promise<scene3d.Light> {
     return new Promise(() => {
       let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
