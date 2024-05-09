@@ -85,7 +85,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | Context                                  | 是   | 当前应用的上下文。           |
-| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考media.AVPlayer。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。     |
 | callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回设置成功或失败。     |
 
@@ -125,7 +125,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | Context                                  | 是   | 当前应用的上下文。         |
-| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考media.AVPlayer。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
@@ -327,7 +327,7 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | BaseContext                                  | 是   | 当前应用的上下文。         |
-| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考media.AVPlayer。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
@@ -464,7 +464,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 | 参数名   | 类型                                  | 必填 | 说明                     |
 | -------- |-------------------------------------| ---- | ------------------------ |
 | context  | BaseContext                         | 是   | 当前应用的上下文。         |
-| uri      | string                              | 是   | 被设置的系统提示音的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+| uri      | string                              | 是   | 被设置的系统提示音的uri，资源支持可参考media.AVPlayer。 |
 | type     | [SystemToneType](#systemtonetype11) | 是   | 被设置的系统提示音的类型。   |
 
 **返回值：**
