@@ -180,7 +180,7 @@ export default class AccessibilityManager {
 
 ## Processing an Accessibility Event
 
-You can process the service logic for accessibility events through the **onAccessibilityEvent()** API. For details about the events, see [AccessibilityEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityevent). In this example, the **rightThenDown** gesture is used.
+You can process the service logic for accessibility events through the **onAccessibilityEvent()** API. For details about the events, see [AccessibilityEvent](../reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md#accessibilityevent). In this example, the **rightThenDown** gesture is used.
 
 ```ts
 onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
@@ -191,9 +191,9 @@ onAccessibilityEvent(accessibilityEvent: AccessibilityEvent) {
     }
 }
 ```
-For an accessibility event, you can use the APIs of the [AccessibilityExtensionContext](../reference/apis/js-apis-inner-application-accessibilityExtensionContext.md) module to configure the concerned information, obtain root information, and inject gestures.
+For an accessibility event, you can use the APIs of the [AccessibilityExtensionContext](../reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md) module to configure the concerned information, obtain root information, and inject gestures.
 
-You can also process physical key events in the accessibility extension service. For details, see [onKeyEvent](../reference/apis/js-apis-application-accessibilityExtensionAbility.md#accessibilityextensionabilityonkeyevent).
+You can also process physical key events in the accessibility extension service. For details, see [onKeyEvent](../reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md#accessibilityextensionabilityonkeyevent).
 
 ## Declaring Capabilities of Accessibility Extension Services
 
@@ -216,7 +216,7 @@ After developing the custom logic for an accessibility extension service, you mu
   }
 ]
 ```
-In addition, **accessibility_config** is the specific configuration of the accessibility extension service. You need to create the **accessibility_config.json** file in **resources/base/profile/** and declare the [capability type](../reference/apis/js-apis-accessibility.md#capability) of the accessibility extension service in the file. In this example, the following declaration is required:
+In addition, **accessibility_config** is the specific configuration of the accessibility extension service. You need to create the **accessibility_config.json** file in **resources/base/profile/** and declare the [capability type](../reference/apis-accessibility-kit/js-apis-accessibility.md#capability) of the accessibility extension service in the file. In this example, the following declaration is required:
 ```json
 {
   "accessibilityCapabilities": [
