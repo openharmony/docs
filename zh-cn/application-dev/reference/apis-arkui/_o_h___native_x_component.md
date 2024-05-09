@@ -1567,7 +1567,7 @@ float OH_NativeXComponent_TouchEvent::screenX = 0.0
 
 **描述:**
 
-触摸点相对于屏幕左边缘的x坐标。
+触摸点相对于所在应用窗口左上角的x坐标。
 
 **起始版本：**
 
@@ -1582,7 +1582,7 @@ float OH_NativeXComponent_MouseEvent::screenX
 
 **描述:**
 
-点击触点相对于屏幕左上角的x轴坐标。
+点击触点相对于所在应用窗口左上角的x轴坐标。
 
 **起始版本：**
 
@@ -1612,7 +1612,7 @@ float OH_NativeXComponent_TouchEvent::screenY = 0.0
 
 **描述:**
 
-触摸点相对于屏幕上边缘的y坐标。
+触摸点相对于所在应用窗口左上角的y坐标。
 
 **起始版本：**
 
@@ -1627,7 +1627,7 @@ float OH_NativeXComponent_MouseEvent::screenY
 
 **描述:**
 
-点击触点相对于屏幕左上角的y轴坐标。
+点击触点相对于所在应用窗口左上角的y轴坐标。
 
 **起始版本：**
 
