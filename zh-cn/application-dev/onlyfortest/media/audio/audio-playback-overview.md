@@ -1,4 +1,4 @@
-# 音频播放开发概述
+# 音频播放开发概述(验证词汇批量替换)
 
 ## 如何选择音频播放开发方式
 
@@ -29,3 +29,5 @@ openharmony.hinote
 openharmony.styled-string
 openharmony.want
 OpenHarmonyAppItem
+openharmony.ability
+openharmony.package
