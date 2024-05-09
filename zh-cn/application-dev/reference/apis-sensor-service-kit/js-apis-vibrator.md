@@ -521,6 +521,41 @@ try {
 }
 ```
 
+## vibrator.stopVibrationSync<sup>12+</sup>
+
+stopVibrationSync(): void
+
+停止任何形式的马达振动。
+
+**需要权限：** ohos.permission.VIBRATE
+
+**元服务API：** 从API Version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Sensors.MiscDevice
+
+**错误码：**
+
+| 错误码ID | 说明                     |
+| -------- | ------------------------ |
+| 201      | Permission denied.       |
+| 14600101 | Device operation failed. |
+
+**示例：** 
+
+```
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+  // 停止任何形式的马达振动
+    vibrator.stopVibrationSync()
+    console.info('Succeed in stopping vibration');
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## vibrator.isSupportEffect<sup>10+</sup>
 
 isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
@@ -632,6 +667,49 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## vibrator.isSupportEffectSync<sup>12+</sup>
+
+isSupportEffectSync(effectId: string): boolean
+
+查询是否支持预设的振动效果。
+
+**系统能力：** SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明                 |
+| -------- | ------ | ---- | -------------------- |
+| effectId | string | 是   | 是否预设的振动效果。 |
+
+**返回值：** 
+
+| 类型    | 说明                                                   |
+| ------- | ------------------------------------------------------ |
+| boolean | 返回对象。当返回true则表示支持该effectId，否则不支持。 |
+
+**错误码：**
+
+| 类型     | 说明                     |
+| -------- | ------------------------ |
+| 401      | Parameter error.         |
+| 14600101 | Device operation failed. |
+
+**示例：** 
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+    // 查询是否支持预设'haptic.clock.timer'
+    let ret = vibrator.isSupportEffectSync('haptic.clock.timer');
+    console.info(`The query result is ${ret}`);
+} catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
 }
 ```
 

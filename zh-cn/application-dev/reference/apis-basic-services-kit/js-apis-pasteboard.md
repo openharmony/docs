@@ -967,6 +967,8 @@ getTag(): string
 
 获取剪贴板内容中用户自定义的标签内容，如果没有设置用户自定义的标签内容将返回空。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**

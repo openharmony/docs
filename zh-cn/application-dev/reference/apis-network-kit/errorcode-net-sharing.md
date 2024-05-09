@@ -26,7 +26,7 @@ Invalid parameter value.
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -130,7 +130,7 @@ Bluetooth sharing failed.
 
 **错误信息**
 
-Network share enable forwarding error.
+Failed to enable forwarding for network sharing.
 
 **错误描述**
 

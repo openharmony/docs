@@ -1670,6 +1670,73 @@ try {
 }
 ```
 
+### setImmersiveModeEnabledState<sup>12+</sup>
+
+setImmersiveModeEnabledState(enabled: boolean): void
+
+设置是否开启沉浸式布局。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| enabled    | boolean | 是   | 是否开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error.                             |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service work abnormally. |
+| 1300004 | This operation is not access.                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let enabled = false;
+windowClass.setImmersiveModeEnabledState(enabled);
+```
+
+### getImmersiveModeEnabledState<sup>12+</sup>
+
+getImmersiveModeEnabledState(): boolean
+
+查询是否已经开启沉浸式布局。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**返回值：**
+| 类型     | 说明                                                                                 |
+| ------- | ------------------------------------------------------------------------------------ |
+| boolean | 是否已经开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 1300002  | This window state is abnormal.               |
+| 1300003  | This window manager service work abnormally. |
+| 1300004  | This operation is not access.                |
+
+**示例：**
+
+```ts
+let isEnabled = windowClass.getImmersiveModeEnabledState();
+```
+
 ### setWindowSystemBarEnable<sup>9+</sup>
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
@@ -2087,9 +2154,9 @@ getPreferredOrientation(): Orientation
 
 主窗口调用，获取窗口的显示方向属性。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -3166,7 +3233,7 @@ try {
 
 ### off('windowEvent')<sup>10+</sup>
 
-off(type: 'windowEvent', callback?: Callback&lt;WindowEventType &gt;): void
+off(type: 'windowEvent', callback?: Callback&lt;WindowEventType&gt;): void
 
 关闭窗口生命周期变化的监听。
 
@@ -5183,7 +5250,7 @@ setWindowDecorHeight(height: number): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | 是   | 设置的窗口标题栏高度，支持所有窗口类型。该参数为整数，如入参为小数则为非法入参，取值范围为[37,112]，单位为vp。 |
+| height | number | 是   |设置的窗口标题栏高度，仅支持具有窗口标题栏的窗口。该参数为整数，浮点数输入将向下取整，取值范围为[37,112]，范围外为非法参数，单位为vp。 |
 
 **错误码：**
 

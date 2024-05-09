@@ -111,6 +111,8 @@ interface ParticleOptions<
 }
 ```
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | emitter | [EmitterOptions](#emitteroptions)<[PARTICLE](#particletype)> | 是 | 粒子发射器配置。 |
@@ -143,7 +145,7 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | particle | {<br>type: [PARTICLE](#particletype),<br>config: [ParticleConfigs](#particleconfigs),<br>count: number,<br>lifetime?: number<br>lifeTimeRange?:number<sup>12+<sup><br>} | 是 | 粒子配置。<br>-type表示粒子类型，可以选择图片或者是点。<br>-config表示对应类型的配置。<br>-config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br>-count表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br>-lifetime表示单个粒子的生命周期，默认值1000（即1000ms，1s）,lifetime>=-1,当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。<br>-lifeTimeRange表示粒子生命周期取值范围，设置lifeTimeRange后粒子的生命周期为 [lifetime-lifeTimeRange,lifeTime+lifeTimeRange]中间的一个随机整数。lifeTimeRange 默认值为0，取值范围为为0到正无穷。设置为负值时取默认值。|
-| emitRate | number | 否 | 发射器发射速率（即每秒发射粒子数）。 默认值：5。|
+| emitRate | number | 否 | 发射器发射速率（即每秒发射粒子数）。 默认值：5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。|
 | shape | [ParticleEmitterShape](#particleemittershape) | 否 | 发射器形状。默认值：ParticleEmitterShape.RECTANGLE。 |
 | position | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 否 | 发射器位置（距离组件左上角的位置。第一个参数为x方向上的相对偏移，第二个参数为y轴方向相对偏移。） <br>默认值：`[0.0, 0.0]`。|
 | size |  \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]     |否 | 发射窗口的大小。第一个参数为发射器宽，第二个参数为发射器高。<br>默认值`['100%','100%']`(即发射窗口占满Particle组件)。 |
@@ -157,6 +159,7 @@ interface ParticleConfigs {
 }
 ```
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
@@ -169,6 +172,9 @@ interface PointParticleParameters {
   radius: VP;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
 | radius      | [VP](ts-types.md#vp10)| 是    | 粒子半径。 |
@@ -181,6 +187,9 @@ interface ImageParticleParameters {
   objectFit?: ImageFit;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
 | src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg图片类型。 |
@@ -203,7 +212,7 @@ interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
 | -------- | -------- | -------- | -------- |
 | range | \[[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)\] | 是 | 粒子初始颜色区间，粒子发射器生成粒子的初始颜色在range区间随机取值。<br>默认值：range:[Color.White,Color.White]
 | distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | 否 | 粒子初始颜色随机值分布，允许用户选择颜色随机值生成的分布类型，支持均匀分布或正态（高斯）分布。<br>默认值：DistributionType.UNIFORM
-| updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | 否 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 |
+| updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | 否 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 <br>**说明**：<br>当type为ParticleUpdater.RANDOM或者ParticleUpdater.CURVE时，updater中颜色配置的优先级高于range中的颜色配置。在updater配置的动画时间周期内，以updater中的颜色配置来变化；在updater配置的动画时间周期外，以range中的颜色配置来变化。 |
 
 
 ## ParticleColorPropertyUpdaterConfigs
@@ -219,6 +228,9 @@ interface ParticleColorPropertyUpdaterConfigs {
   [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<ResourceColor>>;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 |[ParticleUpdater.NONE]|void | 是 | 无变化。|
@@ -235,6 +247,9 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
   };
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | range | [TYPE, TYPE] | 是 | 粒子初始属性值区间，粒子发射器生成粒子的属性值在range区间随机取值。<br/>**说明**<br/>各项属性的非法输入取默认值，当最大值小于最小值的时候取默认区间。TYPE为number。<br/>不同属性的默认值不同：<br>1、opacity属性：range:[1.0,1.0]，取值范围0到1，默认值为0.0。<br/>2、scale属性：range:[1.0,1.0]，取值范围大于等于0，默认值为1.0。<br/>3、acceleration加速度speed属性：range:[0.0,0.0]，取值范围大于等于0，默认值为0.0。<br/>4、acceleration加速度angle属性：range:[0.0,0.0]，取值范围大于等于0，默认值为0.0。<br/>5、spin属性：range:[0.0,0.0]，默认值为0.0。
@@ -249,6 +264,9 @@ interface ParticlePropertyUpdaterConfigs<T> {
     [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<T>>;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 [[ParticleUpdater.NONE]|void | 是 | 无变化。|
@@ -267,6 +285,9 @@ interface ParticlePropertyAnimation<T> {
   curve?: Curve | ICurve;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 |from| T | 是 | 属性起始值。非法输入取对应属性的默认值。|
@@ -283,6 +304,8 @@ enum ParticleType {
   IMAGE = 'image',
 }
 ```
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 描述 |
 | -------- |  -------- | 
 POINT |点状粒子|
@@ -298,6 +321,9 @@ enum ParticleEmitterShape {
   ELLIPSE = 'ellipse',
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 描述 |
 | -------- |  -------- | 
 RECTANGLE |粒子发射器为矩形|
@@ -356,9 +382,9 @@ enum ParticleUpdater {
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
 | index   | number | 是   |索引，按初始化参数中发射器的数组索引指定对应的发射器。异常默认值为0。 |
-| emitRate  | number  | 否   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率。 |
-| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。 |
-| size  | [SizeT](../js-apis-arkui-graphics.md#sizet12)&lt;number&gt;| 否  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。 |
+| emitRate  | number  | 否   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。需传入两个有效参数，若其中一个为异常值，则position不生效。 |
+| size  | [SizeT](../js-apis-arkui-graphics.md#sizet12)&lt;number&gt;| 否  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。需传入两个有效参数，若其中一个为异常值，则size不生效。 |
 
 ## 示例
 

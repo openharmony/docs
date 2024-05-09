@@ -41,7 +41,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -49,7 +49,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -97,7 +97,7 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -105,7 +105,7 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -154,7 +154,7 @@ setDisposedStatusSync(appId: string, disposedWant: Want): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -162,7 +162,7 @@ setDisposedStatusSync(appId: string, disposedWant: Want): void;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -208,7 +208,7 @@ getDisposedStatus(appId: string): Promise\<Want>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -216,7 +216,7 @@ getDisposedStatus(appId: string): Promise\<Want>;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -261,7 +261,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -269,7 +269,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -320,7 +320,7 @@ getDisposedStatusSync(appId: string): Want;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -328,7 +328,7 @@ getDisposedStatusSync(appId: string): Want;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -374,7 +374,7 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -382,7 +382,7 @@ deleteDisposedStatus(appId: string): Promise\<void>
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -427,7 +427,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -435,7 +435,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -478,7 +478,7 @@ deleteDisposedStatusSync(appId: string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -486,7 +486,7 @@ deleteDisposedStatusSync(appId: string) : void
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -557,7 +557,7 @@ getDisposedRule(appId: string): DisposedRule
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -606,7 +606,7 @@ setDisposedRule(appId: string, rule: DisposedRule): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
