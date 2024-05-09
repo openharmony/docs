@@ -39,7 +39,7 @@
             let sceneMaterialParameter: scene3d.SceneResourceParameters = { name: "material" };
             // 创建材质
             let material: Promise<scene3d.Material> = sceneFactory.createMaterial(sceneMaterialParameter, scene3d.MaterialType.SHADER);
-            material.then(async (materialEntity: cene3d.ShaderMaterial) => {
+            material.then(async (materialEntity: scene3d.ShaderMaterial) => {
                 // 绑定材质与shader
                 materialEntity.colorShader = shaderEntity;
             });
