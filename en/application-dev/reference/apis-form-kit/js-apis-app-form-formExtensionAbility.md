@@ -185,7 +185,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onFormEvent(formId: string, message: string): void
 
-Called to instruct the widget provider to process the widget event. (This API can be used only in JS widget.)
+Called to instruct the widget provider to process the widget event.
 
 **System capability**: SystemCapability.Ability.Form
 
