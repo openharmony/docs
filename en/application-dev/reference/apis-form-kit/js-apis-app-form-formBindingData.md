@@ -19,6 +19,8 @@ Defines the subscription information about the widget update by proxy.
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 | Name| Type| Mandatory| Description|
@@ -30,6 +32,8 @@ Defines the subscription information about the widget update by proxy.
 ## FormBindingData
 
 Describes a **FormBindingData** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -43,6 +47,8 @@ Describes a **FormBindingData** object.
 createFormBindingData(obj?: Object | string): FormBindingData
 
 Creates a **FormBindingData** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 

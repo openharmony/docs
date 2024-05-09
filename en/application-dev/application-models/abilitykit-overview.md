@@ -28,25 +28,19 @@ Ability Kit provides an application model for application development and runnin
 2. **Native support for cross-device migration and multi-device collaboration at the application component level**
 
    The stage model decouples application components from User Interfaces (UIs).
-
    - The declarative feature of ArkUI allows the UI to be restored based on the data or status saved in application components, which facilitates cross-device migration.
-
    - Application components support cross-device interaction over Remote Procedure Calls (RPCs).
 
 3. **Support for multiple device types and window forms**
 
    Application component management and window management are decoupled at the architecture level. This decoupling makes it easy to:
-
    - Tailor application components. For example, windows can be tailored for devices without screens.
-
    - Extend the window forms.
-
    - Use the same application component lifecycle on multiple devices (such as desktop devices and mobile devices).
 
 4. **Well balanced application capabilities and system management costs**
 
    The stage model redefines the boundary of application capabilities to well balance application capabilities and system management costs.
-
    - Diverse application components (such as service widgets and input methods) for specific scenarios.
    - Standardized background process management. To deliver a better user experience, the stage model manages background application processes in a more orderly manner. Applications cannot reside in the background randomly, and their background behavior is strictly managed to minimize malicious behavior.
 
