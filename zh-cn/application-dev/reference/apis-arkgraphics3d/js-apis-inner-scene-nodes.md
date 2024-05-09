@@ -322,7 +322,7 @@ function getNode() : void {
 ```
 
 ## Geometry
-几何类型，继承自Node。
+几何类型，继承自[Node](#node)。
 
 ### 属性
 
@@ -344,7 +344,7 @@ function getNode() : void {
 | SPOT | 2 | 点光源类型。 |
 
 ## Light
-光源，继承自Node。
+光源，继承自[Node](#node)。
 
 ### 属性
 
@@ -359,10 +359,10 @@ function getNode() : void {
 | enabled | boolean | 否 | 是 | 是否使能光源，true表示使用光源，false表示不使用。 |
 
 ## SpotLight
-点光源类型，继承自Light。
+点光源类型，继承自[Light](light)。
 
 ## DirectionalLight
-平行光类型，继承自Light。
+平行光类型，继承自[Light](light)。
 
 ### 属性
 
@@ -373,7 +373,7 @@ function getNode() : void {
 | nearPlane | number | 否 | 是 | 场景中的近平面，值域为(0, 1)。 |
 
 ## Camera
-相机类型，Camera继承自Node。
+相机类型，Camera继承自[Node](#node)。
 
 ### 属性
 
