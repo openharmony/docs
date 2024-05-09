@@ -844,6 +844,8 @@ getCaretOffset(): CaretOffset
 
 返回当前光标所在位置信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                      | 说明               |

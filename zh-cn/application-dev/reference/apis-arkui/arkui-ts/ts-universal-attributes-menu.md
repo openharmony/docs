@@ -98,7 +98,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | 名称                          | 类型                                   | 必填 | 描述                                                         |
 | ----------------------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | title                         | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单标题。<br>**说明：**<br/>仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：2in1设备为true，其他设备为false。                     |
+| showInSubWindow<sup>11+</sup> | boolean                                | 否   | 是否在子窗口显示菜单。<br/>默认值：2in1设备为true，其他设备为false。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                     |
 
 ## ContextMenuOptions<sup>10+</sup>
 

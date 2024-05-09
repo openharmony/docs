@@ -62,7 +62,7 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | ------------------------- | -------------------------------- |
 | MEDIUM                    | 指定半模态高度为屏幕高度一半。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | LARGE                     | 指定半模态高度几乎为屏幕高度。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
-| FIT_CONTENT<sup>11+</sup> | 指定半模态高度为适应内容的高度。 |
+| FIT_CONTENT<sup>11+</sup> | 指定半模态高度为适应内容的高度。<br />**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## BindOptions
 
