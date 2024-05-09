@@ -5,15 +5,16 @@
 动画资源是模型资源制作者在制作模型的过程中制作并保存到模型文件中的。ArkGraphics 3D提供从glTF模型资源中提取并播放动画的能力，进而使得开发者可以进行动画状态的控制。
 ```ts
 import scene3d from '@ohos.graphics.scene'
-  function createAnimation() : void {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      if (result) {
-        // 获取动画资源
-        let anim: scene3d.Animation = result.animations[0];
-      }
-    });
-  }
+
+function createAnimation() : void {
+  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: scene3d.Scene) => {
+    if (result) {
+      // 获取动画资源
+      let anim: scene3d.Animation = result.animations[0];
+    }
+  });
+}
 ```
 
 ## 动画状态的控制
@@ -27,20 +28,21 @@ ArkGraphics 3D提供的动画状态控制操作主要包含如下几种：
 示例代码如下：
 ```ts
 import scene3d from '@ohos.graphics.scene'
-  function animationControl() : void {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      if (result) {
-        let anim: scene3d.Animation = result.animations[0];
-        // 动画状态控制
-        anim.start();
-        anim.pause();
-        anim.stop();
-        anim.restart();
-        anim.finish();
-      }
-    });
-  }
+
+function animationControl() : void {
+  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: scene3d.Scene) => {
+    if (result) {
+      let anim: scene3d.Animation = result.animations[0];
+      // 动画状态控制
+      anim.start();
+      anim.pause();
+      anim.stop();
+      anim.restart();
+      anim.finish();
+    }
+  });
+}
 ```
 
 ## 动画回调的使用
@@ -52,21 +54,22 @@ import scene3d from '@ohos.graphics.scene'
 示例代码如下：
 ```ts
 import scene3d from '@ohos.graphics.scene'
-  function callBacks() : void {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      if (result) {
-        let anim: scene3d.Animation = result.animations[0];
-        // 注册回调函数
-        anim.onFinished(()=>{
-          console.log("onFinished");  
-        });
-        anim.onStarted(()=>{
-          console.log("onStarted");  
-        });
-      }
-    });
-  }
+
+function callBacks() : void {
+  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: scene3d.Scene) => {
+    if (result) {
+      let anim: scene3d.Animation = result.animations[0];
+      // 注册回调函数
+      anim.onFinished(()=>{
+        console.log("onFinished");
+      });
+      anim.onStarted(()=>{
+        console.log("onStarted");
+      });
+    }
+  });
+}
 ```
 
 
