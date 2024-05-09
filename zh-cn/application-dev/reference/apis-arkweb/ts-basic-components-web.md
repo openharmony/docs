@@ -2825,7 +2825,7 @@ onRenderProcessNotRespondingCallback(callback: [OnRenderProcessNotRespondingCall
 
 onRenderProcessResponding(callback: [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12))
 
-检测到网页进程由无响应状态变回正常运行状态时触发该回调函数,该函数触发表明网页并非真正卡死。
+网页进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
 
 **参数：**
 
@@ -7188,12 +7188,12 @@ onOverrideUrlLoading的回调。
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
-触发网页进程无响应检测的原因。
+触发网页进程无响应回调的原因。
 
 | 名称                           | 值 | 描述           |
 | ----------------------------- | -- | ------------ |
-| INPUT_TIMEOUT                  | 0 | 发送给网页进程到input事件响应超时。   |
-| NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载跳转响应超时。   |
+| INPUT_TIMEOUT                  | 0 | 发送给网页进程的input事件响应超时。   |
+| NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载导航响应超时。   |
 
 ## RenderProcessNotRespondingData<sup>12+</sup>
 
@@ -7201,26 +7201,26 @@ onOverrideUrlLoading的回调。
 
 | 名称                     | 类型   | 必填 | 描述                                   |
 | ------------------------ | ------ | ---- | -------------------------------------- |
-| jsStack      | string | 是  | 网页的javascript调用栈信息。       |
+| jsStack      | string | 是  | 网页的javaScript调用栈信息。       |
 | pid | number | 是   | 网页的进程id。 |
-| reason | RenderProcessNotRespondingReason(#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应检测的原因。 |
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应回调的原因。 |
 
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12)) => void;
 
-检测到网页进程无响应时触发的回调。
+网页进程无响应时触发的回调。
 
 | 参数名               | 参数类型                                        | 参数描述                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
 | data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 网页进程无响应的详细信息。 |
 
-## OnRenderProcessNotRespondingCallback<sup>12+</sup>
+## OnRenderProcessRespondingCallback<sup>12+</sup>
 
 type OnRenderProcessRespondingCallback = () => void;
 
-检测到网页进程由无响应状态变回正常运行状态时触发到回调。
+网页进程由无响应状态变回正常运行状态时触发的回调。
 
 
 ## RenderMode<sup>12+</sup>枚举说明
