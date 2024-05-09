@@ -158,7 +158,7 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
-**参数校验：** 请参考[参数校验规则](#configure-参数校验规则)
+**参数校验：** 请参考[参数校验规则](../../media/avcodec/video-encoding.md#configure-参数校验规则)
 
 
 ### OH_VideoEncoder_CreateByMime()
@@ -742,27 +742,3 @@ OH_AVErrCode OH_VideoEncoder_Stop (OH_AVCodec *codec)
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
-
-## Configure 参数校验规则
-| Key                        | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
-| -------------------------- | -------- | -------- | ------ |
-| OH_MD_KEY_WIDTH            | √        | ×        | ×      |
-| OH_MD_KEY_HEIGHT           | √        | ×        | ×      |
-| OH_MD_KEY_PIXEL_FORMAT     | √        | ×        | ×      |
-| OH_MD_KEY_FRAME_RATE       | √        | ×        | √      |
-| OH_MD_KEY_PROFILE          | √        | ×        | √      |
-| OH_MD_KEY_I_FRAME_INTERVAL | √        | \\       | √      |
-
-| OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | 校验结果 | 说明                     |
-| :----------------- | :----------------- | :------------------------------------ | ---- | ---------------------- |
-| \\                | \\                | \\                                   | √    | 使用编码器默认值               |
-| 超出范围              | 超出范围              | 不支持的模式                               | ×    | 异常值均报错                 |
-| 正常值               | 正常值               | \\                                   | ×    | Bitrate 与 Quality 冲突   |
-| 正常值               | \\                | \\                                   | √    | 使能默认码控模式               |
-| 正常值               | \\                | VBR、CBR                              | √    |                        |
-| 正常值               | \\                | CQ                                   | ×    | Bitrate 与 CQ 模式冲突      |
-| \\                | 正常值               | \\                                   | √    | 使能 CQ 模式               |
-| \\                | 正常值               | CQ                                   | √    |                        |
-| \\                | 正常值               | VBR、CBR                              | ×    | Quality 与 VBR、CBR 模式冲突 |
-| \\                | \\                | VBR、CBR                              | √    | 使用编码器默认码率              |
-| \\                | \\                | CQ                                   | ×    | 无效值，CQ 模式必须配置 Quality  |

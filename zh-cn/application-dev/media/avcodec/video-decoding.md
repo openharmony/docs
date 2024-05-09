@@ -140,6 +140,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 4. 调用OH_VideoDecoder_Configure()配置解码器。
 
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    
+    **Configure 参数校验规则**
+    | Key                    | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
+    | ---------------------- | -------- | -------- | ------ |
+    | OH_MD_KEY_WIDTH        | √        | ×        | ×      |
+    | OH_MD_KEY_HEIGHT       | √        | ×        | ×      |
+    | OH_MD_KEY_PIXEL_FORMAT | √        | ×        | √      |
+    | OH_MD_KEY_FRAME_RATE   | √        | ×        | √      |
+    | OH_MD_KEY_ROTATION     | √        | ×        | √      |
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；

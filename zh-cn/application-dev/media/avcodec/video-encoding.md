@@ -138,6 +138,30 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 4. 调用OH_VideoEncoder_Configure()配置编码器。
 
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    **Configure 参数校验规则**
+    | Key                        | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
+    | -------------------------- | -------- | -------- | ------ |
+    | OH_MD_KEY_WIDTH            | √        | ×        | ×      |
+    | OH_MD_KEY_HEIGHT           | √        | ×        | ×      |
+    | OH_MD_KEY_PIXEL_FORMAT     | √        | ×        | ×      |
+    | OH_MD_KEY_FRAME_RATE       | √        | ×        | √      |
+    | OH_MD_KEY_PROFILE          | √        | ×        | √      |
+    | OH_MD_KEY_I_FRAME_INTERVAL | √        | \\       | √      |
+    
+    | OH_MD_KEY_<br>BITRATE | OH_MD_KEY_<br>QUALITY | OH_MD_KEY_<br>VIDEO_ENCODER_BITRATE_MODE | 校验结果 | 说明                     |
+    | :-------------------- | :-------------------- | :--------------------------------------- | ---- | ---------------------- |
+    | \\                    | \\                    | \\                                       | √    | 使用编码器默认值               |
+    | 超出范围                  | 超出范围                  | 不支持的模式                                   | ×    | 异常值均报错                 |
+    | 正常值                   | 正常值                   | \\                                       | ×    | Bitrate 与 Quality 冲突   |
+    | 正常值                   | \\                    | \\                                       | √    | 使能默认码控模式               |
+    | 正常值                   | \\                    | VBR、CBR                                  | √    |                        |
+    | 正常值                   | \\                    | CQ                                       | ×    | Bitrate 与 CQ 模式冲突      |
+    | \\                    | 正常值                   | \\                                       | √    | 使能 CQ 模式               |
+    | \\                    | 正常值                   | CQ                                       | √    |                        |
+    | \\                    | 正常值                   | VBR、CBR                                  | ×    | Quality 与 VBR、CBR 模式冲突 |
+    | \\                    | \\                    | VBR、CBR                                  | √    | 使用编码器默认码率              |
+    | \\                    | \\                    | CQ                                       | ×    | 无效值，CQ 模式必须配置 Quality  |
+
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频颜色格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
