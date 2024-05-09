@@ -30,6 +30,8 @@ getEnabled(index: number): boolean
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function layerMask() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -65,6 +67,8 @@ setEnabled(index: number, enabled: boolean): boolean
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function layerMask() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -107,6 +111,8 @@ append(item T): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function append() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -135,6 +141,8 @@ insertAfter(item: T, sibling: T | null): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function insertAfter() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -161,6 +169,8 @@ remove(item T): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function remove() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -192,6 +202,8 @@ get(index: number): T | null
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function get() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -213,6 +225,8 @@ clear(): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function clear() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -239,6 +253,8 @@ count(): number
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function count() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -292,6 +308,8 @@ getNodeByPath(path: string): Node | null
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function getNode() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
