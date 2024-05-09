@@ -20,6 +20,8 @@ import scene3d from '@ohos.graphics.scene'
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createShaderPromise() : Promise<scene3d.Shader> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -47,6 +49,8 @@ async function createShaderPromise() : Promise<scene3d.Shader> {
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createNodePromise() : Promise<scene3d.Node> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -84,6 +88,8 @@ createCamera(params: SceneNodeParameters): Promise\<Camera>
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createCameraPromise() : Promise<scene3d.Camera> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -118,6 +124,8 @@ createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createLightPromise() : Promise<scene3d.Light> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -151,6 +159,8 @@ createNode(params: SceneNodeParameters): Promise\<Node>
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createNodePromise() : Promise<scene3d.Node> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -186,6 +196,8 @@ createMaterial(params: SceneResourceParameters, materialType: MaterialType): Pro
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createMaterialPromise() : Promise<scene3d.Material> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -219,6 +231,8 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createShaderPromise() : Promise<scene3d.Shader> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -254,6 +268,8 @@ createImage(params: SceneResourceParameters): Promise\<Image>
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createImagePromise() : Promise<scene3d.Image> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -287,6 +303,8 @@ createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 async function createEnvironmentPromise() : Promise<scene3d.Environment> {
   return new Promise(() => {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -333,6 +351,8 @@ static load(uri?: Resource): Promise\<Scene>
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function loadModel() : void {
   // 加载模型
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
@@ -360,6 +380,8 @@ getNodeByPath(path: string, type?: NodeType): Node | null
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function getNode() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -385,6 +407,8 @@ getResourceFactory(): SceneResourceFactory
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function getFactory() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -405,6 +429,8 @@ destroy(): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function destroy() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
