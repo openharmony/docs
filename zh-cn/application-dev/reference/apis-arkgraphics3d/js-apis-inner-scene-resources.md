@@ -46,6 +46,8 @@ destroy(): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function destroy() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -154,6 +156,8 @@ onFinished(callback: CallBack\<void>): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function onFinished() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -184,6 +188,8 @@ onStarted(callback: CallBack\<void>): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function onStarted() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -207,6 +213,8 @@ pause(): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function pause() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -228,6 +236,8 @@ restart(): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function restart() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -254,6 +264,8 @@ seek(position: number): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function seek() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -275,6 +287,8 @@ start(): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function start() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -296,6 +310,8 @@ stop(): void
 
 **示例：**
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function stop() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
@@ -316,6 +332,8 @@ finish(): void
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ```ts
+import scene3d from '@ohos.graphics.scene'
+
 function finish() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
