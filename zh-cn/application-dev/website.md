@@ -12,11 +12,7 @@
       <!--Del-->
       - [分布式音频播放(仅对系统应用开放)](onlyfortest/media/audio/distributed-audio-playback.md)
       <!--DelEnd-->
-<<<<<<< HEAD
   - Media Kit（媒体服务）
-=======
-  - [Media Kit（媒体服务）](onlyfortest/media/media/Readme-CN.md)
->>>>>>> 0acd1eb6062e370de2b00cebf3c51a1b962c26e9
     - [Media Kit简介](onlyfortest/media/media/media-kit-intro.md)
     - 视频播放和录制
       - [视频播放](onlyfortest/media/media/video-playback.md)
