@@ -53,7 +53,7 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br/>默认值：null |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br/>默认值：null |
 
 ### objectFit
 
