@@ -40,7 +40,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 | 名称  | 类型                        | 可读 | 可写 | 说明               |
 | ----- | -------------------------- | ---- | ---- | ------------------ |
-| state | [media.AVPlayerState](../apis-media-kit/js-apis-media.md#avplayerstate9) | 是   | 否   | 音频渲染器的状态。 |
+| state | media.AVPlayerState | 是   | 否   | 音频渲染器的状态。 |
 
 **示例：**
 
