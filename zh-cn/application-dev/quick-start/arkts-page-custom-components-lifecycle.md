@@ -24,6 +24,8 @@
 
 - [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)：组件即将出现时回调该接口，具体时机为在创建自定义组件的新实例后，在执行其build()函数之前执行。
 
+- [onDidBuild](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#ondidbuild12)：组件build()函数执行完成之后回调该接口，不建议在onDidBuild函数中更改状态变量、使用animateTo等功能，这可能会导致不稳定的UI表现。
+
 - [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)：aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是@Link变量的修改可能会导致应用程序行为不稳定。
 
 
@@ -45,6 +47,8 @@
 3. 如果开发者定义了aboutToAppear，则执行aboutToAppear方法。
 
 4. 在首次渲染的时候，执行build方法渲染系统组件，如果子组件为自定义组件，则创建自定义组件的实例。在首次渲染的过程中，框架会记录状态变量和组件的映射关系，当状态变量改变时，驱动其相关的组件刷新。
+
+5. 如果开发者定义了onDidBuild，则执行onDidBuild方法。
 
 
 ## 自定义组件重新渲染
@@ -106,6 +110,11 @@ struct MyComponent {
   }
 
   // 组件生命周期
+  onDidBuild() {
+    console.info('MyComponent onDidBuild');
+  }
+
+  // 组件生命周期
   aboutToDisappear() {
     console.info('MyComponent aboutToDisappear');
   }
@@ -140,6 +149,12 @@ struct Child {
   aboutToDisappear() {
     console.info('[lifeCycle] Child aboutToDisappear')
   }
+
+  // 组件生命周期
+  onDidBuild() {
+    console.info('[lifeCycle] Child onDidBuild');
+  }
+
   // 组件生命周期
   aboutToAppear() {
     console.info('[lifeCycle] Child aboutToAppear')
@@ -193,10 +208,10 @@ struct page {
 }
 ```
 
-以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent和其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / aboutToDisappear）。
+以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent和其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / onDidBuild/aboutToDisappear）。
 
 
-- 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; Child aboutToAppear --&gt; Child build --&gt; Child build执行完毕 --&gt; MyComponent build执行完毕 --&gt; Index onPageShow。
+- 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; MyComponent onDidBuild--&gt; Child aboutToAppear --&gt; Child build --&gt; Child onDidBuild --&gt; Index onPageShow。
 
 - 点击“delete Child”，if绑定的this.showChild变成false，删除Child组件，会执行Child aboutToDisappear方法。
 
@@ -211,3 +226,78 @@ struct page {
 
 
 - 退出应用，执行Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
+
+## 自定义组件监听页面生命周期
+
+使用[无感监听页面路由](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11)的能力，能够实现在自定义组件中监听页面的生命周期。
+
+```ts
+// Index.ets
+import observer from '@ohos.arkui.observer';
+import router from '@ohos.router';
+import { UIObserver } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  listener(info: observer.RouterPageInfo) {
+    let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    if (info.pageId == routerInfo?.pageId) {
+      if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
+        console.log(`Index onPageShow`);
+      } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
+        console.log(`Index onPgaeHide`);
+      }
+    }
+  }
+  aboutToAppear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.on('routerPageUpdate', this.listener.bind(this));
+  }
+  aboutToDisappear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.off('routerPageUpdate', this.listener.bind(this));
+  }
+  build() {
+    Column() {
+      Text(`this page is ${this.queryRouterPageInfo()?.pageId}`)
+        .fontSize(25)
+      Button("push self")
+        .onClick(() => {
+          router.pushUrl({
+            url: 'pages/Index'
+          })
+        })
+      Column() {
+        SubComponent()
+      }
+    }
+  }
+}
+@Component
+struct SubComponent {
+  listener(info: observer.RouterPageInfo) {
+    let routerInfo: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+    if (info.pageId == routerInfo?.pageId) {
+      if (info.state == observer.RouterPageState.ON_PAGE_SHOW) {
+        console.log(`SubComponent onPageShow`);
+      } else if (info.state == observer.RouterPageState.ON_PAGE_HIDE) {
+        console.log(`SubComponent onPgaeHide`);
+      }
+    }
+  }
+  aboutToAppear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.on('routerPageUpdate', this.listener.bind(this));
+  }
+  aboutToDisappear(): void {
+    let uiObserver: UIObserver = this.getUIContext().getUIObserver();
+    uiObserver.off('routerPageUpdate', this.listener.bind(this));
+  }
+  build() {
+    Column() {
+      Text(`SubComponent`)
+    }
+  }
+}
+```
