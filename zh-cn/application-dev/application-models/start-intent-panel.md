@@ -19,7 +19,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 | originName           | 起点名称（路线规划场景有效）                                   | string   | 可缺省   |
 | originLatitude       | 起点纬度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
 | originLongitude      | 起点经度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
-| vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
+| vehicleType          | 交通出行工具：0：驾车 1：步行 2：骑行 3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
 
 ## 接入步骤
 ### 调用方接入步骤
@@ -121,7 +121,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
     | originName           | 起点名称                                   | string   | 可缺省，存在时可用于展示路线规划页面   |
     | originLatitude       | 起点纬度<sup>GCJ-02</sup>                                 | number   | 可缺省，存在时可用于展示路线规划页面   |
     | originLongitude      | 起点经度<sup>GCJ-02</sup>                                  | number   | 可缺省，存在时可用于展示路线规划页面   |
-    | vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
+    | vehicleType          | 交通出行工具：0：驾车 1：步行 2：骑行 3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
 
     应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如路线规划和导航结合接收到的参数开发不同的样式页面。
 
