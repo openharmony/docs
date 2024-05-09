@@ -165,7 +165,7 @@ function onFinished() : void {
       let anim: scene3d.Animation = result.animations[0];
       // 注册回调函数
       anim.onFinished(()=>{
-        console.log("onFinished");  
+        console.info("onFinished");  
       });
     }
   });
@@ -197,7 +197,7 @@ function onStarted() : void {
       let anim: scene3d.Animation = result.animations[0];
       // 注册回调函数
       anim.onStarted(()=>{
-        console.log("onStarted");  
+        console.info("onStarted");  
       });
     }
   });
