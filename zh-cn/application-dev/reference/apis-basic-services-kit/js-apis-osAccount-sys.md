@@ -45,7 +45,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
-| 12300009 | Account has been activated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **示例：** 激活ID为100的系统帐号
   ```ts
@@ -97,7 +97,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
-| 12300009 | Account has been activated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **示例：** 激活ID为100的系统帐号
   ```ts
@@ -112,6 +112,54 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
     });
   } catch (e) {
     console.log('activateOsAccount exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### deactivateOsAccount<sup>12+</sup>
+
+deactivateOsAccount(localId: number): Promise&lt;void&gt;
+
+注销（退出登录）指定系统帐号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                 |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | 是   | 系统帐号ID。 |
+
+**返回值：**
+
+| 类型                | 说明                                  |
+| ------------------- | ------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
+
+**示例：** 注销ID为100的系统帐号
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.deactivateOsAccount(localId).then(() => {
+      console.log('deactivateOsAccount successfully');
+    }).catch((err: BusinessError) => {
+      console.log('deactivateOsAccount failed, err:' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('deactivateOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -656,6 +704,44 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
   }
   ```
 
+### queryMaxLoggedInOsAccountNumber<sup>12+</sup>
+
+queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
+
+查询允许同时登录的系统帐号的最大数量。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                  | 说明                                         |
+| --------------------- | ------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回允许登录的系统帐号的最大数量。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.queryMaxLoggedInOsAccountNumber().then((maxNum: number) => {
+      console.log('queryMaxLoggedInOsAccountNumber successfully, maxNum: ' + maxNum);
+    }).catch((err: BusinessError) => {
+      console.log('queryMaxLoggedInOsAccountNumber failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('queryMaxLoggedInOsAccountNumber exception: ' + JSON.stringify(err));
+  }
+  ```
+
 ### getEnabledOsAccountConstraints<sup>11+</sup>
 
 getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
@@ -983,7 +1069,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 ### createOsAccountForDomain<sup>8+</sup>
 
-createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
+createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, options?: CreateOsAccountForDomainOptions): Promise&lt;OsAccountInfo&gt;
 
 根据传入的域帐号信息，创建与其关联的系统帐号。使用Promise异步回调。
 
@@ -999,6 +1085,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | ---------- | ---------------------------------------- | ---- | -------------------- |
 | type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | 是   | 创建的系统帐号的类型。 |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。          |
+| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | 否   | 创建帐号的可选参数，默认为空。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
@@ -1012,11 +1099,12 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | -------- | ------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
-| 12300002 | Invalid type or domainInfo. |
+| 12300002 | Invalid type, domainInfo or options. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
+| 12300015 | Short name already exists. |
 
 **示例：**
 
@@ -1025,8 +1113,10 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
   let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
   let domainInfo: account_osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
+  let options: account_osAccount.CreateOsAccountForDomainOptions;
+  options.shortName = 'myShortName';
   try {
-    accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then(
+    accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo, options).then(
       (accountInfo: account_osAccount.OsAccountInfo) => {
       console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
@@ -3896,6 +3986,169 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
   }
   ```
 
+## DomainServerConfig<sup>12+</sup>
+
+域服务器配置。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| parameters | Record<string, Object> | 是   | 服务器配置参数。 |
+| id | string | 是   | 服务器配置标识。|
+| domain | string | 是 | 服务器所属的域。 |
+
+## DomainServerConfigManager<sup>12+</sup>
+
+域服务器配置管理类。
+
+### addServerConfig<sup>12+</sup>
+
+static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;DomainServerConfig&gt;
+
+添加域服务器配置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| parameters   | Record<string, Object>  | 是  | 指示域服务器配置参数。 |
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回新添加的域服务器配置。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | - System service exception. |
+| 12300002 | - Invalid server config parameters. |
+| 12300211 | - Server unreachable. |
+
+**示例：**
+  ```ts
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  try {
+    let serverConfig: account.DomainServerConfig =
+      await account.DomainServerConfigManager.addServerConfig(configParams);
+    console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
+  } catch (e) {
+    console.log('add server configuration failed, error: ' + JSON.stringify(e));
+  }
+  ```
+
+### removeServerConfig<sup>12+</sup>
+
+static removeServerConfig(configId: string): Promise&lt;void&gt;
+
+删除域服务器配置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| configId   | string  | 是  | 指示服务器配置标识。 |
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 |- System service exception. |
+| 12300212 | - Server config not found. |
+
+**示例：**
+  ```ts
+  let configParams: Record<string, Object> = {
+    'uri': 'test.example.com',
+    'port': 100
+  };
+  try {
+    let serverConfig: account.DomainServerConfig =
+      await account.DomainServerConfigManager.addServerConfig(configParams);
+    console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
+    await account.DomainServerConfigManager.removeServerConfig(serverConfig.id);
+    console.log('remove domain server configuration successfully');
+  } catch (e) {
+    console.log('add or remove server configuration failed, error: ' + JSON.stringify(e));
+  }
+  ```
+
+### getAccountServerConfig<sup>12+</sup>
+
+static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;DomainServerConfig&gt;
+
+获取目标域帐号的服务器配置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是  | 指示目标域帐号信息。 |
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;[DomainServerConfig](#domainserverconfig12)&gt; | Promise对象，返回目标帐号的域服务器配置。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300003 | Domain account not found. |
+
+**示例：**
+  ```ts
+  let accountInfo: account.DomainAccountInfo = {
+    'accountName': 'demoName',
+    'accountId': 'demoId',
+    'domain': 'demoDomain'
+  };
+  try {
+    let serverConfig: account.DomainServerConfig =
+      await account.DomainServerConfigManager.getAccountServerConfig(accountInfo);
+    console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
+  } catch (e) {
+    console.log('get account server configuration failed, error: ' + JSON.stringify(e));
+  }
+  ```
+
 ## UserIdentityManager<sup>8+</sup>
 
 获取用户身份管理类。
@@ -5029,6 +5282,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | shortName<sup>12+</sup> | string | 否   | 系统帐号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| isLoggedIn<sup>12+</sup> | boolean | 否   | 是否登录。<br>**系统接口：** 此接口为系统接口，默认为false。 |
 
 ## OsAccountType
 
@@ -5048,8 +5302,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
 | isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
+| serverConfigId<sup>12+</sup>| boolean | 否 | 域帐号所属服务器标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5118,7 +5373,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | accountName | string | 是   | 域帐号名。 |
-| domain      | string | 否   | 域名。     |
+| domain      | string | 否   | 域名。默认为undefined。|
+| serverConfigId<sup>12+</sup>| boolean | 否 | 域帐号所属服务器标识。默认为undefined。|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -5147,7 +5403,19 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
-表示创建系统帐号的选项。
+表示用于创建系统帐号的可选参数。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| shortName | string | 是   | 表示帐号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+
+## CreateOsAccountForDomainOptions<sup>12+</sup>
+
+表示用于创建与指定域帐号绑定的系统帐号的可选参数。继承自[CreateOsAccountOptions](#createosaccountoptions12)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5167,7 +5435,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型                    | 必填 | 说明       |
 | --------- | ---------------------- | ---- | ---------- |
-| authType  | [AuthType](#authtype8) | 否   | 认证类型，默认为空。 |
+| authType  | [AuthType](#authtype8) | 否   | 认证类型，默认为undefined。 |
 | accountId | number                 | 否   | 系统帐号标识，默认为undefined。 |
 
 ## AuthIntent<sup>12+</sup>
