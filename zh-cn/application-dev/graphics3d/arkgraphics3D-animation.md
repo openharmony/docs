@@ -4,6 +4,7 @@
 ## 动画资源的创建
 动画资源是模型资源制作者在制作模型的过程中制作并保存到模型文件中的。ArkGraphics 3D提供从glTF模型资源中提取并播放动画的能力，进而使得开发者可以进行动画状态的控制。
 ```ts
+import scene3d from '@ohos.graphics.scene'
   function createAnimation() : void {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -25,6 +26,7 @@ ArkGraphics 3D提供的动画状态控制操作主要包含如下几种：
 
 示例代码如下：
 ```ts
+import scene3d from '@ohos.graphics.scene'
   function animationControl() : void {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
@@ -49,6 +51,7 @@ ArkGraphics 3D提供的动画状态控制操作主要包含如下几种：
 
 示例代码如下：
 ```ts
+import scene3d from '@ohos.graphics.scene'
   function callBacks() : void {
     let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
     scene.then(async (result: scene3d.Scene) => {
