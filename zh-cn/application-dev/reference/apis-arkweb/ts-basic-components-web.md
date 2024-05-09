@@ -2791,7 +2791,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
 onRenderProcessNotRespondingCallback(callback: [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12))
 
-检测到网页进程无响应时触发该回调函数。
+网页进程无响应时触发该回调函数。
 
 **参数：**
 
@@ -7188,7 +7188,7 @@ onOverrideUrlLoading的回调。
 
 ## RenderProcessNotRespondingReason<sup>12+</sup>
 
-触发网页进程无响应回调的原因。
+网页进程无响应回调的原因。
 
 | 名称                           | 值 | 描述           |
 | ----------------------------- | -- | ------------ |
@@ -7220,7 +7220,7 @@ type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingD
 
 type OnRenderProcessRespondingCallback = () => void;
 
-网页进程由无响应状态变回正常运行状态时触发的回调。
+网页进程由无响应状态变回正常运行状态时触发该回调。
 
 
 ## RenderMode<sup>12+</sup>枚举说明
