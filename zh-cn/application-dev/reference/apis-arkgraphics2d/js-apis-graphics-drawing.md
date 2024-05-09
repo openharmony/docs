@@ -6,7 +6,7 @@ drawing模块提供了基本的绘制能力，如绘制矩形、圆形、点、�
 >
 > - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 本模块不提供像素单位，和应用上下文环境保持一致。如果处于ArkUI开发环境中，采用框架默认像素单位vp。像素单位请参考[像素单位说明文档](../apis-arkui/arkui-ts/ts-pixel-units.md)。
+> - 本模块采用屏幕物理像素单位px。
 
 ## 导入模块
 
@@ -523,8 +523,10 @@ drawTextBlob(blob: TextBlob, x: number, y: number): void
 | 参数名 | 类型                  | 必填 | 说明                                       |
 | ------ | --------------------- | ---- | ------------------------------------------ |
 | blob   | [TextBlob](#textblob) | 是   | TextBlob对象。                             |
-| x      | number                | 是   | 所绘制出的文字的边界框左上角横坐标，该参数为浮点数。 |
-| y      | number                | 是   | 所绘制出的文字的边界框左上角纵坐标，该参数为浮点数。 |
+| x      | number                | 是   | 所绘制出的文字基线（下图蓝线）的左端点（下图红点）的横坐标，该参数为浮点数。 |
+| y      | number                | 是   | 所绘制出的文字基线（下图蓝线）的左端点（下图红点）的纵坐标，该参数为浮点数。 |
+
+![zh-ch_image_Text_Blob.png](figures/zh-ch_image_Text_Blob.png)
 
 **示例：**
 
@@ -538,7 +540,7 @@ class DrawingRenderNode extends RenderNode {
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     const font = new drawing.Font();
     font.setSize(20);
-    const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    const textBlob = drawing.TextBlob.makeFromString("Hello, drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
     canvas.detachBrush();
@@ -582,7 +584,7 @@ class DrawingRenderNode extends RenderNode {
 
 attachBrush(brush: Brush): void
 
-绑定画刷给画布，画布将使用画刷的样式和颜色去绘制图形形状，并其内部进行填充。
+绑定画刷给画布，画布将使用画刷的样式和颜色去绘制图形形状，并在其内部进行填充。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 

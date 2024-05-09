@@ -71,7 +71,7 @@ externalNativeOptions具体参数说明如下表所示。
 | 配置项 | 类型 | 说明 | 
 | -------- | -------- | -------- |
 | path | string | CMake构建脚本地址，即CMakeLists.txt文件地址。 | 
-| abiFilters | array | 本机的ABI编译环境，包括：<br/>- armeabi-v7a<br/>- arm64-v8a<br/>- x86_64<br/>如不配置该参数，编译时默认使用所有abiFilters。 | 
+| abiFilters | array | 本机的ABI编译环境，包括：<br/>- armeabi-v7a<br/>- arm64-v8a<br/>- x86_64<br/>如不配置该参数，编译时默认编译出arm64-v8a架构相关so。 | 
 | arguments | string | CMake编译参数。 | 
 | cppFlags | string | C++编译器参数。 | 
 

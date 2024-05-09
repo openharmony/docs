@@ -14,8 +14,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.GET_BUNDLE_INFO
@@ -25,8 +23,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -38,8 +34,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：10
 
 ### ohos.permission.PRINT
@@ -49,8 +43,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：10
 
@@ -62,8 +54,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.ACCELEROMETER
@@ -73,8 +63,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -86,19 +74,17 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：6
 
 ### ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 在本设备上允许应用访问通知策略。
 
+仅当控制铃声从静音到非静音时，需要申请该权限。
+
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：7
 
@@ -110,8 +96,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.GET_WIFI_INFO
@@ -121,8 +105,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -134,8 +116,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.INTERNET
@@ -145,8 +125,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：9
 
@@ -158,8 +136,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.NFC_CARD_EMULATION
@@ -169,8 +145,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：8
 
@@ -182,8 +156,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：7
 
 ### ohos.permission.PRIVACY_WINDOW
@@ -193,8 +165,6 @@
 **权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：9
 
@@ -206,8 +176,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.SET_WIFI_INFO
@@ -217,8 +185,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -230,8 +196,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.CLEAN_BACKGROUND_PROCESSES
@@ -241,8 +205,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -254,8 +216,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.MODIFY_AUDIO_SETTINGS
@@ -265,8 +225,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -278,8 +236,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.SET_WALLPAPER
@@ -289,8 +245,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -302,8 +256,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：9
 
 ### ohos.permission.hsdr.HSDR_ACCESS
@@ -313,8 +265,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：10
 
@@ -326,8 +276,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：false
-
 **起始版本**：11
 
 ### ohos.permission.READ_CLOUD_SYNC_CONFIG
@@ -337,8 +285,6 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
-
-**ACL使能**：true
 
 **起始版本**：11
 
@@ -350,8 +296,6 @@
 
 **授权方式**：system_grant
 
-**ACL使能**: false
-
 **起始版本**: 11
 
 ### ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
@@ -361,8 +305,6 @@
 **权限级别**: normal
 
 **授权方式**：system_grant
-
-**ACL使能**：false
 
 **起始版本**：11
 
@@ -378,8 +320,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：false
-
 **起始版本**：10
 
 ### ohos.permission.MEDIA_LOCATION
@@ -389,8 +329,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -402,8 +340,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.ACTIVITY_MOTION
@@ -413,8 +349,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -426,8 +360,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：9
 
 ### ohos.permission.DISTRIBUTED_DATASYNC
@@ -437,8 +369,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -460,8 +390,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：false
-
 **起始版本**：7
 
 ### ohos.permission.LOCATION
@@ -474,8 +402,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.APPROXIMATELY_LOCATION
@@ -485,8 +411,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：false
 
 **起始版本**：9
 
@@ -498,8 +422,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.READ_CALENDAR
@@ -509,8 +431,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：8
 
@@ -522,8 +442,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：7
 
 ### ohos.permission.READ_MEDIA
@@ -533,8 +451,6 @@
 **权限级别**：normal
 
 **授权方式**：user_grant
-
-**ACL使能**：true
 
 **起始版本**：7
 
@@ -546,8 +462,6 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：8
 
 ### ohos.permission.WRITE_MEDIA
@@ -558,7 +472,4 @@
 
 **授权方式**：user_grant
 
-**ACL使能**：true
-
 **起始版本**：7
-

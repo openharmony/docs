@@ -39,7 +39,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
     }
   });
 });
-ws.on('message',(BusinessError<void>, value: string | ArrayBuffer) => {
+ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
   // When receiving the `bye` message (the actual message name may differ) from the server, the client proactively disconnects from the server.
   if (value === 'bye') {
@@ -602,7 +602,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -632,7 +632,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 

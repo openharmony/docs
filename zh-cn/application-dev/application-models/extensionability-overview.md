@@ -22,7 +22,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 | [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod.md) | INPUT_METHOD类型的ExtensionAbility组件，用于实现[输入法应用](../inputmethod/ime-kit-intro.md)的开发。      | Y | Y |
 | [AccessibilityExtensionAbility](../reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md) | ACCESSIBILITY类型的ExtensionAbility组件，用于实现[无障碍扩展服务](../accessibility/accessibilityKit.md)的开发。      | Y | NA |
 | [BackupExtensionAbility](../reference/apis-core-file-kit/js-apis-application-backupExtensionAbility.md) | BACKUP类型的ExtensionAbility组件，用于提供[备份及恢复应用数据](../file-management/app-file-backup-overview.md)的能力。      | Y | NA |
-| [DriverExtensionAbility](../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)            | DRIVER类型的ExtensionAbility组件，用于提供[驱动相关扩展框架](driverextensionability.md)。      | Y | Y |
+| [DriverExtensionAbility](../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)            | DRIVER类型的ExtensionAbility组件，用于提供[驱动相关扩展框架](../device/driver/driverextensionability.md)。      | Y | Y |
 
 
 

@@ -90,3 +90,5 @@ import geoLocationManager from '@ohos.geoLocationManager';
       console.error("errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
+
+  <!--no_check-->

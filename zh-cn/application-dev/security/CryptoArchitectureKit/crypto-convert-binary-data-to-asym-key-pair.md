@@ -81,7 +81,7 @@ function convertEccAsyKey() {
 ```
 
 
-## 指定二进制数据生成SM2密钥对
+## 指定二进制数据转换SM2密钥对
 
 对应的算法规格请查看[非对称密钥生成和转换规格：SM2](crypto-asym-key-generation-conversion-spec.md#sm2)。
 

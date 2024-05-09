@@ -31,7 +31,6 @@ RichEditor(value: RichEditorOptions)
 
 >  **说明：**
 >
->  其中clip属性默认值为true。
 >  align属性只支持上方丶中间和下方位置的对齐方式。
 
 | 名称                               | 参数类型                                     | 描述                                       |
@@ -132,6 +131,33 @@ Span类型信息。
 | fontFamily | string                                   | 是    | 字体列表。        |
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是    | 文本装饰线样式及其颜色。 |
 
+>  **说明：**
+>
+>  在RichEditorTextStyle中，fontWeight是设置字体粗细的输入参数。
+>  而在RichEditorTextStyleResult中，会将之前设置的字体粗细转换为数字后返回。
+>  转换关系如下：
+>
+>  | RichEditorTextStyle中的fontWeight | RichEditorTextStyleResult中的fontWeight |
+>  | ---- | ----------------------------------- |
+>  | 100   | 0 |
+>  | 200   | 1 |
+>  | 300   | 2 |
+>  | 400   | 3 |
+>  | 500   | 4 |
+>  | 600   | 5 |
+>  | 700   | 6 |
+>  | 800   | 7 |
+>  | 900   | 8 |
+>  | bold   | 9 |
+>  | bolder   | 10 |
+>  | lighter   | 11 |
+>  | medium   | 12 |
+>  | normal   | 13 |
+>  | regular   | 14 |
+>
+>  RichEditorSymbolSpanStyle和RichEditorSymbolSpanStyleResult中fontWeight的转换关系，
+>  与RichEditorTextStyle和RichEditorTextStyleResult中fontWeight的转换关系一致。
+
 ## RichEditorImageSpanResult
 
 后端返回的图片信息。
@@ -228,7 +254,7 @@ addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 添加完成的Text Span所在的位置。 |
+| number | 添加完成的TextSpan所在的位置。 |
 
 ### addImageSpan
 
@@ -247,7 +273,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 | 类型     | 说明                   |
 | ------ | -------------------- |
-| number | 添加完成的imageSpan所在的位置。 |
+| number | 添加完成的ImageSpan所在的位置。 |
 
 ### addBuilderSpan<sup>11+</sup>
 
@@ -330,15 +356,15 @@ setTypingStyle(value: RichEditorTextStyle): void
 
 updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions | RichEditorUpdateSymbolSpanStyleOptions): void
 
-更新文本或者图片样式。<br/>若只更新了一个Span的部分内容，则会根据更新部分、未更新部分将该Span拆分为多个Span。
+更新文本、图片或SymbolSpan样式。<br/>若只更新了一个Span的部分内容，则会根据更新部分、未更新部分将该Span拆分为多个Span。
 
-使用该接口更新文本或图片样式时默认不会关闭自定义文本选择菜单。
+使用该接口更新文本、图片或SymbolSpan样式时默认不会关闭自定义文本选择菜单。
 
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11)<sup>11+</sup> | 是 | 文本或者图片的样式选项信息。 |
+| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11)<sup>11+</sup> | 是 | 文本、图片或SymbolSpan的样式选项信息。 |
 
 ### updateParagraphStyle<sup>11+</sup>
 
@@ -518,7 +544,7 @@ SymbolSpan样式选项。
 | 名称            | 类型                                       | 必填   | 描述                 |
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
-| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，图片放在段首时不支持。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，只有图片或BuilderSpan放在段首时不支持。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -560,7 +586,7 @@ SymbolSpan样式选项。
 | fontStyle                | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 字体样式。<br/>默认值：FontStyle.Normal。          |
 | fontWeight               | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | fontFamily               | [ResourceStr](ts-types.md#resourcestr) | 否    | 设置字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 <br/>默认字体:'HarmonyOS Sans'。 |
-| decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>}。 |
+| decoration               | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 否    | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color:Color.Black<br/>}。 |
 | textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 否    | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
 
 
@@ -607,7 +633,7 @@ SymbolSpan样式选项。
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 设置SymbolGlyph组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
-| fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 设置SymbolGlyph组件大小。<br/>默认值：系统默认值。 |
+| fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 设置SymbolGlyph组件大小。<br/>默认值：跟随主题。 |
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 设置SymbolGlyph组件粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
 | renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 设置SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
@@ -652,7 +678,7 @@ SymbolSpan样式选项。
 
 ### onClick<sup>11+</sup>
 
-onClick(callback: (event?: ClickEvent) => void)
+onClick?: (event: ClickEvent) => void
 
 点击完成时回调事件。<br/>
 双击时，第一次点击触发回调事件。
@@ -665,7 +691,7 @@ onClick(callback: (event?: ClickEvent) => void)
 
 ### onLongPress<sup>11+</sup>
 
-onLongPress(callback: (event?: GestureEvent) => void )
+onLongPress?: (event: GestureEvent) => void
 
 长按完成时回调事件。
 
@@ -826,6 +852,15 @@ struct Index {
           })
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")
+          })
+          .placeholder("input...", {
+            fontColor: Color.Gray,
+            font: {
+              size: 16,
+              weight: FontWeight.Normal,
+              family: "HarmonyOS Sans",
+              style: FontStyle.Normal
+            }
           })
           .borderWidth(1)
           .borderColor(Color.Green)
@@ -2158,7 +2193,7 @@ struct Index {
 }
 ```
 
-![TextshadowExample](figures/rich_editor_textshadow.png)
+![TextshadowExample](figures/rich_editor_textshadow.gif)
 
 ### 示例9
 ``` ts
@@ -2450,7 +2485,7 @@ struct Index {
   }
 }
 ```
-![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.png)
+![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.gif)
 
 ### 示例10
 enableDataDetector和dataDetectorConfig使用示例

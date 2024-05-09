@@ -398,7 +398,7 @@ import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.AVCallState = {
-  state: avSession.AVCallState.CALL_STATE_ACTIVE ,
+  state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(calldata).then(() => {
@@ -702,7 +702,7 @@ Dispatches a custom event in the session, including the event name and event con
 | Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | Yes  | Name of the session event.|
-| args | {[key: string]: Object} | Yes  | Event content in key-value pair format.|
+| args | {[key: string]: Object} | Yes  | Content of the session event.|
 
 > **NOTE**
 >
@@ -763,7 +763,7 @@ Dispatches a custom event in the session, including the event name and event con
 | Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | Yes  | Name of the session event.|
-| args | {[key: string]: Object} | Yes  | Event content in key-value pair format.|
+| args | {[key: string]: Object} | Yes  | Content of the session event.|
 | callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 > **NOTE**
@@ -1868,7 +1868,7 @@ Unsubscribes from playback events of a given media ID.
 | Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | Yes  | Event type, which is **'playFromAssetId'** in this case.|
-| callback | callback: (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+| callback | callback: (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. The **assetId** parameter in the callback indicates the media asset ID.                           |
 
 **Error codes**
 
@@ -3990,7 +3990,7 @@ Subscribes to remote AVPlayer errors. This event is used only for error prompt a
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -4029,7 +4029,7 @@ Unsubscribes from remote AVPlayer errors.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -4143,11 +4143,12 @@ Describes the information related to the media playback state.
 | isFavorite   | boolean                               | No  | Whether the media asset is favorited.|
 | activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.|
 | volume<sup>10+</sup> | number                  | No  | Media volume.|
-| extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.|
 | maxVolume<sup>11+</sup> | number                    | No  | Maximum volume.|
 | muted<sup>11+</sup>     | boolean                   | No  | Mute status. The value **true** means the muted state.|
+| duration<sup>11+</sup>     | number                   | No  | Duration of the media asset.|
 | videoWidth<sup>11+</sup>  | number                  | No  | Video width of the media asset, in px.|
 | videoHeight<sup>11+</sup> |  number                 | No  | Video height of the media asset, in px.|
+| extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.|
 
 ## PlaybackPosition<sup>10+</sup>
 
@@ -4180,9 +4181,8 @@ Defines the attributes related to the call state.
 
 | Name           | Type                     | Mandatory| Description                                                                 |
 | --------------- |-------------------------  | ---- |---------------------------------------------------------------------|
-| state           | CallState[AVCallState](#avcallstate11)                 | Yes   | Call state.     |                                                                                                                      
-| muted           | boolean                   | Yes   | Whether the microphone is muted.|                                                                  
- 
+| state           | [CallState](#callstate11)                 | Yes   | Call state.     |
+| muted           | boolean                   | Yes   | Whether the microphone is muted.<br>**true**: The microphone is muted.<br>**false**: The microphone is not muted.|
 ## CallState<sup>11+</sup>
 
 Enumerates the call states.

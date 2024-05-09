@@ -17,9 +17,6 @@
         - [HSP](quick-start/in-app-hsp.md)
         - [动态import](quick-start/arkts-dynamic-import.md)
       - [应用程序包安装卸载与更新](quick-start/application-package-install-uninstall.md)
-      - 应用程序包快速修复
-        - [快速修复概述](quick-start/quickfix-principles.md)
-        - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
     - 应用配置文件（Stage模型）
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)
@@ -1123,6 +1120,10 @@
     - [restool工具](tools/restool.md)
     - [LLDB工具](tools/lldb-tool.md)
     - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
+    - Hap包签名工具
+      - [Hap包签名工具概述](security/hapsigntool-overview.md)
+      - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
+      - [HarmonyAppProvision配置文件](security/app-provision-structure.md)
 - 示例教程
   - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
@@ -1336,7 +1337,6 @@
       - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
       - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
       - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
-      - [zlib子系统错误码](reference/apis-ability-kit/errorcode-zlib.md)
       - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
   - Accessibility Kit API参考
     - ArkTS API
@@ -2144,7 +2144,6 @@
             - [@ohos.brightness (屏幕亮度)(系统接口)](reference/apis-basic-services-kit/js-apis-brightness-sys.md)
             - [@ohos.charger (充电类型)(系统接口)](reference/apis-basic-services-kit/js-apis-charger-sys.md)
             - [@ohos.deviceAttest (设备证明)(系统接口)](reference/apis-basic-services-kit/js-apis-deviceAttest-sys.md)
-            - [@ohos.enterprise.usbManager (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md)
             - [@ohos.power (系统电源管理)(系统接口)](reference/apis-basic-services-kit/js-apis-power-sys.md)
             - [@ohos.systemCapability (系统能力)(系统接口)](reference/apis-basic-services-kit/js-apis-system-capability-sys.md)
             - [@ohos.systemParameterEnhance (系统参数)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)

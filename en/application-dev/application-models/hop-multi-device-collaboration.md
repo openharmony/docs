@@ -156,7 +156,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
    ```
 
-5. Call [stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through mission management.)
+5. Call [stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through mission management.)
 
    ```ts
    import Want from '@ohos.app.ability.Want';
@@ -773,7 +773,7 @@ The following describes how to implement multi-device collaboration through cros
 
       The **context** attribute of the UIAbility implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the UIAbility, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** and **onRemoteStateChange** listeners of the CallerAbility. You need to implement processing based on service requirements.
 
-      
+       
        ```ts
        import { Caller } from '@ohos.app.ability.UIAbility';
        import { BusinessError } from '@ohos.base';
@@ -844,7 +844,7 @@ The following describes how to implement multi-device collaboration through cros
          }
        }
        ```
-      
+       
        For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
    
 5. Sends agreed parcelable data to the CalleeAbility.
@@ -853,35 +853,35 @@ The following describes how to implement multi-device collaboration through cros
        ```ts
        import UIAbility, { Caller } from '@ohos.app.ability.UIAbility';
        import type rpc from '@ohos.rpc';
-	      
+	   
        const MSG_SEND_METHOD: string = 'CallSendMsg';
        class MyParcelable {
          num: number = 0;
          str: string = '';
-	      
+	   
          constructor(num: number, string: string) {
            this.num = num;
            this.str = string;
          };
-	      
+	   
          mySequenceable(num: number, string: string): void {
            this.num = num;
            this.str = string;
          };
-	      
+	   
          marshalling(messageSequence: rpc.MessageSequence): boolean {
            messageSequence.writeInt(this.num);
            messageSequence.writeString(this.str);
            return true;
          };
-	      
+	   
          unmarshalling(messageSequence: rpc.MessageSequence): boolean {
            this.num = messageSequence.readInt();
            this.str = messageSequence.readString();
            return true;
          };
        };
-	      
+	   
        export default class EntryAbility extends UIAbility {
          // ...
          caller: Caller | undefined;
@@ -979,5 +979,4 @@ The following describes how to implement multi-device collaboration through cros
      }
    }
    ```
-
- <!--no_check--> 
+<!--no_check-->

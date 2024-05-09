@@ -25,7 +25,7 @@
       - [Displaying Images (Image)](arkts-graphics-display.md)
       - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [Video Playback (Video](arkts-common-components-video-player.md)
-      - [XComponent](arkts-common-components-xcomponent.md)
+      - [CustomDraw (XComponent)](arkts-common-components-xcomponent.md)
     - Adding a Popup and Menu
       - [Popup](arkts-popup-and-menu-components-popup.md)
       - [Menu](arkts-popup-and-menu-components-menu.md)

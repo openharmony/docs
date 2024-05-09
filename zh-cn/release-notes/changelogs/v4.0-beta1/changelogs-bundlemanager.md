@@ -12,3 +12,5 @@
 
 **适配指导**<br>
 资源管理子系统提供Js接口访问资源文件。参考[访问资源文件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md#getrawfilecontent9)
+
+<!--no_check-->

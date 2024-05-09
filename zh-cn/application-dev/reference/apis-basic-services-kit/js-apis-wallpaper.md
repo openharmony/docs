@@ -48,7 +48,7 @@ import wallpaper from '@ohos.wallpaper';
 
 on(type: 'colorChange', callback: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
-订阅壁纸颜色变化结果上报事件。
+订阅壁纸颜色变化结果上报事件。不支持多线程并发调用。
 
 > **说明：**
 > 
@@ -80,7 +80,7 @@ try {
 
 off(type: 'colorChange', callback?: (colors: Array&lt;RgbaColor&gt;, wallpaperType: WallpaperType) =&gt; void): void
 
-取消订阅壁纸颜色变化结果上报事件。
+取消订阅壁纸颜色变化结果上报事件。不支持多线程并发调用。
 
 > **说明：**
 > 

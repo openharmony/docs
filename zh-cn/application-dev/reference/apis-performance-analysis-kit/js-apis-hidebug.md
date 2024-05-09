@@ -281,12 +281,6 @@ stopJsCpuProfiling() : void
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
-
 **示例：**
 
 ```ts

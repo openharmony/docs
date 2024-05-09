@@ -365,7 +365,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 Deletes a **Preferences** instance from the cache. If the **Preferences** instance has a persistent file, the persistent file will also be deleted. This API uses an asynchronous callback to return the result.
 
-After the **Preferences** instance is deleted, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the deleted **Preferences** instance to null. The system will reclaim the deleted **Preferences** instances in a unified manner.
+Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -431,7 +431,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 Deletes a **Preferences** instance from the cache. If the **Preferences** instance has a persistent file, the persistent file will also be deleted. This API uses a promise to return the result.
 
-After the **Preferences** instance is deleted, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the deleted **Preferences** instance to null. The system will reclaim the deleted **Preferences** instances in a unified manner.
+Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -500,7 +500,7 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 Deletes a **Preferences** instance from the cache. If the **Preferences** instance has a persistent file, the persistent file will also be deleted. This API uses an asynchronous callback to return the result.
 
-After the **Preferences** instance is deleted, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the deleted **Preferences** instance to null. The system will reclaim the deleted **Preferences** instances in a unified manner.
+Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -571,7 +571,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 Deletes a **Preferences** instance from the cache. If the **Preferences** instance has a persistent file, the persistent file will also be deleted. This API uses a promise to return the result.
 
-After the **Preferences** instance is deleted, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the deleted **Preferences** instance to null. The system will reclaim the deleted **Preferences** instances in a unified manner.
+Avoid using a deleted **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the deleted **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -647,7 +647,7 @@ Removes a **Preferences** instance from the cache. This API uses an asynchronous
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -706,7 +706,7 @@ Removes a **Preferences** instance from the cache. This API uses a promise to re
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -768,7 +768,7 @@ Removes a **Preferences** instance from the cache. This API returns the result s
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -811,7 +811,7 @@ Removes a **Preferences** instance from the cache. This API uses an asynchronous
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -881,7 +881,7 @@ Removes a **Preferences** instance from the cache. This API uses a promise to re
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -954,7 +954,7 @@ Removes a **Preferences** instance from the cache. This API returns the result s
 
 After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
-After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
+Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1002,7 +1002,7 @@ class EntryAbility extends UIAbility {
 
 ## Options<sup>10+</sup>
 
-Represents the configuration options of a **Preferences** instance.
+Represents the configuration of a **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1228,7 +1228,7 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
 | value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, Array\<boolean>, and Uint8Array.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
 
@@ -1624,7 +1624,7 @@ preferences.clearSync();
 
 on(type: 'change', callback: Callback&lt;string&gt;): void
 
-Subscribes to data changes. A callback will be triggered to return the new value if the value of the subscribed key is changed and [flushed](#flush).
+Subscribes to data changes. The registered callback will be invoked to return the new value if the data change is [flushed](#flush).
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1632,8 +1632,8 @@ Subscribes to data changes. A callback will be triggered to return the new value
 
 | Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
-| type     | string   | Yes  | Event type. The value **change** indicates data changes.|
-| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return data changes.    |
+| type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes.|
+| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return the data change.    |
 
 **Example**
 
@@ -1666,8 +1666,8 @@ Subscribes to inter-process data changes. For the multiple processes holding the
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return inter-process data changes.                        |
+| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes.|
+| callback | Callback&lt;string&gt; | Yes  | Callback invoked to return the inter-process data change.                        |
 
 **Error codes**
 
@@ -1708,8 +1708,8 @@ Unsubscribes from data changes.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value **change** indicates data changes.                    |
-| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.|
+| type     | string   | Yes  | Event type. The value is **'change'**, which indicates data changes.                    |
+| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
 
 **Example**
 
@@ -1743,8 +1743,8 @@ Unsubscribes from inter-process data changes.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is left blank, all callbacks for inter-process data changes will be unregistered.|
+| type     | string   | Yes  | Event type. The value is **'multiProcessChange'**, which indicates inter-process data changes.|
+| callback | Callback&lt;string&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for inter-process data changes.|
 
 **Example**
 

@@ -3,7 +3,7 @@
 The **backgroundTaskManager** module provides APIs to request background tasks. You can use the APIs to request transient tasks, continuous tasks, or efficiency resources to prevent the application process from being terminated or suspended when your application is switched to the background.
 
 >  **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -20,7 +20,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 Requests a transient task.
 
 >  **NOTE**
-> 
+>
 > The maximum duration of a transient task is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
@@ -265,7 +265,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // Type of the operation to perform after the notification is clicked.
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // Custom request code.
             requestCode: 0,
             // Execution attribute of the operation to perform after the notification is clicked.
@@ -348,7 +348,7 @@ export default class EntryAbility extends UIAbility {
                 }
             ],
             // Type of the operation to perform after the notification is clicked.
-            operationType: wantAgent.OperationType.START_ABILITY,
+            actionType: wantAgent.OperationType.START_ABILITY,
             // Custom request code.
             requestCode: 0,
             // Execution attribute of the operation to perform after the notification is clicked.

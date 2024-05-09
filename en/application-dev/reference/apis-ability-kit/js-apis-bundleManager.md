@@ -172,7 +172,7 @@ Enumerates the bundle types.
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
+getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API uses a promise to return the result.
 
@@ -182,7 +182,7 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | Yes  | Type of the bundle information to obtain.|
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 
 **Return value**
 
@@ -212,7 +212,7 @@ try {
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
+getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API uses an asynchronous callback to return the result.
 
@@ -222,7 +222,7 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | Yes  | Type of the bundle information to obtain.|
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
 
 **Example**
@@ -613,6 +613,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -657,7 +658,7 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | Yes  | Type of the bundle information to obtain.|
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 
 **Return value**
 
@@ -830,3 +831,4 @@ try {
 }
 ```
 
+ <!--no_check--> 

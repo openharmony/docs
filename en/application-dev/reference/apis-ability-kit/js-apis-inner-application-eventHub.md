@@ -41,6 +41,8 @@ Subscribes to an event.
 >
 >  When the callback is triggered by **emit**, the invoker is the **EventHub** object. To change the direction of **this** in **callback**, use an arrow function.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -87,6 +89,8 @@ Unsubscribes from an event.
  - If **callback** is specified, this API unsubscribes from the given event with the specified callback.
  - If **callback** is not specified, this API unsubscribes from the given event with all callbacks.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -126,6 +130,8 @@ emit(event: string, ...args: Object[]): void;
 
 Triggers an event.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -162,4 +168,3 @@ export default class EntryAbility extends UIAbility {
     }
 }
 ```
-

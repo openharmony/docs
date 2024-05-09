@@ -46,3 +46,4 @@ import commonEvent from '@ohos.commonEventManager';
 
 此外还需要适配异常处理，具体参考新接口的接口文档。
 
+<!--no_check-->

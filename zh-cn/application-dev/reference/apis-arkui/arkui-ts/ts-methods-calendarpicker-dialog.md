@@ -10,7 +10,7 @@
 
 ## CalendarPickerDialog.show
 
-show(options?: CalendarDialogOptions)
+static show(options?: CalendarDialogOptions)
 
 定义日历选择器弹窗并弹出。
 

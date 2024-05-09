@@ -160,7 +160,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -216,7 +216,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await image.createPixelMapFromSurface(surfaceId, region).then(() => {
+    image.createPixelMapFromSurface(surfaceId, region).then(() => {
         console.info('Succeeded in creating pixelmap from Surface');
     }).catch((error: BusinessError) => {
         console.error('Failed to create pixelmap');
@@ -754,7 +754,7 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let rate: number = 0.5;
     if (pixelMap != undefined) {
-        await pixelMap.opacity(rate).then(() => {
+        pixelMap.opacity(rate).then(() => {
             console.info('Sucessed in setting opacity.');
         }).catch((err: BusinessError) => {
             console.error('Failed to set opacity.');
@@ -784,7 +784,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
             console.info('Succeeded in creating alpha pixelmap.');
         }).catch((error: BusinessError) => {
             console.error('Failed to create alpha pixelmap.');
@@ -893,7 +893,7 @@ async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
     if (pixelMap != undefined) {
-        await pixelMap.scale(scaleX, scaleY).then(() => {
+        pixelMap.scale(scaleX, scaleY).then(() => {
             console.info('Sucessed in scaling pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to scale pixelmap.');
@@ -969,7 +969,7 @@ async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
     if (pixelMap != undefined) {
-        await pixelMap.translate(translateX, translateY).then(() => {
+        pixelMap.translate(translateX, translateY).then(() => {
             console.info('Sucessed in translating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to translate pixelmap.');
@@ -999,7 +999,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    let angle: number = 90.0;]
+    let angle: number = 90.0;
     if (pixelMap != undefined) {
         pixelMap.rotate(angle, (err: BusinessError) => {
             if (err != undefined) {
@@ -1041,7 +1041,7 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
-        await pixelMap.rotate(angle).then(() => {
+        pixelMap.rotate(angle).then(() => {
             console.info('Sucessed in rotating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to rotate pixelmap.');
@@ -1117,7 +1117,7 @@ async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
     if (pixelMap != undefined) {
-        await pixelMap.flip(horizontal, vertical).then(() => {
+        pixelMap.flip(horizontal, vertical).then(() => {
             console.info('Sucessed in flipping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to flip pixelmap.');
@@ -1189,7 +1189,7 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     if (pixelMap != undefined) {
-        await pixelMap.crop(region).then(() => {
+        pixelMap.crop(region).then(() => {
             console.info('Sucessed in cropping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error('Failed to crop pixelmap.');
@@ -1409,7 +1409,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1430,7 +1430,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1497,7 +1497,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1518,7 +1518,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {

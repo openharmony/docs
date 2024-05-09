@@ -12,7 +12,7 @@
 
 ## TextPickerDialog.show
 
-show(options?: TextPickerDialogOptions)
+static show(options?: TextPickerDialogOptions)
 
 定义文本滑动选择器弹窗并弹出。
 

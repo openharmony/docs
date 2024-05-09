@@ -486,9 +486,9 @@ Defines a screen hopping status change event.
 
 
 
-## CooperateState<sup>11+</sup>
+## CooperateState<sup>10+</sup>
 
-Screen hopping status.
+Defines the screen hopping status.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -498,9 +498,9 @@ Screen hopping status.
 | COOPERATE_UNPREPARE            | number | Yes  | No  | The preparation for screen hopping is cancelled.|
 | COOPERATE_ACTIVATE             | number | Yes  | No  | Screen hopping starts.    |
 | COOPERATE_ACTIVATE_SUCCESS     | number | Yes  | No  | Starting screen hopping succeeds.|
-| COOPERATE_ACTIVATE_FAIL     | number | Yes  | No  | Starting screen hopping fails.|
+| COOPERATE_ACTIVATE_FAILURE  | number | Yes  | No  | Starting screen hopping fails.|
 | COOPERATE_DEACTIVATE_SUCCESS   | number | Yes  | No  | Stopping screen hopping succeeds.|
-| COOPERATE_DEACTIVATE_FAIL   | number | Yes  | No  | Stopping screen hopping fails.|
+| COOPERATE_DEACTIVATE_FAILURE | number | Yes  | No  | Stopping screen hopping fails.|
 | COOPERATE_SESSION_DISCONNECTED | number | Yes  | No  | The screen hopping session is disconnected.|
 
 
@@ -513,7 +513,7 @@ Prepares for screen hopping. This API uses an asynchronous callback to return th
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.prepareCooperate](#cooperatepreparecooperate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.prepareCooperate](#cooperatepreparecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -548,7 +548,7 @@ Prepares for screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.prepareCooperate](#cooperatepreparecooperate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.prepareCooperate](#cooperatepreparecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -585,7 +585,7 @@ Cancels the preparation for screen hopping. This API uses an asynchronous callba
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -618,7 +618,7 @@ Cancels the preparation for screen hopping. This API uses a promise to return th
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.unprepareCooperate](#cooperateunpreparecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -653,7 +653,7 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.activateCooperate](#cooperateactivatecooperate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -700,7 +700,7 @@ Starts screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.activateCooperate](#cooperateactivatecooperate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.activateCooperate](#cooperateactivatecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -754,7 +754,7 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -792,7 +792,7 @@ Stops screen hopping. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperatedeactivatecooperate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -837,7 +837,7 @@ Obtains the screen hopping status of the target device. This API uses an asynchr
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.deactivateCooperate](#cooperategetcooperateswitchstate11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -874,7 +874,7 @@ Obtains the screen hopping status of the target device. This API uses a promise 
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1) instead.
+> This API is deprecated since API version 10. You are advised to use [cooperate.getCooperateSwitchState](#cooperategetcooperateswitchstate11-1).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -920,7 +920,7 @@ Enables listening for screen hopping status change events.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [on('cooperateMessage')](#oncooperatemessage11) instead.
+> This API is deprecated since API version 10. You are advised to use [on('cooperateMessage')](#oncooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -929,7 +929,7 @@ Enables listening for screen hopping status change events.
 | Name               | Type                                                            | Mandatory| Description                           |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
 | type                 | string                                                          |  Yes | Event type. The value is **cooperate**.|
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](##cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
 
 
 
@@ -957,7 +957,7 @@ Disables listening for screen hopping status change events.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [off('cooperateMessage')](#offcooperatemessage11) instead.
+> This API is deprecated since API version 10. You are advised to use [off('cooperateMessage')](#offcooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -1011,7 +1011,7 @@ Represents a screen hopping message notification.
 
 > **NOTE**
 >
-> This API is deprecated since API version 10. Use [CooperateMessage](#cooperatemessage11) instead.
+> This API is deprecated since API version 10. You are advised to use [CooperateMessage](#cooperatemessage11).
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Cooperate
 

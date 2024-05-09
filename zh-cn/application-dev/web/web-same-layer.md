@@ -1,6 +1,6 @@
-# 同层渲染绘制Video和Button组件
+# 同层渲染绘制XComponent+AVPlayer和Button组件
 
-Web组件支持同层渲染绘制Video和Button组件。
+同层渲染支持组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明
 
 开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。
 
@@ -23,12 +23,14 @@ Web组件支持同层渲染绘制Video和Button组件。
   import {NodeController, BuilderNode, NodeRenderType, FrameNode} from "@ohos.arkui.node";
   import {AVPlayerDemo} from './PlayerDemo';
 
+  @Observed
   declare class Params {
     textOne : string
     textTwo : string
     width : number
     height : number
   }
+
   declare class nodeControllerParams {
     surfaceId : string
     type : string
@@ -37,6 +39,7 @@ Web组件支持同层渲染绘制Video和Button组件。
     width : number
     height : number
   }
+
   // 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用。
   class MyNodeController extends NodeController {
     private rootNode: BuilderNode<[Params]> | undefined | null;
@@ -46,6 +49,7 @@ Web组件支持同层渲染绘制Video和Button组件。
     private width_ : number = 0;
     private height_ : number = 0;
     private type_ : string = "";
+    private isDestroy_ : boolean = false;
 
     setRenderOption(params : nodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
@@ -58,13 +62,18 @@ Web组件支持同层渲染绘制Video和Button组件。
     // 必须要重写的方法，用于构建节点数、返回节点数挂载在对应NodeContainer中。
     // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新。
     makeNode(uiContext: UIContext): FrameNode | null{
-      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
-      if (this.type_ === 'native/button') {
-        this.rootNode.build(wrapBuilder(ButtonBuilder), {textOne: "myButton1", textTwo : "myButton2", width : this.width_, height : this.height_});
-      } else if (this.type_ === 'native/video') {
-        this.rootNode.build(wrapBuilder(VideoBuilder), {textOne: "myButton", width : this.width_, height : this.height_});
-      } else {
-        // other
+      if (this.isDestroy_) { // rootNode为null
+        return null;
+      }
+      if (!this.rootNode) { // rootNode 为undefined时
+        this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_});
+        if (this.type_ === 'native/button') {
+          this.rootNode.build(wrapBuilder(ButtonBuilder), {textOne: "myButton1", textTwo : "myButton2", width : this.width_, height : this.height_});
+        } else if (this.type_ === 'native/video') {
+          this.rootNode.build(wrapBuilder(VideoBuilder), {textOne: "myButton", width : this.width_, height : this.height_});
+        } else {
+          // other
+        }
       }
       // 返回FrameNode节点。
       return this.rootNode.getFrameNode();
@@ -85,6 +94,13 @@ Web组件支持同层渲染绘制Video和Button组件。
       return this.embedId_;
     }
 
+    setDestroy(isDestroy : boolean) : void {
+      this.isDestroy_ = isDestroy;
+      if (this.isDestroy_) {
+        this.rootNode = null;
+      }
+    }
+
     postEvent(event: TouchEvent | undefined) : boolean {
       return this.rootNode?.postTouchEvent(event) as boolean
     }
@@ -92,20 +108,16 @@ Web组件支持同层渲染绘制Video和Button组件。
 
   @Component
   struct ButtonComponent {
-    @Prop params: Params
+    @ObjectLink params: Params
     @State bkColor: Color = Color.Red
 
     build() {
       Column() {
         Button(this.params.textOne)
-          .height(50)
-          .width(200)
           .border({ width: 2, color: Color.Red})
           .backgroundColor(this.bkColor)
 
         Button(this.params.textTwo)
-          .height(50)
-          .width(200)
           .border({ width: 2, color: Color.Red})
           .backgroundColor(this.bkColor)
       }
@@ -116,9 +128,8 @@ Web组件支持同层渲染绘制Video和Button组件。
 
   @Component
   struct VideoComponent {
-    @Prop params: Params
+    @ObjectLink params: Params
     @State bkColor: Color = Color.Red
-    testController: WebviewController = new webview.WebviewController();
     mXComponentController: XComponentController = new XComponentController();
     @State player_changed: boolean = false;
     player?: AVPlayerDemo;
@@ -126,14 +137,10 @@ Web组件支持同层渲染绘制Video和Button组件。
     build() {
       Column() {
         Button(this.params.textOne)
-          .height(50)
-          .width(100)
           .border({ width: 2, color: Color.Red})
           .backgroundColor(this.bkColor)
 
         XComponent({ id: 'video_player_id', type: XComponentType.SURFACE, controller: this.mXComponentController})
-          .width(300)
-          .height(300)
           .border({width: 1, color: Color.Red})
           .onLoad(() => {
             this.player = new AVPlayerDemo();
@@ -173,7 +180,7 @@ Web组件支持同层渲染绘制Video和Button组件。
 
     build(){
       Row() {
-        Column({ space: 5}) {
+        Column() {
           Stack() {
             ForEach(this.componentIdArr, (componentId: string) => {
               NodeContainer(this.nodeControllerMap.get(componentId))
@@ -191,20 +198,22 @@ Web组件支持同层渲染绘制Video和Button组件。
                   console.log("NativeEmbed create" + JSON.stringify(embed.info))
                   // 创建节点控制器，设置参数并rebuild。
                   let nodeController = new MyNodeController()
-                  nodeController.setRenderOption({surfaceId : embed.surfaceId as string, type : embed.info?.type as string, renderType : NodeRenderType.RENDER_TYPE_TEXTURE, embedId : embed.embedId as string, width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
-                  nodeController.rebuild()
+                  nodeController.setRenderOption({surfaceId : embed.surfaceId as string, type : embed.info?.type as string,
+                    renderType : NodeRenderType.RENDER_TYPE_TEXTURE, embedId : embed.embedId as string,
+                    width : px2vp(embed.info?.width), height : px2vp(embed.info?.height)})
+                  nodeController.setDestroy(false);
                   // 根据web传入的embed的id属性作为key，将nodeController存入map。
                   this.nodeControllerMap.set(componentId, nodeController)
                   // 将web传入的embed的id属性存入@State状态数组变量中，用于动态创建nodeContainer节点容器，需要将push动作放在set之后。
                   this.componentIdArr.push(componentId)
                 } else if (embed.status == NativeEmbedStatus.UPDATE) {
                   let nodeController = this.nodeControllerMap.get(componentId)
-                  nodeController?.updateNode({text: 'update', width: px2vp(embed.info?.width), height: px2vp(embed.info?.height)} as ESObject)
-                  nodeController?.rebuild()
+                  nodeController?.updateNode({textOne: 'update', width: px2vp(embed.info?.width), height: px2vp(embed.info?.height)} as ESObject)
                 } else {
-                  let nodeController = this.nodeControllerMap.get(componentId)
-                  nodeController?.setBuilderNode(null)
-                  nodeController?.rebuild()
+                  let nodeController = this.nodeControllerMap.get(componentId);
+                  nodeController?.setDestroy(true)
+                  this.nodeControllerMap.clear();
+                  this.componentIdArr.length = 0;
                 }
               })// 获取同层渲染组件触摸事件信息。
               .onNativeEmbedGestureEvent((touch) => {
@@ -227,7 +236,7 @@ Web组件支持同层渲染绘制Video和Button组件。
     }
   }
   ```
-- 应用侧代码，视频播放示例。
+- 应用侧代码，视频播放示例, ./PlayerDemo.ets。
 
   ```ts
   import media from '@ohos.multimedia.media';
@@ -338,24 +347,6 @@ Web组件支持同层渲染绘制Video和Button组件。
   <div id="button" width="500" height="200">
       <p>bottom</p>
   </div>
-  <script>
-  let nativeEmbed = {
-      // 判断设备是否支持touch事件。
-      nativeButton : document.getElementById('nativeButton'),
-      nativeVideo : document.getElementById('nativeVideo'),
-
-      // 事件。
-      events:{},
-      // 初始化。
-      init:function(){
-          let self = this;
-          self.nativeButton.addEventListener('touchstart', self.events, false);
-          self.nativeVideo.addEventListener('touchstart', self.events, false);
-      }
-  };
-  nativeEmbed.init();
-  </script>
-
   </body>
   </html>
   ```

@@ -46,7 +46,7 @@ height(value: Length)
 >
 >  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。
 
-## Size
+## size
 
 size(value: SizeOptions)
 

@@ -20,7 +20,7 @@ import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
 
 AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener): void
 
-展示非全屏广告。
+自动播放广告组件。
 
 **系统能力：** SystemCapability.Advertising.Ads
 

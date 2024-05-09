@@ -71,9 +71,9 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | MPEG4<sup>11+</sup>                        | 'general.mpeg-4'                  | MPGE-4.<br>This type belongs to **VIDEO**.           |
 | VIDEO_3GPP<sup>11+</sup>                        | 'general.3gpp'                  | 3GP (3GPP file format).<br>This type belongs to **VIDEO**.             |
 | VIDEO_3GPP2<sup>11+</sup>                        | 'general.3gpp2'                  | 3G2 (3GPP2 file format).<br>This type belongs to **VIDEO**.            |
-| WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | Windows WM.<br>This type belongs to **VIDEO**.       |
-| WINDOWS_MEDIA_WMV<sup>11+</sup>             | 'com.microsoft.windows-media-wmv'               | Windows WMV.<br>This type belongs to **VIDEO**.      |
-| WINDOWS_MEDIA_WMP<sup>11+</sup>         | 'com.microsoft.windows-media-wmp'           | Windows WMP.<br>This type belongs to **VIDEO**.      |
+| WINDOWS_MEDIA_WM<sup>11+</sup>                       | 'com.microsoft.windows-media-wm'                 | Windows WM format.<br>This type belongs to **VIDEO**.       |
+| WINDOWS_MEDIA_WMV<sup>11+</sup>             | 'com.microsoft.windows-media-wmv'               | Windows WMV format.<br>This type belongs to **VIDEO**.      |
+| WINDOWS_MEDIA_WMP<sup>11+</sup>         | 'com.microsoft.windows-media-wmp'           | Windows WMP format.<br>This type belongs to **VIDEO**.      |
 | AUDIO       | 'general.audio'          | Base audio type.<br>This type belongs to **MEDIA**.             |
 | AAC<sup>11+</sup>                         | 'general.aac'                   | AAC.<br>This type belongs to **AUDIO**.              |
 | AIFF<sup>11+</sup>                        | 'general.aiff'                  | AIFF.<br>This type belongs to **AUDIO**.             |
@@ -107,12 +107,12 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | VCARD<sup>11+</sup>             | 'general.vcard'               | Base electronic business card type.<br>This type belongs to **OBJECT**.                    |
 | NAVIGATION<sup>11+</sup>         | 'general.navigation'           | Base navigation data type.<br>This type belongs to **OBJECT**.                      |
 | LOCATION<sup>11+</sup>        | 'general.location'          | Location data.<br>This type belongs to **NAVIGATION**.           |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | Widget defined by OpenHarmony.<br>This type belongs to **OBJECT**.             |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | Home screen icon defined by OpenHarmony.<br>This type belongs to **OBJECT**.           |
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | Widget defined for OpenHarmony.<br>This type belongs to **OBJECT**.             |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | Home screen icon defined for OpenHarmony.<br>This type belongs to **OBJECT**.           |
 | OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | Pixel map defined by OpenHarmony.<br>This type belongs to **IMAGE**.            |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | Atomic service defined by OpenHarmony.<br>This type belongs to **OBJECT**.            |
-| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | Package defined by OpenHarmony (compressed directory).<br>This type belongs to **DIRECTORY**.            |
-| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | Ability package defined by OpenHarmony.<br>This type belongs to **OPENHARMONY_PACKAGE**.            |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | Atomic service defined for OpenHarmony.<br>This type belongs to **OBJECT**.            |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | Package defined for OpenHarmony (compressed folder).<br>This type belongs to **DIRECTORY**.            |
+| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | Ability package defined for OpenHarmony.<br>This type belongs to **OPENHARMONY_PACKAGE**.            |
 
 ## TypeDescriptor<sup>11+</sup> 
 
@@ -140,7 +140,7 @@ Checks whether this data type belongs to the specified uniform data type.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
@@ -178,7 +178,7 @@ Checks whether this data type is a lower-level type of the specified uniform dat
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
@@ -216,7 +216,7 @@ Checks whether this data type is a higher-level type of the specified uniform da
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| type    | string  | Yes   |Uniform data type, which is a value of [UniformDataType](#uniformdatatype).  |
+| type    | string  | Yes   |Uniform data type to specify, which is a value of [UniformDataType](#uniformdatatype).  |
 
 **Return value**
 
@@ -343,7 +343,7 @@ Obtains the uniform data type ID based on the given file name extension and data
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| string | Returns the uniform data type ID obtained. If the uniform data type does not exist, **null** is returned.|
+| string | Returns the uniform data type ID obtained, or **null** if no match is found.|
 
 **Example**
 
@@ -381,7 +381,7 @@ Obtains the uniform data type ID based on the given MIME type and data type.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| string | Returns the uniform data type ID obtained. If the uniform data type does not exist, **null** is returned.|
+| string | Returns the uniform data type ID obtained, or **null** if no match is found.|
 
 **Example**
 

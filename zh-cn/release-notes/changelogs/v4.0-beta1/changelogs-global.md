@@ -99,6 +99,8 @@ try {
 **适配指导**
 请参考接口说明：
 
-[新增接口参考](../../../application-dev/reference/apis/js-apis-resource-manager.md)
+[新增接口参考](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/zh-cn/application-dev/reference/apis/js-apis-resource-manager.md)
 
 [新增错误码参考](../../../application-dev/reference/errorcodes/errorcode-resource-manager.md)
+
+<!--no_check-->

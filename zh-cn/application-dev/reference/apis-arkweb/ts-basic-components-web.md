@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
@@ -110,7 +110,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
    ```ts
-   // GlobalContext.ts
+   // GlobalContext.ets
    export class GlobalContext {
      private constructor() {}
      private static instance: GlobalContext;
@@ -158,7 +158,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
    以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
 
    ```ts
-   // xxx.ts
+   // xxx.ets
    import UIAbility from '@ohos.app.ability.UIAbility';
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
    import Want from '@ohos.app.ability.Want';
@@ -2823,12 +2823,20 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
             }
             let length = this.heads.push(head1)
             length = this.heads.push(head2)
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
+            const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
+              this.responseweb.setResponseHeader(this.heads)
+              this.responseweb.setResponseData(this.webdata)
+              this.responseweb.setResponseEncoding('utf-8')
+              this.responseweb.setResponseMimeType('text/html')
+              this.responseweb.setResponseCode(200)
+              this.responseweb.setReasonMessage('OK')
+              resolve("success");
+            })
+            promise.then(() => {
+              console.log("prepare response ready")
+              this.responseweb.setResponseIsReady(true)
+            })
+            this.responseweb.setResponseIsReady(false)
             return this.responseweb
           })
       }
@@ -3021,7 +3029,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   1. 构造单例对象GlobalContext。
 
      ```ts
-     // GlobalContext.ts
+     // GlobalContext.ets
      export class GlobalContext {
        private constructor() {}
        private static instance: GlobalContext;
@@ -4207,14 +4215,14 @@ onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => 
 
 onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
-通知网页过滚动偏移量。
+该接口在网页过度滚动时触发，用于通知网页过度滚动的偏移量。
 
 **参数：**
 
 | 参数名     | 参数类型   | 参数描述                |
 | ------- | ------ | ------------------- |
-| xOffset | number | 以网页最左端为基准，水平过滚动偏移量。 |
-| yOffset | number | 以网页最上端为基准，竖直过滚动偏移量。 |
+| xOffset | number | 以网页最左端为基准，水平过度滚动的偏移量。 |
+| yOffset | number | 以网页最上端为基准，竖直过度滚动的偏移量。 |
 
 **示例：**
 
@@ -5119,7 +5127,7 @@ getOrigin(): string
 
 grant(config: ScreenCaptureConfig): void
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN
+**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN（仅系统应用可申请此权限）
 
 对网页访问的屏幕捕获操作进行授权。
 
@@ -5459,8 +5467,8 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | 名称                          | 值 | 描述            | 备注                         |
 | --------------------------- | --------------- | ------------- | -------------------------- |
 | MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | undefined | 视频捕获资源，例如相机。  |                            |
-| AUDIO_CAPTURE<sup>10+</sup> | undefined | 音频捕获资源，例如麦克风。 |                            |
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | 视频捕获资源，例如相机。  |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | 音频捕获资源，例如麦克风。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 
@@ -6399,27 +6407,27 @@ type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| id     | string             | 是    | Embed标签的id信息。 |
-| type  | string                              | 是    | Embed标签的type信息。  |
-| src | string                              | 是    | Embed标签的src信息。  |
-| width  | number  | 是    | Embed标签的宽。       |
-| height | number                              | 是    | Embed标签的高。  |
-| url | string                              | 是    | Embed标签的url信息。  |
+| id     | string             | 否    | Embed标签的id信息。 |
+| type  | string                              | 否    | Embed标签的type信息。  |
+| src | string                              | 否    | Embed标签的src信息。  |
+| width  | number  | 否    | Embed标签的宽。       |
+| height | number                              | 否    | Embed标签的高。  |
+| url | string                              | 否    | Embed标签的url信息。  |
 ## NativeEmbedDataInfo<sup>11+</sup>
 
 提供Embed标签生命周期变化的详细信息。
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 是    | Embed标签生命周期状态。 |
-| surfaceId  | string                              | 是    | NativeImage的psurfaceid。  |
-| embedId | string                              | 是    | Embed标签的唯一id。  |
-| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 是    | Embed标签的详细信息。       |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 否    | Embed标签生命周期状态。 |
+| surfaceId  | string                              | 否    | NativeImage的psurfaceid。  |
+| embedId | string                              | 否    | Embed标签的唯一id。  |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 否    | Embed标签的详细信息。       |
 ## NativeEmbedTouchInfo<sup>11+</sup>
 
 提供手指触摸到Embed标签的详细信息。
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| embedId     | string   | 是    | Embed标签的唯一id。 |
-| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。  |
+| embedId     | string   | 否    | Embed标签的唯一id。 |
+| touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否    | 手指触摸动作信息。  |

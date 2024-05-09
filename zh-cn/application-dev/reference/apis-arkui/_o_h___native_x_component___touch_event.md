@@ -30,6 +30,6 @@
 | [size](_o_h___native_x_component.md#size-22) = 0.0 | 指垫和屏幕之间的接触面积。 | 
 | [force](_o_h___native_x_component.md#force-22) = 0.0 | 当前触摸事件的压力。 | 
 | [deviceId](_o_h___native_x_component.md#deviceid) = 0 | 产生当前触摸事件的设备的ID。 | 
-| [timeStamp](_o_h___native_x_component.md#timestamp-22) = 0 | 当前触摸事件的时间戳。 | 
+| [timeStamp](_o_h___native_x_component.md#timestamp-22) = 0 | 当前触摸事件的时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 | 
 | [touchPoints](_o_h___native_x_component.md#touchpoints) [OH_MAX_TOUCH_POINTS_NUMBER] | 当前触摸点的数组。 | 
 | [numPoints](_o_h___native_x_component.md#numpoints) = 0 | 当前接触点的数量。 | 

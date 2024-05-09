@@ -33,6 +33,8 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -142,6 +144,8 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
 当意图调用是将UIAbility在后台拉起时，触发该回调。支持同步返回和使用Promise异步返回。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

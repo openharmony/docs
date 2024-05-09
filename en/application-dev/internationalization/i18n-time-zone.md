@@ -20,8 +20,8 @@ The local time of different countries and regions varies according to their long
    let timezoneId = timezone.getID();// America/Sao_Paulo
    
    // Obtain the TimeZone object corresponding to the city ID.
-   let timezone = I18n.TimeZone.getTimezoneFromCity("Auckland");
-   timezone.getID(); // Pacific/Auckland
+   let aucklandTimezone = I18n.TimeZone.getTimezoneFromCity("Auckland");
+   let aucklandTzId = aucklandTimezone.getID(); // Pacific/Auckland
    
    // Localized time zone name
    let timeZoneName = timezone.getDisplayName("zh-Hans", true); // Brasilia Standard Time
@@ -65,7 +65,7 @@ The local time of different countries and regions varies according to their long
    // TimeZone object array corresponding to the specified geographical coordinates
    let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-43.1, -22.5)
    for (let i =0;i < timezoneArray.length; i++) {
-       timezoneArray.getID(); // America/Sao_Paulo
+       let tzId = timezoneArray[i].getID(); // America/Sao_Paulo
    }
    ```
 

@@ -109,11 +109,11 @@ try {
 
 rebootDevice(reason: string): void
 
-> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。建议使用power.reboot (#powerreboot9)替代，替代接口能力仅对系统应用开放。
+> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。建议使用power.reboot (js-apis-power-sys.md#powerreboot9)替代，替代接口能力仅对系统应用开放。
 
 重启设备。
 
-**需要权限：** ohos.permission.REBOOT 仅对系统应用开放
+**需要权限：** ohos.permission.REBOOT，仅对系统应用开放。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 

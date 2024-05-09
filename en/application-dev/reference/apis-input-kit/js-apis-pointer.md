@@ -112,7 +112,7 @@ Checks the visible status of the mouse pointer. This API uses an asynchronous ca
 
 | Name      | Type                          | Mandatory  | Description            |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** indicates that the mouse pointer is displayed, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -529,7 +529,7 @@ import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer = svgFileData.buffer;
+const svgBuffer: image.Buffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
 svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
@@ -570,7 +570,7 @@ import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer = svgFileData.buffer;
+const svgBuffer: image.Buffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
 svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {

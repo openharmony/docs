@@ -98,7 +98,7 @@
    const documentSelectOptions = new picker.DocumentSelectOptions(); 
    documentSelectOptions.maxSelectNumber = 5; // 选择文档的最大数目（可选）
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test"; // 指定选择的文件或者目录路径（可选）
-   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4']; // 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选）
+   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4']; // 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选），后缀类型名不能超过100
    ```
 
 3. 创建文件选择器实例。调用[select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3)接口拉起FilePicker应用界面进行文件选择。文件选择成功后，返回被选中文档的uri结果集。
@@ -168,7 +168,7 @@
 
    select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
-   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
+   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（fd），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
    ```ts
    import picker from '@ohos.file.picker';
@@ -208,4 +208,4 @@
 
 针对用户文件的选择，有以下相关实例可供参考：
 
-- [选择并查看文档与媒体文件（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/Picker) 
+- [选择并查看文档与媒体文件（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/FileManagement/FileShare/Picker) 

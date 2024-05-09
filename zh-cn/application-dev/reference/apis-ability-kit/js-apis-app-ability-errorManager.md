@@ -17,6 +17,8 @@ on(type: 'error', observer: ErrorObserver): number
 
 注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -72,7 +74,9 @@ try {
 
 off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
-注销错误观测器。
+注销错误观测器。使用callback异步返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -118,7 +122,9 @@ try {
 
 off(type: 'error', observerId: number): Promise\<void>
 
-注销错误观测器。
+注销错误观测器。使用Promise异步返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,7 +139,7 @@ off(type: 'error', observerId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 

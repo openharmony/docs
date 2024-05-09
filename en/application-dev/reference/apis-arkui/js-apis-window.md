@@ -2,9 +2,9 @@
 
 The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
-This module provides the following common window-related functions:
+This module provides the following common window-related functionalities:
 
-- [Window](#window): the current window instance, which is the basic unit managed by the window manager.
+- [Window](#window): window instance, which is the basic unit managed by the window manager.
 - [WindowStage](#windowstage9): window manager that manages windows.
 
 > **NOTE**
@@ -41,7 +41,7 @@ Defines the parameters for creating a subwindow or system window.
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | Yes| Name of the window.                                                                      |
 | windowType | [WindowType](#windowtype7) | Yes| Type of the window.                                                                      |
-| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>You do not need to set this parameter to create a subwindow in the FA model or a system window in the stage model.|
+| ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>In the FA model, do not pass in this parameter when creating a subwindow. Otherwise, an error is reported.<br>In the stage model, you must pass in this parameter when creating a floating window, modal window, or system window.|
 | displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
 | parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
 
@@ -58,7 +58,6 @@ Enumerates the types of the area where the window cannot be displayed.
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | Gesture area.                                              |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | Soft keyboard area.                                            |
 | TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | Navigation bar area.                                     |
-
 
 ## SystemBarProperties
 
@@ -96,7 +95,6 @@ Enumerates the window orientations.
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | Switched-determined auto rotation in the horizontal direction.|
 | LOCKED                                | 11   | Locked.|
 
-
 ## Rect<sup>7+</sup>
 
 Describes the rectangular area of the window.
@@ -112,7 +110,15 @@ Describes the rectangular area of the window.
 
 ## AvoidArea<sup>7+</sup>
 
-Describes the area where the window cannot be displayed.
+Describes the area where the window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. Touch events will not be responded in this area. 
+
+Pay attention to the following restrictions on this area:
+
+- The non-navigation bar area in the gesture area at the bottom supports transparent transmission of touch events, touch and hold events, but not drag events. 
+
+- The gesture area on the left and right sides supports transparent transmission of touch events, touch and hold events, and swipe up and down events, but not drag events. 
+
+- The navigation bar area supports responding to touch events, touch and hold events, and drag events. However, it does not support transparent transmission of events. 
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -209,7 +215,7 @@ Enumerates the window modes.
 | FLOATING    | 4    | The application is displayed in a floating window.  |
 | SPLIT_SCREEN  | 5    | The application is displayed in split-screen mode.  |
 
-##  TitleButtonRect<sup>11+</sup>
+## TitleButtonRect<sup>11+</sup>
 
 Defines the rectangle used to hold the minimize, maximize, and close buttons on the title bar. This rectangle is located in the upper right corner of the window.
 
@@ -828,10 +834,10 @@ import { BusinessError } from '@ohos.base';
 let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+  windowClass = data;
+  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError)=>{
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -938,7 +944,7 @@ Enumerates the types of system bars that can be displayed or hidden.
 
 ## Window
 
-Represents the current window instance, which is the basic unit managed by the window manager.
+Represents a window instance, which is the basic unit managed by the window manager.
 
 In the following API examples, you must use [getLastWindow()](#windowgetlastwindow9), [createWindow()](#windowcreatewindow9), or [findWindow()](#windowfindwindow9) to obtain a **Window** instance (named windowClass in this example) and then call a method in this instance.
 
@@ -2013,7 +2019,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
-Loads the content of a page, with its path in the current project specified, to this window, and transfers the status attribute to the page through a local storage. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to this window, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -2520,7 +2526,7 @@ try {
 
 on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
-Subscribes to the click event outside this window.
+Subscribes to the touch event outside this window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2528,8 +2534,8 @@ Subscribes to the click event outside this window.
 
 | Name  | Type               | Mandatory| Description                                                        |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
-| callback | Callback&lt;void&gt; | Yes  | Callback used to return the click event outside this window.                              |
+| type     | string              | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the touch event outside this window.|
+| callback | Callback&lt;void&gt; | Yes  | Callback used to return the touch event outside this window.                              |
 
 **Example**
 
@@ -2547,7 +2553,7 @@ try {
 
 off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
-Unsubscribes from the click event outside this window.
+Unsubscribes from the touch event outside this window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2555,8 +2561,8 @@ Unsubscribes from the click event outside this window.
 
 | Name  | Type                  | Mandatory| Description                                  |
 | -------- |----------------------| ---- |--------------------------------------|
-| type     | string               | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the click event outside this window.|
-| callback | Callback&lt;void&gt; | No  | Callback used to return the click event outside this window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.           |
+| type     | string               | Yes  | Event type. The value is fixed at **'touchOutside'**, indicating the touch event outside this window.|
+| callback | Callback&lt;void&gt; | No  | Callback used to return the touch event outside this window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.           |
 
 **Example**
 
@@ -2634,7 +2640,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-Subscribes to the click event of the target window in the modal window mode.
+Subscribes to the touch event of the target window in the modal window mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2642,8 +2648,8 @@ Subscribes to the click event of the target window in the modal window mode.
 
 | Name  | Type                | Mandatory| Description                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click event of the target window in the modal window mode.|
-| callback | Callback&lt;void&gt;| Yes  | Callback invoked when the click event occurs in the target window of the modal window mode.|
+| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the touch event of the target window in the modal window mode.|
+| callback | Callback&lt;void&gt;| Yes  | Callback invoked when the touch event occurs in the target window of the modal window mode.|
 
 **Example**
 
@@ -2661,7 +2667,7 @@ try {
 
 off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
-Unsubscribes from the click event of the target window in the modal window mode.
+Unsubscribes from the touch event of the target window in the modal window mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2669,8 +2675,8 @@ Unsubscribes from the click event of the target window in the modal window mode.
 
 | Name  | Type                   | Mandatory| Description                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click event of the target window in the modal window mode.|
-| callback | Callback&lt;void&gt;      | No  | Callback invoked when the click event occurs in the target window of the modal window mode. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| type     | string                 | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the touch event of the target window in the modal window mode.|
+| callback | Callback&lt;void&gt;      | No  | Callback invoked when the touch event occurs in the target window of the modal window mode. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Example**
 
@@ -2824,7 +2830,7 @@ Subscribes to the window status change event.
 ```ts
 try {
   windowClass.on('windowStatusChange', (WindowStatusType) => {
-      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
+    console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
   });
 } catch (exception) {
   console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
@@ -2884,7 +2890,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 try {
   windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
-      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+    console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
   });
 } catch (exception) {
   console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
@@ -3139,19 +3145,19 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 import { BusinessError } from '@ohos.base';
 
 private SetUIContent(windowClass: window.Window) {
-    windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
-      if (err.code) {
-        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in loading the content.');
-      let color: string = '#00ff33';
-      try {
-        windowClass.setWindowBackgroundColor(color);
-      } catch (exception) {
-        console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
-      };
-    });
+  windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
+    if (err.code) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+    let color: string = '#00ff33';
+    try {
+      windowClass.setWindowBackgroundColor(color);
+    } catch (exception) {
+      console.error('Failed to set the background color. Cause: ' + JSON.stringify(exception));
+    };
+  });
 }
 ```
 
@@ -3159,7 +3165,7 @@ private SetUIContent(windowClass: window.Window) {
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the screen brightness for this window. This API uses an asynchronous callback to return the result.
+Called by the application window to set the screen brightness. This API uses an asynchronous callback to return the result.
 
 When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
@@ -3205,7 +3211,7 @@ try {
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
-Sets the screen brightness for this window. This API uses a promise to return the result.
+Called by the application window to set the screen brightness. This API uses a promise to return the result.
 
 When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
@@ -3999,7 +4005,6 @@ promise.then(() => {
 });
 ```
 
-
 ### getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
@@ -4032,7 +4037,7 @@ try {
 }
 ```
 
-###  setWindowLimits<sup>11+</sup>
+### setWindowLimits<sup>11+</sup>
 
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
@@ -4117,7 +4122,7 @@ try {
 }
 ```
 
-###  setWindowDecorVisible<sup>11+</sup>
+### setWindowDecorVisible<sup>11+</sup>
 
 setWindowDecorVisible(isVisible: boolean): void
 
@@ -4169,9 +4174,9 @@ export default class EntryAbility extends UIAbility {
         let isVisible = false;
         // Call setWindowDecorVisible.
         try {
-            mainWindow.setWindowDecorVisible(isVisible);
+          mainWindow.setWindowDecorVisible(isVisible);
         } catch (exception) {
-            console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
+          console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
         }
       })
     });
@@ -4179,7 +4184,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-###  setWindowDecorHeight<sup>11+</sup>
+### setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
 
@@ -4212,7 +4217,7 @@ try {
 }
 ```
 
-###  getWindowDecorHeight<sup>11+</sup>
+### getWindowDecorHeight<sup>11+</sup>
 
 getWindowDecorHeight(): number
 
@@ -4244,7 +4249,7 @@ try {
 }
 ```
 
-###  getTitleButtonRect<sup>11+</sup>
+### getTitleButtonRect<sup>11+</sup>
 
 getTitleButtonRect(): TitleButtonRect
 
@@ -6047,8 +6052,7 @@ Defines the parameters used for creating a subwindow.
 | Name     | Type | Readable| Writable| Description        |
 | ---------- | ---- | ---- | ---- | ----------- |
 | title    | string | No| Yes| Title of the subwindow.      |
-| decorEnabled | boolean | No| Yes| Whether to display decorations in the subwindow. The value **true** means to display decorations, and **false** means the opposite.      |
-
+| decorEnabled | boolean | No| Yes| Whether decorations are displayed in the subwindow. The value **true** means decorations are displayed, and **false** means the opposite.      |
 
 ## WindowStage<sup>9+</sup>
 
@@ -6384,6 +6388,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
@@ -6433,6 +6438,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### getSubWindow<sup>9+</sup>
 
 getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
@@ -6480,11 +6486,12 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### loadContent<sup>9+</sup>
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the status attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -6542,7 +6549,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the status attribute to the page through a local storage. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 

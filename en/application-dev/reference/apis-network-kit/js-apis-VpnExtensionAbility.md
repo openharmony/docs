@@ -68,4 +68,3 @@ class MyVpnExtAbility extends VpnExtensionAbility {
     }
 }
   ```
-<!--no_check-->

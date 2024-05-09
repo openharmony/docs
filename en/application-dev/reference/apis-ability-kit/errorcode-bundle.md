@@ -448,7 +448,7 @@ The specified ability is disabled.
 
 **Solution**
 
-Check whether the ability is disabled. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the information.
+Check whether the ability is disabled. You can use [Bundle Manager](../../tools/bm-tool.md) to query the information.
 
 ## 17700030 Failure in Clearing Cache Files
 
@@ -465,8 +465,8 @@ When the **cleanBundleCacheFiles** API of the **bundleManager** module is called
 The application is a system application and the **AllowAppDataNotCleared** field is configured in the signing certificate.
 
 **Solution**
-1. Check whether the application is a system application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **isSystemApp** is **true**.
-2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **userDataClearable** is **true**.
+1. Check whether the application is a system application. You can use [Bundle Manager](../../tools/bm-tool.md) to query the application information and check whether the value of **isSystemApp** is **true**.
+2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can use [Bundle Manager](../../tools/bm-tool.md) to query the application information and check whether the value of **userDataClearable** is **true**.
 
 ## 17700031 HAP Installation Fails Due to Overlay Feature Verification Failure
 
@@ -627,7 +627,7 @@ Failed to install because disallow install a shared bundle by hapFilePaths.
 During application installation, the installation package passed in is of the inter-application shared library type.
 
 **Possible Causes**
-1. When the Bundle Manager tool is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
+1. When [Bundle Manager](../../tools/bm-tool.md) is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
 2. When the **install** API is called to install an application, the **hapFilePaths** parameter is set to the installation package path of an inter-application shared library.
 
 **Solution**
@@ -645,7 +645,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 During application uninstall, the bundle name of an inter-application shared library is passed in.
 
 **Possible Causes**
-1. When the Bundle Manager tool is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
+1. When [Bundle Manager](../../tools/bm-tool.md) is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
 2. When the **install** API is called to uninstall an application, the **bundleName** parameter is set to the bundle name of an inter-application shared library.
 
 **Solution**
@@ -897,7 +897,7 @@ The application has applied for an incorrect permission, causing the installatio
 **Solution**
 
 1. Check whether the application has applied for the [MDM permission](../../security/AccessToken/permissions-for-mdm-apps.md), which is available only for MDM applications.
-2. Check whether the [permission level](../../security/AccessToken/permissions-for-all.md) is higher than the [application's APL](../../security/app-provision-structure.md#internal-structure-of-the-bundle-info-object). If the application uses the default APL, which is normal, it can require the system_basic or system_core permission only. Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
+2. Check whether the [permission level](../../security/AccessToken/permissions-for-all.md) is higher than the [application's APL](../../security/app-provision-structure.md#bundle-info). If the application uses the default APL, which is normal, it can require the system_basic or system_core permission only. Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
 
 ## 17700201 .abc File Verification Failure
 

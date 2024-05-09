@@ -82,6 +82,7 @@
         - [@ohos.usb (USB)](js-apis-usb-deprecated.md)
         - [@system.brightness (Screen Brightness)](js-apis-system-brightness.md)
         - [@system.battery (Battery Information)](js-apis-system-battery.md)
+        - [@system.device (Device Information)](js-apis-system-device.md)
         - [@system.request (Upload and Download)](js-apis-system-request.md)
         - [@ohos.commonEvent (Common Event) (System API)](js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB) (System API)](js-apis-usb-deprecated-sys.md)

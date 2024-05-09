@@ -78,6 +78,5 @@ async function aesCBC() {
   } else {
     console.error('decrypt failed');
   }
-  console.info('main step success');
 }
 ```

@@ -12,7 +12,7 @@
 
 ### 使用场景
 
-下表给出了当前长时任务支持的类型，包含数据传输、音频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
+下表给出了当前长时任务支持的类型，包含数据传输、音视频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN相关、音视频通话和计算任务。可以参考下表中的场景举例，选择合适的长时任务类型。
 
 **表1** 长时任务类型
 | 参数名 | 描述 | 配置项 | 场景举例 |
@@ -39,8 +39,8 @@
 - **数量限制**：一个UIAbility（FA模型则为ServiceAbility）同一时刻仅支持申请一个长时任务，即在一个长时任务结束后才可能继续申请。如果一个应用同时需要申请多个长时任务，需要创建多个UIAbility；一个应用的一个UIAbility申请长时任务后，整个应用下的所有进程均不会被挂起。
 
 - **运行限制**：在手机产品上，系统会进行长时任务校验。\
-场景1：若应用申请了长时任务，但未真正执行申请类型的长时任务或申请类型的任务已结束，系统会对应用进行管控。例如系统检测到应用申请了AUDIO_PLAYBACK（音频播放），但实际未播放音乐，系统则会终止对应的进程。\
-场景2：若应用没有申请对应的长时任务类型，但执行了相关类型的长时任务，系统会对应用进行管控。例如系统检测到应用只申请了AUDIO_PLAYBACK（音频播放），但实际上除了播放音乐（对应AUDIO_PLAYBACK类型），还在进行录音（对应AUDIO_RECORDING类型），系统会对应用进行管控。\
+场景1：若应用申请了长时任务，但未真正执行申请类型的长时任务或申请类型的任务已结束，系统会对应用进行管控。例如系统检测到应用申请了AUDIO_PLAYBACK（音视频播放），但实际未播放音乐，系统则会终止对应的进程。\
+场景2：若应用没有申请对应的长时任务类型，但执行了相关类型的长时任务，系统会对应用进行管控。例如系统检测到应用只申请了AUDIO_PLAYBACK（音视频播放），但实际上除了播放音乐（对应AUDIO_PLAYBACK类型），还在进行录音（对应AUDIO_RECORDING类型），系统会对应用进行管控。\
 场景3：若运行长时任务的进程后台负载持续高于所申请类型的典型负载，系统会对应用进行管控。
 
 > **说明：**
@@ -127,7 +127,7 @@
             }
           ],
           // 指定点击通知栏消息后的动作是拉起ability
-          operationType: wantAgent.OperationType.START_ABILITY,
+          actionType: wantAgent.OperationType.START_ABILITY,
           // 使用者自定义的一个私有值
           requestCode: 0,
           // 点击通知后，动作执行属性
@@ -214,7 +214,7 @@
           }
         ],
         // 点击通知后，动作类型
-        operationType: wantAgent.OperationType.START_ABILITY,
+        actionType: wantAgent.OperationType.START_ABILITY,
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性
@@ -376,7 +376,7 @@
           }
         ],
         // 点击通知后，动作类型
-        operationType: wantAgent.OperationType.START_ABILITY,
+        actionType: wantAgent.OperationType.START_ABILITY,
         // 使用者自定义的一个私有值
         requestCode: 0,
         // 点击通知后，动作执行属性

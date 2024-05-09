@@ -788,7 +788,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init (struct OH_AVScreenCapture *
 
 Initializes **OH_AVScreenCapture** parameters, including audio microphone sampling parameters, audio capture parameters (optional), and video resolution parameters.
 
-To call this function, you must configure the **ohos.permission.MICROPHONE** and **ohos.permission.CAPTURE_SCREEN** permissions. Otherwise, the initialization fails and screen capture cannot be performed properly.
+To call this function, you must configure the permissions **ohos.permission.MICROPHONE** and **ohos.permission.CAPTURE_SCREEN** (available only for system applications). Otherwise, the initialization fails and screen capture cannot be performed properly.
 
 **Parameters**
 

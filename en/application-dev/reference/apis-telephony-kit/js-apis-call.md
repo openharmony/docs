@@ -25,7 +25,7 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -57,7 +57,7 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -92,7 +92,7 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 

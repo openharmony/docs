@@ -3,7 +3,7 @@
 
 ## 概述
 
-为网络协议栈模块提供c接口。
+为网络协议栈模块提供C接口。
 
 **起始版本：** 11
 
@@ -81,11 +81,11 @@
 | [WebSocket_Header::fieldValue](#fieldvalue) | header头的字段内容。  | 
 | [WebSocket_Header](_web_socket___header.md) \* [WebSocket_Header::next](#next) | header头链表的next指针。  | 
 | [WebSocket_Header](_web_socket___header.md) \* WebSocket_RequestOptions::headers | header头信息。 | 
-| [WebSocket_OnOpenCallback](#websocket_onopencallback)[WebSocket::onOpen](#onopen) | 客户端接收连接消息的回调指针。  | 
-| [WebSocket_OnMessageCallback](#websocket_onmessagecallback)[WebSocket::onMessage](#onmessage) | 客户端接收消息的回调指针。  | 
-| [WebSocket_OnErrorCallback](#websocket_onerrorcallback)[WebSocket::onError](#onerror) | 客户端接收错误消息的回调指针。  | 
-| [WebSocket_OnCloseCallback](#websocket_onclosecallback)[WebSocket::onClose](#onclose) | 客户端接收关闭消息的回调指针。  | 
-| [WebSocket_RequestOptions](_web_socket___request_options.md)[WebSocket::requestOptions](#requestoptions) | 客户端建立连接请求内容。 | 
+| [WebSocket_OnOpenCallback](#websocket_onopencallback) [WebSocket::onOpen](#onopen) | 客户端接收连接消息的回调指针。  | 
+| [WebSocket_OnMessageCallback](#websocket_onmessagecallback) [WebSocket::onMessage](#onmessage) | 客户端接收消息的回调指针。  | 
+| [WebSocket_OnErrorCallback](#websocket_onerrorcallback) [WebSocket::onError](#onerror) | 客户端接收错误消息的回调指针。  | 
+| [WebSocket_OnCloseCallback](#websocket_onclosecallback) [WebSocket::onClose](#onclose) | 客户端接收关闭消息的回调指针。  | 
+| [WebSocket_RequestOptions](_web_socket___request_options.md) [WebSocket::requestOptions](#requestoptions) | 客户端建立连接请求内容。 | 
 
 
 ## 类型定义说明

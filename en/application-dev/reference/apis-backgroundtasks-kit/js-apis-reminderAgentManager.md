@@ -1,6 +1,6 @@
 # @ohos.reminderAgentManager (Agent-Powered Reminders)
 
-The **reminderAgentManager** module provides APIs related to agent-powered reminders. When your application is frozen or exits, the timing and notification functions of your application will be taken over by a system service running in the background. You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks.
+The reminderAgentManager module provides APIs related to agent-powered reminders. When your application is frozen or exits, the timing and notification functions of your application will be taken over by a system service running in the background. You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks.
 
 > **NOTE**
 >
@@ -83,7 +83,7 @@ Publishes a reminder. This API uses a promise to return the result.
 **Return value**
   | Type| Description|
   | -------- | -------- |
-  | Promise\<number> | Promise used to return the published reminder's ID.|
+  | Promise\<number> | Promise used to return the published reminder ID.|
 
 **Error codes**
 
@@ -661,7 +661,7 @@ Defines a reminder for a scheduled timer.
 
 ## LocalDateTime
 
-Sets the time information for a calendar reminder.
+Defines the time information for a calendar reminder.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 

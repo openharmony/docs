@@ -26,7 +26,7 @@ Provides the function of operating rawfile directories and rawfiles. You can use
 
 | Name| Description| 
 | -------- | -------- |
-| [RawFileDescriptor](_raw_file_descriptor.md) | Defines the file descriptor of a rawfile.| 
+| [RawFileDescriptor](_raw_file_descriptor.md) | Defines the file descriptor of a large rawfile.| 
 | [RawFileDescriptor64](_raw_file_descriptor64.md) | Defines the file descriptor of a large rawfile.<br>**NOTE**<br>This new API supports large rawfiles and provides better performance.| 
 
 
@@ -62,7 +62,7 @@ Provides the function of operating rawfile directories and rawfiles. You can use
 | [OH_ResourceManager_CloseRawFile64](#oh_resourcemanager_closerawfile64) ([RawFile64](#rawfile64) \*rawFile) | Closes a [RawFile64](#rawfile64) and releases all associated resources.| 
 | [OH_ResourceManager_GetRawFileOffset64](#oh_resourcemanager_getrawfileoffset64) (const [RawFile64](#rawfile64) \*rawFile) | Obtains the offset of a large rawfile, in int64_t.| 
 | [OH_ResourceManager_GetRawFileDescriptor64](#oh_resourcemanager_getrawfiledescriptor64) (const [RawFile64](#rawfile64) \*rawFile, [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | Opens a large rawfile based on the specified offset and file length and obtains the file descriptor.| 
-| [OH_ResourceManager_ReleaseRawFileDescriptor64](#oh_resourcemanager_releaserawfiledescriptor64) (const [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | Releases the file descriptor of a large rawfile.| 
+| [OH_ResourceManager_ReleaseRawFileDescriptor64](#oh_resourcemanager_releaserawfiledescriptor64) (const [RawFileDescriptor64](_raw_file_descriptor64.md) \*descriptor) | Releases the file descriptor of a rawfile.| 
 | [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | Obtains the native **ResourceManager** based on the JS **ResourceManager** to implement rawfile-specific functions.| 
 | [OH_ResourceManager_ReleaseNativeResourceManager](#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](#nativeresourcemanager) \*resMgr) | Releases the native **ResourceManager**.| 
 | [OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*dirName) | Traverses all files in the **rawfile** directory.| 
