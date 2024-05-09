@@ -63,7 +63,7 @@ setEnabled(index: number, enabled: boolean): boolean
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| boolean | 设置使能是否成功。 |
+| boolean | 设置使能是否成功，true表示设置成功，false表示设置失败。 |
 
 **示例：**
 ```ts
