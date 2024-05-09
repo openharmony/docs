@@ -61,8 +61,6 @@
 | [DRM_UUID_LEN](#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | Drm系统 uuid长度。 | 
 | [MAX_PSSH_DATA_LEN](#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | PSSH数据的最大长度。 | 
 | [MAX_PSSH_INFO_COUNT](#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | PSSH信息的最大计数。 | 
-| [MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)&nbsp;&nbsp;&nbsp;128 | 媒体密钥系统名称的最大长度。  | 
-| [MAX_MEDIA_KEY_SYSTEM_NUM](#max_media_key_system_num)&nbsp;&nbsp;&nbsp;8 | 支持的媒体密钥系统的最大数量。  | 
 
 
 ### 类型定义
@@ -349,29 +347,6 @@ URL最大长度。
 
 **起始版本：** 11
 
-
-### MAX_MEDIA_KEY_SYSTEM_NAME_LEN
-
-```
-#define MAX_MEDIA_KEY_SYSTEM_NAME_LEN   128
-```
-**描述**
-
-媒体密钥系统名称的最大长度。
-
-**起始版本：** 12
-
-
-### MAX_MEDIA_KEY_SYSTEM_NUM
-
-```
-#define MAX_MEDIA_KEY_SYSTEM_NUM   8
-```
-**描述**
-
-支持的媒体密钥系统的最大数量。
-
-**起始版本：** 12
 
 
 ### MAX_MIMETYPE_LEN
