@@ -20,8 +20,72 @@
 
 ## AppStorage
 
-
 AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储)](../../../quick-start/arkts-appstorage.md)
+
+### ref<sup>12+</sup>
+
+static ref\<T\>(propName: string): AbstractProperty\<T\>
+
+如果给定的propName在AppStorage中存在，则获得AppStorage中propName对应数据的引用。否则，返回undefined。
+
+与link的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述               |
+| -------- | ------ | ---- | ---------------------- |
+| propName | string | 是   | AppStorage中的属性名。 |
+
+**返回值：**
+
+| 类型                                   | 描述                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| AbstractProperty&lt;T&gt; \| undefined | AppStorage中propName对应属性的引用，如果AppStorage中不存在对应的propName，则返回undefined。 |
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let refToPropA1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+let refToPropA2: AbstractProperty<number> | undefined = AppStorage.ref('PropA'); // refToPropA2.get() == 47
+refToPropA1?.set(48); // 同步修改AppStorage: refToPropA1.get() == refToPropA2.get() == 48
+```
+
+### setAndRef<sup>12+</sup>
+
+static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+
+与ref接口类似，如果给定的propName在AppStorage中存在，则获得AppStorage中propName对应数据的引用。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
+
+与setAndLink的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+
+> **说明：**<br/>
+> 从API version 12开始，AppStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | AppStorage中的属性名。                                       |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue可以为null或undefined。 |
+
+**返回值：**
+
+| 类型                      | 描述                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| AbstractProperty&lt;T&gt; | AbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的引用。 |
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> = AppStorage.setAndRef('PropB', 49); // Create PropB 49
+let ref2: AbstractProperty<number> = AppStorage.setAndRef('PropA', 50); // PropA exists, remains 47
+```
 
 
 ### link<sup>10+</sup>
@@ -958,6 +1022,72 @@ let res1: boolean = storage.setOrCreate('PropB', 111); // true
 let res2: boolean = storage.setOrCreate('PropB', null); // false
 ```
 
+### ref<sup>12+</sup>
+
+ref\<T\>(propName: string): AbstractProperty\<T\>
+
+如果给定的propName在LocalStorage中存在，则获得LocalStorage中propName对应数据的引用。否则，返回undefined。
+
+与link的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述                 |
+| -------- | ------ | ---- | ------------------------ |
+| propName | string | 是   | LocalStorage中的属性名。 |
+
+**返回值：**
+
+| 类型                                   | 描述                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| AbstractProperty&lt;T&gt; \| undefined | LocalStorage中propName对应属性的引用，如果LocalStorage中不存在对应的propName，则返回undefined。 |
+
+**示例：**
+
+```ts
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+let refToPropA1: AbstractProperty<number> | undefined = storage.ref('PropA');
+let refToPropA2: AbstractProperty<number> | undefined = storage.ref('PropA'); // linkToPropA2.get() == 47
+linkToPropA1?.set(48); // linkToPropA1.get() == linkToPropA2.get() == 48
+```
+
+### setAndRef<sup>12+</sup>
+
+setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+
+与ref接口类似，如果给定的propName在LocalStorage中存在，则获得LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
+
+与setAndLink的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+
+> **说明：**<br/>
+> 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | LocalStorage中的属性名。                                     |
+| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，defaultValue可以为null或undefined。 |
+
+**返回值：**
+
+| 类型                      | 描述                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| AbstractProperty&lt;T&gt; | AbstractProperty&lt;T&gt;的实例，为LocalStorage中propName对应属性的引用。 |
+
+**示例：**
+
+```ts
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+let ref1: AbstractProperty<number> = storage.setAndRef('PropB', 49); // Create PropB 49
+let ref2: AbstractProperty<number> = storage.setAndRef('PropA', 50); // PropA exists, remains 47
+```
 
 ### link<sup>9+</sup>
 
@@ -1246,6 +1376,81 @@ static GetShared(): LocalStorage
 let storage: LocalStorage = LocalStorage.GetShared();
 ```
 
+## AbstractProperty
+
+### get<sup>12+</sup>
+
+get(): T
+
+读取AppStorage/LocalStorage中所引用属性的数据。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型 | 描述                                        |
+| ---- | ------------------------------------------- |
+| T    | AppStorage/LocalStorage中所引用属性的数据。 |
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.get(); //  ref1.get()=47
+```
+
+
+### set<sup>12+</sup>
+
+set(newValue: T): void
+
+更新AppStorage/LocalStorage中所引用属性的数据，newValue必须是T类型，可以为null或undefined。
+
+> **说明：**<br/>
+>
+> 从API version 12开始，AppStorage/LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+
+**参数：**
+
+
+| 参数名   | 类型 | 必填 | 参数描述                              |
+| -------- | ---- | ---- | ------------------------------------- |
+| newValue | T    | 是   | 要更新的数据，可以为null或undefined。 |
+
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.set(1); //  ref1.get()=1
+```
+
+### info<sup>12+</sup>
+
+info(): string
+
+读取AppStorage/LocalStorage中所引用属性的属性名。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型   | 描述                                          |
+| ------ | --------------------------------------------- |
+| string | AppStorage/LocalStorage中所引用属性的属性名。 |
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.info(); //  ref1.info()='PropA'
+```
 
 ## SubscribedAbstractProperty
 
