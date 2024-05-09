@@ -9,7 +9,7 @@ There may be cases you want to provide in a widget access to features available 
 
 ## Constraints
 
--This action type requires that the widget provider should have the [ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running) permission.
+This action type requires that the widget provider should have the [ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running) permission.
 
 ## How to Develop
 
