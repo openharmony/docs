@@ -55,7 +55,7 @@ async function createShaderPromise() : Promise<scene3d.Shader> {
 ```
 
 ## 图片资源的创建以及使用
-3D场景中的图片资源是指GPU可以直接使用的GpuImage资源。创建图片资源的关键参数包括图片资源的名字以及图片资源的路径。将图片资源应用到材质中作为材质属性，是常见的图片资源使用方式之一，示例代码如下：
+3D场景中的图片资源是指GPU可以直接使用的图片资源。创建图片资源的关键参数包括图片资源的名字以及图片资源的路径。将图片资源应用到材质中作为材质属性，是常见的图片资源使用方式之一，示例代码如下：
 ```ts
 import scene3d from '@ohos.graphics.scene'
 
