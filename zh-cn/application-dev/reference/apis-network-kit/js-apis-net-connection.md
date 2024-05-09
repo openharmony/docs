@@ -74,7 +74,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -115,8 +115,7 @@ getDefaultNet(): Promise\<NetHandle>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -151,8 +150,7 @@ getDefaultNetSync(): NetHandle
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -345,7 +343,7 @@ getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 2100002  | Operation failed. Cannot connect to service. |
+| 2100002  | Failed to connect to the service.            |
 | 2100003  | System internal error.                       |
 
 **示例：**
@@ -383,7 +381,7 @@ getDefaultHttpProxy(): Promise\<HttpProxy>;
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 2100002  | Operation failed. Cannot connect to service. |
+| 2100002  | Failed to connect to the service.            |
 | 2100003  | System internal error.                       |
 
 **示例：**
@@ -418,7 +416,7 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 401 | Parameter error.|
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -454,8 +452,7 @@ getAppNet(): Promise\<NetHandle>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -489,8 +486,7 @@ getAppNetSync(): NetHandle
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -525,7 +521,7 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -574,7 +570,7 @@ setAppNet(netHandle: NetHandle): Promise\<void>;
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -614,7 +610,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -653,8 +649,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -688,8 +683,7 @@ getAllNetsSync(): Array&lt;NetHandle&gt;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -724,7 +718,7 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -773,7 +767,7 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -817,7 +811,7 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -855,7 +849,7 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -906,7 +900,7 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -952,7 +946,7 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -986,7 +980,7 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1022,8 +1016,7 @@ isDefaultNetMetered(): Promise\<boolean>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1057,8 +1050,7 @@ isDefaultNetMeteredSync(): boolean
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1090,8 +1082,7 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1128,7 +1119,7 @@ hasDefaultNet(): Promise\<boolean>
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1161,8 +1152,7 @@ hasDefaultNetSync(): boolean
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1198,7 +1188,7 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1242,7 +1232,7 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1280,7 +1270,7 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1322,7 +1312,7 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1360,7 +1350,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1406,7 +1396,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1443,7 +1433,7 @@ addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<voi
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1490,7 +1480,7 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1529,7 +1519,7 @@ removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1575,7 +1565,7 @@ removeCustomDnsRule(host: string): Promise\<void\>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1613,7 +1603,7 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1651,9 +1641,8 @@ clearCustomDnsRules(): Promise\<void\>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -1702,10 +1691,10 @@ register(callback: AsyncCallback\<void>): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
-| 2101008 | The same callback exists.     |
-| 2101022 | The number of requests exceeded the maximum. |
+| 2101008 | The callback does not exist.     |
+| 2101022 | The number of requests exceeded the maximum allowed. |
 
 **示例：**
 
@@ -1724,7 +1713,7 @@ unregister(callback: AsyncCallback\<void>): void
 
 取消订阅默认网络状态变化的通知。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1738,9 +1727,8 @@ unregister(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 201 | Permission denied.|
 | 401 | Parameter error.         |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 | 2101007 | The callback is not exists.      |
 
@@ -2050,7 +2038,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -2137,7 +2125,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -2217,7 +2205,7 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -2267,7 +2255,7 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -2307,7 +2295,7 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -2357,7 +2345,7 @@ getAddressByName(host: string): Promise\<NetAddress>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.       |
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -2386,6 +2374,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## NetBearType
 

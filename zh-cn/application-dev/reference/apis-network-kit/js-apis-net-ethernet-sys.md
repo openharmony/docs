@@ -40,7 +40,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -104,7 +104,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 |Failed to connect to the service. |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -162,7 +162,7 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
@@ -218,7 +218,7 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
@@ -267,7 +267,7 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
@@ -318,7 +318,7 @@ isIfaceActive(iface: string): Promise\<number>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
@@ -359,7 +359,7 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **示例：**
@@ -404,7 +404,7 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **示例：**
