@@ -71,7 +71,7 @@ BadgeParamWithNumber继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 
 ## BadgeParamWithString对象说明
 
-BadgeParamWithNumber继承自[BadgeParam](#badgeparam对象说明)，具有BadgeParam的全部属性。
+BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有BadgeParam的全部属性。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
