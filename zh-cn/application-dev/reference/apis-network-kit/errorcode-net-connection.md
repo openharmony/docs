@@ -26,7 +26,7 @@ Invalid parameter value.
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -85,7 +85,7 @@ The same callback exists.
 
 **错误信息**
 
-The callback is not exists.
+The callback does not exist.
 
 **错误描述**
 
@@ -103,7 +103,7 @@ The callback is not exists.
 
 **错误信息**
 
-The number of requests exceeded the maximum.
+The number of requests exceeded the maximum allowed.
 
 **错误描述**
 

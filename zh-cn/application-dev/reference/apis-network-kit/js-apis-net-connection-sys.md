@@ -35,7 +35,7 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 | ------- | -----------------------------  |
 | 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -71,7 +71,7 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 202     | Non-system applications use system APIs.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -114,7 +114,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 | 401     | Parameter error.               |
 | 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -171,7 +171,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 | 401     | Parameter error.               |
 | 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -219,7 +219,7 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -257,7 +257,7 @@ enableAirplaneMode(): Promise\<void>
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -295,7 +295,7 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -333,7 +333,7 @@ disableAirplaneMode(): Promise\<void>
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
@@ -371,7 +371,7 @@ factoryReset(): Promise\<void\>
 | ------- | ------------------------------------------  |
 | 201     | Permission denied.                          |
 | 202     | Non-system applications use system APIs.    |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.                      |
 
 **示例：**
