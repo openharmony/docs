@@ -19,7 +19,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 | originName           | 起点名称（路线规划场景有效）                                   | string   | 可缺省   |
 | originLatitude       | 起点纬度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
 | originLongitude      | 起点经度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
-| vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交（路线规划场景有效） | number   | 可缺省,缺省时由应用自行处理   |
+| vehicleType          | 交通出行工具：0：驾车 1：步行：2：骑行：3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
 
 ## 接入步骤
 ### 调用方接入步骤
