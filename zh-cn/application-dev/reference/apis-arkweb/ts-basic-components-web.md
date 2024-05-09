@@ -2789,7 +2789,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
   ```
 ### onRenderProcessNotResponding<sup>12+</sup>
 
-onRenderProcessNotRespondingCallback(callback: [OnRenderProcessNotRespondingCallback](#onRenderProcessNotRespondingCallback12))
+onRenderProcessNotRespondingCallback(callback: [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12))
 
 检测到网页进程无响应时触发该回调函数。
 
@@ -2797,7 +2797,7 @@ onRenderProcessNotRespondingCallback(callback: [OnRenderProcessNotRespondingCall
 
 | 参数名   | 类型                                                         | 说明                                   |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessNotRespondingCallback](#onRenderProcessNotRespondingCallback12) | 网页进程无响应时触发的回调。 |
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | 网页进程无响应时触发的回调。 |
 
 **示例：**
 
@@ -2823,7 +2823,7 @@ onRenderProcessNotRespondingCallback(callback: [OnRenderProcessNotRespondingCall
 
 ### onRenderProcessResponding<sup>12+</sup>
 
-onRenderProcessResponding(callback: [OnRenderProcessRespondingCallback](#onRenderProcessRespondingCallback12))
+onRenderProcessResponding(callback: [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12))
 
 检测到网页进程由无响应状态变回正常运行状态时触发该回调函数,该函数触发表明网页并非真正卡死。
 
@@ -2831,7 +2831,7 @@ onRenderProcessResponding(callback: [OnRenderProcessRespondingCallback](#onRende
 
 | 参数名   | 类型                                                         | 说明                                   |
 | -------- | ------------------------------------------------------------ | -------------------------------------- |
-| callback | [OnRenderProcessRespondingCallback](#onRenderProcessRespondingCallback12) | 网页进程由无响应状态变回正常运行状态时触发的回调。 |
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | 网页进程由无响应状态变回正常运行状态时触发的回调。 |
 
 **示例：**
 
@@ -7203,18 +7203,18 @@ onOverrideUrlLoading的回调。
 | ------------------------ | ------ | ---- | -------------------------------------- |
 | jsStack      | string | 是  | 网页的javascript调用栈信息。       |
 | pid | number | 是   | 网页的进程id。 |
-| reason | RenderProcessNotRespondingReason(#renderProcessNotRespondingReason) | 是   | 触发网页进程无响应检测的原因。 |
+| reason | RenderProcessNotRespondingReason(#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应检测的原因。 |
 
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
-type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderProcessNotRespondingData12)) => void;
+type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12)) => void;
 
 检测到网页进程无响应时触发的回调。
 
 | 参数名               | 参数类型                                        | 参数描述                         |
 | -------------------- | ----------------------------------------------- | -------------------------------- |
-| data | [RenderProcessNotRespondingData](#renderProcessNotRespondingData12) | 网页进程无响应的详细信息。 |
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 网页进程无响应的详细信息。 |
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
