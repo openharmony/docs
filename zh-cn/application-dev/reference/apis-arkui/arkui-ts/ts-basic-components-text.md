@@ -523,6 +523,22 @@ fontFeature(value: string)
 | types   | [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
 | onDetectResultUpdate   | (callback:(result: string) => void) | 是   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 
+### lineSpacing<sup>12+</sup>
+
+lineSpacing(value: LengthMetrics)
+
+设置文本的行间距，设置值不大于0时，取默认值0。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -1146,3 +1162,45 @@ struct text {
 ```
 
 ![fontFeature](figures/textFontFeature.png)
+
+### 示例10
+lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
+
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct LineSpacingExample {
+  build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
+        Text('This is a context with no lineSpacing set.\nThis is a context with no lineSpacing set.')
+          .fontSize(12)
+          .border({ width: 1 })
+        Text( 'This is a context with lineSpacing set to 20_px.\nThis is a context with lineSpacing set to 20_px.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.px(20))
+        Text('This is the TextArea with lineSpacing set to 20_vp.\nThis is the TextArea with lineSpacing set to 20_vp.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.vp(20))
+        Text('This is the TextArea with lineSpacing set to 20_fp.\nThis is the TextArea with lineSpacing set to 20_fp.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.fp(20))
+        Text('This is the TextArea with lineSpacing set to 20_lpx.\nThis is the TextArea with lineSpacing set to 20_lpx.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.lpx(20))
+        Text('This is the TextArea with lineSpacing set to 100%.\nThis is the TextArea with lineSpacing set to 100%.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.percent(1))
+      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![lineSpacing](figures/Text_lineSpacing.png)

@@ -432,6 +432,22 @@ selectedBackgroundColor(value: ResourceColor)
 >  **说明：**     
 >   如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
 
+### lineSpacing<sup>12+</sup>
+
+lineSpacing(value: LengthMetrics)
+
+设置文本的行间距，设置值不大于0时，取默认值0。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -640,6 +656,8 @@ getTextContentRect(): [RectResult](#rectresult10)
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型       | 说明       |
@@ -669,6 +687,8 @@ getTextContentRect(): [RectResult](#rectresult10)
 getTextContentLineCount(): number
 
 获取已编辑文本内容的行数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1101,3 +1121,38 @@ struct TextAreaExample {
 ```
 ![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 
+### 示例10
+lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
+
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct LineSpacingExample {
+  build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
+        TextArea({ placeholder: 'This is the TextArea with no lineSpacing set.' })
+          .fontSize(12)
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_px.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.px(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_vp.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.vp(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_fp.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.fp(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_lpx.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.lpx(20))
+        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 100%.' })
+          .fontSize(12)
+          .lineSpacing(LengthMetrics.percent(1))
+      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![lineSpacing](figures/TextArea_lineSpacing.png)

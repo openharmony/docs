@@ -28,6 +28,8 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名            | 参数类型   | 必填  | 参数描述 |
 | ----------------- | -------- | ----- | -------- |
 | values            | number[]   | 是    | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
@@ -37,7 +39,9 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelType<sup>8+</sup>枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------| ------------ |
@@ -57,6 +61,8 @@ closeEffect(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -70,6 +76,8 @@ closeEffect(value: boolean)
 valueColors(value: Array<ResourceColor | LinearGradient>)
 
 设置各数据段颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,6 +93,8 @@ trackBackgroundColor(value: ResourceColor)
 
 设置底板颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -98,6 +108,8 @@ trackBackgroundColor(value: ResourceColor)
 strokeWidth(value: Length)
 
 设置圆环粗细。数据面板的类型为DataPanelType.Line时该属性不生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,6 +125,8 @@ trackShadow(value: DataPanelShadowOptions)
 
 设置投影样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -120,6 +134,20 @@ trackShadow(value: DataPanelShadowOptions)
 | 参数名 | 类型                                                        | 必填 | 说明                                                  |
 | ------ | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | value  | [DataPanelShadowOptions](#datapanelshadowoptions10对象说明) | 是   | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。 |
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
+
+定制DataPanel内容区的方法。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<DataPanelConfiguration>](#datapanelconfiguration12对象说明) | 是   | 在DataPanel组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 
 ## DataPanelShadowOptions<sup>10+</sup>对象说明
@@ -138,6 +166,8 @@ DataPanelShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptio
 
 LinearGradient(colorStops: ColorStop[])
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | colorStops | [ColorStop](#colorstop10对象说明)[] | 是 | 存储渐变颜色和渐变点。|
@@ -146,6 +176,8 @@ LinearGradient(colorStops: ColorStop[])
 ## ColorStop<sup>10+</sup>对象说明
 
 颜色断点类型，用于描述渐进色颜色断点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
