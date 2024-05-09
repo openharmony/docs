@@ -3,7 +3,7 @@
 
 1. Create a ServiceAbility.
 
-   Override the ServiceAbility lifecycle callbacks to implement your own logic for processing interaction requests.
+   When you create a ServiceAbility in DevEco Studio, DevEco Studio automatically generates the **onStart()**, **onStop()**, and **onCommand()** callbacks. You need to implement the other lifecycle callbacks. You can also implement your own logic to be processed when another ability requests to interact with your ServiceAbility. The sample code is as follows:
 
    ```ts
    import type Want from '@ohos.app.ability.Want';
