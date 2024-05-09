@@ -34,7 +34,7 @@ function layerMask() : void {
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
   scene.then(async (result: scene3d.Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
+      let node : scene3d.Node | null = result.getNodeByPath("rootNode_");
       if (node) {
           // 获取掩码的使能状态
           let enabled: Boolean = node.layerMask.getEnabled(1);
