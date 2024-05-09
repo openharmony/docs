@@ -9,10 +9,10 @@ Media Kit（媒体服务）提供了<!--RP1-->[AVPlayer](#avplayer)和[AVRecorde
 在Media Kit的开发指导中，将介绍各种涉及音频、视频播放或录制功能场景的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。<!--RP2-->比如使用SoundPool实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。<!--RP2End-->
 
 
-1. 通过[DocumentViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)选择或保存文件，返回选择或保存的文件uri。
-2. 通过[AudioViewPicker接口](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)选择或保存文件，返回选择或保存的文件uri。
-3. 通过[PhotoViewPicker.save接口](../reference/apis-core-file-kit/js-apis-file-picker.md#save)保存文件，返回保存的文件uri。
-4. 通过[fileAccess模块](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)获取文档类目录下的文件得到对应文件的[FileInfo](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileinfo)对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：
+1. 通过[DocumentViewPicker接口选择或保存文件，返回选择或保存的文件uri。
+2. 通过[AudioViewPicker接口选择或保存文件，返回选择或保存的文件uri。
+3. 通过[PhotoViewPicker.save接口保存文件，返回保存的文件uri。
+4. 通过[fileAccess模块获取文档类目录下的文件得到对应文件的[FileInfo对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：
    <!--RP3-->
    - 外部存储目录
    - Docs目录
@@ -26,20 +26,20 @@ Media Kit（媒体服务）提供了<!--RP1-->[AVPlayer](#avplayer)和[AVRecorde
 
 | 任务 | 简介 | 相关指导 |
 | -------- | -------- | -------- |
-| 应用组件开发 | <!--RP4-->本章节介绍了如何使用Stage模型的UIAbility组件和ExtensionAbility组件开发应用。<!--RP4End--> | -&nbsp;[应用/组件级配置](application-component-configuration-stage.md)<br/>-&nbsp;[UIAbility组件](uiability-overview.md)<br/>-&nbsp;[ExtensionAbility组件](extensionability-overview.md)<br/>-&nbsp;[AbilityStage组件容器](abilitystage.md)<br/>-&nbsp;[应用上下文Context](application-context-stage.md)<br/>-&nbsp;[组件启动规则](component-startup-rules.md) |
-|  <!--RP5-->了解进程模型 | 本章节介绍了Stage模型的进程模型以及几种常用的进程间通信方式。 | [进程模型概述](process-model-stage.md) <!--RP5-->|
-| 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | [线程模型概述](thread-model-stage.md) |
-| <!--RP6-->任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;[任务管理场景介绍](mission-management-overview.md)<br/>-&nbsp;[任务管理与启动模式](mission-management-launch-type.md)<br/>-&nbsp;[页面栈和任务链](page-mission-stack.md) |
-| 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | [Stage模型应用配置文件](config-file-stage.md) <!--RP6End-->|
+| 应用组件开发 | <!--RP4-->本章节介绍了如何使用Stage模型的UIAbility组件和ExtensionAbility组件开发应用。<!--RP4End--> | -&nbsp;应用/组件级配置<br/>-&nbsp;UIAbility组件<br/>-&nbsp;ExtensionAbility组件<br/>-&nbsp;AbilityStage组件容器<br/>-&nbsp;应用上下文Context<br/>-&nbsp;组件启动规则 |
+|  <!--RP5-->了解进程模型 | 本章节介绍了Stage模型的进程模型以及几种常用的进程间通信方式。 | 进程模型概述 <!--RP5-->|
+| 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | 线程模型概述 |
+| <!--RP6-->任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;任务管理场景介绍<br/>-&nbsp;任务管理与启动模式<br/>-&nbsp;页面栈和任务链 |
+| 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | Stage模型应用配置文件 <!--RP6End-->|
 
 
 | <!--RP7-->任务 | 简介 | 相关指导 |
 | -------- | -------- | -------- |
-| 应用组件开发 | 本章节介绍了如何使用Stage模型的UIAbility组件和ExtensionAbility组件开发应用。 | -&nbsp;[应用/组件级配置](application-component-configuration-stage.md)<br/>-&nbsp;[UIAbility组件](uiability-overview.md)<br/>-&nbsp;[ExtensionAbility组件](extensionability-overview.md)<br/>-&nbsp;[AbilityStage组件容器](abilitystage.md)<br/>-&nbsp;[应用上下文Context](application-context-stage.md)<br/>-&nbsp;[组件启动规则](component-startup-rules.md) |
-|  了解进程模型 | 本章节介绍了Stage模型的进程模型以及几种常用的进程间通信方式。 | [进程模型概述](process-model-stage.md) |
-| 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | [线程模型概述](thread-model-stage.md) |
-| 任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;[任务管理场景介绍](mission-management-overview.md)<br/>-&nbsp;[任务管理与启动模式](mission-management-launch-type.md)<br/>-&nbsp;[页面栈和任务链](page-mission-stack.md) |
-| 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | [Stage模型应用配置文件](config-file-stage.md) <!--RP7End-->|
+| 应用组件开发 | 本章节介绍了如何使用Stage模型的UIAbility组件和ExtensionAbility组件开发应用。 | -&nbsp;应用/组件级配置<br/>-&nbsp;UIAbility组件<br/>-&nbsp;ExtensionAbility组件<br/>-&nbsp;AbilityStage组件容器<br/>-&nbsp;应用上下文Context<br/>-&nbsp;组件启动规则 |
+|  了解进程模型 | 本章节介绍了Stage模型的进程模型以及几种常用的进程间通信方式。 | 进程模型概述 |
+| 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | 线程模型概述 |
+| 任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;任务管理场景介绍<br/>-&nbsp;任务管理与启动模式<br/>-&nbsp;页面栈和任务链 |
+| 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | Stage模型应用配置文件 <!--RP7End-->|
 
 **4、subsection和section替换**
 
