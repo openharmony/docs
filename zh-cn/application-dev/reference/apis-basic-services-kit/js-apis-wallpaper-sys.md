@@ -206,6 +206,16 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;voi
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -484,6 +494,16 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -587,6 +607,16 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -780,16 +810,6 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;image.PixelMap&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                                |
-| ------------ | ------------------------------------------- |
-| 201          | permission denied.                                                                              |
-| 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 

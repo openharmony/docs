@@ -569,16 +569,6 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                                |
-| ------------ | ------------------------------------------- |
-| 201          | permission denied.                                                                              |
-| 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
-
 **示例：**
 
 ```ts
@@ -676,16 +666,6 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                                |
-| ------------ | ------------------------------------------- |
-| 201          | permission denied.                                                                              |
-| 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
