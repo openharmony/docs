@@ -10,7 +10,7 @@
 
 ![Recording status change](figures/video-recording-status-change.png)
 
-状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
+状态的详细说明请参考[AVRecorderState]。
 
 ## 开发步骤及注意事项
 
@@ -18,7 +18,7 @@
 > 
 > AVRecorder只负责视频数据的处理，需要与视频数据采集模块配合才能完成视频录制。视频数据采集模块需要通过Surface将视频数据传递给AVRecorder进行数据处理。
 
-AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/js-apis-media.md#avrecorder9)。
+AVRecorder详细的API说明请参考[AVRecorder API参考]。
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
      
