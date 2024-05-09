@@ -2,7 +2,7 @@
 
 
  **1、删除链接** 
-- 默认支持拖出能力的组件（可从组件上拖出数据）：Search、TextInput、TextArea、RichEditor、Text、Image、<!--Del-->[FormComponent](https://developerlf.hwcloudtest.cn/consumer/cn/doc/harmonyos-guides/start-overview-0000001820999509)、UIExtensionComponent<!--DelEnd-->Hyperlink
+- 默认支持拖出能力的组件（可从组件上拖出数据）：Search、TextInput、TextArea、RichEditor、Text、Image、<!--Del-->[FormComponent](audio-playback-overview.md)、UIExtensionComponent<!--DelEnd-->Hyperlink
 - 设置列表中ListItem/ListItemGroup的预加载数量，只在LazyForEach中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。<!--Del-->具体使用可参考[减少应用白块说明](audio-playback-overview.md#如何选择音频播放开发方式)。<!--DelEnd-->
 
  **2、删除一段话** 
