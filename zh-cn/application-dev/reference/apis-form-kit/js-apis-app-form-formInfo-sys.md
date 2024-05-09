@@ -23,7 +23,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统接口：** 此接口为系统接口。  |
-| FORM_LOCATION_KEY    | 'ohos.extra.param.key.form_location'   | 卡片位置。  |
 | FORM_PERMISSION_NAME_KEY | 'ohos.extra.param.key.permission_name' | 用户授权权限名称 |
 | FORM_PERMISSION_GRANTED_KEY | 'ohos.extra.param.key.permission_granted' | 用户是否授权 |
 | THEME_KEY | 'ohos.extra.param.key.form_is_theme' | 是否是主题卡片 |
