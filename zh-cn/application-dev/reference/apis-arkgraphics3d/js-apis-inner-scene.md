@@ -336,7 +336,7 @@ static load(uri?: Resource): Promise\<Scene>
 function loadModel() : void {
   // 加载模型
   let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {};
+  scene.then(async (result: scene3d.Scene) => {});
 }
 ```
 
