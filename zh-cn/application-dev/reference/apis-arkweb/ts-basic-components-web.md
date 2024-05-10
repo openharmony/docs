@@ -2789,7 +2789,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
   ```
 ### onRenderProcessNotResponding<sup>12+</sup>
 
-onRenderProcessNotResponding(callback: [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12))
+onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
 
 网页进程无响应时触发该回调函数。
 
@@ -2823,7 +2823,7 @@ onRenderProcessNotResponding(callback: [OnRenderProcessNotRespondingCallback](#o
 
 ### onRenderProcessResponding<sup>12+</sup>
 
-onRenderProcessResponding(callback: [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12))
+onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 网页进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
 
@@ -7231,7 +7231,7 @@ type NativeMediaPlayerConfig = {
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
-type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12)) => void;
+type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12)) => void
 
 网页进程无响应时触发的回调。
 
@@ -7241,6 +7241,6 @@ type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingD
 
 ## OnRenderProcessRespondingCallback<sup>12+</sup>
 
-type OnRenderProcessRespondingCallback = () => void;
+type OnRenderProcessRespondingCallback = () => void
 
 网页进程由无响应状态变回正常运行状态时触发该回调。
