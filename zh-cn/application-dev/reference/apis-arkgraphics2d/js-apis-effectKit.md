@@ -90,7 +90,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 ```ts
 import { image } from "@kit.ImageKit";
 import { effectKit } from "@kit.ArkGraphics2D";
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from "@kit.BasicServicesKit";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
