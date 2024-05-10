@@ -513,7 +513,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustaskNotification)类型的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification)类型的Promise对象。 |
 
 **错误码**：
 
@@ -542,41 +542,6 @@ import { notificationManager } from '@kit.NotificationKit';
 
 export default class EntryAbility extends UIAbility {
   id: number = 0; // 保存通知id
- 
-  updateProcess(process: Number) {
-    let downLoadTemplate: notificationManager.NotificationTemplate = {
-      name: 'downloadTemplate', // 当前只支持downloadTemplate，后续根据需要支持录音
-      data: {
-        title: '文件下载：music.mp4', // 必填
-        fileName: 'senTemplate', // 必填
-        progressValue: process,
-      }
-    };
-    let request: notificationManager.NotificationRequest = {
-      content: {
-        // 系统实况类型，保持不变
-        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
-        systemLiveView: {
-          typeCode: 8, // 上传下载类型需要填写 8，当前仅支持此类型。后续录音可以设置 7
-          title: "test", // 应用自定义
-          text: "test", // 应用自定义
-        }
-      },
-      id: this.id, // 必须是申请长时任务返回的id，否则应用更新通知失败。
-      notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型，保持不变
-      template: downLoadTemplate // 保持不变
-    };
-
-    try {
-      notificationManager.publish(request).then(() => {
-        console.info("publish success, id= " + this.id);
-      }).catch((err: BusinessError) => {
-        console.error(`publish fail: ${JSON.stringify(err)}`);
-      });
-    } catch (err) {
-      console.error(`publish fail: ${JSON.stringify(err)}`);
-    }
-  }
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -615,6 +580,41 @@ export default class EntryAbility extends UIAbility {
       console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
   }
+
+  updateProcess(process: Number) {
+    let downLoadTemplate: notificationManager.NotificationTemplate = {
+      name: 'downloadTemplate', // 当前只支持downloadTemplate，后续根据需要支持录音
+      data: {
+        title: '文件下载：music.mp4', // 必填
+        fileName: 'senTemplate', // 必填
+        progressValue: process,
+      }
+    };
+    let request: notificationManager.NotificationRequest = {
+      content: {
+        // 系统实况类型，保持不变
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
+        systemLiveView: {
+          typeCode: 8, // 上传下载类型需要填写 8，当前仅支持此类型。后续录音可以设置 7
+          title: "test", // 应用自定义
+          text: "test", // 应用自定义
+        }
+      },
+      id: this.id, // 必须是申请长时任务返回的id，否则应用更新通知失败。
+      notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型，保持不变
+      template: downLoadTemplate // 保持不变
+    };
+
+    try {
+      notificationManager.publish(request).then(() => {
+        console.info("publish success, id= " + this.id);
+      }).catch((err: BusinessError) => {
+        console.error(`publish fail: ${JSON.stringify(err)}`);
+      });
+    } catch (err) {
+      console.error(`publish fail: ${JSON.stringify(err)}`);
+    }
+  }
 };
 ```
 ## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
@@ -638,7 +638,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustaskNotification)类型的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification)类型的Promise对象。 |
 
 **错误码**：
 
