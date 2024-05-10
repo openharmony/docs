@@ -33,6 +33,7 @@
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
+      - [ContentSlot](js-apis-arkui-contentSlot.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
