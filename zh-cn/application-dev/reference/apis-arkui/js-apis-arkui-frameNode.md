@@ -343,6 +343,79 @@ getPositionToParent(): Position
 
 请参考[节点操作示例](#节点操作示例)。
 
+### getPositionToScreen<sup>12+</sup> 
+
+  getPositionToScreen(): Position
+
+获取FrameNode相对于屏幕的位置偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明                            |
+| -------- | ------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+
+### getPositionToParentWithTransform<sup>12+</sup>
+
+getPositionToParentWithTransform(): Position
+
+获取FrameNode相对于父组件带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getPositionToWindowWithTransform<sup>12+</sup>
+
+getPositionToWindowWithTransform(): Position
+
+获取FrameNode相对于窗口带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getPositionToScreenWithTransform<sup>12+</sup>
+
+getPositionToScreenWithTransform(): Position
+
+获取FrameNode相对于屏幕带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
 
 ### getMeasuredSize<sup>12+</sup>
 
@@ -829,7 +902,7 @@ FrameNode的自定义布局方法，该方法会重写默认布局方法，在Fr
 
 setMeasuredSize(size: Size): void
 
-设置FrameNode的测量后的尺寸，默认单位PX。
+设置FrameNode的测量后的尺寸，默认单位PX。若设置的宽高为负数，自动取零。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1024,6 +1097,26 @@ class MyNodeController extends NodeController {
     let positionToParent = this.frameNode?.getPositionToParent();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
   }
+  getPositionToScreen()
+  {
+    let positionToScreen = this.frameNode?.getPositionToScreen();
+    console.log(TEST_TAG + JSON.stringify(positionToScreen));
+  }
+  getPositionToWindowWithTransform()
+  {
+    let positionToWindowWithTransform = this.frameNode?.getPositionToWindowWithTransform();
+    console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
+  }
+  getPositionToParentWithTransform()
+  {
+    let positionToParentWithTransform = this.frameNode?.getPositionToParentWithTransform();
+    console.log(TEST_TAG + JSON.stringify(positionToParentWithTransform));
+  }
+  getPositionToScreenWithTransform()
+  {
+    let positionToScreenWithTransform = this.frameNode?.getPositionToScreenWithTransform();
+    console.log(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
+  }
   getMeasuredSize()
   {
     let measuredSize = this.frameNode?.getMeasuredSize();
@@ -1178,6 +1271,26 @@ struct Index {
         .width(300)
         .onClick(()=>{
           this.myNodeController.getPositionToParent();
+        })
+      Button("getPositionToScreen")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToScreen();
+        })
+      Button("getPositionToParentWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToParentWithTransform();
+        })
+      Button("getPositionToWindowWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToWindowWithTransform();
+        })
+      Button("getPositionToScreenWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToScreenWithTransform();
         })
       Button("getMeasuredSize")
         .width(300)

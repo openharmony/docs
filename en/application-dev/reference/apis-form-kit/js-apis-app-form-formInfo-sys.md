@@ -24,7 +24,9 @@ Enumerates the widget parameters.
 | ----------- | ---- | ------------ |
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | Device ID.<br>**System API**: This is a system API. |
 | FORM_LOCATION_KEY    | 'ohos.extra.param.key.form_location'   | Widget location. |
-
+| FORM_PERMISSION_NAME_KEY | 'ohos.extra.param.key.permission_name' | Name of the permission.|
+| FORM_PERMISSION_GRANTED_KEY | 'ohos.extra.param.key.permission_granted' | Whether the permission is granted.|
+| THEME_KEY | 'ohos.extra.param.key.form_is_theme' | Whether the widget is a theme widget.|
 
 ## FormUsageState
 
@@ -60,6 +62,7 @@ Defines the information about an added widget, which can be either in use or not
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | Yes   | No    | Usage status of the widget.  |
 | formDescription<sup>11+</sup> | string         | Yes   | No    | Description in the widget configuration file of the provider.  |
 | formLocation<sup>12+</sup> | [FormLocation](#formlocation)| Yes   | No    | Location of the widget.  |
+| extraData<sup>12+</sup> | Record<string, Object>| Yes   | No    | Extended information of the widget.  |
 
 ## formProviderFilter<sup>10+</sup>
 

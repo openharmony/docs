@@ -51,13 +51,15 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|PixelMap)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型)\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型）,支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型图片，不支持网络图片。<br/>默认值：null |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型）,支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型图片，不支持网络图片。<br/>默认值：null |
 
 ### objectFit
 
@@ -299,7 +301,7 @@ colorFilter(value: ColorFilter | DrawingColorFilter)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)<sup>12+</sup> | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image-matrix-1.jpg)<br/>像素点为[R, G, B, A]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image-matrix-2.jpg)<br/>2. 从API Version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>DrawingColorFilter作为入参时，不支持预览。<br/>**说明：** <br/>API Version 11及之前，svg类型图源不支持该属性。|
+| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)<sup>12+</sup> | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image-matrix-1.jpg)<br/>像素点为[R, G, B, A]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image-matrix-2.jpg)<br/>2. 从API Version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>DrawingColorFilter作为入参时，不支持预览。<br/>**说明：** <br/>API Version 11及之前，svg类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在元服务中使用。|
 
 ### draggable<sup>9+</sup>
 
@@ -319,7 +321,7 @@ draggable(value: boolean)
 
 ### enableAnalyzer<sup>11+</sup>
 
-edgeAntialiasing(value:&nbsp;boolean)
+enableAnalyzer(enable:&nbsp;boolean)
 
 设置组件支持AI分析。不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。  
 
@@ -331,6 +333,7 @@ alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -338,7 +341,7 @@ alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
+| enable  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
 
 ### resizable<sup>11+</sup>
 
@@ -352,6 +355,8 @@ resizable(value: ResizableOptions)
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -363,7 +368,7 @@ resizable(value: ResizableOptions)
 >  **说明：**
 >
 >  - 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../../ui/arkts-common-events-focus-event.md#设置组件是否获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
->  - 图片设置为svg图源时，当前支持的标签是svg、rect、circle、ellipse、path、line、polyline和polygon。
+>  - 图片设置为svg图源时，当前支持的标签是svg、rect、circle、ellipse、path、line、polyline、polygon、feFlood、feBlend、feColorMatrix、feGaussianBlur、feComposite、filter、mask和use。
 
 ### privacySensitive<sup>12+</sup>
 
@@ -408,6 +413,8 @@ privacySensitive(supported: boolean)
 ## ResizableOptions<sup>11+</sup>
 
 图像拉伸时可调整大小的图像选项。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 参数名   | 类型                                    | 说明                                       |
 | ----- | ------------------------------------- | ---------------------------------------- |

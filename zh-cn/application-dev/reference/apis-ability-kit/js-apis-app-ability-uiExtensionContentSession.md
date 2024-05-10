@@ -31,11 +31,12 @@ loadContent(path: string, storage?: LocalStorage): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.terminateSelf
 
@@ -50,6 +51,14 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止UIExtensionContentSession对应的窗口界面对象成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 ## UIExtensionContentSession.terminateSelf
 
@@ -80,6 +89,14 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给UIExtensionComponent控件的信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当停止成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 ## UIExtensionContentSession.terminateSelfWithResult
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
@@ -99,6 +116,14 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 ## UIExtensionContentSession.setWindowPrivacyMode
 
@@ -122,6 +147,15 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------ |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 ## UIExtensionContentSession.setWindowPrivacyMode
 
 setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -139,6 +173,15 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 | isPrivacyMode | boolean                   | 是 | 窗口是否为隐私模式。true表示模式开启；false表示模式关闭。  |
 | callback      | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
@@ -152,22 +195,24 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)。 |
 | wantParam | Record<string, Object> | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 | callback | AsyncCallback\<void> | 是 |回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
@@ -182,7 +227,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)。 |
 | wantParam | Record<string, Object> | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 
@@ -194,12 +239,14 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | The application does not have permission to call the interface. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。

@@ -34,11 +34,11 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -98,11 +98,11 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -156,11 +156,11 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -220,11 +220,11 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -321,11 +321,11 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -385,11 +385,11 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。

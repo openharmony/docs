@@ -87,7 +87,7 @@ struct First {
     if (newWant) {
       if (newWant.parameters) {
         if (newWant.parameters.page) {
-          router.push({ url: newWant.parameters.page as string});
+          router.pushUrl({ url: newWant.parameters.page as string});
           GlobalContext.getContext().setObject("newWant", undefined)
         }
       }
@@ -126,7 +126,7 @@ struct First {
 ```
 
 
-When a PageAbility in multiton mode is started or when the PageAbility in singleton mode is started for the first time, you can use the **parameters** parameter in **want** to transfer the pages information and use the **startAbility()** method to start the PageAbility. For details about the launch type, see [PageAbility Launch Type](pageability-launch-type.md). The target PageAbility can use the **featureAbility.getWant()** method in **onCreate** to obtain the **want** parameter, and then call **router.push** to start a specified page.
+When a PageAbility in multiton mode is started or when the PageAbility in singleton mode is started for the first time, you can use the **parameters** parameter in **want** to transfer the pages information and use the **startAbility()** method to start the PageAbility. For details about the launch type, see [PageAbility Launch Type](pageability-launch-type.md). The target PageAbility can use the **featureAbility.getWant()** method in **onCreate** to obtain the **want** parameter, and then call **router.pushUrl** to start a specified page.
 
 
 When a user touches the button on the page of the caller PageAbility, the **startAbility()** method is called to start the target PageAbility. The **want** parameter in **startAbility()** carries the specified page information.
@@ -244,7 +244,7 @@ class PageAbilityStandard {
     featureAbility.getWant().then((want) => {
       if (want.parameters) {
         if (want.parameters.page) {
-          router.push({ url: want.parameters.page as string });
+          router.pushUrl({ url: want.parameters.page as string });
         }
       }
     })

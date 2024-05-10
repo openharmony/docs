@@ -718,3 +718,33 @@ build-profile.json5部分参数示例如下:
 
 定位方法:
 检查应用内so是否存在报错提示的导出变量，与加载应用内so导入变量处进行比较，不一致则适配修改。
+
+## taskpool线程中是否可以使用emitter.on等长时间监听接口
+
+不推荐。
+
+**原理澄清**
+
+1. 由于长时间的监听，可能会影响线程回收或复用。
+2. 如果线程被回收会导致线程回调失效或者发生不可预期的错误。
+3. 如果任务函数多次执行，可能会在不同的线程产生监听，导致结果不符合预期。
+
+**解决方案**
+
+建议使用[长时任务](../reference/apis-arkts/js-apis-taskpool.md#longtask12)。
+
+## taskpool中监听任务的接口onEnqueued、onStartExecution、onExecutionFailed、onExecutionSucceeded是否有调用顺序(API 12)
+
+**解决方案**
+
+上述四个接口可独立使用，无调用的先后顺序。
+
+## 如何在HAR中使用Sendable class
+
+**解决方案**
+
+使用TS HAR，具体内容参考以下文档。
+
+**参考链接**
+
+[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)

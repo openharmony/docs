@@ -3314,6 +3314,8 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 当使用update分段传入原文时，sign接口API 10之前只支持传入DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用sign进行签名。
 
+当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+
 ### 属性
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
@@ -3400,7 +3402,8 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 > 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[sign](#sign-1)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
 > 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
-> OnlySign模式下，不支持update操作，需要直接使用sign传入数据。
+> OnlySign模式下，不支持update操作，需要直接使用sign传入数据。<br/>
+> 当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -3436,7 +3439,8 @@ update(data: DataBlob): Promise\<void>
 > 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
 > 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
-> OnlySign模式下，不支持update操作，需要直接使用sign传入数据。
+> OnlySign模式下，不支持update操作，需要直接使用sign传入数据。<br/>
+> 当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -3716,6 +3720,8 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参在API 10之前只支持DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
 
+当使用DSA算法进行验签，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+
 ### 属性
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
@@ -3797,7 +3803,8 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 >
 > 根据数据量，可以不调用update（即[init](#init-4)完成后直接调用[verify](#verify-1)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
+> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
+> 当使用DSA算法进行验签，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -3832,7 +3839,8 @@ update(data: DataBlob): Promise\<void>
 >
 > 根据数据量，可以不调用update（即[init](#init-5)完成后直接调用[verify](#verify-2)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
+> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
+> 当使用DSA算法进行验签，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 

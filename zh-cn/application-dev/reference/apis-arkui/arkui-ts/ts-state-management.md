@@ -20,8 +20,72 @@
 
 ## AppStorage
 
-
 AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储)](../../../quick-start/arkts-appstorage.md)
+
+### ref<sup>12+</sup>
+
+static ref\<T\>(propName: string): AbstractProperty\<T\>
+
+如果给定的propName在AppStorage中存在，则获得AppStorage中propName对应数据的引用。否则，返回undefined。
+
+与link的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述               |
+| -------- | ------ | ---- | ---------------------- |
+| propName | string | 是   | AppStorage中的属性名。 |
+
+**返回值：**
+
+| 类型                                   | 描述                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| AbstractProperty&lt;T&gt; \| undefined | AppStorage中propName对应属性的引用，如果AppStorage中不存在对应的propName，则返回undefined。 |
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let refToPropA1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+let refToPropA2: AbstractProperty<number> | undefined = AppStorage.ref('PropA'); // refToPropA2.get() == 47
+refToPropA1?.set(48); // 同步修改AppStorage: refToPropA1.get() == refToPropA2.get() == 48
+```
+
+### setAndRef<sup>12+</sup>
+
+static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+
+与ref接口类似，如果给定的propName在AppStorage中存在，则获得AppStorage中propName对应数据的引用。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
+
+与setAndLink的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+
+> **说明：**<br/>
+> 从API version 12开始，AppStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | AppStorage中的属性名。                                       |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue可以为null或undefined。 |
+
+**返回值：**
+
+| 类型                      | 描述                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| AbstractProperty&lt;T&gt; | AbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的引用。 |
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> = AppStorage.setAndRef('PropB', 49); // Create PropB 49
+let ref2: AbstractProperty<number> = AppStorage.setAndRef('PropA', 50); // PropA exists, remains 47
+```
 
 
 ### link<sup>10+</sup>
@@ -771,6 +835,7 @@ let res: number = AppStorage.Size(); // 1
 
 LocalStorage具体UI使用说明，详见[LocalStorage(页面级UI状态存储)](../../../quick-start/arkts-localstorage.md)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ### constructor<sup>9+</sup>
 
@@ -780,6 +845,7 @@ constructor(initializingProperties?: Object)
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -827,6 +893,7 @@ has(propName: string): boolean
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -858,6 +925,7 @@ get&lt;T&gt;(propName: string): T | undefined
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -890,6 +958,7 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -926,6 +995,7 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -952,6 +1022,72 @@ let res1: boolean = storage.setOrCreate('PropB', 111); // true
 let res2: boolean = storage.setOrCreate('PropB', null); // false
 ```
 
+### ref<sup>12+</sup>
+
+ref\<T\>(propName: string): AbstractProperty\<T\>
+
+如果给定的propName在LocalStorage中存在，则获得LocalStorage中propName对应数据的引用。否则，返回undefined。
+
+与link的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 参数描述                 |
+| -------- | ------ | ---- | ------------------------ |
+| propName | string | 是   | LocalStorage中的属性名。 |
+
+**返回值：**
+
+| 类型                                   | 描述                                                         |
+| -------------------------------------- | ------------------------------------------------------------ |
+| AbstractProperty&lt;T&gt; \| undefined | LocalStorage中propName对应属性的引用，如果LocalStorage中不存在对应的propName，则返回undefined。 |
+
+**示例：**
+
+```ts
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+let refToPropA1: AbstractProperty<number> | undefined = storage.ref('PropA');
+let refToPropA2: AbstractProperty<number> | undefined = storage.ref('PropA'); // linkToPropA2.get() == 47
+linkToPropA1?.set(48); // linkToPropA1.get() == linkToPropA2.get() == 48
+```
+
+### setAndRef<sup>12+</sup>
+
+setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+
+与ref接口类似，如果给定的propName在LocalStorage中存在，则获得LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
+
+与setAndLink的功能基本一致，但不需要手动释放返回的AbstractProperty类型的变量。
+
+> **说明：**<br/>
+> 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型   | 必填 | 参数描述                                                     |
+| ------------ | ------ | ---- | ------------------------------------------------------------ |
+| propName     | string | 是   | LocalStorage中的属性名。                                     |
+| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，defaultValue可以为null或undefined。 |
+
+**返回值：**
+
+| 类型                      | 描述                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| AbstractProperty&lt;T&gt; | AbstractProperty&lt;T&gt;的实例，为LocalStorage中propName对应属性的引用。 |
+
+**示例：**
+
+```ts
+let para: Record<string, number> = { 'PropA': 47 };
+let storage: LocalStorage = new LocalStorage(para);
+let ref1: AbstractProperty<number> = storage.setAndRef('PropB', 49); // Create PropB 49
+let ref2: AbstractProperty<number> = storage.setAndRef('PropA', 50); // PropA exists, remains 47
+```
 
 ### link<sup>9+</sup>
 
@@ -965,6 +1101,7 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -999,6 +1136,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1032,6 +1170,7 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1066,6 +1205,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1101,6 +1241,7 @@ delete(propName: string): boolean
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1136,6 +1277,7 @@ keys(): IterableIterator&lt;string&gt;
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1161,6 +1303,7 @@ size(): number
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1188,6 +1331,7 @@ clear(): boolean
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1232,6 +1376,81 @@ static GetShared(): LocalStorage
 let storage: LocalStorage = LocalStorage.GetShared();
 ```
 
+## AbstractProperty
+
+### get<sup>12+</sup>
+
+get(): T
+
+读取AppStorage/LocalStorage中所引用属性的数据。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型 | 描述                                        |
+| ---- | ------------------------------------------- |
+| T    | AppStorage/LocalStorage中所引用属性的数据。 |
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.get(); //  ref1.get()=47
+```
+
+
+### set<sup>12+</sup>
+
+set(newValue: T): void
+
+更新AppStorage/LocalStorage中所引用属性的数据，newValue必须是T类型，可以为null或undefined。
+
+> **说明：**<br/>
+>
+> 从API version 12开始，AppStorage/LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+
+**参数：**
+
+
+| 参数名   | 类型 | 必填 | 参数描述                              |
+| -------- | ---- | ---- | ------------------------------------- |
+| newValue | T    | 是   | 要更新的数据，可以为null或undefined。 |
+
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.set(1); //  ref1.get()=1
+```
+
+### info<sup>12+</sup>
+
+info(): string
+
+读取AppStorage/LocalStorage中所引用属性的属性名。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型   | 描述                                          |
+| ------ | --------------------------------------------- |
+| string | AppStorage/LocalStorage中所引用属性的属性名。 |
+
+**示例：**
+
+```ts
+AppStorage.setOrCreate('PropA', 47);
+let ref1: AbstractProperty<number> | undefined = AppStorage.ref('PropA');
+ref1?.info(); //  ref1.info()='PropA'
+```
 
 ## SubscribedAbstractProperty
 
@@ -1244,6 +1463,7 @@ abstract get(): T
 
 > **说明：**<br/>
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1271,6 +1491,7 @@ abstract set(newValue: T): void
 > **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 >
 > 从API version 12开始，AppStorage/LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
+> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1296,6 +1517,8 @@ abstract aboutToBeDeleted(): void
 
 取消SubscribedAbstractProperty实例对AppStorage/LocalStorage的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用set或get方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -1314,6 +1537,8 @@ PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储
 > 从API version 12开始，PersistentStorage支持null、undefined。
 
 ### PersistPropsOptions
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1402,6 +1627,8 @@ PersistentStorage.persistProps([{ key: 'highScore', defaultValue: '0' }, { key: 
 static keys(): Array&lt;string&gt;
 
 返回所有持久化属性的属性名的数组。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1512,6 +1739,8 @@ static Keys(): Array&lt;string&gt;
 > **说明：**<br/>
 > 从API version 10开始废弃，推荐使用[keys10+](#keys10-1)替代。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1532,6 +1761,8 @@ let keys: Array<string> = PersistentStorage.Keys();
 Environment具体使用说明，详见[Environment(设备环境查询)](../../../quick-start/arkts-environment.md)
 
 ### EnvPropsOptions
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1719,7 +1950,7 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 | -------------------- | --------------- | ------------------------------------------------------------ |
 | accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。当无法获取环境变量中的accessibilityEnabled的值时，将通过envProp、envProps等接口传入的开发者指定的默认值添加到AppStorage中。 |
 | colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| fontScale            | number          | 字体大小比例。                                               |
+| fontScale            | number          | 字体大小比例。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                               |
 | fontWeightScale      | number          | 字重比例。                                                   |
 | layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |

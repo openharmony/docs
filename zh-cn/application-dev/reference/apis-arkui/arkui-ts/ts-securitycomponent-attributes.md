@@ -15,6 +15,8 @@ iconSize(value: Dimension)
 
 设置安全控件上图标的尺寸。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -28,6 +30,8 @@ iconSize(value: Dimension)
 layoutDirection(value: SecurityComponentLayoutDirection)
 
 设置安全控件上图标和文字分布的方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -43,6 +47,8 @@ position(value: Position)
 
 设置绝对定位，设置安全控件的左上角相对于父容器左上角的偏移位置。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -56,6 +62,8 @@ position(value: Position)
 markAnchor(value: Position)
 
 设置安全控件在位置定位时的锚点，以控件左上角作为基准点进行偏移。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -71,6 +79,8 @@ offset(value: Position)
 
 设置安全控件相对于自身布局位置的坐标偏移。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -84,6 +94,8 @@ offset(value: Position)
 fontSize(value: Dimension)
 
 设置安全控件上文字的尺寸。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,6 +111,8 @@ fontStyle(value: FontStyle)
 
 设置安全控件上文字的样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -112,6 +126,8 @@ fontStyle(value: FontStyle)
 fontWeight(value: number | FontWeight | string)
 
 设置安全控件上文字粗细。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -127,6 +143,8 @@ fontFamily(value: string | Resource)
 
 设置安全控件上文字的字体。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -140,6 +158,8 @@ fontFamily(value: string | Resource)
 fontColor(value: ResourceColor)
 
 设置安全控件上文字的颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,6 +175,8 @@ iconColor(value: ResourceColor)
 
 设置安全控件上图标的颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -168,6 +190,8 @@ iconColor(value: ResourceColor)
 backgroundColor(value: ResourceColor)
 
 设置安全控件的背景颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -183,6 +207,8 @@ borderStyle(value: BorderStyle)
 
 设置安全控件的边框的样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -196,6 +222,8 @@ borderStyle(value: BorderStyle)
 borderWidth(value: Dimension)
 
 设置安全控件的边框的宽度。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -211,6 +239,8 @@ borderColor(value: ResourceColor)
 
 设置安全控件的边框的颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -224,6 +254,8 @@ borderColor(value: ResourceColor)
 borderRadius(value: Dimension)
 
 设置安全控件的边框圆角半径。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -239,6 +271,8 @@ padding(value: Padding | Dimension)
 
 设置安全控件的内边距。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -252,6 +286,8 @@ padding(value: Padding | Dimension)
 textIconSpace(value: Dimension)
 
 设置安全控件中图标和文字的间距。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -319,6 +355,8 @@ constraintSize(value: ConstraintSizeOptions)
 
 
 ## SecurityComponentLayoutDirection枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |

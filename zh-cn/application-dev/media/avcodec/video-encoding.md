@@ -53,6 +53,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     #include <multimedia/player_framework/native_avcodec_base.h>
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
+    #include <fstream>
     ```
 
 2. 创建编码器实例对象。
@@ -157,7 +158,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 5. 调用OH_VideoEncoder_Configure()配置编码器。
 
-    详细可配置选项的说明请参考[变量](../../reference/apis-avcodec-kit/_codec_base.md#变量)。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频颜色格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
@@ -254,9 +255,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-9. （可选）在运行过程中动态配置编码器参数。
+9. （可选）OH_VideoDecoder_SetParameter()在运行过程中动态配置编码器参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
-    ```c++
+   ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // 支持动态请求IDR帧
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
@@ -400,6 +402,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     #include <multimedia/player_framework/native_avcodec_base.h>
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
+    #include <fstream>
     ```
 
 2. 创建编码器实例对象。
@@ -491,7 +494,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-    4. 调用OH_VideoEncoder_Configure()配置编码器。
+4. 调用OH_VideoEncoder_Configure()配置编码器。
 
     与surface模式相同，此处不再赘述。
 
