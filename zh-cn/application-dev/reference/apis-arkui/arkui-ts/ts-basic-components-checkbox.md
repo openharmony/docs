@@ -178,6 +178,8 @@ onChange(callback: (value: boolean) => void)
 
 ## CheckBoxShape<sup>11+</sup>枚举类型说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 枚举名称       | 枚举值 | 描述     |
 | -------------- | ------ | -------- |
 | CIRCLE         | 0      | 圆形     |

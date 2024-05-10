@@ -22,6 +22,8 @@ allowDrop(value: Array&lt;UniformDataType&gt; | null)
 
 设置该组件上允许落入的数据类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -52,6 +54,8 @@ dragPreview(value: CustomBuilder | DragItemInfo | string)
 
 设置组件拖拽过程中的预览图。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -66,6 +70,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 设置拖拽过程中背板图处理模式及数量角标的显示。不支持onItemDragStart拖拽方式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -77,6 +83,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragPreviewOptions<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | mode | [DragPreviewMode](#dragpreviewmode11枚举说明) &nbsp;\|&nbsp; Array<[DragPreviewMode](#dragpreviewmode11枚举说明)><sup>12+</sup> | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/>当组件同时设置DragPreviewMode.AUTO和其它枚举值时，以DragPreviewMode.AUTO为准，其它枚举值设置无效。<br/> |
@@ -84,6 +92,8 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 | modifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md)| 否 | 用于配置拖拽背板图的样式Modifier对象，可使用图片组件所支持的属性和样式来配置背板图样式(参考示例6)，当前支持透明度，阴影，背景模糊度，圆角。<br/>1.透明度<br/>通过[opacity](ts-universal-attributes-opacity.md#opacity)设置透明度，不透明度的取值范围为大于0并且小于等于1，1表示完全不透明，其它场合采用默认值0.95。<br/>2.阴影<br/>通过[shadow](ts-universal-attributes-image-effect.md#shadow)设置阴影。<br/>3.背景模糊度<br/>通过[backgroundEffect](ts-appendix-enums.md#backgroundeffectoptions)或[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle)设置背景模糊度，如果两者同时设置，以backgroundEffect为准。<br/>4.圆角<br/>通过[border](ts-universal-attributes-border.md#border)或[borderRadius](ts-universal-attributes-border.md#borderRadius)设置圆角。<br/>默认值：空，无法修改属性<br/> |
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | ------- | -------- |

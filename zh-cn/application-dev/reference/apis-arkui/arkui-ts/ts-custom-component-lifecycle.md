@@ -22,6 +22,8 @@ onDidBuild?(): void
 
 onDidBuild函数在执行自定义组件的build()函数之后执行。不建议在onDidBuild函数中更改状态变量、使用animateTo等功能，这可能会导致不稳定的UI表现。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## aboutToDisappear
 
 aboutToDisappear?(): void
@@ -29,6 +31,8 @@ aboutToDisappear?(): void
 aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在aboutToDisappear函数中改变状态变量，特别是\@Link变量的修改可能会导致应用程序行为不稳定。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ## onPageShow
 
