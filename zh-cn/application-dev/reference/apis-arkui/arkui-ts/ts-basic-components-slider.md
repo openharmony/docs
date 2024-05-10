@@ -450,6 +450,23 @@ Slider组件滑块形状枚举。
 | SLIDE_AND_CLICK | 用户可拖拽滑块或者点击滑轨使滑块移动。|
 | SLIDE_ONLY | 不允许用户通过点击滑轨使滑块移动。|
 
+## SlideRange<sup>12+</sup>对象说明
+
+定义SlideRange中使用的回调类型。
+
+| 参数名 | 类型     | 必填 | 说明           |
+|----|--------| ---- |--------------|
+| from | number | 是 | 设置有效滑动区间的开始。 |
+| to | number | 是 | 设置有效滑动区间的结束。 |
+
+>  **说明：**
+>
+>  - 当前仅当MIN<=from<=to<=MAX时该接口生效(MIN和MAX不依赖于其设置的值, 而取决于其实际生效的值)。
+>  - 可只设置from或者to, 也可以同时设置from和to。
+>  - 当接口生效, 设置的from处于紧邻的step整数倍的值之间, 则from实际取左区间step整数倍的那个值或者MIN作为修正后的值。
+>  - 当接口生效, 设置的to处于紧邻的step整数倍的值之间, 则to实际取右区间step整数倍的那个值或者MAX作为修正后的值。
+>  - 在from和to取修正值后, 当value是undefined或null时, 其取值与from一致; 当value是数值型, 且value <= from, 则取from; value > to, 则取to。
+
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -510,23 +527,6 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | ------ | ------ | ---- | ---------------- |
 | value | number | 是 | 设置当前的进度值。 |
 | mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
-
-## SlideRange<sup>12+</sup>对象说明
-
-定义SlideRange中使用的回调类型。
-
-| 参数名 | 类型     | 必填 | 说明           |
-|----|--------| ---- |--------------|
-| from | number | 是 | 设置有效滑动区间的开始。 |
-| to | number | 是 | 设置有效滑动区间的结束。 |
-
->  **说明：**
->
->  - 当前仅当MIN<=from<=to<=MAX时该接口生效(MIN和MAX不依赖于其设置的值, 而取决于其实际生效的值)。
->  - 可只设置from或者to, 也可以同时设置from和to。
->  - 当接口生效, 设置的from处于紧邻的step整数倍的值之间, 则from实际取左区间step整数倍的那个值或者MIN作为修正后的值。
->  - 当接口生效, 设置的to处于紧邻的step整数倍的值之间, 则to实际取右区间step整数倍的那个值或者MAX作为修正后的值。
->  - 在from和to取修正值后, 当value是undefined或null时, 其取值与from一致; 当value是数值型, 且value <= from, 则取from; value > to, 则取to。
 
 ## 示例
 
