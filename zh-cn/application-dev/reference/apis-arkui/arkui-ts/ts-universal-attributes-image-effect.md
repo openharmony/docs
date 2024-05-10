@@ -206,7 +206,7 @@ colorBlend(value: Color | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
 | value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。 |
 
-## linearGradientBlur<sup>10+</sup> 
+## linearGradientBlur<sup>12+</sup> 
 
 linearGradientBlur(value: number, options: LinearGradientBlurOptions)
 
