@@ -3654,7 +3654,7 @@ try {
 
 ### openCustomDialog<sup>12+</sup>
 
-openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
 创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
 
@@ -3664,7 +3664,7 @@ openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDia
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 否    |   弹窗样式。 |
 
 **返回值：**
@@ -3738,7 +3738,7 @@ struct Index {
 
 ### closeCustomDialog<sup>12+</sup>
 
-closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
+closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭已弹出的dialogContent对应的自定义弹窗，使用Promise异步回调。
 
@@ -3748,7 +3748,7 @@ closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 
 **返回值：**
 
@@ -3831,7 +3831,7 @@ struct Index {
 
 ### updateCustomDialog<sup>12+</sup>
 
-updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
 更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
 
@@ -3841,7 +3841,7 @@ updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDi
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 是    |   弹窗样式，目前仅支持更新alignment、offset、autoCancel、maskColor。 |
 
 **返回值：**

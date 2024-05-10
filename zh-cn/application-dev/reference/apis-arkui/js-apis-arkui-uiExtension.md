@@ -286,21 +286,10 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 属性名 | 类型                 | 说明               |
-| ------ | -------------------- | ------------------ |
-| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 窗口规避区类型。   |
-| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | 窗口内容规避区域。 |
-
-## WindowProxyProperties
-
-用于表示宿主应用窗口和EmbeddedComponent（或UIExtensionComponent）组件的信息。
-
-**系统能力**：SystemCapability.ArkUI.ArkUI.Full
-
-| 属性名          | 类型        | 说明                             |
-| --------------- | ----------- | -------------------------------- |
-| windowProxyRect | [window.Rect](js-apis-window.md#rect7) | EmbeddedComponent（或UIExtensionComponent）组件的位置和宽高。 |
-
+| 名称 | 类型                 | 必填 | 说明        |
+| ------ | -------------------- | ------------------ | ------------------ |
+| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 是 | 窗口规避区类型。   |
+| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | 是| 窗口内容规避区域。 |
 
 ## 完整示例
 
