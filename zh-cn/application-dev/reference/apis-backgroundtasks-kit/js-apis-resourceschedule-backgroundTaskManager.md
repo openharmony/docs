@@ -513,7 +513,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification)类型的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification12)类型的Promise对象。 |
 
 **错误码**：
 
@@ -582,12 +582,13 @@ export default class EntryAbility extends UIAbility {
   }
 
   updateProcess(process: Number) {
+    // 应用定义下载类通知模版
     let downLoadTemplate: notificationManager.NotificationTemplate = {
-      name: 'downloadTemplate', // 当前只支持downloadTemplate，后续根据需要支持录音
+      name: 'downloadTemplate', // 当前只支持downloadTemplate，保持不变
       data: {
-        title: '文件下载：music.mp4', // 必填
-        fileName: 'senTemplate', // 必填
-        progressValue: process,
+        title: '文件下载：music.mp4', // 必填。
+        fileName: 'senTemplate', // 必填。
+        progressValue: process, // 应用更新进度值，自定义。
       }
     };
     let request: notificationManager.NotificationRequest = {
@@ -595,14 +596,14 @@ export default class EntryAbility extends UIAbility {
         // 系统实况类型，保持不变
         notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
         systemLiveView: {
-          typeCode: 8, // 上传下载类型需要填写 8，当前仅支持此类型。后续录音可以设置 7
+          typeCode: 8, // 上传下载类型需要填写 8，当前仅支持此类型。保持不变
           title: "test", // 应用自定义
           text: "test", // 应用自定义
         }
       },
       id: this.id, // 必须是申请长时任务返回的id，否则应用更新通知失败。
       notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型，保持不变
-      template: downLoadTemplate // 保持不变
+      template: downLoadTemplate // 应用需要设置的模版名称
     };
 
     try {
@@ -638,7 +639,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification)类型的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification12)类型的Promise对象。 |
 
 **错误码**：
 
