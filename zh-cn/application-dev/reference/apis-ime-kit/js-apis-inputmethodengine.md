@@ -843,6 +843,14 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 | panel     | [Panel](#panel10) | 是   | 要销毁的面板对象。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -899,6 +907,14 @@ destroyPanel(panel: Panel): Promise\<void>
 | 类型    | 说明                                                                 |
 | ------- | -------------------------------------------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1307,6 +1323,14 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 | path | string | 是   | 具体页面的路径。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1345,6 +1369,14 @@ setUiContent(path: string): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1376,6 +1408,14 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | path | string | 是   | LocalStorage相关联的具体页面的路径。 |
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1418,6 +1458,14 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1455,6 +1503,14 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 | width | number | 是   | 目标面板的宽度，单位为px。|
 | height | number | 是   | 目标面板的高度，单位为px。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1499,6 +1555,14 @@ resize(width: number, height: number): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1530,6 +1594,14 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 | x | number | 是   | x轴方向移动的值，值大于0表示右移，单位为px。|
 | y | number | 是   | y轴方向移动的值，值大于0表示下移，单位为px。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1569,6 +1641,14 @@ moveTo(x: number, y: number): Promise\<void>
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1763,6 +1843,14 @@ off(type: 'show', callback?: () => void): void
 | type | string | 是 | 取消监听当前面板的状态类型，固定取值为'show'。 |
 | callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1788,6 +1876,14 @@ off(type: 'hide', callback?: () => void): void
 | type | string | 是 | 要取消监听的当前面板状态类型，固定取值为'hide'。 |
 | callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1811,6 +1907,14 @@ changeFlag(flag: PanelFlag): void
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1838,6 +1942,14 @@ setPrivacyMode(isPrivacyMode: boolean): void
 | 参数名        | 类型    | 必填 | 说明               |
 | ------------- | ------- | ---- | ------------------ |
 | isPrivacyMode | boolean | 是   | 是否设置隐私模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
