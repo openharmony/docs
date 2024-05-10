@@ -531,7 +531,7 @@ setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
-| option | PolyToPolyOptions(#PolyToPolyOptions)  | 是   | 映射相关的参数。 |
+| option | [PolyToPolyOptions](#polytopolyoptions12)  | 是   | 映射相关的参数。 |
 
 **返回值：**
 
@@ -548,14 +548,14 @@ import matrix4 from '@ohos.matrix4'
 @Component
 struct Index {
   private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:200, y:0}, {x:0, y:200}, {x:200, y:200} ],
-    dst:[{x:150, y:0}, {x:250, y:0}, {x:0, y:200}, {x:200, y:200} ], pointCount:4})
+    dst:[{x:10, y:0}, {x:250, y:0}, {x:0, y:200}, {x:200, y:200} ], pointCount:4})
 
   build() {
     Stack() {
-      Image($r("app.media.1"))
+      Image($r("app.media.transition_image1"))
         .transform(this.matrix1)
-        .width(150)
-        .height(150)
+        .width(200)
+        .height(200)
     }.width("100%").height("100%")
   }
 }
