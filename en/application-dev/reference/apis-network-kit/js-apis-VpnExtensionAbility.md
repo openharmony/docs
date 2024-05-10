@@ -1,4 +1,4 @@
-# @ohos.app.ability.VpnExtensionAbility (VPN ExtensionAbility)
+# @ohos.app.ability.VpnExtensionAbility (Enhanced VPN Management)
 
 This module provides lifecycle callbacks for third-party VPNs, including VPN creation and destruction.
 
@@ -68,4 +68,3 @@ class MyVpnExtAbility extends VpnExtensionAbility {
     }
 }
   ```
-<!--no_check-->

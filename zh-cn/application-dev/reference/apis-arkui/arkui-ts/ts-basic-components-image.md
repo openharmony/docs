@@ -39,7 +39,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 | 名称                         | 参数类型                                                | 描述                                                         |
 | ---------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| alt                          | string \| [Resource](ts-types.md#resource类型)          | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br>默认值：null<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| alt                          | string \| [Resource](ts-types.md#resource)          | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br>默认值：null<br>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | objectFit                    | [ImageFit](ts-appendix-enums.md#imagefit)               | 设置图片的填充效果。<br/>默认值：ImageFit.Cover<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | objectRepeat                 | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | 设置图片的重复样式。从中心点向两边重复，剩余空间不足放下一张图片时会截断。<br/>默认值：ImageRepeat.NoRepeat<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
 | interpolation                | [ImageInterpolation](#imageinterpolation)               | 设置图片的插值效果，即缓解图片在缩放时的锯齿问题。<br/>默认值：ImageInterpolation.Low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>svg类型图源不支持该属性。 |
@@ -52,14 +52,14 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 | syncLoad<sup>8+</sup>        | boolean                                                 | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。 |
 | copyOption<sup>9+</sup>      | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | 设置图片是否可复制。<br>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br>默认值：CopyOptions.None<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br>**说明：**<br>svg图片不支持复制。 |
 | colorFilter<sup>9+</sup>     | [ColorFilter](ts-types.md#colorfilter9)                 | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br> **计算规则：**<br>如果输入的滤镜矩阵为：<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>像素点为[R, G, B, A]<br>则过滤后的颜色为 [R’, G’, B’, A’]<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>svg类型图源不支持该属性。 |
-| draggable<sup>9+</sup>       | boolean                                                 | 设置组件默认拖拽效果，设置为true时，组件可拖拽。<br>不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件同时使用。<br/>默认值：false<br>**说明：**<br />API version 9的默认值为false，API version 10的默认值为true。 |
+| draggable<sup>9+</sup>       | boolean                                                 | 组件默认拖拽效果，设置为true时，组件可拖拽。<br />API version 9及之前，默认值为false。API version 10及之后，默认值为true。 |
 | enableAnalyzer<sup>11+</sup> | boolean                                                 | 设置组件支持AI分析，设置为true时，组件可进行AI分析。<br>不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。<br/>默认值：false<br>**说明：**<br/> 该特性依赖设备能力。 <br/> 分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例](#使用pixelmap开启图像分析)。 <br/> alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。<br/> 基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。<br/> copyOption属性不影响AI分析功能。 |
 | resizable<sup>11+</sup>      | [ResizableOptions](#resizableoptions11)                 | 设置图像拉伸时可调整大小的图像选项。<br> **说明：**<br /> 1. 拉伸对拖拽缩略图以及占位图有效。<br>2. 设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。<br>3. 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。<br/> |
 
 >  **说明：**
 >
 >  - 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../../ui/arkts-common-events-focus-event.md#设置组件是否获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
->  - 图片设置为svg图源时，当前支持的标签是svg、rect、circle、ellipse、path、line、polyline和polygon。
+>  - 图片设置为svg图源时，当前支持的标签是svg、rect、circle、ellipse、path、line、polyline、polygon、feFlood、feBlend、feColorMatrix、feGaussianBlur、feComposite、filter、mask和use。
 
 ## ImageInterpolation
 

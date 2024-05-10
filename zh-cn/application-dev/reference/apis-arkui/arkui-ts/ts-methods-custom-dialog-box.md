@@ -29,7 +29,7 @@ CustomDialogController(value: CustomDialogControllerOptions)
 
 | 名称                           | 参数类型                                     | 必填   | 描述                                     |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                       | [CustomDialog](../../../ui/arkts-common-components-custom-dialog.md) | 是    | 自定义弹窗内容构造器。<br/>**说明：** <br/>若builder构造器使用回调函数作为入参，请注意使用this绑定问题，如build: custombuilder({ callback: ()=> {...}})。 |
+| builder                       | [CustomDialog](../../../ui/arkts-common-components-custom-dialog.md) | 是    | 自定义弹窗内容构造器。<br/>**说明：** <br/>若builder构造器使用回调函数作为入参，请注意使用this绑定问题，如build: custombuilder({ callback: ()=> {...}})。<br/>若在builder构造器中监听数据变化请使用@Link，其他方式如@Prop、@ObjectLink不适用此场景。 |
 | cancel                        | ()&nbsp;=&gt;&nbsp;void                  | 否    | 返回、ESC键和点击遮障层弹窗退出时的回调。 |
 | autoCancel                    | boolean                                  | 否    | 是否允许点击遮障层退出，true表示关闭弹窗。false表示不关闭弹窗。<br>默认值：true |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
@@ -48,7 +48,7 @@ CustomDialogController(value: CustomDialogControllerOptions)
 > **说明：**
 >
 > - 按下返回键和ESC键时会让弹窗退出。
-> - 自定义弹窗仅适用于简单提示场景，不能替代页面使用。由于弹窗存在完全避让输入法行为，即在软键盘弹出时，会自动向上抬起软键盘高度，因此如果弹窗高度过大时，可能会导致部分区域不可见。
+> - 自定义弹窗仅适用于简单提示场景，不能替代页面使用。由于弹窗存在完全避让输入法行为，即在软键盘弹出时，会自动向上抬起软键盘高度，因此如果弹窗高度过大时，可能会导致部分区域不可见。弹窗避让软键盘时，与软键盘之间存在16vp的安全间距。
 
 ## CustomDialogController
 

@@ -45,7 +45,7 @@ getTagInfo(): tag.TagInfo
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let tagInfo : TagInfo = tag.getIsoDep(tagInfo).getTagInfo();
 console.log("tag tagInfo: " + tagInfo);
@@ -76,7 +76,7 @@ connectTag(): boolean;
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let connectStatus : boolean = tag.getIsoDep(tagInfo).connectTag();
 console.log("connectStatus: " + connectStatus);
@@ -106,7 +106,7 @@ connect(): void;
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     tag.getIsoDep(tagInfo).connect(); 
@@ -135,7 +135,7 @@ reset(): void
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 tag.getIsoDep(tagInfo).reset(); 
 ```
@@ -164,7 +164,7 @@ resetConnection(): void
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     tag.getIsoDep(tagInfo).resetConnection(); 
@@ -197,7 +197,7 @@ isTagConnected(): boolean
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let isTagConnected = tag.getIsoDep(tagInfo).isTagConnected(); 
 console.log("isTagConnected: " + isTagConnected);
@@ -223,7 +223,7 @@ isConnected(): boolean
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     let isConnected = tag.getIsoDep(tagInfo).isConnected(); 
@@ -257,7 +257,7 @@ getMaxSendLength(): number
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let maxSendLen = tag.getIsoDep(tagInfo).getMaxSendLength(); 
 console.log("tag maxSendLen: " + maxSendLen);
@@ -292,7 +292,7 @@ getMaxTransmitSize(): number
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     let maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
@@ -327,7 +327,7 @@ getSendDataTimeout(): number
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let sendDataTimeout = tag.getIsoDep(tagInfo).getSendDataTimeout(); 
 console.log("tag sendDataTimeout: " + sendDataTimeout);
@@ -363,7 +363,7 @@ getTimeout(): number
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 try {
     let timeout = tag.getIsoDep(tagInfo).getTimeout(); 
@@ -404,7 +404,7 @@ setSendDataTimeout(timeout: number): boolean
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let timeoutMs = 700;  // change it to be correct.
 let setStatus = tag.getIsoDep(tagInfo).setSendDataTimeout(timeoutMs); 
@@ -441,7 +441,7 @@ setTimeout(timeout: number): void
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 let timeoutMs = 700;  // change it to be correct.
 try {
@@ -484,7 +484,7 @@ import tag from '@ohos.nfc.tag';
 import { BusinessError } from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 // connect the tag at first if not connected.
 if (!tag.getIsoDep(tagInfo).isTagConnected()) {
@@ -528,7 +528,7 @@ sendData(data: number[], callback: AsyncCallback<number[]>): void
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 // connect the tag at first if not connected.
 if (!tag.getIsoDep(tagInfo).isTagConnected()) {
@@ -585,7 +585,7 @@ import tag from '@ohos.nfc.tag';
 import { BusinessError } from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 // connect the tag at first if not connected.
 try {
@@ -641,7 +641,7 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
-// the folowing getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
+// the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
 
 // connect the tag at first if not connected.
 try {

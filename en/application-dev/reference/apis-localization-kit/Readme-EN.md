@@ -1,10 +1,10 @@
 # Localization Kit API Reference
 
 - ArkTS APIs
-  - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
-  - [@ohos.intl (Internationalization)](js-apis-intl.md)
-  - [@ohos.resourceManager (Resource Management)](js-apis-resource-manager.md)
-  - [@ohos.i18n (Internationalization) (System API)](js-apis-i18n-sys.md)
+  - [@ohos.i18n (Internationalization-I18n)](js-apis-i18n.md)
+  - [@ohos.intl (Internationalization-Intl)](js-apis-intl.md)
+  - [@ohos.resourceManager (Resource Manager)](js-apis-resource-manager.md)
+  - [@ohos.i18n (Internationalization-I18n) (System API)](js-apis-i18n-sys.md)
 - C APIs
   - Modules
     - [Rawfile](rawfile.md)

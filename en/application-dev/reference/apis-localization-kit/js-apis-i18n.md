@@ -107,6 +107,8 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 Obtains the list of system languages.
 
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
@@ -294,7 +296,7 @@ static is24HourClock(): boolean
 
 Checks whether the 24-hour clock is used.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -859,10 +861,10 @@ Checks whether a given date is a weekend in the calendar.
 **Example**
   ```ts
   let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
-  calendar.isWeekend(); // false
+  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+  calendar.isWeekend(); // true
   let date: Date = new Date(2011, 11, 6, 9, 0, 0);
-  calendar.isWeekend(date); // true
+  calendar.isWeekend(date); // false
   ```
 
 
@@ -2205,7 +2207,7 @@ Normalizes text strings.
 **Example**
   ```ts
   let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
-  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = \u1E9B\u0323
+  let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
   ```
 
 
@@ -2256,7 +2258,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 isHoliday(date?: Date): boolean
 
-Determines whether the specified date is a holiday.
+Checks whether the specified date is a holiday.
 
 **System capability**: SystemCapability.Global.I18n
 

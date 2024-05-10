@@ -619,13 +619,13 @@ Indicates that the Wi-Fi P2P group information has changed.
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
 (Reserved, not supported yet) Indicates that the NFC RF field is detected to be in the enabled state.
   - Value: **usual.event.nfc.action.RF_FIELD_ON_DETECTED**
-  - Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS
+  - Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS (for system applications only)
 
 
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
 (Reserved, not supported yet) Indicates that the NFC RF field is detected to be in the disabled state.
   - Value: **usual.event.nfc.action.RF_FIELD_OFF_DETECTED**
-  - Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS
+  - Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS (for system applications only)
 
 
 * COMMON_EVENT_DISCHARGING

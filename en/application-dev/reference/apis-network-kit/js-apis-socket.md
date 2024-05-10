@@ -538,12 +538,8 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-udp.on('message', (value: SocketInfo) => {
+udp.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -578,13 +574,9 @@ Unsubscribes from **message** events of the UDP socket connection. This API uses
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -738,8 +730,7 @@ Defines the destination address.
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address | string | Yes  | Bound IP address.                                          |
 | port    | number | No  | Port number. The value ranges from **0** to **65535**. If this parameter is not specified, the system randomly allocates a port.          |
-| family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**.|
-
+| family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**. For an IPv6 address, this field must be explicitly set to **2**.|
 ## UDPSendOptions
 
 Defines the parameters for sending data over a UDP socket connection.
@@ -871,7 +862,7 @@ let addr: socket.NetAddress = {
   address: '239.255.0.1',
   port: 8080
 }
-multicast.addMembership(addr, (err) => {
+multicast.addMembership(addr, (err: Object) => {
   if (err) {
     console.log('add membership fail, err: ' + JSON.stringify(err));
     return;
@@ -926,7 +917,7 @@ let addr: socket.NetAddress = {
 }
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('addMembership fail');
 });
 ```
@@ -935,7 +926,7 @@ multicast.addMembership(addr).then(() => {
 
 dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
 
-Drops a member from a multicast group. This API uses an asynchronous callback to return the result.
+Drop a **MulticastSocket** object from the multicast group. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
@@ -970,7 +961,7 @@ let addr: socket.NetAddress = {
   address: '239.255.0.1',
   port: 8080
 }
-multicast.dropMembership(addr, (err) => {
+multicast.dropMembership(addr, (err: Object) => {
   if (err) {
     console.log('drop membership fail, err: ' + JSON.stringify(err));
     return;
@@ -983,7 +974,7 @@ multicast.dropMembership(addr, (err) => {
 
 dropMembership(multicastAddress: NetAddress): Promise\<void\>;
 
-Drops a member from a multicast group. This API uses a promise to return the result.
+Drop a **MulticastSocket** object from the multicast group. This API uses a promise to return the result.
 
 > **NOTE**
 > The IP addresses used for multicast belong to a specific range, for example, 224.0.0.0 to 239.255.255.255.
@@ -1025,7 +1016,7 @@ let addr: socket.NetAddress = {
 }
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('drop membership fail');
 });
 ```
@@ -1065,7 +1056,7 @@ Sets the time to live (TTL) for multicast packets. This API uses an asynchronous
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let ttl = 8
-multicast.setMulticastTTL(ttl, (err) => {
+multicast.setMulticastTTL(ttl, (err: Object) => {
   if (err) {
     console.log('set ttl fail, err: ' + JSON.stringify(err));
     return;
@@ -1078,7 +1069,7 @@ multicast.setMulticastTTL(ttl, (err) => {
 
 setMulticastTTL(ttl: number): Promise\<void\>;
 
-Sets the TTL for multicast packets. This API uses a promise to return the result.
+Sets the time to live (TTL) for multicast packets. This API uses a promise to return the result.
 
 > **NOTE**
 > TTL is used to limit the maximum number of router hops for packet transmission on a network.
@@ -1115,7 +1106,7 @@ import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set ttl failed');
 });
 ```
@@ -1152,7 +1143,7 @@ Obtains the TTL for multicast packets. This API uses an asynchronous callback to
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getMulticastTTL((err, value) => {
+multicast.getMulticastTTL((err: Object, value: Number) => {
   if (err) {
     console.log('set ttl fail, err: ' + JSON.stringify(err));
     return;
@@ -1193,9 +1184,9 @@ Obtains the TTL for multicast packets. This API uses a promise to return the res
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getMulticastTTL().then((value) => {
+multicast.getMulticastTTL().then((value: Number) => {
   console.log('ttl: ', JSON.stringify(value));
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set ttl failed');
 });
 ```
@@ -1232,7 +1223,7 @@ Sets the loopback mode flag for multicast communication. This API uses an asynch
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.setLoopbackMode(false, (err) => {
+multicast.setLoopbackMode(false, (err: Object) => {
   if (err) {
     console.log('set loopback mode fail, err: ' + JSON.stringify(err));
     return;
@@ -1280,7 +1271,7 @@ import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('set loopback mode failed');
 });
 ```
@@ -1316,7 +1307,7 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getLoopbackMode((err, value) => {
+multicast.getLoopbackMode((err: Object, value: Boolean) => {
   if (err) {
     console.log('get loopback mode fail, err: ' + JSON.stringify(err));
     return;
@@ -1356,9 +1347,9 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 ```ts
 import socket from "@ohos.net.socket";
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
-multicast.getLoopbackMode().then((value) => {
+multicast.getLoopbackMode().then((value: Boolean) => {
   console.log('loopback mode: ', JSON.stringify(value));
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('get loopback mode failed');
 });
 ```
@@ -1368,7 +1359,7 @@ multicast.getLoopbackMode().then((value) => {
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
-Sends data in multicast communication. This API uses an asynchronous callback to return the result.
+Send data over the connection. This API uses an asynchronous callback to return the result.
 
 Before sending data, call [addMembership](#addmembership11) to add a member to the multicast group.
 
@@ -1402,7 +1393,7 @@ let sendOptions: socket.UDPSendOptions = {
     port: 8080
   }
 }
-multicast.send(sendOptions, (err) => {
+multicast.send(sendOptions, (err: Object) => {
   if (err) {
     console.log('send fail: ' + JSON.stringify(err));
     return;
@@ -1415,7 +1406,7 @@ multicast.send(sendOptions, (err) => {
 
 send(options: UDPSendOptions): Promise\<void\>
 
-Sends data in multicast communication. This API uses a promise to return the result.
+Send data over the connection. This API uses a promise to return the result.
 
 Before sending data, call [addMembership](#addmembership11) to add a member to the multicast group.
 
@@ -1456,7 +1447,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 multicast.send(sendOptions).then(() => {
   console.log('send success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('send fail, ' + JSON.stringify(err));
 });
 ```
@@ -2373,12 +2364,8 @@ Subscribes to **message** events of the TCP socket connection. This API uses an 
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-tcp.on('message', (value: SocketInfo) => {
+tcp.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -2414,12 +2401,8 @@ Unsubscribes from **message** events of the TCP socket connection. This API uses
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -3429,12 +3412,8 @@ import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
-  client.on('message', (value: SocketInfo) => {
+  client.on('message', (value: socket.SocketMessageInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
       let uint8Array = new Uint8Array(value.message) 
@@ -3478,15 +3457,11 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]]
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3714,7 +3689,7 @@ Binds the address of a local socket file. This API uses a promise to return the 
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -3764,7 +3739,7 @@ Connects to the specified socket file. This API uses a promise to return the res
 import socket from "@ohos.net.socket";
 
 let client = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3814,7 +3789,7 @@ Sends data over a local socket connection. This API uses a promise to return the
 import socket from "@ohos.net.socket"
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3891,7 +3866,7 @@ Obtains the local socket connection status. This API uses a promise to return th
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3933,7 +3908,7 @@ Obtains the file descriptor of the **LocalSocket** object. This API uses a promi
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -3987,7 +3962,7 @@ Sets other properties of the local socket connection. This API uses a promise to
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -4039,7 +4014,7 @@ Obtains other properties of the local socket connection. This API uses a promise
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
   address: {
     address: sandboxPath
@@ -4082,7 +4057,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -4117,7 +4092,7 @@ let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -4213,7 +4188,7 @@ client.on('close', callback);
 
 off(type: 'close', callback?: Callback\<void\>): void;
 
-Unsubscribes from **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
+Subscribes to **close** events of a **LocalSocket** object. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.
@@ -4261,7 +4236,7 @@ Subscribes to **error** events of a **LocalSocket** object. This API uses an asy
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-client.on('error', (err) => {
+client.on('error', (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -4289,7 +4264,7 @@ Unsubscribes from **error** events of a **LocalSocket** object. This API uses an
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let callback = (err) => {
+let callback = (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
 client.on('error', callback);
@@ -4418,7 +4393,7 @@ Binds the address of the local socket file. The server listens to and accepts lo
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let addr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4451,7 +4426,7 @@ Obtains the status of a local socket server connection. This API uses a promise 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4502,7 +4477,7 @@ Sets other properties of the local socket server connection. This API uses a pro
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.NetAddress = {
   address: sandboxPath
 }
@@ -4673,7 +4648,7 @@ Subscribes to **error** events of a **LocalSocketServer** object. This API uses 
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-server.on('error', (err) => {
+server.on('error', (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err))
 });
 ```
@@ -4707,7 +4682,7 @@ Unsubscribes from **error** events of a **LocalSocketServer** object. This API u
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let callback = (err) => {
+let callback = (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err));
 }
 server.on('error', callback);
@@ -4841,7 +4816,7 @@ Subscribes to **message** events of a **LocalSocketConnection** object. This API
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4855,7 +4830,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
-      messageView = String.fromCharCode(uintArray[i]);
+      messageView += String.fromCharCode(uintArray[i]);
     }
     console.log('total: ' + JSON.stringify(value));
     console.log('message infomation: ' + messageView);
@@ -4896,7 +4871,7 @@ let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
-    messageView = String.fromCharCode(uintArray[i]);
+    messageView += String.fromCharCode(uintArray[i]);
   }
   console.log('total: ' + JSON.stringify(value));
   console.log('message infomation: ' + messageView);
@@ -5009,7 +4984,7 @@ Subscribes to **error** events of a **LocalSocketConnection** object. This API u
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
-  connection.on('error', (err) => {
+  connection.on('error', (err: Object) => {
     console.error("on error, err:" + JSON.stringify(err))
   });
 });
@@ -5043,7 +5018,7 @@ Unsubscribes from **error** events of a **LocalSocketConnection** object. This A
 
 ```ts
 import socket from "@ohos.net.socket";
-let callback = (err) => {
+let callback = (err: Object) => {
   console.error("on error, err: " + JSON.stringify(err));
 }
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
@@ -5415,12 +5390,8 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-tls.on('message', (value: SocketInfo) => {
+tls.on('message', (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -5456,12 +5427,8 @@ Unsubscribes from **message** events of a **TLSSocket** object. This API uses an
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 let messageView = '';
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
     let messages = uint8Array[i]
@@ -5978,12 +5945,15 @@ Obtains the digital certificate of the server after a TLS socket connection is e
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
-    console.log("getRemoteCertificate callback = " + data);
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getRemoteCertificate callback = " + str);
   }
 });
 ```
@@ -6014,9 +5984,12 @@ Obtains the digital certificate of the server after a TLS socket connection is e
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
-  console.log(data);
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
@@ -6240,7 +6213,7 @@ tls.getSignatureAlgorithms().then((data: Array<string>) => {
 
 ### send<sup>9+</sup>
 
-send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
+send(data: string, callback: AsyncCallback\<void\>): void
 
 Sends a message to the server after a TLS socket connection is established. This API uses an asynchronous callback to return the result.
 
@@ -6250,7 +6223,7 @@ Sends a message to the server after a TLS socket connection is established. This
 
 | Name   | Type                         | Mandatory| Description           |
 | -------- | -----------------------------| ---- | ---------------|
-|   data   | string \| ArrayBuffer                      | Yes  | Data content of the message to send.  |
+|   data   | string                       | Yes  | Data content of the message to send.  |
 | callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -6281,7 +6254,7 @@ tls.send("xxxx", (err: BusinessError) => {
 
 ### send<sup>9+</sup>
 
-send(data: string \| ArrayBuffer): Promise\<void\>
+send(data: string): Promise\<void\>
 
 Sends a message to the server after a TLS socket connection is established. This API uses a promise to return the result.
 
@@ -6291,7 +6264,7 @@ Sends a message to the server after a TLS socket connection is established. This
 
 | Name   | Type                         | Mandatory| Description           |
 | -------- | -----------------------------| ---- | ---------------|
-|   data   | string \| ArrayBuffer                       | Yes  | Data content of the message to send.  |
+|   data   | string                       | Yes  | Data content of the message to send.  |
 
 **Error codes**
 
@@ -6419,7 +6392,7 @@ Defines TLS security options. The CA certificate is mandatory, and other paramet
 
 | Name                | Type                                                   | Mandatory| Description                               |
 | --------------------- | ------------------------------------------------------ | --- |----------------------------------- |
-| ca                    | string \| Array\<string\> | No| CA certificate of the server, which is used to authenticate the digital certificate of the server. The default value is the preset CA certificate.|
+| ca                    | string \| Array\<string\>                               | Yes| CA certificate of the server, which is used to authenticate the digital certificate of the server.|
 | cert                  | string                                                  | No| Digital certificate of the local client.                |
 | key                   | string                                                  | No| Private key of the local digital certificate.                  |
 | password                | string                                                  | No| Password for reading the private key.                     |
@@ -7387,7 +7360,7 @@ Defines a **TLSSocketConnection** object, that is, the connection between the TL
 
 ### send<sup>10+</sup>
 
-send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
+send(data: string, callback: AsyncCallback\<void\>): void
 
 Sends a message to the client after a TLS socket server connection is established. This API uses an asynchronous callback to return the result.
 
@@ -7397,7 +7370,7 @@ Sends a message to the client after a TLS socket server connection is establishe
 
 | Name  | Type                 | Mandatory| Description                                            |
 | -------- | --------------------- | ---- | ------------------------------------------------ |
-| data     | string \| ArrayBuffer                | Yes  | Parameters for sending data over a TLS socket server connection.           |
+| data     | string                | Yes  | Parameters for sending data over a TLS socket server connection.           |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -7453,7 +7426,7 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 
 ### send<sup>10+</sup>
 
-send(data: string \| ArrayBuffer): Promise\<void\>
+send(data: string): Promise\<void\>
 
 Sends a message to the server after a TLS socket server connection is established. This API uses a promise to return the result.
 
@@ -7463,7 +7436,7 @@ Sends a message to the server after a TLS socket server connection is establishe
 
 | Name| Type  | Mandatory| Description                                 |
 | ------ | ------ | ---- | ------------------------------------- |
-| data   | string \| ArrayBuffer | Yes  | Parameters for sending data over a TLS socket server connection.|
+| data   | string | Yes  | Parameters for sending data over a TLS socket server connection.|
 
 **Return value**
 
@@ -8182,12 +8155,8 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
-  client.on('message', (value: SocketInfo) => {
+  client.on('message', (value: socket.SocketMessageInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
       let uint8Array = new Uint8Array(value.message) 
@@ -8254,11 +8223,7 @@ tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("failed" + err);
 });
 
-class SocketInfo {
-  message: ArrayBuffer = new ArrayBuffer(1);
-  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
-}
-let callback = (value: SocketInfo) => {
+let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
