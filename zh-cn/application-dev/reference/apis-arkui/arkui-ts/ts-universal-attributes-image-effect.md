@@ -204,7 +204,7 @@ colorBlend(value: Color | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
 | value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。 |
 
-## linearGradientBlur<sup>10+</sup> 
+## linearGradientBlur<sup>12+</sup> 
 
 linearGradientBlur(value: number, options: LinearGradientBlurOptions)
 
@@ -224,6 +224,8 @@ linearGradientBlur(value: number, options: LinearGradientBlurOptions)
 renderGroup(value: boolean)
 
 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -43,7 +43,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 ### alt
 
-alt(value:&nbsp;string&nbsp;|&nbsp;Resource)
+alt(value:&nbsp;string&nbsp;|&nbsp;Resource&nbsp;|&nbsp;PixelMap)
 
 设置图片加载时显示的占位图。
 
@@ -53,9 +53,9 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource)
 
 **参数：** 
 
-| 参数名 | 类型                                                     | 必填 | 说明                                                         |
-| ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br/>默认值：null |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg和gif类型），不支持网络图片。<br/>默认值：null |
 
 ### objectFit
 
@@ -263,7 +263,7 @@ copyOption(value: CopyOptions)
 
 ### colorFilter<sup>9+</sup>
 
-colorFilter(value: ColorFilter)
+colorFilter(value: ColorFilter&nbsp;|&nbsp;DrawingColorFilter)
 
 为图像设置颜色滤镜效果。
 
@@ -275,9 +275,9 @@ colorFilter(value: ColorFilter)
 
 **参数：** 
 
-| 参数名 | 类型                                    | 必填 | 说明                                                         |
-| ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) | 是   | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image-matrix-1.jpg)<br/>像素点为[R, G, B, A]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image-matrix-2.jpg)<br/>**说明：** <br/>svg类型图源不支持该属性。 |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ColorFilter](ts-types.md#colorfilter9)&nbsp;\|&nbsp;[DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)<sup>12+</sup> | 是   | 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵为：<br/>![image-matrix-1](figures/image-matrix-1.jpg)<br/>像素点为[R, G, B, A]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image-matrix-2.jpg)<br/>**说明：** <br/>svg类型图源不支持该属性。 |
 
 ### draggable<sup>9+</sup>
 
