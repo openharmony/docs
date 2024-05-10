@@ -242,7 +242,7 @@ Failed to obtain the ``${messageInfo}`` information via UserIAM.
 
 **错误信息**
 
-Device password is required but not set.
+A device password is required but not set.
 
 **可能原因**
 
