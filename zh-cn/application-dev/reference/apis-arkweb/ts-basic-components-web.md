@@ -7185,44 +7185,6 @@ onOverrideUrlLoading的回调。
 | ------- | ------------------------ |
 | boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
 
-
-## RenderProcessNotRespondingReason<sup>12+</sup>
-
-网页进程无响应回调的原因。
-
-| 名称                           | 值 | 描述           |
-| ----------------------------- | -- | ------------ |
-| INPUT_TIMEOUT                  | 0 | 发送给网页进程的input事件响应超时。   |
-| NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载导航响应超时。   |
-
-## RenderProcessNotRespondingData<sup>12+</sup>
-
-提供网页进程无响应的详细信息。
-
-| 名称                     | 类型   | 必填 | 描述                                   |
-| ------------------------ | ------ | ---- | -------------------------------------- |
-| jsStack      | string | 是  | 网页的javaScript调用栈信息。       |
-| pid | number | 是   | 网页的进程id。 |
-| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应回调的原因。 |
-
-
-## OnRenderProcessNotRespondingCallback<sup>12+</sup>
-
-type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12)) => void;
-
-网页进程无响应时触发的回调。
-
-| 参数名               | 参数类型                                        | 参数描述                         |
-| -------------------- | ----------------------------------------------- | -------------------------------- |
-| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 网页进程无响应的详细信息。 |
-
-## OnRenderProcessRespondingCallback<sup>12+</sup>
-
-type OnRenderProcessRespondingCallback = () => void;
-
-网页进程由无响应状态变回正常运行状态时触发该回调。
-
-
 ## RenderMode<sup>12+</sup>枚举说明
 
 定义Web组件的渲染方式。
@@ -7247,3 +7209,38 @@ type NativeMediaPlayerConfig = {
 |------|------|------|------|------|
 |  enable  | boolean | 否 | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
 |  shouldOverlay | boolean | 否 | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
+
+## RenderProcessNotRespondingReason<sup>12+</sup>
+
+触发网页进程无响应回调的原因。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| INPUT_TIMEOUT                  | 0 | 发送给网页进程的input事件响应超时。   |
+| NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载导航响应超时。   |
+
+## RenderProcessNotRespondingData<sup>12+</sup>
+
+提供网页进程无响应的详细信息。
+
+| 名称                     | 类型   | 必填 | 描述                                   |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| jsStack      | string | 是  | 网页的javaScript调用栈信息。       |
+| pid | number | 是   | 网页的进程id。 |
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应回调的原因。 |
+
+## OnRenderProcessNotRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12)) => void;
+
+网页进程无响应时触发的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 网页进程无响应的详细信息。 |
+
+## OnRenderProcessRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessRespondingCallback = () => void;
+
+网页进程由无响应状态变回正常运行状态时触发该回调。
