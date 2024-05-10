@@ -5362,7 +5362,7 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 
 ### generateSecret
 
-generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
+generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 基于传入的密钥派生参数进行密钥派生，通过注册回调函数返回派生得到的密钥。
 
@@ -5374,7 +5374,7 @@ generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 | 参数名   | 类型                     | 必填 | 说明                   |
 | -------- | ------------------------ | ---- | ---------------------- |
-| spec   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
+| params   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
 
 **错误码：**
