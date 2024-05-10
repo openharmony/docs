@@ -1003,8 +1003,9 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
-  let options: osAccount.CreateOsAccountOptions;
-  options.shortName = 'myShortName';
+  let options: osAccount.CreateOsAccountOptions = {
+    shortName = 'myShortName'
+  }
   try {
     accountManager.createOsAccount('testAccountName', osAccount.OsAccountType.NORMAL, options).then(
       (accountInfo: osAccount.OsAccountInfo) => {
@@ -1113,8 +1114,9 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, opt
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let domainInfo: osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
-  let options: osAccount.CreateOsAccountForDomainOptions;
-  options.shortName = 'myShortName';
+  let options: osAccount.CreateOsAccountForDomainOptions = {
+    shortName = 'myShortName'
+  }
   try {
     accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo, options).then(
       (accountInfo: osAccount.OsAccountInfo) => {
@@ -4044,8 +4046,8 @@ static addServerConfig(parameters: Record&lt;string, Object&gt;): Promise&lt;Dom
     'port': 100
   };
   try {
-    let serverConfig: account.DomainServerConfig =
-      await account.DomainServerConfigManager.addServerConfig(configParams);
+    let serverConfig: osAccount.DomainServerConfig =
+      await osAccount.DomainServerConfigManager.addServerConfig(configParams);
     console.log('add server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
   } catch (e) {
     console.log('add server configuration failed, error: ' + JSON.stringify(e));
@@ -4091,10 +4093,10 @@ static removeServerConfig(configId: string): Promise&lt;void&gt;
     'port': 100
   };
   try {
-    let serverConfig: account.DomainServerConfig =
-      await account.DomainServerConfigManager.addServerConfig(configParams);
+    let serverConfig: osAccount.DomainServerConfig =
+      await osAccount.DomainServerConfigManager.addServerConfig(configParams);
     console.log('add domain server configuration successfully, the added config: ' + JSON.stringify(serverConfig));
-    await account.DomainServerConfigManager.removeServerConfig(serverConfig.id);
+    await osAccount.DomainServerConfigManager.removeServerConfig(serverConfig.id);
     console.log('remove domain server configuration successfully');
   } catch (e) {
     console.log('add or remove server configuration failed, error: ' + JSON.stringify(e));
@@ -4135,14 +4137,14 @@ static getAccountServerConfig(domainAccountInfo: DomainAccountInfo): Promise&lt;
 
 **示例：**
   ```ts
-  let accountInfo: account.DomainAccountInfo = {
+  let accountInfo: osAccount.DomainAccountInfo = {
     'accountName': 'demoName',
     'accountId': 'demoId',
     'domain': 'demoDomain'
   };
   try {
-    let serverConfig: account.DomainServerConfig =
-      await account.DomainServerConfigManager.getAccountServerConfig(accountInfo);
+    let serverConfig: osAccount.DomainServerConfig =
+      await osAccount.DomainServerConfigManager.getAccountServerConfig(accountInfo);
     console.log('get account server configuration successfully, the return config: ' + JSON.stringify(serverConfig));
   } catch (e) {
     console.log('get account server configuration failed, error: ' + JSON.stringify(e));
