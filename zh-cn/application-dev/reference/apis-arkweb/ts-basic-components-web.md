@@ -2789,7 +2789,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
   ```
 ### onRenderProcessNotResponding<sup>12+</sup>
 
-onRenderProcessNotRespondingCallback(callback: [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12))
+onRenderProcessNotResponding(callback: [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12))
 
 网页进程无响应时触发该回调函数。
 
