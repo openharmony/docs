@@ -47,7 +47,8 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | 否 | 半模态面板的标题。 |
 | enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。<br/>**说明：**<br/>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。当设置为true时，maskColor设置无效。 |
 | shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。 |
-| onHeightDidChange<sup>12+</sup> | (value: number) => void | 否 | 半模态页面高度变化回调函数。<br/>**说明：**<br/>底部弹窗时，只有挡位变化和拖拽跟手才返回每一帧高度，拉起半模态和避让软键盘只返回最后的高度，其他弹窗只在半模态拉起返回最后高度。<br/>返回值为px。 |
+| onHeightDidChange<sup>12+</sup> | Callback&lt;number&gt; | 否 | 半模态页面高度变化回调函数。<br/>**说明：**<br/>底部弹窗时，只有挡位变化和拖拽跟手才返回每一帧高度，拉起半模态和避让软键盘只返回最后的高度，其他弹窗只在半模态拉起返回最后高度。<br/>返回值为px。 |
+| mode<sup>12+</sup> | [SheetMode](#sheetmode12)   | 否 | 设置半模态页面的显示层级。<br/>默认值：SheetMode.OVERLAY。|
 
 ## SheetSize枚举说明
 
@@ -87,6 +88,12 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | -------- | -------------------------------------- | ---- | -------------------- |
 | title    | [ResourceStr](ts-types.md#resourcestr) | 是   | 半模态面板的主标题。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否   | 半模态面板的副标题。 |
+
+## SheetMode<sup>12+</sup>
+| 名称                      | 参数描述                         |
+| ------------------------- | -------------------------------- |
+| OVERLAY                   | 设置半模态面板在当前UIContext内顶层显示，在所有页面之上。和弹窗类组件显示在一个层级。   |
+| EMBEDDED                  | 设置半模态面板在当前页面内的顶层显示。 <br />**说明：**<br />目前只支持挂载在Page节点上，只支持在Page页面内顶层显示。<br /> 该模式下新起的页面可以覆盖在半模态弹窗上，页面返回后该半模态依旧存在，半模态面板内容不丢失。 <br /> 该模式下需确保页面节点如Page节点已挂树，再拉起半模态，否则半模态无法挂载到对应的页面节点内。|
 
 ## 示例1
 
