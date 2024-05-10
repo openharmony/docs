@@ -296,7 +296,7 @@ function count() : void {
 | layerMask | [LayerMask](#layermask) | 是 | 是 | 结点的图层掩码。 |
 | path | string | 是 | 是 | 结点路径。 |
 | parent | [Node](#node) \| null | 是 | 是 | 结点的父结点，不存在则为空值。 |
-| children | [Container](#container)\<Node> | 是 | 是 | 结点的结点，不存在则为空值。 |
+| children | [Container](#containert)\<Node> | 是 | 是 | 结点的结点，不存在则为空值。 |
 
 ### getNodeByPath
 getNodeByPath(path: string): Node | null
