@@ -141,7 +141,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
     
-    **Configure 参数校验规则**
+    <b id="Configure 参数校验规则">**Configure 参数校验规则**</b>
     | Key                    | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
     | ---------------------- | -------- | -------- | ------ |
     | OH_MD_KEY_WIDTH        | √        | ×        | ×      |
