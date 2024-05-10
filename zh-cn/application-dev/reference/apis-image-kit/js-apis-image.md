@@ -2728,7 +2728,7 @@ const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSou
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，RAW，dng。 |
 
-### getImageInfo
+### getImageInfo<sup>6+</sup>
 
 getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
@@ -2759,7 +2759,7 @@ imageSourceApi.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo
 })
 ```
 
-### getImageInfo
+### getImageInfo<sup>6+</sup>
 
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
@@ -2789,7 +2789,7 @@ imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => 
 })
 ```
 
-### getImageInfo
+### getImageInfo<sup>6+</sup>
 
 getImageInfo(index?: number): Promise\<ImageInfo>
 
@@ -5011,14 +5011,14 @@ img.release().then(() => {
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
-| size | [Size](#size) | 是   | 是   | 图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| size<sup>6+</sup> | [Size](#size) | 是   | 是   | 图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。  |
 | mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式（MIME type）。  |
 
-## Size
+## Size<sup>6+</sup>
 
 表示图片尺寸。
 
