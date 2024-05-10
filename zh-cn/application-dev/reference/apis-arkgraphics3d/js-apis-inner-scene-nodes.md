@@ -6,7 +6,8 @@
 
 ## 导入模块
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 ```
 ## LayerMask
 用于定义结点的图层掩码。
@@ -30,13 +31,14 @@ getEnabled(index: number): boolean
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function layerMask() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode_");
+      let node : Node | null = result.getNodeByPath("rootNode_");
       if (node) {
           // 获取掩码的使能状态
           let enabled: Boolean = node.layerMask.getEnabled(1);
@@ -67,13 +69,14 @@ setEnabled(index: number, enabled: boolean): boolean
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function layerMask() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
+      let node : Node | null = result.getNodeByPath("rootNode/Scene/");
       if (node) {
           // 设置掩码状态
           node.layerMask.setEnabled(1, true);
@@ -111,13 +114,14 @@ append(item T): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function append() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
+      let node : Node | null = result.getNodeByPath("rootNode/Scene/");
       // append 节点
       result.root?.children.get(0)?.children.append(node);
     }
@@ -141,13 +145,14 @@ insertAfter(item: T, sibling: T | null): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function insertAfter() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
+      let node : Node | null = result.getNodeByPath("rootNode/Scene/");
       // insertAfter 节点
       result.root?.children.get(0)?.children.insertAfter(node, null);
     }
@@ -169,13 +174,14 @@ remove(item T): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function remove() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
+      let node : Node | null = result.getNodeByPath("rootNode/Scene/");
       // remove 节点
       result.root?.children.remove(node);
     }
@@ -202,13 +208,14 @@ get(index: number): T | null
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function get() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
+      let node : Node | null = result.getNodeByPath("rootNode/Scene/");
       // 从children中get 0号节点
       result.root?.children.get(0)?.children.insertAfter(node, null);
     }
@@ -225,13 +232,14 @@ clear(): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function clear() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode/Scene/");
+      let node : Node | null = result.getNodeByPath("rootNode/Scene/");
       // 清空children节点
       result.root?.children.clear();
     }
@@ -253,15 +261,16 @@ count(): number
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function count() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let node : scene3d.Node | null = result.getNodeByPath("rootNode_");
+      let node : Node | null = result.getNodeByPath("rootNode_");
       if (node) {
-        let container: scene3d.Container<scene3d.Node> = node.children;
+        let container: Container<Node> = node.children;
         // 获取children中的节点数
         let count: number = container.count();
       }
@@ -308,14 +317,15 @@ getNodeByPath(path: string): Node | null
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function getNode() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result && result.root) {
       // 查找节点
-      let geo : scene3d.Node | null = result.root.getNodeByPath("scene/node");
+      let geo : Node | null = result.root.getNodeByPath("scene/node");
     }
   });
 }
@@ -352,7 +362,7 @@ function getNode() : void {
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| lightType | [LightType](js-apis-inner-scene-nodes.md#lighttype) | 是 | 是 | 光源类型。 |
+| lightType | [LightType](#lighttype) | 是 | 是 | 光源类型。 |
 | color | [Color](js-apis-inner-scene-types.md#color) | 否 | 是 | 颜色。 |
 | intensity | number | 否 | 是 | 光照密度，取值范围是大于0的实数。 |
 | shadowEnabled | boolean | 否 | 是 | 是否使能阴影，true表示添加阴影，false表示没有阴影效果。 |

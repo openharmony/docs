@@ -6,7 +6,8 @@
 
 ## 导入模块
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 ```
 
 ## SceneResourceParameters
@@ -20,18 +21,19 @@ import scene3d from '@ohos.graphics.scene'
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createShaderPromise() : Promise<scene3d.Shader> {
+function createShaderPromise() : Promise<Shader> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
 
       // 创建SceneResourceParameters类型变量并以此创建shader
-      let sceneResourceParameter: scene3d.SceneResourceParameters = { name: "shaderResource",
+      let sceneResourceParameter: SceneResourceParameters = { name: "shaderResource",
         uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") };
-      let shader: Promise<scene3d.Shader> = sceneFactory.createShader(sceneResourceParameter);
+      let shader: Promise<Shader> = sceneFactory.createShader(sceneResourceParameter);
       return shader;
     });
   });
@@ -49,18 +51,19 @@ function createShaderPromise() : Promise<scene3d.Shader> {
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createNodePromise() : Promise<scene3d.Node> {
+function createNodePromise() : Promise<Node> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
 
       // 创建SceneNodeParameters类型变量并以此创建node
-      let sceneNodeParameter: scene3d.SceneNodeParameters = { name: "empty_node",
+      let sceneNodeParameter: SceneNodeParameters = { name: "empty_node",
         path:"/rootNode_/empty_node" };
-      let node: Promise<scene3d.Node> = sceneFactory.createNode(sceneNodeParameter);
+      let node: Promise<Node> = sceneFactory.createNode(sceneNodeParameter);
       return node;
     });
   });
@@ -88,16 +91,17 @@ createCamera(params: SceneNodeParameters): Promise\<Camera>
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createCameraPromise() : Promise<scene3d.Camera> {
+function createCameraPromise() : Promise<Camera> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneCameraParameter: scene3d.SceneNodeParameters = { name: "camera1" };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
       // 创建相机
-      let camera: Promise<scene3d.Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
       return camera;
     });
   });
@@ -124,16 +128,17 @@ createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createLightPromise() : Promise<scene3d.Light> {
+function createLightPromise() : Promise<Light> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneLightParameter: scene3d.SceneNodeParameters = { name: "light" };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneLightParameter: SceneNodeParameters = { name: "light" };
       // 创建平行光
-      let light: Promise<scene3d.Light> = sceneFactory.createLight(sceneLightParameter, scene3d.LightType.DIRECTIONAL);
+      let light: Promise<Light> = sceneFactory.createLight(sceneLightParameter, LightType.DIRECTIONAL);
       return light;
     });
   });
@@ -159,17 +164,18 @@ createNode(params: SceneNodeParameters): Promise\<Node>
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createNodePromise() : Promise<scene3d.Node> {
+function createNodePromise() : Promise<Node> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneNodeParameter: scene3d.SceneNodeParameters = { name: "empty_node",
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneNodeParameter: SceneNodeParameters = { name: "empty_node",
         path:"/rootNode_/empty_node" };
       // 创建节点
-      let node: Promise<scene3d.Node> = sceneFactory.createNode(sceneNodeParameter);
+      let node: Promise<Node> = sceneFactory.createNode(sceneNodeParameter);
       return node;
     });
   });
@@ -196,16 +202,17 @@ createMaterial(params: SceneResourceParameters, materialType: MaterialType): Pro
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createMaterialPromise() : Promise<scene3d.Material> {
+function createMaterialPromise() : Promise<Material> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneMaterialParameter: scene3d.SceneResourceParameters = { name: "material" };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneMaterialParameter: SceneResourceParameters = { name: "material" };
       // 创建材质
-      let material: Promise<scene3d.Material> = sceneFactory.createMaterial(sceneMaterialParameter, scene3d.MaterialType.SHADER);
+      let material: Promise<Material> = sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
       return material;
     });
   });
@@ -231,17 +238,18 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createShaderPromise() : Promise<scene3d.Shader> {
+function createShaderPromise() : Promise<Shader> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneResourceParameter: scene3d.SceneResourceParameters = { name: "shaderResource",
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneResourceParameter: SceneResourceParameters = { name: "shaderResource",
         uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") };
       // 创建shader
-      let shader: Promise<scene3d.Shader> = sceneFactory.createShader(sceneResourceParameter);
+      let shader: Promise<Shader> = sceneFactory.createShader(sceneResourceParameter);
       return shader;
     });
   });
@@ -268,16 +276,17 @@ createImage(params: SceneResourceParameters): Promise\<Image>
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createImagePromise() : Promise<scene3d.Image> {
+function createImagePromise() : Promise<Image> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneImageParameter: scene3d.SceneResourceParameters = { name: "image", uri: $rawfile("bricks.jpg") };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneImageParameter: SceneResourceParameters = { name: "image", uri: $rawfile("bricks.jpg") };
       // 创建Image
-      let image: Promise<scene3d.Image> = sceneFactory.createImage(sceneImageParameter);
+      let image: Promise<Image> = sceneFactory.createImage(sceneImageParameter);
       return image;
     });
   });
@@ -303,16 +312,17 @@ createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createEnvironmentPromise() : Promise<scene3d.Environment> {
+function createEnvironmentPromise() : Promise<Environment> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneEnvironmentParameter: scene3d.SceneResourceParameters = { name: "env", uri: $rawfile("bricks.ktx") };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneEnvironmentParameter: SceneResourceParameters = { name: "env", uri: $rawfile("bricks.ktx") };
       // 创建Environment
-      let env: Promise<scene3d.Environment> = sceneFactory.createEnvironment(sceneEnvironmentParameter);
+      let env: Promise<Environment> = sceneFactory.createEnvironment(sceneEnvironmentParameter);
       return env;
     });
   });
@@ -351,12 +361,13 @@ static load(uri?: Resource): Promise\<Scene>
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function loadModel() : void {
   // 加载模型
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {});
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {});
 }
 ```
 
@@ -380,14 +391,15 @@ getNodeByPath(path: string, type?: NodeType): Node | null
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function getNode() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
          // 寻找指定路径的节点
-        let node : scene3d.Node | null = result.getNodeByPath("rootNode_");
+        let node : Node | null = result.getNodeByPath("rootNode_");
     }
   });
 }
@@ -407,14 +419,15 @@ getResourceFactory(): SceneResourceFactory
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function getFactory() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
          // 获得SceneResourceFactory对象
-        let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
+        let sceneFactory: SceneResourceFactory = result.getResourceFactory();
     }
   });
 }
@@ -429,11 +442,12 @@ destroy(): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function destroy() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
          // 销毁scene
         result.destroy();

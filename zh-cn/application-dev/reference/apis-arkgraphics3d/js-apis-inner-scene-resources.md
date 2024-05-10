@@ -6,7 +6,8 @@
 
 ## 导入模块
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 ```
 ## SceneResourceType
 场景资源类型枚举，对场景中的资源进行分类。
@@ -46,17 +47,18 @@ destroy(): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function destroy() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneResourceParameter: scene3d.SceneResourceParameters = { name: "shaderResource",
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneResourceParameter: SceneResourceParameters = { name: "shaderResource",
         uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") };
-      let shader: Promise<scene3d.Shader> = sceneFactory.createShader(sceneResourceParameter);
-      shader.then(async (shaderResult:scene3d.Shader) => {
+      let shader: Promise<Shader> = sceneFactory.createShader(sceneResourceParameter);
+      shader.then(async (shaderResult:Shader) => {
          // 释放资源
          shaderResult.destroy();
       });
@@ -156,13 +158,14 @@ onFinished(callback: CallBack\<void>): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function onFinished() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let anim: scene3d.Animation = result.animations[0];
+      let anim: Animation = result.animations[0];
       // 注册回调函数
       anim.onFinished(()=>{
         console.info("onFinished");  
@@ -188,13 +191,14 @@ onStarted(callback: CallBack\<void>): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function onStarted() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let anim: scene3d.Animation = result.animations[0];
+      let anim: Animation = result.animations[0];
       // 注册回调函数
       anim.onStarted(()=>{
         console.info("onStarted");  
@@ -213,13 +217,14 @@ pause(): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function pause() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let anim: scene3d.Animation = result.animations[0];
+      let anim: Animation = result.animations[0];
       // 暂停动画
       anim.pause();
     }
@@ -236,13 +241,14 @@ restart(): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function restart() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let anim: scene3d.Animation = result.animations[0];
+      let anim: Animation = result.animations[0];
       // 重启动画
       anim.restart();
     }
@@ -264,13 +270,14 @@ seek(position: number): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function seek() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let anim: scene3d.Animation = result.animations[0];
+      let anim: Animation = result.animations[0];
       // 指定动画的播放进度到10%
       anim.seek(0.1);
     }
@@ -287,13 +294,14 @@ start(): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function start() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let anim: scene3d.Animation = result.animations[0];
+      let anim: Animation = result.animations[0];
       // 开始动画
       anim.start();
     }
@@ -310,13 +318,14 @@ stop(): void
 
 **示例：**
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function stop() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let anim: scene3d.Animation = result.animations[0];
+      let anim: Animation = result.animations[0];
       // 停止播放动画，并将动画的进度设置到未开始状态
       anim.stop();
     }
@@ -332,13 +341,14 @@ finish(): void
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function finish() : void {
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
     if (result) {
-      let anim: scene3d.Animation = result.animations[0];
+      let anim: Animation = result.animations[0];
       // 直接跳转到动画的最后，并将动画的进度设置到已结束状态。
       anim.finish();
     }

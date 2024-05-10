@@ -39,6 +39,3 @@ import scene3d from '@ohos.graphics.scene'
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | toneMapping | [ToneMappingSettings](#tonemapingsettings) | 是 | 否 | 色调映射设置，默认值为undefined。 |
-
-
-
