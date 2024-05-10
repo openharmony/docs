@@ -6,8 +6,8 @@
 
 ## 导入模块
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { LayerMask, NodeType, Container, Node, Geometry, LightType, Light, SpotLight, DirectionalLight,
+  Camera } from '@kit.ArkGraphics3D';
 ```
 ## LayerMask
 用于定义结点的图层掩码。
