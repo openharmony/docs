@@ -276,13 +276,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针。
 
     ```c++
-    // 获取解码后信息
+    // 获取编码后信息
     OH_AVCodecBufferAttr info;
     int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 将编码完成帧数据mem写入到对应输出文件中
+    // 将编码完成帧数据buffer写入到对应输出文件中
     outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), info.size);
     // 释放已完成写入的数据，index为对应输出队列下标
     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
@@ -612,7 +612,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     与surface模式相同，此处不再赘述。
 
     ```c++
-    // 获取解码后信息
+    // 获取编码后信息
     OH_AVCodecBufferAttr info;
     int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
     if (ret != AV_ERR_OK) {
