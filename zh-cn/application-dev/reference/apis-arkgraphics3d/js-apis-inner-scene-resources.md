@@ -6,8 +6,8 @@
 
 ## 导入模块
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneResourceType, SceneResource, Shader, MaterialType, Material, ShaderMaterial,
+  SubMesh, Mesh, Animation, EnvironmentBackgroundType, Environment, Image } from '@kit.ArkGraphics3D';
 ```
 ## SceneResourceType
 场景资源类型枚举，对场景中的资源进行分类。
