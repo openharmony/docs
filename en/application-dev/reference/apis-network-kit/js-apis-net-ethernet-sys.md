@@ -40,7 +40,7 @@ Sets the network interface configuration. This API uses an asynchronous callback
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -104,7 +104,7 @@ Sets the network interface configuration. This API uses a promise to return the 
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 |Failed to connect to the service. |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -162,7 +162,7 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
@@ -218,7 +218,7 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
@@ -267,7 +267,7 @@ Checks whether a network interface is active. This API uses an asynchronous call
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
@@ -318,7 +318,7 @@ Checks whether a network interface is active. This API uses a promise to return 
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
@@ -359,7 +359,7 @@ Obtains the list of all active network interfaces. This API uses an asynchronous
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **Example**
@@ -404,7 +404,7 @@ Obtains the list of all active network interfaces. This API uses a promise to re
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **Example**

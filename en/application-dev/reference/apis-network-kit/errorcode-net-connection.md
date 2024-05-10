@@ -26,7 +26,7 @@ Check whether the input parameter value is within the valid value range.
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 
@@ -85,7 +85,7 @@ The **callback** object has been registered for activating a network or listenin
 
 **Error Message**
 
-The callback is not exists.
+The callback does not exist.
 
 **Description**
 
@@ -103,7 +103,7 @@ Before unregistering a **callback** object, make sure that it has been registere
 
 **Error Message**
 
-The number of requests exceeded the maximum.
+The number of requests exceeded the maximum allowed.
 
 **Description**
 

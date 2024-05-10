@@ -334,7 +334,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -378,7 +378,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                               |
 | 9001002  | If the resource not found by resId.                 |
 | 9001006  | If the resource re-ref too much.                    |
@@ -425,7 +425,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -477,7 +477,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -528,7 +528,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -573,7 +573,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -613,7 +613,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
 | 9001002  | If the resource not found by resId.      |
 | 9001006  | If the resource re-ref too much.         |
@@ -663,7 +663,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -708,6 +708,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -765,6 +766,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -812,7 +814,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -862,7 +864,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -910,6 +912,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -955,6 +958,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1004,6 +1008,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                       |
 | 9001004  | If the resource not found by resName.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1039,7 +1044,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1088,7 +1093,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1132,6 +1137,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1189,6 +1195,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1237,7 +1244,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1287,7 +1294,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1340,6 +1347,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1390,6 +1398,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1444,6 +1453,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                       |
 | 9001004  | If the resource not found by resName.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1487,7 +1497,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1542,7 +1552,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1592,6 +1602,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1654,7 +1665,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.                |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.                |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1708,7 +1719,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1763,7 +1774,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1812,6 +1823,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -1865,6 +1877,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -1922,6 +1935,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | If the resName invalid.                       |
 | 9001004  | If the resource not found by resName.         |
 
@@ -1967,7 +1981,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.              | 
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2012,7 +2026,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2061,7 +2075,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2109,6 +2123,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2152,6 +2167,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2204,6 +2220,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2260,6 +2277,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2315,6 +2333,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2361,7 +2380,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -2406,6 +2425,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -2454,7 +2474,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -2502,6 +2522,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -2549,6 +2570,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2602,6 +2624,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2659,6 +2682,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | If the resName invalid.                       |
 | 9001004  | If the resource not found by resName.         |
 
@@ -2704,7 +2728,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2749,6 +2773,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2797,7 +2822,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2845,6 +2870,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2888,6 +2914,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2940,6 +2967,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2996,6 +3024,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3051,6 +3080,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3098,7 +3128,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3143,6 +3173,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3191,7 +3222,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3239,6 +3270,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3287,7 +3319,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3348,7 +3380,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3413,7 +3445,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3470,7 +3502,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3515,7 +3547,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3565,7 +3597,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -3609,7 +3641,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3663,7 +3695,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3713,7 +3745,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -3765,6 +3797,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3810,6 +3843,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3859,6 +3893,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -3897,6 +3932,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
 | 9001002  | If the resource not found by resId.      |
 | 9001006  | If the resource re-ref too much.         |
@@ -3946,6 +3982,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3990,6 +4027,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -4047,6 +4085,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -4095,6 +4134,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -4144,6 +4184,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -4191,6 +4232,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4227,7 +4269,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 
 **Example**
   ```ts
@@ -4274,7 +4316,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4324,6 +4366,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.       |
 
 **Example**
@@ -4364,6 +4407,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.       |
 
 **Example**
@@ -4415,6 +4459,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4460,6 +4505,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4496,7 +4542,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4547,7 +4593,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4590,6 +4636,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **Example**
@@ -4626,7 +4673,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **Example**
@@ -4672,7 +4719,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | If the input parameter invalid.               |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4901,6 +4948,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001010  | If the overlay path is invalid.            |
 
 **Example**
@@ -4937,6 +4985,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001010  | If the overlay path is invalid.            |
 
 **Example**
@@ -5029,6 +5078,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -5073,6 +5123,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -5122,6 +5173,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -5165,6 +5217,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**

@@ -37,7 +37,7 @@ Checks whether network sharing is supported. This API uses an asynchronous callb
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
@@ -77,7 +77,7 @@ Checks whether network sharing is supported. This API uses a promise to return t
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
@@ -121,7 +121,7 @@ Checks whether network sharing is in progress. This API uses an asynchronous cal
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
@@ -161,7 +161,7 @@ Checks whether network sharing is in progress. This API uses a promise to return
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
@@ -208,12 +208,12 @@ Starts network sharing of a specified type. This API uses an asynchronous callba
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
 | 2202006   | Bluetooth sharing failed.                    |
-| 2202009   | Network share enable forwarding error.       |
+| 2202009   | Failed to enable forwarding for network sharing.       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **Example**
@@ -260,12 +260,12 @@ Starts network sharing of a specified type. This API uses a promise to return th
 | 201       | Permission denied.                           |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
 | 2202006   | Bluetooth sharing failed.                    |
-| 2202009   | Network share enable forwarding error.       |
+| 2202009   | Failed to enable forwarding for network sharing.       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **Example**
@@ -312,7 +312,7 @@ Stops network sharing of a specified type. This API uses an asynchronous callbac
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
@@ -363,7 +363,7 @@ Stops network sharing of a specified type. This API uses a promise to return the
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
@@ -412,7 +412,7 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -452,7 +452,7 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -496,7 +496,7 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -536,7 +536,7 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -580,7 +580,7 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -620,7 +620,7 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -666,7 +666,7 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -714,7 +714,7 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -761,7 +761,7 @@ Obtains the network sharing state of the specified type. This API uses an asynch
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -803,7 +803,7 @@ Obtains the network sharing state of the specified type. This API uses a promise
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Return value**
@@ -856,7 +856,7 @@ Obtains regular expressions of NICs of a specified type. This API uses an asynch
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**
@@ -904,7 +904,7 @@ Obtains regular expressions of NICs of a specified type. This API uses a promise
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **Example**

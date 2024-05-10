@@ -33,11 +33,11 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
@@ -77,11 +77,11 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
@@ -115,11 +115,11 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
@@ -159,11 +159,11 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
@@ -195,11 +195,11 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
@@ -232,11 +232,11 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
@@ -268,11 +268,11 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
@@ -305,11 +305,11 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
@@ -341,10 +341,10 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service. |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
@@ -377,10 +377,10 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
@@ -412,10 +412,10 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
@@ -448,10 +448,10 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
@@ -485,10 +485,10 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
@@ -528,10 +528,10 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
@@ -565,10 +565,10 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
@@ -608,10 +608,10 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
@@ -647,7 +647,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -691,7 +691,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -731,7 +731,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -775,7 +775,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**

@@ -205,7 +205,7 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Verification Result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Verification Error:', error);
   });
 

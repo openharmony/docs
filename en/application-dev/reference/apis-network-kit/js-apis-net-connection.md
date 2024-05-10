@@ -74,7 +74,7 @@ Obtains the default active data network. This API uses an asynchronous callback 
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -115,7 +115,7 @@ Obtains the default active data network. This API uses a promise to return the r
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -150,7 +150,7 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -343,7 +343,7 @@ This API uses an asynchronous callback to return the result.
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 2100002  | Operation failed. Cannot connect to service. |
+| 2100002  | Failed to connect to the service.            |
 | 2100003  | System internal error.                       |
 
 **Example**
@@ -381,7 +381,7 @@ This API uses a promise to return the result.
 
 | ID| Error Message                                    |
 | -------- | -------------------------------------------- |
-| 2100002  | Operation failed. Cannot connect to service. |
+| 2100002  | Failed to connect to the service.            |
 | 2100003  | System internal error.                       |
 
 **Example**
@@ -416,7 +416,7 @@ Obtains information about the network bound to an application. This API uses an 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 401 | Parameter error.|
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -452,7 +452,7 @@ Obtains information about the network bound to an application. This API uses a p
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -486,7 +486,7 @@ Obtains information about the network bound to an application. This API returns 
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -521,7 +521,7 @@ Binds an application to the specified network, so that the application can acces
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -570,7 +570,7 @@ Binds an application to the specified network, so that the application can acces
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -610,7 +610,7 @@ Obtains the list of all connected networks. This API uses an asynchronous callba
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -649,7 +649,7 @@ Obtains the list of all connected networks. This API uses a promise to return th
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -683,7 +683,7 @@ Obtains the list of all connected networks. This API returns the result synchron
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -718,7 +718,7 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -767,7 +767,7 @@ Obtains connection properties of the network corresponding to the **netHandle**.
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -811,7 +811,7 @@ Obtains network connection information based on the specified **netHandle**.
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -849,7 +849,7 @@ Obtains capability information of the network corresponding to the **netHandle**
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -900,7 +900,7 @@ Obtains capability information of the network corresponding to the **netHandle**
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -946,7 +946,7 @@ Obtains capability information of the network corresponding to the **netHandle**
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -980,7 +980,7 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1016,7 +1016,7 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1050,7 +1050,7 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1082,7 +1082,7 @@ Checks whether the default data network is activated. This API uses an asynchron
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1119,7 +1119,7 @@ Checks whether the default data network is activated. This API uses a promise to
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1152,7 +1152,7 @@ Checks whether the default data network is activated. This API returns the resul
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1188,7 +1188,7 @@ Reports connection of the data network to the network management module. This AP
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1232,7 +1232,7 @@ Reports connection of the data network to the network management module. This AP
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1270,7 +1270,7 @@ Reports disconnection of the data network to the network management module. This
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1312,7 +1312,7 @@ Reports disconnection of the data network to the network management module. This
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1350,7 +1350,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1396,7 +1396,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1433,7 +1433,7 @@ Adds the mapping between a custom host and the corresponding IP address for the 
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1480,7 +1480,7 @@ Adds the mapping between a custom host and the corresponding IP address for the 
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1519,7 +1519,7 @@ Removes the custom DNS rules of the specified host from the current application.
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1565,7 +1565,7 @@ Removes the custom DNS rules of the specified host from the current application.
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1603,7 +1603,7 @@ Removes all custom DNS rules from the current application. This API uses an asyn
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1642,7 +1642,7 @@ Removes all custom DNS rules from the current application. This API uses a promi
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -1691,10 +1691,10 @@ Registers a listener for network status changes.
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
-| 2101008 | The same callback exists.     |
-| 2101022 | The number of requests exceeded the maximum. |
+| 2101008 | The callback does not exist.     |
+| 2101022 | The number of requests exceeded the maximum allowed. |
 
 **Example**
 
@@ -1728,7 +1728,7 @@ Unregisters the listener for network status changes.
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 401 | Parameter error.         |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 | 2101007 | The callback is not exists.      |
 
@@ -2038,7 +2038,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -2125,7 +2125,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -2205,7 +2205,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -2255,7 +2255,7 @@ Resolves the host name by using the corresponding network to obtain all IP addre
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -2295,7 +2295,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **Example**
@@ -2345,7 +2345,7 @@ Resolves the host name by using the corresponding network to obtain the first IP
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.       |
 | 2100003 | System internal error.         |
 
 **Example**
