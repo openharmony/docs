@@ -139,7 +139,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
     
-    参数校验规则请参考[OH_VideoEncoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_configure)
+    参数校验规则请参考[OH_VideoEncoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_configure)。
 
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频颜色格式。示例中的变量如下：
 
