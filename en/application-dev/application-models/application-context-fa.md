@@ -44,7 +44,7 @@ For details about the APIs, see [API Reference](../reference/apis-ability-kit/js
        });
        Logger.info(TAG, 'Application onCreate');
      }
-     ...
+     //...
    }
    
    export default new MainAbility();
@@ -72,7 +72,7 @@ For details about the APIs, see [API Reference](../reference/apis-ability-kit/js
      onDestroy() {
        Logger.info(TAG, 'Application onDestroy');
      }
-     ...  
+     //...  
    }
    
    export default new PageAbilitySingleton();
