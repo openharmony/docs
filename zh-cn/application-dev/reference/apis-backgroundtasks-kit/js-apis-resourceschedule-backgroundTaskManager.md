@@ -513,7 +513,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回ContinuousTaskNotification类型的Promise对象。 |
 
 **错误码**：
 
@@ -538,44 +538,82 @@ import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
+import { notificationManager } from '@kit.NotificationKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let wantAgentInfo: wantAgent.WantAgentInfo = {
-            // 点击通知后，将要执行的动作列表
-            wants: [
-                {
-                    bundleName: "com.example.myapplication",
-                    abilityName: "EntryAbility"
-                }
-            ],
-            // 点击通知后，动作类型
-            actionType: wantAgent.OperationType.START_ABILITY,
-            // 使用者自定义的一个私有值
-            requestCode: 0,
-            // 点击通知后，动作执行属性
-            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-        };
-
-        try {
-            // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
-            wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
-                try {
-                    let list: Array<string> = ["dataTransfer"];
-                    backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res:backgroundTaskManager.ContinuousTaskNotification) => {
-                        console.info("Operation startBackgroundRunning succeeded");
-                        // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知。
-                    }).catch((error: BusinessError) => {
-                        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-                    });
-                } catch (error) {
-                    console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-                }
-            });
-        } catch (error) {
-            console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+  id: number = 0; // 保存通知id
+ 
+  updateProcess(process: Number) {
+    let downLoadTemplate: notificationManager.NotificationTemplate = {
+      name: 'downloadTemplate', // 当前只支持downloadTemplate，后续根据需要支持录音
+      data: {
+        title: '文件下载：music.mp4', // 必填
+        fileName: 'senTemplate', // 必填
+        progressValue: process,
+      }
+    };
+    let request: notificationManager.NotificationRequest = {
+      content: {
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
+        systemLiveView: {
+          typeCode: 8, // 上传下载类型需要填写 8
+          title: "test",
+          text: "test",
         }
+      },
+      id: this.id,
+      notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
+      template: downLoadTemplate
+    };
+
+    try {
+      notificationManager.publish(request).then(() => {
+        console.info("publish success, id= " + this.id);
+      }).catch((err: BusinessError) => {
+        console.error(`publish fail: ${JSON.stringify(err)}`);
+      });
+    } catch (err) {
+      console.error(`publish fail: ${JSON.stringify(err)}`);
     }
+  }
+
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let wantAgentInfo: wantAgent.WantAgentInfo = {
+      // 点击通知后，将要执行的动作列表
+      wants: [
+        {
+          bundleName: "com.example.myapplication",
+          abilityName: "EntryAbility"
+        }
+      ],
+      // 点击通知后，动作类型
+      actionType: wantAgent.OperationType.START_ABILITY,
+      // 使用者自定义的一个私有值
+      requestCode: 0,
+      // 点击通知后，动作执行属性
+      wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    };
+
+    try {
+      // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
+      wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
+        try {
+          let list: Array<string> = ["dataTransfer"];
+          backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
+            console.info("Operation startBackgroundRunning succeeded");
+            // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知。
+            this.id = res.notificationId;
+          }).catch((error: BusinessError) => {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+          });
+        } catch (error) {
+          console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+        }
+      });
+    } catch (error) {
+      console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+    }
+  }
 };
 ```
 ## backgroundTaskManager.updateBackgroundRunning<sup>12+</sup>
@@ -599,7 +637,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | 返回ContinuousTaskNotification类型的Promise对象。 |
 
 **错误码**：
 
@@ -673,7 +711,7 @@ export default class EntryAbility extends UIAbility {
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
 | TASK_KEEPING            | 9    | 计算任务（仅对特定设备开放）。        |
 
-## ContinuousTaskNotification
+## ContinuousTaskNotification<sup>12+</sup>
 
 长时任务通知信息。
 
@@ -681,6 +719,6 @@ export default class EntryAbility extends UIAbility {
 
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| slotType       | number | 是    | 长时任务通知的渠道类型。|
-| contentType | number | 是    | 长时任务通知的内容类型。|
+| slotType       | number | 是    | 长时任务通知的[渠道类型](../apis-notification-kit/js-apis-notificationManager.md#slottype)。|
+| contentType | number | 是    | 长时任务通知的[内容类型](../apis-notification-kit/js-apis-notificationManager.md#contenttype)。|
 | notificationId | number | 是    | 长时任务通知 Id。|
