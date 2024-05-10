@@ -554,16 +554,17 @@ export default class EntryAbility extends UIAbility {
     };
     let request: notificationManager.NotificationRequest = {
       content: {
+        // 系统实况类型，保持不变
         notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
         systemLiveView: {
-          typeCode: 8, // 上传下载类型需要填写 8
-          title: "test",
-          text: "test",
+          typeCode: 8, // 上传下载类型需要填写 8，当前仅支持此类型。后续录音可以设置 7
+          title: "test", // 应用自定义
+          text: "test", // 应用自定义
         }
       },
-      id: this.id,
-      notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
-      template: downLoadTemplate
+      id: this.id, // 必须是申请长时任务返回的id，否则应用更新通知失败。
+      notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型，保持不变
+      template: downLoadTemplate // 保持不变
     };
 
     try {
