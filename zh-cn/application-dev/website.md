@@ -15,7 +15,6 @@
   - Media Kit（媒体服务）
     - [Media Kit简介](onlyfortest/media/media/media-kit-intro.md)
     - 视频播放和录制
-      - [视频播放](onlyfortest/media/media/video-playback.md)
       - [视频录制](onlyfortest/media/media/video-recording.md)
       <!--Del-->
       - [屏幕录制(仅对系统应用开放)(C/C++)](onlyfortest/media/media/avscreen-capture.md)
