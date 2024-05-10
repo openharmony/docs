@@ -576,7 +576,7 @@ ret = OH_VideoEncoder_Prepare(videoEnc);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
-    ret = OH_VideoEncoder_PushInputBuffer(videoEnc, index, info);
+    ret = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
