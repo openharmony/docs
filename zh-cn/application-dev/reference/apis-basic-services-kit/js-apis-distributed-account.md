@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import account_distributedAccount from '@ohos.account.distributedAccount';
+import BasicServicesKit from '@kit.BasicServicesKit'
 ```
 
-## account_distributedAccount.getDistributedAccountAbility
+## BasicServicesKit.distributedAccount.getDistributedAccountAbility
 
 getDistributedAccountAbility(): DistributedAccountAbility
 
@@ -28,7 +28,7 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 **示例：**
   ```ts
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
   ```
 
 ## DistributedAccountAbility
@@ -60,12 +60,10 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo(
-      (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+      (err: BasicServicesKit.BusinessError, data: BasicServicesKit.distributedAccount.DistributedInfo) => {
         if (err) {
           console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
         } else {
@@ -102,13 +100,11 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
   try {
-    accountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+    accountAbility.getOsAccountDistributedInfo().then((data: BasicServicesKit.distributedAccount.DistributedInfo) => {
         console.log('distributed information: ' + JSON.stringify(data));
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
         console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
   } catch (err) {
@@ -137,11 +133,9 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo(
-    (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+    (err: BasicServicesKit.BusinessError, data: BasicServicesKit.distributedAccount.DistributedInfo) => {
       if (err) {
         console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
@@ -172,12 +166,10 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  accountAbility.queryOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
+  accountAbility.queryOsAccountDistributedInfo().then((data: BasicServicesKit.distributedAccount.DistributedInfo) => {
       console.log('distributed information: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```
@@ -210,13 +202,11 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
+  let accountInfo: BasicServicesKit.distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
-    accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
+    accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BasicServicesKit.BusinessError) => {
       if (err) {
         console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
@@ -261,15 +251,13 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
+  let accountInfo: BasicServicesKit.distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
         console.log('setOsAccountDistributedInfo successfully');
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
         console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
   } catch (err) {
@@ -300,12 +288,10 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
+  let accountInfo: BasicServicesKit.distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
-  accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
+  accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BasicServicesKit.BusinessError) => {
     if (err) {
       console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
     } else {
@@ -340,14 +326,12 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
+  let accountInfo: BasicServicesKit.distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
       console.log('updateOsAccountDistributedInfo successfully');
-   }).catch((err: BusinessError) => {
+   }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('updateOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```

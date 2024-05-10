@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import account_osAccount from '@ohos.account.osAccount';
+import BasicServicesKit from '@kit.BasicServicesKit'
 ```
 
-## account_osAccount.getAccountManager
+## BasicServicesKit.osAccount.getAccountManager
 
 getAccountManager(): AccountManager
 
@@ -29,7 +29,7 @@ getAccountManager(): AccountManager
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   ```
 
 ## OsAccountType
@@ -72,10 +72,9 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.checkMultiOsAccountEnabled((err: BusinessError, isEnabled: boolean) => {
+    accountManager.checkMultiOsAccountEnabled((err: BasicServicesKit.BusinessError, isEnabled: boolean) => {
       if (err) {
         console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
       } else {
@@ -111,12 +110,11 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
   try {
-    let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+    let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
     accountManager.checkMultiOsAccountEnabled().then((isEnabled: boolean) => {
       console.log('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
   } catch (err) {
@@ -157,11 +155,10 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   try {
-    accountManager.checkOsAccountActivated(localId, (err: BusinessError, isActivated: boolean) => {
+    accountManager.checkOsAccountActivated(localId, (err: BasicServicesKit.BusinessError, isActivated: boolean) => {
       if (err) {
         console.log('checkOsAccountActivated failed, error:' + JSON.stringify(err));
       } else {
@@ -211,13 +208,12 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountActivated(localId).then((isActivated: boolean) => {
       console.log('checkOsAccountActivated successfully, isActivated: ' + isActivated);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('checkOsAccountActivated failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -255,13 +251,12 @@ isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let constraint: string = 'constraint.wifi';
   try {
     accountManager.isOsAccountConstraintEnabled(constraint).then((isEnabled: boolean) => {
       console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -303,12 +298,11 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
-    accountManager.checkOsAccountConstraintEnabled(localId, constraint, (err: BusinessError, isEnabled: boolean)=>{
+    accountManager.checkOsAccountConstraintEnabled(localId, constraint, (err: BasicServicesKit.BusinessError, isEnabled: boolean)=>{
       if (err) {
         console.log('checkOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
       } else {
@@ -359,14 +353,13 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
     accountManager.checkOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
       console.log('checkOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('checkOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -398,10 +391,9 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.checkOsAccountTestable((err: BusinessError, isTestable: boolean) => {
+    accountManager.checkOsAccountTestable((err: BasicServicesKit.BusinessError, isTestable: boolean) => {
       if (err) {
         console.log('checkOsAccountTestable failed, error: ' + JSON.stringify(err));
       } else {
@@ -437,12 +429,11 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountTestable().then((isTestable: boolean) => {
       console.log('checkOsAccountTestable successfully, isTestable: ' + isTestable);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('checkOsAccountTestable failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -474,12 +465,11 @@ isOsAccountUnlocked(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.isOsAccountUnlocked().then((isVerified: boolean) => {
       console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -515,10 +505,9 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.checkOsAccountVerified((err: BusinessError, isVerified: boolean) => {
+    accountManager.checkOsAccountVerified((err: BasicServicesKit.BusinessError, isVerified: boolean) => {
       if (err) {
         console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
       } else {
@@ -558,12 +547,11 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountVerified().then((isVerified: boolean) => {
       console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -604,11 +592,10 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   try {
-    accountManager.checkOsAccountVerified(localId, (err: BusinessError, isVerified: boolean) => {
+    accountManager.checkOsAccountVerified(localId, (err: BasicServicesKit.BusinessError, isVerified: boolean) => {
       if (err) {
         console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
       } else {
@@ -658,13 +645,12 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountVerified(localId).then((isVerified: boolean) => {
       console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -696,12 +682,11 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountVerified().then((isVerified: boolean) => {
       console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -735,10 +720,9 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.getOsAccountCount((err: BusinessError, count: number) => {
+    accountManager.getOsAccountCount((err: BasicServicesKit.BusinessError, count: number) => {
       if (err) {
         console.log('getOsAccountCount failed, error: ' + JSON.stringify(err));
       } else {
@@ -776,12 +760,11 @@ getOsAccountCount(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.getOsAccountCount().then((count: number) => {
       console.log('getOsAccountCount successfully, count: ' + count);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getOsAccountCount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
@@ -813,10 +796,9 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.getOsAccountLocalId((err: BusinessError, localId: number) => {
+    accountManager.getOsAccountLocalId((err: BasicServicesKit.BusinessError, localId: number) => {
       if (err) {
         console.log('getOsAccountLocalId failed, error: ' + JSON.stringify(err));
       } else {
@@ -852,12 +834,11 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalId().then((localId: number) => {
       console.log('getOsAccountLocalId successfully, localId: ' + localId);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getOsAccountLocalId failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -891,11 +872,10 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
 **示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
-    accountManager.getOsAccountLocalIdForUid(uid, (err: BusinessError, localId: number) => {
+    accountManager.getOsAccountLocalIdForUid(uid, (err: BasicServicesKit.BusinessError, localId: number) => {
       if (err) {
         console.log('getOsAccountLocalIdForUid failed, error: ' + JSON.stringify(err));
       }
@@ -937,13 +917,12 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
     accountManager.getOsAccountLocalIdForUid(uid).then((localId: number) => {
       console.log('getOsAccountLocalIdForUid successfully, localId: ' + localId);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getOsAccountLocalIdForUid failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -981,7 +960,7 @@ getOsAccountLocalIdForUidSync(uid: number): number
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
     let localId : number = accountManager.getOsAccountLocalIdForUidSync(uid);
@@ -1019,11 +998,10 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let domainInfo: BasicServicesKit.osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.getOsAccountLocalIdForDomain(domainInfo, (err: BusinessError, localId: number) => {
+    accountManager.getOsAccountLocalIdForDomain(domainInfo, (err: BasicServicesKit.BusinessError, localId: number) => {
       if (err) {
         console.log('getOsAccountLocalIdForDomain failed, error: ' + JSON.stringify(err));
       } else {
@@ -1068,13 +1046,12 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  let domainInfo: BasicServicesKit.osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId: number) => {
       console.log('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getOsAccountLocalIdForDomain failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
@@ -1115,11 +1092,10 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 **示例：** 获取ID为100的系统帐号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   try {
-    accountManager.getOsAccountConstraints(localId, (err: BusinessError, constraints: string[]) => {
+    accountManager.getOsAccountConstraints(localId, (err: BasicServicesKit.BusinessError, constraints: string[]) => {
       if (err) {
         console.log('getOsAccountConstraints failed, err: ' + JSON.stringify(err));
       } else {
@@ -1169,13 +1145,12 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 **示例：** 获取ID为100的系统帐号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountConstraints(localId).then((constraints: string[]) => {
       console.log('getOsAccountConstraints, constraints: ' + constraints);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getOsAccountConstraints err: ' + JSON.stringify(err));
     });
   } catch (e) {
@@ -1207,10 +1182,9 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.getActivatedOsAccountLocalIds((err: BusinessError, idArray: number[])=>{
+    accountManager.getActivatedOsAccountLocalIds((err: BasicServicesKit.BusinessError, idArray: number[])=>{
       console.log('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
       console.log('getActivatedOsAccountLocalIds idArray length:' + idArray.length);
       for(let i=0;i<idArray.length;i++) {
@@ -1246,12 +1220,11 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.getActivatedOsAccountLocalIds().then((idArray: number[]) => {
       console.log('getActivatedOsAccountLocalIds, idArray: ' + idArray);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getActivatedOsAccountLocalIds err: ' + JSON.stringify(err));
     });
   } catch (e) {
@@ -1289,10 +1262,9 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.getCurrentOsAccount((err: BusinessError, curAccountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.getCurrentOsAccount((err: BasicServicesKit.BusinessError, curAccountInfo: BasicServicesKit.osAccount.OsAccountInfo)=>{
       console.log('getCurrentOsAccount err:' + JSON.stringify(err));
       console.log('getCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
     });
@@ -1331,12 +1303,11 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.getCurrentOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.getCurrentOsAccount().then((accountInfo: BasicServicesKit.osAccount.OsAccountInfo) => {
       console.log('getCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getCurrentOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
@@ -1368,10 +1339,9 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.getOsAccountType((err: BusinessError, accountType: account_osAccount.OsAccountType) => {
+    accountManager.getOsAccountType((err: BasicServicesKit.BusinessError, accountType: BasicServicesKit.osAccount.OsAccountType) => {
       console.log('getOsAccountType err: ' + JSON.stringify(err));
       console.log('getOsAccountType accountType: ' + accountType);
     });
@@ -1404,12 +1374,11 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.getOsAccountType().then((accountType: account_osAccount.OsAccountType) => {
+    accountManager.getOsAccountType().then((accountType: BasicServicesKit.osAccount.OsAccountType) => {
       console.log('getOsAccountType, accountType: ' + accountType);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getOsAccountType err: ' + JSON.stringify(err));
     });
   } catch (e) {
@@ -1443,10 +1412,9 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
-    accountManager.queryDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
+    accountManager.queryDistributedVirtualDeviceId((err: BasicServicesKit.BusinessError, virtualID: string) => {
       console.log('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
       console.log('queryDistributedVirtualDeviceId virtualID: ' + virtualID);
     });
@@ -1481,12 +1449,11 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.queryDistributedVirtualDeviceId().then((virtualID: string) => {
       console.log('queryDistributedVirtualDeviceId, virtualID: ' + virtualID);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
     });
   } catch (e) {
@@ -1521,11 +1488,10 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let serialNumber: number = 12345;
   try {
-    accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
+    accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err: BasicServicesKit.BusinessError, localId: number)=>{
       console.log('ger localId err:' + JSON.stringify(err));
       console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
     });
@@ -1566,13 +1532,12 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let serialNumber: number = 12345;
   try {
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber).then((localId: number) => {
       console.log('getOsAccountLocalIdForSerialNumber localId: ' + localId);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getOsAccountLocalIdForSerialNumber err: ' + JSON.stringify(err));
     });
   } catch (e) {
@@ -1607,11 +1572,10 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 **示例：** 获取ID为100的系统帐号关联的SN码
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   try {
-    accountManager.getSerialNumberForOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
+    accountManager.getSerialNumberForOsAccountLocalId(localId, (err: BasicServicesKit.BusinessError, serialNumber: number)=>{
       console.log('ger serialNumber err:' + JSON.stringify(err));
       console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
     });
@@ -1652,13 +1616,12 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 **示例：** 获取ID为100的系统帐号关联的SN码
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getSerialNumberForOsAccountLocalId(localId).then((serialNumber: number) => {
       console.log('getSerialNumberForOsAccountLocalId serialNumber: ' + serialNumber);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getSerialNumberForOsAccountLocalId err: ' + JSON.stringify(err));
     });
   } catch (e) {
@@ -1687,9 +1650,8 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.isMultiOsAccountEnable((err: BusinessError, isEnabled: boolean) => {
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.isMultiOsAccountEnable((err: BasicServicesKit.BusinessError, isEnabled: boolean) => {
     if (err) {
       console.log('isMultiOsAccountEnable failed, error: ' + JSON.stringify(err));
     } else {
@@ -1719,11 +1681,10 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled: boolean) => {
     console.log('isMultiOsAccountEnable successfully, isEnabled: ' + isEnabled);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('isMultiOsAccountEnable failed, error: ' + JSON.stringify(err));
   });
   ```
@@ -1752,10 +1713,9 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
-  accountManager.isOsAccountActived(localId, (err: BusinessError, isActived: boolean) => {
+  accountManager.isOsAccountActived(localId, (err: BasicServicesKit.BusinessError, isActived: boolean) => {
     if (err) {
       console.log('isOsAccountActived failed, err:' + JSON.stringify(err));
     } else {
@@ -1793,12 +1753,11 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.isOsAccountActived(localId).then((isActived: boolean) => {
     console.log('isOsAccountActived successfully, isActived: ' + isActived);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('isOsAccountActived failed, error: ' + JSON.stringify(err));
   });
   ```
@@ -1828,11 +1787,10 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
-  accountManager.isOsAccountConstraintEnable(localId, constraint, (err: BusinessError, isEnabled: boolean) => {
+  accountManager.isOsAccountConstraintEnable(localId, constraint, (err: BasicServicesKit.BusinessError, isEnabled: boolean) => {
     if (err) {
       console.log('isOsAccountConstraintEnable failed, error: ' + JSON.stringify(err));
     } else {
@@ -1871,13 +1829,12 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint).then((isEnabled: boolean) => {
     console.log('isOsAccountConstraintEnable successfully, isEnabled: ' + isEnabled);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('isOsAccountConstraintEnable err: ' + JSON.stringify(err));
   });
   ```
@@ -1903,9 +1860,8 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.isTestOsAccount((err: BusinessError, isTestable: boolean) => {
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.isTestOsAccount((err: BasicServicesKit.BusinessError, isTestable: boolean) => {
     if (err) {
       console.log('isTestOsAccount failed, error: ' + JSON.stringify(err));
     } else {
@@ -1935,11 +1891,10 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
     accountManager.isTestOsAccount().then((isTestable: boolean) => {
       console.log('isTestOsAccount successfully, isTestable: ' + isTestable);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('isTestOsAccount failed, error: ' + JSON.stringify(err));
   });
   ```
@@ -1967,9 +1922,8 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.isOsAccountVerified((err: BusinessError, isVerified: boolean) => {
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.isOsAccountVerified((err: BasicServicesKit.BusinessError, isVerified: boolean) => {
     if (err) {
       console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
     } else {
@@ -2002,10 +1956,9 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
-  accountManager.isOsAccountVerified(localId, (err: BusinessError, isVerified: boolean) => {
+  accountManager.isOsAccountVerified(localId, (err: BasicServicesKit.BusinessError, isVerified: boolean) => {
     if (err) {
       console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
     } else {
@@ -2043,11 +1996,10 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   accountManager.isOsAccountVerified().then((isVerified: boolean) => {
     console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
   });
   ```
@@ -2075,9 +2027,8 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.getCreatedOsAccountsCount((err: BusinessError, count: number)=>{
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.getCreatedOsAccountsCount((err: BasicServicesKit.BusinessError, count: number)=>{
     if (err) {
       console.log('getCreatedOsAccountsCount failed, error: ' + JSON.stringify(err));
     } else {
@@ -2109,11 +2060,10 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((count: number) => {
     console.log('getCreatedOsAccountsCount successfully, count: ' + count);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getCreatedOsAccountsCount failed, error: ' + JSON.stringify(err));
   });
   ```
@@ -2139,9 +2089,8 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.getOsAccountLocalIdFromProcess((err: BusinessError, localId: number) => {
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.getOsAccountLocalIdFromProcess((err: BasicServicesKit.BusinessError, localId: number) => {
     if (err) {
       console.log('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
     } else {
@@ -2171,11 +2120,10 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((localId: number) => {
     console.log('getOsAccountLocalIdFromProcess successfully, localId: ' + localId);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
   });
   ```
@@ -2202,10 +2150,9 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let uid: number = 12345678;
-  accountManager.getOsAccountLocalIdFromUid(uid, (err: BusinessError, localId: number) => {
+  accountManager.getOsAccountLocalIdFromUid(uid, (err: BasicServicesKit.BusinessError, localId: number) => {
     if (err) {
       console.log('getOsAccountLocalIdFromUid failed, error: ' + JSON.stringify(err));
     } else {
@@ -2241,12 +2188,11 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let uid: number = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((localId: number) => {
     console.log('getOsAccountLocalIdFromUid successfully, localId: ' + localId);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getOsAccountLocalIdFromUid failed, error: ' + JSON.stringify(err));
   });
   ```
@@ -2275,10 +2221,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err: BusinessError, localId: number) => {
+  let domainInfo: BasicServicesKit.osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err: BasicServicesKit.BusinessError, localId: number) => {
     if (err) {
       console.log('getOsAccountLocalIdFromDomain failed, error: ' + JSON.stringify(err));
     } else {
@@ -2316,12 +2261,11 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  let domainInfo: BasicServicesKit.osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((localId: number) => {
     console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getOsAccountLocalIdFromDomain failed, error: ' + JSON.stringify(err));
   });
   ```
@@ -2350,10 +2294,9 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 **示例：** 获取ID为100的系统帐号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
-  accountManager.getOsAccountAllConstraints(localId, (err: BusinessError, constraints: string[])=>{
+  accountManager.getOsAccountAllConstraints(localId, (err: BasicServicesKit.BusinessError, constraints: string[])=>{
     console.log('getOsAccountAllConstraints err:' + JSON.stringify(err));
     console.log('getOsAccountAllConstraints:' + JSON.stringify(constraints));
   });
@@ -2388,12 +2331,11 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 **示例：** 获取ID为100的系统帐号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getOsAccountAllConstraints(localId).then((constraints: string[]) => {
     console.log('getOsAccountAllConstraints, constraints: ' + constraints);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getOsAccountAllConstraints err: ' + JSON.stringify(err));
   });
   ```
@@ -2419,9 +2361,8 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.queryActivatedOsAccountIds((err: BusinessError, idArray: number[])=>{
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.queryActivatedOsAccountIds((err: BasicServicesKit.BusinessError, idArray: number[])=>{
     console.log('queryActivatedOsAccountIds err:' + JSON.stringify(err));
     console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
     for(let i=0;i<idArray.length;i++) {
@@ -2451,11 +2392,10 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray: number[]) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('queryActivatedOsAccountIds err: ' + JSON.stringify(err));
   });
   ```
@@ -2483,9 +2423,8 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.queryCurrentOsAccount((err: BusinessError, curAccountInfo: account_osAccount.OsAccountInfo)=>{
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.queryCurrentOsAccount((err: BasicServicesKit.BusinessError, curAccountInfo: BasicServicesKit.osAccount.OsAccountInfo)=>{
     console.log('queryCurrentOsAccount err:' + JSON.stringify(err));
     console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
   });
@@ -2514,11 +2453,10 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.queryCurrentOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.queryCurrentOsAccount().then((accountInfo: BasicServicesKit.osAccount.OsAccountInfo) => {
     console.log('queryCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('queryCurrentOsAccount err: ' + JSON.stringify(err));
   });
   ```
@@ -2544,9 +2482,8 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.getOsAccountTypeFromProcess((err: BusinessError, accountType: account_osAccount.OsAccountType) => {
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.getOsAccountTypeFromProcess((err: BasicServicesKit.BusinessError, accountType: BasicServicesKit.osAccount.OsAccountType) => {
     console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
     console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
   });
@@ -2573,11 +2510,10 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.getOsAccountTypeFromProcess().then((accountType: account_osAccount.OsAccountType) => {
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.getOsAccountTypeFromProcess().then((accountType: BasicServicesKit.osAccount.OsAccountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
   });
   ```
@@ -2605,9 +2541,8 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.getDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
+  accountManager.getDistributedVirtualDeviceId((err: BasicServicesKit.BusinessError, virtualID: string) => {
     console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
     console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
   });
@@ -2636,11 +2571,10 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID: string) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
   });
   ```
@@ -2667,10 +2601,9 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let serialNumber: number = 12345;
-  accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
+  accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err: BasicServicesKit.BusinessError, localId: number)=>{
     console.log('ger localId err:' + JSON.stringify(err));
     console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
   });
@@ -2703,12 +2636,11 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let serialNumber: number = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId: number) => {
     console.log('getOsAccountLocalIdBySerialNumber localId: ' + localId);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getOsAccountLocalIdBySerialNumber err: ' + JSON.stringify(err));
   });
   ```
@@ -2735,10 +2667,9 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 **示例：** 获取ID为100的系统帐号关联的SN码
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
-  accountManager.getSerialNumberByOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
+  accountManager.getSerialNumberByOsAccountLocalId(localId, (err: BasicServicesKit.BusinessError, serialNumber: number)=>{
     console.log('ger serialNumber err:' + JSON.stringify(err));
     console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
   });
@@ -2771,12 +2702,11 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 **示例：** 获取ID为100的系统帐号关联的SN码
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber: number) => {
     console.log('getSerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getSerialNumberByOsAccountLocalId err: ' + JSON.stringify(err));
   });
   ```
@@ -2803,12 +2733,11 @@ getOsAccountName(): Promise&lt;string&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: BasicServicesKit.osAccount.AccountManager = BasicServicesKit.osAccount.getAccountManager();
   try {
     accountManager.getOsAccountName().then((name: string) => {
       console.log('getOsAccountName, name: ' + name);
-    }).catch((err: BusinessError) => {
+    }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('getOsAccountName err: ' + err);
     });
   } catch (e) {

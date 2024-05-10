@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import account_distributedAccount from '@ohos.account.distributedAccount';
+import BasicServicesKit from '@kit.BasicServicesKit'
 ```
 
 ## DistributedAccountAbility
@@ -47,12 +47,10 @@ getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
 try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100,
-    (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+    (err: BasicServicesKit.BusinessError, data: BasicServicesKit.distributedAccount.DistributedInfo) => {
       if (err) {
         console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
       } else {
@@ -93,14 +91,12 @@ getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInf
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
 try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100).then((
-    data: account_distributedAccount.DistributedInfo) => {
+    data: BasicServicesKit.distributedAccount.DistributedInfo) => {
     console.log('distributed information: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
     console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
   });
 } catch (err) {
@@ -141,13 +137,11 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-let accountInfo: account_distributedAccount.DistributedInfo =
+const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
+let accountInfo: BasicServicesKit.distributedAccount.DistributedInfo =
   {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
 try {
-  accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err: BusinessError) => {
+  accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err: BasicServicesKit.BusinessError) => {
     if (err) {
       console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
     } else {
@@ -197,15 +191,13 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-let accountInfo: account_distributedAccount.DistributedInfo =
+const accountAbility: BasicServicesKit.distributedAccount.DistributedAccountAbility = BasicServicesKit.distributedAccount.getDistributedAccountAbility();
+let accountInfo: BasicServicesKit.distributedAccount.DistributedInfo =
   {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
 try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {
       console.log('setOsAccountDistributedInfoByLocalId successfully');
-  }).catch((err: BusinessError) => {
+  }).catch((err: BasicServicesKit.BusinessError) => {
       console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
   });
 } catch (err) {
