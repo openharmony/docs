@@ -17,7 +17,7 @@
 
 ```ts
 /* 以下以导入AES256密钥的Callback操作使用为例 */
-import huks from '@ohos.security.huks'
+import { huks } from "@kit.UniversalKeystoreKit"
 /* 密钥材料 */
 let plainTextSize32 = new Uint8Array([
     0xfb, 0x8b, 0x9f, 0x12, 0xa0, 0x83, 0x19, 0xbe, 0x6a, 0x6f, 0x63, 0x2a, 0x7c, 0x86, 0xba, 0xca,
@@ -68,7 +68,7 @@ try {
 调用[huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9)验证密钥是否存在，如密钥存在即表示密钥导入成功。
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from "@kit.UniversalKeystoreKit";
 let keyAlias = 'AES256Alias_sample';
 let isKeyExist = false;
 class keyPropertyType {

@@ -13,7 +13,7 @@ HUKS提供了接口供应用查询指定密钥是否存在。
 3. 调用接口[isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9)，查询密钥是否存在。
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from "@kit.UniversalKeystoreKit";
 /* 1.确定密钥别名 */
 let keyAlias = 'test_key';
 let isKeyExist: Boolean;

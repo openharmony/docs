@@ -21,8 +21,8 @@
 
 ```ts
 /* 以下以生成DH密钥为例 */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
+import { BusinessError} from "@kit.BasicServicesKit"
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC;
