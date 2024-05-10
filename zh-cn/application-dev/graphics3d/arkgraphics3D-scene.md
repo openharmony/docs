@@ -12,12 +12,13 @@ glTF是一种对于3D场景描述的格式，就像图片有png格式一样，gl
 
 glTF模型的加载示例代码如下：
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function loadModel() : void {
   // 加载模型
-  let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: scene3d.Scene) => {};
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {};
 }
 ```
 由于3D模型往往数据量很大，所以这里采用异步加载的方式，加载成功将返回一个scene对象，对于整个3D场景进行编辑。
@@ -28,17 +29,18 @@ function loadModel() : void {
 
 相机相关控制的示例代码如下：
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createCameraPromise() : Promise<scene3d.Camera> {
+function createCameraPromise() : Promise<Camera> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneCameraParameter: scene3d.SceneNodeParameters = { name: "camera1" };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
       // 创建相机
-      let camera: Promise<scene3d.Camera> = sceneFactory.createCamera(sceneCameraParameter);
-      camera.then(async (cameraEntity: scene3d.Camera) => {
+      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      camera.then(async (cameraEntity: Camera) => {
         // 使能相机节点
         cameraEntity.enabled = true;
 
@@ -66,17 +68,18 @@ function createCameraPromise() : Promise<scene3d.Camera> {
 
 光源相关控制的示例代码如下：
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createLightPromise() : Promise<scene3d.Light> {
+function createLightPromise() : Promise<Light> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneLightParameter: scene3d.SceneNodeParameters = { name: "light" };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneLightParameter: SceneNodeParameters = { name: "light" };
       // 创建平行光
-      let light: Promise<scene3d.Light> = sceneFactory.createLight(sceneLightParameter, scene3d.LightType.DIRECTIONAL);
-      light.then(async (lightEntity: scene3d.Light) => {
+      let light: Promise<Light> = sceneFactory.createLight(sceneLightParameter, LightType.DIRECTIONAL);
+      light.then(async (lightEntity: Light) => {
         // 设置平行光的颜色属性
         lightEntity.color = { r: 0.8, g: 0.1, b: 0.2, a: 1.0 };
 

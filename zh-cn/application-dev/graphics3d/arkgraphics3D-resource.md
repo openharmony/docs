@@ -10,16 +10,17 @@
 
 材质的关键属性包括名字和类型，以此为输入可以创建材质。示例代码如下：
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createMaterialPromise() : Promise<scene3d.Material> {
+function createMaterialPromise() : Promise<Material> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneMaterialParameter: scene3d.SceneResourceParameters = { name: "material" };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneMaterialParameter: SceneResourceParameters = { name: "material" };
       // 创建材质
-      let material: Promise<scene3d.Material> = sceneFactory.createMaterial(sceneMaterialParameter, scene3d.MaterialType.SHADER);
+      let material: Promise<Material> = sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
       return material;
     });
   });
@@ -28,23 +29,24 @@ function createMaterialPromise() : Promise<scene3d.Material> {
 ## 着色器资源的创建以及使用
 着色器主要用于控制GPU计算，给开发者提供自定义渲染的能力，提高了3D渲染控制的灵活性。着色器资源的创建需要着色器资源的名字以及着色器在文件沙箱中的路径。着色器资源主要的使用场景是替换材质的着色器属性，给材质自定义渲染算法，达到灵活控制渲染过程的目的，示例代码如下：
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createShaderPromise() : Promise<scene3d.Shader> {
+function createShaderPromise() : Promise<Shader> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
 
       // 创建SceneResourceParameters类型变量并以此创建shader
-      let sceneResourceParameter: scene3d.SceneResourceParameters = { name: "shaderResource",
+      let sceneResourceParameter: SceneResourceParameters = { name: "shaderResource",
         uri: $rawfile("shaders/custom_shader/custom_material_sample.shader") };
-      let shader: Promise<scene3d.Shader> = sceneFactory.createShader(sceneResourceParameter);
-      shader.then(async (shaderEntity: scene3d.Shader) => {
-        let sceneMaterialParameter: scene3d.SceneResourceParameters = { name: "material" };
+      let shader: Promise<Shader> = sceneFactory.createShader(sceneResourceParameter);
+      shader.then(async (shaderEntity: Shader) => {
+        let sceneMaterialParameter: SceneResourceParameters = { name: "material" };
         // 创建材质
-        let material: Promise<scene3d.Material> = sceneFactory.createMaterial(sceneMaterialParameter, scene3d.MaterialType.SHADER);
-        material.then(async (materialEntity: scene3d.ShaderMaterial) => {
+        let material: Promise<Material> = sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
+        material.then(async (materialEntity: ShaderMaterial) => {
           // 绑定材质与shader
           materialEntity.colorShader = shaderEntity;
         });
@@ -58,21 +60,22 @@ function createShaderPromise() : Promise<scene3d.Shader> {
 ## 图片资源的创建以及使用
 3D场景中的图片资源是指GPU可以直接使用的图片资源。创建图片资源的关键参数包括图片资源的名字以及图片资源的路径。将图片资源应用到材质中作为材质属性，是常见的图片资源使用方式之一，示例代码如下：
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createImagePromise() : Promise<scene3d.Image> {
+function createImagePromise() : Promise<Image> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneImageParameter: scene3d.SceneResourceParameters = { name: "image", uri: $rawfile("bricks.jpg") };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneImageParameter: SceneResourceParameters = { name: "image", uri: $rawfile("bricks.jpg") };
       // 创建Image
-      let image: Promise<scene3d.Image> = sceneFactory.createImage(sceneImageParameter);
-      image.then(async (imageEntity: scene3d.Image) => {
-        let sceneMaterialParameter: scene3d.SceneResourceParameters = { name: "material" };
+      let image: Promise<Image> = sceneFactory.createImage(sceneImageParameter);
+      image.then(async (imageEntity: Image) => {
+        let sceneMaterialParameter: SceneResourceParameters = { name: "material" };
         // 创建材质
-        let material: Promise<scene3d.Material> = sceneFactory.createMaterial(sceneMaterialParameter, scene3d.MaterialType.SHADER);
-        material.then(async (materialEntity: scene3d.ShaderMaterial) => {
+        let material: Promise<Material> = sceneFactory.createMaterial(sceneMaterialParameter, MaterialType.SHADER);
+        material.then(async (materialEntity: ShaderMaterial) => {
           // 利用创建的图片资源设置纹理属性
           if (materialEntity && materialEntity.colorShader) {
             materialEntity.colorShader.inputs["BASE_COLOR_Image"] = imageEntity;
@@ -87,17 +90,18 @@ function createImagePromise() : Promise<scene3d.Image> {
 ## 环境资源的创建及使用
 环境资源的创建需要指定名字以及图片或者glTF在文件沙箱中的路径，将环境资源设置到3D scene的environment属性，即可以将创建的环境资源设置为3D场景的背景环境。环境资源提供了diffuseFactor、specularFactor等的属性，支撑开发者对于环境资源属性进行控制。示例代码如下：
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
-function createEnvironmentPromise() : Promise<scene3d.Environment> {
+function createEnvironmentPromise() : Promise<Environment> {
   return new Promise(() => {
-    let scene: Promise<scene3d.Scene> = scene3d.Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-    scene.then(async (result: scene3d.Scene) => {
-      let sceneFactory: scene3d.SceneResourceFactory = result.getResourceFactory();
-      let sceneEnvironmentParameter: scene3d.SceneResourceParameters = { name: "env", uri: $rawfile("bricks.ktx") };
+    let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneEnvironmentParameter: SceneResourceParameters = { name: "env", uri: $rawfile("bricks.ktx") };
       // 创建Environment
-      let env: Promise<scene3d.Environment> = sceneFactory.createEnvironment(sceneEnvironmentParameter);
-      env.then(async (envEntity: scene3d.Environment) => {
+      let env: Promise<Environment> = sceneFactory.createEnvironment(sceneEnvironmentParameter);
+      env.then(async (envEntity: Environment) => {
         // 设置env相关属性
         envEntity.indirectDiffuseFactor.x = 1;
         envEntity.indirectDiffuseFactor.y = 1;
