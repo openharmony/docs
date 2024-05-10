@@ -522,11 +522,11 @@ slideRange(value: SlideRange)
 
 >  **说明：**
 >
->  - 当前仅当MIN<=from<=to<=MAX时该接口生效。
+>  - 当前仅当MIN<=from<=to<=MAX时该接口生效(MIN和MAX不依赖于其设置的值, 而取决于其实际生效的值)。
 >  - 可只设置from或者to, 也可以同时设置from和to。
 >  - 当接口生效, 设置的from处于紧邻的step整数倍的值之间, 则from实际取左区间step整数倍的那个值或者MIN作为修正后的值。
 >  - 当接口生效, 设置的to处于紧邻的step整数倍的值之间, 则to实际取右区间step整数倍的那个值或者MAX作为修正后的值。
->  - from和to经校正, 当value是undefined或null时, 与from取值一致; 当value是数值型, value <= from, 取from; value > to, 取to。
+>  - 在from和to取修正值后, 当value是undefined或null时, 其取值与from一致; 当value是数值型, 且value <= from, 则取from; value > to, 则取to。
 
 ## 示例
 
