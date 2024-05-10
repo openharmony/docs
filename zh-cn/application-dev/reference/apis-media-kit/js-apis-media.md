@@ -400,7 +400,7 @@ createAVScreenCaptureRecorder(): Promise\<AVScreenCaptureRecorder>
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 5400101  | No memory. Return by callback. |
+| 5400101  | No memory. Return by promise. |
 
 **示例：**
 
@@ -722,7 +722,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 5400102  | Operation not allowed. Return by callback. |
+| 5400102  | Operation not allowed. Return by promise. |
 
 **示例：**
 
@@ -2574,7 +2574,7 @@ updateRotation(rotation: number): Promise\<void>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 |   401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.   |
-| 5400102  | Operate not permit. Return by promise. |
+| 5400102  | Operate not allowed. Return by promise. |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
 
@@ -6205,7 +6205,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 ## media.createMediaSourceWithUrl<sup>12+</sup>
 
-createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSource
+createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaSource
 
 创建流媒体预下载媒体来源实例方法。
 
@@ -6529,8 +6529,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 5400103  | IO error. Return by promise.     |
-| 5400105  | Service died. Return by promise. |
+| 5400103  | IO error. Return by ErrorCallback. |
+| 5400105  | Service died. Return by ErrorCallback. |
 
 **示例：**
 
