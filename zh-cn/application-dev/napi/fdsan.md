@@ -1,59 +1,16 @@
 # fdsan使用指导
 
-## 1、 功能
+## 1. 功能介绍
 
-### 1.1 功能描述
+fdsan针对的操作对象是文件描述符，主要用于检测不同使用者对相同文件描述符的错误操作，包括多次关闭（double-close）和关闭后使用（use-after-close)。这些文件描述符可以是操作系统中的文件、目录、网络套接字和其他I/O设备等，在程序中，打开文件或套接字会生成一个文件描述符，如果此文件描述符在使用后出现反复关闭、或者关闭后使用等场景，就会造成内存泄露、文件句柄泄露等安全隐患问题。该类问题非常隐蔽，且难以排查，为了更好地检测此类问题，因此引入了此种针对文件描述符错误操作的检测工具fdsan。
 
-fdsan (file descriptor sanitizer) 工具引入解决何种问题？
-
-fdsan针对的操作对象是文件描述符，旨在检测不同使用者对相同文件描述符的错误操作，这些文件描述符可以是操作系统中的文件、目录、网络套接字和其他I/O设备等。fdsan可以检测的错误类型可以描述为双重释放（double-free）和关闭后使用（use-after-close)。
-
-为什么需要fdsan？
-
-在程序中，打开文件或套接字会生成一个文件描述符，如果此文件描述符在使用后出现反复关闭、或者关闭后使用等场景，就会造成内存泄露、文件句柄泄露等安全隐患问题。该类问题非常隐蔽，且难以排查，为了更好地检测此类问题，因此引入了此种针对文件描述符错误操作的检测工具fdsan。
-
-
-### 1.2 示例代码
-
-```cpp
-void thread_test_one() {
-    int fd = open("/dev/null", O_RDONLY);
-    close(fd);
-    close(fd);
-}
-
-void thread_test_two() {
-    while (true) {
-        int fd = open("log", O_WRONLY | O_APPEND);
-        if (write(fd, "foo", 3) != 3) {
-            OH_LOG_ERROR(LOG_APP, "write failed!");
-        }
-    }
-}
-```
-同时运行上述两个测试线程，最终执行结果可能如下:
-```cpp
-thread test one                           thread test two
-open("/dev/null", O_RDONLY) = 123
-close(123) = 0
-                                          open("log", O_WRONLY | APPEND) = 123
-close(123) = 0
-                                          write(123, "foo", 3) = -1 (EBADF)
-                                          OH_LOG_ERROR(LOG_APP, "write failed!")
-```
-
-这种错误往往难以分析因为在线程二的视角中文件的打开和写入是完全正确的。
-
-
-## 2、 设计
-
-### 2.1 fdsan设计原理
+## 2. 实现原理
 
 设计思路：当打开已有文件或创建一个新文件的时候，在得到返回fd后，设置一个关联的tag，来标记fd的属主信息；关闭文件前，检测fd关联的tag，判断是否符合预期(属主信息一致)，符合就继续走正常文件关闭流程；如果不符合就是检测到异常，根据设置，调用对应的异常处理。
 
 tag由两部分组成，最高位的8-bit构成type，后面的56-bit构成value。
 
-type，标识fd通过何种封装形式进行管理例如 `FDSAN_OWNER_TYPE_FILE`就表示fd通过普通文件进行管理，type类型在 `fdsan_owner_type`进行定义。
+type，标识fd通过何种封装形式进行管理，例如 `FDSAN_OWNER_TYPE_FILE`就表示fd通过普通文件进行管理，type类型在 `fdsan_owner_type`进行定义。
 
 value，则用于标识实际的owner tag。
 
@@ -63,15 +20,15 @@ value，则用于标识实际的owner tag。
 
 
 
-### 2.2 fdsan接口使用指导
+## 3. 接口说明
 
-#### 2.2.1 fdsan_set_error_level
+### 3.1 fdsan_set_error_level
 ```
 enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
 ```
-说明：可以通过`fdsan_set_error_level`设定error_level，error_level用于控制检测到异常后的处理行为。默认error_level为FDSAN_ERROR_LEVEL_WARN_ALWAYS。
+**描述：** 可以通过`fdsan_set_error_level`设定error_level，error_level用于控制检测到异常后的处理行为。默认error_level为FDSAN_ERROR_LEVEL_WARN_ALWAYS。
 
-**参数说明：** fdsan_error_level
+**参数：** fdsan_error_level
 
 | 名称                       | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ |
@@ -80,48 +37,43 @@ enum fdsan_error_level fdsan_set_error_level(enum fdsan_error_level new_level);
 | `FDSAN_ERROR_LEVEL_WARN_ALWAYS` | warn-always，每次出现错误时都在hilog中发出警告 |
 | `FDSAN_ERROR_LEVEL_FATAL` | fatal ，出现错误时调用abort异常退出. |
 
+**返回值：** 返回旧的error_level。
 
-#### 2.2.2 fdsan_get_error_level
+### 3.2 fdsan_get_error_level
 
 ```
 enum fdsan_error_level fdsan_get_error_level();
 ```
 
-说明：可以通过`fdsan_get_error_level`获取error level。
+**描述：** 可以通过`fdsan_get_error_level`获取error level。
 
-#### 2.2.3 fdsan_create_owner_tag
+**返回值：** 当前的error_level。
+
+### 3.3 fdsan_create_owner_tag
 ```
 uint64_t fdsan_create_owner_tag(enum fdsan_owner_type type, uint64_t tag);
 ```
-说明：通过传入的type和tag字段，拼接成一个有效的文件描述符的关闭tag。
+**描述：** 通过传入的type和tag字段，拼接成一个有效的文件描述符的关闭tag。
 
-**参数说明：** fdsan_owner_type
+**参数：** fdsan_owner_type
 
-```cpp
-	FDSAN_OWNER_TYPE_GENERIC_00 = 0,
-	FDSAN_OWNER_TYPE_GENERIC_FF = 255,
+| 名称                       | 说明                                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| `FDSAN_OWNER_TYPE_GENERIC_00` | 默认未使用fd对应的type值     |
+| `FDSAN_OWNER_TYPE_GENERIC_FF` | 默认非法fd对应的type值 |
+| `FDSAN_OWNER_TYPE_FILE` | 默认普通文件对应的type值，使用fopen或fdopen打开的文件具有该类型 |
+| `FDSAN_OWNER_TYPE_DIRECTORY` | 默认文件夹对应的type值，使用opendir或fdopendir打开的文件具有该类型 |
+| `FDSAN_OWNER_TYPE_UNIQUE_FD` | 默认unique_fd对应的type值，保留暂未使用 |
+| `FDSAN_OWNER_TYPE_ZIPARCHIVE` | 默认zip压缩文件对应的type值，保留暂未使用 |
 
-	/* FILE* */
-	FDSAN_OWNER_TYPE_FILE = 1,
+**返回值：** 返回创建的tag，可以用于fdsan_exchange_owner_tag函数的输入。
 
-	/* DIR* */
-	FDSAN_OWNER_TYPE_DIR = 2,
-
-	/* unique_fd */
-	FDSAN_OWNER_TYPE_UNIQUE_FD = 3,
-
-	/* ziparchive */
-	FDSAN_OWNER_TYPE_ZIPARCHIVE = 4,
-```
-
-
-
-#### 2.2.4 fdsan_exchange_owner_tag
+### 3.4 fdsan_exchange_owner_tag
 
 ```
 void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
 ```
-说明：修改文件描述符的关闭tag。
+**描述：** 修改文件描述符的关闭tag。
 
 通过fd所以找到对应的FdEntry，判断close_tag值与expected_tag是否一致，一致说明符合预期，可以用new_tag值重新设定对应的FdEntry。
 
@@ -137,12 +89,12 @@ void fdsan_exchange_owner_tag(int fd, uint64_t expected_tag, uint64_t new_tag);
 
 
 
-#### 2.2.5 fdsan_close_with_tag
+### 3.5 fdsan_close_with_tag
 
 ```
 int fdsan_close_with_tag(int fd, uint64_t tag);
 ```
-说明：根据tag描述符关闭文件描述符。
+**描述：** 根据tag描述符关闭文件描述符。
 
 通过fd找到匹配的FdEntry。如果close_tag与tag相同，则符合预期，可以继续执行文件描述符关闭流程，否则意味着检测到异常。
 
@@ -153,11 +105,13 @@ int fdsan_close_with_tag(int fd, uint64_t tag);
 | `fd` | int | 待关闭的fd句柄 |
 | `tag` | uint64_t | 期望的ownership tag     |
 
-#### 2.2.6 fdsan_get_owner_tag
+**返回值：** 0或者-1，0表示close成功，-1表示close失败。
+
+### 3.6 fdsan_get_owner_tag
 ```
 uint64_t fdsan_get_owner_tag(int fd);
 ```
-说明：根据文件描述符获取tag信息。
+**描述：** 根据文件描述符获取tag信息。
 
 通过fd找到匹配的FdEntry，并获取其对应的close_tag。
 
@@ -167,11 +121,13 @@ uint64_t fdsan_get_owner_tag(int fd);
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `tag` | uint64_t | ownership tag     |
 
-#### 2.2.7 fdsan_get_tag_type
+**返回值：** 返回对应fd的tag。
+
+### 3.7 fdsan_get_tag_type
 ```
 const char* fdsan_get_tag_type(uint64_t tag);
 ```
-说明：根据tag计算出对应的type类型。
+**描述：** 根据tag计算出对应的type类型。
 
 通过获取到的tag信息，通过计算获取对应tag中的type信息。
 
@@ -181,11 +137,13 @@ const char* fdsan_get_tag_type(uint64_t tag);
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `tag` | uint64_t | ownership tag     |
 
-#### 2.2.8 fdsan_get_tag_value
+**返回值：** 返回对应tag的type。
+
+### 3.8 fdsan_get_tag_value
 ```
 uint64_t fdsan_get_tag_value(uint64_t tag);
 ```
-说明：根据tag计算出对应的owner value。
+**描述：** 根据tag计算出对应的owner value。
 
 通过获取到的tag信息，通过偏移计算获取对应tag中的value信息。
 
@@ -195,9 +153,9 @@ uint64_t fdsan_get_tag_value(uint64_t tag);
 | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `tag` | uint64_t | ownership tag     |
 
+**返回值：** 返回对应tag的value。
 
-
-## 3、 使用实例
+## 4. 使用示例
 
 如何使用fdsan？这是一个简单的double-close问题：
 
@@ -240,21 +198,17 @@ int main()
     return 0;
 }
 ```
-执行上述代码，程序的执行情况会是这样的：
+上述代码中的`goog_write`函数会打开一个文件并写入一些字符串而`bad_close`函数中也会打开一个文件同时包含double-close问题，这两个线程同时运行那么程序的执行情况会是这样的：
 
-```cpp
-thread test one                           thread test two
-open("/dev/null", O_RDONLY) = 43
-close(43) = 0
-                                          open("log", O_WRONLY | APPEND) = 43
-close(43) = 0
-                                          write(43, "fdsan test", 11) = -1 (EBADF)
-                                          OH_LOG_ERROR(LOG_APP, "good write but failed?!")
-```
+![](./figures/fdsan-error-2.png)
+
+由于每次open返回的fd是顺序分配的，在进入主函数后第一个可用的fd是43，`bad_close`函数中第一次open返回的fd是43，在关闭之后，43就变成了可用的fd，在`good_write`函数中open返回了第一个可用的fd，即43，但是由于`bad_close`函数中存在double-close问题，因此错误的关闭了另一个线程中打开的文件，导致写入失败
+
+在fdsan引入之后，有两种方法可以检测这类问题：使用标准库接口或实现具有fdsan的函数接口
 
 ### 3.1 使用标准库接口
 
-标准库接口中fopen，fdopen，opendir，fdopendir都已经集成了fdsan，使用前述接口而非直接使用open可以帮助检测问题。这里可以使用fopen替代open：
+标准库接口中fopen，fdopen，opendir，fdopendir都已经集成了fdsan，使用前述接口而非直接使用open可以帮助检测问题。在前述案例中可以使用fopen替代open：
 
 ```cpp
 void good_write()
@@ -284,21 +238,6 @@ void good_write()
 此外，可以在代码中使用`fdsan_set_error_level`设置错误等级error_level，设置为Fatal之后如果fdsan检测到错误会提示日志信息同时crash生成堆栈信息用于定位。下面是error_level设置为Fatal之后生成的crash堆栈信息：
 
 ```
-Generated by HiviewDFX@OpenHarmony
-================================================================
-Device info:OpenHarmony 3.2
-Build info:OpenHarmony 5.0.0.22
-Fingerprint:fd76f9ca51bf1b4215afa4826513915fca42ac22cfd82260fe81614668929017
-Module name:com.example.myapplication
-Version:1.0.0
-VersionCode:1000000
-PreInstalled:No
-Foreground:Yes
-Timestamp:2024-04-30 15:51:27.000
-Pid:15284
-Uid:20010043
-Process name:com.example.myapplication
-Process life time:4s
 Reason:Signal:SIGABRT(SI_TKILL)@0x0000076e from:1902:20010043
 Fault thread info:
 Tid:15312, Name:e.myapplication
@@ -377,27 +316,27 @@ OpenFiles:
 下面是一个具有fdsan的函数接口实现实例：
 
 ```cpp
-struct unique_fd {
-    unique_fd() = default;
+struct fdsan_fd {
+    fdsan_fd() = default;
 
-    explicit unique_fd(int fd)
+    explicit fdsan_fd(int fd)
     {
         reset(fd);
     }
 
-    unique_fd(const unique_fd& copy) = delete;
-    unique_fd(unique_fd&& move)
+    fdsan_fd(const fdsan_fd& copy) = delete;
+    fdsan_fd(fdsan_fd&& move)
     {
         *this = std::move(move);
     }
 
-    ~unique_fd()
+    ~fdsan_fd()
     {
         reset();
     }
 
-    unique_fd& operator=(const unique_fd& copy) = delete;
-    unique_fd& operator=(unique_fd&& move)
+    fdsan_fd& operator=(const fdsan_fd& copy) = delete;
+    fdsan_fd& operator=(fdsan_fd&& move)
     {
         if (this == &move) {
             return *this;
@@ -457,6 +396,23 @@ struct unique_fd {
 
 这里的实现中使用`fdsan_exchange_owner_tag`在开始时将fd与结构体对象地址绑定，然后在关闭文件时使用`fdsan_close_with_tag`进行检测，预期tag是结构体对象地址。
 
-同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息，详细信息可以参考3.2节
+在实现了具有fdsan的函数接口之后，可以使用该接口包装fd：
+
+```cpp
+void good_write()
+{
+    sleep(1);
+    // int fd = open(DEV_NULL_FILE, O_RDONLY);
+    fdsan_fd fd(open(DEV_NULL_FILE, O_RDONLY));
+    sleep(3);
+    ssize_t ret = write(fd.get(), "fdsan test\n", 11);
+    if (ret == -1) {
+        OH_LOG_ERROR(LOG_APP, "good write but failed?!");
+    }
+    close(fd.get());
+}
+```
+
+此时运行该程序可以检测到另一个线程的double-close问题，详细信息可以参考3.2节。同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息。
 
 
