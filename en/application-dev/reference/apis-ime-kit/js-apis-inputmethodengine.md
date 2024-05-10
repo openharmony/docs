@@ -58,9 +58,7 @@ Provides the constant values of function keys, edit boxes, and the cursor.
 
 getInputMethodAbility(): InputMethodAbility
 
-Obtains an [InputMethodAbility](#inputmethodability) instance for the input method. This API can be called only by an input method.
-
-The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event, create/destroy an input method panel, and the like.
+Obtains an [InputMethodAbility](#inputmethodability) instance for the input method. This API can be called only by an input method.<br>The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event, create/destroy an input method panel, and the like.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -80,9 +78,7 @@ let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 
 getKeyboardDelegate(): KeyboardDelegate
 
-Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method.
-
-The input method can use the obtained instance to subscribe to a physical keyboard event, text selection change event, and more.
+Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method.<br>The input method can use the obtained instance to subscribe to a physical keyboard event, text selection change event, and more.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -102,9 +98,7 @@ let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
 getInputMethodEngine(): InputMethodEngine
 
-Obtains an [InputMethodEngine](#inputmethodengine) instance for the input method.
-
-The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event.
+Obtains an [InputMethodEngine](#inputmethodengine) instance for the input method.<br>The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event.
 
 > **NOTE**
 >
@@ -128,9 +122,7 @@ let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 
 createKeyboardDelegate(): KeyboardDelegate
 
-Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method.
-
-The input method can use the obtained instance to subscribe to a physical keyboard event, text selection change event, and more.
+Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. The input method can use the obtained instance to subscribe to a physical keyboard event, text selection change event, and more.
 
 > **NOTE**
 >
@@ -166,7 +158,7 @@ Enables listening for the input method binding event. This API uses an asynchron
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | Yes  | Listening type. The value is fixed at **'inputStart'**.|
+| type     | string                        | Yes  | Event type, which is **'inputStart'**.|
 | callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | Yes| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
 
 **Example**
@@ -195,8 +187,8 @@ Disables listening for the input method binding event.
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type | string                                                       | Yes  | Listening type. The value is fixed at **'inputStart'**.|
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | No| Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type | string                                                       | Yes  | Event type, which is **'inputStart'**.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -223,7 +215,7 @@ Enables listening for a keyboard visibility event. This API uses an asynchronous
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
+| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -253,8 +245,8 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
-| callback | () => void   | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
+| callback | () => void   | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -279,7 +271,7 @@ Enables listening for the input method binding event. This API uses an asynchron
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                        | Yes  | Listening type. The value is fixed at **'inputStart'**.|
+| type     | string                        | Yes  | Event type, which is **'inputStart'**.|
 | callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | Yes| Callback used to return the result.|
 
 **Example**
@@ -308,8 +300,8 @@ Disables listening for the input method binding event. This API uses an asynchro
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| type | string                                                       | Yes  | Listening type. The value is fixed at **'inputStart'**.|
-| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | No| Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type | string                                                       | Yes  | Event type, which is **'inputStart'**.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -329,7 +321,7 @@ Enables listening for the input method unbinding event. This API uses an asynchr
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'inputStop'**.|
+| type     | string | Yes  | Event type, which is **'inputStop'**.|
 | callback | () => void   | Yes  | Callback used to return the result.                       |
 
 **Example**
@@ -356,8 +348,8 @@ Disables listening for the input method stop event. This API uses an asynchronou
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'inputStop'**.|
-| callback | () => void   | Yes  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.       |
+| type     | string | Yes  | Event type, which is **'inputStop'**.|
+| callback | () => void   | Yes  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.       |
 
 **Example**
 
@@ -383,7 +375,7 @@ Enables listening for the window invocation setting event. This API uses an asyn
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'setCallingWindow'**.|
+| type     | string | Yes  | Event type, which is **'setCallingWindow'**.|
 | callback | (wid: number) => void | Yes  | Callback used to return the window ID of the caller.                    |
 
 **Example**
@@ -410,8 +402,8 @@ Disables listening for the window invocation setting event. This API uses an asy
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'setCallingWindow'**.|
-| callback | (wid:number) => void | Yes  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string | Yes  | Event type, which is **'setCallingWindow'**.|
+| callback | (wid:number) => void | Yes  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -437,7 +429,7 @@ Enables listening for a keyboard visibility event. This API uses an asynchronous
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
+| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -467,7 +459,7 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
+| type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
 | callback | () => void   | No  | Callback used to return the result.|
 
 **Example**
@@ -497,7 +489,7 @@ Enables listening for the input method subtype setting event. This API uses an a
 
 | Name   | Type| Mandatory | Description|
 | -------- | --- | ---- | --- |
-| type     | string | Yes  | Listening type. The value is fixed at **'setSubtype'**.|
+| type     | string | Yes  | Event type, which is **'setSubtype'**.|
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | Yes  | Callback used to return the input method subtype.                        |
 
 **Example**
@@ -526,8 +518,8 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 
 | Name  | Type | Mandatory| Description  |
 | ------- | ----- | ---- | ---- |
-| type     | string | Yes  | Listening type. The value is fixed at **'setSubtype'**.|
-| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type. |
+| type     | string | Yes  | Event type, which is **'setSubtype'**.|
+| callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type. |
 
 **Example**
 
@@ -553,7 +545,7 @@ Enables listening for security mode changes of the input method. This API uses a
 
 | Name  | Type                                       | Mandatory| Description                                          |
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
-| type     | string                                      | Yes  | Listening type. The value is fixed at **'securityModeChange'**.|
+| type     | string                                      | Yes  | Event type, which is **'securityModeChange'**.|
 | callback | Callback\<[SecurityMode](#securitymode11))> | Yes  | Callback used to return the current security mode.      |
 
 **Example**
@@ -580,8 +572,8 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 
 | Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                      | Yes  | Listening type. The value is fixed at **'securityModeChange'**.              |
-| callback | Callback\<[SecurityMode](#securitymode11))> | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string                                      | Yes  | Event type, which is **'securityModeChange'**.              |
+| callback | Callback\<[SecurityMode](#securitymode11))> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -641,7 +633,7 @@ Creates an input method panel. This API uses an asynchronous callback to return 
 
 | Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](../apis/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method.|
+| ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method.|
 | info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
 | callback | AsyncCallback\<[Panel](#panel10)> | Yes  | Callback used to return the result. If the operation is successful, the created input method panel is returned. |
 
@@ -686,7 +678,7 @@ Creates an input method panel. This API uses a promise to return the result.<br>
 
 | Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](../apis/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method.|
+| ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method.|
 | info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
 
 **Return value**
@@ -842,7 +834,7 @@ Enables listening for a physical keyboard event. This API uses an asynchronous c
 
 | Name  | Type                           | Mandatory| Description                                                 |
 | -------- | ------------------------------- | ---- |-----------------------------------------------------|
-| type   | string         | Yes  | Listening type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event.|
+| type   | string         | Yes  | Event type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event.|
 | callback | (event: [KeyEvent](#keyevent)) => boolean | Yes| Callback used to return the key information. If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.  |
 
 **Example**
@@ -876,8 +868,8 @@ Disables listening for a physical keyboard event. This API uses an asynchronous 
 
 | Name   | Type    | Mandatory | Description |
 | -------- | ------- | ---- | ----- |
-| type     | string  | Yes  | Listening type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event.|
-| callback | (event: [KeyEvent](#keyevent)) => boolean | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.  |
+| type     | string  | Yes  | Event type.<br>- The value **'keyDown'** indicates the keydown event.<br>- The value **'keyUp'** indicates the keyup event.|
+| callback | (event: [KeyEvent](#keyevent)) => boolean | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.  |
 
 **Example**
 
@@ -908,8 +900,8 @@ Enables listening for a keyboard event. This API uses an asynchronous callback t
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Listening type. The value is fixed at **'keyEvent'**.|
-| callback | function | Yes  | Callback used to return the result.<br>- The input parameter is of the [InputKeyEvent](../apis/js-apis-keyevent.md#keyevent) type and indicates the key event information.<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
+| type     | string   | Yes  | Event type, which is **'keyEvent'**.|
+| callback | function | Yes  | Callback used to return the result.<br>- Input parameter: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent).<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
 
 **Example**
 
@@ -940,8 +932,8 @@ Disables listening for a keyboard event. This API uses an asynchronous callback 
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Listening type. The value is fixed at **'keyEvent'**.|
-| callback | function | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string   | Yes  | Event type, which is **'keyEvent'**.|
+| callback | function | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -971,7 +963,7 @@ Enables listening for the cursor change event. This API uses an asynchronous cal
 
 | Name   | Type | Mandatory | Description |
 | -------- | ---- | ---- | ----- |
-| type     | string | Yes  | Listening type. The value is fixed at **'cursorContextChange'**.|
+| type     | string | Yes  | Event type, which is **'cursorContextChange'**.|
 | callback | (x: number, y: number, height: number) => void | Yes  | Callback used to return the cursor movement direction.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: y coordinate of the bottom of the cursor.<br>- **height**: height of the cursor.|
 
 **Example**
@@ -1000,8 +992,8 @@ Disables listening for cursor context changes. This API uses an asynchronous cal
 
 | Name   | Type | Mandatory | Description  |
 | -------- | ---- | ---- | ------ |
-| type     | string  | Yes  | Listening type. The value is fixed at **'cursorContextChange'**.|
-| callback | (x: number, y:number, height:number) => void | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string  | Yes  | Event type, which is **'cursorContextChange'**.|
+| callback | (x: number, y:number, height:number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 
   **Example**
@@ -1027,7 +1019,7 @@ Enables listening for the text selection change event. This API uses an asynchro
 
 | Name   | Type  | Mandatory| Description  |
 | -------- | ----- | ---- | ---- |
-| type     | string  | Yes  | Listening type. The value is fixed at **'selectionChange'**.|
+| type     | string  | Yes  | Event type, which is **'selectionChange'**.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
 
 **Example**
@@ -1058,8 +1050,8 @@ Disables listening for the text selection change event. This API uses an asynchr
 
 | Name  | Type | Mandatory| Description    |
 | -------- | ------- | ---- | ------- |
-| type     | string  | Yes  | Listening type. The value is fixed at **'selectionChange'**.|
-| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string  | Yes  | Event type, which is **'selectionChange'**.|
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -1087,7 +1079,7 @@ Enables listening for the text change event. This API uses an asynchronous callb
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'textChange'**.|
+| type     | string | Yes  | Event type, which is **'textChange'**.|
 | callback | (text: string) => void | Yes  | Callback used to return the text content.|
 
 **Example**
@@ -1114,8 +1106,8 @@ Disables listening for the text change event. This API uses an asynchronous call
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'textChange'**.|
-| callback | (text: string) => void | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string | Yes  | Event type, which is **'textChange'**.|
+| callback | (text: string) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -1141,7 +1133,7 @@ Enables listening for the edit box attribute change event. This API uses an asyn
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'editorAttributeChanged'**.|
+| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
 | callback | (attr: EditorAttribute) => void | Yes  | Callback used to return the changed edit box attribute.|
 
 **Example**
@@ -1168,8 +1160,8 @@ Disables listening for the edit box attribute change event. This API uses an asy
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type. The value is fixed at **'editorAttributeChanged'**.|
-| callback | (attr: EditorAttribute) => void | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
+| callback | (attr: EditorAttribute) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -1263,7 +1255,7 @@ Loads content from a page linked to LocalStorage to this input method panel. Thi
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | Yes  | Path of the page linked to LocalStorage.|
-| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
+| storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1299,7 +1291,7 @@ Loads content from a page linked to LocalStorage to this panel. This API uses a 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | Yes  | Path of the page from which the content will be loaded.|
-| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
+| storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 
 **Return value**
 
@@ -1315,7 +1307,7 @@ import { BusinessError } from '@ohos.base';
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
-  panel.setUiContent('pages/page2/page2')then(() => {
+  panel.setUiContent('pages/page2/page2').then(() => {
     console.log('Succeeded in setting the content.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
@@ -1595,7 +1587,7 @@ Enables listening for the show event of this panel. This API uses an asynchronou
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | Yes| Listening type. The value is fixed at **'show'**.|
+| type | string | Yes| Event type, which is **'show'**.|
 | callback | () => void | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1622,7 +1614,7 @@ Enables listening for the hide event of this panel. This API uses an asynchronou
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | Yes| Listening type. The value is fixed at **'hide'**.|
+| type | string | Yes| Event type, which is **'hide'**.|
 | callback | () => void | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1649,8 +1641,8 @@ Disables listening for the show event of this panel. This API uses an asynchrono
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | Yes| Listening type. The value is fixed at **'show'**.|
-| callback | () => void | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type | string | Yes| Event type, which is **'show'**.|
+| callback | () => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -1674,8 +1666,8 @@ Disables listening for the hide event of this panel. This API uses an asynchrono
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| type | string | Yes| Listening type. The value is fixed at **'hide'**.|
-| callback | () => void | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type | string | Yes| Event type, which is **'hide'**.|
+| callback | () => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
 
@@ -1732,7 +1724,7 @@ Sets the input method panel to privacy mode. In privacy mode, screenshot and scr
 
 ```ts
 try {
-    boolean isPrivacyMode = true;
+    let isPrivacyMode = true;
     panel.setPrivacyMode(isPrivacyMode);
 } catch(err) {
     console.error(`Failed to set privacy mode: ${JSON.stringify(err)}`);
@@ -1759,7 +1751,7 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -1795,7 +1787,7 @@ Hides the keyboard. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -1891,7 +1883,7 @@ Exits this input type. This API can be called only by the preconfigured default 
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
@@ -1928,7 +1920,7 @@ Exits this input type. This API can be called only by the preconfigured default 
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
@@ -2026,7 +2018,7 @@ Sends the function key. This API uses an asynchronous callback to return the res
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2077,7 +2069,7 @@ Sends the function key. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2116,12 +2108,12 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                    |
 | -------- | ------------------------------ |
@@ -2159,7 +2151,7 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 
 **Return value**
 
@@ -2169,7 +2161,7 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                    |
 | -------- | ------------------------------ |
@@ -2205,7 +2197,7 @@ Obtains the specific-length text before the cursor.
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length.|
+| length | number | Yes  | Text length. |
 
 **Return value**
 
@@ -2215,7 +2207,7 @@ Obtains the specific-length text before the cursor.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
@@ -2246,12 +2238,12 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                    |
 | -------- | ------------------------------ |
@@ -2289,7 +2281,7 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 
 **Return value**
 
@@ -2299,7 +2291,7 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                    |
 | -------- | ------------------------------ |
@@ -2335,7 +2327,7 @@ Obtains the specific-length text after the cursor.
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length.|
+| length | number | Yes  | Text length. |
 
 **Return value**
 
@@ -2345,7 +2337,7 @@ Obtains the specific-length text after the cursor.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
@@ -2376,12 +2368,12 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2423,7 +2415,7 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length.|
+| length | number | Yes  | Text length. |
 
 **Return value** 
 
@@ -2433,7 +2425,7 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2473,11 +2465,11 @@ Deletes the fixed-length text before the cursor.
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length.|
+| length | number | Yes  | Text length. |
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -2508,12 +2500,12 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 
 | Name  | Type                        | Mandatory| Description          |
 | -------- | ---------------------------- | ---- | -------------- |
-| length   | number                       | Yes  | Text length.    |
+| length   | number                       | Yes  | Text length.     |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2555,7 +2547,7 @@ Deletes the fixed-length text after the cursor. This API uses a promise to retur
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 
 **Return value**
 
@@ -2565,7 +2557,7 @@ Deletes the fixed-length text after the cursor. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2601,11 +2593,11 @@ Deletes the fixed-length text after the cursor.
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length.|
+| length | number | Yes  | Text length. |
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -2641,7 +2633,7 @@ Inserts text. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2688,7 +2680,7 @@ Inserts text. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2731,7 +2723,7 @@ Inserts text.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -2765,7 +2757,7 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2802,7 +2794,7 @@ Obtains the attribute of the edit box. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2841,7 +2833,7 @@ Obtains the attribute of the edit box.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -2875,7 +2867,7 @@ Moves the cursor. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2921,7 +2913,7 @@ Moves the cursor. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                |
 | -------- | -------------------------- |
@@ -2959,7 +2951,7 @@ Moves the cursor.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -2993,7 +2985,7 @@ Selects text based on the specified range. This API uses an asynchronous callbac
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -3041,7 +3033,7 @@ Selects text based on the specified range. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -3081,7 +3073,7 @@ Selects text based on the specified range.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -3117,7 +3109,7 @@ Selects text based on the cursor movement direction. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -3165,7 +3157,7 @@ Selects text based on the specified range. This API uses a promise to return the
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -3205,7 +3197,7 @@ Selects text based on the cursor movement direction.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                  |
 | -------- | -------------------------- |
@@ -3240,7 +3232,7 @@ Obtains the index of the text where the cursor is located. This API uses an asyn
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
@@ -3277,7 +3269,7 @@ Obtains the index of the text where the cursor is located. This API uses a promi
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
@@ -3312,7 +3304,7 @@ Obtains the index of the text where the cursor is located.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
@@ -3351,7 +3343,7 @@ Sends an extended edit action. This API uses an asynchronous callback to return 
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
@@ -3402,7 +3394,7 @@ Sends an extended edit action. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Input Method Framework Error Codes](../errorcodes/errorcode-inputmethod-framework.md).
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
@@ -3444,7 +3436,7 @@ Describes the attribute of a key.
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | Yes  | No  | Key value. For details, see [KeyCode](../apis/js-apis-keycode.md#keycode).|
+| keyCode   | number   | Yes  | No  | Key value. For details, see [KeyCode](../apis-input-kit/js-apis-keycode.md#keycode).|
 | keyAction | number   | Yes  | No  | Key event type.<br>- **2**: keydown event.<br>- **3**: keyup event.|
 
 ## PanelFlag<sup>10+</sup>
@@ -3504,7 +3496,7 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
 
 **Example**
@@ -3538,7 +3530,7 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 
 **Return value**
 
@@ -3575,7 +3567,7 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained text. Otherwise, **err** is an error object.|
 
 **Example**
@@ -3609,7 +3601,7 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 
 **Return value**
 
@@ -3646,7 +3638,7 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -3684,7 +3676,7 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| length | number | Yes  | Text length.|
+| length | number | Yes  | Text length. |
 
 **Return value** 
 
@@ -3725,7 +3717,7 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 
 | Name  | Type                        | Mandatory| Description          |
 | -------- | ---------------------------- | ---- | -------------- |
-| length   | number                       | Yes  | Text length.    |
+| length   | number                       | Yes  | Text length.     |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -3763,7 +3755,7 @@ Deletes the fixed-length text after the cursor. This API uses a promise to retur
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| length | number | Yes| Text length. |
 
 **Return value**
 
