@@ -5808,7 +5808,7 @@ media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
 
 | 名称                                                | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | 是   | 是   | 媒体文件描述，通过该属性设置数据源。<br/> **使用示例**：<br/>假设一个连续存储的媒体文件，地址偏移:0，字节长度:100。其文件描述为 AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。 |
 
 ### fetchFrameByTime<sup>12+</sup>
 
