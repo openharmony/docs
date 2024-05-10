@@ -52,6 +52,8 @@ constructor(value: number, total: number, color: ResourceColor)
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述           |
@@ -68,6 +70,8 @@ updateProgress(value: number): void
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述           |
@@ -82,6 +86,8 @@ updateColor(value: ResourceColor): void
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述         |
@@ -93,6 +99,8 @@ updateColor(value: ResourceColor): void
 enableBreathingAnimation(value: boolean): void
 
 进度满时的呼吸光晕动画开关。默认关闭呼吸光晕动画。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 

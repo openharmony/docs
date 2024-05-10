@@ -85,8 +85,6 @@ getUIObserver(): UIObserver
 
 获取UIObserver对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -948,8 +946,6 @@ uiContext.getDragController();
 getDragPreview(): dragController.DragPreview
 
 返回一个代表拖拽背板的对象。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
