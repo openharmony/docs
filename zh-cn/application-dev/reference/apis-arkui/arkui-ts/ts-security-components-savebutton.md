@@ -113,8 +113,8 @@ onClick(event: (event: ClickEvent, result: SaveButtonOnClickResult) =&gt; void)
 
 ```
 // xxx.ets
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 @Entry
 @Component
@@ -131,11 +131,11 @@ struct Index {
               // onClick触发后10秒内通过createAsset接口创建图片文件，10秒后createAsset权限收回。
               let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
               // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
-              let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+              let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
               // 写入文件
-              await fs.write(file.fd, "context");
+              await fileIo.write(file.fd, "context");
               // 关闭文件
-              await fs.close(file.fd);
+              await fileIo.close(file.fd);
             } catch (error) {
               console.error("error is "+ JSON.stringify(error));
             }
