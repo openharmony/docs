@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import drawing from '@ohos.graphics.text'
+import { drawing } from '@kit.ArkGraphics2D'
 ```
 
 ## TextAlign
@@ -210,7 +210,7 @@ loadFontSync(name: string, path: string | Resource): void
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text"
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let fontCollection = new text.FontCollection;
@@ -317,7 +317,7 @@ layoutSync(width: number): void
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   paragraph.layoutSync(100);
@@ -356,9 +356,9 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
 import image from '@ohos.multimedia.image';
 
 function Text() {
@@ -400,7 +400,7 @@ getMaxWidth(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let maxWidth = paragraph.getMaxWidth();
@@ -437,7 +437,7 @@ getHeight(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let height = paragraph.getHeight();
@@ -474,7 +474,7 @@ getLongestLine(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let longestLine = paragraph.getLongestLine();
@@ -511,7 +511,7 @@ getMinIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
@@ -548,7 +548,7 @@ getMaxIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
@@ -585,7 +585,7 @@ getAlphabeticBaseline(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let alphabeticBaseline = paragraph.getAlphabeticBaseline();
@@ -622,7 +622,7 @@ getIdeographicBaseline(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let ideographicBaseline = paragraph.getIdeographicBaseline();
@@ -667,7 +667,7 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let range: text.Range = { start: 0, end: 1};
@@ -705,7 +705,7 @@ getRectsForPlaceholders(): Array\<TextBox>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let placeholderRects = paragraph.getRectsForPlaceholders();
@@ -749,7 +749,7 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
@@ -792,7 +792,7 @@ getWordBoundary(offset: number): Range
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let wordRange = paragraph.getWordBoundary(0);
@@ -829,7 +829,7 @@ getLineCount(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let lineCount = paragraph.getLineCount();
@@ -872,7 +872,7 @@ getLineHeight(line: number): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let lineHeight = paragraph.getLineHeight(0);
@@ -915,7 +915,7 @@ getLineWidth(line: number): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let lineWidth = paragraph.getLineWidth(0);
@@ -952,7 +952,7 @@ didExceedMaxLines(): boolean
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let didExceed = paragraph.didExceedMaxLines();
@@ -989,7 +989,7 @@ getTextLines(): Array\<TextLine>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let lines = paragraph.getTextLines();
@@ -1090,7 +1090,7 @@ ParagraphBuilder对象的构造函数。
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text"
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let myTextStyle: text.TextStyle = {
@@ -1140,9 +1140,9 @@ struct Index {
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
 import image from '@ohos.multimedia.image';
 
 function Text() {
@@ -1184,9 +1184,9 @@ popStyle(): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
 import image from '@ohos.multimedia.image';
 
 function Text() {
@@ -1235,9 +1235,9 @@ addText(text: string): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
 import image from '@ohos.multimedia.image';
 
 function Text() {
@@ -1285,9 +1285,9 @@ addPlaceholder(placeholderSpan: PlaceholderSpan): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
 import image from '@ohos.multimedia.image';
 
 function Text() {
@@ -1337,9 +1337,9 @@ build(): Paragraph
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
 import image from '@ohos.multimedia.image';
 
 function Text() {
@@ -1388,7 +1388,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let GlyphCount = lines[0].getGlyphCount();
@@ -1425,7 +1425,7 @@ getTextRange(): Range
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let textRange = lines[0].getTextRange();
@@ -1462,7 +1462,7 @@ getGlyphRuns(): Array\<Run>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let runs = lines[0].getGlyphRuns();
@@ -1501,9 +1501,9 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
 import image from '@ohos.multimedia.image';
 
 function Text() {
@@ -1551,7 +1551,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let glyphs = runs[0].getGlyphCount();
@@ -1588,7 +1588,7 @@ getGlyphs(): Array\<number>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let glyph = runs[0].getGlyphs();
@@ -1625,7 +1625,7 @@ getPositions(): Array<common2D.Point>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let positions = runs[0].getPositions();
@@ -1662,7 +1662,7 @@ getOffsets(): Array<common2D.Point>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let offsets = runs[0].getOffsets();
@@ -1699,8 +1699,8 @@ getFont(): drawing.Font
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text";
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let font = runs[0].getFont();
@@ -1739,9 +1739,9 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
 import image from '@ohos.multimedia.image';
 
 function Text() {
