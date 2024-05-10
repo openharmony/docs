@@ -67,9 +67,8 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
@@ -87,7 +86,7 @@ export default function abilityTest() {
       }
       await delegator.startAbility(want);
       await sleep(1000);
-      //check top display ability
+      // check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
@@ -105,7 +104,7 @@ export default function abilityTest() {
 1.增加依赖导包。
 
 ```ts
-import { Driver, ON } from '@ohos.UiTest'
+import { Driver, ON } from '@kit.TestKit';
 ```
 
 2.编写index.ets页面代码。
@@ -142,18 +141,16 @@ struct Index {
 
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { Driver, ON } from '@ohos.UiTest'
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+import { UIAbility, Want } from '@kit.AbilityKit';
 
 const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
-export default function abilityTest() {
-  describe('ActsAbilityTest', () => {
+export default function abilityTest1() {
+  describe('ActsAbilityTest1', () => {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
