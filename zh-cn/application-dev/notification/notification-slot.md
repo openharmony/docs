@@ -8,8 +8,8 @@
 | SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
 | SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
-| SERVICE_INFORMATION  | 2      | 服务提醒 | Y | N | Y | Y | Y | Y |
-| CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | Y | N |
+| SERVICE_INFORMATION  | 2      | 服务提醒 | Y | Y | Y | Y | Y | Y |
+| CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | N | N |
 | CUSTOMER_SERVICE     | 5      | 客服消息 | Y | N | N | Y | Y | N |
 | OTHER_TYPES          | 0xFFFF | 其他     | Y | N | N | N | N | N |
 
