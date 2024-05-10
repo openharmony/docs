@@ -339,7 +339,7 @@ import call from '@ohos.telephony.call';
 
 *（此处以函数别名为例，如果是interface别名同理，参考interface的模板写作）*
 
-*（在此处给出方法的具体定义形式）* type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => Interface1
+*（在此处给出type的具体定义形式）* type Xxx\<Aaa, Bbb> = (param1: number, param2: string) => Interface1
 
 **系统能力：** SystemCapability.xxx.xxx（必选）
 
