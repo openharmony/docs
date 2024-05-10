@@ -403,6 +403,20 @@ contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<SliderConfiguration>](#sliderconfiguration12对象说明) | 是   | 在Slider组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
+### slideRange<sup>12+</sup>
+
+slideRange(value: SlideRange)
+
+设置有效滑动区间。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明          |
+| ------ |-------------------------------------------| ---- |-------------|
+| value  | SlideRange                                | 是   | 设置有效滑动区间    |
+
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
 Slider组件滑块形状参数。
@@ -496,20 +510,6 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | ------ | ------ | ---- | ---------------- |
 | value | number | 是 | 设置当前的进度值。 |
 | mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
-
-### slideRange<sup>12+</sup>
-
-slideRange(value: SlideRange)
-
-设置有效滑动区间。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型                                        | 必填 | 说明          |
-| ------ |-------------------------------------------| ---- |-------------|
-| value  | SlideRange                                | 是   | 设置有效滑动区间    |
 
 ## SlideRange<sup>12+</sup>对象说明
 
