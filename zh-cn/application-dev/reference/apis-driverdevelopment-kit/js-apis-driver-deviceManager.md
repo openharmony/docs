@@ -1,4 +1,4 @@
-# @ohos.driver.deviceManager (外设管理)
+ # @ohos.driver.deviceManager (外设管理)
 
 本模块主要提供管理外部设备的相关功能，包括查询设备列表、绑定设备和解除绑定设备。
 
@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from "@kit.DriverDevelopmentKit";
 ```
 
 ## deviceManager.queryDevices
@@ -44,7 +44,7 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from "@kit.DriverDevelopmentKit";
 
 
 try {
@@ -89,9 +89,9 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
-import type rpc from '@ohos.rpc';
+import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { BusinessError } from '@kit.BasicServiceKit';
+import { rpc } from '@kit.IPCKit';
 
 interface DataType {
   deviceId : number;
@@ -144,9 +144,9 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
-import type rpc from '@ohos.rpc';
+import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { BusinessError } from '@kit.BasicServiceKit';
+import { rpc } from '@kit.IPCKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -200,8 +200,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { BusinessError } from '@kit.BasicServiceKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -252,8 +252,8 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): P
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { BusinessError } from '@kit.BasicServiceKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -297,7 +297,7 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from "@kit.DriverDevelopmentKit";
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -344,8 +344,8 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { BusinessError } from '@kit.BasicServiceKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
