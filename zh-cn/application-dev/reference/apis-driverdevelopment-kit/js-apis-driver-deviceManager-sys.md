@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 ```
 
 ## deviceManager.queryDeviceInfo
@@ -49,8 +49,8 @@ queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
-import { BusinessError } from '@kit.BasicServiceKit';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -99,7 +99,7 @@ queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt;
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 import { BusinessError } from '@kit.BasicServiceKit';
 
 try {

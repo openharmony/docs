@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 ```
 
 ## deviceManager.queryDevices
@@ -44,8 +44,7 @@ queryDevices(busType?: number): Array&lt;Readonly&lt;Device&gt;&gt;
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
-
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 try {
   let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
@@ -89,8 +88,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
-import { BusinessError } from '@kit.BasicServiceKit';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { rpc } from '@kit.IPCKit';
 
 interface DataType {
@@ -144,8 +143,8 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
-import { BusinessError } from '@kit.BasicServiceKit';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { rpc } from '@kit.IPCKit';
 
 try {
@@ -200,8 +199,8 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
-import { BusinessError } from '@kit.BasicServiceKit';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -252,8 +251,8 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): P
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
-import { BusinessError } from '@kit.BasicServiceKit';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -297,7 +296,7 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -344,8 +343,8 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { deviceManager } from "@kit.DriverDevelopmentKit";
-import { BusinessError } from '@kit.BasicServiceKit';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
