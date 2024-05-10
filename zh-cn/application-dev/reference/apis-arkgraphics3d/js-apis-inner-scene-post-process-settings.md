@@ -6,7 +6,7 @@
 
 ## 导入模块
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.ArkGraphics3D';
 ```
 
 ## ToneMapingType
