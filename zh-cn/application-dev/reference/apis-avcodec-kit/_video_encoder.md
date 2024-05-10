@@ -143,7 +143,7 @@ OH_AVErrCode OH_VideoEncoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 配置视频编码器，通常需要配置要编码的视频轨的描述信息。必须在调用Prepare之前，调用此接口。
 
-**参数校验：** 请参考[参数校验规则](../../media/avcodec/video-encoding.md#configure-参数校验规则)
+**参数校验：** 请参考[参数校验规则](../../media/avcodec/video-encoding.md#参数校验规则)
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
