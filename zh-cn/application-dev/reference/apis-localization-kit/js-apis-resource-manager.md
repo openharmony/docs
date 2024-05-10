@@ -198,6 +198,8 @@ import { BusinessError } from '@ohos.base';
 
 用于表示设备屏幕方向。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 | 名称                   | 值  | 说明   |
@@ -209,6 +211,8 @@ import { BusinessError } from '@ohos.base';
 ## DeviceType
 
 用于表示当前设备类型。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -223,6 +227,8 @@ import { BusinessError } from '@ohos.base';
 ## ScreenDensity
 
 用于表示当前设备屏幕密度。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -240,6 +246,8 @@ import { BusinessError } from '@ohos.base';
 
 表示当前设备的状态。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -253,6 +261,8 @@ import { BusinessError } from '@ohos.base';
 ## DeviceCapability
 
 表示设备支持的能力。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -314,6 +324,8 @@ getStringSync(resId: number): string
 
 用户获取指定资源ID对应的字符串，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -357,6 +369,8 @@ getStringSync(resId: number): string
 getStringSync(resId: number, ...args: Array<string | number>): string
 
 用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -402,6 +416,8 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 getStringSync(resource: Resource): string
 
 用户获取指定resource对象对应的字符串，使用同步方式返回字符串。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -454,6 +470,8 @@ getStringSync(resource: Resource): string
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -508,6 +526,8 @@ getStringByNameSync(resName: string): string
 
 用户获取指定资源名称对应的字符串，使用同步方式返回字符串。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -551,6 +571,8 @@ getStringByNameSync(resName: string): string
 getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 用户获取指定资源名称对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -598,6 +620,8 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -642,6 +666,8 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 getStringValue(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的字符串，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -690,6 +716,8 @@ getStringValue(resId: number): Promise&lt;string&gt;
 getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的字符串，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -743,6 +771,8 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的字符串，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -800,6 +830,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源名称对应的字符串，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -843,6 +875,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 getStringByName(resName: string): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的字符串，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -892,6 +926,8 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 用户获取指定资源ID对应的字符串数组，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -935,6 +971,8 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 用户获取指定resource对象对应的字符串数组，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -988,6 +1026,8 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 用户获取指定资源名称对应的字符串数组，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1029,6 +1069,8 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定资源ID对应的字符串数组，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1073,6 +1115,8 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源ID对应的字符串数组，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1120,6 +1164,9 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定resource对象对应的字符串数组，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1172,6 +1219,8 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定resource对象对应的字符串数组，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1229,6 +1278,8 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 用户获取指定资源名称对应的字符串数组，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -1273,6 +1324,8 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源名称对应的字符串数组，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1326,6 +1379,8 @@ getPluralStringValueSync(resId: number, num: number): string
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1374,6 +1429,8 @@ getPluralStringValueSync(resource: Resource, num: number): string
 >**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1432,6 +1489,8 @@ getPluralStringByNameSync(resName: string, num: number): string
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1480,6 +1539,8 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 >**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1530,6 +1591,8 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 >**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1583,6 +1646,8 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 >**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1641,6 +1706,8 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 >**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1703,6 +1770,8 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1753,6 +1822,8 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1801,6 +1872,8 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 getMediaContentSync(resId: number, density?: number): Uint8Array
 
 用户获取指定资源ID对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1853,6 +1926,8 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1914,6 +1989,8 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 用户获取指定资源名称对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -1966,6 +2043,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2009,6 +2088,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2054,6 +2135,8 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2102,6 +2185,8 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2149,6 +2234,8 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定resource对象对应的媒体文件内容，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2202,6 +2289,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2254,6 +2343,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 用户获取指定resource对象对应的媒体文件内容，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2309,6 +2400,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2366,6 +2459,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源名称对应的媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2408,6 +2503,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2453,6 +2550,8 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源名称对应的媒体文件内容，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2501,6 +2600,8 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2548,6 +2649,8 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 getMediaContentBase64Sync(resId: number, density?: number): string
 
 用户获取指定资源ID对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2600,6 +2703,8 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2661,6 +2766,8 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 用户获取指定资源名称对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2713,6 +2820,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** Content
@@ -2756,6 +2865,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2801,6 +2912,8 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2849,6 +2962,8 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2896,6 +3011,8 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2949,6 +3066,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3001,6 +3120,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3056,6 +3177,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3113,6 +3236,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 用户获取指定资源名称对应的图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3156,6 +3281,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3201,6 +3328,8 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的图片资源Base64编码，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3249,6 +3378,8 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3296,6 +3427,8 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定资源ID对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3355,6 +3488,8 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3423,6 +3558,8 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 用户获取指定资源名称对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3482,6 +3619,8 @@ getBoolean(resId: number): boolean
 
 使用同步方式，返回获取指定资源ID对应的布尔结果。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3524,6 +3663,8 @@ getBoolean(resId: number): boolean
 getBoolean(resource: Resource): boolean
 
 使用同步方式，返回获取指定resource对象对应的布尔结果。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3577,6 +3718,8 @@ getBooleanByName(resName: string): boolean
 
 使用同步方式，返回获取指定资源名称对应的布尔结果。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3620,6 +3763,8 @@ getBooleanByName(resName: string): boolean
 getNumber(resId: number): number
 
 用户获取指定资源ID对应的integer数值或者float数值，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3673,6 +3818,8 @@ getNumber(resource: Resource): number
 
 用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3724,6 +3871,8 @@ getNumber(resource: Resource): number
 getNumberByName(resName: string): number
 
 用户获取指定资源名称对应的integer数值或者float数值，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3777,6 +3926,8 @@ getColorSync(resId: number) : number;
 
 用户获取指定资源ID对应的颜色值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3820,6 +3971,8 @@ getColorSync(resId: number) : number;
 getColorSync(resource: Resource): number
 
 用户获取指定resource对象对应的颜色值，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3873,6 +4026,8 @@ getColorByNameSync(resName: string) : number;
 
 用户获取指定资源名称对应的颜色值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3916,6 +4071,8 @@ getColorByNameSync(resName: string) : number;
 getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 用户获取指定资源ID对应的颜色值，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -3961,6 +4118,8 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 getColor(resId: number): Promise&lt;number&gt;
 
 用户获取指定资源ID对应的颜色值，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4009,6 +4168,8 @@ getColor(resId: number): Promise&lt;number&gt;
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 用户获取指定resource对象对应的颜色值，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4062,6 +4223,8 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 getColor(resource: Resource): Promise&lt;number&gt;;
 
 用户获取指定resource对象对应的颜色值，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4119,6 +4282,8 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 用户获取指定资源名称对应的颜色值，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4163,6 +4328,8 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 getColorByName(resName: string): Promise&lt;number&gt;
 
 用户获取指定资源名称对应的颜色值，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4212,6 +4379,8 @@ getRawFileContentSync(path: string): Uint8Array
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用同步形式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4254,6 +4423,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4295,6 +4466,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4346,6 +4519,8 @@ getRawFileListSync(path: string): Array\<string>
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4391,6 +4566,8 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 >**说明**
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4439,6 +4616,8 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4485,6 +4664,8 @@ getRawFdSync(path: string): RawFileDescriptor
 
 用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4526,6 +4707,8 @@ getRawFdSync(path: string): RawFileDescriptor
 getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4572,6 +4755,8 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4622,6 +4807,8 @@ closeRawFdSync(path: string): void
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4657,6 +4844,8 @@ closeRawFdSync(path: string): void
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4698,6 +4887,8 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 closeRawFd(path: string): Promise&lt;void&gt;
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4741,6 +4932,8 @@ getConfigurationSync(): Configuration
 
 用户获取设备的Configuration，使用同步形式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4765,6 +4958,8 @@ getConfigurationSync(): Configuration
 getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 用户获取设备的Configuration，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4798,6 +4993,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 用户获取设备的Configuration，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4829,6 +5026,8 @@ getDeviceCapabilitySync(): DeviceCapability
 
 用户获取设备的DeviceCapability，使用同步形式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4853,6 +5052,8 @@ getDeviceCapabilitySync(): DeviceCapability
 getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 用户获取设备的DeviceCapability，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4886,6 +5087,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 用户获取设备的DeviceCapability，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4917,6 +5120,8 @@ release()
 
 用户释放创建的resourceManager, 此接口暂不支持。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **示例：** 
@@ -4933,6 +5138,8 @@ release()
 addResource(path: string) : void
 
 应用运行时，加载指定的资源路径，实现资源覆盖。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4971,6 +5178,8 @@ removeResource(path: string) : void
 
 用户运行时，移除指定的资源路径，还原被覆盖前的资源。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -5007,6 +5216,8 @@ removeResource(path: string) : void
 getLocales(includeSystem?: boolean): Array\<string>
 
 获取应用的语言列表。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5058,6 +5269,8 @@ getSymbol(resId: number):number
 
 用户获取指定资源ID对应的符号值，是用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -5100,6 +5313,8 @@ getSymbol(resId: number):number
 getSymbol(resource: Resource): number
 
 用户获取指定resource对象对应的符号值，是用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5153,6 +5368,8 @@ getSymbolByName(resName: string) : number;
 
 用户获取指定资源名称对应的符号值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -5196,6 +5413,8 @@ getSymbolByName(resName: string) : number;
 isRawDir(path: string) : bool
 
 用户判断指定路径是否是rawfile下的目录，使用同步方式返回。
+
+**元服务API**： 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
