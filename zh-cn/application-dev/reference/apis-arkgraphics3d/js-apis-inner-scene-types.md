@@ -6,7 +6,8 @@
 
 ## 导入模块
 ```ts
-import scene3d from '@ohos.graphics.scene'
+import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
+  Scale3 } from '@kit.ArkGraphics3D';
 ```
 
 ## Vec2
