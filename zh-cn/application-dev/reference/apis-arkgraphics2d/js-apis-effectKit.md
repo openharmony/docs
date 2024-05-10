@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import effectKit from '@ohos.effectKit';
+import { effectKit } from "@kit.ArkGraphics2D";
 ```
 
 ## effectKit.createEffect
@@ -45,7 +45,7 @@ createEffect(source: image.PixelMap): Filter
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -89,7 +89,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 import { BusinessError } from "@ohos.base";
 
 const color = new ArrayBuffer(96);
@@ -140,7 +140,7 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 import { BusinessError } from "@ohos.base";
 
 const color = new ArrayBuffer(96);
@@ -185,7 +185,7 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -231,7 +231,7 @@ createColorPicker(source: image.PixelMap, region:Array\<number>, callback: Async
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -296,7 +296,7 @@ getMainColor(): Promise\<Color>
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -344,7 +344,7 @@ getMainColorSync(): Color
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -391,7 +391,7 @@ getLargestProportionColor(): Color
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -443,7 +443,7 @@ getTopProportionColors(colorCount: number): Array<Color | null>
 
 ```js
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -494,7 +494,7 @@ getHighestSaturationColor(): Color
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -541,7 +541,7 @@ getAverageColor(): Color
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -594,7 +594,7 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -650,7 +650,7 @@ blur(radius: number): Filter
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -689,7 +689,7 @@ invert(): Filter
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -733,7 +733,7 @@ setColorMatrix(colorMatrix: Array\<number>): Filter
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -786,7 +786,7 @@ brightness(bright: number): Filter
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -829,7 +829,7 @@ grayscale(): Filter
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -872,7 +872,7 @@ getEffectPixelMap(): Promise<image.PixelMap>
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -912,7 +912,7 @@ getPixelMap(): image.PixelMap
 
 ```ts
 import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
