@@ -61,7 +61,14 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 配置视频解码器，通常需要配置解码视频轨迹的描述信息，这些信息可以从OH_AVSource中提取。在调用准备之前，必须调用此接口。
 
-**参数校验：** 请参考[参数校验规则](../../media/avcodec/video-decoding.md#参数校验规则)
+参数校验规则：
+| Key                    | 配置正常范围的值 | 配置超出范围的值 | 不配置该参数 |
+| ---------------------- | -------- | -------- | ------ |
+| OH_MD_KEY_WIDTH        | √        | ×        | ×      |
+| OH_MD_KEY_HEIGHT       | √        | ×        | ×      |
+| OH_MD_KEY_PIXEL_FORMAT | √        | ×        | √      |
+| OH_MD_KEY_FRAME_RATE   | √        | ×        | √      |
+| OH_MD_KEY_ROTATION     | √        | ×        | √      |
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 
