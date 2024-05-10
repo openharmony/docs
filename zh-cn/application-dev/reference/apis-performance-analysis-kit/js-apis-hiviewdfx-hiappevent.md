@@ -267,6 +267,8 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 
 事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持崩溃和卡死事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **参数：**
@@ -311,6 +313,8 @@ hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
 ## ParamType<sup>12+</sup>
 
 事件自定义参数值的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
