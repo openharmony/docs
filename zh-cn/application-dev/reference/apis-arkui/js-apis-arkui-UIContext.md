@@ -20,7 +20,7 @@ getFont(): Font
 
 获取Font对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,8 +84,6 @@ uiContext.getUIInspector();
 getUIObserver(): UIObserver
 
 获取UIObserver对象。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1027,7 +1025,7 @@ getDragPreview(): dragController.DragPreview
 
 返回一个代表拖拽背板的对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
