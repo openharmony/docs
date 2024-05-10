@@ -86,7 +86,7 @@ export default function abilityTest() {
       }
       await delegator.startAbility(want);
       await sleep(1000);
-      // check top display ability
+      //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
         console.info("get top ability");
         expect(Ability.context.abilityInfo.name).assertEqual('EntryAbility');
@@ -149,8 +149,8 @@ const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
 function sleep(time: number) {
   return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
 }
-export default function abilityTest1() {
-  describe('ActsAbilityTest1', () => {
+export default function abilityTest() {
+  describe('ActsAbilityTest', () => {
     it('testUiExample',0, async (done: Function) => {
       console.info("uitest: TestUiExample begin");
       //start tested ability
