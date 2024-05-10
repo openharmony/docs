@@ -138,6 +138,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 4. 调用OH_VideoEncoder_Configure()配置编码器。
 
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    
+    参数校验规则请参考[OH_VideoEncoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_configure)。
+
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频颜色格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
@@ -167,8 +170,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 23000;
-    // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
-    int32_t quality = 0;
     // 配置比特率
     int64_t bitRate = 3000000;
 
@@ -186,7 +187,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
