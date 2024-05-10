@@ -535,7 +535,9 @@ stopVibrationSync(): void
 
 **错误码：**
 
-| 错误码ID | 说明                     |
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 201      | Permission denied.       |
 | 14600101 | Device operation failed. |
@@ -692,7 +694,9 @@ isSupportEffectSync(effectId: string): boolean
 
 **错误码：**
 
-| 类型     | 说明                     |
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
 | 401      | Parameter error.         |
 | 14600101 | Device operation failed. |
@@ -706,6 +710,44 @@ import { BusinessError } from '@ohos.base';
 try {
     // 查询是否支持预设'haptic.clock.timer'
     let ret = vibrator.isSupportEffectSync('haptic.clock.timer');
+    console.info(`The query result is ${ret}`);
+} catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## vibrator.isHdHapticSupported<sup>12+</sup>
+
+isHdHapticSupported(): boolean
+
+查询是否支持高清高清振动。
+
+**系统能力：** SystemCapability.Sensors.MiscDevice
+
+**返回值：** 
+
+| 类型    | 说明       |
+| ------- | ---------- |
+| boolean | 返回对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 14600101 | Device operation failed. |
+
+**示例：** 
+
+```ts
+import vibrator from '@ohos.vibrator';
+import { BusinessError } from '@ohos.base';
+
+try {
+    // 查询是否支持高清振动
+    let ret = vibrator.isHdHapticSupported();
     console.info(`The query result is ${ret}`);
 } catch (error) {
     let e: BusinessError = error as BusinessError;
