@@ -7231,7 +7231,7 @@ type NativeMediaPlayerConfig = {
 
 ## OnRenderProcessNotRespondingCallback<sup>12+</sup>
 
-type OnRenderProcessNotRespondingCallback = (data : [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12)) => void
+type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
 
 网页进程无响应时触发的回调。
 
