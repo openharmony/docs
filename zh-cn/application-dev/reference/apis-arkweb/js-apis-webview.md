@@ -1524,7 +1524,7 @@ struct WebComponent {
 
 ### registerJavaScriptProxy
 
-registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>): void
+registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>): void
 
 registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
 <br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
@@ -1533,6 +1533,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 >
 > - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
+> - 同一方法在同步与异步列表中重复注册，将默认异步调用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1542,7 +1543,8 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
 | object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
-| methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的方法。                       |
+| methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
+| asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
 
 **错误码：**
 
@@ -1577,9 +1579,8 @@ class TestObj {
     return testNum;
   }
 
-  testBool(testBol:boolean): boolean {
+  asyncTestBool(testBol:boolean): void {
     console.log('Web Component boolean' + testBol);
-    return testBol;
   }
 }
 
@@ -1597,12 +1598,26 @@ class WebObj {
   }
 }
 
+class AsyncObj {
+  constructor() {
+  }
+
+  asyncTest(): void {
+    console.log('Async test');
+  }
+
+  asyncString(testStr:string): void {
+    console.log('Web async string' + testStr);
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: TestObj = new TestObj();
   @State webTestObj: WebObj = new WebObj();
+  @State asyncTestObj: AsyncObj = new AsyncObj();
   build() {
     Column() {
       Button('refresh')
@@ -1617,8 +1632,9 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber"], ["asyncTestBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+            this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1641,13 +1657,14 @@ struct Index {
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
+      <p id="asyncDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
       let str=objName.test("webtest data");
       objName.testNumber(1);
-      objName.testBool(true);
+      objName.asyncTestBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
@@ -1655,6 +1672,9 @@ struct Index {
       let webStr = objTestName.webTest();
       document.getElementById("webDemo").innerHTML=webStr;
       console.log('objTestName.webTest result:'+ webStr)
+
+      objAsyncName.asyncTest();
+      objAsyncName.asyncString("async test data");
     }
 </script>
 </html>
