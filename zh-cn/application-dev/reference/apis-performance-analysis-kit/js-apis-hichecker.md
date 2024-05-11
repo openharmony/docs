@@ -30,7 +30,7 @@ import hichecker from '@ohos.hichecker';
 
 addCheckRule(rule: bigint): void
 
-添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。
+添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈，当有相应规则触发时可在hilog中grep HiChecker查看运行信息。
 
 **系统能力：** SystemCapability.HiviewDFX.HiChecker
 
