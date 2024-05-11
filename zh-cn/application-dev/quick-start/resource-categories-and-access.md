@@ -273,45 +273,6 @@ Image($r('sys.media.ohos_app_icon'))
 
 - 通过createModuleContext(moduleName)接口创建同应用中不同module的上下文，获取resourceManager对象后，调用不同接口访问不同资源。<br/>例如：getContext.createModuleContext(moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
 
-- 通过```"$r"```或```"$rawfile"```引用资源。具体操作如下：
-
-  1.这里是列表文本[hsp].type.name获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
-  
-    ```ts
-      Text($r('[hsp].string.test_string'))
-        .fontSize($r('[hsp].float.font_size'))
-        .fontColor($r('[hsp].color.font_color'))  
-      Image($rawfile('[hsp].icon.png'))
-    ```
-  2.使用变量获取资源。示例如下：
-
-   ```ts
-    @Entry
-    @Component
-    struct Index {
-      text: string = '[hsp].string.test_string';
-      fontSize: string = '[hsp].float.font_size';
-      fontColor: string = '[hsp].color.font_color';
-      image: string = '[hsp].media.string';
-      rawfile: string = '[hsp].icon.png';
-  
-      build() {
-        Row() {
-          Text($r(this.text))
-            .fontSize($r(this.fontSize))
-            .fontColor($r(this.fontColor))
-  
-          Image($r(this.image))
-  
-          Image($rawfile(this.rawfile))
-        }
-      }
-    }
-   ```
-  > **说明** 
-  >
-  > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如```"\$rawfile('[hsp].oneFile/twoFile/icon.png')"```，使用```"$r"```和```"$rawfile"```跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
-
 
 ### 系统资源
 
