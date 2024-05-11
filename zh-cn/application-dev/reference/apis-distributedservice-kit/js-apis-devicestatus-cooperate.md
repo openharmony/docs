@@ -451,7 +451,6 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Operation failed. |
 
 **示例**：
 
@@ -699,7 +698,7 @@ try {
 
 
 
-## CooperateState<sup>11+</sup>
+## CooperateState<sup>10+</sup>
 
 键鼠穿越的状态。
 
