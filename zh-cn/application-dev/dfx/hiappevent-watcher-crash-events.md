@@ -24,7 +24,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 | bundle_name | string | 应用名称。 |
 | pid | number | 应用的进程id。|
 | uid | number | 应用的用户id。 |
-| uuid | string | 用户标识id。 |
+| uuid | string | 故障id。 |
 | exception | object | 异常信息，详见exception属性。NativeCrash类型的崩溃事件详见exception属性（NativeCrash类型）。 |
 | hilog | string[] | 日志信息。|
 | threads | object[] | 全量线程调用栈，详见thread属性。仅NativeCrash类型的崩溃事件提供。 |

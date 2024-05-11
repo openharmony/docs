@@ -10,7 +10,6 @@
 
 ```ts
 import networkSecurity from '@ohos.net.networkSecurity';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## 完整实例

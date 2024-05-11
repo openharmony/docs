@@ -45,7 +45,7 @@ constructor()
 
 创建区域对象
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -64,7 +64,7 @@ constructor(locale: string, options?: LocaleOptions)
 
 创建区域对象
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -89,7 +89,7 @@ toString(): string
 
 获取区域对象的字符串表示
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -113,7 +113,7 @@ maximize(): Locale
 
 最大化区域信息，若缺少脚本与地区信息，则补齐。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -145,7 +145,7 @@ minimize(): Locale
 
 最小化区域信息，若包含脚本与地区信息，则去除。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -215,7 +215,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 创建时间日期格式化对象。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -246,7 +246,7 @@ format(date: Date): string
 
 格式化时间日期字符串。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -281,7 +281,7 @@ formatRange(startDate: Date, endDate: Date): string
 
 格式化时间日期段字符串。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -314,7 +314,7 @@ resolvedOptions(): DateTimeOptions
 
 获取DateTimeFormat对象的格式化选项。
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
