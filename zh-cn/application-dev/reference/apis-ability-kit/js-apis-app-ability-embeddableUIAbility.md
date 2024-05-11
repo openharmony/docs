@@ -16,7 +16,7 @@ import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
 ## 属性
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
