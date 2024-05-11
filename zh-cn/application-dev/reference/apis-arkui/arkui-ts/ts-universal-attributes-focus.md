@@ -86,6 +86,21 @@ focusOnTouch(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 设置当前组件是否支持点击获焦能力。<br/>默认值：false<br/>**说明：** <br/>仅在组件可点击时才能正常获取焦点。 |
 
+## focusBox<sup>12+</sup>
+
+focusBox(style: FocusBoxStyle): T
+
+设置当前组件系统焦点框样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| style  | [FocusBoxStyle](#focusboxstyle12对象说明) | 是   | 设置当前组件系统焦点框样式。<br/>**说明：** <br/>该样式仅影响走焦状态下展示了系统焦点框的组件。 |
+
+
 ## focusControl<sup>9+</sup>
 
 焦点控制模块
@@ -138,6 +153,15 @@ requestFocus(key: string): void
 >  **说明：**
 >
 >  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
+
+## FocusBoxStyle<sup>12+</sup>对象说明
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| ---- | ---- | ---- | ---- |
+| margin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 焦点框相对组件边缘的距离。<br/>正数代表外侧，负数代表内侧。不支持百分比。 |
+| strokeColor  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 焦点框颜色 |
+| strokeWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 焦点框宽度。<br/>不支持负数与百分比。|
+
 
 ## 示例
 
@@ -378,3 +402,34 @@ struct RequestFocusExample {
 申请存在且可获焦的组件获焦：
 
 ![requestFocus3](figures/requestFocus3.png)
+
+### 示例3
+
+focusBox示例代码：
+
+使用focusBox修改组件的焦点框样式示例代码：使焦点框变为红色/加粗/内边框。
+```ts
+@Entry
+@Component
+struct RequestFocusExample {
+  build() {
+    Column({ space: 30 }) {
+      Button("small black focus box")
+        .focusBox({
+          margin: new LengthMetrics(0),
+          strokeColor: ColorMetrics.rgba(0, 0, 0),
+        })
+      Button("large red focus box")
+        .focusBox({
+          margin: LengthMetrics.px(20),
+          strokeColor: ColorMetrics.rgba(255, 0, 0),
+          strokeWidth: LengthMetrics.px(10)
+        })
+    }
+    .alignItems(HorizontalAlign.Center)
+    .width('100%')
+  }
+}
+```
+
+![focusBox](figures/focusBox.gif)
