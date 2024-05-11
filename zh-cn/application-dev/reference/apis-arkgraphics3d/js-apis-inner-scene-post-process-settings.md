@@ -29,7 +29,7 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | type | [TonemapingType](#tonemapingtype) | 否 | 否 | 色调映射类型，默认值为undefined。 |
-| exposure | number | 否 | 否 | 曝光度，取值范围是0到1，默认值为undefined。 |
+| exposure | number | 否 | 否 | 曝光度，取值大于0，默认值为undefined。 |
 
 ## PostProcessSettings
 后处理设置。
