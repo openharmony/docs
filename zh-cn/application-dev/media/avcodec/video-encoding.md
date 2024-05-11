@@ -142,8 +142,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 输入帧parameter对应的index，送入InParameterIndexQueue队列
         // 输入帧的数据parameter送入InParameterQueue队列
         // 数据处理，请参考:
-        // - 写入编码图像
-        // - 通知编码器码流结束
         // - 随帧参数写入
         // - 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
         OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
@@ -254,7 +252,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-9. （可选）在运行过程中动态配置编码器参数。
+9. （可选）OH_VideoDecoder_SetParameter()在运行过程中动态配置编码器参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
