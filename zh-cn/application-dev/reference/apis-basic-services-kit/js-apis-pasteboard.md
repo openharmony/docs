@@ -2258,7 +2258,7 @@ try {
 
 ### getUnifiedData<sup>12+</sup>
 
-getUnifiedData(): Promise&lt;[unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)&gt;
+getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 
 读取系统剪贴板内容，使用Promise异步回调。
 
@@ -2304,7 +2304,7 @@ systemPasteboard.getUnifiedData().then((data) => {
 
 ### getUnifiedDataSync<sup>12+</sup>
 
-getUnifiedDataSync(): [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)
+getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 
 读取系统剪贴板内容, 此接口为同步接口。
 
@@ -2343,7 +2343,7 @@ try {
 
 ### setUnifiedData<sup>12+</sup>
 
-setUnifiedData(data: [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)): Promise&lt;void&gt;
+setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 
 将数据写入系统剪贴板，使用Promise异步回调。
 
@@ -2397,7 +2397,7 @@ systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
 
 ### setUnifiedDataSync<sup>12+</sup>
 
-setUnifiedDataSync(data: [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)): void
+setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 
 将数据写入系统剪贴板, 此接口为同步接口。
 
