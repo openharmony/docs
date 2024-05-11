@@ -691,13 +691,22 @@ Swiper自定义切换动画相关信息。
 
 Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知Swiper组件页面自定义动画已结束。
 
+### 属性
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
 | selectedIndex | number | 是 | Swiper组件的索引，和[onChange](#onchange)事件中的index值变化保持一致。 |
 | index | number | 是 | 视窗内某个页面的索引。 |
 | position | number | 是 | 页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
 | mainAxisLength | number | 是 | 主轴方向上页面的长度。 |
-| finishTransition() | void | 是 | 通知Swiper组件，此页面的自定义动画已结束。 |
+
+### finishTransition<sup>12+</sup>
+
+finishTransition()
+
+通知Swiper组件，此页面的自定义动画已结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ContentDidScrollCallback<sup>12+</sup>类型说明
 
