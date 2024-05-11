@@ -24,8 +24,8 @@ Node模块相关接口需要在主线程上调用。
 | void(\* [disposeNode](#disposenode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 销毁组件指针指向的组件对象。  | 
 | int32_t(\* [addChild](#addchild) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child) | 将组件挂载到某个父节点之下。  | 
 | int32_t(\* [removeChild](#removechild) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child) | 将组件从父节点中移除。  | 
-| int32_t(\* [insertChildAfter](#insertchildafter) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) sibling) | 将组件挂载到某个父节点之下，挂载位置在**sibling**节点之后。  | 
-| int32_t(\* [insertChildBefore](#insertchildbefore) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) sibling) | 将组件挂载到某个父节点之下，挂载位置在**sibling**节点之前。  | 
+| int32_t(\* [insertChildAfter](#insertchildafter) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) sibling) | 将组件挂载到某个父节点之下，挂载位置在sibling节点之后。  | 
+| int32_t(\* [insertChildBefore](#insertchildbefore) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) sibling) | 将组件挂载到某个父节点之下，挂载位置在sibling节点之前。  | 
 | int32_t(\* [insertChildAt](#insertchildat) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) parent, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) child, int32_t position) | 将组件挂载到某个父节点之下，挂载位置由**position**指定。  | 
 | int32_t(\* [setAttribute](#setattribute) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeAttributeType](_ark_u_i___native_module.md#arkui_nodeattributetype) attribute, const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) \*item) | 属性设置函数。  | 
 | const [ArkUI_AttributeItem](_ark_u_i___attribute_item.md) \*(\* [getAttribute](#getattribute) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeAttributeType](_ark_u_i___native_module.md#arkui_nodeattributetype) attribute) | 属性获取函数。  | 
@@ -58,6 +58,7 @@ Node模块相关接口需要在主线程上调用。
 | int32_t(\* [setUserData](#setuserdata) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData) | 在组件上保存自定义数据。  | 
 | void \*(\* [getUserData](#getuserdata) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取在组件上保存的自定义数据。  | 
 | int32_t(\* [setLengthMetricUnit](#setlengthmetricunit) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | 指定组件的单位。  | 
+| [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle)(\* [getParent](#getparent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取父节点。  | 
 
 
 ## 结构体成员变量说明
@@ -318,6 +319,26 @@ ArkUI_NodeHandle(* ArkUI_NativeNodeAPI_1::getNextSibling) (ArkUI_NodeHandle node
 返回组件的指针，如果没有返回NULL
 
 
+### getParent
+
+```
+ArkUI_NodeHandle(* ArkUI_NativeNodeAPI_1::getParent) (ArkUI_NodeHandle node)
+```
+**描述：**
+
+获取父节点。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 目标节点对象。  | 
+
+**返回：**
+
+返回组件的指针，如果没有返回NULL
+
+
 ### getPreviousSibling
 
 ```
@@ -385,7 +406,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 ```
 **描述：**
 
-将组件挂载到某个父节点之下，挂载位置在**sibling**节点之后。
+将组件挂载到某个父节点之下，挂载位置在sibling节点之后。
 
 **参数:**
 
@@ -429,7 +450,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildBefore) (ArkUI_NodeHandle parent, Ar
 ```
 **描述：**
 
-将组件挂载到某个父节点之下，挂载位置在**sibling**节点之前。
+将组件挂载到某个父节点之下，挂载位置在sibling节点之前。
 
 **参数:**
 
@@ -528,6 +549,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeCustomEvent) (ArkUI_NodeHandle node
 
 0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。
 
+
 ### registerNodeCustomEventReceiver
 
 ```
@@ -575,6 +597,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
  0 - 成功。 401 - 函数参数异常。 106102 - 系统中未找到Native接口的动态实现库。 106103 - 禁止对BuilderNode生成的节点，进行设置属性、重置属性、设置事件与新增或修改子节点操作。 
 
 
+
 ### registerNodeEventReceiver
 
 ```
@@ -597,6 +620,7 @@ ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventR
 | 名称 | 描述 | 
 | -------- | -------- |
 | eventReceiver | 事件回调统一入口函数。  | 
+
 
 ### unregisterNodeEventReceiver
 
