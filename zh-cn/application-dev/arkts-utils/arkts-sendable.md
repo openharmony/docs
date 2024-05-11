@@ -302,6 +302,10 @@ try {
 
 由于Sendable对象在不同并发实例间的上下文环境不同，如果直接访问会有非预期行为。不支持Sendable对象使用当前模块内上下文环境中定义的变量，如果违反，编译阶段会报错。
 
+> **说明：**
+>
+> 从API version 12开始，sendable class的内部支持使用top level的sendable class对象。
+
 **正例：**
 ```ts
 import lang from '@arkts.lang';
@@ -311,10 +315,21 @@ type ISendable = lang.ISendable;
 interface I extends ISendable {}
 
 @Sendable
-class B implements I {}
+class B implements I {
+  static o: number = 1;
+  static bar(): B {
+    return new B();
+  }
+}
 
-function bar(): B {
-  return new B();
+@Sendable
+class C {
+  v: I = new B();
+  u: number = B.o;
+
+  foo() {
+    return B.bar();
+  }
 }
 ```
 
@@ -333,15 +348,23 @@ function bar(): B {
   return new B();
 }
 
-@Sendable
-class C {
-  v: I = new B();
-  u: I = bar();
+let b = new B();
 
-  foo() {
-    return new B();
+{
+  @Sendable
+  class A implements I {}
+
+  @Sendable
+  class C {
+    u: I = bar(); // bar不是sendable class对象，编译报错
+    v: I = new A(); // A不是定义在top level中，编译报错
+
+    foo() {
+      return b; // b不是sendable class对象，而是sendable class的实例，编译报错
+    }
   }
 }
+
 ```
 
 ### 9. Sendable class中不能使用除了@Sendable的其它装饰器
