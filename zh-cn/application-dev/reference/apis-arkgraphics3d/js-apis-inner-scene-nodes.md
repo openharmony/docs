@@ -388,9 +388,9 @@ function getNode() : void {
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| fov | number | 否 | 是 | 视场，取值在0到1之间。 |
-| nearPlane | number | 否 | 是 | 近平面，取值在0到1之间。 |
-| farPlane | number | 否 | 是 | 远平面，取值在0到1之间。 |
+| fov | number | 否 | 是 | 视场，取值在0到π弧度之间。 |
+| nearPlane | number | 否 | 是 | 近平面，取值大于0。 |
+| farPlane | number | 否 | 是 | 远平面，取值大于nearPlane。 |
 | viewPort | [Rect](js-apis-inner-scene-types.md#rect) | 否 | 是 | 视口。 |
 | renderResolution | [Vec2](js-apis-inner-scene-types.md#vec2) | 否 | 是 | 渲染分辨率。 |
 | postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | 否 | 是 | 后处理设置。 |
