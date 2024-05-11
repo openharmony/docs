@@ -133,7 +133,7 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 
 >  **说明：**
 >
->  动效属性，建议仅使用effectStrategy属性或单个symbolEffect属性。同时设置两个symbolEffect属性，triggerValue生效优先级高于isActive。同时设置symbolEffect属性和effectStrategy属性，symbolEffect属性优先级高于effectStrategy属性。
+>  动效属性，仅支持使用effectStrategy属性或单个symbolEffect属性，不支持多种动效属性混合使用。
 
 ## SymbolEffect<sup>12+</sup>
 
