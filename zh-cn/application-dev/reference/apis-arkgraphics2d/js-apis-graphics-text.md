@@ -360,7 +360,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function Text() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
@@ -1144,7 +1144,7 @@ struct Index {
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myTextStyle: text.TextStyle = {
@@ -1188,7 +1188,7 @@ popStyle(): void
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myTextStyle: text.TextStyle = {
@@ -1239,7 +1239,7 @@ addText(text: string): void
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myTextStyle: text.TextStyle = {
@@ -1289,7 +1289,7 @@ addPlaceholder(placeholderSpan: PlaceholderSpan): void
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myParagraphStyle: text.ParagraphStyle = {
@@ -1341,7 +1341,7 @@ build(): Paragraph
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myParagraphStyle: text.ParagraphStyle = {
@@ -1505,7 +1505,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function Text() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
@@ -1743,7 +1743,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from "@kit.ArkGraphics2D"
 import { common2D } from "@kit.ArkGraphics2D"
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 function Text() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
