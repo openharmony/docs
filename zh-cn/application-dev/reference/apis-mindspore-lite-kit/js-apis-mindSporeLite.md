@@ -183,7 +183,7 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 
 ```ts
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
-import { common } from '@kit.Ability';
+import { common } from '@kit.AbilityKit';
 
 let modelName = '/path/to/xxx.ms';
 getContext(this).resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
@@ -216,7 +216,7 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
-import { common } from '@kit.Ability';
+import { common } from '@kit.AbilityKit';
 let modelName = '/path/to/xxx.ms';
 export class Test {
   value:number = 0;
@@ -417,7 +417,7 @@ predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
-import { common } from '@kit.Ability';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {
@@ -468,7 +468,7 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
-import { common } from '@kit.Ability';
+import { common } from '@kit.AbilityKit';
 export class Test {
     value:number = 0;
     foo(): void {
@@ -578,7 +578,7 @@ getData(): ArrayBuffer
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
-import { common } from '@kit.Ability';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {
@@ -622,7 +622,7 @@ setData(inputArray: ArrayBuffer): void
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
-import { common } from '@kit.Ability';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {
