@@ -75,7 +75,7 @@ markAnchor(value: Position)
 
 ## offset
 
-offset(value: Position)
+offset(value: Position | Edges)
 
 设置安全控件相对于自身布局位置的坐标偏移。
 
@@ -87,7 +87,7 @@ offset(value: Position)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| value | [Position](ts-types.md#position) |否 |安全控件相对于自身布局位置的坐标偏移。设置此属性不会影响父容器的布局，仅在绘制过程中调整位置。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}|
+| value | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) |否 |安全控件相对于自身布局位置的坐标偏移。设置此属性不会影响父容器的布局，仅在绘制过程中调整位置。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>}|
 
 ## fontSize
 
