@@ -180,7 +180,7 @@ BottomTabBarStyle的构造函数。
 
 ### of<sup>10+</sup>
 
-static of(icon: ResourceStr, text: ResourceStr)
+static of(icon: ResourceStr | TabBarSymbol, text: ResourceStr)
 
 BottomTabBarStyle的静态构造函数。
 
@@ -196,8 +196,8 @@ BottomTabBarStyle的静态构造函数。
 ## TabBarSymbol<sup>12+</sup>
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| normal | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。 |
-| selected | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。 |
+| normal | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。<br/>默认值：fontColor：#66182431，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
+| selected | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。<br/>默认值：fontColor：#ff007dff，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
 ### 属性
 
 支持以下属性：
