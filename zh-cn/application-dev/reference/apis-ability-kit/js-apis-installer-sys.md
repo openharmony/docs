@@ -1345,6 +1345,137 @@ try {
 }
 ```
 
+## BundleInstaller.createAppClone<sup>12+</sup>
+
+createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): Promise<number>;
+
+以异步方法创建应用分身，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_CLONE_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                          |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | 是   | 待创建应用分身的包名。                                         |
+| createAppCloneParam  | [createAppCloneParam](#createappcloneparam12)   | 否   | 指定创建应用分身所需的其他参数，默认值：参照[createAppCloneParam](#createappcloneparam12)的默认值。   |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<number\> | Promise对象。返回创建的分身应用索引值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_CLONE_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700061 | The appIndex is invalid. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let createAppCloneParam: installer.createAppCloneParam = {
+    userId: 100,
+    appIndex: 1,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.createAppClone(bundleName, createAppCloneParam)
+            .then(() => {
+                console.info('createAppClone successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('createAppClone failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.destroyAppClone<sup>12+</sup>
+
+destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise<void>;
+
+以异步方法删除应用分身，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.UNINSTALL_CLONE_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                          |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName   | string                        | 是   | 待删除应用分身的包名。                                         |
+| appIndex     | number                        | 是   | 待删除应用分身的索引。                                         |
+| userId       | number                        | 否   | 待删除应用分身所属用户id。默认值：调用方所在用户。                |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.UNINSTALL_CLONE_BUNDLE'. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700061 | The appIndex is invalid. |
+
+**示例：**
+```ts
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = 'com.ohos.camera';
+let index = 1;
+let userId = 100;
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.destroyAppClone(bundleName, index, userId)
+            .then(() => {
+                console.info('destroyAppClone successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('destroyAppClone failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## HashParam
 
 应用程序安装卸载哈希参数信息。
@@ -1419,3 +1550,16 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | ---------- | ------ | ---------------- | ---------------- |
 | moduleName | string | 是 | 应用程序模块名称。 |
 | pgoFilePath  | string | 是 | PGO配置文件路径。           |
+
+## CreateAppCloneParam<sup>12+</sup>
+
+创建分身应用可指定的参数信息。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称        | 类型   | 必填 | 说明                                                          |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| userId      | number | 否   | 指定创建分身应用所在的用户id。默认值：调用方所在用户。            |
+| appIndex    | number | 否   | 指定创建分身应用的索引值。默认值：当前可用的最小索引值。           |
