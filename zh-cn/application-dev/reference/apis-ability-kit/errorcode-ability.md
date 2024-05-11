@@ -284,7 +284,7 @@ The previous ability is starting, wait start later.
 
 无需处理，等待启动即可。
 
-## 16000018 限制API11以上版本三方应用跳转
+## 16000018 限制API 11以上版本三方应用跳转
 
 **错误信息**
 
