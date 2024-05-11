@@ -306,9 +306,10 @@ setExtraParameters(mainKey: string, kvpairs: Record<string, string\>): Promise&l
 
 以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
-| 错误码ID | 错误信息 |
-| ------- | -------------------------|
-| 6800101 | Invalid parameter error. |
+| 错误码ID | 错误信息                                                                                                       |
+|-----|------------------------------------------------------------------------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -354,8 +355,9 @@ getExtraParameters(mainKey: string, subKeys?: Array\<string>): Promise\<Record\<
 以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------------------------|
-| 6800101 | Invalid parameter error. |
+| ------ | -------------------------|
+|  401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -619,7 +621,8 @@ getVolumeGroupInfosSync(networkId: string\): VolumeGroupInfos
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -882,8 +885,8 @@ setMicMute(mute: boolean): Promise&lt;void&gt;
 | ------- | --------------------------------------------|
 | 201     | Permission denied.                          |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Input parameter value error.                |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -920,7 +923,8 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **示例：**
@@ -969,7 +973,8 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **示例：**
@@ -1012,7 +1017,8 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **示例：**
@@ -1061,7 +1067,8 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **示例：**
@@ -1108,7 +1115,8 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -1148,7 +1156,8 @@ on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<D
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -1184,7 +1193,8 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): vo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -1625,7 +1635,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -1640,8 +1650,8 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -1723,7 +1733,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | 是   | 指定设备的描述。     |
 
 **返回值：**
 
@@ -1738,8 +1748,8 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -1796,8 +1806,8 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by callback.      |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -1846,7 +1856,7 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by promise.       |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1924,8 +1934,8 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -1961,8 +1971,8 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -1999,8 +2009,8 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by callback.      |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -2049,7 +2059,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by promise.       |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -2127,8 +2137,8 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2164,8 +2174,8 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2200,8 +2210,8 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 | ------- | --------------------------------------------|
 | 201     | Permission denied.                          |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2249,8 +2259,8 @@ setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType
 | ------- | --------------------------------------------|
 | 201     | Permission denied.                          |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2296,7 +2306,7 @@ getSpatializationSceneType(): AudioSpatializationSceneType
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 try {
-  let spatializationSceneType: AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+  let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
   console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
 } catch (err) {
   let error = err as BusinessError;
