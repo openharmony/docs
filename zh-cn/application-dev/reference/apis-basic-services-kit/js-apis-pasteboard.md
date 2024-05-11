@@ -2258,7 +2258,7 @@ try {
 
 ### getUnifiedData<sup>12+</sup>
 
-getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
+getUnifiedData(): Promise&lt;[unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)&gt;
 
 读取系统剪贴板内容，使用Promise异步回调。
 
@@ -2270,7 +2270,7 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;unifiedDataChannel.UnifiedData&gt; | Promise对象，返回系统剪贴板数据。 |
+| Promise&lt;[unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)&gt; | Promise对象，返回系统剪贴板数据。 |
 
 **错误码：**
 
@@ -2285,16 +2285,16 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import pasteboard from '@ohos.pasteboard.d.ts';
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getUnifiedData().then((data: void) => {
+systemPasteboard.getUnifiedData().then((data) => {
     let records = data.getRecords();
     for (let j = 0; j < records.length; j++) {
         if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
             let text = records[j] as unifiedDataChannel.PlainText;
-            console.info(`${i + 1}.${text.textContent}`);
+            console.info(`${j + 1}.${text.textContent}`);
         }
     }
 }).catch((err: BusinessError) => {
@@ -2304,7 +2304,7 @@ systemPasteboard.getUnifiedData().then((data: void) => {
 
 ### getUnifiedDataSync<sup>12+</sup>
 
-getUnifiedDataSync(): unifiedDataChannel.UnifiedData
+getUnifiedDataSync(): [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)
 
 读取系统剪贴板内容, 此接口为同步接口。
 
@@ -2316,7 +2316,7 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 
 | 类型                 | 说明                 |
 | -------------------- | -------------------- |
-| unifiedDataChannel.UnifiedData | 返回系统剪贴板数据。 |
+| [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 返回系统剪贴板数据。 |
 
 **错误码：**
 
@@ -2330,18 +2330,20 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 **示例：**
 
 ```ts
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
-    let result: unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSyncSync();
-    console.info('Succeeded in getting PasteData.');
+    let result: unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSync();
+    console.info('Succeeded in getting UnifiedData.');
 } catch (err) {
-    console.error('Failed to get PasteData. Cause:' + err.message);
+    console.error('Failed to get UnifiedData. Cause:' + err.message);
 };   
 ```
 
 ### setUnifiedData<sup>12+</sup>
 
-setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
+setUnifiedData(data: [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)): Promise&lt;void&gt;
 
 将数据写入系统剪贴板，使用Promise异步回调。
 
@@ -2351,7 +2353,7 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| data | unifiedDataChannel.UnifiedData | 是 | 	需要写入剪贴板中的数据。 |
+| data | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是 | 	需要写入剪贴板中的数据。 |
 
 **返回值：**
 
@@ -2373,30 +2375,29 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import pasteboard from '@ohos.pasteboard.d.ts';
 import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 
-let plainTextData = new unifiedDataChannel.unifiedData();
+let plainTextData = new unifiedDataChannel.UnifiedData();
 let plainText = new unifiedDataChannel.PlainText();
 plainText.details = {
     Key: 'delayPlaintext',
     Value: 'delayPlaintext',
 };
-plainText.textContext = 'delayTextContent';
+plainText.textContent = 'delayTextContent';
 plainText.abstract = 'delayTextContent';
 plainTextData.addRecord(plainText);
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
-    console.info('Succeeded in setting PasteData.');
+    console.info('Succeeded in setting UnifiedData.');
 }).catch((err: BusinessError) => {
-    console.error('Failed to set PasteData. Cause: ' + err.message);
+    console.error('Failed to set UnifiedData. Cause: ' + err.message);
 });
 ```
 
 ### setUnifiedDataSync<sup>12+</sup>
 
-setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
+setUnifiedDataSync(data: [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)): void
 
 将数据写入系统剪贴板, 此接口为同步接口。
 
@@ -2406,7 +2407,7 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 
 | 参数名 | 类型        | 必填 | 说明             |
 | ------ | ----------- | ---- | ---------------- |
-| data   | unifiedDataChannel.UnifiedData | 是   | 需要写入剪贴板中的数据。 |
+| data   | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 需要写入剪贴板中的数据。 |
 
 **错误码：**
 
@@ -2420,21 +2421,23 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 **示例：**
 
 ```ts
-let plainTextData = new unifiedDataChannel.unifiedData();
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+
+let plainTextData = new unifiedDataChannel.UnifiedData();
 let plainText = new unifiedDataChannel.PlainText();
 plainText.details = {
     Key: 'delayPlaintext',
     Value: 'delayPlaintext',
 };
-plainText.textContext = 'delayTextContent';
+plainText.textContent = 'delayTextContent';
 plainText.abstract = 'delayTextContent';
 plainTextData.addRecord(plainText);
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
-    systemPasteboard.setUnifiedDataSync(pasteData);
-    console.info('Succeeded in setting PasteData.');
+    systemPasteboard.setUnifiedDataSync(plainTextData);
+    console.info('Succeeded in setting UnifiedData.');
 } catch (err) {
-    console.error('Failed to set PasteData. Cause:' + err.message);
+    console.error('Failed to set UnifiedData. Cause:' + err.message);
 };  
 ```
