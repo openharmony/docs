@@ -496,10 +496,6 @@ textOverflow(value: TextOverflow)
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-overflow在非内联模式下建议配合maxLines使用，否则设置为Ellipsis时，变为单行Ellipsis效果。
-
-overflow在内联模式下设置为TextOverflow.Ellipsis时，如果设置maxLines，效果仅为单行Ellipsis。
-
 **卡片能力：** 该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
