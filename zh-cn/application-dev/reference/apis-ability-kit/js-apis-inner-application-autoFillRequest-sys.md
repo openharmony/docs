@@ -255,7 +255,7 @@ onCancel(fillContent?: string): void
 
 | 参数名                    | 类型   | 必填 | 说明                 |
 | ------------------------- | ------ | ---- | -------------------- |
-| fillContent<sup>12+</sup> | string | 否   | 表示需要填充的内容。 |
+| fillContent<sup>12+</sup> | string | 否   | 表示通知自动填充取消后，返回给输入法框架的填充内容。 |
 
 **错误码：**
 
