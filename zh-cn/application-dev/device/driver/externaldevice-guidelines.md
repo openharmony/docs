@@ -41,8 +41,8 @@
 1. 查询设备列表。
 
     ```ts
-    import deviceManager from '@ohos.driver.deviceManager';
-    import { BusinessError } from '@ohos.base';
+    import { deviceManager } from '@kit.DriverDevelopmentKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     let matchDevice: deviceManager.USBDevice | null = null;
     try {
@@ -68,9 +68,9 @@
 2. 绑定相应的设备。
 
     ```ts
-    import deviceManager from '@ohos.driver.deviceManager';
-    import { BusinessError } from '@ohos.base';
-    import rpc from '@ohos.rpc';
+    import { deviceManager } from '@kit.DriverDevelopmentKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { rpc } from '@kit.IPCKit';
 
     interface DataType {
       deviceId : number;
@@ -103,8 +103,8 @@
 3. 绑定成功后使用设备驱动能力。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
-    import rpc from '@ohos.rpc';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { rpc } from '@kit.IPCKit';
 
     let option: rpc.MessageOption = new rpc.MessageOption();
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
@@ -128,8 +128,8 @@
 4. 设备使用完成，解绑设备。
 
     ```ts
-    import deviceManager from '@ohos.driver.deviceManager';
-    import { BusinessError } from '@ohos.base';
+    import { deviceManager } from '@kit.DriverDevelopmentKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
       // 12345678为示例deviceId，应用开发时可以通过queryDevices查询到相应设备的deviceId作为入参
@@ -153,8 +153,8 @@
 
 1. 查询扩展外设详细信息列表。
    ```ts
-   import deviceManager from "@ohos.driver.deviceManager";
-   import { BusinessError } from '@ohos.base';
+   import { deviceManager } from '@kit.DriverDevelopmentKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
       // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -170,8 +170,8 @@
 
 2. 查询扩展外设驱动详细信息列表。
    ```ts
-   import deviceManager from "@ohos.driver.deviceManager";
-   import { BusinessError } from '@ohos.base';
+   import { deviceManager } from '@kit.DriverDevelopmentKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    try {
       // driver-12345为示例driverUid，应用开发时可通过queryDeviceInfo查询到相应设备匹配到的驱动的driverUid作为入参
