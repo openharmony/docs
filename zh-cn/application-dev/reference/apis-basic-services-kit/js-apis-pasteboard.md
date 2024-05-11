@@ -2256,6 +2256,89 @@ try {
 };    
 ```
 
+### getUnifiedData<sup>12+</sup>
+
+getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
+
+读取系统剪贴板内容，使用Promise异步回调。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;unifiedDataChannel.UnifiedData&gt; | Promise对象，返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201      | Permission denied. |
+| 12900003 | Another copy or paste is in progress. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import pasteboard from '@ohos.pasteboard.d.ts';
+import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getUnifiedData().then((data: void) => {
+    let records = data.getRecords();
+    for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j] as unifiedDataChannel.PlainText;
+            console.info(`${i + 1}.${text.textContent}`);
+        }
+    }
+}).catch((err: BusinessError) => {
+    console.error('Failed to get UnifiedData. Cause: ' + err.message);
+});
+```
+
+### getUnifiedDataSync<sup>12+</sup>
+
+getUnifiedDataSync(): unifiedDataChannel.UnifiedData
+
+读取系统剪贴板内容, 此接口为同步接口。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型                 | 说明                 |
+| -------------------- | -------------------- |
+| unifiedDataChannel.UnifiedData | 返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201      | Permission denied. |
+| 12900005 | Request time out. |
+
+**示例：**
+
+```ts
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSyncSync();
+    console.info('Succeeded in getting PasteData.');
+} catch (err) {
+    console.error('Failed to get PasteData. Cause:' + err.message);
+};   
+```
+
 ### setUnifiedData<sup>12+</sup>
 
 setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
@@ -2282,6 +2365,7 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12900003 | Another copy or paste is in progress. |
 | 12900004 | Replication is prohibited. |
 
@@ -2310,88 +2394,6 @@ systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
 });
 ```
 
-### getUnifiedData<sup>12+</sup>
-
-getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
-
-读取系统剪贴板内容，使用Promise异步回调。
-
-**需要权限**：ohos.permission.READ_PASTEBOARD
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| Promise&lt;unifiedDataChannel.UnifiedData&gt; | Promise对象，返回系统剪贴板数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900003 | Another copy or paste is in progress. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import pasteboard from '@ohos.pasteboard.d.ts';
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getUnifiedData().then((data: void) => {
-    let records = data.getRecords();
-    for (let j = 0; j < records.length; j++) {
-        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-            let text = records[j] as unifiedDataChannel.PlainText;
-            console.info(`${i + 1}.${text.textContent}`);
-        }
-    }
-}).catch((err: BusinessError) => {
-    console.error('Failed to get UnifiedData. Cause: ' + err.message);
-});
-```
-
-
-### getUnifiedDataSync<sup>12+</sup>
-
-getUnifiedDataSync(): unifiedDataChannel.UnifiedData
-
-读取系统剪贴板内容, 此接口为同步接口。
-
-**需要权限**：ohos.permission.READ_PASTEBOARD
-
-**系统能力：** SystemCapability.MiscServices.Pasteboard
-
-**返回值：**
-
-| 类型                 | 说明                 |
-| -------------------- | -------------------- |
-| unifiedDataChannel.UnifiedData | 返回系统剪贴板数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 12900005 | Request time out. |
-
-**示例：**
-
-```ts
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-try {
-    let result: unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSyncSync();
-    console.info('Succeeded in getting PasteData.');
-} catch (err) {
-    console.error('Failed to get PasteData. Cause:' + err.message);
-};   
-```
-
 ### setUnifiedDataSync<sup>12+</sup>
 
 setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
@@ -2412,7 +2414,7 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Type of data is not UnifiedData. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12900005 | Request time out. |
 
 **示例：**
