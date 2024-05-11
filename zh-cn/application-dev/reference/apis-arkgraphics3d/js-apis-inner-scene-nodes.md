@@ -371,16 +371,13 @@ function getNode() : void {
 ## SpotLight
 点光源类型，继承自[Light](#light)。
 
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
 ## DirectionalLight
 平行光类型，继承自[Light](#light)。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
-| ---- | ---- | ---- | ---- | ---- |
-| nearPlane | number | 否 | 是 | 场景中的近平面，值域为(0, 1)。 |
 
 ## Camera
 相机类型，Camera继承自[Node](#node)。
