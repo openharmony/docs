@@ -4908,8 +4908,6 @@ stop(): void
 
 open接口flags参数常量。文件打开标签。
 
-**元服务API**：从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 | 名称   | 类型   | 值  | 说明      |
