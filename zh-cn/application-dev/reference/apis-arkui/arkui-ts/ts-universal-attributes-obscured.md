@@ -21,7 +21,7 @@ obscured(reasons: Array&lt;ObscuredReasons&gt;)
 
 | 参数名 | 类型                                     | 必填                                   | 描述                                  |
 | -----| ------------------------------------------ | ------------------------------------ | ------------------------------------ |
-| reasons | Array<[ObscuredReasons](ts-appendix-enums.md#obscuredreasons10)> | 是 | 设置组件内容的遮罩类型。<br>默认值：[]<br/>该接口支持在ArkTS卡片中使用。<br/>仅支持[Image](ts-basic-components-image.md)组件和[Text](ts-basic-components-text.md)组件的隐私遮罩处理。<br/>**说明：**<br/>如需在图片加载过程中显示隐私遮罩，需要设置Image组件的宽度和高度。<br/>Text组件设置子组件或使用[属性字符串](ts-universal-styled-string.md#属性字符串)入参时，不支持隐私遮罩。 |
+| reasons | Array<[ObscuredReasons](ts-appendix-enums.md#obscuredreasons10)> | 是 | 设置组件内容的遮罩类型。<br>默认值：[]<br/>该接口支持在ArkTS卡片中使用。<br/>仅支持[Image](ts-basic-components-image.md)组件和[Text](ts-basic-components-text.md)组件的隐私遮罩处理。<br/>**说明：**<br/>如需在图片加载过程中显示隐私遮罩，需要设置Image组件的宽度和高度。<br/>Text组件设置子组件或设置[属性字符串](ts-universal-styled-string.md#属性字符串)时，不支持隐私遮罩。 |
 
 ## 示例
 
