@@ -330,7 +330,7 @@ async function unregisterSessionListener() {
     assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
     title: 'TITLE',
     mediaImage: 'IMAGE',
-    skipIntervals: SkipIntervals.SECONDS_10,
+    skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);

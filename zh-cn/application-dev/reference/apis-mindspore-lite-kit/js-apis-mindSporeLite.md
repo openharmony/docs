@@ -11,7 +11,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 
 ## 导入模块
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 ```
 
 ## Context
@@ -182,7 +182,7 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 **示例：** 
 
 ```ts
-import { mindSporeLite } from '@kit.MindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.Ability';
 
 let modelName = '/path/to/xxx.ms';
@@ -215,7 +215,7 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import { mindSporeLite } from '@kit.MindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.Ability';
 let modelName = '/path/to/xxx.ms';
 export class Test {
@@ -262,8 +262,8 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import { mindSporeLite } from '@kit.MindSporeLite';
-import { common } from '@kit.Ability';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 let modelName = '/path/to/xxx.ms';
 export class Test {
   value:number = 0;
@@ -416,7 +416,7 @@ predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import { mindSporeLite } from '@kit.MindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.Ability';
 export class Test {
   value:number = 0;
@@ -467,7 +467,7 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import { mindSporeLite } from '@kit.MindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.Ability';
 export class Test {
     value:number = 0;
@@ -577,7 +577,7 @@ getData(): ArrayBuffer
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import { mindSporeLite } from '@kit.MindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.Ability';
 export class Test {
   value:number = 0;
@@ -621,7 +621,7 @@ setData(inputArray: ArrayBuffer): void
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import { mindSporeLite } from '@kit.MindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 import { common } from '@kit.Ability';
 export class Test {
   value:number = 0;
