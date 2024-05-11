@@ -171,8 +171,6 @@ createAVRecorder(): Promise\<AVRecorder>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **返回值：**
 
 | 类型                                 | 说明                                                         |
@@ -469,7 +467,7 @@ Codec MIME类型枚举。
 | VIDEO_MPEG4  | 'video/mp4v-es'         | 表示视频/mpeg4类型。     |
 | VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
 | VIDEO_HEVC<sup>11+</sup>   | 'video/hevc'          | 表示视频/H265类型。|
-| AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
+| AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 
@@ -512,7 +510,7 @@ Codec MIME类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
@@ -1415,8 +1413,6 @@ on(type: 'speedDone', callback: Callback\<number>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
-
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
@@ -1480,8 +1476,6 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 监听setBitrate生效的事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2193,7 +2187,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 | 名称    | 类型                                 | 可读 | 可写 | 说明               |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| state9+ | [AVRecorderState](#avrecorderstate9) | 是   | 否   | 音视频录制的状态。<br>**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
+| state9+ | [AVRecorderState](#avrecorderstate9) | 是   | 否   | 音视频录制的状态。 |
 
 ### prepare<sup>9+</sup>
 
@@ -2277,7 +2271,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2520,8 +2514,6 @@ start(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
-
 **返回值：**
 
 | 类型           | 说明                                  |
@@ -2600,8 +2592,6 @@ pause(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
-
 **返回值：**
 
 | 类型           | 说明                                  |
@@ -2679,8 +2669,6 @@ resume(): Promise\<void>
 需要在[pause()](#pause9-3)事件成功触发后，才能调用resume方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2763,8 +2751,6 @@ stop(): Promise\<void>
 纯音频录制时，需要重新调用[prepare()](#prepare9-3)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-3)和[getInputSurface()](#getinputsurface9-1)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2917,8 +2903,6 @@ release(): Promise\<void>
 释放音视频录制资源之后，该AVRecorder实例不能再进行任何操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -3274,8 +3258,6 @@ on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeRe
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
@@ -3307,8 +3289,6 @@ off(type: 'stateChange'): void
 取消订阅播放状态机[AVRecorderState](#avrecorderstate9)切换的事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3372,8 +3352,6 @@ off(type: 'error'): void
 取消订阅录制错误事件，取消后不再接收到AVRecorder的错误事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3447,8 +3425,6 @@ avRecorder.off('audioCapturerChange');
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
-
 | 名称     | 类型   | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
 | idle     | string | 闲置状态。此时可以调用[AVRecorder.prepare()](#prepare9-2)方法设置录制参数，进入prepared状态。AVRecorder刚被创建，或者在任何非released状态下调用[AVRecorder.reset()](#reset9-2)方法，均进入idle状态。 |
@@ -3469,10 +3445,10 @@ avRecorder.off('audioCapturerChange');
 
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
+| audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。|
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
-| profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
-| url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
+| profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。|
+| url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
 | rotation        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。       |
 | location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。                     |
 
@@ -3484,13 +3460,13 @@ avRecorder.off('audioCapturerChange');
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填，支持范围[8000 - 384000]。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填，支持范围[1 - 2]。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前仅支持AUDIO_AAC。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000]。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。<br>**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填，支持范围[8000 - 384000]。 |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填，支持范围[1 - 2]。|
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前仅支持AUDIO_AAC。|
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000]。 |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[1 - 3000000]。  |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[2 - 1920]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[2 - 1080]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
@@ -3505,7 +3481,7 @@ avRecorder.off('audioCapturerChange');
 | 名称                      | 值   | 说明                   |
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | 默认的音频输入源类型。 |
-| AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
+| AUDIO_SOURCE_TYPE_MIC     | 1    | 表示MIC的音频输入源。 |
 
 ## VideoSourceType<sup>9+</sup>
 
@@ -3527,7 +3503,7 @@ avRecorder.off('audioCapturerChange');
 | 名称        | 值    | 说明                  |
 | ----------- | ----- | --------------------- |
 | CFT_MPEG_4  | 'mp4' | 视频的容器格式，MP4。 |
-| CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
+| CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。 |
 
 ## Location
 
