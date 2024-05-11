@@ -330,6 +330,7 @@
     - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
   - 头文件和结构体
     - 头文件
+      - [drawable_descriptor.h](drawable__descriptor_8h.md)
       - [native_animate.h](native__animate_8h.md)
       - [native_dialog.h](native__dialog_8h.md)
       - [native_gesture.h](native__gesture_8h.md)
