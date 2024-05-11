@@ -905,3 +905,13 @@ Nullable\<T> {
 | ------ | ----------------------------- |
 | FONT | 字体样式键。<br/>**说明：** [TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
 | GESTURE | 事件手势键。<br/>**说明：** [GestureStyle](./ts-universal-styled-string.md#gesturestyle)所属键。|
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
+| HIDE    | 1    | 始终不弹出菜单。                   |
+| SHOW    | 2    | 始终弹出菜单。                     |
