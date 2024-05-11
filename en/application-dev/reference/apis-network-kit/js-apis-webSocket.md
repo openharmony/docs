@@ -903,7 +903,7 @@ Defines the client certificate type.
 
 Represents the HTTP proxy configuration.
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetStack
 
 | Name   | Type  | Mandatory| Description                     |
 | ------ | ------ | --- |------------------------- |

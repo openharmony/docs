@@ -10,7 +10,6 @@ The **networkSecurity** module provides the network security verification capabi
 
 ```ts
 import networkSecurity from '@ohos.net.networkSecurity';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## Sample Code

@@ -198,6 +198,8 @@ import { BusinessError } from '@ohos.base';
 
 Enumerates the screen directions.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 | Name                  | Value | Description  |
@@ -209,6 +211,8 @@ Enumerates the screen directions.
 ## DeviceType
 
 Enumerates the device types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -223,6 +227,8 @@ Enumerates the device types.
 ## ScreenDensity
 
 Enumerates the screen density types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -240,6 +246,8 @@ Enumerates the screen density types.
 
 Defines the device configuration.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -253,6 +261,8 @@ Defines the device configuration.
 ## DeviceCapability
 
 Defines the device capability.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -314,6 +324,8 @@ getStringSync(resId: number): string
 
 Obtains a string based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -357,6 +369,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringSync(resId: number, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource ID and formats the string based on **args**. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -402,6 +416,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringSync(resource: Resource): string
 
 Obtains a string based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -454,6 +470,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource object and formats the string based on **args**. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -508,6 +526,8 @@ getStringByNameSync(resName: string): string
 
 Obtains a string based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -551,6 +571,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource name and formats the string based on **args**. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -598,6 +620,8 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -642,6 +666,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringValue(resId: number): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource ID. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -690,6 +716,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -743,6 +771,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -800,6 +830,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -843,6 +875,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringByName(resName: string): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource name. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -892,6 +926,8 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -935,6 +971,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -988,6 +1026,8 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1029,6 +1069,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains a string array based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1073,6 +1115,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource ID. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1120,6 +1164,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains a string array based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1172,6 +1219,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1229,6 +1278,8 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 Obtains a string array based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1273,6 +1324,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource name. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1326,6 +1379,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1374,6 +1429,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1432,6 +1489,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1480,6 +1539,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1530,6 +1591,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1583,6 +1646,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1641,6 +1706,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >**NOTE**
 >
 > Singular and plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1703,6 +1770,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1753,6 +1822,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1801,6 +1872,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentSync(resId: number, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1853,6 +1926,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1914,6 +1989,8 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1966,6 +2043,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2009,6 +2088,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2054,6 +2135,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource ID. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2102,6 +2185,8 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2149,6 +2234,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2202,6 +2289,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2254,6 +2343,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2309,6 +2400,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2366,6 +2459,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2408,6 +2503,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2453,6 +2550,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource name. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2501,6 +2600,8 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2548,6 +2649,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64Sync(resId: number, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2600,6 +2703,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2661,6 +2766,8 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2713,6 +2820,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 Obtains the Base64 code of an image based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2756,6 +2865,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2801,6 +2912,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource ID. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2849,6 +2962,8 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2896,6 +3011,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2949,6 +3066,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -3001,6 +3120,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3056,6 +3177,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3113,6 +3236,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 Obtains the Base64 code of an image based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3156,6 +3281,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3201,6 +3328,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource name. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3249,6 +3378,8 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3296,6 +3427,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3355,6 +3488,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3423,6 +3558,8 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3482,6 +3619,8 @@ getBoolean(resId: number): boolean
 
 Obtains a Boolean result based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3524,6 +3663,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getBoolean(resource: Resource): boolean
 
 Obtains a Boolean result based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3577,6 +3718,8 @@ getBooleanByName(resName: string): boolean
 
 Obtains a Boolean result based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3620,6 +3763,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getNumber(resId: number): number
 
 Obtains an integer or float value based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3673,6 +3818,8 @@ getNumber(resource: Resource): number
 
 Obtains an integer or float value based on the specified resource object. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -3724,6 +3871,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getNumberByName(resName: string): number
 
 Obtains an integer or float value based on the specified resource name. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3777,6 +3926,8 @@ getColorSync(resId: number) : number;
 
 Obtains a color value based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3820,6 +3971,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColorSync(resource: Resource): number
 
 Obtains a color value based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3873,6 +4026,8 @@ getColorByNameSync(resName: string) : number;
 
 Obtains a color value based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3916,6 +4071,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains a color value based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3961,6 +4118,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColor(resId: number): Promise&lt;number&gt;
 
 Obtains a color value based on the specified resource ID. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4009,6 +4168,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains a color value based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4062,6 +4223,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColor(resource: Resource): Promise&lt;number&gt;;
 
 Obtains a color value based on the specified resource object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4119,6 +4282,8 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains a color value based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4163,6 +4328,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColorByName(resName: string): Promise&lt;number&gt;
 
 Obtains a color value based on the specified resource name. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4212,6 +4379,8 @@ getRawFileContentSync(path: string): Uint8Array
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4254,6 +4423,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4295,6 +4466,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4346,6 +4519,8 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4391,6 +4566,8 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 >**NOTE**
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4439,6 +4616,8 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4485,6 +4664,8 @@ getRawFdSync(path: string): RawFileDescriptor
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4526,6 +4707,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4572,6 +4755,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4622,6 +4807,8 @@ closeRawFdSync(path: string): void
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4657,6 +4844,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4698,6 +4887,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 closeRawFd(path: string): Promise&lt;void&gt;
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4741,6 +4932,8 @@ getConfigurationSync(): Configuration
 
 Obtains the device configuration. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4765,6 +4958,8 @@ Obtains the device configuration. This API returns the result synchronously.
 getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 Obtains the device configuration. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4798,6 +4993,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 Obtains the device configuration. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4829,6 +5026,8 @@ getDeviceCapabilitySync(): DeviceCapability
 
 Obtains the device capability. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4853,6 +5052,8 @@ Obtains the device capability. This API returns the result synchronously.
 getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 Obtains the device capability. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4886,6 +5087,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 Obtains the device capability. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4917,6 +5120,8 @@ release()
 
 Releases a **ResourceManager** object. This API is not supported currently.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Example**
@@ -4933,6 +5138,8 @@ Releases a **ResourceManager** object. This API is not supported currently.
 addResource(path: string) : void
 
 Loads resources from the specified path.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4971,6 +5178,8 @@ removeResource(path: string) : void
 
 Removes the resources loaded from the specified path to restore the original resources.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -5007,6 +5216,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getLocales(includeSystem?: boolean): Array\<string>
 
 Obtains the language list of an application.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5058,6 +5269,8 @@ getSymbol(resId: number):number
 
 Obtains a symbol value based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -5100,6 +5313,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getSymbol(resource: Resource): number
 
 Obtains a symbol value based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5153,6 +5368,8 @@ getSymbolByName(resName: string) : number;
 
 Obtains a symbol value based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -5196,6 +5413,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 isRawDir(path: string) : bool
 
 Checks whether a path is a subdirectory in the **rawfile** directory. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
