@@ -10,6 +10,7 @@
   - [录像(ArkTS)](camera-recording.md)
   - [元数据(ArkTS)](camera-metadata.md)
   - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
+  - [动态照片(ArkTS)](camera-moving-photo.md)
 - 相机最佳实践(ArkTS)
   - [拍照实现方案(ArkTS)](camera-shooting-case.md)
   - [录像实现方案(ArkTS)](camera-recording-case.md)

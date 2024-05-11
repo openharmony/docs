@@ -152,7 +152,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
        editable: true,
        desiredPixelFormat: 3,
    }
-   // Create a pixel map and perform rotation and scaling on it.
+   // Create a pixel map.
    imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
       console.log("Succeeded in creating PixelMap")
    }).catch((err : BusinessError) => {

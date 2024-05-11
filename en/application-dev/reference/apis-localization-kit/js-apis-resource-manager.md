@@ -330,10 +330,11 @@ Obtains a string based on the specified resource ID. This API returns the result
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -373,11 +374,11 @@ Obtains a string based on the specified resource ID and formats the string based
 | string | Formatted string corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
-| -------- | ----------------------------------------------- |
+| -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                               |
 | 9001002  | If the resource not found by resId.                 |
 | 9001006  | If the resource re-ref too much.                    |
@@ -420,10 +421,11 @@ Obtains a string based on the specified resource object. This API returns the re
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -471,11 +473,11 @@ Obtains a string based on the specified resource object and formats the string b
 | string | Formatted string corresponding to the specified resource object.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -522,10 +524,11 @@ Obtains a string based on the specified resource name. This API returns the resu
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -566,10 +569,11 @@ Obtains a string based on the specified resource name and formats the string bas
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -605,10 +609,11 @@ Obtains a string based on the specified resource ID. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the module resId invalid.             |
 | 9001002  | If the resource not found by resId.      |
 | 9001006  | If the resource re-ref too much.         |
@@ -654,10 +659,11 @@ Obtains a string based on the specified resource ID. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -802,11 +808,11 @@ Obtains a string based on the specified resource name. This API uses an asynchro
 | callback | AsyncCallback&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -852,10 +858,11 @@ Obtains a string based on the specified resource name. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1028,11 +1035,11 @@ Obtains a string array based on the specified resource ID. This API uses an asyn
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1077,11 +1084,11 @@ Obtains a string array based on the specified resource ID. This API uses a promi
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1226,10 +1233,11 @@ Obtains a string array based on the specified resource name. This API uses an as
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1275,10 +1283,11 @@ Obtains a string array based on the specified resource name. This API uses a pro
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1474,10 +1483,11 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1528,10 +1538,11 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1639,10 +1650,11 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.                |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -1692,10 +1704,11 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1746,10 +1759,11 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -1949,10 +1963,11 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.              | 
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -1993,10 +2008,11 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2041,10 +2057,11 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2340,11 +2357,11 @@ Obtains the content of a media file based on the specified resource name. This A
 | callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -2433,10 +2450,11 @@ Obtains the content of a media file based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -2682,10 +2700,11 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -2774,10 +2793,11 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3074,10 +3094,11 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3166,10 +3187,11 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3239,7 +3261,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource ID. This API returns the result synchronously.
 
@@ -3261,10 +3283,11 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3297,7 +3320,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource object. This API returns the result synchronously.
 
@@ -3321,10 +3344,11 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 
@@ -3363,7 +3387,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptorByName<sup>10+</sup>
 
-getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource name. This API returns the result synchronously.
 
@@ -3385,10 +3409,11 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 
@@ -3441,10 +3466,11 @@ Obtains a Boolean result based on the specified resource ID. This API returns th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3485,10 +3511,11 @@ Obtains a Boolean result based on the specified resource object. This API return
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3534,10 +3561,11 @@ Obtains a Boolean result based on the specified resource name. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -3577,10 +3605,11 @@ Obtains an integer or float value based on the specified resource ID. This API r
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3626,14 +3655,15 @@ Obtains an integer or float value based on the specified resource object. This A
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource name. An interger indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001001  | If the resId invalid.                       |
 | 9001002  | If the resource not found by resId.         |
 | 9001006  | If the resource re-ref too much.            |
@@ -3675,14 +3705,15 @@ Obtains an integer or float value based on the specified resource name. This API
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Integer or float value corresponding to the specified resource name. An interger indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
 | 9001006  | If the resource re-ref too much.            |
@@ -4192,11 +4223,11 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid.               |
 
 **Example**
   ```ts
@@ -4239,10 +4270,11 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4460,10 +4492,11 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4510,10 +4543,11 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**
@@ -4588,10 +4622,11 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | The resource not found by path.          |
 
 **Example**
@@ -4633,10 +4668,11 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid.               |
 | 9001005  | If the resource not found by path.          |
 
 **Example**

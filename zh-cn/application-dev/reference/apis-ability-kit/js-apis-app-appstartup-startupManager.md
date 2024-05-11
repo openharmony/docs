@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-本模块提供应用启动框架管理待初始化组件的能力。
+本模块提供应用启动框架管理待初始化组件的能力，只能在主线程调用。
 
 > **说明：**
 >
@@ -36,16 +36,16 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 16000050 | Internal error. |
   | 28800001 | Startup task or its dependency not found. |
   | 28800002  | The startup tasks have circular dependencies. |
   | 28800003 | An error occurred while running the startup tasks. |
   | 28800004 | Running startup tasks timeout. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**：
 
@@ -142,9 +142,11 @@ getStartupTaskResult(startupTask: string): Object
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**：
 
@@ -202,9 +204,11 @@ isStartupTaskInitialized(startupTask: string): boolean
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**：
 
@@ -260,9 +264,11 @@ removeStartupTaskResult(startupTask: string): void
   
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**：
 

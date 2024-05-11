@@ -3,12 +3,12 @@
 You can create a widget in either of the following modes:
 
 - When creating a project, select **Application**. The project created this way does not have a widget by default. You can right-click a module folder and choose **New** > **Service Widget** to create a widget.
-- When creating a project, select **Atomic Service**. The project created this way has a widget by default. You can right-click a module folder and choose **New** > **Service Widget** to create a widget.
+- When creating a project, select **Atomic Service**. You can right-click a module folder and choose **New** > **Service Widget** to create a widget.
 
 ![WidgetCreateProject](figures/WidgetCreateProject.png)
 >**NOTE**
 >
->This document is based on [DevEco Studio 3.1.1 Release](https://developer.harmonyos.com/cn/develop/deveco-studio/#download). The actual UI and features may be different if you are using any other version of DevEco Studio.
+> The UI may be different in DevEco Studio of a different version.
 
 To create an ArkTS widget in an existing project, perform the following steps:
 

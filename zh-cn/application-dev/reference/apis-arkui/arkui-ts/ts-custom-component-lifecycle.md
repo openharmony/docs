@@ -16,6 +16,12 @@ aboutToAppear函数在创建自定义组件的新实例后，在执行其build()
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+## onDidBuild<sup>12+</sup>
+
+onDidBuild?(): void
+
+onDidBuild函数在执行自定义组件的build()函数之后执行。不建议在onDidBuild函数中更改状态变量、使用animateTo等功能，这可能会导致不稳定的UI表现。
+
 ## aboutToDisappear
 
 aboutToDisappear?(): void

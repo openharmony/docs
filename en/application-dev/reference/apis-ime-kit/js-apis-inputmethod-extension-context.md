@@ -98,3 +98,66 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
   }
 }
 ```
+
+## InputMethodExtensionContext.startAbility
+
+startAbility(want: Want): Promise<**void**>;
+
+Starts an ability. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the extension ability to start, including the ability name and bundle name.|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Input Method Framework Error Codes](errorcode-inputmethod-framework.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------- |
+| 16000001 | The specified ability does not exist.                   |
+| 16000004 | Can not start invisible component.                      |
+| 16000005 | The specified process does not have the permission.     |
+| 16000006 | Cross-user operations are not allowed.                  |
+| 16000008 | The crowdtesting application expires.                   |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist.                             |
+| 16000012 | The application is controlled.                          |
+| 16000013 | The application is controlled by EDM.                   |
+| 16000050 | Internal error.                                         |
+| 16000053 | The ability is not on the top of the UI.                |
+| 16000055 | Installation-free timed out.                            |
+| 16000061 | Can not start component belongs to other bundle.        |
+| 16200001 | The caller has been released.                           |
+
+**Example**
+
+```ts
+import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+try {
+  this.context.startAbility(want).then((err) => {
+    if (err !== undefined) {
+      this.addLog(`startAbility error: ${err} `);
+    }
+  }).catch((err) => {
+    let error = err as BusinessError;
+    this.addLog(`startAbility error: ${error.code} ${error.message}`);
+  })
+} catch (err) {
+  let error = err as BusinessError;
+  this.addLog(`startAbility error: ${error.code} ${error.message}`);
+}
+```

@@ -39,7 +39,7 @@ The following table describes the attributes for updating an asset.
 
   | Attribute Name (Asset_Tag)| Attribute Content (Asset_Value)         | Mandatory| Description                                            |
   | ------------------- | ------------------------------- | -------- | ------------------------------------------------ |
-  | ASSET_TAG_SECRET    | Type: uint8[]<br>Length: 1-1024 bytes| No    | New asset in plaintext.                                    |
+  | ASSET_TAG_SECRET    | Type: uint8[]<br>Length: 1-1024 bytes| No    | New asset plaintext.                                    |
   | ASSET_TAG_DATA_LABEL_NORMAL_1 | Type: uint8[]<br>Length: 1-2048 bytes| No    | Additional data of the new asset customized by the service without integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|
   | ASSET_TAG_DATA_LABEL_NORMAL_2 | Type: uint8[]<br>Length: 1-2048 bytes| No    | Additional data of the new asset customized by the service without integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|
   | ASSET_TAG_DATA_LABEL_NORMAL_3 | Type: uint8[]<br>Length: 1-2048 bytes| No    | Additional data of the new asset customized by the service without integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|

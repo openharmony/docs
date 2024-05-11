@@ -25,6 +25,7 @@ import appManager from '@ohos.app.ability.appManager';
 | processName | string | Yes| No| Process name.|
 | bundleNames | Array&lt;string&gt; | Yes| No| Names of all running bundles in the process.|
 | state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager-sys.md#processstate10)| Yes| No| Running status of the process.|
+| bundleType<sup>12+</sup> | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype) | Yes| No| Type of the bundle running in the process.|
 
 ## How to Use
 

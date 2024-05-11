@@ -19,13 +19,15 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 | Name   | Type                                                        | Readable| Writable| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).|
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## onAddForm
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
 Called to notify the widget provider that a **Form** instance (widget) is being created.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -68,6 +70,8 @@ onCastToNormalForm(formId: string): void
 
 Called to notify the widget provider that a temporary widget is being converted to a normal one.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -93,6 +97,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
 Called to notify the widget provider that a widget is being updated, with update parameters carried. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#updateform) of **formProvider** to update the widget data.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -187,7 +193,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onFormEvent(formId: string, message: string): void
 
-Called to instruct the widget provider to process the widget event. (This API can be used only in JS widget.)
+Called to instruct the widget provider to process the widget event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -216,6 +224,8 @@ onRemoveForm(formId: string): void
 
 Called to notify the widget provider that a **Form** instance (widget) is being destroyed.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -242,6 +252,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the FormExtensionAbility is running is updated. 
 This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive. If no operation is performed within 5 seconds after a **FormExtensionAbility** instance is created, the instance will be deleted.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -272,6 +284,8 @@ onAcquireFormState?(want: Want): formInfo.FormState
 
 Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial widget state is returned. (You can override this API as required.)
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -300,6 +314,8 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onStop?(): void
 
 Called when the widget process of the widget provider exits.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
   
 **System capability**: SystemCapability.Ability.Form
 

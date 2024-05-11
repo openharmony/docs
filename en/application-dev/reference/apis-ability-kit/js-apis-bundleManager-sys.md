@@ -60,6 +60,7 @@ Enumerates the ability flags, which indicate the type of ability information to 
 | GET_ABILITY_INFO_WITH_DISABLE     | 0x00000008 | Used to obtain the ability information of disabled abilities.                  |
 | GET_ABILITY_INFO_ONLY_SYSTEM_APP  | 0x00000010 | Used to obtain the ability information of system applications.                        |
 | GET_ABILITY_INFO_WITH_APP_LINKING  | 0x00000040 | Used to obtain the ability information filtered by domain name verification.                        |
+| GET_ABILITY_INFO_WITH_SKILL<sup>12+</sup>   | 0x00000080 | Used to obtain the ability information with skills.                        |
 
 ### ExtensionAbilityFlag
 
@@ -75,6 +76,7 @@ Enumerates the ExtensionAbility flags, which indicate the type of ExtensionAbili
 | GET_EXTENSION_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | Used to obtain the ExtensionAbility information with permission information.              |
 | GET_EXTENSION_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | Used to obtain the ExtensionAbility information with application information.        |
 | GET_EXTENSION_ABILITY_INFO_WITH_METADATA    | 0x00000004 | Used to obtain the ExtensionAbility information with metadata.                |
+| GET_EXTENSION_ABILITY_INFO_WITH_SKILL<sup>12+</sup>     | 0x00000010 | Used to obtain the ExtensionAbility information with skills.                |
 
 ### ProfileType<sup>11+</sup>
 
@@ -1135,6 +1137,74 @@ try {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'queryAbilityInfoSync failed. Cause: %{public}s', message);
 }
+```
+
+### bundleManager.queryAbilityInfo<sup>12+</sup>
+
+queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
+
+Obtains the ability information based on the given want list, ability flags, and user ID.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name     | Type  | Mandatory| Description                                                 |
+| ------------ | ------ | ---- | ------------------------------------------------------- |
+| want         | Array\<Want>   | Yes  | List of want containing the bundle name to query.                |
+| abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain.|
+| userId       | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                      |
+
+**Return value**
+
+| Type                                                        | Description                                |
+| ------------------------------------------------------------ | ------------------------------------ |
+| Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)> | An array of ability information.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                            |
+| -------- | ------------------------------------- |
+| 17700001 | The specified bundleName is not found. |
+| 17700003 | The specified ability is not found.    |
+| 17700004 | The specified userId is invalid.       |
+| 17700026 | The specified bundle is disabled.      |
+| 17700029 | The specified ability is disabled.     |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import Want from '@ohos.app.ability.Want';
+let abilityFlags = bundleManager.AbilityFlag.GET_ABILITY_INFO_DEFAULT;
+let userId = 100;
+let want: Want = {
+    bundleName : "com.example.myapplication1",
+    abilityName : "EntryAbility"
+};
+let want1: Want = {
+    bundleName : "com.example.myapplication2",
+    abilityName : "EntryAbility"
+};
+let wants: Array<Want> = [ want, want1 ];
+ try {
+        bundleManager.queryAbilityInfo(wants, abilityFlags, userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'queryAbilityInfo successfully. Data: %{public}s', JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', err.message);
+      })
+    } catch (err) {
+      let message = (err as BusinessError).message;
+      hilog.error(0x0000, 'testTag', 'queryAbilityInfo failed. Cause: %{public}s', message);
+    }
 ```
 
 ### bundleManager.queryExtensionAbilityInfo
@@ -4228,6 +4298,38 @@ try {
 }
 ```
 
+### bundleManager.getAllPreinstalledApplicationInfo<sup>12+</sup>
+
+getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo\>\>
+
+Obtains information about all preinstalled applications. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Return value**
+
+| Type                                                        | Description                               |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise<Array\<[PreinstalledApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Promise used to return the array of preinstalled applications obtained.|
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import Base from '@ohos.base';
+
+bundleManager.getAllPreinstalledApplicationInfo().then((data: Array<bundleManager.PreinstalledApplicationInfo>) => {
+    console.info("GetAllPreinstalledApplicationInfo success, data is :" + JSON.stringify(data));
+
+}).catch((err: Base.BusinessError) => {
+    console.error("GetAllPreinstalledApplicationInfo success errCode is :" + JSON.stringify(err.code));
+});
+```
+
 ### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
 queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
@@ -4412,7 +4514,7 @@ try {
 
 switchUninstallState(bundleName: string, state: boolean): void
 
-Changes the uninstall state of an application.
+Switches the uninstall state of an application. This API is independent from EDM application interception control.
 
 **System API**: This is a system API.
 
