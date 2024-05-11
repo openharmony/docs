@@ -2936,6 +2936,8 @@ end(chunk?: string | Uint8Array): string
 
 结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
 
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型       | 必填 | 说明                |
