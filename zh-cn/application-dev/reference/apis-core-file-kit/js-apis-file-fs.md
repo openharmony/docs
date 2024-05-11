@@ -4984,7 +4984,7 @@ open接口flags参数常量。文件打开标签。
 
 ## AccessModeType<sup>12+</sup>
 
-枚举，表示该文件校验的权限。
+枚举，表示需要校验的具体权限，若不填，默认校验文件是否存在。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
