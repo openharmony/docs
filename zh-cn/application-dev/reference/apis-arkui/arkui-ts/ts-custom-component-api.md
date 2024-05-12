@@ -118,17 +118,124 @@ queryNavigationInfo(): NavigationInfo | undefined
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+// index.ets
+// an independent page in harPackage
+import { example1 } from 'harPackage'
+// another independent page in hspPackage
+import { example2 } from 'hspPackage'
 
 @Entry
 @Component
-struct MyComponent {
+struct MainPage {
+  @Provide('pageInfo') pageInfos: NavPathStack = new NavPathStack()
+
+  build() {
+    Navigation(this.pageInfos) {
+      Column() {
+        Button('jumpTo Example1 in HarPackage', { stateEffect: true, type: ButtonType.Capsule })
+          .onClick(() => {
+            this.PageInfos.pushPath({ name: 'Example1', param: 'Example1'})
+          })
+        Button('jumpTo Example2 in HspPackage', { stateEffect: true, type: ButtonType.Capsule })
+          .onClick(() => {
+            this.PageInfos.pushPath({ name: 'Example2', param: 'Example2'})
+          })
+      }
+    }
+  }
+}
+```
+
+```json
+// router_map.json in HarPackage
+{
+  "routerMap": [
+    {
+      "name": "Example1",
+      "pageSourceFile": "src/main/ets/pages/example1.ets",
+      "buildFunction": "Example1",
+      "data": {
+        "data": "test"
+      }
+    }
+  ]
+}
+```
+
+```ts
+// example1.ets in HarPackage
+import observer from '@ohos.arkui.observer'
+
+@Builder
+export function Example1(name: string, param: Object) {
+  NavDestination() {
+    CustomNode()
+  }.title('Example1')
+  .id('NavdestinationExample1')
+}
+
+@Component
+export struct CustomNode() {
+  pathStack: NavPathStack = new NavPathStack()
+
   aboutToAppear() {
-    let info: observer.NavigationInfo | undefined = this.queryNavigationInfo();
+    // query Navigation Info of index.ets
+    let navigationInfo: observer.NavigationInfo | undefined = this.queryNavigationInfo()
+    console.log('get navigationInfo: ' + JSON.stringfy(navigationInfo))
+    if (navigationInfo !== undefined) {
+      this.pathStack = navigation.pathStack
+    }
   }
 
   build() {
-    // ...
+    // xxx
+  }
+}
+```
+
+```json
+// router_map.json in HsprPackage
+{
+  "routerMap": [
+    {
+      "name": "Example2",
+      "pageSourceFile": "src/main/ets/pages/example2.ets",
+      "buildFunction": "Example2",
+      "data": {
+        "data": "test"
+      }
+    }
+  ]
+}
+```
+
+```ts
+// example2.ets in HarPackage
+import observer from '@ohos.arkui.observer'
+
+@Builder
+export function Example2(name: string, param: Object) {
+  NavDestination() {
+    CustomNode()
+  }.title('Example2')
+  .id('NavdestinationExample2')
+}
+
+@Component
+export struct CustomNode() {
+  pathStack: NavPathStack = new NavPathStack()
+
+  aboutToAppear() {
+    // query Navigation Info of index.ets
+    let navigationInfo: observer.NavigationInfo | undefined = this.queryNavigationInfo()
+    console.log('get navigationInfo: ' + JSON.stringfy(navigationInfo))
+    if (navigationInfo !== undefined) {
+      this.pathStack = navigation.pathStack
+    }
+  }
+
+  build() {
+    // xxx
   }
 }
 ```
