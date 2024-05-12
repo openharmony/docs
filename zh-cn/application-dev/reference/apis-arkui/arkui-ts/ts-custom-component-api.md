@@ -73,7 +73,7 @@ struct MyComponent {
 
 queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
-获取NavDestinationInfo实例对象。
+查询自定义组件所属的NavDestination信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -88,11 +88,22 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 ```ts
 import observer from '@ohos.arkui.observer';
 
-@Entry
+@Component
+export struct NavDestinationExample {
+  build() {
+    NavDestination() {
+      MyComponent()
+    }
+  }
+}
+
 @Component
 struct MyComponent {
+  navDesInfo: observer.NavDestinationInfo | undefined
+
   aboutToAppear() {
-    let info: observer.NavDestinationInfo | undefined = this.queryNavDestinationInfo();
+    this.navDesInfo = this.queryNavDestinationInfo();
+    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
   }
 
   build() {
@@ -105,7 +116,7 @@ struct MyComponent {
 
 queryNavigationInfo(): NavigationInfo | undefined
 
-获取NavigationInfo实例对象。
+查询自定义组件所属的Navigation信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -119,123 +130,36 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 ```ts
 // index.ets
-// an independent page in harPackage
-import { example1 } from 'harPackage'
-// another independent page in hspPackage
-import { example2 } from 'hspPackage'
 
 @Entry
 @Component
 struct MainPage {
-  @Provide('pageInfo') pageInfos: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack()
 
   build() {
-    Navigation(this.pageInfos) {
-      Column() {
-        Button('jumpTo Example1 in HarPackage', { stateEffect: true, type: ButtonType.Capsule })
-          .onClick(() => {
-            this.PageInfos.pushPath({ name: 'Example1', param: 'Example1'})
-          })
-        Button('jumpTo Example2 in HspPackage', { stateEffect: true, type: ButtonType.Capsule })
-          .onClick(() => {
-            this.PageInfos.pushPath({ name: 'Example2', param: 'Example2'})
-          })
-      }
-    }
+    Navigation(this.pathStack) {
+      // ...
+    }.id("NavigationId")
   }
 }
-```
 
-```json
-// router_map.json in HarPackage
-{
-  "routerMap": [
-    {
-      "name": "Example1",
-      "pageSourceFile": "src/main/ets/pages/example1.ets",
-      "buildFunction": "Example1",
-      "data": {
-        "data": "test"
-      }
-    }
-  ]
-}
-```
-
-```ts
-// example1.ets in HarPackage
-import observer from '@ohos.arkui.observer'
-
-@Builder
-export function Example1(name: string, param: Object) {
-  NavDestination() {
-    CustomNode()
-  }.title('Example1')
-  .id('NavdestinationExample1')
-}
-
+import observer from '@ohos.arkui.observer';
 @Component
-export struct CustomNode() {
+export struct PageOne() {
   pathStack: NavPathStack = new NavPathStack()
 
   aboutToAppear() {
-    // query Navigation Info of index.ets
     let navigationInfo: observer.NavigationInfo | undefined = this.queryNavigationInfo()
-    console.log('get navigationInfo: ' + JSON.stringfy(navigationInfo))
+    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
     if (navigationInfo !== undefined) {
-      this.pathStack = navigation.pathStack
+      this.pathStack = navigationInfo.pathStack
     }
   }
 
   build() {
-    // xxx
-  }
-}
-```
-
-```json
-// router_map.json in HsprPackage
-{
-  "routerMap": [
-    {
-      "name": "Example2",
-      "pageSourceFile": "src/main/ets/pages/example2.ets",
-      "buildFunction": "Example2",
-      "data": {
-        "data": "test"
-      }
-    }
-  ]
-}
-```
-
-```ts
-// example2.ets in HarPackage
-import observer from '@ohos.arkui.observer'
-
-@Builder
-export function Example2(name: string, param: Object) {
-  NavDestination() {
-    CustomNode()
-  }.title('Example2')
-  .id('NavdestinationExample2')
-}
-
-@Component
-export struct CustomNode() {
-  pathStack: NavPathStack = new NavPathStack()
-
-  aboutToAppear() {
-    // query Navigation Info of index.ets
-    let navigationInfo: observer.NavigationInfo | undefined = this.queryNavigationInfo()
-    console.log('get navigationInfo: ' + JSON.stringfy(navigationInfo))
-    if (navigationInfo !== undefined) {
-      this.pathStack = navigation.pathStack
-    }
-  }
-
-  build() {
-    // xxx
+    NavDestination() {
+      // ...
+    }.title('PageOne')
   }
 }
 ```
