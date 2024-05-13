@@ -71,6 +71,7 @@
     - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
     - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
     - [@ohos.resourceschedule.systemload (性能功耗热融合档位)](js-apis-resourceschedule-systemload.md)
+    <!--Del-->
     - [@ohos.configPolicy (配置策略)(系统接口)](js-apis-configPolicy-sys.md)
     - [@ohos.settings (设置数据项名称)(系统接口)](js-apis-settings-sys.md)
     - [@ohos.systemDateTime (系统时间、时区)(系统接口)](js-apis-system-date-time-sys.md)
@@ -78,6 +79,7 @@
     - [@ohos.wallpaper (壁纸)(系统接口)](js-apis-wallpaper-sys.md)
     - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
     - [@ohos.systemTimer (系统定时器)(系统接口)](js-apis-system-timer-sys.md)
+    <!--DelEnd-->
   - 已停止维护的接口
     - [系统公共事件定义](common_event/commonEvent-definitions.md)
     - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
@@ -86,10 +88,12 @@
     - [@system.battery (电量信息)](js-apis-system-battery.md)
     - [@system.device (设备信息)](js-apis-system-device.md)
     - [@system.request (上传下载)](js-apis-system-request.md)
+    <!--Del-->
     - [@ohos.commonEvent (公共事件模块)(系统接口)](js-apis-commonEvent-sys.md)
     - [@ohos.usb (USB管理)(系统接口)](js-apis-usb-deprecated-sys.md)
     - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
     - [@ohos.systemTime (系统时间、时区)(系统接口)](js-apis-system-time-sys.md)
+    <!--DelEnd-->
     - [@ohos.systemTime(系统时间、时区)](js-apis-time.md)
 - C API
   - 模块
