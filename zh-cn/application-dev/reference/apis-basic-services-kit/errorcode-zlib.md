@@ -133,12 +133,13 @@ Buffer error.
 
 **错误描述**
 
-当调用compress或compress2或uncompress接口时，传入的缓冲区错误。
+当调用compress或compress2或uncompress或uncompress2接口时，传入的缓冲区错误。
 
 **可能原因**
 
-1. 当调用uncompress接口时，传入的输入buffer大小大于解压后输出buffer的大小。
+1. 当调用uncompress或uncompress2接口时，传入的输入buffer大小大于解压后输出buffer的大小。
 2. 当调用compress或compress2接口时，传入的输入buffer大小大于压缩后输出buffer的大小。
+3. 当调用compress或compress2或uncompress或uncompress2接口，传入的buffer大小为0。
 
 **处理步骤**
 
