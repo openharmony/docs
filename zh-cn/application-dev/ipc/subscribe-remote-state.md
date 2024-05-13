@@ -6,7 +6,7 @@ IPC/RPC提供对远端Stub对象状态的订阅机制，在远端Stub对象消�
 
 这种订阅机制适用于本地Proxy对象需要感知远端Stub对象所在进程消亡，或所在设备离开组网的场景。当Proxy感知到Stub端消亡后，可适当清理本地资源。此外，RPC目前不提供匿名Stub对象的消亡通知，即只有向SAMgr注册过的服务才能被订阅消亡通知，IPC则支持匿名对象的消亡通知。
 
-
+<!--Del-->
 ## Native侧接口
 
 | 接口名                                                              |  描述                     |
@@ -60,7 +60,7 @@ int TestServiceProxy::TestPingAbility(const std::u16string &dummy){
 }
 ```
 
-```c++
+```C++
 #include "iremote_object.h"
 
 class TestDeathRecipient : public IRemoteObject::DeathRecipient {
@@ -79,6 +79,7 @@ sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); /
 bool result = object->AddDeathRecipient(deathRecipient); // 注册消亡通知
 result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 ```
+<!--DelEnd-->
 
 ## ArkTS侧接口
 
