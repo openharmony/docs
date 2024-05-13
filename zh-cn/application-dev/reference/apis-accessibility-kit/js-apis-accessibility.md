@@ -82,7 +82,8 @@ import accessibility from '@ohos.accessibility';
 | select                  | 表示选择操作。当前版本暂不支持。   |
 | setText                 | 表示设置文本操作，需要配置参数setText。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd。   |
+| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
+| setCursorPosition<sup>12+</sup>   | 表示设置光标位置操作，需配置参数offset。   |
 
 ## Capability
 
