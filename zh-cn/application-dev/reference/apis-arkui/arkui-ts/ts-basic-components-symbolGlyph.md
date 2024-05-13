@@ -126,7 +126,7 @@ symbolEffect(symbolEffect: SymbolEffect, isActive?: boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| symbolEffect  | [SymbolEffect](#symboleffect12)及其子类 | 是   | SymbolGlyph组件动效策略。<br/>默认值：SymbolEffect |
+| symbolEffect  | [SymbolEffect](#symboleffect12-2)\|[ScaleSymbolEffect](#scalesymboleffect12)\|[HierarchicalSymbolEffect](#hierarchicalsymboleffect12)\|<br>[AppearSymbolEffect](#appearsymboleffect12)\|[DisappearSymbolEffect](#disappearsymboleffect12)\|[BounceSymbolEffect](#bouncesymboleffect12)\|<br>[ReplaceSymbolEffect](#replacesymboleffect12)\|[PulseSymbolEffect](#pulsesymboleffect12) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12-2) |
 | isActive  |boolean | 否   | SymbolGlyph组件动效播放状态。<br/>默认值：false |
 ### symbolEffect<sup>12+</sup>
 
@@ -140,12 +140,12 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| symbolEffect | [SymbolEffect](#symboleffect12)及其子类 | 是   | SymbolGlyph组件动效策略。<br/>默认值：SymbolEffect           |
-| triggerValue | number | 否   | SymbolGlyph组件动效播放触发器，在数值变更时触发动效。<br/>默认值：SymbolEffectStrategy.NONE<br/>如果首次不希望触发动效，设置-1。 |
+| symbolEffect | [SymbolEffect](#symboleffect12-2)\|[ScaleSymbolEffect](#scalesymboleffect12)\|[HierarchicalSymbolEffect](#hierarchicalsymboleffect12)\|<br>[AppearSymbolEffect](#appearsymboleffect12)\|[DisappearSymbolEffect](#disappearsymboleffect12)\|[BounceSymbolEffect](#bouncesymboleffect12)\|<br>[ReplaceSymbolEffect](#replacesymboleffect12)\|[PulseSymbolEffect](#pulsesymboleffect12) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12-2) |
+| triggerValue | number | 否   | SymbolGlyph组件动效播放触发器，在数值变更时触发动效。<br/>如果首次不希望触发动效，设置-1。 |
 
 >  **说明：**
 >
->  动效属性，建议仅使用effectStrategy属性或单个symbolEffect属性。同时设置两个symbolEffect属性，triggerValue生效优先级高于isActive。同时设置symbolEffect属性和effectStrategy属性，symbolEffect属性优先级高于effectStrategy属性。
+>  动效属性，仅支持使用effectStrategy属性或单个symbolEffect属性，不支持多种动效属性混合使用。
 
 ## SymbolEffect<sup>12+</sup>
 
@@ -161,7 +161,7 @@ SymbolEffect的构造函数，无动效。
 
 constructor(scope?: EffectScope, direction?: EffectDirection)
 
-ScaleSymbolEffect的构造函数。
+ScaleSymbolEffect的构造函数，缩放动效。
 
 **参数：**
 
@@ -183,7 +183,7 @@ ScaleSymbolEffect的构造函数。
 
 constructor(fillStyle?: EffectFillStyle)
 
-HierarchicalSymbolEffect的构造函数。
+HierarchicalSymbolEffect的构造函数，层级动效。
 
 **参数：**
 
@@ -203,7 +203,7 @@ HierarchicalSymbolEffect的构造函数。
 
 constructor(scope?: EffectScope)
 
-AppearSymbolEffect的构造函数。
+AppearSymbolEffect的构造函数，出现动效。
 
 **参数：**
 
@@ -223,7 +223,7 @@ AppearSymbolEffect的构造函数。
 
 constructor(scope?: EffectScope)
 
-DisappearSymbolEffect的构造函数。
+DisappearSymbolEffect的构造函数，消失动效。
 
 **参数：**
 
@@ -243,7 +243,7 @@ DisappearSymbolEffect的构造函数。
 
 constructor(scope?: EffectScope, direction?: EffectDirection)
 
-BounceSymbolEffect的构造函数。
+BounceSymbolEffect的构造函数，弹跳动效。
 
 **参数：**
 
@@ -265,7 +265,7 @@ BounceSymbolEffect的构造函数。
 
 constructor(scope?: EffectScope)
 
-DisappearSymbolEffect的构造函数。
+ReplaceSymbolEffect的构造函数，替换动效。
 
 **参数：**
 
@@ -285,7 +285,7 @@ DisappearSymbolEffect的构造函数。
 
 constructor()
 
-PulseSymbolEffect的构造函数。
+PulseSymbolEffect的构造函数，脉冲动效。
 
 ## EffectDirection<sup>12+</sup>
 

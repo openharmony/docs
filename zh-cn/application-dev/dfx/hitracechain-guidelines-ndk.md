@@ -30,38 +30,59 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。该接口�
 | void OH_HiTrace_SetParentSpanId(HiTraceId *id, uint64_t parentSpanId) | 设置父分支ID到HiTraceId结构体中 |
 | int OH_HiTrace_IdToBytes(const HiTraceId* id, uint8_t* pIdArray, int len) | 将HiTraceId结构体转换为字节数组，用于缓存或者通信传递 |
 
-**参数解析**
-
-| 参数名 | 类型 | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | 是   | 要跟踪的数值变量名称。 |
-| id | HiTraceId | 是   | 用来当前线程的HitraceId。 |
-| mode  | HiTrace_Communication_Mode | 是   | 通信模式。  |
-| type  | HiTrace_Tracepoint_Type | 是   | 打点类型。  |
-| fmt  | string | 是   | 打点信息。  |
-| pIdArray  | int | 是   | 创建HitraceId的字节数组。  |
-| len  | int | 是   | 创建HitraceId的字节数组长度。  |
-| flag  | HiTrace_Flag | 是   | 用来跟踪的flag。  |
-| flags  | int | 是   | 用来跟踪的flag。  |
-| chainId  | int | 是   | 跟踪id。  |
-| spanId  | int | 是   | 分支id。  |
-| parentSpanId  | int | 是   | 分支id。  |
 
 ## 开发示例
 
-1. 在CMakeLists.txt中新增libhitrace_ndk.z.so链接。
+1. 在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件(hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例)。
+    index.ets代码如下，onClick中调用了testNapi的add函数，该函数在hello.cpp中定义。
+    ```
+    import hilog from '@ohos.hilog';
+    import testNapi from 'libentry.so'
+
+    @Entry
+    @Component
+    struct Index {
+        @State message: string = 'Hello World'
+
+        build() {
+            Row() {
+            Column() {
+                Text(this.message)
+                .fontSize(50)
+                .fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                    hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+                })
+            }
+            .width('100%')
+            }
+            .height('100%')
+        }
+    }
+
+2. 在CMakeLists.txt中新增libhitrace_ndk.z.so链接。
 
     ```
-    target_link_libraries(entry PUBLIC libhitrace_ndk.z.so)
-    ```
+   // CMakeLists.txt
+   # the minimum version of CMake.
+   cmake_minimum_required(VERSION 3.4.1)
+   project(MyApplication)
+   
+   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   
+   include_directories(${NATIVERENDER_ROOT_PATH}
+                       ${NATIVERENDER_ROOT_PATH}/include)
+   add_library(entry SHARED hello.cpp)
+   target_link_libraries(entry PUBLIC libace_napi.z.so libhitrace_ndk.z.so)
+   ```
 
-2. 在源文件中引用hitrace头文件。
+3. 在hello.cpp文件中引用hitrace头文件。
 
     ```c++
     #include "hitrace/trace.h"
     ```
 
-3. 在需要打点的地方进行打点（示例代码为默认的napi_init.cpp的一部分，使用时只需要按照示例的使用方法将接口-参看接口说明，放在需要的地方即可）
+4. 在hello.cpp的Add函数中，使用OH_HiTrace_BeginChain函数开启一个跟踪链，使用OH_HiTrace_EndChain关闭跟踪。
 
     ```c++
     #include "napi/native_api.h"
@@ -98,7 +119,7 @@ HiTrace为开发者提供业务流程调用链跟踪的维测接口。该接口�
     }
     ```
 
-4. 将编译好的hap包推送到设备上安装，点击设备上的hap应用。在Log窗口查看分布式跟踪的相关信息，使用“Hitrace”过滤属于hap应用的日志信息。
+5. 运行项目，会在设备上自动生成一个hap应用，点击hap上的“Hello World”文字，会调用hello.cpp中的add函数，查看hitrace日志，会出现如下信息：
     ```text
     11-02 15:13:28.922  21519-21519  C02D03/HiTraceC                  com.example.hitracechaintest     I  [a92ab94c18e1341 0 0][dict]HiTraceBegin name:hitraceTest event flags:0x01.
     11-02 15:13:28.930  21519-21519  C02D03/HiTraceC                  com.example.hitracechaintest     I  [a92ab94c18e1341 324c3a3 0][dict]HiTraceEnd.

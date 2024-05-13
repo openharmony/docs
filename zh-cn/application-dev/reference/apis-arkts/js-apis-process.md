@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import process from '@ohos.process';
+import { process } from '@kit.ArkTS';
 ```
 
 

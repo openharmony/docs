@@ -2945,6 +2945,30 @@
 
 **起始版本**：12
 
+### ohos.permission.INSTALL_CLONE_BUNDLE
+
+允许应用安装应用分身。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.UNINSTALL_CLONE_BUNDLE
+
+允许应用卸载应用分身。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。

@@ -2,10 +2,14 @@
 
 - ArkTS API
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
+  <!--Del-->
   - [@ohos.multimedia.media (媒体服务)(系统接口)](js-apis-media-sys.md)
+  <!--DelEnd-->
   - multimedia
     - [SoundPool (音频池)](js-apis-inner-multimedia-soundPool.md)
+    <!--Del-->
     - [SoundPool (音频池)(系统接口)](js-apis-inner-multimedia-soundPool-sys.md)
+    <!--DelEnd-->
 - C API
   - 模块
     - [AVPlayer](_a_v_player.md)

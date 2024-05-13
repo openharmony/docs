@@ -19,7 +19,7 @@ PlainArray和[LightWeightMap](js-apis-lightweightmap.md)都是用来存储键值
 ## 导入模块
 
 ```ts
-import PlainArray from '@ohos.util.PlainArray';  
+import { PlainArray } from '@kit.ArkTS';  
 ```
 
 
