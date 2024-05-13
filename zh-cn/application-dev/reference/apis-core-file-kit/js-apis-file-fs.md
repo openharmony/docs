@@ -150,7 +150,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode   | [AccessModeType](#accessmodetype12) | 是   | 文件校验的权限。                                   |
+| mode   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
 
 **返回值：**
 
@@ -232,7 +232,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode   | [AccessModeType](#accessmodetype12) | 是   | 文件校验的权限。                                   |
+| mode   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
 
 **返回值：**
 
@@ -4988,7 +4988,7 @@ open接口flags参数常量。文件打开标签。
 
 ## AccessModeType<sup>12+</sup>
 
-枚举，表示该文件校验的权限。
+枚举，表示需要校验的具体权限，若不填，默认校验文件是否存在。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
