@@ -22,7 +22,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 
 1.<!--Del-->SmartPerf-Device、<!--DelEnd-->SmartPerf-Daemon在API 9版本开始预置使用。
 
-2.<!--DelE-->SmartPerf-Device需在有屏幕设备使用，<!--DelEnd-->SmartPerf-Daemon执行需连接硬件设备。
+2.<!--Del-->SmartPerf-Device需在有屏幕设备使用，<!--DelEnd-->SmartPerf-Daemon执行需连接硬件设备。
 
 3.SmartPerf-Daemon执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
 
