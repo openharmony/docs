@@ -3595,9 +3595,9 @@ avRecorder.off('audioCapturerChange');
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。                                   |
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
-| rotation        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。从12版本开始废弃，建议使用 [AVMetadata](#avmetadata11).videoOrientation。同时设置时会采用[AVMetadata](#avmetadata11).videoOrientation。      |
-| location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。从12版本开始废弃，建议使用 [AVMetadata](#avmetadata11).location。同时设置会采用[AVMetadata](#avmetadata11).location。 |
-| metadata        | [AVMetadata](#avmetadata11)              | 否   | 设置元数据信息。详情见 [AVMetadata](#avmetadata11)。                  |
+| rotation<sup>(deprecated)</sup>        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。<br>从API version 6开始支持，从API version 12开始废弃。建议使用[AVMetadata](#avmetadata11).videoOrientation替代。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).videoOrientation。     |
+| location<sup>(deprecated)</sup>        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。<br>从API version 6开始支持，从API version 12开始废弃。建议使用 [AVMetadata](#avmetadata11).location。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).location。 |
+| metadata<sup>12+</sup>        | [AVMetadata](#avmetadata11)              | 否   | 设置元数据信息。详情见 [AVMetadata](#avmetadata11)。                  |
 
 ## AVRecorderProfile<sup>9+</sup>
 
@@ -3955,8 +3955,8 @@ avMetadataExtractor.release().then(() => {
 | videoHeight | string | 否   | 视频的高度，单位为像素。当前版本为只读参数。 |
 | videoWidth | string | 否   | 视频的宽度，单位为像素。当前版本为只读参数。 |
 | videoOrientation | string | 否   | 视频的旋转方向，单位为度（°）。|
-| location | [Location](#location) | 否 | 视频的地理位置信息。 |
-| customInfo | Record<string, string> | 否 | 从moov.meta.list 获取的自定义参数键值映射。|
+| location<sup>12+</sup> | [Location](#location) | 否 | 视频的地理位置信息。 |
+| customInfo<sup>12+</sup> | Record<string, string> | 否 | 从moov.meta.list 获取的自定义参数键值映射。|
 
 ## media.createAudioPlayer<sup>(deprecated)</sup>
 
