@@ -5,8 +5,10 @@
     - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
     - [@ohos.account.distributedAccount (分布式帐号管理)](js-apis-distributed-account.md)
     - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
+    <!--Del-->
     - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
     - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
+    <!--DelEnd-->
   - 设备管理
     - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
     - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
@@ -15,6 +17,7 @@
     - [@ohos.thermal (热管理)](js-apis-thermal.md)
     - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)       
     - [@ohos.usbManager (USB管理)](js-apis-usbManager.md)
+    <!--Del-->
     - [@ohos.batteryInfo (电量信息)(系统接口)](js-apis-battery-info-sys.md)
     - [@ohos.batteryStatistics (耗电统计)(系统接口)](js-apis-batteryStatistics-sys.md)
     - [@ohos.brightness (屏幕亮度)(系统接口)](js-apis-brightness-sys.md)
@@ -26,20 +29,25 @@
     - [@ohos.screenLock (锁屏管理)(系统接口)](js-apis-screen-lock-sys.md)
     - [@ohos.usbManager (USB管理)(系统接口)](js-apis-usbManager-sys.md)
     - [@ohos.update (升级)(系统接口)](js-apis-update-sys.md)
+    <!--DelEnd-->
   - 数据文件处理
     - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
     - [@ohos.print (打印)](js-apis-print.md)
     - [@ohos.request (上传下载)](js-apis-request.md)
     - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
+    <!--Del-->
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)
     - [@ohos.print (打印)(系统接口)](js-apis-print-sys.md)
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
+    <!--DelEnd-->
   - 进程线程通信
     - [@ohos.commonEventManager (公共事件模块)](js-apis-commonEventManager.md)
     - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
+    <!--Del-->
     - [@ohos.commonEventManager (公共事件模块)(系统接口)](js-apis-commonEventManager-sys.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)(系统接口)](js-apis-application-staticSubscriberExtensionAbility-sys.md)
     - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)(系统接口)](js-apis-application-StaticSubscriberExtensionContext-sys.md)
+    <!--DelEnd-->
     - commonEvent
       - [CommonEventData](js-apis-inner-commonEvent-commonEventData.md)
       - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
@@ -65,7 +73,9 @@
       - [帐号子系统公共事件定义](common_event/commonEvent-account.md)
       - [语言子系统公共事件定义](common_event/commonEvent-locale.md)
       - [Account Kit公共事件定义](common_event/commonEvent-accountkit.md)
+      <!--Del-->
       - [系统公共事件定义 (系统接口)](common_event/commonEventManager-definitions-sys.md)
+      <!--DelEnd-->
   - 其他
     - [@ohos.base (公共回调信息)](js-apis-base.md)
     - [@ohos.settings (设置数据项名称)](js-apis-settings.md)
