@@ -164,7 +164,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | contentBuilder | () => void | 是 | 弹出框内容。 |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框标题。 |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
-| contentAreaPadding<sup>12+</sup> | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
+| contentAreaPadding | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
 | buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
 
 

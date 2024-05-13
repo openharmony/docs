@@ -357,10 +357,6 @@ enterKeyType(value: EnterKeyType)
 | ------ | ------------------------------------------------ | ---- | ---------------------------------------------------- |
 | value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 输入法回车键类型。<br/>默认值：EnterKeyType.NEW_LINE |
 
->  **说明：**
->
->  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }  <br>从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
-
 ### lineHeight<sup>12+</sup>
 
 lineHeight(value: number | string | Resource)
@@ -500,10 +496,6 @@ textOverflow(value: TextOverflow)
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-overflow在非内联模式下建议配合maxLines使用，否则设置为Ellipsis时，变为单行Ellipsis效果。
-
-overflow在内联模式下设置为TextOverflow.Ellipsis时，如果设置maxLines，效果仅为单行Ellipsis。
-
 **卡片能力：** 该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -605,6 +597,12 @@ lineBreakStrategy(value: LineBreakStrategy)
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
+
+>  **说明：**
+>
+>  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> }
+>
+>  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ## 事件
 
@@ -844,6 +842,8 @@ getCaretOffset(): CaretOffset
 
 返回当前光标所在位置信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                      | 说明               |
@@ -905,19 +905,9 @@ getCaretOffset(): CaretOffset
 
 setTextSelection选中文字时的配置。
 
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| HIDE   | 始终不弹出菜单。         |
-| SHOW  | 始终弹出菜单。           |
+| 名称       | 类型                                            | 必填 | 说明             |
+| ---------- | ----------------------------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
 
 ## KeyboardOptions<sup>12+</sup>
 

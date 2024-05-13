@@ -699,6 +699,9 @@ getItemRect(index: number): RectResult
 | PARALLEL  | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。|
 
 ## EdgeEffectOptions<sup>11+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名   | 类型  | 必填 | 描述              |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | 是 | 组件内容大小小于组件自身时，设置是否开启滑动效果|

@@ -50,6 +50,8 @@ position(value: Position | Edges | LocalizedEdges)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -65,6 +67,8 @@ markAnchor(value: Position | LocalizedPosition)
 设置子元素在位置定位时的锚点。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -120,7 +124,7 @@ alignRules(value: AlignRuleOption)
 | top    | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置顶部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | bottom | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置底部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置纵向居中对齐方式的参数。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                 |
-| bias   | [Bias](#bias对象说明) | 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。|
+| bias   | [Bias](#bias对象说明) | 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ## Bias对象说明
 

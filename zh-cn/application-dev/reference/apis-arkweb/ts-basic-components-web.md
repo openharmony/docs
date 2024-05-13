@@ -306,9 +306,9 @@ imageAccess(imageAccess: boolean)
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebviewController | WebController})
+    controller: WebviewController | WebController, asyncMethodList?: Array\<string\>})
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。同一方法在同步与异步列表中重复注册，将默认异步调用。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
@@ -316,8 +316,9 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
-| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
+| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | []   | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 
 **示例：**
 
@@ -334,6 +335,10 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
       console.log("data2:" + data2)
       console.log("data3:" + data3)
       return "AceString"
+    }
+
+    asyncTest(data: string): void {
+      console.log("async data:" + data)
     }
 
     toString(): void {
@@ -354,6 +359,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
             object: this.testObj,
             name: "objName",
             methodList: ["test", "toString"],
+            asyncMethodList: ["asyncTest"],
             controller: this.controller,
         })
       }
@@ -396,13 +402,17 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+设置Web过滚动模式，默认关闭。过滚动模式开启后，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+
+> **说明：**
+>
+> 从API version 12开始默认改为开启。
 
 **参数：**
 
 | 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER，从API version 12开始：OverScrollMode.ALWAYS | 设置Web的过滚动模式为关闭或开启。 |
 
 **示例：**
 

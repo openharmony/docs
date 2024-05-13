@@ -10,7 +10,6 @@
 
 ```ts
 import networkSecurity from '@ohos.net.networkSecurity';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## 完整实例
@@ -205,7 +204,7 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Verification Result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Verification Error:', error);
   });
 

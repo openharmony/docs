@@ -9,6 +9,6 @@
   - [@ohos.inputMethod (Input Method Framework)](js-apis-inputmethod.md)
   - [@ohos.inputMethodEngine (Input Method Service)](js-apis-inputmethodengine.md)
   - [@ohos.inputMethodList (Input Method List)](js-apis-inputmethodlist.md)
-  - Error Codes
-    - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
+- Error Codes
+  - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
   

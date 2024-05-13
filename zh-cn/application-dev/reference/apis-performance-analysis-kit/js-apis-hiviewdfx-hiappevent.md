@@ -19,6 +19,8 @@ addProcessor(processor: Processor): number
 
 开发者可添加数据处理者，该数据处理者用于提供事件上云功能，数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。
 
+Processor的配置信息需要由数据处理者提供，目前设备内暂未预置可供交互的数据处理者，因此当前事件上云功能不可用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
@@ -265,6 +267,8 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 
 事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持崩溃和卡死事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **参数：**
@@ -309,6 +313,8 @@ hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
 ## ParamType<sup>12+</sup>
 
 事件自定义参数值的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 

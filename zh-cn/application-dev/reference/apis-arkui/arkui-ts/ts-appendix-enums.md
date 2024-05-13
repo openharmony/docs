@@ -55,6 +55,8 @@
 ## OutlineStyle<sup>11+</sup>
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
@@ -601,7 +603,7 @@
 | None        | 不支持复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | InApp       | 支持应用内复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | LocalDevice | 支持设备内复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。 |
+| CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## HitTestMode<sup>9+</sup>
 
@@ -628,11 +630,11 @@
 | BACKGROUND_THICK      | 远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | NONE<sup>10+</sup> | 关闭模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
-| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
-| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
-| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
-| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。 |
-| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。 |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## ThemeColorMode<sup>10+</sup>
 
@@ -696,6 +698,8 @@
 
 ## FoldStatus<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称                      | 描述         |
 | ----------------------  | ---------- |
 | FOLD_STATUS_UNKNOWN     | 表示设备当前折叠状态未知。 |
@@ -714,6 +718,8 @@
 
 ## MenuPreviewMode<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | NONE  | 不显示预览内容。                       |
@@ -728,6 +734,8 @@ Nullable\<T> {
 }
 
 开发者在使用该类型时候，该类型的对象可以是自定义类型，也可以是undefined。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
@@ -776,6 +784,8 @@ Nullable\<T> {
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称       | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
 | REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
@@ -783,6 +793,9 @@ Nullable\<T> {
 
 ## BlurOptions<sup>11+<sup>
 灰阶模糊参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称        |   类型   |   必填 | 说明                        |
 | ----        |  ----   |   ---- | --------------------------  |
 | grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,25]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
@@ -795,6 +808,9 @@ Nullable\<T> {
 
 ## BackgroundEffectOptions<sup>11+<sup>
 背景效果参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。     |
@@ -807,6 +823,8 @@ Nullable\<T> {
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | START  | 省略行首内容。|
@@ -814,6 +832,8 @@ Nullable\<T> {
 | END | 省略行末内容。|
 
 ## ArrowPointPosition<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称            | 描述                                     |
 | ------------- | -------------------------------------- |
@@ -953,3 +973,20 @@ Nullable\<T> {
 | DOTTED    | 点线。  |
 | DASHED        | 虚线。 |
 | WAVY        | 波浪线。 |
+
+## FlexSpaceOptions<sup>12+</sup>
+
+| 名称          | 类型        |  只读     | 必填      | 说明      |
+| ----------- | --------- | ----------- | --------- |----------- |
+| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。|
+| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。|
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
+| HIDE    | 1    | 始终不弹出菜单。                   |
+| SHOW    | 2    | 始终弹出菜单。                     |

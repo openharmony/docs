@@ -1035,7 +1035,7 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 
 **描述**
 
-将指定长度的数据块写入OH_AVFormat。
+将指定长度的数据块写入OH_AVFormat。该接口仅能设置buffer类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1063,7 +1063,7 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **描述**
 
-将double数据写入OH_AVFormat。
+将double数据写入OH_AVFormat。该接口仅能设置double类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1090,7 +1090,7 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **描述**
 
-将float数据写入OH_AVFormat。
+将float数据写入OH_AVFormat。该接口仅能设置float类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1117,7 +1117,7 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **描述**
 
-将int数据写入OH_AVFormat。
+将int数据写入OH_AVFormat。该接口仅能设置int类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1144,7 +1144,7 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **描述**
 
-将long数据写入OH_AVFormat。
+将long数据写入OH_AVFormat。该接口仅能设置long类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1171,7 +1171,7 @@ bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **描述**
 
-将string数据写入OH_AVFormat。
+将string数据写入OH_AVFormat。该接口仅能设置string类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 

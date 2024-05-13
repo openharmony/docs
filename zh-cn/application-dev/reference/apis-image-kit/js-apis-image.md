@@ -252,7 +252,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 
 **示例：**
 
@@ -292,10 +292,7 @@ createPixelMapSync(options: InitializationOptions): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401          | Invalid input parameter|
-|  62980103     | The image data is not supported |
-|  62980246      | Failed to read the pixelMap |
-|  62980248     | Pixelmap not allow modify |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 
 **示例：**
 
@@ -336,8 +333,8 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallbac
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
-|  401          | Invalid input parameter|
 |  62980246      | Failed to read the pixelMap |
 |  62980248     | Pixelmap not allow modify |
 
@@ -358,7 +355,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
     let srcPixelmap = image.createPixelMapSync(color, opts);
     let dstPixelMap = image.createPixelMapSync(opts);
-    image.createPremultiplyPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
         if(error) {
             console.error('Failed to convert pixelmap.');
             return;
@@ -371,7 +368,7 @@ async function Demo() {
 
 ## image.createPremultipliedPixelMap<sup>12+</sup>
 
-createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise<void>
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 将PixelMap数据按照透明度不前乘格式转为前乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
 
@@ -396,7 +393,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401          | Invalid input parameter|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
 |  62980246      | Failed to read the pixelMap |
 |  62980248     | Pixelmap not allow modify |
@@ -418,7 +415,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
     let srcPixelmap = image.createPixelMapSync(color, opts);
     let dstPixelMap = image.createPixelMapSync(opts);
-    image.createUnPremultiplyPixelMap(srcPixelmap, dstPixelMap).then(() => {
+    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
         console.info('Succeeded in converting pixelmap.');
     }).catch((error: BusinessError) => {
         console.error('Failed to convert pixelmap.');
@@ -448,7 +445,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallb
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401          | Invalid input parameter|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103     | The image data is not supported |
 |  62980246      | Failed to read the pixelMap |
 |  62980248     | Pixelmap not allow modify |
@@ -470,7 +467,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
     let srcPixelmap = image.createPixelMapSync(color, opts);
     let dstPixelMap = image.createPixelMapSync(opts);
-    image.createUnPremultiplyPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
         if(error) {
             console.error('Failed to convert pixelmap.');
             return;
@@ -508,7 +505,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 |  62980103    | The image data is not supported |
 |  60980246    | Failed to read the PixelMap |
 |  60980248    | PixelMap does not allow modification |
@@ -530,7 +527,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
     let srcPixelmap = image.createPixelMapSync(color, opts);
     let dstPixelMap = image.createPixelMapSync(opts);
-    image.createPremultiplyPixelMap(srcPixelmap, dstPixelMap).then(() => {
+    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
         console.info('Succeeded in converting pixelmap.');
     }).catch((error: BusinessError) => {
         console.error('Failed to convert pixelmap.');
@@ -553,7 +550,7 @@ async function Demo() {
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -561,6 +558,8 @@ async function Demo() {
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -601,6 +600,8 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -638,6 +639,8 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 以同步方法读取PixelMap到Buffer里。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -654,7 +657,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -675,6 +678,8 @@ async function Demo() {
 readPixels(area: PositionArea): Promise\<void>
 
 读取区域内的图片数据，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -720,6 +725,8 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读取区域内的图片数据，使用callback形式返回读取结果。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -762,6 +769,8 @@ readPixelsSync(area: PositionArea): void
 
 读取区域内的图片数据并同步返回结果。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -771,6 +780,15 @@ readPixelsSync(area: PositionArea): void
 | 参数名 | 类型                           | 必填 | 说明                     |
 | ------ | ------------------------------ | ---- | ------------------------ |
 | area   | [PositionArea](#positionarea7) | 是   | 区域大小，根据区域读取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
 
 **示例：**
 
@@ -795,6 +813,8 @@ async function Demo() {
 writePixels(area: PositionArea): Promise\<void>
 
 将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -844,6 +864,8 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 将PixelMap写入指定区域内，使用callback形式返回写入结果。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -889,6 +911,8 @@ writePixelsSync(area: PositionArea): void
 
 以同步方法将PixelMap写入指定区域内。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -905,7 +929,7 @@ writePixelsSync(area: PositionArea): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -935,6 +959,8 @@ async function Demo() {
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -979,6 +1005,8 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -1020,6 +1048,8 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -1036,7 +1066,7 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1062,6 +1092,8 @@ async function Demo() {
 getImageInfo(): Promise\<ImageInfo>
 
 获取图像像素信息，使用Promise形式返回获取的图像像素信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1098,6 +1130,8 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图像像素信息，使用callback形式返回获取的图像像素信息。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -1133,6 +1167,8 @@ async function Demo() {
 getImageInfoSync(): ImageInfo
 
 以同步方法获取图像像素信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -1171,6 +1207,8 @@ getBytesNumberPerRow(): number
 
 获取图像像素每行字节数。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -1192,6 +1230,8 @@ let rowCount: number = pixelMap.getBytesNumberPerRow();
 getPixelBytesNumber(): number
 
 获取图像像素的总字节数。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1215,6 +1255,8 @@ getDensity():number
 
 获取当前图像像素的密度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -1236,6 +1278,8 @@ let getDensity: number = pixelMap.getDensity();
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
 通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1273,6 +1317,8 @@ async function Demo() {
 opacity(rate: number): Promise\<void>
 
 通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1329,7 +1375,7 @@ opacitySync(rate: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1350,6 +1396,8 @@ async function Demo() {
 createAlphaPixelmap(): Promise\<PixelMap>
 
 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1382,6 +1430,8 @@ async function Demo() {
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1434,7 +1484,7 @@ createAlphaPixelmapSync(): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1453,6 +1503,8 @@ async function Demo() {
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 根据输入的宽高对图片进行缩放，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1492,6 +1544,8 @@ async function Demo() {
 scale(x: number, y: number): Promise\<void>
 
 根据输入的宽高对图片进行缩放，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1551,7 +1605,7 @@ scaleSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1573,6 +1627,8 @@ async function Demo() {
 translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 根据输入的坐标对图片进行位置变换，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1612,6 +1668,8 @@ async function Demo() {
 translate(x: number, y: number): Promise\<void>
 
 根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1671,7 +1729,7 @@ translateSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1693,6 +1751,8 @@ async function Demo() {
 rotate(angle: number, callback: AsyncCallback\<void>): void
 
 根据输入的角度对图片进行旋转，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1730,6 +1790,8 @@ async function Demo() {
 rotate(angle: number): Promise\<void>
 
 根据输入的角度对图片进行旋转，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1786,7 +1848,7 @@ rotateSync(angle: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1807,6 +1869,8 @@ async function Demo() {
 flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): void
 
 根据输入的条件对图片进行翻转，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1846,6 +1910,8 @@ async function Demo() {
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 根据输入的条件对图片进行翻转，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1905,7 +1971,7 @@ flipSync(horizontal: boolean, vertical: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1927,6 +1993,8 @@ async function Demo() {
 crop(region: Region, callback: AsyncCallback\<void>): void
 
 根据输入的尺寸对图片进行裁剪，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1964,6 +2032,8 @@ async function Demo() {
 crop(region: Region): Promise\<void>
 
 根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -2020,7 +2090,7 @@ cropSync(region: Region): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -2127,7 +2197,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401 | The parameter check failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -2180,7 +2250,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401 | The parameter check failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -2363,7 +2433,6 @@ async function Demo() {
      let data : rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
 
-
     // 反序列化 rpc获取到data
      let ret : MySequence = new MySequence(pixelMap);
      data.readParcelable(ret);
@@ -2376,6 +2445,8 @@ async function Demo() {
 release():Promise\<void>
 
 释放PixelMap对象，使用Promise形式返回释放结果。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -2408,6 +2479,8 @@ async function Demo() {
 release(callback: AsyncCallback\<void>): void
 
 释放PixelMap对象，使用callback形式返回释放结果。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -2444,6 +2517,7 @@ createImageSource(uri: string): ImageSource
 
 通过传入的uri创建图片源实例。
 
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -2473,6 +2547,8 @@ const imageSourceApi: image.ImageSource = image.createImageSource(path);
 createImageSource(uri: string, options: SourceOptions): ImageSource
 
 通过传入的uri创建图片源实例。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -2532,6 +2608,8 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 
 通过传入文件描述符来创建图片源实例。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -2562,6 +2640,8 @@ createImageSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区创建图片源实例。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -2591,6 +2671,8 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
 通过缓冲区创建图片源实例。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -2729,6 +2811,8 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 获取指定序号的图片信息，使用callback形式返回图片信息。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -2760,6 +2844,8 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图片信息，使用callback形式返回图片信息。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -2789,6 +2875,8 @@ imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => 
 getImageInfo(index?: number): Promise\<ImageInfo>
 
 获取图片信息，使用Promise形式返回图片信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -3332,6 +3420,8 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 通过图片解码参数创建PixelMap对象。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -3366,6 +3456,8 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 通过默认参数创建PixelMap对象，使用callback形式返回结果。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -3395,6 +3487,8 @@ imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => 
 createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过图片解码参数创建PixelMap对象。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -5102,6 +5196,8 @@ img.release().then(() => {
 
 表示图片指定区域内的数据。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -5121,16 +5217,18 @@ img.release().then(() => {
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
-| size | [Size](#size) | 是   | 是   | 图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。  |
+| size<sup>6+</sup> | [Size](#size) | 是   | 是   | 图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式（MIME type）。  |
 
 ## Size
 
 表示图片尺寸。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -5144,6 +5242,8 @@ img.release().then(() => {
 ## PixelMapFormat<sup>7+</sup>
 
 枚举，图片像素格式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -5165,6 +5265,8 @@ img.release().then(() => {
 
 枚举，图像的透明度类型。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -5180,6 +5282,8 @@ img.release().then(() => {
 
 枚举，图像的缩放模式。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -5192,6 +5296,8 @@ img.release().then(() => {
 ## SourceOptions<sup>9+</sup>
 
 ImageSource的初始化选项。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -5212,12 +5318,12 @@ PixelMap的初始化选项。
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明           |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-| editable                 | boolean                            | 是   | 是   | 是否可编辑。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| editable                 | boolean                            | 是   | 是   | 是否可编辑。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 传入的原始数据像素格式。|
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。     |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 
 ## DecodingOptions<sup>7+</sup>
 
@@ -5227,19 +5333,21 @@ PixelMap的初始化选项。
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| rotate             | number                             | 是   | 是   | 旋转角度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
-| desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
-| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。       |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| index              | number                             | 是   | 是   | 解码图片序号。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
-| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| rotate             | number                             | 是   | 是   | 旋转角度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| index              | number                             | 是   | 是   | 解码图片序号。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
 
 ## Region<sup>7+</sup>
 
 表示区域信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 

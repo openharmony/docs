@@ -11,8 +11,8 @@
 1. 生成密钥，指定指纹类型的访问控制及相关属性，指定HUKS_TAG_KEY_AUTH_PURPOSE值。
    
    ```ts
-   import huks from '@ohos.security.huks';
-   import { BusinessError } from '@ohos.base';
+   import { huks } from "@kit.UniversalKeystoreKit";
+   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -113,8 +113,8 @@
 2. 使用密钥，加密时不需要用户身份认证访问控制。
    
    ```ts
-   import huks from '@ohos.security.huks';
-   import { BusinessError } from '@ohos.base';
+   import { huks } from "@kit.UniversalKeystoreKit";
+   import { BusinessError} from "@kit.BasicServicesKit"
    class HuksProperties {
        tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
        value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode 
@@ -253,9 +253,9 @@
 3. 使用密钥，解密时需要进行用户身份认证访问控制。
    
    ```ts
-   import huks from '@ohos.security.huks';
+   import { huks } from "@kit.UniversalKeystoreKit";
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */

@@ -350,7 +350,7 @@ struct Index {
         .onClick(() => {
           let logMessage: string = this.message;
           for (let i = 0; i < 10; i++) {
-            hilog.info(0x0000, 'TAG', '%{public}s', this.message);
+            hilog.info(0x0000, 'TAG', '%{public}s', logMessage);
           }
         })
         .width('90%')
