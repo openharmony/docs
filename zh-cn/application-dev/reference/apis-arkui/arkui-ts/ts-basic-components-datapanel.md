@@ -238,7 +238,7 @@ struct DataPanelExample {
         }
       }.margin({ bottom: 59 })
 
-      DataPanel({ values: this.valueArr, max: 100, type: DataPanelType.Line }).width(300).height(10)
+      DataPanel({ values: this.valueArr, max: 100, type: DataPanelType.Line }).width(300).height(20)
     }.width('100%').margin({ top: 5 })
   }
 }
