@@ -2035,73 +2035,146 @@ export struct PageTwo {
 ### 示例5
 
 ```ts
-// 该示例主要演示设置Navigation的标题栏和工具栏的背景颜色和背景模糊效果。
-@Entry
-@Component
-struct NavigationExample {
-  @State pathStack: NavPathStack = new NavPathStack();
-  @State switchColor: boolean = false;
-  @State switchBlur: boolean = false;
+// 该示例主要演示设置Navigation主页的标题栏、工具栏和
+// NavDestination页面的标题栏的背景颜色和背景模糊效果。
+let COLOR1: string = "#80004AAF";
+let COLOR2: string = "#802787D9";
+let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
+let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
 
-  @Builder
-  BackgroundBuilder() {
+@Component
+struct BackComponent {
+  build() {
     Row() {
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Red)
+      .backgroundColor("#3D9DB4")
+      .layoutWeight(9)
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Green)
+      .backgroundColor("17A98D")
+      .layoutWeight(9)
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Blue)
+      .backgroundColor("FFC000")
+      .layoutWeight(9)
     }
     .height('100%')
+    .width('100%')
   }
+}
+
+@Component
+struct ColorAndBlur {
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
 
   build() {
-    Navigation(this.pathStack) {
-      Column() {
-        Button('switch color', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            console.log(`testTag switchColor`)
-            this.switchColor = !this.switchColor;
-          })
-        Button('switch blur', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            console.log(`testTag switchBlur`)
-            this.switchBlur = !this.switchBlur;
-          })
-      }
-      .width('100%')
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('100%')
+      }.width('100%')
       .height('100%')
     }
-    // 使用定制化的背景能够凸显背景模糊的效果
-    .background(this.BackgroundBuilder)
     .width('100%')
     .height('100%')
     // 开发者可以设置标题栏的背景颜色和背景模糊效果
+    .title("switch titlebar color and blur", {
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK
+    })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
+
+  @Builder
+  PageBuilder(name: string) {
+    ColorAndBlur()
+  }
+
+  build() {
+    Navigation(this.stack) {
+      Stack({alignContent: Alignment.Center}) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("push page")
+              .onClick(() => {
+                this.stack.pushPath({name: "page"})
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('80%')
+      }.width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .navDestination(this.PageBuilder)
+    // 开发者可以设置标题栏的背景颜色和背景模糊效果
     .title("NavTitle", {
-      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
-      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK
     })
     // 开发者可以设置工具栏的背景颜色和背景模糊效果
     .toolbarConfiguration([
-      {value: 'a'},
-      {value: 'b'},
-      {value: 'c'},
+      {value: "a"},
+      {value: "b"},
+      {value: "c"}
     ], {
-      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
-      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2
     })
   }
 }
