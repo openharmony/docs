@@ -656,7 +656,7 @@ isAttached(): boolean
 
 getInspectorInfo(): Object
 
-获取节点的结构信息，该信息和[DevEco Studio](../../quick-start/deveco-studio-user-guide-for-openharmony.md)内置ArkUI Inspector工具里面的一致。
+获取节点的结构信息，该信息和DevEco Studio内置ArkUI Inspector工具里面的一致。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
