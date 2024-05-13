@@ -49,7 +49,7 @@ TextInput(value?: TextInputOptions)
 | caretStyle<sup>10+</sup>              | [CaretStyle](#caretstyle10对象说明)                          | 设置光标风格。                                               |
 | caretPosition<sup>10+</sup>           | number                                                       | 设置光标位置。                                               |
 | showUnit<sup>10+</sup>                | [CustomBuilder](ts-types.md#custombuilder8)                  | 设置控件作为文本框单位。<br/>默认无单位。<br/>需搭配showUnderline使用，当showUnderline为true时生效。 |
-| showError<sup>10+</sup>               | string&nbsp;\|&nbsp;undefined                                | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>当参数类型为string并且输入内容不符合定义规范时，提示错误文本。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2) |
+| showError<sup>10+</sup>               | string&nbsp;\|&nbsp;undefined                                | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>当参数类型为string并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2) |
 | showUnderline<sup>10+</sup>           | boolean                                                      | 设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp（下划线只支持InputType.Normal类型）。<br/>默认值：false |
 | passwordIcon<sup>10+</sup>            | [PasswordIcon](#passwordicon10对象说明)                      | 密码输入模式时，设置输入框末尾的图标。<br/>默认为系统提供的密码图标。 |
 | enableKeyboardOnFocus<sup>10+</sup>   | boolean                                                      | TextInput通过点击以外的方式获焦时，是否绑定输入法。<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
@@ -61,7 +61,7 @@ TextInput(value?: TextInputOptions)
 | passwordRules<sup>11+<sup>            | string                                                       | 定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。 |
 | cancelButton<sup>11+</sup>            | {<br/>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />}<br />不支持内联模式。 |
 | selectAll<sup>11+</sup>               | boolean                                                      | 初始状态，是否全选文本。<br />默认值：false<br />不支持内联模式。 |
-| showCounter<sup>11+</sup>             | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。 |
+| showCounter<sup>11+</sup>             | value: boolean, options?: [InputCounterOptions](#inputcounteroptions11对象说明) | 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。 |
 
 >  **说明：**    
 >  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
@@ -101,14 +101,14 @@ TextInput(value?: TextInputOptions)
 | 名称                                 | 描述                                       |
 | ---------------------------------- | ---------------------------------------- |
 | Normal                             | 基本输入模式，无特殊限制。                            |
-| Password                           | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
-| Email                              | 邮箱地址输入模式。支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。 |
+| Password                           | 密码输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
+| Email                              | 邮箱地址输入模式。<br/>支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。 |
 | Number                             | 纯数字输入模式。                                 |
 | PhoneNumber<sup>9+</sup>           | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。      |
-| USER_NAME<sup>11+<sup>             | 用户名输入模式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。                |
-| NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
-| NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
-| NUMBER_DECIMAL<sup>11+</sup>       | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。         |
+| USER_NAME<sup>11+<sup>             | 用户名输入模式。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。                |
+| NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。<br/>在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
+| NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。<br/>密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
+| NUMBER_DECIMAL<sup>11+</sup>       | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。         |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
