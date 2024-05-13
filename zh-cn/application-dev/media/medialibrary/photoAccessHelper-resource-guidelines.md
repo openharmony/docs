@@ -135,6 +135,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ## 创建媒体资源
 
 创建[MediaAssetChangeRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#mediaassetchangerequest11)媒体资产变更对象并写入媒体资源内容，然后调用[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口提交创建资产的变更请求。
@@ -179,6 +180,7 @@ async function example() {
 ```
 
 应用还可以调用MediaAssetChangeRequest.addResource接口指定媒体资源内容的数据来源，具体包括[应用沙箱](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11)，[ArrayBuffer](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1)和[PhotoProxy](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#addresource11)。
+<!--DelEnd-->
 
 ## 使用安全控件创建媒体资源
 
