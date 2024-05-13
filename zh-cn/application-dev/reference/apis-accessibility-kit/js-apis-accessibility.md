@@ -58,6 +58,7 @@ import accessibility from '@ohos.accessibility';
 | description                    | string                                   | 是    | 否    | 辅助应用描述。          |
 | eventTypes                     | Array&lt;[EventType](#eventtype)&gt;     | 是    | 否    | 辅助应用关注的无障碍事件列表。  |
 | needHide<sup>12+</sup>                     | boolean     | 是    | 否    | 辅助应用是否在已安装的扩展服务列表中被隐藏，true表示隐藏服务，false表示显示服务。  |
+| label<sup>12+</sup>                     | string     | 是    | 否    | 扩展应用在扩展服务列表中的名称。  |
 
 ## Action
 
@@ -82,7 +83,9 @@ import accessibility from '@ohos.accessibility';
 | select                  | 表示选择操作。当前版本暂不支持。   |
 | setText                 | 表示设置文本操作，需要配置参数setText。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd。   |
+| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
+| common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
+| setCursorPosition<sup>12+</sup>   | 表示设置光标位置操作，需配置参数offset。   |
 
 ## Capability
 
@@ -322,8 +325,9 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | currentIndex     | number                                | 否   | 当前条目序号。当前版本暂不支持。      |
 | endIndex         | number                                | 否   | 画面显示条目的结束序号。当前版本暂不支持。 |
 | itemCount        | number                                | 否   | 条目总数。当前版本暂不支持。        |
-| elementId<sup>12+</sup>        | number                                | 否   | 主动聚焦的组件ID。        |
+| elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
+| customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
 
 ### constructor
 
@@ -1154,6 +1158,42 @@ let eventInfo: accessibility.EventInfo = ({
   type: 'click',
   bundleName: 'com.example.MyApplication',
   triggerAction: 'click',
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
+
+
+**主动聚焦示例：**
+
+```ts
+@Entry
+@Component
+struct Index {
+
+  build() {
+    Column() {
+      // 待聚焦组件添加id属性，id唯一性由使用者保证
+      Button('待聚焦组件').id('click')
+    }
+  }
+}
+```
+```ts
+import accessibility from '@ohos.accessibility';
+import { BusinessError } from '@ohos.base';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'requestFocusForAccessibility',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'common',
+  customId: 'click' // 对应待聚焦组件id属性值
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
