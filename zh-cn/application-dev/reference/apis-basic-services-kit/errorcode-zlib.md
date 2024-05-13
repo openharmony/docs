@@ -65,11 +65,11 @@ The input source file is not ZIP format or damaged.
 1. 检查源文件压缩格式是否为ZIP格式。
 2. 检查源文件是否完整，如果是网络下载的，需要确保文件下载完成后再调用decompress接口。
 
-## 17800002 传入的文件或目录错误
+## 17800002 传入的文件或访问模式错误
 
 **错误信息**
 
-No such file or directory.
+No such file or access mode error.
 
 **错误描述**
 
@@ -83,6 +83,7 @@ No such file or directory.
 **处理步骤**
 
 1. 检查gz文件路径或文件描述符是否正确，如果是新建gz文件的操作，需要确保文件访问模式为压缩模式(w或wb等)。
+2. 检查文件访问模式，是否为"w"、"wb"、"r"、"rb"、"a"、"ab"等。
 
 ## 17800004 压缩流或解压流错误
 

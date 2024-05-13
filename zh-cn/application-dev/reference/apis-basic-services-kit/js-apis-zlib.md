@@ -4008,7 +4008,7 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800002 | No such file or directory.                                   |
+| 17800002 | No such file or access mode error.                           |
 
 **示例：**
 
@@ -4148,7 +4148,7 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800002 | No such file or directory.                                   |
+| 17800002 | No such file or No such file or access mode error.           |
 
 **示例：**
 
