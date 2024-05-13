@@ -9,6 +9,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 ### 权限申请
 
 如果应用创建的AudioHapticPlayer需要触发振动，则需要校验应用是否拥有该权限：`ohos.permission.VIBRATE`。
+
 1. [声明权限](../../security/AccessToken/declare-permissions.md)。
 2. [向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
