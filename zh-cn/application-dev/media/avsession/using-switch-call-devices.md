@@ -7,7 +7,7 @@
 ## 开发步骤
 
 1. 在需要切换设备的通话界面创建AVCastPicker组件。
-     
+
    ```ts
    import AVCastPicker from '@ohos.multimedia.avCastPicker';
 
@@ -23,7 +23,7 @@
    ```
 
 2. 创建voice_call类型的AVSession，AVSession在构造方法中支持不同的类型参数，由AVSessionType定义，voice_call表示通话类型。
-     
+
    ```ts
    import avSession from "@ohos.multimedia.avsession"
 
@@ -80,7 +80,7 @@
    ```
 
 4. 监听当前发声设备切换回调。
-     
+
    ```ts
    let audioManager = audio.getAudioManager(); // 先创建audiomanager
    let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
@@ -91,7 +91,7 @@
    ```
 
 5. 通话结束后，销毁会话。
-     
+
    ```ts
    // 通话结束销毁第一步创建的session
    session.destroy((err) => {

@@ -48,7 +48,7 @@ async function createSession() {
   console.info(`session create done : sessionId : ${session.sessionId}`);
 }
 ```
-
+<!--Del-->
 例如，媒体会话控制方通过AVSessionManager创建媒体会话控制器的示例如下所示：
 
 ```ts
@@ -64,5 +64,6 @@ async function createController() {
   }
 }
 ```
+<!--DelEnd-->
 
 更多关于AVSessionManager的方法，可以参考[API文档](../../reference/apis-avsession-kit/js-apis-avsession.md)。
