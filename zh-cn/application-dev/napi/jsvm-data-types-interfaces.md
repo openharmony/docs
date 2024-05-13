@@ -902,6 +902,16 @@ JS值操作和抽象操作。
 |OH_JSVM_IsDate | 判断一个 JavaScript 对象是否为 Date 类型对象 |
 |OH_JSVM_IsTypedarray | 判断一个 JavaScript 对象是否为 Typedarray 类型对象 |
 |OH_JSVM_IsDataview | 判断一个 JavaScript 对象是否为 Dataview 类型对象 |
+|OH_JSVM_IsUndefined | 此API检查传入的值是否为Undefined。这相当于JS中的`value === undefined`。 |
+|OH_JSVM_IsNull | 此API检查传入的值是否为Null对象。这相当于JS中的`value === null`。 |
+|OH_JSVM_IsNullOrUndefined | 此API检查传入的值是否为Null或Undefined。这相当于JS中的`value == null`。 |
+|OH_JSVM_IsBoolean | 此API检查传入的值是否为Boolean。这相当于JS中的`typeof value === 'boolean'`。 |
+|OH_JSVM_IsNumber | 此API检查传入的值是否为Number。这相当于JS中的`typeof value === 'number'`。 |
+|OH_JSVM_IsString | 此API检查传入的值是否为String。这相当于JS中的`typeof value === 'string'`。 |
+|OH_JSVM_IsSymbol | 此API检查传入的值是否为Symbol。这相当于JS中的`typeof value === 'symbol'`。 |
+|OH_JSVM_IsFunction | 此API检查传入的值是否为Function。这相当于JS中的`typeof value === 'function'`。 |
+|OH_JSVM_IsObject | 此API检查传入的值是否为Object。 |
+|OH_JSVM_IsBigInt | 此API检查传入的值是否为BigInt。这相当于JS中的`typeof value === 'bigint'`。 |
 |OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否严格相等 |
 |OH_JSVM_Equals | 判断两个 JSVM_Value 对象是否宽松相等 |
 |OH_JSVM_DetachArraybuffer | 调用 ArrayBuffer 对象的Detach操作 |
