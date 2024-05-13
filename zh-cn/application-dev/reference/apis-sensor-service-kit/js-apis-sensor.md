@@ -10,7 +10,7 @@ sensor模块提供了获取传感器数据的能力，包括获取传感器属�
 ## 导入模块
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 ```
 ## sensor.on
 
@@ -45,8 +45,8 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
@@ -58,7 +58,7 @@ try {
     sensor.off(sensor.SensorId.ACCELEROMETER);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -92,8 +92,8 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
@@ -108,7 +108,7 @@ try {
     sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -140,8 +140,8 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
@@ -151,7 +151,7 @@ try {
     sensor.off(sensor.SensorId.AMBIENT_LIGHT);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -183,8 +183,8 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
@@ -194,7 +194,7 @@ try {
     sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -226,8 +226,8 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
@@ -237,7 +237,7 @@ try {
     sensor.off(sensor.SensorId.BAROMETER);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -269,8 +269,8 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;, options?: 
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
@@ -282,7 +282,7 @@ try {
     sensor.off(sensor.SensorId.GRAVITY);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -318,8 +318,8 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
@@ -331,7 +331,7 @@ try {
     sensor.off(sensor.SensorId.GYROSCOPE);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -366,8 +366,8 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
@@ -382,7 +382,7 @@ try {
     sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 
@@ -415,8 +415,8 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
@@ -426,7 +426,7 @@ try {
     sensor.off(sensor.SensorId.HALL);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 
@@ -461,8 +461,8 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, optio
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
@@ -472,7 +472,7 @@ try {
     sensor.off(sensor.SensorId.HEART_RATE);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -504,8 +504,8 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
@@ -515,7 +515,7 @@ try {
     sensor.off(sensor.SensorId.HUMIDITY);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -550,8 +550,8 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
@@ -563,7 +563,7 @@ try {
     sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -595,8 +595,8 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
@@ -608,7 +608,7 @@ try {
     sensor.off(sensor.SensorId.MAGNETIC_FIELD);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -640,8 +640,8 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
@@ -656,7 +656,7 @@ try {
     sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -690,8 +690,8 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
@@ -703,7 +703,7 @@ try {
     sensor.off(sensor.SensorId.ORIENTATION);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -737,8 +737,8 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
@@ -748,7 +748,7 @@ try {
     sensor.off(sensor.SensorId.PEDOMETER);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -783,8 +783,8 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
@@ -794,7 +794,7 @@ try {
     sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -826,8 +826,8 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
@@ -837,7 +837,7 @@ try {
     sensor.off(sensor.SensorId.PROXIMITY);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -870,8 +870,8 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
@@ -884,7 +884,7 @@ try {
     sensor.off(sensor.SensorId.ROTATION_VECTOR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -917,8 +917,8 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
@@ -928,7 +928,7 @@ try {
     sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -961,8 +961,8 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
@@ -972,7 +972,7 @@ try {
     sensor.off(sensor.SensorId.WEAR_DETECTION);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1007,8 +1007,8 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
@@ -1017,7 +1017,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1050,8 +1050,8 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
@@ -1063,7 +1063,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1094,15 +1094,15 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
     console.info('Succeeded in invoking once. the ambient light intensity: ' + data.intensity);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1133,15 +1133,15 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
     console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1172,15 +1172,15 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
     console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1211,8 +1211,8 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
@@ -1221,7 +1221,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1254,8 +1254,8 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
@@ -1264,7 +1264,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1297,8 +1297,8 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
@@ -1310,7 +1310,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1341,15 +1341,15 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
     console.info('Succeeded in invoking once. Status: ' + data.status);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1382,15 +1382,15 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1421,15 +1421,15 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
     console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1462,8 +1462,8 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
@@ -1472,7 +1472,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1503,8 +1503,8 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
@@ -1513,7 +1513,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1544,8 +1544,8 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
@@ -1557,7 +1557,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1588,8 +1588,8 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
@@ -1598,7 +1598,7 @@ try {
     console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1631,15 +1631,15 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
     console.info('Succeeded in invoking once. Step count: ' + data.steps);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1672,15 +1672,15 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
     console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1711,15 +1711,15 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
     console.info('Succeeded in invoking once. Distance: ' + data.distance);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1750,8 +1750,8 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
@@ -1761,7 +1761,7 @@ try {
     console.info('Succeeded in invoking once. Scalar quantity: ' + data.w);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1792,15 +1792,15 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
     console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1831,15 +1831,15 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
     console.info('Succeeded in invoking once. Wear status: ' + data.value);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1868,8 +1868,8 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -1887,7 +1887,7 @@ try {
   // 取消SensorId.ACCELEROMETER类型的所有回调
   sensor.off(sensor.SensorId.ACCELEROMETER);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1912,8 +1912,8 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -1931,7 +1931,7 @@ try {
   // 取消注册SensorId.ACCELEROMETER_UNCALIBRATED类型的所有回调
   sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1954,8 +1954,8 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -1973,7 +1973,7 @@ try {
   // 取消注册SensorId.AMBIENT_LIGHT
   sensor.off(sensor.SensorId.AMBIENT_LIGHT);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1996,8 +1996,8 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2015,7 +2015,7 @@ try {
   // 取消注册SensorId.AMBIENT_TEMPERATURE的所有回调
   sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2038,8 +2038,8 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
     console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2057,7 +2057,7 @@ try {
     // 取消注册SensorId.BAROMETER的所有回调
     sensor.off(sensor.SensorId.BAROMETER);
 } catch (error) {
-    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    let e: BusinessError = error as BusinessError;
     console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2080,8 +2080,8 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2099,7 +2099,7 @@ try {
   // 取消注册SensorId.GRAVITY的所有回调
   sensor.off(sensor.SensorId.GRAVITY);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 
@@ -2127,8 +2127,8 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2146,7 +2146,7 @@ try {
   // 取消注册SensorId.GYROSCOPE的所有回调
   sensor.off(sensor.SensorId.GYROSCOPE);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2171,8 +2171,8 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2190,7 +2190,7 @@ try {
   // 取消注册SensorId.GYROSCOPE_UNCALIBRATED的所有回调
   sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2213,8 +2213,8 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2232,7 +2232,7 @@ try {
   // 取消注册SensorId.HALL的所有回调
   sensor.off(sensor.SensorId.HALL);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2257,8 +2257,8 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2276,7 +2276,7 @@ try {
   // 取消注册SensorId.HEART_RATE的所有回调
   sensor.off(sensor.SensorId.HEART_RATE);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2299,8 +2299,8 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2318,7 +2318,7 @@ try {
   // 取消注册SensorId.HUMIDITY的所有回调
   sensor.off(sensor.SensorId.HUMIDITY);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2343,8 +2343,8 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2362,7 +2362,7 @@ try {
   // 取消注册SensorId.LINEAR_ACCELEROMETER的所有回调
   sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2385,8 +2385,8 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2404,7 +2404,7 @@ try {
   // 取消注册SensorId.MAGNETIC_FIELD的所有回调
   sensor.off(sensor.SensorId.MAGNETIC_FIELD);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2427,8 +2427,8 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2446,7 +2446,7 @@ try {
   // 取消注册SensorId.MAGNETIC_FIELD_UNCALIBRATED的所有回调
   sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2471,8 +2471,8 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2490,7 +2490,7 @@ try {
   // 取消注册SensorId.ORIENTATION的所有回调
   sensor.off(sensor.SensorId.ORIENTATION);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2515,8 +2515,8 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2534,7 +2534,7 @@ try {
   // 取消注册SensorId.ORIENTATION的所有回调
   sensor.off(sensor.SensorId.PEDOMETER);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2559,8 +2559,8 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2578,7 +2578,7 @@ try {
   // 取消注册SensorId.PEDOMETER_DETECTION的所有回调
   sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2601,8 +2601,8 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2620,7 +2620,7 @@ try {
   // 取消注册SensorId.PROXIMITY的所有回调
   sensor.off(sensor.SensorId.PROXIMITY);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2643,8 +2643,8 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2662,7 +2662,7 @@ try {
   // 取消注册SensorId.ROTATION_VECTOR的所有回调
   sensor.off(sensor.SensorId.ROTATION_VECTOR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2685,8 +2685,8 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2704,7 +2704,7 @@ try {
   // 取消注册SensorId.SIGNIFICANT_MOTION的所有回调
   sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2727,8 +2727,8 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2746,7 +2746,7 @@ try {
   // 取消注册SensorId.WEAR_DETECTION的所有回调
   sensor.off(sensor.SensorId.WEAR_DETECTION);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2778,12 +2778,12 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000,
-      (err: BusinessError.BusinessError, data: sensor.GeomagneticResponse) => {
+      (err: BusinessError, data: sensor.GeomagneticResponse) => {
     if (err) {
       console.error(`Failed to get geomagneticInfo. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2797,7 +2797,7 @@ try {
     console.info("Succeeded in getting geomagneticInfo totalIntensity" + data.totalIntensity);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get geomagneticInfo. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2834,8 +2834,8 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const promise = sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
@@ -2847,11 +2847,11 @@ try {
     console.info("Succeeded in getting geomagneticInfo deflectionAngle" + data.deflectionAngle);
     console.info("Succeeded in getting geomagneticInfo levelIntensity" + data.levelIntensity);
     console.info("Succeeded in getting geomagneticInfo totalIntensity" + data.totalIntensity);
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get geomagneticInfo. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get geomagneticInfo. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2883,13 +2883,13 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let seaPressure = 1013.2;
   let currentPressure = 1500.0;
-  sensor.getDeviceAltitude(seaPressure, currentPressure, (err: BusinessError.BusinessError, data: number) => {
+  sensor.getDeviceAltitude(seaPressure, currentPressure, (err: BusinessError, data: number) => {
     if (err) {
       console.error(`Failed to get altitude. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2897,7 +2897,7 @@ try {
     console.info('Succeeded in getting altitude: ' + data);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get altitude. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2934,8 +2934,8 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let seaPressure = 1013.2;
@@ -2943,11 +2943,11 @@ try {
   const promise = sensor.getDeviceAltitude(seaPressure, currentPressure);
   promise.then((data: number) => {
     console.info('Succeeded in getting sensor_getDeviceAltitude_Promise', data);
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get altitude. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get altitude. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2978,8 +2978,8 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // inclinationMatrix可以为3*3，或者4*4
@@ -2988,7 +2988,7 @@ try {
     0, 1, 0,
     0, 0, 1
   ]
-  sensor.getInclination(inclinationMatrix, (err: BusinessError.BusinessError, data: number) => {
+  sensor.getInclination(inclinationMatrix, (err: BusinessError, data: number) => {
     if (err) {
       console.error(`Failed to get inclination. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2996,7 +2996,7 @@ try {
     console.info('Succeeded in getting inclination: ' + data);
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get inclination. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3032,8 +3032,8 @@ try {
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // inclinationMatrix可以为3*3，或者4*4
@@ -3045,11 +3045,11 @@ try {
   const promise = sensor.getInclination(inclinationMatrix);
   promise.then((data: number) => {
     console.info('Succeeded in getting inclination: ' + data);
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get inclination. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get inclination. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3082,8 +3082,8 @@ try {
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 旋转矩阵可以为3*3，或者4*4
@@ -3097,7 +3097,7 @@ try {
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3110,7 +3110,7 @@ try {
     console.info("Y  : " + data[2]);
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get angle variation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3147,8 +3147,8 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 旋转矩阵可以为3*3，或者4*4
@@ -3170,11 +3170,11 @@ try {
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
     console.info("Y  : " + data[2]);
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get angle variation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3205,12 +3205,12 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&l
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-  sensor.getRotationMatrix(rotationVector, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.getRotationMatrix(rotationVector, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3220,7 +3220,7 @@ try {
     }
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3256,8 +3256,8 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numb
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
@@ -3266,11 +3266,11 @@ try {
     for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3303,8 +3303,8 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationMatrix = [
@@ -3312,7 +3312,7 @@ try {
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to transform rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3322,7 +3322,7 @@ try {
     }
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to transform rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3359,8 +3359,8 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationMatrix = [
@@ -3373,11 +3373,11 @@ try {
     for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to transform rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to transform rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3408,12 +3408,12 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Ar
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-  sensor.getQuaternion(rotationVector, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.getQuaternion(rotationVector, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get quaternion. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3423,7 +3423,7 @@ try {
     }
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get quaternion. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3459,8 +3459,8 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&g
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
@@ -3469,11 +3469,11 @@ try {
         for (let i = 0; i < data.length; i++) {
             console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
         }
-    }, (err: BusinessError.BusinessError) => {
+    }, (err: BusinessError) => {
         console.error(`Failed to get quaternion. Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
-    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    let e: BusinessError = error as BusinessError;
     console.error(`Failed to get quaternion. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3504,8 +3504,8 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;A
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let preRotationMatrix = [
@@ -3513,7 +3513,7 @@ try {
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.getOrientation(preRotationMatrix, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.getOrientation(preRotationMatrix, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get orientation. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3526,7 +3526,7 @@ try {
     console.info("Succeeded in getting data. Y: " + data[2]);
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get orientation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3562,8 +3562,8 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let preRotationMatrix = [
@@ -3576,11 +3576,11 @@ try {
     for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to getOrientatin. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to getOrientatin Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3612,13 +3612,13 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let gravity = [-0.27775216, 0.5351276, 9.788099];
   let geomagnetic = [210.87253, -78.6096, -111.44444];
-  sensor.getRotationMatrix(gravity, geomagnetic, (err: BusinessError.BusinessError, data: sensor.RotationMatrixResponse) => {
+  sensor.getRotationMatrix(gravity, geomagnetic, (err: BusinessError, data: sensor.RotationMatrixResponse) => {
     if (err) {
       console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3626,7 +3626,7 @@ try {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3663,8 +3663,8 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let gravity = [-0.27775216, 0.5351276, 9.788099];
@@ -3672,11 +3672,11 @@ try {
   const promise = sensor.getRotationMatrix(gravity, geomagnetic);
   promise.then((data: sensor.RotationMatrixResponse) => {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3706,11 +3706,11 @@ getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  sensor.getSensorList((err: BusinessError.BusinessError, data: Array<sensor.Sensor>) => {
+  sensor.getSensorList((err: BusinessError, data: Array<sensor.Sensor>) => {
     if (err) {
       console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3720,7 +3720,7 @@ try {
     }
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3750,19 +3750,19 @@ try {
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.getSensorList().then((data: Array<sensor.Sensor>) => {
     for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + JSON.stringify(data[i]));
     }
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3792,8 +3792,8 @@ getSensorListSync(): Array&lt;Sensor&gt;
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let ret = sensor.getSensorListSync()
@@ -3801,7 +3801,7 @@ try {
     console.info('Succeeded in getting sensor: ' + JSON.stringify(ret[i]));
   }
 } catch(error) {
-    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    let e: BusinessError = error as BusinessError;
     console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3834,11 +3834,11 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err: BusinessError.BusinessError, data: sensor.Sensor) => {
+  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err: BusinessError, data: sensor.Sensor) => {
     if (err) {
       console.error(`Failed to get singleSensor. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3846,7 +3846,7 @@ try {
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get singleSensor. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3884,17 +3884,17 @@ try {
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER).then((data: sensor.Sensor) => {
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get singleSensor . Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3932,14 +3932,14 @@ getSingleSensorSync(type: SensorId): Sensor
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let ret = sensor.getSingleSensorSync(sensor.SensorId.ACCELEROMETER);
   console.info('Succeeded in getting sensor: ' + JSON.stringify(ret));
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -4447,7 +4447,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4505,7 +4505,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4543,7 +4543,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, (data: sensor.GravityResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4579,7 +4579,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, (data: sensor.GyroscopeResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4615,7 +4615,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4652,7 +4652,7 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
   console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
@@ -4686,7 +4686,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
   console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
@@ -4720,7 +4720,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, (data: sensor.PedometerResponse) => {
   console.info('Succeeded in invoking on. Steps: ' + data.steps);
@@ -4752,7 +4752,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
   console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
@@ -4784,7 +4784,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4818,7 +4818,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4855,7 +4855,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, (data: sensor.ProximityResponse) => {
   console.info('Succeeded in invoking on. Distance: ' + data.distance);
@@ -4887,7 +4887,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, (data: sensor.HumidityResponse) => {
   console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
@@ -4919,7 +4919,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, (data: sensor.BarometerResponse) => {
   console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
@@ -4951,7 +4951,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, (data: sensor.HallResponse) => {
   console.info('Succeeded in invoking on. Status: ' + data.status);
@@ -4983,7 +4983,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, (data: sensor.LightResponse) => {
   console.info('Succeeded in invoking on. Illumination: ' + data.intensity);
@@ -5015,7 +5015,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
   console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
@@ -5071,7 +5071,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -5106,7 +5106,7 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
   console.info('Succeeded in invoking on. Wear status: ' + data.value);
@@ -5141,7 +5141,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5195,7 +5195,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5229,7 +5229,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, (data: sensor.GravityResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5262,7 +5262,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, (data: sensor.GyroscopeResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5296,7 +5296,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5330,7 +5330,7 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;Si
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
   console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
@@ -5361,7 +5361,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;P
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
   console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
@@ -5392,7 +5392,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, (data: sensor.PedometerResponse) => {
   console.info('Succeeded in invoking once. Steps: ' + data.steps);
@@ -5421,7 +5421,7 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;A
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
   console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
@@ -5450,7 +5450,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5481,7 +5481,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5515,7 +5515,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, (data: sensor.ProximityResponse) => {
   console.info('Succeeded in invoking once. Distance: ' + data.distance);
@@ -5545,7 +5545,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRes
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, (data: sensor.HumidityResponse) => {
   console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
@@ -5574,7 +5574,7 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, (data: sensor.BarometerResponse) => {
   console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
@@ -5603,7 +5603,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, (data: sensor.HallResponse) => {
   console.info('Succeeded in invoking once. Status: ' + data.status);
@@ -5632,7 +5632,7 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, (data: sensor.LightResponse) => {
   console.info('Succeeded in invoking once. invoking once. Illumination: ' + data.intensity);
@@ -5661,7 +5661,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
   console.info('Succeeded in invoking the device rotateing at an angle around the X axis: ' + data.beta);
@@ -5692,7 +5692,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5723,6 +5723,17 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HEART_RATE | 是   | 心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。                  |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt;      | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
+**示例：** 
+
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, (data: sensor.HeartRateResponse) => {
+  console.info("Succeeded in invoking once. Heart rate: " + data.heartRate);
+});
+```
+
 ### WEAR_DETECTION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
@@ -5746,7 +5757,7 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
   console.info("Succeeded in invoking once. Wear status: " + data.value);
@@ -5779,7 +5790,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.AccelerometerResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -5814,7 +5825,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.AccelerometerUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -5850,7 +5861,7 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.LightResponse) {
   console.info('Succeeded in invoking off. Illumination: ' + data.intensity);
@@ -5881,7 +5892,7 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.AmbientTemperatureResponse) {
   console.info('Succeeded in invoking off. Temperature: ' + data.temperature);
@@ -5912,7 +5923,7 @@ off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.BarometerResponse) {
   console.info('Succeeded in invoking off. Atmospheric pressure: ' + data.pressure);
@@ -5943,7 +5954,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityRespo
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.GravityResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -5978,7 +5989,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.GyroscopeResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6013,7 +6024,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.GyroscopeUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6046,7 +6057,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HallResponse) {
   console.info('Succeeded in invoking off. Status: ' + data.status);
@@ -6079,7 +6090,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HeartRateResponse) {
   console.info('Succeeded in invoking off. Humidity: ' + data.heartRate);
@@ -6110,7 +6121,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HumidityResponse) {
   console.info('Succeeded in invoking off. Humidity: ' + data.humidity);
@@ -6143,7 +6154,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.LinearAccelerometerResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6176,7 +6187,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.MagneticFieldResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6209,7 +6220,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.MagneticFieldUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6245,7 +6256,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callbac
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.OrientationResponse) {
   console.info('Succeeded in invoking off. The device rotates at an angle around the X axis: ' + data.beta);
@@ -6280,7 +6291,7 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.PedometerResponse) {
   console.info('Succeeded in invoking off. Steps: ' + data.steps);
@@ -6313,7 +6324,7 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.PedometerDetectionResponse) {
   console.info('Succeeded in invoking off. Scalar data: ' + data.scalar);
@@ -6344,7 +6355,7 @@ off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityR
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.ProximityResponse) {
   console.info('Succeeded in invoking off. Distance: ' + data.distance);
@@ -6375,7 +6386,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;Rota
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.RotationVectorResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6409,7 +6420,7 @@ off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;S
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.SignificantMotionResponse) {
   console.info('Succeeded in invoking off. Scalar data: ' + data.scalar);
@@ -6440,7 +6451,7 @@ off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearD
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function accCallback(data: sensor.WearDetectionResponse) {
   console.info('Succeeded in invoking off. Wear status: ' + data.value);
@@ -6472,11 +6483,11 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 }, 
-                                 (err: BusinessError.BusinessError, data: Array<number>) => {
+                                 (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6515,8 +6526,8 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 });
 promise.then((data: Array<number>) => {
@@ -6524,7 +6535,7 @@ promise.then((data: Array<number>) => {
   for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting transformCoordinateSystem data[ " + i + "] = " + data[i]);
   }
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6552,11 +6563,11 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000, 
-                           (err: BusinessError.BusinessError, data: sensor.GeomagneticResponse) => {
+                           (err: BusinessError, data: sensor.GeomagneticResponse) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6593,15 +6604,15 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
 promise.then((data: sensor.GeomagneticResponse) => {
   console.info('Succeeded in getting sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
   data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
   ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
-}).catch((reason: BusinessError.BusinessError) => {
+}).catch((reason: BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6629,10 +6640,10 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-sensor.getAltitude(0, 200, (err: BusinessError.BusinessError, data: number) => {
+sensor.getAltitude(0, 200, (err: BusinessError, data: number) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6669,13 +6680,13 @@ getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getAltitude(0, 200);
 promise.then((data: number) => {
   console.info('Succeeded in getting sensor_getAltitude_Promise success', data);
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6703,10 +6714,10 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessError, data: number) => {
+sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError, data: number) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6742,13 +6753,13 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
 promise.then((data: number) => {
   console.info('Succeeded in get GeomagneticDip_promise', data);
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6776,11 +6787,11 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87],
-                      (err: BusinessError.BusinessError, data: Array<number>) => {
+                      (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6819,8 +6830,8 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87]);
 promise.then((data: Array<number>) => {
@@ -6828,8 +6839,8 @@ promise.then((data: Array<number>) => {
   for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting data[" + i + "]: " + data[i]);
   }
-}).catch((reason: BusinessError.BusinessError) => {
-  let e: BusinessError.BusinessError = reason as BusinessError.BusinessError;
+}).catch((reason: BusinessError) => {
+  let e: BusinessError = reason as BusinessError;
   console.info("Succeeded in getting promise::catch", e);
 })
 ```
@@ -6856,11 +6867,11 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877],
-                            (err: BusinessError.BusinessError, data: Array<number>) => {
+                            (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6898,8 +6909,8 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
 **示例：** 
 
  ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
 promise.then((data: Array<number>) => {
@@ -6907,7 +6918,7 @@ promise.then((data: Array<number>) => {
   for (let i = 0; i < data.length; i++) {
     console.info("data[" + i + "]: " + data[i]);
   }
-}).catch((reason: BusinessError.BusinessError) => {
+}).catch((reason: BusinessError) => {
   console.info("Succeeded in getting promise::catch", reason);
 })
  ```
@@ -6934,11 +6945,11 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877],
-                        (err: BusinessError.BusinessError, data: Array<number>) => {
+                        (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6976,8 +6987,8 @@ createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numbe
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
 promise.then((data: Array<number>) => {
@@ -6985,7 +6996,7 @@ promise.then((data: Array<number>) => {
   for (let i = 0; i < data.length; i++) {
     console.info("data[" + i + "]: " + data[i]);
   }
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```
@@ -7012,10 +7023,10 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessError, data: Array<number>) => {
+sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -7054,8 +7065,8 @@ getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
 promise.then((data: Array<number>) => {
@@ -7063,7 +7074,7 @@ promise.then((data: Array<number>) => {
   for (let i = 1; i < data.length; i++) {
     console.info("Succeeded in getting sensor_getDirection_promise" + data[i]);
   }
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```
@@ -7091,11 +7102,11 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], 
-                            (err: BusinessError.BusinessError, data: sensor.RotationMatrixResponse) => {
+                            (err: BusinessError, data: sensor.RotationMatrixResponse) => {
   if (err) {
     console.error(`Failed to get create rotationMatrix. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -7132,13 +7143,13 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **示例：** 
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
 promise.then((data: sensor.RotationMatrixResponse) => {
   console.info(JSON.stringify(data));
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```
