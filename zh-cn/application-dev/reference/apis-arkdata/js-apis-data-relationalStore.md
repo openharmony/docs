@@ -4268,7 +4268,7 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 
 执行包含指定参数的SQL语句，使用Promise异步回调。
 
-该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+<!--RP1-->该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
 
 此接口不支持执行查询、附加数据库和事务操作，可以使用[querySql](#querysql10)、[query](#query10)、[attach](#attach12)、[beginTransaction](#begintransaction)、[commit](#commit)等接口代替。
 
@@ -4615,8 +4615,10 @@ store.commit();
 beginTrans(): Promise&lt;number&gt;
 
 在开始执行SQL语句之前，开始事务，使用Promise异步回调。
+
 与[beginTransaction](#begintransaction)的区别在于：该接口会返回事务ID，[execute](#execute12-1)可以指定不同事务ID达到事务隔离目的。
-该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+<!--RP1-->该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4735,7 +4737,8 @@ store.commit();
 commit(txId : number):Promise&lt;void&gt;
 
 提交已执行的SQL语句，跟[beginTrans](#begintrans12)配合使用。
-该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+<!--RP1-->该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -4864,7 +4867,8 @@ try {
 rollback(txId : number):Promise&lt;void&gt;
 
 回滚已经执行的SQL语句，跟[beginTrans](#begintrans12)配合使用。
-该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。
+
+<!--RP1-->该接口仅支持[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)使用。<!--RP1End-->
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
