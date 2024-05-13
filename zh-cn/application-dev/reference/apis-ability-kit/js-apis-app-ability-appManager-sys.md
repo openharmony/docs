@@ -183,6 +183,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 try {
@@ -253,6 +259,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
@@ -419,6 +431,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
@@ -508,6 +526,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
