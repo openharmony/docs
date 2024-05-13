@@ -39,6 +39,7 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+| 16501008 | Waiting for the form addition to the desktop timeout. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -102,6 +103,7 @@ requestPublishForm(want: Want): Promise&lt;string&gt;
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+| 16501008 | Waiting for the form addition to the desktop timeout. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
