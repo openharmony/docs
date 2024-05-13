@@ -10,19 +10,34 @@
 
 DrawingRenderingContext(unit?: LengthMetricsUnit)
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名      | 参数类型                                     | 必填   | 参数描述                                     |
+| 参数名      | 类型 | 必填   | 说明 |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置DrawingRenderingContext对象的单位模式，配置后无法更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置DrawingRenderingContext对象的单位模式，配置后无法更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。 |
 
 ## 属性
 
-| 名称       | 类型                                                         | 描述                                                      |
-| ---------- | ------------------------------------------------------------ | --------------------------------------------------------- |
-| size       | {width: number, height: number}                              | Context大小的宽和高，默认单位为vp。                                            |
-| canvas     | [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 绘制模块的Canvas对象，具体描述见绘制模块中的[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)对象。 |
-| invalidate | void                                                         | 该方法会触发组件的重新渲染。                              |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型 | 只读 | 可选 | 说明 |
+| ---------- | ------------ | -------------------- | ---------------------------- | ---------------------------- |
+| size       | {width: number, height: number}    | 否 | 否 | Context大小的宽和高。<br>默认单位为vp。                                            |
+| canvas     | [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 否 | 否 | 绘制模块的Canvas对象，具体描述见绘制模块中的[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)对象。 |
+
+## 方法
+
+### invalidate
+
+invalidate(): void
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+使组件无效，触发组件的重新渲染。
 
 **示例：**
 
