@@ -9,10 +9,10 @@ Media Kit（媒体服务）提供了<!--RP1-->[AVPlayer]和[AVRecorder]<!--RP1En
 第一种：
 在Media Kit的开发指导中，将介绍各种涉及音频、视频播放或录制功能场景的开发方式，指导开发者如何使用系统提供的音视频API实现对应功能。<!--RP2-->比如使用SoundPool实现简单的提示音，当设备接收到新消息时，会发出短促的“滴滴”声；使用AVPlayer实现音乐播放器，循环播放一首音乐。<!--RP2End-->
 
-第二种：列表
-1. 通过[DocumentViewPicker接口选择或保存文件，返回选择或保存的文件uri。
-2. 通过[AudioViewPicker接口选择或保存文件，返回选择或保存的文件uri。
-3. 通过[PhotoViewPicker.save接口保存文件，返回保存的文件uri。<!--RP3-->
+第二种：列表【替换内容没写序号】
+1. 通过[DocumentViewPicker接口选择或保存文件，返回选择或保存的文件uri。<!--RP3-->
+2. 通过[AudioViewPicker接口选择或保存文件，返回选择或保存的文件uri。<!--RP3End-->
+3. 通过[PhotoViewPicker.save接口保存文件，返回保存的文件uri。
 4. 通过[fileAccess模块获取文档类目录下的文件得到对应文件的[FileInfo对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：   
    - 外部存储目录
    - Docs目录
@@ -20,7 +20,18 @@ Media Kit（媒体服务）提供了<!--RP1-->[AVPlayer]和[AVRecorder]<!--RP1En
    - Desktop目录
    - Documents目录
    - Share共享盘目录
-<!--RP3End-->
+
+第二种：列表【替换内容写序号】
+1. 通过[DocumentViewPicker接口选择或保存文件，返回选择或保存的文件uri。<!--RP3-->
+2. 通过[AudioViewPicker接口选择或保存文件，返回选择或保存的文件uri。<!--RP3End-->
+3. 通过[PhotoViewPicker.save接口保存文件，返回保存的文件uri。
+4. 通过[fileAccess模块获取文档类目录下的文件得到对应文件的[FileInfo对象，此对象中就包含对应文件或者目录的uri属性，此模块中的接口为系统接口，使用此模块需要注意应用是否为系统应用。支持获取文件uri的目录有：   
+   - 外部存储目录
+   - Docs目录
+   - Download目录
+   - Desktop目录
+   - Documents目录
+   - Share共享盘目录
 
 第三种：列表
 - 卡片提供方：提供卡片显示内容的应用，控制卡片的显示内容、控件布局以及控件点击事件。
