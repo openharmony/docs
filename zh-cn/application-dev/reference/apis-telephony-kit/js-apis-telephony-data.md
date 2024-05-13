@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 ```
 
 ## data.getDefaultCellularDataSlotId
@@ -29,8 +29,8 @@ getDefaultCellularDataSlotId(callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
     if(err){
@@ -58,8 +58,8 @@ getDefaultCellularDataSlotId(): Promise\<number\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getDefaultCellularDataSlotId().then((data: number) => {
     console.log(`getDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -85,7 +85,7 @@ getDefaultCellularDataSlotIdSync(): number
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 ```
@@ -108,8 +108,8 @@ getCellularDataFlowType(callback: AsyncCallback\<DataFlowType\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
     if(err){
@@ -137,8 +137,8 @@ getCellularDataFlowType(): Promise\<DataFlowType\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataFlowType().then((data: data.DataFlowType) => {
     console.log(`getCellularDataFlowType success, promise: data->${JSON.stringify(data)}`);
@@ -164,8 +164,8 @@ getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
     if(err){
@@ -193,8 +193,8 @@ getCellularDataState(): Promise\<DataConnectState\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataState().then((data: data.DataConnectState) => {
     console.log(`getCellularDataState success, promise: data->${JSON.stringify(data)}`);
@@ -235,8 +235,8 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
     if(err){
@@ -277,8 +277,8 @@ isCellularDataEnabled(): Promise\<boolean\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataEnabled().then((data: boolean) => {
     console.log(`isCellularDataEnabled success, promise: data->${JSON.stringify(data)}`);
@@ -320,8 +320,8 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
     if(err){
@@ -370,8 +370,8 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
     console.log(`isCellularDataRoamingEnabled success, promise: data->${JSON.stringify(data)}`);
@@ -398,7 +398,7 @@ getDefaultCellularDataSimId(): number
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```
