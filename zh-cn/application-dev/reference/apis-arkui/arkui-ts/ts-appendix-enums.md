@@ -990,3 +990,10 @@ Nullable\<T> {
 | DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
 | HIDE    | 1    | 始终不弹出菜单。                   |
 | SHOW    | 2    | 始终弹出菜单。                     |
+
+## DpiFollowStrategy<sup>12+</sup>
+
+| 名称                             | 描述             |
+| -------------------------------- | --------------- |
+| FOLLOW_HOST_DPI                  | 表示DPI跟随宿主。 |
+| FOLLOW_UI_EXTENSION_ABILITY_DPI  | 表示DPI跟随系统。 |
