@@ -27,7 +27,7 @@ EmbeddedComponent(loader: Want, type: EmbeddedType)
 | 参数名                | 参数类型                                                   | 必填 | 参数描述                             |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | loader                | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 要加载的EmbeddedUIExtensionAbility。 |
-| type                  | [EmbeddedType](#embeddedtype)                              | 是   | 提供方的类型。                       |
+| type                  | [EmbeddedType](ts-appendix-enums.md#embeddedtype)                              | 是   | 提供方的类型。                       |
 
 ## 属性
 
@@ -80,13 +80,6 @@ onError(callback: ErrorCallback)
 > - 通知提供方销毁EmbeddedUIExtensionAbility失败。
 > - 提供方EmbeddedUIExtensionAbility异常退出。
 > - 在EmbeddedUIExtensionAbility中嵌套使用EmbeddedComponent。
-
-## EmbeddedType
-枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
-
-| 名称                  | 值 | 说明                                                |
-| --------------------- | - | ---------------------------------------------------- |
-| EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
 
 ## TerminationInfo
 
