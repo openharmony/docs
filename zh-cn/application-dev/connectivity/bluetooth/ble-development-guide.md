@@ -42,17 +42,20 @@
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
 
+const TAG: string = 'BleAdvertisingManager';
+
 export class BleAdvertisingManager {
   private advHandle: number = 0xFF; // default invalid value
 
   // 1 订阅广播状态
   public onAdvertisingStateChange() {
     try {
-      ble.on('advertisingStateChange', (data: ble.AdvertisingStateChangeInfo) {
-        console.info('bluetooth advertising state = ' + JSON.stringify(data));
+      ble.on('advertisingStateChange', (data: ble.AdvertisingStateChangeInfo) => {
+        console.info(TAG, 'bluetooth advertising state = ' + JSON.stringify(data));
+        AppStorage.setOrCreate('advertiserState', data.state);
       });
     } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
 
@@ -104,9 +107,10 @@ export class BleAdvertisingManager {
 
     // 2.4 首次启动广播，且获取所启动广播的标识ID
     try {
+      this.onAdvertisingStateChange();
       this.advHandle = await ble.startAdvertising(advertisingParams);
     } catch (err) {
-      console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
 
@@ -120,22 +124,22 @@ export class BleAdvertisingManager {
     try {
       await ble.disableAdvertising(advertisingDisableParams);
     } catch (err) {
-      console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
 
   // 5 再次启动广播
-  public async enableAdvertising() {
+  public async enableAdvertising(enableDuration: number) {
     // 5.1 构造临时启动广播参数
     let advertisingEnableParams: ble.AdvertisingEnableParams = {
       advertisingId: this.advHandle, // 使用首次启动广播时获取到的广播标识ID
-      duration: 0
+      duration: enableDuration
     }
     // 5.2 再次启动
     try {
       await ble.enableAdvertising(advertisingEnableParams);
     } catch (err) {
-      console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
 
@@ -143,11 +147,11 @@ export class BleAdvertisingManager {
   public async stopAdvertising() {
     try {
       await ble.stopAdvertising(this.advHandle);
-      ble.off('advertisingStateChange', (data: ble.AdvertisingStateChangeInfo) {
-        console.info('bluetooth advertising state = ' + JSON.stringify(data));
+      ble.off('advertisingStateChange', (data: ble.AdvertisingStateChangeInfo) => {
+        console.info(TAG, 'bluetooth advertising state = ' + JSON.stringify(data));
       });
     } catch (err) {
-      console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+      console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
     }
   }
 }
@@ -157,7 +161,6 @@ export default bleAdvertisingManager as BleAdvertisingManager;
 ```
 
 7. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
-8. 如何验证：执行开启广播的用例代码，记录日志“startAdvertising success”，并且使用另外一部手机安装nrfConnect软件开启扫描，如果扫描到该广播，广播内容“Manufacturer data的值为:0x01020304，Service Data的值为:0x05060708”，表示开启广播成功。关闭广播后，扫描不到该内容的广播。
 
 ### 开启、关闭扫描
 1. import需要的ble模块。
@@ -172,12 +175,14 @@ export default bleAdvertisingManager as BleAdvertisingManager;
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
 
+const TAG: string = 'BleScanManager';
+
 export class BleScanManager {
   // 1 订阅扫描结果
   public onScanResult() {
-    ble.on('BLEDeviceFind', (data) => {
+    ble.on('BLEDeviceFind', (data: Array<ble.ScanResult>) => {
       if (data.length > 0) {
-        console.info('BLE scan result = ' + data[0].deviceName);
+        console.info(TAG, 'BLE scan result = ' + data[0].deviceId);
       }
     });
   }
@@ -185,25 +190,41 @@ export class BleScanManager {
   // 2 开启扫描
   public startScan() {
     // 2.1 构造扫描过滤器，需要能够匹配预期的广播包内容
-    let scanFilter: ble.ScanFilter = {
-      name: 'BLESCAN'  // 如以该名字过滤，那么发广播端需要包含该名字
+    let manufactureId = 4567;
+    let manufactureData: Uint8Array = new Uint8Array([1, 2, 3, 4]);
+    let manufactureDataMask: Uint8Array = new Uint8Array([0xFF, 0xFF, 0xFF, 0xFF]);
+    let scanFilter: ble.ScanFilter = { // 根据业务实际情况定义过滤器
+      manufactureId: manufactureId,
+      manufactureData: manufactureData.buffer,
+      manufactureDataMask: manufactureDataMask.buffer
     };
 
     // 2.2 构造扫描参数
     let scanOptions: ble.ScanOptions = {
       interval: 0,
       dutyMode: ble.ScanDuty.SCAN_MODE_LOW_POWER,
-      matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE,
-      phyType: ble.PhyType.PHY_LE_1M
+      matchMode: ble.MatchMode.MATCH_MODE_AGGRESSIVE
     }
-    ble.startBLEScan([scanFilter], scanOptions);
-    console.info('startBleScan success');
+    try {
+      this.onScanResult(); // 订阅扫描结果
+      ble.startBLEScan([scanFilter], scanOptions);
+      console.info(TAG, 'startBleScan success');
+    } catch (err) {
+      console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
   }
 
   // 3 关闭扫描
   public stopScan() {
-    ble.stopBLEScan();
-    console.info('stopBleScan success');
+    try {
+      ble.off('BLEDeviceFind', (data: Array<ble.ScanResult>) => { // 取消订阅扫描结果
+        console.info(TAG, 'off success');
+      });
+      ble.stopBLEScan();
+      console.info(TAG, 'stopBleScan success');
+    } catch (err) {
+      console.error(TAG, 'errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    }
   }
 }
 
@@ -212,4 +233,3 @@ export default bleScanManager as BleScanManager;
 ```
 
 8. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
-9. 如何验证：使用另外一部手机安装nrfConnect软件并且配置好广播，设备名称修改为“Jackistang”，开启广播。然后测试手机开启扫描，大概每隔0.5秒记录日志“BLE scan result =  = Jackistang”，则表示开启扫描成功。关闭扫描后，不会再有该记录日志产生。
