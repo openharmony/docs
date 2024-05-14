@@ -25,7 +25,6 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
 2. 调用联系人接口，拉起联系人列表，用户点击对应的联系人后返回。
 
    ```ts
-
    contact.selectContacts({
      isMultiSelect:false
    },(err: BusinessError, data) => {
@@ -40,7 +39,8 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
 
 3. 完成操作，返回想要的data数据。
 
-## 联系人管理
+<!--Del-->
+## 联系人管理（仅供系统应用使用）
 
 1. 声明接口调用所需要的权限：
    - 删除联系人，调用deleteContact接口，需要配置ohos.permission.WRITE_CONTACTS权限，权限级别为system_basic。
@@ -48,14 +48,12 @@ Contacts Kit可以帮助开发者轻松实现联系人的增删改查等功能�
    - 查询联系人，调用queryContact接口，需要配置ohos.permission.READ_CONTACTS权限，权限级别为system_basic。
    在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)声明对应权限。
 
-2.在通常情况下，第三方应用无法使用此权限，若需要在应用内实现管理联系人的功能，可以使用permissions接口获取应用对联系人的编辑权限。
+2.设置一个需要的Permissions数组变量。
 
-3.设置一个需要的Permissions数组变量。
-
-4.执行对应联系人的权限操作。
+3.执行对应联系人的权限操作。
 
 ```ts
-// 示例代码一：
+// 示例代码
 let context = getContext(this) as common.UIAbilityContext;
 const permissions: Array<Permissions> = ['ohos.permission.WRITE_CONTACTS'];
 
@@ -67,7 +65,19 @@ abilityAccessCtrl.createAtManager().requestPermissionsFromUser(context, permissi
     }
 })
 
-// 示例代码二：
+```
+<!--DelEnd-->
+
+## 联系人管理
+
+若需要在应用内实现管理联系人的功能，可以使用permissions接口获取应用对联系人的编辑权限。
+
+1.设置一个需要的Permissions数组变量。
+
+2.执行对应联系人的权限操作。
+
+```ts
+// 示例代码
 import common from '@ohos.app.ability.common';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import contact from '@ohos.contact';
