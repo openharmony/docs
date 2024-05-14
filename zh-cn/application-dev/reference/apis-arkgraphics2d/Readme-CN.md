@@ -11,6 +11,7 @@
 - C API
   - 模块
     - [Drawing](_drawing.md)
+    - [EffectKit](effect_kit.md)
     - [NativeVsync](_native_vsync.md)
     - [NativeWindow](_native_window.md)
     - [OH_NativeBuffer](_o_h___native_buffer.md)
@@ -48,6 +49,8 @@
     - [drawing_text_typography.h](drawing__text__typography_8h.md)
     - [drawing_typeface.h](drawing__typeface_8h.md)
     - [drawing_types.h](drawing__types_8h.md)
+    - [effect_filter.h](effect__filter_8h.md)
+    - [effect_types.h](effect__types_8h.md)
     - [external_window.h](external__window_8h.md)
     - [native_buffer.h](native__buffer_8h.md)
     - [native_image.h](native__image_8h.md)
@@ -73,6 +76,8 @@
     - [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)
     - [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) 
     - [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md)
+    - [OH_Filter](_o_h___filter.md)
+    - [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md)
     - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
     - [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)
     - [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md)
