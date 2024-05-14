@@ -26,10 +26,17 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeImage](_o_h___native_image.md#oh_nativeimage) | 提供OH_NativeImage结构体声明 |
-| [OHNativeWindow](_o_h___native_image.md#ohnativewindow) | 提供对NativeWindow的访问功能 |
-| [OH_OnFrameAvailable](_o_h___native_image.md#oh_onframeavailable) | 有buffer可获取时触发的回调函数 |
-| [OH_OnFrameAvailableListener](_o_h___native_image.md#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过OH_NativeImage_SetOnFrameAvailableListener接口注册， 该监听结构体当有帧可用时，将触发回调 |
+| typedef struct [OH_NativeImage](_o_h___native_image.md#oh_nativeimage)  [OH_NativeImage](_o_h___native_image.md#oh_nativeimage) | 提供OH_NativeImage结构体声明。  | 
+| typedef struct NativeWindow [OHNativeWindow](_o_h___native_image.md#ohnativewindow) | 提供对NativeWindow的访问功能。  | 
+| typedef void(\* [OH_OnFrameAvailable](_o_h___native_image.md#oh_onframeavailable)) (void \*context) | 有buffer可获取时触发的回调函数。  | 
+| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](_o_h___native_image.md#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过{\@Link OH_NativeImage_SetOnFrameAvailableListener}接口注册 该监听结构体，当有buffer可获取时，将触发回调给用户。  | 
+| typedef enum [OHNativeErrorCode](_o_h___native_image.md#ohnativeerrorcode)  [OHNativeErrorCode](_o_h___native_image.md#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
+
+### 枚举
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [OHNativeErrorCode](_o_h___native_image.md#ohnativeerrorcode) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_IS_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IS_INCACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_INCACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOW = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOW = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000 | 接口错误码说明（仅用于查询）。  | 
 
 
 ### 函数
@@ -47,3 +54,4 @@
 | [OH_NativeImage_SetOnFrameAvailableListener](_o_h___native_image.md#oh_nativeimage_setonframeavailablelistener) ([OH_NativeImage](_o_h___native_image.md#oh_nativeimage) \*image, [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) listener) | 设置帧可用回调 |
 | [OH_NativeImage_UnsetOnFrameAvailableListener](_o_h___native_image.md#oh_nativeimage_unsetonframeavailablelistener) ([OH_NativeImage](_o_h___native_image.md#oh_nativeimage) \*image) | 取消设置帧可用回调 |
 | [OH_NativeImage_Destroy](_o_h___native_image.md#oh_nativeimage_destroy) ([OH_NativeImage](_o_h___native_image.md#oh_nativeimage) \*\*image) | 销毁通过OH_NativeImage_Create创建的**OH_NativeImage**实例, 销毁后该**OH_NativeImage**指针会被赋值为空 |
+| int32_t [OH_NativeImage_GetTransformMatrixV2](_o_h___native_image.md#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](_o_h___native_image.md#oh_nativeimage) \*image, float matrix[16]) | 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。  | 
