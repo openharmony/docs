@@ -2,7 +2,7 @@
 
 因来源不同、编解码器协议不同以及设备在编解码能力部署上的不同，开发者可用的编解码器及其能力是变化的。
 
-开发者在使用AVCodec kit做音视频编解码前，为确保编解码行为符合预期，应提前通过音视频编解码能力系列接口（本模块）查询系统支持的音视频编解码器及其关联的能力参数，找到符合开发场景需求的编解码器，并正确配置编解码参数。
+开发者为确保编解码行为符合预期，在使用AVCodec kit做音视频编解码前，应提前通过音视频编解码能力系列接口查询系统支持的音视频编解码器及其关联的能力参数，找到符合开发场景需求的编解码器，并正确配置编解码参数。
 
 
 ## 基础概念
@@ -100,21 +100,22 @@ $$
 4. 按需调用相应查询接口，详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_a_v_capability.md)。
 
 ## 场景化开发指导
+基于开发者可能遇到特定场景，举例说明：
 
-### 创建指定名字的编解码器
+### 创建指定名称的编解码器
 
 如系统内存在同MIME_TYPE且同编解码场景的多个编解码器，且使用`OH_XXX_CreateByMime`系列接口默认创建不到的其中某一编解码器。因编解码器名字具有唯一性，可用于区分上述多个编解码器。开发者可先获取编解码名字，再通过`OH_XXX_CreateByName`系列接口创建指定名字的编解码器。
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetName     | 获取能力句柄对应编解码器的名字 |
+| OH_AVCapability_GetName     | 获取能力句柄对应编解码器的名称 |
 
 H.264软件解码器和H.264硬件解码器共存时，创建H.264软件解码器示例：
 ```c++
 // 1. 获取H.264软件解码器能力句柄
 OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, SOFTWARE);
 if (capability != nullptr) {
-   // 2. 获取H.264软件解码器名字
+   // 2. 获取H.264软件解码器名称
    const char *codecName = OH_AVCapability_GetName(capability);
    // 3. 创建H.264硬件解码器实例
    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
@@ -238,7 +239,7 @@ int32_t channelCountRet = OH_AVCapability_GetAudioChannelCountRange(capability, 
 ```
 
 
-## 查询编解码档次和级别支持情况
+### 查询编解码档次和级别支持情况
 
 编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的使能与关闭。以H.264为例，参考OH_AVCProfile。存在基本档次、主档次和高档次。
 
@@ -256,14 +257,14 @@ int32_t channelCountRet = OH_AVCapability_GetAudioChannelCountRange(capability, 
 // 1. 获取H.264编码器能力句柄
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
-   // 异常处理1
+   // 异常处理
 }
 // 2. 查询支持的档次
 const int32_t *profiles = nullptr;
 uint32_t profileNum = -1;
 int32_t ret = OH_AVCapability_GetSupportedProfiles(capability, &profiles, &profileNum);
 if (ret != AV_ERR_OK || profiles == nullptr || profileNum <= 0) {
-   // 异常处理2
+   // 异常处理
 }
 for (int i = 0; i < profileNum; i++) {
    // 3. 查询特定档次支持的级别
@@ -272,7 +273,7 @@ for (int i = 0; i < profileNum; i++) {
    uint32_t levelNum = -1;
    ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, profile, &levels, &levelNum);
    if (ret != AV_ERR_OK || levels == nullptr || levelNum <= 0) {
-      // 异常处理3
+      // 异常处理
    }
    for (int j = 0; j < levelNum; j++) {
       int32_t level = levels[j]; // 对照枚举OH_AVCLevel
@@ -292,52 +293,104 @@ if (capability == nullptr) {
 bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_PROFILE_MAIN, AVC_LEVEL_51);
 ```
 
-### 设置正确的视频宽高参数
+### 设置正确的视频宽高
 
-**视频编解码器对宽高存在对齐约束:** 如主流编解码器默认编解码像素格式为YUV420系列中的，会对UV分量下采样，在此情况下视频编解码的宽高至少要按2对齐。此外还有其他因素可能导致更加严格的对齐约束。
+视频编解码器对宽高存在对齐约束，如主流编解码器默认编解码像素格式为YUV420系列中的，会对UV分量下采样，在此情况下视频编解码的宽高至少要按2对齐。此外还有其他因素可能导致更加严格的对齐约束。
 
-**视频编解码的宽高会受协议中级别限制：**
+视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议中级别对帧级能力定义限制。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_GetVideoWidthAlignment     | 获取当前视频编解码器的宽对齐 |
 | OH_AVCapability_GetVideoHeightAlignment    | 确认当前视频编解码器的高对齐 |
 | OH_AVCapability_GetVideoWidthRange             | 获取当前视频编解码器支持的宽的范围 |
-| OH_AVCapability_GetVideoWidthRangeForHeight    | 获取当前视频编解码器在给定高情况下的宽的范围 |
 | OH_AVCapability_GetVideoHeightRange            | 获取当前视频编解码器支持的高的范围 |
+| OH_AVCapability_GetVideoWidthRangeForHeight    | 获取当前视频编解码器在给定高情况下的宽的范围 |
 | OH_AVCapability_GetVideoHeightRangeForWidth    | 获取当前视频编解码器在给定宽情况下的高的范围 |
 | OH_AVCapability_IsVideoSizeSupported           | 确认当前视频编解码器是否支持给定的宽高组合 |
 
+已知视频高和视频宽，校验是否支持，示例如下：
+
 ```c++
-// 查询当前能力中，宽的对齐值
-int32_t widthAlignment;
-int32_t widthRet = OH_AVCapability_GetVideoWidthAlignment(capability, &widthAlignment);
-
-// 查询当前能力中，高的对齐值
-int32_t heightAlignment;
-int32_t heightRet = OH_AVCapability_GetVideoHeightAlignment(capability, &heightAlignment);
-
-// 查询当前能力中，高为1080时，宽的范围
-OH_AVRange widthRange;
-int32_t widthRangeRet = OH_AVCapability_GetVideoWidthRangeForHeight(capability, 1080, &widthRange);
-
-// 查询当前能力中，宽为1920时，高的范围
-OH_AVRange heightRange;
-int32_t heightRangeRet = OH_AVCapability_GetVideoHeightRangeForWidth(capability, 1920, &heightRange);
-
-// 查询当前能力中，宽的范围
-OH_AVRange videoWidthRange;
-int32_t videoWidthRet = OH_AVCapability_GetVideoWidthRange(capability, &videoWidthRange);
-
-// 查询当前能力中，高的范围
-OH_AVRange videoHeightRange;
-int32_t videoHeightRet = OH_AVCapability_GetVideoHeightRange(capability, &videoHeightRange);
-
-// 校验当前能力是否支持分辨率1080p
-bool isVideoSizeSupported = OH_AVCapability_IsVideoSizeSupported(capability, 1920, 1080);
+int32_t width = 1920;
+int32_t height = 1080;
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+// 1. 确认视频宽高是否支持
+bool isSupported = OH_AVCapability_IsVideoSizeSupported(capability, width, height);
+if (!isSupported) {
+   // 2. (可选) 按已知视频高或已知视频宽查询详细限制，并调整
+}
 ```
 
-### 获取视频帧率信息
+若遇到基于已知视频高和视频宽校验不支持或配置失败，可用下列示意的多种方式尝试找到正确的视频宽高范围。
+
+已知视频宽，找到正确的尺寸配置，示例如下：
+
+```c++
+int32_t width = 1920;
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+// 1. 确认视频宽符合宽对齐要求
+int32_t widthAlignment = 0;
+int32_t ret = OH_AVCapability_GetVideoWidthAlignment(capability, &widthAlignment);
+if (ret != AV_ERR_OK || widthAlignment <= 0) {
+   // 异常处理
+} else if (width % widthAlignment != 0) {
+   // 2. (可选) 对齐视频宽
+   width = (width + widthAlignment - 1) / widthAlignment * widthAlignment;
+}
+// 3. 确认视频宽处在可支持宽范围内
+OH_AVRange widthRange = {-1，-1};
+ret = OH_AVCapability_GetVideoWidthRange(capability, &widthRange);
+if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
+   // 异常处理
+} else if (width < widthRange.minVal || width > widthRange.maxVal) {
+   // 4. (可选) 调整视频宽
+   width = min(max(width, widthRange.minVal), widthRange.maxVal);
+}
+// 5. 基于视频宽，获取可选视频高的范围
+OH_AVRange heightRange = {-1，-1};
+ret = OH_AVCapability_GetVideoHeightRangeForWidth(capability, width, &heightRange);
+if (ret != AV_ERR_OK || heightRange.maxVal <= 0) {
+   // 异常处理
+}
+// 6. 从可选高度范围中挑选合适的高度配置
+```
+
+已知视频高，找到正确的尺寸配置，示例如下：
+
+```c++
+int32_t height = 1080;
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+// 1. 确认视频高符合高对齐要求
+int32_t heightAlignment = 0;
+int32_t ret = OH_AVCapability_GetVideoHeightAlignment(capability, &heightAlignment);
+if (ret != AV_ERR_OK || heightAlignment <= 0) {
+   // 异常处理
+} else if (height % heightAlignment != 0) {
+   // 2. (可选) 对齐视频高
+   height = (height + heightAlignment - 1) / heightAlignment * heightAlignment;
+}
+// 3. 确认视频高处在可支持高范围内
+OH_AVRange heightRange = {-1，-1};
+ret = OH_AVCapability_GetVideoHeightRange(capability, &heightRange);
+if (ret != AV_ERR_OK || heightRange.maxVal <= 0) {
+   // 异常处理
+} else if (height < heightRange.minVal || height > heightRange.maxVal) {
+   // 4. (可选) 调整视频高
+   height = min(max(height, heightRange.minVal), heightRange.maxVal);
+}
+// 5. 基于视频高，获取可选视频宽的范围
+OH_AVRange widthRange = {-1，-1};
+ret = OH_AVCapability_GetVideoWidthRangeForHeight(capability, height, &widthRange);
+if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
+   // 异常处理
+}
+// 6. 从可选宽度范围中挑选合适的宽度配置
+```
+
+### 设置正确的视频帧率
+
+视频编解码的帧率不仅会受秒级编解码能力限制，同时也会受协议中级别对秒级能力定义限制。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -345,20 +398,48 @@ bool isVideoSizeSupported = OH_AVCapability_IsVideoSizeSupported(capability, 192
 | OH_AVCapability_GetVideoFrameRateRangeForSize      | 获取当前视频编解码器在给定图像尺寸情况下的帧率的范围 |
 | OH_AVCapability_AreVideoSizeAndFrameRateSupported  | 获取当前视频编解码器支持的高的范围 |
 
-```c
-// 查询当前能力中，视频帧率范围
-OH_AVRange frameRateRange;
-int32_t videoFrameRet = OH_AVCapability_GetVideoFrameRateRange(capability, &frameRateRange);
+有需求的帧率目标，确认帧率是否在可选范围内，示例如下：
 
-// 查询当前能力中，分辨率为1920x1080时视频帧率范围
-OH_AVRange frameRateRangeForSize;
-int32_t ret = OH_AVCapability_GetVideoFrameRateRangeForSize(capability, 1920, 1080, &frameRateRangeForSize);
-
-// 校验当前能力是否支持分辨率1080p、帧率30的场景
-bool areVideoSizeAndFrameRateSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, 1920, 1080, 30);
+```c++
+int32_t frameRate = 120;
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+// 1. 获取支持的帧率范围
+OH_AVRange frameRateRange = {-1，-1};
+int32_t ret = OH_AVCapability_GetVideoFrameRateRange(capability, &frameRateRange);
+if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
+   // 异常处理
+}
+// 2. 判断是否在可选帧率范围内
+bool isSupported = frameRate >= frameRateRange.minVal && frameRate <= frameRateRange.maxVal;
 ```
 
-### 获取视频像素格式信息
+确认明确的尺寸和帧率组合是否支持，示例代码如下：
+
+```c++
+int32_t width = 1920;
+int32_t height = 1080;
+int32_t frameRate = 120;
+bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
+if (!isSupported) {
+   // 基于确定视频尺寸，查询支持的帧率范围，并调整
+}
+```
+
+在确定的视频尺寸下，选择合适的帧率配置，示例如下：
+
+```c++
+int32_t width = 1920;
+int32_t height = 1080;
+// 1. 获取确定视频尺寸下可选的帧率范围
+OH_AVRange frameRateRange = {-1，-1};
+int32_t ret = OH_AVCapability_GetVideoFrameRateRangeForSize(capability, width, height, &frameRateRange);
+if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
+   // 异常处理
+}
+// 2. 从可选帧率范围中挑选合适的帧率配置
+```
+
+### 设置正确的视频像素格式信息
 
 视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考OH_AVPixelFormat
 // TODO: 待确认，解码是否要配置，解码查询是否有用
@@ -389,7 +470,7 @@ for (int i = 0; i < pixFormatNum; i++) {
    }
 }
 if (!isMatched) {
-   // 替换其他像素格式输入或选择其他编解码器
+   // 4. 替换其他像素格式输入或选择其他编解码器
 }
 ```
 
@@ -423,7 +504,7 @@ if (isSupported) {
       (void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT, NEEDED_LTR_NUM);
    }
 }
-//4. 编码器创建和配置
+// 4. 编码器创建和配置
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_VideoEncoder_Configure(videoEnc, format);
 ```
