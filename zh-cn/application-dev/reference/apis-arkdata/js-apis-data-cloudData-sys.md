@@ -786,7 +786,7 @@ try {
 | STATE_ACCEPTED   | 1    | 端云共享已接受。请使用枚举名称而非枚举值。 |
 | STATE_REJECTED   | 2    | 端云共享被拒绝。请使用枚举名称而非枚举值。 |
 | STATE_SUSPENDED  | 3    | 端云共享被暂时挂起，未作处理。请使用枚举名称而非枚举值。 |
-| STATE_UNAVAILABLE   | 4    | 端云共享不可用。请使用枚举名称而非枚举值。 |
+| STATE_UNAVAILABLE<sup>12+</sup>   | 4    | 端云共享不可用。请使用枚举名称而非枚举值。 |
 
 ### SharingCode<sup>11+</sup>
 
