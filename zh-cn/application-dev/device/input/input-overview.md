@@ -11,6 +11,7 @@ Input Kit除了提供基础的输入事件服务之外，还提供了获取输�
 
 ![MMI-operation](figures/MMI-operation.png)
 
+<!--Del-->
 ## 约束与限制
 
 1. 在使用下列函数时，开发者需要请求相应的权限。
@@ -21,3 +22,5 @@ Input Kit除了提供基础的输入事件服务之外，还提供了获取输�
   | getShieldStatus(shieldMode: ShieldMode): boolean | 获取屏蔽按键拦截是否生效。 |ohos.permission.INPUT_CONTROL_DISPATCHING|
     
 2. [组合按键](inputconsumer-guidelines.md)、[注入事件](inputeventclient-guidelines.md)、[输入监听](inputmonitor-guidelines.md)、[快捷键](shortkey-guidelines.md)模块接口为系统接口，其中[输入监听](inputmonitor-guidelines.md)模块接口接口需要 ohos.permission.INPUT_MONITORING权限。
+
+<!--DelEnd-->

@@ -215,14 +215,14 @@ import { BusinessError } from '@ohos.base';
 **元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
-
+<!--RP1-->
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板。   |
 | DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
 | DEVICE_TYPE_TV       | 0x04 | 电视。  |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
-
+<!--RP1End-->
 
 ## ScreenDensity
 
