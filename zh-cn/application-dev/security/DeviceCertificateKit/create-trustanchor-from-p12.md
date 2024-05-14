@@ -7,15 +7,15 @@
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
 
    ```ts
-   import cert from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificatekit';
    ```
 
-2. 基于现有的p12文件数据，调用[cert.createTrustAnchorsWithKeyStore](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatex509certchain11)创建TrustAnchor数组对象，并返回结果。
+2. 基于现有的p12文件数据，调用[cert.createTrustAnchorsWithKeyStore](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509certchain11)创建TrustAnchor数组对象，并返回结果。
 
   ```ts
-  import cert from '@ohos.security.cert';
-  import { BusinessError } from '@ohos.base';
-  import util from '@ohos.util';
+  import { cert } from '@kit.DeviceCertificatekit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { util } from '@kit.ArkTS';
 
   let p12Data = new Uint8Array([
       0x30,0x82,0x09,0x51,0x02,0x01,0x03,0x30,0x82,0x09,0x17,0x06,0x09,0x2A,0x86,0x48,
