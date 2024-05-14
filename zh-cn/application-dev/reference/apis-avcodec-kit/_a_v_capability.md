@@ -72,9 +72,9 @@ AVCapability模块提供用于编解码能力查询的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoFrameRateRangeForSize](#oh_avcapability_getvideoframeraterangeforsize) (OH_AVCapability \*capability, int32_t width, int32_t height, [OH_AVRange](_o_h___a_v_range.md) \*frameRateRange) | 获取指定视频大小的视频编解码器支持的视频帧率范围。  | 
 | bool [OH_AVCapability_AreVideoSizeAndFrameRateSupported](#oh_avcapability_arevideosizeandframeratesupported) (OH_AVCapability \*capability, int32_t width, int32_t height, int32_t frameRate) | 检查视频编解码器是否支持视频大小和帧率的特定组合。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetVideoSupportedPixelFormats](#oh_avcapability_getvideosupportedpixelformats) (OH_AVCapability \*capability, const int32_t \*\*pixelFormats, uint32_t \*pixelFormatNum) | 获取视频编解码器支持的视频像素格式。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedProfiles](#oh_avcapability_getsupportedprofiles) (OH_AVCapability \*capability, const int32_t \*\*profiles, uint32_t \*profileNum) | 获取编解码器支持的配置文件。  | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | 获取特定配置文件支持的编解码器级别。  | 
-| bool [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | 检查编解码器是否支持配置文件和级别的特定组合。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedProfiles](#oh_avcapability_getsupportedprofiles) (OH_AVCapability \*capability, const int32_t \*\*profiles, uint32_t \*profileNum) | 获取编解码器支持的档次。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | 获取特定档次支持的编解码器级别。  | 
+| bool [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | 检查编解码器是否支持档次和级别的特定组合。  | 
 | bool [OH_AVCapability_IsFeatureSupported](#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | 检查编解码器是否支持指定特性。  | 
 | OH_AVFormat \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | 获取指定特性的属性。 需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者手动释放。  | 
 
@@ -202,7 +202,7 @@ enum OH_BitrateMode
 bool OH_AVCapability_AreProfileAndLevelSupported (OH_AVCapability *capability, int32_t profile, int32_t level)
 ```
 **描述**
-检查编解码器是否支持配置文件和级别的特定组合。
+检查编解码器是否支持档次和级别的特定组合。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -213,12 +213,12 @@ bool OH_AVCapability_AreProfileAndLevelSupported (OH_AVCapability *capability, i
 | 名称 | 描述 | 
 | -------- | -------- |
 | capability | 编解码能力指针。  | 
-| profile | 编解码器配置文件。  | 
+| profile | 编解码器档次。  | 
 | level | 编解码器级别。  | 
 
 **返回：**
 
-如果支持配置文件和级别的组合，则返回true。 如果不支持，则为false。
+如果支持档次和级别的组合，则返回true。 如果不支持，则为false。
 
 
 ### OH_AVCapability_AreVideoSizeAndFrameRateSupported()
@@ -444,7 +444,7 @@ const char* OH_AVCapability_GetName (OH_AVCapability *capability)
 OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile (OH_AVCapability *capability, int32_t profile, const int32_t **levels, uint32_t *levelNum)
 ```
 **描述**
-获取特定配置文件支持的编解码器级别。
+获取特定档次支持的编解码器级别。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -455,7 +455,7 @@ OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile (OH_AVCapability *capa
 | 名称 | 描述 | 
 | -------- | -------- |
 | capability | 编解码能力指针。  | 
-| profile | 编解码器配置文件。  | 
+| profile | 编解码器档次。  | 
 | levels | 输出参数。指向级别数组的指针。  | 
 | levelNum | 输出参数。级别数组的元素数目。  | 
 
@@ -470,7 +470,7 @@ OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile (OH_AVCapability *capa
 OH_AVErrCode OH_AVCapability_GetSupportedProfiles (OH_AVCapability *capability, const int32_t **profiles, uint32_t *profileNum)
 ```
 **描述**
-获取编解码器支持的配置文件。
+获取编解码器支持的档次。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -481,8 +481,8 @@ OH_AVErrCode OH_AVCapability_GetSupportedProfiles (OH_AVCapability *capability, 
 | 名称 | 描述 | 
 | -------- | -------- |
 | capability | 编解码能力指针。  | 
-| profiles | 输出参数。指向配置文件数组的指针。  | 
-| profileNum | 输出参数。配置文件数组的元素数目。  | 
+| profiles | 输出参数。指向档次数组的指针。  | 
+| profileNum | 输出参数。档次数组的元素数目。  | 
 
 **返回：**
 
