@@ -71,7 +71,7 @@
 ### OH_NativeBuffer
 
 ```
-typedef struct OH_NativeBufferOH_NativeBuffer
+typedef struct OH_NativeBuffer OH_NativeBuffer
 ```
 
 **描述**

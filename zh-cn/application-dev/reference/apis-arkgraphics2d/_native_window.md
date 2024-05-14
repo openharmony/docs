@@ -24,9 +24,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[Region](_region.md) | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 | 
-| struct&nbsp;&nbsp;[OHHDRMetaData](_o_h_h_d_r_meta_data.md) | HDR元数据结构体定义。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
-| struct&nbsp;&nbsp;[OHExtDataHandle](_o_h_ext_data_handle.md) | 扩展数据句柄结构体定义。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
+| struct  [Region](_region.md) | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 | 
+| struct  [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | HDR元数据结构体定义。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
+| struct  [OHExtDataHandle](_o_h_ext_data_handle.md) | 扩展数据句柄结构体定义。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 
 
 ### 类型定义
@@ -35,7 +35,7 @@
 | -------- | -------- |
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | 提供对OHNativeWindow的访问功能。 | 
 | typedef struct NativeWindowBuffer [OHNativeWindowBuffer](#ohnativewindowbuffer) | 提供对OHNativeWindowBuffer的访问功能。 | 
-| typedef struct [Region](_region.md)[Region](#region) | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 | 
+| typedef struct [Region](_region.md)  [Region](#region) | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 | 
 
 
 ### 枚举
@@ -73,7 +73,8 @@
 | int32_t [OH_NativeWindow_NativeWindowDetachBuffer](#oh_nativewindow_nativewindowdetachbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 将OHNativeWindowBuffer从OHNativeWindow中分离。 | 
 | int32_t [OH_NativeWindow_GetSurfaceId](#oh_nativewindow_getsurfaceid) ([OHNativeWindow](#ohnativewindow) \*window, uint64_t \*surfaceId) | 通过OHNativeWindow获取对应的surfaceId。 | 
 | int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](#ohnativewindow) \*\*window) | 通过surfaceId创建对应的OHNativeWindow。 | 
-
+| int32_t [OH_NativeWindow_GetLastFlushedBufferV2](#oh_nativewindow_getlastflushedbufferv2) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer, 与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。  | 
+| void [OH_NativeWindow_SetBufferHold](#oh_nativewindow_setbufferhold) ([OHNativeWindow](#ohnativewindow) \*window) | 提前缓存一帧buffer，且缓存的这一帧延迟一帧上屏显示，以此抵消后续一次超长帧丢帧。  | 
 
 ## 类型定义说明
 
@@ -209,6 +210,55 @@ enum OHScalingMode
 
 
 ## 函数说明
+
+
+### OH_NativeWindow_GetLastFlushedBufferV2()
+
+```
+int32_t OH_NativeWindow_GetLastFlushedBufferV2 (OHNativeWindow *window, OHNativeWindowBuffer **buffer, int *fenceFd, float matrix[16] )
+```
+
+**描述**
+
+从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer, 与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个OHNativeWindow的结构体实例的指针。  | 
+| buffer | 一个OHNativeWindowBuffer结构体指针的指针。  | 
+| fenceFd | 一个文件描述符的指针。  | 
+| matrix | 表示检索到的4\*4变换矩阵。  | 
+
+**返回：**
+
+返回值为0表示执行成功。
+
+
+
+### OH_NativeWindow_SetBufferHold()
+
+```
+void OH_NativeWindow_SetBufferHold (OHNativeWindow *window)
+```
+**描述**
+提前缓存一帧buffer，且缓存的这一帧延迟一帧上屏显示，以此抵消后续一次超长帧丢帧。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个[OHNativeWindow](_o_h___native_image.md#ohnativewindow)的结构体实例的指针。  | 
+
 
 
 ### OH_NativeWindow_CreateNativeWindow()
