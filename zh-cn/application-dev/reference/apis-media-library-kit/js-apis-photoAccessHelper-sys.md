@@ -4567,7 +4567,7 @@ constructor(album: Album)
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| album | Album | 是   | 智慧相册。 |
+| album | [Album](#album) | 是   | 智慧相册。 |
 
 **错误码：**
 
@@ -4615,7 +4615,7 @@ getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| type       | HighlightAlbumInfoType | 是    | 需要获取的时刻相册信息类型 |
+| type       | [HighlightAlbumInfoType](#highlightalbuminfotype12) | 是    | 需要获取的时刻相册信息类型。 |
 
 **错误码：**
 
@@ -4673,7 +4673,7 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| resourceUri       | string | 是    | 指定时刻缓存资源uri |
+| resourceUri       | string | 是    | 指定时刻缓存资源uri。 |
 
 **错误码：**
 
@@ -4729,8 +4729,8 @@ setHighlightUserActionData(type: HighlightUserActionType, actionData: number): P
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| type       | HighlightUserActionType | 是    | 需要设置的用户行为数据类型 |
-| actionData | number | 是    | 行为数据 |
+| type       | [HighlightUserActionType](#highlightuseractiontype12) | 是    | 需要设置的用户行为数据类型。 |
+| actionData | number | 是    | 行为数据。 |
 
 **错误码：**
 
@@ -4994,28 +4994,32 @@ async function example() {
 
 枚举，时刻相册信息类型。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称            | 值  | 说明       |
 | :------------ | :- | :------- |
-| COVER\_INFO   | 0  | 封面信息类别。**系统接口**：此接口为系统接口。    |
-| PLAY\_INFO    | 1  | 音乐信息类别。**系统接口**：此接口为系统接口。    |
+| COVER\_INFO   | 0  | 封面信息类别。    |
+| PLAY\_INFO    | 1  | 音乐信息类别。    |
 
 ## HighlightUserActionType<sup>12+</sup>
 
 枚举，时刻用户行为类型。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                           | 值  | 说明       |
 | :---------------------------- | :- | :------- |
-| INSERTED\_PIC\_COUNT          | 0  | 新增图片数量类别。**系统接口**：此接口为系统接口。    |
-| REMOVED\_PIC\_COUNT           | 1  | 移除图片数量类别。**系统接口**：此接口为系统接口。    |
-| SHARED\_SCREENSHOT\_COUNT     | 2  | 分享二级界面长图次数类别。**系统接口**：此接口为系统接口。    |
-| SHARED\_COVER\_COUNT          | 3  | 分享时刻封面次数类别。**系统接口**：此接口为系统接口。    |
-| RENAMED\_COUNT                | 4  | 重命名次数类别。**系统接口**：此接口为系统接口。    |
-| CHANGED\_COVER\_COUNT         | 5  | 修改封面次数类别。**系统接口**：此接口为系统接口。    |
-| RENDER\_VIEWED\_TIMES         | 100  | 轮播观看次数类别。**系统接口**：此接口为系统接口。    |
-| RENDER\_VIEWED\_DURATION      | 101  | 轮播观看总时长类别。**系统接口**：此接口为系统接口。   |
-| ART\_LAYOUT\_VIEWED\_TIMES    | 102  | 二级界面观看次数类别。**系统接口**：此接口为系统接口。   |
-| ART\_LAYOUT\_VIEWED\_DURATION | 103  | 二级界面观看总时长类别。**系统接口**：此接口为系统接口。    |
+| INSERTED\_PIC\_COUNT          | 0  | 新增图片数量类别。    |
+| REMOVED\_PIC\_COUNT           | 1  | 移除图片数量类别。    |
+| SHARED\_SCREENSHOT\_COUNT     | 2  | 分享二级界面长图次数类别。    |
+| SHARED\_COVER\_COUNT          | 3  | 分享时刻封面次数类别。    |
+| RENAMED\_COUNT                | 4  | 重命名次数类别。    |
+| CHANGED\_COVER\_COUNT         | 5  | 修改封面次数类别。    |
+| RENDER\_VIEWED\_TIMES         | 100  | 轮播观看次数类别。    |
+| RENDER\_VIEWED\_DURATION      | 101  | 轮播观看总时长类别。   |
+| ART\_LAYOUT\_VIEWED\_TIMES    | 102  | 二级界面观看次数类别。   |
+| ART\_LAYOUT\_VIEWED\_DURATION | 103  | 二级界面观看总时长类别。    |
