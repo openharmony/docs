@@ -17,7 +17,9 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 
 
 ## 接口说明
+
 这里给出MindSpore Lite推理的通用开发流程中涉及的一些接口，具体请见下列表格。
+
 ### Context 相关接口
 
 | 接口名称        | 描述        |
@@ -49,9 +51,11 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 |void *OH_AI_TensorGetMutableData(const OH_AI_TensorHandle tensor)|获取可变的张量数据指针。|
 
 ## 开发步骤
+
 使用MindSpore Lite进行模型推理的开发流程如下图所示。
 
 **图 1** 使用MindSpore Lite进行模型推理的开发流程
+
 ![how-to-use-mindspore-lite](figures/01.png)
 
 进入主要流程之前需要先引用相关的头文件，并编写函数生成随机的输入，具体如下：
@@ -80,6 +84,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 ```
 
 然后进入主要的开发步骤，具括包括模型的准备、读取、编译、推理和释放，具体开发过程及细节请见下文的开发步骤及示例。
+
 1. 模型准备。
 
     需要的模型可以直接下载，也可以通过模型转换工具获得。
@@ -117,11 +122,11 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     情形2：创建NNRT（Neural Network Runtime）和CPU异构推理上下文。
 
     NNRT是面向AI领域的跨芯片推理计算运行时，一般来说，NNRT对接的加速硬件如NPU，推理能力较强，但支持的算子规格少；而通用CPU推理能力较弱，但支持算子规格更全面。MindSpore Lite支持配置NNRT硬件和CPU异构推理：优先将模型算子调度到NNRT推理，若某些算子NNRT不支持，将其调度到CPU进行推理。通过下面的操作即可配置NNRT/CPU异构推理。
-
+   <!--Del-->
    > **说明：**
    >
    > NNRT/CPU异构推理，需要有实际的NNRT硬件接入，NNRT相关资料请参考：[OpenHarmony/ai_neural_network_runtime](https://gitee.com/openharmony/ai_neural_network_runtime)。
-
+   <!--DelEnd-->
     ```c
     // 创建并配置上下文，设置运行时的线程数量为2，绑核策略为大核优先
     OH_AI_ContextHandle context = OH_AI_ContextCreate();
@@ -282,5 +287,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     ```
 
 ## 相关实例
+
 针对MindSpore Lite 的使用，有以下相关实例可供参考：
+
 - [简易MSLite教程](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)
