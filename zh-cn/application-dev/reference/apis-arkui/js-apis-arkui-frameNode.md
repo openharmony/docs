@@ -1550,11 +1550,6 @@ class MyFrameNode extends FrameNode {
       let child = this.getChild(i);
       if (child) {
         child.layout({
-          x: 10,
-          y: 10
-        });
-        child.setNeedsLayout();
-        child.layout({
           x: 20,
           y: y
         });
@@ -1605,6 +1600,10 @@ struct Index {
           .onClick(() => {
             this.nodeController?.rootNode?.addWidth();
             this.nodeController?.rootNode?.invalidate();
+          })
+        Button('UpdateLayout')
+          .onClick(() => {
+            this.nodeController?.rootNode?.setNeedsLayout();
           })
       }
       .width('100%')
