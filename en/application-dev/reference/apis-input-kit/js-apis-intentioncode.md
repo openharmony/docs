@@ -16,6 +16,8 @@ import IntentionCode from '@ohos.multimodalInput.intentionCode';
 
 Enumerates intention codes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
 | Name                              | Value  |  Description       |

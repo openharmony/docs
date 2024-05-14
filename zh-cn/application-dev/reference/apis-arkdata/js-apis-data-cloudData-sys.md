@@ -49,20 +49,28 @@ import cloudData from '@ohos.data.cloudData';
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
-| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名和数据库表名，其中accountId和bundleName不能为空。 |
+| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名、数据库类型和数据库表名，所有字段均不能为空。
 
 **样例：**
 
 ```ts
-//token:用于校验应用信息
 //accountId:用户打开的云帐号ID
 //bundleName:应用包名
 //containerName:云上数据库名称
-//containerName:云上数据库表名
+//databaseScopes:云上数据库类型
+//recordTypes:云上数据库表名
 
 interface ExtraData {
   eventId: "cloud_data_change",
-  extraData: '{"header": { "token": "bbbbbb" },"data": {"accountId": "aaa","bundleName": "com.bbb.xxx","containerName": "alias","recordTypes": ["xxx", "yyy", "zzz",] }}'
+  extraData: '{
+    "data": "{
+     "accountId": "aaa",
+     "bundleName": "com.bbb.xxx",
+     "containerName": "alias",
+     "databaseScopes": ["private", "shared"],
+     "recordTypes": ["xxx", "yyy", "zzz"]
+    }"
+  }'
 }
 
 ```
@@ -441,7 +449,7 @@ try {
 import { BusinessError } from '@ohos.base';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 try {
   cloudData.Config.notifyDataChange({
     eventId: eventId, extraData: extraData
@@ -480,7 +488,7 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 import { BusinessError } from '@ohos.base';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 let userId: number = 100;
 try {
   cloudData.Config.notifyDataChange({
@@ -527,7 +535,7 @@ try {
 import { BusinessError } from '@ohos.base';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 let userId: number = 100;
 try {
   cloudData.Config.notifyDataChange({
@@ -778,6 +786,7 @@ try {
 | STATE_ACCEPTED   | 1    | 端云共享已接受。请使用枚举名称而非枚举值。 |
 | STATE_REJECTED   | 2    | 端云共享被拒绝。请使用枚举名称而非枚举值。 |
 | STATE_SUSPENDED  | 3    | 端云共享被暂时挂起，未作处理。请使用枚举名称而非枚举值。 |
+| STATE_UNAVAILABLE<sup>12+</sup>   | 4    | 端云共享不可用。请使用枚举名称而非枚举值。 |
 
 ### SharingCode<sup>11+</sup>
 

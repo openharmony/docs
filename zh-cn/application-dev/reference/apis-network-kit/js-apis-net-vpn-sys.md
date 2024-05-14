@@ -9,7 +9,7 @@ VPN 管理模块，支持 VPN 的启动和停止功能。
 ## 导入模块
 
 ```js
-import vpn from "@ohos.net.vpn";
+import { vpn } from '@kit.NetworkKit';
 ```
 
 ## vpn.createVpnConnection
@@ -47,8 +47,8 @@ createVpnConnection(context: AbilityContext): VpnConnection
 Stage 模型示例：
 
 ```ts
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -98,15 +98,15 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **示例：**
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -170,15 +170,15 @@ setUp(config: VpnConfig): Promise\<number\>
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **示例：**
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -243,10 +243,9 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-import socket from "@ohos.net.socket";
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { socket, vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -320,10 +319,9 @@ protect(socketFd: number): Promise\<void\>
 **示例：**
 
 ```js
-import socket from "@ohos.net.socket";
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { socket, vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -391,9 +389,9 @@ destroy(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -441,9 +439,9 @@ destroy(): Promise\<void\>
 **示例：**
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component

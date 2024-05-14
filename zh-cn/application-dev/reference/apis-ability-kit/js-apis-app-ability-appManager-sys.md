@@ -183,6 +183,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 try {
@@ -253,6 +259,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
@@ -419,6 +431,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
@@ -508,6 +526,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
@@ -1481,19 +1505,6 @@ try {
 | STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
 | STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
 
-## ProcessState<sup>10+</sup>
-
-进程状态，该类型为枚举，可配合[ProcessData](js-apis-inner-application-processData-sys.md)返回相应的进程状态。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称                 | 值  | 说明                               |
-| -------------------- | --- | --------------------------------- |
-| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
 
 ## appManager.getRunningProcessInformationByBundleType<sup>12+</sup>
 
@@ -1569,7 +1580,7 @@ try {
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 预加载的应用包名。 |
 | userId | number | 是 | 预加载的用户Id。 |
-| mode | [PreloadMode](#appmanagerpreloadmode12+) | 是 | 预加载模式。 |
+| mode | [PreloadMode](#appmanagerpreloadmode12) | 是 | 预加载模式。 |
 | appIndex | number | 否 | 预加载应用分身的appIndex。 |
 
 **返回值：**

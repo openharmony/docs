@@ -229,9 +229,9 @@
 
 | 名称     | 描述              |
 | ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。 |
+| INVERT | 设置前景色为控件背景色的反色。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## LengthConstrain
 
@@ -376,6 +376,8 @@
 
 像素扩展属性集合,用于描述像素扩展的信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型                | 必填   | 说明             |
 | ------ | ----------------- | ---- | -------------- |
 | left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
@@ -386,6 +388,8 @@
 ## ModalTransition<sup>10+</sup>
 
 全屏模态转场方式枚举类型，用于设置全屏模态转场类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述           |
 | ------- | ------------ |
@@ -468,6 +472,18 @@
 | --------------------- | -------------------------------------- |
 | {number}deg               | 需要指定以deg像素单位，如'10deg'。 |
 
+## MultiShadowOptions<sup>10+</sup>
+
+投影样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+
 ## SwiperAnimationEvent<sup>10+</sup>
 
 Swiper组件动画相关信息集合。
@@ -496,6 +512,8 @@ Tabs组件动画相关信息集合。
 
 扩展安全区域的枚举类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
 | SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
@@ -505,6 +523,8 @@ Tabs组件动画相关信息集合。
 ## SafeAreaEdge<sup>10+</sup>
 
 扩展安全区域的方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述       |
 | ------ | ---------- |
@@ -599,9 +619,12 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | DecorationStyle | 文本装饰线样式。 |
 | BaselineOffsetStyle | 文本基线偏移量样式。 |
 | LetterSpacingStyle | 文本字符间距样式。 |
+| LineHeightStyle | 文本行高样式。 |
 | TextShadowStyle | 文本阴影样式。 |
 | GestureStyle | 事件手势样式。 |
+| ParagraphStyle | 文本段落样式。 |
 | ImageAttachment | 图片样式。 |
+| CustomSpan | 自定义绘制Span样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 

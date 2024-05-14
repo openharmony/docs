@@ -3,27 +3,16 @@
 
 创建ArkTS卡片，需实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口。
 
-
 1. 在EntryFormAbility.ets中，导入相关模块。
-   
-   ```ts
-   import formInfo from '@ohos.app.form.formInfo';
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formProvider from '@ohos.app.form.formProvider';
-   ```
+```ts
+  import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+  import { Configuration, Want } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+```
 
 2. 在EntryFormAbility.ets中，实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口，其中在onAddForm的入参want中可以通过[FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam)取出卡片的相关信息。
    
-   ```typescript
-   import formInfo from '@ohos.app.form.formInfo';
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formProvider from '@ohos.app.form.formProvider';
-   import { Configuration } from '@ohos.app.ability.Configuration';
-   import Want from '@ohos.app.ability.Want';
-   import Base from '@ohos.base';
-   
+```ts
    export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want: Want) {
       console.info('[EntryFormAbility] onAddForm');
@@ -49,7 +38,7 @@
         'detail': 'detailOnUpdateForm'
       };
       let formData = formBindingData.createFormBindingData(obj);
-      formProvider.updateForm(formId, formData).catch((err: Base.BusinessError) => {
+      formProvider.updateForm(formId, formData).catch((err: BusinessError) => {
         console.error(`[EntryFormAbility] Failed to updateForm. Code: ${err.code}, message: ${err.message}`);
       });
     }
@@ -80,7 +69,7 @@
       return formInfo.FormState.READY;
     }
    }
-   ```
+```
 
 
 > **说明：**

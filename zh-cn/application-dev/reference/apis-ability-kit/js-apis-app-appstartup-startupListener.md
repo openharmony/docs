@@ -17,7 +17,7 @@ import StartupListener from '@ohos.app.appstartup.StartupListener';
 
 ## StartupListener.onCompleted
 
-onCompleted(error: BusinessError\<void\>): void
+onCompleted?(error: BusinessError\<void\>): void
 
 在所有组件初始化完成时调用。
 

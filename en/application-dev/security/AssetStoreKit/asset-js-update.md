@@ -12,7 +12,7 @@ The following table describes the attributes of **AssetMap** for updating an ass
 
 - Attributes of **AssetMap** in **query**:
 
-  | Attribute Name (Tag)       | Value                                            | Mandatory | Description                                            |
+  | Attribute Name (Tag)       | Attribute Content (Value)                   | Mandatory | Description                                            |
   | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
   | ALIAS                 | Type: Uint8Array<br>Length: 1-256 bytes                           | Yes    | Asset alias, which uniquely identifies an asset.          |
   | ACCESSIBILITY         | Type: number<br>Value range: see [Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)| No    | Access control based on the lock screen status.                                    |
@@ -35,9 +35,9 @@ The following table describes the attributes of **AssetMap** for updating an ass
 
 - Attributes of **AssetMap** in **attributesToUpdate**:
 
-  | Attribute Name (Tag)       | Value                     | Mandatory | Description                                                        |
+  | Attribute Name (Tag)       | Attribute Content (Value) | Mandatory | Description                                                        |
   | --------------------- | -------------------------------| -------- | ------------------------------- |
-  | SECRET                | Type: Uint8Array<br>Length: 1-1024 bytes                          | No    | New asset in plaintext.                                                |
+  | SECRET                | Type: Uint8Array<br>Length: 1-1024 bytes                          | No    | New asset plaintext.                                                |
   | DATA_LABEL_NORMAL_1   | Type: Uint8Array<br>Length: 1-2048 bytes                       | No    | Additional data of the new asset customized by the service without integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|
   | DATA_LABEL_NORMAL_2   | Type: Uint8Array<br>Length: 1-2048 bytes                       | No    | Additional data of the new asset customized by the service without integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|
   | DATA_LABEL_NORMAL_3   | Type: Uint8Array<br>Length: 1-2048 bytes                       | No    | Additional data of the new asset customized by the service without integrity protection.<br>**NOTE**: The data length is 1 to 512 bytes before API version 12.|

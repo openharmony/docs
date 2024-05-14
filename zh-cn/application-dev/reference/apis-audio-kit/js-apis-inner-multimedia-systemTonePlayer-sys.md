@@ -135,6 +135,7 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 
 **示例：**
@@ -183,6 +184,7 @@ stop(id: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 
 **示例：**

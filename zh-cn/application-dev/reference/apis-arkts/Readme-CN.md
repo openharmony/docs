@@ -23,6 +23,7 @@
   - [@ohos.util.PlainArray (非线性容器PlainArray)](js-apis-plainarray.md)
   - [@ohos.util.Queue (线性容器Queue)](js-apis-queue.md)
   - [@ohos.util.Stack (线性容器Stack)](js-apis-stack.md)
+  - [@ohos.util.stream (数据流基类stream)](js-apis-stream.md)
   - [@ohos.util.TreeMap (非线性容器TreeMap)](js-apis-treemap.md)
   - [@ohos.util.TreeSet (非线性容器TreeSet)](js-apis-treeset.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)

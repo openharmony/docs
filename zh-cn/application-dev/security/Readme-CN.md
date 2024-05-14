@@ -6,8 +6,8 @@
 - [通用密钥库](UniversalKeystoreKit/Readme-CN.md)
 - [加解密算法库框架](CryptoArchitectureKit/Readme-CN.md)
 - [证书](DeviceCertificateKit/Readme-CN.md)
+- [关键资产存储服务](AssetStoreKit/Readme-CN.md)
 - 应用包签名工具
   - [应用包签名工具概述](hapsigntool-overview.md)
   - [应用包签名工具指导](hapsigntool-guidelines.md)
   - [HarmonyAppProvision配置文件](app-provision-structure.md)
-- [关键资产存储服务](AssetStoreKit/Readme-CN.md)

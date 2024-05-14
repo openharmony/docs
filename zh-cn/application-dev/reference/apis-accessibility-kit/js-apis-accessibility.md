@@ -58,6 +58,7 @@ import accessibility from '@ohos.accessibility';
 | description                    | string                                   | 是    | 否    | 辅助应用描述。          |
 | eventTypes                     | Array&lt;[EventType](#eventtype)&gt;     | 是    | 否    | 辅助应用关注的无障碍事件列表。  |
 | needHide<sup>12+</sup>                     | boolean     | 是    | 否    | 辅助应用是否在已安装的扩展服务列表中被隐藏，true表示隐藏服务，false表示显示服务。  |
+| label<sup>12+</sup>                     | string     | 是    | 否    | 扩展应用在扩展服务列表中的名称。  |
 
 ## Action
 
@@ -82,13 +83,14 @@ import accessibility from '@ohos.accessibility';
 | select                  | 表示选择操作。当前版本暂不支持。   |
 | setText                 | 表示设置文本操作，需配置参数setText。当前版本暂不支持。 |
 | delete                  | 表示删除操作。当前版本暂不支持。   |
-| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd。   |
+| setSelection            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
 | common<sup>12+</sup>            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
 | home<sup>12+</sup>                | 表示返回桌面操作。   |
 | back<sup>12+</sup>                | 表示返回上一级操作。   |
 | recentTask<sup>12+</sup>          | 表示打开最近任务操作。   |
 | notificationCenter<sup>12+</sup>  | 表示打开通知栏操作。   |
 | controlCenter<sup>12+</sup>       | 表示打开控制中心操作。   |
+| setCursorPosition<sup>12+</sup>   | 表示设置光标位置操作，需配置参数offset。   |
 
 ## Capability
 

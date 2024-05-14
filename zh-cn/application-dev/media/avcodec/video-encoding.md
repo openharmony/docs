@@ -9,7 +9,9 @@
 | mp4      | HEVC（H.265）、 AVC（H.264） |
 | m4a      | HEVC（H.265）、 AVC（H.264） |
 
+<!--RP1-->
 目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
+<!--RP1End-->
 
 ## Surface输入与Buffer输入
 
@@ -53,6 +55,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     #include <multimedia/player_framework/native_avcodec_base.h>
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
+    #include <fstream>
     ```
 
 2. 创建编码器实例对象。
@@ -133,10 +136,32 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
+4. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调
 
-4. 调用OH_VideoEncoder_Configure()配置编码器。
+    ```c++
+    // 4.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
+    static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
+    {
+        // 输入帧parameter对应的index，送入InParameterIndexQueue队列
+        // 输入帧的数据parameter送入InParameterQueue队列
+        // 数据处理，请参考:
+        // - 随帧参数写入
+        // - 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
+        OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
+        OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
+    }
 
-    详细可配置选项的说明请参考[变量](../../reference/apis-avcodec-kit/_codec_base.md#变量)。
+    // 4.2 注册随帧参数回调
+    OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
+    OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr);
+    ```
+
+5. 调用OH_VideoEncoder_Configure()配置编码器。
+
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    
+    参数校验规则请参考[OH_VideoEncoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_configure)。
+
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频颜色格式。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
@@ -166,8 +191,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 23000;
-    // 配置所需的编码质量。只有在恒定质量模式下配置的编码器才支持此配置
-    int32_t quality = 0;
     // 配置比特率
     int64_t bitRate = 3000000;
 
@@ -185,7 +208,6 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -193,7 +215,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_Destroy(format);
     ```
 
-5. 获取Surface。
+6. 获取Surface。
 
     获取编码器Surface模式的OHNativeWindow输入，获取Surface需要在准备编码器之前完成。
 
@@ -208,7 +230,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
     OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)
 
-6. 调用OH_VideoEncoder_Prepare()编码器就绪。
+7. 调用OH_VideoEncoder_Prepare()编码器就绪。
 
     该接口将在编码器运行前进行一些数据的准备工作。
 
@@ -219,7 +241,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-7. 调用OH_VideoEncoder_Start()启动编码器。
+8. 调用OH_VideoEncoder_Start()启动编码器。
 
     ```c++
     // 配置待编码文件路径
@@ -233,9 +255,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-8. （可选）在运行过程中动态配置编码器参数。
+9. （可选）OH_VideoDecoder_SetParameter()在运行过程中动态配置编码器参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
-    ```c++
+   ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // 支持动态请求IDR帧
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
@@ -252,10 +275,24 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-9. 写入编码图像。
-    在之前的第6步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
+10. 写入编码图像。
+    在之前的第7步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
 
-10. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器结束。
+11. （可选）调用OH_VideoEncoder_PushInputParameter()通知编码器随帧参数配置输入完成
+    在之前的第4步中，开发者已经注册随帧通路回调
+
+    以下示例中：
+
+    - index：回调函数OnNeedInputParameter传入的参数，数据队列的索引。
+
+    ```c++
+    int32_t ret = OH_VideoEncoder_PushInputParameter(codec, index);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
+
+12. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器结束。
 
     ```c++
     // surface模式：通知视频编码器输入流已结束，只能使用此接口进行通知
@@ -266,7 +303,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-11. 调用OH_VideoEncoder_FreeOutputBuffer()释放编码帧。
+13. 调用OH_VideoEncoder_FreeOutputBuffer()释放编码帧。
 
     以下示例中：
 
@@ -274,13 +311,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针。
 
     ```c++
-    // 获取解码后信息
+    // 获取编码后信息
     OH_AVCodecBufferAttr info;
     int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 将编码完成帧数据mem写入到对应输出文件中
+    // 将编码完成帧数据buffer写入到对应输出文件中
     outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(buffer)), info.size);
     // 释放已完成写入的数据，index为对应输出队列下标
     ret = OH_VideoEncoder_FreeOutputBuffer(videoEnc, index);
@@ -289,7 +326,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-12. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
+14. （可选）调用OH_VideoEncoder_Flush()刷新编码器。
 
     调用OH_VideoEncoder_Flush()后，编码器仍处于运行态，但会将当前队列清空，将已编码的数据释放。
 
@@ -308,7 +345,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-13. （可选）调用OH_VideoEncoder_Reset()重置编码器。
+15. （可选）调用OH_VideoEncoder_Reset()重置编码器。
 
     调用OH_VideoEncoder_Reset()后，编码器回到初始化的状态，需要调用OH_VideoEncoder_Configure()重新配置。
 
@@ -325,7 +362,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-14. （可选）调用OH_VideoEncoder_Stop()停止编码器。
+16. （可选）调用OH_VideoEncoder_Stop()停止编码器。
 
     ```c++
     // 终止编码器videoEnc
@@ -335,7 +372,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-15. 调用OH_VideoEncoder_Destroy()销毁编码器实例，释放资源。
+17. 调用OH_VideoEncoder_Destroy()销毁编码器实例，释放资源。
 
     > **说明：**
     >
@@ -365,6 +402,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     #include <multimedia/player_framework/native_avcodec_base.h>
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
+    #include <fstream>
     ```
 
 2. 创建编码器实例对象。
@@ -435,7 +473,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
             isFirstFrame = false;
         }
         // 数据处理，请参考:
-        // - 写入编码码流
+        // - 写入编码图像
         // - 通知编码器码流结束
     }
     
@@ -456,7 +494,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-    4. 调用OH_VideoEncoder_Configure()配置编码器。
+4. 调用OH_VideoEncoder_Configure()配置编码器。
 
     与surface模式相同，此处不再赘述。
 
@@ -609,7 +647,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     与surface模式相同，此处不再赘述。
 
     ```c++
-    // 获取解码后信息
+    // 获取编码后信息
     OH_AVCodecBufferAttr info;
     int32_t ret = OH_AVBuffer_GetBufferAttr(buffer, &info);
     if (ret != AV_ERR_OK) {

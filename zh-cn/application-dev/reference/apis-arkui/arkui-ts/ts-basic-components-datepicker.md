@@ -28,6 +28,8 @@ DatePicker(options?: DatePickerOptions)
 
 ## DatePickerOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型 | 必填 | 说明                                                         |
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
@@ -66,6 +68,8 @@ lunar(value: boolean)
 
 设置弹窗的日期是否显示农历。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -79,6 +83,8 @@ lunar(value: boolean)
 disappearTextStyle(value: PickerTextStyle)
 
 设置所有选项中最上和最下两个选项的文本样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -94,6 +100,8 @@ textStyle(value: PickerTextStyle)
 
 设置所有选项中除了最上、最下及选中项以外的文本样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -108,6 +116,8 @@ selectedTextStyle(value: PickerTextStyle)
 
 设置选中项的文本样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -117,6 +127,8 @@ selectedTextStyle(value: PickerTextStyle)
 | value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ## PickerTextStyle<sup>10+</sup>类型说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
@@ -149,6 +161,8 @@ onDateChange(callback: (value: Date) => void)
 
 选择日期时触发该事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -158,6 +172,8 @@ onDateChange(callback: (value: Date) => void)
 | value  | Date | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
 
 ## DatePickerResult对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称    | 参数类型   | 描述                          |
 | ----- | ------ | --------------------------- |

@@ -21,7 +21,7 @@
   }
   ```
 
-- 通过[isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode) 判断当前Web组件是否是隐私模式。
+- 通过[isIncogntoMode](../reference/apis-arkweb/js-apis-webview.md#isincognitomode11) 判断当前Web组件是否是隐私模式。
 
   ```ts
   // xxx.ets

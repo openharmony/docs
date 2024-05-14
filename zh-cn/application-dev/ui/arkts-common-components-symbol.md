@@ -218,7 +218,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
 
 相较于effectStrategy属性启动即触发动效，可以通过以下两种方式控制动效的播放状态以及更多样的动效策略选择。
 
-关于effectStrategy属性与symbolEffect属性优先级关系，详见[SymbolGlyph.symbolEffect属性](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symbolEffect)。
+关于effectStrategy属性与symbolEffect属性优先级关系，详见[SymbolGlyph.symbolEffect属性](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md##symboleffect12-2)。
 
 - 通过symbolEffect属性同时设置SymbolGlyph的动效策略及动效播放状态。
 

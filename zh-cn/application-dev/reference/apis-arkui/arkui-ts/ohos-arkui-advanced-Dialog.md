@@ -106,7 +106,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, secondaryTitle: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 操作确认类弹出框，触发一个将产生严重后果的不可逆操作时，如删除、重置、取消编辑、停止等。
 
@@ -164,7 +164,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | contentBuilder | () => void | 是 | 弹出框内容。 |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框标题。 |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
-| contentAreaPadding<sup>12+</sup> | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
+| contentAreaPadding | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
 | buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
 
 

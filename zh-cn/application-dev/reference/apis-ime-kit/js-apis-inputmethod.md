@@ -1850,6 +1850,7 @@ on(type: 'insertText', callback: (text: string) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -1921,6 +1922,7 @@ on(type: 'deleteLeft', callback: (length: number) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -1981,6 +1983,7 @@ on(type: 'deleteRight', callback: (length: number) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2041,6 +2044,7 @@ on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => voi
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2101,6 +2105,7 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2161,6 +2166,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 
 | 错误码ID | 错误信息                           |
 | -------- | -------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2221,6 +2227,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2279,6 +2286,14 @@ on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
 | type     | string  | 是   | 设置监听类型，固定取值为'selectByRange'。 |
 | callback | Callback&lt;[Range](#range10)&gt; | 是   | 回调函数，返回需要选中的文本范围。<br/>根据传入的文本范围，开发者在回调函数中编辑框中相应文本。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -2334,6 +2349,14 @@ on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 | -------- | ----- | ---- | ------ |
 | type     | string  | 是   | 设置监听类型，固定取值为'selectByMovement'。 |
 | callback | Callback&lt;[Movement](#movement10)&gt; | 是   | 回调函数，返回光标移动的方向。<br/>根据传入的光标移动方向，选中编辑框中相应文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -2397,6 +2420,7 @@ on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2465,6 +2489,7 @@ on(type: 'getRightTextOfCursor', callback: (length: number) => string): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2533,6 +2558,7 @@ on(type: 'getTextIndexAtCursor', callback: () => number): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**

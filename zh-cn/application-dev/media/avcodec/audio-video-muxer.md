@@ -3,11 +3,12 @@
 开发者可以调用本模块的Native API接口，完成音视频封装，即将音频、视频等编码后的媒体数据，按一定的格式存储到文件里。
 
 当前支持的封装能力如下：
-
+<!--RP1-->
 | 封装格式 | 视频编解码类型        | 音频编解码类型   | 封面类型       |
 | -------- | --------------------- | ---------------- | -------------- |
 | mp4      | AVC（H.264）          | AAC、MPEG（MP3） | jpeg、png、bmp |
-| m4a      |                       | AAC              | jpeg、png、bmp |
+| m4a      | -                     | AAC              | jpeg、png、bmp |
+<!--RP1End-->
 
 **适用场景**
 
@@ -49,6 +50,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    #include <multimedia/player_framework/native_avbuffer.h>
+   #include <fcntl.h>
    ```
 
 2. 调用OH_AVMuxer_Create()创建封装器实例对象。

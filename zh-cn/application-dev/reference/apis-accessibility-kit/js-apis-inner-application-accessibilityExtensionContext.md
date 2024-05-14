@@ -82,6 +82,7 @@ class EntryAbility extends AccessibilityExtensionAbility {
 | windowId             | number                                                             | 是   | 否   | 窗口id。 |
 | textType<sup>12+</sup>             | string                                                             | 是   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置。 |
 | offset<sup>12+</sup>             | number                                                             | 是   | 否   | 对于可滚动类控件，如List、Grid，内容区相对控件的顶部坐标滚动的像素偏移量。 |
+| hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | 是   | 否   | 元素的可触摸区域。 |
 
 ## FocusDirection
 
@@ -1008,7 +1009,22 @@ import { BusinessError } from '@ohos.base';
 // setSelection示例代码
 rootElement.performAction('setSelection', {
   selectTextBegin: '0', // 表示选择起始位置
-  selectTextEnd: '8'    // 表示选择结束位置
+  selectTextEnd: '8',   // 表示选择结束位置
+  selectTextInForWard: true   // true表示为前光标，false表示为后光标
+}).then(() => {
+  console.info(`Succeeded in perform action`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+// rootElement是AccessibilityElement的实例
+// setCursorPosition示例代码
+rootElement.performAction('setCursorPosition', {
+  offset: '1'   // 表示光标的设置位置
 }).then(() => {
   console.info(`Succeeded in perform action`);
 }).catch((err: BusinessError) => {
@@ -1446,5 +1462,61 @@ rootElement.findElement('textType', condition).then((data: AccessibilityElement[
   console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### getCursorPosition<sup>12+</sup>
+
+getCursorPosition(): Promise\<number>;
+
+获取文本组件中光标位置，使用Promise异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;number&gt; | Promise对象，返回当前光标所处位置。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+// rootElement是AccessibilityElement的实例
+rootElement.getCursorPosition().then((data: number) => {
+  console.info(`Succeeded in getCursorPosition, ${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to getCursorPosition, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### getCursorPosition<sup>12+</sup>
+
+getCursorPosition(callback: AsyncCallback\<number>): void;
+
+获取文本组件中光标位置，使用callback异步回调。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名         | 类型                                     | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，表示文本组件中光标位置。|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+// rootElement是AccessibilityElement的实例
+rootElement.getCursorPosition((err: BusinessError, data: number) => {
+  if (err && err.code) {
+    console.error(`failed to getCursorPosition, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getCursorPosition, ${data}`);
 });
 ```

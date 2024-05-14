@@ -166,11 +166,15 @@ selected(value: boolean)
 
 ## GridItemOptions<sup>11+</sup>对象说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值: GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
 
 ## GridItemStyle<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称  |枚举值| 描述                     |
 | ----- |----| ------------------------ |

@@ -50,6 +50,8 @@ onMouse(event: (event: MouseEvent) => void)
 ## MouseEvent对象说明
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                     | 属性类型                                     | 描述                           |
 | ---------------------- | ---------------------------------------- | ---------------------------- |
 | x                      | number                                   | 鼠标位置相对于当前组件左上角的x轴坐标。         |
@@ -69,6 +71,8 @@ onMouse(event: (event: MouseEvent) => void)
 
 ## HoverEvent<sup>10+</sup>对象说明
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称              | 属性类型       | 描述      |
 | --------------- | ---------- | ------- |

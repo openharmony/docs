@@ -114,11 +114,207 @@ effectStrategy(value: SymbolEffectStrategy)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 是   | SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE |
 
+### symbolEffect<sup>12+</sup>
+
+symbolEffect(symbolEffect: SymbolEffect, isActive?: boolean)
+
+设置SymbolGlyph组件动效策略及播放状态。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| symbolEffect  | [SymbolEffect](#symboleffect12-2)\|[ScaleSymbolEffect](#scalesymboleffect12)\|[HierarchicalSymbolEffect](#hierarchicalsymboleffect12)\|<br>[AppearSymbolEffect](#appearsymboleffect12)\|[DisappearSymbolEffect](#disappearsymboleffect12)\|[BounceSymbolEffect](#bouncesymboleffect12)\|<br>[ReplaceSymbolEffect](#replacesymboleffect12)\|[PulseSymbolEffect](#pulsesymboleffect12) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12-2) |
+| isActive  |boolean | 否   | SymbolGlyph组件动效播放状态。<br/>默认值：false |
+### symbolEffect<sup>12+</sup>
+
+symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
+
+设置SymbolGlyph组件动效策略及播放触发器。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| symbolEffect | [SymbolEffect](#symboleffect12-2)\|[ScaleSymbolEffect](#scalesymboleffect12)\|[HierarchicalSymbolEffect](#hierarchicalsymboleffect12)\|<br>[AppearSymbolEffect](#appearsymboleffect12)\|[DisappearSymbolEffect](#disappearsymboleffect12)\|[BounceSymbolEffect](#bouncesymboleffect12)\|<br>[ReplaceSymbolEffect](#replacesymboleffect12)\|[PulseSymbolEffect](#pulsesymboleffect12) | 是   | SymbolGlyph组件动效策略。<br/>默认值：[SymbolEffect](#symboleffect12-2) |
+| triggerValue | number | 否   | SymbolGlyph组件动效播放触发器，在数值变更时触发动效。<br/>如果首次不希望触发动效，设置-1。 |
+
+>  **说明：**
+>
+>  动效属性，仅支持使用effectStrategy属性或单个symbolEffect属性，不支持多种动效属性混合使用。
+
+## SymbolEffect<sup>12+</sup>
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+SymbolEffect的构造函数，无动效。
+
+## ScaleSymbolEffect<sup>12+</sup>
+
+### constructor<sup>12+</sup>
+
+constructor(scope?: EffectScope, direction?: EffectDirection)
+
+ScaleSymbolEffect的构造函数，缩放动效。
+
+**参数：**
+
+| 参数名    | 参数类型                              | 必填 | 参数描述                                    |
+| --------- | ------------------------------------- | ---- | ------------------------------------------- |
+| scope     | [EffectScope](#effectscope12)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+
+### 属性
+
+| 名称      | 参数类型                              | 描述                                        |
+| --------- | ------------------------------------- | ------------------------------------------- |
+| scope     | [EffectScope](#effectscope12)         | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12) | 动效方向。<br/>默认值：EffectDirection.DOWN |
+
+## HierarchicalSymbolEffect<sup>12+</sup>
+
+### constructor<sup>12+</sup>
+
+constructor(fillStyle?: EffectFillStyle)
+
+HierarchicalSymbolEffect的构造函数，层级动效。
+
+**参数：**
+
+| 参数名    | 参数类型                              | 必填 | 参数描述                                          |
+| --------- | ------------------------------------- | ---- | ------------------------------------------------- |
+| fillStyle | [EffectFillStyle](#effectfillstyle12) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
+
+### 属性
+
+| 名称      | 类型                                  | 必填 | 说明                                              |
+| --------- | ------------------------------------- | ---- | ------------------------------------------------- |
+| fillStyle | [EffectFillStyle](#effectfillstyle12) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
+
+## AppearSymbolEffect<sup>12+</sup>
+
+### constructor<sup>12+</sup>
+
+constructor(scope?: EffectScope)
+
+AppearSymbolEffect的构造函数，出现动效。
+
+**参数：**
+
+| 参数名 | 参数类型                      | 必填 | 参数描述                                 |
+| ------ | ----------------------------- | ---- | ---------------------------------------- |
+| scope  | [EffectScope](#effectscope12) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+### 属性
+
+| 名称  | 类型                          | 必填 | 说明                                     |
+| ----- | ----------------------------- | ---- | ---------------------------------------- |
+| scope | [EffectScope](#effectscope12) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+## DisappearSymbolEffect<sup>12+</sup>
+
+### constructor<sup>12+</sup>
+
+constructor(scope?: EffectScope)
+
+DisappearSymbolEffect的构造函数，消失动效。
+
+**参数：**
+
+| 参数名 | 参数类型                      | 必填 | 参数描述                                 |
+| ------ | ----------------------------- | ---- | ---------------------------------------- |
+| scope  | [EffectScope](#effectscope12) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+### 属性
+
+| 名称  | 类型                          | 必填 | 说明                                     |
+| ----- | ----------------------------- | ---- | ---------------------------------------- |
+| scope | [EffectScope](#effectscope12) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+## BounceSymbolEffect<sup>12+</sup>
+
+### constructor<sup>12+</sup>
+
+constructor(scope?: EffectScope, direction?: EffectDirection)
+
+BounceSymbolEffect的构造函数，弹跳动效。
+
+**参数：**
+
+| 参数名    | 参数类型                              | 必填 | 参数描述                                    |
+| --------- | ------------------------------------- | ---- | ------------------------------------------- |
+| scope     | [EffectScope](#effectscope12)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+
+### 属性
+
+| 名称      | 类型                                  | 必填 | 说明                                        |
+| --------- | ------------------------------------- | ---- | ------------------------------------------- |
+| scope     | [EffectScope](#effectscope12)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
+| direction | [EffectDirection](#effectdirection12) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
+
+## ReplaceSymbolEffect<sup>12+</sup>
+
+### constructor<sup>12+</sup>
+
+constructor(scope?: EffectScope)
+
+ReplaceSymbolEffect的构造函数，替换动效。
+
+**参数：**
+
+| 参数名 | 参数类型                      | 必填 | 参数描述                                 |
+| ------ | ----------------------------- | ---- | ---------------------------------------- |
+| scope  | [EffectScope](#effectscope12) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+### 属性
+
+| 名称  | 类型                          | 必填 | 说明                                     |
+| ----- | ----------------------------- | ---- | ---------------------------------------- |
+| scope | [EffectScope](#effectscope12) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+## PulseSymbolEffect<sup>12+</sup>
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+PulseSymbolEffect的构造函数，脉冲动效。
+
+## EffectDirection<sup>12+</sup>
+
+| 名称 | 值   | 说明             |
+| ---- | ---- | ---------------- |
+| DOWN | 0    | 图标缩小再复原。 |
+| UP   | 1    | 图标放大再复原。 |
+
+## EffectScope<sup>12+</sup>
+
+| 名称  | 值   | 说明       |
+| ----- | ---- | ---------- |
+| LAYER | 0    | 分层模式。 |
+| WHOLE | 1    | 整体模式。 |
+
+## EffectFillStyle<sup>12+</sup>
+
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| CUMULATIVE | 0    | 累加模式。 |
+| ITERATIVE  | 1    | 迭代模式。 |
+
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
+
+###  示例1
 
 ```ts
 // xxx.ets
@@ -203,3 +399,49 @@ struct Index {
 }
 ```
 ![symbol](figures/symbolGlyph.gif)
+
+###  示例2
+
+SymbolGlyph使用symbolEffect属性实现可变颜色动效和替换动效。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State isActive: boolean = true;
+  @State triggerValueReplace: number = 0;
+  replaceFlag: boolean = true;
+
+  build() {
+    Column() {
+      Row() {
+        Column() {
+          Text("可变颜色动效")
+          SymbolGlyph($r('sys.symbol.ohos_wifi'))
+            .fontSize(96)
+            .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
+          Button(this.isActive ? '关闭' : '播放').onClick(() => {
+            this.isActive = !this.isActive;
+          })
+        }.margin({right:20})
+
+        Column() {
+          Text("替换动效")
+          SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
+            .fontSize(96)
+            .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
+          Button('trigger').onClick(() => {
+            this.replaceFlag = !this.replaceFlag;
+            this.triggerValueReplace = this.triggerValueReplace + 1;
+          })
+        }
+      }
+    }.margin({
+      left:30,
+      top:50
+    })
+  }
+}
+```
+![symbol](figures/symbolGlyph_symbolEffect.gif)

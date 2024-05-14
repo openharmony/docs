@@ -45,15 +45,15 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md)：卡片扩展能力，提供卡片开发能力。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)：延时任务扩展能力，允许应用在系统闲时执行实时性不高的任务。 |
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md)：输入法扩展能力，用于开发输入法应用。 |
-| SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md)：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
+| SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->：后台服务扩展能力，提供后台运行并对外提供相应能力。 |
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)：无障碍服务扩展能力，支持访问与操作前台界面。 |
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)：数据共享扩展能力，用于对外提供数据读写服务。 |
+| DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->：数据共享扩展能力，用于对外提供数据读写服务。 |
 | FILE_SHARE       | 6   | FileShareExtensionAbility：文件共享扩展能力，用于应用间的文件分享。预留能力，当前暂未支持。 |
-| STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
+| STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->：静态广播扩展能力，用于处理静态事件，比如开机事件。 |
 | WALLPAPER        | 8   | WallpaperExtensionAbility：壁纸扩展能力，用于实现桌面壁纸。预留能力，当前暂未支持。 |
 | BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md)：数据备份扩展能力，提供应用数据的备份恢复能力。 |
-| WINDOW           |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)：界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。 |
-| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md)：企业设备管理扩展能力，提供企业管理时处理管理事件的能力，比如设备上应用安装事件、锁屏密码输入错误次数过多事件等。 |
+| WINDOW           |  10 | <!--Del-->[<!--DelEnd-->WindowExtensionAbility<!--Del-->](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md)<!--DelEnd-->：界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。 |
+| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)：企业设备管理扩展能力，提供企业管理时处理管理事件的能力，比如设备上应用安装事件、锁屏密码输入错误次数过多事件等。 |
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility：文件缩略图扩展能力，用于为文件提供图标缩略图的能力。预留能力，当前暂未支持。 |
 | PREVIEW          | 14  | PreviewExtensionAbility：文件预览扩展能力，提供文件预览的能力，其他应用可以直接在应用中嵌入显示。预留能力，当前暂未支持。 |
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。当前支持图片打印，文档类型暂未支持。 |
@@ -184,6 +184,17 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | APP            | 0    | 该Bundle是应用。    |
 | ATOMIC_SERVICE | 1    | 该Bundle是元服务。 |
 
+### MultiAppModeType<sup>12+</sup>
+标识应用多开的模式类型。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+
+| 名称 | 值 | 说明 |
+|:----------------:|:---:|:---:|
+| UNSPECIFIED|  0 | 未指定类型。 |
+| MULTI_INSTANCE |  1  | 多实例模式。  |
+| APP_CLONE |  2  |  分身模式。  |
+
 ## 接口
 
 ### bundleManager.getBundleInfoForSelf
@@ -210,7 +221,7 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -255,7 +266,7 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -307,7 +318,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -370,7 +381,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -449,7 +460,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -517,7 +528,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -579,7 +590,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -650,7 +661,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -711,7 +722,7 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -753,13 +764,13 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **示例：**
 
@@ -808,13 +819,13 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **示例：**
 
@@ -860,13 +871,13 @@ deleteAbc(abcPath: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700202 | deleteAbc failed. |
+| 17700202 | Failed to delete the abc file. |
 
 **示例：**
 
@@ -885,227 +896,6 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.getExtResource<sup>12+</sup>
-
-getExtResource(bundleName: string): Promise\<Array\<string>>;
-
-根据给定的bundleName获得扩展资源对应的moduleNames。使用Promise异步回调。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 要查询扩展资源的应用名称。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                        |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<string>> | 以Promise方式返回接口运行结果及扩展资源对应的moduleNames。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700001 | The specified bundleName is not found. |
-| 17700303 | GetExtResource failed due to no extend resource. |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleName : string = 'com.ohos.demo';
-
-try {
-    bundleManager.getExtResource(bundleName).then((modules : Array<string>) => {
-        for (let i = 0; i < modules.length; i++) {
-            hilog.info(0x0000, 'testTag', 'getExtResource item: %s', modules[i]);
-        }
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getExtResource failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getExtResource failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.enableDynamicIcon<sup>12+</sup>
-
-enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
-
-根据给定的bundleName、moduleName使能动态图标。使用Promise异步回调。
-
-**需要权限：** ohos.permission.ACCESS_DYNAMIC_ICON
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 要使能动态图标的应用名称。 |
-| moduleName  | string | 是   | 要使能动态图标的模块名称。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                        |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700001 | The specified bundleName is not found. |
-| 17700002 | The specified moduleName is not found. |
-| 17700304 | EnableDynamicIcon failed due to parse dynamic icon failed. |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleName : string = 'com.ohos.demo';
-let moduleName : string = 'moduleTest';
-
-try {
-    bundleManager.enableDynamicIcon(bundleName, moduleName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'enableDynamicIcon successfully');
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.disableDynamicIcon<sup>12+</sup>
-
-disableDynamicIcon(bundleName: string): Promise\<void>;
-
-根据给定的bundleName禁用动态图标。使用Promise异步回调。
-
-**需要权限：** ohos.permission.ACCESS_DYNAMIC_ICON
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 要禁用动态图标的应用名称。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                        |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700001 | The specified bundleName is not found. |
-| 17700305 | DisableDynamicIcon failed due to no dynamic icon. |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleName : string = 'com.ohos.demo';
-
-try {
-    bundleManager.disableDynamicIcon(bundleName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'disableDynamicIcon successfully');
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', message);
-}
-```
-
-### bundleManager.getDynamicIcon<sup>12+</sup>
-
-getDynamicIcon(bundleName: string): Promise\<string>;
-
-根据给定的bundleName获得动态图标对应的moduleName。使用Promise异步回调。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明                       |
-| ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 要查询扩展资源的应用名称。 |
-
-**返回值：**
-
-| 类型                                                        | 说明                        |
-| ----------------------------------------------------------- | --------------------------- |
-| Promise\<string> | 以Promise方式返回接口运行结果及动态图标对应的moduleName。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                            |
-| -------- | --------------------------------------|
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700001 | The specified bundleName is not found. |
-| 17700306 | No dynamic icon. |
-
-**示例：**
-
-```ts
-import bundleManager from '@ohos.bundle.bundleManager';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
-let bundleName : string = 'com.ohos.demo';
-
-try {
-    bundleManager.getDynamicIcon(bundleName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getDynamicIcon successfully %s', JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getDynamicIcon failed. Cause: %{public}s', err.message);
-    });
-} catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getDynamicIcon failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1133,7 +923,7 @@ canOpenLink(link: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |

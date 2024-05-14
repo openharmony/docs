@@ -234,10 +234,10 @@ buffer数组的列表。
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 是  | 指定过滤条件。 |
-| maxlength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
-| validateParameters | [CertChainValidateParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
+| maxLength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
+| validationParameters | [CertChainValidateParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
 
-## CertChainValidateResult<sup>12+</sup>
+## CertChainValidateResult<sup>11+</sup>
 
 用于指定证书链验证结果。
 
@@ -261,7 +261,7 @@ buffer数组的列表。
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certChain | [X509CertChain](#x509certchain11) | 是  | 生成的证书链对象。 |
-| validateResult | [CertChainValidateResult](#certchainvalidateresult12) | 是  | 指定最终证书链的最大长度。 |
+| validationResult | [CertChainValidateResult](#certchainvalidateresult11) | 是  | 指定最终证书链的最大长度。 |
 
 ## CertChainValidateParameters<sup>11+</sup>
 
@@ -9286,7 +9286,7 @@ createX509CertChain();
 
 ## cryptoCert.buildX509CertChain<sup>12+</sup>
 
-buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12)): Promise<CertChainBuildResult>
+buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12)): Promise\<CertChainBuildResult>
 
 表示使用CertChainBuildParameters对象方式创建X509证书链对象，并用Promise方式返回结果。
 
@@ -9388,7 +9388,7 @@ async function buildX509CertChain(): Promise<cert.CertChainBuildParameters> {
 buildX509CertChain();
 ```
 
-## cryptoCert.createTrustAnchorsWithKeyStore<sup>11+</sup>
+## cryptoCert.createTrustAnchorsWithKeyStore<sup>12+</sup>
 
 createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array\<[X509TrustAnchor](#x509trustanchor11)>>
 

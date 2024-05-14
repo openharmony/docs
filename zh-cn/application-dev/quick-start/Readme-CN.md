@@ -78,10 +78,20 @@
     - 状态管理（推荐）
       - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
       - 状态管理（推荐）所属装饰器
-        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-ObservedV2-and-Trace.md)
+        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
+        - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
+        - [\@Local装饰器：组件内部状态](arkts-new-local.md)
+        - [\@Param装饰器：组件外部输入](arkts-new-param.md)
+        - [\@Once装饰器：初始化同步一次](arkts-new-once.md)
+        - [\@Event装饰器：组件输出](arkts-new-event.md)
+        - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
+        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
+        - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
+        - [!!语法：双向绑定](arkts-new-binding.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
       - [Repeat：循环渲染(推荐)](arkts-rendering-control-repeat.md)
+      - [ContentSlot：混合开发](arkts-rendering-control-contentslot.md)

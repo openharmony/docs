@@ -104,7 +104,7 @@ Generally, a button is used to start a page. Below is an example:
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       hilog.info(DOMAIN_NUMBER, TAG, `onNewWant Want: ${JSON.stringify(want)}`);
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
         this.selectPage = params.targetPage;
       }
       if (this.currentWindowStage !== null) {

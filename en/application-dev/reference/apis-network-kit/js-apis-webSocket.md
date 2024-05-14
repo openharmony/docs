@@ -62,12 +62,12 @@ ws.connect(defaultIpAddress, {
   header:{
       name1: 'value1',
       name2: 'value2',
-      name2: 'value3'
+      name3: 'value3'
   },
   proxy: {
       host: '192.168.0.150',
       port: 8888,
-      excludeList: []
+      exclusionList: []
   },
   protocol: 'my-protocol',
   }, (err: BusinessError, value: boolean) => {
@@ -91,6 +91,8 @@ ws.connect(defaultIpAddress, {
 createWebSocket(): WebSocket
 
 Creates a WebSocket connection. You can use this API to create or close a WebSocket connection, send data over it, or enable or disable listening for the **open**, **close**, **message**, and **error** events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -120,6 +122,8 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 > You can listen to **error** events to obtain the operation result. If an error occurs, the error code 200 will be returned.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -164,6 +168,8 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 > You can listen to **error** events to obtain the operation result. If an error occurs, the error code 200 will be returned.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -215,6 +221,8 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -260,6 +268,8 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -302,6 +312,8 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 Sends data through a WebSocket connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -350,6 +362,8 @@ Closes a WebSocket connection. This API uses an asynchronous callback to return 
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -388,6 +402,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 Closes a WebSocket connection carrying specified options such as **code** and **reason**. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -435,6 +451,8 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 
 **Required permissions**: ohos.permission.INTERNET
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -481,6 +499,8 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 Enables listening for the **open** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -514,6 +534,8 @@ Disables listening for the **open** events of a WebSocket connection. This API u
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -552,6 +574,8 @@ Enables listening for the **message** events of a WebSocket connection. This API
 > **NOTE**
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -583,6 +607,8 @@ Disables listening for the **message** events of a WebSocket connection. This AP
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -606,6 +632,8 @@ ws.off('message');
 on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 Enables listening for the **close** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -637,6 +665,8 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 **Parameters**
@@ -660,6 +690,8 @@ ws.off('close');
 on(type: 'error', callback: ErrorCallback): void
 
 Enables listening for the **error** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -690,6 +722,8 @@ Disables listening for the **error** events of a WebSocket connection. This API 
 
 > **NOTE**
 > You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -820,7 +854,7 @@ Defines the optional parameters carried in the request for establishing a WebSoc
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| header | Object | No  | Header carrying optional parameters in the request for establishing a WebSocket connection. You can customize the parameter or leave it unspecified.|
+| header | Object | No  | Header carrying optional parameters in the request for establishing a WebSocket connection. You can customize the parameter or leave it unspecified.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | caPath<sup>11+</sup> | string | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only text certificates in PEM format are supported.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | No  | Client certificate.|
 | proxy<sup>12+</sup> | ProxyConfiguration | No| Proxy configuration. By default, the system network proxy is used.|
@@ -854,6 +888,8 @@ Represents the HTTP proxy configuration.
 
 Defines the optional parameters carried in the request for closing a WebSocket connection.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Communication.NetStack
 
 | Name| Type  | Mandatory| Description                                                        |
@@ -864,6 +900,8 @@ Defines the optional parameters carried in the request for closing a WebSocket c
 ## CloseResult<sup>10+</sup>
 
 Represents the result obtained from the **close** event reported when the WebSocket connection is closed.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetStack
 

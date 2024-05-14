@@ -26,7 +26,7 @@ Invalid parameter value.
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 

@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 当前不支持在预览器中使用MovingPhotoView组件。
+> 当前不支持动态属性设置。
 
 ## 导入模块
 
@@ -274,7 +276,7 @@ struct MovingPhotoViewDemo {
     try {
       photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler)
     } catch (err) {
-      console.error("freeloop request error: ", err)
+      console.error("request error: ", err)
     }
   }
 }

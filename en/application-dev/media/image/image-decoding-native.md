@@ -4,11 +4,11 @@ Image decoding refers to the process of decoding an archived image in a supporte
 
 ## How to Develop
 
-Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for APIs related to image decoding.
+Read [Image](../../reference/apis-image-kit/js-apis-image.md) for APIs related to image decoding.
 
 ### Adding Dependencies
 
-Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libpixelmap_ndk.z.so**, **libimage_source_ndk.z.so**, **librawfile.z.so**, and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
+Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libace_napi.z.so**, **libpixelmap_ndk.z.so**, **libimage_source_ndk.z.so**, **librawfile.z.so**, and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so libimage_source_ndk.z.so librawfile.z.so)

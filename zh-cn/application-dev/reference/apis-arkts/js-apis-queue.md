@@ -17,7 +17,7 @@ Queue和[Deque](js-apis-deque.md)相比，Queue只能在一端删除一端增加
 ## 导入模块
 
 ```ts
-import Queue from '@ohos.util.Queue';  
+import { Queue } from '@kit.ArkTS';
 ```
 
 

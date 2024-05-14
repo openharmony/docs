@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import convertxml from '@ohos.convertxml';
+import { convertxml } from '@kit.ArkTS';
 ```
 
 ## ConvertXML

@@ -19,7 +19,7 @@ LinkedList和[ArrayList](js-apis-arraylist.md)相比，插入数据效率LinkedL
 ## 导入模块
 
 ```ts
-import LinkedList from '@ohos.util.LinkedList';
+import { LinkedList } from '@kit.ArkTS';
 ```
 
 ## LinkedList

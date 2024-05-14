@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 ```
 
 ## policy.setBackgroundAllowed<sup>10+</sup>
@@ -40,13 +40,14 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setBackgroundAllowed(true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -78,7 +79,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **返回值：**
@@ -90,7 +91,8 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setBackgroundAllowed(true).then(() => {
   console.log("setBackgroundAllowed success");
 }).catch((error: BusinessError) => {
@@ -124,13 +126,14 @@ isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -163,13 +166,14 @@ isBackgroundAllowed(): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isBackgroundAllowed()
   .then((data: boolean) => {
@@ -208,13 +212,14 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -253,13 +258,14 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE)
   .then(() => {
@@ -297,13 +303,14 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -342,13 +349,14 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getPolicyByUid(11111)
   .then((data: policy.NetUidPolicy) => {
@@ -386,13 +394,14 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -431,13 +440,14 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getUidsByPolicy(11111)
   .then((data: object) => {
@@ -474,13 +484,14 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -512,13 +523,14 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getNetQuotaPolicies()
   .then((data: policy.NetQuotaPolicy[]) => {
@@ -556,14 +568,14 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
 let netquotapolicy: policy.NetQuotaPolicy = {
@@ -613,7 +625,7 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **返回值：**
@@ -625,8 +637,8 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
 let netquotapolicy: policy.NetQuotaPolicy = {
@@ -683,13 +695,14 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -729,13 +742,14 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isUidNetAllowed(11111, true)
   .then((data: boolean) => {
@@ -774,13 +788,14 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -820,13 +835,14 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isUidNetAllowed(11111, 'wlan0')
   .then((data: boolean) => {
@@ -865,13 +881,14 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setDeviceIdleTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -910,13 +927,14 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setDeviceIdleTrustlist([11111, 22222], true)
   .then(() => {
@@ -953,13 +971,14 @@ getDeviceIdleTrustlist(callback: AsyncCallback\<Array\<number>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -991,13 +1010,14 @@ getDeviceIdleTrustlist(): Promise\<Array\<number>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getDeviceIdleTrustlist()
   .then((data: number[]) => {
@@ -1035,13 +1055,14 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBackgroundPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -1080,13 +1101,14 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getBackgroundPolicyByUid(11111)
   .then((data: policy.NetBackgroundPolicy) => {
@@ -1124,13 +1146,14 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.resetPolicies('1', (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -1168,13 +1191,14 @@ resetPolicies(simId: string): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .resetPolicies('1')
   .then(() => {
@@ -1214,14 +1238,15 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.updateRemindPolicy(
   connection.NetBearType.BEARER_CELLULAR,
   '1',
@@ -1266,14 +1291,15 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .updateRemindPolicy(
     connection.NetBearType.BEARER_CELLULAR,
@@ -1316,13 +1342,14 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setPowerSaveTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -1361,13 +1388,14 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setPowerSaveTrustlist([11111, 22222], true)
   .then(() => {
@@ -1404,13 +1432,14 @@ getPowerSaveTrustlist(callback: AsyncCallback\<Array\<number>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -1442,13 +1471,14 @@ getPowerSaveTrustlist(): Promise\<Array\<number>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getPowerSaveTrustlist()
   .then((data: number[]) => {
@@ -1490,13 +1520,14 @@ on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   policy: policy.NetUidPolicy
@@ -1538,13 +1569,14 @@ off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   policy: policy.NetUidPolicy
@@ -1594,13 +1626,14 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   rule: policy.NetUidRule
@@ -1642,13 +1675,14 @@ off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   rule: policy.NetUidRule
@@ -1698,13 +1732,14 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 try {
   policy.on('netMeteredIfacesChange', (data: string[]) => {
     console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
@@ -1741,13 +1776,13 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netMeteredIfacesChange', (data: string[]) => {
@@ -1793,13 +1828,14 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   policy: policy.NetUidPolicy
@@ -1841,13 +1877,13 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
@@ -1893,13 +1929,13 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netBackgroundPolicyChange', (data: boolean) => {
@@ -1937,13 +1973,13 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netBackgroundPolicyChange', (data: boolean) => {
