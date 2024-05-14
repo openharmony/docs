@@ -80,10 +80,9 @@
 - 下次刷新：表示指定卡片的下一次刷新时间。可以通过调用[`setFormNextRefreshTime()`](../reference/apis-form-kit/js-apis-app-form-formProvider.md#setformnextrefreshtime)接口来实现。最短刷新时间为5分钟。例如，可以在接口调用后的5分钟内刷新卡片内容。
 
   ```ts
-  import type Base from '@ohos.base';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formProvider from '@ohos.app.form.formProvider';
-  import hilog from '@ohos.hilog';
+  import { FormExtensionAbility, formProvider } from '@kit.FormKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   const TAG: string = 'UpdateByTimeFormAbility';
   const FIVE_MINUTE: number = 5;
@@ -95,7 +94,7 @@
       hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
       try {
         // 设置过5分钟后更新卡片内容
-        formProvider.setFormNextRefreshTime(formId, FIVE_MINUTE, (err: Base.BusinessError) => {
+        formProvider.setFormNextRefreshTime(formId, FIVE_MINUTE, (err: BusinessError) => {
           if (err) {
             hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
             return;
@@ -104,7 +103,7 @@
           }
         });
       } catch (err) {
-        hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
       }
     }
     ...    

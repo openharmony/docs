@@ -186,9 +186,11 @@
 - [Video](ts-media-components-video.md)
 
     用于播放视频文件并控制其播放状态的组件。
+<!--Del-->
 - [PluginComponent](ts-basic-components-plugincomponent-sys.md)
 
     提供外部应用组件嵌入式显示功能，即外部应用提供的UI可在本应用内显示。
+<!--DelEnd-->
 - [XComponent](ts-basic-components-xcomponent.md)
 
     用于EGL/OpenGLES和媒体数据写入。
@@ -284,7 +286,7 @@
 - [Refresh](ts-container-refresh.md)
 
     可以进行页面下拉操作并显示刷新动效的容器组件。
-
+<!--Del-->
 - [AbilityComponent](ts-container-ability-component-sys.md)
 
     独立显示Ability的容器组件。
@@ -296,6 +298,7 @@
 - [FormComponent](ts-basic-components-formcomponent-sys.md)
 
     提供卡片组件，实现卡片的显示功能。
+<!--DelEnd-->
 
 - [FormLink](ts-container-formlink.md)
 
@@ -316,11 +319,11 @@
 - [MenuItemGroup](ts-basic-components-menuitemgroup.md)
 
     用来展示菜单MenuItem的分组。
-
+<!--Del-->
 - [UIExtensionComponent](ts-container-ui-extension-component-sys.md)
 
     在页面中嵌入显示带UI界面的Ability扩展的容器组件。
-
+<!--DelEnd-->
 - [LocationButton](ts-security-components-locationbutton.md)
 
     安全控件的位置控件，用户通过点击该位置控件，可以临时获取精准定位权限，而不需要权限弹框授权确认。

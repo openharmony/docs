@@ -1,4 +1,5 @@
 # ArkWeb（方舟Web）
+
 - [ArkWeb简介](web-component-overview.md)
 - [Web组件的生命周期](web-event-sequence.md)
 - [默认UserAgent定义](web-default-userAgent.md)
@@ -14,6 +15,7 @@
   - [应用侧调用前端页面函数](web-in-app-frontend-page-function-invoking.md)
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
   - [建立应用侧与前端页面数据通道](web-app-page-data-channel.md)
+- [应用侧与前端页面的相互调用(C/C++)](arkweb-ndk-jsbridge.md)
 - [管理页面跳转及浏览记录导航](web-redirection-and-browsing-history-mgmt.md)
 - [管理Cookie及数据存储](web-cookie-and-data-storage-mgmt.md)
 - [自定义页面请求响应](web-resource-interception-request-mgmt.md)

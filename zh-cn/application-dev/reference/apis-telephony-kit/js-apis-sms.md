@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import sms from '@ohos.telephony.sms';
+import { sms } from '@kit.TelephonyKit';
 ```
 
 ## sms.createMessage
@@ -43,8 +43,8 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string, callback: AsyncC
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number。
@@ -91,8 +91,8 @@ createMessage\(pdu: Array&lt;number&gt;, specification: string\): Promise\<Short
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const specification: string = '3gpp';
 // 以数组的形式显示协议数据单元（PDU），类型为number。
@@ -140,9 +140,8 @@ sendMessage\(options: SendMessageOptions\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
@@ -195,9 +194,8 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -257,9 +255,8 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -303,8 +300,8 @@ getDefaultSmsSlotId\(callback: AsyncCallback&lt;number&gt;\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getDefaultSmsSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -329,8 +326,8 @@ getDefaultSmsSlotId\(\): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getDefaultSmsSlotId().then((data: number) => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -354,7 +351,7 @@ hasSmsCapability\(\): boolean
 | boolean | - true：设备具备短信发送和接收能力。<br/>- false：设备不具备短信发送和接收能力。 |
 
 ```ts
-import sms from '@ohos.telephony.sms';
+import { sms } from '@kit.TelephonyKit';
 
 let result = sms.hasSmsCapability(); 
 console.log(`hasSmsCapability: ${JSON.stringify(result)}`);
@@ -391,8 +388,8 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getDefaultSmsSimId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -430,8 +427,8 @@ getDefaultSmsSimId\(\): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = sms.getDefaultSmsSimId();
 promise.then((data: number) => {

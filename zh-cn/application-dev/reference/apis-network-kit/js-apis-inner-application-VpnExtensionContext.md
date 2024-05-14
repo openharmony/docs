@@ -11,16 +11,15 @@ VpnExtensionContext可直接作为VpnExtension的上下文环境，提供允许�
 
 ## 导入模块
 ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { VpnExtensionAbility } from '@kit.NetworkKit';
 ```
 ## 使用说明
 
 通过VpnExtensionAbility子类实例来获取。
 
 ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension';
+import { VpnExtensionAbility, vpnExt } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private vpnServerIp: string = 'xxx.xxx.x.x';

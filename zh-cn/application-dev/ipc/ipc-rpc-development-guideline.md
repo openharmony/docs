@@ -4,7 +4,7 @@
 
 IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，包括Proxy和Stub运行在不同设备的情况。
 
-
+<!--Del-->
 ## 接口说明
 
 **表1** Native侧IPC接口
@@ -14,10 +14,11 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
 | sptr&lt;IRemoteObject&gt; AsObject() | 返回通信对象。Stub端返回RemoteObject对象本身，Proxy端返回代理对象。 |
 | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | 请求处理方法，派生类需要重写该方法用来处理Proxy的请求并返回结果。 |
 | IRemoteProxy | Remote()->SendRequest(code, data, reply, option)  | 消息发送方法，业务的Proxy类需要从IRemoteProxy类派生，该方法用来向对端发送消息。 |
-
+<!--DelEnd-->
 
 ## 开发步骤
 
+<!--Del-->
 ### **Native侧开发步骤**
 
 1. 添加依赖
@@ -174,7 +175,7 @@ IPC/RPC的主要工作是让运行在不同进程的Proxy和Stub互相通信，�
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, networkId);
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // 直接构造具体Proxy
    ```
-
+<!--DelEnd-->
 ### **ArkTS侧开发步骤**
 
 1. 添加依赖

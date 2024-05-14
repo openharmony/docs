@@ -279,3 +279,38 @@ try {
     console.error('set screen off time failed, err: ' + err);
 }
 ```
+
+## power.hibernate<sup>12+</sup>
+
+hibernate(clearMemory: boolean): void
+
+休眠设备。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| clearMemory | boolean | 是    | true 代表在进入休眠之前清理内存，否则为false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
+| 202 | If the system permission is denied. |
+
+**示例：**
+
+```js
+try {
+    power.hibernate(true);
+} catch(err) {
+    console.error('hibernate failed, err: ' + err);
+}
+```

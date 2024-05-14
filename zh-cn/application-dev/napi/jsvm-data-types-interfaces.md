@@ -902,6 +902,16 @@ JS值操作和抽象操作。
 |OH_JSVM_IsDate | 判断一个 JavaScript 对象是否为 Date 类型对象 |
 |OH_JSVM_IsTypedarray | 判断一个 JavaScript 对象是否为 Typedarray 类型对象 |
 |OH_JSVM_IsDataview | 判断一个 JavaScript 对象是否为 Dataview 类型对象 |
+|OH_JSVM_IsUndefined | 此API检查传入的值是否为Undefined。这相当于JS中的`value === undefined`。 |
+|OH_JSVM_IsNull | 此API检查传入的值是否为Null对象。这相当于JS中的`value === null`。 |
+|OH_JSVM_IsNullOrUndefined | 此API检查传入的值是否为Null或Undefined。这相当于JS中的`value == null`。 |
+|OH_JSVM_IsBoolean | 此API检查传入的值是否为Boolean。这相当于JS中的`typeof value === 'boolean'`。 |
+|OH_JSVM_IsNumber | 此API检查传入的值是否为Number。这相当于JS中的`typeof value === 'number'`。 |
+|OH_JSVM_IsString | 此API检查传入的值是否为String。这相当于JS中的`typeof value === 'string'`。 |
+|OH_JSVM_IsSymbol | 此API检查传入的值是否为Symbol。这相当于JS中的`typeof value === 'symbol'`。 |
+|OH_JSVM_IsFunction | 此API检查传入的值是否为Function。这相当于JS中的`typeof value === 'function'`。 |
+|OH_JSVM_IsObject | 此API检查传入的值是否为Object。 |
+|OH_JSVM_IsBigInt | 此API检查传入的值是否为BigInt。这相当于JS中的`typeof value === 'bigint'`。 |
 |OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否严格相等 |
 |OH_JSVM_Equals | 判断两个 JSVM_Value 对象是否宽松相等 |
 |OH_JSVM_DetachArraybuffer | 调用 ArrayBuffer 对象的Detach操作 |
@@ -1746,4 +1756,189 @@ const char *blobData = nullptr;
 size_t blobSize = 0;
 JSVM_Env envs[1] = {env};
 OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
+```
+
+### 检查传入的值是否可调用
+
+#### 场景介绍
+
+检查传入的值是否可调用
+
+#### 接口说明
+| 接口 | 功能说明 |
+| -------- | -------- |
+|OH_JSVM_IsCallable| 检查传入的值是否可调用 |
+
+场景示例：
+检查传入的值是否可调用
+
+```c++
+static JSVM_Value NapiIsCallable(JSVM_Env env, JSVM_CallbackInfo info) {
+    JSVM_Value value, rst;
+    size_t argc = 1;
+    bool isCallable = false;
+    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, &value, NULL, NULL));
+    JSVM_CALL(env, OH_JSVM_IsCallable(env, value, &isCallable));
+    OH_JSVM_GetBoolean(env, isCallable, &rst);
+    return rst;
+}
+
+static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
+    std::thread t([]() {
+        // create vm, and open vm scope
+        JSVM_VM vm;
+        JSVM_CreateVMOptions options;
+        memset(&options, 0, sizeof(options));
+        OH_JSVM_CreateVM(&options, &vm);
+        JSVM_VMScope vmScope;
+        OH_JSVM_OpenVMScope(vm, &vmScope);
+        JSVM_CallbackStruct param[] = {
+            {.data = nullptr, .callback = NapiIsCallable},
+        };
+        JSVM_PropertyDescriptor descriptor[] = {
+            {"napiIsCallable", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
+        };
+        // create env, register native method, and open env scope
+        JSVM_Env env;
+        OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
+        JSVM_EnvScope envScope;
+        OH_JSVM_OpenEnvScope(env, &envScope);
+        // open handle scope
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
+        std::string sourceCodeStr = R"JS(
+        function addNumbers(num1, num2)
+        {
+            var rst= num1 + num2;
+            return rst;
+        }
+        let rst = napiIsCallable(addNumbers);
+        )JS";
+        // compile js script
+        JSVM_Value sourceCodeValue;
+        OH_JSVM_CreateStringUtf8(env, sourceCodeStr.c_str(), sourceCodeStr.size(), &sourceCodeValue);
+        JSVM_Script script;
+        OH_JSVM_CompileScript(env, sourceCodeValue, nullptr, 0, true, nullptr, &script);
+        JSVM_Value result;
+        // run js script
+        OH_JSVM_RunScript(env, script, &result);
+        JSVM_ValueType type;
+        OH_JSVM_Typeof(env, result, &type);
+        OH_LOG_INFO(LOG_APP, "JSVM API TEST type: %{public}d", type);
+        // exit vm and clean memory
+        OH_JSVM_CloseHandleScope(env, handleScope);
+        OH_JSVM_CloseEnvScope(env, envScope);
+        OH_JSVM_DestroyEnv(env);
+        OH_JSVM_CloseVMScope(vm, vmScope);
+        OH_JSVM_DestroyVM(vm);
+    });
+    t.detach();
+    return nullptr;
+}
+```
+
+### Lock操作
+
+#### 场景介绍
+
+Lock操作
+
+#### 接口说明
+| 接口 | 功能说明 |
+| -------- | -------- |
+|OH_JSVM_IsLocked| 判断当前线程是否持有指定环境的锁 |
+|OH_JSVM_AcquireLock| 获取指定环境的锁 |
+|OH_JSVM_ReleaseLock| 释放指定环境的锁 |
+
+场景示例：
+加锁解锁操作
+
+```c++
+static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
+    // create vm, and open vm scope
+    JSVM_VM vm;
+    JSVM_CreateVMOptions options;
+    memset(&options, 0, sizeof(options));
+    OH_JSVM_CreateVM(&options, &vm);
+    JSVM_VMScope vmScope;
+    OH_JSVM_OpenVMScope(vm, &vmScope);
+    // create env, register native method, and open env scope
+    JSVM_Env env;
+    OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
+    JSVM_EnvScope envScope;
+    OH_JSVM_OpenEnvScope(env, &envScope);
+    // open handle scope
+    JSVM_HandleScope handleScope;
+    OH_JSVM_OpenHandleScope(env, &handleScope);
+    std::thread t1([vm, env]() {
+        bool isLocked = false;
+        OH_JSVM_IsLocked(env, &isLocked);
+        if (!isLocked) {
+            OH_JSVM_AcquireLock(env);
+        }
+        JSVM_VMScope vmScope;
+        OH_JSVM_OpenVMScope(vm, &vmScope);
+        JSVM_EnvScope envScope;
+        OH_JSVM_OpenEnvScope(env, &envScope);
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
+        JSVM_Value value;
+        JSVM_Status rst = OH_JSVM_CreateInt32(env, 32, &value); // 32: numerical value
+        if (rst) {
+            OH_LOG_INFO(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 suc");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 fail");
+        }
+        int32_t num1;
+        OH_JSVM_GetValueInt32(env, value, &num1);
+        OH_LOG_INFO(LOG_APP, "JSVM:t1 num1 = %{public}d", num1);
+        OH_JSVM_CloseHandleScope(env, handleScope);
+        OH_JSVM_CloseEnvScope(env, envScope);
+        OH_JSVM_DestroyEnv(env);
+        OH_JSVM_IsLocked(env, &isLocked);
+        if (isLocked) {
+            OH_JSVM_ReleaseLock(env);
+        }
+    });
+    std::thread t2([vm, env]() {
+        bool isLocked = false;
+        OH_JSVM_IsLocked(env, &isLocked);
+        if (!isLocked) {
+            OH_JSVM_AcquireLock(env);
+        }
+        JSVM_VMScope vmScope;
+        OH_JSVM_OpenVMScope(vm, &vmScope);
+        JSVM_EnvScope envScope;
+        OH_JSVM_OpenEnvScope(env, &envScope);
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
+        JSVM_Value value;
+        JSVM_Status rst = OH_JSVM_CreateInt32(env, 32, &value); // 32: numerical value
+        if (rst) {
+            OH_LOG_INFO(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 suc");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 fail");
+        }
+        int32_t num1;
+        OH_JSVM_GetValueInt32(env, value, &num1);
+        OH_LOG_INFO(LOG_APP, "JSVM:t2 num1 = %{public}d", num1);
+        OH_JSVM_CloseHandleScope(env, handleScope);
+        OH_JSVM_CloseEnvScope(env, envScope);
+        OH_JSVM_DestroyEnv(env);
+        OH_JSVM_IsLocked(env, &isLocked);
+        if (isLocked) {
+            OH_JSVM_ReleaseLock(env);
+        }
+    });
+    t1.detach();
+    t2.detach();
+    sleep(10);
+    // exit vm and clean memory
+    OH_JSVM_CloseHandleScope(env, handleScope);
+    OH_JSVM_CloseEnvScope(env, envScope);
+    OH_JSVM_DestroyEnv(env);
+    OH_JSVM_CloseVMScope(vm, vmScope);
+    OH_JSVM_DestroyVM(vm);
+    return nullptr;
+}
 ```

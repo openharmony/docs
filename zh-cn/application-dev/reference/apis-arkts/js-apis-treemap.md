@@ -22,7 +22,7 @@ TreeMap和[HashMap](js-apis-hashmap.md)相比，HashMap依据键的hashCode存�
 ## 导入模块
 
 ```ts
-import TreeMap from '@ohos.util.TreeMap';
+import { TreeMap } from '@kit.ArkTS';
 ```
 
 ## TreeMap

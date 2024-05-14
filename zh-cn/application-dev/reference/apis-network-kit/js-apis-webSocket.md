@@ -14,14 +14,14 @@
 ## 导入模块
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 ```
 
 ## 完整示例
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
@@ -144,8 +144,8 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://";
@@ -191,8 +191,8 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let header: Map<string, string> | undefined;
@@ -248,7 +248,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
@@ -289,8 +289,8 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
@@ -352,8 +352,8 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
@@ -409,8 +409,8 @@ close(callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.close((err: BusinessError) => {
@@ -451,8 +451,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 
@@ -504,7 +504,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let options: webSocket.WebSocketCloseOptions | undefined;
@@ -540,8 +540,8 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError, Callback } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
 let ws= webSocket.createWebSocket();
 class OutValue {
@@ -576,8 +576,8 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 class OutValue {
@@ -615,8 +615,8 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
@@ -648,7 +648,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('message');
@@ -674,8 +674,8 @@ on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
@@ -706,7 +706,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('close');
@@ -732,8 +732,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
@@ -764,7 +764,8 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
@@ -787,7 +788,7 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('dataEnd', () => {
@@ -816,7 +817,8 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('dataEnd');
 ```
@@ -839,7 +841,7 @@ on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('headerReceive', (data) => {
@@ -868,7 +870,8 @@ off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('headerReceive');
 ```

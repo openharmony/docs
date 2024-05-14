@@ -17,7 +17,7 @@ taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkt
 ## 导入模块
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 ```
 ## taskpool.execute
 
@@ -219,7 +219,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 ```ts
 @Concurrent
 // import BusinessError
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
@@ -831,8 +831,8 @@ export class DeriveClass extends BaseClass {
 ```ts
 // index.ets
 // 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
-import taskpool from '@ohos.taskpool'
-import { BusinessError } from '@ohos.base'
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
 import { BaseClass, DeriveClass } from './sendable'
 
 @Concurrent
@@ -1133,7 +1133,7 @@ onEnqueued(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool'
+import { taskpool } from '@kit.ArkTS'
 
 @Concurrent
 function delay(args: number): number {
@@ -1181,7 +1181,7 @@ onStartExecution(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool'
+import { taskpool } from '@kit.ArkTS'
 
 @Concurrent
 function delay(args: number): number {
@@ -1228,8 +1228,8 @@ onExecutionFailed(callback: CallbackFunctionWithError): void
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool'
-import { BusinessError } from '@ohos.base'
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 @Concurrent
 function test(args:number) {
@@ -1280,7 +1280,7 @@ onExecutionSucceeded(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool'
+import { taskpool } from '@kit.ArkTS'
 
 @Concurrent
 function delay(args: number): number {
@@ -1731,7 +1731,7 @@ taskpoolExecute();
 
 ```ts
 // c.ets
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {
