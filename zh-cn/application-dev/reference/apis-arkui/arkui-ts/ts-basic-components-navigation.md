@@ -1055,9 +1055,9 @@ Navigation跳转拦截对象。
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口将options参数设置为true。 |
-| Mini | 固定为小标题模式。                                |
-| Full | 固定为大标题模式。                                |
+| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口将options参数设置为true。未滚动状态，标题栏高度与Full模式一致；滚动时，标题栏的最小高度与Mini模式一致。 |
+| Mini | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。                                |
+| Full | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。                                |
 
 ## NavigationCommonTitle<sup>9+</sup>类型说明
 
@@ -1115,6 +1115,12 @@ Navigation跳转拦截对象。
 |POP | 本次转场为页面退场。|
 | REPLACE | 本次转场为页面替换。|
 
+## BarStyle<sup>12+</sup>枚举说明
+| 名称    | 描述  |
+|---------|------|
+|STANDARD | 标题栏与内容区采用上下布局。|
+|STACK | 标题栏与内容区采用层叠布局，标题栏布局在内容区上层。|
+
 ## NavigationTitleOptions<sup>11+</sup>类型说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -1123,6 +1129,7 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
+| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
 
@@ -2452,3 +2459,74 @@ struct NavigationExample3 {
 }
 ```
 ![navigationOnReady2.gif](figures/navigationOnReady2.gif)
+
+
+### 示例9
+
+```ts
+// 该示例演示Navigation标题栏STACK布局效果。
+@Entry
+@Component
+struct NavigationExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  private scrollerForScroll: Scroller = new Scroller();
+  @State barStyle: BarStyle = BarStyle.STANDARD;
+
+  build() {
+    Column() {
+      Navigation() {
+        Column() {
+          Scroll(this.scrollerForScroll) {
+            Column() {
+              Image($r('app.media.image_1'))
+                // 设置与标题栏高度一致，以便观察STACK效果
+                .height(138)
+                .width('100%')
+              Button('BarStyle.STANDARD')
+                .height('50vp')
+                .onClick(() => {
+                  this.barStyle = BarStyle.STANDARD;
+                })
+              Button('BarStyle.STACK')
+                .height('50vp')
+                .margin({ top: 12 })
+                .onClick(() => {
+                  this.barStyle = BarStyle.STACK;
+                })
+
+              ForEach(this.arr, (item: number) => {
+                ListItem() {
+                  Text('' + item)
+                    .width('100%')
+                    .height(100)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .borderRadius(10)
+                    .backgroundColor(Color.Orange)
+                    .margin({ top: 12 })
+                }
+              }, (item: string) => item)
+            }
+          }
+        }
+        .width('100%')
+        .height('100%')
+        .backgroundColor(0xDCDCDC)
+      }
+      .title(
+        {
+          main: 'NavTitle',
+          sub: 'subtitle'
+        },
+        {
+          backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
+          barStyle: this.barStyle,
+        }
+      )
+      .titleMode(NavigationTitleMode.Free)
+      .hideTitleBar(false)
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+![titlebar_stack.gif](figures/titlebar_stack.gif)
