@@ -470,6 +470,8 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_call_function | 在C/C++侧调用JS方法。 |
 | napi_get_cb_info | 从给定的callback info中获取有关调用的详细信息，如参数和this指针。 |
 
+[组件扩展的符号列表](../reference/native-lib/napi.md)
+
 ### 扩展能力
 
 | 接口 | 功能说明 |
