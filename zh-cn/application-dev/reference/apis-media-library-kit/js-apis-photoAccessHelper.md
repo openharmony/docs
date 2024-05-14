@@ -4428,7 +4428,7 @@ async function example() {
     let options: photoAccessHelper.PhotoSelectOptions = {
       MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
       maxSelectNumber: 1,
-      reommendationOptions: recommendOptions
+      recommendationOptions: recommendOptions
     }
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
@@ -4468,7 +4468,7 @@ async function example() {
     let options: photoAccessHelper.PhotoSelectOptions = {
       MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
       maxSelectNumber: 1,
-      reommendationOptions: recommendOptions
+      recommendationOptions: recommendOptions
     }
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {

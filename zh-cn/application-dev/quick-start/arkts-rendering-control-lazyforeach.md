@@ -152,7 +152,7 @@ interface DataExchangeOperation {
 ### DataReloadOperation
 
 ```ts
-interface DataReloadOperation {     // 当onDatasetChange含有DataOperationType.RELOAD操作时，                                        其余操作全部失效，框架会自己调用keygenerator进行键值比对
+interface DataReloadOperation {     // 当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keygenerator进行键值比对
   type: DataOperationType.RELOAD    // 数据全部重载类型
 }
 ```

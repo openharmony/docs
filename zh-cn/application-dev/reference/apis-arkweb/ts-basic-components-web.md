@@ -306,9 +306,9 @@ imageAccess(imageAccess: boolean)
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebviewController | WebController})
+    controller: WebviewController | WebController, asyncMethodList?: Array\<string\>})
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。同一方法在同步与异步列表中重复注册，将默认异步调用。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
@@ -316,8 +316,9 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
-| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
+| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | []   | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 
 **示例：**
 
@@ -334,6 +335,10 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
       console.log("data2:" + data2)
       console.log("data3:" + data3)
       return "AceString"
+    }
+
+    asyncTest(data: string): void {
+      console.log("async data:" + data)
     }
 
     toString(): void {
@@ -354,6 +359,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
             object: this.testObj,
             name: "objName",
             methodList: ["test", "toString"],
+            asyncMethodList: ["asyncTest"],
             controller: this.controller,
         })
       }
@@ -396,13 +402,17 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+设置Web过滚动模式，默认关闭。过滚动模式开启后，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+
+> **说明：**
+>
+> 从API version 12开始默认改为开启。
 
 **参数：**
 
 | 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER，从API version 12开始：OverScrollMode.ALWAYS | 设置Web的过滚动模式为关闭或开启。 |
 
 **示例：**
 
@@ -2787,7 +2797,73 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
     }
   }
   ```
+### onRenderProcessNotResponding<sup>12+</sup>
 
+onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
+
+网页进程无响应时触发该回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | 网页进程无响应时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onRenderProcessNotResponding((data) => {
+            console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
+              ", [process]=" + data.pid + ", [reason]=" + data.reason);
+        })
+      }
+    }
+  }
+  ```
+
+### onRenderProcessResponding<sup>12+</sup>
+
+onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
+
+网页进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | 网页进程由无响应状态变回正常运行状态时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onRenderProcessResponding(() => {
+            console.log("onRenderProcessResponding again");
+        })
+      }
+    }
+  }
+  ```
+  
 ### onShowFileSelector<sup>9+</sup>
 
 onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
@@ -7143,3 +7219,38 @@ type NativeMediaPlayerConfig = {
 |------|------|------|------|------|
 |  enable  | boolean | 否 | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
 |  shouldOverlay | boolean | 否 | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
+
+## RenderProcessNotRespondingReason<sup>12+</sup>
+
+触发网页进程无响应回调的原因。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| INPUT_TIMEOUT                  | 0 | 发送给网页进程的input事件响应超时。   |
+| NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载导航响应超时。   |
+
+## RenderProcessNotRespondingData<sup>12+</sup>
+
+提供网页进程无响应的详细信息。
+
+| 名称                     | 类型   | 必填 | 描述                                   |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| jsStack      | string | 是  | 网页的javaScript调用栈信息。       |
+| pid | number | 是   | 网页的进程id。 |
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应回调的原因。 |
+
+## OnRenderProcessNotRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
+
+网页进程无响应时触发的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 网页进程无响应的详细信息。 |
+
+## OnRenderProcessRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessRespondingCallback = () => void
+
+网页进程由无响应状态变回正常运行状态时触发该回调。

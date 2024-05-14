@@ -39,7 +39,7 @@ import cloudData from '@ohos.data.cloudData';
 ## cloudData.setCloudStrategy
 setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&gt;): Promise&lt;void&gt;
 
-设置应用自身的云同步策略，若未设置，则执行全局策略[setGlobalCloudStrategy<sup>12+</sup>](js-apis-data-cloudData-sys.md#setglobalcloudstrategy12)，全局策略若未设置，默认使用WIFI和蜂窝策略。使用Promise异步回调。
+<!--RP1-->设置应用自身的云同步策略，若未设置，则执行全局策略[setGlobalCloudStrategy<sup>12+</sup>](js-apis-data-cloudData-sys.md#setglobalcloudstrategy12)，全局策略若未设置，默认使用WIFI和蜂窝策略。使用Promise异步回调。<!--RP1End-->
  
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -54,6 +54,14 @@ setCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&g
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801       | Capability not supported.|
 
 **样例：**
 

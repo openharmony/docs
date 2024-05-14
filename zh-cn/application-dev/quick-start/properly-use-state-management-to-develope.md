@@ -236,7 +236,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -276,7 +276,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
+            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -437,7 +437,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.needRenderImage.imageWidth) // !! use this.needRenderImage.xxx rather than this.uiStyle.needRenderImage.xxx !!
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
@@ -485,7 +485,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon'))
+          Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // use this.needRenderXxx.xxx rather than this.uiStyle.needRenderXxx.xxx
@@ -631,7 +631,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -671,7 +671,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
+            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -1203,7 +1203,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
     }
   }
 
@@ -1340,7 +1340,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
     }
   }
 

@@ -91,7 +91,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -189,7 +189,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -280,7 +280,7 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -351,7 +351,7 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -415,7 +415,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
@@ -476,7 +476,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
@@ -542,7 +542,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
@@ -708,7 +708,7 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 | 14800000  | Inner error.                      |
 | 14800011  | Database corrupted.           |
 | 14800014  | Already closed.                        |
-| 14800015  | The database is busy.          |
+| 14800015  | The database does not respond.          |
 | 14800021  | SQLite: Generic error.             |
 | 14800022  | SQLite: Callback routine requested an abort.          |
 | 14800023  | SQLite: Access permission denied.         |
@@ -776,7 +776,7 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 | 14800000  | Inner error.          |
 | 14800011  | Database corrupted.       |
 | 14800014  | Already closed.      |
-| 14800015  | The database is busy.        |
+| 14800015  | The database does not respond.        |
 | 14800021  | SQLite: Generic error.        |
 | 14800022  | SQLite: Callback routine requested an abort.         |
 | 14800023  | SQLite: Access permission denied.                    |
@@ -846,7 +846,7 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 | 14800000  | Inner error.            |
 | 14800011  | Database corrupted.         |
 | 14800014  | Already closed.          |
-| 14800015  | The database is busy.          |
+| 14800015  | The database does not respond.          |
 | 14800021  | SQLite: Generic error.           |
 | 14800022  | SQLite: Callback routine requested an abort.    |
 | 14800023  | SQLite: Access permission denied.     |

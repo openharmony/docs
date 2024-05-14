@@ -33,6 +33,14 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 | -------- | -------- |
 |[window.AvoidArea](./js-apis-window.md#avoidarea7) | 宿主窗口内容规避区域。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 **示例**
 
 ```ts
@@ -60,6 +68,14 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 | ------ | ---- | ---- | ---- |
 | type   | string | 是 | 监听的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[AvoidAreaInfo](#avoidareainfo)> | 是 | 回调函数：入参用于接收当前规避区的信息。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **示例**
 
@@ -117,6 +133,14 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 **示例**
 
 ```ts
@@ -145,6 +169,14 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即窗口尺寸变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **示例**
 
@@ -183,10 +215,11 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window proxy is abnormal. |
 
@@ -243,20 +276,10 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-| 属性名 | 类型                 | 说明               |
-| ------ | -------------------- | ------------------ |
-| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 窗口规避区类型。   |
-| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | 窗口内容规避区域。 |
-
-## WindowProxyProperties
-
-用于表示宿主应用窗口和EmbeddedComponent（或UIExtensionComponent）组件的信息。
-
-**系统能力**：SystemCapability.ArkUI.ArkUI.Full
-
-| 属性名          | 类型        | 说明                             |
-| --------------- | ----------- | -------------------------------- |
-| windowProxyRect | [window.Rect](js-apis-window.md#rect7) | EmbeddedComponent（或UIExtensionComponent）组件的位置和宽高。 |
+| 名称 | 类型                 | 必填 | 说明        |
+| ------ | -------------------- | ------------------ | ------------------ |
+| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 是 | 窗口规避区类型。   |
+| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | 是| 窗口内容规避区域。 |
 
 
 ## 完整示例

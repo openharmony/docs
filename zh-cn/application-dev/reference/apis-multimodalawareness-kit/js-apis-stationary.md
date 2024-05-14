@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import stationary from '@ohos.stationary'
+import { stationary } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## ActivityResponse

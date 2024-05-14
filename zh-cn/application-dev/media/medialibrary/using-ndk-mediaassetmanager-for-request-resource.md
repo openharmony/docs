@@ -5,6 +5,7 @@
 请求图片资源的全流程包含：创建MediaAssetManager，设置请求资源，请求图片资源，取消本次请求(可选)。
 
 ## 开发步骤及注意事项
+
 在CMake脚本中链接动态库
 ```
 target_link_libraries(sample PUBLIC libmedia_asset_manager.so)

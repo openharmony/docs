@@ -176,3 +176,21 @@ Connect FormRenderService failed, please try again later.
 **处理步骤**
 
 服务繁忙，请稍后重试。
+
+## 16501008 等待卡片加桌超时
+
+**错误信息**
+
+Waiting for the form addition to the desktop timeout.
+
+**错误描述**
+
+发送卡片加桌请求后，等待卡片加桌超时，系统会报此错误码。
+
+**可能原因**
+
+服务繁忙。
+
+**处理步骤**
+
+服务繁忙，请稍后重试。

@@ -27,7 +27,6 @@
    
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
-     console.info(`[ANS] isSupportTemplate success`);
      console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持downloadTemplate模板类通知，false表示不支持
    }).catch((err:Base.BusinessError) => {

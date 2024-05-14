@@ -29,15 +29,36 @@
 
 新的状态管理框架提供了一套全新的装饰器。
 
-- [\@ObservedV2](arkts-new-ObservedV2-and-Trace.md)：\@ObservedV2装饰器装饰class，使得被装饰的class具有深度监听的能力。\@ObservedV2和\@Trace配合使用可以使class中的属性具有深度观测的能力。
-- [\@Trace](arkts-new-ObservedV2-and-Trace.md)：\@Trace装饰器装饰被\@ObservedV2装饰的class中的属性，被装饰的属性具有深度观测的能力。
-- [\@Monitor](arkts-new-monitor.md)：\@Monitor装饰器用在被\@ObservedV2装饰的class中，使得被@Trace装饰的成员属性具有深度监听的能力。
+- [\@ObservedV2](arkts-new-observedV2-and-trace.md)：\@ObservedV2装饰器装饰class，使得被装饰的class具有深度监听的能力。\@ObservedV2和\@Trace配合使用可以使class中的属性具有深度观测的能力。
+
+- [\@Trace](arkts-new-observedV2-and-trace.md)：\@Trace装饰器装饰被\@ObservedV2装饰的class中的属性，被装饰的属性具有深度观测的能力。
+
+- [\@ComponentV2](arkts-new-componentV2.md)：使用\@ComponentV2装饰的struct中能使用新的装饰器。例如：\@Local、\@Param、\@Event、\@Once、\@Monitor、\@Provider、\@Consumer。
+
+- [\@Local](arkts-new-local.md)：\@Local装饰的变量为组件内部状态，无法从外部初始化。
+
+- [\@Param](arkts-new-param.md)：\@Param装饰的变量作为组件的输入，可以接受从外部传入初始化并同步。
+
+- [\@Once](arkts-new-once.md)：\@Once装饰的变量仅初始化时同步一次，需要与\@Param一起使用。
+
+- [\@Event](arkts-new-event.md)：\@Event装饰方法类型，作为组件输出，可以通过该方法影响父组件中变量。
+
+- [\@Monitor](arkts-new-monitor.md)：\@Monitor装饰器用于\@ComponentV2装饰的自定义组件或\@ObservedV2装饰的类中，能够对状态变量进行深度监听。
+
+- [\@Provider和\@Consumer](arkts-new-Provider-and-Consumer.md)：用于跨组件层级双向同步。
+
+- [\@Computed](arkts-new-Computed.md)：计算属性，在被计算的值变化的时候，只会计算一次。主要应用于解决UI多次重用该属性从而重复计算导致的性能问题。
+
+- [!!语法](arkts-new-binding.md)：双向绑定语法糖。
 
 ## 使用限制
 
 由于新的状态管理框架采用了和现有状态管理框架不同的实现，因此不能将新的状态管理框架和现有状态管理框架混合使用，这项限制包括如下场景：
 
 - 将新装饰器装饰的变量传递给现有装饰器装饰的变量。
-- 将现有装饰器[\@Observed](arkts-observed-and-objectlink.md)、[\@Track](arkts-track.md)与新装饰器[\@ObservedV2](arkts-new-ObservedV2-and-Trace.md)、[\@Trace](arkts-new-ObservedV2-and-Trace.md)混合使用。
+- 将现有装饰器[\@Observed](arkts-observed-and-objectlink.md)、[\@Track](arkts-track.md)与新装饰器[\@ObservedV2](arkts-new-observedV2-and-trace.md)、[\@Trace](arkts-new-observedV2-and-trace.md)混合使用。
+- 将现有装饰器\@State、\@Prop、\@Link、\@ObjectLink、\@Provide、\@Consume、\@StorageLink、\@StorageProp、\@LocalStorageLink、\@LocalStorageProp、\@Watch等在\@ComponentV2装饰的自定义组件中使用。
+- 将新装饰器\@Local、\@Param、\@Once、\@Event、\@Monitor、\@Provider、\@Consumer在\@Component装饰的自定义组件中使用。
+- 将\@Component与\@ComponentV2同时使用。
 
 将新装饰器与现有装饰器混合使用，会出现未定义行为，表现为冗余刷新、失去深度观测能力、失去自身属性观测能力、失去属性级更新能力等。因此，不能将新的状态管理框架与现有状态管理框架混合使用。

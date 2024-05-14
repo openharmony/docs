@@ -22,6 +22,7 @@
     - [@ohos.router (页面路由)](js-apis-router.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
+    <!--Del-->
     - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)(系统接口)](js-apis-arkui-drawableDescriptor-sys.md)
     - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor-sys.md)  
     - [@ohos.arkui.uiExtension (uiExtension)(系统接口)](js-apis-arkui-uiExtension-sys.md)
@@ -30,14 +31,17 @@
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (系统接口)](js-apis-uiExtensionHost-sys.md)
     - [@ohos.arkui.UIContext (UIContext)(系统接口)](js-apis-arkui-UIContext-sys.md)
+    <!--DelEnd-->
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
+      - [ContentSlot](js-apis-arkui-contentSlot.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
       - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+      - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
@@ -126,9 +130,6 @@
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
         - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
-        - [背景设置 (系统接口)](arkui-ts/ts-universal-attributes-background-sys.md)
-        - [组件内容模糊 (系统接口)](arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md)
-        - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -190,6 +191,7 @@
       - [TimePicker](arkui-ts/ts-basic-components-timepicker.md)
       - [Toggle](arkui-ts/ts-basic-components-toggle.md)
       - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
+      <!--Del-->
       - [Component3D (系统接口)](arkui-ts/ts-basic-components-component3d-sys.md)
       - [FormComponent (系统接口)](arkui-ts/ts-basic-components-formcomponent-sys.md)
       - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
@@ -197,6 +199,7 @@
       - [PluginComponent (系统接口)](arkui-ts/ts-basic-components-plugincomponent-sys.md)
       - [RemoteWindow (系统接口)](arkui-ts/ts-basic-components-remotewindow-sys.md)
       - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
+      <!--DelEnd-->
     - 容器组件
       - [Badge](arkui-ts/ts-container-badge.md)
       - [Column](arkui-ts/ts-container-column.md)
@@ -227,9 +230,11 @@
       - [Tabs](arkui-ts/ts-container-tabs.md)
       - [TabContent](arkui-ts/ts-container-tabcontent.md)
       - [WaterFlow](arkui-ts/ts-container-waterflow.md)
+      <!--Del-->
       - [EffectComponent (系统接口)](arkui-ts/ts-container-effectcomponent-sys.md)
       - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
       - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
+      <!--DelEnd-->
     - 媒体组件
       - [Video](arkui-ts/ts-media-components-video.md)
     - 绘制组件
@@ -316,7 +321,9 @@
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - 已停止维护的组件
+      <!--Del-->
       - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
+      <!--DelEnd-->
       - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
       - [Panel](arkui-ts/ts-container-panel.md)
     - 已停止维护的接口
@@ -332,6 +339,7 @@
     - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
   - 头文件和结构体
     - 头文件
+      - [drawable_descriptor.h](drawable__descriptor_8h.md)
       - [native_animate.h](native__animate_8h.md)
       - [native_dialog.h](native__dialog_8h.md)
       - [native_gesture.h](native__gesture_8h.md)

@@ -120,6 +120,8 @@ shape(value: CheckBoxShape)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -175,6 +177,8 @@ onChange(callback: (value: boolean) => void)
 | strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## CheckBoxShape<sup>11+</sup>枚举类型说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 枚举名称       | 枚举值 | 描述     |
 | -------------- | ------ | -------- |

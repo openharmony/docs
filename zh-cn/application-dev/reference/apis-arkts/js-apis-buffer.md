@@ -11,7 +11,7 @@ Buffer对象用于表示固定长度的字节序列，是专门存放二进制�
 ## 导入模块
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 ```
 
 ## BufferEncoding
@@ -63,7 +63,7 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.alloc(5);
 let buf2 = buffer.alloc(5, 'a');
@@ -96,7 +96,7 @@ allocUninitializedFromPool(size: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(10);
 buf.fill(0);
@@ -128,7 +128,7 @@ allocUninitialized(size: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitialized(10);
 buf.fill(0);
@@ -160,7 +160,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let str = '\u00bd + \u00bc = \u00be';
 console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
@@ -193,7 +193,7 @@ compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
@@ -236,7 +236,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
@@ -269,7 +269,7 @@ from(array: number[]): Buffer;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
 console.log(buf.toString('hex')); // 627566666572
@@ -310,7 +310,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
@@ -341,7 +341,7 @@ from(buffer: Buffer | Uint8Array): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
@@ -374,7 +374,7 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from(new String('this is a test'), 'utf8', 14);
 ```
@@ -405,7 +405,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('this is a test');
 let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
@@ -440,7 +440,7 @@ isBuffer(obj: Object): boolean
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let result = buffer.isBuffer(buffer.alloc(10)); // true
 let result1 = buffer.isBuffer(buffer.from('foo')); // true
@@ -474,7 +474,7 @@ isEncoding(encoding: string): boolean
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 console.log(buffer.isEncoding('utf-8').toString());	// 打印: true
 console.log(buffer.isEncoding('hex').toString());	// 打印: true
@@ -509,7 +509,7 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
@@ -540,7 +540,7 @@ console.log(newBuf.toString('ascii'));
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("1236");
 console.log(JSON.stringify(buf.length));
@@ -586,7 +586,7 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
@@ -632,7 +632,7 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 let buf2 = buffer.allocUninitializedFromPool(26).fill('!');
@@ -665,7 +665,7 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
 let pair = buf.entries();
@@ -701,7 +701,7 @@ equals(otherBuffer: Uint8Array | Buffer): boolean
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('ABC');
 let buf2 = buffer.from('414243', 'hex');
@@ -747,7 +747,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let b = buffer.allocUninitializedFromPool(50).fill('h');
 console.log(b.toString());
@@ -781,7 +781,7 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
 console.log(buf.includes('this').toString());	// 打印: true
@@ -815,7 +815,7 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
 console.log(buf.indexOf('this').toString());	// 打印: 0
@@ -841,7 +841,7 @@ keys(): IterableIterator&lt;number&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
 let numbers = Array.from(buf.values());
@@ -877,7 +877,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this buffer is a buffer');
 console.log(buf.lastIndexOf('this').toString());	// 打印: 0
@@ -918,7 +918,7 @@ readBigInt64BE(offset?: number): bigint
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
@@ -961,7 +961,7 @@ readBigInt64LE(offset?: number): bigint
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
@@ -1004,7 +1004,7 @@ readBigUInt64BE(offset?: number): bigint
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
@@ -1047,7 +1047,7 @@ readBigUInt64LE(offset?: number): bigint
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
@@ -1090,7 +1090,7 @@ readDoubleBE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleBE(0).toString());
@@ -1132,7 +1132,7 @@ readDoubleLE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleLE(0).toString());
@@ -1174,7 +1174,7 @@ readFloatBE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatBE(0).toString());
@@ -1216,7 +1216,7 @@ readFloatLE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatLE(0).toString());
@@ -1258,7 +1258,7 @@ readInt8(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([-1, 5]);
 console.log(buf.readInt8(0).toString());	// 打印: 0
@@ -1301,7 +1301,7 @@ readInt16BE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16BE(0).toString());	// 打印: 5
@@ -1343,7 +1343,7 @@ readInt16LE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16LE(0).toString());	// 打印: 1280
@@ -1385,7 +1385,7 @@ readInt32BE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32BE(0).toString());	// 打印: 5
@@ -1427,7 +1427,7 @@ readInt32LE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
@@ -1471,7 +1471,7 @@ readIntBE(offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
@@ -1517,7 +1517,7 @@ readIntLE(offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readIntLE(0, 6).toString(16));
@@ -1560,7 +1560,7 @@ readUInt8(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, -2]);
 console.log(buf.readUInt8(0).toString());
@@ -1604,7 +1604,7 @@ readUInt16BE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16BE(0).toString(16));
@@ -1648,7 +1648,7 @@ readUInt16LE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16LE(0).toString(16));
@@ -1692,7 +1692,7 @@ readUInt32BE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32BE(0).toString(16));
@@ -1735,7 +1735,7 @@ readUInt32LE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32LE(0).toString(16));
@@ -1779,7 +1779,7 @@ readUIntBE(offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntBE(0, 6).toString(16));
@@ -1823,7 +1823,7 @@ readUIntLE(offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntLE(0, 6).toString(16));
@@ -1858,7 +1858,7 @@ subarray(start?: number, end?: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 
@@ -1898,7 +1898,7 @@ swap16(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -1935,7 +1935,7 @@ swap32(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -1972,7 +1972,7 @@ swap64(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -2000,7 +2000,7 @@ toJSON(): Object
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
 let obj = buf1.toJSON();
@@ -2035,7 +2035,7 @@ toString(encoding?: string, start?: number, end?: number): string
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 for (let i = 0; i < 26; i++) {
@@ -2064,7 +2064,7 @@ values(): IterableIterator&lt;number&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('buffer');
 let pair = buf1.values()
@@ -2112,7 +2112,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.alloc(256);
 let len = buf.write('\u00bd + \u00bc = \u00be', 0);
@@ -2158,7 +2158,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64BE(BigInt(0x0102030405060708), 0);
@@ -2199,7 +2199,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
@@ -2240,7 +2240,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
@@ -2281,7 +2281,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
@@ -2322,7 +2322,7 @@ writeDoubleBE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleBE(123.456, 0);
@@ -2363,7 +2363,7 @@ writeDoubleLE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleLE(123.456, 0);
@@ -2404,7 +2404,7 @@ writeFloatBE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatBE(0xcafebabe, 0);
@@ -2446,7 +2446,7 @@ writeFloatLE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatLE(0xcafebabe, 0);
@@ -2487,7 +2487,7 @@ writeInt8(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt8(2, 0);
@@ -2530,7 +2530,7 @@ writeInt16BE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16BE(0x0102, 0);
@@ -2572,7 +2572,7 @@ writeInt16LE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16LE(0x0304, 0);
@@ -2613,7 +2613,7 @@ writeInt32BE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32BE(0x01020304, 0);
@@ -2655,7 +2655,7 @@ writeInt32LE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32LE(0x05060708, 0);
@@ -2697,7 +2697,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntBE(0x1234567890ab, 0, 6);
@@ -2740,7 +2740,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntLE(0x1234567890ab, 0, 6);
@@ -2781,7 +2781,7 @@ writeUInt8(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt8(0x3, 0);
@@ -2825,7 +2825,7 @@ writeUInt16BE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16BE(0xdead, 0);
@@ -2867,7 +2867,7 @@ writeUInt16LE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16LE(0xdead, 0);
@@ -2909,7 +2909,7 @@ writeUInt32BE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32BE(0xfeedface, 0);
@@ -2950,7 +2950,7 @@ writeUInt32LE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32LE(0xfeedface, 0);
@@ -2992,7 +2992,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntBE(0x1234567890ab, 0, 6);
@@ -3034,7 +3034,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
@@ -3073,7 +3073,7 @@ Blob的构造函数。
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
 
@@ -3102,7 +3102,7 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.arrayBuffer();
@@ -3136,7 +3136,7 @@ slice(start?: number, end?: number, type?: string): Blob
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
@@ -3160,7 +3160,7 @@ text(): Promise&lt;string&gt;
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();

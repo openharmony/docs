@@ -1,7 +1,7 @@
 # Connecting to a ServiceAbility
 
 
-If a ServiceAbility wants to interact with a PageAbility or a ServiceAbility in another application, you must first create a connection by calling **connectAbility()**. This method is defined in the **featureAbility** class for the PageAbility and in the **particleAbility** class for the ServiceAbility. For details about the connection rules, see [Component Startup Rules](component-startup-rules.md). When calling **connectAbility()**, you should pass in a **Want** object containing information about the target ServiceAbility and an **IAbilityConnection** object. **IAbilityConnection** provides the following APIs that you need to implement.
+If a ServiceAbility wants to interact with a PageAbility or a ServiceAbility in another application, you must first create a connection by calling **connectAbility()**. The [connectAbility()](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7) method of the PageAbility is defined in [featureAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md), and the [connectAbility()](../reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilityconnectability) method of the ServiceAbility is defined in [particleAbility](../reference/apis-ability-kit/js-apis-ability-particleAbility.md). For details about the connection rules, see [Component Startup Rules](component-startup-rules-fa.md). When using **connectAbility()** to process the callback, pass in the instances of [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) and [IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md) of the target ServiceAbility. [IAbilityConnection](../reference/apis-ability-kit/js-apis-inner-ability-connectOptions.md) provides the following callbacks that you should implement.
 
 
 **Table 1** IAbilityConnection APIs
@@ -103,5 +103,5 @@ class FirstServiceAbilityStub extends rpc.RemoteObject {
     return true;
   }
 }
-...
+//...
 ```
