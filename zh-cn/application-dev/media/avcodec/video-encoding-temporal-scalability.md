@@ -289,40 +289,6 @@
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
     OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr);
     ```
-    ```c++
-    // 2.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
-    static void OnNeedInputParameter(OH_AVCodec *codec, uint32_t index, OH_AVFormat *parameter, void *userData)
-    {
-        // 输入帧buffer对应的index，送入InIndexQueue队列
-        // 输入帧的数据avformat送入InFormatQueue队列
-        // 数据处理，请参考:
-        // - 写入编码码流
-        // - 通知编码器码流结束
-        // - 随帧参数写入
-        OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 25);
-        OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 23);
-        // 通知编码器随帧参数配置输入完成
-        OH_VideoEncoder_PushInputParameter(codec, index);
-    }
-
-    // 2.2 编码输出回调OH_AVCodecOnNewOutputBuffer实现
-    static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
-    {
-        // 完成帧buffer对应的index，送入outIndexQueue队列
-        // 完成帧的数据buffer送入outBufferQueue队列
-        // 数据处理，请参考:
-        // - 释放编码帧
-        // - 记录POC和LTR生效情况
-    }
-
-    // 2.3 注册数据回调
-    OH_AVCodecCallback cb;
-    cb.onNewOutputBuffer = OnNewOutputBuffer;
-    OH_VideoEncoder_RegisterCallback(codec, cb, nullptr);
-    // 2.4 注册随帧参数回调
-    OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(codec, inParaCb, nullptr);
-    ```
 
 3. 在配置阶段，配置同时存在LTR最大数目。
 
