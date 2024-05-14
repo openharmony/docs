@@ -4575,9 +4575,9 @@ constructor(album: Album)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 202        |  Called by non-system application.   |
-| 401      |  if parameter is invalid.         |
-| 14000011       | System inner fail.          |
+| 202      |  Called by non-system application.   |
+| 401      | Invalid parameter.          |
+| 14000011 | Internal system error.            |
 
 **示例：**
 
@@ -4625,8 +4625,8 @@ getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401      | if parameter is invalid.          |
-| 14000011 | System inner fail.                |
+| 401      | Invalid parameter.          |
+| 14000011 | Internal system error.            |
 
 **示例：**
 
@@ -4683,8 +4683,8 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401      | if parameter is invalid.          |
-| 14000011 | System inner fail.                |
+| 401      | Invalid parameter.          |
+| 14000011 | Internal system error.            |
 
 **示例：**
 
@@ -4740,8 +4740,8 @@ setHighlightUserActionData(type: HighlightUserActionType, actionData: number): P
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401      | if parameter is invalid.          |
-| 14000011 | System inner fail.                |
+| 401      | Invalid parameter.          |
+| 14000011 | Internal system error.            |
 
 **示例：**
 
