@@ -17,7 +17,7 @@ Stack和[Queue](js-apis-queue.md)相比，Queue基于循环队列实现，只能
 ## 导入模块
 
 ```ts
-import Stack from '@ohos.util.Stack';  
+import { Stack } from '@kit.ArkTS';
 ```
 
 ## Stack

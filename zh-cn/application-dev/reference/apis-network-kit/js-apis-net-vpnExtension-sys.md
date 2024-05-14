@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import vpnExt from "@ohos.net.vpnExtension";
+import { vpnExt } from '@kit.NetworkKit';
 ```
 
 
@@ -52,9 +52,9 @@ setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 Stage 模型示例：
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { vpnExt } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   deviceId: "",
@@ -107,9 +107,9 @@ isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 Stage 模型示例：
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { vpnExt } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   deviceId: "",
@@ -162,8 +162,8 @@ updateVpnAuthorizedState(bundleName: string): boolean
 Stage 模型示例：
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
+import { vpnExt } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
   deviceId: "",

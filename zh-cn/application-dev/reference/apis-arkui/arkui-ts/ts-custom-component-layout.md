@@ -12,6 +12,8 @@ onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;
 
 ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名            | 类型                                                         | 说明               |
@@ -25,6 +27,8 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自
 onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions): SizeResult
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -44,6 +48,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 父组件布局信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 属性          | 属性类型      | 描述                  |
 |-------------|-----------|---------------------|
 | borderWidth | [EdgeWidth](ts-types.md#edgewidths9) | 父组件边框宽度。<br>单位：vp            |
@@ -54,6 +60,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 
 ## Layoutable<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 子组件布局信息。
 
@@ -66,6 +74,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 子组件位置信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 属性         | 属性类型                                                                             | 描述                                    |
 |------------|----------------------------------------------------------------------------------|---------------------------------------|
 | measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;[MeasureResult](#measureresult10) | 调用此方法对子组件的尺寸范围进行限制。<br/>返回值：子组件测量后的尺寸。 |
@@ -73,6 +83,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 ## MeasureResult<sup>10+</sup>
 
 测量后的组件布局信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 属性     | 属性类型   | 描述    |
 |--------|--------|-------|
@@ -83,6 +95,8 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 ## SizeResult<sup>10+</sup>
 
 组件尺寸信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 属性     | 属性类型   | 描述    |
 |--------|--------|-------|

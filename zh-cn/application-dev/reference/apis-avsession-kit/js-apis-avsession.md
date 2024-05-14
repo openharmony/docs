@@ -26,7 +26,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -123,7 +123,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 | TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
@@ -133,7 +133,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称  | 类型   | 说明 |
 | ----- | ------ | ---- |
@@ -149,7 +149,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称      | 类型   | 可读 | 可写 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
@@ -171,7 +171,7 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -467,7 +467,7 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1267,7 +1267,7 @@ getAVCastController(): Promise\<AVCastController>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1308,7 +1308,7 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1382,7 +1382,7 @@ activate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1456,7 +1456,7 @@ deactivate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1532,7 +1532,7 @@ destroy(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2099,7 +2099,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2582,7 +2582,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2934,7 +2934,7 @@ stopCasting(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -3034,7 +3034,7 @@ currentAVSession.getAllCastDisplays()
        console.info('There is not a cast display');
      }
    })
-   .catch((error: BusinessError) => {
+   .catch((err: BusinessError) => {
      console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
    });
 ```
@@ -3045,7 +3045,7 @@ currentAVSession.getAllCastDisplays()
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称           | 类型   | 说明         |
 | -------------- | ------ | ------------ |
@@ -3068,7 +3068,7 @@ currentAVSession.getAllCastDisplays()
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
@@ -3123,7 +3123,7 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -3160,7 +3160,7 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3304,7 +3304,7 @@ prepare(item: AVQueueItem): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3424,7 +3424,7 @@ start(item: AVQueueItem): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3522,7 +3522,7 @@ getCurrentItem(): Promise\<AVQueueItem>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -3589,7 +3589,7 @@ import http from '@ohos.net.http'
 private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
    let licenseRequestStr: string = TypeConversion.byteToString(requestData);
    //get media key from DRM server
-   let licenseResponeStr: string = 'defaultStr';
+   let licenseResponseStr: string = 'defaultStr';
    let httpRequest = http.createHttp();
    let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
    try {
@@ -3604,7 +3604,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
       });
       if (response?.responseCode == http.ResponseCode.OK) {
         if (typeof response.result == 'string') {
-          licenseResponeStr = response.result;
+          licenseResponseStr = response.result;
         }
       }
       httpRequest.destroy();
@@ -3613,9 +3613,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
      return;
    }
 
-   let licenseResponeData: Unit8Array = TypeConversion.stringToByte(licenseResponeStr);
+   let licenseResponseData: Uint8Array = TypeConversion.stringToByte(licenseResponseStr);
    try {
-    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponeData);
+    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponseData);
    } catch (err) {
     let error = err as BusinessError;
     console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
@@ -3668,7 +3668,7 @@ release(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -3705,7 +3705,7 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3744,7 +3744,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): v
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3775,7 +3775,7 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3808,7 +3808,7 @@ off(type: 'mediaItemChange'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3838,7 +3838,7 @@ on(type: 'playNext', callback: Callback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3871,7 +3871,7 @@ off(type: 'playNext'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3901,7 +3901,7 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3934,7 +3934,7 @@ off(type: 'playPrevious'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -4084,7 +4084,7 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -4117,7 +4117,7 @@ off(type: 'seekDone'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -4210,7 +4210,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -4252,7 +4252,7 @@ off(type: 'error'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -4396,7 +4396,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4410,29 +4410,30 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
-| title           | string                  | 否   | 标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
-| artist          | string                  | 否   | 艺术家。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
-| author          | string                  | 否   | 专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
+| title           | string                  | 否   | 标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                 |
+| artist          | string                  | 否   | 艺术家。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
+| author          | string                  | 否   | 专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| avQueueName<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
 | avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
-| album           | string                  | 否   | 专辑名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
-| writer          | string                  | 否   | 词作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
+| album           | string                  | 否   | 专辑名称。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| writer          | string                  | 否   | 词作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
-| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
-| publishDate     | Date                    | 否   | 发行日期。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
-| subtitle        | string                  | 否   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
-| description     | string                  | 否   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                  |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                             |
+| publishDate     | Date                    | 否   | 发行日期。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| subtitle        | string                  | 否   | 子标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
+| description     | string                  | 否   | 媒体描述。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
 | lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
-| previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
-| nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
-| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| previousAssetId | string                  | 否   | 上一首媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                            |
+| nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                            |
+| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                   |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
 
@@ -4442,31 +4443,31 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 类型                    | 必填  | 说明                     |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | 是   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
-| title        | string                  | 否   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| assetId      | string                  | 是   | 播放列表媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。          |
+| title        | string                  | 否   | 播放列表媒体标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。        |
+| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。      |
+| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。   |
+| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | extras       | {[key: string]: any}    | 否   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
-| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。    |
+| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
 | dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
-| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast         |
-| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core         |
+| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
 
 ## AVQueueItem<sup>10+</sup>
 
@@ -4474,7 +4475,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 类型                                        | 必填 | 说明                        |
 | ------------ | ------------------------------------------ | ---- | --------------------------- |
@@ -4487,24 +4488,24 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| speed        | number                                | 否   | 播放倍速<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| bufferedTime | number                                | 否   | 缓冲时间<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isFavorite   | boolean                               | 否   | 是否收藏<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| speed        | number                                | 否   | 播放倍速<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| bufferedTime | number                                | 否   | 缓冲时间<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| isFavorite   | boolean                               | 否   | 是否收藏<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
-| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## PlaybackPosition<sup>10+</sup>
 
@@ -4512,7 +4513,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称        | 类型   | 必填 | 说明               |
 | ----------- | ------ | ---- | ------------------ |
@@ -4574,7 +4575,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4587,7 +4588,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4602,7 +4603,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -4619,7 +4620,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -4631,7 +4632,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称               | 值   | 说明     |
 | ------------------ | ---- | -------- |
@@ -4647,7 +4648,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -6083,7 +6084,7 @@ avsessionController.on('callMetadataChange', 'all', (callmetadata: avSession.Cal
 });
 
 avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.CallMetadata) => {
-  console.info(`on callMetadataChange state : ${callmetadata.state}`);
+  console.info(`on callMetadataChange state : ${callmetadata.name}`);
 });
 ```
 
@@ -7171,7 +7172,7 @@ try {
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                                   | 值      | 说明                             |
 | -------------------------------------- | ------- | ------------------------------- |
@@ -7182,7 +7183,7 @@ try {
 | ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
 | ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
 | ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connection failed.       |
 | ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
 
 ## SkipIntervals<sup>11+</sup>

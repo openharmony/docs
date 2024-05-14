@@ -80,10 +80,9 @@
   >
   > key可以是uri也可以是简单字符串，subscriberId默认值为当前formId，实际取值都依赖于数据发布方的定义。
   ```ts
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import hilog from '@ohos.hilog';
-  import type Want from '@ohos.app.ability.Want';
+  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+  import { Want } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'ProcessDataFormAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -167,16 +166,14 @@
   > - key的取值是uri，依赖于数据发布方定义。
   > - subscriberId可自定义，addTemplate中的subscriberId参数与proxies.subscriberId保持一致即可。
   ```ts
-  import dataShare from '@ohos.data.dataShare';
-  import type formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import type Want from '@ohos.app.ability.Want';
-  
+  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+  import { Want } from '@kit.AbilityKit';
+  import { dataShare } from '@kit.ArkData';
+
   export default class PersistentDataFormAbility extends FormExtensionAbility {
     onAddForm(want: Want): formBindingData.FormBindingData {
-      let dataShareHelper;
       let subscriberId = '111';
-      let template = {
+      let template: dataShare.Template = {
         predicates: {
           'list': `select type from TBL00 where cityId = ${subscriberId}`
         },
@@ -185,18 +182,18 @@
       dataShare.createDataShareHelper(this.context, 'datashareproxy://com.samples.widgetupdatebyproxy', {
         isProxy: true
       }).then((data) => {
-        dataShareHelper = data;
+        let dataShareHelper = data;
         dataShareHelper.addTemplate('datashareproxy://com.samples.widgetupdatebyproxy/test', subscriberId, template);
       });
-      let formData = {};
-      let proxies = [
+      let formData: Record<string, Object> = {};
+      let proxies: formBindingData.ProxyData[] = [
         {
           key: 'datashareproxy://com.samples.widgetupdatebyproxy/test',
           subscriberId: subscriberId
         }
       ];
-  
-      let formBinding = {
+
+      let formBinding: formBindingData.FormBindingData = {
         data: JSON.stringify(formData),
         proxies: proxies
       };
@@ -237,4 +234,4 @@
 
 针对卡片代理开发，有以下相关实例可供参考：
 
-- [应用主动添加数据代理卡片到桌面（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/RequestAddForm)
+- [应用主动添加数据代理卡片到桌面（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Widget/RequestAddForm)

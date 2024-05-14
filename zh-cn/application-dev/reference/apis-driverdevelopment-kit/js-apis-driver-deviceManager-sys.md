@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
+import { deviceManager } from '@kit.DriverDevelopmentKit';
 ```
 
 ## deviceManager.queryDeviceInfo
@@ -49,8 +49,8 @@ queryDeviceInfo(deviceId?: number): Array&lt;Readonly&lt;DeviceInfo&gt;&gt;
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
@@ -99,8 +99,8 @@ queryDriverInfo(driverUid?: string): Array&lt;Readonly&lt;DriverInfo&gt;&gt;
 **示例：**
 
 ```ts
-import deviceManager from "@ohos.driver.deviceManager";
-import { BusinessError } from '@ohos.base';
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // driver-12345为示例driverUid，应用开发时可通过queryDeviceInfo查询到相应设备匹配到的驱动的driverUid作为入参
@@ -157,13 +157,14 @@ USB设备接口描述符。
 
 **系统能力：** SystemCapability.Driver.ExternalDevice
 
-| 名称            | 类型                                                 | 必填  | 说明     |
-|---------------|----------------------------------------------------|-----|--------|
-| busType       | [BusType](js-apis-driver-deviceManager.md#bustype) | 是   | 总线类型。  |
-| driverUid     | string                                             | 是   | 驱动Uid。 |
-| driverName    | string                                             | 是   | 驱动名称。  |
-| driverVersion | string                                             | 是   | 驱动版本。  |
-| description   | string                                             | 是   | 驱动描述。  |
+| 名称            | 类型                                                 | 必填  | 说明             |
+|---------------|----------------------------------------------------|-----|----------------|
+| busType       | [BusType](js-apis-driver-deviceManager.md#bustype) | 是   | 总线类型。          |
+| driverUid     | string                                             | 是   | 驱动Uid。         |
+| driverName    | string                                             | 是   | 驱动名称。          |
+| driverVersion | string                                             | 是   | 驱动版本。          |
+| driverSize    | string                                             | 是   | 驱动大小(单位为Byte)。 |
+| description   | string                                             | 是   | 驱动描述。          |
 
 ## USBDriverInfo
 

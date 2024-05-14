@@ -26,7 +26,7 @@ Internal error.
 
 **错误信息**
 
-marshalling or unmarshalling error.
+Marshalling or unmarshalling error.
 
 **错误描述**
 
@@ -221,6 +221,97 @@ No memory space.
 **处理步骤**
 
 确认系统内存是否足够。
+
+## 1600013 通知弹窗已弹出
+
+**错误信息**
+
+Enable Notification Dialog has been popping already.
+
+**错误描述**
+
+通知弹窗已经弹出，方法将返回该错误码。
+
+**可能原因**
+
+通知弹窗已经弹出。
+
+**处理步骤**
+
+确认通知弹窗是否弹出。
+
+
+## 1600014 没有相关权限
+
+**错误信息**
+
+No relevant right.
+
+**错误描述**
+
+没有相关权限，方法将返回该错误码。
+
+**可能原因**
+
+没有相关权限。
+
+**处理步骤**
+
+确认是否具有相关权限。
+
+## 1600015 当前通知状态不支持重复配置
+
+**错误信息**
+
+The current notification status does not support duplicate configurations.
+
+**错误描述**
+
+当前通知状态不支持重复配置，方法将返回该错误码。
+
+**可能原因**
+
+当前通知状态不支持重复配置。
+
+**处理步骤**
+
+确认是否重复配置通知状态。
+
+## 1600016 本次更新的通知版本太低
+
+**错误信息**
+
+The notification version for this update is too low.
+
+**错误描述**
+
+本次更新的通知版本太低，方法将返回该错误码。
+
+**可能原因**
+
+本次更新的通知版本太低。
+
+**处理步骤**
+
+确认通知版本。
+
+## 2300007 网络无法访问
+
+**错误信息**
+
+Network is unreachable.
+
+**错误描述**
+
+当网络无法访问时，系统会报此错误码。
+
+**可能原因**
+
+网络无法访问。
+
+**处理步骤**
+
+检查网络情况。
 
 ## 17700001 包名不存在
 

@@ -29,6 +29,8 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -74,6 +76,8 @@ abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
 addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 Adds an **AbilityMonitor** instance. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -125,6 +129,8 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 
 Adds an **AbilityMonitor** instance. This API returns the result synchronously. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -166,6 +172,8 @@ abilityDelegator.addAbilityMonitorSync(monitor);
 removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 Removes an **AbilityMonitor** instance. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -213,6 +221,8 @@ abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
 removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 Removes an **AbilityMonitor** instance. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -265,6 +275,8 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
 Removes an **AbilityMonitor** instance. This API returns the result synchronously. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -307,6 +319,8 @@ abilityDelegator.removeAbilityMonitorSync(monitor);
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void
 
 Waits for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -358,6 +372,8 @@ abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAb
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void
 
 Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result. Multi-thread concurrent calls are not supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -414,6 +430,8 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 
 Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses a promise to return the result. Multi-thread concurrent calls are not supported.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -466,6 +484,8 @@ getAppContext(): Context
 
 Obtains the application context.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -490,6 +510,8 @@ let context = abilityDelegator.getAppContext();
 getAbilityState(ability: UIAbility): number
 
 Obtains the lifecycle state of an ability.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -530,6 +552,8 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
 Obtains the top ability of this application. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -569,6 +593,8 @@ getCurrentTopAbility(): Promise\<UIAbility>
 
 Obtains the top ability of this application. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -606,6 +632,8 @@ abilityDelegator.getCurrentTopAbility().then((data : UIAbility) => {
 startAbility(want: Want, callback: AsyncCallback\<void>): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -662,6 +690,8 @@ abilityDelegator.startAbility(want, (err : BusinessError, data : void) => {
 startAbility(want: Want): Promise\<void>
 
 Starts an ability. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -724,6 +754,8 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
 Schedules the lifecycle state of an ability to **Foreground**. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -766,6 +798,8 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 doAbilityForeground(ability: UIAbility): Promise\<void>
 
 Schedules the lifecycle state of an ability to **Foreground**. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -815,6 +849,8 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
 Schedules the lifecycle state of an ability to **Background**. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -857,6 +893,8 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 doAbilityBackground(ability: UIAbility): Promise\<void>
 
 Schedules the lifecycle state of an ability to **Background**. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -906,6 +944,8 @@ printSync(msg: string): void
 
 Prints log information to the unit test console.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -931,6 +971,8 @@ abilityDelegator.printSync(msg);
 print(msg: string, callback: AsyncCallback\<void>): void
 
 Prints log information to the unit test console. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -961,6 +1003,8 @@ abilityDelegator.print(msg, (err : BusinessError) => {
 print(msg: string): Promise\<void>
 
 Prints log information to the unit test console. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -998,6 +1042,8 @@ Executes a shell command. This API uses an asynchronous callback to return the r
 
 Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, and pidof.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -1029,6 +1075,8 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 Executes a shell command with the timeout period specified. This API uses an asynchronous callback to return the result.
 
 Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, and pidof.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1063,6 +1111,8 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 Executes a shell command with the timeout period specified. This API uses a promise to return the result.
 
 Only the following shell commands are supported: aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, and pidof.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1099,6 +1149,8 @@ abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
 finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 
 Finishes the test and prints log information to the unit test console. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1138,6 +1190,8 @@ abilityDelegator.finishTest(msg, 0, (err : BusinessError) => {
 finishTest(msg: string, code: number): Promise\<void>
 
 Finishes the test and prints log information to the unit test console. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1182,6 +1236,8 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 
 Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -1221,6 +1277,8 @@ abilityDelegator.addAbilityStageMonitor({
 addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1266,6 +1324,8 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
 Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -1301,6 +1361,8 @@ abilityDelegator.addAbilityStageMonitorSync({
 removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void
 
 Removes an **AbilityStageMonitor** instance from the application memory. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1341,6 +1403,8 @@ abilityDelegator.removeAbilityStageMonitor({
 removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 Removes an **AbilityStageMonitor** instance from the application memory. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1386,6 +1450,8 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
 Removes an **AbilityStageMonitor** instance from the application memory. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -1421,6 +1487,8 @@ abilityDelegator.removeAbilityStageMonitorSync({
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<AbilityStage>): void
 
 Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1462,6 +1530,8 @@ abilityDelegator.waitAbilityStageMonitor({
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>
 
 Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1509,6 +1579,8 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 
 Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -1551,6 +1623,8 @@ abilityDelegator.waitAbilityStageMonitor({
 setMockList(mockList: Record\<string, string>): void
 
 Sets a list of mock data.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

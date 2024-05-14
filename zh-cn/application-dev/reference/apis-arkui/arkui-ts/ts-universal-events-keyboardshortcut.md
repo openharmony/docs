@@ -14,6 +14,8 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 设置组件的自定义组合键。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -32,6 +34,8 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## ModifierKey
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称    | 描述           |
 | ----- | ------------ |
 | CTRL  | 表示键盘上Ctrl键。  |
@@ -39,6 +43,8 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 | ALT   | 表示键盘上Alt键。   |
 
 ## FunctionKey
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述           |
 | ---- | ------------ |

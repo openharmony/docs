@@ -125,6 +125,8 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | altitudes | Array&lt;number&gt; | 是 | 是 | 否 | 表示卫星高度角信息。单位是“度”，取值范围为-90到90。 |
 | azimuths | Array&lt;number&gt; | 是 | 是 | 否 | 表示方位角。单位是“度”，取值范围为0到360。 |
 | carrierFrequencies | Array&lt;number&gt; | 是 | 是 | 否 | 表示载波频率。单位是Hz，取值范围为大于等于0。 |
+| satelliteConstellation<sup>12+</sup> | Array&lt;[SatelliteConstellationCategory](#satelliteconstellationcategory12)&gt; | 是 | 是 | 否 | 表示卫星星座类型。 |
+| satelliteAdditionalInfo<sup>12+</sup> | Array&lt;number&gt; | 是 | 是 | 否 | 表示卫星的附加信息。<br/>每个比特位代表不同含义，具体定义参见[SatelliteAdditionalInfo](#satelliteadditionalinfo12)。 |
 
 
 ## CachedGnssLocationsRequest
@@ -149,6 +151,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | latitude | number | 是 | 是 | 是 |表示纬度。取值范围为-90到90。 |
 | longitude | number | 是 | 是 |是 | 表示经度。取值范围为-180到180。 |
+| coordinateSystemType<sup>12+</sup> | [CoordinateSystemType](#coordinatesystemtype12) | 否 | 是 |是 | 表示地理围栏圆心坐标的坐标系。<br/>APP应先使用[getGeofenceSupportedCoordTypes](#geolocationmanagergetgeofencesupportedcoordtypes12)查询支持的坐标系，然后传入正确的圆心坐标。 |
 | radius | number | 是 | 是 |是 | 表示圆形围栏的半径。单位是米，取值范围为大于0。 |
 | expiration | number | 是 | 是 |是 | 围栏存活的时间，单位是毫秒。取值范围为大于0。 |
 
@@ -195,6 +198,32 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | timeSinceBoot | number | 是 | 是 | 否 | 表示位置时间戳，开机时间格式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | additions | Array&lt;string&gt;| 否 | 是 | 否 | 附加信息。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | additionSize | number| 否 | 是 | 否 | 附加信息数量。取值范围为大于等于0。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 | 
+
+
+## GeofenceTransition<sup>12+</sup>
+
+地理围栏事件信息；包含地理围栏ID和具体的地理围栏事件。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| geofenceId | number| 是 | 是 | 否 | 表示地理围栏ID。 |
+| transitionEvent | [GeofenceTransitionEvent](#geofencetransitionevent12) | 是 | 是 | 否 | 表示当前发生的地理围栏事件。 |
+
+
+## GnssGeofenceRequest<sup>12+</sup>
+
+GNSS地理围栏请求参数。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| geofence | [Geofence](#geofence) | 是 | 是 | 否 | 表示地理围栏信息，包含圆形围栏圆心坐标、半径等信息。 |
+| monitorTransitionEvents | Array&lt;[GeofenceTransitionEvent](#geofencetransitionevent12)&gt; | 是 | 是 | 否 | 表示APP监听的地理围栏事件列表。 |
+| notifications | Array&lt;[NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest)&gt; | 否 | 是 | 否 | 表示地理围栏事件发生后弹出的通知对象列表。 |
+| geofenceTransitionCallback | AsyncCallback&lt;[GeofenceTransition](#geofencetransition12)&gt; | 是 | 是 | 否 | 表示用于接收地理围栏事件的回调函数。 |
 
 
 ## CountryCode
@@ -253,6 +282,64 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | COUNTRY_CODE_FROM_SIM | 2 | 从SIM卡中获取到的国家码。 |
 | COUNTRY_CODE_FROM_LOCATION | 3 | 基于用户的位置信息，通过逆地理编码查询到的国家码。 |
 | COUNTRY_CODE_FROM_NETWORK | 4 | 从蜂窝网络注册信息中获取到的国家码。 |
+
+
+## CoordinateSystemType<sup>12+</sup>
+
+坐标系类型。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| WGS84 | 1 | World Geodetic System 1984，是为GPS全球定位系统使用而建立的坐标系统。 |
+| GCJ02 | 2 | GCJ-02是由中国国家测绘局制订的地理信息系统的坐标系统。 |
+
+
+## GeofenceTransitionEvent<sup>12+</sup>
+
+地理围栏事件。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| GEOFENCE_TRANSITION_EVENT_ENTER  | 1 | 该事件表示设备从地理围栏外进入地理围栏内。 |
+| GEOFENCE_TRANSITION_EVENT_EXIT  | 2 | 该事件表示设备从地理围栏内退出到地理围栏外。 |
+| GEOFENCE_TRANSITION_EVENT_DWELL   | 4 | 该事件表示设备在地理围栏范围内，且持续徘徊超过10秒。 |
+
+
+## SatelliteConstellationCategory<sup>12+</sup>
+
+卫星星座类型。
+
+**系统能力**：SystemCapability.Location.Location.Gnss
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| CONSTELLATION_CATEGORY_UNKNOWN   | 0 | 默认值。 |
+| CONSTELLATION_CATEGORY_GPS   | 1 | GPS（Global Positioning System），即全球定位系统，是美国研制发射的一种以人造地球卫星为基础的高精度无线电导航的定位系统。 |
+| CONSTELLATION_CATEGORY_SBAS    | 2 | SBAS（Satellite-Based Augmentation System），即星基增强系统，通过地球静止轨道（GEO）卫星搭载卫星导航增强信号转发器，可以向用户播发星历误差、卫星钟差、电离层延迟等多种修正信息，实现对于原有卫星导航系统定位精度的改进。 |
+| CONSTELLATION_CATEGORY_GLONASS    | 3 | GLONASS（GLOBAL NAVIGATION SATELLITE SYSTEM），是苏联/俄罗斯研制卫星导航系统。 |
+| CONSTELLATION_CATEGORY_QZSS    | 4 | QZSS（Quasi-Zenith Satellite System），即准天顶卫星系统，是以三颗人造卫星透过时间转移完成全球定位系统区域性功能的卫星扩增系统，是日本研发的卫星系统。 |
+| CONSTELLATION_CATEGORY_BEIDOU     | 5 | 北斗卫星导航系统（Beidou Navigation Satellite System）是中国自行研制的全球卫星导航系统。 |
+| CONSTELLATION_CATEGORY_GALILEO     | 6 | GALILEO（Galileo satellite navigation system），即伽利略卫星导航系统，是由欧盟研制和建立的全球卫星导航定位系统。 |
+| CONSTELLATION_CATEGORY_IRNSS     | 7 | IRNSS（Indian Regional Navigation Satellite System），即印度区域导航卫星系统，是一个由印度空间研究组织（ISRO）发展的自由区域型卫星导航系统。 |
+
+
+## SatelliteAdditionalInfo<sup>12+</sup>
+
+卫星附加信息类型。
+
+**系统能力**：SystemCapability.Location.Location.Gnss
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| SATELLITES_ADDITIONAL_INFO_NULL  | 0 | 默认值。 |
+| SATELLITES_ADDITIONAL_INFO_EPHEMERIS_DATA_EXIST  | 1 | 表示本卫星具有星历数据。 |
+| SATELLITES_ADDITIONAL_INFO_ALMANAC_DATA_EXIST   | 2 | 表示本卫星具有年历数据。 |
+| SATELLITES_ADDITIONAL_INFO_USED_IN_FIX   | 4 | 表示在最新的位置解算中使用了本卫星。 |
+| SATELLITES_ADDITIONAL_INFO_CARRIER_FREQUENCY_EXIST   | 8 | 表示本卫星具有载波频率。 |
 
 
 ## geoLocationManager.on('locationChange')
@@ -433,7 +520,7 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
 on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-订阅缓存GNSS定位结果上报事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
+订阅缓存GNSS定位结果上报事件。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -478,7 +565,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 
 off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-取消订阅缓存GNSS定位结果上报事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+取消订阅缓存GNSS定位结果上报事件。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -699,7 +786,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
 on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-添加一个围栏，并订阅地理围栏事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+添加一个围栏，并订阅地理围栏事件。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -758,7 +845,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
 off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-删除一个围栏，并取消订阅该围栏事件。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+删除一个围栏，并取消订阅该围栏事件。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1353,7 +1440,7 @@ isGeocoderAvailable(): boolean;
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
-获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
+获取GNSS芯片缓存位置的个数。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1398,7 +1485,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
-获取GNSS芯片缓存位置的个数。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用Promise异步回调。
+获取GNSS芯片缓存位置的个数。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用Promise异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1441,7 +1528,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
-读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
+读取并清空GNSS芯片所有缓存位置。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用callback异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1484,7 +1571,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
 flushCachedGnssLocations(): Promise&lt;void&gt;;
 
-读取并清空GNSS芯片所有缓存位置。该接口功能由gnss定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用Promise异步回调。
+读取并清空GNSS芯片所有缓存位置。该接口功能由GNSS定位芯片提供（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。使用Promise异步回调。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1693,5 +1780,203 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
       });
   } catch (err) {
       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+  }
+  ```
+
+## geoLocationManager.addGnssGeofence<sup>12+</sup>
+
+addGnssGeofence(fenceRequest: GnssGeofenceRequest): Promise&lt;number&gt;;
+
+添加一个GNSS地理围栏，并订阅地理围栏事件。使用Promise异步回调。
+
+APP可以在入参[GnssGeofenceRequest](#gnssgeofencerequest12)中传入回调函数用于接收地理围栏事件；也可以传入通知对象[NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest)，在系统识别到地理围栏事件发生时会弹出APP创建的通知。
+
+GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | fenceRequest | [GnssGeofenceRequest](#gnssgeofencerequest12) | 是 | 添加GNSS地理围栏请求参数。<br/>包含圆形围栏信息、需要监听的地理围栏事件、地理围栏事件触发后弹出的通知对象和监听地理围栏事件的回调函数。 |
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise对象，返回地理围栏ID。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable. |
+|3301100  | The location switch is off.|
+|3301601   | The number of geofences exceeds the maximum.|
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
+  // 创建围栏
+  let geofence: geoLocationManager.Geofence = {
+    "latitude": 34.12, "longitude": 124.11, "radius": 10000.0, "expiration": 10000.0
+  }
+  // 指定APP需要监听的地理围栏事件类型，这里表示需要监听进入围栏和退出围栏事件
+  let transitionStatusList: Array<geoLocationManager.GeofenceTransitionEvent> = [
+    geoLocationManager.GeofenceTransitionEvent.GEOFENCE_TRANSITION_EVENT_ENTER,
+    geoLocationManager.GeofenceTransitionEvent.GEOFENCE_TRANSITION_EVENT_EXIT,
+  ];
+  // 创建GEOFENCE_TRANSITION_EVENT_ENTER事件对应的通知对象
+  let notificationRequest1: notificationManager.NotificationRequest = {
+    id: 1,
+    content: {
+      notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+      normal: {
+        title: "围栏通知",
+        text: "围栏进入",
+        additionalText: ""
+      }
+    }
+  };
+  // 创建GEOFENCE_TRANSITION_EVENT_EXIT事件对应的通知对象
+  let notificationRequest2: notificationManager.NotificationRequest = {
+    id: 2,
+    content: {
+      notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+      normal: {
+        title: '围栏通知',
+        text: '围栏退出',
+        additionalText: ""
+      }
+    }
+  };
+  // 把创建的通知对象存入Array中，存入顺序与transitionStatusList一致
+  let notificationRequestList: Array<notificationManager.NotificationRequest> =
+    [notificationRequest1, notificationRequest2];
+  // 构造GNSS地理围栏请求对象gnssGeofenceRequest
+  let gnssGeofenceRequest: geoLocationManager.GnssGeofenceRequest = {
+    // 围栏属性，包含圆心和半径等信息
+    geofence: geofence,
+    // 指定APP需要监听的地理围栏事件类型
+    monitorTransitionEvents: transitionStatusList,
+    // 地理围栏事件对应的通知对象，该参数为可选
+    notifications: notificationRequestList,
+    // 用于监听围栏事件的callback
+    geofenceTransitionCallback: (err : BusinessError.BusinessError, transition : geoLocationManager.GeofenceTransition) => {
+      if (err) {
+        console.error('geofenceTransitionCallback: err=' + JSON.stringify(err));
+      }
+      if (transition) {
+        console.log("GeofenceTransition: %{public}s", JSON.stringify(transition));
+    }
+    }
+  }
+  try {
+    // 添加围栏
+    await geoLocationManager.addGnssGeofence(gnssGeofenceRequest).then((id) => {
+      // 围栏添加成功后返回围栏ID
+      console.log("addGnssGeofence success, fence id: " + id);
+      let fenceId = id;
+    }).catch((err: BusinessError.BusinessError) => {
+      console.error("addGnssGeofence failed, promise errCode:" + (err as BusinessError.BusinessError).code + 
+        ",errMessage:" + (err as BusinessError.BusinessError).message);
+    });
+  } catch(error: BusinessError.BusinessError) {
+      console.error("addGnssGeofence failed, err:" + JSON.stringify(error));
+  }
+  ```
+  
+
+## geoLocationManager.removeGnssGeofence<sup>12+</sup>
+
+removeGnssGeofence(geofenceId: number): Promise&lt;void&gt;;
+
+删除一个GNSS地理围栏，并取消订阅该地理围栏事件。使用Promise异步回调。
+
+GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果设备无此芯片或使用的芯片型号不支持该功能，则返回错误码801（Capability not supported）。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | geofenceId | number | 是 | GNSS地理围栏的ID。 |
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.  |
+|3301602 | Failed to delete a geofence due to an incorrect ID. |
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
+  // fenceId是在geoLocationManager.addGnssGeofence执行成功后获取的
+  let fenceId = 1;
+  try {
+    await geoLocationManager.removeGnssGeofence(fenceId).then(() => {
+      console.log("removeGnssGeofence success fenceId:" + fenceId);
+    }).catch((error : BusinessError.BusinessError) => {
+      console.error("removeGnssGeofence: error=" + JSON.stringify(error));
+    });
+  } catch(error: BusinessError.BusinessError) {
+    console.error("removeGnssGeofence: error=" + JSON.stringify(error));
+  }
+  ```
+
+
+## geoLocationManager.getGeofenceSupportedCoordTypes<sup>12+</sup>
+
+getGeofenceSupportedCoordTypes(): Array&lt;CoordinateSystemType&gt;;
+
+获取地理围栏功能支持的坐标系列表。
+
+**系统能力**：SystemCapability.Location.Location.Geofence
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Array&lt;[CoordinateSystemType](#coordinatesystemtype12)&gt; | 地理围栏功能支持的坐标系列表。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|3301000 | Location service is unavailable.  |
+
+**示例**
+
+  ```ts
+  import geoLocationManager from '@ohos.geoLocationManager';
+  import BusinessError from "@ohos.base";
+  try {
+    let supportedCoordTypes: Array<geoLocationManager.CoordinateSystemType> = geoLocationManager.getGeofenceSupportedCoordTypes();
+    console.log("getGeofenceSupportedCoordTypes return:" + JSON.stringify(supportedCoordTypes));
+  } catch(error : BusinessError.BusinessError) {
+    console.error("getGeofenceSupportedCoordTypes: error=" + JSON.stringify(error));
   }
   ```

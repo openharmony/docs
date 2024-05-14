@@ -51,9 +51,9 @@ export declare function AddFormMenuItem(
 
 | 名称           | 子参数名称      | 参数类型                        | 必填 | 装饰器类型 | 说明                                                             |
 | -------------- | --------------- | ------------------------------- | ---- | ---------- | ---------------------------------------------------------------- |
-| want           |                 | Want                            | 是   | \@Prop     | 待发布功能组件的want信息                                         |
+| want           |                 | [Want](../../reference/apis-ability-kit/js-apis-app-ability-want.md)                            | 是   | \@Prop     | 待发布功能组件的want信息                                         |
 | componentId    |                 | string                          | 是   | -          | 应用内功能组件ID，组件ID对应的界面应该与待添加的服务卡片界面相似 |
-| AddFormOptions | formBindingData | formBindingData.FormBindingData | 否   | -          | 卡片数据                                                         |
+| AddFormOptions | [formBindingData](../../reference/apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | formBindingData.FormBindingData | 否   | -          | 卡片数据                                                         |
 |                | callback        | AsyncCallback<string>           | 否   | -          | 用于回调通知添加的卡片ID                                         |
 |                | style           | FormMenuItemStyle               | 否   | -          | 菜单自定义样式信息                                               |
 
@@ -65,8 +65,8 @@ export declare function AddFormMenuItem(
 ## 示例
 
 ```ts
-import { AddFormMenuItem } from '@ohos.arkui.advanced.FormMenu'
-import formBindingData from '@ohos.app.form.formBindingData';
+import { AddFormMenuItem } from '@kit.ArkUI';
+import { formBindingData } from '@kit.FormKit';
 
 
 @Entry

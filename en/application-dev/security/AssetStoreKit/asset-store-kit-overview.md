@@ -1,6 +1,6 @@
 # Introduction to Asset Store Kit
 
-Asset Store Kit provides a set of asset store service (ASSET) APIs, which implements secure storage and management of sensitive data less than 1024 bytes in size, including passwords, app tokens, and other critical data (such as bank card numbers).
+Asset Store Kit provides a set of asset store service (ASSET) APIs, which implement secure storage and management of sensitive data less than 1024 bytes in size, including passwords, app tokens, and other critical data (such as bank card numbers).
 
 ## Basic Concepts
 
@@ -34,7 +34,7 @@ The AES256-GCM algorithm is used to encrypt and decrypt assets. The following ac
 
 * Batch asset query
 
-  The assets queried are transmitted to the service through the IPC channel. Due to the limitation of the IPC buffer size, the maximum number of assets to be queried at a time cannot exceed 40.
+  The assets queried are transmitted to the service through an IPC channel. Due to the limitation of the IPC buffer size, the maximum number of assets to be queried at a time cannot exceed 40.
 
 * Custom service data storage
   ASSET provides 12 custom asset attributes starting with **DATA_LABEL** for services. If the 12 custom attributes are used, you can combine multiple data segments in a certain format (for example, JSON) into an ASSET attribute.

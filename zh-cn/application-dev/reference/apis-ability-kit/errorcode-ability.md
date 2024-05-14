@@ -284,7 +284,7 @@ The previous ability is starting, wait start later.
 
 无需处理，等待启动即可。
 
-## 16000018 限制API11以上版本三方应用跳转
+## 16000018 限制API 11以上版本三方应用跳转
 
 **错误信息**
 
@@ -902,6 +902,24 @@ Method not registered. The method has not registered.
 
 请检查是否未注册该方法。
 
+## 16200006 没有权限设置常驻进程使能状态
+
+**错误信息**
+
+The caller application can only set the resident status of the configured process.
+
+**错误描述**
+
+当调用者没有权限设置常驻进程使能状态时返回。
+
+**可能原因**
+
+调用者没有常驻进程使能配置权限。
+
+**处理步骤**
+
+接口调用时从数据库查询调用者的常驻进程使能配置权限。
+
 ## 16300001 指定的任务不存在
 
 **错误信息**
@@ -1142,3 +1160,21 @@ observer not found.
 **处理步骤**
 
 请检查是否有重复注销监听器。
+
+## 16300005 指定的包信息不存在。
+
+**错误信息**
+
+The target bundle does not exist.
+
+**错误描述**
+
+预加载应用的包信息不存在时，方法将返回该错误码。
+
+**可能原因**
+
+预加载的bundleName、userId或appIndex错误，导致查询不到相关包信息。
+
+**处理步骤**
+
+检查传入的bundleName、userId和appIndex参数是否正确。

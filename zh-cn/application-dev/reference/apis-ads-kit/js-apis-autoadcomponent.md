@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
+import { AutoAdComponent } from '@kit.AdsKit';
 ```
 
 
@@ -40,9 +40,8 @@ AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdO
 
 **示例：**
 ```ts
-import advertising from '@ohos.advertising';
-import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
-import hilog from '@ohos.hilog';
+import { AutoAdComponent, advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component

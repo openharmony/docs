@@ -7,6 +7,7 @@
   - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
   - [@ohos.graphics.drawing (绘制模块)](js-apis-graphics-drawing.md)
   - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
+  - [@ohos.graphics.text (文本模块)](js-apis-graphics-text.md)
 - C API
   - 模块
     - [Drawing](_drawing.md)
@@ -40,6 +41,7 @@
     - [drawing_round_rect.h](drawing__round__rect_8h.md)
     - [drawing_sampling_options.h](drawing__sampling__options_8h.md)
     - [drawing_shader_effect.h](drawing__shader__effect_8h.md)
+    - [drawing_shadow_layer.h](drawing__shadow__layer_8h.md)
     - [drawing_surface.h](drawing__surface_8h.md)
     - [drawing_text_blob.h](drawing__text__blob_8h.md)
     - [drawing_text_declaration.h](drawing__text__declaration_8h.md)

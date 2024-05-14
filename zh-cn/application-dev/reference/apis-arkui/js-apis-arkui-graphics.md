@@ -14,7 +14,7 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 ## Size
 
-用于返回组件布局大小的宽和高，单位为vp。
+用于返回组件布局大小的宽和高。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -22,8 +22,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称   | 类型   | 可读 | 可写 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| width  | number | 是   | 是   | 组件大小的宽度，单位为vp。 |
-| height | number | 是   | 是   | 组件大小的高度，单位为vp。 |
+| width  | number | 是   | 是   | 组件大小的宽度。 |
+| height | number | 是   | 是   | 组件大小的高度。 |
 
 ## Position
 
@@ -35,8 +35,8 @@ import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| x    | number | 是   | 是   | 水平方向位置，单位为vp。 |
-| y    | number | 是   | 是   | 垂直方向位置，单位为vp。 |
+| x    | number | 是   | 是   | 水平方向位置。 |
+| y    | number | 是   | 是   | 垂直方向位置。 |
 
 ## PositionT<sup>12+</sup>
 
@@ -241,9 +241,7 @@ struct Index {
 }
 ```
 
-## Edges<sup>12+</sup>
-
-Edges\<T>
+## Edges\<T><sup>12+</sup>
 
 用于设置边框的属性。
 
@@ -381,9 +379,7 @@ lpx(value: number): void
 | ------ | ------------- | ---- | ------------ |
 | value   | number | 是   | 长度属性的值。 |
 
-## Corners<sup>12+</sup>
-
-Corners\<T>
+## Corners\<T><sup>12+</sup>
 
 用于设置四个角的圆角度数。
 
@@ -398,7 +394,7 @@ Corners\<T>
 
 ## CornerRadius<sup>12+</sup>
 
-类型定义为[Corners](#corners12)[\<Vector2>](#vector2)，用于设置四个角的圆角度数。
+类型定义为[Corners](#cornerst12)[\<Vector2>](#vector2)，用于设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -411,7 +407,7 @@ Corners\<T>
 
 ## BorderRadiuses<sup>12+</sup>
 
-类型定义为[Corners\<number>](#corners12)，用于设置四个角的圆角度数。
+类型定义为[Corners\<number>](#cornerst12)，用于设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -931,7 +927,7 @@ struct Index {
 
 ## edgeColors<sup>12+</sup>
 
-function edgeColors(all: number): Edges\<number>
+edgeColors(all: number): Edges\<number>
 
 用于生成边框颜色均设置为传入值的边框颜色对象。
 
@@ -947,7 +943,7 @@ function edgeColors(all: number): Edges\<number>
 
 | 类型                     | 说明                                   |
 | ------------------------ | -------------------------------------- |
-| [Edges\<number>](#edges12) | 边框颜色均设置为传入值的边框颜色对象。 |
+| [Edges\<number>](#edgest12) | 边框颜色均设置为传入值的边框颜色对象。 |
 
 **示例：**
 
@@ -991,7 +987,7 @@ struct Index {
 
 ## edgeWidths<sup>12+</sup>
 
-function edgeWidths(all: number): Edges\<number>
+edgeWidths(all: number): Edges\<number>
 
 用于生成边框宽度均设置为传入值的边框宽度对象。
 
@@ -1007,7 +1003,7 @@ function edgeWidths(all: number): Edges\<number>
 
 | 类型                     | 说明                                   |
 | ------------------------ | -------------------------------------- |
-| [Edges\<number>](#edges12) | 边框宽度均设置为传入值的边框宽度对象。 |
+| [Edges\<number>](#edgest12) | 边框宽度均设置为传入值的边框宽度对象。 |
 
 **示例：**
 
@@ -1051,7 +1047,7 @@ struct Index {
 
 ## borderStyles<sup>12+</sup>
 
-function borderStyles(all: BorderStyle): Edges\<BorderStyle>
+borderStyles(all: BorderStyle): Edges\<BorderStyle>
 
 用于生成边框样式均设置为传入值的边框样式对象。
 
@@ -1067,7 +1063,7 @@ function borderStyles(all: BorderStyle): Edges\<BorderStyle>
 
 | 类型                                                                        | 说明                                   |
 | --------------------------------------------------------------------------- | -------------------------------------- |
-| [Edges](#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 边框样式均设置为传入值的边框样式对象。 |
+| [Edges](#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 边框样式均设置为传入值的边框样式对象。 |
 
 **示例：**
 
@@ -1112,7 +1108,7 @@ struct Index {
 
 ## borderRadiuses<sup>12+</sup>
 
-function borderRadiuses(all: number): BorderRadiuses
+borderRadiuses(all: number): BorderRadiuses
 
 用于生成边框圆角均设置为传入值的边框圆角对象。
 

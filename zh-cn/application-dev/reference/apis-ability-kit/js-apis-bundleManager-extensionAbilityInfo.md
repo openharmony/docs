@@ -28,3 +28,4 @@ ExtensionAbility信息，三方应用可以通过[bundleManager.getBundleInfoFor
 | readPermission       | string                                                       | 是   | 否   | 读取ExtensionAbility数据所需的权限。                 |
 | writePermission      | string                                                       | 是   | 否   | 向ExtensionAbility写数据所需的权限。                 |
 | extensionAbilityTypeName<sup>11</sup>      | string                                 | 是   | 否   | ExtensionAbility的类型名称。                 |
+| skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | 是   | 否   | ExtensionAbility的Skills信息。        |

@@ -741,7 +741,10 @@ import { BusinessError } from '@ohos.base';
 let wantAgent: _WantAgent;
 // triggerInfo
 let triggerInfo: WantAgent.TriggerInfo = {
-    code: 0 // Custom result code.
+    code: 0, //Custom result code.
+    startOptions : {
+        windowMode: 101
+    }
 };
 // WantAgentInfo object
 let wantAgentInfo: WantAgent.WantAgentInfo = {

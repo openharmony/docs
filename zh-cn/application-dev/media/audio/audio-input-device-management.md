@@ -56,7 +56,7 @@ audioRoutingManager.off('deviceChange', (deviceChanged: audio.DeviceChangeAction
   console.info('Should be no callback.');
 });
 ```
-
+<!--Del-->
 ## 选择音频输入设备（仅对系统应用开放）
 
 选择音频输入设备，当前只能选择一个输入设备，以设备id作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)。
@@ -93,3 +93,4 @@ async function getRoutingManager() {
 }
 
 ```
+<!--DelEnd-->

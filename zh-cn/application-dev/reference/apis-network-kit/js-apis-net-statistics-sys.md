@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import statistics from "@ohos.net.statistics";
+import { statistics } from '@kit.NetworkKit';
 ```
 
 
@@ -41,13 +41,13 @@ on(type: 'netStatsChange', callback: Callback\<NetStatsChangeInfo\>): void
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 class IFace {
   iface: string = ""
@@ -86,13 +86,13 @@ off(type: 'netStatsChange', callback?: Callback\<NetStatsChangeInfo>): void;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 class IFace {
   iface: string = ""
@@ -136,15 +136,15 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
@@ -201,14 +201,14 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
@@ -262,15 +262,15 @@ getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let uidInfo: statistics.UidInfo = {
   uid: 20010037,
@@ -339,9 +339,9 @@ getTrafficStatsByUid(uidInfo: UidInfo): Promise\<NetStatsInfo>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **示例：**
 

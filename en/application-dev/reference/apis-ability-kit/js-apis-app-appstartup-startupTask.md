@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.StartupTask
 
-The @ohos.app.appstartup.StartupTask module provides the APIs related to startup task initialization.
+The @ohos.app.appstartup.StartupTask module provides the APIs related to component initialization.
 
 > **NOTE**
 >
@@ -18,7 +18,7 @@ import StartupTask from '@ohos.app.appstartup.StartupTask';
 
 onDependencyCompleted(dependency: string, result: ESObject): void
 
-Called when a startup task completes initialization.
+Called when the dependency component finishes initialization.
 
 **System capability**: SystemCapability.Ability.AppStartup
 
@@ -26,8 +26,8 @@ Called when a startup task completes initialization.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| dependency | string | Yes| Name of the startup task.|
-| result | ESObject | Yes| Initialization result of the startup task.|
+| dependency | string | Yes| Name of the dependency component.|
+| result | ESObject | Yes| Initialization result of the dependency component.|
 
 **Example**
 
@@ -47,7 +47,7 @@ export default class Sample_001 extends StartupTask {
 
 init(context: AbilityStageContext): Promise\<ESObject\>
 
-Initializes a startup task.
+Initializes components.
 
 **System capability**: SystemCapability.Ability.AppStartup
 

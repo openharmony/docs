@@ -9,7 +9,7 @@ formInfo模块提供了卡片信息和状态等相关类型和枚举。
 ## 导入模块
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo } from '@kit.FormKit';
 ```
 
 ## FormInfo
@@ -122,6 +122,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。|
 
 ##  FormDimension
 

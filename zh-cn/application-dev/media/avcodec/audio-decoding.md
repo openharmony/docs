@@ -3,7 +3,7 @@
 开发者可以调用本模块的Native API接口，完成音频解码，即将媒体数据解码为PCM码流。
 
 当前支持的解码能力如下:
-
+<!--RP1-->
 | 容器规格 | 音频解码类型                 |
 | -------- | :--------------------------- |
 | mp4      | AAC、MPEG(MP3)、Flac、Vorbis |
@@ -14,6 +14,7 @@
 | mp3      | MPEG(MP3)                    |
 | amr      | AMR(amrnb、amrwb)            |
 | raw      | G711mu                       |
+<!--RP1End-->
 
 **适用场景**
 
@@ -30,7 +31,7 @@
 ## 开发指导
 
 详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_audio_codec.md)。
-参考以下示例代码，完成音频解码的全流程，包括：创建解码器，设置解码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
+参考以下示例代码，完成音频解码的全流程，包括：创建解码器、设置解码参数（采样率/码率/声道数等）、开始、刷新、重置、销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
@@ -244,7 +245,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
    
-8. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
+8. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。<!--RP2-->
 
     ```c++
     uint32_t index = signal_->outQueue_.front();
@@ -265,6 +266,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 结束
     }
     ```
+<!--RP2End-->
 
 9. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。

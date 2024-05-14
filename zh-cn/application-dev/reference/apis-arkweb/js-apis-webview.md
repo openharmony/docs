@@ -188,7 +188,7 @@ struct WebComponent {
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                              |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 否 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
+| isExtentionType | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
 
 ### postMessageEventExt<sup>10+</sup>
 
@@ -1524,7 +1524,7 @@ struct WebComponent {
 
 ### registerJavaScriptProxy
 
-registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>): void
+registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>): void
 
 registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
 <br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
@@ -1533,6 +1533,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 >
 > - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
+> - 同一方法在同步与异步列表中重复注册，将默认异步调用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1542,7 +1543,8 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
 | object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
-| methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的方法。                       |
+| methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
+| asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
 
 **错误码：**
 
@@ -1577,9 +1579,8 @@ class TestObj {
     return testNum;
   }
 
-  testBool(testBol:boolean): boolean {
+  asyncTestBool(testBol:boolean): void {
     console.log('Web Component boolean' + testBol);
-    return testBol;
   }
 }
 
@@ -1597,12 +1598,26 @@ class WebObj {
   }
 }
 
+class AsyncObj {
+  constructor() {
+  }
+
+  asyncTest(): void {
+    console.log('Async test');
+  }
+
+  asyncString(testStr:string): void {
+    console.log('Web async string' + testStr);
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: TestObj = new TestObj();
   @State webTestObj: WebObj = new WebObj();
+  @State asyncTestObj: AsyncObj = new AsyncObj();
   build() {
     Column() {
       Button('refresh')
@@ -1617,8 +1632,9 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber"], ["asyncTestBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+            this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1641,13 +1657,14 @@ struct Index {
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
+      <p id="asyncDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
       let str=objName.test("webtest data");
       objName.testNumber(1);
-      objName.testBool(true);
+      objName.asyncTestBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
@@ -1655,6 +1672,9 @@ struct Index {
       let webStr = objTestName.webTest();
       document.getElementById("webDemo").innerHTML=webStr;
       console.log('objTestName.webTest result:'+ webStr)
+
+      objAsyncName.asyncTest();
+      objAsyncName.asyncString("async test data");
     }
 </script>
 </html>
@@ -4980,7 +5000,7 @@ struct WebComponent {
 
 static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
 
-根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存key和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请通过[clearPrefetchedResource()](clearPrefetchedResource12)清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。如果要使用预获取的资源缓存，开发者需要在正式发起的post请求的请求头中增加键值“ArkWebPostCacheKey”，其内容为对应缓存的cacheKey。
+根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存key和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请通过[clearPrefetchedResource](#clearprefetchedresource12)清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。如果要使用预获取的资源缓存，开发者需要在正式发起的post请求的请求头中增加键值“ArkWebPostCacheKey”，其内容为对应缓存的cacheKey。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5032,7 +5052,7 @@ export default class EntryAbility extends UIAbility {
 
 static clearPrefetchedResource(cacheKeyList: Array\<string>): void
 
-根据指定的缓存key列表清除对应的预获取资源缓存。入参中的缓存key必须是[prefetchResource()](prefetchresource12)指定预获取到的资源缓存key。
+根据指定的缓存key列表清除对应的预获取资源缓存。入参中的缓存key必须是[prefetchResource](#prefetchresource12)指定预获取到的资源缓存key。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5040,7 +5060,7 @@ static clearPrefetchedResource(cacheKeyList: Array\<string>): void
 
 | 参数名             | 类型        | 必填  | 说明                                                                       |
 | ------------------| ----------- | ---- | ------------------------------------------------------------------------- |
-| cacheKeyList      | string      | 是   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
+| cacheKeyList      | Array\<string>      | 是   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
 
 **示例：**
 
@@ -5054,7 +5074,7 @@ struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   build() {
     Column() {
-      Web({ src: "https://www.example.com/", controller: this.webviewController})
+      Web({ src: "https://www.example.com/", controller: this.controller})
         .onAppear(() => {
             // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
             web_webview.WebviewController.prefetchResource(
@@ -5751,6 +5771,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -5807,6 +5828,47 @@ struct WebComponent {
         .onClick(() => {
           let mode = web_webview.WebviewController.getRenderProcessMode();
           console.log("getRenderProcessMode: " + mode);
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### terminateRenderProcess<sup>12+</sup>
+
+terminateRenderProcess(): boolean
+
+销毁渲染进程。
+
+调用该接口将会主动销毁相关联的渲染进程。如果渲染进程尚未启动，或者已销毁则没有任何影响。此外销毁渲染进程会同时影响所有与该渲染进程关联的其他实例。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 |
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('terminateRenderProcess')
+        .onClick(() => {
+          let result = this.controller.terminateRenderProcess();
+          console.log("terminateRenderProcess result: " + result);
       })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -6994,7 +7056,8 @@ closeCamera(): void
 
 precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: CacheOptions): Promise\<number\>
 
-预编译JavaScript生成字节码缓存。
+预编译JavaScript生成字节码缓存或根据提供的参数更新已有的字节码缓存。   
+接口通过提供的文件信息、E-Tag响应头和Last-Modified响应头判断是否需要更新已有的字节码缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7002,7 +7065,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| url | string | 是   | 本地JavaScript文件对应的网络地址，即请求该文件的服务器版本时使用的网络地址。      |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
 | script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。      |
 | cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
 
@@ -7022,37 +7085,214 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 **示例：**
 
-```ts
-import webview from '@ohos.web.webview'
+接口推荐配合动态组件使用，使用离线的Web组件用于生成字节码缓存，并在适当的时机加载业务用Web组件使用这些字节码缓存。下方是代码示例：
 
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .onControllerAttached(() => {
-          getContext().resourceManager.getRawFileContent("local.js")
-            .then((content) => {
-              this.controller.precompileJavaScript("https://exmaple.com/example.js", content, {
-                responseHeaders: [
-                  {
-                    headerKey: "E-Tag",
-                    headerValue: "68ZpTzuAFdm85xPNtr3EOzySP8Q"
-                  }
-                ]
-              }).then((res) => {
-                console.error("precompile result: " + res);
-              }).catch((err: number) => {
-                console.error("precompile error: " + err);
-              })
-            })
-        })
-    }
-  }
-}
-```
+1. 首先，在EntryAbility中将UIContext存到localStorage中。
+
+   ```ts
+   // EntryAbility.ets
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+
+   const localStorage: LocalStorage = new LocalStorage('uiContext');
+
+   export default class EntryAbility extends UIAbility {
+     storage: LocalStorage = localStorage
+
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       windowStage.loadContent('pages/Index', this.storage, (err, data) => {
+         if (err.code) {
+           return;
+         }
+
+         this.storage.setOrCreate<UIContext>("uiContext", windowStage.getMainWindowSync().getUIContext());
+       });
+     }
+   }
+   ```
+
+2. 编写动态组件所需基础代码。
+
+   ```ts
+   // DynamicComponent.ets
+   import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
+   import { UIContext } from '@ohos.arkui.UIContext';
+   
+   export interface BuilderData {
+     url: string;
+     controller: WebviewController;
+   }
+
+   const storage = LocalStorage.getShared();
+
+   export class NodeControllerImpl extends NodeController {
+     private rootNode: BuilderNode<BuilderData[]> | null = null;
+     private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
+
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+       super();
+       this.wrappedBuilder = wrappedBuilder;
+     }
+
+     makeNode(): FrameNode | null {
+       if (this.rootNode != null) {
+         return this.rootNode.getFrameNode();
+       }
+       return null;
+     }
+
+     initWeb(url: string, controller: WebviewController) {
+       if(this.rootNode != null) {
+         return;
+       }
+
+       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       if (!uiContext) {
+         return;
+       }
+       this.rootNode = new BuilderNode(uiContext);
+       this.rootNode.build(this.wrappedBuilder, { url: url, controller: controller });
+     }
+   }
+
+   export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
+     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     baseNode.initWeb(data.url, data.controller);
+     return baseNode;
+   }
+   ```
+
+3. 编写用于生成字节码缓存的组件，本例中的本地Javascript资源内容通过文件读取接口读取rawfile目录下的本地文件。
+
+   ```ts
+   // PrecompileWebview.ets
+   import { BuilderData } from "./DynamicComponent";
+   import { Config, configs } from "./PrecompileConfig";
+
+   @Builder
+   function WebBuilder(data: BuilderData) {
+     Web({ src: data.url, controller: data.controller })
+       .onControllerAttached(() => {
+         precompile(data.controller, configs);
+       })
+       .fileAccess(true)
+   }
+
+   export const precompileWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+
+   export const precompile = async (controller: WebviewController, configs: Array<Config>) => {
+     for (const config of configs) {
+       let content = await readRawFile(config.localPath);
+
+       try {
+         controller.precompileJavaScript(config.url, content, config.options)
+           .then(errCode => {
+             console.error("precompile successfully! " + errCode);
+           }).catch((errCode: number) => {
+             console.error("precompile failed. " + errCode);
+         });
+       } catch (err) {
+         console.error("precompile failed. " + err.code + " " + err.message);
+       }
+     }
+   }
+
+   async function readRawFile(path: string) {
+     try {
+       return await getContext().resourceManager.getRawFileContent(path);;
+     } catch (err) {
+       return new Uint8Array(0);
+     }
+   }
+   ```
+
+JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js-apis-http.md)的方式获取，但此方法获取到的http响应头非标准HTTP响应头格式，需额外将响应头转换成标准HTTP响应头格式后使用。如通过网络请求获取到的响应头是e-tag，则需要将其转换成E-Tag后使用。
+
+4. 编写业务用组件代码。
+
+   ```ts
+   // BusinessWebview.ets
+   import { BuilderData } from "./DynamicComponent";
+
+   @Builder
+   function WebBuilder(data: BuilderData) {
+     // 此处组件可根据业务需要自行扩展
+     Web({ src: data.url, controller: data.controller })
+       .cacheMode(CacheMode.Default)
+   }
+
+   export const businessWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+   ```
+
+5. 编写资源配置信息。
+
+   ```ts
+   // PrecompileConfig.ets
+   import { webview } from '@kit.ArkWeb'
+
+   export interface Config {
+     url:  string,
+     localPath: string, // 本地资源路径
+     options: webview.CacheOptions
+   }
+
+   export let configs: Array<Config> = [
+     {
+       url: "https://www.example.com/example.js",
+       localPath: "example.js",
+       options: {
+         responseHeaders: [
+           { headerKey: "E-Tag", headerValue: "aWO42N9P9dG/5xqYQCxsx+vDOoU="},
+           { headerKey: "Last-Modified", headerValue: "Wed, 21 Mar 2024 10:38:41 GMT"}
+         ]
+       }
+     }
+   ]
+   ```
+
+6. 在页面中使用。
+
+   ```ts
+   // Index.ets
+   import web_webview from '@ohos.web.webview';
+   import { NodeController } from '@kit.ArkUI';
+   import { createNode } from "./DynamicComponent"
+   import { precompileWebview } from "./PrecompileWebview"
+   import { businessWebview } from "./BusinessWebview"
+   
+   @Entry
+   @Component
+   struct Index {
+     @State precompileNode: NodeController | undefined = undefined;
+     precompileController: web_webview.WebviewController = new web_webview.WebviewController();
+   
+     @State businessNode: NodeController | undefined = undefined;
+     businessController: web_webview.WebviewController = new web_webview.WebviewController();
+   
+     aboutToAppear(): void {
+       // 初始化用于注入本地资源的Web组件
+       this.precompileNode = createNode(precompileWebview,
+         { url: "https://www.example.com/empty.html", controller: this.precompileController});
+     }
+
+     build() {
+       Column() {
+         // 在适当的时机加载业务用Web组件，本例以Button点击触发为例
+         Button("加载页面")
+           .onClick(() => {
+             this.businessNode = createNode(businessWebview, {
+               url:  "https://www.example.com/business.html",
+               controller: this.businessController
+             });
+           })
+         // 用于业务的Web组件
+         NodeContainer(this.businessNode);
+       }
+     }
+   }
+   ```
+
+当需要更新本地已经生成的编译字节码时，修改cacheOptions参数中responseHeaders中的E-Tag或Last-Modified响应头对应的值，再次调用接口即可。
 
 ### onCreateNativeMediaPlayer<sup>12+</sup>
 
@@ -7253,10 +7493,10 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
 将本地离线资源注入到内存缓存中，以提升页面首次启动速度。   
 内存缓存中的资源由内核自动管理，当注入的资源过多导致内存压力过大，内核自动释放未使用的资源，应避免注入大量资源到内存缓存中。   
-正常情况下，资源的有效期由提供的Cache-Control或Expires相应头控制其有效期，默认的有效期为86400秒，即1天。   
-资源的MIMEType通过提供的Content-Type相应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
-以此方式注入的资源，仅支持通过HTML中的标签加载。如果使用script标签需要使用crossorigin属性，则需要额外提供Cross-Origin相应头，并提供crossorigin属性的值(anoymous或use-credentials)作为相应头对应的值。
-由于内核的内存缓存在渲染进程之间互相独立，因此此接口仅在单渲染进程场景下生效。
+正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。   
+资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
+以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
+当调用`web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7456,7 +7696,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
        ],
        type: web_webview.OfflineResourceType.CLASSIC_JS,
        responseHeaders: [
-         // 以<script crossorigin="anoymous" />方式使用，提供额外的相应头
+         // 以<script crossorigin="anoymous" />方式使用，提供额外的响应头
          { headerKey: "Cross-Origin", headerValue:"anonymous" }
        ]
      },
@@ -7517,6 +7757,95 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    </body>
    </html>
    ```
+
+### setHostIP<sup>12+</sup>
+
+static setHostIP(hostName: string, address: string, aliveTime: number): void
+
+设置主机域名解析后的IP地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 参数描述                             |
+| --------- | -------- | ---- | ------------------------------------ |
+| hostName  | string   | 是   | 要添加DNS记录的主机域名。            |
+| address   | string   | 是   | 主机域名解析地址（支持IPv4，IPv6）。 |
+| aliveTime | number   | 是   | 缓存有效时间（秒）。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter. |
+
+**示例：**
+
+请参考[clearHostIP](#clearhostip12)。
+
+### clearHostIP<sup>12+</sup>
+
+static clearHostIP(hostName: string): void
+
+清除指定主机域名解析后的IP地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 参数类型 | 必填 | 参数描述                  |
+| -------- | -------- | ---- | ------------------------- |
+| hostName | string   | 是   | 要清除DNS记录的主机域名。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      // url加载前设置生效.
+      Button('setHostIP')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setHostIP('www.example.com', '127.0.0.1', 30);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+       Button('clearHostIP')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.clearHostIP('www.example.com');
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 ## WebCookieManager
 
@@ -9838,8 +10167,8 @@ Web组件发送的资源请求信息。
 
 | 名称 | 类型 | 可读 | 可写 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | 是 | 否 | 当前被点击区域的元素类型。|
-| extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| type | [WebHitTestType](#webhittesttype) | 是 | 是 | 当前被点击区域的元素类型。|
+| extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
 
@@ -10340,9 +10669,9 @@ setError(message: Error): void
 
 | 名称   | 类型   | 可读 | 可写 | 说明 |
 | ------ | ------ | ---- | ---- | ---- |
-| origin | string | 是  | 否 | 指定源的字符串索引。 |
-| usage  | number | 是  | 否 | 指定源的存储量。     |
-| quota  | number | 是  | 否 | 指定源的存储配额。   |
+| origin | string | 是  | 是 | 指定源的字符串索引。 |
+| usage  | number | 是  | 是 | 指定源的存储量。     |
+| quota  | number | 是  | 是 | 指定源的存储配额。   |
 
 ## BackForwardList
 
@@ -10352,8 +10681,8 @@ setError(message: Error): void
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 是   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 是   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| currentIndex | number | 是   | 是   | 当前在页面历史列表中的索引。                                 |
+| size         | number | 是   | 是   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 
@@ -10418,9 +10747,9 @@ struct WebComponent {
 | 名称          | 类型                                   | 可读 | 可写 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
 | icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
-| historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
-| historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
-| title         | string                                 | 是   | 否   | 历史记录项的标题。           |
+| historyUrl    | string                                 | 是   | 是   | 历史记录项的url地址。        |
+| historyRawUrl | string                                 | 是   | 是   | 历史记录项的原始url地址。    |
+| title         | string                                 | 是   | 是   | 历史记录项的标题。           |
 
 ## WebCustomScheme
 
@@ -14220,9 +14549,9 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称        | 类型   | 可读 | 可写 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin), 如果仅提供一个网络地址，则使用该地址作为这个资源的源。      |
+| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin), 如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议。      |
 | resource | Uint8Array | 是   | 是   | 本地离线资源的内容。      |
-| responseHeaders | Array<[WebHeader](#webheader)> | 是   | 是   | 资源对应的HTTP相应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type相应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果网页使用的script标签携带有crossorigin属性，则需要额外提供Cross-Origin相应头，并将crossorigin属性的值（anoymous和use-credentials）作为Cross-Origin相应头对应的值。      |
+| responseHeaders | Array<[WebHeader](#webheader)> | 是   | 是   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。      |
 | type | [OfflineResourceType](#offlineresourcetype12) | 是   | 是   | 资源的类型，目前仅支持Javascript、图片和CSS类型的资源。      |
 
 ## OfflineResourceType<sup>12+</sup>
@@ -14235,5 +14564,5 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | ------------ | -- |--------------------------------- |
 | IMAGE  | 0 | 图片类型的资源。 |
 | CSS       | 1 | CSS类型的资源。|
-| CLASS_JS       | 2 | 通过<script src="" /\>标签加载的Javascript资源。|
+| CLASSIC_JS       | 2 | 通过<script src="" /\>标签加载的Javascript资源。|
 | MODULE_JS      | 3 |通过<script src="" type="module" /\>标签加载的Javascript资源。|

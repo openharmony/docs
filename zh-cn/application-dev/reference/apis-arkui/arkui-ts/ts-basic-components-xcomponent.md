@@ -42,6 +42,8 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 ## XComponentType<sup>10+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
 | SURFACE   | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。 |

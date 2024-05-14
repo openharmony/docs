@@ -30,11 +30,13 @@ Checkbox(options?: CheckboxOptions)
 
 ## CheckboxOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 类型 | 必填  | 描述 |
 | --------| --------| ------ | -------- |
 | name    | string | 否 | 用于指定多选框名称。 |
 | group   | string | 否 | 用于指定多选框所属群组的名称（即所属CheckboxGroup的名称）。<br/>**说明：** <br/>未配合使用[CheckboxGroup](ts-basic-components-checkboxgroup.md)组件时，此值无用。 |
-| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。自定义组件按照设定的尺寸来显示，超过Checkbox组件的部分，也不会对尺寸进行裁剪。indicatorBuilder不是function时，默认为indicatorBuilder未设置。|
+| indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置多选框的选中样式为自定义组件。自定义组件与Checkbox组件为中心点对齐显示。indicatorBuilder设置为undefined/null时，默认为indicatorBuilder未设置状态。|
 
 ## 属性
 
@@ -49,6 +51,8 @@ select(value: boolean)
 从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,6 +70,8 @@ selectedColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -80,6 +86,8 @@ unselectedColor(value: ResourceColor)
 
 设置多选框非选中状态边框颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -93,6 +101,8 @@ unselectedColor(value: ResourceColor)
 mark(value: MarkStyle)
 
 设置多选框内部图标样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -109,6 +119,8 @@ shape(value: CheckBoxShape)
 设置CheckBox组件形状, 包括圆形和圆角方形。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -144,6 +156,8 @@ onChange(callback: (value: boolean) => void)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -163,6 +177,8 @@ onChange(callback: (value: boolean) => void)
 | strokeWidth | [Length](ts-types.md#length)               | 否   | 2           | 内部图标粗细，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
 
 ## CheckBoxShape<sup>11+</sup>枚举类型说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 枚举名称       | 枚举值 | 描述     |
 | -------------- | ------ | -------- |

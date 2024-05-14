@@ -214,7 +214,7 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The Uri is not exist. |
+| 15700011 | The URI is not exist. |
 
 **示例：**
 
@@ -263,7 +263,7 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The Uri is not exist. |
+| 15700011 | The URI is not exist. |
 
 **示例：**
 
@@ -586,7 +586,7 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The uri is not exist.|
+| 15700011 | The URI is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
@@ -632,7 +632,7 @@ delTemplate(uri: string, subscriberId: string): void
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The uri is not exist.|
+| 15700011 | The URI is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**

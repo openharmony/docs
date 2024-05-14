@@ -187,28 +187,38 @@ typedef void (JSVM_Finalize)(JSVM_Env env, void finalizeData, void* finalizeHint
 typedef struct {
     JSVM_Value(JSVM_CDECL* genericNamedPropertyGetterCallback)(JSVM_Env env,
                                                                JSVM_Value name,
-                                                               JSVM_Value thisArg);
+                                                               JSVM_Value thisArg,
+                                                               JSVM_Value namedPropertyData);
     JSVM_Value(JSVM_CDECL* genericNamedPropertySetterCallback)(JSVM_Env env,
                                                                JSVM_Value name,
                                                                JSVM_Value property,
-                                                               JSVM_Value thisArg);
+                                                               JSVM_Value thisArg,
+                                                               JSVM_Value namedPropertyData);
     JSVM_Value(JSVM_CDECL* genericNamedPropertyDeleterCallback)(JSVM_Env env,
                                                                 JSVM_Value name,
-                                                                JSVM_Value thisArg);
+                                                                JSVM_Value thisArg,
+                                                                JSVM_Value namedPropertyData);
     JSVM_Value(JSVM_CDECL* genericNamedPropertyEnumeratorCallback)(JSVM_Env env,
-                                                                   JSVM_Value thisArg);
+                                                                   JSVM_Value thisArg,
+                                                                   JSVM_Value namedPropertyData);
     JSVM_Value(JSVM_CDECL* genericIndexedPropertyGetterCallback)(JSVM_Env env,
                                                                 JSVM_Value index,
-                                                                JSVM_Value thisArg);
+                                                                JSVM_Value thisArg,
+                                                                JSVM_Value indexedPropertyData);
     JSVM_Value(JSVM_CDECL* genericIndexedPropertySetterCallback)(JSVM_Env env,
                                                                  JSVM_Value index,
                                                                  JSVM_Value property,
-                                                                 JSVM_Value thisArg);
+                                                                 JSVM_Value thisArg,
+                                                                 JSVM_Value indexedPropertyData);
     JSVM_Value(JSVM_CDECL* genericIndexedPropertyDeleterCallback)(JSVM_Env env,
                                                                   JSVM_Value index,
-                                                                  JSVM_Value thisArg);
+                                                                  JSVM_Value thisArg,
+                                                                  JSVM_Value indexedPropertyData);
     JSVM_Value(JSVM_CDECL* genericIndexedPropertyEnumeratorCallback)(JSVM_Env env,
-                                                                     JSVM_Value thisArg);
+                                                                     JSVM_Value thisArg,
+                                                                     JSVM_Value indexedPropertyData);
+    JSVM_Value namedPropertyData;
+    JSVM_Value indexedPropertyData;
 } JSVM_PropertyHandlerConfigurationStruct;
 ```
 
@@ -892,7 +902,18 @@ JS值操作和抽象操作。
 |OH_JSVM_IsDate | 判断一个 JavaScript 对象是否为 Date 类型对象 |
 |OH_JSVM_IsTypedarray | 判断一个 JavaScript 对象是否为 Typedarray 类型对象 |
 |OH_JSVM_IsDataview | 判断一个 JavaScript 对象是否为 Dataview 类型对象 |
-|OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否相等 |
+|OH_JSVM_IsUndefined | 此API检查传入的值是否为Undefined。这相当于JS中的`value === undefined`。 |
+|OH_JSVM_IsNull | 此API检查传入的值是否为Null对象。这相当于JS中的`value === null`。 |
+|OH_JSVM_IsNullOrUndefined | 此API检查传入的值是否为Null或Undefined。这相当于JS中的`value == null`。 |
+|OH_JSVM_IsBoolean | 此API检查传入的值是否为Boolean。这相当于JS中的`typeof value === 'boolean'`。 |
+|OH_JSVM_IsNumber | 此API检查传入的值是否为Number。这相当于JS中的`typeof value === 'number'`。 |
+|OH_JSVM_IsString | 此API检查传入的值是否为String。这相当于JS中的`typeof value === 'string'`。 |
+|OH_JSVM_IsSymbol | 此API检查传入的值是否为Symbol。这相当于JS中的`typeof value === 'symbol'`。 |
+|OH_JSVM_IsFunction | 此API检查传入的值是否为Function。这相当于JS中的`typeof value === 'function'`。 |
+|OH_JSVM_IsObject | 此API检查传入的值是否为Object。 |
+|OH_JSVM_IsBigInt | 此API检查传入的值是否为BigInt。这相当于JS中的`typeof value === 'bigint'`。 |
+|OH_JSVM_StrictEquals | 判断两个 JSVM_Value 对象是否严格相等 |
+|OH_JSVM_Equals | 判断两个 JSVM_Value 对象是否宽松相等 |
 |OH_JSVM_DetachArraybuffer | 调用 ArrayBuffer 对象的Detach操作 |
 |OH_JSVM_IsDetachedArraybuffer | 检查给定的 ArrayBuffer 是否已被分离(detached) |
 
@@ -923,7 +944,7 @@ OH_JSVM_GetValueStringUtf8(env, stringValue, buffer, bufferSize, &copied);
 // buffer:"123";
 ```
 
-判断两个JS值类型是否相同
+判断两个JS值类型是否严格相同：先比较操作数类型，操作数类型不同就是不相等，操作数类型相同时，比较值是否相等，相等才返回true。
 
 ```c++
 JSVM_Value value = nullptr;
@@ -933,6 +954,21 @@ OH_JSVM_CreateArray(env, &value);
 OH_JSVM_CreateInt32(env, 10, &value1);
 bool isArray = true;
 OH_JSVM_StrictEquals(env, value, value, &isArray);
+```
+
+判断两个JS值类型是否宽松相同：判断两个操作数的类型是否相同，若不相同，且可以转换为相同的数据类型，转换为相同的数据类型后，值做严格相等比较，其他的都返回false。
+
+```c++
+JSVM_HandleScope handleScope;
+OH_JSVM_OpenHandleScope(env, &handleScope);
+const char testStr[] = "1";
+JSVM_Value lhs = nullptr;
+OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &lhs);
+JSVM_Value rhs;
+OH_JSVM_CreateInt32(env, 1, &rhs);
+bool isEquals = false;
+OH_JSVM_Equals(env, lhs, rhs, &isEquals); // 这里isEquals的值是true
+OH_JSVM_CloseHandleScope(env, handleScope);
 ```
 
 ### JS属性操作
@@ -1194,6 +1230,13 @@ static intptr_t externals[] = {
     0,
 };
 
+static void test1() { OH_LOG_INFO(LOG_APP, "test1 called"); }
+
+struct Test {
+    void *ptr1;
+    void *ptr2;
+};
+
 static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
@@ -1204,7 +1247,7 @@ static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
     return nullptr;
 }
 
-static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg) {
+static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
     // this callback is triggered by get requests on an object
     char strValue[100];
     size_t size;
@@ -1212,10 +1255,21 @@ static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value th
     JSVM_Value newResult = nullptr;
     char newStr[] = "new return value hahaha from name listening";
     OH_JSVM_CreateStringUtf8(env, newStr, strlen(newStr), &newResult);
-    return newResult;
+    int signBit = 0;
+    size_t wordCount = 2;
+    uint64_t wordsOut[2] = {0ULL, 0ULL};
+    JSVM_Status status = OH_JSVM_GetValueBigintWords(env, data, &signBit, &wordCount, wordsOut);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "GetPropertyCbInfo wordCount is %{public}zu", wordCount);
+        auto test = reinterpret_cast<Test *>(wordsOut);
+        typedef void (*callTest1)();
+        callTest1 callTe = reinterpret_cast<callTest1>(test->ptr1);
+        callTe();
+    }
+    return nullptr;
 }
 
-static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value property, JSVM_Value thisArg) {
+static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
     // this callback is triggered by set requests on an object
     char strValue[100];
     size_t size;
@@ -1223,10 +1277,21 @@ static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value pr
     JSVM_Value newResult = nullptr;
     char newStr[] = "new return value hahaha from name listening";
     OH_JSVM_CreateStringUtf8(env, newStr, strlen(newStr), &newResult);
-    return newResult;
+    int signBit = 0;
+    size_t wordCount = 2;
+    uint64_t wordsOut[2] = {0ULL, 0ULL};
+    JSVM_Status status = OH_JSVM_GetValueBigintWords(env, data, &signBit, &wordCount, wordsOut);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "SetPropertyCbInfo wordCount is %{public}zu", wordCount);
+        auto test = reinterpret_cast<Test *>(wordsOut);
+        typedef void (*callTest1)();
+        callTest1 callTe = reinterpret_cast<callTest1>(test->ptr1);
+        callTe();
+    }
+    return nullptr;
 }
 
-static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg) {
+static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
     // this callback is triggered by delete requests on an object
     char strValue[100];
     size_t size;
@@ -1234,10 +1299,21 @@ static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Valu
     JSVM_Value newResult = nullptr;
     bool returnValue = false;
     OH_JSVM_GetBoolean(env, returnValue, &newResult);
-    return newResult;
+    int signBit = 0;
+    size_t wordCount = 2;
+    uint64_t wordsOut[2] = {0ULL, 0ULL};
+    JSVM_Status status = OH_JSVM_GetValueBigintWords(env, data, &signBit, &wordCount, wordsOut);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "DeleterPropertyCbInfo wordCount is %{public}zu", wordCount);
+        auto test = reinterpret_cast<Test *>(wordsOut);
+        typedef void (*callTest1)();
+        callTest1 callTe = reinterpret_cast<callTest1>(test->ptr1);
+        callTe();
+    }
+    return nullptr;
 }
 
-static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg) {
+static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg, JSVM_Value data) {
     // this callback is triggered by get all properties requests on an object
     JSVM_Value testArray = nullptr;
     OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
@@ -1250,10 +1326,21 @@ static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg) {
 
     OH_JSVM_SetElement(env, testArray, 0, name1);
     OH_JSVM_SetElement(env, testArray, 1, name2);
-    return testArray;
+    int signBit = 0;
+    size_t wordCount = 2;
+    uint64_t wordsOut[2] = {0ULL, 0ULL};
+    JSVM_Status status = OH_JSVM_GetValueBigintWords(env, data, &signBit, &wordCount, wordsOut);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "EnumeratorPropertyCbInfo wordCount is %{public}zu", wordCount);
+        auto test = reinterpret_cast<Test *>(wordsOut);
+        typedef void (*callTest1)();
+        callTest1 callTe = reinterpret_cast<callTest1>(test->ptr1);
+        callTe();
+    }
+    return nullptr;
 }
 
-static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg) {
+static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
     // this function triggered by getting an indexed property of an instance objec
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
@@ -1261,10 +1348,21 @@ static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value 
     JSVM_Value newResult = nullptr;
     char newStr[] = "new return value hahaha from index listening";
     OH_JSVM_CreateStringUtf8(env, newStr, strlen(newStr), &newResult);
-    return newResult;
+    int signBit = 0;
+    size_t wordCount = 2;
+    uint64_t wordsOut[2] = {0ULL, 0ULL};
+    JSVM_Status status = OH_JSVM_GetValueBigintWords(env, data, &signBit, &wordCount, wordsOut);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "IndexedPropertyGet wordCount is %{public}zu", wordCount);
+        auto test = reinterpret_cast<Test *>(wordsOut);
+        typedef void (*callTest1)();
+        callTest1 callTe = reinterpret_cast<callTest1>(test->ptr1);
+        callTe();
+    }
+    return nullptr;
 }
 
-static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value property, JSVM_Value thisArg) {
+static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
     // this function triggered by setting an indexed property of an instance object.
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
@@ -1274,20 +1372,42 @@ static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value 
     JSVM_Value newResult = nullptr;
     char newStr[] = "new return value hahaha from name listening";
     OH_JSVM_CreateStringUtf8(env, newStr, strlen(newStr), &newResult);
-    return newResult;
+    int signBit = 0;
+    size_t wordCount = 2;
+    uint64_t wordsOut[2] = {0ULL, 0ULL};
+    JSVM_Status status = OH_JSVM_GetValueBigintWords(env, data, &signBit, &wordCount, wordsOut);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "IndexedPropertySet wordCount is %{public}zu", wordCount);
+        auto test = reinterpret_cast<Test *>(wordsOut);
+        typedef void (*callTest1)();
+        callTest1 callTe = reinterpret_cast<callTest1>(test->ptr1);
+        callTe();
+    }
+    return nullptr;
 }
 
-static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg) {
+static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
     // this function triggered by deleting an indexed property of an instance object.
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
     JSVM_Value newResult = nullptr;
     bool returnValue = false;
     OH_JSVM_GetBoolean(env, returnValue, &newResult);
-    return newResult;
+    int signBit = 0;
+    size_t wordCount = 2;
+    uint64_t wordsOut[2] = {0ULL, 0ULL};
+    JSVM_Status status = OH_JSVM_GetValueBigintWords(env, data, &signBit, &wordCount, wordsOut);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "IndexedPropertyDeleter wordCount is %{public}zu", wordCount);
+        auto test = reinterpret_cast<Test *>(wordsOut);
+        typedef void (*callTest1)();
+        callTest1 callTe = reinterpret_cast<callTest1>(test->ptr1);
+        callTe();
+    }
+    return nullptr;
 }
 
-static JSVM_Value IndexedPropertyEnumerator(JSVM_Env env, JSVM_Value thisArg) {
+static JSVM_Value IndexedPropertyEnumerator(JSVM_Env env, JSVM_Value thisArg, JSVM_Value data) {
     // this function triggered by getting all indexed properties requests on an object.
     JSVM_Value testArray = nullptr;
     OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
@@ -1297,7 +1417,18 @@ static JSVM_Value IndexedPropertyEnumerator(JSVM_Env env, JSVM_Value thisArg) {
     OH_JSVM_CreateUint32(env, 2, &index2);
     OH_JSVM_SetElement(env, testArray, 0, index1);
     OH_JSVM_SetElement(env, testArray, 1, index2);
-    return testArray;
+    int signBit = 0;
+    size_t wordCount = 2;
+    uint64_t wordsOut[2] = {0ULL, 0ULL};
+    JSVM_Status status = OH_JSVM_GetValueBigintWords(env, data, &signBit, &wordCount, wordsOut);
+    if (status == JSVM_OK) {
+        OH_LOG_INFO(LOG_APP, "IndexedPropertyDeleter wordCount is %{public}zu", wordCount);
+        auto test = reinterpret_cast<Test *>(wordsOut);
+        typedef void (*callTest1)();
+        callTest1 callTe = reinterpret_cast<callTest1>(test->ptr1);
+        callTe();
+    }
+    return nullptr;
 }
 
 static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info info) {
@@ -1336,6 +1467,15 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
         return thisVar;
     };
     param1.data = nullptr;
+
+    JSVM_Value res = nullptr;
+    Test *test = new Test();
+    test->ptr1 = (void *)test1;
+    test->ptr2 = (void *)test1;
+    OH_LOG_INFO(LOG_APP, "OH_JSVM_CreateBigintWords 111 word count %{public}d",
+                sizeof(*test) / sizeof(uint64_t));
+    JSVM_Status status = OH_JSVM_CreateBigintWords(env, 1, 2, reinterpret_cast<const uint64_t *>(test), &res);
+
     // initialize the propertyCfg
     JSVM_PropertyHandlerConfigurationStruct propertyCfg;
     propertyCfg.genericNamedPropertyGetterCallback = GetPropertyCbInfo;
@@ -1346,6 +1486,9 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     propertyCfg.genericIndexedPropertySetterCallback = IndexedPropertySet;
     propertyCfg.genericIndexedPropertyDeleterCallback = IndexedPropertyDeleter;
     propertyCfg.genericIndexedPropertyEnumeratorCallback = IndexedPropertyEnumerator;
+    propertyCfg.namedPropertyData = res;
+    propertyCfg.indexedPropertyData = res;
+
     JSVM_CallbackStruct callbackStruct;
     callbackStruct.callback = [](JSVM_Env env, JSVM_CallbackInfo info) -> JSVM_Value {
         OH_LOG_INFO(LOG_APP, "call as a function called");
@@ -1613,4 +1756,189 @@ const char *blobData = nullptr;
 size_t blobSize = 0;
 JSVM_Env envs[1] = {env};
 OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
+```
+
+### 检查传入的值是否可调用
+
+#### 场景介绍
+
+检查传入的值是否可调用
+
+#### 接口说明
+| 接口 | 功能说明 |
+| -------- | -------- |
+|OH_JSVM_IsCallable| 检查传入的值是否可调用 |
+
+场景示例：
+检查传入的值是否可调用
+
+```c++
+static JSVM_Value NapiIsCallable(JSVM_Env env, JSVM_CallbackInfo info) {
+    JSVM_Value value, rst;
+    size_t argc = 1;
+    bool isCallable = false;
+    JSVM_CALL(env, OH_JSVM_GetCbInfo(env, info, &argc, &value, NULL, NULL));
+    JSVM_CALL(env, OH_JSVM_IsCallable(env, value, &isCallable));
+    OH_JSVM_GetBoolean(env, isCallable, &rst);
+    return rst;
+}
+
+static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
+    std::thread t([]() {
+        // create vm, and open vm scope
+        JSVM_VM vm;
+        JSVM_CreateVMOptions options;
+        memset(&options, 0, sizeof(options));
+        OH_JSVM_CreateVM(&options, &vm);
+        JSVM_VMScope vmScope;
+        OH_JSVM_OpenVMScope(vm, &vmScope);
+        JSVM_CallbackStruct param[] = {
+            {.data = nullptr, .callback = NapiIsCallable},
+        };
+        JSVM_PropertyDescriptor descriptor[] = {
+            {"napiIsCallable", NULL, &param[0], NULL, NULL, NULL, JSVM_DEFAULT},
+        };
+        // create env, register native method, and open env scope
+        JSVM_Env env;
+        OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env);
+        JSVM_EnvScope envScope;
+        OH_JSVM_OpenEnvScope(env, &envScope);
+        // open handle scope
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
+        std::string sourceCodeStr = R"JS(
+        function addNumbers(num1, num2)
+        {
+            var rst= num1 + num2;
+            return rst;
+        }
+        let rst = napiIsCallable(addNumbers);
+        )JS";
+        // compile js script
+        JSVM_Value sourceCodeValue;
+        OH_JSVM_CreateStringUtf8(env, sourceCodeStr.c_str(), sourceCodeStr.size(), &sourceCodeValue);
+        JSVM_Script script;
+        OH_JSVM_CompileScript(env, sourceCodeValue, nullptr, 0, true, nullptr, &script);
+        JSVM_Value result;
+        // run js script
+        OH_JSVM_RunScript(env, script, &result);
+        JSVM_ValueType type;
+        OH_JSVM_Typeof(env, result, &type);
+        OH_LOG_INFO(LOG_APP, "JSVM API TEST type: %{public}d", type);
+        // exit vm and clean memory
+        OH_JSVM_CloseHandleScope(env, handleScope);
+        OH_JSVM_CloseEnvScope(env, envScope);
+        OH_JSVM_DestroyEnv(env);
+        OH_JSVM_CloseVMScope(vm, vmScope);
+        OH_JSVM_DestroyVM(vm);
+    });
+    t.detach();
+    return nullptr;
+}
+```
+
+### Lock操作
+
+#### 场景介绍
+
+Lock操作
+
+#### 接口说明
+| 接口 | 功能说明 |
+| -------- | -------- |
+|OH_JSVM_IsLocked| 判断当前线程是否持有指定环境的锁 |
+|OH_JSVM_AcquireLock| 获取指定环境的锁 |
+|OH_JSVM_ReleaseLock| 释放指定环境的锁 |
+
+场景示例：
+加锁解锁操作
+
+```c++
+static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
+    // create vm, and open vm scope
+    JSVM_VM vm;
+    JSVM_CreateVMOptions options;
+    memset(&options, 0, sizeof(options));
+    OH_JSVM_CreateVM(&options, &vm);
+    JSVM_VMScope vmScope;
+    OH_JSVM_OpenVMScope(vm, &vmScope);
+    // create env, register native method, and open env scope
+    JSVM_Env env;
+    OH_JSVM_CreateEnv(vm, 0, nullptr, &env);
+    JSVM_EnvScope envScope;
+    OH_JSVM_OpenEnvScope(env, &envScope);
+    // open handle scope
+    JSVM_HandleScope handleScope;
+    OH_JSVM_OpenHandleScope(env, &handleScope);
+    std::thread t1([vm, env]() {
+        bool isLocked = false;
+        OH_JSVM_IsLocked(env, &isLocked);
+        if (!isLocked) {
+            OH_JSVM_AcquireLock(env);
+        }
+        JSVM_VMScope vmScope;
+        OH_JSVM_OpenVMScope(vm, &vmScope);
+        JSVM_EnvScope envScope;
+        OH_JSVM_OpenEnvScope(env, &envScope);
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
+        JSVM_Value value;
+        JSVM_Status rst = OH_JSVM_CreateInt32(env, 32, &value); // 32: numerical value
+        if (rst) {
+            OH_LOG_INFO(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 suc");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "JSVM:t1 OH_JSVM_CreateInt32 fail");
+        }
+        int32_t num1;
+        OH_JSVM_GetValueInt32(env, value, &num1);
+        OH_LOG_INFO(LOG_APP, "JSVM:t1 num1 = %{public}d", num1);
+        OH_JSVM_CloseHandleScope(env, handleScope);
+        OH_JSVM_CloseEnvScope(env, envScope);
+        OH_JSVM_DestroyEnv(env);
+        OH_JSVM_IsLocked(env, &isLocked);
+        if (isLocked) {
+            OH_JSVM_ReleaseLock(env);
+        }
+    });
+    std::thread t2([vm, env]() {
+        bool isLocked = false;
+        OH_JSVM_IsLocked(env, &isLocked);
+        if (!isLocked) {
+            OH_JSVM_AcquireLock(env);
+        }
+        JSVM_VMScope vmScope;
+        OH_JSVM_OpenVMScope(vm, &vmScope);
+        JSVM_EnvScope envScope;
+        OH_JSVM_OpenEnvScope(env, &envScope);
+        JSVM_HandleScope handleScope;
+        OH_JSVM_OpenHandleScope(env, &handleScope);
+        JSVM_Value value;
+        JSVM_Status rst = OH_JSVM_CreateInt32(env, 32, &value); // 32: numerical value
+        if (rst) {
+            OH_LOG_INFO(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 suc");
+        } else {
+            OH_LOG_ERROR(LOG_APP, "JSVM:t2 OH_JSVM_CreateInt32 fail");
+        }
+        int32_t num1;
+        OH_JSVM_GetValueInt32(env, value, &num1);
+        OH_LOG_INFO(LOG_APP, "JSVM:t2 num1 = %{public}d", num1);
+        OH_JSVM_CloseHandleScope(env, handleScope);
+        OH_JSVM_CloseEnvScope(env, envScope);
+        OH_JSVM_DestroyEnv(env);
+        OH_JSVM_IsLocked(env, &isLocked);
+        if (isLocked) {
+            OH_JSVM_ReleaseLock(env);
+        }
+    });
+    t1.detach();
+    t2.detach();
+    sleep(10);
+    // exit vm and clean memory
+    OH_JSVM_CloseHandleScope(env, handleScope);
+    OH_JSVM_CloseEnvScope(env, envScope);
+    OH_JSVM_DestroyEnv(env);
+    OH_JSVM_CloseVMScope(vm, vmScope);
+    OH_JSVM_DestroyVM(vm);
+    return nullptr;
+}
 ```

@@ -29,6 +29,7 @@
 | struct  [OH_Huks_KeyMaterialDsa](_o_h___huks___key_material_dsa.md) | 定义Dsa密钥的结构体类型。  | 
 | struct  [OH_Huks_KeyMaterialDh](_o_h___huks___key_material_dh.md) | 定义Dh密钥的结构体类型。  | 
 | struct  [OH_Huks_KeyMaterial25519](_o_h___huks___key_material25519.md) | 定义25519类型密钥的结构体类型。  | 
+| struct&nbsp;&nbsp;[OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) | 定义密钥别名集的结构体类型。  | 
 
 
 ### 宏定义

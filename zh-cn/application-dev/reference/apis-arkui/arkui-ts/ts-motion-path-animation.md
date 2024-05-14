@@ -9,6 +9,8 @@
 ## motionPath
 motionPath(value: MotionPathOptions)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数    | 类型                                | 是否必填 | 描述                                    |
@@ -16,6 +18,9 @@ motionPath(value: MotionPathOptions)
 | value | [MotionPathOptions](#motionpathoptions) | 是    | 设置组件的运动路径。             |
 
 ## MotionPathOptions
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | ---- | -------- |
 | path                         | string                     | 是   | 位移动画的运动路径，使用svg路径字符串。path中支持使用start和end进行起点和终点的替代，如：'Mstart.x&nbsp;start.y&nbsp;L50&nbsp;50&nbsp;Lend.x&nbsp;end.y&nbsp;Z'，更多说明请参考[绘制路径](../../../ui/ui-js-components-svg-path.md)。<br/>设置为空字符串时相当于不设置路径动画。       |

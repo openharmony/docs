@@ -164,7 +164,7 @@ Relative time formatting is implemented by the [format](../reference/apis-locali
 
 5. Obtain **RelativeTimeFormatInputOptions** and view the configuration of formatting options.
    ```ts
-   let options: IntlRelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
+   let options: Intl.RelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
    ```
 
 **Relative Time Formatting Options**

@@ -84,6 +84,8 @@ getState(): BluetoothState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
@@ -197,11 +199,13 @@ try {
 
 枚举，蓝牙开关状态。
 
+**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                    | 值  | 说明                 |
 | --------------------- | ---- | ------------------ |
-| STATE_OFF             | 0    | 表示蓝牙已关闭。           |
+| STATE_OFF             | 0    | 表示蓝牙已关闭。          |
 | STATE_TURNING_ON      | 1    | 表示蓝牙正在打开。          |
 | STATE_ON              | 2    | 表示蓝牙已打开。           |
 | STATE_TURNING_OFF     | 3    | 表示蓝牙正在关闭。          |

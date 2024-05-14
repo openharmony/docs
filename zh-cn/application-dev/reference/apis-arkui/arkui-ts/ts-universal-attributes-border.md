@@ -15,6 +15,8 @@ border(value: BorderOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -30,6 +32,8 @@ borderStyle(value: BorderStyle | EdgeStyles)
 设置元素的边框线条样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,6 +51,8 @@ borderWidth(value: Length | EdgeWidths | LocalizedEdgeWidths)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -57,11 +63,13 @@ borderWidth(value: Length | EdgeWidths | LocalizedEdgeWidths)
 
 ## borderColor
 
-borderColor(value: ResourceColor | EdgeColors)
+borderColor(value: ResourceColor | EdgeColors | LocalizedEdgeColors)
 
 设置边框的颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -69,17 +77,17 @@ borderColor(value: ResourceColor | EdgeColors)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                         |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup> | 是   | 设置元素的边框颜色。<br/>默认值：Color.Black |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12对象说明)<sup>12+</sup> | 是   | 设置元素的边框颜色。<br/>默认值：Color.Black |
 
 ## borderRadius
 
-borderRadius(value: Length | BorderRadiuses)
+borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 设置边框的圆角。圆角大小受组件尺寸限制，最大值为组件宽或高的一半。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,7 +95,7 @@ borderRadius(value: Length | BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                   |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup> | 是   | 设置元素的边框圆角半径，不支持百分比。 |
+| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 是   | 设置元素的边框圆角半径，不支持百分比。 |
 
 ## BorderOptions对象说明
 

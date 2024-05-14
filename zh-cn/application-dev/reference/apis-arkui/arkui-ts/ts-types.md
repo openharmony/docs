@@ -229,9 +229,9 @@
 
 | 名称     | 描述              |
 | ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。 |
+| INVERT | 设置前景色为控件背景色的反色。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## LengthConstrain
 
@@ -376,6 +376,8 @@
 
 像素扩展属性集合,用于描述像素扩展的信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型                | 必填   | 说明             |
 | ------ | ----------------- | ---- | -------------- |
 | left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
@@ -386,6 +388,8 @@
 ## ModalTransition<sup>10+</sup>
 
 全屏模态转场方式枚举类型，用于设置全屏模态转场类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述           |
 | ------- | ------------ |
@@ -468,9 +472,23 @@
 | --------------------- | -------------------------------------- |
 | {number}deg               | 需要指定以deg像素单位，如'10deg'。 |
 
+## MultiShadowOptions<sup>10+</sup>
+
+投影样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+
 ## SwiperAnimationEvent<sup>10+</sup>
 
 Swiper组件动画相关信息集合。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称            | 类型定义       | 必填            | 描述                                       |
 | ------------- | ---------------------- | ---------|------------------------------- |
@@ -482,6 +500,8 @@ Swiper组件动画相关信息集合。
 
 Tabs组件动画相关信息集合。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型定义      |  必填             | 描述                                       |
 | ------------- | ---------------------- | ----------------|------------------------ |
 | currentOffset | number | 是 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
@@ -492,6 +512,8 @@ Tabs组件动画相关信息集合。
 
 扩展安全区域的枚举类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
 | SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
@@ -501,6 +523,8 @@ Tabs组件动画相关信息集合。
 ## SafeAreaEdge<sup>10+</sup>
 
 扩展安全区域的方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述       |
 | ------ | ---------- |
@@ -533,6 +557,8 @@ Tabs组件动画相关信息集合。
 
 Tabs自定义切换动画相关信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型定义         | 必填          | 描述                                       |
 | ------------- | ---------------------- | ------------------|---------------------- |
 | timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
@@ -541,6 +567,8 @@ Tabs自定义切换动画相关信息。
 ## TabContentTransitionProxy<sup>11+</sup>
 
 Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称            | 类型定义     |  必填              | 描述                                       |
 | ------------- | ---------------------- | ----------------------|------------------ |
@@ -591,13 +619,18 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | DecorationStyle | 文本装饰线样式。 |
 | BaselineOffsetStyle | 文本基线偏移量样式。 |
 | LetterSpacingStyle | 文本字符间距样式。 |
+| LineHeightStyle | 文本行高样式。 |
 | TextShadowStyle | 文本阴影样式。 |
 | GestureStyle | 事件手势样式。 |
+| ParagraphStyle | 文本段落样式。 |
 | ImageAttachment | 图片样式。 |
+| CustomSpan | 自定义绘制Span样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 
 定义用户提交事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称              | 类型       | 必填 | 描述                                               |
 | ----------------- | ---------- | ---- | -------------------------------------------------- |
@@ -608,13 +641,13 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 
 | 名称                   | 描述               |
 | ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。   |
-| Search                 | 显示为搜索样式。   |
-| Send                   | 显示为发送样式。   |
-| Next                   | 显示为下一步样式。 |
-| Done                   | 显示为完成样式。   |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。   |
+| Go                     | 显示为开始样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| Search                 | 显示为搜索样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| Send                   | 显示为发送样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| Next                   | 显示为下一步样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Done                   | 显示为完成样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。  |
 
 ## LengthMetrics<sup>12+</sup>
 

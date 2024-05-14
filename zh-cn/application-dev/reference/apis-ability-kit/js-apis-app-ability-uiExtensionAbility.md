@@ -22,24 +22,30 @@ import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 是 | UIExtensionAbility的上下文。 |
 
-## UIExtensionAbility.onCreate
+## UIExtensionAbility.onCreate<sup>12+</sup>
 
-onCreate(): void
+onCreate(launchParam: AbilityConstant.LaunchParam): void
 
 UIExtensionAbility创建时回调，执行初始化业务逻辑操作。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| launchParam | [AbilityConstant.LaunchParam](js-apis-app-ability-abilityConstant.md#abilityconstantlaunchparam) | 是| 创建UIExtensionAbility、上次异常退出的原因信息。|
+
 **示例：**
 
   ```ts
   import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
   const TAG: string = '[testTag] UIExtAbility';
 
   export default class UIExtAbility extends UIExtensionAbility {
-    onCreate() {
+    onCreate(launchParam: AbilityConstant.LaunchParam) {
       console.info(TAG, `onCreate`);
+      console.log(`onCreate, launchParam: ${JSON.stringify(launchParam)}`);
     }
   }
   ```

@@ -50,8 +50,8 @@
 /*
  * 以下以AES 128密钥的Promise操作使用为例
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
+import { BusinessError} from "@kit.BasicServicesKit"
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle:number;
 let plainText = '123456';

@@ -44,8 +44,9 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 4. 调用MediaKeySystem类中的OH_MediaKeySystem_GetMediaKeySystems方法获取设备支持对应的插件类型的name和uuid。
 
    ```c++
-    uint32_t count = 10;
-    DRM_MediaKeySystemDescription infos[10];
+    // count 是当前设备实际支持的DRM插件的个数，用户根据实际情况设置
+    uint32_t count = 1;
+    DRM_MediaKeySystemDescription infos[1];
     memset(infos, 0, sizeof(infos));
     Drm_ErrCode ret = OH_MediaKeySystem_GetMediaKeySystems(infos, &count);
     if (ret != DRM_OK) {

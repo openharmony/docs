@@ -12,6 +12,8 @@ obscured(reasons: Array&lt;ObscuredReasons&gt;)
 
 设置组件内容的遮罩类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 

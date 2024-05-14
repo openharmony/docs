@@ -330,7 +330,7 @@ AnimatedDrawableDescriptor的构造函数。
 
 | 参数名     | 类型              | 必填  | 说明                                       |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| pixelMaps | Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PxielMap 数组类型参数，存储 PxielMap 图片数据。 |
+| pixelMaps | Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
 | options   | [AnimationOptions](#animationoptions12) | 否   | 动画控制选项。                               |
 
 **示例：**
@@ -346,8 +346,7 @@ struct Example {
   options: AnimationOptions = {duration:1000, iterations:-1};
   @State animated: AnimatedDrawableDescriptor  = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
   async aboutToAppear() {
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.image1')))
-    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.image2')))
+    this.pixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon')))
     this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
   }
   build() {

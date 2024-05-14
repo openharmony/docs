@@ -19,7 +19,7 @@ Deque和[Queue](js-apis-queue.md)相比，Queue的特点是先进先出，只能
 ## 导入模块
 
 ```ts
-import Deque from '@ohos.util.Deque'; 
+import { Deque } from '@kit.ArkTS';
 ```
 
 ## Deque

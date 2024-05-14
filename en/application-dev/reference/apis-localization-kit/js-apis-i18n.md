@@ -29,8 +29,8 @@ Obtains the localized script for the specified country.
 
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
-| country      | string  | Yes   | Specified country.           |
-| locale       | string  | Yes   | Locale ID.    |
+| country      | string  | Yes   | Valid country code.           |
+| locale       | string  | Yes   | Valid locale ID for the specified country.    |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
@@ -41,11 +41,12 @@ Obtains the localized script for the specified country.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -65,14 +66,16 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 Obtains the localized script for the specified language.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
 
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
-| language     | string  | Yes   | Specified language.           |
-| locale       | string  | Yes   | Locale ID.    |
+| language     | string  | Yes   | Valid language ID.           |
+| locale       | string  | Yes   | Valid locale ID for the specified language.    |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script. The default value is **true**.|
 
 **Return value**
@@ -83,11 +86,12 @@ Obtains the localized script for the specified language.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -141,7 +145,7 @@ Obtains the list of countries and regions supported for the specified language.
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Language ID.|
+| language | string | Yes   | Valid language ID.|
 
 **Return value**
 
@@ -151,11 +155,12 @@ Obtains the list of countries and regions supported for the specified language.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -192,11 +197,12 @@ Checks whether the system language matches the specified region.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -216,7 +222,9 @@ static getSystemLanguage(): string
 
 Obtains the system language.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -269,6 +277,8 @@ Obtains the system region.
 static getSystemLocale(): string
 
 Obtains the system locale.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -383,15 +393,16 @@ Sets the preferred language of the application.
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Language ID.|
+| language | string | Yes   | Valid language ID.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -526,15 +537,16 @@ Creates an **entityRecognizer** object.
 
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
-| locale | string | No   | Locale ID.|
+| locale | string | No   | Valid locale ID.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -560,6 +572,14 @@ Recognizes entities in text.
 | Type  | Description               |
 | ---- | ----------------- |
 | Array&lt;[EntityInfoItem](#entityinfoitem11)&gt; | List of recognized entities.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
   ```ts
@@ -885,11 +905,12 @@ Performs addition and subtraction operations on the specified field of the **Cal
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -948,6 +969,14 @@ Compares the number of days between the calendar date and the specified date. Th
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
 | number | Number of days between the calendar date and the specified date. A positive number indicates that the calendar date is earlier, and a negative number indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
   ```ts
@@ -1689,11 +1718,12 @@ Creates an array of **TimeZone** objects corresponding to the specified longitud
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -2138,11 +2168,12 @@ Obtains the localized expression for the specified time of the specified locale.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -2179,11 +2210,12 @@ Obtains the locale that best matches a region from the specified locale list.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
 
@@ -2220,6 +2252,14 @@ Obtains a **Normalizer** object for text normalization.
 | ------ | ------------------- |
 | [Normalizer](#normalizer10) | **Normalizer** object for text normalization.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **Example**
   ```ts
   let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
@@ -2245,6 +2285,14 @@ Normalizes text strings.
 | Type    | Description                 |
 | ------ | ------------------- |
 | string | Normalized text strings.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
   ```ts
@@ -2285,11 +2333,12 @@ Creates a **HolidayManager** object.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -2315,6 +2364,14 @@ Determines whether the specified date is a holiday.
 |       Type       |         Description         |
 | ----------------- | ----------------------|
 | boolean           | The value **true** indicates that the specified date is a holiday, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
   ```ts
@@ -2355,11 +2412,12 @@ Obtains the holiday information list of the specified year.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts

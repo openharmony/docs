@@ -567,9 +567,9 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态。使用callback异步回调。
 
-**说明：**
+> **说明：**
 >
-> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9)替代。
+> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -600,7 +600,7 @@ setShowOnLockScreen(show: boolean): Promise\<void>
 
 **说明：**
 >
-> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9)替代。
+> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

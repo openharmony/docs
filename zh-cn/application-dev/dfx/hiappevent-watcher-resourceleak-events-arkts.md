@@ -13,12 +13,19 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 以实现对发生内存泄漏场景生成的资源泄漏事件订阅为例，说明开发步骤。
 
-1. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，完整示例代码如下：
+1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
+
+   ```ts
+   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+   import hilog from '@ohos.hilog';
+   ```
+
+2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
 
    ```ts
     hiAppEvent.addWatcher({
       // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
-      name: "watcher3",
+      name: "watcher",
       // 开发者可以订阅感兴趣的系统事件，此处是订阅了资源泄漏事件
       appEventFilters: [
         {
@@ -41,14 +48,14 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     });
    ```
 
-2. 运行`hdc shell param set hiview.memleak.test enable`，使能内存泄漏检测测试，原泄漏检测周期为200s，使能后，周期为5s。
+3. 运行`hdc shell param set hiview.memleak.test enable`，使能内存泄漏检测测试，原泄漏检测周期为200s，使能后，周期为5s。
 
    运行`hdc shell killall hiview`，重启hiview，使能内存检测测试才会生效。
 
-3. 点击IDE界面中的运行按钮，运行应用工程，hiview连续5次检测到应用内存超基线（RSS超过1228800KB），会上报应用内存泄漏事件。
+4. 点击IDE界面中的运行按钮，运行应用工程，hiview连续5次检测到应用内存超基线（RSS超过1228800KB），会上报应用内存泄漏事件。
    同一个应用，5小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启hiview
 
-4. 内存泄漏事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
+5. 内存泄漏事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS

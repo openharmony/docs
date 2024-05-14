@@ -99,6 +99,7 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 
 ```ts
 // 从@ohos.net.mdns中导入mdns命名空间
+import common from '@ohos.app.ability.common';
 import mdns from '@ohos.net.mdns';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
@@ -135,7 +136,7 @@ class EntryAbility extends UIAbility {
   }
 }
 
-let context = GlobalContext.getContext().getObject("value");
+let context = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 // 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务
 let serviceType = "_print._tcp";

@@ -14,13 +14,13 @@
 
 ## StyledString
 
-StyledString(value: string | ImageAttachment , styles?: Array\<StyleOptions>)
+StyledString(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | string \| [ImageAttachment](#imageattachment) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment时，styles参数不生效。  |
+| value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment或CustomSpan时，styles参数不生效。  |
 | styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。<br/>styledValue入参合法时，styledKey传入undefined时，此时样式不生效。 |
 
 ### getString
@@ -69,7 +69,7 @@ equals(other: StyledString): boolean
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
-| boolean | 两个属性字符串是否相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。<br/>不比较GestureStyle，当属性字符串配置了不同事件，文本和其他样式相同时，亦视为相等。 |
+| boolean | 两个属性字符串是否相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。<br/>不比较GestureStyle，当属性字符串配置了不同事件，文本和其他样式相同时，亦视为相等。<br/>当比较CustomSpan时，比较的是地址，地址相等，视为相等。 |
 
 ### subStyledString
 
@@ -92,6 +92,14 @@ subStyledString(start: number , length?: number): StyledString
 | ------- | --------------------------------- | 
 | [StyledString](#styledstring) | 子属性字符串。<br/>**说明：** <br/>当start为合法入参时，length的默认值是被查询属性字符串对象的长度与start的值的差。<br/>当start和length越界或者必填传入undefined时，会抛出异常。|
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### getStyles
 
 获取指定范围属性字符串的样式集合。
@@ -112,7 +120,15 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
-| Array<[SpanStyle](#spanstyle对象说明)> | 各样式对象的数组。<br/>**说明：** <br/>当指定范围属性字符串未设置任何样式，则返回空数组。<br/>当start和length越界或者必填传入undefined时，会抛出异常；<br/>当styledKey传入异常值或undefined时，会抛出异常。 |
+| Array<[SpanStyle](#spanstyle对象说明)> | 各样式对象的数组。<br/>**说明：** <br/>当指定范围属性字符串未设置任何样式，则返回空数组。<br/>当start和length越界或者必填传入undefined时，会抛出异常；<br/>当styledKey传入异常值或undefined时，会抛出异常。<br/>当styledKey为CustomSpan时，返回的是创建CustomSpan时传入的样式对象，即修改该样式对象也会影响实际的显示效果。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ## MutableStyledString
 
@@ -141,6 +157,14 @@ replaceString(start: number , length: number , other: string): void
 | length | number | 是   | 指定范围的长度。 |
 | other | string | 是   | 替换的新文本内容。<br/>**说明：** <br/>替换的字符串使用的是start位置字符的样式。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### insertString
 
 插入字符串。
@@ -155,6 +179,14 @@ insertString(start: number , other: string): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 插入位置的下标。 |
 | other | string | 是   | 插入的新文本内容。<br/>**说明：** <br/>插入的字符串使用的是start-1位置字符的样式。若start-1位置字符未设置样式，则使用start位置字符样式。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ### removeString
 
@@ -173,6 +205,14 @@ removeString(start: number , length: number): void
 | start | number | 是   | 指定范围的下标。 |
 | length | number | 是   | 指定范围的长度。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### replaceStyle
 
 替换指定范围内容为指定类型新样式。
@@ -186,6 +226,14 @@ replaceStyle(spanStyle: SpanStyle): void
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | spanStyle | [SpanStyle](#spanstyle对象说明) | 是   | 样式对象。<br/>**说明：** <br/>默认清空原有样式，替换为新样式。<br/>当SpanStyle的styledKey为IMAGE时，只有当start的位置当前是image且长度为1，才会生效，其余情况无效果。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ### setStyle
 
@@ -221,6 +269,14 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 | length | number | 是   | 指定范围的长度。 |
 | styledKey | [StyledStringKey](ts-appendix-enums.md#styledstringkey12) | 是   | 样式类型枚举值。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### removeStyles
 
 清除指定范围内容的所有样式。
@@ -239,6 +295,14 @@ removeStyles(start: number , length: number): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围开始位置的下标。 |
 | length | number | 是   | 指定范围的长度。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ### clearStyles
 
@@ -266,6 +330,14 @@ replaceStyledString(start: number , length: number , other: StyledString): void
 | length | number | 是   | 指定范围的长度。 |
 | other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### insertStyledString
 
 在指定位置插入新的属性字符串。
@@ -280,6 +352,14 @@ insertStyledString(start: number , other: StyledString): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 开始插入位置的下标。 |
 | other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ### appendStyledString
 
@@ -390,8 +470,9 @@ constructor(value?: GestureStyleInterface)
 
 | 名称           | 类型              | 只读   | 必填   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  是  |  是  | 获取属性字符串的文本下划线类型。 |
-| color | [ResourceColor](ts-types.md#resourcecolor)   | 是    | 否    | 获取属性字符串的文本下划线颜色。 |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) |  是  |  是  | 获取属性字符串的文本装饰线类型。 |
+| color | [ResourceColor](ts-types.md#resourcecolor)   | 是    | 否    | 获取属性字符串的文本装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 是    | 否    | 获取属性字符串的文本装饰线样式。 |
 
 ### constructor
 
@@ -403,14 +484,15 @@ constructor(value: DecorationStyleInterface)
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [DecorationStyleInterface](#decorationstyleinterface对象说明) | 是   | 事件设置项。 |
+| value | [DecorationStyleInterface](#decorationstyleinterface对象说明) | 是   | 文本装饰线设置项。 |
 
 ## DecorationStyleInterface对象说明
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 下划线类型。 |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 下划线颜色。 |
+| type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否   | 装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
 
 ## BaselineOffsetStyle
 
@@ -463,6 +545,32 @@ constructor(value: LengthMetrics)
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本字符间距设置项。如果LengthMetrics的unit值是percent，该设置不生效。 |
+
+## LineHeightStyle
+
+文本行高对象说明。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| lineHeight  | number |  是  |  是  | 获取属性字符串的文本行高。<br/>单位：vp |
+
+### constructor
+
+constructor(lineHeight: LengthMetrics)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| lineHeight | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本行高设置项。如果LengthMetrics的value值不大于0时，不限制文本行高，自适应字体大小。 |
 
 ## TextShadowStyle
 
@@ -537,6 +645,115 @@ constructor(value: ImageAttachmentInterface)
 | margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。 |
 | padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。 |
 | borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。 |
+
+## CustomSpan
+
+自定义绘制Span，仅提供基类，具体实现由开发者定义。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onMeasure
+
+获取自定义绘制Span的尺寸大小。
+
+onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| measureInfo | [CustomSpanMeasureInfo](#customspanmeasureinfo对象说明) | 是   | 文本的字体大小。 |
+
+**返回值：**
+
+| 类型              |       说明       |
+| ------- | --------------------------------- | 
+| [CustomSpanMetrics](#customspanmetrics对象说明) | 自定义绘制Span的尺寸信息。<br/>**说明：** <br/>最终的CustomSpan的高度是由当前Text组件的行高所决定的。当height不传值，则默认取Text组件的fontSize的值作为CustomSpan的高度；当height大于当前行的其他子组件的高度时，此时height即为Text组件的行高。 |
+
+### onDraw
+
+绘制自定义绘制Span。
+
+onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。 |
+| drawInfo | [CustomSpanDrawInfo](#customspandrawinfo对象说明) | 是   | 自定义绘制Span的绘制信息。 |
+
+## CustomSpanMeasureInfo对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| fontSize | number |  是  | 设置文本字体大小。<br/>单位：fp |
+
+## CustomSpanMetrics对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| width | number |  是  | 自定义绘制Span的宽。<br/>单位：vp |
+| height | number |  否  | 自定义绘制Span的高。<br/>单位：vp |
+
+## CustomSpanDrawInfo对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| x | number |  是  | 自定义绘制Span相对于挂载组件的偏移。<br/>单位：px |
+| lineTop | number |  是  | 自定义绘制Span相对于Text组件的上边距。<br/>单位：px |
+| lineBottom | number |  是  | 自定义绘制Span相对于Text组件的下边距。<br/>单位：px |
+| baseline | number |  是  | 自定义绘制Span的所在行的基线偏移量。<br/>单位：px |
+
+## ParagraphStyle
+
+文本段落样式对象说明。
+
+除首个段落外，后续段落按'\n'划分。
+
+每个段落的段落样式按首个占位设置的段落样式生效，未设置时，段落按被绑定组件的段落样式生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 类型              | 只读   | 必填   | 说明     |
+| ------------ |---------------------| ---- | ---- | ------ |
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  是  |  否  | 获取属性字符串文本段落在水平方向的对齐方式。 |
+| textIndent | number   | 是    | 否    | 获取属性字符串文本段落的首行文本缩进。 |
+| maxLines   | number   | 是    | 否    | 获取属性字符串文本段落的最大行数。 |
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   | 是    | 否    | 获取属性字符串文本段落超长时的显示方式。 |
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是    | 否    | 获取属性字符串文本段落的断行规则。 |
+| leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 否    | 获取属性字符串文本段落的缩进。 |
+
+### constructor
+
+constructor(value?: ParagraphStyleInterface)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| value | [ParagraphStyleInterface](#paragraphstyleinterface对象说明) | 否   | 段落样式设置项。 |
+
+## ParagraphStyleInterface对象说明
+
+| 参数名  | 类型                              | 必填 | 说明   |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| textAlign  | [TextAlign](ts-appendix-enums.md#textalign) |  否  | 设置文本段落在水平方向的对齐方式。 |
+| textIndent | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否    | 设置文本段落的首行文本缩进。 |
+| maxLines   | number   | 否    | 设置文本段落的最大行数。 |
+| overflow   | [TextOverflow](ts-appendix-enums.md#textoverflow)   |  否    | 设置文本段落超长时的显示方式。<br />需配合maxLines使用，单独设置不生效。不支持TextOverflow.MARQUEE。 |
+| wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。 |
+| leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。 |
 
 ## 示例
 
@@ -682,8 +899,10 @@ struct styled_string_demo1 {
                   }
                 }
               }
-              this.mutableStyledString2.setStyle(styles[0]);
-              this.controller3.setStyledString(this.mutableStyledString2);
+              if (styles[0] !== undefined) {
+                this.mutableStyledString2.setStyle(styles[0]);
+                this.controller3.setStyledString(this.mutableStyledString2);
+              }
               this.mutableStyledString1.removeStyles(2, 3);
               this.controller2.setStyledString(this.mutableStyledString1);
             })
@@ -1109,8 +1328,283 @@ struct styled_string_demo4 {
 
 ![](figures/styledstring_4.png)
 
+### 示例5
 
+属性字符串LineHeightStyle、ParagraphStyle使用示例
 
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+const canvasWidth = 1000
+const canvasHeight = 100
+class LeadingMarginCreator {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight)
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator()
+
+  public genSquareMark(fontSize: number): PixelMap {
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
+    this.clearCanvas()
+    const coordinate = fontSize * (1 - 1 / 1.5) / 2
+    const sideLength = fontSize / 1.5
+    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength)
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize)
+  }
+
+  private clearCanvas() {
+    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight)
+  }
+}
+@Entry
+@Component
+struct Index {
+  private leadingMarkCreatorInstance = LeadingMarginCreator.instance
+  leadingMarginPlaceholder1: LeadingMarginPlaceholder = {
+    pixelMap: this.leadingMarkCreatorInstance.genSquareMark(24),
+    size:[15, 15]
+  }
+  titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
+  //第一段落首行缩进15vp
+  paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+  //第二段落缩进15vp且首行有placeholder占位显示
+  paragraphStyleAttr2: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Start, leadingMargin:  this.leadingMarginPlaceholder1 });
+  //第三段落不设置缩进配置最大行数及超长显示方式
+  paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.End, maxLines: 1, wordBreak: WordBreak.BREAK_ALL, overflow: TextOverflow.Ellipsis});
+  //行高样式对象
+  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
+  //创建含段落样式的对象paragraphStyledString1
+  paragraphStyledString1: StyledString = new StyledString("段落标题\n正文第一段落开始0123456789正文第一段落结束\n正文第二段落开始hello world正文第二段落结束\n正文第三段落ABCDEFGHIJKLMNOPQRSTUVWXYZ。", [
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.titleParagraphStyleAttr
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: new LineHeightStyle(new LengthMetrics(50))
+    },{
+    start: 0,
+    length: 4,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontSize: LengthMetrics.vp(24), fontWeight: FontWeight.Bolder })
+  },
+    {
+      start: 5,
+      length: 3,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr1
+    },
+    {
+      start: 5,
+      length: 20,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    },
+    {
+      start: 32,
+      length: 5,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr2
+    },
+    {
+      start: 32,
+      length: 20,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    },
+    {
+      start: 60,
+      length: 5,
+      styledKey: StyledStringKey.PARAGRAPH_STYLE,
+      styledValue: this.paragraphStyleAttr3
+    },
+    {
+      start: 60,
+      length: 5,
+      styledKey: StyledStringKey.LINE_HEIGHT,
+      styledValue: this.lineHeightStyle1
+    }
+  ]);
+  controller: TextController = new TextController();
+  async onPageShow() {
+    this.controller.setStyledString(this.paragraphStyledString1)
+  }
+
+  build() {
+    Row() {
+      Column( { space : 5 }) {
+        Text(undefined, { controller: this.controller })
+          .width(240)
+          .borderWidth(1)
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+
+        //查询段落样式
+        Text()
+          .onClick(() => {
+            let styles = this.paragraphStyledString1.getStyles(0, this.paragraphStyledString1.length)
+            if (styles.length !== 0) {
+              for (let i = 0; i < styles.length; i++) {
+                console.info('paragraphStyledString1 style object start:' + styles[i].start)
+                console.info('paragraphStyledString1 style object length:' + styles[i].length)
+                console.info('paragraphStyledString1 style object key:' + styles[i].styledKey)
+                if (styles[i].styledKey === 200) {
+                  let paraAttr = styles[i].styledValue as ParagraphStyle;
+                  console.info('paragraphStyledString1 textAlign:' + paraAttr.textAlign)
+                  console.info('paragraphStyledString1 textIndent:' + paraAttr.textIndent)
+                  console.info('paragraphStyledString1 maxLines:' + paraAttr.maxLines)
+                  console.info('paragraphStyledString1 wordBreak:' + paraAttr.wordBreak)
+                  console.info('paragraphStyledString1 leadingMargin:' + paraAttr.leadingMargin)
+                  console.info('paragraphStyledString1 overflow:' + paraAttr.overflow)
+                }
+              }
+            }
+          })
+          .margin({ top: 10 })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledstring_5.png)
+
+### 示例6
+
+属性字符串自定义绘制Span使用示例
+
+```ts
+// xxx.ets
+import drawing from '@ohos.graphics.drawing';
+import image from '@ohos.multimedia.image'
+import { LengthMetrics } from '@ohos.arkui.node';
+
+class MyCustomSpan extends CustomSpan {
+  constructor(word: string, width: number, height: number) {
+    super();
+    this.word = word;
+    this.width = width;
+    this.height = height;
+  }
+
+  onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
+    return { width: this.width, height: this.height };
+  }
+
+  onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
+    let canvas = context.canvas;
+
+    const brush = new drawing.Brush();
+    brush.setColor({ alpha: 255, red: 0, green: 74, blue: 175 });
+    const font = new drawing.Font();
+    font.setSize(25);
+    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.attachBrush(brush);
+    canvas.drawRect({
+      left: options.x + 10,
+      right: options.x + vp2px(this.width) - 10,
+      top: options.lineTop + 10,
+      bottom: options.lineBottom - 10
+    });
+
+    brush.setColor({ alpha: 255, red: 23, green: 169, blue: 141 });
+    canvas.attachBrush(brush);
+    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
+    canvas.detachBrush();
+  }
+
+  setWord(word: string) {
+    this.word = word;
+  }
+
+  width: number = 160;
+  word: string = "drawing";
+  height: number = 10;
+}
+
+@Entry
+@Component
+struct styled_string_demo6 {
+  customSpan2: MyCustomSpan = new MyCustomSpan("change", 130, 10);
+  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 80, 10);
+  customSpan3: MyCustomSpan = new MyCustomSpan("World", 80, 40);
+  style2: MutableStyledString = new MutableStyledString(this.customSpan2);
+  style1: MutableStyledString = new MutableStyledString(this.customSpan1);
+  textStyle: MutableStyledString = new MutableStyledString("123");
+  textController: TextController = new TextController();
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  isPageShow: boolean = true;
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    });
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+      desiredSize: { width: 50, height: 50 }
+    });
+    await imageSource.release();
+    return createPixelMap;
+  }
+
+  async onPageShow() {
+    if (!this.isPageShow) {
+      return
+    }
+    this.isPageShow = false;
+
+    this.style1.appendStyledString(new MutableStyledString("文本绘制 示例代码 CustomSpan", [
+      {
+        start: 0,
+        length: 5,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontColor: Color.Pink })
+      }, {
+      start: 5,
+      length: 5,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Orange, fontStyle: FontStyle.Italic })
+    }, {
+      start: 10,
+      length: 500,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Green, fontWeight: FontWeight.Bold })
+    }
+    ]))
+    this.style1.appendStyledString(new StyledString(this.customSpan3))
+    this.style1.appendStyledString(new StyledString("自定义绘制", [{
+      start: 0,
+      length: 5,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Green, fontSize: LengthMetrics.px(50) })
+    }]))
+    this.textController.setStyledString(this.style1)
+    this.imagePixelMap = await this.getPixmapFromMedia($r('sys.media.ohos_ic_public_voice')).then()
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(undefined, { controller: this.textController })
+          .copyOption(CopyOptions.InApp)
+          .fontSize(30)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledstring_6.PNG)
 
 
 

@@ -23,3 +23,4 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | permission | string               | No  | Permission.   |
 | extraInfo  | {[key: string]: any} | No  | Extra information.   |
 | extraInfos<sup>11+<sup>  | Record\<string, Object> | No  | Extra information. You are advised to use this attribute to replace **extraInfo**. When this attribute is set, **extraInfo** does not take effect.   |
+| startOptions<sup>12+<sup>|[StartOptions](js-apis-app-ability-startOptions.md)         | No | Start options when the wantAgent of the ability is triggered.|

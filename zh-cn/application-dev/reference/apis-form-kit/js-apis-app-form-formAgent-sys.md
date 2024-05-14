@@ -10,7 +10,7 @@ FormAgent模块提供了卡片代理相关接口的能力，目前仅包括请�
 ## 导入模块
 
 ```ts
-import formAgent from '@ohos.app.form.formAgent';
+import { formAgent } from '@kit.FormKit';
 ```
 
 ## requestPublishForm
@@ -39,14 +39,16 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+| 16501008 | Waiting for the form addition to the desktop timeout. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
+import { formAgent } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   bundleName: 'com.ohos.exampledemo',
@@ -58,7 +60,7 @@ let want: Want = {
   }
 };
 try {
-  formAgent.requestPublishForm(want, (error: Base.BusinessError, data: string) => {
+  formAgent.requestPublishForm(want, (error: BusinessError, data: string) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -66,7 +68,7 @@ try {
     console.log(`formAgent requestPublishForm, form ID is: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -101,14 +103,16 @@ requestPublishForm(want: Want): Promise&lt;string&gt;
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+| 16501008 | Waiting for the form addition to the desktop timeout. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
+import { formAgent } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   bundleName: 'com.ohos.exampledemo',
@@ -122,10 +126,10 @@ let want: Want = {
 try {
   formAgent.requestPublishForm(want).then((data: string) => {
     console.log(`formAgent requestPublishForm success, form ID is : ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```

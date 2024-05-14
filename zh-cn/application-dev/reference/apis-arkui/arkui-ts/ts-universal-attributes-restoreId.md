@@ -12,6 +12,8 @@ restoreId(value: number)
 
 标记支持分布式迁移的组件Id，用于两端设备组件的配对。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**

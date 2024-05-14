@@ -652,7 +652,7 @@ function secureElementDemo() {
 
 openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础hannel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 

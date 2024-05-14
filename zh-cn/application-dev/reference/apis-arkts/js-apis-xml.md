@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import xml from '@ohos.xml';
+import { xml } from '@kit.ArkTS';
 ```
 
 ## XmlSerializer
@@ -22,6 +22,8 @@ XmlSerializer接口用于生成XML文件。
 constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 XmlSerializer的构造函数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -53,6 +55,8 @@ console.log(view1) // <?xml version="1.0" encoding="utf-8"?>
 setAttributes(name: string, value: string): void
 
 写入元素的属性和属性值。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -88,6 +92,8 @@ addEmptyElement(name: string): void
 
 写入一个空元素。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -119,6 +125,8 @@ setDeclaration(): void
 
 编写带有编码的文件声明。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -148,6 +156,8 @@ console.log(view1)
 startElement(name: string): void
 
 根据给定名称写入元素开始标记。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -182,6 +192,8 @@ endElement(): void
 
 写入元素结束标记。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -209,6 +221,8 @@ console.log(JSON.stringify(view1)) // <?xml version="1.0" encoding="utf-8"?>\r\n
 setNamespace(prefix: string, namespace: string): void
 
 写入当前元素标记的命名空间。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -244,6 +258,8 @@ setComment(text: string): void
 
 写入注释内容。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -275,6 +291,8 @@ setCDATA(text: string): void
 
 写入CDATA数据。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -305,6 +323,8 @@ console.log(view1) // <![CDATA[root SYSTEM]]>
 setText(text: string): void
 
 写入标签值。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -339,6 +359,8 @@ console.log(view1) // <note importance="high">Happy1</note>
 setDocType(text: string): void
 
 写入文档类型。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -375,6 +397,8 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 构造并返回一个XmlPullParser对象。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -387,7 +411,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -430,6 +454,8 @@ parse(option: ParseOptions): void
 
 该接口用于解析xml。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -441,7 +467,7 @@ parse(option: ParseOptions): void
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -473,6 +499,8 @@ console.log(str);
 
 xml解析选项。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
 
@@ -495,6 +523,8 @@ getColumnNumber(): number
 
 获取当前列号，从1开始。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -506,7 +536,7 @@ getColumnNumber(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -536,6 +566,8 @@ getDepth(): number
 
 获取元素的当前深度。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -547,7 +579,7 @@ getDepth(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -580,6 +612,8 @@ getLineNumber(): number
 
 获取当前行号，从1开始。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -591,7 +625,7 @@ getLineNumber(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -621,6 +655,8 @@ getName(): string
 
 获取当前元素名称。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -632,7 +668,7 @@ getName(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -661,6 +697,8 @@ getNamespace(): string
 
 获取当前元素的命名空间。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -672,7 +710,7 @@ getNamespace(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -701,6 +739,8 @@ getPrefix(): string
 
 获取当前元素前缀。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -712,7 +752,7 @@ getPrefix(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -742,6 +782,8 @@ getText(): string
 
 获取当前事件的文本内容。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -753,7 +795,7 @@ getText(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -782,6 +824,8 @@ isEmptyElementTag(): boolean
 
 判断当前元素是否为空元素。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -793,7 +837,7 @@ isEmptyElementTag(): boolean
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -822,6 +866,8 @@ isWhitespace(): boolean
 
 判断当前文本事件是否仅包含空格字符。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -833,7 +879,7 @@ isWhitespace(): boolean
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -862,6 +908,8 @@ getAttributeCount(): number
 
 获取当前开始标记的属性数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -872,7 +920,7 @@ getAttributeCount(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -899,6 +947,8 @@ console.log(str);
 ## EventType
 
 事件类型枚举。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 

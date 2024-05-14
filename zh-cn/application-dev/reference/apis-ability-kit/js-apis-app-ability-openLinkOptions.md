@@ -53,28 +53,28 @@ import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
             .margin({ bottom: '12vp' })
             .onClick(() => {
               let context = getContext(this) as common.UIAbilityContext;
-              let link: string = "https://www.example.com"
+              let link: string = 'https://www.example.com';
               let openLinkOptions: OpenLinkOptions = {
                 appLinkingOnly: true,
-                parameters: {demo_key: "demo_value"}
+                parameters: { demo_key: 'demo_value' }
               };
               try {
                 context.openLink(
                   link,
                   openLinkOptions,
                   (err, result) => {
-                    hilog.error(DOMAIN, TAG, 'openLink callback error.code:' + JSON.stringify(err));
-                    hilog.info(DOMAIN, TAG, 'openLink callback result:' + JSON.stringify(result.resultCode));
-                    hilog.info(DOMAIN, TAG, 'openLink callback result data:' + JSON.stringify(result.want));
+                    hilog.error(DOMAIN, TAG, `openLink callback error.code: ${JSON.stringify(err)}`);
+                    hilog.info(DOMAIN, TAG, `openLink callback result: ${JSON.stringify(result.resultCode)}`);
+                    hilog.info(DOMAIN, TAG, `openLink callback result data: ${JSON.stringify(result.want)}`);
                   }
-                ).then(()=>{
-                  hilog.info(DOMAIN, TAG, 'open link success.');
-                }).catch((err: BusinessError)=>{
-                  hilog.error(DOMAIN, TAG, 'open link failed, errCode ' + JSON.stringify(err.code));
-                })
+                ).then(() => {
+                  hilog.info(DOMAIN, TAG, `open link success.`);
+                }).catch((err: BusinessError) => {
+                  hilog.error(DOMAIN, TAG, `open link failed, errCode: ${JSON.stringify(err.code)}`);
+                });
               }
               catch (e) {
-                hilog.error(DOMAIN, TAG, 'open link failed, errCode ' + JSON.stringify(e.code));
+                hilog.error(DOMAIN, TAG, `open link failed, errCode: ${JSON.stringify(e.code)}`);
               }
             })
         }

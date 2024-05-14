@@ -514,7 +514,7 @@ console.trace("Show the trace");
 
 static traceHybridStack(): void
 
-Prints information about the current hybrid stack.
+Prints information about the current hybrid stack of the calling thread in the main thread or worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -523,5 +523,5 @@ Prints information about the current hybrid stack.
 ```ts
 console.traceHybridStack();
 // TraceHybridStack:
-//     xxxxxxxxxxxxx (information about the current hybrid stack)
+// xxxxxxxxxxxxx (information about the current hybrid stack of the calling thread)
 ```

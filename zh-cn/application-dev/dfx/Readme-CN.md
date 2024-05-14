@@ -33,6 +33,8 @@
   - [使用HiTraceMeter跟踪性能（C/C++）](hitracemeter-guidelines-ndk.md)
   - [查看HiTraceMeter日志](hitracemeter-view.md)
 - [HiTraceChain使用指导](hitracechain-guidelines.md)
+- HiChecker使用指导
+  - [使用HiChecker检测问题（ArkTS/JS）](hichecker-guidelines-arkts.md)
 - 错误管理
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)

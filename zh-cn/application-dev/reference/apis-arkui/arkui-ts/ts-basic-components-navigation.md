@@ -29,6 +29,8 @@ Navigation(pathInfos: NavPathStack)
 
 绑定路由栈到Navigation组件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名       | 参数类型                            | 必填   | 参数描述   |
@@ -44,6 +46,8 @@ Navigation(pathInfos: NavPathStack)
 title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCustomTitle, options?: NavigationTitleOptions)
 
 设置页面标题。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,6 +80,8 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
 设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -89,6 +95,8 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 titleMode(value: NavigationTitleMode)
 
 设置页面标题栏显示模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,6 +130,8 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -137,6 +147,8 @@ hideToolBar(value: boolean)
 
 设置是否隐藏工具栏。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -150,6 +162,8 @@ hideToolBar(value: boolean)
 hideTitleBar(value: boolean)
 
 设置是否隐藏标题栏。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -165,6 +179,8 @@ hideBackButton(value: boolean)
 
 设置是否隐藏标题栏中的返回键。返回键仅针对[titleMode](#titlemode)为NavigationTitleMode.Mini时才生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -179,19 +195,23 @@ navBarWidth(value: Length)
 
 设置导航栏宽度。仅在Navigation组件分栏时生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                         | 必填 | 说明                                      |
 | ------ | ---------------------------- | ---- | ----------------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>undefined：行为不做处理，导航栏宽度与默认值保持一致。 |
 
 ### navBarPosition<sup>9+</sup>
 
 navBarPosition(value: NavBarPosition)
 
 设置导航栏位置。仅在Navigation组件分栏时生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -207,6 +227,8 @@ mode(value: NavigationMode)
 
 设置导航栏的显示模式。支持Stack、Split与Auto模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -220,6 +242,8 @@ mode(value: NavigationMode)
 backButtonIcon(value: string | PixelMap | Resource)
 
 设置标题栏中返回键图标。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -237,6 +261,8 @@ hideNavBar(value: boolean)
 
 从API Version 9开始到API Version 10仅在双栏模式下生效。从API Version 11开始在单栏、双栏与自适应模式均生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -250,6 +276,8 @@ hideNavBar(value: boolean)
 navDestination(builder: (name: string, param: unknown) => void)
 
 创建NavDestination组件。使用builder函数，基于name和param构造NavDestination组件。builder下只能有一个根节点。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -267,6 +295,8 @@ navBarWidthRange(value: [Dimension, Dimension])
 
 **规则：** 优先级规则详见说明。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -283,13 +313,15 @@ minContentWidth(value: Dimension)
 
 **规则：** 优先级规则详见说明。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名  | 类型                                 | 必填 | 说明                                                         |
 | ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>undefined：行为不做处理，导航栏内容区最小宽度与默认值保持一致。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
 
 >  **说明：**
 >
@@ -307,6 +339,8 @@ onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void)
 
 当[titleMode](#titlemode)为NavigationTitleMode.Free时，随着可滚动组件的滑动标题栏模式发生变化时触发此回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -320,6 +354,8 @@ onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void)
 onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) 
 
 导航栏显示状态切换时触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -335,6 +371,8 @@ onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void)
 
 当Navigation首次显示或者单双栏状态发生变化时触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -348,6 +386,8 @@ onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void)
 customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => NavigationAnimatedTransition | undefined)
 
 自定义转场动画回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -375,6 +415,8 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 
 将info指定的NavDestination页面信息入栈。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -387,6 +429,8 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -401,6 +445,8 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，添加onPop回调接收入栈页面出栈时的返回结果，并进行处理。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -417,6 +463,8 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -432,20 +480,22 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
 pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&lt;void&gt;
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -463,20 +513,22 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
 pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -495,20 +547,22 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### replacePath<sup>11+</sup>
 
 replacePath(info: NavPathInfo, animated?: boolean): void
 
 将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -523,6 +577,8 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 
 将当前页面栈栈顶退出，将name指定的页面入栈。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -536,6 +592,8 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 removeByIndexes(indexes: Array<number\>): number
 
 将页面栈内索引值在indexes中的NavDestination页面删除。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -555,6 +613,8 @@ removeByName(name: string): number
 
 将页面栈内指定name的NavDestination页面删除。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -572,6 +632,8 @@ removeByName(name: string): number
 pop(animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -591,6 +653,8 @@ pop(animated?: boolean): NavPathInfo | undefined
 pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素，并触发onPop回调传入页面处理结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -612,6 +676,8 @@ popToName(name: string, animated?: boolean): number
 
 回退路由栈到由栈底开始第一个名为name的NavDestination页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型     | 必填   | 描述                  |
@@ -630,6 +696,8 @@ popToName(name: string, animated?: boolean): number
 popToName(name: string, result: Object, animated?: boolean): number
 
 回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -651,6 +719,8 @@ popToIndex(index: number, animated?: boolean): void
 
 回退路由栈到index指定的NavDestination页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -663,6 +733,8 @@ popToIndex(index: number, animated?: boolean): void
 popToIndex(index: number, result: Object, animated?: boolean): void
 
 回退路由栈到index指定的NavDestination页面，并触发onPop回调传入页面处理结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -677,6 +749,8 @@ popToIndex(index: number, result: Object, animated?: boolean): void
 moveToTop(name: string, animated?: boolean): number
 
 将由栈底开始第一个名为name的NavDestination页面移到栈顶。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -697,6 +771,8 @@ moveIndexToTop(index: number, animated?: boolean): void
 
 将index指定的NavDestination页面移到栈顶。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -710,6 +786,8 @@ clear(animated?: boolean): void
 
 清除栈中所有页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -722,6 +800,8 @@ getAllPathName(): Array<string\>
 
 获取栈中所有NavDestination页面的名称。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型             | 说明                         |
@@ -733,6 +813,8 @@ getAllPathName(): Array<string\>
 getParamByIndex(index: number): unknown | undefined
 
 获取index指定的NavDestination页面的参数信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -753,6 +835,8 @@ getParamByName(name: string): Array<unknown\>
 
 获取全部名为name的NavDestination页面的参数信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型     | 必填   | 描述                  |
@@ -770,6 +854,8 @@ getParamByName(name: string): Array<unknown\>
 getIndexByName(name: string): Array<number\>
 
 获取全部名为name的NavDestination页面的位置索引。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -789,6 +875,8 @@ size(): number
 
 获取栈大小。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型     | 说明     |
@@ -801,6 +889,8 @@ disableAnimation(value: boolean): void
 
 关闭（true）或打开（false）当前Navigation中所有转场动画。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -812,6 +902,8 @@ disableAnimation(value: boolean): void
 getParent(): NavPathStack | null
 
 获取父NavPathStack。<br/>当出现Navigation嵌套Navigation的情况时（可以是直接嵌套，也可以是间接嵌套），内部Navigation的NavPathStack能够获取到外层Navigation的NavPathStack。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -839,6 +931,8 @@ setInterception(interception: NavigationInterception): void
 
 constructor(name: string, param: unknown)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -851,6 +945,8 @@ constructor(name: string, param: unknown)
 
 下一个页面返回的回调信息载体。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -861,6 +957,8 @@ constructor(name: string, param: unknown)
 ## NavContentInfo<sup>11+</sup>
 
 跳转Destination信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -874,6 +972,8 @@ constructor(name: string, param: unknown)
 
 自定义转场动画协议，开发者需实现该协议来定义Navigation路由跳转的跳转动画。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|------|
@@ -884,6 +984,8 @@ constructor(name: string, param: unknown)
 ## NavigationTransitionProxy <sup>11+</sup>
 
 自定义转场动画代理对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -896,24 +998,26 @@ constructor(name: string, param: unknown)
 
 结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## NavigationInterception<sup>12+</sup>
 
 Navigation跳转拦截对象。
 
 | 名称    | 类型     | 必填 | 描述    |
 | ---- | ----- | ----- | ----   |
-| willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
-| didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为NavBar，则表示跳转目标页为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 | 否 | 发生页面跳转后回调。|
+| willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
+| didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为NavBar，则表示跳转目标页为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 | 否 | 发生页面跳转后回调。|
 | modeChange | (mode: [NavigationMode](#navigationmode9枚举说明)) =&gt;void | 否 | Navigation单双栏显示状态发生变更时触发该回调。|
 
 ## NavigationMenuItem类型说明
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  |
-| icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 |
+| value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。 |
-| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
+| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ## object类型说明
 
@@ -925,6 +1029,8 @@ Navigation跳转拦截对象。
 
 ## ToolbarItem<sup>10+</sup>类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                                       | 必填   | 描述                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value      | ResourceStr                              | 是    | 工具栏单个选项的显示文本。                            |
@@ -935,6 +1041,8 @@ Navigation跳转拦截对象。
 
 ## ToolbarItemStatus<sup>10+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称       | 描述                                       |
 | -------- | ---------------------------------------- |
 | NORMAL   | 设置工具栏单个选项为NORMAL态，该选项显示默认样式，可以触发Hover，Press，Focus事件并显示对应的多态样式。 |
@@ -942,6 +1050,8 @@ Navigation跳转拦截对象。
 | ACTIVE   | 设置工具栏单个选项为ACTIVE态， 该选项通过点击事件可以将icon图标更新为activeIcon对应的图片资源。 |
 
 ## NavigationTitleMode枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
@@ -951,12 +1061,16 @@ Navigation跳转拦截对象。
 
 ## NavigationCommonTitle<sup>9+</sup>类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型     | 必填   | 描述     |
 | ---- | ------ | ---- | ------ |
 | main | string | 是    | 设置主标题。 |
 | sub  | string | 是    | 设置副标题。 |
 
 ## NavigationCustomTitle<sup>9+</sup>类型说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 类型                                       | 必填   | 描述       |
 | ------- | ---------------------------------------- | ---- | -------- |
@@ -965,12 +1079,16 @@ Navigation跳转拦截对象。
 
 ## NavBarPosition<sup>9+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称    | 描述               |
 | ----- | ---------------- |
 | Start | 双栏显示时，主列在主轴方向首部。 |
 | End   | 双栏显示时，主列在主轴方向尾部。 |
 
 ## NavigationMode<sup>9+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
@@ -980,12 +1098,17 @@ Navigation跳转拦截对象。
 
 ## TitleHeight<sup>9+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 描述                         |
 | ----------- | -------------------------- |
 | MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
 | MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
 
 ## NavigationOperation<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称    | 描述  |
 |---------|------|
 |PUSH | 本次转场为页面进场。|
@@ -994,12 +1117,16 @@ Navigation跳转拦截对象。
 
 ## NavigationTitleOptions<sup>11+</sup>类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 类型            | 必填   | 描述              |
 | ------ | ------------- | ---- | --------------- |
@@ -1908,73 +2035,146 @@ export struct PageTwo {
 ### 示例5
 
 ```ts
-// 该示例主要演示设置Navigation的标题栏和工具栏的背景颜色和背景模糊效果。
-@Entry
-@Component
-struct NavigationExample {
-  @State pathStack: NavPathStack = new NavPathStack();
-  @State switchColor: boolean = false;
-  @State switchBlur: boolean = false;
+// 该示例主要演示设置Navigation主页的标题栏、工具栏和
+// NavDestination页面的标题栏的背景颜色和背景模糊效果。
+let COLOR1: string = "#80004AAF";
+let COLOR2: string = "#802787D9";
+let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
+let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
 
-  @Builder
-  BackgroundBuilder() {
+@Component
+struct BackComponent {
+  build() {
     Row() {
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Red)
+      .backgroundColor("#3D9DB4")
+      .layoutWeight(9)
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Green)
+      .backgroundColor("17A98D")
+      .layoutWeight(9)
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Blue)
+      .backgroundColor("FFC000")
+      .layoutWeight(9)
     }
     .height('100%')
+    .width('100%')
   }
+}
+
+@Component
+struct ColorAndBlur {
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
 
   build() {
-    Navigation(this.pathStack) {
-      Column() {
-        Button('switch color', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            console.log(`testTag switchColor`)
-            this.switchColor = !this.switchColor;
-          })
-        Button('switch blur', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            console.log(`testTag switchBlur`)
-            this.switchBlur = !this.switchBlur;
-          })
-      }
-      .width('100%')
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('100%')
+      }.width('100%')
       .height('100%')
     }
-    // 使用定制化的背景能够凸显背景模糊的效果
-    .background(this.BackgroundBuilder)
     .width('100%')
     .height('100%')
     // 开发者可以设置标题栏的背景颜色和背景模糊效果
+    .title("switch titlebar color and blur", {
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK
+    })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
+
+  @Builder
+  PageBuilder(name: string) {
+    ColorAndBlur()
+  }
+
+  build() {
+    Navigation(this.stack) {
+      Stack({alignContent: Alignment.Center}) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("push page")
+              .onClick(() => {
+                this.stack.pushPath({name: "page"})
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('80%')
+      }.width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .navDestination(this.PageBuilder)
+    // 开发者可以设置标题栏的背景颜色和背景模糊效果
     .title("NavTitle", {
-      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
-      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK
     })
     // 开发者可以设置工具栏的背景颜色和背景模糊效果
     .toolbarConfiguration([
-      {value: 'a'},
-      {value: 'b'},
-      {value: 'c'},
+      {value: "a"},
+      {value: "b"},
+      {value: "c"}
     ], {
-      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
-      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2
     })
   }
 }

@@ -31,8 +31,8 @@ Component3D组件配置选项。
 
 | 名称        | 类型                               | 必填   | 说明                                       |
 | --------- | -------------------------------- | ---- | ---------------------------------------- |
-| scene     | [Resource](ts-types.md#resource) | 否    | 3D模型资源文件。<br/>**说明：** <br/>目前仅支持GLTF格式资源。 |
-| modelType | [ModelType](#modeltype枚举说明)      | 否    | 3D场景显示合成方式。<br/>默认值：ModelType.SURFACE<br/>**说明：** <br/>设置为ModelType.TEXTURE时通过GPU合成显示。<br/>设置为ModelType.SURFACE时通过专有硬件合成显示。<br/>一般开发者可以使用默认值而无需关心此项设置。 |
+| scene     | [Resource](ts-types.md#resource)\|[Scene](../../apis-arkgraphics3d/js-apis-inner-scene.md#scene-1)<sup>12+</sup> | 否    | 3D模型资源文件或场景对象，默认值为undefined。<br/>**说明：** <br/>目前仅支持GLTF格式资源。 |
+| modelType | [ModelType](#modeltype枚举说明) | 否    | 3D场景显示合成方式。<br/>默认值：ModelType.SURFACE<br/>**说明：** <br/>设置为ModelType.TEXTURE时通过GPU合成显示。<br/>设置为ModelType.SURFACE时通过专有硬件合成显示。<br/>一般开发者可以使用默认值而无需关心此项设置。 |
 
 ## ModelType枚举说明
 

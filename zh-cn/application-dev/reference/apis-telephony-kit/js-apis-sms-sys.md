@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import sms from '@ohos.telephony.sms';
+import { sms } from '@kit.TelephonyKit';
 ```
 
 
@@ -54,12 +54,11 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 FA模型示例：
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common, featureAbility } from '@kit.AbilityKit';
 
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
 let context: common.BaseContext = featureAbility.getContext();
 
 // 彩信pdu存储路径，pdu来源于编码接口
@@ -90,10 +89,10 @@ sms.sendMms(context, mmsPars, async(err: BusinessError) =>{
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -170,11 +169,11 @@ sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 FA模型示例：
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common, featureAbility } from '@kit.AbilityKit';
+
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
 let context: common.BaseContext = featureAbility.getContext();
 
 // 彩信pdu存储路径，pdu来源于编码接口
@@ -204,10 +203,10 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -278,11 +277,11 @@ downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;
 FA模型示例：
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common, featureAbility } from '@kit.AbilityKit';
+
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
 let context: common.BaseContext = featureAbility.getContext();
 
 // 彩信pdu存储路径
@@ -316,10 +315,10 @@ sms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import mms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // 彩信pdu存储路径
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -329,13 +328,13 @@ let filePath  = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl  = 'URL';
 
 // 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf: mms.MmsConfig = {
+let mmsConf: sms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // 下载彩信参数
-let mmsPars: mms.MmsParams = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -399,11 +398,11 @@ downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 FA模型示例：
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common, featureAbility } from '@kit.AbilityKit';
+
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
 let context: common.BaseContext = featureAbility.getContext();
 
 // 彩信pdu存储路径
@@ -436,10 +435,10 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // 彩信pdu存储路径
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -512,8 +511,8 @@ setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.setDefaultSmsSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}.`);
@@ -563,8 +562,8 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.setDefaultSmsSlotId(0).then(() => {
     console.log(`setDefaultSmsSlotId success.`);
@@ -610,8 +609,8 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>\)
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let smscAddr: string = '+861xxxxxxxxxx';
@@ -663,8 +662,8 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let smscAddr: string = '+861xxxxxxxxxx';
@@ -712,8 +711,8 @@ getSmscAddr\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.getSmscAddr(slotId, (err: BusinessError, data: string) => {
@@ -763,8 +762,8 @@ getSmscAddr\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.getSmscAddr(slotId).then((data: string) => {
@@ -811,8 +810,8 @@ splitMessage\(content: string, callback: AsyncCallback\<Array\<string\>\>\): voi
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let content: string = "long message";
 sms.splitMessage(content, (err: BusinessError, data: string[]) => {
@@ -862,8 +861,8 @@ splitMessage\(content: string\): Promise\<Array\<string\>\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let content: string = "long message";
 let promise = sms.splitMessage(content);
@@ -910,8 +909,8 @@ addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): vo
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let simMessageOptions: sms.SimMessageOptions = {
     slotId: 0,
@@ -966,8 +965,8 @@ addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let simMessageOptions: sms.SimMessageOptions = {
     slotId: 0,
@@ -1019,8 +1018,8 @@ delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let msgIndex: number = 1;
@@ -1072,8 +1071,8 @@ delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let msgIndex: number = 1;
@@ -1121,8 +1120,8 @@ updateSimMessage\(options: UpdateSimMessageOptions, callback: AsyncCallback\<voi
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let updateSimMessageOptions: sms.UpdateSimMessageOptions = {
     slotId: 0,
@@ -1178,8 +1177,8 @@ updateSimMessage\(options: UpdateSimMessageOptions\): Promise\<void\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let updateSimMessageOptions: sms.UpdateSimMessageOptions = {
     slotId: 0,
@@ -1232,8 +1231,8 @@ getAllSimMessages\(slotId: number, callback: AsyncCallback\<Array\<SimShortMessa
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.getAllSimMessages(slotId, (err: BusinessError, data: sms.SimShortMessage[]) => {
@@ -1283,8 +1282,8 @@ getAllSimMessages\(slotId: number\): Promise\<Array\<SimShortMessage\>\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
@@ -1331,8 +1330,8 @@ setCBConfig\(options: CBConfigOptions, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let cbConfigOptions: sms.CBConfigOptions = {
     slotId: 0,
@@ -1388,8 +1387,8 @@ setCBConfig\(options: CBConfigOptions\): Promise\<void\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let cbConfigOptions: sms.CBConfigOptions = {
     slotId: 0,
@@ -1441,8 +1440,8 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean, callbac
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.getSmsSegmentsInfo(slotId, "message", false, (err: BusinessError, data: sms.SmsSegmentsInfo) => {
@@ -1491,8 +1490,8 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean\): Promi
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
@@ -1536,8 +1535,8 @@ isImsSmsSupported\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.isImsSmsSupported(slotId, (err: BusinessError, data: boolean) => {
@@ -1584,8 +1583,8 @@ isImsSmsSupported\(slotId: number\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let promise = sms.isImsSmsSupported(slotId);
@@ -1628,8 +1627,8 @@ getImsShortMessageFormat\(callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getImsShortMessageFormat((err: BusinessError, data: string) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1667,8 +1666,8 @@ getImsShortMessageFormat\(\): Promise\<string\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getImsShortMessageFormat().then((data: string) => {
     console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
@@ -1710,8 +1709,8 @@ decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<M
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mmsFilePathName: string = "filename";
 sms.decodeMms(mmsFilePathName, (err: BusinessError, data: sms.MmsInformation) => {
@@ -1763,8 +1762,8 @@ decodeMms\(mmsFilePathName: string | Array\<number\>\): Promise\<MmsInformation\
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mmsFilePathName: string = "filename";
 let promise = sms.decodeMms(mmsFilePathName);
@@ -1816,8 +1815,8 @@ encodeMms\(mms: MmsInformation, callback: AsyncCallback\<Array\<number\>\>\): vo
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mmsAcknowledgeInd: sms.MmsAcknowledgeInd = {
     transactionId: "100",
@@ -1872,8 +1871,8 @@ encodeMms\(mms: MmsInformation\): Promise\<Array\<number\>\>
 **示例：**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mmsAcknowledgeInd: sms.MmsAcknowledgeInd = {
     transactionId: "100",

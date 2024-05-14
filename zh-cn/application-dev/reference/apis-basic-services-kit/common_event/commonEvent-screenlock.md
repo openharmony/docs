@@ -4,6 +4,8 @@
 ## COMMON_EVENT_SCREEN_LOCKED
 表示屏幕锁定的公共事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 - 常量值： usual.event.SCREEN_LOCKED
 - 订阅方需要的权限： 无需权限
 
@@ -11,6 +13,8 @@
 
 ## COMMON_EVENT_SCREEN_UNLOCKED
 表示屏幕解锁的公共事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 - 常量值： usual.event.SCREEN_UNLOCKED
 - 订阅方需要的权限： 无需权限

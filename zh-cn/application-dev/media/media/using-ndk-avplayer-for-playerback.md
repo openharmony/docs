@@ -45,22 +45,24 @@ target_link_libraries(sample PUBLIC libavplayer.so)
 
 ```c
 #include "napi/native_api.h"
+
 #include <multimedia/player_framework/avplayer.h>
 #include <multimedia/player_framework/avplayer_base.h>
 #include <multimedia/player_framework/native_averrors.h>
+
+static char *Url;
+
 void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
 {
-    const char *url;
     int32_t ret;
     switch (type) {
         case AV_INFO_TYPE_STATE_CHANGE:
             switch (extra) {
                 case AV_IDLE: // 成功调用reset接口后触发该状态机上报
-                    url = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
-                    ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
-                    if (ret != AV_ERR_OK) {
-                    // 处理异常
-                    }
+//                    ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
+//                    if (ret != AV_ERR_OK) {
+//                    // 处理异常
+//                    }
                     break;
                 case AV_INITIALIZED: 
                     ret = OH_AVPlayer_Prepare(player); //设置播放源后触发该状态上报
@@ -75,18 +77,19 @@ void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
                     }
                     break;
                 case AV_PLAYING:  
-                    ret = OH_AVPlayer_Pause(player); //调用暂停接口暂停播放
-                    if (ret != AV_ERR_OK) {
-                    // 处理异常
-                    }
+//                    ret = OH_AVPlayer_Pause(player); //调用暂停接口暂停播放
+//                    if (ret != AV_ERR_OK) {
+//                    // 处理异常
+//                    }
                     break;
                 case AV_PAUSED:  
-                    ret = OH_AVPlayer_Play(player); // 再次播放接口开始播放
-                    if (ret != AV_ERR_OK) {
-                    // 处理异常
-                    }break;
+//                    ret = OH_AVPlayer_Play(player); // 再次播放接口开始播放
+//                    if (ret != AV_ERR_OK) {
+//                    // 处理异常
+//                    }
+//                    break;
                 case AV_STOPPED:  
-                    ret = OH_AVPlayer_Reset(player); //调用reset接口初始化avplayer状态
+                    ret = OH_AVPlayer_Release(player); //调用reset接口初始化avplayer状态
                     if (ret != AV_ERR_OK) {
                     // 处理异常
                     }
@@ -114,8 +117,52 @@ void OnError(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg)
     // do something
 }
 
-int main()
+// 调用播放方法时，需要在index.d.ts文件内描述映射的play方法，需要传入一个string类型的参数
+// ets文件调用播放方法时，传入文件路径 testNapi.play("/data/test/test.mp3")
+static napi_value Play(napi_env env, napi_callback_info info)
 {
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
+    // 获取参数类型
+    napi_valuetype stringType;
+    if (napi_ok != napi_typeof(env, args[0], &stringType)) {
+        // 处理异常
+        return nullptr;
+    }
+    
+    // 参数校验
+    if (napi_null == stringType) {
+        // 处理异常
+        return nullptr;
+    }
+    
+    // 获取传递的string长度
+    size_t length = 0;
+    if (napi_ok != napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
+        // 处理异常
+        return nullptr;
+    }
+    
+    // 如果传入的是""，则直接返回
+    if (length == 0) {
+        // 处理异常
+        return nullptr;
+    }
+    
+    // 读取传入的string放入buffer中
+    char *url = new char[length + 1];
+    if (napi_ok != napi_get_value_string_utf8(env, args[0], url, length + 1, &length)) {
+        delete[] url;
+        url = nullptr;
+        // 处理异常
+        return nullptr;
+    }
+
+    Url = url;
+    
     // 创建播放实例
     OH_AVPlayer *player = OH_AVPlayer_Create();
     AVPlayerCallback callback;
@@ -126,10 +173,38 @@ int main()
     if (ret != AV_ERR_OK) {
     // 处理异常
     }
-    const char *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
     ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
     if (ret != AV_ERR_OK) {
     // 处理异常
     }
+    napi_value value;
+    napi_create_int32(env, 0, &value);
+    return value;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        { "play", nullptr, Play, nullptr, nullptr, nullptr, napi_default, nullptr }
+    };
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version =1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void*)0),
+    .reserved = { 0 },
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
+    napi_module_register(&demoModule);
 }
 ```

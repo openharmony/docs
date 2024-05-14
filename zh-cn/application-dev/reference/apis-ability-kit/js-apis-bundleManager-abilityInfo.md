@@ -36,6 +36,7 @@ Ability信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-
 | supportWindowModes    | Array\<[SupportWindowMode](js-apis-bundleManager.md#supportwindowmode)> | 是   | 否   | Ability支持的窗口模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | windowSize|[WindowSize](#windowsize)                                            |    是   | 否   | Ability窗口尺寸。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | excludeFromDock<sup>12+</sup>             | boolean                                                  | 是   | 否   | 判断Ability是否可以在dock区域隐藏图标。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | 是   | 否   | Ability的Skills信息。        |
 
 ## WindowSize
 

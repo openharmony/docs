@@ -150,6 +150,21 @@ Indicates that this operation is canceled from widget's navigation button.
 **处理步骤**
 
 重新调用认证接口，发起认证。
+
+## 12500013 密码过期
+
+**错误信息**
+
+Indicates that current operation failed because of PIN expired.
+
+**可能原因**
+
+由于系统锁屏密码过期，认证操作执行失败。当用户发起口令、指纹或者人脸认证，但是系统锁屏密码过期时，将会返回12500013错误码。
+
+**处理步骤**
+
+用户前往设置更新系统锁屏密码，再次发起认证。
+
 ## 12700001 人脸录入过程中的操作失败
 
 **错误信息**

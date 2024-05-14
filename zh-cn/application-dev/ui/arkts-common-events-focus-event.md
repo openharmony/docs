@@ -214,8 +214,8 @@ focusable(value: boolean)
 | [CheckboxGroup](../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md) | 是       | true         | /        |
 | [DataPanel](../reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md) | 否       | false        | /        |
 | [DatePicker](../reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md) | 是       | true         | 线性走焦     |
-| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | 否       | false        | /        |
-| [Formcomponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | 否       | false        | /        |
+| [Divider](../reference/apis-arkui/arkui-ts/ts-basic-components-divider.md) | 否       | false        | /        |<!--Del-->
+| [Formcomponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) | 否       | false        | /        |<!--DelEnd-->
 | [Gauge](../reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md) | 否       | false        | /        |
 | [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md) | 是       | false        | /        |
 | [ImageAnimator](../reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md) | 是       | false        | /        |
@@ -227,13 +227,13 @@ focusable(value: boolean)
 | [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md) | 否       | false        | 组件自定义    |
 | [NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md) | 否       | false        | 跟随子容器    |
 | [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) | 否       | false        | 线性走焦     |
-| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | 否       | false        | /        |
-| [PluginComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | 否       | false        | /        |
+| [PatternLock](../reference/apis-arkui/arkui-ts/ts-basic-components-patternlock.md) | 否       | false        | /        |<!--Del-->
+| [PluginComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md) | 否       | false        | /        |<!--DelEnd-->
 | [Progress](../reference/apis-arkui/arkui-ts/ts-basic-components-progress.md) | 否       | false        | /        |
 | [QRCode](../reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md) | 否       | false        | /        |
 | [Radio](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md) | 是       | true         | /        |
-| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | 是       | true         | /        |
-| [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md) | 否       | false        | /        |
+| [Rating](../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md) | 是       | true         | /        |<!--Del-->
+| [RemoteWindow](../reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md) | 否       | false        | /        |<!--DelEnd-->
 | [RichText](../reference/apis-arkui/arkui-ts/ts-basic-components-richtext.md) | 否       | false        | /        |
 | [ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md) | 否       | false        | /        |
 | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | 是       | true         | /        |
@@ -256,8 +256,8 @@ focusable(value: boolean)
   **表2** 容器组件获焦能力
 
 | 容器组件                                     | 是否可获焦 | focusable默认值 | 走焦规则     |
-| ---------------------------------------- | ----- | ------------ | -------- |
-| [AbilityComponent](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) | 否     | false        | /        |
+| ---------------------------------------- | ----- | ------------ | -------- |<!--Del-->
+| [AbilityComponent](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) | 否     | false        | /        |<!--DelEnd-->
 | [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | 否     | false        | /        |
 | [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | 是     | true         | 线性走焦     |
 | [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | 是     | true         | /        |
