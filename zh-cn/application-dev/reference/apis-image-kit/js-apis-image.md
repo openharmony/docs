@@ -2571,7 +2571,9 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 ```ts
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-let imageSourceApi: image.ImageSource = image.createImageSource('test.png', sourceOptions);
+const context: Context = getContext(this);
+const path: string = context.filesDir + "/test.png";
+let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOptions);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -2935,13 +2937,13 @@ import image from "@ohos.multimedia.image";
 let filePath = "/test"
 let imageSource = image.createImageSource(filePath);
 let imageInfo = imageSource.getImageInfoSync(0);
-    if (imageInfo == undefined) {
-        console.error('getImageInfoSync failed.');
-    } else {
-        console.info('getImageInfoSync succeeded.');
-        console.info('imageInfo.size.height:' + imageInfo.size.height);
-        console.info('imageInfo.size.width:' + imageInfo.size.width);
-    }
+if (imageInfo == undefined) {
+    console.error('getImageInfoSync failed.');
+} else {
+    console.info('getImageInfoSync succeeded.');
+    console.info('imageInfo.size.height:' + imageInfo.size.height);
+    console.info('imageInfo.size.width:' + imageInfo.size.width);
+}
 ```
 
 ### getImageProperty<sup>11+</sup>

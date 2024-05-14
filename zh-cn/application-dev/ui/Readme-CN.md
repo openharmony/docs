@@ -14,6 +14,7 @@
       - [创建列表 (List)](arkts-layout-development-create-list.md)
       - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
+      - [选项卡 (Tabs)](arkts-navigation-tabs.md)
   - 添加组件
     - 添加常用组件
       - [按钮 (Button)](arkts-common-components-button.md)
@@ -25,17 +26,16 @@
       - [显示图片 (Image)](arkts-graphics-display.md)
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
+      - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
       - [自定义绘制 (XComponent)](arkts-common-components-xcomponent.md)
       - [Native XComponent](napi-xcomponent-guidelines.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
-    - 使用属性字符串
-      - [属性字符串（StyledString/MutableStyledString）](arkts-styled-string.md)
-  - 设置页面路由和组件导航
-    - 组件导航
-      - [Navigation](arkts-navigation-navigation.md)
-      - [Tabs](arkts-navigation-tabs.md)
+    - 使用文本
+      - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
+  - 设置组件导航和页面路由
+    - [组件导航 (Navigation)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)](arkts-routing.md)
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)

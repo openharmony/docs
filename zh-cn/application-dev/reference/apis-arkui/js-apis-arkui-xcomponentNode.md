@@ -136,7 +136,8 @@ struct Index {
 
 ![XComponentNodeSample](figures/xcomponent_node.jpg)
 
+<!--Del-->
 > **说明：**
 >
 > 示例中的Native层编译输出动态库参考自[OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
-
+<!--DelEnd-->

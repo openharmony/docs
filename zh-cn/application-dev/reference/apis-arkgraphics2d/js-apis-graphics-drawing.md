@@ -30,7 +30,7 @@ r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作�
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称        | 值   | 说明                                                         | 示意图   | 
+| 名称        | 值   | 说明                                                         | 示意图   |
 | ----------- | ---- | ------------------------------------------------------------ | -------- |
 | CLEAR       | 0    | 清除模式，r = 0。                                            | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
 | SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。） | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
@@ -81,6 +81,14 @@ moveTo(x: number, y: number) : void
 | x      | number | 是   | 起始点的x轴坐标，该参数为浮点数。 |
 | y      | number | 是   | 起始点的y轴坐标，该参数为浮点数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -103,6 +111,14 @@ lineTo(x: number, y: number) : void
 | ------ | ------ | ---- | ----------------------- |
 | x      | number | 是   | 目标点的x轴坐标，该参数为浮点数。 |
 | y      | number | 是   | 目标点的y轴坐标，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -132,6 +148,14 @@ arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg
 | startDeg | number | 是   | 起始角度，单位为度，该参数为浮点数。 |
 | sweepDeg | number | 是   | 扫描度数，单位为度，该参数为浮点数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -157,6 +181,14 @@ quadTo(ctrlX: number, ctrlY: number, endX: number, endY: number): void
 | ctrlY  | number | 是   | 控制点的y坐标，该参数为浮点数。 |
 | endX   | number | 是   | 目标点的x坐标，该参数为浮点数。 |
 | endY   | number | 是   | 目标点的y坐标，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -185,6 +217,14 @@ cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: nu
 | ctrlY2 | number | 是   | 第二个控制点的y坐标，该参数为浮点数。 |
 | endX   | number | 是   | 目标点的x坐标，该参数为浮点数。 |
 | endY   | number | 是   | 目标点的y坐标，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -249,6 +289,14 @@ Canvas对象的构造函数。
 | -------- | -------------------------------------------- | ---- | -------------- |
 | pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 构造函数入参。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -286,6 +334,14 @@ drawRect(rect: common2D.Rect): void
 | ------ | -------------------------------------------------- | ---- | -------------- |
 | rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 绘制的矩形区域 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -318,7 +374,15 @@ drawCircle(x: number, y: number, radius: number): void
 | ------ | ------ | ---- | ------------------- |
 | x      | number | 是   | 圆心的x坐标，该参数为浮点数。 |
 | y      | number | 是   | 圆心的y坐标，该参数为浮点数。 |
-| radius | number | 是   | 圆的半径，该参数为浮点数。 |
+| radius | number | 是   | 圆的半径，大于0的浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -355,6 +419,14 @@ drawImage(pixelmap: image.PixelMap, left: number, top: number, samplingOptions?:
 | top      | number                                       | 是   | 图片位置的左上角y轴坐标，该参数为浮点数。 |
 | samplingOptions<sup>12+</sup>  | [SamplingOptions](#samplingoptions12)  | 否  | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -386,8 +458,16 @@ drawColor(color: common2D.Color, blendMode?: BlendMode): void
 
 | 参数名    | 类型                                                 | 必填 | 说明                             |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | 颜色值，整数。                   |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。                   |
 | blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -428,6 +508,14 @@ drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number
 | colors      | Array\<number> | 是   | 颜色数组，在每个顶点指定一种颜色，整数数组，可为null，大小必须为(meshWidth+1) * (meshHeight+1) + colorOffset。 |
 | colorOffset | number         | 是   | 绘制前要跳过的颜色元素数，大于等于0的整数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -465,6 +553,14 @@ drawPoint(x: number, y: number): void
 | x      | number | 是   | 点的x轴坐标，该参数为浮点数。 |
 | y      | number | 是   | 点的y轴坐标，该参数为浮点数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -496,6 +592,14 @@ drawPath(path: Path): void
 | 参数名 | 类型          | 必填 | 说明               |
 | ------ | ------------- | ---- | ------------------ |
 | path   | [Path](#path) | 是   | 要绘制的路径对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -536,6 +640,14 @@ drawLine(x0: number, y0: number, x1: number, y1: number): void
 | x1     | number | 是   | 线段终点的X坐标，该参数为浮点数。 |
 | y1     | number | 是   | 线段终点的Y坐标，该参数为浮点数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -571,6 +683,14 @@ drawTextBlob(blob: TextBlob, x: number, y: number): void
 | y      | number                | 是   | 所绘制出的文字基线（下图蓝线）的左端点（下图红点）的纵坐标，该参数为浮点数。 |
 
 ![zh-ch_image_Text_Blob.png](figures/zh-ch_image_Text_Blob.png)
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -610,6 +730,14 @@ attachPen(pen: Pen): void
 | ------ | ----------- | ---- | ---------- |
 | pen    | [Pen](#pen) | 是   | 画笔对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -645,6 +773,14 @@ attachBrush(brush: Brush): void
 | 参数名 | 类型            | 必填 | 说明       |
 | ------ | --------------- | ---- | ---------- |
 | brush  | [Brush](#brush) | 是   | 画刷对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -730,6 +866,14 @@ clipPath(path: Path, clipOp?: ClipOp, doAntiAlias?: boolean): void
 | clipOp       | [ClipOp](#clipop12) | 否   | 裁剪方式。默认为INTERSECT。                                     |
 | doAntiAlias  | boolean           | 否   | 表示是否使能抗锯齿绘制。true表示使能，false表示不使能。默认为false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -767,6 +911,14 @@ clipRect(rect: common2D.Rect, clipOp?: ClipOp, doAntiAlias?: boolean): void
 | rect        | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是    | 需要裁剪的矩形区域。      |
 | clipOp      | [ClipOp](#clipop12)                  | 否    | 裁剪方式。默认为INTERSECT。     |
 | doAntiAlias | boolean           | 否   | 表示是否使能抗锯齿绘制。true表示使能，false表示不使能。默认为false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -830,6 +982,14 @@ scale(sx: number, sy: number): void
 | sx   | number | 是   | x轴方向的缩放比例，该参数为浮点数。 |
 | sy   | number | 是   | y轴方向的缩放比例，该参数为浮点数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -863,6 +1023,14 @@ skew(sx: number, sy: number) : void
 | ---- | ------ | ---- | ----------------- |
 | sx   | number | 是   | x轴上的倾斜量，该参数为浮点数。    |
 | sy   | number | 是   | y轴上的倾斜量，该参数为浮点数。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -899,6 +1067,14 @@ rotate(degrees: number, sx: number, sy: number) : void
 | sx            | number | 是    | 旋转中心的横坐标，该参数为浮点数。 |
 | sy            | number | 是    | 旋转中心的纵坐标，该参数为浮点数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -932,6 +1108,14 @@ translate(dx: number, dy: number): void
 | ----- | ------ | ---- | ------------------- |
 | dx    | number | 是   | x轴方向的移动距离，该参数为浮点数。   |
 | dy    | number | 是   | y轴方向的移动距离，该参数为浮点数。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1000,6 +1184,14 @@ restoreToCount(count: number): void
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | ----------------------------- |
 | count | number | 是   | 要恢复的画布状态深度，该参数为整数。小于等于1时，恢复为初始状态；大于已保存的画布状态数量时，不执行任何操作。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1129,6 +1321,14 @@ static makeFromString(text: string, font: Font, encoding?: TextEncoding): TextBl
 | --------------------- | -------------- |
 | [TextBlob](#textblob) | TextBlob对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1170,6 +1370,14 @@ static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: co
 | 类型                  | 说明           |
 | --------------------- | -------------- |
 | [TextBlob](#textblob) | TextBlob对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1267,6 +1475,14 @@ enableSubpixel(isSubpixel: boolean): void
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | isSubpixel | boolean | 是   | 表示是否使能字体亚像素级别的文字绘制。true表示使能，false表示不使能。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1288,6 +1504,14 @@ enableEmbolden(isEmbolden: boolean): void
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
 | isEmbolden | boolean | 是   | 表示是否使能字体粗体。true表示使能，false表示不使能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1311,6 +1535,14 @@ enableLinearMetrics(isLinearMetrics: boolean): void
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
 | isLinearMetrics | boolean | 是   | 表示是否使能字形的线性缩放。true表示使能，false表示不使能。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1331,7 +1563,15 @@ setSize(textSize: number): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | 是   | 字体大小，该参数为浮点数。 |
+| textSize | number | 是   | 字体大小，该参数为大于0的浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -1377,6 +1617,14 @@ setTypeface(typeface: Typeface): void
 | 参数名   | 类型                  | 必填 | 说明   |
 | -------- | --------------------- | ---- | ------ |
 | typeface | [Typeface](#typeface) | 是   | 字体。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1455,6 +1703,14 @@ measureText(text: string, encoding: TextEncoding): number
 | ------ | ---------------- |
 | number | 文本的宽度，浮点数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1493,7 +1749,7 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色。 |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。 |
 | mode   | [BlendMode](#blendmode)                              | 是   | 颜色的混合模式。 |
 
 **返回值：**
@@ -1501,6 +1757,14 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
 | [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -1530,6 +1794,14 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
 | [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1681,6 +1953,14 @@ constructor(filterMode: FilterMode)
 | ---------- | --------------------- | ---- | ----------------------------------- |
 | filterMode | [FilterMode](#filtermode12)    | 是   | 过滤模式。                    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1718,6 +1998,14 @@ static createBlurMaskFilter(blurType: BlurType, sigma: number): MaskFilter
 | 类型                      | 说明                |
 | ------------------------- | ------------------ |
 | [MaskFilter](#maskfilter12) | 返回创建的蒙版滤镜对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -1757,6 +2045,14 @@ static createDashPathEffect(intervals:  Array\<number>, phase: number): PathEffe
 | ------------------------- | --------------------- |
 | [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -1790,13 +2086,21 @@ static create(blurRadius: number, x: number, y: number, color: common2D.Color): 
 | blurRadius  | number   | 是   | 阴影的半径，必须为大于零的浮点数。     |
 | x           | number   | 是   | x轴上的偏移点，该参数为浮点数。        |
 | y           | number   | 是   | Y轴上的偏移点，该参数为浮点数。        |
-| color       | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色。 |
+| color       | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。 |
 
 **返回值：**
 
 | 类型                        | 说明                  |
 | --------------------------- | -------------------- |
 | [ShadowLayer](#shadowlayer12) | 返回创建的阴影层对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -1828,7 +2132,15 @@ setColor(color: common2D.Color) : void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色。 |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -1843,7 +2155,7 @@ pen.setColor(color);
 
 setStrokeWidth(width: number) : void
 
-用于设置画笔的线宽。
+用于设置画笔的线宽，如果线宽小于1，会设置为1。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -1852,6 +2164,14 @@ setStrokeWidth(width: number) : void
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
 | width  | number | 是   | 表示线宽，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1875,6 +2195,14 @@ setAntiAlias(aa: boolean) : void
 | ------ | ------- | ---- | ------------------------------------------------- |
 | aa     | boolean | 是   | 表示是否开启反走样。true表示开启，false表示关闭。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1896,6 +2224,14 @@ setAlpha(alpha: number) : void
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | alpha  | number | 是   | 用于表示透明度的[0, 255]区间内的整数值，传入浮点类型时向下取整。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -1919,6 +2255,14 @@ setColorFilter(filter: ColorFilter) : void
 | ------ | --------------------------- | ---- | ------------ |
 | filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1941,6 +2285,14 @@ setMaskFilter(filter: MaskFilter): void
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
 | filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1973,6 +2325,14 @@ setPathEffect(effect: PathEffect): void
 | ------- | ------------------------- | ---- | ------------ |
 | effect  | [PathEffect](#patheffect12) | 是   | 路径效果对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -2003,6 +2363,14 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
 | shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -2046,6 +2414,14 @@ setBlendMode(mode: BlendMode) : void
 | ------ | ----------------------- | ---- | ---------------- |
 | mode   | [BlendMode](#blendmode) | 是   | 颜色的混合模式。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -2067,6 +2443,14 @@ setJoinStyle(style: JoinStyle): void
 | 参数名 | 类型                     | 必填 | 说明             |
 | ------ | ----------------------- | ---- | --------------- |
 | style  | [JoinStyle](#joinstyle12) | 是   | 折线转角样式     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -2129,6 +2513,14 @@ setCapStyle(style: CapStyle): void
 | ------ | ----------------------- | ---- | --------------------- |
 | style  | [CapStyle](#capstyle12)   | 是   | 描述线帽样式的变量。    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -2190,6 +2582,14 @@ setDither(dither: boolean) : void
 | ------ | ------- | ---- | --------------------------------------------------------- |
 | dither | boolean | 是   | 是否开启画笔的抖动绘制效果。true表示开启，false表示关闭。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -2214,7 +2614,15 @@ setColor(color: common2D.Color) : void
 
 | 参数名 | 类型                                                 | 必填 | 说明             |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色。 |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -2239,6 +2647,14 @@ setAntiAlias(aa: boolean) : void
 | ------ | ------- | ---- | ------------------------------------------------- |
 | aa     | boolean | 是   | 表示是否开启反走样。true表示开启，false表示关闭。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -2260,6 +2676,14 @@ setAlpha(alpha: number) : void
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | alpha  | number | 是   | 用于表示透明度的[0, 255]区间内的整数值，传入浮点类型时向下取整。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
 
 **示例：**
 
@@ -2283,6 +2707,14 @@ setColorFilter(filter: ColorFilter) : void
 | ------ | --------------------------- | ---- | ------------ |
 | filter | [ColorFilter](#colorfilter) | 是   | 颜色滤波器。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -2305,6 +2737,14 @@ setMaskFilter(filter: MaskFilter): void
 | 参数名 | 类型                       | 必填 | 说明      |
 | ------ | ------------------------- | ---- | --------- |
 | filter | [MaskFilter](#maskfilter12) | 是   | 蒙版滤镜。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -2334,6 +2774,14 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
 | shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 
@@ -2391,6 +2839,14 @@ setBlendMode(mode: BlendMode) : void
 | 参数名 | 类型                    | 必填 | 说明             |
 | ------ | ----------------------- | ---- | ---------------- |
 | mode   | [BlendMode](#blendmode) | 是   | 颜色的混合模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **示例：**
 

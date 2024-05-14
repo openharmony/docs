@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import contact from '@ohos.contact';
+import { contact } from '@kit.ContactsKit';
 ```
 
 ## contact.addContact<sup>10+</sup>
@@ -43,7 +43,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.addContact(
@@ -83,7 +83,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -131,7 +131,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.addContact(
@@ -175,7 +175,7 @@ addContact(contact: Contact): Promise&lt;number&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
@@ -215,7 +215,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context; 
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
@@ -251,7 +251,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.deleteContact('xxx', (err: BusinessError) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
@@ -295,7 +295,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.deleteContact(context, 'xxx');
@@ -335,7 +335,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
       console.log(`deleteContact success`);
@@ -373,7 +373,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.updateContact(context, {
@@ -413,7 +413,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -457,7 +457,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.updateContact(context, {
@@ -500,7 +500,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -551,7 +551,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.updateContact(context, {
@@ -597,7 +597,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
@@ -641,7 +641,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
@@ -677,7 +677,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.isLocalContact(/*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
@@ -720,7 +720,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.isLocalContact(context, /*id*/1);
@@ -760,7 +760,7 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
@@ -797,7 +797,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
@@ -833,7 +833,7 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.isMyCard(/*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
@@ -877,7 +877,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.isMyCard(context, /*id*/1);
@@ -917,7 +917,7 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
@@ -953,7 +953,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryMyCard(context, (err: BusinessError, data) => {
@@ -988,7 +988,7 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard((err: BusinessError, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
@@ -1026,7 +1026,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryMyCard(context, {
@@ -1064,7 +1064,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1109,7 +1109,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryMyCard(context, {
@@ -1150,7 +1150,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryMyCard({
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
@@ -1185,7 +1185,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContact((err: BusinessError, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
@@ -1219,7 +1219,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContact();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
@@ -1253,7 +1253,7 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
           console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
@@ -1288,7 +1288,7 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts();
   promise.then((data) => {
       console.log(`selectContacts success: data->${JSON.stringify(data)}`);
@@ -1323,7 +1323,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.selectContacts({
     isMultiSelect:false
   }, (err: BusinessError, data) => {
@@ -1361,7 +1361,7 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
       console.log(`selectContacts success: data->${JSON.stringify(data)}`);
@@ -1398,7 +1398,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
@@ -1434,7 +1434,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
@@ -1474,7 +1474,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
@@ -1515,7 +1515,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', {
       holderId: 1,
       bundleName: "",
@@ -1558,7 +1558,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
@@ -1597,7 +1597,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1639,7 +1639,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
@@ -1683,7 +1683,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContact('xxx', {
       holderId: 1,
       bundleName: "",
@@ -1734,7 +1734,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContact(context, 'xxx', {
@@ -1781,7 +1781,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContact('xxx', {
       holderId: 1,
       bundleName: "",
@@ -1823,7 +1823,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, (err: BusinessError, data) => {
@@ -1858,7 +1858,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts((err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
@@ -1896,7 +1896,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
@@ -1936,7 +1936,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts({
       holderId: 1,
       bundleName: "",
@@ -1978,7 +1978,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
@@ -2016,7 +2016,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts({
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2057,7 +2057,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
@@ -2100,7 +2100,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContacts({
       holderId: 1,
       bundleName: "",
@@ -2149,7 +2149,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContacts(context, {
@@ -2196,7 +2196,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 **示例：**
 
 ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContacts({
       holderId: 1,
       bundleName: "",
@@ -2239,7 +2239,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
@@ -2275,7 +2275,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
@@ -2315,7 +2315,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
@@ -2356,7 +2356,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2399,7 +2399,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
@@ -2438,7 +2438,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2480,7 +2480,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
@@ -2524,7 +2524,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2575,7 +2575,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
@@ -2623,7 +2623,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2666,7 +2666,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
@@ -2702,7 +2702,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
@@ -2741,7 +2741,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
@@ -2782,7 +2782,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -2825,7 +2825,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
@@ -2864,7 +2864,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
@@ -2906,7 +2906,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
@@ -2950,7 +2950,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -3001,7 +3001,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
@@ -3049,7 +3049,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryContactsByEmail('xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -3091,7 +3091,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryGroups(context, (err: BusinessError, data) => {
@@ -3126,7 +3126,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryGroups((err: BusinessError, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
@@ -3164,7 +3164,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryGroups(context, {
@@ -3204,7 +3204,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryGroups({
       holderId: 1,
       bundleName: "",
@@ -3251,7 +3251,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryGroups(context, {
@@ -3295,7 +3295,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryGroups({
       holderId: 1,
       bundleName: "",
@@ -3335,7 +3335,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryHolders(context, (err: BusinessError, data) => {
@@ -3370,7 +3370,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryHolders((err: BusinessError, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
@@ -3412,7 +3412,7 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryHolders(context);
@@ -3446,7 +3446,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryHolders();
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
@@ -3483,7 +3483,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
@@ -3519,7 +3519,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
@@ -3558,7 +3558,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, {
@@ -3599,7 +3599,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   contact.queryKey(/*id*/1, {
       holderId: 1,
       bundleName: "",
@@ -3647,7 +3647,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   // 获取context
   let context = getContext(this) as Context;
   let promise = contact.queryKey(context, /*id*/1, {
@@ -3692,7 +3692,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let promise = contact.queryKey(/*id*/1, {
       holderId: 1,
       bundleName: "",

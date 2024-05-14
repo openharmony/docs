@@ -379,6 +379,165 @@ lpx(value: number): void
 | ------ | ------------- | ---- | ------------ |
 | value   | number | 是   | 长度属性的值。 |
 
+## ColorMetrics<sup>12+</sup>
+
+用于混合颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### numeric<sup>12+</sup>
+
+static numeric(value: number): ColorMetrics
+
+使用HEX格式颜色实例化 ColorMetrics 类。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | HEX格式颜色，支持rgb或者argb。 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
+
+### rgba<sup>12+</sup>
+
+static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetrics
+
+使用rgb或者rgba格式颜色实例化 ColorMetrics 类。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| red   | number | 是   | 颜色的R分量（红色），值是0~255的整数。 |
+| green | number | 是   | 颜色的G分量（绿色），值是0~255的整数。 |
+| blue  | number | 是   | 颜色的B分量（蓝色），值是0~255的整数。 |
+| alpha | number | 否   | 颜色的A分量（透明度），值是0~1.0的浮点数。 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
+
+### resourceColor<sup>12+</sup>
+
+static resourceColor(color: ResourceColor): ColorMetrics
+
+使用资源格式颜色实例化 ColorMetrics 类。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 是 | 资源格式颜色 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
+
+### blendColor<sup>12+</sup>
+
+blendColor(overlayColor: ColorMetrics): ColorMetrics
+
+颜色混合。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| overlayColor | [ColorMetrics](#colormetrics12) | 是 | 叠加颜色的 ColorMetrics 类的实例 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | 混合后的ColorMetrics 类的实例。 |
+
+### color<sup>12+</sup>
+
+get color(): string
+
+获取ColorMetrics的颜色，返回的是rgba字符串的格式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| string | rgba字符串格式的颜色。 示例：'rgba(255, 100, 255, 0.5)'|
+
+### red<sup>12+</sup>
+
+get red(): number
+
+获取ColorMetrics颜色的R分量（红色）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 颜色的R分量（红色），值是0~255的整数。|
+
+### green<sup>12+</sup>
+
+get green(): number
+
+获取ColorMetrics颜色的G分量（绿色）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 颜色的G分量（绿色），值是0~255的整数。|
+
+### blue<sup>12+</sup>
+
+get blue(): number
+
+获取ColorMetrics颜色的B分量（蓝色）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 颜色的B分量（蓝色），值是0~255的整数。|
+
+### alpha<sup>12+</sup>
+
+get alpha(): number
+
+获取ColorMetrics颜色的A分量（透明度）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 颜色的A分量（透明度），值是0~255的整数。|
+
 ## Corners\<T><sup>12+</sup>
 
 用于设置四个角的圆角度数。

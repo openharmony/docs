@@ -726,7 +726,7 @@ Failed to install the HAP because the HAP requests wrong permissions.
 2. 应用的权限级别比其申请权限的权限级别低。
 
 **处理步骤**<br/>
-1. 排查是否申请了[MDM类型的权限](../../security/AccessToken/permissions-for-mdm-apps.md)，MDM类型的权限仅针对应用类型为MDM的应用开放。
+1. 排查是否申请了<!--Del-->[<!--DelEnd-->MDM类型的权限<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->，MDM类型的权限仅针对应用类型为MDM的应用开放。
 2. 排查申请的权限是否为开放权限。详情请见[权限列表](../../security/AccessToken/permissions-for-all.md)。
 
 ## 17700055 指定的link无效

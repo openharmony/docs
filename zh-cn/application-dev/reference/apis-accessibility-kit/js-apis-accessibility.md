@@ -58,6 +58,7 @@ import accessibility from '@ohos.accessibility';
 | description                    | string                                   | 是    | 否    | 辅助应用描述。          |
 | eventTypes                     | Array&lt;[EventType](#eventtype)&gt;     | 是    | 否    | 辅助应用关注的无障碍事件列表。  |
 | needHide<sup>12+</sup>                     | boolean     | 是    | 否    | 辅助应用是否在已安装的扩展服务列表中被隐藏，true表示隐藏服务，false表示显示服务。  |
+| label<sup>12+</sup>                     | string     | 是    | 否    | 扩展应用在扩展服务列表中的名称。  |
 
 ## Action
 

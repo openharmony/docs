@@ -9,13 +9,13 @@
 ## 导入模块
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
 ```
 
 ## 完整实例
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
 
 // Define certificate blobs
 const cert: networkSecurity.CertBlob = {
@@ -111,8 +111,8 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 **示例：**
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
-import { BusinessError } from '@ohos.base';
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Define certificate blobs
 const cert:networkSecurity.CertBlob = {
@@ -185,8 +185,8 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 **示例：**
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
-import { BusinessError } from '@ohos.base';
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Create certificate blobs
 const cert: networkSecurity.CertBlob = {

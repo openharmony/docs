@@ -1,13 +1,12 @@
 # 属性字符串（StyledString/MutableStyledString）
-## 概述
 
-属性字符串StyledString/MutableStyledString（MutableStyledString继承于StyledString，以下统一简称StyledString）是功能强大的标记对象，可用于字符或段落级别设置文本样式。通过将StyledString附加到文本组件，您可以通过多种方式更改文本，包括修改字号、添加字体颜色、使文本可点击以及自定义方式绘制文本等。具体用法可参考[StyledString](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)。
+属性字符串StyledString/MutableStyledString（MutableStyledString继承于StyledString，以下统一简称StyledString）是功能强大的标记对象，可用于字符或段落级别设置文本样式。通过将StyledString附加到文本组件， 可以通过多种方式更改文本，包括修改字号、添加字体颜色、使文本可点击以及自定义方式绘制文本等。具体用法可参考[StyledString](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#属性字符串)。
 
-Arkts提供多种类型样式对象，涵盖各种常见的文本样式格式。您也可以创建自己的CustomSpan, 以应用自定义样式。 
+属性字符串提供多种类型样式对象，涵盖各种常见的文本样式格式。也可以自行创建CustomSpan, 以应用自定义样式。 
 
-- 创建并应用StyledString和MutableStyledString
+## 创建并应用StyledString和MutableStyledString
 
-  从示例可见，您可以通过TextController提供的setStyledString(StyledString)方法将属性字符串附加到文本组件，并推荐您在onPageShow中触发绑定，在aboutToAppear中调用setStyledString无法实现页面初始即可见属性字符串文本内容，因为aboutToAppear运行时组件还没有完成创建并成功挂载节点树。
+  可以通过TextController提供的setStyledString(StyledString)方法将属性字符串附加到文本组件，并推荐在onPageShow中触发绑定，在aboutToAppear中调用setStyledString无法实现页面初始即可见属性字符串文本内容，因为aboutToAppear运行时组件还没有完成创建并成功挂载节点树。
 
   ```ts
   @Entry
@@ -37,9 +36,9 @@ Arkts提供多种类型样式对象，涵盖各种常见的文本样式格式。
 
 ## 设置文本样式
 
-Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffsetStyle、LineHeightStyle、LetterSpacingStyle各种Style对象来实现设置文本的各类样式。
+属性字符串目前提供了[TextStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle)、[TextShadowStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#textshadowstyle)、[DecorationStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#decorationstyle)、[BaselineOffsetStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#baselineoffsetstyle)、[LineHeightStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#lineheightstyle)、[LetterSpacingStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#letterspacingstyle)各种Style对象来实现设置文本的各类样式。
 
-- 创建及应用TextStyle
+- 创建及应用文本字体样式对象（TextStyle）
 
   ```ts
   @Entry
@@ -78,7 +77,7 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
   ```
   ![StyledString_TextStyle](figures/StyledString_TextStyle.png)
 
-- 创建及应用TextShadowStyle
+- 创建及应用文本阴影对象（TextShadowStyle）
 
   ```ts
   // xxx.ets
@@ -116,7 +115,7 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
   ```
   ![StyledString_TextShadow](figures/styled_string_text_shadow.png)
 
-- 创建及应用DecorationStyle
+- 创建及应用文本装饰线对象（DecorationStyle）
 
   ```ts
   // xxx.ets
@@ -148,7 +147,7 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
   ```
   ![StyledString_Decoration](figures/styled_string_decoration.png)
 
-- 创建及应用BaselineOffsetStyle
+- 创建及应用文本基线偏移量对象（BaselineOffsetStyle）
 
   ```ts
   import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
@@ -181,7 +180,7 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
   ```
   ![StyledString_Baseline](figures/styled_string_baselineoffset.png)
 
-- 创建及应用LineHeightStyle
+- 创建及应用文本行高对象（LineHeightStyle）
 
   ```ts
   import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
@@ -215,7 +214,7 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
   ```
   ![StyledString_lineHeight](figures/styled_string_lineHeight.png)
 
-- 创建及应用LetterSpacingStyle
+- 创建及应用文本字符间距对象（LetterSpacingStyle）
 
   ```ts
   import { LengthMetrics, LengthUnit } from '@ohos.arkui.node'
@@ -250,11 +249,11 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
 
 ## 设置段落样式
 
-可通过ParagraphStyle设置段落样式布局。下图显示了Arkts如何分割文本中的段落，段落以换行符 \n 结尾。
+可通过[ParagraphStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#paragraphstyle)设置段落样式布局。下图显示了如何分割文本中的段落，段落以换行符 \n 结尾。
 
-![paragraphs](figures/styledstring-paragraphs.png)
+![paragraphs](figures/styledstringParagraphs.png)
 
-以下代码示例展示了如何创建 ParagraphStyle 并应用。请注意，如果您将 ParagraphStyle 附加到段落开头末尾或之间的任何位置均会应用样式，非段落区间内则不会应用样式。
+以下代码示例展示了如何创建 ParagraphStyle 并应用。如果将 ParagraphStyle 附加到段落开头末尾或之间的任何位置均会应用样式，非段落区间内则不会应用样式。
 
   ```ts
   import { LengthMetrics } from '@ohos.arkui.node'
@@ -295,7 +294,7 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
   ]);
   ```
 
-  您除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replaceStyle)更新样式, 同时需要在附件的文本组件controller上主动触发更新绑定的属性字符串。
+  除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle)更新样式, 同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
   import { LengthMetrics } from '@ohos.arkui.node'
@@ -312,15 +311,170 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
   this.controller.setStyledString(this.mutableStyledString3)
   ```
 
+## 使用图片
 
+可通过[ImageAttachment](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#imageattachment)来添加图片。
 
-## 使用事件
+以下示例展示了如何将图片和文本附加到同一个MutableStyledString对象上，并实现图文混排。
 
-可通过GestureStyle设置onClick、onLongPress事件来使文本响应点击长按事件。
+  ```ts
+  // xxx.ets
+  import image from '@ohos.multimedia.image'
+  import { LengthMetrics } from '@ohos.arkui.node'
 
-- 创建并应用GestureStyle
+  @Entry
+  @Component
+  struct styled_string_demo4 {
+    @State message: string = 'Hello World'
+    imagePixelMap: image.PixelMap | undefined = undefined
+    @State imagePixelMap3: image.PixelMap | undefined = undefined
+    mutableStr: MutableStyledString = new MutableStyledString('123');
+    controller: TextController = new TextController();
+    mutableStr2: MutableStyledString = new MutableStyledString('This is set decoration line style to the mutableStr2', [{
+      start: 0,
+      length: 15,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({
+        type: TextDecorationType.Overline,
+        color: Color.Orange,
+        style: TextDecorationStyle.DOUBLE
+      })
+    }])
 
-  除了初始化属性字符串对象即初始样式对象，亦可通过[setStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#setStyle)接口再设置样式，同时需要在附件的文本组件controller上主动触发更新绑定的属性字符串。
+    async aboutToAppear() {
+      console.info("aboutToAppear initial imagePixelMap")
+      this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.sea'))
+    }
+
+    private async getPixmapFromMedia(resource: Resource) {
+      let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+        bundleName: resource.bundleName,
+        moduleName: resource.moduleName,
+        id: resource.id
+      })
+      let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+      let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+        desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+      })
+      await imageSource.release()
+      return createPixelMap
+    }
+
+    leadingMarginValue: ParagraphStyle = new ParagraphStyle({ leadingMargin: LengthMetrics.vp(5)})
+    //行高样式对象
+    lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
+    //Bold样式
+    boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
+    //创建含段落样式的对象paragraphStyledString1
+    paragraphStyledString1: MutableStyledString = new MutableStyledString("\n品牌相纸 高清冲印30张\n限时直降5.15元 限量增送", [
+      {
+        start: 0,
+        length: 28,
+        styledKey: StyledStringKey.PARAGRAPH_STYLE,
+        styledValue: this.leadingMarginValue
+      },
+      {
+        start: 14,
+        length: 9,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(14), fontColor: '#B22222' })
+      },
+      {
+        start: 24,
+        length: 4,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(14), fontWeight: FontWeight.Lighter })
+      },
+      {
+        start: 11,
+        length: 4,
+        styledKey: StyledStringKey.LINE_HEIGHT,
+        styledValue: this.lineHeightStyle1
+      }
+    ]);
+    paragraphStyledString2: MutableStyledString = new MutableStyledString("\n￥16.21 3000+人好评", [
+      {
+        start: 0,
+        length: 5,
+        styledKey: StyledStringKey.PARAGRAPH_STYLE,
+        styledValue: this.leadingMarginValue
+      },
+      {
+        start: 0,
+        length: 4,
+        styledKey: StyledStringKey.LINE_HEIGHT,
+        styledValue: new LineHeightStyle(new LengthMetrics(60))
+      },
+      {
+        start: 0,
+        length: 7,
+        styledKey: StyledStringKey.FONT,
+        styledValue: this.boldTextStyle
+      },
+      {
+        start: 1,
+        length: 1,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(18) })
+      },
+      {
+        start: 2,
+        length: 2,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(36) })
+      },
+      {
+        start: 4,
+        length: 3,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.vp(20) })
+      },
+      {
+        start: 7,
+        length: 9,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontColor: Color.Grey, fontSize: LengthMetrics.vp(14)})
+      }
+    ])
+
+    build() {
+      Row() {
+        Column({ space: 10 }) {
+          Text(undefined, { controller: this.controller })
+            .copyOption(CopyOptions.InApp)
+            .draggable(true)
+            .backgroundColor('#FFFFFF')
+            .borderRadius(5)
+
+          Button('点击查看商品卡片')
+            .onClick(() => {
+              if (this.imagePixelMap !== undefined) {
+                this.mutableStr = new MutableStyledString(new ImageAttachment({
+                  value: this.imagePixelMap,
+                  size: { width: 180, height: 160 },
+                  verticalAlign: ImageSpanAlignment.BASELINE,
+                  objectFit: ImageFit.Fill
+                }))
+                this.paragraphStyledString1.appendStyledString(this.paragraphStyledString2)
+                this.mutableStr.appendStyledString(this.paragraphStyledString1)
+                this.controller.setStyledString(this.mutableStr)
+              }
+            })
+        }
+        .width('100%')
+      }
+      .height('100%')
+      .backgroundColor('#F8F8FF')
+    }
+  }
+  ```
+  ![StyledString_ImageAttachment](figures/StyledStringImageAttachment.png)
+
+## 设置事件
+
+可通过[GestureStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#gesturestyle)设置onClick、onLongPress事件来使文本响应点击长按事件。
+
+除了初始化属性字符串对象即初始样式对象，亦可通过[setStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#setstyle)接口再设置样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
   import promptAction from '@ohos.promptAction';
@@ -332,10 +486,10 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
       promptAction.showToast({ message: 'gestureStyleAttr object trigger long press event' })
     }
   });
+  controller: TextController = new TextController();
   // 创建对象mutableStyledString3
   mutableStyledString3: MutableStyledString = new MutableStyledString("#属性字符串");
   // 后续某个节点触发设置事件
-  controller: TextController = new TextController();
   this.mutableStyledString3.setStyle({
     start: 0,
     length: 5,
@@ -347,9 +501,7 @@ Arkts目前提供了TextStyle、TextShadowStyle、DecorationStyle、BaselineOffs
 
 ## 使用自定义绘制
 
-可通过CustomSpan来实现自定义绘制。
-
-以下示例展示了如何创建自定义Span。您可以通过继承[CustomSpan](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#customspan)定义一个自己的Span，在自定义Span中重写onDraw和onMeasure来实现自定义绘制的效果。
+以下示例展示了如何创建自定义Span。可以通过继承[CustomSpan](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#customspan)定义一个自己的Span，在自定义Span中重写onDraw和onMeasure来实现自定义绘制的效果。
 
 ```ts
 import drawing from '@ohos.graphics.drawing';
@@ -417,11 +569,11 @@ class MyCustomSpan extends CustomSpan {
 @Entry
 @Component
 struct styled_string_demo6 {
-  customSpan3: MyCustomSpan = new MyCustomSpan("88VIP 9.5折", 150, 40)
+  customSpan3: MyCustomSpan = new MyCustomSpan("99VIP 8.8折", 150, 40)
   textStyle: MutableStyledString = new MutableStyledString("123");
   textController: TextController = new TextController()
   isPageShow: boolean = true
-  
+
   async onPageShow() {
     if (!this.isPageShow) {
       return
@@ -443,7 +595,7 @@ struct styled_string_demo6 {
   }
 }
 ```
-![CustomSpanDemo](figures/StyledString_CustomSpan.png)
+![CustomSpanDemo](figures/StyledStringCustomSpan.png)
 
 ## 场景示例
 

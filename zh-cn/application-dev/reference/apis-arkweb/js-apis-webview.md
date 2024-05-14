@@ -7758,6 +7758,95 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    </html>
    ```
 
+### setHostIP<sup>12+</sup>
+
+static setHostIP(hostName: string, address: string, aliveTime: number): void
+
+设置主机域名解析后的IP地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 参数描述                             |
+| --------- | -------- | ---- | ------------------------------------ |
+| hostName  | string   | 是   | 要添加DNS记录的主机域名。            |
+| address   | string   | 是   | 主机域名解析地址（支持IPv4，IPv6）。 |
+| aliveTime | number   | 是   | 缓存有效时间（秒）。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter. |
+
+**示例：**
+
+请参考[clearHostIP](#clearhostip12)。
+
+### clearHostIP<sup>12+</sup>
+
+static clearHostIP(hostName: string): void
+
+清除指定主机域名解析后的IP地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 参数类型 | 必填 | 参数描述                  |
+| -------- | -------- | ---- | ------------------------- |
+| hostName | string   | 是   | 要清除DNS记录的主机域名。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      // url加载前设置生效.
+      Button('setHostIP')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setHostIP('www.example.com', '127.0.0.1', 30);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+       Button('clearHostIP')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.clearHostIP('www.example.com');
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。

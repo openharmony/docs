@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```js
-import statistics from "@ohos.net.statistics";
+import { statistics } from '@kit.NetworkKit';
 ```
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
@@ -42,8 +42,8 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -86,7 +86,7 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -124,8 +124,8 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -168,7 +168,7 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -204,8 +204,8 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -241,7 +241,7 @@ getCellularRxBytes(): Promise\<number>;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -277,8 +277,8 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -314,7 +314,7 @@ getCellularTxBytes(): Promise\<number>;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -349,8 +349,8 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
-import { BusinessError } from '@ohos.base';
+import { statistics } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -385,7 +385,7 @@ getAllRxBytes(): Promise\<number>;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -420,8 +420,8 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -456,7 +456,7 @@ getAllTxBytes(): Promise\<number>;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getAllTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -493,8 +493,8 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -536,7 +536,7 @@ getUidRxBytes(uid: number): Promise\<number>;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidRxBytes(20010038).then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -573,8 +573,8 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -616,7 +616,7 @@ getUidTxBytes(uid: number): Promise\<number>;
 **示例：**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidTxBytes(20010038).then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -653,8 +653,8 @@ getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
 statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
@@ -697,8 +697,8 @@ getSockfdRxBytes(sockfd: number): Promise\<number\>;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
 statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
@@ -737,8 +737,8 @@ getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
 statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
@@ -781,8 +781,8 @@ getSockfdTxBytes(sockfd: number): Promise\<number\>;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
 statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
