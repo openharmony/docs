@@ -173,7 +173,7 @@ getSystemResourceManager(): ResourceManager
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001009  | If application can't access system resource.                       |
+| 9001009  | Failed to access the system resource.                       |
 
 **示例：**
   ```js
@@ -347,9 +347,9 @@ getStringSync(resId: number): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -393,10 +393,10 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                               |
-| 9001002  | If the resource not found by resId.                 |
-| 9001006  | If the resource re-ref too much.                    |
-| 9001007  | If the resource obtained by resId formatting error. |
+| 9001001  | Invalid resource ID.                               |
+| 9001002  | No matching resource is found based on the resource ID.                 |
+| 9001006  | The resource is referenced cyclically.                    |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
   ```ts
@@ -442,9 +442,9 @@ getStringSync(resource: Resource): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -496,10 +496,10 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-| 9001007  | If the resource obtained by resId formatting error. |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
   ```ts
@@ -549,9 +549,9 @@ getStringByNameSync(resName: string): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -596,10 +596,10 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
-| 9001008  | If the resource obtained by resName formatting error. |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001008  | Failed to format the resource obtained based on the resource Name. |
 
 **示例：** 
   ```ts
@@ -639,8 +639,8 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **示例Stage：** 
   ```ts
@@ -690,9 +690,9 @@ getStringValue(resId: number): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -737,9 +737,9 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -797,9 +797,9 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -847,9 +847,9 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -899,9 +899,9 @@ getStringByName(resName: string): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -949,9 +949,9 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -997,9 +997,9 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1049,9 +1049,9 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1087,9 +1087,9 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1138,9 +1138,9 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1185,9 +1185,9 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1245,9 +1245,9 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1296,9 +1296,9 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1348,9 +1348,9 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1403,9 +1403,9 @@ getPluralStringValueSync(resId: number, num: number): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1456,9 +1456,9 @@ getPluralStringValueSync(resource: Resource, num: number): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1513,9 +1513,9 @@ getPluralStringByNameSync(resName: string, num: number): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1559,9 +1559,9 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1616,9 +1616,9 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1668,9 +1668,9 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1733,9 +1733,9 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.                |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1789,9 +1789,9 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1846,9 +1846,9 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1897,8 +1897,8 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
@@ -1953,8 +1953,8 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
@@ -2013,8 +2013,8 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **示例：**
   ```ts
@@ -2061,8 +2061,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2108,8 +2108,8 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2159,8 +2159,8 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2209,8 +2209,8 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2255,8 +2255,8 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2310,8 +2310,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2369,8 +2369,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2427,8 +2427,8 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2476,8 +2476,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -2523,8 +2523,8 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -2574,8 +2574,8 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -2624,8 +2624,8 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -2674,8 +2674,8 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2730,8 +2730,8 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2790,8 +2790,8 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **示例：** 
   ```ts
@@ -2838,8 +2838,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2885,8 +2885,8 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2936,8 +2936,8 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2986,8 +2986,8 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -3032,8 +3032,8 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -3087,8 +3087,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -3146,8 +3146,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -3204,8 +3204,8 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -3254,8 +3254,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -3301,8 +3301,8 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -3352,8 +3352,8 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -3402,8 +3402,8 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -3453,8 +3453,8 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
@@ -3516,8 +3516,8 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
@@ -3583,8 +3583,8 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：**
   ```ts
@@ -3642,9 +3642,9 @@ getBoolean(resId: number): boolean
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3689,9 +3689,9 @@ getBoolean(resource: Resource): boolean
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3741,9 +3741,9 @@ getBooleanByName(resName: string): boolean
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3787,9 +3787,9 @@ getNumber(resId: number): number
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3843,9 +3843,9 @@ getNumber(resource: Resource): number
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3895,9 +3895,9 @@ getNumberByName(resName: string): number
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3949,9 +3949,9 @@ getColorSync(resId: number) : number;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -3997,9 +3997,9 @@ getColorSync(resource: Resource): number
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4049,9 +4049,9 @@ getColorByNameSync(resName: string) : number;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4091,8 +4091,8 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **示例Stage：**
   ```ts
@@ -4142,9 +4142,9 @@ getColor(resId: number): Promise&lt;number&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4189,9 +4189,9 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4249,9 +4249,9 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4300,9 +4300,9 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4352,9 +4352,9 @@ getColorByName(resName: string): Promise&lt;number&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4402,7 +4402,7 @@ getRawFileContentSync(path: string): Uint8Array
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
@@ -4490,7 +4490,7 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4542,7 +4542,7 @@ getRawFileListSync(path: string): Array\<string>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.       |
+| 9001005  | Invalid relative path.       |
 
 **示例：**
   ```ts
@@ -4585,7 +4585,7 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.       |
+| 9001005  | Invalid relative path.       |
 
 **示例：** 
   ```ts
@@ -4639,7 +4639,7 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4687,7 +4687,7 @@ getRawFdSync(path: string): RawFileDescriptor
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
@@ -4726,7 +4726,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4779,7 +4779,7 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4911,7 +4911,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -5156,7 +5156,7 @@ addResource(path: string) : void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001010  | If the overlay path is invalid.            |
+| 9001010  | Invalid overlay path.            |
 
 **示例：**
   ```ts
@@ -5195,7 +5195,7 @@ removeResource(path: string) : void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001010  | If the overlay path is invalid.            |
+| 9001010  | Invalid overlay path.            |
 
 **示例：**
   ```ts
@@ -5292,9 +5292,9 @@ getSymbol(resId: number):number
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -5339,9 +5339,9 @@ getSymbol(resource: Resource): number
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -5391,9 +5391,9 @@ getSymbolByName(resName: string) : number;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -5437,7 +5437,7 @@ isRawDir(path: string) : bool
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
