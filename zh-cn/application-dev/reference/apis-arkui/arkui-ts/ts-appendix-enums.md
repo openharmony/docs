@@ -990,3 +990,16 @@ Nullable\<T> {
 | DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
 | HIDE    | 1    | 始终不弹出菜单。                   |
 | SHOW    | 2    | 始终弹出菜单。                     |
+
+## EmbeddedType<sup>12+</sup>
+枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
+
+| 名称                  | 值 | 说明                                                |
+| --------------------- | - | ---------------------------------------------------- |
+| EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
+
+## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
+| 名称       | 描述                     |
+| ---------- | ------------------------ |
+| DEFAULT | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
+| PRESERVE_POSITION  | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
