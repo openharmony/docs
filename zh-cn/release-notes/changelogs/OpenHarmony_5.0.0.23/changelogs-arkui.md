@@ -423,9 +423,13 @@ UX规格增强
 
 该变更为非兼容性变更。
 
-API version 12之前，标题与关闭按钮之间的距离为8vp。
+API version 12之前，标题与关闭按钮之间的距离为32vp。
 
 API version 12及以后，标题与关闭按钮之间的距离为8vp。
+
+变更示例图：
+
+![](figures/SheetTitleSpace_compared.png)
 
 **起始API Level**
 
