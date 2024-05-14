@@ -33,7 +33,7 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| operate  | string                                                  | 是   | 要执行的操作。<br/>- resetFactory：设备恢复出厂设置。<br/>- reboot：设备重启。<br/>- shutDown：设备关机。<br/>- lockScreen：设备屏幕锁定。 |
+| operate  | string                                                  | 是   | 要执行的操作。<br/>- resetFactory：设备恢复出厂设置。<br/>- reboot：设备重启。<br/>- shutDown：设备关机。<br/>- lockScreen：设备屏幕锁定。 <!--RP1--><!--RP1End-->|
 | addition | string                                                  | 否   | 执行时附加参数。                                             |
 
 **错误码：**
