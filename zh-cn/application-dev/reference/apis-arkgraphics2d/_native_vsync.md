@@ -86,7 +86,7 @@ VSync回调函数类型。
 ### OHNativeErrorCode
 
 ```
-typedef enum OHNativeErrorCodeOHNativeErrorCode
+typedef enum OHNativeErrorCode OHNativeErrorCode
 ```
 
 **描述**

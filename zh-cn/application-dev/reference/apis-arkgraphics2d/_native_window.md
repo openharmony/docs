@@ -100,7 +100,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 ### OHNativeErrorCode
 
 ```
-typedef enum OHNativeErrorCodeOHNativeErrorCode
+typedef enum OHNativeErrorCode OHNativeErrorCode
 ```
 
 **描述**

@@ -66,7 +66,7 @@
 ### OH_NativeImage
 
 ```
-typedef struct OH_NativeImageOH_NativeImage
+typedef struct OH_NativeImage OH_NativeImage
 ```
 
 **描述**
@@ -113,7 +113,7 @@ typedef struct OH_OnFrameAvailableListener OH_OnFrameAvailableListener
 ### OHNativeErrorCode
 
 ```
-typedef enum OHNativeErrorCodeOHNativeErrorCode
+typedef enum OHNativeErrorCode OHNativeErrorCode
 ```
 **描述**
 
