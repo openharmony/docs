@@ -77,7 +77,7 @@
 ### OH_NativeBuffer
 
 ```
-typedef struct OH_NativeBufferOH_NativeBuffer
+typedef struct OH_NativeBuffer OH_NativeBuffer
 ```
 
 **描述**
@@ -90,7 +90,7 @@ typedef struct OH_NativeBufferOH_NativeBuffer
 ### OH_NativeBuffer_ColorGamut
 
 ```
-typedef enum OH_NativeBuffer_ColorGamutOH_NativeBuffer_ColorGamut
+typedef enum OH_NativeBuffer_ColorGamut OH_NativeBuffer_ColorGamut
 ```
 
 **描述**
@@ -105,7 +105,7 @@ OH_NativeBuffer的色域。
 ### OH_NativeBuffer_ColorSpace
 
 ```
-typedef enum OH_NativeBuffer_ColorSpaceOH_NativeBuffer_ColorSpace
+typedef enum OH_NativeBuffer_ColorSpace OH_NativeBuffer_ColorSpace
 ```
 
 **描述**
@@ -120,7 +120,7 @@ OH_NativeBuffer的颜色空间
 ### OH_NativeBuffer_Config
 
 ```
-typedef struct OH_NativeBuffer_ConfigOH_NativeBuffer_Config
+typedef struct OH_NativeBuffer_Config OH_NativeBuffer_Config
 ```
 
 **描述**
@@ -135,7 +135,7 @@ OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查�
 ### OH_NativeBuffer_Format
 
 ```
-typedef enum OH_NativeBuffer_FormatOH_NativeBuffer_Format
+typedef enum OH_NativeBuffer_Format OH_NativeBuffer_Format
 ```
 
 **描述**
@@ -150,7 +150,7 @@ OH_NativeBuffer的格式。
 ### OH_NativeBuffer_Plane
 
 ```
-typedef struct OH_NativeBuffer_PlaneOH_NativeBuffer_Plane
+typedef struct OH_NativeBuffer_Plane OH_NativeBuffer_Plane
 ```
 
 **描述**
@@ -165,7 +165,7 @@ typedef struct OH_NativeBuffer_PlaneOH_NativeBuffer_Plane
 ### OH_NativeBuffer_Planes
 
 ```
-typedef struct OH_NativeBuffer_PlanesOH_NativeBuffer_Planes
+typedef struct OH_NativeBuffer_Planes OH_NativeBuffer_Planes
 ```
 
 **描述**
@@ -195,7 +195,7 @@ OH_NativeBuffer的转换类型。
 ### OH_NativeBuffer_Usage
 
 ```
-typedef enum OH_NativeBuffer_UsageOH_NativeBuffer_Usage
+typedef enum OH_NativeBuffer_Usage OH_NativeBuffer_Usage
 ```
 
 **描述**
@@ -210,7 +210,7 @@ OH_NativeBuffer的用途。
 ### OHNativeErrorCode
 
 ```
-typedef enum OHNativeErrorCodeOHNativeErrorCode
+typedef enum OHNativeErrorCode OHNativeErrorCode
 ```
 
 **描述**
