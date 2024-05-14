@@ -1076,6 +1076,7 @@
       - 减少卡顿丢帧
         - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
         - [组件复用使用指导](performance/component-recycle.md)
+        - [组件复用性能优化指导](performance/component_recycle_case.md)
         - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
         - [Swiper高性能开发指导](performance/swiper_optimization.md)
         - [合理进行状态管理](performance/proper_state_management.md)
@@ -1106,6 +1107,7 @@
         - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
         - [常用trace使用指导](performance/common-trace-using-instructions.md)
         - [状态变量组件定位工具实践](performance/state_variable_dfx_pratice.md)
+        - [应用滑动场景帧率问题分析实践](performance/long-frame-optimization.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
