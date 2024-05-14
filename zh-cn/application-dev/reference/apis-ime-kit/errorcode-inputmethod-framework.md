@@ -182,4 +182,58 @@ Not default input method configured by system.
 
 **处理步骤**
 
-判断当前应用是否为系统配置的默认输入法，若不是，则不支持调用此接口。
+开发者可以通过接口[getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11)查询系统配置默认输入法，判断当前应用是否为默认输入法，若不是，则不支持调用此接口。
+
+## 12800011 当前输入框不支持预上屏
+
+**错误信息**
+
+Text preview is not supported.
+
+**错误描述**
+
+当前输入框不支持预上屏。
+
+**可能原因**
+
+当前输入框未支持预上屏功能。
+
+**处理步骤**
+
+开发者可通过接口[getEditorAttributeSync](js-apis-inputmethodengine.md#geteditorattributesync10)获取编辑框属性[EditorAttribute](js-apis-inputmethodengine.md#editorattribute)的isTextPreviewSupported，读取当前输入框是否支持预上屏，若不支持，则此接口不支持调用。
+
+## 12800012 软键盘类型面板未创建
+
+**错误信息**
+
+Input method panel doesn't exist.
+
+**错误描述**
+
+软键盘类型输入法面板未创建。
+
+**可能原因**
+
+调用者输入法应用未创建软键盘类型面板。
+
+**处理步骤**
+
+开发者可以通过接口[createPanel](js-apis-inputmethodengine.md#createpanel10)创建[软键盘类型](js-apis-inputmethodengine.md#paneltype10)的[面板](js-apis-inputmethodengine.md#panel10)。
+
+## 12800013 窗口管理服务错误
+
+**错误信息**
+
+Window manager service error.
+
+**错误描述**
+
+窗口管理服务错误。
+
+**可能原因**
+
+开发者调用此接口后，系统会使用窗口管理服务模块的能力。若由于系统的窗口管理服务功能问题导致接口功能异常，则抛出此错误码。
+
+**处理步骤**
+
+建议重启设备后重试调用接口。
