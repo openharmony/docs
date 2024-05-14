@@ -30,6 +30,8 @@
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
+    - 使用属性字符串
+      - [属性字符串（StyledString/MutableStyledString）](arkts-styled-string.md)
   - 设置页面路由和组件导航
     - 组件导航
       - [Navigation](arkts-navigation-navigation.md)
