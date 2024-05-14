@@ -138,49 +138,103 @@ this.b.a.c = 5
 
 ### 嵌套对象
 
-以下是嵌套类对象的数据结构。
-
 
 ```ts
 // objectLinkNestedObjects.ets
 let NextID: number = 1;
 
 @Observed
-class ClassA {
+class Bag {
   public id: number;
-  public c: number;
+  public size: number;
 
-  constructor(c: number) {
+  constructor(size: number) {
     this.id = NextID++;
-    this.c = c;
+    this.size = size;
   }
 }
 
 @Observed
-class ClassB {
-  public a: ClassA;
+class User {
+  public bag: Bag;
 
-  constructor(a: ClassA) {
-    this.a = a;
+  constructor(bag: Bag) {
+    this.bag = bag;
   }
 }
-```
 
+@Observed
+class Book {
+  public bookName: BookName;
 
-  以下组件层次结构呈现的是此数据结构
+  constructor(bookName: BookName) {
+    this.bookName = bookName;
+  }
+}
 
-```ts
+@Observed
+class BookName extends Bag {
+  public nameSize: number;
+
+  constructor(nameSize: number) {
+    // 调用父类方法对nameSize进行处理
+    super(nameSize);
+    this.nameSize = nameSize;
+  }
+}
+
 @Component
 struct ViewA {
-  label: string = 'ViewA1';
-  @ObjectLink a: ClassA;
+  label: string = 'ViewA';
+  @ObjectLink bag: Bag;
+
+  build() {
+    Column() {
+      Text(`ViewC [${this.label}] this.bag.size = ${this.bag.size}`)
+        .fontColor('#ffffffff')
+        .backgroundColor('#ff3fc4c4')
+        .width(320)
+        .height(50)
+        .borderRadius(25)
+        .margin(10)
+        .textAlign(TextAlign.Center)
+      Button(`ViewA: this.bag.size add 1`)
+        .width(320)
+        .backgroundColor('#ff7fcf58')
+        .margin(10)
+        .onClick(() => {
+          this.bag.size += 1;
+        })
+    }
+  }
+}
+
+@Component
+struct ViewC {
+  label: string = 'ViewC1';
+  @ObjectLink bookName: BookName;
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c=${this.a.c} +1`)
-        .onClick(() => {
-          this.a.c += 1;
-        })
+      Column() {
+        Text(`ViewC [${this.label}] this.bookName.size = ${this.bookName.size}`)
+          .fontColor('#ffffffff')
+          .backgroundColor('#ff3fc4c4')
+          .width(320)
+          .height(50)
+          .borderRadius(25)
+          .margin(10)
+          .textAlign(TextAlign.Center)
+        Button(`ViewC: this.bookName.size add 1`)
+          .width(320)
+          .backgroundColor('#ff7fcf58')
+          .margin(10)
+          .onClick(() => {
+            this.bookName.size += 1;
+            console.log('this.bookName.size:' + this.bookName.size)
+          })
+      }
+      .width(320)
     }
   }
 }
@@ -188,47 +242,58 @@ struct ViewA {
 @Entry
 @Component
 struct ViewB {
-  @State b: ClassB = new ClassB(new ClassA(0));
+  @State user: User = new User(new Bag(0));
+  @State child: Book = new Book(new BookName(0));
 
   build() {
     Column() {
-      // in low version,DevEco may throw a warning,but it does not matter.
-      // you can still compile and run.
-      ViewA({ label: 'ViewA #1', a: this.b.a })
-      ViewA({ label: 'ViewA #2', a: this.b.a })
-
-      Button(`ViewB: this.b.a.c+= 1`)
+      ViewA({ label: 'ViewA #1', bag: this.user.bag })
+        .width(320)
+      ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
+        .width(320)
+      Button(`ViewC: this.child.bookName.size add 10`)
+        .width(320)
+        .backgroundColor('#ff7fcf58')
+        .margin(10)
         .onClick(() => {
-          this.b.a.c += 1;
+          this.child.bookName.size += 10
+          console.log('this.child.bookName.size:' + this.child.bookName.size)
         })
-      Button(`ViewB: this.b.a = new ClassA(0)`)
+      Button(`ViewB: this.user.bag = new Bag(10)`)
+        .width(320)
+        .backgroundColor('#ff7fcf58')
+        .margin(10)
         .onClick(() => {
-          this.b.a = new ClassA(0);
+          this.user.bag = new Bag(10);
         })
-      Button(`ViewB: this.b = new ClassB(ClassA(0))`)
+      Button(`ViewB: this.user = new User(new Bag(20))`)
+        .width(320)
+        .backgroundColor('#ff7fcf58')
+        .margin(10)
         .onClick(() => {
-          this.b = new ClassB(new ClassA(0));
+          this.user = new User(new Bag(20));
         })
     }
   }
 }
 ```
 
+![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
 ViewB中的事件句柄：
 
 
-- this.b.a = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
+- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对\@State装饰的变量b和其属性的修改。
 
-- this.b.a.c = ... ：该变化属于第二层的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
+-  this.child.bookName.size += ... ：该变化属于第二层的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
 
 
 ViewA中的事件句柄：
 
 
-- this.a.c += 1：对\@ObjectLink变量a的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+- this.bookName.size += 1：对\@ObjectLink变量a的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
-- \@ObjectLink变量是只读的，this.a = new ClassA(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
+- \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 
 
 ### 对象数组
@@ -258,7 +323,9 @@ struct ViewA {
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c = ${this.a.c} +1`)
+      Button(`ViewA [${this.label}] this.a.c = ${this.a ? this.a.c : "undefined"}`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.a.c += 1;
         })
@@ -275,32 +342,46 @@ struct ViewB {
   build() {
     Column() {
       ForEach(this.arrA,
-        (item) => {
+        (item: ClassA) => {
           ViewA({ label: `#${item.id}`, a: item })
         },
-        (item) => item.id.toString()
+        (item: ClassA): string => item.id.toString()
       )
       // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的ClassA的实例
       ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })
       ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })
 
       Button(`ViewB: reset array`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA = [new ClassA(0), new ClassA(0)];
         })
       Button(`ViewB: push`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA.push(new ClassA(0))
         })
       Button(`ViewB: shift`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
-          this.arrA.shift()
+          if (this.arrA.length > 0) {
+            this.arrA.shift()
+          } else {
+            console.log("length <= 0")
+          }
         })
       Button(`ViewB: chg item property in middle`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA[Math.floor(this.arrA.length / 2)].c = 10;
         })
       Button(`ViewB: chg item property in middle`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA[Math.floor(this.arrA.length / 2)] = new ClassA(11);
         })
@@ -308,6 +389,8 @@ struct ViewB {
   }
 }
 ```
+
+![Observed_ObjectLink_object_array](figures/Observed_ObjectLink_object_array.gif)
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..) ：该状态变量的改变触发2次更新：
   1. ForEach：数组项的赋值导致ForEach的[itemGenerator](arkts-rendering-control-foreach.md#接口描述)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的ViewA组件实例。
@@ -402,3 +485,5 @@ struct IndexPage {
   }
 }
 ```
+
+![Observed_ObjectLink_2D_array](figures/Observed_ObjectLink_2D_array.gif)
