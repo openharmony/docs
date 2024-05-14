@@ -13,6 +13,18 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.MANAGE_SETTINGS
+
+允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
 允许应用使用悬浮窗的能力。
