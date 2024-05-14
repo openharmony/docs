@@ -46,7 +46,7 @@ async function Demo() {
     image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
         console.info('Succeeded in creating pixelmap.');
     }).catch((error: BusinessError) => {
-        console.error('Failed to create pixelmap.');
+        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
     })
 }
 ```
@@ -77,7 +77,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
         if(error) {
-            console.error('Failed to create pixelmap.');
+            console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
             return;
         } else {
             console.info('Succeeded in creating pixelmap.');
@@ -143,7 +143,7 @@ class MySequence implements rpc.Parcelable {
             this.pixel_map = image.createPixelMapFromParcel(messageSequence);
         } catch(e) {
             let error = e as BusinessError;
-            console.error(`createPixelMapFromParcel error: ${error}`);
+            console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
             return false;
         }
       return true;
@@ -221,7 +221,7 @@ async function Demo(surfaceId: string) {
     image.createPixelMapFromSurface(surfaceId, region).then(() => {
         console.info('Succeeded in creating pixelmap from Surface');
     }).catch((error: BusinessError) => {
-        console.error('Failed to create pixelmap');
+        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
     });
 } 
 ```
@@ -357,7 +357,7 @@ async function Demo() {
     let dstPixelMap = image.createPixelMapSync(opts);
     image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
         if(error) {
-            console.error('Failed to convert pixelmap.');
+            console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
             return;
         } else {
             console.info('Succeeded in converting pixelmap.');
@@ -418,7 +418,7 @@ async function Demo() {
     image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
         console.info('Succeeded in converting pixelmap.');
     }).catch((error: BusinessError) => {
-        console.error('Failed to convert pixelmap.');
+        console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
     })
 }
 ```
@@ -469,7 +469,7 @@ async function Demo() {
     let dstPixelMap = image.createPixelMapSync(opts);
     image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
         if(error) {
-            console.error('Failed to convert pixelmap.');
+            console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
             return;
         } else {
             console.info('Succeeded in converting pixelmap.');
@@ -530,7 +530,7 @@ async function Demo() {
     image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
         console.info('Succeeded in converting pixelmap.');
     }).catch((error: BusinessError) => {
-        console.error('Failed to convert pixelmap.');
+        console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
     })
 }
 ```
@@ -587,7 +587,7 @@ async function Demo() {
         pixelMap.readPixelsToBuffer(readBuffer).then(() => {
             console.info('Succeeded in reading image pixel data.'); // 符合条件则进入 
         }).catch((error: BusinessError) => {
-            console.error('Failed to read image pixel data.'); // 不符合条件则进入
+            console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
         })
     }
 }
@@ -620,9 +620,9 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
     if (pixelMap != undefined) {
-        pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
-            if(err) {
-                console.error('Failed to read image pixel data.');  //不符合条件则进入
+        pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
+            if(error) {
+                console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
                 return;
             } else {
                 console.info('Succeeded in reading image pixel data.');  //符合条件则进入
@@ -712,7 +712,7 @@ async function Demo() {
         pixelMap.readPixels(area).then(() => {
             console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
         }).catch((error: BusinessError) => {
-            console.error('Failed to read the image data in the area.'); //不符合条件则进入
+            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
         })
     }
 }
@@ -750,9 +750,9 @@ async function Demo() {
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
     if (pixelMap != undefined) {
-        pixelMap.readPixels(area, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error('Failed to read pixelmap from the specified area.');
+        pixelMap.readPixels(area, (error: BusinessError) => {
+            if (error != undefined) {
+                console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
                 console.info('Succeeded to read pixelmap from the specified area.');
@@ -894,7 +894,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.writePixels(area, (error : BusinessError) => {
             if (error != undefined) {
-                console.error('Failed to write pixelmap into the specified area.');
+                console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
                 console.info('Succeeded to write pixelmap into the specified area.');
@@ -992,7 +992,7 @@ async function Demo() {
         pixelMap.writeBufferToPixels(color).then(() => {
             console.info("Succeeded in writing data from a buffer to a PixelMap.");
         }).catch((error: BusinessError) => {
-            console.error("Failed to write data from a buffer to a PixelMap.");
+            console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -1029,9 +1029,9 @@ async function Demo() {
         bufferArr[i] = i + 1;
     }
     if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to write data from a buffer to a PixelMap.");
+        pixelMap.writeBufferToPixels(color, (error: BusinessError) => {
+            if (error != undefined) {
+                console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
                 console.info("Succeeded in writing data from a buffer to a PixelMap.");
@@ -1109,12 +1109,11 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            if (imageInfo == undefined) {
-                console.error("Failed to obtain the image pixel map information.");
+            if (imageInfo != undefined) {
+                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
             }
-            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-                console.info("Succeeded in obtaining the image pixel map information.");
-            }
+        }).catch((error: BusinessError) => {
+            console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -1145,13 +1144,12 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
-            if (imageInfo == undefined) {
-                console.error("Failed to obtain the image pixel map information.");
+        pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
+            if (error != undefined) {
+                console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
                 return;
-            }
-            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-                console.info("Succeeded in obtaining the image pixel map information.");
+            } else {
+                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
             }
         })
     }
@@ -1191,7 +1189,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        let imageInfo : image.PixelMap = pixelMap.getImageInfoSync();
+        let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
         return imageInfo;
     }
 }
@@ -1298,7 +1296,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.opacity(rate, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to set opacity.");
+                console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in setting opacity.");
@@ -1343,7 +1341,7 @@ async function Demo() {
         pixelMap.opacity(rate).then(() => {
             console.info('Sucessed in setting opacity.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to set opacity.');
+            console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
         })
     }
 }
@@ -1415,7 +1413,7 @@ async function Demo() {
         pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
             console.info('Succeeded in creating alpha pixelmap.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to create alpha pixelmap.');
+            console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -1448,7 +1446,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
             if (alphaPixelMap == undefined) {
-                console.error('Failed to obtain new pixel map.');
+                console.error(`Failed to obtain new pixel map. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info('Succeed in obtaining new pixel map.');
@@ -1525,7 +1523,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to scale pixelmap.");
+                console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in scaling pixelmap.");
@@ -1572,7 +1570,8 @@ async function Demo() {
         pixelMap.scale(scaleX, scaleY).then(() => {
             console.info('Sucessed in scaling pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to scale pixelmap.');
+            console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+            
         })   
     }
 }
@@ -1651,7 +1650,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.translate(translateX, translateY, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to translate pixelmap.");
+                console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in translating pixelmap.");
@@ -1698,7 +1697,7 @@ async function Demo() {
         pixelMap.translate(translateX, translateY).then(() => {
             console.info('Sucessed in translating pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to translate pixelmap.');
+            console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
         })
     }
 }
@@ -1773,7 +1772,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.rotate(angle, (err: BusinessError) => {
             if (err != undefined) {
-                console.error("Failed to rotate pixelmap.");
+                console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in rotating pixelmap.");
@@ -1818,7 +1817,7 @@ async function Demo() {
         pixelMap.rotate(angle).then(() => {
             console.info('Sucessed in rotating pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to rotate pixelmap.');
+            console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
         })
     }
 }
@@ -1893,7 +1892,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
             if (err != undefined) {
-                console.error("Failed to flip pixelmap.");
+                console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in flipping pixelmap.");
@@ -1940,7 +1939,8 @@ async function Demo() {
         pixelMap.flip(horizontal, vertical).then(() => {
             console.info('Sucessed in flipping pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to flip pixelmap.');
+            console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
+            
         })
     }
 }
@@ -2015,7 +2015,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.crop(region, (err: BusinessError) => {
             if (err != undefined) {
-                console.error("Failed to crop pixelmap.");
+                console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in cropping pixelmap.");
@@ -2058,9 +2058,10 @@ async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     if (pixelMap != undefined) {
         pixelMap.crop(region).then(() => {
-            console.info('Sucessed in cropping pixelmap.');
+            console.info('Succeeded in cropping pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to crop pixelmap.');
+            console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
+
         });
     }
 }
@@ -2213,7 +2214,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
             if (err) {
-                console.error('Failed to apply color space for pixelmap object.');
+                console.error(`Failed to apply color space for pixelmap object. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info('Succeeded in applying color space for pixelmap object.');
@@ -2266,7 +2267,7 @@ async function Demo() {
     pixelmap.applyColorSpace(targetColorSpace).then(() => {
         console.info('Succeeded in applying color space for pixelmap object.');
     }).catch((error: BusinessError) => {
-        console.error('Failed to apply color space for pixelmap object.');
+        console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`); 
     })
 }
 ```
@@ -2467,7 +2468,7 @@ async function Demo() {
         pixelMap.release().then(() => {
             console.info('Succeeded in releasing pixelmap object.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to release pixelmap object.');
+            console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -2500,7 +2501,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.release((err: BusinessError) => {
             if (err != undefined) {
-                console.error('Failed to release pixelmap object.');
+                console.error(`Failed to release pixelmap object. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info('Succeeded in releasing pixelmap object.');
