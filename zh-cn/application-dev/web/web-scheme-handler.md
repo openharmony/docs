@@ -74,7 +74,7 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
 
 ## 获取被拦截请求的请求信息
 
-通过OH_ArkWebResourceRequest_*接口获取被拦截请求的信息。可以获取url、method、referrer、headers等信息。
+通过OH_ArkWebResourceRequest_*接口获取被拦截请求的信息。可以获取url、method、referrer、headers、resourceType等信息。
 
   ```c++
     char* url;
@@ -84,6 +84,8 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
     char* method;
     OH_ArkWebResourceRequest_GetMethod(resourceRequest_, &method);
     OH_ArkWeb_ReleaseString(method);
+
+    int32_t resourceType = OH_ArkWebResourceRequest_GetResourceType(resourceRequest_);
     ...
   ```
 
