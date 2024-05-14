@@ -786,7 +786,7 @@ typedef enum OH_Drawing_BreakStrategy OH_Drawing_BreakStrategy
 ### OH_Drawing_Brush
 
 ```
-typedef struct OH_Drawing_BrushOH_Drawing_Brush
+typedef struct OH_Drawing_Brush OH_Drawing_Brush
 ```
 
 **描述**
