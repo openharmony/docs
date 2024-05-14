@@ -34,6 +34,8 @@
 | typedef struct NativeWindow [OHNativeWindow](_native_window.md#ohnativewindow) | 提供对OHNativeWindow的访问功能。 | 
 | typedef struct NativeWindowBuffer [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) | 提供对OHNativeWindowBuffer的访问功能。 | 
 | typedef struct [Region](_region.md)  [Region](_native_window.md#region) | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 | 
+| typedef enum [OHNativeErrorCode](_native_window.md#ohnativeerrorcode)  [OHNativeErrorCode](_native_window.md#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
+| typedef enum [NativeWindowOperation](_native_window.md#nativewindowoperation)  [NativeWindowOperation](_native_window.md#nativewindowoperation) | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。  | 
 | typedef enum [OHScalingModeV2](_native_window.md#ohscalingmodev2)  [OHScalingModeV2](_native_window.md#ohscalingmodev2) | 渲染缩放模式枚举。 | 
 
 
@@ -41,6 +43,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OHNativeErrorCode](_native_window.md#ohnativeerrorcode) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_IS_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IS_INCACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_INCACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOW = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOW = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000 | 接口错误码说明（仅用于查询）。  | 
 | [NativeWindowOperation](_native_window.md#nativewindowoperation) {<br/>SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,<br/>SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,<br/>SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,<br/>SET_UI_TIMESTAMP, GET_BUFFERQUEUE_SIZE<br/>} | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。 | 
 | [OHScalingMode](_native_window.md#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式 Scaling Mode。 | 
 | [OHScalingModeV2](_native_window.md#ohscalingmodev2) {<br/>OH_SCALING_MODE_FREEZE_V2 = 0, OH_SCALING_MODE_SCALE_TO_WINDOW_V2, OH_SCALING_MODE_SCALE_CROP_V2, OH_SCALING_MODE_NO_SCALE_CROP_V2,<br/>OH_SCALING_MODE_SCALE_FIT_V2<br/>} | 渲染缩放模式枚举。 | 
@@ -74,3 +77,5 @@
 | int32_t [OH_NativeWindow_GetSurfaceId](_native_window.md#oh_nativewindow_getsurfaceid) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window, uint64_t \*surfaceId) | 通过OHNativeWindow获取对应的surfaceId。 | 
 | int32_t [OH_NativeWindow_CreateNativeWindowFromSurfaceId](_native_window.md#oh_nativewindow_createnativewindowfromsurfaceid) (uint64_t surfaceId, [OHNativeWindow](_native_window.md#ohnativewindow) \*\*window) | 通过surfaceId创建对应的OHNativeWindow。 | 
 | int32_t [OH_NativeWindow_NativeWindowSetScalingModeV2](_native_window.md#oh_nativewindow_nativewindowsetscalingmodev2) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window, [OHScalingModeV2](_native_window.md#ohscalingmodev2) scalingMode) | 设置OHNativeWindow的渲染缩放模式。 |
+| int32_t [OH_NativeWindow_GetLastFlushedBufferV2](_native_window.md#oh_nativewindow_getlastflushedbufferv2) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window, [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer, 与OH_NativeWindow_GetLastFlushedBuffer的差异在于matrix不同。  | 
+| void [OH_NativeWindow_SetBufferHold](_native_window.md#oh_nativewindow_setbufferhold) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window) | 提前缓存一帧buffer，且缓存的这一帧延迟一帧上屏显示，以此抵消后续一次超长帧丢帧。  | 
