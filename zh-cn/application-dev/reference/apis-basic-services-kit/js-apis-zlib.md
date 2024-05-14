@@ -1238,6 +1238,7 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800005 | Data error.                                                  |
+| 17800007 | Buffer error.                                                |
 
 **示例：**
 
@@ -2416,11 +2417,11 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 **参数：**
 
-| 参数名     | 类型        | 必填 | 说明                            |
-| ---------- | ----------- | ---- | ------------------------------- |
-| strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。 |
-| windowBits | number      | 是   | 最大窗口大小的以2为底的对数。   |
-| window     | ArrayBuffer | 是   | 预设的窗口缓冲区。              |
+| 参数名     | 类型        | 必填 | 说明                                          |
+| ---------- | ----------- | ---- | --------------------------------------------- |
+| strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。               |
+| windowBits | number      | 是   | 最大窗口大小的以2为底的对数，取值范围在8~15。 |
+| window     | ArrayBuffer | 是   | 预设的窗口缓冲区。                            |
 
 **返回值：**
 
@@ -3693,7 +3694,7 @@ deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 | 参数名 | 类型    | 必填 | 说明                            |
 | ------ | ------- | ---- | ------------------------------- |
 | strm   | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| bits   | number  | 是   | 要插入的位数。                  |
+| bits   | number  | 是   | 要插入的位数，取值范围在0~16。  |
 | value  | number  | 是   | 与位数相对应的位值。            |
 
 **返回值：**
@@ -4008,7 +4009,7 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800002 | No such file or directory.                                   |
+| 17800002 | No such file or access mode error.                           |
 
 **示例：**
 
@@ -4148,7 +4149,7 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800002 | No such file or directory.                                   |
+| 17800002 | No such file or No such file or access mode error.           |
 
 **示例：**
 
