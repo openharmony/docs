@@ -21,6 +21,7 @@
   - [@ohos.secureElement (安全单元的通道管理)](js-apis-secureElement.md)
   - [@ohos.wifiManager (WLAN)(推荐)](js-apis-wifiManager.md)
   - [@ohos.wifiManagerExt (WLAN扩展接口)(推荐)](js-apis-wifiManagerExt.md)
+  <!--Del-->
   - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)(系统接口)](js-apis-bluetooth-a2dp-sys.md)
   - [@ohos.bluetooth.access(蓝牙access模块)(推荐)(系统接口)](js-apis-bluetooth-access-sys.md)
   - [@ohos.bluetooth.baseProfile(蓝牙baseProfile模块)(推荐)(系统接口)](js-apis-bluetooth-baseProfile-sys.md)
@@ -36,6 +37,7 @@
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)(系统接口)](js-apis-cardEmulation-sys.md)
   - [@ohos.nfc.tag (标准NFC-Tag)(系统接口)](js-apis-nfcTag-sys.md)
   - [@ohos.wifiManager (WLAN)(推荐)(系统接口)](js-apis-wifiManager-sys.md)
+  <!--DelEnd-->
   - tag
     - [nfctech (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)
     - [tagSession (标准NFC-Tag TagSession)](js-apis-tagSession.md)
@@ -49,6 +51,7 @@
   - [@ohos.wifi (WLAN)(待停用)](js-apis-wifi.md)
   - [@ohos.wifiext (WLAN扩展接口)(待停用)](js-apis-wifiext.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
+  <!--Del-->
   - [@ohos.bluetooth (蓝牙)(待停用)(系统接口)](js-apis-bluetooth-sys.md)
   - [@ohos.wifi (WLAN)(待停用)(系统接口)](js-apis-wifi-sys.md)
-  
+  <!--DelEnd-->
