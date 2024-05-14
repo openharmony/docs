@@ -55,6 +55,14 @@ Media Kit（媒体服务）提供了<!--RP1-->[AVPlayer]和[AVRecorder]<!--RP1En
 | <!--RP6-->任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;任务管理场景介绍<br/>-&nbsp;任务管理与启动模式<br/>-&nbsp;页面栈和任务链 |
 | 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | Stage模型应用配置文件 <!--RP6End-->|
 
+第二种：添加行
+| 任务 | 简介 | 相关指导 |
+| -------- | -------- | -------- |
+| 应用组件开发 | 本章节介绍了如何使用Stage模型的UIAbility组件和ExtensionAbility组件开发应用。| -&nbsp;应用/组件级配置<br/>-&nbsp;UIAbility组件<br/>-&nbsp;ExtensionAbility组件<br/>-&nbsp;AbilityStage组件容器<br/>-&nbsp;应用上下文Context<br/>-&nbsp;组件启动规则 |
+|  了解进程模型 | 本章节介绍了Stage模型的进程模型以及几种常用的进程间通信方式。 | 进程模型概述 |
+| 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | 线程模型概述 |
+<!--RP11--><!--RP11End-->
+
 **3、subsection和section替换**
 
 ## 亮点/特征
