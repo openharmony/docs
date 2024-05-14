@@ -260,8 +260,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 **示例：**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   class MyUIAbility extends UIAbility {
       onContinue(wantParams: Record<string, Object>) {
@@ -275,8 +274,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 支持应用在迁移时，使用异步接口进行数据保存。
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   class MyUIAbility extends UIAbility {
     async setWant(wantParams: Record<string, Object>) {

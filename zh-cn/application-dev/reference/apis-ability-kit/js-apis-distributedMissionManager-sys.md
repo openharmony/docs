@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import distributedMissionManager from '@ohos.distributedMissionManager';
+import { distributedMissionManager } from '@kit.AbilityKit';
 ```
 
 ## distributedMissionManager.registerMissionListener
@@ -35,8 +35,8 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   // 实现回调函数
   function NotifyMissionsChanged(deviceId: string): void {
@@ -96,8 +96,8 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 实现回调函数
   function NotifyMissionsChanged(deviceId: string): void {
@@ -149,8 +149,8 @@ unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.unRegisterMissionListener(
@@ -192,8 +192,8 @@ unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.unRegisterMissionListener({deviceId: ""}).then(() => {
@@ -226,8 +226,8 @@ startSyncRemoteMissions(parameter: MissionParameter, callback: AsyncCallback&lt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.startSyncRemoteMissions(
@@ -273,8 +273,8 @@ startSyncRemoteMissions(parameter: MissionParameter): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.startSyncRemoteMissions(
@@ -313,8 +313,8 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.stopSyncRemoteMissions(
@@ -358,8 +358,8 @@ stopSyncRemoteMissions(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.stopSyncRemoteMissions(
@@ -409,8 +409,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 实现回调函数
   function onContinueDone(resultCode: number): void {
@@ -477,8 +477,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 实现回调函数
   function onContinueDone(resultCode: number): void {
@@ -536,8 +536,8 @@ continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     distributedMissionManager.continueMission(
@@ -597,8 +597,8 @@ continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedMissionManager } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
       distributedMissionManager.continueMission(
@@ -638,7 +638,7 @@ on(type: 'continueStateChange',  callback: Callback&lt;ContinueCallbackInfo&gt;)
 **示例：**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager';
+  import { distributedMissionManager } from '@kit.AbilityKit';
 
   try {
     distributedMissionManager.on('continueStateChange', (data) => {
@@ -669,7 +669,7 @@ off(type: 'continueStateChange',  callback?: Callback&lt;ContinueCallbackInfo&gt
 **示例：**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager';
+  import { distributedMissionManager } from '@kit.AbilityKit';
 
   try {
     distributedMissionManager.off('continueStateChange', (data) => {
