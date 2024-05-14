@@ -11,6 +11,7 @@
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](js-apis-VpnExtensionAbility.md)
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
+  <!--Del-->
   - [@ohos.net.connection (网络连接管理)（系统接口）](js-apis-net-connection-sys.md)
   - [@ohos.net.ethernet (以太网连接管理)（系统接口）](js-apis-net-ethernet-sys.md)
   - [@ohos.net.policy (网络策略管理)（系统接口）](js-apis-net-policy-sys.md)
@@ -18,6 +19,7 @@
   - [@ohos.net.statistics (流量管理)（系统接口）](js-apis-net-statistics-sys.md)
   - [@ohos.net.vpn (VPN管理)（系统接口）](js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (VPN增强管理)（系统接口）](js-apis-net-vpnExtension-sys.md)
+  <!--DelEnd-->
 - C API
   - 模块
     - [Netstack](netstack.md)
