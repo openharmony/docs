@@ -12,8 +12,8 @@
 <!--DelEnd-->
 
 | 算法/分组模式/填充模式 | 备注 | API级别 | <!--DelCol4-->是否必选规格 | 
-| -------- | -------- | -------- | -------- |<!--Del-->
-| AES/ECB/NoPadding<br/>AES/ECB/PKCS7 | - | 8+ | 否 |<!--DelEnd-->
+| -------- | -------- | -------- | -------- |
+| AES/ECB/NoPadding<br/>AES/ECB/PKCS7 | - | 8+ | 否 |
 | AES/CBC/NoPadding<br/>AES/CBC/PKCS7<br/>AES/CTR/NoPadding | IV参数必选 | 8+ | 是 |
 | AES/GCM/NoPadding | 加密：Nonce参数必选<br/>解密：Nonce、AEAD参数必选 | 8+ | 是 |
 | RSA/ECB/NoPadding<br/>RSA/ECB/PKCS1_V1_5<br/>RSA/ECB/OAEP | OAEP填充模式支持的摘要算法：SHA256/SHA384/SHA512 | 8+ | 是 |<!--Del-->
