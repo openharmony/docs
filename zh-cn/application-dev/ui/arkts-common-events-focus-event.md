@@ -256,9 +256,9 @@ focusable(value: boolean)
   **表2** 容器组件获焦能力
 
 | 容器组件                                     | 是否可获焦 | focusable默认值 | 走焦规则     |
-| ---------------------------------------- | ----- | ------------ | -------- |<!--Del-->
+| ---------------------------------------- | ----- | ------------ | -------- |
+| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | 否     | false        | /        |<!--Del-->
 | [AbilityComponent](../reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md) | 否     | false        | /        |<!--DelEnd-->
-| [Badge](../reference/apis-arkui/arkui-ts/ts-container-badge.md) | 否     | false        | /        |
 | [Column](../reference/apis-arkui/arkui-ts/ts-container-column.md) | 是     | true         | 线性走焦     |
 | [ColumnSplit](../reference/apis-arkui/arkui-ts/ts-container-columnsplit.md) | 是     | true         | /        |
 | [Counter](../reference/apis-arkui/arkui-ts/ts-container-counter.md) | 是     | true         | 线性走焦     |
