@@ -35,6 +35,7 @@ let header = new Map<Object, string>();
 header.set('key1', 'value1');
 header.set('key2', 'value2');
 let files: Array<request.File> = [
+//uri前缀internal://cache 对应cacheDir目录
   { filename: 'test.txt', name: 'test', uri: 'internal://cache/test.txt', type: 'txt' }
 ]
 let data: Array<request.RequestData> = [{ name: 'name', value: 'value' }];
