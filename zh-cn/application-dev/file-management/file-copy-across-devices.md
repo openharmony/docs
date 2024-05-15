@@ -28,7 +28,7 @@
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
    } catch (error) {
-    console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to createFile. Code: ${error.code}, message: ${error.message}`);
    }
 
    // 获取待拷贝文件uri
@@ -43,10 +43,10 @@
       console.info("Succeeded in copying---. ");
       console.info("src: " + srcUri + "dest: " + destUri);
     }).catch((error)=>{
-      console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+      console.info(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
     })
    } catch (error) {
-    console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to getData. Code: ${error.code}, message: ${error.message}`);
    }
    ```
 
@@ -83,9 +83,9 @@
       console.info("Succeeded in copying of paste. ");
       console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
     }).catch((error)=>{
-      console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+      console.info(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
     })
    } catch (error) {
-    console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to copy. Code: ${error.code}, message: ${error.message}`);
    }
    ```
