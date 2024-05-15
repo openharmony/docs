@@ -1333,11 +1333,16 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 **系统能力**：SystemCapability.Applications.Contacts
 
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
+
 **返回值：**
 
 | 类型                                            | 说明                                              |
 | ----------------------------------------------- | ------------------------------------------------- |
-| options | [ContactSelectionOptions](#contactselectionoptions10) | 是   | 选择联系人时的筛选条件 |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
 
 **错误码：**
