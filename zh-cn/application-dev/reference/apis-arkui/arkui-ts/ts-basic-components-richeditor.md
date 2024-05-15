@@ -190,7 +190,7 @@ selectedBackgroundColor(value: ResourceColor)
 
 ### enterKeyType<sup>12+</sup>
 
-enterKeyType(enterKeyType: EnterKeyType)
+enterKeyType(vaule: EnterKeyType)
 
 设置软键盘输入法回车键类型。
 
@@ -200,7 +200,7 @@ enterKeyType(enterKeyType: EnterKeyType)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| enterKeyType  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
+| vaule  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
 
 ## 事件
@@ -333,9 +333,9 @@ onEditingChange(callback: Callback\<boolean\>)
 
 **参数：** 
 
-| 类型    | 必填 | 说明                                |
-| ------- | ---- | ----------------------------------- |
-| boolean | 是   | true表示编辑态，false表示非编辑态。 |
+| 参数名   | 参数类型                                    | 必填   | 参数描述        |
+| ----- | --------------------------------------- | ---- | ----------- |
+| callback | Callback\<boolean\> | 是    | true表示编辑态，false表示非编辑态。 |
 
 ### onSubmit<sup>12+</sup>
 
@@ -361,19 +361,13 @@ onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
 
 **参数：** 
 
-| 类型                                            | 必填 | 说明                     |
-| ----------------------------------------------- | ---- | ------------------------ |
-| [RichEditorChangeValue](#richeditorchangevalue12) | 是   | 文本变化信息。 |
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| boolean | true：允许文本被更改。false：不允许文本被更改。 |
+| 参数名   | 参数类型                                    | 必填   | 参数描述        |
+| ----- | --------------------------------------- | ---- | ----------- |
+| callback | Callback<[RichEditorChangeValue](#richeditorchangevalue12) , boolean> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为文本变化信息；boolean表示当前文本是否允许被更改，true：允许文本被更改。false：不允许文本被更改。 |
 
 ### onDidChange<sup>12+</sup>
 
-onDidChange(callback: Callback\<Array\<RichEditorTextSpanResult\>\>)
+onDidChange(callback: OnDidChangeCallback)
 
 文本变化后，触发回调。
 
@@ -381,9 +375,9 @@ onDidChange(callback: Callback\<Array\<RichEditorTextSpanResult\>\>)
 
 **参数：** 
 
-| 类型                                            | 必填 | 说明                     |
-| ----------------------------------------------- | ---- | ------------------------ |
-| Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是   | 文本变化后信息。与RichEditorChangeValue中的replacedSpans相同。 |
+| 参数名   | 参数类型                                    | 必填   | 参数描述        |
+| ----- | --------------------------------------- | ---- | ----------- |
+| callback |OnDidChangeCallback | 是    | 文本变化后信息。与[RichEditorChangeValue](#richeditorchangevalue12)中的replacedSpans相同。 |
 
 ### onCut<sup>12+</sup>
 
@@ -1169,7 +1163,7 @@ SymbolSpan样式选项。
 
 | 名称          | 类型         | 必填   | 描述            |
 | ----------- | ---------- | ---- | ------------- |
-| onAppear    | () => void | 否    | 自定义选择菜单弹出时回调。 |
+| onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。 |
 | onDisappear | () => void | 否    | 自定义选择菜单关闭时回调。 |
 
 ## PasteEvent<sup>11+</sup>
@@ -1249,6 +1243,15 @@ onLongPress?: (event: GestureEvent) => void
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
 | event    | [SubmitEvent](ts-types.md#submitevent11)         | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
+
+## MenuOnAppearCallback<sup>12+</sup>
+
+自定义选择菜单弹出时触发的回调事件。
+
+| 参数名称     | 类型                                             | 必填 | 描述                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | number | 是   | 选中内容的起始位置。 |
+| end    | number         | 是   | 选中内容的终止位置。         |
 
 ## 示例
 
