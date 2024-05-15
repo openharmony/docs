@@ -1,7 +1,5 @@
 # 使用同层渲染在Web上渲染原生组件
 
-## 概述
-
 在使用Web组件加载H5页面时，经常会有长列表、视频等场景。由于Web目前最高只有60帧，想要更加流畅的体验，必须要将原生组件放到Web上。
 
 在什么场景下应该在Web上使用原生组件：
@@ -13,7 +11,7 @@
 方案一：直接将组件堆叠到H5页面上。  
 方案二：使用**同层渲染**，使用Web和原生组件交互的方式，将原生组件替代Web中部分组件，提升交互体验和性能。
 
-### 什么是同层渲染
+## 什么是同层渲染
 
 同层渲染是一种优化技术，用于提高Web页面的渲染性能。同层渲染会将位于同一个图层的元素一起渲染，以减少重绘和重排的次数，从而提高页面的渲染效率。
 
@@ -22,16 +20,17 @@
 - 非同层渲染：通过Z序的层级关系堆叠在Web页面上。此方式实现方式简单，用于原生组件大小位置固定场景。
 - 同层渲染：通过同层渲染的方式直接渲染到H5页面Embed标签区域上。此方式实现相对复杂，用于原生组件大小位置需要跟随Web页面变化场景。
 
+**图一：同层渲染和非同层渲染区别**  
 ![Webview](./figures/webview-render-app-components_1.png)
 
 同层渲染的大致开发流程可以参考[同层渲染绘制](../web/web-same-layer.md)。
 
 ## 场景示例
 
-以下分别采用纯H5、非同层渲染和同层渲染的三种方式，加载相同的商城组件到相同的H5页面上，并抓取trace对比三者之间的区别，其中商城页面大致如图一所示：
+以下分别采用纯H5、非同层渲染和同层渲染的三种方式，加载相同的商城组件到相同的H5页面上，并抓取trace对比三者之间的区别，其中商城页面大致如图二所示：
 
-**图一：商城页面场景**  
-<img src="./figures/webview-render-app-components_2.png" width="300px"></img>
+**图二：商城页面场景**  
+<img src="./figures/webview-render-app-components_2.jpeg" width="300px"></img>
 
 场景实例源码的核心部分如下：
 
@@ -47,32 +46,6 @@
         <embed id="nativeSearch" type="native/component" width="100%" height="100%" src="view" />
       </div>
     </div>
-    <script>
-      // 判断设备是否支持touch事件
-      let nativeEmbed = {
-        // 通过id名获取embed标签
-        nativeSearch: document.getElementById('nativeSearch'),
-        // 事件
-        events: {},
-        // 初始化
-        init: function () {
-          let self = this;
-          // 添加touch的监听事件
-          self.nativeSearch.addEventListener('touchstart', self.events, false);
-        }
-      };
-      nativeEmbed.init();
-
-      // 调用无参函数时实现。
-    function getEmbedSize() {
-        let doc = document.getElementById('nativeSearch');
-        return {
-          width: doc.offsetWidth,
-          height: doc.offsetHeight,
-        }
-    }
-    </script>
-
   </body>
 ...
 ```
@@ -148,9 +121,9 @@ export struct SearchComponent {
 ...
 ```
 
-### Web加载原生组件三种方案的对比 
+## Web加载原生组件三种方案的对比 
 
-#### 方案一：直接使用H5  
+### 直接使用H5加载  
 首先的想法是，将搜索框和列表组件使用原生H5实现，直接用web加载页面。数据交互的部分则需要与原生交互部分通过WebMessagePort与Web交互。关键代码步骤如下：
 
 1. 应用侧使用单Web组件挂在H5页面，但是同时需要设置javaScriptProxy传入参数，并在PageEnd回调中建立WebMessagePort通道传输数据。
@@ -252,7 +225,7 @@ export struct SearchComponent {
 
 在上述的方案中可以发现，用H5开发页面时，需要使用到JS和CSS，甚至一些前端框架进行页面的开发。并且动效和体验都不如原生组件。既然Web也是一个组件，可以想到直接把原生组件堆叠到Web页面上，方案如下：   
 
-#### 方案二：使用非同层渲染   
+### 使用非同层渲染   
 底层使用空白的H5页面，用任意标签进行占位，然后在H5页面上方层叠一个原生组件。原生组件需要在Web加载完成后，获取到标签大小位置后，在对应位置展示。
 
 1. 使用Stack层叠Web和searchBuilder组件。
@@ -279,7 +252,20 @@ export struct SearchComponent {
       .alignContent(Alignment.Top)
     }
     ```
-2. 用Web加载nativeembed_view.html文件，在加载完成后的onPageEnd回调中，获取Web侧预留的Embed元素大小，并通过px2vp方法转换为组件大小。
+2. 用Web加载nativeembed_view.html文件，在加载完成后的onPageEnd回调中，获取Web侧预留的Embed元素大小，并通过px2vp方法转换为组件大小。  
+需要在H5侧添加getEmbedSize方法来获取元素大小，如下：
+
+    ```javascript
+    // H5侧
+    function getEmbedSize() {
+        let doc = document.getElementById('nativeSearch');
+        return {
+          width: doc.offsetWidth,
+          height: doc.offsetHeight,
+        }
+    }
+    ```
+    在应用侧，步骤1的onPageEnd回调中：
 
     ```typescript
     // 从web侧获取组件大小
@@ -302,8 +288,8 @@ export struct SearchComponent {
 
 在上述的方案中，实现方法非常简单。但是这只是限于底层H5网页比较简单，不会滚动的情况。如果H5页面可以上下滑动或者放大缩小比较复杂，此方案就会出现问题，就会发现原生组件是很难去定位，很难跟随H5页面一起滚动。而且在性能上，Web是整体渲染的，即使被原生组件遮住的部分也会消耗性能。于是我们可以通过同层渲染来完美解决这个问题，方案如下：  
 
-#### 方案三：同层渲染实现  
-同层渲染简单来说就是，底层使用空白的H5页面，用**Embed标签**进行占位，原生使用**NodeContainer**来站位，最后将Web侧的surfaceId和原生组件绑定，渲染在**NodeContainer**上。详细的步骤可以参考前面[概述](#概述)中的链接，这里给出一些大致步骤。
+### 同层渲染实现  
+同层渲染简单来说就是，底层使用空白的H5页面，用**Embed标签**进行占位，原生使用**NodeContainer**来站位，最后将Web侧的surfaceId和原生组件绑定，渲染在**NodeContainer**上。详细的步骤可以参考前面[什么是同层渲染](#什么是同层渲染)中的链接，这里给出一些大致步骤。
 
 1. 用Stack组件层叠NodeContainer和Web组件，并开启enableNativeEmbedMode模式。
     ```typescript
@@ -327,6 +313,8 @@ export struct SearchComponent {
      */
     class SearchNodeController extends NodeController {
       private surfaceId: string = ""; // 当前的surfaceId
+      private embedId: string = ""; // 当前的embedId
+      private type: string = ""; // 当前的节点类型
       private renderType: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY; // 渲染模式
       private componentWidth: number = 0; // 原生组件宽
       private componentHeight: number = 0; // 原生组件高
@@ -337,6 +325,8 @@ export struct SearchComponent {
        */
       setRenderOption(params: NodeControllerParams): void {
         this.surfaceId = params.surfaceId;
+        this.embedId = params.embedId;
+        this.type = params.type;
         this.renderType = params.renderType;
         this.componentWidth = params.width;
         this.componentHeight = params.height;
@@ -407,43 +397,38 @@ export struct SearchComponent {
 5. makeNode方法触发后，NodeContainer组件获取到BuilderNode对象，页面出现原生组件。
 6. Embed标签大小变化是onNativeEmbedLifecycleChange接口上报Embed标签更新消息。
 
-## 性能收益对比
+## 页面启动场景性能收益对比
 
-本节分别以Navigation页面跳转到Web页面和列表滑动两个具体的场景，抓取Trace图进行分析。
+本节以Navigation页面跳转到Web页面的场景，抓取Trace图进行分析。下面的Trace图上的红线处Web页面加载完成，蓝线处原生组件加载显示出来。  
 
-### 页面启动场景
+### 直接使用H5加载  
 
-在此场景，下面的Trace图上的红线处Web页面加载完成，蓝线处原生组件加载显示出来。  
-
-#### 方案一：使用H5加载  
-
-**图二：H5的Trace图**
+**图三：H5的Trace图**
 ![alt text](./figures/webview-render-app-components_5.png)  
 H5的分析：
-- 在应用侧，情况比较特殊，因为H5页面是在web侧渲染，所以app侧只有开始加载web之前的js处理阶段，在PageEnd后应用侧没有什么处理。
+- 在应用侧，情况比较特殊，因为H5页面是在web侧渲染，所以app侧只有开始加载web之前的js处理阶段，在PageEnd后应用侧没有什么处  理。
 - 在render_service侧，每一帧ReceiveVsync的耗时无明显变化。  
 
-#### 方案二：使用非同层渲染加载  
+### 使用非同层渲染加载  
 
-**图三：非同层渲染的Trace图**  
+**图四：非同层渲染的Trace图**  
 ![alt text](./figures/webview-render-app-components_4.png)  
 非同层渲染的分析：
 - 在应用侧，红蓝线之间为测量和计算布局，图片加载被延后到了蓝线之外。  
 - 在render_service侧，蓝线之后每一帧ReceiveVsync的耗时大幅增加。  
-
-**图四：非同层渲染情况下的单帧放大图**  
+**图五：非同层渲染情况下的单帧放大图**  
 ![alt text](./figures/webview-render-app-components_6.png)  
-从图四可以明显的看到，其中的RSUniRender::Process耗时比起其他帧大幅增加，说明是应用侧组件层叠导致render_service侧的绘制任务过重。 
+从图五可以明显的看到，其中的RSUniRender::Process耗时比起其他帧大幅增加，说明是应用侧组件层叠导致render_service侧的绘任务过重。 
 
-#### 方案三：使用同层渲染加载  
+### 使用同层渲染加载  
 
-**图五：同层渲染的Trace图**  
+**图六：同层渲染的Trace图**  
 ![alt text](./figures/webview-render-app-components_3.png)  
 同层渲染的分析：
 - 在应用侧，红蓝线之间由于NodeContainer的原因，组件布局的测量和绘制划分成了两部分，同时将图片加载提前到了红蓝线之间。
 - 在render_service侧，每一帧ReceiveVsync的耗时无明显变化。  
 
-#### 总结
+### 页面启动场景总结
 
 下表为各种方法完成原生组件加载（蓝线）前后几帧render_service侧的耗时对比（-1为完成前一帧，1为完成后一帧，以此类推）：
 
@@ -460,20 +445,20 @@ H5的分析：
 
 从此表格可以看出，非同层渲染会导致render_service侧每帧耗时大幅提升，同层渲染相比起非同层渲染，并不影响render_service侧的每帧耗时。
 
-### 列表滑动场景
+## 列表滑动场景性能收益对比
 
-在此场景下，由于纯H5实现的Web端由于帧率计算不一样，所以第二个场景不考虑纯H5的情况，对比同层渲染和非同层渲染的每一帧的结构如下所示：  
+本节以列表滑动场景，抓取Trace图进行分析。在此场景下，由于纯H5实现的Web端由于帧率计算不一样，所以第二个场景不考虑纯H5的情况，对比同层渲染和非同层渲染的每一帧的结构如下所示：  
 
-#### 方案一：非同层渲染
+### 使用非同层渲染
 
-**图六：非同层渲染滑动时单帧图**  
-![alt text](./figures/webview-render-app-components_8.png)
+  **图七：非同层渲染滑动时单帧图**  
+  ![alt text](./figures/webview-render-app-components_8.png)
 
-#### 方案二：同层渲染
+### 使用同层渲染
 
-**图七：同层渲染滑动时单帧图**  
-![alt text](./figures/webview-render-app-components_7.png)
-上述两张图经过对比也可以发现，render_service每一帧的耗时大幅增加，其中的RSUniRender::Process耗时也大幅增加，结论和上述保持一致，再次验证了同样的结果。
+  **图八：同层渲染滑动时单帧图**  
+  ![alt text](./figures/webview-render-app-components_7.png)
+  上述两张图经过对比也可以发现，render_service每一帧的耗时大幅增加，其中的RSUniRender::Process耗时也大幅增加，结论和上述保持一致，再次验证了同样的结果。
 
 ## 总结
 
