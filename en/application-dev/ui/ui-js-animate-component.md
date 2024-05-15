@@ -1,7 +1,7 @@
 # Component Animation
 
 
-Create and run an animation shortcut on the component. For details, see [Universal Methods](../reference/arkui-js/js-components-common-methods.md).
+Create and run an animation shortcut on the component. For details, see [Universal Methods](../reference/apis-arkui/arkui-js/js-components-common-methods.md).
 
 
 ## Obtaining an Animation Object

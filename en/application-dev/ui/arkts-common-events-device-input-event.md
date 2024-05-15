@@ -41,7 +41,7 @@ When ArkUI receives the mouse event, it checks whether the mouse event concerns 
 
 
 ```ts
-onHover(event: (isHover?: boolean) => void)
+onHover(event: (isHover: boolean) => void)
 ```
 
 
@@ -71,7 +71,7 @@ struct MouseExample {
       Button(this.hoverText)
         .width(200).height(100)
         .backgroundColor(this.Color)
-        .onHover((isHover?: boolean) => { // Use the onHover API to listen for whether the mouse pointer is hovered over the button.
+        .onHover((isHover?: boolean) => { // Use the onHover API to listen for whether the mouse cursor is hovered over the button.
           if (isHover) {
             this.hoverText = 'Hovered!';
             this.Color = Color.Green;
@@ -87,7 +87,7 @@ struct MouseExample {
 ```
 
 
-In this example, a **\<Button component>** is created, with the initial background color of gray and the content of **Not Hover**. The component is bound to the **onHover** callback. In the callback, **this.isHovered** is set to the callback parameter **isHover**.
+In this example, a **\<Button>** component is created, with the initial background color of gray and the content of **Not Hover**. The component is bound to the **onHover** callback. In the callback, **this.isHovered** is set to the callback parameter **isHover**.
 
 
 When the mouse pointer moves from outside the button to inside the button, the callback is invoked, the value of **isHover** changes to **true**, the value of **isHovered** changes to **true**, the background color of the component changes to **Color.Green**, and the content changes to **Hovered!**.
@@ -310,26 +310,35 @@ For the **\<Button>** component, **Auto** creates the same effect as **Scale**.
 
 ## Key Event
 
-  **Figure 2** Key event data flow 
+### Key Event Data Flow
 
 ![en-us_image_0000001511580944](figures/en-us_image_0000001511580944.png)
 
 
-The key event is triggered by a device such as a peripheral keyboard, and is sent to the currently focused window after being converted by the driver and multi-mode processing. After obtaining the event, the window distributes the event to the input method (which consumes the key as the input). If the input method does not consume the key event, the window sends the event to the ArkUI framework. Therefore, when an input box component has focus and an input method is enabled, most key events are consumed by the input method. For example, a letter key is used by the input method to enter a letter in the input box, and an arrow key is used by the input method to switch to the desired candidate word.
+After being triggered by a device such as a peripheral keyboard, a key event has its data processed and converted by the driver and multimodal input modules, and then is sent to the currently focused window. The window dispatches the received event, following the sequence below. The dispatch stops once the event is consumed.
+
+1. The window first dispatches the event to the ArkUI framework for invoking the **onKeyPreIme** callback bound to the component in focus as well as the page keyboard shortcuts.
+2. If the ArkUI framework does not consume the event, the window dispatches the event to the input method for key input.
+3. If the input method does not consume the event, the window dispatches the event to the ArkUI framework again for responding to the system default key event (for example, focus navigation) and for invoking the **onKeyEvent** callback bound to the component in focus.
+
+When a text box has focus and the input method is enabled, most key events are consumed by the input method. For example, a letter key is used by the input method to enter a letter in the text box, and an arrow key is used by the input method to switch to the desired candidate word. Yet, if a keyboard shortcut is bound to the text box, the shortcut responds to the event first, and the event will not be consumed by the input method.
+
+After the key event is sent to the ArkUI framework, it first identifies the complete focus chain, and then sends the key event from one node to the next, following the leaf-to-root path.
 
 
-After the key event is sent to the ArkUI framework, it first identifies the complete focus chain, and then sends the key event one by one from the leaf node to the root node.
-
-
-### onKeyEvent
+### onKeyEvent & onKeyPreIme
 
 
 ```ts
-onKeyEvent(event: (event?: KeyEvent) => void)
+onKeyEvent(event: (event: KeyEvent) => void): T
+onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 ```
 
 
-Triggered when the bound component has [focus](arkts-common-events-focus-event.md) and a key event occurs on the component. The callback parameter [KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) can be used to obtain the information about the key event, including [KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis-input-kit/js-apis-keycode.md), **keyText**, [KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
+The difference between the preceding two methods lies only in the triggering time. For details, see [Key Event Data Flow](#key-event-data-flow). The return value of **onKeyPreIme** determines whether the key event will be dispatched for the page keyboard shortcut, input method, and **onKeyEvent**.
+
+
+The methods are triggered when the bound component has [focus](arkts-common-events-focus-event.md) and a key event occurs on the component. The callback parameter [KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent) can be used to obtain the information about the key event, including [KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype), [keyCode](../reference/apis-input-kit/js-apis-keycode.md), **keyText**, [KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource), **deviceId**, **metaKey**, **timestamp**, and **stopPropagation**.
 
 
 
@@ -369,7 +378,7 @@ struct KeyEventExample {
       Divider()
       Text(this.columnText).fontColor(Color.Red)
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
-    .onKeyEvent((event?: KeyEvent) => { //  Set the onKeyEvent event for the parent container <Column>.
+    .onKeyEvent((event?: KeyEvent) => { // Set the onKeyEvent event for the parent container <Column>.
       if(event){
         if (event.type === KeyType.Down) {
           this.columnType = 'Down';
@@ -407,7 +416,6 @@ To prevent the key event of the **\<Button>** component from bubbling up to its 
 
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct KeyEventExample {
@@ -446,7 +454,7 @@ struct KeyEventExample {
       Divider()
       Text(this.columnText).fontColor(Color.Red)
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
-    .onKeyEvent((event?: KeyEvent) => { //  Set the onKeyEvent event for the parent container <Column>.
+    .onKeyEvent((event?: KeyEvent) => { // Set the onKeyEvent event for the parent container <Column>.
       if(event){
         if (event.type === KeyType.Down) {
           this.columnType = 'Down';
@@ -466,3 +474,34 @@ struct KeyEventExample {
 
 
 ![en-us_image_0000001511900508](figures/en-us_image_0000001511900508.gif)
+
+Use **OnKeyPreIme** to block the left arrow key input in the text box.
+```ts
+import { KeyCode } from '@ohos.multimodalInput.keyCode';
+
+@Entry
+@Component
+struct PreImeEventExample {
+  @State buttonText: string = '';
+  @State buttonType: string = '';
+  @State columnText: string = '';
+  @State columnType: string = '';
+
+  build() {
+    Column() {
+      Search({
+        placeholder: "Search..."
+      })
+        .width("80%")
+        .height("40vp")
+        .border({ radius:"20vp" })
+        .onKeyPreIme((event:KeyEvent) => {
+          if (event.keyCode == KeyCode.KEYCODE_DPAD_LEFT) {
+            return true;
+          }
+          return false;
+        })
+    }
+  }
+}
+```

@@ -1,6 +1,6 @@
 # \<stepper> Development
 
-When multiple steps are required to complete a task, you can use the **\<stepper>** component to navigate your users through the whole process. For details, see [stepper](../reference/arkui-js/js-components-container-stepper.md).
+When multiple steps are required to complete a task, you can use the **\<stepper>** component to navigate your users through the whole process. For details, see [stepper](../reference/apis-arkui/arkui-js/js-components-container-stepper.md).
 
 
 ## Creating a \<stepper> Component
@@ -292,7 +292,7 @@ export default {
 
 In this example, you can select the options displayed on the page and see how your selection takes effect in real time. Clicking the next button will dynamically change the font color and font size of the selected option.
 
-Use a **\<stepper>** component to navigate through the steps. Create a **\<Toggle>**(../reference/arkui-js/js-components-basic-toggle.md) component to implement the functions of selecting an option and displaying the selection result. Then use the **\<Select>**(../reference/arkui-js/js-components-basic-select.md) component to dynamically change the font color or size of the selected option.
+Use a **\<stepper>** component to navigate through the steps. Create a [\<toggle>](../reference/apis-arkui/arkui-js/js-components-basic-toggle.md) component to implement the functions of selecting an option and displaying the selection result. Then use the [\<select>](../reference/apis-arkui/arkui-js/js-components-basic-select.md) component to dynamically change the font color or size of the selected option.
 
 ```html
 <!-- xxx.hml -->
