@@ -27,6 +27,16 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 | infraredFrequency | number             | 是    | 红外频率，单位Hz。 |
 | pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位是us，数组个数必须是偶数，比如[100,200,300,400]，表示100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -59,7 +69,6 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 | -------- | ----------------- |
 | 201 | Permission denied. |
 | 202 | Not system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
