@@ -9,22 +9,22 @@
 
 ## 获取方式
 
-应用无响应日志是一种故障日志，与Native进程崩溃、JS应用崩溃、系统进程异常等都由FaultLog模块管理，可通过如下三种方式获取日志：
+应用无响应日志是一种故障日志，与Native进程崩溃、JS应用崩溃、系统进程异常等都由FaultLog模块管理，可通过以下方式获取日志：
 
-- 方式一：通过shell获取日志
+- 方式一：通过DevEco Studio获取日志
+
+    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
+
+- 方式二：通过hiappevent获取
+
+    hiappevent对外提供订阅系统卡死事件，可以查询卡死事件信息，详见[订阅系统事件（卡死事件）](hiappevent-watcher-freeze-events.md)。
+<!--Del-->
+- 方式三：通过shell获取日志
 
     应用无响应日志是以appfreeze-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-秒级时间”。
 
     ![appfreeze_20230308145160](figures/appfreeze_20230308145160.png)
-
-- 方式二：通过DevEco Studio获取日志
-
-    DevEco Studio会收集设备的故障日志并归档到FaultLog下。具体可参考[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
-
-- 方式三：通过hiappevent获取
-
-    hiappevent对外提供订阅系统卡死事件，可以查询卡死事件信息，详见[订阅系统事件（卡死事件）](hiappevent-watcher-freeze-events.md)。
-
+<!--DelEnd-->
 ## 应用无响应检测能力点
 
 目前应用无响应检测从以下维度检测，应用开发者了解其原理对定位和分析appfreeze故障非常有帮助。
