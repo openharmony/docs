@@ -58,7 +58,7 @@ bindMenu、bindContextMenu
 
 该变更为兼容性变更，无需适配。如需使用该功能，请查阅[菜单控制](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)文档。
 
-## cl.arkui.4 promptAction.showToast在http请求场景下获取上下文方式规格变更
+## cl.arkui.3 在UI上下文不明确的地方，promptAction.showToast使用方式规格变更
 
 **访问级别**
 
@@ -66,13 +66,13 @@ bindMenu、bindContextMenu
 
 **变更原因**
 
-某些场景下，toast无法获取到正确的上下文，导致toast的位置异常或者显示不出来，例如隐私场景下弹出toast，这些场景下，需要用户自行指定toast的上下文。
+本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，若在非UI页面中或者一些异步回调中调用此接口，可能无法跟踪到当前UI的上下文，导致toast位置计算错误。
 
 **变更影响**
 
-变更前：http、延时等异步场景下，可以直接弹出toast，但是位置可能错误。
+变更前：在UI上下文不明确的地方，可以直接弹出toast，但是位置可能错误。
 
-变更后：http、延时等异步场景下，需要用户使用相应的UIContext来获取promptAction对象，来弹出toast。
+变更后：在UI上下文不明确的地方，需要用户指定相应的UIContext来获取promptAction对象，来弹出toast。
 
 **起始API Level**
 
@@ -84,6 +84,7 @@ bindMenu、bindContextMenu
 
 **适配指导**
 
+在http、延时或者子窗口中弹toast，可能不会显示toast，并且日志中能看到窗口返回11的错误码，此时就需要用户自行指定上下文，代码如下
 ```ts
 import promptAction from '@ohos.promptAction';
 import http from '@ohos.net.http';
@@ -106,14 +107,14 @@ struct Index {
         let uiContext = this.getUIContext()
         httpRequest.request('https://xxx.com', { method: http.RequestMethod.GET }).then((res: http.HttpResponse) => {
           let promptAction1 = uiContext.getPromptAction()
-          promptAction.showToast({
+          promptAction1.showToast({
             message:"ok，我是toast",
             duration:1000,
             showMode: promptAction.ToastShowMode.TOP_MOST
           })
         }).catch((err: Error)=>{
           let promptAction1 = uiContext.getPromptAction()
-          promptAction.showToast({
+          promptAction1.showToast({
             message:"error，我是toast",
             duration:1000,
             showMode: promptAction.ToastShowMode.TOP_MOST
