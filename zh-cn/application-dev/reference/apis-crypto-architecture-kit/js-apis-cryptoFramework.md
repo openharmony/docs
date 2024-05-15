@@ -5430,7 +5430,7 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 ### generateSecret
 
-generateSecret(spec: KdfSpec): Promise\<DataBlob>
+generateSecret(params: KdfSpec): Promise\<DataBlob>
 
 基于传入的密钥派生参数进行密钥派生，通过Promise形式返回派生得到的密钥。
 
@@ -5442,7 +5442,7 @@ generateSecret(spec: KdfSpec): Promise\<DataBlob>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| spec   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
+| params   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
 
 **返回值：**
 
