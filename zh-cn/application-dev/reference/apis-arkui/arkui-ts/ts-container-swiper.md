@@ -216,7 +216,7 @@ displayMode(value: SwiperDisplayMode)
 
 cachedCount(value: number)
 
-设置预加载子组件个数。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
+设置预加载子组件个数, 以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
