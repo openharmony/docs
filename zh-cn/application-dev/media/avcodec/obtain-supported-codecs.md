@@ -6,17 +6,6 @@
 
 
 ## 基础概念
-### 音视频编解码器来源及其特点
-目前系统支持的音视频编解码器主要有两种来源，一种是由AVCodec框架直接提供的软件编解码器，一种由设备厂商通过AVCodec框架间接提供的硬件编解码器。
-
-软件编解码器和硬件编解码器定义如下：
-
-* **软件编解码器:** 指在CPU上进行编解码工作的编解码器，能力可灵活迭代，相比硬件编解码器具有更好的兼容性，更好的协议和规格扩展能力。
-
-* **硬件编解码器:** 指在专有硬件上进行编解码工作的编解码器，其特点是已在硬件平台硬化，能力随硬件平台迭代。相比软件编解码器具有更好的功耗、耗时和吞吐表现，同时能降低CPU负载。
-
-基于上述软件编解码器和硬件编解码器的特点，在硬件编解码器满足要求的时候，优先使用硬件编解码器，否则使用软件编解码器。
-
 ### 视频编解码级别对尺寸和帧率的约束
 
 以H.264为例，下表描述了H.264协议中不同等级的最大每秒宏块数目和最大每帧宏块数目限制。
@@ -104,7 +93,7 @@ $$
 
 ### 创建指定名称的编解码器
 
-如系统内存在同MIME_TYPE且同编解码场景的多个编解码器，且使用`OH_XXX_CreateByMime`系列接口默认创建不到的其中某一编解码器。因编解码器名字具有唯一性，可用于区分上述多个编解码器。开发者可先获取编解码名字，再通过`OH_XXX_CreateByName`系列接口创建指定名字的编解码器。
+如系统内存在同MIME_TYPE的多个编码器或同MIME_TYPE的多个解码器。使用`OH_XXX_CreateByMime`系列接口只能创建系统推荐的特定编解码器。若需创建其他编解码器，开发者可先获取编解码器名称，再通过`OH_XXX_CreateByName`系列接口创建指定名称的编解码器。
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
@@ -122,29 +111,31 @@ if (capability != nullptr) {
 }
 ```
 
-### 针对软硬件类别差异化配置编解码器
+### 针对软硬件类别差异化配置编解码器参数
 
-基于软件编解码器和硬件编解码器的差异，开发者可基于软件还是硬件类别调整编解码配置。
+软件编解码器和硬件编解码器定义如下：
+
+* **软件编解码器:** 指在CPU上进行编解码工作的编解码器，能力可灵活迭代，相比硬件编解码器具有更好的兼容性，更好的协议和规格扩展能力。
+
+* **硬件编解码器:** 指在专有硬件上进行编解码工作的编解码器，其特点是已在硬件平台硬化，能力随硬件平台迭代。相比软件编解码器具有更好的功耗、耗时和吞吐表现，同时能降低CPU负载。
+
+基于上述软件编解码器和硬件编解码器的特点，在硬件编解码器满足要求的时候，优先使用硬件编解码器，否则使用软件编解码器。开发者可基于软件还是硬件类别调整编解码配置。
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
 | OH_AVCapability_IsHardware  | 确认能力句柄对应编解码器是否硬件的 |
 
 视频编码，软硬件差异化配置帧率示例：
+
 ```c++
-// 1. 创建H.264编码器实例
-OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-// 2. 获取H.264编码器能力句柄
+// 1. 确认推荐的H.264编码器的软硬件类别
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
-// ... RegisterCallback
-// 3. 软硬件类别差异化配置
-OH_AVFormat *format = OH_AVFormat_Create();
-// ...
-if (OH_AVCapability_IsHardware(capability)) {
-   OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 60.0);
-} else {
-   OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 30.0);
-}
+bool isHardward = OH_AVCapability_IsHardware(capability);
+// 2. 基于软硬件类别差异化配置
+OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
+double frameRate = isHardward ? 60.0 : 30.0;
+(void)OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
 (void)OH_VideoEncoder_Configure(videoEnc, format);
 OH_AVFormat_Destroy(format);
 ```
@@ -157,13 +148,13 @@ OH_AVFormat_Destroy(format);
 | -------- | -------------------------------- |
 | OH_AVCapability_GetMaxSupportedInstances  | 获取能力句柄对应编解码器可同时运行的最大实例数，实际能成功创建的数目还受系统其他资源的约束 |
 
-优先创建硬件解码器实例不够时创建软件解码器实例示例：
+优先创建硬件解码器实例，不够时再创建软件解码器实例，示例如下：
+
 ```c++
 constexpr int32_t NEEDED_VDEC_NUM = 24;
 // 1. 创建硬件解码器实例
 OH_AVCapability *capHW = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, HARDWARE);
-int32_t vDecNumHW = OH_AVCapability_GetMaxSupportedInstances(capHW);
-vDecNumHW = min(vDecNumHW, NEEDED_VDEC_NUM);
+int32_t vDecNumHW = min(OH_AVCapability_GetMaxSupportedInstances(capHW), NEEDED_VDEC_NUM);
 int32_t createdVDecNum = 0;
 for (int i = 0; i < vDecNumHW; i++) {
    OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(OH_AVCapability_GetName(capHW));
@@ -173,10 +164,9 @@ for (int i = 0; i < vDecNumHW; i++) {
    }
 }
 if (createdVDecNum < NEEDED_VDEC_NUM) {
-   // 2. 创建软件解码器实例
+   // 2. 不够时，创建软件解码器实例
    OH_AVCapability *capSW = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, SOFTWARE);
-   int32_t vDecNumSW = OH_AVCapability_GetMaxSupportedInstances(capSW);
-   vDecNumSW = min(vDecNumSW, NEEDED_VDEC_NUM - createdVDecNum);
+   int32_t vDecNumSW = min(OH_AVCapability_GetMaxSupportedInstances(capSW), NEEDED_VDEC_NUM - createdVDecNum);
    for (int i = 0; i < vDecNumSW; i++) {
       OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(OH_AVCapability_GetName(capSW));
       if (videoDec != nullptr) {
@@ -187,9 +177,9 @@ if (createdVDecNum < NEEDED_VDEC_NUM) {
 }
 ```
 
-### 控制编码质量参数
+### 控制编码质量
 
-编码质量参数主要由码控模式参数，恒定质量码控模式下质量参数以及恒定码率与动态码率码控模式下的码率参数组成。
+同输入下，编码质量主要由码控模式参数，恒定质量码控模式下的质量参数以及恒定码率与动态码率码控模式下的码率参数决定。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -202,28 +192,25 @@ CBR和VBR码控模式示例如下：
 ```c++
 OH_BitrateMode bitrateMode = BITRATE_MODE_CBR;
 int32_t bitrate = 3000000
-// int32_t quality = 0;
-// 1. 获取H.264编码器能力句柄
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
    // 异常处理
 }
-
-// 2. 确认特定码控模式是否支持
+// 1. 确认待配置码控模式是否支持
 bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
 if (!isSupported) {
    // 异常处理
 }
-// 3. 码率是否支持
+// 2. 获取码率范围，判断待配置码率参数是否在范围内
 OH_AVRange bitrateRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
    // 异常处理
 }
 if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal) {
-   // 4.（可选）调整码率值
+   // 3.（可选）调整待配置码率参数
 }
-// 5. 配置编码参数
+// 4. 配置编码参数
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
 (void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode);
@@ -237,24 +224,23 @@ CQ码控模式示例如下：
 ```c++
 OH_BitrateMode bitrateMode = BITRATE_MODE_CQ;
 int32_t quality = 0;
-// 1. 获取H.264编码器能力句柄
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
    // 异常处理
 }
-// 2. 质量是否支持
+// 1. 确认待配置码控模式是否支持
 bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
 if (!isSupported) {
    // 异常处理
 }
-// 3. 查询当前能力中，编码质量范围
+// 2. 获取质量范围，判断待配置质量参数是否在范围内
 OH_AVRange qualityRange = {-1, -1};
 int32_t ret = OH_AVCapability_GetEncoderQualityRange(capability, &qualityRange);
 if (ret != AV_ERR_OK || qualityRange.maxVal < 0) {
    // 异常处理
 }
 if (quality > qualityRange.maxVal || quality < qualityRange.minVal) {
-   // 4.（可选）调整质量
+   // 3.（可选）调整待配置质量参数
 }
 // 5. 配置编码参数
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
@@ -265,7 +251,7 @@ OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AV
 OH_AVFormat_Destroy(format);
 ```
 
-### 确定编解码器支持复杂度范围
+### 查询编解码器支持复杂度范围
 
 复杂度等级决定了编解码器使用的工具的数目，仅部分编解码器支持。
 
@@ -274,20 +260,18 @@ OH_AVFormat_Destroy(format);
 | OH_AVCapability_GetEncoderComplexityRange | 获取当前编解码器支持的复杂度范围 | 
 
 ```c++
-// 1. 获取能力句柄
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
 if (capability == nullptr) {
    // 异常处理
 }
-
-// 2. 确认支持的编码复杂度范围
-OH_AVRange complexityRange;
-int32_t complexityRet = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityRange);
+// 确认支持的编码复杂度范围
+OH_AVRange complexityRange = {-1, -1};
+int32_t ret = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityRange);
 ```
 
-### 设置的正确的音频编解码参数
+### 设置正确的音频编解码参数
 
-音频编解码场景主要有采样率和通道数两个关键参数需要查询，编码场景还多一个码率参数需要查询。
+音频编解码场景设置的参数中有采样率和通道数两个关键参数需要查询后设置，编码场景还多一个码率参数需要查询后设置
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -295,18 +279,17 @@ int32_t complexityRet = OH_AVCapability_GetEncoderComplexityRange(capability, &c
 | OH_AVCapability_GetAudioChannelCountRange  | 获取当前音频编解码器支持的通道数范围 |
 | OH_AVCapability_GetEncoderBitrateRange     | 获取当前编解码器支持的码率范围 |
 
-音频编码场景，确认并设置正确的编码的参数示例如下：
+音频编码场景，确认并设置正确的编码的参数，示例如下：
 
 ```c++
 int32_t sampleRate = 44100;
 int32_t channelCount = 2;
 int32_t bitrate = 261000;
-// 1. 获取aac音频编码能力句柄
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
 if (capability == nullptr) {
    // 异常处理
 }
-// 2. 确认采样率是否支持
+// 1. 确认待配置采样率是否支持
 const int32_t *sampleRates = nullptr;
 uint32_t sampleRateNum = -1;
 int32_t ret = OH_AVCapability_GetAudioSupportedSampleRates(capability, &sampleRates, &sampleRateNum);
@@ -315,47 +298,46 @@ if (ret != AV_ERR_OK || sampleRates == nullptr || sampleRateNum <= 0) {
 }
 bool isMatched = false;
 for (int i = 0; i < sampleRateNum; i++) {
-   // TODO: 离散是否支持
    if (sampleRates[i] == sampleRate) {
       isMatched = true;
    }
 }
 if (!isMatched) {
-   // 3.（可选）调整采样率
+   // 2.（可选）调整待配置采样率
 }
-// 4. 确认通道数是否支持
+// 3. 获取通道数范围，判断待配置通道数参数是否在范围内
 OH_AVRange channelRange = {-1，-1};
 ret = OH_AVCapability_GetAudioChannelCountRange(capability, &channelRange);
 if (ret != AV_ERR_OK || channelRange.maxVal <= 0) {
    // 异常处理
 }
 if (channelCount > channelRange.maxVal || channelCount < channelRange.minVal ) {
-   // 5.（可选）调整通道值
+   // 4.（可选）调整待配置通道数
 }
-// 6. 确认码率是否支持
+// 5. 获取码率范围，判断待配置码率参数是否在范围内
 OH_AVRange bitrateRange = {-1，-1};
 ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
 if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
    // 异常处理
 }
 if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal ) {
-   // 7.（可选）调整码率值
+   // 7.（可选）调整待配置码率值
 }
-// 8. 编码配置参数
-OH_AVCodec *aEnc =  OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
+// 8. 配置编码参数
+OH_AVCodec *audioEnc = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
 OH_AVFormat *format = OH_AVFormat_Create();
-OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleRate);
-OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, channelCount);
-OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate));
-(void)OH_AudioCodec_Configure(aEnc, format);
+(void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleRate);
+(void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, channelCount);
+(void)OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate));
+(void)OH_AudioCodec_Configure(audioEnc, format);
 OH_AVFormat_Destroy(format);
 ```
 
 ### 查询编解码档次和级别支持情况
 
-编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的使能与关闭。以H.264为例，参考OH_AVCProfile。存在基本档次、主档次和高档次。
+编解码标准由很多编码工具构成，能应对多种编码场景。对于特定应用场景，并非需要所有的工具，编解码标准按档次确定多种编码工具的使能与关闭情况。以H.264为例，存在基本档次、主档次和高档次，参考OH_AVCProfile。
 
-级别是对编解码器所需的处理能力和储存空间的划分。以H.264为例，参考OH_AVCLevel，存在1到6.2的20个级别。
+级别是对编解码器所需的处理能力和储存空间的划分。以H.264为例，存在1到6.2的20个级别，参考OH_AVCLevel。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -363,34 +345,52 @@ OH_AVFormat_Destroy(format);
 | OH_AVCapability_GetSupportedLevelsForProfile            | 获取当前编解码器在给定档次的情况下支持的等级信息 |
 | OH_AVCapability_AreProfileAndLevelSupported             | 确认当前编解码器是否支持特定的档次和等级组合 |
 
-未知档次和级别情况下，尝试获取可配置的的档次，以及能支持的级别，示例如下：
+确认待配置档次是否支持，并查询能支持的级别，示例如下：
 
 ```c++
-// 1. 获取H.264编码器能力句柄
+OH_AVCProfile profile = AVC_PROFILE_MAIN;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
    // 异常处理
 }
-// 2. 查询支持的档次
+// 1. 确认待配置档次是否支持
 const int32_t *profiles = nullptr;
 uint32_t profileNum = -1;
 int32_t ret = OH_AVCapability_GetSupportedProfiles(capability, &profiles, &profileNum);
 if (ret != AV_ERR_OK || profiles == nullptr || profileNum <= 0) {
    // 异常处理
 }
+bool isMatched = false;
 for (int i = 0; i < profileNum; i++) {
-   // 3. 查询特定档次支持的级别
-   int32_t profile = profiles[i]; // 对照枚举OH_AVCProfile
-   const int32_t *levels = nullptr;
-   uint32_t levelNum = -1;
-   ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, profile, &levels, &levelNum);
-   if (ret != AV_ERR_OK || levels == nullptr || levelNum <= 0) {
-      // 异常处理
-   }
-   for (int j = 0; j < levelNum; j++) {
-      int32_t level = levels[j]; // 对照枚举OH_AVCLevel
+   if (profiles[i] == profile) {
+      isMatched = true;
    }
 }
+// 2. 查询待配置档次能支持的级别范围
+const int32_t *levels = nullptr;
+uint32_t levelNum = -1;
+ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, profile, &levels, &levelNum);
+if (ret != AV_ERR_OK || levels == nullptr || levelNum <= 0) {
+   // 异常处理
+}
+OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
+// 3.（可选）基于支持的最大或最小级别做业务逻辑区分
+switch (maxLevel) {
+   case AVC_LEVEL_31:
+      // ...
+      break;
+   case AVC_LEVEL_51:
+      // ...
+      break;
+   default:
+      // ...
+}
+// 4. 配置档次参数
+OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
+(void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, profile);
+(void)OH_VideoEncoder_Configure(videoEnc, format);
+OH_AVFormat_Destroy(format);
 ```
 
 已知需要的编码档次和级别组合，直接查询支持情况示例如下：
