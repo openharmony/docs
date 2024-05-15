@@ -53,7 +53,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 | checkAction<sup>12+</sup> | (isChecked: boolean) => void | 否 | - | checkbox的选中状态改变事件。 |
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框左侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框右侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| theme | Theme \| CustomTheme | 否 | - | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | - | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## SelectDialog
@@ -78,7 +78,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 |
 | confirm | [ButtonOptions](#buttonoptions) | 否 | 选择弹出框底部按钮。 |
 | radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 是 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 |
-| theme | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## ConfirmDialog
 
@@ -103,7 +103,7 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 | isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 |
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框左侧按钮。 |
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框右侧按钮。 |
-| theme | Theme \| CustomTheme | 否 | - | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | - | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## AlertDialog
@@ -126,7 +126,7 @@ AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, sec
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框左侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框右侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| theme | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## LoadingDialog
@@ -147,7 +147,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 加载弹出框控制器。 |
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 加载弹出框内容。 |
-| theme | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## CustomContentDialog<sup>12+</sup>
@@ -170,7 +170,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
 | contentAreaPadding | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
 | buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
-| theme | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## ButtonOptions
@@ -185,7 +185,6 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 按钮的字体颜色。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否 | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 |
 | role<sup>12+</sup> | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否 | 按钮的角色。<br/>默认值：ButtonRole.NORMAL。 |
-| theme | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 >  **说明：**
 >
