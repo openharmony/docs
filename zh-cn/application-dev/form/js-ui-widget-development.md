@@ -155,7 +155,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > FormExtensionAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
 
 
@@ -664,7 +664,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     }
   };
   ```
-
+<!--Del-->
 ## 相关实例
 
 针对卡片开发，有以下相关实例可供参考：
@@ -674,3 +674,4 @@ export default class EntryFormAbility extends FormExtensionAbility {
 - [电影卡片（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Card/MovieCard)
 
 - [计步器卡片（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Card/StepsCardJS)
+<!--DelEnd-->
