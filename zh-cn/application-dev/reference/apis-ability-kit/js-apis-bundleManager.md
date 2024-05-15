@@ -908,7 +908,7 @@ canOpenLink(link: string): boolean
 
 查询给定的链接是否可以打开。指定链接的scheme需要在module.json文件的querySchemes字段下配置。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
