@@ -1084,6 +1084,8 @@
         - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
         - [合理使用多线程共享内存](performance/thread_memory_shared.md)
         - [Grid高性能开发指导](performance/grid_optimization.md)
+        - [合理使用自定义组件冻结功能](performance/custom_component_freeze.md)
+        - [避免在滑动场景的高频回调接口中处理耗时操作](performance/avoid_high_frequency_callback_execute_lengthy_operation.md)
       - 提升应用启动和响应速度
         - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
         - [提升应用响应速度](performance/improve-application-response.md)
@@ -2209,7 +2211,6 @@
         - [系统参数错误码](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
         - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
         - [帐号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
-        - [企业设备管理错误码](reference/apis-basic-services-kit/errorcode-enterpriseDeviceManager.md)
         - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
         - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
   - Calendar Kit API参考
