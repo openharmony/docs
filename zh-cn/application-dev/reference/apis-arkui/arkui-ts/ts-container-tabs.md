@@ -815,6 +815,8 @@ struct TabsCustomAnimationExample {
 
 ```ts
 // xxx.ets
+import ComponentUtils from '@ohos.arkui.UIContext';
+
 @Entry
 @Component
 struct TabsExample {
@@ -823,6 +825,7 @@ struct TabsExample {
   @State indicatorLeftMargin: number = 0
   @State indicatorWidth: number = 0
   private tabsWidth: number = 0
+  private componentUtils: ComponentUtils.ComponentUtils = this.getUIContext().getComponentUtils()
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -905,14 +908,8 @@ struct TabsExample {
   }
 
   private getTextInfo(index: number): Record<string, number> {
-    let strJson = getInspectorByKey(index.toString())
-    try {
-      let obj: Record<string, string> = JSON.parse(strJson)
-      let rectInfo: number[][] = JSON.parse('[' + obj.$rect + ']')
-      return { 'left': px2vp(rectInfo[0][0]), 'width': px2vp(rectInfo[1][0] - rectInfo[0][0]) }
-    } catch (error) {
-      return { 'left': 0, 'width': 0 }
-    }
+    let rectangle = this.componentUtils.getRectangleById(index.toString())
+    return { 'left': px2vp(rectangle.windowOffset.x), 'width': px2vp(rectangle.size.width) }
   }
 
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {
