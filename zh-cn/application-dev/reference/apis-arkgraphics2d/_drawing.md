@@ -10137,7 +10137,7 @@ void OH_Drawing_TextBlobGetBounds (OH_Drawing_TextBlob* , OH_Drawing_Rect*  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextBlob | 指向文本对象[OH_Drawing_TextBlob](#oh_drawing_textblob)的指针。 | 
-| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针， 开发者可调用[OH_Drawing_Rect](#oh_drawing_rect)接口创建。 | 
+| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针， 开发者可调用[OH_Drawing_RectCreate](#oh_drawing_rectcreate)接口创建。 | 
 
 
 ### OH_Drawing_TextStyleAddFontFeature()
@@ -10986,7 +10986,7 @@ void OH_Drawing_TextStyleSetBackgroundRect (OH_Drawing_TextStyle* , const OH_Dra
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) | 指向{\@Link [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)}对象的指针。 | 
+| [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) | 指向[OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)对象的指针。 | 
 | int | 要设置的样式id，仅当背景框为圆角矩形时有效。文本处理时会被划分为多个分段，每个分段都有自己的TextStyle，id标识着这个分段将被绘制于第几个背景矩形框中。 若一行中每个分段的id全为0，表示所有分段绘制在同一个圆角矩形背景框中； 若一行中的id为0, 1，则id为0的分段绘制在一个圆角矩形背景框内，id为1的分段绘制在另一个圆角矩形背景框内，以此类推。 | 
 
 
@@ -12352,6 +12352,9 @@ bool OH_Drawing_TypographyStyleStrutStyleEquals (OH_Drawing_StrutStyle* from, OH
 | from | 被比较的支柱样式结构体。 | 
 | to | 用于比较的支柱样式结构体。 | 
 
+**返回：**
+
+返回支柱样式结构体是否相同，true表示相同，false表示不相同。
 
 ### OH_Drawing_TypographyTextGetHeightBehavior()
 

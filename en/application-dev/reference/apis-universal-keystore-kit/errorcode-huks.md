@@ -51,7 +51,7 @@ An invalid parameter is found.
 
 **Error Message**
 
-A file error can be any of the following: 
+A file error can be any of the following:
 
 - Insufficient storage space.
 - Invalid file size.
@@ -243,7 +243,7 @@ Wait for the system service to start and call the API again.
 
 **Error Message**
 
-Device password is required but not set.
+A device password is required but not set.
 
 **Possible Causes**
 

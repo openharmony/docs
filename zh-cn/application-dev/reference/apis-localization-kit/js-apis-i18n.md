@@ -111,7 +111,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 获取系统支持的语言列表。
 
-**卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
+从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -222,7 +222,7 @@ static getSystemLanguage(): string
 
 获取系统语言。
 
-**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 

@@ -7,12 +7,22 @@ animateToImmediately接口用来提供[显式动画](ts-explicit-animation.md)�
 > 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 
+## 接口
+
+## animateToImmediately
+
 animateToImmediately(value: [AnimateParam](ts-explicit-animation.md#animateparam对象说明) , event: () => void): void
 
-| 参数    | 类型                                | 是否必填 | 描述                                    |
-| ----- | --------------------------------- | ---- | ------------------------------------- |
-| value | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
-| event | () => void                        | 是    | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
+提供显式动画立即下发功能。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数： **
+
+| 参数名 | 类型                                                         | 是否必填 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| value  | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 是       | 设置动画效果相关参数。                                       |
+| event  | () => void                                                   | 是       | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
 ## 示例
 

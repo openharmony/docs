@@ -271,7 +271,7 @@ import(filePath).then(……);
   ```
   ```typescript
   // HAP's Index.ets
-  let filePath = './src/main/ets/Calc';
+  let filePath = '../Calc';
   import(filePath).then((ns:ESObject) => {
     console.log(ns.add(3, 5));
   });

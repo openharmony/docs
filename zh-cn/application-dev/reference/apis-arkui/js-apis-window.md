@@ -1907,7 +1907,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的显示方向属性，使用callback异步回调。
+设置窗口的显示方向属性，使用callback异步回调。仅在支持跟随sensor旋转的设备上生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1952,7 +1952,7 @@ try {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-设置窗口的显示方向属性，使用Promise异步回调。
+设置窗口的显示方向属性，使用Promise异步回调。仅在支持跟随sensor旋转的设备上生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3260,6 +3260,17 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 | type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即窗口矩形变化事件。 |
 | callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | 是   | 回调函数。返回当前窗口矩形变化值及变化原因。                           |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 801     | Capability not supported. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
 **示例：**
 
 ```ts
@@ -3284,6 +3295,17 @@ off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): voi
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'windowRectChange'，即窗口矩形变化事件。     |
 | callback | Callback&lt;[RectChangeOptions](#rectchangeoptions12)&gt; | 否   | 回调函数。返回当前的窗口矩形及变化原因。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口矩形变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 801     | Capability not supported. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 

@@ -144,11 +144,15 @@ let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 
 ## inputMethodEngine.CommandDataType<sup>12+</sup>
 
-**type** CommandDataType = **number** | **string** | boolean;
-
-私有数据类型，包含string，number，boolean。
+表示私有数据类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 类型    | 说明                 |
+| ------- | -------------------- |
+| string  | 表示值类型为字符串。  |
+| number  | 表示值类型为数字。   |
+| boolean | 表示值类型为布尔值。 |
 
 **示例：**
 
@@ -3650,11 +3654,11 @@ try {
 
 ### sendPrivateCommand<sup>12+</sup>
 
-sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**void**>;&gt;
+sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&lt;void&gt;
 
 发送私有数据至需要与输入法应用通信的系统其他部分。
 
->**说明**
+>**说明:**
 >
 > - 私有数据通道是系统预置输入法应用与系统特定组件（如文本框、桌面应用等）的通信机制，常用于设备级厂商在特定设备上实现自定义的输入法功能。
 > - 私有数据规格限制：总大小32KB，数量限制5条。
@@ -3665,7 +3669,7 @@ sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**
 
 | 参数名      | 类型                            | 必填 | 说明       |
 | ----------- | ------------------------------- | ---- | ---------- |
-| commandData | Record<string, CommandDataType> | 是   | 私有数据。 |
+| commandData | Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)> | 是   | 私有数据。 |
 
 **返回值：**
 

@@ -33,11 +33,13 @@
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
+      - [ContentSlot](js-apis-arkui-contentSlot.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
       - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+      - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
@@ -122,7 +124,6 @@
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
         - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
-        - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
         - 基础手势

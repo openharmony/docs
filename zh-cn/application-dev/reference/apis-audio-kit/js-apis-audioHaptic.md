@@ -79,6 +79,14 @@ registerSource(audioUri: string, hapticUri: string): Promise&lt;number&gt;
 | ------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise回调返回注册资源的source id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -109,6 +117,14 @@ unregisterSource(id: number): Promise&lt;void&gt;
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | 是   | 已注册资源的source id。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -143,6 +159,7 @@ setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed.            |
 
 **示例：**
@@ -174,6 +191,7 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed.            |
 
 **示例：**
@@ -217,6 +235,7 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 | 5400103 | I/O error. |
 | 5400106 | Unsupport format. |
@@ -271,6 +290,14 @@ isMuted(type: AudioHapticType): boolean
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
 | boolean             | 查询的音振类型是否被静音。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 

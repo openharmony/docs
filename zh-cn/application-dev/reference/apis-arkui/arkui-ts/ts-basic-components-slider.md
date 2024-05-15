@@ -371,9 +371,9 @@ sliderInteractionMode(value: SliderInteraction)
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明     |
-| ------ | ------ | ---- | -------- |
-| value  | [SliderInteraction](#sliderinteraction12枚举说明) | 否   | 用户与滑动条组件交互方式。 <br /> 默认值：SliderInteraction.SLIDE_AND_CLICK。 |
+| 参数名 | 类型                                              | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [SliderInteraction](#sliderinteraction12枚举说明) | 是   | 用户与滑动条组件交互方式。 <br /> 默认值：SliderInteraction.SLIDE_AND_CLICK。 |
 
 ### minResponsiveDistance<sup>12+</sup>
 

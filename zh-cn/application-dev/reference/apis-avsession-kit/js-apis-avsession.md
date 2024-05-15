@@ -4348,6 +4348,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | title           | string                  | 否   | 标题。                                                                 |
 | artist          | string                  | 否   | 艺术家。                                                                |
 | author          | string                  | 否   | 专辑作者。                                                               |
+| avQueueName<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
 | avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
 | album           | string                  | 否   | 专辑名称。                                                               |
@@ -4362,7 +4363,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | previousAssetId | string                  | 否   | 上一首媒体ID。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。                   |
-| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
 
@@ -4390,7 +4391,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | artist     | string                  | 否   | 播放列表媒体专辑作者。         |
 | fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。         |
 | dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
-| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core         |
 | duration     | number                  | 否   | 播放列表媒体播放时长。         |
 | startPosition     | number                  | 否   | 播放列表媒体起始播放位置。         |
 | creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。         |
@@ -5993,7 +5994,7 @@ avsessionController.on('callMetadataChange', 'all', (callmetadata: avSession.Cal
 });
 
 avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.CallMetadata) => {
-  console.info(`on callMetadataChange state : ${callmetadata.state}`);
+  console.info(`on callMetadataChange state : ${callmetadata.name}`);
 });
 ```
 
@@ -7090,7 +7091,7 @@ try {
 | ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
 | ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
 | ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connection failed.       |
 | ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
 
 ## SkipIntervals<sup>11+</sup>

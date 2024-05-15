@@ -1,6 +1,6 @@
 # 属性字符串
 
-作为[Text](./ts-basic-components-text.md)组件的入参对象，方便灵活应用文本样式。
+方便灵活应用文本样式的对象，可通过TextController中的[setStyledString](ts-basic-components-text.md#setstyledstring12)方法与Text组件绑定。
 
 >  **说明：**
 >
@@ -9,8 +9,7 @@
 ## 规则说明
 
 * 当组件样式和属性字符串中的样式冲突时，冲突部分以属性字符串设置的样式为准，未冲突部分则生效组件的样式。
-* 当属性字符串和[Text](./ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略[Text](./ts-basic-components-text.md)组件下包含[Span](./ts-basic-components-span.md)等子组件的情况。
-* 属性字符串不支持和其他类型文本入参动态切换。
+* 当属性字符串和[Text](ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略Text组件下包含[Span](ts-basic-components-span.md)等子组件的情况。
 * 不支持@State修饰。
 
 ## StyledString

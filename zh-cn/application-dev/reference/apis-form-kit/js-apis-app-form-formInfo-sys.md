@@ -60,6 +60,17 @@ import formInfo from '@ohos.app.form.formInfo';
 | formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
 | formLocation<sup>12+</sup> | [FormLocation](#formlocation)| 是    | 否     | 卡片位置信息。   |
 
+## FormInfoFilter
+
+卡片信息过滤器，仅将符合过滤器内要求的卡片信息返回。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 类型   | 必填         |说明         |
+| ----------- | ---- | ------------ |------------ |
+| bundleName<sup>12+<sup>    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，<br>未填写时则不通过bundleName进行过滤。   |
+| supportedDimensions<sup>12+<sup> | Array\<number\> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
+
 ## formProviderFilter<sup>10+</sup>
 
 卡片提供方信息。

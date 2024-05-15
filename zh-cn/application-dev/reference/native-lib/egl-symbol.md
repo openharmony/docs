@@ -46,3 +46,10 @@
 |FUNC|eglCreatePlatformWindowSurface||
 |FUNC|eglCreatePlatformPixmapSurface||
 |FUNC|eglWaitSync||
+|FUNC|eglCreatePlatformWindowSurfaceEXT||
+|FUNC|eglCreatePlatformPixmapSurfaceEXT||
+|FUNC|eglSwapBuffersWithDamageEXT||
+|FUNC|eglGetCompositorTimingSupportedANDROID||
+|FUNC|eglGetFrameTimestampSupportedANDROID||
+|FUNC|eglPresentationTimeANDROID||
+|FUNC|eglGetNativeClientBufferANDROID||

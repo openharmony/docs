@@ -16,14 +16,12 @@ import EmbeddableUIAbility from '@ohos.app.ability.EmbeddableUIAbility';
 
 ## 属性
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
-
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否 | 是 | 上下文。<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | EmbeddableUIAbility启动时的参数。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | EmbeddableUIAbility最后请求时的参数。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。|
-| callee | [Callee](#callee) | 否 | 否 | 调用Stub（桩）服务对象。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。|
+| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否 | 是 | 上下文。<br>**系统能力**：SystemCapability.Ability.AbilityRuntime.Core<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | EmbeddableUIAbility启动时的参数。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。<br>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | EmbeddableUIAbility最后请求时的参数。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。<br>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore<br>**元服务API**：从API version 12 开始，该接口支持在元服务中使用。|
+| callee | [Callee](#callee) | 否 | 否 | 调用Stub（桩）服务对象。当跳转启动EmbeddableUIAbility时具有该参数，嵌入式启动时不具有该参数。<br>**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore|
 
 ## EmbeddableUIAbility.onCreate
 

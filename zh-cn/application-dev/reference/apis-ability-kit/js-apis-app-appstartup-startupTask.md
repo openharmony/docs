@@ -16,7 +16,7 @@ import StartupTask from '@ohos.app.appstartup.StartupTask';
 
 ## StartupTask.onDependencyCompleted
 
-onDependencyCompleted(dependency: string, result: ESObject): void
+onDependencyCompleted?(dependency: string, result: ESObject): void
 
 在特定的依赖组件完成初始化时调用。
 

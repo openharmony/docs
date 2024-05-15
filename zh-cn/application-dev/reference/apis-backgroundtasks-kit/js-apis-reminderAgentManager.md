@@ -578,8 +578,6 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 >
 > 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
-**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
-
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **返回值**：
@@ -663,10 +661,6 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 
 跳转目标的ability信息。
 
-> **说明**
->
-> 从API version12开始，uri对所有应用开放。
-
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 
@@ -675,7 +669,7 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 | pkgName | string | 是 | 指明跳转目标的包名。 |
 | abilityName | string | 是 | 指明跳转目标的ability名称。 |
 | parameters<sup>12+</sup> | Record\<string, Object> | 否 | 需要传递到目标的参数。 |
-| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。 |
+| uri<sup>12+</sup> | string | 否 | 指明跳转目标的uri信息。 |
 
 
 ## MaxScreenWantAgent

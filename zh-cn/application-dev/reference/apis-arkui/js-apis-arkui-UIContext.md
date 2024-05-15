@@ -85,8 +85,6 @@ getUIObserver(): UIObserver
 
 获取UIObserver对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -948,8 +946,6 @@ uiContext.getDragController();
 getDragPreview(): dragController.DragPreview
 
 返回一个代表拖拽背板的对象。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1881,7 +1877,7 @@ observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
 
 ### on('willClick')<sup>12+</sup>
 
-on(type: 'willClick', callback: Callback\<GestureEvent, FrameNode>): void
+on(type: 'willClick', callback: GestureEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
@@ -1892,7 +1888,7 @@ on(type: 'willClick', callback: Callback\<GestureEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12)<sup>12+</sup>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。 |
 
 **示例：**
 
@@ -1907,7 +1903,7 @@ observer.on('willClick', callback);
 
 ### off('willClick')<sup>12+</sup>
 
-off(type: 'willClick', callback?: Callback\<GestureEvent, FrameNode>): void
+off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
 
@@ -1918,7 +1914,7 @@ off(type: 'willClick', callback?: Callback\<GestureEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12)<sup>12+</sup>        | 否   | 需要被注销的回调函数。                 |
 
 **示例：**
 
@@ -1933,7 +1929,7 @@ observer.off('willClick', callback);
 
 ### on('didClick')<sup>12+</sup>
 
-on(type: 'didClick', callback: Callback\<GestureEvent, FrameNode>): void
+on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
@@ -1944,7 +1940,7 @@ on(type: 'didClick', callback: Callback\<GestureEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。   |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12)<sup>12+</sup>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。   |
 
 **示例：**
 
@@ -1959,7 +1955,7 @@ observer.on('didClick', callback);
 
 ### off('didClick')<sup>12+</sup>
 
-off(type: 'didClick', callback?: Callback\<GestureEvent, FrameNode>): void
+off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
 
@@ -1970,7 +1966,7 @@ off(type: 'didClick', callback?: Callback\<GestureEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12)<sup>12+</sup>        | 否   | 需要被注销的回调函数。                 |
 
 **示例：**
 
@@ -1985,7 +1981,7 @@ observer.off('didClick', callback);
 
 ### on('willClick')<sup>12+</sup>
 
-on(type: 'willClick', callback: Callback\<ClickEvent, FrameNode>): void
+on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
@@ -1996,7 +1992,7 @@ on(type: 'willClick', callback: Callback\<ClickEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12)<sup>12+</sup>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
 
 **示例：**
 
@@ -2011,7 +2007,7 @@ observer.on('willClick', callback);
 
 ### off('willClick')<sup>12+</sup>
 
-off(type: 'willClick', callback?: Callback\<ClickEvent, FrameNode>): void
+off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
 
@@ -2022,7 +2018,7 @@ off(type: 'willClick', callback?: Callback\<ClickEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12)<sup>12+</sup>        | 否   | 需要被注销的回调函数。                 |
 
 **示例：**
 
@@ -2037,7 +2033,7 @@ observer.off('willClick', callback);
 
 ### on('didClick')<sup>12+</sup>
 
-on(type: 'didClick', callback: Callback\<ClickEvent, FrameNode>): void
+on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
@@ -2048,7 +2044,7 @@ on(type: 'didClick', callback: Callback\<ClickEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12)<sup>12+</sup>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
 
 **示例：**
 
@@ -2063,7 +2059,7 @@ observer.on('didClick', callback);
 
 ### off('didClick')<sup>12+</sup>
 
-off(type: 'didClick', callback?: Callback\<ClickEvent, FrameNode>): void
+off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
 
@@ -2074,7 +2070,7 @@ off(type: 'didClick', callback?: Callback\<ClickEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12)<sup>12+</sup>        | 否   | 需要被注销的回调函数。                 |
 
 **示例：**
 
@@ -2086,6 +2082,38 @@ let callback = (event: ClickEvent, frameNode: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
+
+## GestureEventListenerCallback<sup>12+</sup>
+type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
+
+ArkTS GestureEvent事件监听函数类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                          |
+| ------- | ------ | ---- | --------------------------- |
+| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明) | 是 | 触发事件监听的手势事件的相关信息。 |
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | 否 | 触发事件监听的手势事件所绑定的组件。 |
+
+## ClickEventListenerCallback<sup>12+</sup>
+type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
+
+ArkTS GestureEvent事件监听函数类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                          |
+| ------- | ------ | ---- | --------------------------- |
+| event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明) | 是 | 触发事件监听的点击事件的相关信息。 |
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | 否 | 触发事件监听的点击事件所绑定的组件。 |
 
 ## MediaQuery
 
@@ -3654,7 +3682,7 @@ try {
 
 ### openCustomDialog<sup>12+</sup>
 
-openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
 创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
 
@@ -3664,7 +3692,7 @@ openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDia
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 否    |   弹窗样式。 |
 
 **返回值：**
@@ -3738,7 +3766,7 @@ struct Index {
 
 ### closeCustomDialog<sup>12+</sup>
 
-closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
+closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭已弹出的dialogContent对应的自定义弹窗，使用Promise异步回调。
 
@@ -3748,7 +3776,7 @@ closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 
 **返回值：**
 
@@ -3831,7 +3859,7 @@ struct Index {
 
 ### updateCustomDialog<sup>12+</sup>
 
-updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
 更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
 
@@ -3841,7 +3869,7 @@ updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDi
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 是    |   弹窗样式，目前仅支持更新alignment、offset、autoCancel、maskColor。 |
 
 **返回值：**

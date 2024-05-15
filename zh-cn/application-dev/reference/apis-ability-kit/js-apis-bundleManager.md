@@ -141,8 +141,6 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | LOCKED                             |12|表示锁定模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|受开关控制和由系统判定的自动旋转模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| FOLLOW_DESKTOP<sup>12+</sup> |14|跟随桌面的旋转模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ### CompatiblePolicy<sup>10+</sup>
 
