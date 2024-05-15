@@ -105,7 +105,7 @@ isModifiable(): boolean
 
 appendChild(node: FrameNode): void
 
-在FrameNode最后一个子节点后添加新的子节点。当前FramNode如果不可修改，抛出异常信息。
+在FrameNode最后一个子节点后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,7 +129,7 @@ appendChild(node: FrameNode): void
 
 insertChildAfter(child: FrameNode, sibling: FrameNode | null): void
 
-在FrameNode指定子节点之后添加新的子节点。当前FramNode如果不可修改，抛出异常信息。
+在FrameNode指定子节点之后添加新的子节点。当前FrameNode如果不可修改，抛出异常信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -154,7 +154,7 @@ insertChildAfter(child: FrameNode, sibling: FrameNode | null): void
 
 removeChild(node: FrameNode): void
 
-从FrameNode中删除指定的子节点。当前FramNode如果不可修改，抛出异常信息。
+从FrameNode中删除指定的子节点。当前FrameNode如果不可修改，抛出异常信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -178,7 +178,7 @@ removeChild(node: FrameNode): void
 
 clearChildren(): void
 
-清除当前FrameNode的所有子节点。当前FramNode如果不可修改，抛出异常信息。
+清除当前FrameNode的所有子节点。当前FrameNode如果不可修改，抛出异常信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -795,7 +795,7 @@ get commonAttribute(): CommonAttribute
 
 仅可以修改通过命令式方式创建的节点的属性。
 
-不支持入参为[CustomBuilder](./arkui-ts/ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持事件和手势。
+不支持入参为[CustomBuilder](./arkui-ts/ts-types.md#custombuilder8)或lambda表达式的属性，且不支持事件和手势。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
