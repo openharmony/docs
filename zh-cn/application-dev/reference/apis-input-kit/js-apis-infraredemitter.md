@@ -1,10 +1,12 @@
-# @ohos.multimodalInput.infraredEmitter (红外管理)
+# @ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)
 
 红外管理模块提供产生特定频率和大小的红外信号，以及查询设备支持的频率范围等功能。
 
 > **说明**：
 >
-> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 本模块接口均为系统接口。
 
 ## 导入模块
 
@@ -83,7 +85,7 @@ try {
 
 ##  InfraredFrequency
 
-红外信号的频率范围
+红外信号的频率范围。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InfraredEmitter
 
