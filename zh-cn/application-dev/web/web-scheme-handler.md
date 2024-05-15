@@ -86,6 +86,10 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
     OH_ArkWeb_ReleaseString(method);
 
     int32_t resourceType = OH_ArkWebResourceRequest_GetResourceType(resourceRequest_);
+
+    char* frameUrl;
+    OH_ArkWebResourceRequest_GetFrameUrl(resourceRequest_, &frameUrl);
+    OH_ArkWeb_ReleaseString(frameUrl);
     ...
   ```
 
