@@ -2640,7 +2640,6 @@ async function testAbort() {
 | HUKS_MODE_CBC | 2    | 表示使用CBC加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
 | HUKS_MODE_CTR | 3    | 表示使用CTR加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
 | HUKS_MODE_OFB | 4    | 表示使用OFB加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_MODE_CFB<sup>12+</sup> | 5    | 表示使用CFB加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
 | HUKS_MODE_CCM | 31   | 表示使用CCM加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
 | HUKS_MODE_GCM | 32   | 表示使用GCM加密模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
 
