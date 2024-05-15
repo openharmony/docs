@@ -384,6 +384,38 @@ privacySensitive(supported: boolean)
 | --------- | ------- | ---- | ------------------------ |
 | supported | boolean | 是   | 是否支持卡片敏感隐私信息 |
 
+### enhancedImageQuality<sup>12+</sup>
+
+enhancedImageQuality(value: ResolutionQuality)
+
+设置图像解码时图像解码分辨率选项。
+
+该属性不支持 svg，[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)，[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                             |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| value  | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
+
+### dynamicRangeMode<sup>12+</sup>
+
+dynamicRangeMode(value: DynamicRangeMode)
+
+设置期望展示的图像动态范围。
+
+该属性仅在手机设备上生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                             |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| value  | [DynamicRangeMode](#dynamicrangemode12) | 是   | 图像显示的动态范围。 |
+
 ## ImageInterpolation
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -428,6 +460,26 @@ privacySensitive(supported: boolean)
 |  left   |  number  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
 
 ![edgewidths](figures/edgewidths.png)
+
+## ResolutionQuality<sup>12+</sup>
+
+图像解码时图像解码分辨率选项。
+
+| 名称     | 描述                      |
+| ------ | --------------------------  |
+| Low   | 低图像分辨率，解码时间适中。   |
+| Medium | 中等图像分辨率，解码时间适中。  |
+| High   | 高图像分辨率，解码时间长。    |
+
+## DynamicRangeMode<sup>12+</sup>
+
+期望展示的图像动态范围。
+
+| 名称     | 描述                      |
+| ------ | -------------------------- |
+| High   | 不受限动态范围，最大限度进行图片提亮。              |
+| Constraint | 受限动态范围，受限进行图片提亮。          |
+| Standard    | 标准动态范围，不进行图片提亮。         |
 
 ## 事件
 

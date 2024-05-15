@@ -1,19 +1,28 @@
-# Immediate Delivery of Explicit Animation (animateToImmediately) (System API)
+# Immediate Delivery of Explicit Animation (animateToImmediately)
 
 The **animateToImmediately** API implements immediate delivery for [explicit animations](ts-explicit-animation.md). When multiple property animations are loaded at once, you can call this API to immediately execute the transition animation for state changes caused by the specified closure function.
 
 > **NOTE**
 >
-> This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+> This feature is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
+
+## APIs
+
+## animateToImmediately
 
 animateToImmediately(value: [AnimateParam](ts-explicit-animation.md#animateparam) , event: () => void): void
 
-| Parameter   | Type                               | Mandatory| Description                                   |
-| ----- | --------------------------------- | ---- | ------------------------------------- |
-| value | [AnimateParam](ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
-| event | () => void                        | Yes   | Closure function that displays the animation. The system automatically inserts a transition animation for state changes caused by the closure function.|
+Delivers an explicit animation immediately.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| value  | [AnimateParam](ts-explicit-animation.md#animateparam) | Yes      | Animation settings.                                      |
+| event  | () => void                                                   | Yes      | Closure function that displays the animation. The system automatically inserts a transition animation for state changes caused by the closure function.|
 
 ## Example
 
