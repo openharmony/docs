@@ -978,8 +978,8 @@ Nullable\<T> {
 
 | 名称          | 类型        |  只读     | 必填      | 说明      |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。|
-| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。|
+| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
 
 ## MenuPolicy<sup>12+</sup>
 
