@@ -172,7 +172,7 @@ export default class MainAbility extends Ability {
   ...
 }
 ```
-类似的，若需获取刘海屏遮挡区域，需要将上述代码中注册的监听类型从TYPE_SYSTEM替换为TYPE_CUTOUT，并解析返回的[AvoidArea](../application-dev/reference/apis-arkui/js-apis-window.md#avoidarea7)来进行窗口内容避让。
+类似的，若需获取刘海屏遮挡区域，需要将上述代码中注册的监听类型从TYPE_SYSTEM替换为TYPE_CUTOUT，并解析返回的[AvoidArea](../application-dev/reference/apis-as/js-apis-window.md#avoidarea7)来进行窗口内容避让。
 
 ### 隐藏状态栏、导航栏
 隐藏状态栏、导航栏可以达到完全沉浸的效果，使用setWindowSystemBarEnable接口即可实现。
