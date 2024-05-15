@@ -131,6 +131,8 @@ export default class EntryAbility extends UIAbility {
 
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
 
+直接在onWindowStageCreate里面创建子窗口的整体示例代码如下：
+
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
@@ -216,6 +218,151 @@ export default class EntryAbility extends UIAbility {
     this.destroySubWindow();
   }
 };
+```
+
+另外，也可以在某个page页面通过点击按钮创建子窗口，整体示例代码如下：
+
+```ts
+// EntryAbility.ets
+onWindowStageCreate(windowStage: window.WindowStage) {
+  windowStage.loadContent('pages/Index', (err) => {
+    if (err.code) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+  })
+
+  // 给Index页面传递windowStage
+  AppStorage.setOrCreate('windowStage', windowStage);
+}
+```
+
+```ts
+// Index.ets
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+let windowStage_: window.windowStage | undefined = undefined;
+let sub_windowClass: window.Window | undefined = undefined;
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private CreateSubWindow(){
+    // 获取windowStage
+    windowStage_ = AppStorage.get('windowStage');
+    // 1.创建应用子窗口。
+    if (windowStage_ == null) {
+      console.error('Failed to create the subwindow. Cause: windowStage_ is null');
+    }
+    else {
+      windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        sub_windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
+        sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in moving the window.');
+        });
+        sub_windowClass.resize(500, 500, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in changing the window size.');
+        });
+        // 3.为子窗口加载对应的目标页面。
+        sub_windowClass.setUIContent("pages/subWindow", (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in loading the content.');
+          // 3.显示子窗口。
+          (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
+            let errCode: number = err.code;
+            if (errCode) {
+              console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in showing the window.');
+          });
+        });
+      })
+    }
+  }
+  private destroySubWindow(){
+    // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
+    (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in destroying the window.');
+    });
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button(){
+          Text('CreateSubWindow')
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+        }.width(220).height(68)
+        .margin({left:10, top:60})
+        .onClick(() => {
+          this.CreateSubWindow()
+        })
+        Button(){
+          Text('destroySubWindow')
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+        }.width(220).height(68)
+        .margin({left:10, top:60})
+        .onClick(() => {
+          this.destroySubWindow()
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// subWindow.ets
+@Entry
+@Component
+struct SubWindow {
+  @State message: string = 'Hello subWindow';
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
 
 ## 体验窗口沉浸式能力
