@@ -71,7 +71,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量 &gt; 系统变量**中，将SDK的toolchains完整路径添加到Path变量值中，具体路径信息以SDK**实际配置路径**为准。
 
-以下图示内容以本地SDK的toolchains完整路径_/User/username/sdk/openharmony/10/toolchains_为例：
+以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_/User/username/sdk/openharmony/10/toolchains_<!--RP1End-->为例：
 
 ![系统变量](figures/hdc_img_002.PNG)
 
@@ -101,7 +101,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 3. 输入以下内容，在PATH路径下**增加**SDK路径信息，具体路径信息以SDK**实际配置路径**为准。
 
-   以下内容以本地SDK的toolchains完整路径_/User/username/sdk/openharmony/10/toolchains_为例：
+   以下内容以本地SDK的toolchains完整路径<!--RP1-->_/User/username/sdk/openharmony/10/toolchains_<!--RP1End-->为例：
 
    ```shell
    HDC_SDK_PATH=/User/username/sdk/openharmony/10/toolchains
