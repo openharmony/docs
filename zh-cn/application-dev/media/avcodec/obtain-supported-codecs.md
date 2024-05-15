@@ -187,57 +187,169 @@ if (createdVDecNum < NEEDED_VDEC_NUM) {
 }
 ```
 
-### 配置合适的编码码率
+### 控制编码质量参数
+
+编码质量参数主要由码控模式参数，恒定质量码控模式下质量参数以及恒定码率与动态码率码控模式下的码率参数组成。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编解码器支持的码率范围 |
 | OH_AVCapability_IsEncoderBitrateModeSupported  | 确认当前编解码器是否支持给定的码控模式 |
+| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编解码器支持的码率范围，在CBR和VBR码控模式下使用|
+| OH_AVCapability_GetEncoderQualityRange  | 获取当前编解码器支持的质量范围，在CQ码控模式下使用  |
+
+CBR和VBR码控模式示例如下：
 
 ```c++
-// 查询当前能力中，编码支持的码率范围
-OH_AVRange bitrateRange;
-int32_t bitrateRet = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
+OH_BitrateMode bitrateMode = BITRATE_MODE_CBR;
+int32_t bitrate = 3000000
+// int32_t quality = 0;
+// 1. 获取H.264编码器能力句柄
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+if (capability == nullptr) {
+   // 异常处理
+}
 
-// 查询当前能力中，码控模式是否支持
-bool isEncoderBitrateModeSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, BITRATE_MODE_CBR);
+// 2. 确认特定码控模式是否支持
+bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
+if (!isSupported) {
+   // 异常处理
+}
+// 3. 码率是否支持
+OH_AVRange bitrateRange = {-1, -1};
+int32_t ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
+if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
+   // 异常处理
+}
+if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal) {
+   // 4.（可选）调整码率值
+}
+// 5. 配置编码参数
+OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
+(void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode);
+(void)OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate));
+(void)OH_VideoEncoder_Configure(videoEnc, format);
+OH_AVFormat_Destroy(format);
 ```
 
-### 确定编解码器支持的质量和复杂度范围
+CQ码控模式示例如下：
+
+```c++
+OH_BitrateMode bitrateMode = BITRATE_MODE_CQ;
+int32_t quality = 0;
+// 1. 获取H.264编码器能力句柄
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+if (capability == nullptr) {
+   // 异常处理
+}
+// 2. 质量是否支持
+bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
+if (!isSupported) {
+   // 异常处理
+}
+// 3. 查询当前能力中，编码质量范围
+OH_AVRange qualityRange = {-1, -1};
+int32_t ret = OH_AVCapability_GetEncoderQualityRange(capability, &qualityRange);
+if (ret != AV_ERR_OK || qualityRange.maxVal < 0) {
+   // 异常处理
+}
+if (quality > qualityRange.maxVal || quality < qualityRange.minVal) {
+   // 4.（可选）调整质量
+}
+// 5. 配置编码参数
+OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
+(void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode);
+(void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
+(void)OH_VideoEncoder_Configure(videoEnc, format);
+OH_AVFormat_Destroy(format);
+```
+
+### 确定编解码器支持复杂度范围
+
+复杂度等级决定了编解码器使用的工具的数目，仅部分编解码器支持。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetEncoderQualityRange  | 获取当前编解码器支持的质量范围  |
 | OH_AVCapability_GetEncoderComplexityRange | 获取当前编解码器支持的复杂度范围 | 
 
 ```c++
-// 查询当前能力中，编码质量范围
-OH_AVRange qualityRange;
-int32_t qualityRet = OH_AVCapability_GetEncoderQualityRange(capability, &qualityRange);
+// 1. 获取能力句柄
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
+if (capability == nullptr) {
+   // 异常处理
+}
 
-// 查询当前能力中，编码复杂度范围
+// 2. 确认支持的编码复杂度范围
 OH_AVRange complexityRange;
 int32_t complexityRet = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityRange);
 ```
 
-### 获取音频编解码信息
+### 设置的正确的音频编解码参数
+
+音频编解码场景主要有采样率和通道数两个关键参数需要查询，编码场景还多一个码率参数需要查询。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_GetAudioSupportedSampleRates     | 获取当前音频编解码器支持的采样率范围 |
 | OH_AVCapability_GetAudioChannelCountRange  | 获取当前音频编解码器支持的通道数范围 |
+| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编解码器支持的码率范围 |
+
+音频编码场景，确认并设置正确的编码的参数示例如下：
 
 ```c++
-// 查询当前能力中，支持的音频采样率
-const int32_t *sampleRates;
-uint32_t sampleRateNum = 0;
-int32_t sampleRet = OH_AVCapability_GetAudioSupportedSampleRates(capability, &sampleRates, &sampleRateNum);
-
-// 查询当前能力中，支持的音频通道数范围
-OH_AVRange channelCountRange;
-int32_t channelCountRet = OH_AVCapability_GetAudioChannelCountRange(capability, &channelCountRange);
+int32_t sampleRate = 44100;
+int32_t channelCount = 2;
+int32_t bitrate = 261000;
+// 1. 获取aac音频编码能力句柄
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
+if (capability == nullptr) {
+   // 异常处理
+}
+// 2. 确认采样率是否支持
+const int32_t *sampleRates = nullptr;
+uint32_t sampleRateNum = -1;
+int32_t ret = OH_AVCapability_GetAudioSupportedSampleRates(capability, &sampleRates, &sampleRateNum);
+if (ret != AV_ERR_OK || sampleRates == nullptr || sampleRateNum <= 0) {
+   // 异常处理
+}
+bool isMatched = false;
+for (int i = 0; i < sampleRateNum; i++) {
+   // TODO: 离散是否支持
+   if (sampleRates[i] == sampleRate) {
+      isMatched = true;
+   }
+}
+if (!isMatched) {
+   // 3.（可选）调整采样率
+}
+// 4. 确认通道数是否支持
+OH_AVRange channelRange = {-1，-1};
+ret = OH_AVCapability_GetAudioChannelCountRange(capability, &channelRange);
+if (ret != AV_ERR_OK || channelRange.maxVal <= 0) {
+   // 异常处理
+}
+if (channelCount > channelRange.maxVal || channelCount < channelRange.minVal ) {
+   // 5.（可选）调整通道值
+}
+// 6. 确认码率是否支持
+OH_AVRange bitrateRange = {-1，-1};
+ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
+if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
+   // 异常处理
+}
+if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal ) {
+   // 7.（可选）调整码率值
+}
+// 8. 编码配置参数
+OH_AVCodec *aEnc =  OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
+OH_AVFormat *format = OH_AVFormat_Create();
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleRate);
+OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, channelCount);
+OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate));
+(void)OH_AudioCodec_Configure(aEnc, format);
+OH_AVFormat_Destroy(format);
 ```
-
 
 ### 查询编解码档次和级别支持情况
 
@@ -416,10 +528,7 @@ bool isSupported = frameRate >= frameRateRange.minVal && frameRate <= frameRateR
 确认明确的尺寸和帧率组合是否支持，示例代码如下：
 
 ```c++
-int32_t width = 1920;
-int32_t height = 1080;
-int32_t frameRate = 120;
-bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
+bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, 1920, 1080, 120);
 if (!isSupported) {
    // 基于确定视频尺寸，查询支持的帧率范围，并调整
 }
