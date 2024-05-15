@@ -5400,7 +5400,7 @@ PixelMap的初始化选项。
 | 名称              |   值                    | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
 | BITS_PER_SAMPLE                           | "BitsPerSample"              | 每个像素比特数。                            |
-| ORIENTATION                               | "Orientation"                | 图片方向，例如Top-left，图像未旋转；Bottom-right，图像旋转180°。共8个方向，未定义值返回Unknown Value。|
+| ORIENTATION                               | "Orientation"                | 图片方向，Top-left，图像未旋转；Top-right，镜像水平翻转；Bottom-right，图像旋转180°；Bottom-left，镜像垂直翻转；Left-top，镜像水平翻转再顺时针旋转270°；Right-top，顺时针旋转90°；Right-bottom，镜像垂直翻转再顺时针旋转90°；Left-bottom，顺时针旋转270°。未定义值返回Unknown Value|
 | IMAGE_LENGTH                              | "ImageLength"                | 图片长度。                                  |
 | IMAGE_WIDTH                               | "ImageWidth"                 | 图片宽度。                                  |
 | GPS_LATITUDE                              | "GPSLatitude"                | 图片纬度。                                  |
