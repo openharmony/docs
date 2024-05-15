@@ -10,9 +10,9 @@
 
 - 卡片提供方：提供卡片显示内容的应用，控制卡片的显示内容、控件布局以及控件点击事件。
 
-- 卡片管理服务：用于管理系统中所添加卡片的常驻代理服务，提供[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)和[formHost](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md)的接口能力，同时提供卡片对象的管理与使用以及卡片周期性刷新等能力。
+- 卡片管理服务：用于管理系统中所添加卡片的常驻代理服务，提供[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)<!--Del-->和[formHost](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md)<!--DelEnd-->的接口能力，同时提供卡片对象的管理与使用以及卡片周期性刷新等能力。
 
-- 卡片渲染服务：用于管理卡片渲染实例，渲染实例与卡片使用方上的[卡片组件](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)一一绑定。卡片渲染服务运行卡片页面代码widgets.abc进行渲染，并将渲染后的数据发送至卡片使用方对应的[卡片组件](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)。
+- 卡片渲染服务：用于管理卡片渲染实例，渲染实例与卡片使用方上的<!--Del-->[<!--DelEnd-->卡片组件<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd-->一一绑定。卡片渲染服务运行卡片页面代码widgets.abc进行渲染，并将渲染后的数据发送至卡片使用方对应的<!--Del-->[<!--DelEnd-->卡片组件<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd-->。
 
   **图2** ArkTS卡片渲染服务运行原理  
 ![WidgetRender](figures/WidgetRender.png)
