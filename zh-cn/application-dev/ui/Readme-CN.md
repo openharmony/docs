@@ -32,6 +32,8 @@
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
+    - 使用文本
+      - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 设置组件导航和页面路由
     - [组件导航 (Navigation)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)](arkts-routing.md)
