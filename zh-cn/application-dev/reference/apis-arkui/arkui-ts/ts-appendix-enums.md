@@ -996,7 +996,7 @@ Nullable\<T> {
 | 名称                             | 描述             |
 | -------------------------------- | --------------- |
 | FOLLOW_HOST_DPI                  | 表示DPI跟随宿主。 |
-| FOLLOW_UI_EXTENSION_ABILITY_DPI  | 表示DPI跟随系统。 |
+| FOLLOW_UI_EXTENSION_ABILITY_DPI  | 表示DPI跟随UIExtensionAbility。 |
 ## EmbeddedType<sup>12+</sup>
 枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
 

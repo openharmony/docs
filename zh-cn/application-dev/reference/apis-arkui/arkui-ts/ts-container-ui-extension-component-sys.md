@@ -121,7 +121,7 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false。 |
 | placeholder<sup>12+<sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
-| dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-appendix-enums.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随系统或跟随扩展。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI。 |
+| dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-appendix-enums.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI。 |
 
 ## UIExtensionProxy
 
