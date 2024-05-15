@@ -322,11 +322,6 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallbac
 | dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。 |
 |callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
 
-**返回值：**
-| 类型                             | 说明                  |
-| -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
-
 **错误码：**
 
 以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
@@ -385,7 +380,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 | 类型                             | 说明                                                                    |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **错误码：**
 
@@ -497,7 +492,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 | 类型                             | 说明                                                                    |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| Promise\<void> | Promise实例，异步返回结果。 |
 
 **错误码：**
 
@@ -751,7 +746,7 @@ async function Demo() {
     };
     if (pixelMap != undefined) {
         pixelMap.readPixels(area, (error: BusinessError) => {
-            if (error != undefined) {
+            if (error) {
                 console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
@@ -767,8 +762,6 @@ async function Demo() {
 readPixelsSync(area: PositionArea): void
 
 读取区域内的图片数据并同步返回结果。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -893,7 +886,7 @@ async function Demo() {
     }
     if (pixelMap != undefined) {
         pixelMap.writePixels(area, (error : BusinessError) => {
-            if (error != undefined) {
+            if (error) {
                 console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
@@ -1030,7 +1023,7 @@ async function Demo() {
     }
     if (pixelMap != undefined) {
         pixelMap.writeBufferToPixels(color, (error: BusinessError) => {
-            if (error != undefined) {
+            if (error) {
                 console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
@@ -1145,7 +1138,7 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
-            if (error != undefined) {
+            if (error) {
                 console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
@@ -1583,8 +1576,6 @@ scaleSync(x: number, y: number): void
 
 以同步方法根据输入的宽高对图片进行缩放。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -1771,7 +1762,7 @@ async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
         pixelMap.rotate(angle, (err: BusinessError) => {
-            if (err != undefined) {
+            if (err) {
                 console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
@@ -1891,7 +1882,7 @@ async function Demo() {
     let vertical: boolean = false;
     if (pixelMap != undefined) {
         pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
-            if (err != undefined) {
+            if (err) {
                 console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
@@ -2014,7 +2005,7 @@ async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     if (pixelMap != undefined) {
         pixelMap.crop(region, (err: BusinessError) => {
-            if (err != undefined) {
+            if (err) {
                 console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
@@ -2500,7 +2491,7 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.release((err: BusinessError) => {
-            if (err != undefined) {
+            if (err) {
                 console.error(`Failed to release pixelmap object. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
