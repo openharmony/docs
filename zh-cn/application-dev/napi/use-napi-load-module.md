@@ -21,6 +21,12 @@ napi_status napi_load_module(napi_env env,
 | path          | 加载的文件路径或者模块名          |
 | result         | 加载的模块          |
 
+## 使用限制
+
+- 禁止在非主线程当中使用该接口。
+- 禁止在Init函数中使用该接口。
+- 禁止在线程安全函数的回调函数当中进行文件路径的加载。
+
 ## 加载系统模块使用示例
 
 使用napi_load_module导出系统模块hilog，并调用info函数
