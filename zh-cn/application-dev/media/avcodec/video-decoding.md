@@ -8,9 +8,9 @@
 | --------------------- | ---------------- |
 | AVC(H.264)、HEVC(H.265) |AVC(H.264) |
 
-<!--RP1-->
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
-<!--RP1End-->
+
+<!--RP1--><!--RP1End-->
 
 ## Surface输出与Buffer输出
 
