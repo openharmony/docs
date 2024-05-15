@@ -53,7 +53,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
   ```
 
 隐私模式Webview加载在线网页。
- 
+
    ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -4698,7 +4698,7 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnav
     }
   }
   ```
-  
+
 ### onSafeBrowsingCheckResult<sup>11+</sup>
 
 onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
@@ -5047,6 +5047,61 @@ POST请求不会触发该回调。
     <h1>onOverrideUrlLoading Demo</h1>
     <a href="about:blank">Click here</a>访问about:blank。
   </body>
+  </html>
+  ```
+
+### onViewportFitChanged<sup>12+</sup>
+
+onViewportFitChanged(callback: OnViewportFitChangedCallback)
+
+网页meta中viewport-fit配置项更改时触发该回调，应用可在此回调中自适应布局视口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnViewportFitChangedCallback](#onviewportfitchangedcallback12) | 网页meta中viewport-fit配置项更改时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onViewportFitChanged((data) => {
+          let jsonData = JSON.stringify(data)
+          let viewportFit: ViewportFit = JSON.parse(jsonData).viewportFit
+          if (viewportFit === ViewportFit.COVER) {
+            // index.html网页支持沉浸式布局，可调用expandSafeArea调整web控件布局视口覆盖避让区域(状态栏或导航条)。
+          } else if (viewportFit === ViewportFit.CONTAINS) {
+            // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
+          } else {
+            // 默认值，可不作处理
+          }
+        })
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width,viewport-fit=cover">
+    </head>
+    <body>
+      <div style="position: absolute; bottom: 0; margin-bottom: env(safe-area-inset-bottom)"></div>
+    </body>
   </html>
   ```
 ## ConsoleMessage
@@ -7153,3 +7208,23 @@ type NativeMediaPlayerConfig = {
 |------|------|------|------|------|
 |  enable  | boolean | 否 | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
 |  shouldOverlay | boolean | 否 | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
+
+## ViewportFit<sup>12+</sup>
+
+网页meta中viewport-fit配置的视口类型。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| AUTO                  | 0 | 默认值，整个网页可见。   |
+| CONTAINS      | 1 | 初始布局视口和视觉视口为适应设备显示屏的最大矩形内。   |
+| COVER      | 2| 初始布局视口和视觉视口为设备物理屏幕的外接矩形内。   |
+
+## OnViewportFitChangedCallback<sup>12+</sup>
+
+type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
+
+网页meta中viewport-fit配置项更改时触发的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| viewportFit | [ViewportFit](#viewportfit12) | 网页meta中viewport-fit配置的视口类型。 |
