@@ -1138,15 +1138,13 @@ for (let i: number = 0; i < options.length; i++) {
 
 页面状态信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
-| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
-| name  | string | 否   | 表示当前页面的名称，即对应文件名。                           |
-| path  | string | 是   | 表示当前页面的路径。                                         |
+| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| name  | string | 否   | 表示当前页面的名称，即对应文件名。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| path  | string | 是   | 表示当前页面的路径。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | params<sup>12+</sup>  | Object |  否  | 表示当前页面携带的参数。                                         |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
