@@ -35,9 +35,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
 3. PC被检测设备连接后，才可执行命令行，支持单个和多个设备。
 
-## 使用说明
-
-### 功能特性及命令说明
+## 功能特性及命令说明
 
 | 命令           | 说明                                           | 备注          |
 | -------------- | ---------------------------------------------- | ------------- |
@@ -54,13 +52,13 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
 | 命令            | 功能                                 | 必选 | 备注                                     |
 | --------------- | ------------------------------------ | ---- | ---------------------------------------- |
-| -h,--help       | 获取当前测试的帮助信息。               | 否   | 随机测试帮助信息。                         |
-| -c,--count      | 设置执行次数，与-T冲突。                         | 否   | 单位次数，默认10次。                       |
+| -h,--help       | 获取当前测试的帮助信息。               | 否   |                          |
+| -c,--count      | 设置执行次数，与设置执行时间-T冲突。二者取其一。   | 否   | 单位次数，默认10次。                       |
 | -i,--interval   | 设置执行间隔。                         | 否   | 单位ms，默认1500ms。                       |
 | -s,--seed       | 设置随机种子。                         | 否   | 配置相同随机种子，会生成相同随机事件序列。 |
-| -b,--bundle[bundlename,……,bundlename]     | 设置本次测试的允许应用名单，与-p冲突。 | 否   | 默认测试当前设备所有应用(应用名称用逗号隔开)。                 |
-| -p,--prohibit[bundlename,……,bundlename]   | 设置本次测试的禁止应用名单，与-b冲突。 | 否   | 默认不禁止任何应用(应用名称用逗号隔开)。                       |
-| -d,--page[page,……,page]                   | 设置本次测试的禁止页面名单 | 否  | 系统默认禁止pages/system页面(页面名称用逗号隔开)。 |
+| -b,--bundle[bundlename,……,bundlename]     | 设置本次测试的允许应用名单，与-p冲突。 | 否   | 默认测试当前设备所有应用(应用名称用英文逗号隔开)。                 |
+| -p,--prohibit[bundlename,……,bundlename]   | 设置本次测试的禁止应用名单，与-b冲突。 | 否   | 默认不禁止任何应用(应用名称用英文逗号隔开)。                       |
+| -d,--page[page,……,page]                   | 设置本次测试的禁止页面名单。 | 否  | 系统默认禁止pages/system页面(页面名称用逗号隔开)。 |
 | -a,--appswitch  | 设置应用随机拉起测试比例。             | 否   | 默认10%。                                  |
 | -t,--touch      | 设置屏幕随机touch测试比例。            | 否   | 默认10%。                                  |
 | -S,--swap       | 设置屏幕随机swap测试比例。             | 否   | 默认3%。                                   |
@@ -70,7 +68,12 @@ wukong部件架构图以及部件内子模块职责如下所述。
 | -r,--rotate     | 设置随机rotate测试比例。               | 否   | 默认2%。                                   |
 | -C, --component | 设置随机控件测试比例。                 | 否   | 默认70%。                                  |
 | -I, --screenshot | 控件测试截图。                 | 否   | - |
-| -T,--time       | 设置测试总时间，与-c冲突。                       | 否   | 单位分钟，默认10分钟。                      |
+| -T,--time       | 设置测试总时间，与设置执行次数-c冲突。二者取其一。 | 否   | 单位分钟，默认10分钟。         |
+| -e, --allow ability   |  设置压测ability白名单 | 否 | - |
+| -E, --block ability   |  设置压测ability白名单 | 否 | - |
+| -Y, --blockCompId     |  设置不进行注入的CompId | 否 | - |
+| -y, --blockCompType   |  设置不进行注入的CompType | 否 | - |
+| -B, --checkBWScreen   |  设置启用黑白屏检测 | 否 | - |
 
 ## 专项测试
 
@@ -78,13 +81,13 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
 | 命令                | 功能                   | 必选 | 备注                |
 | :------------------ | ---------------------- | ---- | :------------------ |
-| -h, --help          | 获取当前测试的帮助信息。 | 否   | 专项测试帮助信息。    |
+| -h, --help          | 获取当前专项测试的帮助信息。 | 否   |      |
 | -k, --spec_insomnia | 休眠唤醒专项测试。       | 否   | -                   |
-| -c, --count         | 设置执行次数。           | 否   | 默认10次。            |
+| -c, --count         | 设置执行次数。           | 否   | 单位次数，默认10次。          |
 | -i, --interval      | 设置执行间隔。           | 否   | 单位ms，默认1500ms。  |
 | -S, --swap          | 滑动测试。               | 否   | -                   |
-|-s, --start[x,y]    | 设置滑动测试起点坐标。   | 否   | -                   |
-| -e, --end[x,y]      | 设置滑动测试终点坐标。   | 否   | -                   |
+| -s, --start[x,y]    | 设置滑动测试起点坐标。   | 否   | 坐标均为正值。           |
+| -e, --end[x,y]      | 设置滑动测试终点坐标。   | 否   | 坐标均为正值。          |
 | -b, --bilateral     | 设置往返滑动。           | 否   | 默认不往返滑动。      |
 | -t, --touch[x,y]    | 点击测试。               | 否   | -                   |
 | -T, --time          | 设置测试总时间。         | 否   | 单位分钟，默认10分钟。 |
@@ -99,9 +102,9 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
 | 命令            | 功能                                 | 必选 | 备注                                     |
 | --------------- | ------------------------------------ | ---- | ---------------------------------------- |
-| -n,--numberfocus       | 设置每个控件注入的次数。               | 否   |                         |
+| -n,--numberfocus       | 设置每个控件注入的次数。               | 否   | 单位次数。                 |
 | -f, --focustypes       | 设置需要专注的控件类型。               | 否   | 以英文逗号隔开。                         |
-其余参数继承自exec。
+其余参数继承自随机测试命令参数。
 
 ## 命令行使用示例
 
@@ -119,7 +122,7 @@ C:\Users>hdc -t 15xxx424axxxx345209d94xxxx8fxx900 shell
 #
 ```
 
-### 1.获取机器的bundle name 和ability name
+### 1.获取应用的bundle name和ability name
 
 ```bash
 # wukong appinfo
@@ -235,19 +238,18 @@ These are wukong special arguments list:
 
 ### 查看操作日志
 
-wukong支持通过日志的方式查看操作历程。  
-可以通过hdc命令将日志获取到本地进行查看操作历程。
+wukong支持通过hdc命令将日志获取到本地，查看操作历程。
 
 ```bash
-// wukong.log对应路径如下
-report/xxxxxxxx_xxxxxx/wukong.log
+// wukong.log文件对应路径如下
+/data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/wukong.log
 
-// 操作如下
+// 查看wukong测试报告文件目录操作如下
 # cd /data/local/tmp/wukong/report/20170805_170053
 # ls
 data.js  exception  wukong.log  wukong_report.csv
 
-//另外开启shell窗口，用hdc file recv获取wukong日志
+// 开启shell窗口，用hdc file recv获取wukong日志
 C:\Users\xxx>hdc file recv /data/local/tmp/wukong/report/20170805_170053/wukong.log C:\Users\xxx\Desktop\log
 [I][2024-01-03 20:08:02] HdcFile::TransferSummary success
 FileTransfer finish, Size:76492, File count = 1, time:16ms rate:4780.75kB/s
