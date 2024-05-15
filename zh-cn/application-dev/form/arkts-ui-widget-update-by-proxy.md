@@ -32,7 +32,7 @@
 1. 数据提供方以`key + subscriberId`作为数据的标识，将数据存储到数据库。
 2. 数据管理服务感知到数据库变化，将新的数据发布给当前注册的所有订阅实例。
 3. 卡片管理服务从订阅实例中解析出数据，发送给卡片渲染服务。
-4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的[卡片组件](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)。
+4. 卡片渲染服务运行卡片页面代码widgets.abc，widgets.abc按新数据进行渲染，并将渲染后的数据发送至卡片使用方对应的<!--Del-->[<!--DelEnd-->卡片组件<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd-->。
 
 数据提供方提供的共享数据有两种类型：
 
