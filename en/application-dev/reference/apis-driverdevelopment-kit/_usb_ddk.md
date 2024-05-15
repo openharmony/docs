@@ -65,10 +65,25 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap) to destroy a buffer after use.|
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
 
-#### Description of deviceId
+#### deviceId Description
 
 You can call **queryDevices()** to obtain the device ID, that is, **deviceId**.
 For details, see [Peripheral Management Development](../../device/driver/externaldevice-guidelines.md).
+
+#### deviceId Conversion
+
+The **deviceId** obtained through **queryDevices()** cannot be directly used as the input parameter for functions such as [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor).
+<p>Specifically, you need to extract its first 32 bits as the input parameter **deviceId** for C APIs.</p>
+<p>The following code is for reference only: </p>
+
+ ~~~
+uint64_t JsDeviceIdToNative(uint64_t deviceId)
+{
+    uint32_t busNum = (uint32_t)(deviceId >> 48);
+    uint32_t devNum = (uint32_t)((deviceId & 0x0000FFFF00000000) >> 32);
+    return (((static_cast<uint64_t>(busNum)) << 32) | devNum);
+}
+~~~
 
 ## Enum Description
 
