@@ -965,7 +965,7 @@ Notification.isDistributedEnabled().then((data: boolean) => {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey)替代
+> 从 API version 7开始支持，从API version 9开始废弃。<!--Del-->建议使用[notificationManager.NotificationKey](js-apis-notificationSubscribe-sys.md#notificationkey)替代。<!--DelEnd-->
 
 | 名称  | 类型   | 可读 | 可写 | 说明     |
 | ----- | ------ | ---- | --- | -------- |
