@@ -201,10 +201,11 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     }
 }
 
+struct OH_AVScreenCapture *capture;
 int main() {
-    // 实例化ScreenCapture
-    struct OH_AVScreenCapture *capture;
-    
+    // 实例化ScreenCapture    
+    capture = OH_AVScreenCapture_Create();
+
     // 设置回调 
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
