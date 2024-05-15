@@ -464,7 +464,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 输入帧的数据buffer送入InBufferQueue队列
         // 获取视频宽高跨距
         if (isFirstFrame) {
-            OH_AVFormat *format = OH_VideoDecoder_GetInputDescription(codec);
+            OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
             OH_AVFormat_Destroy(format);
