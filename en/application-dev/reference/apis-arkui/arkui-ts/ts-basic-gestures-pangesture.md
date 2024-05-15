@@ -13,6 +13,8 @@
 
 PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: number } | [PanGestureOptions](#pangestureoptions))
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -22,6 +24,8 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 | distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and [tab](ts-container-tabs.md) swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.<br>If the value specified is less than **0**, the default value **5** is used.|
 
 ## PanDirection
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Description|
 | -------- | -------- |
@@ -41,6 +45,8 @@ The attributes of the pan gesture recognizer can be dynamically modified using t
 
 PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance?: number })
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name | Type                             | Mandatory| Description                                                    |
@@ -53,19 +59,19 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 
 | Name| Description|
 | -------- | -------- |
-| setDirection(value: [PanDirection](#pandirection)) | Sets the direction.|
+| setDirection(value: [PanDirection](#pandirection)) | Sets the direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | setDistance(value: number) | Sets the distance.|
-| setFingers(value: number) | Sets the number of fingers.|
+| setFingers(value: number) | Sets the number of fingers.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onActionStart(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a pan gesture is recognized.|
-| onActionUpdate(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the pan gesture status is updated.<br>If **fingerList** contains multiple fingers, this callback updates the location information of only one finger each time.|
-| onActionEnd(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for a pan gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a pan gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.|
+| onActionStart(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a pan gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionUpdate(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the pan gesture status is updated.<br>If **fingerList** contains multiple fingers, this callback updates the location information of only one finger each time.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionEnd(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for a pan gesture is lift.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a pan gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 

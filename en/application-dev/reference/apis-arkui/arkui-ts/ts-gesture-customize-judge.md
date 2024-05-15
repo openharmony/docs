@@ -32,13 +32,16 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 ## BaseEvent
 | Name   | Type                                     | Description        |
 | ---------| ----------------------------------------  | -----------|
-| target   | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event. |
-| timestamp| number | Timestamp of the event. |
-| source   | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device. |
-| pressure | number | Press pressure. |
-| titleX | number | Angle between the projection of the stylus on the device plane and the x-axis. |
-| titleY | number | Angle between the projection of the stylus on the device plane and the y-axis. |
-| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool9) | Event input source. |
+| target   | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| timestamp| number | Timestamp of the event.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| source   | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| pressure | number | Press pressure.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| titleX | number | Angle between the projection of the stylus on the device plane and the x-axis.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| titleY | number | Angle between the projection of the stylus on the device plane and the y-axis.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool9) | Event input source.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| axisHorizontal<sup>12+</sup> | number | Horizontal axis value. |
+| axisVertical<sup>12+</sup> | number | Vertical axis value. |
+
 ## BaseGestureEvent
 Extended from [BaseEvent](#baseevent).
 | Name     | Type                                     | Description        |
