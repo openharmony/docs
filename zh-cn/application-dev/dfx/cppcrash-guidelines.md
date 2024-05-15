@@ -21,9 +21,17 @@
 
 ## 崩溃日志获取
 
-进程崩溃日志是一种故障日志，与应用无响应日志、JS应用崩溃等都由FaultLogger模块进行管理，可通过如下三种方式获取：
+进程崩溃日志是一种故障日志，与应用无响应日志、JS应用崩溃等都由FaultLogger模块进行管理，可通过以下方式获取：
 
-- 方式一：通过shell获取日志
+- 方式一：通过DevEco Studio获取日志
+
+    DevEco Studio会收集`设备/data/log/faultlog/faultlogger/`路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
+
+- 方式二：通过faultlogger接口获取
+
+    FaultLogger对外提供了面向应用的故障查询接口，可以查询应用自己的故障记录，以结构化的数据返回。接口的使用以及获取的故障信息规格详见[@ohos.faultLogger (故障日志获取)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)。
+<!--Del-->
+- 方式三：通过shell获取日志
 
     1. 进程崩溃后，CppCrash文件会生成在`设备/data/log/faultlog/faultlogger/`路径下，故障日志文件名格式为“cppcrash-进程名-进程UID-秒级时间”，包含设备名、系统版本、进程崩溃调用栈等信息。
 
@@ -32,15 +40,7 @@
     2. `设备/data/log/faultlog/temp/`路径下的故障日志，其文件名格式为“cppcrash-进程PID-系统毫秒级时间戳”，包含进程崩溃时栈内存、进程maps等信息。
 
         ![cppcrash-temp-log](figures/20230407111853.png)
-
-- 方式二：通过DevEco Studio获取日志
-
-    DevEco Studio会收集`设备/data/log/faultlog/faultlogger/`路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ide-debug-hilog-0000001172459337-V2#section974519209435)。
-
-- 方式三：通过faultlogger接口获取
-
-    FaultLogger对外提供了面向应用的故障查询接口，可以查询应用自己的故障记录，以结构化的数据返回。接口的使用以及获取的故障信息规格详见[@ohos.faultLogger (故障日志获取)](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)。
-
+<!--DelEnd-->
 ## 进程崩溃日志分析
 
 
