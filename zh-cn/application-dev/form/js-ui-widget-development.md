@@ -155,7 +155,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > FormExtensionAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
 
 
