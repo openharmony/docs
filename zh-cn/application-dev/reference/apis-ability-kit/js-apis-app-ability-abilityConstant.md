@@ -149,6 +149,50 @@ class MyAbility extends UIAbility {
 }
 ```
 
+## AbilityConstant.WindowMode<sup>12+<sup>
+
+启动Ability时的窗口模式，该类型为枚举，可配合startAbility使用指定启动Ability的窗口模式。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+> **说明：**
+>
+> 下列配置仅适用于应用内部重定向场景。
+
+| 名称                          | 值   | 说明                     |
+| ----------------------------- | ---- | ----------------------- |
+| WINDOW_MODE_SPLIT_PRIMARY     | 100  | 分屏模式下的主屏幕。如果屏幕是水平的，则表示左侧分屏。 |
+| WINDOW_MODE_SPLIT_SECONDARY   | 101  | 分屏模式下的副屏。如果屏幕是水平的，则表示右分屏。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let want: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let option: StartOptions = {
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_SPLIT_PRIMARY
+};
+
+// 确保从上下文获取到context
+class MyAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    this.context.startAbility(want, option).then(()=>{
+      console.log('Succeed to start ability.');
+    }).catch((error: BusinessError)=>{
+      console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
+    });
+  }
+}
+```
+
 ## AbilityConstant.OnSaveResult
 
 保存应用数据的结果，该类型为枚举，可配合UIAbility的[onSaveState(reason, wantParam)](js-apis-app-ability-uiAbility.md#uiabilityonsavestate)方法完成相应的返回。
