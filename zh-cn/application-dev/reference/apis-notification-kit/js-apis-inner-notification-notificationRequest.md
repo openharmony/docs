@@ -41,7 +41,7 @@
 | creatorUserId<sup>8+<sup>     | number                                                   |   是  | 否  | 创建通知的UserId。                                                          |
 | hashCode                      | string                                                   |   是  | 否  | 通知唯一标识。                                                               |
 | groupName<sup>8+<sup>         | string                                                   |   否  | 否  | 组通知名称。                                                                |
-| template<sup>8+<sup>          | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) |   否  | 否  | 通知模板。预留能力，暂不支持。                                                                 |
+| template<sup>8+<sup>          | [NotificationTemplate](./js-apis-inner-notification-notificationTemplate.md) |   否  | 否  | 通知模板。                                                                 |
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                |   否  | 否  | 分布式通知的选项。                                                             |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 否  | 获取NotificationFlags。                                                  |
 | removalWantAgent<sup>9+<sup>  | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |

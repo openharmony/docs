@@ -26,7 +26,7 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
     if (err.code !== undefined && err.code != null) {
         console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
-        console.info("createSubscriber");
+        console.info("createSubscriber success");
         subscriber = commonEventSubscriber;
     }
 }
@@ -131,7 +131,7 @@ function setCodeCB(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setCode");
+        console.info("setCode success");
     }
 }
 subscriber.setCode(1, setCodeCB);
@@ -161,7 +161,7 @@ setCode(code: number): Promise\<void>
 
 ```ts
 subscriber.setCode(1).then(() => {
-    console.info("setCode");
+    console.info("setCode success");
 }).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -290,7 +290,7 @@ function setDataCB(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setData");
+        console.info("setData success");
     }
 }
 subscriber.setData("publish_data_changed", setDataCB);
@@ -320,7 +320,7 @@ setData(data: string): Promise\<void>
 
 ```ts
 subscriber.setData("publish_data_changed").then(() => {
-    console.info("setData");
+    console.info("setData success");
 }).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -375,7 +375,7 @@ function setCodeDataCB(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
         console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setCodeDataCallback");
+        console.info("setCodeAndData success");
     }
 }
 subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCB);
@@ -406,7 +406,7 @@ setCodeAndData(code: number, data: string): Promise\<void>
 
 ```ts
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
-    console.info("setCodeAndData");
+    console.info("setCodeAndData success");
 }).catch((err:Base.BusinessError) => {
     console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -434,7 +434,7 @@ try {
     subscriber.setCodeAndDataSync(1, "publish_data_changed");
 } catch (error) {
     let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`setCodeAndDataSync failed, code is ${err.code}, message is ${err.message}`);
 }
 
 ```
@@ -463,7 +463,7 @@ function isOrderedCB(err:Base.BusinessError, isOrdered:boolean) {
     if (err.code !== undefined && err.code != null) {
         console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isOrdered " + JSON.stringify(isOrdered));
+        console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
     }
 }
 subscriber.isOrderedCommonEvent(isOrderedCB);
@@ -489,9 +489,9 @@ isOrderedCommonEvent(): Promise\<boolean>
 
 ```ts
 subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
-    console.info("isOrdered " + JSON.stringify(isOrdered));
+    console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
 }).catch((err:Base.BusinessError) => {
-    console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -515,7 +515,7 @@ isOrderedCommonEventSync(): boolean
 
 ```ts
 let isOrdered  = subscriber.isOrderedCommonEventSync();
-console.info("isOrdered " + JSON.stringify(isOrdered));
+console.info("isOrderedCommonEventSync " + JSON.stringify(isOrdered));
 ```
 
 ## isStickyCommonEvent
@@ -542,7 +542,7 @@ function isStickyCB(err:Base.BusinessError, isSticky:boolean) {
     if (err.code !== undefined && err.code != null) {
         console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSticky " + JSON.stringify(isSticky));
+        console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
     }
 }
 subscriber.isStickyCommonEvent(isStickyCB);
@@ -568,9 +568,9 @@ isStickyCommonEvent(): Promise\<boolean>
 
 ```ts
 subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
-    console.info("isSticky " + JSON.stringify(isSticky));
+    console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
 }).catch((err:Base.BusinessError) => {
-    console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -594,7 +594,7 @@ isStickyCommonEventSync(): boolean
 
 ```ts
 let isSticky  = subscriber.isStickyCommonEventSync();
-console.info("isSticky " + JSON.stringify(isSticky));
+console.info("isStickyCommonEventSync " + JSON.stringify(isSticky));
 ```
 
 ## abortCommonEvent
@@ -619,7 +619,7 @@ function abortCB(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
 		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("abortCommonEvent");
+        console.info("abortCommonEvent success");
     }
 }
 subscriber.abortCommonEvent(abortCB);
@@ -643,7 +643,7 @@ abortCommonEvent(): Promise\<void>
 
 ```ts
 subscriber.abortCommonEvent().then(() => {
-    console.info("abortCommonEvent");
+    console.info("abortCommonEvent success");
 }).catch((err:Base.BusinessError) => {
     console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -685,7 +685,7 @@ function clearAbortCB(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
         console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("clearAbortCommonEvent");
+        console.info("clearAbortCommonEvent success");
     }
 }
 subscriber.clearAbortCommonEvent(clearAbortCB);
@@ -709,7 +709,7 @@ clearAbortCommonEvent(): Promise\<void>
 
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
-    console.info("clearAbortCommonEvent");
+    console.info("clearAbortCommonEvent success");
 }).catch((err:Base.BusinessError) => {
     console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -751,7 +751,7 @@ function getAbortCB(err:Base.BusinessError, abortEvent:boolean) {
     if (err.code !== undefined && err.code != null) {
         console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("abortCommonEvent " + abortEvent)
+        console.info("getAbortCommonEvent " + abortEvent)
     }
 }
 subscriber.getAbortCommonEvent(getAbortCB);
@@ -775,7 +775,7 @@ getAbortCommonEvent(): Promise\<boolean>
 
 ```ts
 subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
-    console.info("abortCommonEvent " + JSON.stringify(abortEvent));
+    console.info("getAbortCommonEvent " + JSON.stringify(abortEvent));
 }).catch((err:Base.BusinessError) => {
     console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -824,7 +824,7 @@ function getCB(err:Base.BusinessError, subscribeInfo:CommonEventManager.CommonEv
     if (err.code !== undefined && err.code != null) {
         console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
+        console.info("getSubscribeInfo " + JSON.stringify(subscribeInfo));
     }
 }
 subscriber.getSubscribeInfo(getCB);
@@ -848,7 +848,7 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
 ```ts
 subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) => {
-    console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
+    console.info("getSubscribeInfo " + JSON.stringify(subscribeInfo));
 }).catch((err:Base.BusinessError) => {
     console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -872,7 +872,7 @@ getSubscribeInfoSync(): CommonEventSubscribeInfo
 
 ```ts
 let subscribeInfo = subscriber.getSubscribeInfoSync();
-console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
+console.info("getSubscribeInfoSync " + JSON.stringify(subscribeInfo));
 ```
 
 ## finishCommonEvent<sup>9+</sup>
@@ -897,7 +897,7 @@ function finishCB(err:Base.BusinessError) {
   if (err.code !== undefined && err.code != null) {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("FinishCommonEvent");
+    console.info("finishCommonEvent success");
   }
 }
 
@@ -922,7 +922,7 @@ finishCommonEvent(): Promise\<void>
 
 ```ts
 subscriber.finishCommonEvent().then(() => {
-    console.info("FinishCommonEvent");
+    console.info("finishCommonEvent success");
 }).catch((err:Base.BusinessError) => {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
