@@ -594,23 +594,6 @@ onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute
 | ----------------------------------------------------- | -------------------- |
 | [ComputedBarAttribute](#computedbarattribute对象说明) | 滚动条的位置及长度。 |
 
-### onScroll<sup>10+</sup>
-
-onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void)
-
-网格滑动时触发。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名       | 类型                                                    | 必填 | 说明                                                         |
-| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scrollOffset | number                                                  | 是   | 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。 |
-| scrollState  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
-
 ### onReachStart<sup>10+</sup>
 
 onReachStart(event: () => void)
@@ -688,6 +671,8 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 从API version 10开始使用。
 
 从API version 12开始废弃不再使用，建议使用[onDidScroll](#ondidscroll12)替代。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -885,7 +870,7 @@ struct GridExample {
         console.info("XXX" + 'Grid onScrollBarUpdate,index : ' + index.toString() + ",offset" + offset.toString())
         return { totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4 }
       })  //只适用于当前示例代码数据源，如果数据源有变化，则需要修改该部分代码，或者删掉此属性
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(scrollOffset.toString())
         console.info(scrollState.toString())
       })
