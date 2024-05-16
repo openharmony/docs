@@ -1,59 +1,8 @@
 # 音视频编解码能力
 
-因来源不同、编解码器协议不同以及设备在编解码能力部署上的不同，开发者可用的编解码器及其能力是变化的。
+因来源不同、编解码器协议不同以及设备在编解码能力部署上的不同，在不同设备上开发者可用的编解码器及其能力是有差异的。
 
-开发者为确保编解码行为符合预期，在使用AVCodec kit做音视频编解码前，应提前通过音视频编解码能力系列接口查询系统支持的音视频编解码器及其关联的能力参数，找到符合开发场景需求的编解码器，并正确配置编解码参数。
-
-
-## 基础概念
-### 视频编解码级别对尺寸和帧率的约束
-
-以H.264为例，下表描述了H.264协议中不同等级的最大每秒宏块数目和最大每帧宏块数目限制。
-
-| level | MBsPerSecond | MBsPerFrame |
-| --  | -------- | ------ |
-| 1   | 1485     | 99     |
-| 1b  | 1485     | 99     |
-| 1.1 | 3000     | 396    |
-| 1.2 | 6000     | 396    |
-| 1.3 | 11880    | 396    |
-| 2   | 11880    | 396    |
-| 2.1 | 19800    | 792    |
-| 2.2 | 20250    | 1620   |
-| 3   | 40500    | 1620   |
-| 3.1 | 108000   | 3600   |
-| 3.2 | 216000   | 5120   |
-| 4   | 245760   | 8192   |
-| 4.1 | 245760   | 8192   |
-| 4.2 | 522240   | 8704   |
-| 5   | 589824   | 22080  |
-| 5.1 | 983040   | 36864  |
-| 5.2 | 2073600  | 36864  |
-| 6   | 4177920  | 139264 |
-| 6.1 | 8355840  | 139264 |
-| 6.2 | 16711680 | 139264 |
-
-音视频编解码能力会基于编解码器上报支持的最大等级找到协议上限$MaxMBsPerFrameLevelLimits$和$maxMBsPerSecondLevelLimits$，并与直接上报的$MaxMBsPerFrameSubmit$和$MaxMBsPerSecondSubmit$取并交集。
-$$
-MaxMBsPerFrame = \min(MaxMBsPerFrameLevelLimits, MaxMBsPerFrameSubmit)\\
-MaxMBsPerSecond = \min(MaxMBsPerSecondLevelLimits, MaxMBsPerSecondSubmit)
-$$
-
-给定图像高，求最大图像高的公式如下：
-$$
-maxWidth = \lfloor MaxMBsPerFrame \div \lceil \frac{height}{MBHeight} \rceil \rfloor \times MBWidth
-$$
-
-给定图像宽和高，求最大帧率的公式如下：
-$$
-maxFrameRate = MaxMBsPerSecond \div (\lceil{\frac{width}{MBWidth}} \rceil \times \lceil \frac{height}{MBHeight} \rceil)
-$$
-
-对于H.264来说，宏块宽高都是16:
-$$
-MBWidth = MBHeight = 16
-$$
-
+为确保编解码行为符合预期，开发者应提前通过音视频编解码能力系列接口查询系统支持的音视频编解码器及其关联的能力参数，找到符合开发场景需求的编解码器，并正确配置编解码参数。
 
 ## 通用开发指导
 1. 在CMake脚本中链接动态库。
@@ -271,7 +220,7 @@ int32_t ret = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityR
 
 ### 设置正确的音频编解码参数
 
-音频编解码场景设置的参数中有采样率和通道数两个关键参数需要查询后设置，编码场景还多一个码率参数需要查询后设置
+音频编解码场景设置的参数中有采样率和通道数两个关键参数需要查询后设置，编码场景还有码率参数需要查询后设置。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -374,7 +323,7 @@ if (ret != AV_ERR_OK || levels == nullptr || levelNum <= 0) {
    // 异常处理
 }
 OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
-// 3.（可选）基于支持的最大或最小级别做业务逻辑区分
+// 3.（可选）基于支持的最大级别做业务逻辑区分
 switch (maxLevel) {
    case AVC_LEVEL_31:
       // ...
@@ -409,7 +358,15 @@ bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_P
 
 视频编解码器对宽高存在对齐约束，如主流编解码器默认编解码像素格式为YUV420系列中的，会对UV分量下采样，在此情况下视频编解码的宽高至少要按2对齐。此外还有其他因素可能导致更加严格的对齐约束。
 
-视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议中级别对帧级能力定义限制。
+视频编解码的宽高不仅会受帧级编解码能力限制，同时也会受协议中级别对帧级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每帧宏块数目为36864。
+
+给定图像宽和高，求最大帧率的公式如下, 其中$MaxMBsPerFrameLevelLimits$是编解码器能支持的最大级别在协议中限定的最大每帧宏块数, $MaxMBsPerFrameSubmit$是编解码器上报能支持的最大每帧宏块数，实际能力取两者交集。
+
+$$
+MaxMBsPerFrame = \min(MaxMBsPerFrameLevelLimits, MaxMBsPerFrameSubmit) \\
+MBWidth = MBHeight = 16 \\
+maxWidth = \lfloor MaxMBsPerFrame \div \lceil \frac{height}{MBHeight} \rceil \rfloor \times MBWidth
+$$
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -502,7 +459,15 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 ### 设置正确的视频帧率
 
-视频编解码的帧率不仅会受秒级编解码能力限制，同时也会受协议中级别对秒级能力定义限制。
+视频编解码的帧率不仅会受编解码器秒级编解码能力限制，同时也会受协议中级别对秒级能力的限制。以H.264为例，AVC_LEVEL_51限定最大每秒宏块数目为983040。
+
+给定图像宽和高，求最大帧率的公式如下, 其中$MaxMBsPerSecondLevelLimits$是编解码器能支持的最大级别在协议中限定的最大每秒宏块数, $MaxMBsPerSecondSubmit$是编解码器上报能支持的最大每秒宏块数，实际能力取两者交集。
+
+$$
+MaxMBsPerSecond = \min(MaxMBsPerSecondLevelLimits, MaxMBsPerSecondSubmit) \\
+MBWidth = MBHeight = 16 \\
+maxFrameRate = MaxMBsPerSecond \div (\lceil{\frac{width}{MBWidth}} \rceil \times \lceil \frac{height}{MBHeight} \rceil)
+$$
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
@@ -525,53 +490,55 @@ if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
 bool isSupported = frameRate >= frameRateRange.minVal && frameRate <= frameRateRange.maxVal;
 ```
 
-确认明确的尺寸和帧率组合是否支持，示例代码如下：
+基于待配置的尺寸找到合适的帧率配置，示例代码如下：
 
 ```c++
-bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, 1920, 1080, 120);
+constexpr int32_t width = 1920;
+constexpr int32_t height = 1080;
+int32_t frameRate = 120;
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
+// 1. 确认待配置尺寸是否能达到理想帧率
+bool isSupported = OH_AVCapability_AreVideoSizeAndFrameRateSupported(capability, width, height, frameRate);
 if (!isSupported) {
-   // 基于确定视频尺寸，查询支持的帧率范围，并调整
+   // 2. 基于待配置视频尺寸，查询支持的帧率范围，并基于查询到的帧率调整待配置帧率
+   OH_AVRange frameRateRange = {-1，-1};
+   int32_t ret = OH_AVCapability_GetVideoFrameRateRangeForSize(capability, width, height, &frameRateRange);
+   if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
+      // 异常处理
+   }
+   frameRate = min(max(frameRate, frameRateRange.minVal), frameRateRange.maxVal);
 }
-```
 
-在确定的视频尺寸下，选择合适的帧率配置，示例如下：
-
-```c++
-int32_t width = 1920;
-int32_t height = 1080;
-// 1. 获取确定视频尺寸下可选的帧率范围
-OH_AVRange frameRateRange = {-1，-1};
-int32_t ret = OH_AVCapability_GetVideoFrameRateRangeForSize(capability, width, height, &frameRateRange);
-if (ret != AV_ERR_OK || frameRateRange.maxVal <= 0) {
-   // 异常处理
-}
-// 2. 从可选帧率范围中挑选合适的帧率配置
+// 3. 配置尺寸和帧率参数
+OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
+OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, width, height);
+(void)OH_AVFormat_SetIntValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+(void)OH_VideoEncoder_Configure(videoEnc, format);
+OH_AVFormat_Destroy(format);
 ```
 
 ### 设置正确的视频像素格式信息
 
-视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考OH_AVPixelFormat
-// TODO: 待确认，解码是否要配置，解码查询是否有用
+视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考OH_AVPixelFormat。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
 | OH_AVCapability_GetVideoSupportedPixelFormats             | 获取当前视频编解码器支持的像素格式 |
 
 ```c++
-// 1. 获取H.264编码器能力句柄
 constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
    // 异常处理
 }
-// 2. 获取当前视频编解码器支持的像素格式
+// 1. 获取当前视频编解码器支持的像素格式
 const int32_t *pixFormats = nullptr;
 uint32_t pixFormatNum = -1;
 int32_t ret = OH_AVCapability_GetVideoSupportedPixelFormats(capability, &pixFormats, &pixFormatNum);
 if (ret != AV_ERR_OK || pixFormats == nullptr || pixFormatNum <= 0) {
    // 异常处理
 }
-// 3. 校验是否支持对应像素格式
+// 2. 校验是否支持对应像素格式
 bool isMatched = false;
 for (int i = 0; i < pixFormatNum; i++) {
    if (pixFormats[i] == DEFAULT_PIXELFORMAT) {
@@ -579,7 +546,7 @@ for (int i = 0; i < pixFormatNum; i++) {
    }
 }
 if (!isMatched) {
-   // 4. 替换其他像素格式输入或选择其他编解码器
+   // 3. 替换其他像素格式输入或选择其他编解码器
 }
 ```
 
@@ -597,15 +564,14 @@ if (!isMatched) {
 ```c++
 constexpr int32_t NEEDED_LTR_NUM = 2;
 OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_AVC, 1920, 1080);
-// 1. 获取H.264编码器能力句柄
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
 if (capability == nullptr) {
    // 异常处理
 }
-// 2. 查询是否支持长期参考帧特性
+// 1. 查询是否支持长期参考帧特性
 bool isSupported = OH_AVCapability_IsFeatureSupported(capability,VIDEO_ENCODER_LONG_TERM_REFERENCE);
 if (isSupported) {
-   // 3. (可选) 查询支持的长期参考帧个数
+   // 2. 查询支持的长期参考帧个数
    OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(capability, VIDEO_ENCODER_LONG_TERM_REFERENCE);
    int32_t maxLTRCount = -1;
    int32_t ret = OH_AVFormat_GetIntValue(properties, OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT, &maxLTRCount);
@@ -615,5 +581,5 @@ if (isSupported) {
 }
 // 4. 编码器创建和配置
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
-OH_VideoEncoder_Configure(videoEnc, format);
+(void)OH_VideoEncoder_Configure(videoEnc, format);
 ```
