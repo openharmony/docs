@@ -312,6 +312,14 @@ pixelStretchEffect(options: PixelStretchEffectOptions)
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | options | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | 是   | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。 |
 
+## systemBarEffect<sup>12+</sup>
+
+systemBarEffect()
+
+根据背景进行智能反色并且带有模糊效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 
 ## ShadowOptions对象说明
 
@@ -937,3 +945,31 @@ struct PixelStretchExample {
 
 ![textPixelStretch2](figures/textPixelStretch2.png)
 
+
+### 示例12
+
+系统导航条智能反色
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Stack(){
+        Image($r('app.media.testImage')).width('100%').height('100%')
+         Column().width(150).height(10)
+          .systemBarEffect()
+           .border({radius:5})
+           .margin({bottom:80})
+      }.alignContent(Alignment.Center)
+    }
+  }
+}
+
+```
+
+效果图如下：
+
+![systemBarEffect](figures/systemBarEffect.png)

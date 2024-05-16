@@ -12,7 +12,7 @@ sensor模块提供了获取传感器数据的能力，包括获取传感器属�
 ## 导入模块
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 ```
 
 ## sensor.on
@@ -46,8 +46,8 @@ on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Opti
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
@@ -58,7 +58,7 @@ try{
         sensor.off(sensor.SensorId.COLOR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -92,8 +92,8 @@ on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options)
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
@@ -103,7 +103,7 @@ try {
     sensor.off(sensor.SensorId.SAR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -130,8 +130,8 @@ off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
 **示例：** 
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -149,7 +149,7 @@ try {
   // 取消注册SensorId.COLOR的所有回调
   sensor.off(sensor.SensorId.COLOR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -174,8 +174,8 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 **示例：**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -193,7 +193,7 @@ try {
   // 取消注册SensorId.SAR的所有回调
   sensor.off(sensor.SensorId.SAR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```

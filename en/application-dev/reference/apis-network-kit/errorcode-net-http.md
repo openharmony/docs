@@ -26,7 +26,7 @@ Specify a protocol version supported by the server.
 
 **Error Message**
 
-URL using bad/illegal format or missing URL.
+Invalid URL format or missing URL.
 
 **Description**
 
@@ -44,7 +44,7 @@ Specify a URL of the correct format.
 
 **Error Message**
 
-Couldn't resolve proxy name.
+Failed to resolve the proxy name.
 
 **Description**
 
@@ -62,7 +62,7 @@ Specify a URL of the correct format.
 
 **Error Message**
 
-Couldn't resolve host name.
+Failed to resolve the host name.
 
 **Description**
 
@@ -84,7 +84,7 @@ This error code is reported if the domain name of the host cannot be resolved.
 
 **Error Message**
 
-Couldn't connect to server.
+Failed to connect to the server.
 
 **Description**
 
@@ -102,7 +102,7 @@ Specify a URL of the correct format.
 
 **Error Message**
 
-Weird server reply.
+Invalid server response.
 
 **Description**
 
@@ -120,7 +120,7 @@ Check the server implementation.
 
 **Error Message**
 
-Access denied to remote resource.
+Access to the remote resource denied.
 
 **Description**
 
@@ -174,7 +174,7 @@ Check the server implementation.
 
 **Error Message**
 
-Failed writing received data to disk/application.
+Failed to write the received data to the disk or application.
 
 **Description**
 
@@ -210,7 +210,7 @@ Check the file size and network status.
 
 **Error Message**
 
-Failed to open/read local data from file/application.
+Failed to open or read local data from the file or application.
 
 **Description**
 
@@ -246,7 +246,7 @@ Check the system memory.
 
 **Error Message**
 
-Timeout was reached.
+Operation timeout.
 
 **Description**
 
@@ -264,7 +264,7 @@ Rectify network faults.
 
 **Error Message**
 
-Number of redirects hit maximum amount.
+The number of redirections reaches the maximum allowed.
 
 **Description**
 
@@ -282,7 +282,7 @@ Check the server implementation.
 
 **Error Message**
 
-Server returned nothing (no headers, no data).
+The server returned nothing (no header or data).
 
 **Description**
 
@@ -300,7 +300,7 @@ Check the server implementation.
 
 **Error Message**
 
-Failed sending data to the peer.
+Failed to send data to the peer.
 
 **Description**
 
@@ -318,7 +318,7 @@ Rectify network faults.
 
 **Error Message**
 
-Failure when receiving data from the peer.
+Failed to receive data from the peer.
 
 **Description**
 
@@ -336,7 +336,7 @@ Rectify network faults.
 
 **Error Message**
 
-Problem with the local SSL certificate.
+Local SSL certificate error.
 
 **Description**
 
@@ -354,7 +354,7 @@ Check the format of the SSL certificate.
 
 **Error Message**
 
-Couldn't use specified SSL cipher.
+The specified SSL cipher cannot be used.
 
 **Description**
 
@@ -372,7 +372,7 @@ Capture and analyze packets to check whether the cipher algorithm is supported.
 
 **Error Message**
 
-SSL peer certificate or SSH remote key was not OK.
+Invalid SSL peer certificate or SSH remote key.
 
 **Description**
 
@@ -390,7 +390,7 @@ Check whether the certificate is valid.
 
 **Error Message**
 
-Unrecognized or bad HTTP Content or Transfer-Encoding.
+Invalid HTTP encoding format.
 
 **Description**
 
@@ -426,7 +426,7 @@ Check the server implementation.
 
 **Error Message**
 
-Remote disk full or allocation exceeded.
+Remote disk full.
 
 **Description**
 
@@ -462,7 +462,7 @@ Check the server for files that already exist.
 
 **Error Message**
 
-Problem with the SSL CA cert (path? access rights?).
+The SSL CA certificate does not exist or is unaccessible.
 
 **Description**
 
@@ -498,7 +498,7 @@ Check whether the file requested by the specified URL exists.
 
 **Error Message**
 
-An authentication function returned an error.
+Authentication error.
 
 **Description**
 
@@ -516,7 +516,7 @@ Check whether the specified identity verification field matches that on the serv
 
 **Error Message**
 
-Unknown Other Error.
+Unknown error.
 
 **Description**
 

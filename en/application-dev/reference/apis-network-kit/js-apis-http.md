@@ -154,39 +154,39 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Error codes**
 
-| ID  | Error Message                                                 |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| ID  | Error Message                                                        |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -236,39 +236,39 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| ID  | Error Message                                                        |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -346,39 +346,39 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| ID  | Error Message                                                        |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -455,39 +455,39 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| ID  | Error Message                                                        |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -529,39 +529,39 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| ID  | Error Message                                                        |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).
@@ -630,39 +630,39 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| ID  | Error Message                                                 |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| ID  | Error Message                                                        |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](errorcode-net-http.md).

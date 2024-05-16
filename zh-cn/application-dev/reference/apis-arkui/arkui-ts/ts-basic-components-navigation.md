@@ -239,7 +239,7 @@ mode(value: NavigationMode)
 
 ### backButtonIcon<sup>9+</sup>
 
-backButtonIcon(value: string | PixelMap | Resource)
+backButtonIcon(value: string | PixelMap | Resource | SymbolGlyphModifier)
 
 设置标题栏中返回键图标。
 
@@ -251,7 +251,7 @@ backButtonIcon(value: string | PixelMap | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                 |
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | string&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 标题栏中返回键图标。 |
+| value  | string&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[SymbolGlyphModifier<sup>12+</sup>](ts-universal-attributes-attribute-modifier.md)    | 是   | 标题栏中返回键图标。 |
 
 ### hideNavBar<sup>9+</sup>
 
@@ -1018,6 +1018,7 @@ Navigation跳转拦截对象。
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
 
 ## object类型说明
 
@@ -1038,6 +1039,8 @@ Navigation跳转拦截对象。
 | action     | () =&gt; void                            | 否    | 当前选项被选中的事件回调。                            |
 | status     | [ToolbarItemStatus](#toolbaritemstatus10枚举说明) | 否    | 工具栏单个选项的状态。<br/>默认值：ToolbarItemStatus.NORMAL |
 | activeIcon | ResourceStr                              | 否    | 工具栏单个选项处于ACTIVE态时的图标资源路径。                |
+| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)        | 否    | 工具栏单个选项的symbol资源（优先级高于icon）。               |
+| activeSymbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)              | 否    | 工具栏单个选项处于ACTIVE态时的symbol资源（优先级高于activeIcon）。                |
 
 ## ToolbarItemStatus<sup>10+</sup>枚举说明
 

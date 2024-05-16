@@ -110,8 +110,7 @@ Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue(want
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam: Record<string, Object>) {

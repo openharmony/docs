@@ -3333,7 +3333,7 @@ try {
 | serviceUuid         | string      | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid  | string      | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer | 是    | 是    | 特征对应的二进制值。                               |
-| confirm             | boolean     | 是    | 是    | 如果是notification则对端回复确认设置为false，如果是indication则对端不需要回复确认设置为true。 |
+| confirm             | boolean     | 是    | 是    | 如果是indication，对端需要回复确认，则设置为true；如果是notification，对端不需要回复确认，则设置为false。 |
 
 
 ## CharacteristicReadRequest
