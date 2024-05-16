@@ -19,7 +19,7 @@ This component supports the [\<ListItem>](ts-container-listitem.md) and [\<ListI
 >
 > The index increases in ascending order of child components.
 >
-> In the **if/else** statement, only the child components in the branch where the condition is met participate in the index calculation.
+> In the **if/else** statement, only the child components for which the condition evaluates to true participate in the index calculation.
 >
 > In the **ForEach** or **LazyForEach** statement, the indexes of all expanded subnodes are calculated.
 >
@@ -67,10 +67,24 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | enableScrollInteraction<sup>10+</sup> | boolean                                  | Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scroll controller API is not affected.<br>Default value: **true**|
 | nestedScroll<sup>10+</sup>            | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10) | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.  |
 | friction<sup>10+</sup>                | number \| [Resource](ts-types.md#resource) | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br> Since API version 11, the default value for non-wearable devices is **0.7**.<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
-| scrollBarWidth<sup>11+</sup>   | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>If the width of the scrollbar exceeds its height, it will change to the default value.|
+| scrollBarWidth<sup>11+</sup>   | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>After the width is set, the scrollbar is displayed with the set width in normal state and pressed state. If the set width exceeds the height of the **\<List>** component on the main axis, the scrollbar reverts to the default width.|
 | scrollBarColor<sup>11+</sup>   | string \| number \| [Color](ts-appendix-enums.md#color)   | Color of the scrollbar.|
 | contentStartOffset<sup>11+</sup>   | number         | Offset from the start of the list content to the boundary of the list display area.<br>Default value: **0**<br>Unit: vp<br>|
 | contentEndOffset<sup>11+</sup>   | number   | Offset from the end of the list content to the boundary of the list display area.<br>Default value: **0**<br>Unit: vp<br>|
+
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+Sets the maximum starting fling speed when the fling animation starts. The unit is vp/s.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                           |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | Yes  | Maximum starting fling speed when the fling animation starts.|
 
 ## ListItemAlign<sup>9+</sup>
 
