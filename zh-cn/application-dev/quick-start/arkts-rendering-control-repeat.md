@@ -261,9 +261,9 @@ class Wrap1 {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct Parent {
-  @State simpleList: Array<Wrap1> = [new Wrap1('one'), new Wrap1('two'), new Wrap1('three')];
+  @Local simpleList: Array<Wrap1> = [new Wrap1('one'), new Wrap1('two'), new Wrap1('three')];
 
   build() {
     Row() {
@@ -293,7 +293,7 @@ struct Parent {
 
 @Component
 struct ChildItem {
-  @Prop item: string;
+  @Local item: string = "default";
   
   build() {
     Text(this.item)
