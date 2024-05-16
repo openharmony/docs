@@ -39,8 +39,6 @@ CustomTheme用于自定义Theme，属性可选，只需要复写修改的部分�
 ## 设置应用级自定义品牌色
 - 可在页面入口处统一设置，需要在页面build前执行ThemeControl。其中，onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
 
-参考示例：
-
   ```ts
     import { Theme, ThemeControl } from '@ohos.arkui.theme'
     import { gAppTheme } from './AppTheme'
@@ -301,9 +299,7 @@ CustomTheme用于自定义Theme，属性可选，只需要复写修改的部分�
     }
   ```
 
-在Ability中设置ThemeControl，需要在onWindowStageCreate()方法中setDefaultTheme。
-
-参考示例：
+- 在Ability中设置ThemeControl，需要在onWindowStageCreate()方法中setDefaultTheme。
 
   ```ts
     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
