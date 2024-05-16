@@ -901,23 +901,23 @@ JS对象属性的增删获取和判断
 #### 接口说明
 | 接口 | 功能说明 |
 | -------- | -------- |
-|OH_JSVM_GetPropertyNames | 获取给定对象的所有可枚举属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组 |
-|OH_JSVM_GetAllPropertyNames | 获取给定对象的所有可用属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组 |
-|OH_JSVM_SetProperty | 为给定对象设置一个属性 |
-|OH_JSVM_GetProperty | 用给定的属性的名称，检索目标对象的属性 |
-|OH_JSVM_HasProperty | 用给定的属性的名称，查询目标对象是否有此属性 |
-|OH_JSVM_DeleteProperty | 用给定的属性的名称，删除目标对象属性 |
-|OH_JSVM_HasOwnProperty | 检查目标对象是否具有指定的自有属性 |
-|OH_JSVM_SetNamedProperty | 用给定的属性的名称为目标对象设置属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_SetNamedProperty |
-|OH_JSVM_GetNamedProperty | 用给定的属性的名称，检索目标对象的属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_GetNamedProperty |
-|OH_JSVM_HasNamedProperty | 用给定的属性的名称，查询目标对象是否有此属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_HasNamedProperty |
-|OH_JSVM_SetElement | 在给定对象的指定索引处设置元素 |
-|OH_JSVM_GetElement | 获取给定对象指定索引处的元素 |
-|OH_JSVM_HasElement | 若给定对象的指定索引处拥有属性，获取该元素 |
-|OH_JSVM_DeleteElement | 尝试删除给定对象的指定索引处的元素 |
-|OH_JSVM_DefineProperties |  批量的向给定对象中定义属性 |
-|OH_JSVM_ObjectFreeze | 冻结给定的对象,防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值 |
-|OH_JSVM_ObjectSeal | 密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置 |
+|OH_JSVM_GetPropertyNames | 获取给定对象的所有可枚举属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组。 |
+|OH_JSVM_GetAllPropertyNames | 获取给定对象的所有可用属性名称, 结果变量将存储一个包含所有可枚举属性名称的JavaScript数组。 |
+|OH_JSVM_SetProperty | 为给定对象设置一个属性。 |
+|OH_JSVM_GetProperty | 用给定的属性的名称，检索目标对象的属性。 |
+|OH_JSVM_HasProperty | 用给定的属性的名称，查询目标对象是否有此属性。 |
+|OH_JSVM_DeleteProperty | 用给定的属性的名称，删除目标对象属性。 |
+|OH_JSVM_HasOwnProperty | 检查目标对象是否具有指定的自有属性。 |
+|OH_JSVM_SetNamedProperty | 用给定的属性的名称为目标对象设置属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_SetProperty。 |
+|OH_JSVM_GetNamedProperty | 用给定的属性的名称，检索目标对象的属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_GetProperty。 |
+|OH_JSVM_HasNamedProperty | 用给定的属性的名称，查询目标对象是否有此属性，此方法等效于使用从作为 utf8Name 传入的字符串创建的 JSVM_Value 调用 OH_JSVM_HasProperty。 |
+|OH_JSVM_SetElement | 在给定对象的指定索引处设置元素。 |
+|OH_JSVM_GetElement | 获取给定对象指定索引处的元素。 |
+|OH_JSVM_HasElement | 若给定对象的指定索引处拥有属性，获取该元素。 |
+|OH_JSVM_DeleteElement | 尝试删除给定对象的指定索引处的元素。 |
+|OH_JSVM_DefineProperties |  批量的向给定对象中定义属性。 |
+|OH_JSVM_ObjectFreeze | 冻结给定的对象,防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值。 |
+|OH_JSVM_ObjectSeal | 密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置。 |
 
 场景示例:
 JS对象属性的增删获取和判断
