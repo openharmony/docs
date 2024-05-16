@@ -25,7 +25,7 @@ HiAppEvent is a module that provides the event logging function for applications
 
 ## Available APIs
 
-The following table provides only a brief description of related APIs. For details, see [HiAppEvent](../reference/apis/js-apis-hiviewdfx-hiappevent.md).
+The following table provides only a brief description of related APIs. For details, see [HiAppEvent](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 **Event Logging APIs**
 
