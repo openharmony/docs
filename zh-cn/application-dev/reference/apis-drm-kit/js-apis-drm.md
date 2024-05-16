@@ -392,6 +392,49 @@ try {
 
 ```
 
+## drm.getMediaKeySystemUuid<sup>12+</sup>
+
+getMediaKeySystemUuid(): string
+
+获取设备支持的DRM插件的名称和uuid。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | 是   | 插件名称。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| uuid  | string     | 是   | 插件唯一识别码。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401                |  The parameter check failed                |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+import { BusinessError } from '@ohos.base';
+try {
+  let uuid: string = drm.getMediaKeySystemUuid();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getMediaKeySystemUuid ERROR: ${error}`);  
+}
+```
+
 ## drm.getMediaKeySystems<sup>12+</sup>
 
 getMediaKeySystems(): MediaKeySystemDescription[]
