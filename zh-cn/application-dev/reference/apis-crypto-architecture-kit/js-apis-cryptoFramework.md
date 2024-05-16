@@ -5313,7 +5313,7 @@ rand.generateRandom(12, (err, randData) => {
 
 createKdf(algName: string): Kdf
 
-密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见[密钥派生函数规格](../../security/CryptoArchitectureKit/crypto-key-derivation.md#支持的算法与规格)。
+密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见[密钥派生函数规格](../../security/CryptoArchitectureKit/crypto-key-derivation-overview.md)。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
