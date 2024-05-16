@@ -673,7 +673,7 @@ SymbolSpan样式选项。
 
 | 名称          | 类型         | 必填   | 描述            |
 | ----------- | ---------- | ---- | ------------- |
-| onAppear    | () => void | 否    | 自定义选择菜单弹出时回调。 |
+| onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。 |
 | onDisappear | () => void | 否    | 自定义选择菜单关闭时回调。 |
 
 ## PasteEvent<sup>11+</sup>
@@ -712,6 +712,15 @@ onLongPress?: (event: GestureEvent) => void
 | 参数名   | 参数类型                                     | 必填   | 描述      |
 | ----- | ---------------------------------------- | ---- | ------- |
 | event | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明) | 否    | 用户长按事件。 |
+
+## MenuOnAppearCallback<sup>12+</sup>
+
+自定义选择菜单弹出时触发的回调事件。
+
+| 参数名称     | 类型                                             | 必填 | 描述                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | number | 是   | 选中内容的起始位置。 |
+| end    | number         | 是   | 选中内容的终止位置。         |
 
 ## 示例
 
