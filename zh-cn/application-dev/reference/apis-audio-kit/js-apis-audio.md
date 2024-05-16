@@ -764,7 +764,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
-| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig10) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 
 ## AudioCapturerInfo<sup>8+</sup>
 
@@ -786,23 +786,29 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
-## AudioPlaybackCaptureConfig<sup>10+</sup>
+## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
 播放音频流录制（内录）的配置信息。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称          | 类型                                          | 必填 | 说明                             |
 | ------------- | --------------------------------------------- | ---- | -------------------------------- |
-| filterOptions | [CaptureFilterOptions](#capturefilteroptions10) | 是   | 需要录制的播放音频流的筛选信息。 |
+| filterOptions | [CaptureFilterOptions](#capturefilteroptionsdeprecated) | 是   | 需要录制的播放音频流的筛选信息。 |
 
-## CaptureFilterOptions<sup>10+</sup>
+## CaptureFilterOptions<sup>(deprecated)</sup>
 
 待录制的播放音频流的筛选信息。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **需要权限：**
 
