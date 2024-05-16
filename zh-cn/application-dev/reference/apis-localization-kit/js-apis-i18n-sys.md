@@ -44,7 +44,7 @@ static setSystemLanguage(language: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
@@ -105,7 +105,7 @@ static setSystemRegion(region: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
@@ -147,7 +147,7 @@ static setSystemLocale(locale: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
@@ -188,7 +188,7 @@ static set24HourClock(option: boolean): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
@@ -230,7 +230,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
@@ -273,7 +273,7 @@ static removePreferredLanguage(index: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
@@ -315,7 +315,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
