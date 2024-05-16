@@ -408,11 +408,6 @@ export default class MigrationAbility extends UIAbility {
 
 使用参考详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
 
-### 使用分布式文件迁移数据
-当需要迁移的数据较大（100KB以上）时，也可以选择分布式文件进行数据迁移。相比于分布式对象，分布式文件更适用于需要传输的数据为文件的场景。在源端将数据写入分布式文件路径后，对端迁移后拉起的应用能够在同个分布式文件路径下访问到该文件。
-
-使用参考详见[跨设备文件访问](../../application-dev/file-management/file-access-across-devices.md)。
-
 ## 验证指导
 
 为方便开发者验证已开发的可迁移应用，系统提供了一个全局任务中心demo作为迁移的入口。下面介绍通过安装全局任务中心来验证迁移的方式。
