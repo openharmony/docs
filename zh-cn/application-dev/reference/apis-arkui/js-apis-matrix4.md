@@ -374,8 +374,6 @@ skew(x: number, y: number): Matrix4Transit
 
 Matrix的倾斜函数，可以为当前矩阵增加x轴/y轴倾斜效果。会改变调用该函数的原始矩阵。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
