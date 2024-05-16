@@ -12,8 +12,8 @@
 ![process-model-fa](figures/process-model-fa.png)
 
 
-基于当前的进程模型，针对应用间存在多个进程的情况，系统提供了如下进程间通信机制：
+基于当前的进程模型，针对应用间存在多个进程的情况，系统提供了如下进程间通信机制：<!--Del-->
 
-<!--Del-->[<!--DelEnd-->公共事件机制<!--Del-->](../basic-services/common-event/common-event-fa.md)<!--DelEnd-->：多用于一对多的通信场景，公共事件发布者可能存在多个订阅者同时接收事件。
+[<!--DelEnd-->公共事件机制<!--Del-->](../basic-services/common-event/common-event-fa.md)<!--DelEnd-->：多用于一对多的通信场景，公共事件发布者可能存在多个订阅者同时接收事件。
 
 
