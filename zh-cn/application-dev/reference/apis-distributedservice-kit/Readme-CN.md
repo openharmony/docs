@@ -2,7 +2,7 @@
 
 - ArkTS API 
   - [@ohos.distributedDeviceManager (设备管理)](js-apis-distributedDeviceManager.md)
-  <!--DelEnd-->
+  <!--Del-->
   - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](js-apis-distributedHardwareManager-sys.md)
   - [@ohos.distributedDeviceManager (设备管理)(系统接口)](js-apis-distributedDeviceManager-sys.md)
   - [@ohos.cooperate (键鼠穿越)（系统接口）](js-apis-devicestatus-cooperate.md)
