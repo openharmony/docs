@@ -289,8 +289,8 @@ function count() : void {
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | position | [Position3](js-apis-inner-scene-types.md#position3) | 否 | 是 | 结点位置。 |
-| rotation | [Quaternion](js-apis-inner-scene-types.md##quaternion) | 否 | 是 | 结点旋转角度。 |
-| scale | [Scale3](js-apis-inner-scene-types.md##scale3) | 否 | 是 | 结点缩放。 |
+| rotation | [Quaternion](js-apis-inner-scene-types.md#quaternion) | 否 | 是 | 结点旋转角度。 |
+| scale | [Scale3](js-apis-inner-scene-types.md#scale3) | 否 | 是 | 结点缩放。 |
 | visible | boolean | 否 | 是 | 结点是否可见，true表示该节点可见，false表示不可见。 |
 | nodeType | [NodeType](#nodetype) | 是 | 是 | 结点类型。 |
 | layerMask | [LayerMask](#layermask) | 是 | 是 | 结点的图层掩码。 |
