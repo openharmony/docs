@@ -228,7 +228,7 @@ struct Child {
 ### \@Provider和\@Consumer修饰复杂类型，配合\@Trace一起使用。
 
 1. \@Provider和\@Consumer只能观察到数据本身的变化。如果当其修饰复杂数据类型，需要观察属性的变化，需要配合\@Trace一起使用。
-2. 修饰buildin type：Array、Map、Set、Data时，可以观察到某些API的变化，观察能力同[\@Trace](./arkts-new-ObservedV2-and-Trace.md#观察变化)。
+2. 修饰buildin type：Array、Map、Set、Data时，可以观察到某些API的变化，观察能力同[\@Trace](./arkts-new-observedV2-and-trace.md.md#观察变化)。
 
 ```
 @ObservedV2
