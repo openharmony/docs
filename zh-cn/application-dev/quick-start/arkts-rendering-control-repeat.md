@@ -291,9 +291,9 @@ struct Parent {
   }
 }
 
-@Component
+@ComponentV2
 struct ChildItem {
-  @Local item: string = "default";
+  @Require @Param item: string;
   
   build() {
     Text(this.item)
