@@ -385,6 +385,7 @@
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
     - [图像AI分析错误码](errorcode-image-analyzer.md)
+    - [焦点错误码](errorcode-focus.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
