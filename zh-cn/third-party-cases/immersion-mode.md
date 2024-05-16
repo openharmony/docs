@@ -3,6 +3,10 @@
 ## 场景说明
 沉浸式界面通常是指全屏显示，即当前画面占据整个屏幕。画面放大的同时，让用户摆脱无关信息的干扰，带给用户沉浸式的体验。常见的场景有：视频播放、游戏等。本例即为大家介绍如何开发沉浸式界面。
 
+> **说明：**
+>
+> 当前沉浸式界面开发仅支持window级别的配置，暂不支持Page级别的配置。开发者若有Page级别切换的需要，可以在页面的生命周期开始，例如onPageShow中设置沉浸模式，然后在页面退出，例如onPageHide中恢复默认设置来实现。
+
 ## 效果呈现
 本例中的沉浸式界面有三种实现方式，对应效果如下：
 
@@ -24,8 +28,9 @@
 - 图片背景通铺：将状态栏、导航栏的背景色设置为透明以便呈现应用界面的背景，同时通过 windowClass.on接口获取到状态栏、导航栏的区域信息，进行规避处理，以免状态栏、导航栏的内容遮挡住应用内容。
 - 隐藏导航栏和状态栏：使用setWindowSystemBarEnable设置导航栏和状态栏为隐藏状态。
 
-> ![icon-note.gif](../device-dev/public_sys-resources/icon-note.gif) **说明：**
-> 沉浸式的设置最好放在ability的onWindowStageCreate的生命周期里，此时刚好可以获取窗口的信息，放在页面页面生命周期里会出现窗口大小不一致，影响体验。
+> **说明：**
+>
+> 沉浸式的设置最好放在ability的onWindowStageCreate的生命周期里，此时刚好可以获取窗口的信息，放在页面生命周期里会出现窗口大小不一致，影响体验。
 
 下文将分别介绍这三种方案的具体开发步骤。
 
@@ -169,6 +174,8 @@ export default class MainAbility extends Ability {
   ...
 }
 ```
+类似的，若需获取刘海屏遮挡区域，需要将上述代码中注册的监听类型从TYPE_SYSTEM替换为TYPE_CUTOUT，并解析返回的[AvoidArea](../application-dev/reference/apis-arkui/js-apis-window.md#avoidarea7)来进行窗口内容避让。
+
 ### 隐藏状态栏、导航栏
 隐藏状态栏、导航栏可以达到完全沉浸的效果，使用setWindowSystemBarEnable接口即可实现。
 
@@ -209,4 +216,4 @@ struct Type3 {
 ```
 
 ## 参考
-[窗口](../application-dev/reference/apis-as/js-apis-window.md)
+[窗口](../application-dev/reference/apis-arkui/js-apis-window.md)
