@@ -1964,7 +1964,9 @@ struct WebComponent {
   ```
 ### enableNativeMediaPlayer<sup>12+</sup>
 
-开启应用接管网页媒体播放功能。
+enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
+
+开启[应用接管网页媒体播放功能](../../web/app-takeovers-web-media.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7251,10 +7253,7 @@ onOverrideUrlLoading的回调。
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
-type NativeMediaPlayerConfig = {
-  enable: boolean,
-  shouldOverlay: boolean
-}
+type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 用于[开启应用接管网页媒体播放功能](#enablenativemediaplayer12)的配置信息。
 
