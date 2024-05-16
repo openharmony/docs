@@ -11,6 +11,8 @@
 
 目前仅支持硬件编码，基于MimeType创建编码器时，支持配置为H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
+<!--RP1--><!--RP1End-->
+
 ## Surface输入与Buffer输入
 
 两者的数据来源不同。

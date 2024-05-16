@@ -190,7 +190,7 @@ selectedBackgroundColor(value: ResourceColor)
 
 ### enterKeyType<sup>12+</sup>
 
-enterKeyType(enterKeyType: EnterKeyType)
+enterKeyType(vaule: EnterKeyType)
 
 设置软键盘输入法回车键类型。
 
@@ -200,7 +200,7 @@ enterKeyType(enterKeyType: EnterKeyType)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| enterKeyType  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
+| vaule  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
 
 ## 事件
@@ -333,9 +333,9 @@ onEditingChange(callback: Callback\<boolean\>)
 
 **参数：** 
 
-| 类型    | 必填 | 说明                                |
-| ------- | ---- | ----------------------------------- |
-| boolean | 是   | true表示编辑态，false表示非编辑态。 |
+| 参数名   | 参数类型                                    | 必填   | 参数描述        |
+| ----- | --------------------------------------- | ---- | ----------- |
+| callback | Callback\<boolean\> | 是    | true表示编辑态，false表示非编辑态。 |
 
 ### onSubmit<sup>12+</sup>
 
@@ -361,19 +361,13 @@ onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
 
 **参数：** 
 
-| 类型                                            | 必填 | 说明                     |
-| ----------------------------------------------- | ---- | ------------------------ |
-| [RichEditorChangeValue](#richeditorchangevalue12) | 是   | 文本变化信息。 |
-
-**返回值：**
-
-| 类型     | 说明        |
-| ------ | --------- |
-| boolean | true：允许文本被更改。false：不允许文本被更改。 |
+| 参数名   | 参数类型                                    | 必填   | 参数描述        |
+| ----- | --------------------------------------- | ---- | ----------- |
+| callback | Callback<[RichEditorChangeValue](#richeditorchangevalue12) , boolean> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为文本变化信息；boolean表示当前文本是否允许被更改，true：允许文本被更改。false：不允许文本被更改。 |
 
 ### onDidChange<sup>12+</sup>
 
-onDidChange(callback: Callback\<Array\<RichEditorTextSpanResult\>\>)
+onDidChange(callback: OnDidChangeCallback)
 
 文本变化后，触发回调。
 
@@ -381,9 +375,9 @@ onDidChange(callback: Callback\<Array\<RichEditorTextSpanResult\>\>)
 
 **参数：** 
 
-| 类型                                            | 必填 | 说明                     |
-| ----------------------------------------------- | ---- | ------------------------ |
-| Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是   | 文本变化后信息。与RichEditorChangeValue中的replacedSpans相同。 |
+| 参数名   | 参数类型                                    | 必填   | 参数描述        |
+| ----- | --------------------------------------- | ---- | ----------- |
+| callback |OnDidChangeCallback | 是    | 文本变化后信息。与[RichEditorChangeValue](#richeditorchangevalue12)中的replacedSpans相同。 |
 
 ### onCut<sup>12+</sup>
 
@@ -529,6 +523,18 @@ Span类型信息。
 >
 >  RichEditorSymbolSpanStyle和RichEditorSymbolSpanStyleResult中fontWeight的转换关系，
 >  与RichEditorTextStyle和RichEditorTextStyleResult中fontWeight的转换关系一致。
+
+## RichEditorSymbolSpanStyleResult<sup>11+</sup>
+
+后端返回的SymbolSpan样式信息。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | SymbolSpan组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
+| fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | SymbolSpan组件大小。<br/>默认值：跟随主题。 |
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | SymbolSpan组件粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | SymbolSpan组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | SymbolSpan组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 
 ## RichEditorImageSpanResult
 
@@ -1147,7 +1153,7 @@ SymbolSpan样式选项。
 
 | 名称          | 类型         | 必填   | 描述            |
 | ----------- | ---------- | ---- | ------------- |
-| onAppear    | () => void | 否    | 自定义选择菜单弹出时回调。 |
+| onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。 |
 | onDisappear | () => void | 否    | 自定义选择菜单关闭时回调。 |
 
 ## PasteEvent<sup>11+</sup>
@@ -1227,6 +1233,15 @@ onLongPress?: (event: GestureEvent) => void
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
 | event    | [SubmitEvent](ts-types.md#submitevent11)         | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
+
+## MenuOnAppearCallback<sup>12+</sup>
+
+自定义选择菜单弹出时触发的回调事件。
+
+| 参数名称     | 类型                                             | 必填 | 描述                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | number | 是   | 选中内容的起始位置。 |
+| end    | number         | 是   | 选中内容的终止位置。         |
 
 ## 示例
 

@@ -22,7 +22,7 @@ LightWeightMap和[HashMap](js-apis-hashmap.md)都是用来存储键值对的集�
 ## 导入模块
 
 ```ts
-import LightWeightMap from '@ohos.util.LightWeightMap';  
+import { LightWeightMap } from '@kit.ArkTS';
 ```
 
 ## LightWeightMap

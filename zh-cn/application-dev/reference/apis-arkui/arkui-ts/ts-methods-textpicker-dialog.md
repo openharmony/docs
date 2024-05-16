@@ -151,6 +151,12 @@ struct TextPickerDialogExample {
               disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
               textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
               selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
+              acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
+                fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
+                borderRadius: 20 },
+              cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
+                fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
+                borderRadius: 10 },
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index

@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```
-import xml from '@ohos.xml';
+import { xml } from '@kit.ArkTS';
 ```
 
 ## XmlSerializer
@@ -411,7 +411,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -467,7 +467,7 @@ parse(option: ParseOptions): void
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -536,7 +536,7 @@ getColumnNumber(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -579,7 +579,7 @@ getDepth(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -625,7 +625,7 @@ getLineNumber(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -668,7 +668,7 @@ getName(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -710,7 +710,7 @@ getNamespace(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -752,7 +752,7 @@ getPrefix(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -795,7 +795,7 @@ getText(): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -837,7 +837,7 @@ isEmptyElementTag(): boolean
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -879,7 +879,7 @@ isWhitespace(): boolean
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
@@ -920,7 +920,7 @@ getAttributeCount(): number
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +

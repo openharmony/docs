@@ -21,7 +21,7 @@ LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合�
 ## 导入模块
 
 ```ts
-import LightWeightSet from '@ohos.util.LightWeightSet';  
+import { LightWeightSet } from '@kit.ArkTS';
 ```
 
 ## LightWeightSet

@@ -37,7 +37,6 @@
      
       ```ts
       import image from '@ohos.multimedia.image';
-      import notificationSubscribe from '@ohos.notificationSubscribe';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
       let color = new ArrayBuffer(4);
@@ -74,7 +73,7 @@
               },
               // 进度，更新进度时，只需修改progress，重复publish即可
               progress: {
-                maxValue: 100,ss
+                maxValue: 100,
                 currentValue: 21,
                 isPercentage: false,
               },
@@ -86,14 +85,6 @@
                 isInTitle: false,
               }
             }
-          }
-        };
-        // subscribe回调
-        let subscribeCallback = (err: Base.BusinessError): void => {
-          if (err) {
-            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-          } else {
-            console.info("subscribe success");
           }
         };
         // publish回调
@@ -111,17 +102,6 @@
         let systemLiveViewSubscriber: notificationManager.SystemLiveViewSubscriber  = {
           onResponse: onResponseCallback
         };
-        // subscriber取消通知回调
-        let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-          console.info("Cancel callback: " + JSON.stringify(data));
-        }
-        let notificationSubscriber: notificationSubscribe.NotificationSubscriber = {
-          onCancel: onCancelCallback
-        };
-        let info: notificationSubscribe.NotificationSubscribeInfo = {
-          bundleNames: ["bundleName1"],
-          userId: 123
-        };
         // 订阅系统实况窗(按钮)
         notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
         // 发布通知
@@ -132,71 +112,83 @@
    - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，该类型的具体字段描述参考[NotificationLiveViewContent](../reference/apis-notification-kit/js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11)。
 
       ```ts
-      import Want from '@ohos.app.ability.Want';
-      import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
+      import wantAgent from '@ohos.app.ability.wantAgent';
+      import { WantAgent } from '@ohos.app.ability.wantAgent';
 
+      let wantAgentObj: WantAgent;
       let wantAgentInfo: wantAgent.WantAgentInfo = {
         wants: [
-            {
-                deviceId: '',
-                bundleName: 'com.example.myapplication',
-                abilityName: 'EntryAbility',
-                action: '',
-                entities: [],
-                uri: '',
-                parameters: {}
-            }
+          {
+            deviceId: '',
+            bundleName: 'com.example.myapplication',
+            abilityName: 'EntryAbility',
+            action: '',
+            entities: [],
+            uri: '',
+            parameters: {}
+          }
         ],
         operationType: wantAgent.OperationType.START_ABILITY,
         requestCode: 0,
         wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG]
       }
-      let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
-        content: {
-          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
-          liveView: {
-            status: notificationManager.LiveViewStatus.LIVE_VIEW_CREATE,
-            version: 1,
-            extraInfo: {
-              "event": "TAXI",
-              "isMute": false,
-              "primaryData.title": "primary title",
-              "primaryData.content": [{ text: "text1", textColor: "#FFFFFFFF"}, { text: "text2", textColor: "#FFFFFFFF"}],
-              "primaryData.keepTime": 60,
-              "primaryData.extend.text": "extendData text",
-              "primaryData.extend.type": 1,
-              "PickupLayout.layoutType": 4,
-              "PickupLayout.title": "layout title",
-              "PickupLayout.content": "layout content",
-              "PickupLayout.underlineColor": "#FFFFFFFF",
-              "CapsuleData.status": 1,
-              "CapsuleData.type": 1,
-              "CapsuleData.backgroundColor": "#FFFFFFFF",
-              "CapsuleData.title": "capsule title",
-              "CapsuleData.content": "capsule content",
-              "TimerCapsule.content": "capsule title",
-              "TimerCapsule.initialtime": 7349485944,
-              "TimerCapsule.isCountdown": false,
-              "TimerCapsule.isPause": true
-            }
-          }
-        },
-        notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
-        isOngoing: true,
-        isUnremovable: false,
-        autoDeletedTime: 500,
-        wantAgent: await WantAgent.getWantAgent(wantAgentInfo),
-        extraInfo: {
-          'testKey': 'testValue'
-        },
-      }
-
-      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+      // 创建WantAgent
+      wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        console.info('Succeeded in getting want agent.');
+        wantAgentObj = data;
+
+        let notificationRequest: notificationManager.NotificationRequest = {
+          id: 1,
+          content: {
+            notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+            liveView: {
+              title: "title",
+              text: "text",
+              status: 0,
+              version: 1,
+              extraInfo: {
+                "event": "TAXI",
+                "isMute": false,
+                "primaryData.title": "primary title",
+                "primaryData.content": [{ text: "text1", textColor: "#FFFFFFFF"}, { text: "text2", textColor: "#FFFFFFFF"}],
+                "primaryData.keepTime": 60,
+                "primaryData.extend.text": "extendData text",
+                "primaryData.extend.type": 1,
+                "PickupLayout.layoutType": 4,
+                "PickupLayout.title": "layout title",
+                "PickupLayout.content": "layout content",
+                "PickupLayout.underlineColor": "#FFFFFFFF",
+                "CapsuleData.status": 1,
+                "CapsuleData.type": 1,
+                "CapsuleData.backgroundColor": "#FFFFFFFF",
+                "CapsuleData.title": "capsule title",
+                "CapsuleData.content": "capsule content",
+                "TimerCapsule.content": "capsule title",
+                "TimerCapsule.initialtime": 7349485944,
+                "TimerCapsule.isCountdown": false,
+                "TimerCapsule.isPause": true
+              },
+            },
+          },
+          notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
+          isOngoing: true,
+          isUnremovable: false,
+          autoDeletedTime: 500,
+          wantAgent: wantAgentObj,
+          extraInfo: {
+            'testKey': 'testValue'
+          },
+        }
+        notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+          if (err) {
+            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in publishing notification.');
+        });
       });
       ```

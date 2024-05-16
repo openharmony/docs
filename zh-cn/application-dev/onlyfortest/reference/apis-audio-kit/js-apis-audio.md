@@ -2235,7 +2235,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2272,7 +2272,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2371,7 +2371,7 @@ getVolumeSync(volumeType: AudioVolumeType): number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2470,7 +2470,7 @@ getMinVolumeSync(volumeType: AudioVolumeType): number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2569,7 +2569,7 @@ getMaxVolumeSync(volumeType: AudioVolumeType): number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2668,7 +2668,7 @@ isMuteSync(volumeType: AudioVolumeType): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2783,7 +2783,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2963,7 +2963,7 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3017,7 +3017,7 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3061,7 +3061,7 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3104,7 +3104,7 @@ getSystemVolumeInDbSync(volumeType: AudioVolumeType, volumeLevel: number, device
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3419,7 +3419,7 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3466,7 +3466,7 @@ off(type: 'audioRendererChange'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
@@ -3496,7 +3496,7 @@ on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3541,7 +3541,7 @@ off(type: 'audioCapturerChange'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3634,7 +3634,7 @@ isActiveSync(volumeType: AudioVolumeType): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3671,7 +3671,7 @@ getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3715,7 +3715,7 @@ getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3756,7 +3756,7 @@ getAudioEffectInfoArraySync(usage: StreamUsage): AudioEffectInfoArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3859,7 +3859,7 @@ getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3897,7 +3897,7 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3931,7 +3931,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4085,7 +4085,7 @@ isCommunicationDeviceActiveSync(deviceType: CommunicationDeviceType): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4122,7 +4122,7 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息                                           |
 | ------- |--------------------------------------------------|
@@ -4171,7 +4171,7 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息                                          |
 | ------- |-------------------------------------------------|
@@ -4219,7 +4219,7 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
@@ -4263,7 +4263,7 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4301,7 +4301,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4330,7 +4330,7 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4378,7 +4378,7 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4425,7 +4425,7 @@ getPreferredInputDeviceForCapturerInfoSync(capturerInfo: AudioCapturerInfo): Aud
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4469,7 +4469,7 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4507,7 +4507,7 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4954,7 +4954,7 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------|
@@ -4996,7 +4996,7 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
@@ -5246,7 +5246,7 @@ flush(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5746,7 +5746,7 @@ setSpeed(speed: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5942,7 +5942,7 @@ setInterruptModeSync(mode: InterruptMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6388,7 +6388,7 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6420,7 +6420,7 @@ setVolumeWithRamp(volume: number, duration: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6456,7 +6456,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6674,7 +6674,7 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6707,7 +6707,7 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6740,7 +6740,7 @@ on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChan
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6774,7 +6774,7 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6808,7 +6808,7 @@ on(type: 'writeData', callback: Callback\<ArrayBuffer>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -6864,7 +6864,7 @@ off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7671,7 +7671,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7746,7 +7746,7 @@ off(type: 'audioInterrupt'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7775,7 +7775,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7807,7 +7807,7 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7836,7 +7836,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7869,7 +7869,7 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -8018,7 +8018,7 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -8074,7 +8074,7 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见Audio错误码。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|

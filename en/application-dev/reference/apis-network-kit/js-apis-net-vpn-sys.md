@@ -98,8 +98,8 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **Example**
 
@@ -170,8 +170,8 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **Example**
 
@@ -482,5 +482,3 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
-
-<!--no_check-->

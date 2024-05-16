@@ -22,6 +22,8 @@ Subscribes to data of the acceleration sensor.
 
 **Required permissions**: ohos.permission.ACCELEROMETER
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 **Parameters**
@@ -292,6 +294,8 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 Subscribes to data of the gyroscope sensor.
 
 **Required permissions**: ohos.permission.GYROSCOPE
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -662,6 +666,8 @@ try {
 on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
 Subscribes to data of the orientation sensor.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1842,11 +1848,13 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.ACCELEROMETER, callback?: CallbackAccelerometerResponse&gt;): void
+off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 Unsubscribes from data of the acceleration sensor.
 
 **Required permissions**: ohos.permission.ACCELEROMETER
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2104,6 +2112,8 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 Unsubscribes from data of the gyroscope sensor.
 
 **Required permissions**: ohos.permission.GYROSCOPE
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2446,6 +2456,8 @@ try {
 off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
 
 Unsubscribes from data of the orientation sensor.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -3755,6 +3767,45 @@ try {
 }
 ```
 
+## sensor.getSensorListSync<sup>12+</sup>
+
+getSensorListSync(): Array&lt;Sensor&gt;
+
+Obtains information about all sensors on the device. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Return value**
+
+| Type                                   | Mandatory| Description                            |
+| --------------------------------------- | ---- | -------------------------------- |
+| &lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | List of sensor attributes.|
+
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message          |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**Example**
+
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+try {
+  let ret = sensor.getSensorListSync()
+  for (let i = 0; i < ret.length; i++) {
+    console.info('Succeeded in getting sensor: ' + JSON.stringify(ret[i]));
+  }
+} catch(error) {
+    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ##  sensor.getSingleSensor<sup>9+</sup>
 
 getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
@@ -3774,9 +3825,11 @@ Obtains information about the sensor of a specific type. This API uses an asynch
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
 
 **Example**
 
@@ -3822,9 +3875,11 @@ Obtains information about the sensor of a specific type. This API uses a promise
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
 
 **Example**
 
@@ -3844,35 +3899,80 @@ try {
 }
 ```
 
+## sensor.getSingleSensorSync<sup>12+</sup>
+
+getSingleSensorSync(type: SensorId): Sensor
+
+Obtains information about the sensor of a specific type. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description        |
+| ------ | ---------------------- | ---- | ------------ |
+| type   | [SensorId](#sensorid9) | Yes  | Sensor type.|
+
+**Return value**
+
+| Type  | Mandatory| Description                        |
+| ------ | ---- | ---------------------------- |
+| Sensor | Yes  | Sensor information.|
+
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error.                           |
+| 14500101 | Service exception.                         |
+| 14500102 | The sensor is not supported by the device. |
+
+**Example**
+
+```ts
+import sensor from '@ohos.sensor';
+import BusinessError from '@ohos.base';
+
+try {
+  let ret = sensor.getSingleSensorSync(sensor.SensorId.ACCELEROMETER);
+  console.info('Succeeded in getting sensor: ' + JSON.stringify(ret));
+} catch (error) {
+  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ## SensorId<sup>9+</sup>
 
 Enumerates the sensor types.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name                       | Value  | Description                  |
-| --------------------------- | ---- | ---------------------- |
-| ACCELEROMETER               | 1    | Acceleration sensor.        |
-| GYROSCOPE                   | 2    | Gyroscope sensor.        |
-| AMBIENT_LIGHT               | 5    | Ambient light sensor.        |
-| MAGNETIC_FIELD              | 6    | Magnetic field sensor.          |
-| BAROMETER                   | 8    | Barometer sensor.        |
-| HALL                        | 10   | Hall effect sensor.          |
-| PROXIMITY                   | 12   | Proximity sensor.        |
-| HUMIDITY                    | 13   | Humidity sensor.          |
-| ORIENTATION                 | 256  | Orientation sensor.          |
-| GRAVITY                     | 257  | Gravity sensor.          |
-| LINEAR_ACCELEROMETER        | 258  | Linear acceleration sensor.    |
-| ROTATION_VECTOR             | 259  | Rotation vector sensor.      |
-| AMBIENT_TEMPERATURE         | 260  | Ambient temperature sensor.      |
-| MAGNETIC_FIELD_UNCALIBRATED | 261  | Uncalibrated magnetic field sensor.    |
-| GYROSCOPE_UNCALIBRATED      | 263  | Uncalibrated gyroscope sensor.  |
-| SIGNIFICANT_MOTION          | 264  | Significant motion sensor.      |
-| PEDOMETER_DETECTION         | 265  | Pedometer detection sensor.      |
-| PEDOMETER                   | 266  | Pedometer sensor.          |
-| HEART_RATE                  | 278  | Heart rate sensor.          |
-| WEAR_DETECTION              | 280  | Wear detection sensor.      |
-| ACCELEROMETER_UNCALIBRATED  | 281  | Uncalibrated acceleration sensor.|
+| Name                       | Value  | Description                                                        |
+| --------------------------- | ---- | ------------------------------------------------------------ |
+| ACCELEROMETER               | 1    | Acceleration sensor.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GYROSCOPE                   | 2    | Gyroscope sensor.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AMBIENT_LIGHT               | 5    | Ambient light sensor.                                              |
+| MAGNETIC_FIELD              | 6    | Magnetic field sensor.                                                |
+| BAROMETER                   | 8    | Barometer sensor.                                              |
+| HALL                        | 10   | Hall effect sensor.                                                |
+| PROXIMITY                   | 12   | Proximity sensor.                                              |
+| HUMIDITY                    | 13   | Humidity sensor.                                                |
+| ORIENTATION                 | 256  | Orientation sensor.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GRAVITY                     | 257  | Gravity sensor.                                                |
+| LINEAR_ACCELEROMETER        | 258  | Linear acceleration sensor.                                          |
+| ROTATION_VECTOR             | 259  | Rotation vector sensor.                                            |
+| AMBIENT_TEMPERATURE         | 260  | Ambient temperature sensor.                                            |
+| MAGNETIC_FIELD_UNCALIBRATED | 261  | Uncalibrated magnetic field sensor.                                          |
+| GYROSCOPE_UNCALIBRATED      | 263  | Uncalibrated gyroscope sensor.                                        |
+| SIGNIFICANT_MOTION          | 264  | Significant motion sensor.                                            |
+| PEDOMETER_DETECTION         | 265  | Pedometer detection sensor.                                            |
+| PEDOMETER                   | 266  | Pedometer sensor.                                                |
+| HEART_RATE                  | 278  | Heart rate sensor.                                                |
+| WEAR_DETECTION              | 280  | Wear detection sensor.                                            |
+| ACCELEROMETER_UNCALIBRATED  | 281  | Uncalibrated acceleration sensor.                                      |
 
 ## SensorType<sup>(deprecated)</sup>
 
@@ -3909,6 +4009,8 @@ Enumerates the sensor types.
 
 Enumerates the accuracy levels of sensor data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 | Name   | Value| Description                    |
@@ -3921,6 +4023,8 @@ Enumerates the accuracy levels of sensor data.
 ## Response
 
 Describes the timestamp of the sensor data.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -3951,6 +4055,8 @@ Describes the sensor information.
 ## AccelerometerResponse
 
 Describes the acceleration sensor data. It extends from [Response](#response).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -4011,6 +4117,8 @@ Describes the gravity sensor data. It extends from [Response](#response).
 
 Describes the orientation sensor data. It extends from [Response](#response).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 
@@ -4039,6 +4147,8 @@ Describes the rotation vector sensor data. It extends from [Response](#response)
 ## GyroscopeResponse
 
 Describes the gyroscope sensor data. It extends from [Response](#response).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -4098,9 +4208,11 @@ Describes the ambient light sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name     | Type  | Readable| Writable| Description                  |
-| --------- | ------ | ---- | ---- | ---------------------- |
-| intensity | number | Yes  | Yes  | Illumination, in lux.|
+| Name                           | Type  | Readable| Writable| Description                                                        |
+| ------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| intensity                       | number | Yes  | Yes  | Illumination, in lux.                                      |
+| colorTemperature<sup>12+</sup>  | number | Yes  | Yes  | Color temperature, in Kelvin. This parameter is optional. If this parameter is not supported, **undefined** is returned. If this parameter is supported, a normal value is returned.|
+| infraredLuminance<sup>12+</sup> | number | Yes  | Yes  | IR luminance, in cd/m2. This parameter is optional. If this parameter is not supported, **undefined** is returned. If this parameter is supported, a normal value is returned.|
 
 
 ## HallResponse
@@ -4234,6 +4346,8 @@ Describes the wear detection sensor data. It extends from [Response](#response).
 
 Describes the sensor data reporting frequency.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 | Name    | Type                                                       | Readable| Writable| Description                                                        |
@@ -4243,6 +4357,8 @@ Describes the sensor data reporting frequency.
 ## SensorFrequency<sup>11+</sup>
 
 Defines the reporting frequency mode of the sensor.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -6654,7 +6770,7 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 | Name               | Type                                    | Mandatory| Description                                 |
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------- |
 | currentRotationMatrix | Array&lt;number&gt;                      | Yes  | Current rotation matrix.                   |
-| preRotationMatrix     | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                       |
+| preRotationMatrix     | Array&lt;number&gt;                      | Yes  | Peer rotation matrix.                       |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the angle change around the z, x, and y axes.|
 
 **Example**
@@ -6692,7 +6808,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | Name                  | Type                 | Mandatory  | Description       |
 | --------------------- | ------------------- | ---- | --------- |
 | currentRotationMatrix | Array&lt;number&gt; | Yes   | Current rotation matrix.|
-| preRotationMatrix     | Array&lt;number&gt; | Yes   | The other rotation matrix.  |
+| preRotationMatrix     | Array&lt;number&gt; | Yes   | Peer rotation matrix.  |
 
 **Return value**
 
@@ -6890,7 +7006,7 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 | Name        | Type                                    | Mandatory| Description                                 |
 | -------------- | ---------------------------------------- | ---- | ------------------------------------- |
-| rotationMatrix | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                       |
+| rotationMatrix | Array&lt;number&gt;                      | Yes  | Peer rotation matrix.                       |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
@@ -6927,7 +7043,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | The other rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | Peer rotation matrix.|
 
 **Return value**
 

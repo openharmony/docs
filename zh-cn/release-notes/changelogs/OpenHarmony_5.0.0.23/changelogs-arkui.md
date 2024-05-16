@@ -293,13 +293,17 @@ UX样式变更
 
 该变更为非兼容性变更。
 
-变更前，Popup宽度大于等于100% - 6vp时，Popup会进行默认避让，且距离窗口有6vp左右边距。
+变更前，Popup宽度大于等于100% - 6vp时，Popup会进行默认避让，且距离窗口左侧有6vp边距。
 
-变更后，Popup宽度大于等于100% - 6vp时，Popup不会进行默认避让，且距离窗口没有6vp左右边距。
+变更后，Popup宽度大于等于100% - 6vp时，Popup不会进行默认避让，且距离窗口左侧没有6vp边距。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![变更前](figures/popup_avoid_old.jpg)  |  ![变更后](figures/popup_avoid_new.jpg)  |
 
 **起始API Level**
 
-12
+7
 
 **变更发生版本**
 
@@ -423,9 +427,13 @@ UX规格增强
 
 该变更为非兼容性变更。
 
-API version 12之前，标题与关闭按钮之间的距离为8vp。
+API version 12之前，标题与关闭按钮之间的距离为32vp。
 
 API version 12及以后，标题与关闭按钮之间的距离为8vp。
+
+变更示例图：
+
+![](figures/SheetTitleSpace_compared.png)
 
 **起始API Level**
 
@@ -442,3 +450,37 @@ bindSheet组件
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
+
+## c1.arkui.13 bindSheet半模态面板的backgroundColor属性异常值处理逻辑变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+bindSheet半模态面板的backgroundColor属性设置从正常值更新为异常值时，使用默认值。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，当开发者对bindSheet半模态面板的backgroundColor属性设置从正常值更新为异常值时，采用不操作处理。
+
+变更后，当开发者对bindSheet半模态面板的backgroundColor属性设置从正常值更新为异常值时，采用默认颜色处理。
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+bindSheet半模态面板。
+
+**适配指导**
+
+异常值处理逻辑变更，不涉及适配。

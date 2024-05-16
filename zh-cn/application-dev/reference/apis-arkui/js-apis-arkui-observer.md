@@ -114,14 +114,14 @@ RouterPageInfo包含的信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                                         | 必填 | 说明                                         |
-| ------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| context | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息 |
-| index   | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。       |
-| name    | string                                                       | 是   | 触发生命周期的routerPage页面的名称。         |
-| path    | string                                                       | 是   | 触发生命周期的routerPage页面的路径。         |
-| state   | [RouterPageState](#routerpagestate)                          | 是   | 触发生命周期的routerPage页面的状态           |
-| pageId  | string                                                       | 是   | 触发生命周期的routerPage页面的唯一标识       |
+| 名称                 | 类型                                                         | 必填 | 说明                                         |
+| -------------------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
+| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息 |
+| index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。       |
+| name                 | string                                                       | 是   | 触发生命周期的routerPage页面的名称。         |
+| path                 | string                                                       | 是   | 触发生命周期的routerPage页面的路径。         |
+| state                | [RouterPageState](#routerpagestate)                          | 是   | 触发生命周期的routerPage页面的状态           |
+| pageId<sup>12+</sup> | string                                                       | 是   | 触发生命周期的routerPage页面的唯一标识       |
 
 ## DensityInfo<sup>12+</sup>
 
@@ -145,7 +145,7 @@ Navigation组件页面切换的信息。
 | context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发页面切换的Navigation对应的上下文信息。 |
 | from         | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的源页面。         |
 | to           | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的目的页面。         |
-| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md##navigationoperation11枚举说明) | 是   | 页面切换操作类型。         |
+| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是   | 页面切换操作类型。         |
 
 ## NavDestinationSwitchObserverOptions<sup>12+</sup>
 

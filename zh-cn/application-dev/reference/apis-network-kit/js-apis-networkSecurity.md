@@ -9,13 +9,13 @@
 ## 导入模块
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
 ```
 
 ## 完整实例
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
+import { networkSecurity } from '@kit.NetworkKit';
 
 // Define certificate blobs
 const cert: networkSecurity.CertBlob = {
@@ -38,7 +38,9 @@ networkSecurity.certVerification(cert, caCert)
   });
 ```
 
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+> 
+> 请务必将示例中的证书数据替换为实际的证书内容。
 
 ## CertType
 
@@ -106,13 +108,15 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
 
-> **说明：**这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
+> **说明：**
+> 
+> 这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
 
 **示例：**
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
-import { BusinessError } from '@ohos.base';
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Define certificate blobs
 const cert:networkSecurity.CertBlob = {
@@ -134,7 +138,9 @@ networkSecurity.certVerification(cert, caCert)
     console.error('Certificate verification failed:', error);
   });
 ```
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+> 
+> 请务必将示例中的证书数据替换为实际的证书内容。
 
 
 
@@ -180,13 +186,15 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
 
-> **说明：**这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
+> **说明：**
+>
+> 这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
 
 **示例：**
 
 ```ts
-import networkSecurity from '@ohos.net.networkSecurity';
-import { BusinessError } from '@ohos.base';
+import { networkSecurity } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Create certificate blobs
 const cert: networkSecurity.CertBlob = {
@@ -213,4 +221,6 @@ let resultSync: number = networkSecurity.certVerificationSync(cert, caCert);
 console.info('Synchronous Verification Result:', resultSync);
 ```
 
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+>
+> 请务必将示例中的证书数据替换为实际的证书内容。

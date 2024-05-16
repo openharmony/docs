@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
+import { formBindingData } from '@kit.FormKit';
 ```
 
 
@@ -69,12 +69,12 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
-import fs from '@ohos.file.fs';
-import Base from '@ohos.base';
+import { formBindingData } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 try {
-  let fd = fs.openSync('/path/to/form.png');
+  let fd = fileIo.openSync('/path/to/form.png');
   let formImagesParam: Record<string, object> = {
     'image': fd
   };
@@ -85,8 +85,8 @@ try {
 
   formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
-  let code = (error as Base.BusinessError).code;
-  let message = (error as Base.BusinessError).message;
+  let code = (error as BusinessError).code;
+  let message = (error as BusinessError).message;
   console.error(`catch error, code: ${code}, message: ${message}`);
 }
 ```

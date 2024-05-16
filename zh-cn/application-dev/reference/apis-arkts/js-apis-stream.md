@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import stream from '@ohos.util.stream'
+import { stream  } from '@kit.ArkTS';
 ```
 
 ## Writable

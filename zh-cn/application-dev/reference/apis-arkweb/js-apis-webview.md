@@ -7758,6 +7758,95 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
    </html>
    ```
 
+### setHostIP<sup>12+</sup>
+
+static setHostIP(hostName: string, address: string, aliveTime: number): void
+
+设置主机域名解析后的IP地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 参数描述                             |
+| --------- | -------- | ---- | ------------------------------------ |
+| hostName  | string   | 是   | 要添加DNS记录的主机域名。            |
+| address   | string   | 是   | 主机域名解析地址（支持IPv4，IPv6）。 |
+| aliveTime | number   | 是   | 缓存有效时间（秒）。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter. |
+
+**示例：**
+
+请参考[clearHostIP](#clearhostip12)。
+
+### clearHostIP<sup>12+</sup>
+
+static clearHostIP(hostName: string): void
+
+清除指定主机域名解析后的IP地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 参数类型 | 必填 | 参数描述                  |
+| -------- | -------- | ---- | ------------------------- |
+| hostName | string   | 是   | 要清除DNS记录的主机域名。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      // url加载前设置生效.
+      Button('setHostIP')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setHostIP('www.example.com', '127.0.0.1', 30);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+       Button('clearHostIP')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.clearHostIP('www.example.com');
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
@@ -10670,7 +10759,7 @@ struct WebComponent {
 
 | 名称           | 类型       | 可读 | 可写 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
+| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
 | isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合[RFC 1738](http://www.ietf.org/rfc/rfc1738.txt)第3.1节中定义的URL规范化和解析规则。           |
@@ -13249,6 +13338,24 @@ getHttpBodyStream(): WebHttpBodyStream | null
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
 
+### getRequestResourceType<sup>12+</sup>
+
+getRequestResourceType(): WebResourceType
+
+获取资源请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [WebResourceType](#webresourcetype12) | 返回资源请求的资源类型。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
 ## WebSchemeHandlerResponse<sup>12+</sup>
 
 请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
@@ -13778,6 +13885,7 @@ struct WebComponent {
                 console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame())
                 console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
                 console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
+                console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType())
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
                   console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
@@ -14477,3 +14585,32 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | CSS       | 1 | CSS类型的资源。|
 | CLASSIC_JS       | 2 | 通过<script src="" /\>标签加载的Javascript资源。|
 | MODULE_JS      | 3 |通过<script src="" type="module" /\>标签加载的Javascript资源。|
+
+## WebResourceType<sup>12+</sup>
+
+资源请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| MAIN_FRAME | 0 | 顶层页面。 |
+| SUB_FRAME | 1 | Frame或Iframe。 |
+| STYLE_SHEET | 2 | CSS样式表。 |
+| SCRIPT | 3 | 外部脚本。 |
+| IMAGE | 4 | 图片（jpg/gif/png/以及其他）。 |
+| FONT_RESOURCE | 5 | 字体。 |
+| SUB_RESOURCE | 6 | 其他子资源。如果实际类型未知，则是默认类型。 |
+| OBJECT | 7 | 插件的Object（或embed）标签，或者插件请求的资源。 |
+| MEDIA | 8 | 媒体资源。 |
+| WORKER | 9 | 专用工作线程的主资源。 |
+| SHARED_WORKER | 10 | 共享工作线程的主资源。 |
+| PREFETCH | 11 | 明确的预取请求。 |
+| FAVICON | 12 | 网站图标。 |
+| XHR | 13 | XMLHttpRequest。 |
+| PING | 14 | <a ping\>/sendBeacon的Ping请求。 |
+| SERVICE_WORKER | 15 | service worker的主资源。 |
+| CSP_REPORT | 16 | 内容安全策略违规报告。 |
+| PLUGIN_RESOURCE | 17 | 插件请求的资源。 |
+| NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
+| NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |

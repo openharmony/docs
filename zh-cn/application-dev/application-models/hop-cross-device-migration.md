@@ -77,9 +77,8 @@
    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调的返回值决定是否支持此次迁移，接口返回值详见[`AbilityConstant.OnContinueResult`](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)。
 
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -118,10 +117,8 @@
    - 数据恢复后调用`restoreWindowStage()`来触发**页面恢复**，包括页面栈信息。
 
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import type Want from '@ohos.app.ability.Want';
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -175,10 +172,8 @@
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -198,9 +193,8 @@ export default class MigrationAbility extends UIAbility {
 
 ```ts
 // Page_MigrationAbilityFirst.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
+import { AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -226,10 +220,9 @@ struct Page_MigrationAbilityFirst {
 
 ```ts
 // Page_MigrationAbilityFirst.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction';
+import { AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -259,10 +252,8 @@ struct Page_MigrationAbilityFirst {
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -302,11 +293,9 @@ export default class MigrationAbility extends UIAbility {
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
-import type window from '@ohos.window';
+import { AbilityConstant, UIAbility, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -338,10 +327,8 @@ export default class MigrationAbility extends UIAbility {
 示例：`UIAbility`设置迁移成功后，源端不需要退出迁移应用。
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { AbilityConstant, UIAbility, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -371,9 +358,7 @@ export default class MigrationAbility extends UIAbility {
 在需要迁移的数据较少（100KB以下）时，开发者可以选择在`wantParam`中增加字段进行数据迁移。示例如下：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;

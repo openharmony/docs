@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 ```
 
 ## ethernet.setIfaceConfig<sup>9+</sup>
@@ -50,8 +50,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
@@ -114,8 +114,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
@@ -169,8 +169,8 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
@@ -225,8 +225,8 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
@@ -274,8 +274,8 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
@@ -325,8 +325,8 @@ isIfaceActive(iface: string): Promise\<number>
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
@@ -365,8 +365,8 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
@@ -410,8 +410,8 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces().then((data: string[]) => {
   console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
@@ -453,7 +453,7 @@ on(type: 'interfaceStateChange', callback: Callback\<InterfaceStateInfo>): void
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 
 ethernet.on('interfaceStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
@@ -490,7 +490,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<InterfaceStateInfo\>): vo
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 
 ethernet.off('interfaceStateChange');
 ```

@@ -6,7 +6,7 @@ IPC/RPC提供对远端Stub对象状态的订阅机制，在远端Stub对象消�
 
 这种订阅机制适用于本地Proxy对象需要感知远端Stub对象所在进程消亡，或所在设备离开组网的场景。当Proxy感知到Stub端消亡后，可适当清理本地资源。此外，RPC目前不提供匿名Stub对象的消亡通知，即只有向SAMgr注册过的服务才能被订阅消亡通知，IPC则支持匿名对象的消亡通知。
 
-
+<!--Del-->
 ## Native侧接口
 
 | 接口名                                                              |  描述                     |
@@ -60,7 +60,7 @@ int TestServiceProxy::TestPingAbility(const std::u16string &dummy){
 }
 ```
 
-```c++
+```C++
 #include "iremote_object.h"
 
 class TestDeathRecipient : public IRemoteObject::DeathRecipient {
@@ -79,6 +79,7 @@ sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); /
 bool result = object->AddDeathRecipient(deathRecipient); // 注册消亡通知
 result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 ```
+<!--DelEnd-->
 
 ## ArkTS侧接口
 
@@ -93,11 +94,9 @@ result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 Stage模型在连接服务前需要先获取context
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import hilog from '@ohos.hilog';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import window from '@ohos.window';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 export default class MainAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -129,12 +128,11 @@ export default class MainAbility extends UIAbility {
 ### 参考代码
 
 ```ts
-// 仅FA模型需要导入@ohos.ability.featureAbility
-// import FA from "@ohos.ability.featureAbility";
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import rpc from '@ohos.rpc';
-import hilog from '@ohos.hilog';
+// FA模型需要从@kit.AbilityKit导入featureAbility
+// import { featureAbility } from '@kit.AbilityKit';
+import { Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let proxy: rpc.IRemoteObject | undefined;
 let connect: common.ConnectOptions = {
@@ -162,8 +160,8 @@ this.context.connectServiceExtensionAbility(want, connect);
 上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的[unregisterDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#unregisterdeathrecipient9-1)接口方法注销死亡回调
 
 ```ts
-import rpc from '@ohos.rpc';
-import hilog from '@ohos.hilog';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyDeathRecipient implements rpc.DeathRecipient{
   onRemoteDied() {

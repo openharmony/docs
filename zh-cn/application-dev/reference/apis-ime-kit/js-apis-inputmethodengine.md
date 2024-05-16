@@ -144,11 +144,15 @@ let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 
 ## inputMethodEngine.CommandDataType<sup>12+</sup>
 
-**type** CommandDataType = **number** | **string** | boolean;
-
-私有数据类型，包含string，number，boolean。
+表示私有数据类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 类型    | 说明                 |
+| ------- | -------------------- |
+| string  | 表示值类型为字符串。  |
+| number  | 表示值类型为数字。   |
+| boolean | 表示值类型为布尔值。 |
 
 **示例：**
 
@@ -3674,11 +3678,11 @@ try {
 
 ### sendPrivateCommand<sup>12+</sup>
 
-sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**void**>;&gt;
+sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&lt;void&gt;
 
 发送私有数据至需要与输入法应用通信的系统其他部分。
 
->**说明**
+>**说明:**
 >
 > - 私有数据通道是系统预置输入法应用与系统特定组件（如文本框、桌面应用等）的通信机制，常用于设备级厂商在特定设备上实现自定义的输入法功能。
 > - 私有数据规格限制：总大小32KB，数量限制5条。
@@ -3689,7 +3693,7 @@ sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**
 
 | 参数名      | 类型                            | 必填 | 说明       |
 | ----------- | ------------------------------- | ---- | ---------- |
-| commandData | Record<string, CommandDataType> | 是   | 私有数据。 |
+| commandData | Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)> | 是   | 私有数据。 |
 
 **返回值：**
 
@@ -3733,6 +3737,211 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
 })
 ```
 
+### getCallingWindowInfo<sup>12+</sup>
+
+getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
+
+获取当前拉起输入法的输入框所在应用窗口信息。使用promise异步回调。
+
+>**说明：**
+>
+>本接口仅适用于适配使用[Panel](#panel10)作为软键盘窗口的输入法应用。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                       | 说明                                                  |
+| ------------------------------------------ | ----------------------------------------------------- |
+| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise对象，返回拉起输入法的输入框所在应用窗口信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 12800003 | input method client error.        |
+| 12800012 | input method panel doesn't exist. |
+| 12800013 | window manager service error.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  inputClient.getCallingWindowInfo().then((windowInfo: inputMethodEngine.WindowInfo) => {
+    console.log(`windowInfo.rect: ${JSON.stringify(windowInfo.rect)}`);
+    console.log('windowInfo.status: ' + JSON.stringify(windowInfo.status));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to getCallingWindowInfo: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to getCallingWindowInfo: ${JSON.stringify(err)}`);
+}
+```
+
+### setPreviewText<sup>12+</sup>
+
+setPreviewText(text: string, range: Range): Promise&lt;void&gt;
+
+设置预上屏文本。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| text   | string            | 是   | 将被预上屏的文本。                                           |
+| range  | [Range](#range10) | 是   | 目标替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 12800003 | input method client error.                                   |
+| 12800011 | text preview is not supported.                               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.setPreviewText('test', range).then(() => {
+    console.log('Succeeded in setting preview text.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to setPreviewText: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### setPreviewTextSync<sup>12+</sup>
+
+setPreviewTextSync(text: string, range: Range): void
+
+设置预上屏文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| text   | string            | 是   | 将被预上屏的文本。                                           |
+| range  | [Range](#range10) | 是   | 目标替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 12800003 | input method client error.                                   |
+| 12800011 | text preview is not supported.                               |
+
+**示例：**
+
+```ts
+try {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.setPreviewTextSync('test', range);
+  console.log('Succeeded in setting preview text with synchronized method.');
+} catch (err) {
+  console.error(`Failed to setPreviewTextSync: ${JSON.stringify(err)}`);
+}
+```
+
+### finishTextPreview<sup>12+</sup>
+
+finishTextPreview(): Promise&lt;void&gt;
+
+结束预上屏。使用promise异步回调。
+
+>**说明：**
+>
+>若当前输入框已有预上屏状态文本，调用此接口后，预上屏内容将被系统正式上屏。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800011 | text preview is not supported. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  inputClient.finishTextPreview().then(() => {
+    console.log('Succeeded in finishing text preview.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
+}
+```
+
+### finishTextPreviewSync<sup>12+</sup>
+
+finishTextPreviewSync(): void
+
+结束预上屏。
+
+>**说明：**
+>
+>若当前输入框已有预上屏状态文本，调用此接口后，预上屏内容将被系统正式上屏。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800011 | text preview is not supported. |
+
+**示例：**
+
+```ts
+try {
+  inputClient.finishTextPreviewSync();
+  console.log('Succeeded in finishing text preview with synchronized method.');
+} catch (err) {
+  console.error(`Failed to finishTextPreviewSync: ${JSON.stringify(err)}`);
+}
+```
+
 ## EditorAttribute
 
 编辑框属性值。
@@ -3743,6 +3952,7 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
 | ------------ | -------- | ---- | ---- | ------------------ |
 | enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
+| isTextPreviewSupported | boolean | 是 | 是 | 编辑框是否支持预上屏。 |
 
 ## KeyEvent
 
@@ -3779,14 +3989,25 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
 
 ## PanelInfo<sup>10+</sup>
 
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
 输入法面板属性。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | type   	| number   | 是   | 是   | 面板的类型。 |
 | flag	    | number   | 是   | 是   | 面板的状态类型。 |
+
+## WindowInfo<sup>12+</sup>
+
+窗口信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称   | 类型                                                         | 可读 | 可写 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
+| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 是   | 是   | 窗口矩形区域。 |
+| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 是   | 是   | 窗口模式类型。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 

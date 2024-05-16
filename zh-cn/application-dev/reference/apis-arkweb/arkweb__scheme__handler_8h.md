@@ -22,6 +22,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef enum [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) | custom scheme的配置信息。  | 
+| typedef enum [ArkWeb_ResourceType](_web.md#arkweb_resourcetype)[ArkWeb_ResourceType](_web.md#arkweb_resourcetype) | 请求的资源类型。这些常量与Chromium中的ResourceType的对应项相匹配，不应重新编号。  | 
 | typedef struct ArkWeb_SchemeHandler_ [ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) | 该类用于拦截指定scheme的请求。  | 
 | typedef struct ArkWeb_ResourceHandler_ [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。  | 
 | typedef struct ArkWeb_Response_ [ArkWeb_Response](_web.md#arkweb_response) | 为被拦截的请求构造一个ArkWeb_Response。  | 
@@ -39,7 +40,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) {<br/>OH_ARKWEB_SCHEME_OPTION_NONE = 0, [ARKWEB_SCHEME_OPTION_STANDARD](_web.md) = 1 &lt;&lt; 0, [ARKWEB_SCHEME_OPTION_LOCAL](_web.md) = 1 &lt;&lt; 1, [ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED](_web.md) = 1 &lt;&lt; 2,<br/>[ARKWEB_SCHEME_OPTION_SECURE](_web.md) = 1 &lt;&lt; 3, [ARKWEB_SCHEME_OPTION_CORS_ENABLED](_web.md) = 1 &lt;&lt; 4, [ARKWEB_SCHEME_OPTION_CSP_BYPASSING](_web.md) = 1 &lt;&lt; 5, [ARKWEB_SCHEME_OPTION_FETCH_ENABLED](_web.md) = 1 &lt;&lt; 6, [ARKWEB_SCHEME_OPTION_CODE_CACHE_ENABLED](_web.md) = 1 &lt;&lt; 7<br/>} | custom scheme的配置信息。  | 
-
+| [ArkWeb_ResourceType](_web.md#arkweb_resourcetype) {<br/>[MAIN_FRAME](_web.md) = 0, [SUB_FRAME](_web.md) = 1, [STYLE_SHEET](_web.md) = 2, [SCRIPT](_web.md) = 3,<br/>[IMAGE](_web.md) = 4, [FONT_RESOURCE](_web.md) = 5, [SUB_RESOURCE](_web.md) = 6, [OBJECT](_web.md) = 7,<br/>[MEDIA](_web.md) = 8, [WORKER](_web.md) = 9, [SHARED_WORKER](_web.md) = 10, [PREFETCH](_web.md) = 11,<br/>[FAVICON](_web.md) = 12, [XHR](_web.md) = 13, [PING](_web.md) = 14, [SERVICE_WORKER](_web.md) = 15,<br/>[CSP_REPORT](_web.md) = 16, [PLUGIN_RESOURCE](_web.md) = 17, [NAVIGATION_PRELOAD_MAIN_FRAME](_web.md) = 19, [NAVIGATION_PRELOAD_SUB_FRAME](_web.md) = 20<br/>} | 请求的资源类型。这些常量与Chromium中的ResourceType的对应项相匹配，不应重新编号。  | 
 
 ### 函数
 
@@ -54,6 +55,7 @@
 | void [OH_ArkWebResourceRequest_GetUrl](_web.md#oh_arkwebresourcerequest_geturl) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest, char \*\*url) | 获取请求的url。  | 
 | void [OH_ArkWebResourceRequest_GetHttpBodyStream](_web.md#oh_arkwebresourcerequest_gethttpbodystream) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest, [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*\*httpBodyStream) | 创建一个ArkWeb_HttpBodyStream，用于读取请求的上传数据。  | 
 | void [OH_ArkWebResourceRequest_DestroyHttpBodyStream](_web.md#oh_arkwebresourcerequest_destroyhttpbodystream) ([ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream) | 销毁ArkWeb_HttpBodyStream对象。  | 
+| int32_t [OH_ArkWebResourceRequest_GetResourceType](_web.md#oh_arkwebresourcerequest_getresourcetype) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest) | 获取请求的资源类型。  | 
 | int32_t [OH_ArkWebHttpBodyStream_SetUserData](_web.md#oh_arkwebhttpbodystream_setuserdata) ([ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, void \*userData) | 将一个用户数据设置到ArkWeb_HttpBodyStream对象中。  | 
 | void \* [OH_ArkWebHttpBodyStream_GetUserData](_web.md#oh_arkwebhttpbodystream_getuserdata) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream) | 从ArkWeb_HttpBodyStream获取用户数据。  | 
 | int32_t [OH_ArkWebHttpBodyStream_SetReadCallback](_web.md#oh_arkwebhttpbodystream_setreadcallback) ([ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, [ArkWeb_HttpBodyStreamReadCallback](_web.md#arkweb_httpbodystreamreadcallback) readCallback) | 为OH_ArkWebHttpBodyStream_Read设置回调函数，OH_ArkWebHttpBodyStream_Read的结果将通过readCallback通知给调用者。 该回调函数将在与OH_ArkWebHttpBodyStream_Read相同的线程中运行。  | 

@@ -10,7 +10,7 @@ The **radio** module provides basic network search management functions. You can
 ## Modules to Import
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 ```
 
 ## radio.getRadioTech
@@ -46,7 +46,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) => {
@@ -97,7 +97,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
@@ -140,7 +140,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
     if (err) {
@@ -185,7 +185,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNetworkState(slotId, (err: BusinessError, data: radio.NetworkState) => {
@@ -236,7 +236,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNetworkState(slotId).then((data: radio.NetworkState) => {
@@ -277,7 +277,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSelectionMode) => {
@@ -325,7 +325,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNetworkSelectionMode(slotId).then((data: radio.NetworkSelectionMode) => {
@@ -366,7 +366,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getISOCountryCodeForNetwork(slotId, (err: BusinessError, data: string) => {
@@ -414,7 +414,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getISOCountryCodeForNetwork(slotId).then((data: string) => {
@@ -483,7 +483,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getPrimarySlotId((err: BusinessError, data: number) => {
     if (err) {
@@ -522,7 +522,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getPrimarySlotId().then((data: number) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
@@ -562,7 +562,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getSignalInformation(slotId, (err: BusinessError, data: Array<radio.SignalInformation>) => {
@@ -610,7 +610,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getSignalInformation(slotId).then((data: Array<radio.SignalInformation>) => {
@@ -790,7 +790,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.isRadioOn((err: BusinessError, data: boolean) => {
     if (err) {
@@ -835,7 +835,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.isRadioOn(slotId, (err: BusinessError, data: boolean) => {
@@ -886,7 +886,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.isRadioOn(slotId).then((data: boolean) => {
@@ -927,7 +927,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getOperatorName(slotId, (err: BusinessError, data: string) => {
@@ -975,7 +975,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getOperatorName(slotId).then((data: string) => {

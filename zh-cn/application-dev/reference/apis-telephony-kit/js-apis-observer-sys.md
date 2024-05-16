@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import observer from '@ohos.telephony.observer';
+import { observer } from '@kit.TelephonyKit';
 ```
 
 
@@ -50,7 +50,7 @@ on\(type: \'cellInfoChange\', callback: Callback\<Array\<CellInformation\>\>\): 
 **示例：**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 observer.on('cellInfoChange', (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
@@ -95,7 +95,7 @@ on\(type: \'cellInfoChange\', options: ObserverOptions, callback: Callback\<Arra
 **示例：**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -143,7 +143,7 @@ off\(type: \'cellInfoChange\', callback?: Callback\<Array\<CellInformation\>\>\)
 **示例：**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let callback: (data: Array<radio.CellInformation>) => void = (data: Array<radio.CellInformation>) => {
     console.log("on cellInfoChange, data:" + JSON.stringify(data));
