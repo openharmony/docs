@@ -216,6 +216,7 @@
 **ACL使能**：true
 
 **起始版本**：8
+
 ### ohos.permission.ASSIST_DEVICE_UPDATE
 
 允许调用辅助设备升级接口。

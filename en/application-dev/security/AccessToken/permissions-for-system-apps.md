@@ -204,17 +204,6 @@ Allows an application to call the API for restoring factory settings.
 **Enable via ACL**: true
 
 **Valid since**: 8
-### ohos.permission.ASSIST_DEVICE_UPDATE
-
-Allows an application to call the API for assist device update.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
 
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
