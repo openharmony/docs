@@ -484,3 +484,47 @@ bindSheet半模态面板。
 **适配指导**
 
 异常值处理逻辑变更，不涉及适配。
+
+## cl.arkui.14 Checkbox,CheckboxGroup默认尺寸变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+Checkbox,CheckboxGroup内Padding尺寸上库参数用法错误，导致最终计算控件尺寸不是UX标准的24vp。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前：内容区大小20vp，上下左右各异常添加了14个像素的margin，density越小checkbox占用空间越大。
+
+变更后：取消这14个像素的margin，显示区域20vp，添加上下左右各2vp的padding，总大小24vp。
+
+**起始API level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+默认尺寸变更，应用需根据当前Checkbox,CheckboxGroup实际大小调整布局位置。
+变更前效果，等同于如下示例:
+```
+Checkbox()
+  .margin('14px')
+  .padding(0)
+
+CheckboxGroup()
+  .margin('14px')
+  .padding(0)
+```
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/CheckboxSize_Compare_Before.jpg) | ![](figures/CheckboxSize_Compare_After.jpg) |
+
