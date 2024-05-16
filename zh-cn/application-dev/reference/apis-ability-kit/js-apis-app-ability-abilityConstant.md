@@ -182,7 +182,7 @@ class MyAbility extends UIAbility {
     this.context.startAbility(want, option).then(()=>{
       console.log('Succeed to start ability.');
     }).catch((error: BusinessError)=>{
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+      console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
   }
 }
