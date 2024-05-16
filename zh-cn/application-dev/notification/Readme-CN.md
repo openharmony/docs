@@ -7,6 +7,10 @@
 - 发布通知
   - [发布文本类型通知](text-notification.md)
   - [发布进度条类型通知](progress-bar-notification.md)
+  <!--Del-->
   - [发布实况窗类型通知（仅对系统应用开放）](live-view-notification.md)
+  <!--DelEnd-->
   - [为通知添加行为意图](notification-with-wantagent.md)
+<!--Del-->
 - [订阅通知（仅对系统应用开放）](notification-subscription.md)
+<!--DelEnd-->

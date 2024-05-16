@@ -15,7 +15,7 @@
 - 值： usual.event.BATTERY_LOW
 - 订阅者所需权限： 无
 
-当电池电量低于设备设置的低电量百分比值时，将会触发事件通知服务发布该系统公共事件。<!--DelEnd-->设备设置低电量百分比值请参考[电量等级定制开发指导](../../../../device-dev/subsystems/subsys-power-battery-level-customization.md)。<!--DelEnd-->
+当电池电量低于设备设置的低电量百分比值时，将会触发事件通知服务发布该系统公共事件。<!--Del-->设备设置低电量百分比值请参考[电量等级定制开发指导](../../../../device-dev/subsystems/subsys-power-battery-level-customization.md)。<!--DelEnd-->
 
 ## COMMON_EVENT_BATTERY_OKAY
 表示电池退出低电量状态的公共事件的动作。
