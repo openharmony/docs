@@ -46,6 +46,7 @@
 - [@ohos.enterprise.systemManager （系统管理）](js-apis-enterprise-systemManager.md)
 - [@ohos.enterprise.usbManager（USB管理）](js-apis-enterprise-usbManager.md)
 - [@ohos.enterprise.wifiManager（WiFi管理）](js-apis-enterprise-wifiManager.md)
+<!--Del-->
 - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](js-apis-EnterpriseAdminExtensionAbility.md)
 - [@ohos.enterprise.accountManager（帐户管理）(系统接口)](js-apis-enterprise-accountManager-sys.md)
 - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](js-apis-enterprise-adminManager-sys.md)
@@ -62,3 +63,4 @@
 - [@ohos.enterprise.securityManager（安全管理）(系统接口)](js-apis-enterprise-securityManager-sys.md)
 - [@ohos.enterprise.usbManager（USB管理）(系统接口)](js-apis-enterprise-usbManager-sys.md)
 - [@ohos.enterprise.wifiManager（WiFi管理）(系统接口)](js-apis-enterprise-wifiManager-sys.md)
+<!--DelEnd-->
