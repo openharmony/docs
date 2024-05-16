@@ -636,16 +636,12 @@
       - 线程间通信
           - [使用Emitter进行线程间通信](basic-services/common-event/itc-with-emitter.md)
     - 帐号管理
+      <!--Del-->
       - [帐号管理概述](basic-services/account/account-overview.md)
       - 系统帐号
-        <!--Del-->
-        - [管理系统帐号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
-        <!--DelEnd-->
+        - [管理系统帐号（仅对系统应用开放）](basic-services/account/manage-os-account.md)        
         - [使用约束管控系统帐号](basic-services/account/control-os-account-by-constraints.md)
-        <!--Del-->
         - [管理系统帐号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
-        <!--DelEnd-->
-      <!--Del-->
       - 域帐号（仅对系统应用开放）
         - [管理域帐号](basic-services/account/manage-domain-account.md)
         - [认证域帐号](basic-services/account/auth-domain-account.md)
