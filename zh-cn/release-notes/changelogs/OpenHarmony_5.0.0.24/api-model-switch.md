@@ -3,7 +3,7 @@
 此清单仅列举Stage工程下错误使用仅FA模型可用接口的适配参考
 
 ## Context接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | [getOrCreateLocalDir(callback:AsyncCallback&lt;string&gt;):void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextgetorcreatelocaldir7)<br/>[getOrCreateLocalDir():Promise&lt;string&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextgetorcreatelocaldir7-1) | Stage模型无对应接口 | Stage模型应用在应用根目录下没有操作权限，不提供对应接口 |
 | [verifyPermission(permission:string,options:PermissionOptions,callback:AsyncCallback&lt;number&gt;):void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextverifypermission7)<br/>[verifyPermission(permission:string,callback:AsyncCallback&lt;number&gt;):void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextverifypermission7-1)<br/>[verifyPermission(permission:string,options?:PermissionOptions):Promise&lt;number&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextverifypermission7-2) | \@ohos.abilityAccessCtrl.d.ts | [verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;](../../../application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync9)<br/>[verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstoken9) |
@@ -28,11 +28,18 @@
 | [getAbilityInfo(callback:AsyncCallback&lt;AbilityInfo&gt;):void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextgetabilityinfo7)<br/>[getAbilityInfo():Promise&lt;AbilityInfo&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextgetabilityinfo7-1) | application\UIAbilityContext.d.ts | [abilityInfo: AbilityInfo;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#属性) |
 | [isUpdatingConfigurations(callback:AsyncCallback&lt;boolean&gt;):void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextisupdatingconfigurations7)<br/>[isUpdatingConfigurations():Promise&lt;boolean&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextisupdatingconfigurations7-1) | Stage模型无对应接口 | 在系统环境变化时，应用不会重启，调用onConfigurationUpdated接口通知应用，该接口在FA模型是空实现接口，Stage模型不提供对应接口 |
 | [printDrawnCompleted(callback:AsyncCallback&lt;void&gt;):void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextprintdrawncompleted7)<br/>[printDrawnCompleted():Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-app-context.md#contextprintdrawncompleted7-1) | Stage模型无对应接口 | 该接口在FA模型是空实现接口，不影响应用功能，Stage模型不提供对应接口 |
+| interface PermissionRequestResult | \@ohos.abilityAccessCtrl.d.ts | export  type PermissionRequestResult = _PermissionRequestResult; |
+| requestCode: number; | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| permissions: Array<string>; | security\PermissionRequestResult.d.ts | permissions: Array<string>; |
+| authResults: Array<number>; | security\PermissionRequestResult.d.ts | authResults: Array<number>; |
+| interface PermissionOptions | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| pid?: number; | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| uid?: number; | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
 
 ## featureAbility接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
-| [getWant(callback:&nbsp;AsyncCallback&lt;Want&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetwant)<br/>[getWant():&nbsp;Promise&lt;Want&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetwant-1) | \@ohos.app.ability.UIAbility.d.ts | [launchWant:&nbsp;Want;](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#属性) | 
+| [getWant(callback:&nbsp;AsyncCallback&lt;Want&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetwant)<br/>[getWant():&nbsp;Promise&lt;Want&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetwant-1) | \@ohos.app.ability.UIAbility.d.ts | [launchWant:&nbsp;Want;](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#属性) |
 | [startAbility(parameter:&nbsp;StartAbilityParameter,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitystartability)<br/>[startAbility(parameter:&nbsp;StartAbilityParameter):&nbsp;Promise&lt;number&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitystartability-1) | application\UIAbilityContext.d.ts | [startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartability)<br/>[startAbility(want:&nbsp;Want,&nbsp;options:&nbsp;StartOptions,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartability-1)<br/>[startAbility(want:&nbsp;Want,&nbsp;options?:&nbsp;StartOptions):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartability-2) |
 | [getContext():&nbsp;Context;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetcontext) | \@ohos.app.ability.UIAbility.d.ts | [context:&nbsp;UIAbilityContext;](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#属性) |
 | [startAbilityForResult(parameter:&nbsp;StartAbilityParameter,&nbsp;callback:&nbsp;AsyncCallback&lt;AbilityResult&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitystartabilityforresult7)<br/>[startAbilityForResult(parameter:&nbsp;StartAbilityParameter):&nbsp;Promise&lt;AbilityResult&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitystartabilityforresult7-1) | application\UIAbilityContext.d.ts | [startAbilityForResult(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;AbilityResult&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)<br/>[startAbilityForResult(want:&nbsp;Want,&nbsp;options:&nbsp;StartOptions,&nbsp;callback:&nbsp;AsyncCallback&lt;AbilityResult&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-1)<br/>[startAbilityForResult(want:&nbsp;Want,&nbsp;options?:&nbsp;StartOptions):&nbsp;Promise&lt;AbilityResult&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2) |
@@ -43,9 +50,28 @@
 | [connectAbility(request:&nbsp;Want,&nbsp;options:ConnectOptions&nbsp;):&nbsp;number;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilityconnectability7) | application\UIAbilityContext.d.ts | [connectServiceExtensionAbility(want:&nbsp;Want,&nbsp;options:&nbsp;ConnectOptions):&nbsp;number;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) |
 | [disconnectAbility(connection:&nbsp;number,&nbsp;callback:AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitydisconnectability7)<br/>[disconnectAbility(connection:&nbsp;number):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitydisconnectability7-1) | application\UIAbilityContext.d.ts | [disconnectAbility(connection:&nbsp;number,&nbsp;callback:AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)<br/>[disconnectAbility(connection:&nbsp;number):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) |
 | [getWindow(callback:&nbsp;AsyncCallback&lt;window.Window&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetwindow7)<br/>[getWindow():&nbsp;Promise&lt;window.Window&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetwindow7-1) | \@ohos.window.d.ts | [getLastWindow(ctx:&nbsp;BaseContext,&nbsp;callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowgetlastwindow9)<br/>[getLastWindow(ctx:&nbsp;BaseContext):&nbsp;Promise&lt;Window&gt;;](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowgetlastwindow9-1) |
+| WINDOW_MODE_UNDEFINED = 0 | Stage模型无对应接口 | 暂时未提供对应接口 |
+| WINDOW_MODE_FULLSCREEN = 1 | Stage模型无对应接口 | 暂时未提供对应接口 |
+| WINDOW_MODE_SPLIT_PRIMARY = 100 | Stage模型无对应接口 | 暂时未提供对应接口 |
+| WINDOW_MODE_SPLIT_SECONDARY = 101 | Stage模型无对应接口 | 暂时未提供对应接口 |
+| WINDOW_MODE_FLOATING = 102 | Stage模型无对应接口 | 暂时未提供对应接口 |
+| BOUNDS_KEY = 'abilityBounds' | Stage模型无对应接口 | 暂时未提供对应接口 |
+| WINDOW_MODE_KEY = 'windowMode' | \@ohos.app.ability.StartOptions.d.ts | windowMode?: number; |
+| DISPLAY_ID_KEY = 'displayId' | Stage模型无对应接口 | 暂时未提供对应接口 |
+| NO_ERROR = 0 | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| INVALID_PARAMETER = -1 | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| ABILITY_NOT_FOUND = -2 | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| PERMISSION_DENY = -3 | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| TYPE_INSERT = 1 | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| TYPE_UPDATE = 2 | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| TYPE_DELETE = 3 | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| TYPE_ASSERT = 4 | 接口在Stage模型中无意义 | 无可替换接口，应删除接口调用 |
+| export type Context = _Context; | \@ohos.app.ability.common.d.ts | export type Context = _Context.default; |
+| export type AppVersionInfo = _AppVersionInfo; | 接口在Stage模型中无意义                                    | 无可替换接口，应删除接口调用                                 |
+| export type ProcessInfo = _ProcessInfo; | \@ohos.app.ability.appManager.d.ts                         | export type ProcessInformation = _ProcessInformation; |
 
 ## particleAbility接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | [startAbility(parameter:&nbsp;StartAbilityParameter,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilitystartability)<br/>[startAbility(parameter:&nbsp;StartAbilityParameter):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilitystartability-1) | application\ServiceExtensionContext.d.ts | [startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartability)<br/>[startAbility(want:&nbsp;Want,&nbsp;options:&nbsp;StartOptions,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartability-2)<br/>[startAbility(want:&nbsp;Want,&nbsp;options?:&nbsp;StartOptions):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartability-1)<br/>[startServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartserviceextensionability)<br/>[startServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextstartserviceextensionability-1) |
 | [terminateSelf(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilityterminateself)<br/>[terminateSelf():&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilityterminateself-1) | application\ServiceExtensionContext.d.ts | [terminateSelf(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself)<br/>[terminateSelf():&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself-1) |
@@ -54,9 +80,10 @@
 | [acquireDataAbilityHelper(uri:&nbsp;string):&nbsp;DataAbilityHelper;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilityacquiredataabilityhelper) | \@ohos.data.dataShare.d.ts<br/>[\@ohos.data.fileAccess.d.ts | [createDataShareHelper(context:&nbsp;Context,&nbsp;uri:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;DataShareHelper&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper)<br/>[createDataShareHelper(context:&nbsp;Context,&nbsp;uri:&nbsp;string):&nbsp;Promise&lt;DataShareHelper&gt;;](../../../application-dev/reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper-1)<br/>[createFileAccessHelper(context:&nbsp;Context):&nbsp;FileAccessHelper;](../../../application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileaccesscreatefileaccesshelper-1)<br/>[createFileAccessHelper(context:&nbsp;Context,&nbsp;wants:&nbsp;Array&lt;Want&gt;):&nbsp;FileAccessHelper;](../../../application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md#fileaccesscreatefileaccesshelper) |
 | [startBackgroundRunning(id:&nbsp;number,&nbsp;request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilitystartbackgroundrunningdeprecated)<br/>[startBackgroundRunning(id:&nbsp;number,&nbsp;request:&nbsp;NotificationRequest):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilitystartbackgroundrunningdeprecated-1) | \@ohos.resourceschedule.backgroundTaskManager.d.ts | [startBackgroundRunning(context:&nbsp;Context,&nbsp;bgMode:&nbsp;BackgroundMode,&nbsp;wantAgent:&nbsp;WantAgent,&nbsp;callback:&nbsp;AsyncCallback):&nbsp;void;](../../../application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning)<br/>[startBackgroundRunning(context:&nbsp;Context,&nbsp;bgMode:&nbsp;BackgroundMode,&nbsp;wantAgent:&nbsp;WantAgent):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning-1) |
 | [cancelBackgroundRunning(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilitycancelbackgroundrunningdeprecated)<br/>[cancelBackgroundRunning():&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-ability-particleAbility.md#particleabilitycancelbackgroundrunningdeprecated-1) | \@ohos.resourceschedule.backgroundTaskManager.d.ts | [stopBackgroundRunning(context:&nbsp;Context,&nbsp;callback:&nbsp;AsyncCallback):&nbsp;void;](../../../application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning)<br/>[stopBackgroundRunning(context:&nbsp;Context):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning-1) |
+| INVALID_PARAMETER = -1 | Stage模型下无意义 | 删除接口调用 |
 
 ## LifecycleForm接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | onCreate?(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData; | \@ohos.app.form.FormExtensionAbility.d.ts | [onAddForm(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData;](../../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform) |
 | onCastToNormal?(formId:&nbsp;string):&nbsp;void; | \@ohos.app.form.FormExtensionAbility.d.ts | [onCastToNormalForm(formId:&nbsp;string):&nbsp;void;](../../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#oncasttonormalform) |
@@ -65,10 +92,10 @@
 | onEvent?(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void; | \@ohos.app.form.FormExtensionAbility.d.ts | [onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void;](../../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onformevent) |
 | onDestroy?(formId:&nbsp;string):&nbsp;void; | \@ohos.app.form.FormExtensionAbility.d.ts | [onRemoveForm(formId:&nbsp;string):&nbsp;void;](../../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onremoveform) |
 | onAcquireFormState?(want:&nbsp;Want):&nbsp;formInfo.FormState; | \@ohos.app.form.FormExtensionAbility.d.ts | [onAcquireFormState?(want:&nbsp;Want):&nbsp;formInfo.FormState;](../../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onacquireformstate) |
-| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;; | \@ohos.app.form.FormExtensionAbility.d.ts | [onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;;](../../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility-sys.md#onshareform) |
+| onShareForm?(formId:&nbsp;string):&nbsp;{ [key: string]: any }; | \@ohos.app.form.FormExtensionAbility.d.ts | [onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;;](../../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility-sys.md#onshareform) |
 
 ## LifecycleApp接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | onShow?():&nbsp;void; | \@ohos.window.d.ts | [on(eventType:&nbsp;'windowStageEvent',&nbsp;callback:&nbsp;Callback&lt;WindowStageEventType&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkui/js-apis-window.md#onwindowstageevent9)<br/>监听[FOREGROUND](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowstageeventtype9)切到前台状态 |
 | onHide?():&nbsp;void; | \@ohos.window.d.ts | [on(eventType:&nbsp;'windowStageEvent',&nbsp;callback:&nbsp;Callback&lt;WindowStageEventType&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkui/js-apis-window.md#onwindowstageevent9)<br/>监听[BACKGROUND](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowstageeventtype9)切到后台状态 |
@@ -88,7 +115,7 @@
 | onMemoryLevel?(level:&nbsp;number):&nbsp;void | \@ohos.app.ability.UIAbility.d.ts | [onMemoryLevel(level:&nbsp;AbilityConstant.MemoryLevel):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonmemorylevel) |
 
 ## LifecycleService接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | onStart?():&nbsp;void; | \@ohos.app.ability.ServiceExtensionAbility.d.ts | [onCreate(want:&nbsp;Want):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityoncreate) |
 | onCommand?(want:&nbsp;Want,&nbsp;startId:&nbsp;number):&nbsp;void; | \@ohos.app.ability.ServiceExtensionAbility.d.ts | [onRequest(want:&nbsp;Want,&nbsp;startId:&nbsp;number):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest) |  |
@@ -98,7 +125,7 @@
 | onReconnect?(want:&nbsp;Want):&nbsp;void; | \@ohos.app.ability.ServiceExtensionAbility.d.ts | [onReconnect(want:&nbsp;Want):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonreconnect) |  |
 
 ## LifecycleData接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | update?(uri:&nbsp;string,&nbsp;valueBucket:&nbsp;rdb.ValuesBucket,&nbsp;predicates:&nbsp;dataAbility.DataAbilityPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void; | \@ohos.application.DataShareExtensionAbility.d.ts | [update?(uri:&nbsp;string,&nbsp;predicates:&nbsp;dataSharePredicates.DataSharePredicates,&nbsp;valueBucket:&nbsp;ValuesBucket,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md#update) |
 | query?(uri:&nbsp;string,&nbsp;columns:&nbsp;Array&lt;string&gt;,&nbsp;predicates:&nbsp;dataAbility.DataAbilityPredicates,&nbsp;callback:&nbsp;AsyncCallback&lt;ResultSet&gt;):&nbsp;void; | \@ohos.application.DataShareExtensionAbility.d.ts | [query?(uri:&nbsp;string,&nbsp;predicates:&nbsp;dataSharePredicates.DataSharePredicates,&nbsp;columns:&nbsp;Array&lt;string&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;Object&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md#query) |
@@ -115,7 +142,7 @@
 | call?(method:&nbsp;string,&nbsp;arg:&nbsp;string,&nbsp;extras:&nbsp;PacMap,&nbsp;callback:&nbsp;AsyncCallback&lt;PacMap&gt;):&nbsp;void; | Stage模型无对应接口 | 暂时未提供对应接口 |
 
 ## DataAbilityHelper接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | [openFile(uri:&nbsp;string,&nbsp;mode:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperopenfile)<br/>[openFile(uri:&nbsp;string,&nbsp;mode:&nbsp;string):&nbsp;Promise&lt;number&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperopenfile-1) | \@ohos.data.fileAccess.d.ts | [openFile(uri:&nbsp;string,&nbsp;flags:&nbsp;OPENFLAGS)&nbsp;:&nbsp;Promise&lt;number&gt;;](../../../application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md#openfile)<br/>[openFile(uri:&nbsp;string,&nbsp;flags:&nbsp;OPENFLAGS,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;)&nbsp;:&nbsp;void;](../../../application-dev/reference/apis-core-file-kit/js-apis-fileAccess-sys.md#openfile-1) |
 | [on(type:&nbsp;'dataChange',&nbsp;uri:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperon) | \@ohos.data.dataShare.d.ts | [on(type:&nbsp;'dataChange',&nbsp;uri:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-data-dataShare-sys.md#ondatachange) |
@@ -133,19 +160,19 @@
 | [call(uri:&nbsp;string,&nbsp;method:&nbsp;string,&nbsp;arg:&nbsp;string,&nbsp;extras:&nbsp;PacMap,&nbsp;callback:&nbsp;AsyncCallback&lt;PacMap&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelpercall)<br/>[call(uri:&nbsp;string,&nbsp;method:&nbsp;string,&nbsp;arg:&nbsp;string,&nbsp;extras:&nbsp;PacMap):&nbsp;Promise&lt;PacMap&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelpercall-1) | Stage模型无对应接口 | 暂时未提供对应接口 |
 | [executeBatch(uri:&nbsp;string,&nbsp;operations:&nbsp;Array&lt;DataAbilityOperation&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;Array&lt;DataAbilityResult&gt;&gt;):&nbsp;void;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)<br/>[executeBatch(uri:&nbsp;string,&nbsp;operations:&nbsp;Array&lt;DataAbilityOperation&gt;):&nbsp;Promise&lt;Array&lt;DataAbilityResult&gt;&gt;;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch-1) | Stage模型无对应接口 | 暂时未提供对应接口 |
 
-## DataAbilityHelper接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+## mediaLibrary接口
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | [getMediaLibrary():&nbsp;MediaLibrary;](../../../application-dev/reference/apis-media-library-kit/js-apis-medialibrary.md#medialibrarygetmedialibrary) | \@ohos.file.photoAccessHelper.d.ts | [getPhotoAccessHelper(context: Context): PhotoAccessHelper;](../../../application-dev/reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper) |
 
 ## request接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | [download(config:&nbsp;DownloadConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;DownloadTask&gt;):&nbsp;void;](../../../application-dev/reference/apis-basic-services-kit/js-apis-request.md#requestdownloaddeprecated-1)<br/>[download(config:&nbsp;DownloadConfig):&nbsp;Promise&lt;DownloadTask&gt;;](../../../application-dev/reference/apis-basic-services-kit/js-apis-request.md#requestdownloaddeprecated) | \@ohos.request.d.ts | [downloadFile(context:&nbsp;BaseContext,&nbsp;config:&nbsp;DownloadConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;DownloadTask&gt;):&nbsp;void;](../../../application-dev/reference/apis-basic-services-kit/js-apis-request.md#requestdownloadfile9-1)<br/>[downloadFile(context:&nbsp;BaseContext,&nbsp;config:&nbsp;DownloadConfig):&nbsp;Promise&lt;DownloadTask&gt;;](../../../application-dev/reference/apis-basic-services-kit/js-apis-request.md#requestdownloadfile9) |
 | [upload(config:&nbsp;UploadConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;UploadTask&gt;):&nbsp;void;](../../../application-dev/reference/apis-basic-services-kit/js-apis-request.md#requestuploaddeprecated-1)<br/>[upload(config:&nbsp;UploadConfig):&nbsp;Promise&lt;UploadTask&gt;;](../../../application-dev/reference/apis-basic-services-kit/js-apis-request.md#requestuploaddeprecated) | \@ohos.request.d.ts | [uploadFile(context:&nbsp;BaseContext,&nbsp;config:&nbsp;UploadConfig,&nbsp;callback:&nbsp;AsyncCallback&lt;UploadTask&gt;):&nbsp;void;](../../../application-dev/reference/apis-basic-services-kit/js-apis-request.md#requestuploadfile9-1)<br/>[uploadFile(context:&nbsp;BaseContext,&nbsp;config:&nbsp;UploadConfig):&nbsp;Promise&lt;UploadTask&gt;;](../../../application-dev/reference/apis-basic-services-kit/js-apis-request.md#requestuploadfile9) |
 
 ## resourceManager接口
-| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 | 
+| 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
 | [getResourceManager(callback:&nbsp;AsyncCallback&lt;ResourceManager&gt;):&nbsp;void;](../../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#resourcemanagergetresourcemanager)<br/>[getResourceManager(bundleName:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;ResourceManager&gt;):&nbsp;void;](../../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#resourcemanagergetresourcemanager-1)<br/>[getResourceManager():&nbsp;Promise&lt;ResourceManager&gt;;](../../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#resourcemanagergetresourcemanager-2)<br/>[getResourceManager(bundleName:&nbsp;string):&nbsp;Promise&lt;ResourceManager&gt;;](../../../application-dev/reference/apis-localization-kit/js-apis-resource-manager.md#resourcemanagergetresourcemanager-3) | application\Context.d.ts | [resourceManager:&nbsp;resmgr.ResourceManager;](../../../application-dev/reference/apis-ability-kit/js-apis-inner-application-context.md#属性) |
 
@@ -154,15 +181,115 @@
 | -------- | -------- | -------- |
 | [create(id:&nbsp;string,&nbsp;type:&nbsp;WindowType,&nbsp;callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowcreatedeprecated)<br/>[create(id:&nbsp;string,&nbsp;type:&nbsp;WindowType):&nbsp;Promise&lt;Window&gt;;](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowcreatedeprecated-1) | \@ohos.window.d.ts | [createSubWindow(name:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkui/js-apis-window.md#createsubwindow9)<br/>[createSubWindow(name:&nbsp;string):&nbsp;Promise;](../../../application-dev/reference/apis-arkui/js-apis-window.md#createsubwindow9-1)<br/>FA模型应用通过window.create(id,&nbsp;WindowType.TYPE_APP)接口创建应用子窗口，Stage模型应用可使用WindowStage.CreateSubWindow()接口代替 |
 | [getTopWindow(callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowgettopwindowdeprecated)<br/>[getTopWindow():&nbsp;Promise&lt;Window&gt;;](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowgettopwindowdeprecated-1) | \@ohos.window.d.ts | [getLastWindow(ctx:&nbsp;BaseContext,&nbsp;callback:&nbsp;AsyncCallback&lt;Window&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowgetlastwindow9)<br/>[getLastWindow(ctx:&nbsp;BaseContext):&nbsp;Promise&lt;Window&gt;;](../../../application-dev/reference/apis-arkui/js-apis-window.md#windowgetlastwindow9-1) |
+| TYPE_APP | Stage模型下无意义 | FA模型应用通过window.create(id, WindowType.TYPE_APP)接口创建应用子窗口，Stage模型应用可使用WindowStage.CreateSubWindow()接口代替 |
 
 ## Storage接口
 | 仅FA可用接口 | Stage模型可替换接口文件 | Stage模型可替换接口 |
 | -------- | -------- | -------- |
-| GetStorageOptions | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 | 
-| SetStorageOptions | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 | 
-| ClearStorageOptions | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 | 
-| DeleteStorageOptions | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 | 
+| GetStorageOptions | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| SetStorageOptions | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| ClearStorageOptions | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| DeleteStorageOptions | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
 | [static&nbsp;get(options:&nbsp;GetStorageOptions):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-system-storage.md#storageget) | \@ohos.data.preferences.d.ts | [get(key:&nbsp;string,&nbsp;defValue:&nbsp;ValueType,&nbsp;callback:&nbsp;AsyncCallback&lt;ValueType&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-data-preferences.md#get)<br/>[get(key:&nbsp;string,&nbsp;defValue:&nbsp;ValueType):&nbsp;Promise&lt;ValueType&gt;;](../../../application-dev/reference/apis-arkdata/js-apis-data-preferences.md#get-1) |
 | [static&nbsp;set(options:&nbsp;SetStorageOptions):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-system-storage.md#storageset) | \@ohos.data.preferences.d.ts | [put(key:&nbsp;string,&nbsp;value:&nbsp;ValueType,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-data-preferences.md#put)<br/>[put(key:&nbsp;string,&nbsp;value:&nbsp;ValueType):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-arkdata/js-apis-data-preferences.md#put-1) |
 | [static&nbsp;clear(options?:&nbsp;ClearStorageOptions):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-system-storage.md#storageclear) | \@ohos.data.preferences.d.ts | [clear(callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-data-preferences.md#clear)<br/>[clear():&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-arkdata/js-apis-data-preferences.md#clear-1) |
 | [static&nbsp;delete(options:&nbsp;DeleteStorageOptions):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-system-storage.md#storagedelete) | \@ohos.data.preferences.d.ts | [delete(key:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../../../application-dev/reference/apis-arkdata/js-apis-data-preferences.md#delete)<br/>[delete(key:&nbsp;string):&nbsp;Promise&lt;void&gt;;](../../../application-dev/reference/apis-arkdata/js-apis-data-preferences.md#delete-1) |
+| key: string; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| default?: string; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| success?: (data: any) => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| fail?: (data: string, code: number) => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| complete?: () => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| key: string; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| value: string; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| success?: () => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| fail?: (data: string, code: number) => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| complete?: () => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| success?: () => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| fail?: (data: string, code: number) => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| complete?: () => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| key: string; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| success?: () => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| fail?: (data: string, code: number) => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+| complete?: () => void; | Stage模型无对应接口 | Storage接口功能使用Prefereces接口来代替，接口入参已经重新设计 |
+
+## ability接口
+
+| 仅FA可用接口                                                | Stage模型可替换接口文件        | Stage模型可替换接口                           |
+| ----------------------------------------------------------- | ------------------------------ | --------------------------------------------- |
+| export type DataAbilityOperation = _DataAbilityOperation;   | Stage模型无对应接口            | 暂时未提供对应接口                            |
+| export type DataAbilityResult = _DataAbilityResult;         | Stage模型无对应接口            | 暂时未提供对应接口                            |
+| export type AbilityResult = _AbilityResult;                 | \@ohos.app.ability.common.d.ts | export type AbilityResult = _AbilityResult;   |
+| export type ConnectOptions = _ConnectOptions;               | \@ohos.app.ability.common.d.ts | export type ConnectOptions = _ConnectOptions; |
+| export type StartAbilityParameter = _StartAbilityParameter; | Stage模型无对应接口            | 暂时未提供对应接口                            |
+
+## settings接口
+
+| 仅FA可用接口                                                 | Stage模型可替换接口文件 | Stage模型可替换接口                                          |
+| ------------------------------------------------------------ | ----------------------- | ------------------------------------------------------------ |
+| function getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCallback<object>): void;<br/>function getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise<object>;<br/>function getValue(context: Context, name: string, callback: AsyncCallback<string>): void;<br/>function getValue(context: Context, name: string): Promise<string>;<br/>function getValue(context: Context, name: string, domainName: string): Promise<string>; | \@ohos.settings.d.ts    | function getValue(context: Context, name: string, callback: AsyncCallback<string>): void;<br/>function getValue(context: Context, name: string): Promise<boolean>; |
+| function setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, callback: AsyncCallback<boolean>): void;<br/>function setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Promise<boolean>;<br/>function setValue(context: Context, name: string, value: string, callback: AsyncCallback<boolean>): void;<br/>function setValue(context: Context, name: string, value: string): Promise<boolean>;<br/>function setValue(context: Context, name: string, value: string, domainName: string): Promise<boolean>; | \@ohos.settings.d.ts    | function setValue(context: Context, name: string, value: string, callback: AsyncCallback<string>): void;<br/>function setValue(context: Context, name: string, value: string): Promise<boolean>; |
+| function getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string;<br/>function getValueSync(context: Context, name: string, defValue: string): string;<br/>function getValueSync(context: Context, name: string, defValue: string, domainName: string): string; | \@ohos.settings.d.ts    | function getValueSync(context: Context, name: string, defValue: string): string; |
+| function setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean;<br/>function setValueSync(context: Context, name: string, value: string): boolean;<br/>function setValueSync(context: Context, name: string, value: string, domainName: string): boolean; | \@ohos.settings.d.ts    | function setValueSync(context: Context, name: string, value: string): boolean; |
+
+## dataAbilityOperation接口
+
+| 仅FA可用接口                                    | Stage模型可替换接口文件 | Stage模型可替换接口 |
+| ----------------------------------------------- | ----------------------- | ------------------- |
+| uri: string                                     | Stage模型下无意义       | 删除接口调用        |
+| type: featureAbility.DataAbilityOperationType;  | Stage模型下无意义       | 删除接口调用        |
+| valuesBucket?: rdb.ValuesBucket;                | Stage模型下无意义       | 删除接口调用        |
+| valueBackReferences?: rdb.ValuesBucket;         | Stage模型下无意义       | 删除接口调用        |
+| predicates?: dataAbility.DataAbilityPredicates; | Stage模型下无意义       | 删除接口调用        |
+| predicatesBackReferences?: Map<number, number>; | Stage模型下无意义       | 删除接口调用        |
+| interrupted?: boolean;                          | Stage模型下无意义       | 删除接口调用        |
+| expectedCount?: number;                         | Stage模型下无意义       | 删除接口调用        |
+
+## dataAbilityResult接口
+
+| 仅FA可用接口    | Stage模型可替换接口文件 | Stage模型可替换接口 |
+| --------------- | ----------------------- | ------------------- |
+| uri?: string;   | Stage模型下无意义       | 删除接口调用        |
+| count?: number; | Stage模型下无意义       | 删除接口调用        |
+
+## startAbilityParameter接口
+
+| 仅FA可用接口                                    | Stage模型可替换接口文件 | Stage模型可替换接口 |
+| ----------------------------------------------- | ----------------------- | ------------------- |
+| want: Want; | Stage模型下无意义 | 删除接口调用 |
+| abilityStartSetting?: { [key: string]: any }; | Stage模型下无意义 | 删除接口调用 |
+| abilityStartSettings?: Record<string, Object>; | Stage模型下无意义 | 删除接口调用 |
+
+## appVersionInfo接口
+
+| 仅FA可用接口                    | Stage模型可替换接口文件        | Stage模型可替换接口           |
+| ------------------------------- | ------------------------------ | ----------------------------- |
+| export interface AppVersionInfo | ohos.bundle.bundleManager.d.ts | export interface BundleInfo   |
+| readonly appName: string;       | bundleManager\BundleInfo.d.ts  | readonly name: string;        |
+| readonly versionCode: number;   | bundleManager\BundleInfo.d.ts  | readonly versionCode: number; |
+| readonly versionName: string;   | bundleManager\BundleInfo.d.ts  | readonly versionName: string; |
+
+## bundleManager接口
+
+| 仅FA可用接口                    | Stage模型可替换接口文件         | Stage模型可替换接口           |
+| ------------------------------- | ------------------------------- | ----------------------------- |
+| PAGE = 1 | Stage模型下无意义 | 删除接口调用 |
+| SERVICE = 2 | Stage模型下无意义 | 删除接口调用 |
+| DATA = 3 | Stage模型下无意义 | 删除接口调用 |
+
+## abilityInfo接口
+
+| 仅FA可用接口                    | Stage模型可替换接口文件         | Stage模型可替换接口           |
+| ------------------------------- | ------------------------------- | ----------------------------- |
+| readonly targetAbility: string; | Stage模型下无意义 | 删除接口调用 |
+| readonly backgroundModes: number; | Stage模型下无意义 | 删除接口调用 |
+| readonly formEnabled: boolean; | Stage模型下无意义 | 删除接口调用 |
+| readonly type: bundle.AbilityType; | Stage模型下无意义 | 删除接口调用 |
+| readonly subType: bundle.AbilitySubType; | Stage模型下无意义 | 删除接口调用 |
+| readonly readPermission: string; | Stage模型下无意义 | 删除接口调用 |
+| readonly writePermission: string; | Stage模型下无意义 | 删除接口调用 |
+| readonly uri: string; | Stage模型下无意义 | 删除接口调用 |
+| readonly type: bundleManager.AbilityType; | Stage模型下无意义 | 删除接口调用 |
+| readonly readPermission: string; | Stage模型下无意义 | 删除接口调用 |
+| readonly writePermission: string; | Stage模型下无意义 | 删除接口调用 |
+| readonly uri: string; | Stage模型下无意义 | 删除接口调用 |
+
