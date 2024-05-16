@@ -3302,7 +3302,7 @@ getPageHeight(): number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 当前网页的页面高度。 |
+| number | 当前网页的页面高度。单位：px。 |
 
 **错误码：**
 
@@ -14498,7 +14498,7 @@ exitFullscreen(): void
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
 | id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | {<br/>x: number, <br/>y: number, <br/>width: number, <br/>height: number<br/>} | 否 | N/A | surface 的位置信息。 |
+| rect | [RectEvent](#rectevent12) | 否 | N/A | surface 的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -14614,3 +14614,16 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | PLUGIN_RESOURCE | 17 | 插件请求的资源。 |
 | NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
 | NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
+
+# RectEvent<sup>12+<sup>
+
+矩形定义。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| -------------- | --------- | ---- | ---- | ---------------------------- |
+| x  | number   | 是   | 是   | 矩形区域左上角x坐标。    |
+| y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
+| width  | number   | 是   | 是   | 矩形的宽度。    |
+| height  | number   | 是   | 是   | 矩形的高度。    |
