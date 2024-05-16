@@ -219,7 +219,7 @@
 
 ### ohos.permission.ASSIST_DEVICE_UPDATE
 
-允许调用辅助设备升级接口。
+允许拉起升级服务对其他设备做辅助、协同升级。
 
 **权限级别**：system_basic
 
