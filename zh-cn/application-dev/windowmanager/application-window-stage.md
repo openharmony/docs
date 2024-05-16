@@ -458,4 +458,4 @@ export default class EntryAbility extends UIAbility {
 
 - [窗口管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)
 
-- [窗口（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowRatio)
+- [窗口（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
