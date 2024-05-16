@@ -158,3 +158,82 @@ struct Child {
   }
 }
 ```
+## onWillApplyTheme
+
+onWillApplyTheme?(theme: Theme): void
+
+onWillApplyTheme函数在创建自定义组件的新实例后，在执行其build()函数之前执行。允许在onWillApplyTheme函数中改变状态变量，更改将在后续执行build()函数中生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名    | 类型        | 说明         |
+|--------|-----------|------------|
+| theme | [Theme](../js-apis-arkui-theme.md) | 自定义组件当前生效的Theme对象。|
+
+```ts
+// xxx.ets
+import { CustomTheme, CustomColors, Theme, ThemeControl } from '@ohos.arkui.theme';
+
+class BlueColors implements CustomColors {
+  fontPrimary = Color.White;
+  backgroundPrimary = Color.Blue;
+}
+
+class PageCustomTheme implements CustomTheme {
+  colors?: CustomColors;
+
+  constructor(colors: CustomColors) {
+    this.colors = colors;
+  }
+}
+const BlueColorsTheme = new PageCustomTheme(new BlueColors());
+// 在页面build之前执行ThemeControl
+ThemeControl.setDefaultTheme(BlueColorsTheme);
+
+@Entry
+@Component
+struct IndexComponent {
+  @State textColor: ResourceColor = $r('sys.color.font_primary');
+  @State columBgColor: ResourceColor = $r('sys.color.background_primary');
+
+  onWillApplyTheme(theme: Theme) {
+    this.textColor = theme.colors.fontPrimary;
+    this.textColor = theme.colors.backgroundPrimary;
+    console.info('IndexComponent onWillApplyTheme');
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Text('Hello World')
+          .fontColor($r('sys.color.font_primary'))
+          .fontSize(30)
+      }
+      .width('100%')
+      .height('25%')
+      .borderRadius('10vp')
+      .backgroundColor($r('sys.color.background_primary'))
+
+      Column() {
+        Text('onWillApplyTheme')
+          .fontColor(this.textColor)
+          .fontSize(30)
+        Text('Hello World')
+          .fontColor(this.textColor)
+          .fontSize(30)
+      }
+      .width('100%')
+      .height('25%')
+      .borderRadius('10vp')
+      .backgroundColor(this.columBgColor)
+    }
+    .padding('16vp')
+    .backgroundColor('#dcdcdc')
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![onWillApplyThemePage](figures/onWillApplyTheme.png)

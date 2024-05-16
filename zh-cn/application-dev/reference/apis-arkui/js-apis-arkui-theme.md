@@ -1,0 +1,131 @@
+# Theme
+
+支持自定义主题风格，实现App组件风格跟随Theme切换。
+
+> **说明：**
+>
+> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+## 导入模块
+
+```ts
+import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.arkui.theme'；
+```
+
+## Theme
+
+### constructor
+
+constructor(colors: Colors)
+
+Theme的构造函数。
+
+当前生效的主题风格对象，可从onWillApplyTheme中获取。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                | 必填 | 说明 |
+| ------ |-------------------| ---- | ---- |
+| colors | [Colors](#colors) | 是 | 主题颜色资源。 |
+
+## Colors
+
+主题颜色资源。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名                           | 类型                                                  | 必填  | 说明               |
+|-------------------------------|-----------------------------------------------------|-----|------------------|
+| brand                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 鸿蒙品牌色。           |
+| warning                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 一级警示色。           |
+| alert                         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 二级提示色。           |
+| confirm                       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 确认色。             |
+| fontPrimary                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 一级文本字体颜色。        |
+| fontSecondary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 二级文本字体颜色。        |
+| fontTertiary                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 三级文本字体颜色。        |
+| fontFourth                    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 四级文本字体颜色。        |
+| fontEmphasize                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 高亮字体颜色。          |
+| fontOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 一级文本反转颜色，用于彩色背景。 |
+| fontOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 二级文本反转颜色，用于彩色背景。 |
+| fontOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 三级文本反转颜色，用于彩色背景。 |
+| fontOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 四级文本反转颜色，用于彩色背景。 |
+| iconPrimary                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 一级图标颜色。          |
+| iconSecondary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 二级图标颜色。          |
+| iconTertiary                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 三级图标颜色。          |
+| iconFourth                    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 四级图标颜色。          |
+| iconEmphasize                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 高亮图标颜色。          |
+| iconSubEmphasize              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 高亮辅助图标颜色。        |
+| iconOnPrimary                 | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 一级图标反转颜色，用于彩色背景。 |
+| iconOnSecondary               | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 二级图标反转颜色，用于彩色背景。 |
+| iconOnTertiary                | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 三级图标反转颜色，用于彩色背景。 |
+| iconOnFourth                  | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 四级图标反转颜色，用于彩色背景。 |
+| backgroundPrimary             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 一级背景颜色（实色，不透明）。  |
+| backgroundSecondary           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 二级背景颜色（实色，不透明）。  |
+| backgroundTertiary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 三级背景颜色（实色，不透明）。  |
+| backgroundFourth              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 四级背景颜色（实色，不透明）。  |
+| backgroundEmphasize           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 高亮背景颜色（实色，不透明）。  |
+| compForegroundPrimary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 前背景。             |
+| compBackgroundPrimary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 白色背景。            |
+| compBackgroundPrimaryTran     | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 白色透明背景。          |
+| compBackgroundPrimaryContrary | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 常亮背景。            |
+| compBackgroundGray            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 灰色背景。            |
+| compBackgroundSecondary       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 二级背景。            |
+| compBackgroundTertiary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 二级背景。            |
+| compBackgroundEmphasize       | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 高亮背景。            |
+| compBackgroundNeutral         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 黑色中性高亮背景颜色。      |
+| compEmphasizeSecondary        | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 20%高亮背景颜色。       |
+| compEmphasizeTertiary         | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 10%高亮背景颜色。       |
+| compDivider                   | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 通用分割线颜色。         |
+| compCommonContrary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 通用反转颜色。          |
+| compBackgroundFocus           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 获焦态背景颜色。         |
+| compFocusedPrimary            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 获焦态一级反转颜色。       |
+| compFocusedSecondary          | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 获焦态二级反转颜色。       |
+| compFocusedTertiary           | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 获焦态三级反转颜色。       |
+| interactiveHover              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 通用悬停交互式颜色。       |
+| interactivePressed            | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 通用按压交互式颜色。       |
+| interactiveFocus              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 通用获焦交互式颜色。       |
+| interactiveActive             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 通用激活交互式颜色。       |
+| interactiveSelect             | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 通用选择交互式颜色。       |
+| interactiveClick              | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 通用点击交互式颜色。       |
+
+## CustomTheme
+
+### constructor
+
+constructor(colors?: Colors)
+
+CustomTheme的构造函数。
+
+自定义主题风格对象，可从onWillApplyTheme中获取。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名    | 类型                            | 必填  | 说明         |
+|--------|-------------------------------|-----|------------|
+| colors | [CustomColors](#customColors) | 否   | 自定义主题颜色资源。 |
+
+## CustomColors
+
+自定义主题颜色资源。
+
+```ts
+CustomColors = Partial<Colors>
+```
+
+## ThemeControl
+
+ThemeControl将自定义Theme应用于App组件内，实现App组件风格跟随Theme切换。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类名/接口名       | 方法/属性名                                                     | 是否必填 | 描述（说明默认值）                                                       | 所属文件                   |
+|--------------|------------------------------------------------------------|------|-----------------------------------------------------------------|------------------------|
+| ThemeControl | setDefaultTheme(theme: [CustomTheme](#customTheme)): void; | 是    | 将自定义Theme应用于App组件内，实现App组件风格跟随Theme切换。Theme后续可扩展shape,typograph | @ohos.arkui.theme.d.ts |
