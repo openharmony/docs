@@ -46,6 +46,7 @@
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window (窗口)](js-apis-window.md)
+    <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
     - [@ohos.display (屏幕属性)(系统接口)](js-apis-display-sys.md)
@@ -53,6 +54,7 @@
     - [@ohos.screenshot (屏幕截图)(系统接口)](js-apis-screenshot-sys.md)
     - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
     - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+    <!--DelEnd-->
   - 已停止维护的接口
     - [@ohos.prompt (弹窗)](js-apis-prompt.md)
     - [@system.app (应用上下文)](js-apis-system-app.md)
