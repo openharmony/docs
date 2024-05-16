@@ -4,7 +4,7 @@
 UIAbility是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility，该UIAbility可以是应用内的其他UIAbility，也可以是其他应用的UIAbility（例如启动三方支付UIAbility）。
 
 
-本文将从如下场景分别介绍设备内UIAbility间的交互方式。对于跨设备的应用组件交互，请参见[应用组件跨设备交互（流转）](inter-device-interaction-hop-overview.md)。
+本文将从如下场景分别介绍设备内UIAbility间的交互方式。<!--Del-->对于跨设备的应用组件交互，请参见[应用组件跨设备交互（流转）](inter-device-interaction-hop-overview.md)。<!--DelEnd-->
 
 
 - [启动应用内的UIAbility](#启动应用内的uiability)
