@@ -158,6 +158,7 @@ struct Child {
   }
 }
 ```
+
 ## onWillApplyTheme
 
 onWillApplyTheme?(theme: Theme): void
