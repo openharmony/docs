@@ -35,13 +35,14 @@
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
-      - [ContentSlot](js-apis-arkui-contentSlot.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
       - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
+      - [Content](js-apis-arkui-Content.md)
+      - [NodeContent](js-apis-arkui-NodeContent.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
@@ -260,6 +261,8 @@
       - [OffscreenCanvas](arkui-ts/ts-components-offscreencanvas.md)
       - [OffscreenCanvasRenderingContext2D](arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
+    - 渲染组件
+      - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
       - [@ohos.arkui.advanced.ChipGroup (操作块组)](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
