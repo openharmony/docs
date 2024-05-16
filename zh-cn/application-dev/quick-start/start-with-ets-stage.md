@@ -3,7 +3,7 @@
 
 > **说明：**
 >
-> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例<!--Del-->，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接<!--DelEnd-->。
 
 ## 创建ArkTS工程
 
