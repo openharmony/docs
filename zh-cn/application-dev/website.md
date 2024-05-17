@@ -636,12 +636,16 @@
       - 线程间通信
           - [使用Emitter进行线程间通信](basic-services/common-event/itc-with-emitter.md)
     - 帐号管理
-      <!--Del-->
       - [帐号管理概述](basic-services/account/account-overview.md)
       - 系统帐号
-        - [管理系统帐号（仅对系统应用开放）](basic-services/account/manage-os-account.md)        
+        <!--Del-->
+        - [管理系统帐号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
+        <!--DelEnd-->
         - [使用约束管控系统帐号](basic-services/account/control-os-account-by-constraints.md)
+        <!--Del-->
         - [管理系统帐号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
+        <!--DelEnd-->
+      <!--Del-->
       - 域帐号（仅对系统应用开放）
         - [管理域帐号](basic-services/account/manage-domain-account.md)
         - [认证域帐号](basic-services/account/auth-domain-account.md)
@@ -1345,9 +1349,11 @@
         - [@ohos.app.ability.wantConstant (wantConstant)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-wantConstant-sys.md)
         - [@ohos.app.businessAbilityRouter (业务路由模块)(系统接口)](reference/apis-ability-kit/js-apis-businessAbilityRouter-sys.md)
         - [@ohos.application.uriPermissionManager (URI权限管理)(系统接口)](reference/apis-ability-kit/js-apis-uripermissionmanager-sys.md)
+        <!--DelEnd-->
         - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis-ability-kit/js-apis-bundleManager.md)
         - [@ohos.bundle.defaultAppManager (默认应用管理)](reference/apis-ability-kit/js-apis-defaultAppManager.md)
         - [@ohos.bundle.overlay (overlay模块)](reference/apis-ability-kit/js-apis-overlay.md)
+        <!--Del-->
         - [@ohos.bundle.appControl (appControl模块)(系统接口)](reference/apis-ability-kit/js-apis-appControl-sys.md)
         - [@ohos.bundle.bundleManager (bundleManager模块(系统接口))](reference/apis-ability-kit/js-apis-bundleManager-sys.md)
         - [@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](reference/apis-ability-kit/js-apis-bundleMonitor-sys.md)
@@ -1472,7 +1478,9 @@
         - [@ohos.application.appManager (appManager)(系统接口)](reference/apis-ability-kit/js-apis-application-appManager-sys.md)
         - [@ohos.application.missionManager (missionManager)(系统接口)](reference/apis-ability-kit/js-apis-application-missionManager-sys.md)
         - [@ohos.wantAgent (WantAgent模块)(系统接口)](reference/apis-ability-kit/js-apis-wantAgent-sys.md)
+        <!--DelEnd-->
         - [@ohos.bundle (Bundle模块)](reference/apis-ability-kit/js-apis-Bundle.md)
+        <!--Del-->
         - [@ohos.bundle (Bundle模块)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-sys.md)
         - [@ohos.bundle.innerBundleManager (innerBundleManager模块)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-InnerBundleManager-sys.md)
         - [@ohos.distributedBundle (分布式包管理)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)
@@ -2291,6 +2299,7 @@
         - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
         - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
         - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
+        - [焦点错误码](reference/apis-arkui/errorcode-focus.md)    
       - 图形图像
         - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
         - [窗口错误码](reference/apis-arkui/errorcode-window.md)
