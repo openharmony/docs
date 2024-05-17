@@ -55,3 +55,4 @@
 | [OH_AudioInterrupt_Mode](_o_h_audio.md#oh_audiointerrupt_mode) {<br/> AUDIOSTREAM_INTERRUPT_MODE_SHARE = 0, <br/> AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT = 1 <br/>} | 定义音频中断模式。  | 
 | [OH_AudioStream_AudioEffectMode](_o_h_audio.md#oh_audiostream_audioeffectmode) {<br/>  EFFECT_NONE = 0, <br/> EFFECT_DEFAULT = 1 <br/> } | 定义音效模式。  | 
 | [OH_AudioStream_DeviceChangeReason](_o_h_audio.md#oh_audiostream_devicechangereason) {<br/>REASON_UNKNOWN = 0,<br/>REASON_NEW_DEVICE_AVAILABLE = 1,<br/>REASON_OLD_DEVICE_UNAVAILABLE = 2,<br/>REASON_OVERRODE = 3<br/>} | 流设备变更原因。 | 
+| [OH_AudioStream_PrivacyType](_o_h_audio.md#oh_audiostream_privacytype) { [AUDIO_STREAM_PRIVACY_TYPE_PUBLIC](_o_h_audio.md) = 0, [AUDIO_STREAM_PRIVACY_TYPE_PRIVATE](_o_h_audio.md) = 1 } | 用于标识对应播放音频流是否支持被其他应用录制。  | 
