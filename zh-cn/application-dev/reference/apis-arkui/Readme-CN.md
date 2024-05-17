@@ -10,6 +10,7 @@
     - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
     - [@ohos.arkui.node(自定义节点)](js-apis-arkui-node.md)
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
+    - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
@@ -194,6 +195,7 @@
       - [TimePicker](arkui-ts/ts-basic-components-timepicker.md)
       - [Toggle](arkui-ts/ts-basic-components-toggle.md)
       - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
+      - [WithTheme](arkui-ts/ts-container-with-theme.md)
       <!--Del-->
       - [Component3D (系统接口)](arkui-ts/ts-basic-components-component3d-sys.md)
       - [FormComponent (系统接口)](arkui-ts/ts-basic-components-formcomponent-sys.md)
@@ -320,6 +322,7 @@
     - 类型定义
       - [基础类型定义](arkui-ts/ts-types.md)
       - [图像类型定义](arkui-ts/ts-image-common.md)
+      - [文本类型定义](arkui-ts/ts-text-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
