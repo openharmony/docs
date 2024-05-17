@@ -1772,7 +1772,6 @@
         - arkui
           - [BuilderNode](reference/apis-arkui/js-apis-arkui-builderNode.md)
           - [ComponentContent](reference/apis-arkui/js-apis-arkui-ComponentContent.md)
-          - [ContentSlot](reference/apis-arkui/js-apis-arkui-contentSlot.md)
           - [FrameNode](reference/apis-arkui/js-apis-arkui-frameNode.md)
           - [Graphics](reference/apis-arkui/js-apis-arkui-graphics.md)
           - [NodeController](reference/apis-arkui/js-apis-arkui-nodeController.md)
