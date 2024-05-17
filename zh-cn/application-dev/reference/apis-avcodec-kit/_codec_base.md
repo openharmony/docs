@@ -1866,7 +1866,7 @@ const char* OH_MD_KEY_DURATION
 
 **描述**
 
-持续时间键，值类型为int64_t。
+持续时间键，单位为微秒，值类型为int64_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

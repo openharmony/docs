@@ -629,7 +629,7 @@ try {
 
 ### on('privateCommand')<sup>12+</sup>
 
-on(**type**: 'privateCommand', callback: Callback<Record<**string**, CommandDataType>>): **void**;
+on(**type**: 'privateCommand', callback: Callback<Record<string, CommandDataType>>): void;
 
 订阅输入法私有数据事件。使用callback异步回调。
 
@@ -640,7 +640,7 @@ on(**type**: 'privateCommand', callback: Callback<Record<**string**, CommandData
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | 是   | 设置监听类型，固定取值为'privateCommand'。 |
-| callback | Callback<Record<**string**, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
+| callback | Callback<Record<string, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
 
 **错误码：**
 
@@ -672,7 +672,7 @@ try {
 
 ### off('privateCommand')<sup>12+</sup>
 
-off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
+off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 
 取消订阅输入法私有数据事件。使用callback异步回调。
 
