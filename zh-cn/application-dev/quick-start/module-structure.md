@@ -256,7 +256,7 @@ metadata对象示例：
 }
 ```
 
-如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
+如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。详细的入口图标及入口标签的显示规则如下。
 * HAP中包含Page类型的PageAbility
   * 配置文件（config.json）中abilities配置中设置了入口图标
     * 该应用没有隐藏图标的特权

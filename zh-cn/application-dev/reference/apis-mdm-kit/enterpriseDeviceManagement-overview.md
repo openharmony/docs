@@ -6,14 +6,14 @@
 ## 开发企业管理应用
 
 ### 基本概念
-- 设备管理应用：具备[企业设备管理扩展能力](../../application-models/enterprise-extensionAbility.md)的系统应用。
+- 设备管理应用：<!--RP1-->具备[企业设备管理扩展能力](../../application-models/enterprise-extensionAbility.md)的系统应用<!--RP1End-->。
 
 ### 约束与限制
 - 仅支持Stage模型
 
 ### 环境准备
-- DevEco Studio可参考其官网介绍进行下载，并进行相关的配置动作。
-- 调用系统接口需使用ohos-sdk-full，具体请参考[如何替换full-sdk](../../faqs/full-sdk-switch-guide.md)。
+- DevEco Studio可参考其官网介绍进行下载，并进行相关的配置动作。<!--Del-->
+- 调用系统接口需使用ohos-sdk-full，具体请参考[如何替换full-sdk](../../faqs/full-sdk-switch-guide.md)。<!--DelEnd-->
 
 ### 开发步骤
 
@@ -45,7 +45,7 @@
 - [@ohos.enterprise.securityManager（安全管理）](js-apis-enterprise-securityManager.md)
 - [@ohos.enterprise.systemManager （系统管理）](js-apis-enterprise-systemManager.md)
 - [@ohos.enterprise.usbManager（USB管理）](js-apis-enterprise-usbManager.md)
-- [@ohos.enterprise.wifiManager（WiFi管理）](js-apis-enterprise-wifiManager.md)
+- [@ohos.enterprise.wifiManager（WiFi管理）](js-apis-enterprise-wifiManager.md)<!--Del-->
 - [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](js-apis-EnterpriseAdminExtensionAbility.md)
 - [@ohos.enterprise.accountManager（帐户管理）(系统接口)](js-apis-enterprise-accountManager-sys.md)
 - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](js-apis-enterprise-adminManager-sys.md)
@@ -62,3 +62,4 @@
 - [@ohos.enterprise.securityManager（安全管理）(系统接口)](js-apis-enterprise-securityManager-sys.md)
 - [@ohos.enterprise.usbManager（USB管理）(系统接口)](js-apis-enterprise-usbManager-sys.md)
 - [@ohos.enterprise.wifiManager（WiFi管理）(系统接口)](js-apis-enterprise-wifiManager-sys.md)
+<!--DelEnd-->

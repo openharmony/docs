@@ -54,7 +54,7 @@ PBKDF2是将伪随机函数PRF（Pseudo-Random Function，例如基于散列的[
 - 通过await返回结果：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function kdfAwait() {
     let spec: cryptoFramework.PBKDF2Spec = {
@@ -73,8 +73,8 @@ PBKDF2是将伪随机函数PRF（Pseudo-Random Function，例如基于散列的[
 - 通过Promise返回结果：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function kdfPromise() {
     let spec: cryptoFramework.PBKDF2Spec = {
@@ -97,8 +97,8 @@ PBKDF2是将伪随机函数PRF（Pseudo-Random Function，例如基于散列的[
 - 通过同步方式返回结果：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function kdfBySync() {
     let spec: cryptoFramework.PBKDF2Spec = {

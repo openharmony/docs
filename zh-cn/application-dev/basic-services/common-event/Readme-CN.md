@@ -3,7 +3,7 @@
 - 进程间通信
     - [公共事件简介](common-event-overview.md)
     - 公共事件订阅
-        <!--Del-->
+        
         - [公共事件订阅概述](common-event-subscription-overview.md)
         <!--DelEnd-->
         - [动态订阅公共事件](common-event-subscription.md)

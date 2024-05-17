@@ -294,11 +294,11 @@ struct Page1 {
 
 ## 合理控制对象类型状态变量关联的组件数量
 
-如果将一个复杂对象定义为状态变量，需要合理控制其关联的组件数。当对象中某一个成员属性发生变化时，会导致该对象关联的所有组件刷新，尽管这些组件可能并没有直接使用到该改变的属性。为了避免这种“冗余刷新”对性能产生影响，建议合理拆分该复杂对象，控制对象关联的组件数量。<!--Del-->具体可参考[精准控制组件的更新范围](../performance/precisely-control-render-scope.md)和[状态管理合理使用开发指导](../quick-start/properly-use-state-management-to-develope.md) 两篇文章。<!--DelEnd-->
+如果将一个复杂对象定义为状态变量，需要合理控制其关联的组件数。当对象中某一个成员属性发生变化时，会导致该对象关联的所有组件刷新，尽管这些组件可能并没有直接使用到该改变的属性。为了避免这种“冗余刷新”对性能产生影响，建议合理拆分该复杂对象，控制对象关联的组件数量。具体可参考<!--Del-->[<!--DelEnd-->精准控制组件的更新范围<!--Del-->](../performance/precisely-control-render-scope.md)<!--DelEnd-->和[状态管理合理使用开发指导](../quick-start/properly-use-state-management-to-develope.md) 两篇文章。
 
 ## 查询状态变量关联的组件数
 
-在应用开发中，可以通过HiDumper查看状态变量关联的组件数，进行性能优化。<!--Del-->具体可参考[状态变量组件定位工具实践](../performance/state_variable_dfx_pratice.md)。<!--DelEnd-->
+在应用开发中，可以通过HiDumper查看状态变量关联的组件数，进行性能优化。具体可参考<!--Del-->[<!--DelEnd-->状态变量组件定位工具实践<!--Del-->](../performance/state_variable_dfx_pratice.md)<!--DelEnd-->。
 
 ## 避免在for、while等循环逻辑中频繁读取状态变量
 

@@ -46,7 +46,7 @@ uri类型可以归纳为文档类uri和媒体文件uri两类
 
 ### 文档类uri的使用方式
 
-normal等级的应用使用此类uri的方式只能通过[fs模块](../reference/apis-core-file-kit/js-apis-file-fs.md)进行进一步处理，其他模块使用此uri是会报没有权限的错误。示例代码参见picker中的[选择文档类文件](./select-user-file.md#选择文档类文件)和[保存文档类文件](./save-user-file.md#保存文档类文件)。
+normal等级的应用使用此类uri的方式只能通过[fs模块](../reference/apis-core-file-kit/js-apis-file-fs.md)进行进一步处理，其他模块使用此uri是会报没有权限的错误。示例代码参见picker中的[选择文档类文件](./select-user-file.md#选择文档类文件)和[保存文档类文件](./save-user-file.md#保存文档类文件)。<!--Del-->
 
 system_basic等级及以上的应用使用此类uri的方式除了上述通过fs模块外还可以通过[fileAccess模块](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md)进行进一步处理，使用此模块需要在配置文件module.json5中声明ohos.permission.FILE_ACCESS_MANAGER 和 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 权限，此权限为system_basic权限，仅供系统应用使用。其他模块使用此uri会报没有权限的错误。下面示例为使用fileAccess模块创建文件得到uri后对其进行重命名操作：
 
@@ -101,6 +101,7 @@ async function example() {
     }
   }
 ```
+<!--DelEnd-->
 
 ## 媒体文件uri
 
@@ -131,17 +132,18 @@ async function example() {
 | 'IMG_datetime_0001' | 表示图片文件在用户文件系统中存储的文件名去掉后缀剩下的部分。 |
 | 'VID_datetime_0001' | 表示视频文件在用户文件系统中存储的文件名去掉后缀剩下的部分。 |
 | 'AUD_datetime_0001' | 表示音频文件在用户文件系统中存储的文件名去掉后缀剩下的部分。 |
-| 'displayName.jpg' | 表示图片文件对外展示的displayName，使用[userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify)接口重命名修改的就是这个值，需要注意这个值修改后uri也会发生改变。 |
-| 'displayName.mp4' | 表示视频文件对外展示的displayName，使用[userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify)接口重命名修改的就是这个值，需要注意这个值修改后uri也会发生改变。 |
-| 'displayName.mp3' | 表示音频文件对外展示的displayName，使用[userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify)接口重命名修改的就是这个值，需要注意这个值修改后uri也会发生改变。 |
+|<!--DelRow--> 'displayName.jpg' | 表示图片文件对外展示的displayName，使用[userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify)接口重命名修改的就是这个值，需要注意这个值修改后uri也会发生改变。 |
+|<!--DelRow--> 'displayName.mp4' | 表示视频文件对外展示的displayName，使用[userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify)接口重命名修改的就是这个值，需要注意这个值修改后uri也会发生改变。 |
+|<!--DelRow--> 'displayName.mp3' | 表示音频文件对外展示的displayName，使用[userFileManager.commitModify](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#commitmodify)接口重命名修改的就是这个值，需要注意这个值修改后uri也会发生改变。 |
 
 ### 媒体文件uri获取方式
 
 1. 通过[PhotoViewPicker.select接口](../reference/apis-core-file-kit/js-apis-file-picker.md#select)选择媒体文件，返回选择的媒体文件文件的uri。
 
-2. 通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)中的[getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)或[createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset)接口获取媒体文件对应文件的uri。
+2. 通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)中的[getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)或[createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset)接口获取媒体文件对应文件的uri。<!--Del-->
 
 3. 通过[userFileManager模块](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md)中的[getPhotoAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getphotoassets)、[getAudioAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getaudioassets)、[createAudioAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createaudioasset10)或[createPhotoAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createphotoasset)接口获取媒体文件对应文件的uri。
+<!--DelEnd-->
 
 ### 媒体文件uri的使用方式
 
@@ -231,6 +233,7 @@ try {
   }
 }
 ```
+<!--Del-->
 ## 通过uri复制文件（仅对系统应用开放）
 
 用户复制文件到指定目录
@@ -246,6 +249,7 @@ try {
 5. 使用helper.[copyFile](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#copyfile11)(srcUri, destUri, fileName) 进行文件操作。
 
 复制文件代码示例：
+<!--DelEnd-->
 
 ```
 import { BusinessError } from '@ohos.base';

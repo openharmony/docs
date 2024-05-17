@@ -1,4 +1,5 @@
 # 使用HKDF进行密钥派生
+
 对应算法规格请查看[密钥派生算法规格：HKDF](crypto-key-derivation-overview.md#hkdf算法)
 
 # 开发步骤
@@ -26,7 +27,7 @@
 
 - 通过await返回结果：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function kdfAwait() {
     let keyData = new Uint8Array(buffer.from("012345678901234567890123456789", "utf-8").buffer);
@@ -47,8 +48,8 @@
 
 - 通过Promise返回结果：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function kdfPromise() {
     let keyData = new Uint8Array(buffer.from("012345678901234567890123456789", "utf-8").buffer);
