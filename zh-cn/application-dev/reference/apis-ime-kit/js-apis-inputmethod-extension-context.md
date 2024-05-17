@@ -101,7 +101,7 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
 
 ## InputMethodExtensionContext.startAbility<sup>12+</sup>
 
-startAbility(want: Want): Promise<**void**>;
+startAbility(want: Want): Promise<void>;
 
 拉起目标应用。使用Promise异步回调。
 
@@ -152,17 +152,15 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 try {
-  this.context.startAbility(want).then((err) => {
-    if (err !== undefined) {
-      this.addLog(`startAbility error: ${err} `);
-    }
+  this.context.startAbility(want).then(() => {
+    console.log(`startAbility success`);
   }).catch((err) => {
     let error = err as BusinessError;
-    this.addLog(`startAbility error: ${error.code} ${error.message}`);
+    console.log(`startAbility error: ${error.code} ${error.message}`);
   })
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`startAbility error: ${error.code} ${error.message}`);
+  console.log(`startAbility error: ${error.code} ${error.message}`);
 }
 ```
 

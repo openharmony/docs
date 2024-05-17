@@ -11,6 +11,7 @@
   - [代码开发概述](develop-code-overview.md)
   - C/C++标准库
     - [C/C++标准库机制概述](c-cpp-overview.md)
+    - [fdsan使用指导](fdsan.md)
   - 使用Node-API实现跨语言交互
     - [Node-API简介](napi-introduction.md)
     - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
