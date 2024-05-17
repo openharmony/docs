@@ -470,7 +470,7 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| value  | [CaretStyle](ts-basic-components-textinput.md#caretstyle10对象说明) | 是   | 光标的风格。 |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标的风格。 |
 
 ### textIndent<sup>12+</sup>
 
