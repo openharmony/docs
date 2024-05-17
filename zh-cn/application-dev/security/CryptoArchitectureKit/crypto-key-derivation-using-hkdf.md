@@ -27,7 +27,7 @@
 
 - 通过await返回结果：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function kdfAwait() {
     let keyData = new Uint8Array(buffer.from("012345678901234567890123456789", "utf-8").buffer);
@@ -48,8 +48,8 @@
 
 - 通过Promise返回结果：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function kdfPromise() {
     let keyData = new Uint8Array(buffer.from("012345678901234567890123456789", "utf-8").buffer);
