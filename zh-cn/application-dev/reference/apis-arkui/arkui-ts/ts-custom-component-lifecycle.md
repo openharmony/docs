@@ -241,4 +241,4 @@ struct IndexComponent {
   }
 }
 ```
-![onWillApplyThemePage](figures/zh-cn_image_onwillapplytheme.png)
+![onWillApplyThemePage](figures/onWillApplyTheme.png)

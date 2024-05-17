@@ -93,7 +93,7 @@ struct Index {
   }
 }
 ```
-![withThemeColorMode](figures/withThemeDarkLight.png)
+![withThemeColorMode](figures/witheThemeColorMode.png)
 
 ```ts
 // 自定义WithTheme作用域内组件缺省配色
