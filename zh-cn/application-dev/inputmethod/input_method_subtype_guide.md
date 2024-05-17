@@ -4,7 +4,7 @@
 
 ## 输入法子类型的配置与实现
 
-1. 输入法应用开发者只需要注册实现一个<!--RP1-->[InputMethodExtensionAbility](../application-models/inputmethodextentionability.md)<!--RP1End-->，所有的输入法子类型共用该InputMethodExtensionAbility，在[module.json5配置文件](../quick-start/module-configuration-file.md)中添加metadata，name为ohos_extension.input_method，用于配置所有子类型的资源信息.
+1. 输入法应用开发者只需要注册实现一个<!--Del-->[<!--DelEnd-->InputMethodExtensionAbility<!--Del-->](../application-models/inputmethodextentionability.md)<!--DelEnd-->，所有的输入法子类型共用该InputMethodExtensionAbility，在[module.json5配置文件](../quick-start/module-configuration-file.md)中添加metadata，name为ohos_extension.input_method，用于配置所有子类型的资源信息.
    ```ts
    {
      "module": {
