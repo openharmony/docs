@@ -164,7 +164,7 @@ requestFocus(key: string): void
 
 ## focusScopePriority<sup>12+</sup>
 
-focusScopePriority(scopeId: string, priority?: FocusPriority): T;
+focusScopePriority(scopeId: string, priority?: FocusPriority): T
 
 设置当前组件在指定容器内获焦的优先级。需要配合focusScopeId一起使用。
 
