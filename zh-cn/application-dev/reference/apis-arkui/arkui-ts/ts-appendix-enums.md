@@ -925,7 +925,7 @@ Nullable\<T> {
 | EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
 
 ## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
-| 名称       | 描述                     |
-| ---------- | ------------------------ |
-| DEFAULT | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
-| PRESERVE_POSITION  | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
+| 名称       |值| 描述                     |
+| ---------- | --- |------------------------ |
+| DEFAULT |0| 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
+| PRESERVE_POSITION |1 | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
