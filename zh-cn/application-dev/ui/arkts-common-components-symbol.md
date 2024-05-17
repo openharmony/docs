@@ -218,7 +218,7 @@ SymbolGlyph通过引用Resource资源来创建，资源引用类型可以通过$
 
 相较于effectStrategy属性启动即触发动效，可以通过以下两种方式控制动效的播放状态以及更多样的动效策略选择。
 
-关于effectStrategy属性与symbolEffect属性优先级关系，详见[SymbolGlyph.symbolEffect属性](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md##symboleffect12-2)。
+关于effectStrategy属性与symbolEffect属性多种动态属性使用生效原则，详见[SymbolGlyph.symbolEffect属性说明](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symboleffect12-1)。
 
 - 通过symbolEffect属性同时设置SymbolGlyph的动效策略及动效播放状态。
 
@@ -340,7 +340,7 @@ struct Index {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row(){
         Row(){
-          Text("Crash me")
+          Text("歌曲一")
         }.width('82%')
         Row({ space: 5}) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
@@ -354,7 +354,7 @@ struct Index {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row(){
         Row(){
-          Text("Stay with me")
+          Text("歌曲二")
         }.width('82%')
         Row({ space: 5}) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
@@ -368,7 +368,7 @@ struct Index {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row(){
         Row(){
-          Text("怎么还不睡")
+          Text("歌曲三")
         }.width('82%')
         Row({ space: 5}) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
@@ -382,7 +382,7 @@ struct Index {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row(){
         Row(){
-          Text("NO NO NO")
+          Text("歌曲四")
         }.width('82%')
         Row({ space: 5}) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
@@ -396,7 +396,7 @@ struct Index {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row(){
         Row(){
-          Text("回电")
+          Text("歌曲五")
         }.width('82%')
         Row({ space: 5}) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
@@ -410,7 +410,7 @@ struct Index {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row(){
         Row(){
-          Text("放肆")
+          Text("歌曲六")
         }.width('82%')
         Row({ space: 5}) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
@@ -424,7 +424,7 @@ struct Index {
       Divider().width(5).color(this.fontColorValue1).width('98%')
       Row(){
         Row(){
-          Text("不如见一面")
+          Text("歌曲七")
         }.width('82%')
         Row({ space: 5}) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
@@ -452,4 +452,4 @@ struct Index {
   }
 }
 ```
-![symbol_scene_demo](figures/symbol_sceneDemo_whiteBg.gif)
+![symbol_scene_demo](figures/symbol_music_demo.gif)

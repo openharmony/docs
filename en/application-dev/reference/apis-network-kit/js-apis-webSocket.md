@@ -105,7 +105,7 @@ Creates a WebSocket connection. You can use this API to create or close a WebSoc
 **Example**
 
 ```ts
-let ws: webSocket = webSocket.createWebSocket();
+let ws: webSocket.WebSocket = webSocket.createWebSocket();
 ```
 
 ## WebSocket<sup>6+</sup>
@@ -295,7 +295,16 @@ import { BusinessError } from '@ohos.base';
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err: BusinessError, value: boolean) => {
-  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+    ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -304,6 +313,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   });
 });
 ```
+
+> **Description**
+>
+> The **send** API can be called only after an **open** event is listened.
 
 ### send<sup>6+</sup>
 
@@ -344,7 +357,17 @@ import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+
 ws.connect(url, (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
   let promise = ws.send("Hello, server!");
   promise.then((value: boolean) => {
     console.log("send success")
@@ -353,6 +376,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   });
 });
 ```
+
+> **Description**
+>
+> The **send** API can be called only after an **open** event is listened.
 
 ### close<sup>6+</sup>
 
@@ -876,7 +903,7 @@ Defines the client certificate type.
 
 Represents the HTTP proxy configuration.
 
-**System capability**: SystemCapability.Communication.NetManager.Core
+**System capability**: SystemCapability.Communication.NetStack
 
 | Name   | Type  | Mandatory| Description                     |
 | ------ | ------ | --- |------------------------- |

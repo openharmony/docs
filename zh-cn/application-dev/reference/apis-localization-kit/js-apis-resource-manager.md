@@ -242,6 +242,20 @@ import { BusinessError } from '@ohos.base';
 | SCREEN_XXXLDPI | 640  | 超特大规模的屏幕密度。 |
 
 
+## ColorMode<sup>12+</sup>
+
+用于表示当前设备颜色模式。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+| 名称  | 值   | 说明       |
+| ----- | ---- | ---------- |
+| DARK  | 0    | 深色模式。 |
+| LIGHT | 1    | 浅色模式。 |
+
+
 ## Configuration
 
 表示当前设备的状态。
@@ -252,10 +266,16 @@ import { BusinessError } from '@ohos.base';
 
 **参数：** 
 
-| 名称        | 类型                    | 可读   | 可写   | 说明       |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | 是    | 否    | 当前设备屏幕方向。 |
-| locale    | string                  | 是    | 否    | 当前系统语言。   |
+| 名称                        | 类型                            | 可读 | 可写 | 说明               |
+| --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
+| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。         |
+| locale                      | string                          | 是   | 是   | 语言文字国家地区。 |
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。         |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。         |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。         |
+| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。       |
+| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。       |
+
 
 
 ## DeviceCapability
@@ -5449,6 +5469,117 @@ isRawDir(path: string) : bool
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`isRawDir failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideResourceManager<sup>12+</sup>
+
+getOverrideResourceManager(configuration?: Configuration) : ResourceManager
+
+获取可以加载差异化资源的资源管理对象，使用同步方式返回。
+
+普通的资源管理对象获取的资源的样式（语言、深浅色、分辨率、横竖屏等）是由系统决定的，而通过该接口返回的对象，应用可以获取符合指定配置的资源，即差异化资源，比如浅色模式时可以获取深色资源。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名        | 类型                            | 必填 | 说明                                                         |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | 否   | 指定想要获取的资源样式。<br>通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入该函数。<br>若缺省则获取与当前系统最匹配的资源。 |
+
+**返回值：**
+
+| 类型            | 说明                               |
+| --------------- | ---------------------------------- |
+| ResourceManager | 可以加载差异化资源的资源管理对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getOverrideResourceManager failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideConfiguration<sup>12+</sup>
+
+getOverrideConfiguration() : Configuration
+
+获取差异化资源的配置，使用同步方式返回。普通资源管理对象与通过它的[getOverrideResourceManager](#getoverrideresourcemanager12)接口获取的差异化资源管理对象调用该方法可获得相同的返回值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| [Configuration](#configuration) | 差异化资源的配置 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
+  ```
+
+### updateOverrideConfiguration<sup>12+</sup>
+
+updateOverrideConfiguration(configuration: Configuration) : void
+
+更新差异化资源配置。普通资源管理对象与通过它的[getOverrideResourceManager](#getoverrideresourcemanager12)接口获取的差异化资源管理对象调用该方法均可更新差异化资源管理对象的配置。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名        | 类型                            | 必填 | 说明                                                         |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | 是   | 指定差异化资源的配置项。通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`updateOverrideConfiguration failed, error code: ${code}, message: ${message}.`);
   }
   ```
 

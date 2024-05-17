@@ -32,6 +32,8 @@
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
+    - 使用文本
+      - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 设置组件导航和页面路由
     - [组件导航 (Navigation)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)](arkts-routing.md)
@@ -73,6 +75,8 @@
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
+  - 主题设置
+    - [设置主题换肤](theme_skinning.md)
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明

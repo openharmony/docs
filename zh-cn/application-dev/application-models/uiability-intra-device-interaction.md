@@ -4,22 +4,18 @@
 UIAbility是系统调度的最小单元。在设备内的功能模块之间跳转时，会涉及到启动特定的UIAbility，该UIAbility可以是应用内的其他UIAbility，也可以是其他应用的UIAbility（例如启动三方支付UIAbility）。
 
 
-本文将从如下场景分别介绍设备内UIAbility间的交互方式。对于跨设备的应用组件交互，请参见[应用组件跨设备交互（流转）](inter-device-interaction-hop-overview.md)。
+本文将从如下场景分别介绍设备内UIAbility间的交互方式。<!--Del-->对于跨设备的应用组件交互，请参见[应用组件跨设备交互（流转）](inter-device-interaction-hop-overview.md)。<!--DelEnd-->
 
 
 - [启动应用内的UIAbility](#启动应用内的uiability)
-
 - [启动应用内的UIAbility并获取返回结果](#启动应用内的uiability并获取返回结果)
-
 - [启动其他应用的UIAbility](#启动其他应用的uiability)
-
 - [启动其他应用的UIAbility并获取返回结果](#启动其他应用的uiability并获取返回结果)
-
-- [启动UIAbility指定窗口模式（仅对系统应用开放）](#启动uiability指定窗口模式仅对系统应用开放)
-
 - [启动UIAbility的指定页面](#启动uiability的指定页面)
-
+<!--Del-->
+- [启动UIAbility指定窗口模式（仅对系统应用开放）](#启动uiability指定窗口模式仅对系统应用开放)
 - [通过Call调用实现UIAbility交互（仅对系统应用开放）](#通过call调用实现uiability交互仅对系统应用开放)
+<!--DelEnd-->
 
 
 ## 启动应用内的UIAbility
@@ -528,74 +524,6 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    }
    ```
 
-## 启动UIAbility指定窗口模式（仅对系统应用开放）
-
-当用户打开应用时，应用程序会以不同的窗口模式进行展示，即启动UIAbility的窗口模式。应用程序可以启动为全屏模式，悬浮窗模式或分屏模式。
-
-全屏模式是指应用程序启动后，占据整个屏幕，用户无法同时查看其他窗口或应用程序。全屏模式通常适用于那些要求用户专注于特定任务或界面的应用程序。
-
-悬浮窗模式是指应用程序启动后，以浮动窗口的形式显示在屏幕上，用户可以轻松切换到其他窗口或应用程序。悬浮窗通常适用于需要用户同时处理多个任务的应用程序。
-
-分屏模式允许用户在同一屏幕上同时运行两个应用程序，其中一个应用程序占据屏幕左侧/上侧的一部分，另一个应用程序占据右侧/下侧的一部分。分屏模式主要用于提高用户的多任务处理效率。
-
-使用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，可以通过在入参中增加[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)参数的windowMode属性来配置启动UIAbility的窗口模式。
-
-> **说明：**
->
-> 1. 如果在使用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，入参中未指定[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)参数的windowMode属性，那么UIAbility将以系统默认的窗口展示形态启动。
-> 2. 为了确保启动的UIAbility展示形态能够被支持，需要在该UIAbility对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段确认启动的展示形态被支持。
-
-以下是具体的操作步骤，以悬浮窗模式为例，假设需要从EntryAbility的页面中启动FuncAbility：
-
-1. 在调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，增加[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)参数。
-2. 在[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)参数中设置`windowMode`字段为`WINDOW_MODE_FLOATING`，表示启动的UIAbility将以悬浮窗的形式展示。
-3. `windowMode`属性仅适用于系统应用，三方应用可以使用`displayId`属性。
-
-示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
-
-```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-
-const TAG: string = '[Page_UIAbilityComponentsInteractive]';
-const DOMAIN_NUMBER: number = 0xFF00;
-
-@Entry
-@Component
-struct Page_UIAbilityComponentsInteractive {
-  build() {
-    Button()
-      .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        let want: Want = {
-          deviceId: '', // deviceId为空表示本设备
-          bundleName: 'com.samples.stagemodelabilitydevelop',
-          moduleName: 'entry', // moduleName非必选
-          abilityName: 'FuncAbilityB',
-          parameters: { // 自定义信息
-            info: '来自EntryAbility Index页面'
-          }
-        };
-        let options: StartOptions = {
-          windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
-        };
-        // context为调用方UIAbility的UIAbilityContext
-        context.startAbility(want, options).then(() => {
-          hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
-        }).catch((err: BusinessError) => {
-          hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-        });
-      })
-  }
-}
-```
-
-效果示意如下图所示。
-![](figures/start-uiability-floating-window.png)
 
 ## 启动UIAbility的指定页面
 
@@ -785,6 +713,76 @@ export default class FuncAbility extends UIAbility {
 > **说明：**
 >
 > 当被调用方[UIAbility组件启动模式](uiability-launch-type.md)设置为multiton启动模式时，每次启动都会创建一个新的实例，那么[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调就不会被用到。
+
+<!--Del-->
+## 启动UIAbility指定窗口模式（仅对系统应用开放）
+
+当用户打开应用时，应用程序会以不同的窗口模式进行展示，即启动UIAbility的窗口模式。应用程序可以启动为全屏模式，悬浮窗模式或分屏模式。
+
+全屏模式是指应用程序启动后，占据整个屏幕，用户无法同时查看其他窗口或应用程序。全屏模式通常适用于那些要求用户专注于特定任务或界面的应用程序。
+
+悬浮窗模式是指应用程序启动后，以浮动窗口的形式显示在屏幕上，用户可以轻松切换到其他窗口或应用程序。悬浮窗通常适用于需要用户同时处理多个任务的应用程序。
+
+分屏模式允许用户在同一屏幕上同时运行两个应用程序，其中一个应用程序占据屏幕左侧/上侧的一部分，另一个应用程序占据右侧/下侧的一部分。分屏模式主要用于提高用户的多任务处理效率。
+
+使用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，可以通过在入参中增加[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)参数的windowMode属性来配置启动UIAbility的窗口模式。
+
+> **说明：**
+>
+> 1. 如果在使用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility时，入参中未指定[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)参数的windowMode属性，那么UIAbility将以系统默认的窗口展示形态启动。
+> 2. 为了确保启动的UIAbility展示形态能够被支持，需要在该UIAbility对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段确认启动的展示形态被支持。
+
+以下是具体的操作步骤，以悬浮窗模式为例，假设需要从EntryAbility的页面中启动FuncAbility：
+
+1. 在调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，增加[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)参数。
+2. 在[StartOptions](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md)参数中设置`windowMode`字段为`WINDOW_MODE_FLOATING`，表示启动的UIAbility将以悬浮窗的形式展示。
+3. `windowMode`属性仅适用于系统应用，三方应用可以使用`displayId`属性。
+
+示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
+
+```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
+import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+@Entry
+@Component
+struct Page_UIAbilityComponentsInteractive {
+  build() {
+    Button()
+      .onClick(() => {
+        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+        let want: Want = {
+          deviceId: '', // deviceId为空表示本设备
+          bundleName: 'com.samples.stagemodelabilitydevelop',
+          moduleName: 'entry', // moduleName非必选
+          abilityName: 'FuncAbilityB',
+          parameters: { // 自定义信息
+            info: '来自EntryAbility Index页面'
+          }
+        };
+        let options: StartOptions = {
+          windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+        };
+        // context为调用方UIAbility的UIAbilityContext
+        context.startAbility(want, options).then(() => {
+          hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
+        }).catch((err: BusinessError) => {
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+        });
+      })
+  }
+}
+```
+
+效果示意如下图所示。
+![](figures/start-uiability-floating-window.png)
 
 
 ## 通过Call调用实现UIAbility交互（仅对系统应用开放）
@@ -1068,6 +1066,7 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
      }
    }
    ```
+<!--DelEnd-->
 
 ## 相关实例
 

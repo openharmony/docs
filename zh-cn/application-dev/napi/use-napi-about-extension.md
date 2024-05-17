@@ -179,7 +179,7 @@ add(1, 2);
 
 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。
 
-[指定异步任务调度优先级](../performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md#指定异步任务调度优先级)
+<!--RP1-->[指定异步任务调度优先级](../performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md#指定异步任务调度优先级)<!--RP1End-->
 
 ### napi_coerce_to_native_binding_object
 

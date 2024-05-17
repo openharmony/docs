@@ -9,12 +9,16 @@
     - [应用文件访问(C/C++)](native-fileio-guidelines.md)
     - [应用文件上传下载](app-file-upload-download.md)
     - [应用及文件系统空间统计](app-fs-space-statistics.md)
+  <!--Del-->
   - [向应用沙箱推送文件](send-file-to-app-sandbox.md)
+  <!--DelEnd-->
   - [应用文件分享](share-app-file.md)
   - 应用数据备份恢复
     - [应用数据备份恢复概述](app-file-backup-overview.md)
     - [应用接入数据备份恢复](app-file-backup-extension.md)
+    <!--Del-->
     - [应用触发数据备份/恢复（仅对系统应用开放）](app-file-backup.md)
+    <!--DelEnd-->
   - [文件授权访问(ArkTS)](app-file-authorization.md)
   - [文件授权访问(C/C++)](native-fileshare-guidelines.md)
 - 用户文件
@@ -25,8 +29,10 @@
   - 选择与保存用户文件（FilePicker）
     - [选择用户文件](select-user-file.md)
     - [保存用户文件](save-user-file.md)
+  <!--Del-->
   - [开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)
   - [管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)
+  <!--DelEnd-->
 - 分布式文件系统
   - [分布式文件系统概述](distributed-fs-overview.md)
   - [设置分布式文件数据等级](set-security-label.md)

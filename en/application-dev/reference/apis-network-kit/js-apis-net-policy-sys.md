@@ -40,7 +40,7 @@ Specifies whether background applications are allowed to access the network. Thi
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -78,7 +78,7 @@ Specifies whether background applications are allowed to access the network. Thi
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Return value**
@@ -124,7 +124,7 @@ Checks whether the current application is allowed to access the network when run
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -163,7 +163,7 @@ Checks whether the current application is allowed to access the network when run
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -208,7 +208,7 @@ Sets the metered network access policy for the application specified by a given 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -253,7 +253,7 @@ Sets the metered network access policy for the application specified by a given 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -297,7 +297,7 @@ Obtains the network access policy for the application specified by a given UID. 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -342,7 +342,7 @@ Obtains the network access policy for the application specified by a given UID. 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -386,7 +386,7 @@ Obtains all UIDs that match the specified network policy. This API uses an async
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -431,7 +431,7 @@ Obtains all UIDs that match the specified network policy. This API uses a promis
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -474,7 +474,7 @@ Obtains the network quota policies. This API uses an asynchronous callback to re
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -512,7 +512,7 @@ Obtains the network quota policies. This API uses a promise to return the result
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -556,7 +556,7 @@ Sets network quota policies. This API uses an asynchronous callback to return th
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -613,7 +613,7 @@ Sets network quota policies. This API uses a promise to return the result.
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Return value**
@@ -683,7 +683,7 @@ Checks whether the application specified by a given UID is allowed to access a m
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -729,7 +729,7 @@ Checks whether the application specified by a given UID is allowed to access a m
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -774,7 +774,7 @@ Checks whether an application is allowed to access the specified network. This A
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -820,7 +820,7 @@ Checks whether an application is allowed to access the specified network. This A
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -865,7 +865,7 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -910,7 +910,7 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -953,7 +953,7 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -991,7 +991,7 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1035,7 +1035,7 @@ Obtains the background network policy for the application specified by a given U
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1080,7 +1080,7 @@ Obtains the background network policies configured for the specified application
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1124,7 +1124,7 @@ Restores all the policies (cellular network, background network, firewall, and a
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1168,7 +1168,7 @@ Restores all the policies (cellular network, background network, firewall, and a
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1214,7 +1214,7 @@ Updates a reminder policy. This API uses an asynchronous callback to return the 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1266,7 +1266,7 @@ Updates a reminder policy. This API uses a promise to return the result.
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1316,7 +1316,7 @@ Sets whether to add the application specified by a given UID to the power-saving
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1361,7 +1361,7 @@ Sets whether to add the application specified by a given UID to the power-saving
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1404,7 +1404,7 @@ Obtains the UID array of applications that are on the power-saving allowlist. Th
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1442,7 +1442,7 @@ Obtains the UID array of applications that are on the device idle allowlist. Thi
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1490,7 +1490,7 @@ Subscribes to policy changes. This API uses an asynchronous callback to return t
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1538,7 +1538,7 @@ Unsubscribes from policy changes. This API uses an asynchronous callback to retu
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1594,7 +1594,7 @@ Subscribes to rule changes. This API uses an asynchronous callback to return the
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1642,7 +1642,7 @@ Unsubscribes from rule changes. This API uses an asynchronous callback to return
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1698,7 +1698,7 @@ Subscribes to metered **iface** changes. This API uses an asynchronous callback 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1741,7 +1741,7 @@ Unsubscribes from metered **iface** changes. This API uses an asynchronous callb
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1793,7 +1793,7 @@ Subscribes to network quota policy changes. This API uses an asynchronous callba
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1841,7 +1841,7 @@ Unsubscribes from network quota policy changes. This API uses an asynchronous ca
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1893,7 +1893,7 @@ Subscribes to background network policy changes. This API uses an asynchronous c
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
@@ -1937,7 +1937,7 @@ Unsubscribes from background network policy changes. This API uses an asynchrono
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
