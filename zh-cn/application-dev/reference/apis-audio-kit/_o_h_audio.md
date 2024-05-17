@@ -1841,7 +1841,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy (OH_AudioRenderer *ren
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetSampleFormat()
