@@ -5,7 +5,7 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 
 > **说明：**
 >
-> 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
+> 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
 
 
   **表1** bm工具命令列表
