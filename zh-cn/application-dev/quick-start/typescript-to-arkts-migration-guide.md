@@ -429,7 +429,7 @@ type DescribableFunction = {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn(6));
+  console.log(fn.description + ' returned ' + fn(''));
 }
 ```
 
@@ -447,7 +447,7 @@ class DescribableFunction {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn.invoke(6));
+  console.log(fn.description + ' returned ' + fn.invoke(''));
 }
 
 doSomething(new DescribableFunction());
