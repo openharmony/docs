@@ -17,11 +17,11 @@
 
 ### 开发步骤
 
-1. 使用DevEco Studio新建工程。
+1. 使用DevEco Studio新建工程。<!--Del-->
 
-2. 如需调用系统接口，需替换为替换full-sdk。且需在[应用签名文件](../../security/AccessToken/app-permission-mgmt-overview.md#应用apl等级)中设置应用为系统应用，即app-feature字段为hos_system_app。
+2. 如需调用系统接口，需替换为替换full-sdk。且需在[应用签名文件](../../security/AccessToken/app-permission-mgmt-overview.md#应用apl等级)中设置应用为系统应用，即app-feature字段为hos_system_app。<!--DelEnd-->
 
-3. 创建EnterpriseAdminExtensionAbility，创建过程详情请见[EnterpriseAdminExtensionAbility开发指南](../../application-models/enterprise-extensionAbility.md)。
+3. 创建EnterpriseAdminExtensionAbility，创建过程详情请见!--RP1-->[EnterpriseAdminExtensionAbility开发指南](../../application-models/enterprise-extensionAbility.md)<!--RP1End-->。
 
 4. 声明接口所需权限。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[声明ACL权限](../../security/AccessToken/declare-permissions-in-acl.md)声明对应权限。
 
