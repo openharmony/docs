@@ -4,10 +4,12 @@
 - 应用权限管控
   - [应用权限管控概述](app-permission-mgmt-overview.md)
   - 申请应用权限
+    <!--Del-->
     - [选择申请权限的方式](determine-application-mode.md)
+    <!--DelEnd-->
     - [声明权限](declare-permissions.md)
-    - [声明ACL权限](declare-permissions-in-acl.md)
     - [向用户申请授权](request-user-authorization.md)
+    - [申请使用受控权限](declare-permissions-in-acl.md)
   - 应用权限列表
     - [对所有应用开放](permissions-for-all.md)
     - [仅对系统应用开放](permissions-for-system-apps.md)
