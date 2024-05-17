@@ -4,7 +4,9 @@
 
 ### napi_status
 
-Enum indicating the success or failure of a Node-API call.
+Enum indicating the execution status of a Node-API call.
+
+Each time a Node-API function is called, a value of **napi_status** is returned indicating the execution result.
 
 ```c
 typedef enum {
@@ -56,7 +58,7 @@ Pointer used to represent a JavaScript (JS) value.
 
 - Context used by the underlying Node-API implementation. It is passed to the native functions when they are invoked, and must be passed back when Node-API calls are made.
 
-- The **napi_env** becomes invalid when an instance of the native addon is unloaded. A notification of this event is sent through the callbacks given to **napi_add_env_cleanup_hook** and **napi_set_instance_data**.
+- **napi_env** becomes invalid when the JS thread bound with **napi_env** exits.
 
 - Avoid caching **napi_env** or passing **napi_env** between instances of the same addon running on different worker threads.
 
@@ -110,7 +112,7 @@ Node-API provides the following memory management types:
 
 **napi_handle_scope**
 
-Data used to manage the lifecycle of JS objects. It allows JS objects to remain active within a certain range for use in JS code. When **napi_handle_scope** is created, all JS objects created in this range remain active until the end. This can prevent released objects from being used in JS code, which improves code reliability and performance.
+Data used to manage the lifecycle of JS objects. It allows JS objects to remain active within a certain range for use in JS code. When **napi_handle_scope** is created, all JS objects created in this range remain active until the scope ends. This prevents released objects from being used in JS code, which improves code reliability and performance.
 
 **napi_escapable_handle_scope**
 
@@ -179,7 +181,7 @@ Function pointer used in **napi_create_async_work**.
 
 **napi_async_complete_callback**
 
-Function pointer used when an asynchronous operation is complete. It is usually used in C++ addon development of Node.js. When an asynchronous operation is required, you can use **napi_create_async_work** to create an asynchronous operation work object and specify a **napi_async_complete_callback** callback. When the asynchronous operation is complete, the callback is automatically called for subsequent processing. Parameters of the callback include the status of the asynchronous operation and a return value, based on which corresponding processing can be performed.
+Function pointer used when an asynchronous operation is complete. When an asynchronous operation is required, you can use **napi_create_async_work** to create an asynchronous work and specify **napi_async_complete_callback**. When the asynchronous work is complete, the callback will be automatically invoked for subsequent processing. Parameters of the callback include the status of the asynchronous operation and a return value, based on which corresponding processing can be performed.
 
 **napi_threadsafe_function_call_js**
 
@@ -209,11 +211,12 @@ typedef enum {
 | QoS| Use Scenario|
 | -------- | -------- |
 | napi_qos_background | Low priority for works invisible to users, such as data synchronization and backup.|
-| napi_qos_utility | Medium priority for works that do not require immediate response, such as downloading or importing data. |
+| napi_qos_utility | Medium priority for works that do not require immediate response, such as downloading or importing data.|
 | napi_qos_default | Default priority.|
 | napi_qos_user_initiated | High priority for user-triggered works with visible progress, for example, opening a file.|
 
 ### Event Loop Modes
+
 Node-API provides two modes for running the underlying event loop, which are defined as follows:
 
 ```c
@@ -225,8 +228,28 @@ typedef enum {
 
 | Event Loop Mode| Description|
 | -------- | -------- |
-| napi_event_mode_default | Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop. |
-| napi_event_mode_nowait | Run the underlying event loop without blocking the current thread. Process a task and exit the event loop after the task is complete. If there is no task in the event loop, exit the event loop immediately. |
+| napi_event_mode_default |  Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop.|
+| napi_event_mode_nowait | Run the underlying event loop without blocking the current thread. Process a task and exit the event loop after the task is complete. If there is no task in the event loop, exit the event loop immediately.|
+
+### Thread-safe Task Priority
+
+Node-API defines the priorities of thread-safe tasks, as listed below. The tasks in the underlying task queue are executed in sequence based on their priorities.
+
+```c
+typedef enum {
+    napi_priority_immediate = 0,
+    napi_priority_high = 1,
+    napi_priority_low = 2,
+    napi_priority_idle = 3,
+} napi_task_priority;
+```
+
+| Task Priority| Description|
+| -------- | -------- |
+| napi_priority_immediate | Highest priority.|
+| napi_priority_high | Priority lower than **napi_priority_immediate**.|
+| napi_priority_low | Priority lower than **napi_priority_high**.|
+| napi_priority_idle | Lowest priority.|
 
 ## APIs
 
@@ -253,7 +276,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_create_external_buffer | Creates a JS buffer of the specified size, and initializes it with the given data.|
 | napi_get_buffer_info | Obtains the underlying data of a JS buffer and its length.|
 | napi_is_buffer | Checks whether the given JS value is a **Buffer** object.|
-| napi_create_external_arraybuffer | Allocates a JS ArrayBuffer with external data.|
+| napi_create_external_arraybuffer | Allocates a JS **ArrayBuffer** with external data.|
 
 ### String
 
@@ -449,16 +472,23 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 ### Extension
 
+[Component Extension Symbol List](../reference/native-lib/napi.md)
+
 | API| Description|
 | -------- | -------- |
 | napi_queue_async_work_with_qos | Adds an asynchronous work object to the queue and schedules it based on the QoS passed in.|
 | napi_run_script_path | Runs an .abc file.|
 | napi_load_module | Loads an .abc file as a module. This API returns the namespace of the module.|
+| napi_load_module_with_info | Loads an .abc file as a module. This API returns the namespace of the module and can be used in a newly created ArkTS runtime environment. |
 | napi_create_object_with_properties | Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number.|
 | napi_create_object_with_named_properties | Creates a JS object using the given **napi_value** and key. The key must be a string and cannot be converted into a number.|
 | napi_coerce_to_native_binding_object | Forcibly binds a JS object and a native object.|
 | napi_run_event_loop | Runs the underlying event loop.|
 | napi_stop_event_loop | Stops the underlying event loop.|
+| napi_serialize | Converts an ArkTS object into native data.|
+| napi_deserialize | Converts native data into an ArkTS object.|
+| napi_delete_serialization_data | Deletes serialized data.|
+| napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|
 
 #### napi_queue_async_work_with_qos
 
@@ -517,13 +547,46 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
 ```
 
 #### napi_run_event_loop
+
 ```c
 napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
 ```
 
 #### napi_stop_event_loop
+
 ```c
 napi_status napi_stop_event_loop(napi_env env);
+```
+
+#### napi_serialize
+
+```c
+napi_status napi_serialize(napi_env env,
+                           napi_value object,
+                           napi_value transfer_list,
+                           napi_value clone_list,
+                           void** result);
+```
+
+#### napi_deserialize
+
+```c
+napi_status napi_deserialize(napi_env env, void* buffer, napi_value* object);
+```
+
+#### napi_delete_serialization_data
+
+```c
+napi_status napi_delete_serialization_data(napi_env env, void* buffer);
+```
+
+#### napi_call_threadsafe_function_with_priority
+
+```c
+napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
+                                                        void *data,
+                                                        napi_task_priority priority,
+                                                        bool isTail);
 ```
 
 ### Environment Lifecycle

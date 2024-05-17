@@ -19,7 +19,7 @@ Generally, ArkTS/JS is used for OpenHarmony application development. However, in
 ## Node-API Architecture
 
 **Figure 1** Node-API architecture
-
+  
 ![napi_mechanism](figures/napi_mechanism.png)
 
 - Native module: a module developed using Node-API and imported to ArkTS.
@@ -34,12 +34,12 @@ Generally, ArkTS/JS is used for OpenHarmony application development. However, in
 
 - Native engine: ArkTS engine abstraction layer, which unifies the API behavior of the ArkTS engine at the Node-API layer.
 
-- ArkComiler ArkTS runtime: ArkTS runtime.
+- ArkCompiler ArkTS Runtime: ArkTS runtime.
 
 ## Key Interaction Process of Node-API
 
 **Figure 2** Key interaction process of Node-API
-
+  
 ![process_napi](figures/process_napi.png)
 
 The interaction between ArkTS and C++ consists of the following two steps:
