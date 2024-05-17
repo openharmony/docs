@@ -25,7 +25,7 @@ OpenHarmony提供了一套UI开发框架，即方舟开发框架（ArkUI框架�
 
 ### 应用模型
 
-应用模型是OpenHarmony为开发者提供的应用程序所需能力的抽象提炼，它提供了应用程序必备的组件和运行机制。有了应用模型，开发者可以基于一套统一的模型进行应用开发，使应用开发更简单、高效。<!--Del-->请见[应用模型的构成要素](../application-models/application-model-composition.md)。<!--DelEnd-->
+应用模型是OpenHarmony为开发者提供的应用程序所需能力的抽象提炼，它提供了应用程序必备的组件和运行机制。有了应用模型，开发者可以基于一套统一的模型进行应用开发，使应用开发更简单、高效。<!--Del-->请见[应用模型的构成要素](../application-models/application-models.md#应用模型的构成要素)。<!--DelEnd-->
 
 随着系统的演进发展，OpenHarmony先后提供了两种应用模型：
 
