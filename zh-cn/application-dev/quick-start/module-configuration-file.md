@@ -129,7 +129,7 @@ module.json5配置文件包含以下标签。
 | libIsolation | 用于区分同应用不同HAP下的.so文件，以防止.so冲突。<br/>-&nbsp;true：当前HAP的.so文件会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前HAP的.so文件会直接储存在libs目录中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | fileContextMenu | 标识当前HAP的右键菜单配置项。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个，每个字符串取值不超过128字节。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。取值为长度不超过255字节的字符串。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量，只允许entry和feature模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | appStartup | 标识当前Module启动框架配置路径，仅在Entry中生效。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
@@ -293,9 +293,9 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | minWindowWidth | 标识当前UIAbility组件支持的最小的窗口宽度，&nbsp;宽度单位为vp。<br/>最小取值为平台支持的最小窗口宽度，最大取值为maxWindowWidth。窗口尺寸可以参考[窗口大小限制](../windowmanager/window-overview.md#约束与限制)。 | 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口宽度。 |
 | maxWindowHeight | 标识当前UIAbility组件支持的最大的窗口高度，&nbsp;高度单位为vp。<br/>最小取值为minWindowHeight，最大取值为平台支持的最大窗口高度。 窗口尺寸可以参考[窗口大小限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最大的窗口高度。 |
 | minWindowHeight | 标识当前UIAbility组件支持的最小的窗口高度，&nbsp;高度单位为vp。<br/>最小取值为平台支持的最小窗口高度，最大取值为maxWindowHeight。窗口尺寸可以参考[窗口大小限制](../windowmanager/window-overview.md#约束与限制)。| 数值 | 该标签可缺省，缺省值为平台支持的最小的窗口高度。 |
-| excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>仅支持系统应用配置，且需申请应用特权AllowAbilityExcludeFromMissions，三方应用配置不生效，详见[应用特权配置指导](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。| 布尔值 | 该标签可缺省，缺省值为false。 |
+| excludeFromMissions | 标识当前UIAbility组件是否在最近任务列表中显示。<br/>-&nbsp;true：表示不在任务列表中显示。<br/>-&nbsp;false：表示在任务列表中显示。<br/>**说明：**<br/>仅支持系统应用配置，且需申请应用特权AllowAbilityExcludeFromMissions，三方应用配置不生效<!--Del-->，详见[应用特权配置指导](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。| 布尔值 | 该标签可缺省，缺省值为false。 |
 | recoverable | 标识当前UIAbility组件是否支持在检测到应用故障后，恢复到应用原界面。<br/>-&nbsp;true：支持检测到出现故障后，恢复到原界面。<br/>-&nbsp;false：不支持检测到出现故障后，恢复到原界面。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-| unclearableMission | 标识当前UIAbility组件是否支持从最近任务列表中移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>单独配置该字段不可生效，需要申请对应的[AllowMissionNotCleared](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)特权之后，该字段才能生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| unclearableMission | 标识当前UIAbility组件是否支持从最近任务列表中移除。<br/>-&nbsp;true：表示在任务列表中不可移除。<br/>-&nbsp;false：表示在任务列表中可以移除。<br/>**说明：**<br/>单独配置该字段不可生效，需要申请对应的<!--Del-->[<!--DelEnd-->AllowMissionNotCleared<!--Del-->](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->特权之后，该字段才能生效。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | isolationProcess | 标识组件能否运行在独立的进程中。<br/>-&nbsp;true：表示能运行在独立的进程中。<br/>-&nbsp;false：表示不能运行在独立的进程中。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | excludeFromDock | 标识当前UIAbility组件是否支持从dock区域隐藏图标。<br/>-&nbsp;true：表示在dock区域隐藏。<br/>-&nbsp;false：表示不能在dock区域隐藏。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | preferMultiWindowOrientation | 标识当前UIAbility组件多窗布局方向：<br/>-&nbsp;default：缺省值，参数不配置默认值，建议其他应用类配置。<br/>-&nbsp;portrait：多窗布局方向为竖向，建议竖向游戏类应用配置。<br/>-&nbsp;landscape：多窗布局方向为横向，配置后支持横屏悬浮窗和上下分屏，建议横向游戏类应用配置。<br/>-&nbsp;landscape_auto：多窗布局动态可变为横向，需要配合API enableLandScapeMultiWindow/disableLandScapeMultiWindow使用，建议视频类应用配置。 | 字符串 | 该标签可缺省，缺省值为default。 |
@@ -442,7 +442,7 @@ skills示例：
 | [metadata](#metadata标签) | 标识当前ExtensionAbility组件的元信息。 | 对象 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前ExtensionAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | extensionProcessMode | 标识当前ExtensionAbility组件的多进程实例模型,当前只对UIExtensionAbility以及从UIExtensionAbility扩展的ExtensionAbility生效。<br/>-&nbsp;instance：表示该ExtensionAbility每个实例一个进程。<br/>-&nbsp;type：表示该ExtensionAbility实例都运行在同一个进程里，与其他ExtensionAbility分离进程。<br/>-&nbsp;bundle：表示该ExtensionAbility实例都运行在应用统一进程里，与其他配置了bundle模型的ExtensionAbility共进程。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| dataGroupIds | 标识当前ExtensionAbility组件的dataGroupId集合。如果当前ExtensionAbility组件所在的应用在[HarmonyAppProvision配置文件](../security/app-provision-structure.md#bundle-info对象内部结构)的data-group-ids字段中也声明了某个dataGroupId，那么当前ExtensionAbility组件可以和应用共享这一个dataGroupId生成的目录，所以ExtensionAbility组件的dataGroupId需要是应用的HarmonyAppProvision配置文件的data-group-ids字段里配置的才能生效。 且该字段仅在当前ExtensionAbility组件存在独立的沙箱目录时生效。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| dataGroupIds | 标识当前ExtensionAbility组件的dataGroupId集合。如果当前ExtensionAbility组件所在的应用在<!--Del-->[<!--DelEnd-->HarmonyAppProvision配置文件<!--Del-->](../security/app-provision-structure.md#bundle-info对象内部结构)<!--DelEnd-->的data-group-ids字段中也声明了某个dataGroupId，那么当前ExtensionAbility组件可以和应用共享这一个dataGroupId生成的目录，所以ExtensionAbility组件的dataGroupId需要是应用的HarmonyAppProvision配置文件的data-group-ids字段里配置的才能生效。 且该字段仅在当前ExtensionAbility组件存在独立的沙箱目录时生效。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 
 extensionAbilities示例：
 

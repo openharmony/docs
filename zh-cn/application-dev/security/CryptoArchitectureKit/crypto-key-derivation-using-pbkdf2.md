@@ -73,9 +73,9 @@
 - 通过同步方式返回结果：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
-  
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   function kdfSync() {
     let spec: cryptoFramework.PBKDF2Spec = {
       algName: 'PBKDF2',
