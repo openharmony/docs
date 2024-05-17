@@ -629,7 +629,7 @@ try {
 
 ### on('privateCommand')<sup>12+</sup>
 
-on(**type**: 'privateCommand', callback: Callback<Record<string, CommandDataType>>): void;
+on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>): void;
 
 订阅输入法私有数据事件。使用callback异步回调。
 
