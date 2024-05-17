@@ -454,7 +454,11 @@ ArkWeb将遵循w3c标准行为，不会将其识别为同层标签。
     makeNode(uiContext: UIContext): FrameNode | null{
 
       if (this.type_ === 'application/view') {
-        ...
+        this.rootNode.build(wrapBuilder(TextInputBuilder), {
+          textOne: "myInput",
+          width: this.width_,
+          height: this.height_
+        }); 
       } else {
         // other
       }
