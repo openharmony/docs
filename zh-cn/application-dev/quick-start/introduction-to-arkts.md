@@ -1540,7 +1540,7 @@ class Person {
 
 可选链可以任意长，可以包含任意数量的`?.`运算符。
 
-在以下示例中，如果一个`Person`的实例有不为空的`spouse`属性，且`spouse`有不为空的`nickname`属性，则输出`spouse.nick`。否则，输出`undefined`：
+在以下示例中，如果一个`Person`的实例有不为空的`spouse`属性，且`spouse`有不为空的`nick`属性，则输出`spouse.nick`。否则，输出`undefined`：
 
 ```typescript
 class Person {
