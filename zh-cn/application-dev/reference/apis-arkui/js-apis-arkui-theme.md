@@ -20,8 +20,6 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 属性
-
 | 名称 | 类型                | 只读  | 可选  | 说明       |
 | ------ |-------------------|-----|-----|----------|
 | colors | [Colors](#colors) | 否   | 否   |  主题颜色资源。 |
@@ -33,8 +31,6 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 属性
 
 | 名称                           | 类型                                                 | 只读  | 可选  | 说明               |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------------|
@@ -97,8 +93,6 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### 属性
 
 | 名称                           | 类型                                                 | 只读  | 可选  | 说明         |
 |-------------------------------|-----------------------------------------------------|-----|-----|------------|
