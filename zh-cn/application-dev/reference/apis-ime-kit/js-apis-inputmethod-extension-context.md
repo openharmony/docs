@@ -160,7 +160,7 @@ try {
   })
 } catch (err) {
   let error = err as BusinessError;
-  tconsole.log(`startAbility error: ${error.code} ${error.message}`);
+  console.log(`startAbility error: ${error.code} ${error.message}`);
 }
 ```
 
