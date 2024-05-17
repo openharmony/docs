@@ -938,7 +938,7 @@ setLayoutPosition(position: Position): void
 
 measure(constraint: LayoutConstraint): void
 
-调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。
+调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。建议在[onMeasure](#onmeasure12)方法中调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -956,7 +956,7 @@ measure(constraint: LayoutConstraint): void
 
 layout(position: Position): void
 
-调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。
+调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。建议在[onLayout](#onlayout12)方法中调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
