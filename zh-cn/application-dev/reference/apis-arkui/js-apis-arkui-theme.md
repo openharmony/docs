@@ -88,7 +88,7 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 ## CustomTheme
 
-自定义主题风格对象，可从[onWillApplyTheme](arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)中获取。
+自定义主题风格对象。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -118,7 +118,7 @@ ThemeControl将自定义Theme应用于App组件内，实现App组件风格跟随
 
 setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 
-将自定义Theme应用于App组件内，实现App组件风格跟随Theme切换。
+将用户自定义Theme设置应用级默认主题，实现应用风格跟随Theme切换。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -126,7 +126,7 @@ setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 
 | 参数名       | 类型                           | 必填 | 说明             |
 |--------------|------------------------------|------|----------------|
-| theme | [CustomTheme](#customtheme)  | 是    | 表示设置的App默认样式风格 |
+| theme | [CustomTheme](#customtheme)  | 是    | 表示设置的自定义主题风格 |
 
 **示例**
 
