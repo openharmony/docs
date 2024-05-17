@@ -6,7 +6,7 @@
 ## 开发企业管理应用
 
 ### 基本概念
-- 设备管理应用：<!--RP1-->具备[企业设备管理扩展能力](../../application-models/enterprise-extensionAbility.md)的系统应用<!--RP1End-->。
+- 设备管理应用：具备<!--Del-->[<!--DelEnd-->企业设备管理扩展能力<!--Del-->](../../application-models/enterprise-extensionAbility.md)<!--DelEnd-->的<!--Del-->系统<!--DelEnd-->应用。
 
 ### 约束与限制
 - 仅支持Stage模型
@@ -21,7 +21,7 @@
 
 2. 如需调用系统接口，需替换为替换full-sdk。且需在[应用签名文件](../../security/AccessToken/app-permission-mgmt-overview.md#应用apl等级)中设置应用为系统应用，即app-feature字段为hos_system_app。<!--DelEnd-->
 
-3. 创建EnterpriseAdminExtensionAbility，创建过程详情请见!--RP1-->[EnterpriseAdminExtensionAbility开发指南](../../application-models/enterprise-extensionAbility.md)<!--RP1End-->。
+3. 创建EnterpriseAdminExtensionAbility，创建过程详情请见<!--Del-->[<!--DelEnd-->EnterpriseAdminExtensionAbility开发指南<!--Del-->](../../application-models/enterprise-extensionAbility.md)<!--DelEnd-->。
 
 4. 声明接口所需权限。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[声明ACL权限](../../security/AccessToken/declare-permissions-in-acl.md)声明对应权限。
 
