@@ -24,8 +24,10 @@
    | -------- | -------- |
    | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | callback异步生成 | 
    | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | Promise异步生成 | 
+   | generateSecretSync(params: KdfSpec): DataBlob | 同步生成 | 
 
 - 通过await返回结果：
+
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
@@ -47,6 +49,7 @@
   ```
 
 - 通过Promise返回结果：
+
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -69,5 +72,28 @@
     }).catch((error: BusinessError) => {
       console.error("key derivation error.");
     });
+  }
+  ```
+
+- 通过同步方式返回结果：
+
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { BusinessError } from '@ohos.base';
+  
+  function kdfSync() {
+    let keyData = new Uint8Array(buffer.from("012345678901234567890123456789", "utf-8").buffer);
+    let saltData = new Uint8Array(buffer.from("0123456789", "utf-8").buffer);
+    let infoData = new Uint8Array(buffer.from("infostring", "utf-8").buffer);
+    let spec: cryptoFramework.HKDFSpec = {
+      algName: 'HKDF',
+      key: keyData,
+      salt: saltData,
+      info: infoData,
+      keySize: 32
+    };
+    let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
+    let secret = kdf.generateSecretSync(spec);
+    console.info("[Sync]key derivation output is " + secret.data);
   }
   ```
