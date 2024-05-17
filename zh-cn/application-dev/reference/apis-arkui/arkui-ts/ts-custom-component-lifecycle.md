@@ -175,7 +175,7 @@ onWillApplyTheme函数在创建自定义组件的新实例后，在执行其buil
 
 ```ts
 // xxx.ets
-// 在onWillApplyTheme生命周期函数中更改状态变量，更改后在执行build()函数中生效。
+// onWillApplyTheme自定义生命周期函数中可获取当前theme对象。
 import { CustomTheme, CustomColors, Theme, ThemeControl } from '@ohos.arkui.theme';
 
 class BlueColors implements CustomColors {
