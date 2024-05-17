@@ -338,7 +338,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 ### onAdLoadSuccess
 
-onAdLoadSuccess(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): void
+onAdLoadSuccess(ads: Array&lt;advertising.Advertisement&gt;): void
 
 广告请求成功后回调。
 
@@ -358,10 +358,8 @@ import { advertising } from '@kit.AdsKit';
 
 let adLoaderListener: advertising.AdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-
   },
   onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
-
   }
 }
 
@@ -394,7 +392,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 ### onAdLoadSuccess
 
-onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;): void
+onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void
 
 多广告位广告请求成功后回调。
 
@@ -414,10 +412,8 @@ import { advertising } from '@kit.AdsKit';
 
 let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-
   },
   onAdLoadSuccess: (adsMap: Map<string, Array<advertising.Advertisement>>) => {
-
   }
 }
 ```
