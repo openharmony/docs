@@ -125,7 +125,7 @@
       - [AbilityStateData(系统接口)](js-apis-inner-application-abilityStateData-sys.md)
       - [AppForegroundStateObserver(系统接口)](js-apis-inner-application-appForegroundStateObserver-sys.md)
       - [ApplicationContext(系统接口)](js-apis-inner-application-applicationContext-sys.md)
-      - [AutoFillPopupConfig (系统接口)](apis-ability-kit\js-apis-inner-application-autoFillPopupConfig-sys.md)
+      - [AutoFillPopupConfig (系统接口)](js-apis-inner-application-autoFillPopupConfig-sys.md)
       - [ApplicationStateObserver(系统接口)](js-apis-inner-application-applicationStateObserver-sys.md)
       - [AppStateData(系统接口)](js-apis-inner-application-appStateData-sys.md)
       - [AutoFillExtensionContext(系统接口)](js-apis-inner-application-autoFillExtensionContext-sys.md)
@@ -163,7 +163,7 @@
       - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
       - [metadata](js-apis-bundleManager-metadata.md)
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
-      - [Skill](apis-ability-kit\js-apis-bundleManager-skill.md)
+      - [Skill](js-apis-bundleManager-skill.md)
       <!--Del-->
       - [AppProvisionInfo (系统接口)](js-apis-bundleManager-AppProvisionInfo-sys.md)
       - [BundlePackInfo (系统接口)](js-apis-bundleManager-BundlePackInfo-sys.md)
