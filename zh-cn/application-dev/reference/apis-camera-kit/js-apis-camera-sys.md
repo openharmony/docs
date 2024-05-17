@@ -48,6 +48,8 @@ import camera from '@ohos.multimedia.camera';
 | ----------------------- | --------- | ------------ |
 | PORTRAIT_PHOTO       | 3      | 人像拍照模式。**系统接口：** 此接口为系统接口。            |
 | NIGHT_PHOTO        | 4      | 夜景拍照模式。**系统接口：** 此接口为系统接口。             |
+| MACRO_PHOTO<sup>12+</sup>        | 8      | 超级微距拍照模式。**系统接口：** 此接口为系统接口。             |
+| MACRO_VIDEO<sup>12+</sup>        | 9      | 超级微距录像模式。**系统接口：** 此接口为系统接口。             |
 
 ## CameraManager
 
