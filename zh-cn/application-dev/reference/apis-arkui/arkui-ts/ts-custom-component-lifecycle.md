@@ -159,7 +159,7 @@ struct Child {
 }
 ```
 
-## onWillApplyTheme
+## onWillApplyTheme<sup>12+</sup>
 
 onWillApplyTheme?(theme: Theme): void
 
@@ -169,12 +169,13 @@ onWillApplyTheme函数在创建自定义组件的新实例后，在执行其buil
 
 **参数：**
 
-| 参数名    | 类型        | 说明         |
-|--------|-----------|------------|
-| theme | [Theme](../js-apis-arkui-theme.md) | 自定义组件当前生效的Theme对象。|
+| 参数名    | 类型                                       | 说明         |
+|--------|------------------------------------------|------------|
+| theme | [Theme](../js-apis-arkui-theme.md#theme) | 自定义组件当前生效的Theme对象。|
 
 ```ts
 // xxx.ets
+// 在onWillApplyTheme生命周期函数中更改状态变量，更改后在执行build()函数中生效。
 import { CustomTheme, CustomColors, Theme, ThemeControl } from '@ohos.arkui.theme';
 
 class BlueColors implements CustomColors {
@@ -190,7 +191,7 @@ class PageCustomTheme implements CustomTheme {
   }
 }
 const BlueColorsTheme = new PageCustomTheme(new BlueColors());
-// 在页面build之前执行ThemeControl
+// 在页面build之前执行ThemeControl.setDefaultTheme,将BlueColorsTheme设置为当前默认Theme，在onWillApplyTheme中可获取。
 ThemeControl.setDefaultTheme(BlueColorsTheme);
 
 @Entry
@@ -198,15 +199,17 @@ ThemeControl.setDefaultTheme(BlueColorsTheme);
 struct IndexComponent {
   @State textColor: ResourceColor = $r('sys.color.font_primary');
   @State columBgColor: ResourceColor = $r('sys.color.background_primary');
-
+  
+  // 在onWillApplyTheme生命周期函数中更改状态变量textColor、columBgColor，赋值为BlueColorsTheme中配色。
   onWillApplyTheme(theme: Theme) {
     this.textColor = theme.colors.fontPrimary;
-    this.textColor = theme.colors.backgroundPrimary;
+    this.columBgColor = theme.colors.backgroundPrimary;
     console.info('IndexComponent onWillApplyTheme');
   }
 
   build() {
     Column() {
+      // 组件初始值配色样式
       Column() {
         Text('Hello World')
           .fontColor($r('sys.color.font_primary'))
@@ -216,7 +219,8 @@ struct IndexComponent {
       .height('25%')
       .borderRadius('10vp')
       .backgroundColor($r('sys.color.background_primary'))
-
+      
+      // 组件颜色生效为onWillApplyTheme中配置颜色。
       Column() {
         Text('onWillApplyTheme')
           .fontColor(this.textColor)

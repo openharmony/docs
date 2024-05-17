@@ -16,9 +16,9 @@ WithTheme(options: WithThemeOptions)
 
 **参数：**
 
-| 参数名                            | 参数类型                                      | 必填  | 参数描述          |
-|--------------------------------|-------------------------------------------|-----|---------------|
-| WithThemeOptions | [WithThemeOptions](#withThemeOptions对象说明) | 是   | 设置作用域内组件配色。 |
+| 参数名                            | 参数类型                                  | 必填  | 参数描述          |
+|--------------------------------|---------------------------------------|-----|---------------|
+| WithThemeOptions | [WithThemeOptions](#withthemeoptions) | 是   | 设置作用域内组件配色。 |
 
 ## 属性
 
@@ -28,25 +28,26 @@ WithTheme(options: WithThemeOptions)
 
 不支持[通用事件](ts-universal-events-click.md)。
 
-## WithThemeOptions对象说明
+## WithThemeOptions
 设置WithTheme作用域内组件缺省样式及深浅色模式。
 
 **参数：**
 
 | 参数名                    | 参数类型                                                    | 必填 | 参数描述                                                             |
 |------------------------|---------------------------------------------------------| ---- |------------------------------------------------------------------|
-| theme     | [CustomTheme](../js-apis-arkui-theme.md#customtheme)    | 否   | 用于自定义WithTheme作用域内组件缺省配色。 </br> 默认值：undefined，缺省样式跟随系统token默认样式。 |
+| theme     | [CustomTheme](../js-apis-arkui-theme.md#customtheme)    | 否   | 用于自定义WithTheme作用域内组件缺省配色。 </br> 默认值：undefined，缺省样式跟随系统token默认样式。<br/> |
 | colorMode | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 用于指定WithTheme作用域内组件深浅色模式。<br/>默认值：ThemeColorMode.System。<br/>    |
 
 ## 示例
 
 ```ts
+// 指定局部深浅色模式
 @Entry
 @Component
 struct Index {
-
   build() {
     Column() {
+    // 系统默认
       Column() {
         Text('无WithTheme')
           .fontSize(40)
@@ -56,7 +57,7 @@ struct Index {
       .width('100%')
       .height('33%')
       .backgroundColor($r('sys.color.background_primary'))
-
+      // 设置组件为深色模式
       WithTheme({ colorMode: ThemeColorMode.DARK }) {
         Column() {
           Text('WithTheme')
@@ -71,7 +72,7 @@ struct Index {
         .height('33%')
         .backgroundColor($r('sys.color.background_primary'))
       }
-
+      // 设置组件为深色模式
       WithTheme({ colorMode: ThemeColorMode.LIGHT }) {
         Column() {
           Text('WithTheme')
@@ -95,6 +96,7 @@ struct Index {
 ![withThemeColorMode](figures/withThemeColorMode.png)
 
 ```ts
+// 自定义WithTheme作用域内组件缺省配色
 import { CustomTheme, CustomColors } from '@ohos.arkui.theme';
 
 class GreenColors implements CustomColors {
@@ -139,12 +141,13 @@ struct IndexPage {
     Column() {
       Column({ space: '8vp' }) {
         Text(`未使用WithTheme`)
+        // 点击按钮切换局部换肤
         Button(`切换theme配色：${this.themeNames[this.themeIndex]}`)
           .onClick(() => {
             this.themeIndex = (this.themeIndex + 1) % IndexPage.themeCount;
           })
 
-        // System
+        // 系统默认按钮配色
         Button('Button.style(NORMAL) with System Theme')
           .buttonStyle(ButtonStyleMode.NORMAL)
         Button('Button.style(EMP..ED) with System Theme')
@@ -157,9 +160,9 @@ struct IndexPage {
       })
 
       WithTheme({ theme: this.themeArray[this.themeIndex] }) {
+        // WithTheme作用域
         Column({ space: '8vp' }) {
           Text(`使用WithTheme`)
-
           Button('Button.style(NORMAL) with Custom Theme')
             .buttonStyle(ButtonStyleMode.NORMAL)
           Button('Button.style(EMP..ED) with Custom Theme')
@@ -173,6 +176,4 @@ struct IndexPage {
   }
 }
 ```
-![withThemeSystem](figures/withThemeSystem.png)
-![withThemeGreen](figures/withThemeGreen.png)
-![withThemeRed](figures/withThemeRed.png)
+![withThemeSystem](figures/withThemeChangeTheme.gif)

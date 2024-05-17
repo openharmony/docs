@@ -10,6 +10,7 @@
     - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
     - [@ohos.arkui.node(自定义节点)](js-apis-arkui-node.md)
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
+    - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
@@ -230,6 +231,7 @@
       - [Tabs](arkui-ts/ts-container-tabs.md)
       - [TabContent](arkui-ts/ts-container-tabcontent.md)
       - [WaterFlow](arkui-ts/ts-container-waterflow.md)
+      - [WithTheme](arkui-ts/ts-container-with-theme.md)
       <!--Del-->
       - [EffectComponent (系统接口)](arkui-ts/ts-container-effectcomponent-sys.md)
       - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
