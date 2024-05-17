@@ -269,7 +269,7 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md)。
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -385,7 +385,7 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md)。
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -489,7 +489,7 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md)。
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -536,7 +536,7 @@ stopVibration(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md)。
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -615,7 +615,7 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.vibrator错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md)。
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |

@@ -1925,7 +1925,7 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1979,7 +1979,7 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2031,7 +2031,7 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2082,7 +2082,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2133,7 +2133,7 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2184,7 +2184,7 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2240,7 +2240,7 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2294,7 +2294,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2346,7 +2346,7 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2399,7 +2399,7 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2451,7 +2451,7 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2504,7 +2504,7 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2556,7 +2556,7 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2607,7 +2607,7 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2660,7 +2660,7 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2713,7 +2713,7 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2767,7 +2767,7 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2819,7 +2819,7 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2870,7 +2870,7 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2921,7 +2921,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2972,7 +2972,7 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](https://gitee.com/openharmony/docs/blob/d78f3cb5f61dfe7a881bd614bbb8fb3d97e87862/zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3024,7 +3024,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getGeomagneticInfo错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
