@@ -30,6 +30,8 @@ Constructor used to create a RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node";
 
 const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xffff0000;
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -50,6 +52,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -78,7 +81,11 @@ Appends a child node to this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xffff0000;
 const child = new RenderNode();
+child.frame = { x: 10, y: 10, width: 50, height: 50 };
+child.backgroundColor = 0xff00ff00;
 renderNode.appendChild(child);
 
 class MyNodeController extends NodeController {
@@ -100,6 +107,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -118,9 +126,9 @@ Inserts a child node after the specified child node of this RenderNode.
 
 **Parameters**
 
-| Name | Type                                       | Mandatory| Description                                                        |
-| ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| child   | [RenderNode](#rendernode)                   | Yes  | Child node to add.                                          |
+| Name | Type                                       | Mandatory| Description                                                                        |
+| ------- | ------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
+| child   | [RenderNode](#rendernode)                   | Yes  | Child node to add.                                                          |
 | sibling | [RenderNode](#rendernode) \| null | Yes  | Node after which the new child node will be inserted. If this parameter is left empty, the new node is inserted before the first subnode.|
 
 **Example**
@@ -129,11 +137,18 @@ Inserts a child node after the specified child node of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
-for (let i = 0; i < 10; i++) {
-  renderNode.appendChild(new RenderNode());
+renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
+renderNode.backgroundColor = 0xffff0000;
+for (let i = 0; i < 5; i++) {
+  const node = new RenderNode();
+  node.frame = { x: 10, y: 10 + 60 * i, width: 50, height: 50 };
+  node.backgroundColor = 0xff00ff00;
+  renderNode.appendChild(node);
 }
 
 const child = new RenderNode();
+child.frame = { x: 70, y: 70, width: 50, height: 50 };
+child.backgroundColor = 0xffffff00;
 const sibling = renderNode.getChild(1);
 renderNode.insertChildAfter(child, sibling);
 
@@ -156,6 +171,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -183,8 +199,13 @@ Deletes the specified child node from this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
-for (let i = 0; i < 10; i++) {
-  renderNode.appendChild(new RenderNode());
+renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
+renderNode.backgroundColor = 0xffff0000;
+for (let i = 0; i < 5; i++) {
+  const node = new RenderNode();
+  node.frame = { x: 10, y: 10 + 60 * i, width: 50, height: 50 };
+  node.backgroundColor = 0xff00ff00;
+  renderNode.appendChild(node);
 }
 
 const node = renderNode.getChild(1);
@@ -209,6 +230,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -368,10 +390,14 @@ Obtains the first child node of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
-for (let i = 0; i < 10; i++) {
-  renderNode.appendChild(new RenderNode());
+renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
+renderNode.backgroundColor = 0xffff0000;
+for (let i = 0; i < 5; i++) {
+  const node = new RenderNode();
+  node.frame = { x: 10, y: 10 + 60 * i, width: 50, height: 50 };
+  node.backgroundColor = 0xff00ff00;
+  renderNode.appendChild(node);
 }
-const firstChild = renderNode.getFirstChild();
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -392,9 +418,21 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
+        .width(200)
+        .height(350)
+      Button('getFirstChild')
+        .onClick(() => {
+          const firstChild = renderNode.getFirstChild();
+          if (firstChild === null) {
+            console.log('the fist child is null');
+          } else {
+            console.log(`the position of fist child is x: ${firstChild.position.x}, y: ${firstChild.position.y}`);
+          }
+        })
     }
   }
 }
@@ -419,12 +457,13 @@ Obtains the next sibling node of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
-for (let i = 0; i < 10; i++) {
-  renderNode.appendChild(new RenderNode());
-}
-const child = renderNode.getChild(1);
-if (child !== null) {
-  const nextSibling = child.getNextSibling();
+renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
+renderNode.backgroundColor = 0xffff0000;
+for (let i = 0; i < 5; i++) {
+  const node = new RenderNode();
+  node.frame = { x: 10, y: 10 + 60 * i, width: 50, height: 50 };
+  node.backgroundColor = 0xff00ff00;
+  renderNode.appendChild(node);
 }
 
 class MyNodeController extends NodeController {
@@ -446,9 +485,23 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
+        .width(200)
+        .height(350)
+      Button('getNextSibling')
+        .onClick(() => {
+          const child = renderNode.getChild(1);
+          const nextSibling = child!.getNextSibling()
+          if (child === null || nextSibling === null) {
+            console.log('the child or nextChild is null');
+          } else {
+            console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+              `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`);
+          }
+        })
     }
   }
 }
@@ -473,12 +526,13 @@ Obtains the previous sibling node of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
-for (let i = 0; i < 10; i++) {
-  renderNode.appendChild(new RenderNode());
-}
-const child = renderNode.getChild(1);
-if (child !== null) {
-  const nextSibling = child.getPreviousSibling();
+renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
+renderNode.backgroundColor = 0xffff0000;
+for (let i = 0; i < 5; i++) {
+  const node = new RenderNode();
+  node.frame = { x: 10, y: 10 + 60 * i, width: 50, height: 50 };
+  node.backgroundColor = 0xff00ff00;
+  renderNode.appendChild(node);
 }
 
 class MyNodeController extends NodeController {
@@ -500,9 +554,23 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
+        .width(200)
+        .height(350)
+      Button('getNextSibling')
+        .onClick(() => {
+          const child = renderNode.getChild(1);
+          const previousSibling = child.getPreviousSibling()
+          if (child === null || previousSibling === null) {
+            console.log('the child or nextChild is null');
+          } else {
+            console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+              `the position of nextSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
+          }
+        })
     }
   }
 }
@@ -522,40 +590,6 @@ Sets the background color for this RenderNode.
 | ------ | ------ | ---- | ---------------------- |
 | color  | number | Yes  | Background color value, in ARGB format.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.backgroundColor = 0XFF00FF00;
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get backgroundColor(): number
 
 Obtains the background color of this RenderNode.
@@ -573,6 +607,8 @@ Obtains the background color of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0XFF00FF00;
 const backgroundColor = renderNode.backgroundColor;
 
 class MyNodeController extends NodeController {
@@ -616,40 +652,6 @@ Sets whether to clip this RenderNode. The value **true** means to clip the Rende
 | ------- | ------- | ---- | ------------------ |
 | useClip | boolean | Yes  | Whether to clip the RenderNode.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.clipToFrame = true;
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get clipToFrame(): boolean
 
 Obtains whether this RenderNode needs to be clipped.
@@ -667,7 +669,15 @@ Obtains whether this RenderNode needs to be clipped.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xffff0000;
+renderNode.clipToFrame = true;
 const clipToFrame = renderNode.clipToFrame;
+
+const childNode = new RenderNode();
+childNode.frame = { x: 10, y: 10, width: 150, height: 50 };
+childNode.backgroundColor = 0xffffff00;
+renderNode.appendChild(childNode);
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -688,6 +698,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -708,41 +719,7 @@ Sets the opacity for this RenderNode.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Opacity to set.\<br>Value range: [0, 1]|
-
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.opacity = 0.5;
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
+| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]|
 
 get opacity(): number
 
@@ -761,6 +738,9 @@ Obtains the opacity of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xffff0000;
+renderNode.opacity = 0.5;
 const opacity = renderNode.opacity;
 
 class MyNodeController extends NodeController {
@@ -782,6 +762,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -804,40 +785,6 @@ Sets the size for this RenderNode.
 | ------ | ---------------------------------------- | ---- | ---------------------------- |
 | size   | [Size](./js-apis-arkui-graphics.md#size) | Yes  | Size to set.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.size = { width: 100, height: 100 };
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get size(): Size
 
 Obtains the size of this RenderNode.
@@ -855,6 +802,8 @@ Obtains the size of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.size = { width: 100, height: 100 };
 const size = renderNode.size;
 
 class MyNodeController extends NodeController {
@@ -876,6 +825,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -898,40 +848,6 @@ Sets the position for this RenderNode.
 | -------- | ------------------------------------------------ | ---- | ---------------------------- |
 | position | [Position](./js-apis-arkui-graphics.md#position) | Yes  | Position to set.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.position = { x: 100, y: 100 };
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get position(): Position
 
 Obtains the position of this RenderNode.
@@ -949,6 +865,9 @@ Obtains the position of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.size = { width: 100, height: 100 };
+renderNode.position = { x: 10, y: 10 };
 const position = renderNode.position;
 
 class MyNodeController extends NodeController {
@@ -970,6 +889,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -982,7 +902,7 @@ struct Index {
 
 set frame(frame: Frame)
 
-Sets the size and position for this RenderNode. When this parameter is used together with [position](#position) and [size](#size), the one that is set later in time prevails.
+Sets the size and position for this RenderNode. When this parameter is used together with [position](#position) and [size](#size), the one that is set later in time is prioritized.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -992,40 +912,6 @@ Sets the size and position for this RenderNode. When this parameter is used toge
 | ------ | ------------------------------------------ | ---- | -------------------------------- |
 | frame  | [Frame](./js-apis-arkui-graphics.md#frame) | Yes  | Size and position to set.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 50, y: 50, width: 100, height: 100 };
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get frame(): Frame
 
 Obtains the size and position of this RenderNode.
@@ -1034,8 +920,8 @@ Obtains the size and position of this RenderNode.
 
 **Return value**
 
-| Type           | Description                                                        |
-| --------------- | ------------------------------------------------------------ |
+| Type           | Description                                                                         |
+| --------------- | ----------------------------------------------------------------------------- |
 | [Frame](#frame) | Size and position of the current RenderNode. The default value is **{ x: 0, y: 0, width: 0, height: 0 }**.|
 
 **Example**
@@ -1043,6 +929,8 @@ Obtains the size and position of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
 const frame = renderNode.frame;
 
 class MyNodeController extends NodeController {
@@ -1064,6 +952,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1086,40 +975,6 @@ Sets the pivot for this RenderNode, which affects the scaling and rotation effec
 | ------ | ------------------------------------------ | ---- | ---------------------------- |
 | pivot  | [Pivot](./js-apis-arkui-graphics.md#pivot) | Yes  | Pivot to set.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.pivot = { x: 0.5, y: 0.6 };
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get pivot(): Pivot
 
 Obtains the pivot of this RenderNode.
@@ -1128,8 +983,8 @@ Obtains the pivot of this RenderNode.
 
 **Return value**
 
-| Type                                      | Description                                                     |
-| ------------------------------------------ | --------------------------------------------------------- |
+| Type                                      | Description                                                 |
+| ------------------------------------------ | ----------------------------------------------------- |
 | [Pivot](./js-apis-arkui-graphics.md#pivot) | Pivot of the current RenderNode. The default value is **{ x: 0.5, y: 0.5}**.|
 
 **Example**
@@ -1137,7 +992,12 @@ Obtains the pivot of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+renderNode.pivot = { x: 0.5, y: 0.6 };
 const pivot = renderNode.pivot;
+
+renderNode.rotation = { x: 15, y: 0, z: 0 };
 
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
@@ -1158,6 +1018,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1180,40 +1041,6 @@ Sets the scale factor for this RenderNode.
 | ------ | ------------------------------------------ | ---- | -------------------------------- |
 | scale  | [Scale](./js-apis-arkui-graphics.md#scale) | Yes  | Scale factor to set.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.scale = { x: 0.5, y: 1 };
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get scale(): Scale
 
 Obtains the scale factor of this RenderNode.
@@ -1231,6 +1058,9 @@ Obtains the scale factor of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+renderNode.scale = { x: 0.5, y: 1 };
 const scale = renderNode.scale;
 
 class MyNodeController extends NodeController {
@@ -1252,6 +1082,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1274,40 +1105,6 @@ Sets the translation amount for this RenderNode.
 | ----------- | ------------------------------------------------------ | ---- | ------------------------------ |
 | translation | [Translation](./js-apis-arkui-graphics.md#translation) | Yes  | Translation amount to set.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.translation = { x: 0, y: 1 };
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get translation(): Translation
 
 Obtains the translation amount of this RenderNode.
@@ -1325,6 +1122,9 @@ Obtains the translation amount of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+renderNode.translation = { x: 100, y: 0 };
 const translation = renderNode.translation;
 
 class MyNodeController extends NodeController {
@@ -1346,6 +1146,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1368,40 +1169,6 @@ Sets the rotation angle for this RenderNode.
 | -------- | ------------------------------------------------ | ---- | -------------------------------- |
 | rotation | [Rotation](./js-apis-arkui-graphics.md#rotation) | Yes  | Rotation angle to set.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.rotation = { x: 10, y: 45, z: 0 };
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get rotation(): Rotation
 
 Obtains the rotation angle of this RenderNode.
@@ -1419,6 +1186,9 @@ Obtains the rotation angle of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+renderNode.rotation = { x: 45, y: 0, z: 0 };
 const rotation = renderNode.rotation;
 
 class MyNodeController extends NodeController {
@@ -1440,6 +1210,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1461,45 +1232,6 @@ Sets the transformation information for this RenderNode.
 | Name   | Type                                          | Mandatory| Description                            |
 | --------- | ---------------------------------------------- | ---- | -------------------------------- |
 | transform | [Matrix4](./js-apis-arkui-graphics.md#matrix4) | Yes  | Transformation information to set.|
-
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.transform = [
-  1, 0, 45, 0,
-  0, 1,  0, 0,
-  0, 0,  1, 0,
-  0, 0,  0, 1
-];
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
 
 get transform(): Matrix4
 
@@ -1526,6 +1258,14 @@ Obtains the transformation information of this RenderNode. The default value is 
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+renderNode.transform = [
+  1, 0, 0, 0,
+  0, 2, 0, 0,
+  0, 0, 1, 0,
+  0, 0, 0, 1
+];
 const transform = renderNode.transform;
 
 class MyNodeController extends NodeController {
@@ -1547,6 +1287,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1569,40 +1310,6 @@ Sets the shadow color for this RenderNode, in ARGB format. If [shadowAlpha](#sha
 | ------ | ------ | ---- | ------------------------------------------ |
 | color  | number | Yes  | Shadow color to set, in ARGB format.|
 
-**Example**
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.shadowColor = 0XFF00FF00;
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get shadowColor(): number
 
 Obtains the shadow color of this RenderNode.
@@ -1620,6 +1327,10 @@ Obtains the shadow color of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+renderNode.shadowElevation = 10;
+renderNode.shadowColor = 0XFF00FF00;
 const shadowColor = renderNode.shadowColor;
 
 class MyNodeController extends NodeController {
@@ -1641,6 +1352,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1663,41 +1375,6 @@ Sets the shadow offset for this RenderNode.
 | ------ | -------------------------------------------- | ---- | -------------------------------- |
 | offset | [Offset](./js-apis-arkui-graphics.md#offset) | Yes  | Shadow offset to set.|
 
-**Example**
-
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.shadowOffset = { x: 10, y: 10 };
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get shadowOffset(): Offset
 
 Obtains the shadow offset of this RenderNode.
@@ -1716,6 +1393,11 @@ Obtains the shadow offset of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+renderNode.shadowElevation = 10;
+renderNode.shadowColor = 0XFF00FF00;
+renderNode.shadowOffset = { x: 10, y: 10 };
 const shadowOffset = renderNode.shadowOffset;
 
 class MyNodeController extends NodeController {
@@ -1737,6 +1419,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1759,41 +1442,6 @@ Sets the alpha value of the shadow color for this RenderNode.
 | ------ | ------ | ---- | ----------------------------------------- |
 | alpha  | number | Yes  | Alpha value of the shadow color to set.|
 
-**Example**
-
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.shadowAlpha = 0.5;
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
 get shadowAlpha(): number
 
 Obtains the alpha value of the shadow color of this RenderNode.
@@ -1810,6 +1458,12 @@ Obtains the alpha value of the shadow color of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+renderNode.shadowElevation = 10;
+renderNode.shadowColor = 0XFF00FF00;
+renderNode.shadowOffset = { x: 10, y: 10 };
+renderNode.shadowAlpha = 0.1;
 const shadowAlpha = renderNode.shadowAlpha;
 
 class MyNodeController extends NodeController {
@@ -1831,6 +1485,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1853,46 +1508,6 @@ Sets the shadow elevation for this RenderNode.
 | --------- | ------ | ---- | -------------------------------- |
 | elevation | number | Yes  | Shadow elevation to set.|
 
-**Example**
-
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
-renderNode.shadowOffset = { x: 10, y: 10 };
-renderNode.shadowAlpha = 0.7;
-renderNode.shadowElevation = 30;
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
-![shadowElevation](./figures/ShadowElevation.jpg)
-
 get shadowElevation(): number
 
 Obtains the shadow elevation of this RenderNode.
@@ -1909,6 +1524,11 @@ Obtains the shadow elevation of this RenderNode.
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xffff0000;
+renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.shadowOffset = { x: 10, y: 10 };
+renderNode.shadowAlpha = 0.7
+renderNode.shadowElevation = 30;
 const shadowElevation = renderNode.shadowElevation;
 
 class MyNodeController extends NodeController {
@@ -1930,6 +1550,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -1937,6 +1558,8 @@ struct Index {
   }
 }
 ```
+
+![shadowElevation](./figures/ShadowElevation.jpg)
 
 ### shadowRadius
 
@@ -1952,46 +1575,6 @@ Sets the shadow blur radius for this RenderNode.
 | ------ | ------ | ---- | ------------------------------------ |
 | radius | number | Yes  | Shadow blur radius to set.|
 
-**Example**
-
-```ts
-import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
-
-const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
-renderNode.shadowOffset = { x: 10, y: 10 };
-renderNode.shadowAlpha = 0.7;
-renderNode.shadowRadius = 30;
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-
-    const rootRenderNode = this.rootNode.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.appendChild(renderNode);
-    }
-
-    return this.rootNode;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  build() {
-    Row() {
-      NodeContainer(this.myNodeController)
-    }
-  }
-}
-```
-
-![shadowRadius](./figures/ShadowRadius.jpg)
-
 get shadowRadius(): number
 
 Obtains the shadow blur radius of this RenderNode.
@@ -2004,10 +1587,17 @@ Obtains the shadow blur radius of this RenderNode.
 | ------ | ----------------------------------------- |
 | number | Shadow blur radius of the current RenderNode. The default value is **0**.|
 
+**Example**
+
 ```ts
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
 const renderNode = new RenderNode();
+renderNode.backgroundColor = 0xff00ff00;
+renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.shadowOffset = { x: 10, y: 10 };
+renderNode.shadowAlpha = 0.7
+renderNode.shadowRadius = 30;
 const shadowRadius = renderNode.shadowRadius;
 
 class MyNodeController extends NodeController {
@@ -2029,6 +1619,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Row() {
       NodeContainer(this.myNodeController)
@@ -2036,6 +1627,8 @@ struct Index {
   }
 }
 ```
+
+![shadowRadius](./figures/ShadowRadius.jpg)
 
 ### draw
 

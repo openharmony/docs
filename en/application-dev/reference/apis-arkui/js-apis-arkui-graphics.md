@@ -134,3 +134,63 @@ Obtains the width and height of the canvas.
 | Type         | Description            |
 | ------------- | ---------------- |
 | [Size](#size) | Width and height of the canvas.|
+
+### canvas
+
+get canvas(): Canvas
+
+Obtains the canvas used for drawing.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type         | Description            |
+| ------------- | ---------------- |
+| [Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | Canvas for drawing.|
+
+**Example**
+
+```ts
+import { RenderNode, FrameNode, NodeController, DrawContext } from "@ohos.arkui.node";
+
+class MyRenderNode extends RenderNode {
+  flag: boolean = false;
+
+  draw(context: DrawContext) {
+    const size = context.size;
+    const canvas = context.canvas;
+  }
+}
+
+const renderNode = new MyRenderNode();
+renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+renderNode.backgroundColor = 0xffff0000;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```

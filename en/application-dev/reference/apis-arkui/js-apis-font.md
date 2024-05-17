@@ -36,8 +36,8 @@ Registers a custom font with the font manager.
 
 | Name        | Type    | Mandatory  | Description          |
 | ---------- | ------ | ---- | ------------ |
-| familyName | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
-| familySrc  | string \| [Resource](../arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
+| familyName | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Name of the custom font to register.  |
+| familySrc  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>10+</sup> | Yes   | Path of the custom font to register.|
 
 **Example**
 
@@ -55,12 +55,6 @@ struct FontExample {
   @State codePoint: string = String.fromCharCode(0x0000)
 
   aboutToAppear() {
-    // Both familyName and familySrc support the string type.
-    font.registerFont({
-      familyName: 'medium',
-      familySrc: '/font/medium.ttf' // The font folder is at the same level as the pages folder.
-    })
-
     // Both familyName and familySrc support the Resource type.
     font.registerFont({
       familyName: $r('app.string.font_name'),
@@ -77,6 +71,12 @@ struct FontExample {
     font.registerFont({
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
+    })
+
+    // Both familyName and familySrc support the string type.
+    font.registerFont({
+      familyName: 'medium',
+      familySrc: '/font/medium.ttf' // The font folder is at the same level as the pages folder.
     })
   }
 
@@ -100,11 +100,17 @@ struct FontExample {
   }
 }
 ```
+> **NOTE**
+>
+> To use custom fonts globally in an application, register the fonts through the [windowStage.loadContent](js-apis-window.md#loadcontent9) API in the [onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callback in the **EntryAbility.ets** file.
+>
+> In an HSP project, avoid using a relative path to register a custom font. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md#accessing-resources-in-an-hsp-through-r).
+
 ## font.getSystemFontList<sup>10+</sup>
 
 getSystemFontList(): Array\<string>
 
-Obtains the list of supported fonts.
+Obtains the list of system fonts.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -168,8 +174,8 @@ Obtains information about a system font based on the font name.
 | fullName       | string  | Yes| Name of the system font.          |
 | family         | string  | Yes| Family of the system font.      |
 | subfamily      | string  | Yes| Subfamily of the system font.     |
-| weight         | number  | Yes| Weight of the system font.       |
-| width          | number  | Yes| Width of the system font.   |
+| weight         | number  | Yes| Weight of the system font, in px.       |
+| width          | number  | Yes| Width of the system font, in px.   |
 | italic         | boolean | Yes| Whether the system font is italic.         |
 | monoSpace      | boolean | Yes| Whether the system font is monospaced.        |
 | symbolic       | boolean | Yes| Whether the system font supports symbols. |
@@ -189,7 +195,7 @@ struct FontExample {
     Column() {
       Button("getFontByName")
         .onClick(() => {
-          this.fontInfo = font.getFontByName('Sans Italic')
+          this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
           console.log("getFontByName(): path = " + this.fontInfo.path)
           console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
           console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
@@ -304,3 +310,4 @@ struct FontExample {
   }
 }
 ```
+<!--no_check-->

@@ -38,9 +38,9 @@ Binds a popup to the component.
 | messageOptions<sup>10+</sup>          | [PopupMessageOptions](#popupmessageoptions10)        | No  | Parameters of the popup message.                                      |
 | targetSpace<sup>10+</sup>             | [Length](ts-types.md#length)                                 | No  | Space between the popup and the target.                                     |
 | placement<sup>10+</sup>               | [Placement](ts-appendix-enums.md#placement8)                 | No  | Position of the popup relative to the target. The default value is **Placement.Bottom**.<br>If both **placementOnTop** and **placement** are set, the latter prevails.|
-| offset<sup>10+</sup>                  | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
-| enableArrow<sup>10+</sup>             | boolean                                                      | No  | Whether to display the arrow.<br>Default value: **true**                         |
-| popupColor<sup>11+</sup>              | [Color](ts-appendix-enums.md#color)  \| string \| number  \|  [Resource](ts-types.md#resource) | No  | Color of the popup.<br>Default value: [TRANSPARENT](ts-appendix-enums.md#color) plus [COMPONENT_ULTRA_THICK](ts-appendix-enums.md#blurstyle9)|
+| offset<sup>10+</sup>                  | [Position](ts-types.md#position)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
+| enableArrow<sup>10+</sup>             | boolean                                                      | No  | Whether to display the arrow.<br>Default value: **true**<br>**NOTE**<br>If the available space on the screen cannot is insufficient, the popup will cover part of the component and the arrow will not be displayed. |
+| popupColor<sup>11+</sup>              | [Color](ts-appendix-enums.md#color)  \| string \| number  \|  [Resource](ts-types.md#resource) | No  | Color of the popup. To remove the background blur, set **backgroundBlurStyle** to **BlurStyle.NONE**.<br>Default value: [TRANSPARENT](ts-appendix-enums.md#color) plus [COMPONENT_ULTRA_THICK](ts-appendix-enums.md#blurstyle9)|
 | autoCancel<sup>11+</sup>              | boolean                                                      | No  | Whether to automatically close the popup when an operation is performed on the page.<br>Default value: **true**           |
 | width<sup>11+</sup>                   | [Dimension](ts-types.md#dimension10)                         | No  | Width of the popup.<br>**NOTE**<br>When **showInSubWindow** is set to **true**, the maximum height of the popup is the height of the device screen. When **showInSubWindow** is set to **false**, the maximum height is the height of the application window. Allowable height = Maximum height – Status bar height (0 if there is no status bar) – Dock height (0 if there is no dock) – 40 VP – 40 VP.|
 | arrowPointPosition<sup>11+</sup>      | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | No  | Position of the popup arrow relative to its parent component. Available positions are **Start**, **Center**, and **End**, in both vertical and horizontal directions. All these positions are within the parent component area.|
@@ -62,7 +62,7 @@ Binds a popup to the component.
 | ---------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                      | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Popup builder.<br>**NOTE**<br>The **popup** attribute is a universal attribute. A custom popup does not support display of another popup. The **position** attribute cannot be used for the first-layer container in the builder. If the **position** attribute is used, the popup will not be displayed. If a custom component is used in the builder, the **aboutToAppear** and **aboutToDisappear** lifecycle callbacks of the custom component are irrelevant to the visibility of the popup. As such, the lifecycle of the custom component cannot be used to determine whether the popup is displayed or not.                             |
 | placement                    | [Placement](ts-appendix-enums.md#placement8) | No   | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.<br>Default value: **Placement.Bottom**|
-| popupColor                   | number \| [Color](ts-types.md#color) \| string \| [Resource](ts-types.md#resource) | No   | Color of the popup.<br>The default value varies by API version.<br>API version 10: **'#4d4d4d'**<br>API version 11 and later: [TRANSPARENT](ts-appendix-enums.md#color) plus [COMPONENT_ULTRA_THICK]. (ts-appendix-enums.md#blurstyle9)|
+| popupColor                   | number \| [Color](ts-types.md#color) \| string \| [Resource](ts-types.md#resource) | No   | Color of the popup. To remove the background blur, set **backgroundBlurStyle** to **BlurStyle.NONE**.<br>The default value varies by API version.<br>API version 10: **'#4d4d4d'**<br>API version 11 and later: [TRANSPARENT](ts-appendix-enums.md#color) plus [COMPONENT_ULTRA_THICK]. (ts-appendix-enums.md#blurstyle9)|
 | enableArrow                  | boolean                                  | No   | Whether to display an arrow.<br>Since API version 9, if the position set for the popup is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left**, but the popup height (80 vp) is less than the sum of the arrow width (32 vp) and diameter of popup rounded corner (48 vp), the arrow will not be displayed.<br>Default value: **true**|
 | autoCancel                   | boolean                                  | No   | Whether to automatically close the popup when an operation is performed on the page.<br>Default value: **true**<br>**NOTE**<br>To enable the popup to disappear upon a click on it, place a layout component in the builder, place the [\<Popup>](ohos-arkui-advanced-popup.md#popup) component in the layout component, and modify the value of the **bindPopup** variable (show: boolean) in the **onClick** event of the layout component.|
 | onStateChange                | (event: { isVisible: boolean }) =&gt; void | No   | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.                |
@@ -71,7 +71,7 @@ Binds a popup to the component.
 | maskColor<sup>(deprecated)</sup> | [Resource](ts-types.md#resource) \| string \| number \|  [Color](ts-types.md#color) | No  | Color of the popup mask.<br>**NOTE**<br>This parameter is deprecated since API version 10. You are advised to use **mask** instead.|
 | mask<sup>10+</sup>           | boolean \| { color : [ResourceColor](ts-types.md#resourcecolor) }| No   | Whether to apply a mask to the popup. The value **true** means to apply a transparent mask to the popup, **false** means not to apply a mask to the popup, and a color value means to apply a mask in the corresponding color to the popup.|
 | targetSpace<sup>10+</sup>    | [Length](ts-types.md#length)             | No   | Space between the popup and the target.                          |
-| offset<sup>10+</sup>         | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
+| offset<sup>10+</sup>         | [Position](ts-types.md#position)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
 | width<sup>11+</sup> | [Dimension](ts-types.md#dimension10) | No| Width of the popup.<br>**NOTE**<br>When **showInSubWindow** is set to **true**, the maximum height of the popup is the height of the device screen. When **showInSubWindow** is set to **false**, the maximum height is the height of the application window. Allowable height = Maximum height – Status bar height (0 if there is no status bar) – Dock height (0 if there is no dock) – 40 VP – 40 VP.|
 | arrowPointPosition<sup>11+</sup> | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | No| Position of the popup arrow relative to its parent component. Available positions are **Start**, **Center**, and **End**, in both vertical and horizontal directions. All these positions are within the parent component area.|
 | arrowWidth<sup>11+</sup>             | [Dimension](ts-types.md#dimension10)                                                      | No  | Arrow thickness. If the arrow thickness exceeds the length of the edge minus twice the size of the popup rounded corner, the arrow is not drawn.<br>Default value: **16.0_vp**<br>**NOTE**<br>This parameter cannot be set in percentage.                         |
@@ -79,7 +79,7 @@ Binds a popup to the component.
 | radius<sup>11+</sup>             | [Dimension](ts-types.md#dimension10)                  | No  | Rounded corner radius of the popup.<br>Default value: **20.0_vp**                         |
 | shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10)    | No  | Popup shadow.<br>Default value: **ShadowStyle.OUTER_DEFAULT_MD**     |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | No| Background blur style of the popup.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
-| focusable<sup>11+</sup> | boolean | No| Whether the popup obtains focus when displayed.<br>Default value: **true**|
+| focusable<sup>11+</sup> | boolean | No| Whether the popup obtains focus when displayed.<br>Default value: **false**|
 
 ## Example
 
@@ -167,20 +167,29 @@ struct PopupExample {
 
 ```ts
 // xxx.ets
+
 @Entry
 @Component
 struct PopupExample {
   @State handlePopup: boolean = false
+  @State customPopup: boolean = false
+
+  // Popup builder
+  @Builder popupBuilder() {
+    Row() {
+      Text('Custom Popup Message').fontSize(10)
+    }.height(50).padding(5)
+  }
 
   build() {
-    Column() {
+    Column({space: 100}) {
       Button('PopupOptions')
         .onClick(() => {
           this.handlePopup = !this.handlePopup
         })
-        .bindPopup(this.handlePopup, {
+        .bindPopup(this.handlePopup, {  // PopupOptions for setting the popup
           message: 'This is a popup with PopupOptions',
-          messageOptions: {
+          messageOptions: { // Text style of the popup
             textColor: Color.Red,
             font: {
               size: '14vp',
@@ -198,40 +207,14 @@ struct PopupExample {
             }
           }
         })
-    }.margin(20)
-  }
-}
-```
-
-![](figures/popup_2.png)
-
-### Example 3
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct PopupExample {
-  @State customPopup: boolean = false
-
-  // Popup builder
-  @Builder popupBuilder() {
-    Row() {
-      Text('Custom Popup Message').fontSize(10)
-    }.height(50).padding(5)
-  }
-
-  build() {
-    Column() {
-      // CustomPopupOptions for setting the popup
       Button('CustomPopupOptions')
         .onClick(() => {
           this.customPopup = !this.customPopup
         })
-        .bindPopup(this.customPopup, {
+        .bindPopup(this.customPopup, {  // Popup with CustomPopupOptions settings
           builder: this.popupBuilder,
           targetSpace: '15vp',
-          enableArrow: false,
+          enableArrow: false, // Set the arrow not to display.
           onStateChange: (e) => {
             if (!e.isVisible) {
               this.customPopup = false
@@ -243,189 +226,50 @@ struct PopupExample {
 }
 ```
 
-![](figures/popup_3.png)
+![](figures/popup_02.gif)
 
-### Example 4
+### Example 3
 
 ```ts
 // xxx.ets
+
 @Entry
 @Component
 struct PopupExample {
+  @State customPopup: boolean = false
   @State handlePopup: boolean = false
-    
+
   build() {
-    Column() {
+    Column({ space: 100 }) {
+      Button("popup")
+        .margin({ top: 50 })
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(this.customPopup, {
+          message: "this is a popup",
+          arrowHeight: 20, // Set the height for the popup arrow.
+          arrowWidth: 20, // Set the width for the popup arrow.
+          radius: 20, // Set the corner radius of the popup.
+          shadow: ShadowStyle.OUTER_DEFAULT_XS, // Set the shadow for the popup.
+        })
+
       Button('PopupOptions')
-        .position({ x: 100, y: 50 })
         .onClick(() => {
           this.handlePopup = !this.handlePopup
         })
         .bindPopup(this.handlePopup, {
           width: 300,
           message: 'This is a popup with PopupOptions',
-          arrowPointPosition: ArrowPointPosition.START,
-          popupColor: Color.Red,
+          arrowPointPosition: ArrowPointPosition.START, // Set the position for the popup arrow.
+          backgroundBlurStyle: BlurStyle.NONE, // Disable the background blur for the popup.
+          popupColor: Color.Red, // Set the background color for the popup.
           autoCancel: true,
         })
     }
     .width('100%')
-    .height('100%')
   }
 }
 ```
 
-![](figures/popup_4.png)
-
-### Example 5
-
-```ts
-// xxx.ets
-import { Popup , PopupOptions,PopupTextOptions, PopupButtonOptions, PopupIconOptions } from '@ohos.arkui.advanced.Popup';
-
-@Entry
-@Component
-struct PopupExample {
-  @State customPopup: boolean = false
-
-  @Builder
-  popupBuilder() {
-    // Define the custom advanced component through popup.
-    Popup({
-      // Set the icon through PopupIconOptions.
-      icon: {
-        image: $r('app.media.icon'),
-        width:32,
-        height:32,
-        fillColor:Color.White,
-        borderRadius: 16,
-      } as PopupIconOptions,
-      // Set the text through PopupTextOptions.
-      title: {
-        text: 'This is a popup with CustomPopupOptions',
-        fontSize: 20,
-        fontColor: Color.Black,
-        fontWeight: FontWeight.Normal,
-
-      } as PopupTextOptions,
-      // Set the text through PopupTextOptions.
-      message: {
-        text: 'This is the message',
-        fontSize: 15,
-        fontColor: Color.Black,
-      } as PopupTextOptions,
-      showClose: false,
-      onClose: () => {
-        console.info('close Button click')
-        this.customPopup = false
-      },
-      // Set the button through PopupButtonOptions.
-      buttons: [{
-        text: 'confirm',
-        action: () => {
-          console.info('confirm button click')
-          this.customPopup = false
-        },
-        fontSize: 15,
-        fontColor: Color.Black,
-
-      },
-        {
-          text: 'cancel',
-          action: () => {
-            console.info('cancel button click')
-            this.customPopup = false
-          },
-          fontSize: 15,
-          fontColor: Color.Black,
-        },] as [PopupButtonOptions?, PopupButtonOptions?],
-    })
-  }
-
-  build() {
-    Column() {
-      Button('CustomPopupOptions')
-        .onClick(() => {
-          this.customPopup = !this.customPopup
-        })
-        .position({ x: 80, y: 200 })
-        .bindPopup(this.customPopup, {
-          builder: this.popupBuilder,
-          width: 300,
-          arrowPointPosition: ArrowPointPosition.END,
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-![](figures/popup_5.png)
-
-### Example 6
-
-```ts
-// xxx.ets
-
-@Entry
-@Component
-struct PopupExample {
-  @State cursorPopup: boolean = false
-
-  build() {
-    Column() {
-      TextInput({placeholder:'I am placeholder text',text:'I am current text input'})
-        .position({ x: 0, y: 350 })
-        .onFocus(() => {
-          this.cursorPopup = !this.cursorPopup
-        })
-        .selectionMenuHidden(true)
-        .bindPopup(this.cursorPopup, {
-          width: 300,
-          message: 'This is a pop-up window that appears with the cursor',
-          arrowPointPosition: ArrowPointPosition.CENTER,
-          popupColor: Color.Green,
-          autoCancel: true,
-
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-![](figures/popup_6.png)
-
-### Example 7
-
-```ts
-// xxx.ets
-
-@Entry
-@Component
-struct PopupExample {
-  @State customPopup: boolean = false
-
-  build() {
-    Column() {
-      Button("popup")
-        .onClick(()=>{
-          this.customPopup = !this.customPopup
-        })
-        .bindPopup(this.customPopup, {
-          message: "this is a popup",
-          popupColor: Color.Pink,
-          arrowHeight: 20,
-          arrowWidth: 20,
-          radius: 20,
-          shadow: ShadowStyle.OUTER_DEFAULT_XS
-        })
-    }
-    .width('100%')
-  }
-}
-```
-
-![](figures/popup_8.png)
+![](figures/popup_04.gif)

@@ -12,7 +12,7 @@ To use DevTools for frontend page debugging, perform the following steps:
    ```ts
    // xxx.ets
    import web_webview from '@ohos.web.webview';
-
+   
    @Entry
    @Component
    struct WebComponent {
@@ -41,18 +41,26 @@ To use DevTools for frontend page debugging, perform the following steps:
 3. Connect your device to a PC, and configure port mapping on the PC as follows:
 
    ```
-   // Search for the domain socket name required for DevTools. The name is related to the process ID. After the application being debugged is restarted, repeat this step to complete port forwarding.
-   cat /proc/net/unix | grep devtools
-   // Configure port mapping. Replace [pid] with the actual process ID.
+   // Search for the browser process ID required for DevTools. After the application being debugged is restarted, repeat this step to complete port forwarding.
+   hdc shell
+   ps -ef | grep "Application bundle name"
+   exit
+   ```
+   ```
+   // Configure port mapping. Replace [pid] with the actual browser process ID.
    hdc fport tcp:9222 localabstract:webview_devtools_remote_[pid]
    // View port mapping.
    hdc fport ls
+   ```
+   ```
    Example:
    hdc shell
-   cat /proc/net/unix | grep devtools
-   // Display webview_devtools_remote_3458.
+   ps -ef | grep "myapp"
+   // Display the browser and render processes.
+   20020131     45151   681 3 16:39:05 ?     00:00:04 com.example.myapplication
+   1000010      45221   780 4 16:39:05 ?     00:00:05 com.example.myapplication
    exit
-   hdc fport tcp:9222 localabstract:webview_devtools_remote_3458
+   hdc fport tcp:9222 localabstract:webview_devtools_remote_45151
    hdc fport ls
    ```
 
