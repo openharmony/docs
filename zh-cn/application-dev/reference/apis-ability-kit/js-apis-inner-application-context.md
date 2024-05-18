@@ -76,7 +76,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-> 说明：仅支持获取本应用中其他Module的Context和[应用内HSP](../../../application-dev/quick-start/in-app-hsp.md)的Context，不支持获取其他应用的Context。
+> 说明：仅支持获取本应用中其他Module的Context和应用内HSP的Context，不支持获取其他应用的Context。
 
 ## Context.getApplicationContext
 
@@ -208,47 +208,6 @@ export default class EntryAbility extends UIAbility {
         console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
       }
     });
-  }
-}
-```
-
-## Context.createSystemHspModuleResourceManager<sup>12+</sup>
-
-createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
-
-创建系统级Hsp的某个模块的资源管理对象。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**参数：**
-
-| 参数名       | 类型     | 必填   | 说明   |
-| -------- |--------| ---- |------|
-| bundleName | string | 是    | 包名。  |
-| moduleName | string | 是    | 模块名。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-|  | -------- |
-| 401 | 参数错误. |
-| 16400001 | 传入的包名和模块名不是系统级HSP. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-
-export default class EntryAbility extends UIAbility {
-  onCreate() {
-    console.log('MyAbility onCreate');
-    let hspContext: common.Context = this.context;
-    let resourceManager = hspContext.createSystemHspModuleResourceManager("com.example.myapplication", "library");
   }
 }
 ```

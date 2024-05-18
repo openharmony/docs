@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。 <br> **库：** libace_ndk.z.so | 
+| [ui_input_event.h](ui__input__event_8h.md) | 提供ArkUI在Native侧的事件定义。  <br> **库：** libace_ndk.z.so| 
 
 
 ### 类型定义
@@ -29,11 +29,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2 } | UI输入事件类型定义。  | 
+| [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { **ARKUI_UIINPUTEVENT_TYPE_UNKNOWN** = 0, **ARKUI_UIINPUTEVENT_TYPE_TOUCH** = 1, **ARKUI_UIINPUTEVENT_TYPE_AXIS** = 2, **ARKUI_UIINPUTEVENT_TYPE_MOUSE** = 3 } | UI输入事件类型定义。  | 
 | { UI_TOUCH_EVENT_ACTION_CANCEL = 0, UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3 } | 定义输入事件的Action Code。  | 
 | {<br/>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br/>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | 产生输入事件的来源类型定义。  | 
 | [HitTestMode](#hittestmode) { HTMDEFAULT = 0, HTMBLOCK, HTMTRANSPARENT, HTMNONE } | 定义触摸测试类型的枚举值。  | 
+| { UI_MOUSE_EVENT_ACTION_UNKNOWN = 0, UI_MOUSE_EVENT_ACTION_PRESS = 1, UI_MOUSE_EVENT_ACTION_RELEASE = 2, UI_MOUSE_EVENT_ACTION_MOVE = 3 } | 定义鼠标事件的Action Code。  | 
+| {<br/>UI_MOUSE_EVENT_BUTTON_NONE = 0, UI_MOUSE_EVENT_BUTTON_LEFT = 1, UI_MOUSE_EVENT_BUTTON_RIGHT = 2, UI_MOUSE_EVENT_BUTTON_MIDDLE = 3,<br/>UI_MOUSE_EVENT_BUTTON_BACK = 4, UI_MOUSE_EVENT_BUTTON_FORWARD = 5<br/>} | 定义鼠标事件的按键类型。  | 
 
 
 ### 函数
@@ -161,6 +163,46 @@ anonymous enum
 | UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN  | 不支持的来源类型。&nbsp;&nbsp; | 
 | UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE  | 鼠标。&nbsp;&nbsp; | 
 | UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN  | 触摸屏。&nbsp;&nbsp; | 
+
+
+### anonymous enum
+
+```
+anonymous enum
+```
+**描述：**
+
+定义鼠标事件的Action Code。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UI_MOUSE_EVENT_ACTION_UNKNOWN  | 无效行为&nbsp;&nbsp; | 
+| UI_MOUSE_EVENT_ACTION_PRESS  | 鼠标按键按下。&nbsp;&nbsp; | 
+| UI_MOUSE_EVENT_ACTION_RELEASE  | 鼠标按键松开。&nbsp;&nbsp; | 
+| UI_MOUSE_EVENT_ACTION_MOVE  | 鼠标移动。&nbsp;&nbsp; | 
+
+
+### anonymous enum
+
+```
+anonymous enum
+```
+**描述：**
+
+定义鼠标事件的按键类型。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UI_MOUSE_EVENT_BUTTON_NONE  | 无按键。&nbsp;&nbsp; | 
+| UI_MOUSE_EVENT_BUTTON_LEFT  | 鼠标左键。&nbsp;&nbsp; | 
+| UI_MOUSE_EVENT_BUTTON_RIGHT  | 鼠标右键。&nbsp;&nbsp; | 
+| UI_MOUSE_EVENT_BUTTON_MIDDLE  | 鼠标中键。&nbsp;&nbsp; | 
+| UI_MOUSE_EVENT_BUTTON_BACK  | 鼠标左侧后退键。&nbsp;&nbsp; | 
+| UI_MOUSE_EVENT_BUTTON_FORWARD  | 鼠标左侧前进键。&nbsp;&nbsp; | 
 
 
 ### ArkUI_UIInputEvent_Type
@@ -304,7 +346,7 @@ int32_t OH_ArkUI_MouseEvent_GetMouseButton (const ArkUI_UIInputEvent * event)
 
 **返回：**
 
-返回鼠标按键类型，1为左键，2为右键，4为中键，8为后退键，16为前进键。
+返回鼠标按键类型，1为左键，2为右键，3为中键，4为后退键，5为前进键。
 
 
 ### OH_ArkUI_PointerEvent_GetDisplayX()

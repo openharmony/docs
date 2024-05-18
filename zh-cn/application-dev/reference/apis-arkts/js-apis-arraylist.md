@@ -19,7 +19,7 @@ ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问
 ## 导入模块
 
 ```ts
-import ArrayList from '@ohos.util.ArrayList';
+import { ArrayList } from '@kit.ArkTS';
 ```
 
 ## ArrayList

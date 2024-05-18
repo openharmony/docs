@@ -17,7 +17,7 @@ taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkt
 ## 导入模块
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 ```
 ## taskpool.execute
 
@@ -219,7 +219,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 ```ts
 @Concurrent
 // import BusinessError
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
@@ -470,7 +470,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 ## Priority
 
-表示所创建任务（Task）执行时的优先级。
+表示所创建任务（Task）执行时的优先级。工作线程优先级跟随任务优先级同步更新，对应关系参考[QoS等级定义](../../napi/qos-guidelines.md#qos等级定义)。
 
 **系统能力：**  SystemCapability.Utils.Lang
 
@@ -518,6 +518,21 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循
 ## Task
 
 表示任务。使用[constructor](#constructor)方法构造Task。任务可以多次执行或放入任务组执行或放入串行队列执行或添加依赖关系执行。
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
+| 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
+| -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
+| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
+| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。                                    |
+| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
+| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
+| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
 
 ### constructor
 
@@ -816,8 +831,8 @@ export class DeriveClass extends BaseClass {
 ```ts
 // index.ets
 // 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
-import taskpool from '@ohos.taskpool'
-import { BusinessError } from '@ohos.base'
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
 import { BaseClass, DeriveClass } from './sendable'
 
 @Concurrent
@@ -1090,20 +1105,227 @@ taskpool.execute(task3).then(() => {
 })
 ```
 
-### 属性
+
+### onEnqueued<sup>12+</sup>
+
+onEnqueued(callback: CallbackFunction): void
+
+注册一个回调函数，并在任务入队时调用它。需在任务执行前注册，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
-| 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
-| -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
-| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。                                    |
-| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
-| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
-| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12) | 是   | 需注册的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(delay, 1);
+task.onEnqueued(()=>{
+  console.info("taskpool: onEnqueued")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+
+### onStartExecution<sup>12+</sup>
+
+onStartExecution(callback: CallbackFunction): void
+
+注册一个回调函数，并在执行任务前调用它。需在任务执行前注册，否则会抛异常。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12)  | 是   | 需注册的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(test, 1);
+task.onStartExecution(()=>{
+  console.info("taskpool: onStartExecution")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+### onExecutionFailed<sup>12+</sup>
+
+onExecutionFailed(callback: CallbackFunctionWithError): void
+
+注册一个回调函数，并在任务执行失败时调用它。需在任务执行前注册，否则会抛异常。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunctionWithError](#callbackfunctionwitherror12)  | 是   | 需注册的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Concurrent
+function test(args:number) {
+  let t = Date.now()
+  while ((Date.now() - t) < 100) {
+    continue;
+  }
+  let hashMap1: HashMap<string, number> = new HashMap();
+  hashMap1.set('a', args);
+  return hashMap1;
+}
+
+let task2 = new taskpool.Task(test, 1);
+task2.onExecutionFailed((e:Error)=>{
+  console.info("taskpool: onExecutionFailed error is " + e);
+})
+taskpool.execute(task2).then(()=>{
+  console.info("taskpool: execute task success")
+}).catch((e:BusinessError)=>{
+  console.error(`taskpool: error code: ${e.code}, error info: ${e.message}`);
+})
+```
+
+### onExecutionSucceeded<sup>12+</sup>
+
+onExecutionSucceeded(callback: CallbackFunction): void
+
+注册一个回调函数，并在任务执行成功时调用它。需在任务执行前注册，否则会抛异常。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12)  | 是   | 需注册的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	  continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(delay, 1);
+task.onExecutionSucceeded(()=>{
+  console.info("taskpool: onExecutionSucceeded")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+## CallbackFunction<sup>12+</sup>
+
+type CallbackFunction = () => void
+
+注册的回调函数类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+
+## CallbackFunctionWithError<sup>12+</sup>
+
+type CallbackFunctionWithError = (e: Error) => void
+
+注册带有错误码的回调函数类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| e  | Error | 是   | 错误信息。 |
+
 
 ## LongTask<sup>12+</sup>
 
@@ -1509,7 +1731,7 @@ taskpoolExecute();
 
 ```ts
 // c.ets
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {

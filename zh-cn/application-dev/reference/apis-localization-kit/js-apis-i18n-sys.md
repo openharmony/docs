@@ -40,7 +40,7 @@ static setSystemLanguage(language: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -101,7 +101,7 @@ static setSystemRegion(region: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -143,7 +143,7 @@ static setSystemLocale(locale: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -184,7 +184,7 @@ static set24HourClock(option: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -226,7 +226,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -269,7 +269,7 @@ static removePreferredLanguage(index: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -311,7 +311,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -374,7 +374,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -424,7 +424,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |

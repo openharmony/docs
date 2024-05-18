@@ -8,6 +8,8 @@ The **BundleInfo** module defines the bundle information. A third-party applicat
 
 ## BundleInfo
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                             | Type                                                        | Readable| Writable| Description                                                        |
@@ -32,6 +34,8 @@ The **BundleInfo** module defines the bundle information. A third-party applicat
 
 Provides the detailed information of the permissions to request from the system.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                 | Type                   | Readable| Writable| Description                |
@@ -46,6 +50,8 @@ Provides the detailed information of the permissions to request from the system.
 
 Describes the use scenario and timing for using the permission.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name     | Type          | Readable| Writable| Description                       |
@@ -56,6 +62,8 @@ Describes the use scenario and timing for using the permission.
 ## SignatureInfo
 
 Describes the signature information of the bundle.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 

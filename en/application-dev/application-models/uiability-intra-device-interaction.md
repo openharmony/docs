@@ -45,7 +45,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
      private context = getContext(this) as common.UIAbilityContext;
    
      build() {
-       ...
+       // ...
        Button()
          .onClick(() => {
 	   // Context is a member of the ability object and is required for invoking inside a non-ability object.
@@ -104,7 +104,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    @Component
    struct Page_UIAbilityComponentsInteractive {
      build() {
-       ...
+       // ...
        Button()
          .onClick(() => {
            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
@@ -786,7 +786,7 @@ The development procedure is as follows:
 
 > **NOTE**
 >
-> When the [launch type of the target UIAbility](uiability-launch-type.md) is set to **multiton**, a new instance is created each time the target UIAbility is started. In this case, the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
+> When the [launch type of the target UIAbility](uiability-launch-type.md) is set to **multiton**, a new instance is created each time the target UIAbility is started. In this case, the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback will not be invoked.
 
 
 ## Using Call to Implement UIAbility Interaction (for System Applications Only)
@@ -840,7 +840,7 @@ The following table describes the main APIs used for the call. For details, see 
 
 | API| Description|
 | -------- | -------- |
-| startAbilityByCall(want: Want): Promise&lt;Caller&gt; | Starts a UIAbility in the foreground (through the **want** configuration) or background (default) and obtains the caller object for communication with the UIAbility. For details, see [AbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall) or [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextstartabilitybycall).|
+| startAbilityByCall(want: Want): Promise&lt;Caller&gt; | Starts a UIAbility in the foreground (through the **want** configuration) or background (default) and obtains the caller object for communication with the UIAbility. For details, see [AbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartabilitybycall) or **ServiceExtensionContext**. |
 | on(method: string, callback: CalleeCallBack): void | Callback invoked when the CalleeAbility registers a method.|
 | off(method: string): void | Callback invoked when the CalleeAbility deregisters a method.|
 | call(method: string, data: rpc.Parcelable): Promise&lt;void&gt; | Sends agreed parcelable data to the CalleeAbility.|
@@ -886,7 +886,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
        this.str = string;
      };
    
-     mySequenceable(num, string): void {
+     mySequenceable(num: number, string: string): void {
        this.num = num;
        this.str = string;
      };
@@ -902,7 +902,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
        this.str = messageSequence.readString();
        return true;
      };
-   };
+   }
    ```
 
 4. Implement **Callee.on** and **Callee.off**.
@@ -915,7 +915,6 @@ For the CalleeAbility, implement the callback to receive data and the methods to
    import UIAbility from '@ohos.app.ability.UIAbility';
    import type Want from '@ohos.app.ability.Want';
    import hilog from '@ohos.hilog';
-   import Logger from '../utils/Logger';
    import type rpc from '@ohos.rpc';
    import type { Caller } from '@ohos.app.ability.UIAbility';
 
@@ -932,7 +931,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
        this.str = string;
      }
    
-     mySequenceable(num, string): void {
+     mySequenceable(num: number, string: string): void {
        this.num = num;
        this.str = string;
      }
@@ -979,9 +978,9 @@ For the CalleeAbility, implement the callback to receive data and the methods to
            this.caller.release();
            this.caller = undefined;
          }
-         Logger.info('caller release succeed');
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'caller release succeed');
        } catch (error) {
-         Logger.info(`caller release failed with ${error}`);
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `caller release failed with ${error}`);
        };
      }
      onDestroy(): void {
@@ -1039,11 +1038,10 @@ For the CalleeAbility, implement the callback to receive data and the methods to
          let message = (err as BusinessError).message;
          hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
        }
-       ;
      }
    
      build() {
-       Button()
+       Button('StartAbilityByCall')
          .onClick(() => {
            let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
            let want: Want = {
@@ -1064,7 +1062,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
                hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
                this.regOnRelease(caller);
                promptAction.showToast({
-                 message: $r('app.string.CallerSuccess')
+                 message: 'caller success'
                });
              }
            }).catch((err: BusinessError) => {

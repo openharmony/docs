@@ -663,7 +663,7 @@ function nfcTechDemo() {
 
 writeNdef(msg: [NdefMessage](#ndefmessage9)): Promise\<void>
 
-将NDEF Messsage数据对象写入标签，使用Promise方式作为异步方法。
+将NDEF Message数据对象写入标签，使用Promise方式作为异步方法。
 
 **需要权限：** ohos.permission.NFC_TAG
 

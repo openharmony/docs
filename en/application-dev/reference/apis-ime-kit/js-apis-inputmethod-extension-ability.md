@@ -65,4 +65,3 @@ class InputMethodExt extends InputMethodExtensionAbility {
   }
 }
 ```
-<!--no_check-->

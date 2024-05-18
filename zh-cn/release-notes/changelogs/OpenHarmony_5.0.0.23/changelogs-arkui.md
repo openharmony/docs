@@ -117,9 +117,267 @@ Dialog组件。
 
 **适配指导**
 
-UX默认行为变更，无需适配。
+默认效果变更：默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
 
-## cl.arkui.4 相对布局对Visibility.None的处理规则变更
+## cl.arkui.4 拖拽预览图支持透明度效果及应用自定义
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+依照UX规范
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 11及以前：可拖拽组件长按浮起预览图后没有透明度。
+
+API version 12及以后：可拖拽组件长按浮起预览图默认为95%透明度，应用可自定义透明度数值。
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+默认样式变更调整，无需适配。
+
+## cl.arkui.5 @Observed/@Track/@ObservedV2新增校验变更
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+深度观察的装饰器存在新旧两个接口，增加编译校验，防止开发者混用，导致运行时功能异常。
+
+**变更影响**
+
+变更前：不校验报错。
+
+变更后：
+如果开发者存在以下场景，不按规范使用，编译会报错。
+1. @Track使用在@ObservedV2修饰的class内；
+2. 一个class同时被@Observed和@ObservedV2装饰；
+3. 装饰子类和父类的@Observed和@ObservedV2不一致。
+
+错误示例如下：
+
+```ts
+// @Track不能使用在@ObservedV2修饰的class内
+@ObservedV2
+class TestObserved {
+  @Track value: string = "hello"
+}
+// 一个class不能同时被@Observed和@ObservedV2装饰
+@Observed
+@ObservedV2
+class TestObserved1 {
+  value: string = "hello"
+}
+// 装饰子类和父类的@Observed和@ObservedV2需要保持一致
+@Observed
+class TestObserved3 {
+  @Track value: string = "hello"
+}
+@ObservedV2
+class TestObserved4 extends TestObserved3 {
+  @Trace value: string = "hello"
+}
+
+@ObservedV2
+class TestObserved5 {
+  @Trace value: string = "hello"
+}
+@Observed
+class TestObserved6 extends TestObserved5 {
+  @Track value: string = "hello"
+}
+```
+
+**起始API Level**
+
+起始支持版本为 API 12。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+开发者需要根据错误提示信息，进行适配整改。
+
+## cl.arkui.6 TextInput、TextArea、Search、RichEditor空间文本菜单样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+规格变更
+
+**变更影响**
+
+该变更为兼容性变更。
+API Version 11 以及之前的版本：文本选择菜单，包含分享、搜索、翻译按钮，三个按钮都是灰色，并且有拓展菜单。
+
+API Version 12 变更后：文本选择菜单，不包含分享、搜索、翻译按钮，不出现拓展菜单。
+
+**起始 API Level**
+
+文本菜单是系统能力，无对外接口。
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+TextInput、TextArea、Search、RichEditor。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.7 ImageSpan、ContainerSpan单独使用在DevEco Studio中报错变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+规格变更
+
+**变更影响**
+
+该变更为非兼容性变更。
+变更前：Text子组件ImageSpan、ContainerSpan放在其他组件下使用，编译无报错。
+变更后：DevEco Studio中单独使用ImageSpan、ContainerSpan组件，而不是作为Text的子组件被使用，编译报错。
+
+**起始 API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+ImageSpan、ContainerSpan。
+
+**适配指导**
+
+默认行为变更，开发者按照报错提示修改。
+
+## cl.arkui.8 Popup组件宽度设置100%场景下避让位置变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Popup宽度大于等于100% - 6vp时，Popup会进行默认避让，且距离窗口左侧有6vp边距。
+
+变更后，Popup宽度大于等于100% - 6vp时，Popup不会进行默认避让，且距离窗口左侧没有6vp边距。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| ![变更前](figures/popup_avoid_old.jpg)  |  ![变更后](figures/popup_avoid_new.jpg)  |
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+Popup组件。
+
+**适配指导**
+
+默认效果变更，应注意变更后的默认效果是否符合开发者预期，如不符合可以使用offset属性自行调整Popup位置，请查阅[Popup控制](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)文档。
+
+## cl.arkui.9 拖拽预览图支持统一圆角及应用自定义
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+依照UX规范
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 11及以前：非文本类组件长按浮起预览图显示应用自定义的圆角效果。
+
+API version 12及以后：非文本类组件长按浮起预览图通过检查DragPreviewOptions.mode来判断是否启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值时，则显示应用自定义圆角效果。
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+默认样式变更调整，无需适配。
+
+## cl.arkui.10 拖拽支持预览图背景模糊效果
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+依照UX规范
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 11及以前：非文本类组件长按浮起预览图，预览图无背景模糊效果。
+
+API version 12及以后：非文本类组件长按浮起预览图，预览图有背景模糊效果。
+
+**API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**适配指导**
+
+默认样式变更调整，无需适配。
+
+## cl.arkui.11 DatePickerDialog标题按钮大小及布局变更
 
 **访问级别**
 
@@ -133,13 +391,19 @@ UX规格增强
 
 该变更为非兼容性变更。
 
-变更前：组件A的任一锚点的Visibility为None，组件A不被Measure。
+变更前：DatePickerDialog标题按钮大小与文本大小一致，底部操作区距离弹窗边缘24vp。
 
-变更后：组件A的任一锚点的Visibility为None，组件A依旧被Measure，锚点组件的位置不变，宽高均视为0。
+变更后：DatePickerDialog标题按钮高度为32vp，距离弹窗左右边界为16vp，底部操作区与离弹窗边缘无间距。
 
-**API Level**
+如下图所示为变更前后效果对比：
 
-该特性版本为API 7,变更版本为API 12。
+| 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/DatePickerDialogTitle_Before.jpg) | ![](figures/DatePickerDialogTitle_After.jpg) |
+
+**起始API Level**
+
+12
 
 **变更发生版本**
 
@@ -147,4 +411,76 @@ UX规格增强
 
 **适配指导**
 
-如果需要组件A在锚点组件的Visibility设置为None之后不被Measure，可将组件A的Visibility设置为Hidden或者None。
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.12  bindSheet组件修改标题与关闭按钮之间的间距
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+为满足应用述求和新的UX规格，标题与关闭按钮的间距调整为8vp。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 12之前，标题与关闭按钮之间的距离为32vp。
+
+API version 12及以后，标题与关闭按钮之间的距离为8vp。
+
+变更示例图：
+
+![](figures/SheetTitleSpace_compared.png)
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**变更的接口/组件**
+
+bindSheet组件
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
+
+## c1.arkui.13 bindSheet半模态面板的backgroundColor属性异常值处理逻辑变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+bindSheet半模态面板的backgroundColor属性设置从正常值更新为异常值时，使用默认值。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，当开发者对bindSheet半模态面板的backgroundColor属性设置从正常值更新为异常值时，采用不操作处理。
+
+变更后，当开发者对bindSheet半模态面板的backgroundColor属性设置从正常值更新为异常值时，采用默认颜色处理。
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23 版本开始。
+
+**变更的接口/组件**
+
+bindSheet半模态面板。
+
+**适配指导**
+
+异常值处理逻辑变更，不涉及适配。

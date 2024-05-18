@@ -14,14 +14,14 @@ ChipGroup高级组件，提供操作块群组，用于对文件或者资源内�
 
 ```
 ChipGroup({
-            items: ChipGroupItemOptions[],
-            itemStyle?: ChipItemStyle,
-            selectedIndexes?: Array<number>,
-            multiple?: boolean,
-            chipGroupSpaceSize?: ChipGroupSpaceOptions,
-            onChange?: (selectedIndexes: Array<number>) => void,
-            suffix?: Callback<void>
-          })
+  items: ChipGroupItemOptions[],
+  itemStyle?: ChipItemStyle,
+  selectedIndexes?: Array<number>,
+  multiple?: boolean,
+  chipGroupSpaceSize?: ChipGroupSpaceOptions,
+  onChange?: (selectedIndexes: Array<number>) => void,
+  suffix?: Callback<void>
+})
 ```
 
 **装饰器类型：**@Builder
@@ -50,12 +50,14 @@ ChipGroup({
 
 ChipGroupItemOptions定义每个chip的非共通属性。
 
-| 名称       | 类型                           | 必填 | 描述                                 |
-| ---------- | ----------------------------- | ---- | -----------------------------------  |
-| prefixIcon | [IconOptions](#iconoptions)   | 否   | 前缀图标属性。                        |
-| label      | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
-| suffixIcon | [IconOptions](#iconoptions)   | 否   | 后缀图标属性。                        |
-| allowClose | boolean                       | 否   | 删除图标是否显示。<br/>默认值：true。   |
+| 名称         | 类型                           | 必填 | 描述                                |
+| ----------   | ----------------------------- | ---- | ----------------------------------- |
+| prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。                   |
+| prefixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions) | 否   | 前缀SymbolGlyph图标属性。             |
+| label        | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
+| suffixIcon   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。                   |
+| suffixSymbol | [SymbolOptions](ohos-arkui-advanced-Chip.md#symboloptions) | 否   | 后缀SymbolGlyph图标属性。             |
+| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：true。  |
 
 >**说明：**
 >
@@ -92,8 +94,8 @@ ChipGroupSpaceOptions 定义了chipGroup左右内边距，以及chip与chip直�
 ## IconGroupSuffix
 
 | 名称     | 类型                    | 必填 | 描述                                                                |
-| -------- | ---------------------- | ---- | ----------------------------------------------                      |
-| items    | Array<[IconItemOptions](#iconitemoptions)> | 是   | 自定义builder items，参考IconItemOptions接口。    |
+| -------- | ---------------------- | ---- | ----------------------------------------------|
+| items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 自定义builder items。|
 
 ## IconItemOptions
 
@@ -283,3 +285,97 @@ struct Index {
 ```
 
 ![](figures/chipGroupDemo2.jpeg)
+
+### 示例3
+该示例实现了IconGroupSuffix及ChipGroup传入SymbolGlyph资源。
+```typescript
+import { ChipSize } from '@ohos.arkui.advanced.Chip'
+import { ChipGroup, IconGroupSuffix } from '@ohos.arkui.advanced.ChipGroup';
+import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+
+@Entry
+@Preview
+@Component
+struct Index {
+  @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6];
+  @State selected_state: boolean = true;
+  @State prefixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star'));
+  @State prefixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
+  @State suffixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
+  @State suffixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Red]);
+
+  @Builder
+  ChipGroupSuffix(): void {
+    IconGroupSuffix({
+      items: [
+        new SymbolGlyphModifier($r('sys.symbol.magnifyingglass'))
+          .onClick(() => {
+            if (this.selected_state == false) {
+              this.selected_index = [0, 1, 2, 3, 4, 5, 6];
+              this.selected_state = true;
+            } else {
+              this.selected_index = [];
+              this.selected_state = false;
+            }
+          })
+      ]
+    })
+  }
+
+  build() {
+    Column() {
+      ChipGroup({
+        items: [
+          {
+            prefixSymbol: { normal: this.prefixModifierNormal, activated: this.prefixModifierActivated },
+            label: { text: "操作块1" },
+            suffixSymbol: { normal: this.suffixModifierNormal, activated: this.suffixModifierActivated },
+            allowClose: false,
+          },
+          {
+            prefixSymbol: { normal: this.prefixModifierNormal, activated: this.prefixModifierActivated },
+            label: { text: "操作块2" },
+            allowClose: true,
+          },
+          {
+            prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
+            label: { text: "操作块3" },
+            allowClose: true,
+          },
+          {
+            prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
+            label: { text: "操作块4" },
+            allowClose: true,
+          },
+          {
+            prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
+            label: { text: "操作块5" },
+            allowClose: true,
+          },
+          {
+            prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
+            label: { text: "操作块6" },
+            allowClose: true,
+          },
+        ],
+        itemStyle: {
+          size: ChipSize.NORMAL,
+          backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
+          fontColor: $r('sys.color.ohos_id_color_text_primary'),
+          selectedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
+          selectedFontColor: $r('sys.color.ohos_id_color_text_primary_contrary'),
+        },
+        selectedIndexes: this.selected_index,
+        multiple: true,
+        chipGroupSpace: { itemSpace: 8, endSpace: 0 },
+        onChange: (activatedChipsIndex: Array<number>) => {
+          console.log('chips on clicked, activated index ' + activatedChipsIndex)
+        },
+        suffix: this.ChipGroupSuffix.bind(this)
+      })
+    }
+  }
+}
+
+```
+![](figures/chipGroupDemo3.jpeg)

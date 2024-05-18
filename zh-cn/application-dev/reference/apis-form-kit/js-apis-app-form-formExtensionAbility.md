@@ -10,7 +10,7 @@ FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新
 ## 导入模块
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
 ## 属性
@@ -46,9 +46,8 @@ onAddForm(want: Want): formBindingData.FormBindingData
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import Want from '@ohos.app.ability.Want';
+import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
@@ -83,7 +82,7 @@ onCastToNormalForm(formId: string): void
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onCastToNormalForm(formId: string) {
@@ -112,10 +111,8 @@ onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
@@ -128,7 +125,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
     formProvider.updateForm(formId, obj2).then(() => {
       console.log(`FormExtensionAbility context updateForm`);
-    }).catch((error: Base.BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`FormExtensionAbility context updateForm failed, data: ${error}`);
     });
   }
@@ -153,10 +150,8 @@ onChangeFormVisibility(newStatus: Record\<string, number>): void
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // ArkTS规范中ets文件无法使用Object.keys和for..in...获取Object的key值，请使用自定义函数getObjKeys代替。
 // 使用时请将此函数单独抽离至一个ts文件中并导出，在需要用到的ets文件中导入此函数后使用。
@@ -180,7 +175,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       console.log(`FormExtensionAbility onChangeFormVisibility, key: ${keys[i]}, value= ${newStatus[keys[i]]}`);
       formProvider.updateForm(keys[i], obj2).then(() => {
         console.log(`FormExtensionAbility context updateForm`);
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         console.error(`Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
       });
     }
@@ -208,7 +203,7 @@ onFormEvent(formId: string, message: string): void
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -236,7 +231,7 @@ onRemoveForm(formId: string): void
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onRemoveForm(formId: string) {
@@ -265,8 +260,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { Configuration } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
@@ -296,9 +291,8 @@ onAcquireFormState?(want: Want): formInfo.FormState
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formInfo from '@ohos.app.form.formInfo';
-import Want from '@ohos.app.ability.Want';
+import { FormExtensionAbility, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormState(want: Want) {
@@ -321,7 +315,7 @@ onStop?(): void
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onStop() {

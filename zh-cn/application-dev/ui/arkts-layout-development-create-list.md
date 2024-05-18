@@ -252,7 +252,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, (item: Contact) => item.key.toString())
+      }, (item: Contact) => JSON.stringify(item))
     }
     .width('100%')
   }
@@ -465,10 +465,10 @@ struct ContactsList {
               ListItem() {
                 // ...
               }
-            }, (item: Contact) => item.key.toString())
+            }, (item: Contact) => JSON.stringify(item))
           }
         }
-      }, (itemGroup: ContactsGroup) => itemGroup.key.toString())
+      }, (itemGroup: ContactsGroup) => JSON.stringify(itemGroup))
     }.sticky(StickyStyle.Header)  // 设置吸顶，实现粘性标题效果
   }
 }
@@ -642,7 +642,8 @@ ListItem() {
 
 3. 监听手指抬起事件，若此时移动达到最大值，则触发数据加载并显示刷新视图，加载完成后将此视图隐藏。
 
-下拉刷新与上拉加载的具体实现可参考[相关实例](#相关实例)中新闻数据加载。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)。
+<!--Del-->
+下拉刷新与上拉加载的具体实现可参考[相关实例](#相关实例)中新闻数据加载。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)。<!--DelEnd-->
 
 
 ## 编辑列表

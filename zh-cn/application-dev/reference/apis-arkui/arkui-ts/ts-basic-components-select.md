@@ -354,6 +354,8 @@ menuBackgroundBlurStyle(value: BlurStyle)
 
 ## OptionWidthMode<sup>11+</sup>枚举说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称        | 描述                           |
 | ----------- | ------------------------------ |
 | FIT_CONTENT | 设置该值时，下拉菜单宽度按默认2栅格显示。            |

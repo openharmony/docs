@@ -37,7 +37,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
 （1）应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
 
-（2）长时任务申请可参考：[长时任务介绍](../../task-management/continuous-task.md)，[长时任务开发示例](../../performance/reasonable-running-backgroundTask.md#长时任务)。
+（2）长时任务申请可参考：[长时任务介绍](../../task-management/continuous-task.md)<!--Del-->，[长时任务开发示例](../../performance/reasonable-running-backgroundTask.md#长时任务)<!--DelEnd-->。
 
 
 
@@ -45,7 +45,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
 ### 场景概述
 
-开发者可以调用OpenHarmony位置相关接口，获取设备实时位置，或者最近的历史位置。
+开发者可以调用OpenHarmony位置相关接口，获取设备实时位置，或者最近的历史位置，以及监听设备的位置变化。
 
 对于位置敏感的应用业务，建议获取设备实时位置信息。如果不需要设备实时位置信息，并且希望尽可能的节省耗电，开发者可以考虑获取最近的历史位置。
 

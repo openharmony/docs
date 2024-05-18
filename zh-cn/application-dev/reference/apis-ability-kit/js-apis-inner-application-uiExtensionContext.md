@@ -1075,10 +1075,10 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 
 通过AppLinking启动UIAbility，使用Promise异步回调。
 
-通过在link字段中传入标准格式的uri，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
+通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
 - "entities"列表中包含"entity.system.browsable"。
-- "uris"列表中包含"scheme"为"https"且"autoVerify"为true的元素。
+- "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。
 
 如果希望获取被拉起方终止后的结果，可以设置callback参数，此参数的使用可参照[startAbilityForResult](#uiextensioncontextstartabilityforresult)接口。
 传入的参数不合法时，如未设置必选参数或link字符串不是标准格式的URL，接口会直接抛出异常。参数校验通过，拉起目标方时出现的错误通过promise返回错误信息。
@@ -1126,41 +1126,43 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 **示例：**
 
 ```ts
+import Want from '@ohos.app.ability.Want';
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@ohos.base';
 
-function log(info) {
-  console.error("MyUIExtension::" + info)
+function log(info: string) {
+  console.error(`MyUIExtension:: ${JSON.stringify(info)}`);
 }
 
 export default class UIExtAbility extends UIExtensionAbility {
   onCreate() {
-    log(`UIExtAbility onCreate`)
-    globalThis.context = this.context;
+    log(`UIExtAbility onCreate`);
   }
 
   onForeground() {
-    log(`UIExtAbility onForeground`)
+    log(`UIExtAbility onForeground`);
   }
 
   onBackground() {
-    log(`UIExtAbility onBackground`)
+    log(`UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    log(`UIExtAbility onDestroy`)
+    log(`UIExtAbility onDestroy`);
   }
 
-  onSessionCreate(want, session) {
-    log(`UIExtAbility onSessionCreate`)
-    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
-    let storage: LocalStorage = new LocalStorage({
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    log(`UIExtAbility onSessionCreate`);
+    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
+    let record: Record<string, UIExtensionContentSession> = {
       'session': session
-    });
-    session.loadContent("pages/UIExtensionIndex", storage);
+    };
+    let storage: LocalStorage = new LocalStorage(record);
+    session.loadContent('pages/UIExtensionIndex', storage);
 
-    let link: string = "https://www.example.com"
+    let link: string = 'https://www.example.com';
     let openLinkOptions: OpenLinkOptions = {
       appLinkingOnly: true
     };
@@ -1169,24 +1171,24 @@ export default class UIExtAbility extends UIExtensionAbility {
         link,
         openLinkOptions,
         (err, result) => {
-          log('openLink callback error.code:' + JSON.stringify(err));
-          log('openLink callback result:' + JSON.stringify(result.resultCode));
-          log('openLink callback result data:' + JSON.stringify(result.want));
+          log(`openLink callback error.code: ${JSON.stringify(err)}`);
+          log(`openLink callback result: ${JSON.stringify(result.resultCode)}`);
+          log(`openLink callback result data: ${JSON.stringify(result.want)}`);
         }
       ).then(() => {
-        log('open link success.');
+        log(`open link success.`);
       }).catch((err: BusinessError) => {
-        log('open link failed, errCode ' + JSON.stringify(err.code));
-      })
+        log(`open link failed, errCode ${JSON.stringify(err.code)}`);
+      });
     }
     catch (e) {
-      log('exception occured, errCode ' + JSON.stringify(e.code));
+      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
     }
 
   }
 
-  onSessionDestroy(session) {
-    log(`UIExtAbility onSessionDestroy`)
+  onSessionDestroy(session: UIExtensionContentSession) {
+    log(`UIExtAbility onSessionDestroy`);
   }
-};
+}
 ```

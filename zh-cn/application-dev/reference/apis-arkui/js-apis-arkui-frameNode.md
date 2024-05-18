@@ -374,7 +374,7 @@ getPositionToParentWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -392,7 +392,7 @@ getPositionToWindowWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -410,7 +410,7 @@ getPositionToScreenWithTransform(): Position
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
 
 **示例：**
 
@@ -466,7 +466,7 @@ getUserConfigBorderWidth(): Edges\<LengthMetrics\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的边框宽度。 |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的边框宽度。 |
 
 **示例：**
 
@@ -484,7 +484,7 @@ getUserConfigPadding(): Edges\<LengthMetrics\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的内边距。 |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的内边距。 |
 
 **示例：**
 
@@ -502,7 +502,7 @@ getUserConfigMargin(): Edges\<LengthMetrics\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的外边距。 |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的外边距。 |
 
 **示例：**
 
@@ -656,7 +656,7 @@ isAttached(): boolean
 
 getInspectorInfo(): Object
 
-获取节点的结构信息，该信息和[DevEco Studio](../../quick-start/deveco-studio-user-guide-for-openharmony.md)内置ArkUI Inspector工具里面的一致。
+获取节点的结构信息，该信息和DevEco Studio内置ArkUI Inspector工具里面的一致。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -902,7 +902,7 @@ FrameNode的自定义布局方法，该方法会重写默认布局方法，在Fr
 
 setMeasuredSize(size: Size): void
 
-设置FrameNode的测量后的尺寸，默认单位PX。
+设置FrameNode的测量后的尺寸，默认单位PX。若设置的宽高为负数，自动取零。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -938,7 +938,7 @@ setLayoutPosition(position: Position): void
 
 measure(constraint: LayoutConstraint): void
 
-调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。
+调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。建议在[onMeasure](#onmeasure12)方法中调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -956,7 +956,7 @@ measure(constraint: LayoutConstraint): void
 
 layout(position: Position): void
 
-调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。
+调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。建议在[onLayout](#onlayout12)方法中调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1550,11 +1550,6 @@ class MyFrameNode extends FrameNode {
       let child = this.getChild(i);
       if (child) {
         child.layout({
-          x: 10,
-          y: 10
-        });
-        child.setNeedsLayout();
-        child.layout({
           x: 20,
           y: y
         });
@@ -1605,6 +1600,10 @@ struct Index {
           .onClick(() => {
             this.nodeController?.rootNode?.addWidth();
             this.nodeController?.rootNode?.invalidate();
+          })
+        Button('UpdateLayout')
+          .onClick(() => {
+            this.nodeController?.rootNode?.setNeedsLayout();
           })
       }
       .width('100%')

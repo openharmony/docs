@@ -34,6 +34,14 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 | delay    | number                    | 是    | 键盘按键重复延迟时间，默认值500ms，调节范围[300ms，1000ms]。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -72,6 +80,14 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -99,6 +115,15 @@ getKeyboardRepeatDelay(callback: AsyncCallback&lt;number&gt;): void
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | callback   | AsyncCallback&lt;number&gt;                    | 是    | 回调函数，异步返回键盘按键重复延迟时间。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -132,6 +157,15 @@ getKeyboardRepeatDelay(): Promise&lt;number&gt;
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise实例，异步返回键盘按键的重复时延。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -160,6 +194,15 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | rate    | number                    | 是    | 键盘按键重复速率，默认值50ms/次，调节范围[36ms/次，100ms/次]。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -199,6 +242,15 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -226,6 +278,15 @@ getKeyboardRepeatRate(callback: AsyncCallback&lt;number&gt;): void
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回键盘按键的重复速率。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -258,6 +319,15 @@ getKeyboardRepeatRate(): Promise&lt;number&gt;
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise实例，异步返回键盘按键的重复速率。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 

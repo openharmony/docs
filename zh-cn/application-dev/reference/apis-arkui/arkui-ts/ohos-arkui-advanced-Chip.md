@@ -38,8 +38,10 @@ ChipOptions定义chip的样式及具体式样参数。
 | enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | activated<sup>12+</sup>       | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false                      |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| prefixSymbol<sup>12+</sup>    | [SymbolOptions](#symboloptions12)              | 否   | 前缀图标属性，symbol类型。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。   |
 | suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| suffixSymbol<sup>12+</sup>    | [SymbolOptions](#symboloptions12)              | 否   | 后缀图标属性，symbol类型。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。 |
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
@@ -51,13 +53,15 @@ ChipOptions定义chip的样式及具体式样参数。
 >
 > 1.操作块有最小宽度限制，当用户设置宽度小于最小宽度时，按最小宽度显示。
 >
-> 2.suffixIcon有传入参数时，allowClose不生效，suffixIcon没有传入参数时，allowClose决定是否显示删除图标。
+> 2.suffixSymbol有传入参数时，suffixIcon和allowClose不生效；suffixSymbol没有传入参数、suffixIcon有传入参数时，allowClose不生效；suffixSymbol和suffixIcon都没有传入参数时，allowClose决定是否显示删除图标。
 >
 > 3.backgroundColor和activatedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
 >
-> 4.prefixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_secondary')`，suffixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_primary')`。fillColor对颜色的解析与Image组件保持一致。
+> 4.prefixSymbol和prefixIcon的默认值保持一致，suffixSymbol和suffixIcon的默认值保持一致。
 >
-> 5.prefixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`，suffixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`。activatedFillColor对颜色的解析与Image组件保持一致。
+> 5.prefixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_secondary')`，suffixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_primary')`。fillColor对颜色的解析与Image组件保持一致。
+>
+> 6.prefixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`，suffixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`。activatedFillColor对颜色的解析与Image组件保持一致。
 
 ## ChipSize
 
@@ -105,6 +109,17 @@ SuffixIconOptions定义后缀图标的属性。
 | 名称   | 类型       | 必填 | 说明               |
 | ------ | ---------- | ---- | ------------------ |
 | action | () => void | 否   | 后缀图标设定事件。 |
+
+## SymbolOptions<sup>12+</sup>
+
+SymbolOptions定义前缀图标和后缀图标的属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称   | 类型       | 必填 | 说明               |
+| ------ | ---------- | ---- | ------------------ |
+| normal | SymbolGlyphModifier | 否   | 图标设定事件。 |
+| activated | SymbolGlyphModifier | 否   | 激活时图标设定事件。 |
 
 ## LabelOptions
 
@@ -304,3 +319,62 @@ struct Index {
 
 
 ![](figures/chip4.gif)
+
+### 示例5
+
+Chip组件的前缀、后缀图标使用symbol类型资源展示。
+
+```ts
+import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
+import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+
+@Entry
+@Component
+struct Index {
+  @State isActivated: boolean = false
+
+  build() {
+    Column({ space: 10 }) {
+      Chip({
+        prefixIcon: {
+          src: $r('app.media.chips'),
+          size: { width: 16, height: 16 },
+          fillColor: Color.Blue,
+          activatedFillColor: $r('sys.color.ohos_id_color_text_primary_contrary')
+        },
+		prefixSymbol: {
+          normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontSize(16).fontColor([Color.Green]),
+          activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontSize(16).fontColor([Color.Red]),
+		},
+        label: {
+          text: "操作块",
+          fontSize: 12,
+          fontColor: Color.Blue,
+          activatedFontColor: $r('sys.color.ohos_id_color_text_primary_contrary'),
+          fontFamily: "HarmonyOS Sans",
+          labelMargin: { left: 20, right: 30 },
+        },
+        size: ChipSize.NORMAL,
+        allowClose: true,
+        enabled: true,
+        activated: this.isActivated,
+        backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
+        activatedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
+        borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
+        onClose:()=>{
+          console.log("chip on close")
+        },
+        onClicked:()=>{
+          console.log("chip on clicked")
+        }
+      })
+
+      Button('改变激活状态').onClick(()=>{
+        this.isActivated = !this.isActivated
+      })
+    }
+  }
+}
+```
+
+![](figures/chip5.gif)

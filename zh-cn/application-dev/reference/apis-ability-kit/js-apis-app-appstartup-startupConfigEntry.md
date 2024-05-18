@@ -17,7 +17,7 @@ import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
 
 ## StartupConfigEntry.onConfig
 
-onConfig(): StartupConfig
+onConfig?(): StartupConfig
 
 应用启动时调用以配置应用启动框架的设置。
 

@@ -36,93 +36,93 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 加载在线网页。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
-  ```
+}
+```
 
 隐私模式Webview加载在线网页。
- 
-   ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
-      }
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
     }
   }
-  ```
+}
+```
 
 Web组件统一渲染模式。
 
-   ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
     }
   }
-  ```
+}
+```
 
 加载本地网页。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 通过$rawfile加载本地资源文件。
-        Web({ src: $rawfile("index.html"), controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      // 通过$rawfile加载本地资源文件。
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 通过resource协议加载本地资源文件。
-        Web({ src: "resource://rawfile/index.html", controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      // 通过resource协议加载本地资源文件。
+      Web({ src: "resource://rawfile/index.html", controller: this.controller })
     }
   }
-  ```
+}
+```
 
 加载沙箱路径下的本地资源文件。
 
@@ -306,9 +306,9 @@ imageAccess(imageAccess: boolean)
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebviewController | WebController})
+    controller: WebviewController | WebController, asyncMethodList?: Array\<string\>})
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
+注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。同一方法在同步与异步列表中重复注册，将默认异步调用。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
@@ -316,8 +316,9 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
-| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
+| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | []   | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 
 **示例：**
 
@@ -334,6 +335,10 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
       console.log("data2:" + data2)
       console.log("data3:" + data3)
       return "AceString"
+    }
+
+    asyncTest(data: string): void {
+      console.log("async data:" + data)
     }
 
     toString(): void {
@@ -354,6 +359,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
             object: this.testObj,
             name: "objName",
             methodList: ["test", "toString"],
+            asyncMethodList: ["asyncTest"],
             controller: this.controller,
         })
       }
@@ -396,13 +402,17 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+设置Web过滚动模式，默认关闭。过滚动模式开启后，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+
+> **说明：**
+>
+> 从API version 12开始默认改为开启。
 
 **参数：**
 
 | 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
 | ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
-| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER，从API version 12开始：OverScrollMode.ALWAYS | 设置Web的过滚动模式为关闭或开启。 |
 
 **示例：**
 
@@ -1981,6 +1991,62 @@ struct WebComponent {
     }
   }
   ```
+
+### selectionMenuOptions<sup>12+</sup>
+
+selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+
+Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本内容、图标、回调方法。
+
+该接口只支持选中纯文本，当选中内容包含图片及其他非文本内容时，aciton信息中会显示乱码。
+
+**参数：**
+
+| 参数名              | 类型                                                         | 说明          |
+| ------------------- | ----------------------------------------------------------   | ------------- |
+| expandedMenuOptions | Array<[ExpandedMenuItemOptions](#expandedmenuitemoptions12)> | 扩展菜单选项。<br/>菜单项数量，及菜单的content大小、startIcon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
+      {content: 'Apple', startIcon: $r('app.media.icon'), action: (selectedText) => {
+        console.info('select info ' + selectedText.toString());
+      }},
+      {content: '香蕉', startIcon: $r('app.media.icon'), action: (selectedText) => {
+        console.info('select info ' + selectedText.toString());
+      }}
+    ];
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+        .selectionMenuOptions(this.menuOptionArray)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>selectionMenuOptions Demo</h1>
+    <span>selection menu options</span>
+  </body>
+  </html>
+  ```
 ## 事件
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
@@ -2783,6 +2849,72 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
               console.log('reason:' + event.renderExitReason)
             }
           })
+      }
+    }
+  }
+  ```
+### onRenderProcessNotResponding<sup>12+</sup>
+
+onRenderProcessNotResponding(callback: OnRenderProcessNotRespondingCallback)
+
+网页进程无响应时触发该回调函数。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnRenderProcessNotRespondingCallback](#onrenderprocessnotrespondingcallback12) | 网页进程无响应时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onRenderProcessNotResponding((data) => {
+            console.log("onRenderProcessNotResponding: [jsStack]= " + data.jsStack +
+              ", [process]=" + data.pid + ", [reason]=" + data.reason);
+        })
+      }
+    }
+  }
+  ```
+
+### onRenderProcessResponding<sup>12+</sup>
+
+onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
+
+网页进程由无响应状态变回正常运行状态时触发该回调函数,该回调表明该网页并非真正卡死。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnRenderProcessRespondingCallback](#onrenderprocessrespondingcallback12) | 网页进程由无响应状态变回正常运行状态时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onRenderProcessResponding(() => {
+            console.log("onRenderProcessResponding again");
+        })
       }
     }
   }
@@ -4688,7 +4820,7 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnav
     }
   }
   ```
-  
+
 ### onSafeBrowsingCheckResult<sup>11+</sup>
 
 onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
@@ -5037,6 +5169,61 @@ POST请求不会触发该回调。
     <h1>onOverrideUrlLoading Demo</h1>
     <a href="about:blank">Click here</a>访问about:blank。
   </body>
+  </html>
+  ```
+
+### onViewportFitChanged<sup>12+</sup>
+
+onViewportFitChanged(callback: OnViewportFitChangedCallback)
+
+网页meta中viewport-fit配置项更改时触发该回调，应用可在此回调中自适应布局视口。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [OnViewportFitChangedCallback](#onviewportfitchangedcallback12) | 网页meta中viewport-fit配置项更改时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onViewportFitChanged((data) => {
+          let jsonData = JSON.stringify(data)
+          let viewportFit: ViewportFit = JSON.parse(jsonData).viewportFit
+          if (viewportFit === ViewportFit.COVER) {
+            // index.html网页支持沉浸式布局，可调用expandSafeArea调整web控件布局视口覆盖避让区域(状态栏或导航条)。
+          } else if (viewportFit === ViewportFit.CONTAINS) {
+            // index.html网页不支持沉浸式布局，可调用expandSafeArea调整web控件布局视口为安全区域。
+          } else {
+            // 默认值，可不作处理
+          }
+        })
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width,viewport-fit=cover">
+    </head>
+    <body>
+      <div style="position: absolute; bottom: 0; margin-bottom: env(safe-area-inset-bottom)"></div>
+    </body>
   </html>
   ```
 ## ConsoleMessage
@@ -7143,3 +7330,68 @@ type NativeMediaPlayerConfig = {
 |------|------|------|------|------|
 |  enable  | boolean | 否 | 是 | 是否开启该功能。<br/> `true` : 开启  <br/> `false` : 关闭(默认值) |
 |  shouldOverlay | boolean | 否 | 是 | 开启该功能后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br/> `true` : 是，改变视频图层的高度，使其覆盖网页内容 <br/> `false` : 否(默认值), 不覆盖，跟原视频图层高度一样，嵌入在网页中。 |
+
+## RenderProcessNotRespondingReason<sup>12+</sup>
+
+触发网页进程无响应回调的原因。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| INPUT_TIMEOUT                  | 0 | 发送给网页进程的input事件响应超时。   |
+| NAVIGATION_COMMIT_TIMEOUT      | 1 | 新的网页加载导航响应超时。   |
+
+## RenderProcessNotRespondingData<sup>12+</sup>
+
+提供网页进程无响应的详细信息。
+
+| 名称                     | 类型   | 必填 | 描述                                   |
+| ------------------------ | ------ | ---- | -------------------------------------- |
+| jsStack      | string | 是  | 网页的javaScript调用栈信息。       |
+| pid | number | 是   | 网页的进程id。 |
+| reason | [RenderProcessNotRespondingReason](#renderprocessnotrespondingreason12) | 是   | 触发网页进程无响应回调的原因。 |
+
+## OnRenderProcessNotRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
+
+网页进程无响应时触发的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| data | [RenderProcessNotRespondingData](#renderprocessnotrespondingdata12) | 网页进程无响应的详细信息。 |
+
+## OnRenderProcessRespondingCallback<sup>12+</sup>
+
+type OnRenderProcessRespondingCallback = () => void
+
+网页进程由无响应状态变回正常运行状态时触发该回调。
+
+## ViewportFit<sup>12+</sup>
+
+网页meta中viewport-fit配置的视口类型。
+
+| 名称                           | 值 | 描述           |
+| ----------------------------- | -- | ------------ |
+| AUTO                  | 0 | 默认值，整个网页可见。   |
+| CONTAINS      | 1 | 初始布局视口和视觉视口为适应设备显示屏的最大矩形内。   |
+| COVER      | 2| 初始布局视口和视觉视口为设备物理屏幕的外接矩形内。   |
+
+## OnViewportFitChangedCallback<sup>12+</sup>
+
+type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
+
+网页meta中viewport-fit配置项更改时触发的回调。
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| viewportFit | [ViewportFit](#viewportfit12) | 网页meta中viewport-fit配置的视口类型。 |
+
+## ExpandedMenuItemOptions<sup>12+</sup>
+
+自定义菜单扩展项。
+
+| 名称           | 类型                                             | 必填    | 描述             |
+| ---------- | -----------------------------------------------------| ------ | ---------------- |
+| content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
+| startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
+| action    | string                                                         | 是     | 选中的文本信息。|

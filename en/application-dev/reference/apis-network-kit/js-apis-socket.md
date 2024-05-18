@@ -730,8 +730,7 @@ Defines the destination address.
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | address<sup>11+</sup> | string | Yes  | Bound IP address.                                          |
 | port    | number | No  | Port number. The value ranges from **0** to **65535**. If this parameter is not specified, the system randomly allocates a port.          |
-| family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**.|
-
+| family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**. For an IPv6 address, this field must be explicitly set to **2**.|
 ## UDPSendOptions
 
 Defines the parameters for sending data over a UDP socket connection.
@@ -2638,7 +2637,7 @@ Binds the IP address and port number. The port number can be specified or random
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 
@@ -2695,7 +2694,7 @@ Binds the IP address and port number. The port number can be specified or random
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 
@@ -3461,7 +3460,7 @@ let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]]
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -5590,17 +5589,17 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
-| 2303111 | Resource temporarily unavailable try again.  |
+| 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
-| 2303191 | Protocol wrong type for socket.              |
+| 2303191 | Incorrect socket protocol type.              |
 | 2303198 | Address already in use.                      |
 | 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
-| 2303502 | Error in tls reading.                        |
-| 2303503 | Error in tls writing                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
@@ -5693,17 +5692,17 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
-| 2303111 | Resource temporarily unavailable try again.  |
+| 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
-| 2303191 | Protocol wrong type for socket.              |
+| 2303191 | Incorrect socket protocol type.              |
 | 2303198 | Address already in use.                      |
 | 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
-| 2303502 | Error in tls reading.                        |
-| 2303503 | Error in tls writing                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
@@ -5862,7 +5861,7 @@ Obtains the local digital certificate after a TLS socket connection is establish
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303504 | Error looking up x509.         |
+| 2303504 | An error occurred when verifying the X.509 certificate.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -5899,7 +5898,7 @@ Obtains the local digital certificate after a TLS socket connection is establish
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303504 | Error looking up x509.         |
+| 2303504 | An error occurred when verifying the X.509 certificate.|
 | 2300002 | System internal error.         |
 
 **Example**
@@ -5945,12 +5944,15 @@ Obtains the digital certificate of the server after a TLS socket connection is e
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
-    console.log("getRemoteCertificate callback = " + data);
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getRemoteCertificate callback = " + str);
   }
 });
 ```
@@ -5981,9 +5983,12 @@ Obtains the digital certificate of the server after a TLS socket connection is e
 ```ts
 import socket from "@ohos.net.socket";
 import { BusinessError } from '@ohos.base';
+import util from "@ohos.util";
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
-  console.log(data);
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
@@ -6008,7 +6013,7 @@ Obtains the communication protocol version after a TLS socket connection is esta
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 2303501 | SSL is null.                   |
-| 2303505 | Error occurred in the tls system call. |
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **Example**
@@ -6045,7 +6050,7 @@ Obtains the communication protocol version after a TLS socket connection is esta
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303505 | Error occurred in the tls system call. |
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **Example**
@@ -6080,8 +6085,8 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303502 | Error in tls reading.          |
-| 2303505 | Error occurred in the tls system call. |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **Example**
@@ -6118,8 +6123,8 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303502 | Error in tls reading.          |
-| 2303505 | Error occurred in the tls system call. |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **Example**
@@ -6226,9 +6231,9 @@ Sends a message to the server after a TLS socket connection is established. This
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing.                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
@@ -6266,9 +6271,9 @@ Sends a message to the server after a TLS socket connection is established. This
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing.                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Return value**
@@ -6310,8 +6315,8 @@ Closes a TLS socket connection. This API uses an asynchronous callback to return
 | ------- | -------------------------------------------- |
 | 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
@@ -6349,8 +6354,8 @@ Closes a TLS socket connection. This API uses a promise to return the result.
 | ------- | -------------------------------------------- |
 | 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
@@ -6463,14 +6468,14 @@ Listens to client connections after **bind** is successfully called. This API us
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
-| 2303502  | Error in tls reading.                       |
-| 2303503  | Error in tls writing                        |
-| 2303505  | Error occurred in the tls system call.      |
-| 2303506  | Error clearing tls connection.              |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.   |
+| 2303506  | Failed to close the TLS connection.         |
 
 **Example**
 
@@ -6531,14 +6536,14 @@ Listens to client connections after **bind** is successfully called. This API us
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
-| 2303502  | Error in tls reading.                       |
-| 2303503  | Error in tls writing                        |
-| 2303505  | Error occurred in the tls system call.      |
-| 2303506  | Error clearing tls connection.              |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.   |
+| 2303506  | Failed to close the TLS connection.         |
 
 **Example**
 
@@ -6866,7 +6871,7 @@ Obtains the local digital certificate after a TLS socket server connection is es
 | -------- | ---------------------- |
 | 401      | Parameter error.       |
 | 2303501  | SSL is null.           |
-| 2303504  | Error looking up x509. |
+| 2303504  | An error occurred when verifying the X.509 certificate. |
 | 2300002  | System internal error. |
 
 **Example**
@@ -6932,7 +6937,7 @@ Obtains the local digital certificate after a TLS socket server connection is es
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 2303501  | SSL is null.           |
-| 2303504  | Error looking up x509. |
+| 2303504  | An error occurred when verifying the X.509 certificate. |
 | 2300002  | System internal error. |
 
 **Example**
@@ -6997,7 +7002,7 @@ Obtains the communication protocol version after a TLS socket server connection 
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **Example**
@@ -7059,7 +7064,7 @@ Obtains the communication protocol version after a TLS socket server connection 
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **Example**
@@ -7373,9 +7378,9 @@ Sends a message to the client after a TLS socket server connection is establishe
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303503  | Error in tls writing.                  |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **Example**
@@ -7444,9 +7449,9 @@ Sends a message to the server after a TLS socket server connection is establishe
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303503  | Error in tls writing.                  |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **Example**
@@ -7507,8 +7512,8 @@ Closes a TLS socket server connection. This API uses an asynchronous callback to
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303505  | An error occurred in the TLS system call. |
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **Example**
@@ -7570,8 +7575,8 @@ Closes a TLS socket server connection. This API uses a promise to return the res
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303505  | An error occurred in the TLS system call. |
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **Example**
@@ -7877,8 +7882,8 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303502  | Error in tls reading.                  |
-| 2303505  | Error occurred in the tls system call. |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
 | 2300002  | System internal error.                 |
 
 **Example**
@@ -7939,8 +7944,8 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303502  | Error in tls reading.                  |
-| 2303505  | Error occurred in the tls system call. |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **Example**

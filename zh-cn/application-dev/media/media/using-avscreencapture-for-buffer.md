@@ -206,9 +206,10 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     }
 }
 
+struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 实例化ScreenCapture
-    struct OH_AVScreenCapture *capture;
+    capture = OH_AVScreenCapture_Create();
     
     // 设置回调 
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);

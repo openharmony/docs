@@ -3868,6 +3868,52 @@ async function example() {
 
 ```
 
+### loadMovingPhoto<sup>12+</sup>
+
+static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: string): Promise\<MovingPhoto>
+
+加载应用沙箱的动态照片。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 传入AbilityContext或者UIExtensionContext的实例。 |
+| imageFileUri | string     | 是   | 应用沙箱动态照片的图片uri。 |
+| videoFileUri | string     | 是   | 应用沙箱动态照片的视频uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise\<MovingPhoto> | Promise对象，返回[MovingPhoto](#movingphoto12)实例。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      | Invalid parameter. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+```ts
+async function example() {
+  try {
+    let imageFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg'; // 应用沙箱动态照片的图片uri
+    let videoFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4'; // 应用沙箱动态照片的视频uri
+    let movingPhoto: photoAccessHelper.MovingPhoto = await photoAccessHelper.MediaAssetManager.loadMovingPhoto(context, imageFileUri, videoFileUri);
+  } catch (err) {
+    console.error(`loadMovingPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+
+```
+
 ## MediaAssetDataHandler<sup>11+</sup>
 
 媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
@@ -4428,7 +4474,7 @@ async function example() {
     let options: photoAccessHelper.PhotoSelectOptions = {
       MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
       maxSelectNumber: 1,
-      reommendationOptions: recommendOptions
+      recommendationOptions: recommendOptions
     }
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
@@ -4468,7 +4514,7 @@ async function example() {
     let options: photoAccessHelper.PhotoSelectOptions = {
       MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
       maxSelectNumber: 1,
-      reommendationOptions: recommendOptions
+      recommendationOptions: recommendOptions
     }
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {

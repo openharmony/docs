@@ -1142,3 +1142,21 @@ The observer does not exist or has been unregistered.
 **Solution**
 
 Check whether the observer exists.
+
+## 16300005 Bundle Information Does Not Exist
+
+**Error Message**
+
+The target bundle does not exist.
+
+**Description**
+
+This error code is reported when the bundle information of the preinstalled application does not exist.
+
+**Possible Causes**
+
+The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading to the query failure.
+
+**Solution**
+
+Pass in correct values for **bundleName**, **userId**, and **appIndex**.

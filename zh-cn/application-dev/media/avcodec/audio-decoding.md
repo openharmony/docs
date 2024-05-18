@@ -14,6 +14,7 @@
 | mp3      | MPEG(MP3)                    |
 | amr      | AMR(amrnb、amrwb)            |
 | raw      | G711mu                       |
+<!--RP1--><!--RP1End-->
 
 **适用场景**
 
@@ -246,6 +247,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    
 8. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
 
+    <!--RP2-->
     ```c++
     uint32_t index = signal_->outQueue_.front();
     OH_AVBuffer *data = signal_->outBufferQueue_.front();
@@ -265,6 +267,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 结束
     }
     ```
+    <!--RP2End-->
 
 9. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。

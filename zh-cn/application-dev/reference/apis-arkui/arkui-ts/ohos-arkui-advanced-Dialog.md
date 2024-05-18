@@ -53,6 +53,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 | checkAction<sup>12+</sup> | (isChecked: boolean) => void | 否 | - | checkbox的选中状态改变事件。 |
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框左侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 提示框右侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | - | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## SelectDialog
@@ -77,7 +78,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 |
 | confirm | [ButtonOptions](#buttonoptions) | 否 | 选择弹出框底部按钮。 |
 | radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 是 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 |
-
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## ConfirmDialog
 
@@ -102,11 +103,12 @@ ConfirmDialog({controller: CustomDialogController, title: ResourceStr, content?:
 | isChecked | boolean | 否 | \@Prop | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false。 |
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框左侧按钮。 |
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | - | 确认框右侧按钮。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | - | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## AlertDialog
 
-AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, secondaryTitle: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
+AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: ButtonOptions, secondaryButton?: ButtonOptions})
 
 操作确认类弹出框，触发一个将产生严重后果的不可逆操作时，如删除、重置、取消编辑、停止等。
 
@@ -124,6 +126,7 @@ AlertDialog({controller: CustomDialogController, primaryTitle: ResourceStr, seco
 | content | [ResourceStr](ts-types.md#resourcestr) | 是 | 确认弹出框内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | primaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框左侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | secondaryButton | [ButtonOptions](#buttonoptions) | 否 | 确认框右侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## LoadingDialog
@@ -144,6 +147,7 @@ LoadingDialog({controller: CustomDialogController, content?: ResourceStr})
 | -------- | -------- | -------- | -------- |
 | controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | 加载弹出框控制器。 |
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 加载弹出框内容。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## CustomContentDialog<sup>12+</sup>
@@ -164,8 +168,9 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | contentBuilder | () => void | 是 | 弹出框内容。 |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框标题。 |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
-| contentAreaPadding<sup>12+</sup> | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
+| contentAreaPadding | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
 | buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
+| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## ButtonOptions
@@ -445,6 +450,59 @@ struct Index {
 
 
 ### 示例6
+
+```ts
+import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
+import { LoadingDialog } from '@ohos.arkui.advanced.Dialog';
+
+class CustomThemeImpl implements CustomTheme {
+  colors?: CustomColors;
+
+  constructor(colors: CustomColors) {
+    this.colors = colors;
+  }
+}
+
+class CustomThemeColors implements CustomColors {
+  fontPrimary = '#ffd0a300';
+  iconSecondary = '#ffd000cd';
+}
+
+@Entry
+@Component
+struct Index {
+  @State customTheme: CustomTheme = new CustomThemeImpl(new CustomThemeColors());
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: LoadingDialog({
+      content: 'text',
+      theme: this.customTheme,
+    })
+  });
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          Button('dialog')
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogController.open();
+            })
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+}
+```
+
+![loading_dialog_with_theme](figures/advanced_dialog_loading_dialog_with_theme.png)
+
+
+### 示例7
 
 ```ts
 import { CustomContentDialog } from '@ohos.arkui.advanced.Dialog'

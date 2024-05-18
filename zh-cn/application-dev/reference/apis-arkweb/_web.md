@@ -58,6 +58,7 @@
 | typedef enum [ArkWeb_ErrorCode](#arkweb_errorcode) [ArkWeb_ErrorCode](#arkweb_errorcode) | 定义ArkWeb NDK接口异常错误码。  | 
 | typedef enum [ArkWeb_NetError](#arkweb_neterror) [ArkWeb_NetError](#arkweb_neterror) | 定义ArkWeb网络协议栈错误码。  | 
 | typedef enum [ArkWeb_CustomSchemeOption](#arkweb_customschemeoption) [ArkWeb_CustomSchemeOption](#arkweb_customschemeoption) | custom scheme的配置信息。  | 
+| typedef enum [ArkWeb_ResourceType](#arkweb_resourcetype) [ArkWeb_ResourceType](#arkweb_resourcetype) | 请求的资源类型。这些常量与Chromium中的ResourceType的对应项相匹配，不应重新编号。  | 
 | typedef struct ArkWeb_SchemeHandler_ [ArkWeb_SchemeHandler](#arkweb_schemehandler) | 该类用于拦截指定scheme的请求。  | 
 | typedef struct ArkWeb_ResourceHandler_ [ArkWeb_ResourceHandler](#arkweb_resourcehandler) | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。  | 
 | typedef struct ArkWeb_Response_ [ArkWeb_Response](#arkweb_response) | 为被拦截的请求构造一个ArkWeb_Response。  | 
@@ -78,7 +79,8 @@
 | [ArkWeb_NativeAPIVariantKind](#arkweb_nativeapivariantkind) { ARKWEB_NATIVE_COMPONENT, ARKWEB_NATIVE_CONTROLLER } | 定义Native API的类型枚举。  | 
 | [ArkWeb_ErrorCode](#arkweb_errorcode) { ARKWEB_ERROR_UNKNOWN = 17100100, ARKWEB_INVALID_PARAM = 17100101, ARKWEB_SCHEME_REGISTER_FAILED = 17100102 } | 定义ArkWeb NDK接口异常错误码。  | 
 | [ArkWeb_NetError](#arkweb_neterror) {<br/>ARKWEB_NET_OK = 0, ARKWEB_ERR_IO_PENDING = -1, ARKWEB_ERR_FAILED = -2, ARKWEB_ERR_ABORTED = -3,<br/>ARKWEB_ERR_INVALID_ARGUMENT = -4, ARKWEB_ERR_INVALID_HANDLE = -5, ARKWEB_ERR_FILE_NOT_FOUND = -6, ARKWEB_ERR_TIMED_OUT = -7,<br/>ARKWEB_ERR_FILE_TOO_LARGE = -8, ARKWEB_ERR_UNEXPECTED = -9, ARKWEB_ERR_ACCESS_DENIED = -10, ARKWEB_ERR_NOT_IMPLEMENTED = -11,<br/>ARKWEB_ERR_INSUFFICIENT_RESOURCES = -12, ARKWEB_ERR_OUT_OF_MEMORY = -13, ARKWEB_ERR_UPLOAD_FILE_CHANGED = -14, ARKWEB_ERR_SOCKET_NOT_CONNECTED = -15,<br/>ARKWEB_ERR_FILE_EXISTS = -16, ARKWEB_ERR_FILE_PATH_TOO_LONG = -17, ARKWEB_ERR_FILE_NO_SPACE = -18, ARKWEB_ERR_FILE_VIRUS_INFECTED = -19,<br/>ARKWEB_ERR_BLOCKED_BY_CLIENT = -20, ARKWEB_ERR_NETWORK_CHANGED = -21, ARKWEB_ERR_BLOCKED_BY_ADMINISTRATOR = -22, ARKWEB_ERR_SOCKET_CONNECTED = -23,<br/>ARKWEB_ERR_UPLOAD_STREAM_REWIND_NOT_SUPPORTED = -25, ARKWEB_ERR_CONTEXT_SHUT_DOWN = -26, ARKWEB_ERR_BLOCKED_BY_RESPONSE = -27, ARKWEB_ERR_CLEARTEXT_NOT_PERMITTED = -29,<br/>ARKWEB_ERR_BLOCKED_BY_CSP = -30, ARKWEB_ERR_H2_OR_QUIC_REQUIRED = -31, ARKWEB_ERR_BLOCKED_BY_ORB = -32, ARKWEB_ERR_CONNECTION_CLOSED = -100,<br/>ARKWEB_ERR_CONNECTION_RESET = -101, ARKWEB_ERR_CONNECTION_REFUSED = -102, ARKWEB_ERR_CONNECTION_ABORTED = -103, ARKWEB_ERR_CONNECTION_FAILED = -104,<br/>ARKWEB_ERR_NAME_NOT_RESOLVED = -105, ARKWEB_ERR_INTERNET_DISCONNECTED = -106, ARKWEB_ERR_SSL_PROTOCOL_ERROR = -107, ARKWEB_ERR_ADDRESS_INVALID = -108,<br/>ARKWEB_ERR_ADDRESS_UNREACHABLE = -109, ARKWEB_ERR_SSL_CLIENT_AUTH_CERT_NEEDED = -110, ARKWEB_ERR_TUNNEL_CONNECTION_FAILED = -111, ARKWEB_ERR_NO_SSL_VERSIONS_ENABLED = -112,<br/>ARKWEB_ERR_SSL_VERSION_OR_CIPHER_MISMATCH = -113, ARKWEB_ERR_SSL_RENEGOTIATION_REQUESTED = -114, ARKWEB_ERR_PROXY_AUTH_UNSUPPORTED = -115, ARKWEB_ERR_BAD_SSL_CLIENT_AUTH_CERT = -117,<br/>ARKWEB_ERR_CONNECTION_TIMED_OUT = -118, ARKWEB_ERR_HOST_RESOLVER_QUEUE_TOO_LARGE = -119, ARKWEB_ERR_SOCKS_CONNECTION_FAILED = -120, ARKWEB_ERR_SOCKS_CONNECTION_HOST_UNREACHABLE = -121,<br/>ARKWEB_ERR_ALPN_NEGOTIATION_FAILED = -122, ARKWEB_ERR_SSL_NO_RENEGOTIATION = -123, ARKWEB_ERR_WINSOCK_UNEXPECTED_WRITTEN_BYTES = -124, ARKWEB_ERR_SSL_DECOMPRESSION_FAILURE_ALERT = -125,<br/>ARKWEB_ERR_SSL_BAD_RECORD_MAC_ALERT = -126, ARKWEB_ERR_PROXY_AUTH_REQUESTED = -127, ARKWEB_ERR_PROXY_CONNECTION_FAILED = -130, ARKWEB_ERR_MANDATORY_PROXY_CONFIGURATION_FAILED = -131,<br/>ARKWEB_ERR_PRECONNECT_MAX_SOCKET_LIMIT = -133, ARKWEB_ERR_SSL_CLIENT_AUTH_PRIVATE_KEY_ACCESS_DENIED = -134, ARKWEB_ERR_SSL_CLIENT_AUTH_CERT_NO_PRIVATE_KEY = -135, ARKWEB_ERR_PROXY_CERTIFICATE_INVALID = -136,<br/>ARKWEB_ERR_NAME_RESOLUTION_FAILED = -137, ARKWEB_ERR_NETWORK_ACCESS_DENIED = -138, ARKWEB_ERR_TEMPORARILY_THROTTLED = -139, ARKWEB_ERR_HTTPS_PROXY_TUNNEL_RESPONSE_REDIRECT = -140,<br/>ARKWEB_ERR_SSL_CLIENT_AUTH_SIGNATURE_FAILED = -141, ARKWEB_ERR_MSG_TOO_BIG = -142, ARKWEB_ERR_WS_PROTOCOL_ERROR = -145, ARKWEB_ERR_ADDRESS_IN_USE = -147,<br/>ARKWEB_ERR_SSL_HANDSHAKE_NOT_COMPLETED = -148, ARKWEB_ERR_SSL_BAD_PEER_PUBLIC_KEY = -149, ARKWEB_ERR_SSL_PINNED_KEY_NOT_IN_CERT_CHAIN = -150, ARKWEB_ERR_CLIENT_AUTH_CERT_TYPE_UNSUPPORTED = -151,<br/>ARKWEB_ERR_SSL_DECRYPT_ERROR_ALERT = -153, ARKWEB_ERR_WS_THROTTLE_QUEUE_TOO_LARGE = -154, ARKWEB_ERR_SSL_SERVER_CERT_CHANGED = -156, ARKWEB_ERR_SSL_UNRECOGNIZED_NAME_ALERT = -159,<br/>ARKWEB_ERR_SOCKET_SET_RECEIVE_BUFFER_SIZE_ERROR = -160, ARKWEB_ERR_SOCKET_SET_SEND_BUFFER_SIZE_ERROR = -161, ARKWEB_ERR_SOCKET_RECEIVE_BUFFER_SIZE_UNCHANGEABLE = -162, ARKWEB_ERR_SOCKET_SEND_BUFFER_SIZE_UNCHANGEABLE = -163,<br/>ARKWEB_ERR_SSL_CLIENT_AUTH_CERT_BAD_FORMAT = -164, ARKWEB_ERR_ICANN_NAME_COLLISION = -166, ARKWEB_ERR_SSL_SERVER_CERT_BAD_FORMAT = -167, ARKWEB_ERR_CT_STH_PARSING_FAILED = -168,<br/>ARKWEB_ERR_CT_STH_INCOMPLETE = -169, ARKWEB_ERR_UNABLE_TO_REUSE_CONNECTION_FOR_PROXY_AUTH = -170, ARKWEB_ERR_CT_CONSISTENCY_PROOF_PARSING_FAILED = -171, ARKWEB_ERR_SSL_OBSOLETE_CIPHER = -172,<br/>ARKWEB_ERR_WS_UPGRADE = -173, ARKWEB_ERR_READ_IF_READY_NOT_IMPLEMENTED = -174, ARKWEB_ERR_NO_BUFFER_SPACE = -176, ARKWEB_ERR_SSL_CLIENT_AUTH_NO_COMMON_ALGORITHMS = -177,<br/>ARKWEB_ERR_EARLY_DATA_REJECTED = -178, ARKWEB_ERR_WRONG_VERSION_ON_EARLY_DATA = -179, ARKWEB_ERR_TLS13_DOWNGRADE_DETECTED = -180, ARKWEB_ERR_SSL_KEY_USAGE_INCOMPATIBLE = -181,<br/>ARKWEB_ERR_INVALID_ECH_CONFIG_LIST = -182, ARKWEB_ERR_ECH_NOT_NEGOTIATED = -183, ARKWEB_ERR_ECH_FALLBACK_CERTIFICATE_INVALID = -184, ARKWEB_ERR_CERT_COMMON_NAME_INVALID = -200,<br/>ARKWEB_ERR_CERT_DATE_INVALID = -201, ARKWEB_ERR_CERT_AUTHORITY_INVALID = -202, ARKWEB_ERR_CERT_CONTAINS_ERRORS = -203, ARKWEB_ERR_CERT_NO_REVOCATION_MECHANISM = -204,<br/>ARKWEB_ERR_CERT_UNABLE_TO_CHECK_REVOCATION = -205, ARKWEB_ERR_CERT_REVOKED = -206, ARKWEB_ERR_CERT_INVALID = -207, ARKWEB_ERR_CERT_WEAK_SIGNATURE_ALGORITHM = -208,<br/>ARKWEB_ERR_CERT_NON_UNIQUE_NAME = -210, ARKWEB_ERR_CERT_WEAK_KEY = -211, ARKWEB_ERR_CERT_NAME_CONSTRAINT_VIOLATION = -212, ARKWEB_ERR_CERT_VALIDITY_TOO_LONG = -213,<br/>ARKWEB_ERR_CERTIFICATE_TRANSPARENCY_REQUIRED = -214, ARKWEB_ERR_CERT_SYMANTEC_LEGACY = -215, ARKWEB_ERR_CERT_KNOWN_INTERCEPTION_BLOCKED = -217, ARKWEB_ERR_SSL_OBSOLETE_VERSION_OR_CIPHER = -218,<br/>ARKWEB_ERR_CERT_END = -219, ARKWEB_ERR_INVALID_URL = -300, ARKWEB_ERR_DISALLOWED_URL_SCHEME = -301, ARKWEB_ERR_UNKNOWN_URL_SCHEME = -302,<br/>ARKWEB_ERR_INVALID_REDIRECT = -303, ARKWEB_ERR_TOO_MANY_REDIRECTS = -310, ARKWEB_ERR_UNSAFE_REDIRECT = -311, ARKWEB_ERR_UNSAFE_PORT = -312,<br/>ARKWEB_ERR_INVALID_RESPONSE = -320, ARKWEB_ERR_INVALID_CHUNKED_ENCODING = -321, ARKWEB_ERR_METHOD_UNSUPPORTED = -322, ARKWEB_ERR_UNEXPECTED_PROXY_AUTH = -323,<br/>ARKWEB_ERR_EMPTY_RESPONSE = -324, ARKWEB_ERR_RESPONSE_HEADERS_TOO_BIG = -325, ARKWEB_ERR_PAC_SCRIPT_FAILED = -327, ARKWEB_ERR_REQUEST_RANGE_NOT_SATISFIABLE = -328,<br/>ARKWEB_ERR_MALFORMED_IDENTITY = -329, ARKWEB_ERR_CONTENT_DECODING_FAILED = -330, ARKWEB_ERR_NETWORK_IO_SUSPENDED = -331, ARKWEB_ERR_SYN_REPLY_NOT_RECEIVED = -332,<br/>ARKWEB_ERR_ENCODING_CONVERSION_FAILED = -333, ARKWEB_ERR_UNRECOGNIZED_FTP_DIRECTORY_LISTING_FORMAT = -334, ARKWEB_ERR_NO_SUPPORTED_PROXIES = -336, ARKWEB_ERR_HTTP2_PROTOCOL_ERROR = -337,<br/>ARKWEB_ERR_INVALID_AUTH_CREDENTIALS = -338, ARKWEB_ERR_UNSUPPORTED_AUTH_SCHEME = -339, ARKWEB_ERR_ENCODING_DETECTION_FAILED = -340, ARKWEB_ERR_MISSING_AUTH_CREDENTIALS = -341,<br/>ARKWEB_ERR_UNEXPECTED_SECURITY_LIBRARY_STATUS = -342, ARKWEB_ERR_MISCONFIGURED_AUTH_ENVIRONMENT = -343, ARKWEB_ERR_UNDOCUMENTED_SECURITY_LIBRARY_STATUS = -344, ARKWEB_ERR_RESPONSE_BODY_TOO_BIG_TO_DRAIN = -345,<br/>ARKWEB_ERR_RESPONSE_HEADERS_MULTIPLE_CONTENT_LENGTH = -346, ARKWEB_ERR_INCOMPLETE_HTTP2_HEADERS = -347, ARKWEB_ERR_PAC_NOT_IN_DHCP = -348, ARKWEB_ERR_RESPONSE_HEADERS_MULTIPLE_CONTENT_DISPOSITION = -349,<br/>ARKWEB_ERR_RESPONSE_HEADERS_MULTIPLE_LOCATION = -350, ARKWEB_ERR_HTTP2_SERVER_REFUSED_STREAM = -351, ARKWEB_ERR_HTTP2_PING_FAILED = -352, ARKWEB_ERR_CONTENT_LENGTH_MISMATCH = -354,<br/>ARKWEB_ERR_INCOMPLETE_CHUNKED_ENCODING = -355, ARKWEB_ERR_QUIC_PROTOCOL_ERROR = -356, ARKWEB_ERR_RESPONSE_HEADERS_TRUNCATED = -357, ARKWEB_ERR_QUIC_HANDSHAKE_FAILED = -358,<br/>ARKWEB_ERR_HTTP2_INADEQUATE_TRANSPORT_SECURITY = -360, ARKWEB_ERR_HTTP2_FLOW_CONTROL_ERROR = -361, ARKWEB_ERR_HTTP2_FRAME_SIZE_ERROR = -362, ARKWEB_ERR_HTTP2_COMPRESSION_ERROR = -363,<br/>ARKWEB_ERR_PROXY_AUTH_REQUESTED_WITH_NO_CONNECTION = -364, ARKWEB_ERR_HTTP_1_1_REQUIRED = -365, ARKWEB_ERR_PROXY_HTTP_1_1_REQUIRED = -366, ARKWEB_ERR_PAC_SCRIPT_TERMINATED = -367,<br/>ARKWEB_ERR_INVALID_HTTP_RESPONSE = -370, ARKWEB_ERR_CONTENT_DECODING_INIT_FAILED = -371, ARKWEB_ERR_HTTP2_RST_STREAM_NO_ERROR_RECEIVED = -372, ARKWEB_ERR_HTTP2_PUSHED_STREAM_NOT_AVAILABLE = -373,<br/>ARKWEB_ERR_HTTP2_CLAIMED_PUSHED_STREAM_RESET_BY_SERVER = -374, ARKWEB_ERR_TOO_MANY_RETRIES = -375, ARKWEB_ERR_HTTP2_STREAM_CLOSED = -376, ARKWEB_ERR_HTTP2_CLIENT_REFUSED_STREAM = -377,<br/>ARKWEB_ERR_HTTP2_PUSHED_RESPONSE_DOES_NOT_MATCH = -378, ARKWEB_ERR_HTTP_RESPONSE_CODE_FAILURE = -379, ARKWEB_ERR_QUIC_UNKNOWN_CERT_ROOT = -380, ARKWEB_ERR_QUIC_GOAWAY_REQUEST_CAN_BE_RETRIED = -381,<br/>ARKWEB_ERR_TOO_MANY_ACCEPT_CH_RESTARTS = -382, ARKWEB_ERR_INCONSISTENT_IP_ADDRESS_SPACE = -383, ARKWEB_ERR_CACHED_IP_ADDRESS_SPACE_BLOCKED_BY_LOCAL_NETWORK_ACCESS_POLICY = -384, ARKWEB_ERR_CACHE_MISS = -400,<br/>ARKWEB_ERR_CACHE_READ_FAILURE = -401, ARKWEB_ERR_CACHE_WRITE_FAILURE = -402, ARKWEB_ERR_CACHE_OPERATION_UNSUPPORTED = -403, ARKWEB_ERR_CACHE_OPEN_FAILURE = -404,<br/>ARKWEB_ERR_CACHE_CREATE_FAILURE = -405, ARKWEB_ERR_CACHE_RACE = -406, ARKWEB_ERR_CACHE_CHECKSUM_READ_FAILURE = -407, ARKWEB_ERR_CACHE_CHECKSUM_MISMATCH = -408,<br/>ARKWEB_ERR_CACHE_LOCK_TIMEOUT = -409, ARKWEB_ERR_CACHE_AUTH_FAILURE_AFTER_READ = -410, ARKWEB_ERR_CACHE_ENTRY_NOT_SUITABLE = -411, ARKWEB_ERR_CACHE_DOOM_FAILURE = -412,<br/>ARKWEB_ERR_CACHE_OPEN_OR_CREATE_FAILURE = -413, ARKWEB_ERR_INSECURE_RESPONSE = -501, ARKWEB_ERR_NO_PRIVATE_KEY_FOR_CERT = -502, ARKWEB_ERR_ADD_USER_CERT_FAILED = -503,<br/>ARKWEB_ERR_INVALID_SIGNED_EXCHANGE = -504, ARKWEB_ERR_INVALID_WEB_BUNDLE = -505, ARKWEB_ERR_TRUST_TOKEN_OPERATION_FAILED = -506, ARKWEB_ERR_TRUST_TOKEN_OPERATION_SUCCESS_WITHOUT_SENDING_REQUEST = -507,<br/>ARKWEB_ERR_FTP_FAILED = -601, ARKWEB_ERR_FTP_SERVICE_UNAVAILABLE = -602, ARKWEB_ERR_FTP_TRANSFER_ABORTED = -603, ARKWEB_ERR_FTP_FILE_BUSY = -604,<br/>ARKWEB_ERR_FTP_SYNTAX_ERROR = -605, ARKWEB_ERR_FTP_COMMAND_UNSUPPORTED = -606, ARKWEB_ERR_FTP_BAD_COMMAND_SEQUENCE = -607, ARKWEB_ERR_PKCS12_IMPORT_BAD_PASSWORD = -701,<br/>ARKWEB_ERR_PKCS12_IMPORT_FAILED = -702, ARKWEB_ERR_IMPORT_CA_CERT_NOT_CA = -703, ARKWEB_ERR_IMPORT_CERT_ALREADY_EXISTS = -704, ARKWEB_ERR_IMPORT_CA_CERT_FAILED = -705,<br/>ARKWEB_ERR_IMPORT_SERVER_CERT_FAILED = -706, ARKWEB_ERR_PKCS12_IMPORT_INVALID_MAC = -707, ARKWEB_ERR_PKCS12_IMPORT_INVALID_FILE = -708, ARKWEB_ERR_PKCS12_IMPORT_UNSUPPORTED = -709,<br/>ARKWEB_ERR_KEY_GENERATION_FAILED = -710, ARKWEB_ERR_PRIVATE_KEY_EXPORT_FAILED = -712, ARKWEB_ERR_SELF_SIGNED_CERT_GENERATION_FAILED = -713, ARKWEB_ERR_CERT_DATABASE_CHANGED = -714,<br/>ARKWEB_ERR_CERT_VERIFIER_CHANGED = -716, ARKWEB_ERR_DNS_MALFORMED_RESPONSE = -800, ARKWEB_ERR_DNS_SERVER_REQUIRES_TCP = -801, ARKWEB_ERR_DNS_SERVER_FAILED = -802,<br/>ARKWEB_ERR_DNS_TIMED_OUT = -803, ARKWEB_ERR_DNS_CACHE_MISS = -804, ARKWEB_ERR_DNS_SEARCH_EMPTY = -805, ARKWEB_ERR_DNS_SORT_ERROR = -806,<br/>ARKWEB_ERR_DNS_SECURE_RESOLVER_HOSTNAME_RESOLUTION_FAILED = -808, ARKWEB_ERR_DNS_NAME_HTTPS_ONLY = -809, ARKWEB_ERR_DNS_REQUEST_CANCELED = -810, ARKWEB_ERR_DNS_NO_MATCHING_SUPPORTED_ALPN = -811<br/>} | 定义ArkWeb网络协议栈错误码。  | 
-| [ArkWeb_CustomSchemeOption](#arkweb_customschemeoption) {<br/>OH_ARKWEB_SCHEME_OPTION_NONE = 0, ARKWEB_SCHEME_OPTION_STANDARD = 1 &lt;&lt; 0, ARKWEB_SCHEME_OPTION_LOCAL = 1 &lt;&lt; 1, ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED = 1 &lt;&lt; 2,<br/>ARKWEB_SCHEME_OPTION_SECURE = 1 &lt;&lt; 3, ARKWEB_SCHEME_OPTION_CORS_ENABLED = 1 &lt;&lt; 4, ARKWEB_SCHEME_OPTION_CSP_BYPASSING = 1 &lt;&lt; 5, ARKWEB_SCHEME_OPTION_FETCH_ENABLED = 1 &lt;&lt; 6<br/>} | custom scheme的配置信息。  | 
+| [ArkWeb_CustomSchemeOption](#arkweb_customschemeoption) {<br/>OH_ARKWEB_SCHEME_OPTION_NONE = 0, ARKWEB_SCHEME_OPTION_STANDARD = 1 &lt;&lt; 0, ARKWEB_SCHEME_OPTION_LOCAL = 1 &lt;&lt; 1, ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED = 1 &lt;&lt; 2,<br/>ARKWEB_SCHEME_OPTION_SECURE = 1 &lt;&lt; 3, ARKWEB_SCHEME_OPTION_CORS_ENABLED = 1 &lt;&lt; 4, ARKWEB_SCHEME_OPTION_CSP_BYPASSING = 1 &lt;&lt; 5, ARKWEB_SCHEME_OPTION_FETCH_ENABLED = 1 &lt;&lt; 6, ARKWEB_SCHEME_OPTION_CODE_CACHE_ENABLED = 1 &lt;&lt; 7<br/>} | custom scheme的配置信息。  | 
+| [ArkWeb_ResourceType](#arkweb_resourcetype) {<br/>MAIN_FRAME = 0, SUB_FRAME = 1, STYLE_SHEET = 2, SCRIPT = 3,<br/>IMAGE = 4, FONT_RESOURCE = 5, SUB_RESOURCE = 6, OBJECT = 7,<br/>MEDIA = 8, WORKER = 9, SHARED_WORKER = 10, PREFETCH = 11,<br/>FAVICON = 12, XHR = 13, PING = 14, SERVICE_WORKER = 15,<br/>CSP_REPORT = 16, PLUGIN_RESOURCE = 17, NAVIGATION_PRELOAD_MAIN_FRAME = 19, NAVIGATION_PRELOAD_SUB_FRAME = 20<br/>} | 请求的资源类型。这些常量与Chromium中的ResourceType的对应项相匹配，不应重新编号。  | 
 
 
 ### 函数
@@ -102,6 +104,7 @@
 | void [OH_ArkWebResourceRequest_GetUrl](#oh_arkwebresourcerequest_geturl) (const [ArkWeb_ResourceRequest](#arkweb_resourcerequest) \*resourceRequest, char \*\*url) | 获取请求的url。  | 
 | void [OH_ArkWebResourceRequest_GetHttpBodyStream](#oh_arkwebresourcerequest_gethttpbodystream) (const [ArkWeb_ResourceRequest](#arkweb_resourcerequest) \*resourceRequest, [ArkWeb_HttpBodyStream](#arkweb_httpbodystream) \*\*httpBodyStream) | 创建一个ArkWeb_HttpBodyStream，用于读取请求的上传数据。  | 
 | void [OH_ArkWebResourceRequest_DestroyHttpBodyStream](#oh_arkwebresourcerequest_destroyhttpbodystream) ([ArkWeb_HttpBodyStream](#arkweb_httpbodystream) \*httpBodyStream) | 销毁ArkWeb_HttpBodyStream对象。  | 
+| int32_t [OH_ArkWebResourceRequest_GetResourceType](#oh_arkwebresourcerequest_getresourcetype) (const [ArkWeb_ResourceRequest](#arkweb_resourcerequest) \*resourceRequest) | 获取请求的资源类型。  | 
 | int32_t [OH_ArkWebHttpBodyStream_SetUserData](#oh_arkwebhttpbodystream_setuserdata) ([ArkWeb_HttpBodyStream](#arkweb_httpbodystream) \*httpBodyStream, void \*userData) | 将一个用户数据设置到ArkWeb_HttpBodyStream对象中。  | 
 | void \* [OH_ArkWebHttpBodyStream_GetUserData](#oh_arkwebhttpbodystream_getuserdata) (const [ArkWeb_HttpBodyStream](#arkweb_httpbodystream) \*httpBodyStream) | 从ArkWeb_HttpBodyStream获取用户数据。  | 
 | int32_t [OH_ArkWebHttpBodyStream_SetReadCallback](#oh_arkwebhttpbodystream_setreadcallback) ([ArkWeb_HttpBodyStream](#arkweb_httpbodystream) \*httpBodyStream, [ArkWeb_HttpBodyStreamReadCallback](#arkweb_httpbodystreamreadcallback) readCallback) | 为OH_ArkWebHttpBodyStream_Read设置回调函数，OH_ArkWebHttpBodyStream_Read的结果将通过readCallback通知给调用者。 该回调函数将在与OH_ArkWebHttpBodyStream_Read相同的线程中运行。  | 
@@ -446,6 +449,18 @@ typedef struct ArkWeb_ResourceRequest_ ArkWeb_ResourceRequest
 **描述：**
 
 对应内核的一个请求，可以通过OH_ArkWeb_ResourceRequest获取请求的URL、method、post data以及其他信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 12
+
+### ArkWeb_ResourceType
+
+```
+typedef enum ArkWeb_ResourceType ArkWeb_ResourceType
+```
+**描述**
+请求的资源类型。这些常量与Chromium中的ResourceType的对应项相匹配，不应重新编号。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1396,6 +1411,28 @@ void OH_ArkWebResourceRequest_GetRequestHeaders (const ArkWeb_ResourceRequest * 
 | resourceRequest | ArkWeb_ResourceRequest。  | 
 | requestHeaderList | 请求的请求头列表。 | 
 
+### OH_ArkWebResourceRequest_GetResourceType()
+
+```
+int32_t OH_ArkWebResourceRequest_GetResourceType (const ArkWeb_ResourceRequest * resourceRequest)
+```
+**描述**
+获取请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| resourceRequest | ArkWeb_ResourceRequest。  | 
+
+**返回：**
+
+请求的资源类型。如果resourceRequest无效，则为-1。
+
 
 ### OH_ArkWebResourceRequest_GetUrl()
 
@@ -2054,7 +2091,43 @@ custom scheme的配置信息。
 | ARKWEB_SCHEME_OPTION_CORS_ENABLED  | 如果设置了ARKWEB_SCHEME_OPTION_CORS_ENABLED，则该scheme可以发送CORS请求。 在大多数情况下，当设置了ARKWEB_SCHEME_OPTION_STANDARD时，应该设置此值。 | 
 | ARKWEB_SCHEME_OPTION_CSP_BYPASSING  | 如果设置了ARKWEB_SCHEME_OPTION_CSP_BYPASSING，则该scheme可以绕过内容安全策略（CSP）检查。 在大多数情况下，当设置了ARKWEB_SCHEME_OPTION_STANDARD时，不应设置此值。 | 
 | ARKWEB_SCHEME_OPTION_FETCH_ENABLED  | 如果设置了ARKWEB_SCHEME_OPTION_FETCH_ENABLED，则可以发起该scheme的FETCH API请求。 | 
+| ARKWEB_SCHEME_OPTION_CODE_CACHE_ENABLED  | 如果设置了ARKWEB_SCHEME_OPTION_CODE_CACHE_ENABLED，则该scheme的js资源支持生成code cache。 | 
 
+
+### ArkWeb_ResourceType
+
+```
+enum ArkWeb_ResourceType
+```
+**描述**
+请求的资源类型。这些常量与Chromium中的ResourceType的对应项相匹配，不应重新编号。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| MAIN_FRAME  | 顶层页面。&nbsp;&nbsp; | 
+| SUB_FRAME  | Frame或Iframe。&nbsp;&nbsp; | 
+| STYLE_SHEET  | CSS样式表。&nbsp;&nbsp; | 
+| SCRIPT  | 外部脚本。&nbsp;&nbsp; | 
+| IMAGE  | 图片（jpg/gif/png/以及其他）。&nbsp;&nbsp; | 
+| FONT_RESOURCE  | 字体。&nbsp;&nbsp; | 
+| SUB_RESOURCE  | 其他子资源。如果实际类型未知，则是默认类型。&nbsp;&nbsp; | 
+| OBJECT  | 插件的Object（或embed）标签，或者插件请求的资源。&nbsp;&nbsp; | 
+| MEDIA  | 媒体资源。&nbsp;&nbsp; | 
+| WORKER  | 专用工作线程的主资源。&nbsp;&nbsp; | 
+| SHARED_WORKER  | 共享工作线程的主资源。&nbsp;&nbsp; | 
+| PREFETCH  | 明确的预取请求。&nbsp;&nbsp; | 
+| FAVICON  | 网站图标。&nbsp;&nbsp; | 
+| XHR  | XMLHttpRequest。&nbsp;&nbsp; | 
+| PING  | /sendBeacon的Ping请求。&nbsp;&nbsp; | 
+| SERVICE_WORKER  | service worker的主资源。&nbsp;&nbsp; | 
+| CSP_REPORT  | 内容安全策略违规报告。&nbsp;&nbsp; | 
+| PLUGIN_RESOURCE  | 插件请求的资源。&nbsp;&nbsp; | 
+| NAVIGATION_PRELOAD_MAIN_FRAME  | 触发service worker预热的主frame跳转请求。&nbsp;&nbsp; | 
+| NAVIGATION_PRELOAD_SUB_FRAME  | 触发service worker预热的子frame跳转请求。&nbsp;&nbsp; | 
 
 ### ArkWeb_ErrorCode
 
@@ -2331,338 +2404,3 @@ enum ArkWeb_NetError
 | ARKWEB_ERR_DNS_NAME_HTTPS_ONLY  | DNS已识别请求因不安全的连接（http/ws）而被禁止。 应用程序应该像处理HTTP重定向一样处理这个错误，将连接重定向到安全的https或wss。 | 
 | ARKWEB_ERR_DNS_REQUEST_CANCELED  | 与此任务相关的所有DNS请求已被取消。 | 
 | ARKWEB_ERR_DNS_NO_MATCHING_SUPPORTED_ALPN  | HTTPS记录的主机名解析预期未能使用受支持协议的ALPN值进行解析。 | 
-
-
-## 示例代码
-
-
-index.html
-```html
-<!DOCTYPE html>
-<html lang="en-gb">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>run javascript demo</title>
-</head>
-<body>
-<h1>run JavaScript Ext demo</h1>
-<p id="webDemo"></p>
-<br>
-<button type="button" style="height:30px;width:200px" onclick="testNdkProxyObjMethod1()">test ndk method1 ! </button>
-<br>
-<br>
-<button type="button" style="height:30px;width:200px" onclick="testNdkProxyObjMethod2()">test ndk method2 ! </button>
-<br>
-
-</body>
-<script type="text/javascript">
-
-function testNdkProxyObjMethod1() {
-      if (window.ndkProxy == undefined) {
-            document.getElementById("webDemo").innerHTML = "m114 ndkProxy undefined"
-            return "m114 objName undefined"
-      }
-
-      if (window.ndkProxy.method1 == undefined) {
-            document.getElementById("webDemo").innerHTML = "m114 ndkProxy method1 undefined"
-            return "m114 objName  test undefined"
-      }
-
-      if (window.ndkProxy.method2 == undefined) {
-            document.getElementById("webDemo").innerHTML = "m114 ndkProxy method2 undefined"
-            return "m114 objName  test undefined"
-      }
-      var retStr = window.ndkProxy.method1("hello", "world", [1.2, -3.4, 123.456], ["Saab", "Volvo", "BMW", undefined], 1.23456, 123789, true, false, 0,  undefined);
-      document.getElementById("webDemo").innerHTML  = "ndkProxy and method1 is ok, " + retStr;
-}
-
-function testNdkProxyObjMethod2() {
-      if (window.ndkProxy == undefined) {
-            document.getElementById("webDemo").innerHTML = "m114 ndkProxy undefined"
-            return "m114 objName undefined"
-      }
-
-      if (window.ndkProxy.method1 == undefined) {
-            document.getElementById("webDemo").innerHTML = "m114 ndkProxy method1 undefined"
-            return "m114 objName  test undefined"
-      }
-
-      if (window.ndkProxy.method2 == undefined) {
-            document.getElementById("webDemo").innerHTML = "m114 ndkProxy method2 undefined"
-            return "m114 objName  test undefined"
-      }
-
-    var student = {
-            name:"zhang",
-            sex:"man",
-            age:25
-    };
-    var cars = [student, 456, false, 4.567];
-
-    var retStr = window.ndkProxy.method2("hello", "world", false, cars);
-    document.getElementById("webDemo").innerHTML  = "ndkProxy and method2 is ok, " + retStr;
-}
-
-function runJSRetStr(data) {
-    const d = new Date();
-    let time = d.getTime();
-    return JSON.stringify(time)
-}
-</script>
-</html>
-```
-
-index.ets
-
-```ts
-import testNapi from 'libentry.so'
-import web_webview from '@ohos.web.webview';
-
-class testObj {
-  constructor() {
-  }
-
-  test(): string {
-    console.log('hwd ArkUI Web Component');
-    return "m114 ArkUI Web Component";
-  }
-
-  toString(): void {
-    console.log('Web Component toString');
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  webTag: string = 'web1211';
-  controller: web_webview.WebviewController = new web_webview.WebviewController(this.webTag);
-
-  @State testObjtest: testObj = new testObj();
-
-  aboutToAppear() {
-    console.error("aboutToAppear")
-    web_webview.WebviewController.setWebDebuggingAccess(true);
-    //初始化web ndk
-    testNapi.nativeWebInit(this.webTag);
-  }
-
-  aboutToDisAppear() {
-    console.error("aboutToDisAppear")
-  }
-
-  build() {
-    Column() {
-      Row() {
-        Button('runJS hello')
-          .fontSize(12)
-          .onClick(() => {
-            testNapi.runJavaScript(this.webTag, "runJSRetStr(\"" + "hello" + "\")");
-          })
-      }.height('20%')
-
-      Row() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-          .javaScriptAccess(true)
-          .fileAccess(true)
-          .onControllerAttached(() => {
-            console.error("ndk onControllerAttached webId: " + this.controller.getWebId());
-            // 设置回调函数
-            testNapi.nativeSetDestroy(this.webTag);
-          })
-      }.height('80%')
-    }
-  }
-}
-```
-
-hello.cpp
-
-```cpp
-
-#include "napi/native_api.h"
-#include <chrono>
-#include <string>
-
-#include "hilog/log.h"
-#include "web/native_interface_arkweb.h"
-
-constexpr unsigned int LOG_PRINT_DOMAIN = 0xFF00;
-
-std::chrono::time_point<std::chrono::high_resolution_clock> start;
-// 发送JS脚本到H5侧执行，执行结果的回调。
-static void RunJavaScriptCallback(const char *result) {
-    std::chrono::duration<double, std::milli> elapsed_ms = std::chrono::high_resolution_clock::now() - start;
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
-                 "ndk OH_NativeArkWeb_RunJavaScript end, cost time: %{public}f ms", elapsed_ms.count());
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk OH_NativeArkWeb_RunJavaScript result:%{public}s",
-                 result);
-}
-
-// 示例代码 ，注册了1个对象，2个方法
-static char *ProxyMethod1(const char **argv, int argc) {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk ProxyMethod1 argc:%{public}d", argc);
-    for (int i = 0; i < argc; i++) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk ProxyMethod1 argv[%{public}d]:%{public}s", i,
-                     argv[i]);
-    }
-    char *ret = (char *)"ArkWeb hello from native ProxyMethod1";
-    return ret;
-}
-
-static char *ProxyMethod2(const char **argv, int argc) {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk ProxyMethod2 argc:%{public}d", argc);
-    for (int i = 0; i < argc; i++) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk ProxyMethod2 argv[%{public}d]:%{public}s", i,
-                     argv[i]);
-    }
-    char *ret = (char *)"ArkWeb hello from native ProxyMethod2";
-    return ret;
-}
-
-void ValidCallback(const char *webName) {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk ValidCallback webName: %{public}s", webName);
-    // 注册对象
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk RegisterJavaScriptProxy begin");
-    const char *methodName[2] = {"method1", "method2"};
-    NativeArkWeb_OnJavaScriptProxyCallback callback[2] = {ProxyMethod1, ProxyMethod2};
-
-    // 调用ndk接口 注册对象
-    // 如此注册的情况下，在H5页面就可以使用proxy.method1、proxy.method1调用此文件下的ProxyMethod1和ProxyMethod2方法了
-    OH_NativeArkWeb_RegisterJavaScriptProxy(webName, "ndkProxy", methodName, callback, 2, false);
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk RegisterJavaScriptProxy end");
-}
-
-void DestroyCallback(const char *webName) {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk DestoryCallback webName: %{public}s", webName);
-    // do what you need, eg: some clean-up work
-}
-
-static napi_value NativeWebInit(napi_env env, napi_callback_info info) {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit start");
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取第一个参数 webName
-    size_t webNameSize = 0;
-    napi_get_value_string_utf8(env, args[0], nullptr, 0, &webNameSize);
-    char *webNameValue = new (std::nothrow) char[webNameSize + 1];
-    size_t webNameLength = 0;
-    napi_get_value_string_utf8(env, args[0], webNameValue, webNameSize + 1, &webNameLength);
-    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit webName:%{public}s", webNameValue);
-
-    // 注js proxy册回调函数
-    NativeArkWeb_OnValidCallback ptr = ValidCallback;
-    OH_NativeArkWeb_SetJavaScriptProxyValidCallback(webNameValue, ptr);
-    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit ValidCallback set:%{public}p", ptr);
-    NativeArkWeb_OnValidCallback retValidCallback = OH_NativeArkWeb_GetJavaScriptProxyValidCallback(webNameValue);
-    if (retValidCallback) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit ValidCallback get:%{public}p",
-                     retValidCallback);
-    } else {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk retValidCallback null");
-    }
-
-    // 注册destroy回调函数
-    OH_NativeArkWeb_SetDestroyCallback(webNameValue, DestroyCallback);
-    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit DestroyCallback:%{public}p",
-                 DestroyCallback);
-    auto retDestroyCallback1 = OH_NativeArkWeb_GetDestroyCallback(webNameValue);
-    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit DestroyCallback get:%{public}p",
-                 retDestroyCallback1);
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeWebInit end");
-
-    return nullptr;
-}
-
-static napi_value NativeSetDestroy(napi_env env, napi_callback_info info) {
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy start");
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    // 获取第一个参数 webTag
-    size_t webTagSize = 0;
-    napi_get_value_string_utf8(env, args[0], nullptr, 0, &webTagSize);
-    char *webTagValue = new (std::nothrow) char[webTagSize + 1];
-    size_t webTagLength = 0;
-    napi_get_value_string_utf8(env, args[0], webTagValue, webTagSize + 1, &webTagLength);
-    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy webTag:%{public}s", webTagValue);
-
-    // 注册destroy回调函数
-    OH_NativeArkWeb_SetDestroyCallback(webTagValue, DestroyCallback);
-    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy DestroyCallback:%{public}p",
-                 DestroyCallback);
-    auto retDestroyCallback1 = OH_NativeArkWeb_GetDestroyCallback(webTagValue);
-    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy DestroyCallback get:%{public}p",
-                 retDestroyCallback1);
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk NativeSetDestroy end");
-    return nullptr;
-}
-
-// 发送JS脚本到H5侧执行
-static napi_value RunJavaScript(napi_env env, napi_callback_info info) {
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    // 获取第一个参数 webName
-    size_t webNameSize = 0;
-    napi_get_value_string_utf8(env, args[0], nullptr, 0, &webNameSize);
-    char *webNameValue = new (std::nothrow) char[webNameSize + 1];
-    size_t webNameLength = 0;
-    napi_get_value_string_utf8(env, args[0], webNameValue, webNameSize + 1, &webNameLength);
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb", "ndk OH_NativeArkWeb_RunJavaScript webName:%{public}s",
-                 webNameValue);
-
-    // 获取第二个参数 jsCode
-    size_t bufferSize = 0;
-    napi_get_value_string_utf8(env, args[1], nullptr, 0, &bufferSize);
-    char *jsCode = new (std::nothrow) char[bufferSize + 1];
-    size_t byteLength = 0;
-    napi_get_value_string_utf8(env, args[1], jsCode, bufferSize + 1, &byteLength);
-
-    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "ArkWeb",
-                 "ndk OH_NativeArkWeb_RunJavaScript jsCode len:%{public}d", strlen(jsCode));
-
-    start = std::chrono::high_resolution_clock::now();
-
-    // 调用ndk接口
-    OH_NativeArkWeb_RunJavaScript(webNameValue, jsCode, RunJavaScriptCallback);
-    return nullptr;
-}
-
-EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
-    napi_property_descriptor desc[] = {
-        {"nativeWebInit", nullptr, NativeWebInit, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"runJavaScript", nullptr, RunJavaScript, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"nativeSetDestroy", nullptr, NativeSetDestroy, nullptr, nullptr, nullptr, napi_default, nullptr},
-    };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-EXTERN_C_END
-
-static napi_module demoModule = {
-    .nm_version = 1,
-    .nm_flags = 0,
-    .nm_filename = nullptr,
-    .nm_register_func = Init,
-    .nm_modname = "entry",
-    .nm_priv = ((void *)0),
-    .reserved = {0},
-};
-
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
-```
-
-index.d.ts
-```ts
-export const nativeWebInit: (webName: string) => void;
-export const runJavaScript: (webName: string, jsCode: string) => void;
-export const nativeSetDestroy: (webTag: string) => void;
-```

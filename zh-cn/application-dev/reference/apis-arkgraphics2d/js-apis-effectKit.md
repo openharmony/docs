@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import effectKit from '@ohos.effectKit';
+import { effectKit } from "@kit.ArkGraphics2D";
 ```
 
 ## effectKit.createEffect
@@ -44,8 +44,8 @@ createEffect(source: image.PixelMap): Filter
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -88,9 +88,9 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
-import { BusinessError } from "@ohos.base";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+import { BusinessError } from "@kit.BasicServicesKit";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -139,9 +139,9 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
-import { BusinessError } from "@ohos.base";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+import { BusinessError } from "@kit.BasicServicesKit";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -184,8 +184,8 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -230,8 +230,8 @@ createColorPicker(source: image.PixelMap, region:Array\<number>, callback: Async
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -295,8 +295,8 @@ getMainColor(): Promise\<Color>
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -343,8 +343,8 @@ getMainColorSync(): Color
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -390,8 +390,8 @@ getLargestProportionColor(): Color
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -442,8 +442,8 @@ getTopProportionColors(colorCount: number): Array<Color | null>
 **示例：**
 
 ```js
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -493,8 +493,8 @@ getHighestSaturationColor(): Color
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -540,8 +540,8 @@ getAverageColor(): Color
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -593,8 +593,8 @@ isBlackOrWhiteOrGrayColor(color: number): boolean
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts: image.InitializationOptions = {
@@ -649,8 +649,8 @@ blur(radius: number): Filter
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -688,8 +688,8 @@ invert(): Filter
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -732,8 +732,8 @@ setColorMatrix(colorMatrix: Array\<number>): Filter
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -785,8 +785,8 @@ brightness(bright: number): Filter
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -828,8 +828,8 @@ grayscale(): Filter
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -871,8 +871,8 @@ getEffectPixelMap(): Promise<image.PixelMap>
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -911,8 +911,8 @@ getPixelMap(): image.PixelMap
 **示例：**
 
 ```ts
-import image from "@ohos.multimedia.image";
-import effectKit from "@ohos.effectKit";
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {

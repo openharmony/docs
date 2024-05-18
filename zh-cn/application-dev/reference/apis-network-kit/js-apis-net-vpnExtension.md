@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```js
-import vpnExt from "@ohos.net.vpnExtension";
+import { vpnExt } from '@kit.NetworkKit';
 ```
 
 ## vpnExt.startVpnExtensionAbility
@@ -50,9 +50,8 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 Stage 模型示例：
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension';
+import { common, Want } from '@kit.AbilityKit';
+import { vpnExt } from '@kit.NetworkKit';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -120,9 +119,8 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 Stage 模型示例：
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension';
+import { common, Want } from '@kit.AbilityKit';
+import { vpnExt } from '@kit.NetworkKit';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -190,15 +188,14 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 Stage 模型示例：
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
+import { vpnExt, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
 
+let context: vpnExt.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
+    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
 ```
@@ -241,11 +238,9 @@ create(config: VpnConfig): Promise\<number\>
 **示例：**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import hilog from '@ohos.hilog';
+import { vpnExt, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let context: vpnExt.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
@@ -345,10 +340,9 @@ protect(socketFd: number): Promise\<void\>
 **示例：**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import hilog from '@ohos.hilog';
+import { vpnExt, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let g_tunnelFd = -1;
 let context: vpnExt.VpnExtensionContext;
@@ -400,10 +394,8 @@ destroy(): Promise\<void\>
 **示例：**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { vpnExt, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let context: vpnExt.VpnExtensionContext;

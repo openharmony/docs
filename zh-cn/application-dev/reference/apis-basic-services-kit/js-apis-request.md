@@ -2042,7 +2042,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 使用 CommonEventData 类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中 CommonEventData.code 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED; CommonEventData.data 表示任务的 taskId。
 
-事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。
+<!--Del-->事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。<!--DelEnd-->
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2100,7 +2100,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。<br/>-true：是 <br/>-false：否<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | retry | boolean | 否 | 是否为后台任务启用自动重试，仅应用于后台任务，默认为true。<br/>-true：是 <br/>-false：否<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | redirect | boolean | 否 | 是否允许重定向，默认为true。<br/>-true：是 <br/>-false：否<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| proxy | string | 否 | 设置代理地址，其最大长度为512个字符，默认为空。<br/>代理地址格式:"http://\<domain or address\>:\<port\>" |
+| proxy<sup>12+</sup> | string | 否 | 设置代理地址，其最大长度为512个字符，默认为空。<br/>代理地址格式:"http://\<domain or address\>:\<port\>" |
 | index | number | 否 | 任务的路径索引，通常用于任务断点续传，默认为0。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | begins | number | 否 | 文件起点，通常用于断点续传。默认值为0，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的起点位置（http协议中设置"Range"选项）。<br/>-上传时，在上传开始时读取。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | ends | number | 否 | 文件终点，通常用于断点续传。默认值为-1，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的结束位置（http协议中设置"Range"选项）。<br/>-上传时，在上传时结束读取。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |

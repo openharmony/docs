@@ -223,7 +223,7 @@ scrollBarWidth(value: number | string)
 
 cachedCount(value: number)
 
-设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。设置为小于0的值时，按默认值显示。具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。
+设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。设置为小于0的值时，按默认值显示。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
 设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。
 
@@ -594,21 +594,6 @@ onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute
 | ----------------------------------------------------- | -------------------- |
 | [ComputedBarAttribute](#computedbarattribute对象说明) | 滚动条的位置及长度。 |
 
-### onScroll<sup>10+</sup>
-
-onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void)
-
-网格滑动时触发。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名       | 类型                                                    | 必填 | 说明                                                         |
-| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scrollOffset | number                                                  | 是   | 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。 |
-| scrollState  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
-
 ### onReachStart<sup>10+</sup>
 
 onReachStart(event: () => void)
@@ -687,6 +672,8 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 
 从API version 12开始废弃不再使用，建议使用[onDidScroll](#ondidscroll12)替代。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -728,6 +715,8 @@ onDidScroll(handler: OnScrollCallback)
 | handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 网格滑动时触发的回调。 |
 
 ## ItemDragInfo对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称         | 类型         |   描述         |
 | ---------- | ---------- | ---------- |
@@ -881,7 +870,7 @@ struct GridExample {
         console.info("XXX" + 'Grid onScrollBarUpdate,index : ' + index.toString() + ",offset" + offset.toString())
         return { totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4 }
       })  //只适用于当前示例代码数据源，如果数据源有变化，则需要修改该部分代码，或者删掉此属性
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(scrollOffset.toString())
         console.info(scrollState.toString())
       })
@@ -1309,3 +1298,79 @@ struct GridExample {
 ```
 
 ![cellLength](figures/cellLength.gif)
+
+### 示例7
+
+双指缩放修改Grid列数。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  @State numbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19']
+  @State columns: number = 2
+
+  aboutToAppear() {
+    let lastCount = AppStorage.get<number>('columnsCount')
+    if (typeof lastCount != 'undefined') {
+      this.columns = lastCount
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Row() {
+        Text('双指缩放改变列数')
+          .height('5%')
+          .margin({ top: 10, left: 20 })
+      }
+
+      Grid() {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr '.repeat(this.columns))
+      .columnsGap(10)
+      .rowsGap(10)
+      .width('90%')
+      .scrollBar(BarState.Off)
+      .backgroundColor(0xFAEEE0)
+      .height('100%')
+      .cachedCount(3)
+      // 切换列数item位置重排动画
+      .animation({
+        duration: 300,
+        curve: Curve.Smooth
+      })
+      .priorityGesture(
+        PinchGesture()
+          .onActionEnd((event: GestureEvent) => {
+            console.info('end scale:' + event.scale)
+            // 手指分开，减少列数以放大Item，触发阈值可以自定义，示例为2
+            if (event.scale > 2) {
+              this.columns--
+            } else if (event.scale < 0.6) {
+              this.columns++
+            }
+            // 可以根据设备屏幕宽度设定最大和最小列数，此处以最小1列最大4列为例
+            this.columns = Math.min(4, Math.max(1, this.columns));
+            AppStorage.setOrCreate<number>('columnsCount', this.columns)
+          })
+      )
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![pinch](figures/grid-pinch.gif)

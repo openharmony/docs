@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import displaySync from '@ohos.graphics.displaySync';
+import { displaySync } from '@kit.ArkGraphics2D';
 ```
 
 ## displaySync.create
@@ -168,7 +168,7 @@ backDisplaySync?.start()
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIContext } from '@kit.ArkUI';
 
 let uiContext: UIContext = this.getUIContext()
 

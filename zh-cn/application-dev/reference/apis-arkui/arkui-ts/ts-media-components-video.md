@@ -136,6 +136,42 @@ loop(value: boolean)
 | ------ | ------- | ---- | ---------------------------------------- |
 | value  | boolean | 是   | 是否单个视频循环播放。<br/>默认值：false |
 
+### enableAnalyzer<sup>12+</sup>
+
+enableAnalyzer(enable: boolean)
+
+设置组件支持AI分析。使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
+不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| enable | boolean | 是 | 是否启用AI分析功能 |
+
+> **说明：**
+>
+> 当前仅在使用自定义控制栏([controls](#controls)属性设置为false)时支持该功能。
+> 该特性依赖设备能力。
+
+### analyzerConfig<sup>12+</sup>
+
+analyzerConfig(config: ImageAnalyzerConfig)
+
+设置AI分析识别类型，包括主体识别和文字识别功能，默认全部开启。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是 | 设置AI分析识别类型 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -373,6 +409,8 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ## 示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -481,5 +519,54 @@ interface DurationObject {
 
 interface TimeObject {
   time: number;
+}
+```
+
+### 示例2
+
+图像分析功能使用示例。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ImageAnalyzerExample {
+  @State videoSrc: Resource = $rawfile('video1.mp4')
+  @State previewUri: Resource = $r('app.media.poster1')
+  @State showControls: boolean = true
+  controller: VideoController = new VideoController()
+  config: ImageAnalyzerConfig = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
+  }
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        controller: this.controller
+      })
+        .width('100%')
+        .height(600)
+        .controls(false)
+        .enableAnalyzer(true)
+        .analyzerConfig(this.config)
+        .onStart(() => {
+          console.info('onStart')
+        })
+        .onPause(() => {
+          console.info('onPause')
+        })
+
+      Row() {
+        Button('start').onClick(() => {
+          this.controller.start() // 开始播放
+        }).margin(5)
+        Button('pause').onClick(() => {
+          this.controller.pause() // 暂停播放
+        }).margin(5)
+      }
+    }
+  }
 }
 ```

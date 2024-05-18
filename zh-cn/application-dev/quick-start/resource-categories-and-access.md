@@ -4,7 +4,7 @@
 
 - 应用资源：借助资源文件能力，开发者在应用中自定义资源，自行管理这些资源在不同的设备或配置中的表现。
 
-- 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](../../design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
+- 系统资源：开发者直接使用系统预置的资源定义（即[分层参数](https://docs.openharmony.cn/pages/v4.0/zh-cn/design/ux-design/design-resources.md)，同一资源ID在设备类型、深浅色等不同配置下有不同的取值）。
 
 ## 资源分类
 
@@ -98,9 +98,9 @@ en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需�
 
 | 目录类型    | 说明                                     | 资源文件                                     |
 | --------- | ---------------------------------------- | ---------------------------------------- |
-| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是-2^128-2^128<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是-2^31-2^31-1<br/>-&nbsp;pattern，样式（仅支持系统应用使用）<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 <br/>-&nbsp;theme，主题（仅支持系统应用使用）| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
+| element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下仅支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型，范围是-2^128-2^128<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型，范围是-2^31-2^31-1<!--Del--><br/>-&nbsp;pattern，样式（仅支持系统应用使用）<!--DelEnd--><br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串，[格式化字符串请参考API文档](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync10)<!--Del--><br/>-&nbsp;theme，主题（仅支持系统应用使用）<!--DelEnd-->| element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<!--Del--><br/>-&nbsp;pattern.json<!--DelEnd--><br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。<br/>图片和音视频的类型说明见表4和表5。              | 文件名可自定义，例如：icon.png。                     |
-| profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
+| profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持json文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
 
 **媒体资源类型说明**
 
@@ -173,8 +173,12 @@ string.json文件的内容如下：
         },
 	{
             "name":"message_arrive",
-            "value":"We will arrive at %s."
-        }
+            "value":"We will arrive at %1$s."
+        },
+  {
+            "name":"message_notification",
+            "value":"Hello, %1$s!,You have %2$d new messages."
+  }
     ]
 }
 ```
@@ -282,7 +286,7 @@ string资源配置attr属性示例如下：
 
 ### 单HAP包应用资源
 
- - 通过```"$r"```或```"$rawfile"```引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
+ - 通过```"$r"```或```"$rawfile"```引用资源。<br/>对于“color”、“float”、“string”、“plural”、“media”、“profile”等类型的资源，通过```"$r('app.type.name')"```形式引用。其中，app为resources目录中定义的资源；type为资源类型或资源的存放位置；name为资源名，开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，通过```$r('app.string.label','aaa','bbb',444)```形式引用。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式引用。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
    > **说明：**
    >
@@ -314,9 +318,11 @@ string资源配置attr属性示例如下：
 
 ### 跨HAP/HSP包应用资源
 
+<!--Del-->
 #### bundle不同，跨bundle访问（仅支持系统应用使用）
 
 - 通过createModuleContext(bundleName, moduleName)接口创建对应HAP/HSP包的上下文，获取resourceManager对象后，调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)访问不同资源。<br/>例如：getContext.createModuleContext(bundleName， moduleName).resourceManager.getStringByNameSync('app.string.XXX')。
+<!--DelEnd-->
 
 #### bundle相同，跨module访问
 
@@ -363,7 +369,7 @@ string资源配置attr属性示例如下：
 
 ### 系统资源
 
-除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。可以查看[应用UX设计中关于资源的介绍](../../design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。
+除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。可以查看[应用UX设计中关于资源的介绍](https://docs.openharmony.cn/pages/v4.0/zh-cn/design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。
 
 在开发过程中，分层参数的用法与资源限定词基本一致。对于系统资源，可以通过```“$r('sys.type.resource_id')”```的形式引用。其中，sys为系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”；resource_id为资源id。
 
@@ -444,9 +450,40 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
   }
 }
 ```
+<!--Del-->
+包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+```{
+  "app":{
+    "bundleName": "com.example.myapplication.overlay",
+    "vendor" : "example",
+    "versinCode": "1000000",
+    "versionName": "1.0.0.1",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "targetBundleName": "com.example.myapplication",
+    "targetPariority": 1,
+  },
+  "module":{
+    "name": "entry_overlay_module_name",
+    "type": "shared",
+    "description": "$string:entry_overlay_desc",
+    "deviceTypes": [
+      "default",
+      "tablet",
+    ],
+    "deliverywithInstall": true,
+
+    "targetModuleName": "entry_module_name",
+    "targetPriority": 1,
+  }
+}
+```
+<!--DelEnd-->
+
 > **说明：**
+> - targetBundleName: 字符串类型，指定要overlay的bundleName
 >
-> - targetModuleName: 字符串类型，指定要overlay的moduleName
+> - targetModuleName: 字符串类型，指定要overlay的应用中的目标module
 >
 > - targetPriority： 整数类型，指定overlay优先级
 >

@@ -32,13 +32,13 @@ The following table describes the attributes for querying an asset.
 | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | Type: uint8[]<br>Length: 1-2048 bytes| No| Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: uint8[]<br>Length: 1-2048 bytes| No| Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | ASSET_TAG_RETURN_TYPE           | Type: uint32_t<br>Value range: see [Asset_ReturnType](../../reference/apis-asset-store-kit/_asset_type.md#asset_returntype)| No    | Type of the asset query result to return.                                        |
-| ASSET_TAG_RETURN_LIMIT          | Type: uint32_t                                              | No    | Maximum number of asset records returned.                                        |
+| ASSET_TAG_RETURN_LIMIT          | Type: uint32_t                                              | No    | Maximum number of asset records to return.                                        |
 | ASSET_TAG_RETURN_OFFSET         | Type: uint32_t<br>Value range: 1-65536                           | No    | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.                 |
 | ASSET_TAG_RETURN_ORDERED_BY     | Type: uint32_t<br>Value: ASSET_TAG_DATA_LABEL_xxx          | No    | How the query results are sorted. Currently, the results can be sorted only by **ASSET_TAG_DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
 
 ## Constraints
 
-The assets queried are transmitted to the service through the IPC channel. Due to the limitation of the IPC buffer size, the maximum number of assets to be queried at a time cannot exceed 40.
+The assets queried are transmitted to the service through an IPC channel. Due to the limitation of the IPC buffer size, the maximum number of assets to be queried at a time cannot exceed 40.
 
 ## Example
 
@@ -146,7 +146,7 @@ Query attributes of assets with the tag of **demo_label** and return a total of 
       if (ret == ASSET_SUCCESS) {
          // Parse the result.
          for (uint32_t i = 0; i < resultSet.count; i++) {
-               // Parse the data alias: the data is alias->blob.data, the size is alias->blob.size..
+               // Parse the data alias: the data is alias->blob.data, the size is alias->blob.size.
                Asset_Attr *alias = OH_Asset_ParseAttr(resultSet.results + i, ASSET_TAG_ALIAS);
          }
       }

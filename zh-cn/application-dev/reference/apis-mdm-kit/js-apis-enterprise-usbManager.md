@@ -1,0 +1,291 @@
+# @ohos.enterprise.usbManager（USB管理）
+
+本模块提供USB管理能力。
+
+> **说明**：
+>
+> 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口仅可在Stage模型下使用。
+>
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将设备管理应用激活后调用，实现相应功能。
+
+## 导入模块
+
+```ts
+import usbManager from '@ohos.enterprise.usbManager';
+```
+
+## usbManager.addAllowedUsbDevices
+
+addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
+
+指定设备管理应用添加USB设备可用白名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名       | 类型                                                    | 必填 | 说明                                        |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------- |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                              |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | 是   | USB设备ID数组。添加后的数组长度上限为1000。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | the application is not an administrator of the device.       |
+| 9200002  | the administrator application does not have permission to manage the device. |
+| 9200010  | a conflicting policy has been configured.                    |
+| 201      | the application does not have permission to call this function. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  let usbDeviceIds: Array<usbManager.UsbDeviceId> = [{
+      vendorId: 1,
+      productId: 1
+  }];
+  usbManager.addAllowedUsbDevices(wantTemp, usbDeviceIds);
+  console.info(`Succeeded in adding allowed USB devices.`);
+} catch (err) {
+  console.error(`Failed to adding allowed USB devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## usbManager.removeAllowedUsbDevices
+
+removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
+
+指定设备管理应用移除USB设备可用白名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名       | 类型                                                    | 必填 | 说明            |
+| ------------ | ------------------------------------------------------- | ---- | --------------- |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。  |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid)>                      | 是   | USB设备ID数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | the application is not an administrator of the device.       |
+| 9200002  | the administrator application does not have permission to manage the device. |
+| 201      | the application does not have permission to call this function. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  let usbDeviceIds: Array<usbManager.UsbDeviceId> = [{
+      vendorId: 1,
+      productId: 1
+  }];
+  usbManager.removeAllowedUsbDevices(wantTemp, usbDeviceIds);
+  console.info(`Succeeded in removing allowed USB devices.`);
+} catch (err) {
+  console.error(`Failed to removing allowed USB devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## usbManager.getAllowedUsbDevices
+
+getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
+
+指定设备管理应用获取USB设备可用白名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+
+**返回值：**
+
+| 类型                               | 说明                      |
+| ---------------------------------- | ------------------------- |
+| Array<[UsbDeviceId](#usbdeviceid)> | 可用USB白名单设备ID数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | the application is not an administrator of the device.       |
+| 9200002  | the administrator application does not have permission to manage the device. |
+| 201      | the application does not have permission to call this function. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  let result: Array<usbManager.UsbDeviceId> = usbManager.getAllowedUsbDevices(wantTemp);
+  console.info(`Succeeded in removing allowed USB devices. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to removing allowed USB devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## usbManager.setUsbStorageDeviceAccessPolicy
+
+setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
+
+指定设备管理应用设置USB存储设备访问策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名    | 类型                                                    | 必填 | 说明                  |
+| --------- | ------------------------------------------------------- | ---- | --------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。        |
+| usbPolicy | [UsbPolicy](#usbpolicy)                                 | 是   | USB存储设备访问策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | the application is not an administrator of the device.       |
+| 9200002  | the administrator application does not have permission to manage the device. |
+| 9200010  | a conflicting policy has been configured.                    |
+| 201      | the application does not have permission to call this function. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.DISABLED;
+  usbManager.setUsbStorageDeviceAccessPolicy(wantTemp, policy);
+  console.info(`Succeeded in setting USB storage device access policy.`);
+} catch (err) {
+  console.error(`Failed to setting USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## usbManager.getUsbStorageDeviceAccessPolicy
+
+getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
+
+指定设备管理应用获取USB存储设备访问策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_USB
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+
+**返回值：**
+
+| 类型                    | 说明                  |
+| ----------------------- | --------------------- |
+| [UsbPolicy](#usbpolicy) | USB存储设备访问策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | the application is not an administrator of the device.       |
+| 9200002  | the administrator application does not have permission to manage the device. |
+| 201      | the application does not have permission to call this function. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  let result: usbManager.UsbPolicy = usbManager.getUsbStorageDeviceAccessPolicy(wantTemp);
+  console.info(`Succeeded in getting USB storage device access policy. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed togetting USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## UsbDeviceId
+
+USB设备ID信息。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称      | 类型   | 必填 | 说明     |
+| --------- | ------ | ---- | -------- |
+| vendorId  | number | 是   | 厂商ID。 |
+| productId | number | 是   | 产品ID。 |
+
+## UsbPolicy
+
+USB读写策略的枚举。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| READ_WRITE | 0    | 可读可写。 |
+| READ_ONLY  | 1    | 只读。     |
+| DISABLED   | 2    | 禁用。     |

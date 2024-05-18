@@ -41,7 +41,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -86,7 +86,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -111,7 +111,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 获取系统支持的语言列表。
 
-**卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
+从API version 11开始，该类型支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -155,7 +155,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -197,7 +197,7 @@ static isSuggested(language: string, region?: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -222,7 +222,7 @@ static getSystemLanguage(): string
 
 获取系统语言。
 
-**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -397,7 +397,7 @@ static setAppPreferredLanguage(language: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -541,7 +541,7 @@ constructor(locale?: string)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -575,7 +575,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -905,7 +905,7 @@ add(field: string, amount: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -972,7 +972,7 @@ compareDays(date: Date): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -1718,7 +1718,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -2168,7 +2168,7 @@ static getTimePeriodName(hour:number, locale?: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -2210,7 +2210,7 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -2254,7 +2254,7 @@ static getInstance(mode: NormalizerMode): Normalizer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -2288,7 +2288,7 @@ normalize(text: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -2333,7 +2333,7 @@ constructor(icsPath: String)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -2367,7 +2367,7 @@ isHoliday(date?: Date): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
@@ -2412,7 +2412,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
