@@ -957,7 +957,6 @@ vibrate(duration: number): Promise&lt;void&gt;
 ```ts
 import { vibrator } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-
 vibrator.vibrate(1000).then(() => {
   console.info('Succeed in vibrating');
 }, (error: BusinessError) => {
