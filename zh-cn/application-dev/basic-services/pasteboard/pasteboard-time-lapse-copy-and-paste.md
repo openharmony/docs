@@ -26,8 +26,8 @@
 1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
    
    ```ts\
-   import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.arkData'
-   import {NusinessError, pasteboard} from '@kit.BasicServiceKit'
+   import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.arkData';
+   import {NusinessError, pasteboard} from '@kit.BasicServicesKit'
    ```
 
 2. 构造一条PlainText数据,并书写获取延时数据的函数。
