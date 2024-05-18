@@ -810,3 +810,89 @@ hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availab
 | MAIN_THREAD  | 只采集当前应用主线程     |
 | ALL_THREADS |  采集当前应用下所有线程   |
 
+## GcStats
+
+用于存储GC统计信息的键值对类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+
+**系统能力：**  SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 键类型          | 值类型    |
+| ------------- |--------|
+|  string | number |
+
+| GC属性名称                       | GC属性说明                    |
+|------------------------------|---------------------------|
+| ark.gc.gc-count              | 当前线程的GC次数。                |
+| ark.gc.gc-time               | 当前线程触发的GC总耗时，以ms为单位。      |
+| ark.gc.gc-bytes-allocated    | 当前线程Ark虚拟机已分配的内存大小，以B为单位。 |
+| ark.gc.gc-bytes-freed        | 当前线程GC成功回收的内存，以B为单位。      |
+| ark.gc.fullgc-longtime-count | 当前线程超长fullGC次数。           |
+
+## hidebug.getVMRuntimeStats<sup>12+</sup>
+
+getVMRuntimeStats(): GcStats
+
+获取系统gc全部统计信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**返回值：**
+
+| 类型  | 说明       |
+| ------ |----------|
+| GcStats | 系统GC统计信息。 |
+
+**示例**
+
+```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
+let vMRuntimeStats: hidebug.GcStats = hidebug.getVMRuntimeStats();
+hilog.info(0x0000, "testTag", `gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
+hilog.info(0x0000, "testTag", `gc-time: ${vMRuntimeStats['ark.gc.gc-time']}`);
+hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${vMRuntimeStats['ark.gc.gc-bytes-allocated']}`);
+hilog.info(0x0000, "testTag", `gc-bytes-freed: ${vMRuntimeStats['ark.gc.gc-bytes-freed']}`);
+hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-count']}`);
+```
+
+## hidebug.getVMRuntimeStat<sup>12+</sup>
+
+getVMRuntimeStat(item : string): number
+
+根据参数获取指定的系统gc统计信息。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明          |
+| -------- | ------ | ---- |-------------|
+| item | string | 是   | 需要获取GC信息的类型。 |
+
+| 输入参数                         | 返回值说明          |
+|------------------------------|----------------|
+| ark.gc.gc-count | 当前线程的GC次数。     |
+| ark.gc.gc-time | 当前线程触发的GC总耗时，以ms为单位。 |
+| ark.gc.gc-bytes-allocated | 当前线程Ark虚拟机已分配的内存大小，以B为单位。|
+| ark.gc.gc-bytes-freed | 当前线程GC成功回收的内存，以B为单位。 |
+| ark.gc.fullgc-longtime-count | 当前线程超长fullGC次数。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                                                                           |
+| ------- |----------------------------------------------------------------------------------------------------------------|
+| 401 | the parameter check failed,Possible causes:1. the arg is not a string parameter. 2. the arg is unknown property. |
+
+**示例**
+
+```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
+hilog.info(0x0000, "testTag", `gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
+hilog.info(0x0000, "testTag", `gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
+hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-allocated')}`);
+hilog.info(0x0000, "testTag", `gc-bytes-freed: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-freed')}`);
+hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat('ark.gc.fullgc-longtime-count')}`);
+```
