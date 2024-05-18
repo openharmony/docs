@@ -114,6 +114,18 @@ buffer数组的列表。
 | EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | 表示获取对象的critical属性。 |
 | EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | 表示获取对象的数据。         |
 
+## EncodingType<sup>12+</sup>
+
+ 表示获取X509证书主体名称编码格式的枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| ENCODING_UTF8 | 0      | UTF8编码格式。 |
+
 ## EncodingBlob
 
 带编码格式的证书二进制数组。
@@ -1241,13 +1253,19 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 ### getSubjectName
 
-getSubjectName() : DataBlob
+getSubjectName(encodingType?: EncodingType) : DataBlob
 
 表示获取X509证书主体名称。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType<sup>12+</sup> | [EncodingType](#encodingtype12)     | 否   |  编码类型。设置参数表示获取UTF8格式编码；不设置默认获取ASCII格式编码。<br>API 12后支持设置此参数。  |
 
 **返回值**：
 
@@ -1261,6 +1279,7 @@ getSubjectName() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -1307,6 +1326,12 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('getSubjectName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+    try {
+      let subjectNameutf8 = x509Cert.getSubjectName(cert.EncodingType.ENCODING_UTF8);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSubjectNameUtf8 failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
 });
