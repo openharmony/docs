@@ -26,7 +26,7 @@
 1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
    
    ```ts\
-   import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.arkData';
+   import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';
    import {BusinessError, pasteboard} from '@kit.BasicServicesKit'
    ```
 
@@ -56,7 +56,7 @@
      plainTextData.properties.getDelayData = globalThis.GetDelayPlainText;
      pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
        // 存入成功，处理正常场景
-     }).catch(error: BusinessError) => {
+     }).catch((error: BusinessError) => {
        // 处理异常场景
      });
    })
