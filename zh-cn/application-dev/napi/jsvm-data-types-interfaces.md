@@ -366,11 +366,12 @@ consoleinfo('Result is:' + value);\
 编译及执行JS代码。
 
 #### 接口说明
-| 接口 | 功能说明 |
-| -------- | -------- |
-| OH_JSVM_CompileScript| 编译JavaScript代码并返回绑定到当前环境的编译脚本 |
-| OH_JSVM_CreateCodeCache| 为编译脚本创建code cache|
-| OH_JSVM_RunScript| 执行编译脚本 |
+| 接口                              | 功能说明                                                                               |
+| ------------------------------- | ---------------------------------------------------------------------------------- |
+| OH_JSVM_CompileScript           | 编译JavaScript代码并返回绑定到当前环境的编译脚本                                                      |
+| OH_JSVM_CompileScriptWithOrigin | 编译JavaScript代码并返回绑定到当前环境的编译脚本，同时传入包括 sourceMapUrl 和源文件名在内的源代码信息，用于处理 source map 信息 |
+| OH_JSVM_CreateCodeCache         | 为编译脚本创建code cache]                                                                 |
+| OH_JSVM_RunScript               | 执行编译脚本                                                                             |
 
 场景示例：
 编译及执行JS代码(创建vm，注册function，执行js，销毁vm)。
@@ -398,9 +399,11 @@ static JSVM_CallbackStruct hello_cb = { Hello, (void*)"Hello" };
 
 static string srcGlobal = R"JS(
 const concat = (...args) => args.reduce((a, b) => a + b);
+throw new Error("exception triggered")
 )JS";
 
 static void RunScript(JSVM_Env env, string& src,
+                       bool withOrigin = false,
                        const uint8_t** dataPtr = nullptr,
                        size_t* lengthPtr = nullptr) {
     JSVM_HandleScope handleScope;
@@ -414,7 +417,20 @@ static void RunScript(JSVM_Env env, string& src,
     bool cacheRejected = true;
     JSVM_Script script;
     // 编译js代码
-    OH_JSVM_CompileScript(env, jsSrc, data, length, true, &cacheRejected, &script);
+    if (withOrgin) {
+	    JSVM_ScriptOrigin origin {
+	        // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
+		    .sourceMapurl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
+		    // 源文件名字
+		    .resourceName = "index.js",
+		    // scirpt 在源文件中的起始行列号
+		    .resourceLineOffset = 0,
+		    .resourceColumnOffset = 0,
+	    }
+		OH_JSVM_CompileScriptWithOrigin(env, jsSrc, data, length, true, &cacheRejected, origin, &script);
+    } else {
+	    OH_JSVM_CompileScript(env, jsSrc, data, length, true, &cacheRejected, &script);
+    }
     printf("Code cache is %s\n", cacheRejected ? "rejected" : "used");
 
     JSVM_Value result;
@@ -454,7 +470,7 @@ static void CreateSnapshot() {
     OH_JSVM_OpenEnvScope(env, &envScope);
     // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
     string src = srcGlobal + "concat(hello(), ', ', 'World from CreateSnapshot!');";
-    RunScript(env, src);
+    RunScript(env, src, true);
 
     // 创建snapshot，将当前的env保存到字符串，可以在某个时机通过该字符串还原出env，避免重复定义该env中的属性，带来性能提升。
     const char* blobData = nullptr;
@@ -491,7 +507,7 @@ void RunWithoutSnapshot(const uint8_t** dataPtr, size_t* lengthPtr) {
     OH_JSVM_OpenEnvScope(env, &envScope);
     // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
     auto src = srcGlobal + "concat(hello(), ', ', 'World', ' from RunWithoutSnapshot!')";
-    RunScript(env, src, dataPtr, lengthPtr);
+    RunScript(env, src, true, dataPtr, lengthPtr);
 
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
@@ -528,7 +544,7 @@ void RunWithSnapshot(const uint8_t **dataPtr, size_t *lengthPtr) {
 
     // 执行js脚本，因为快照记录的env中定义了hello()，所以无需重新定义。dataPtr中如果保存了编译后的js脚本，就能直接执行js脚本，避免从源码重复编译。
     string src = "concat(hello(), ', ', 'World', ' from RunWithSnapshot!')";
-    RunScript(env, src, dataPtr, lengthPtr);
+    RunScript(env, src, true, dataPtr, lengthPtr);
 
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
