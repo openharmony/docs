@@ -119,6 +119,7 @@
       - [AbilityRunningInfo(系统接口)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AbilityStateData(系统接口)](js-apis-inner-application-abilityStateData-sys.md)
       - [AppForegroundStateObserver(系统接口)](js-apis-inner-application-appForegroundStateObserver-sys.md)
+      - [ApplicationContext(系统接口)](js-apis-inner-application-applicationContext-sys.md)
       - [ApplicationStateObserver(系统接口)](js-apis-inner-application-applicationStateObserver-sys.md)
       - [AppStateData(系统接口)](js-apis-inner-application-appStateData-sys.md)
       - [AutoFillExtensionContext(系统接口)](js-apis-inner-application-autoFillExtensionContext-sys.md)
