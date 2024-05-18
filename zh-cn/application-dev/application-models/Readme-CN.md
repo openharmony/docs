@@ -35,6 +35,9 @@
       - [多端协同](hop-multi-device-collaboration.md)
     <!--DelEnd-->
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
+  - 应用间跳转
+    - 通用意图跳转
+      - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
   - [进程模型](process-model-stage.md)
   - [线程模型](thread-model-stage.md)
   <!--Del-->
