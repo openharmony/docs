@@ -395,7 +395,7 @@ AlphabetIndexer组件
 
 **变更原因**
 
-UX样式变更
+优化MenuItemGroup组件header、footer的对齐方式，以提供更好的视觉效果。
 
 **变更影响**
 
