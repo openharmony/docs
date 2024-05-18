@@ -74,7 +74,7 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
 
   ```ts
   import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
-  
+
   class BackupExt extends BackupExtension {
     async onRestore(bundleVersion : BundleVersion) {
       console.log(`onRestore ok ${JSON.stringify(bundleVersion)}`);
@@ -83,9 +83,9 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
   ```
   ### onRestoreEx
 
-onRestoreEx(bundleVersion: BundleVersion, bundleInfo: string): string;
+onRestoreEx(bundleVersion: BundleVersion, bundleInfo: string): string | Promise<string>;
 
-Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作。
+Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作。
 onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。
 onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。
 
@@ -104,7 +104,7 @@ onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符�
   import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
 
   class BackupExt extends BackupExtension {
-    async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string {
+    async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string | Promise<string> {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let info = "app diy info";
       return info;
