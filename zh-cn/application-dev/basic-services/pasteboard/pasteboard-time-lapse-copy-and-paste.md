@@ -27,13 +27,13 @@
    
    ```ts\
    import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.arkData';
-   import {NusinessError, pasteboard} from '@kit.BasicServicesKit'
+   import {BusinessError, pasteboard} from '@kit.BasicServicesKit'
    ```
 
 2. 构造一条PlainText数据,并书写获取延时数据的函数。
 
    ```ts
-   let plainTextData = new unifiedDataChannel.unifiedData();
+   let plainTextData = new unifiedDataChannel.UnifiedData();
    globalThis.GetDelayPlainText = ((dataType:string) => {
      let plainText = new unifiedDataChannel.PlainText();
      plainText.details = {
