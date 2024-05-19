@@ -18,6 +18,95 @@ ArkTS容器并不是线程安全的，内部使用了fail-fast（快速失败）
 import { collections } from '@kit.ArkTS';
 ```
 
+## ISendable
+
+type ISendable = lang.ISendable
+
+ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自身没有任何必须的方法和属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 类型 | 说明   |
+| ------ | ------ |
+| [lang.ISendable](js-apis-arkts-lang.md#langisendable)   | 所有Sendable类型的父类型。 |
+
+## collections.ConcatArray
+表示可以进行连接的类似数组的对象。
+
+文档中存在泛型的使用，涉及以下泛型标记符：
+
+- T：Type，支持[Sendable的数据类型](../../arkts-utils/arkts-sendable.md)。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称   | 类型   | 可读 | 可写 | 说明              |
+| ------ | ------ | ---- | ---- | ----------------- |
+| length | number | 是   | 否   | ConcatArray的元素个数。 |
+
+### join
+
+join(separator?: string): string
+
+将ConcatArray的所有元素连接成一个字符串，元素之间可以用指定的分隔符分隔。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                                 |
+| --------- | ------ | ---- | ---------------------------------------------------- |
+| separator | string | 否   | 用于分隔ConcatArray元素的字符串。如果省略，则使用逗号分隔。 |
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| string | 包含所有ConcatArray元素连接成的字符串。如果ConcatArray为空，则返回空字符串。 |
+
+**示例：**
+
+```ts
+let concatArray : collections.ConcatArray<string> = new collections.Array<string>('a', 'b', 'c');
+let joinedString = concatArray.join('-'); // 返回 "a-b-c"
+```
+
+### slice
+
+slice(start?: number, end?: number): ConcatArray\<T>
+
+返回一个新的ConcatArray，该ConcatArray是原始ConcatArray的切片。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| start  | number | 否   | 开始索引。如果`start < 0`，则会从`start + array.length`位置开始。默认值为0。   |
+| end    | number | 否   | 结束索引（不包括该元素）。如果`end < 0`，则会到`end + array.length`位置结束。默认为ArkTS Array的长度。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| --------- | -------------------------- |
+| ConcatArray\<T> | 包含原始ConcatArray切片的新ConcatArray。 |
+
+**示例：**
+
+```ts
+let concatArray : collections.ConcatArray<number> = new collections.Array<number>(1, 2, 3, 4, 5);
+let slicedArray = concatArray.slice(1, 3); // 返回[2, 3]，Array保持不变
+```
+
 ## collections.Array
 
 一种线性数据结构，底层基于数组实现，可以在ArkTS上并发实例间传递。
@@ -1022,6 +1111,41 @@ array1.extendTo(5, 10); // array内容变为：[1, 2, 3, 10, 10]
 
 let array2 = new collections.Array(1, 2, 3);
 array2.extendTo(1, 10); // array内容不变
+```
+
+### concat
+
+concat(...items: ConcatArray<T>[]): Array<T>
+
+拼接两个或多个数组。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                               |
+| ------ | ---- | ---- | ---------------------------------- |
+| items  | ConcatArray<T>[]  | 是   | 拼接两个或多个数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 10200011 | The concat method cannot be bound. |
+| 10200201 | Concurrent modification error.   |
+
+**示例：**
+
+```ts
+let array = new collections.Array(1, 2, 3);
+let array1 = new collections.Array(4, 5, 6);
+let array2 = new collections.Array(7, 8, 9);
+
+let concatArray = array.concat(array1, array2); // concatArray的内容为：[1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 ## collections.Map
