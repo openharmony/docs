@@ -481,7 +481,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_load_module | Loads an .abc file as a module. This API returns the namespace of the module.|
 | napi_load_module_with_info | Loads an .abc file as a module. This API returns the namespace of the module and can be used in a newly created ArkTS runtime environment. |
 | napi_create_object_with_properties | Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number.|
-| napi_create_object_with_named_properties | Creates a JS object using the given **napi_value** and key. The key must be a string and cannot be converted into a number.|
+| napi_create_object_with_named_properties | Creates a JS object using the given **napi_value**s and keys. The key must be a string and cannot be converted into a number.|
 | napi_coerce_to_native_binding_object | Forcibly binds a JS object and a native object.|
 | napi_run_event_loop | Runs the underlying event loop.|
 | napi_stop_event_loop | Stops the underlying event loop.|
