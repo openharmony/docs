@@ -33,7 +33,7 @@ Generally, ArkTS/JS is used for OpenHarmony application development. However, in
 
 - Native engine: ArkTS engine abstraction layer, which unifies the API behavior of the ArkTS engine at the Node-API layer.
 
-- ArkComiler ArkTS runtime: ArkTS runtime.
+- ArkCompiler ArkTS Runtime: ArkTS runtime.
 
 
 ## Key Interaction Process of Node-API
