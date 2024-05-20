@@ -100,6 +100,7 @@ struct SecondTest {
 @Component
 struct TabContentTest {
   @State @Watch("onMessageUpdated") message: number = 0;
+  private data: number[] = [0, 1]
 
   onMessageUpdated() {
     console.info(`TabContent message callback func ${this.message}`)
@@ -113,13 +114,11 @@ struct TabContentTest {
         })
 
         Tabs() {
-          TabContent() {
-            FreezeChild({ message: this.message })
-          }.tabBar('one')
-
-          TabContent() {
-            FreezeChild({ message: this.message })
-          }.tabBar('two')
+          ForEach(this.data, (item: number) => {
+            TabContent() {
+              FreezeChild({ message: this.message, index: item })
+            }.tabBar(`tab${item}`)
+          }, (item: number) => item.toString())
         }
       }
       .width('100%')
