@@ -272,7 +272,7 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| value  | CaretStyle | 是   | 光标的风格。 |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标的风格。 |
 
 ### caretPosition<sup>10+</sup>
 

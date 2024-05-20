@@ -171,7 +171,7 @@ onWillApplyTheme函数在创建自定义组件的新实例后，在执行其buil
 
 | 参数名    | 类型                                       | 说明         |
 |--------|------------------------------------------|------------|
-| theme | Theme | 自定义组件当前生效的Theme对象。|
+| theme | [Theme](../js-apis-arkui-theme.md#theme) | 自定义组件当前生效的Theme对象。|
 
 ```ts
 // xxx.ets
