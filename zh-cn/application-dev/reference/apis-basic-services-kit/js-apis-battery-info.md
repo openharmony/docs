@@ -29,7 +29,9 @@ import batteryInfo from '@ohos.batteryInfo';
 | technology                                | string                                         | 是   | 否   | 表示当前设备电池的技术型号。                               |
 | batteryTemperature                        | number                                         | 是   | 否   | 表示当前设备电池的温度，单位0.1摄氏度。                    |
 | isBatteryPresent<sup>7+</sup>             | boolean                                        | 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。                 |
-| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | 是   | 否   | 表示当前设备电池电量的等级。                               |
+| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | 是   | 否   | 表示当前设备电池电量的等级。                               
+|
+| nowCurrent<sup>9+</sup>                   | number                                         | 是   | 否   | 表示当前设备电池的电流，单位毫安。 
 
 **示例**：
 
@@ -62,6 +64,9 @@ import batteryInfo from '@ohos.batteryInfo';
 
   let batteryCapacityLevelInfo = batteryInfo.batteryCapacityLevel;
   console.info("The batteryCapacityLevelInfo is: " + batteryCapacityLevelInfo);
+
+  let nowCurrentInfo: number = batteryInfo.nowCurrent;
+  console.info("The nowCurrentInfo is: " + nowCurrentInfo);
   ```
 
 ## BatteryPluggedType
