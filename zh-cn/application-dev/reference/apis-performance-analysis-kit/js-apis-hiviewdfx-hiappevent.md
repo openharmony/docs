@@ -276,8 +276,8 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 | 参数名 | 类型                           | 必填 | 说明           |
 | ------ | ------------------------------ | ---- | -------------- |
 | params | Record&lt;string, [ParamType](#paramtype12)&gt; | 是 | 事件自定义参数对象。参数名和参数值规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值为[ParamType](#paramtype12)类型，参数值长度需在1024个字符以内。<br>- 参数个数需在64个以内。 |
-| domain | string                        | 是 | 事件领域。 |
-| name   | string                        | 否 | 事件名称。 |
+| domain | string                        | 是 | 事件领域。事件领域可支持关联应用事件和系统事件（hiAppEvent.domain.OS）。 |
+| name   | string                        | 否 | 事件名称。默认为空字符串，空字符串表示关联事件领域下的所有事件名称。事件名称可支持关联应用事件和系统事件，其中系统事件仅支持关联崩溃事件（hiAppEvent.event.APP_CRASH）和卡死事件（hiAppEvent.event.APP_FREEZE）。 |
 
 **返回值：**
 
@@ -303,6 +303,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "int_data": 100,
   "str_data": "strValue",
 };
+// 给应用事件追加自定义参数
 hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set svent param`);
 }).catch((err: BusinessError) => {
