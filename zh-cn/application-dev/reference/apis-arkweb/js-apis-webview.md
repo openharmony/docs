@@ -5000,6 +5000,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                                 |
 
 **示例：**
@@ -7006,8 +7007,8 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
-| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。      |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议，长度不超过2048。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
+| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。内容不能为空。      |
 | cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
 
 **返回值：**
@@ -7022,6 +7023,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
