@@ -518,3 +518,41 @@ Menu 组件
 **适配指导**
 
 默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.15  TabContent组件底部页签水平方向排列情景默认字体大小变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前TabContent组件底部页签水平方向排列情景时默认字体大小为10vp，字体偏小，视觉效果较差，变更为12vp，以提升视觉效果。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 12之前，TabContent组件底部页签水平方向排布情景默认字体大小为10vp。
+
+![TabContent_Before](figures/TabContent_Before.png)
+
+API version 12及以后，TabContent组件底部页签水平方向排布情景默认字体大小为12vp。
+
+![TabContent_After](figures/TabContent_After.png)
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**变更的接口/组件**
+
+TabContent组件
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合可参照[TabContent组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)说明文档设置相关属性以达到预期。
