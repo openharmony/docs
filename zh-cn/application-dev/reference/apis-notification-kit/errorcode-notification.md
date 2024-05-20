@@ -44,7 +44,7 @@ Marshalling or unmarshalling error.
 
 **错误信息**
 
-Failed to connect service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ Failed to connect service.
 
 **错误信息**
 
-Notification is not enabled.
+Notification disabled.
 
 **错误描述**
 
@@ -80,7 +80,7 @@ Notification is not enabled.
 
 **错误信息**
 
-Notification slot is not enabled.
+Notification slot disabled.
 
 **错误描述**
 
@@ -100,7 +100,7 @@ Notification slot is not enabled.
 
 **错误信息**
 
-Notification is not allowed to remove.
+Notification deletion disabled.
 
 **错误描述**
 
@@ -118,7 +118,7 @@ Notification is not allowed to remove.
 
 **错误信息**
 
-The notification is not exist.
+The notification does not exist.
 
 **错误描述**
 
@@ -136,7 +136,7 @@ The notification is not exist.
 
 **错误信息**
 
-The user is not exist.
+The user does not exist.
 
 **错误描述**
 
@@ -154,7 +154,7 @@ The user is not exist.
 
 **错误信息**
 
-Over max number notifications per second.
+The notification sending frequency reaches the upper limit.
 
 **错误描述**
 
@@ -190,7 +190,7 @@ Distributed operation failed.
 
 **错误信息**
 
-Read template config failed.
+Failed to read the template configuration.
 
 **错误描述**
 
