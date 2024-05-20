@@ -270,30 +270,28 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 import image from "@ohos.multimedia.image";
 import effectKit from "@ohos.effectKit";
 
-export function test06(): void {
-  const color = new ArrayBuffer(96);
-  let opts: image.InitializationOptions = {
-    editable: true,
-    pixelFormat: 3,
-    size: {
-      height: 4,
-      width: 6
-    }
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
   }
-  image.createPixelMap(color, opts).then((pixelMap) => {
-    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
-      if (error) {
-        console.error('Failed to create color picker.');
-      } else {
-        console.info('Succeeded in creating color picker.');
-        colorPicker.getMainColor().then(color => {
-          console.info('Succeeded in getting main color.');
-          console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
-        })
-      }
-    })
-  })
 }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.error('Failed to create color picker.');
+    } else {
+      console.info('Succeeded in creating color picker.');
+      colorPicker.getMainColor().then(color => {
+        console.info('Succeeded in getting main color.');
+        console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
+      })
+    }
+  })
+})
 ```
 
 ### getMainColorSync
