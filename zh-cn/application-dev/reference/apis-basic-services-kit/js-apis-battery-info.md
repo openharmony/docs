@@ -32,7 +32,7 @@ import batteryInfo from '@ohos.batteryInfo';
 | batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | 是   | 否   | 表示当前设备电池电量的等级。                               
 |
 | nowCurrent<sup>9+</sup>                   | number                                         | 是   | 否   | 表示当前设备电池的电流，单位毫安。 
-
+|
 **示例**：
 
   ```ts
