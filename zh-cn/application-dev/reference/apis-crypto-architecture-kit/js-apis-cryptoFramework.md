@@ -2494,7 +2494,7 @@ update(data: DataBlob): Promise\<DataBlob>
 
 ### updateSync<sup>12+</sup>
 
-updateSync(data: DataBlob): void
+updateSync(data: DataBlob): DataBlob
 
 分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。
 
@@ -2698,7 +2698,7 @@ async function cipherByPromise() {
 
 ### doFinalSync<sup>12+</sup>
 
-doFinalSync(data: DataBlob | null): void
+doFinalSync(data: DataBlob | null): DataBlob
 
 （1）在对称加解密中，doFinalSync加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinalSync中一次性传入数据，而不使用updateSync；如果在本次加解密流程中，已经使用[updateSync](#updatesync12)传入过数据，可以在doFinalSync的data参数处传入null。<br/>根据对称加解密的模式不同，doFinalSync的输出有如下区别：
 
