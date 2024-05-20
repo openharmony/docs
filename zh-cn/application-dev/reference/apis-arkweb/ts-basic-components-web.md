@@ -36,93 +36,93 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 加载在线网页。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
-  ```
+}
+```
 
 隐私模式Webview加载在线网页。
 
-   ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
     }
   }
-  ```
+}
+```
 
 Web组件统一渲染模式。
 
-   ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
     }
   }
-  ```
+}
+```
 
 加载本地网页。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 通过$rawfile加载本地资源文件。
-        Web({ src: $rawfile("index.html"), controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      // 通过$rawfile加载本地资源文件。
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 通过resource协议加载本地资源文件。
-        Web({ src: "resource://rawfile/index.html", controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      // 通过resource协议加载本地资源文件。
+      Web({ src: "resource://rawfile/index.html", controller: this.controller })
     }
   }
-  ```
+}
+```
 
 加载沙箱路径下的本地资源文件。
 
@@ -1964,7 +1964,9 @@ struct WebComponent {
   ```
 ### enableNativeMediaPlayer<sup>12+</sup>
 
-开启应用接管网页媒体播放功能。
+enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
+
+开启[应用接管网页媒体播放功能](../../web/app-takeovers-web-media.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7317,10 +7319,7 @@ onOverrideUrlLoading的回调。
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
-type NativeMediaPlayerConfig = {
-  enable: boolean,
-  shouldOverlay: boolean
-}
+type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 用于[开启应用接管网页媒体播放功能](#enablenativemediaplayer12)的配置信息。
 

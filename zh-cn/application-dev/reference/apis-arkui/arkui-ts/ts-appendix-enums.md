@@ -978,8 +978,8 @@ Nullable\<T> {
 
 | 名称          | 类型        |  只读     | 必填      | 说明      |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。|
-| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。|
+| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
 
 ## MenuPolicy<sup>12+</sup>
 
@@ -999,7 +999,15 @@ Nullable\<T> {
 | EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
 
 ## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
-| 名称       | 描述                     |
-| ---------- | ------------------------ |
-| DEFAULT | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
-| PRESERVE_POSITION  | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
+| 名称       | 值      | 描述                     |
+| ---------- | ------------------------ | ------------------------ |
+| DEFAULT | 0 | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
+| PRESERVE_POSITION  | 1 | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
+
+## FocusPriority<sup>12+</sup>
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| AUTO | 默认的优先级，缺省时组件的获焦优先级。 |
+| PRIOR | 容器内优先获焦的优先级。优先级高于AUTO。 |
+| PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |

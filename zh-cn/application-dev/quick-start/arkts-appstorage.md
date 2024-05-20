@@ -712,5 +712,5 @@ AppStorage与[PersistentStorage](arkts-persiststorage.md)以及[Environment](ark
 
 - 如果在AppStorage中已经创建属性后，再调用Environment.envProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
 
-- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见[不建议借助@StorageLink的双向同步机制实现事件通知](#不建议借助storagelink的双向同步机制实现事件通知)。
+- 状态装饰器装饰的变量，改变会引起UI的渲染更新，如果改变的变量不是用于UI更新，只是用于消息传递，推荐使用 emitter方式。例子可见<!--Del-->[<!--DelEnd-->不建议借助@StorageLink的双向同步机制实现事件通知<!--Del-->](#不建议借助storagelink的双向同步机制实现事件通知)<!--DelEnd-->。
 <!--no_check-->

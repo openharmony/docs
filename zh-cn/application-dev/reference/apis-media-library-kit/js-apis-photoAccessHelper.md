@@ -3589,9 +3589,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import image from '@ohos.multimedia.image'
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-    onDataPrepared(data: image.ImageSource) {
-        console.info('on image data prepared');
+  onDataPrepared(data: image.ImageSource) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
     }
+    console.info('on image data prepared');
+  }
 }
 
 async function example() {
@@ -3655,9 +3659,13 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-    onDataPrepared(data: ArrayBuffer) {
-        console.info('on image data prepared');
+  onDataPrepared(data: ArrayBuffer) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
     }
+    console.info('on image data prepared');
+  }
 }
 
 async function example() {
@@ -3723,6 +3731,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     console.info("moving photo acquired successfully, uri: " + movingPhoto.getUri());
   }
 }
@@ -3924,7 +3936,7 @@ async function example() {
 
 onDataPrepared(data: T): void
 
-媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。
+媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
 T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource)与[MovingPhoto](#movingphoto12)三种数据类型。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -3941,6 +3953,10 @@ import image from '@ohos.multimedia.image'
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
   onDataPrepared(data: image.ImageSource) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 自定义对ImageSource的处理逻辑
     console.info('on image data prepared');
   }
@@ -3948,6 +3964,10 @@ class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.Imag
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 自定义对ArrayBuffer的处理逻辑
     console.info('on image data prepared');
   }
@@ -3955,6 +3975,10 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<MovingPhoto> {
   onDataPrepared(data: MovingPhoto) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 自定义对MovingPhoto的处理逻辑
     console.info('on image data prepared');
   }
@@ -3997,6 +4021,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     console.info("moving photo acquired successfully, uri: " + movingPhoto.getUri());
   }
 }
@@ -4064,6 +4092,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 应用需要确保待写入的uri是有效的
     let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
     let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4";
@@ -4139,6 +4171,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 应用需要确保待写入的uri是有效的
     let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
     try {
@@ -4212,6 +4248,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     try {
       let buffer: ArrayBuffer = await movingPhoto.requestContent(photoAccessHelper.ResourceType.IMAGE_RESOURCE);
       console.log("moving photo image content retrieved successfully, buffer length: " + buffer.byteLength);

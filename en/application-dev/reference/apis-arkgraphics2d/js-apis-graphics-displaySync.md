@@ -9,7 +9,7 @@ The displaySync module allows your application to draw its custom UI content at 
 ## Modules to Import
 
 ```ts
-import displaySync from '@ohos.graphics.displaySync';
+import { displaySync } from '@kit.ArkGraphics2D';
 ```
 
 ## displaySync.create
@@ -158,6 +158,24 @@ backDisplaySync?.on("frame", callback)
 
 // Start callback for each frame.
 backDisplaySync?.start()
+```
+
+> **NOTE**
+>
+> The **start()** API associates a **DisplaySync** object with an UI instance and window. If the start operation is performed on a non-UI page or in an asynchronous callback, the context of the current UI may not be obtained, causing the API call to fail and consequently the subscription function to fail. Therefore, you can use [runScopedTask](../apis-arkui/js-apis-arkui-UIContext.md#runscopedtask) of **UIContext** to specify the UI context for executing the **start()** API.
+
+**Example**
+
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+let uiContext: UIContext = this.getUIContext()
+
+// Call start() in the current UI context.
+uiContext?.runScopedTask(() => {
+  backDisplaySync?.start()
+})
+
 ```
 
 ### stop

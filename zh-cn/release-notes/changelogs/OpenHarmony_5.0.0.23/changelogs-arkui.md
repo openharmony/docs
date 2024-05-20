@@ -484,3 +484,75 @@ bindSheet半模态面板。
 **适配指导**
 
 异常值处理逻辑变更，不涉及适配。
+
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则自定义修改效果控制变量以达到预期。
+
+## cl.arkui.14 Menu 组件边距 margin 变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+菜单弹出 UX 默认行为改变
+
+**变更影响**
+
+API12变更之前：菜单带有边距 margin，左右方向为 12vp，上下方向为 24vp。
+
+API12变更之后：如果配置菜单在应用窗口内弹出，左右方向的 margin 为 16vp，上下侧默认规避状态栏与导航条，不额外增加避让距离；如果配置菜单在应用窗口外弹出，左右方向的 margin 为 8vp，上下侧默认规避状态栏与 Dock 区域，不额外增加避让距离。
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23版本开始。
+
+**变更的接口/组件**
+
+Menu 组件
+
+**适配指导**
+
+默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.15  TabContent组件底部页签水平方向排列情景默认字体大小变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前TabContent组件底部页签水平方向排列情景时默认字体大小为10vp，字体偏小，视觉效果较差，变更为12vp，以提升视觉效果。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 12之前，TabContent组件底部页签水平方向排布情景默认字体大小为10vp。
+
+![TabContent_Before](figures/TabContent_Before.png)
+
+API version 12及以后，TabContent组件底部页签水平方向排布情景默认字体大小为12vp。
+
+![TabContent_After](figures/TabContent_After.png)
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.23开始。
+
+**变更的接口/组件**
+
+TabContent组件
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合可参照[TabContent组件](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)说明文档设置相关属性以达到预期。

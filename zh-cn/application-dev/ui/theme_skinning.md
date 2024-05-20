@@ -11,22 +11,23 @@
 
 
 ## 自定义品牌色
-CustomTheme用于自定义Theme，属性可选，只需要复写修改的部分，未修改内容继承于系统。请参考：
+[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题，属性可选，只需要复写修改的部分，未修改内容继承于系统。请参考：
 
   ```ts
     import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
 
     export class AppColors implements CustomColors {
-      fontPrimary: ResourceColor = '#6A3E80'
-      fontOnPrimary: ResourceColor = '#FDECFF'
-      iconOnPrimary: ResourceColor = '#FDECFF'
-      iconFourth: ResourceColor = '#336A3E80'
-      compBackgroundTertiary: ResourceColor = '#Oc9162A8'
-      compBackgroundEmphasize: ResourceColor = '#FF75D9'
-      backgroundEmphasize: ResourceColor = '#FF75D9'
-      interactiveFocus: ResourceColor = '#FF75D9'
-      compBackgroundPrimary: ResourceColor = '#FFF1FB'
-      compBackgroundSecondary: ResourceColor = '#199162A8'
+      //$r('app.color.xxx')引用color.json文件资源，也可以直接赋字符串值
+      brand: ResourceColor = $r('app.color.brand')
+      fontEmphasize: ResourceColor = $r('app.color.font_emphasize')
+      iconEmphasize: ResourceColor = $r('app.color.icon_emphasize')
+      iconSubEmphasize: ResourceColor = $r('app.color.icon_sub_emphasize')
+      interactiveFocus: ResourceColor = $r('app.color.interactive_focus')
+      interactiveHover: ResourceColor = $r('app.color.interactive_hover')
+      compBackgroundEmphasize: ResourceColor = $r('app.color.comp_background_emphasize')
+      compEmphasizeSecondary: ResourceColor = $r('app.color.comp_emphasize_secondary')
+      compEmphasizeTertiary: ResourceColor = $r('app.color.comp_emphasize_tertiary')
+      backgroundEmphasize: ResourceColor = $r('app.color.background_emphasize')
     }
 
     export class AppTheme implements CustomTheme {
@@ -37,7 +38,8 @@ CustomTheme用于自定义Theme，属性可选，只需要复写修改的部分�
   ```
 
 ## 设置应用级自定义品牌色
-- 可在页面入口处统一设置，需要在页面build前执行ThemeControl。其中，onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
+- 可在页面入口处统一设置，需要在页面build前执行[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)。
+其中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
 
   ```ts
     import { Theme, ThemeControl } from '@ohos.arkui.theme'
@@ -49,257 +51,102 @@ CustomTheme用于自定义Theme，属性可选，只需要复写修改的部分�
     @Entry
     @Component
     struct DisplayPage {
-      brightnessValue: number = 40
-      brightnessMax: number = 100
-      fontSize = '16fp'
-      marginLeft = '14fp'
-      fontSizeAndStyle = 'Font size and style'
-      fullScreenApps = 'Full screen apps'
-      darkModeSettings = 'Dark mode settings'
-      screenZoom = 'Screen zoom'
-      screenTimeout = 'Screen timeout'
-      randomTouchProtection = 'Random touch protection'
-      touchSensitivity = 'Touch sensitivity'
-      menuItemColor: ResourceColor = $r('sys.color.background_primary')
+      @State menuItemColor: ResourceColor = $r('sys.color.background_primary')
       
       onWillApplyTheme(theme: Theme) {
         this.menuItemColor = theme.colors.backgroundPrimary;
       }
-
+    
       build() {
-          Column() {
-            List({ space: 10 }) {
-              ListItem() {
-                Column({ space: '5vp' }) {
-                  Text('Color mode')
-                    .margin({ top: '5vp', left: this.marginLeft })
-                    .width('100%')
-                  Row() {
-                    Column() {
-                      Text('Light')
-                        .fontSize(this.fontSize)
-                        .textAlign(TextAlign.Start)
-                        .alignSelf(ItemAlign.Center)
-                      Radio({ group: 'light or dark', value: 'light'})
-                        .checked(true)
-                    }
-                    .width('50%')
-    
-                    Column() {
-                      Text('Dark')
-                        .fontSize(this.fontSize)
-                        .textAlign(TextAlign.Start)
-                        .alignSelf(ItemAlign.Center)
-                      Radio({ group: 'light or dark', value: 'dark'})
-                    }
-                    .width('50%')
+        Column() {
+          List({ space: 10 }) {
+            ListItem() {
+              Column({ space: '5vp' }) {
+                Text('Color mode')
+                  .margin({ top: '5vp', left: '14fp' })
+                  .width('100%')
+                Row() {
+                  Column() {
+                    Text('Light')
+                      .fontSize('16fp')
+                      .textAlign(TextAlign.Start)
+                      .alignSelf(ItemAlign.Center)
+                    Radio({ group: 'light or dark', value: 'light' })
+                      .checked(true)
                   }
+                  .width('50%')
+
+                  Column() {
+                    Text('Dark')
+                      .fontSize('16fp')
+                      .textAlign(TextAlign.Start)
+                      .alignSelf(ItemAlign.Center)
+                    Radio({ group: 'light or dark', value: 'dark' })
+                  }
+                  .width('50%')
                 }
-                .width('100%')
-                .height('90vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
               }
-    
-              ListItem() {
+              .width('100%')
+              .height('90vp')
+              .borderRadius('10vp')
+              .backgroundColor(this.menuItemColor)
+            }
+
+            ListItem() {
+              Column() {
+                Text('Brightness')
+                  .width('100%')
+                  .margin({ top: '5vp', left: '14fp' })
+                Slider({ value: 40, max: 100 })
+              }
+              .width('100%')
+              .height('70vp')
+              .borderRadius('10vp')
+              .backgroundColor(this.menuItemColor)
+            }
+
+            ListItem() {
+              Column() {
                 Row() {
-                  Text(this.darkModeSettings)
-                    .fontSize(this.fontSize)
-                    .textAlign(TextAlign.Start)
-                    .alignSelf(ItemAlign.Center)
-                    .margin({ left: this.marginLeft })
-                    .width('100%')
-                }
-                .width('100%')
-                .height('50vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-                .onClick((event: ClickEvent) => {
-                  console.log(`Pressed ${this.darkModeSettings}`)
-                })
-              }
+                  Column({ space: '5vp' }) {
+                    Text('Touch sensitivity')
+                      .fontSize('16fp')
+                      .textAlign(TextAlign.Start)
+                      .width('100%')
+                    Text('Increase the touch sensitivity of your screen' +
+                      ' for use with screen protectors')
+                      .fontSize('12fp')
+                      .fontColor(Color.Blue)
+                      .textAlign(TextAlign.Start)
+                      .width('100%')
+                  }
+                  .alignSelf(ItemAlign.Center)
+                  .margin({ left: '14fp' })
+                  .width('75%')
     
-              ListItem() {
-                Column() {
-                  Text('Brightness')
-                    .width('100%')
-                    .margin({ top: '5vp', left: this.marginLeft })
-                  Slider({ value: this.brightnessValue, max: this.brightnessMax })
-                    .onChange((value) => {
-                      this.brightnessValue = value
-                      console.log(`Set brightness value: ${this.brightnessValue}`)
-                    })
-                }
-                .width('100%')
-                .height('70vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-              }
-    
-              ListItem() {
-                Row() {
-                  Text('Adaptive brightness')
-                    .fontSize(this.fontSize)
-                    .textAlign(TextAlign.Start)
-                    .margin({ left: this.marginLeft })
-                    .alignSelf(ItemAlign.Center)
-                    .width('75%')
-                  Toggle({ type: ToggleType.Switch })
-                    .margin({ right: this.marginLeft })
+                  Toggle({ type: ToggleType.Switch, isOn: true })
+                    .margin({ right: '14fp' })
                     .alignSelf(ItemAlign.Center)
                     .width('25%')
                 }
                 .width('100%')
-                .height('50vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
+                .height('80vp')
               }
-    
-              ListItem() {
-                Column() {
-                  Row() {
-                    Text(this.fontSizeAndStyle)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .alignSelf(ItemAlign.Center)
-                      .margin({ left: this.marginLeft })
-                  }
-                  .width('100%')
-                  .height('50vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.fontSizeAndStyle}`)
-                  })
-    
-                  Divider()
-                    .strokeWidth('1.5vp')
-                    .width('95%')
-                  Row() {
-                    Text(this.screenZoom)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .alignSelf(ItemAlign.Center)
-                      .margin({ left: this.marginLeft })
-                  }
-                  .width('100%')
-                  .height('50vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.screenZoom}`)
-                  })
-    
-                  Divider()
-                    .strokeWidth('1.5vp')
-                    .width('95%')
-                  Row() {
-                    Text(this.fullScreenApps)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .alignSelf(ItemAlign.Center)
-                      .margin({ left: this.marginLeft })
-                  }
-                  .width('100%')
-                  .height('50vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.fullScreenApps}`)
-                  })
-                }
-                .width('100%')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-              }
-    
-              ListItem() {
-                Row() {
-                  Column() {
-                    Text(this.screenTimeout)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .margin({ left: this.marginLeft })
-                      .width('100%')
-                    Text('40 seconds')
-                      .fontColor(Color.Blue)
-                      .textAlign(TextAlign.Start)
-                      .fontSize('12fp')
-                      .fontColor('#FF0775E0')
-                      .width('100%')
-                      .margin({ left: this.marginLeft })
-                  }
-                  .alignSelf(ItemAlign.Center)
-                  .width('100%')
-                }
-                .width('100%')
-                .height('50vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-                .onClick((event: ClickEvent) => {
-                  console.log(`Pressed ${this.fullScreenApps}`)
-                })
-              }
-    
-              ListItem() {
-                Column() {
-                  Row() {
-                    Text(this.randomTouchProtection)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .alignSelf(ItemAlign.Center)
-                      .margin({ left: this.marginLeft })
-                      .width('75%')
-                    Toggle({ type: ToggleType.Switch, isOn: true })
-                      .margin({ right: this.marginLeft })
-                      .alignSelf(ItemAlign.Center)
-                      .width('25%')
-                  }
-                  .width('100%')
-                  .height('50vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.randomTouchProtection}`)
-                  })
-    
-                  Divider()
-                    .strokeWidth('1.5vp')
-                    .width('95%')
-                  Row() {
-                    Column({ space: '5vp' }) {
-                      Text(this.touchSensitivity)
-                        .fontSize(this.fontSize)
-                        .textAlign(TextAlign.Start)
-                        .width('100%')
-                      Text('Increase the touch sensitivity of your screen' +
-                        ' for use with screen protectors')
-                        .fontSize('12fp')
-                        .textAlign(TextAlign.Start)
-                        .width('100%')
-                    }
-                    .alignSelf(ItemAlign.Center)
-                    .margin({ left: this.marginLeft })
-                    .width('75%')
-    
-                    Toggle({ type: ToggleType.Switch })
-                      .margin({ right: this.marginLeft })
-                      .alignSelf(ItemAlign.Center)
-                      .width('25%')
-                  }
-                  .width('100%')
-                  .height('80vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.touchSensitivity}`)
-                  })
-                }
-                .width('100%')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-              }
+              .width('100%')
+              .borderRadius('10vp')
+              .backgroundColor(this.menuItemColor)
             }
           }
-          .padding('10vp')
-          .backgroundColor('#dcdcdc')
-          .width('100%')
-          .height('100%')
+        }
+        .padding('10vp')
+        .backgroundColor('#dcdcdc')
+        .width('100%')
+        .height('100%')
       }
     }
   ```
 
-- 在Ability中设置ThemeControl，需要在onWindowStageCreate()方法中setDefaultTheme。
+- 在Ability中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
 
   ```ts
     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -347,277 +194,76 @@ CustomTheme用于自定义Theme，属性可选，只需要复写修改的部分�
 
 ![systemTheme](figures/systemTheme.png)
 
-## 设置应用局部页面自定义主题风格 
-将自定义Theme的配色通过设置WithTheme作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
+## 设置应用局部页面自定义主题风格
+将自定义Theme的配色通过设置[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
 在下面示例中，通过WithTheme({ theme: this.myTheme })将作用域内的组件配色设置为自定义主题风格。后续可通过更改this.myTheme更换主题风格。
-onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
+[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于自定义组件获取当前生效的Theme对象。
 
   ```ts
-    import { CustomTheme, Theme } from '@ohos.arkui.theme'
-    import { gAppTheme } from './AppTheme'
+    import { CustomColors, CustomTheme, Theme } from '@ohos.arkui.theme'
+
+    class AppColors implements CustomColors {
+      fontPrimary: ResourceColor = $r('app.color.brand_purple')
+      backgroundEmphasize: ResourceColor = $r('app.color.brand_purple')
+    }
+    
+    class AppColorsSec implements CustomColors {
+      fontPrimary: ResourceColor = $r('app.color.brand')
+      backgroundEmphasize: ResourceColor = $r('app.color.brand')
+    }
+    
+    class AppTheme implements CustomTheme {
+      public colors: AppColors = new AppColors()
+    }
+    
+    class AppThemeSec implements CustomTheme {
+      public colors: AppColors = new AppColorsSec()
+    }
     
     @Entry
     @Component
     struct DisplayPage {
-      brightnessValue: number = 40
-      brightnessMax: number = 100
-      fontSize = '16fp'
-      marginLeft = '14fp'
-      fontSizeAndStyle = 'Font size and style'
-      fullScreenApps = 'Full screen apps'
-      darkModeSettings = 'Dark mode settings'
-      screenZoom = 'Screen zoom'
-      screenTimeout = 'Screen timeout'
-      randomTouchProtection = 'Random touch protection'
-      touchSensitivity = 'Touch sensitivity'
-      menuItemColor: ResourceColor = $r('sys.color.background_primary')
-      fontPrimary: ResourceColor | undefined = gAppTheme?.colors?.fontPrimary
-      @State myTheme: CustomTheme = gAppTheme
-      count = 0
+      @State customTheme: CustomTheme = new AppTheme()
+      @State message: string = '设置应用局部页面自定义主题风格'
+      count = 0;
     
-      onWillApplyTheme(theme: Theme) {
-        this.menuItemColor = theme.colors.backgroundPrimary;
-      }
-
       build() {
-        WithTheme({ theme: this.myTheme }) {
-          Column() {
-            List({ space: 10 }) {
-              ListItem() {
-                Column({ space: '5vp' }) {
-                  Text('Color mode')
-                    .margin({ top: '5vp', left: this.marginLeft })
-                    .width('100%')
-                  Row() {
-                    Column() {
-                      Text('Light')
-                        .fontSize(this.fontSize)
-                        .textAlign(TextAlign.Start)
-                        .alignSelf(ItemAlign.Center)
-                      Radio({ group: 'light or dark', value: 'light'})
-                        .checked(true)
-                    }
-                    .width('50%')
-    
-                    Column() {
-                      Text('Dark')
-                        .fontSize(this.fontSize)
-                        .textAlign(TextAlign.Start)
-                        .alignSelf(ItemAlign.Center)
-                      Radio({ group: 'light or dark', value: 'dark'})
-                    }
-                    .width('50%')
-                  }
+        WithTheme({ theme: this.customTheme }) {
+          Row(){
+            Column() {
+              Text('WithTheme')
+                .fontSize(30)
+                .margin({bottom: 10})
+              Text(this.message)
+                .margin({bottom: 10})
+              Button('change theme').onClick(() => {
+                this.count++;
+                if (this.count > 1) {
+                  this.count = 0;
                 }
-                .width('100%')
-                .height('90vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-              }
-    
-              ListItem() {
-                Row() {
-                  Text(this.darkModeSettings)
-                    .fontSize(this.fontSize)
-                    .textAlign(TextAlign.Start)
-                    .alignSelf(ItemAlign.Center)
-                    .margin({ left: this.marginLeft })
-                    .width('100%')
+                switch (this.count) {
+                  case 0:
+                    this.customTheme = new AppTheme();
+                    break;
+                  case 1:
+                    this.customTheme = new AppThemeSec();
+                    break;
                 }
-                .width('100%')
-                .height('50vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-                .onClick((event: ClickEvent) => {
-                  console.log(`Pressed ${this.darkModeSettings}`)
-                })
-              }
-    
-              ListItem() {
-                Column() {
-                  Text('Brightness')
-                    .width('100%')
-                    .margin({ top: '5vp', left: this.marginLeft })
-                  Slider({ value: this.brightnessValue, max: this.brightnessMax })
-                    .onChange((value) => {
-                      this.brightnessValue = value
-                      console.log(`Set brightness value: ${this.brightnessValue}`)
-                    })
-                }
-                .width('100%')
-                .height('70vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-              }
-    
-              ListItem() {
-                Row() {
-                  Text('Adaptive brightness')
-                    .fontSize(this.fontSize)
-                    .textAlign(TextAlign.Start)
-                    .margin({ left: this.marginLeft })
-                    .alignSelf(ItemAlign.Center)
-                    .width('75%')
-                  Toggle({ type: ToggleType.Switch })
-                    .margin({ right: this.marginLeft })
-                    .alignSelf(ItemAlign.Center)
-                    .width('25%')
-                }
-                .width('100%')
-                .height('50vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-              }
-    
-              ListItem() {
-                Column() {
-                  Row() {
-                    Text(this.fontSizeAndStyle)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .alignSelf(ItemAlign.Center)
-                      .margin({ left: this.marginLeft })
-                  }
-                  .width('100%')
-                  .height('50vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.fontSizeAndStyle}`)
-                  })
-    
-                  Divider()
-                    .strokeWidth('1.5vp')
-                    .width('95%')
-                  Row() {
-                    Text(this.screenZoom)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .alignSelf(ItemAlign.Center)
-                      .margin({ left: this.marginLeft })
-                  }
-                  .width('100%')
-                  .height('50vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.screenZoom}`)
-                  })
-    
-                  Divider()
-                    .strokeWidth('1.5vp')
-                    .width('95%')
-                  Row() {
-                    Text(this.fullScreenApps)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .alignSelf(ItemAlign.Center)
-                      .margin({ left: this.marginLeft })
-                  }
-                  .width('100%')
-                  .height('50vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.fullScreenApps}`)
-                  })
-                }
-                .width('100%')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-              }
-    
-              ListItem() {
-                Row() {
-                  Column() {
-                    Text(this.screenTimeout)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .margin({ left: this.marginLeft })
-                      .width('100%')
-                    Text('40 seconds')
-                      .fontColor(Color.Blue)
-                      .textAlign(TextAlign.Start)
-                      .fontSize('12fp')
-                      .fontColor('#FF0775E0')
-                      .width('100%')
-                      .margin({ left: this.marginLeft })
-                  }
-                  .alignSelf(ItemAlign.Center)
-                  .width('100%')
-                }
-                .width('100%')
-                .height('50vp')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-                .onClick((event: ClickEvent) => {
-                  console.log(`Pressed ${this.fullScreenApps}`)
-                })
-              }
-    
-              ListItem() {
-                Column() {
-                  Row() {
-                    Text(this.randomTouchProtection)
-                      .fontSize(this.fontSize)
-                      .textAlign(TextAlign.Start)
-                      .alignSelf(ItemAlign.Center)
-                      .margin({ left: this.marginLeft })
-                      .width('75%')
-                    Toggle({ type: ToggleType.Switch, isOn: true })
-                      .margin({ right: this.marginLeft })
-                      .alignSelf(ItemAlign.Center)
-                      .width('25%')
-                  }
-                  .width('100%')
-                  .height('50vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.randomTouchProtection}`)
-                  })
-    
-                  Divider()
-                    .strokeWidth('1.5vp')
-                    .width('95%')
-                  Row() {
-                    Column({ space: '5vp' }) {
-                      Text(this.touchSensitivity)
-                        .fontSize(this.fontSize)
-                        .textAlign(TextAlign.Start)
-                        .width('100%')
-                      Text('Increase the touch sensitivity of your screen' +
-                      ' for use with screen protectors')
-                        .fontSize('12fp')
-                        .textAlign(TextAlign.Start)
-                        .width('100%')
-                    }
-                    .alignSelf(ItemAlign.Center)
-                    .margin({ left: this.marginLeft })
-                    .width('75%')
-    
-                    Toggle({ type: ToggleType.Switch })
-                      .margin({ right: this.marginLeft })
-                      .alignSelf(ItemAlign.Center)
-                      .width('25%')
-                  }
-                  .width('100%')
-                  .height('80vp')
-                  .onClick((event: ClickEvent) => {
-                    console.log(`Pressed ${this.touchSensitivity}`)
-                  })
-                }
-                .width('100%')
-                .borderRadius('10vp')
-                .backgroundColor(this.menuItemColor)
-              }
+              })
             }
+            .width('100%')
           }
-          .padding('10vp')
-          .backgroundColor('#dcdcdc')
-          .width('100%')
           .height('100%')
+          .width('100%')
         }
       }
     }
   ```
 
-![customTheme](figures/customTheme.png)
+![customTheme](figures/customTheme.gif)
 
 ## 设置应用页面局部深浅色
-通过WithTheme可以设置深浅色模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。</br>
+通过[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)可以设置深浅色模式，[ThemeColorMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#themecolormode10)有三种模式，ThemeColorMode.SYSTEM模式表示跟随系统模式，ThemeColorMode.LIGHT模式表示浅色模式，ThemeColorMode.DARK模式表示深色模式。</br>
 在WithTheme作用域内，组件的样式资源取值跟随指定的模式读取对应的深浅色模式系统和应用资源值，WithTheme作用域内的组件配色跟随指定的深浅模式生效。</br>
 在下面的示例中，通过WithTheme({ colorMode: ThemeColorMode.DARK })将作用域内的组件设置为深色模式。
 
@@ -652,5 +298,5 @@ onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对�
       }
     }
   ```
-  
+
 ![lightDarkMode](figures/lightDarkMode.png)
