@@ -131,27 +131,36 @@
      private context = getContext(this) as common.UIAbilityContext;
    
      build() {
-       // ...
-       Button('startAbility')
-         .onClick(() => {
-           let want: Want = {
-             deviceId: getRemoteDeviceId(),
-             bundleName: 'com.samples.stagemodelabilityinteraction',
-             abilityName: 'CollaborateAbility',
-	     moduleName: 'entry' // moduleName非必选
+       Column() {
+         //...
+         List({ initialIndex: 0 }) {
+           //...
+           ListItem() {
+             Row() {
+               //...
+             }
+             .onClick(() => {
+               let want: Want = {
+                 deviceId: getRemoteDeviceId(),
+                 bundleName: 'com.samples.stagemodelabilityinteraction',
+                 abilityName: 'CollaborateAbility'
+               };
+               this.context.startAbility(want).then(() => {
+                 promptAction.showToast({
+                   message: $r('app.string.SuccessfulCollaboration')
+                 });
+               }).catch((err: BusinessError) => {
+                 hilog.error(DOMAIN_NUMBER, TAG, `startAbility err: ` + JSON.stringify(err));
+               });
+             })
            }
-   	   // context为发起端UIAbility的AbilityContext
-           this.context.startAbility(want).then(() => {
-       		// ...
-           }).catch((err: BusinessError) => {
-       		// ...
-             hilog.error(DOMAIN_NUMBER, TAG, `startAbility err: ` + JSON.stringify(err));
-           });
+           //...
          }
-         )
+         //...
+       }
+       //...
      }
    }
-
    ```
 
 5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用[stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
@@ -161,6 +170,7 @@
    import { hilog } from '@kit.PerformanceAnalysisKit';
    import { Want, common } from '@kit.AbilityKit';
    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import promptAction from '@ohos.promptAction';
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -270,23 +280,37 @@
      private context = getContext(this) as common.UIAbilityContext;
    
      build() {
-       // ...
-       Button('多端协同有返回数据')
-         .onClick(()=>{
-           let want: Want = {
-             deviceId: getRemoteDeviceId(),
-             bundleName: 'com.samples.stagemodelabilityinteraction',
-             abilityName: 'CollaborateAbility',
-             moduleName: 'entry' // moduleName非必选
-           };
-           // context为发起端UIAbility的AbilityContext
-           this.context.startAbilityForResult(want).then((data) => {
-             // ...
-           }).catch((error: BusinessError) => {
-             hilog.error(DOMAIN_NUMBER, TAG, `startAbilityForResult err: ` + JSON.stringify(error));
-           })
+       Column() {
+         //...
+         List({ initialIndex: 0 }) {
+           //...
+           ListItem() {
+             Row() {
+               //...
+             }
+             .onClick(() => {
+               let want: Want = {
+                 deviceId: getRemoteDeviceId(),
+                 bundleName: 'com.samples.stagemodelabilityinteraction',
+                 abilityName: 'ServiceExtAbility',
+                 moduleName: 'entry' // moduleName非必选
+               };
+               // 退出由startAbility接口启动的ServiceExtensionAbility
+               this.context.stopServiceExtensionAbility(want).then(() => {
+                 hilog.info(DOMAIN_NUMBER, TAG, 'stop service extension ability success')
+                 promptAction.showToast({
+                   message: $r('app.string.SuccessfullyStop')
+                 });
+               }).catch((err: BusinessError) => {
+                 hilog.error(DOMAIN_NUMBER, TAG, `stop service extension ability err is ` + JSON.stringify(err));
+               });
+             })
+           }
+           //...
          }
-         )
+         //...
+       }
+       //...
      }
    }
    ```
@@ -298,38 +322,49 @@
    import { hilog } from '@kit.PerformanceAnalysisKit';
    import { common } from '@kit.AbilityKit';
    
-   const DOMAIN_NUMBER: number = 0xFF00;
    const TAG: string = '[Page_CollaborateAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    
    @Entry
    @Component
-   struct PageName {
-     
-      private context = getContext(this) as common.UIAbilityContext;
-     
-      build() {
-        // ...
-        Button('关闭多设备协同界面并返回数据')
-          .onClick(()=>{
-          const RESULT_CODE: number = 1001;
-          // context为目标端UIAbility的AbilityContext
-          this.context.terminateSelfWithResult(
-            {
-              resultCode: RESULT_CODE,
-              want: {
-                bundleName: 'ohos.samples.stagemodelabilitydevelop',
-                abilityName: 'CollaborateAbility',
-                moduleName: 'entry',
-                parameters: {
-                  info: '来自Page_CollaborateAbility页面'
-                }
-              }
-            },
-            (err: BusinessError) => {
-              hilog.info(DOMAIN_NUMBER, TAG, `terminateSelfWithResult err: ` + JSON.stringify(err));
-            });
-        })
-      }
+   struct Page_CollaborateAbility {
+     private context = getContext(this) as common.UIAbilityContext;
+   
+     build() {
+       Column() {
+         //...
+         List({ initialIndex: 0 }) {
+           //...
+           ListItem() {
+             Row() {
+               //...
+             }
+             .onClick(() => {
+               const RESULT_CODE: number = 1001;
+               // context为目标端UIAbility的AbilityContext
+               this.context.terminateSelfWithResult(
+                 {
+                   resultCode: RESULT_CODE,
+                   want: {
+                     bundleName: 'ohos.samples.stagemodelabilitydevelop',
+                     abilityName: 'CollaborateAbility',
+                     moduleName: 'entry',
+                     parameters: {
+                       info: '来自Page_CollaborateAbility页面'
+                     }
+                   }
+                 },
+                 (err: BusinessError) => {
+                   hilog.info(DOMAIN_NUMBER, TAG, `terminateSelfWithResult err: ` + JSON.stringify(err));
+                 });
+             })
+           }
+           //...
+         }
+         //...
+       }
+       //...
+     }
    }
    ```
 
@@ -340,6 +375,7 @@
    import { hilog } from '@kit.PerformanceAnalysisKit';
    import { Want, common } from '@kit.AbilityKit';
    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import promptAction from '@ohos.promptAction';
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -366,33 +402,48 @@
    
    @Entry
    @Component
-   struct PageName {
+    struct Page_CollaborateAbility {
      private context = getContext(this) as common.UIAbilityContext;
    
      build() {
-       // ...
-       Button('多端协同有返回数据')
-         .onClick(() => {
-           let want: Want = {
-             deviceId: getRemoteDeviceId(),
-             bundleName: 'com.samples.stagemodelabilityinteraction',
-             abilityName: 'CollaborateAbility',
-             moduleName: 'entry' // moduleName非必选
-           };
-           const RESULT_CODE: number = 1001;
-           // ...
-           // context为调用方UIAbility的UIAbilityContext
-           this.context.startAbilityForResult(want).then((data) => {
-             if (data?.resultCode === RESULT_CODE) {
-               // 解析目标端UIAbility返回的信息
-               let info = data.want?.parameters?.info;
-               // ...
+       Column() {
+         //...
+         List({ initialIndex: 0 }) {
+           //...
+           ListItem() {
+             Row() {
+               //...
              }
-           }).catch((error: BusinessError) => {
-             // ...
-           })
+             .onClick(() => {
+               let want: Want = {
+                 deviceId: getRemoteDeviceId(),
+                 bundleName: 'com.samples.stagemodelabilityinteraction',
+                 abilityName: 'CollaborateAbility',
+                 moduleName: 'entry' // moduleName非必选
+               };
+               const RESULT_CODE: number = 1001;
+               // context为调用方UIAbility的UIAbilityContext
+               this.context.startAbilityForResult(want).then((data) => {
+                 if (data?.resultCode === RESULT_CODE) {
+                   // 解析目标端UIAbility返回的信息
+                   let info = data.want?.parameters?.info;
+                   hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
+                   if (info !== null) {
+                     promptAction.showToast({
+                       message : JSON.stringify(info)
+                     });
+                   }
+                 }
+               }).catch((error: BusinessError) => {
+                 hilog.error(DOMAIN_NUMBER, TAG, `startAbilityForResult err: ` + JSON.stringify(error));
+               });
+             })
+           }
+           //...
          }
-         )
+         //...
+       }
+       //...
      }
    }
    ```
@@ -442,7 +493,7 @@
       let dmClass: distributedDeviceManager.DeviceManager;
       let connectionId: number;
       let options: common.ConnectOptions = {
-        onConnect(elementName, remote) {
+        onConnect(elementName, remote): void {
           hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
           if (remote === null) {
             hilog.info(DOMAIN_NUMBER, TAG, `onConnect remote is null`);
@@ -470,10 +521,10 @@
             hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
           });
         },
-        onDisconnect(elementName) {
+        onDisconnect(elementName): void {
           hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
         },
-        onFailed(code) {
+        onFailed(code) void {
           hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback');
         }
       };
@@ -499,20 +550,32 @@
 
       @Entry
       @Component
-      struct PageName {
+      struct Page_CollaborateAbility {
         private context = getContext(this) as common.UIAbilityContext;
         build() {
-          // ...
-          Button('connectServiceExtensionAbility')
-            .onClick(()=>{
-              let want: Want = {
-                'deviceId': getRemoteDeviceId(),
-                'bundleName': 'com.samples.stagemodelabilityinteraction',
-                'abilityName': 'ServiceExtAbility'
-              };
-              // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
-              connectionId = this.context.connectServiceExtensionAbility(want, options);
-            })
+          Column() {
+            //...
+            List({ initialIndex: 0 }) {
+              //...
+              ListItem() {
+                Row() {
+                  //...
+                }
+                .onClick(() => {
+                  let want: Want = {
+                    'deviceId': getRemoteDeviceId(),
+                    'bundleName': 'com.samples.stagemodelabilityinteraction',
+                    'abilityName': 'ServiceExtAbility'
+                  };
+                  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+                  connectionId = this.context.connectServiceExtensionAbility(want, options);
+                })
+              }
+              //...
+            }
+            //...
+          }
+          //...
         }
       }
       ```
@@ -527,57 +590,43 @@
    import { Want, common } from '@kit.AbilityKit';
    import { rpc } from '@kit.IPCKit';
    import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
+   import promptAction from '@ohos.promptAction';
    
    let connectionId: number;
-   const TAG: string = '[Page_ServiceExtensionAbility]';
+   const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
-   let want: Want = {
-     deviceId: '',
-     bundleName: 'com.samples.stagemodelabilitydevelop',
-     abilityName: 'ServiceExtAbility'
-   };
-   
-   let options: common.ConnectOptions = {
-     onConnect(elementName, remote: rpc.IRemoteObject): void {
-       hilog.info(DOMAIN_NUMBER, TAG, 'onConnect callback');
-       if (remote === null) {
-         hilog.info(DOMAIN_NUMBER, TAG, 'onConnect remote is null');
-         return;
-       }
-       let serviceExtProxy: IdlServiceExtProxy = new IdlServiceExtProxy(remote);
-       // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
-       serviceExtProxy.processData(1, (errorCode: number, retVal: number) => {
-         hilog.info(DOMAIN_NUMBER, TAG, `processData, errorCode: ${errorCode}, retVal: ${retVal}`);
-       });
-       serviceExtProxy.insertDataToMap('theKey', 1, (errorCode: number) => {
-         hilog.info(DOMAIN_NUMBER, TAG, `insertDataToMap, errorCode: ${errorCode}`);
-       })
-     },
-     onDisconnect(elementName): void {
-       hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect callback');
-     },
-     onFailed(code: number): void {
-       hilog.info(DOMAIN_NUMBER, TAG, 'onFailed callback', JSON.stringify(code));
-     }
-   };
    
    @Entry
    @Component
-   struct PageName {
+   struct Page_CollaborateAbility {
      private context = getContext(this) as common.UIAbilityContext;
    
      build() {
-       // ...
-       Button('disconnectServiceExtensionAbility')
-         .onClick(() => {
-           this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
-             connectionId = this.context.connectServiceExtensionAbility(want, options);
-             hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
-             // 成功断连后台服务
-           }).catch((error: BusinessError) => {
-             hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
-           })
-         })
+       Column() {
+         //...
+         List({ initialIndex: 0 }) {
+           //...
+           ListItem() {
+             Row() {
+               //...
+             }
+             .onClick(() => {
+               this.context.disconnectServiceExtensionAbility(connectionId).then(() => {
+                 hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
+                 // 成功断连后台服务
+                 promptAction.showToast({
+                   message: $r('app.string.SuccessfullyDisconnectBackendService')
+                 })
+               }).catch((error: BusinessError) => {
+                 hilog.error(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility failed');
+               });
+             })
+           }
+           //...
+         }
+         //...
+       }
+       //...
      }
    }
    ```
@@ -694,7 +743,7 @@
              this.str = string;
            };
 		 
-           mySequenceable(num: number, string: string): void {
+           mySequenceable(num, string): void {
              this.num = num;
              this.str = string;
            };
@@ -724,7 +773,7 @@
            // 作相应处理
            // 返回序列化数据result给Caller
            return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
-         }
+         };
 		 
          export default class CalleeAbility extends UIAbility {
            caller: Caller | undefined;
@@ -733,20 +782,33 @@
              try {
                this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
              } catch (error) {
-               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`)
+               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
              };
-           }
-		 
+           };
+           //...
+           releaseCall(): void {
+             try {
+               if (this.caller) {
+                 this.caller.release();
+                 this.caller = undefined;
+               }
+               hilog.info(DOMAIN_NUMBER, TAG, 'caller release succeed');
+             } catch (error) {
+               hilog.info(DOMAIN_NUMBER, TAG, `caller release failed with ${error}`);
+             };
+           };
+           //...
            onDestroy(): void {
              try {
                this.callee.off(MSG_SEND_METHOD);
                hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Callee OnDestroy');
                this.releaseCall();
              } catch (error) {
-               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`)
+               hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
              };
-           }
-         }
+           };
+         };
+
          ```
      
 4. 获取Caller接口，访问被调用端UIAbility。
@@ -788,7 +850,7 @@
            hilog.info(DOMAIN_NUMBER, TAG, 'getRemoteDeviceId err: dmClass is null');
            return;
          }
-       }
+       };
 	   
        @Entry
        @Component
@@ -796,36 +858,53 @@
          private context = getContext(this) as common.UIAbilityContext;
 	   
          build() {
-           // ...
-           Button('多端协同有返回数据')
-             .onClick(() => {
-               this.context.startAbilityByCall({
-                 deviceId: getRemoteDeviceId(),
-                 bundleName: 'com.samples.stagemodelabilityinteraction',
-                 abilityName: 'CalleeAbility'
-               }).then((data) => {
-                 if (data !== null) {
-                   caller = data;
-                   hilog.info(DOMAIN_NUMBER, TAG, 'get remote caller success');
-                   // 注册caller的release监听
-                   caller.onRelease((msg) => {
-                     hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
-                   })
-                   hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
-                   // 注册caller的协同场景下跨设备组件状态变化监听通知
-                   try {
-                     caller.onRemoteStateChange((str) => {
-                       hilog.info(DOMAIN_NUMBER, TAG, 'Remote state changed ' + str);
-                     });
-                   } catch (error) {
-                     hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-                   };
+           Column() {
+             //...
+             List({ initialIndex: 0 }) {
+               //...
+               ListItem() {
+                 Row() {
+                   //...
                  }
-               }).catch((error: BusinessError) => {
-                 hilog.error(DOMAIN_NUMBER, TAG, `get remote caller failed with ${error}`);
-               });
+                 .onClick(() => {
+                   let caller: Caller | undefined;
+                   let context = this.context;
+       
+                   context.startAbilityByCall({
+                     deviceId: getRemoteDeviceId(),
+                     bundleName: 'com.samples.stagemodelabilityinteraction',
+                     abilityName: 'CalleeAbility'
+                   }).then((data) => {
+                     if (data !== null) {
+                       caller = data;
+                       hilog.info(DOMAIN_NUMBER, TAG, 'get remote caller success');
+                       // 注册caller的release监听
+                       caller.onRelease((msg) => {
+                         hilog.info(DOMAIN_NUMBER, TAG, `remote caller onRelease is called ${msg}`);
+                       });
+                       hilog.info(DOMAIN_NUMBER, TAG, 'remote caller register OnRelease succeed');
+                       promptAction.showToast({
+                         message: $r('app.string.CallerSuccess')
+                       });
+                       // 注册caller的协同场景下跨设备组件状态变化监听通知
+                       try {
+                         caller.onRemoteStateChange((str) => {
+                           hilog.info(DOMAIN_NUMBER, TAG, 'Remote state changed ' + str);
+                         });
+                       } catch (error) {
+                         hilog.info(DOMAIN_NUMBER, TAG, `Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+                       };
+                     }
+                   }).catch((error: BusinessError) => {
+                     hilog.error(DOMAIN_NUMBER, TAG, `get remote caller failed with ${error}`);
+                   });
+                 })
+               }
+               //...
              }
-             )
+             //...
+           }
+           //...
          }
        }
        ```
@@ -838,7 +917,10 @@
        ```ts
        import { UIAbility, Caller } from '@kit.AbilityKit';
        import { rpc } from '@kit.IPCKit';
-	   
+       import hilog from '@ohos.hilog';
+       
+       const TAG: string = '[CalleeAbility]';
+       const DOMAIN_NUMBER: number = 0xFF00;
        const MSG_SEND_METHOD: string = 'CallSendMsg';
        class MyParcelable {
          num: number = 0;
@@ -849,7 +931,7 @@
            this.str = string;
          };
 	   
-         mySequenceable(num: number, string: string): void {
+         mySequenceable(num, string): void {
            this.num = num;
            this.str = string;
          };
@@ -888,6 +970,10 @@
         ```ts
         import { UIAbility, Caller } from '@kit.AbilityKit';
         import { rpc } from '@kit.IPCKit';
+        import hilog from '@ohos.hilog';
+
+        const TAG: string = '[CalleeAbility]';
+        const DOMAIN_NUMBER: number = 0xFF00;
 
         const MSG_SEND_METHOD: string = 'CallSendMsg';
         let originMsg: string = '';
@@ -947,6 +1033,7 @@
 
    ```ts
    import { UIAbility, Caller } from '@kit.AbilityKit';
+   import hilog from '@ohos.hilog';
    
    export default class EntryAbility extends UIAbility {
      caller: Caller | undefined;

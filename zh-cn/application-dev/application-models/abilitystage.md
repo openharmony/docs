@@ -37,7 +37,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
      "module": {
        "name": "entry",
        "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
        ...
      }
    }
@@ -59,7 +59,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
   ```ts
   import AbilityStage from '@ohos.app.ability.AbilityStage';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
   export default class MyAbilityStage extends AbilityStage {
     onMemoryLevel(level: AbilityConstant.MemoryLevel): void {

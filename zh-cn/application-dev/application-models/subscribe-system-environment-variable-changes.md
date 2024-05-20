@@ -8,10 +8,11 @@
 
 基于当前的应用模型，可以通过以下几种方式来实现订阅系统环境变量的变化。
 
-- [使用ApplicationContext订阅回调](#使用applicationcontext订阅回调)
-- [在AbilityStage组件容器中订阅回调](#在abilitystage组件容器中订阅回调)
-- [在UIAbility组件中订阅回调](#在uiability组件中订阅回调)
-- [在ExtensionAbility组件中订阅回调](#在extensionability组件中订阅回调)
+- [订阅系统环境变量的变化](#订阅系统环境变量的变化)
+  - [使用ApplicationContext订阅回调](#使用applicationcontext订阅回调)
+  - [在AbilityStage组件容器中订阅回调](#在abilitystage组件容器中订阅回调)
+  - [在UIAbility组件中订阅回调](#在uiability组件中订阅回调)
+  - [在ExtensionAbility组件中订阅回调](#在extensionability组件中订阅回调)
 
 ## 使用ApplicationContext订阅回调
 
@@ -162,7 +163,6 @@ export default class EntryAbility extends UIAbility {
       systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
     }
   }
-
   // ...
 }
 ```
@@ -183,7 +183,7 @@ import { Configuration } from '@ohos.app.ability.Configuration';
 
 export default class EntryFormAbility extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
-    console.info(`newConfig is ${JSON.stringify(newConfig)}`);
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
 
   // ...

@@ -4,11 +4,11 @@
 UIAbility的启动模式是指UIAbility实例在启动时的不同呈现状态。针对不同的业务场景，系统提供了三种启动模式：
 
 
-- [singleton（单实例模式）](#singleton启动模式)
-
-- [multiton（多实例模式）](#multiton启动模式)
-
-- [specified（指定实例模式）](#specified启动模式)
+- [UIAbility组件启动模式](#uiability组件启动模式)
+  - [singleton启动模式](#singleton启动模式)
+  - [multiton启动模式](#multiton启动模式)
+  - [specified启动模式](#specified启动模式)
+  - [相关实例](#相关实例)
 
 
 ## singleton启动模式
@@ -187,7 +187,8 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
            return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
          }
        }
-       return '';
+        // ...
+       return 'MyAbilityStage';
      }
    }
    ```

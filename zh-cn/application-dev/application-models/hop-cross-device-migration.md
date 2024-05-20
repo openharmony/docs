@@ -133,7 +133,7 @@
          let continueInput = '';
          if (want.parameters !== undefined) {
            continueInput = JSON.stringify(want.parameters.data);
-           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
          }
          // 触发页面恢复
          this.context.restoreWindowStage(this.storage);
@@ -182,7 +182,7 @@ export default class MigrationAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState: ${JSON.stringify(result)}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
     });
     // ...
   }
@@ -223,6 +223,7 @@ struct Page_MigrationAbilityFirst {
 import { AbilityConstant, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { promptAction } from '@kit.ArkUI';
+import router from '@ohos.router';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -232,16 +233,28 @@ const DOMAIN_NUMBER: number = 0xFF00;
 struct Page_MigrationAbilityFirst {
   private context = getContext(this) as common.UIAbilityContext;
   build() {
-    // ...
-    Button() {
-      // ...
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // 点击该按钮时，将应用设置为可迁移状态
+            this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+              hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+              promptAction.showToast({
+                message: $r('app.string.Success')
+              });
+            });
+          })
+        }
+        //...
+      }
+      //...
     }
-    .onClick(()=>{
-      // 点击该按钮时，将应用设置为可迁移状态
-      this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-      });
-    })
+    //...
   }
 }
 ```
@@ -263,7 +276,7 @@ export default class MigrationAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // 调用原因为迁移时，设置状态为可迁移，应对冷启动情况
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
         hilog.info(`setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
       });
@@ -273,7 +286,7 @@ export default class MigrationAbility extends UIAbility {
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // 调用原因为迁移时，设置状态为可迁移，应对热启动情况
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
         hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
       });

@@ -25,18 +25,20 @@
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
    import promptAction from '@ohos.promptAction';
+   import hilog from '@ohos.hilog';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md)文档介绍。
    
    ```ts
    // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-   let subscriber: commonEventManager.CommonEventSubscriber | null = null;
+   private subscriber: commonEventManager.CommonEventSubscriber | null = null;
    // 订阅者信息，其中的event字段需要替换为实际的事件名称。
-   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
-       events: ['event'], // 订阅灭屏公共事件
+   private subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+     events: ['usual.event.SCREEN_OFF'], // 订阅灭屏公共事件
    };
    ```
 
@@ -44,12 +46,12 @@
    
    ```ts
    // 创建订阅者回调
-   commonEventManager.createSubscriber(subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
+   commonEventManager.createSubscriber(this.subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
      if (err) {
-       console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in creating subscriber.');
+     hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in creating subscriber.');
      subscriber = data;
      // 订阅公共事件回调
      ...
@@ -61,13 +63,14 @@
    ```ts
    // 订阅公共事件回调
    if (this.subscriber !== null) {
-     commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+     commonEventManager.subscribe(this.subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
-         console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+         hilog.error(DOMAIN_NUMBER, TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;
        }
+       // ...
      })
    } else {
-     console.error(`Need create subscriber`);
+     hilog.error(DOMAIN_NUMBER, TAG, `Need create subscriber`);
    }
    ```

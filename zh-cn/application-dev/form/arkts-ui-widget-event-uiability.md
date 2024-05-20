@@ -12,11 +12,11 @@
 - 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用[postCardAction()](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发router事件拉起UIAbility。
   
   ```ts
-  let storageUpdateRouter = new LocalStorage();
+  let storageUpdtRouter = new LocalStorage();
   
-  @Entry(storageUpdateRouter)
+  @Entry(storageUpdtRouter)
   @Component
-  struct WidgetUpdateRouterCard {
+  struct WidgetUpdtRouterCard {
     @LocalStorageProp('routerDetail') routerDetail: ResourceStr = $r('app.string.init');
   
     build() {
@@ -88,7 +88,7 @@
         let message: string = JSON.stringify(want.parameters.routerDetail);
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          'routerDetail': message + 'UIAbility.', // 和卡片布局中对应
+          routerDetail: message + 'UIAbility.', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData);
         formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
@@ -107,7 +107,7 @@
         let message: string = JSON.stringify(want.parameters.routerDetail);
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          'routerDetail': message + 'onNewWant UIAbility.', // 和卡片布局中对应
+          routerDetail: message + 'onNewWant UIAbility.', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData);
         formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
@@ -165,9 +165,9 @@
 - 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发call事件拉起UIAbility。
   
   ```ts
-  let storageUpdateCall = new LocalStorage();
-  
-  @Entry(storageUpdateCall)
+  let storageUpdtCall = new LocalStorage();
+
+  @Entry(storageUpdtCall)
   @Component
   struct WidgetUpdateCallCard {
     @LocalStorageProp('formId') formId: string = '12400633174999288';

@@ -8,66 +8,79 @@
   import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
   import { Configuration, Want } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
+  import type Base from '@ohos.base';
+  import type common from '@ohos.app.ability.common';
+  import dataPreferences from '@ohos.data.preferences';
+  import hilog from '@ohos.hilog';
 ```
 
 2. 在EntryFormAbility.ets中，实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口，其中在onAddForm的入参want中可以通过[FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam)取出卡片的相关信息。
    
 ```ts
-   export default class EntryFormAbility extends FormExtensionAbility {
-    onAddForm(want: Want) {
-      console.info('[EntryFormAbility] onAddForm');
-      // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
-      let obj: Record<string, string> = {
-        'title': 'titleOnAddForm',
-        'detail': 'detailOnAddForm'
-      };
-      let formData = formBindingData.createFormBindingData(obj);
-      return formData;
-    }
-
-    onCastToNormalForm(formId: string) {
-      // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
-      console.info(`[EntryFormAbility] onCastToNormalForm, formId: ${formId}`);
-    }
-
-    onUpdateForm(formId: string) {
-      // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-      console.info('[EntryFormAbility] onUpdateForm');
-      let obj: Record<string, string> = {
-        'title': 'titleOnUpdateForm',
-        'detail': 'detailOnUpdateForm'
-      };
-      let formData = formBindingData.createFormBindingData(obj);
-      formProvider.updateForm(formId, formData).catch((err: BusinessError) => {
-        console.error(`[EntryFormAbility] Failed to updateForm. Code: ${err.code}, message: ${err.message}`);
-      });
-    }
-
-    onChangeFormVisibility(newStatus: Record<string, number>) {
-      // 需要配置formVisibleNotify为true，且为系统应用才会回调
-      console.info('[EntryFormAbility] onChangeFormVisibility');
-    }
-
-    onFormEvent(formId: string, message: string) {
-      // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-      console.info('[EntryFormAbility] onFormEvent');
-    }
-
-    onRemoveForm(formId: string) {
-      // 当对应的卡片删除时触发的回调，入参是被删除的卡片ID
-      console.info('[EntryFormAbility] onRemoveForm');
-    }
-
-    onConfigurationUpdate(config: Configuration) {
-      // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
-      // 需注意：formExtensionAbility创建后5秒内无操作将会被清理。
-      console.info('[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
-    }
-
-    onAcquireFormState(want: Want) {
-      // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
-      return formInfo.FormState.READY;
-    }
+   const TAG: string = 'JsCardFormAbility';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   export default class JsCardFormAbility extends FormExtensionAbility {
+     onAddForm(want: Want): formBindingData.FormBindingData {
+       hilog.info(DOMAIN_NUMBER, TAG, '[JsCardFormAbility] onAddForm');
+   
+       // ...
+       // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+       let obj: Record<string, string> = {
+         title: 'titleOnCreate',
+         detail: 'detailOnCreate'
+       };
+       let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+       return formData;
+     }
+   
+     onCastToNormalForm(formId: string): void {
+       // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
+     }
+   
+     onUpdateForm(formId: string): void {
+       // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
+       let obj: Record<string, string> = {
+         title: 'titleOnUpdate',
+         detail: 'detailOnUpdate'
+       };
+       let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+       formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
+         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+       });
+     }
+   
+     onChangeFormVisibility(newStatus: Record<string, number>): void {
+       // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
+     }
+   
+     onFormEvent(formId: string, message: string): void {
+       // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
+       // ...
+     }
+   
+     onRemoveForm(formId: string): void {
+       // 删除卡片实例数据
+       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
+       // 删除之前持久化的卡片实例数据
+       // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+       deleteFormInfo(formId, this.context);
+     }
+   
+     onConfigurationUpdate(config: Configuration) {
+       // 当前formExtensionAbility存活时更新系统配置信息时触发的回调。
+       // 需注意：formExtensionAbility创建后5秒内无操作将会被清理。
+       hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
+     }
+   
+     onAcquireFormState(want: Want) {
+       // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
+       return formInfo.FormState.READY;
+     }
    }
 ```
 
