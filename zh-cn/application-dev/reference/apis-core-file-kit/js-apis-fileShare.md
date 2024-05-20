@@ -250,15 +250,15 @@ activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
       fileShare.activatePermission(policies).then(() => {
         console.info("activatePermission successfully");
-      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+      }).catch(async (err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
         console.error("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
           if (err.code == 13900001 && err.data) {
             for (let i = 0; i < err.data.length; i++) {
               console.error("error code : " + JSON.stringify(err.data[i].code));
               console.error("error uri : " + JSON.stringify(err.data[i].uri));
               console.error("error reason : " + JSON.stringify(err.data[i].message));
-              if(err.data[i].code == fileshare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
-                await fileshare.persistPermission(policies);
+              if(err.data[i].code == fileShare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
+                await fileShare.persistPermission(policies);
               }
             }
           }
