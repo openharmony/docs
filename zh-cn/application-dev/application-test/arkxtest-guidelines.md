@@ -131,7 +131,7 @@ struct Index {
 }
 ```
 
-2.编写具体测试代码。
+2.在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
