@@ -33,7 +33,7 @@ AdComponent(ads: Array<advertising.Advertisement>, displayOptions: advertising.A
 | ads | Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt; | 是 | 广告对象数组。 | 
 | displayOptions | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions) | 是 | 广告展示参数。 | 
 | interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | 是 | 广告状态变化回调。 | 
-| adRenderer<sup>12+</sup> | () => void | 否 | 媒体自渲染广告样式。 | 
+| adRenderer<sup>12+</sup> | () => void | 否 | 应用自渲染广告样式。 | 
 
 **示例：**
 
@@ -80,10 +80,10 @@ export struct ShowNonFullScreenAd {
   }
 }
 ```
-媒体自渲染广告仅限原生广告，媒体要在AdRequestParams中设置needSelfRendering。返回的Advertisement中带有canSelfRendering为true，且媒体的包名在媒体自渲染白名单中才能正常展示。
+应用自渲染广告仅限原生广告，应用要在AdRequestParams中设置needSelfRendering。返回的Advertisement中带有canSelfRendering为true，且应用的包名在应用自渲染白名单中才能正常展示。
 ```
 
-**展示媒体自渲染广告示例：**
+**展示应用自渲染广告示例：**
 
 ```ts
 import { AdComponent, advertising } from '@kit.AdsKit';
