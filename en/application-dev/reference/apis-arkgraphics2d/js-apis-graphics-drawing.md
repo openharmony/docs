@@ -6,7 +6,7 @@ The Drawing module provides basic drawing capabilities, such as drawing rectangl
 >
 > - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This module does not provide the pixel unit. The pixel unit to use is consistent with the application context environment. In the ArkUI development environment, the default pixel unit vp is used. For details about the pixel unit, see [Pixel Units](../apis-arkui/arkui-ts/ts-pixel-units.md).
+> - This module uses the physical pixel unit, px.
 
 ## Modules to Import
 
@@ -523,8 +523,10 @@ Draws a text blob.
 | Name| Type                 | Mandatory| Description                                      |
 | ------ | --------------------- | ---- | ------------------------------------------ |
 | blob   | [TextBlob](#textblob) | Yes  | **TextBlob** object.                            |
-| x      | number                | Yes  | X coordinate of the lower left corner of the text blob. The value is a floating point number.|
-| y      | number                | Yes  | Y coordinate of the lower left corner of the text blob. The value is a floating point number.|
+| x      | number                | Yes  | X coordinate of the left point (red point in the figure below) of the text baseline (blue line in the figure below). The value is a floating point number.|
+| y      | number                | Yes  | Y coordinate of the left point (red point in the figure below) of the text baseline (blue line in the figure below). The value is a floating point number.|
+
+![image_Text_Blob.png](figures/image_Text_Blob.png)
 
 **Example**
 
@@ -538,7 +540,7 @@ class DrawingRenderNode extends RenderNode {
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     const font = new drawing.Font();
     font.setSize(20);
-    const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    const textBlob = drawing.TextBlob.makeFromString("Hello, drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
     canvas.detachBrush();
@@ -1230,7 +1232,7 @@ Sets a stroke width for this pen.
 
 | Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| width  | number | Yes  | Stroke width. The value is a floating point number.|
+| width  | number | Yes  | Stroke width. The value is a floating point number. If a value less than 1 is passed in, the value **1** is used.|
 
 **Example**
 

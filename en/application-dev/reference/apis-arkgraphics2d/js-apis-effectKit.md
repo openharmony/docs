@@ -270,37 +270,35 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 import image from "@ohos.multimedia.image";
 import effectKit from "@ohos.effectKit";
 
-export function test06(): void {
-  const color = new ArrayBuffer(96);
-  let opts: image.InitializationOptions = {
-    editable: true,
-    pixelFormat: 3,
-    size: {
-      height: 4,
-      width: 6
-    }
+const color = new ArrayBuffer(96);
+let opts: image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
   }
-  image.createPixelMap(color, opts).then((pixelMap) => {
-    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
-      if (error) {
-        console.error('Failed to create color picker.');
-      } else {
-        console.info('Succeeded in creating color picker.');
-        colorPicker.getMainColor().then(color => {
-          console.info('Succeeded in getting main color.');
-          console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
-        })
-      }
-    })
-  })
 }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.error('Failed to create color picker.');
+     } else {
+       console.info('Succeeded in creating color picker.');
+       colorPicker.getMainColor().then(color => {
+        console.info('Succeeded in getting main color.');
+         console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
+      })
+    }
+  })
+})
 ```
 
 ### getMainColorSync
 
 getMainColorSync(): Color
 
-Obtains the main color from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+Obtains the main color from the image and writes the result to a [Color](#color) instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -337,13 +335,13 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![en-us_image_Main_Color.png](figures/en-us_image_Main_Color.png)
+![image_Main_Color.png](figures/image_Main_Color.png)
 
 ### getLargestProportionColor<sup>10+</sup>
 
 getLargestProportionColor(): Color
 
-Obtains the color with the largest proportion from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+Obtains the color with the largest proportion from the image and writes the result to a [Color](#color) instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -380,13 +378,13 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![en-us_image_Largest_Proportion_Color.png](figures/en-us_image_Largest_Proportion_Color.png)
+![image_Largest_Proportion_Color.png](figures/image_Largest_Proportion_Color.png)
 
 ### getHighestSaturationColor<sup>10+</sup>
 
 getHighestSaturationColor(): Color
 
-Obtains the color with the highest saturation from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+Obtains the color with the highest saturation from the image and writes the result to a [Color](#color) instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -423,13 +421,13 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![en-us_image_Highest_Saturation_Color.png](figures/en-us_image_Highest_Saturation_Color.png)
+![image_Highest_Saturation_Color.png](figures/image_Highest_Saturation_Color.png)
 
 ### getAverageColor<sup>10+</sup>
 
 getAverageColor(): Color
 
-Obtains the average color from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+Obtains the average color from the image and writes the result to a [Color](#color) instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -466,7 +464,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
-![en-us_image_Average_Color.png](figures/en-us_image_Average_Color.png)
+![image_Average_Color.png](figures/image_Average_Color.png)
 
 ### isBlackOrWhiteOrGrayColor<sup>10+</sup>
 
@@ -563,7 +561,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
-![en-us_image_Add_Blur.png](figures/en-us_image_Add_Blur.png)
+![image_Add_Blur.png](figures/image_Add_Blur.png)
 
 ### brightness
 
@@ -608,7 +606,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
-![en-us_image_Add_Brightness.png](figures/en-us_image_Add_Brightness.png)
+![image_Add_Brightness.png](figures/image_Add_Brightness.png)
 
 ### grayscale
 
@@ -646,7 +644,7 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   }
 })
 ```
-![en-us_image_Add_Grayscale.png](figures/en-us_image_Add_Grayscale.png)
+![image_Add_Grayscale.png](figures/image_Add_Grayscale.png)
 
 ### getPixelMap<sup>(deprecated)</sup>
 
@@ -723,3 +721,4 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   })
 })
 ```
+

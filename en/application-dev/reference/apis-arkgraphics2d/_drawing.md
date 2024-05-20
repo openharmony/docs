@@ -3,9 +3,7 @@
 
 ## Overview
 
-The **Drawing** module provides the functions for 2D graphics rendering, text drawing, and image display.
-
-This module does not provide the pixel unit. The pixel unit to use is consistent with the application context environment. In the ArkUI development environment, the default pixel unit vp is used. For details about the pixel unit, see [Pixel Units](../apis-arkui/arkui-ts/ts-pixel-units.md).
+The **Drawing** module provides the functions for 2D graphics rendering, text drawing, and image display. It uses the physical pixel unit, px.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -49,7 +47,7 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | -------- | -------- |
 | [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | Describes the pixel format of a bitmap, including the color type and alpha type.|
 | [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) | Describes a run, which provides storage for glyphs and positions.|
-| [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) | Describes a placeholder that acts as a span.|
+| [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) | Describes the placeholder that acts as a span.|
 
 
 ### Types
@@ -62,8 +60,8 @@ This module does not provide the pixel unit. The pixel unit to use is consistent
 | [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) | Defines a struct used to manage the typography style, such as the text direction.|
 | [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) | Defines a struct used to create an [OH_Drawing_Typography](#oh_drawing_typography) object.|
 | [OH_Drawing_TextBox](#oh_drawing_textbox) | Defines a struct for a text box, which is used to receive the rectangle size, direction, and quantity.|
-| [OH_Drawing_PositionAndAffinity](#oh_drawing_positionandaffinity) | Defines a struct used to receive the position and affinity of the graph.|
-| [OH_Drawing_Range](#oh_drawing_range) | Defines a struct for a range, which is used to receive the start position and end position of the font.|
+| [OH_Drawing_PositionAndAffinity](#oh_drawing_positionandaffinity) | Defines a struct used to receive the position and affinity of a glyph.|
+| [OH_Drawing_Range](#oh_drawing_range) | Defines a struct for a range, which is used to receive the start position and end position of a glyph.|
 | [OH_Drawing_Canvas](#oh_drawing_canvas) | Defines a struct for a rectangular canvas, on which various shapes, images, and texts can be drawn by using the brush and pen.|
 | [OH_Drawing_Pen](#oh_drawing_pen) | Defines a struct for a pen, which is used to describe the style and color to outline a shape.|
 | [OH_Drawing_Brush](#oh_drawing_brush) | Defines a struct for a brush, which is used to describe the style and color to fill in a shape.|
@@ -458,7 +456,7 @@ typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity
 
 **Description**
 
-Defines a struct used to receive the position and affinity of the graph.
+Defines a struct used to receive the position and affinity of a glyph.
 
 **Since**: 11
 
@@ -471,7 +469,7 @@ typedef struct OH_Drawing_Range OH_Drawing_Range
 
 **Description**
 
-Defines a struct for a range, which is used to receive the start position and end position of the font.
+Defines a struct for a range, which is used to receive the start position and end position of a glyph.
 
 **Since**: 11
 
@@ -654,11 +652,21 @@ Enumerates the blend modes. In blend mode, each operation generates a new color 
 
 For brevity, the following abbreviations are used:
 
-**s**: source. **d**: destination. **sa**: source alpha. **da**: destination alpha.
+**s**: source.
+
+**d**: destination.
+
+**sa**: source alpha.
+
+**da**: destination alpha.
 
 The following abbreviations are used in the calculation result:
 
-**r**: The calculation methods of the four channels are the same. **ra**: Only the alpha channel is manipulated. **rc**: The other three color channels are manipulated.
+**r**: The calculation methods of the four channels are the same.
+
+**ra**: Only the alpha channel is manipulated.
+
+**rc**: The other three color channels are manipulated.
 
 **Since**: 11
 
@@ -667,17 +675,17 @@ The following abbreviations are used in the calculation result:
 | BLEND_MODE_CLEAR | Clear mode. r = 0.|
 | BLEND_MODE_SRC | r = s (The four channels of **result** are equal to the four channels of **source**, that is, the result is equal to the source.)|
 | BLEND_MODE_DST | r = d (The four channels of **result** are equal to the four channels of **destination**, that is, the result is equal to the destination.)|
-| BLEND_MODE_SRC_OVER | r = s + (1 - sa) \* d |
-| BLEND_MODE_DST_OVER | r = d + (1 - da) \* s |
-| BLEND_MODE_SRC_IN | r = s \* da |
-| BLEND_MODE_DST_IN | r = d \* sa |
-| BLEND_MODE_SRC_OUT | r = s \* (1 - da) |
-| BLEND_MODE_DST_OUT | r = d \* (1 - sa) |
-| BLEND_MODE_SRC_ATOP | r = s \* da + d \* (1 - sa) |
-| BLEND_MODE_DST_ATOP | r = d \* sa + s \* (1 - da) |
-| BLEND_MODE_XOR | r = s \* (1 - da) + d \* (1 - sa) |
-| BLEND_MODE_PLUS | r = min(s + d, 1) |
-| BLEND_MODE_MODULATE | r = s \* d |
+| BLEND_MODE_SRC_OVER | r = s + (1 - sa) \* d. |
+| BLEND_MODE_DST_OVER | r = d + (1 - da) \* s. |
+| BLEND_MODE_SRC_IN | r = s \* da. |
+| BLEND_MODE_DST_IN | r = d \* sa. |
+| BLEND_MODE_SRC_OUT | r = s \* (1 - da). |
+| BLEND_MODE_DST_OUT | r = d \* (1 - sa). |
+| BLEND_MODE_SRC_ATOP | r = s \* da + d \* (1 - sa). |
+| BLEND_MODE_DST_ATOP | r = d \* sa + s \* (1 - da). |
+| BLEND_MODE_XOR | r = s \* (1 - da) + d \* (1 - sa). |
+| BLEND_MODE_PLUS | r = min(s + d, 1). |
+| BLEND_MODE_MODULATE | r = s \* d. |
 | BLEND_MODE_SCREEN | Screen mode. r = s + d - s \* d|
 | BLEND_MODE_OVERLAY | Overlay mode.|
 | BLEND_MODE_DARKEN | Darken mode. rc = s + d - max(s \* da, d \* sa), ra = s + (1 - sa) \* d|
@@ -973,7 +981,7 @@ Enumerates the text baselines.
 | Value| Description|
 | -------- | -------- |
 | TEXT_BASELINE_ALPHABETIC | Alphabetic, where the letters in alphabets like English sit on.|
-| TEXT_BASELINE_IDEOGRAPHIC | Ideographic. The baseline is at the bottom of the text area.|
+| TEXT_BASELINE_IDEOGRAPHIC | Ideographic, where the baseline is at the bottom of the text area.|
 
 
 ### OH_Drawing_TextDecoration
@@ -2289,8 +2297,8 @@ Creates an **OH_Drawing_TypographyCreate** object.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
-| OH_Drawing_FontCollection | Pointer to an **OH_Drawing_FontCollection** object, which is obtained by [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection).|
+| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
+| OH_Drawing_FontCollection | Pointer to an **OH_Drawing_FontCollection** object, which is obtained by calling [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection).|
 
 **Returns**
 
@@ -2355,7 +2363,7 @@ Destroys an **OH_Drawing_TextStyle** object and reclaims the memory occupied by 
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 
 
 ### OH_Drawing_DestroyTypography()
@@ -2376,7 +2384,7 @@ Destroys an **OH_Drawing_Typography** object and reclaims the memory occupied by
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 
 ### OH_Drawing_DestroyTypographyHandler()
@@ -2418,7 +2426,7 @@ Destroys an **OH_Drawing_TypographyStyle** object and reclaims the memory occupi
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
+| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
 
 
 ### OH_Drawing_FilterCreate()
@@ -2673,7 +2681,7 @@ Obtains the affinity attribute of an **OH_Drawing_PositionAndAffinity** object. 
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_PositionAndAffinity | Pointer to an **OH_Drawing_PositionAndAffinity** object, which is obtained by [OH_Drawing_TypographyGetGlyphPositionAtCoordinate](#oh_drawing_typographygetglyphpositionatcoordinate) or [OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster](#oh_drawing_typographygetglyphpositionatcoordinatewithcluster).|
+| OH_Drawing_PositionAndAffinity | Pointer to an **OH_Drawing_PositionAndAffinity** object, which is obtained by calling [OH_Drawing_TypographyGetGlyphPositionAtCoordinate](#oh_drawing_typographygetglyphpositionatcoordinate) or [OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster](#oh_drawing_typographygetglyphpositionatcoordinatewithcluster).|
 
 **Returns**
 
@@ -2698,7 +2706,7 @@ Obtains the bottom position of a text box.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
+| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by calling [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
 | int | Index of the text box.|
 
 **Returns**
@@ -2724,7 +2732,7 @@ Obtains the end position of an **OH_Drawing_Range** object.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Range | Pointer to an **OH_Drawing_Range** object, which is obtained by [OH_Drawing_TypographyGetWordBoundary](#oh_drawing_typographygetwordboundary).|
+| OH_Drawing_Range | Pointer to an **OH_Drawing_Range** object, which is obtained by calling [OH_Drawing_TypographyGetWordBoundary](#oh_drawing_typographygetwordboundary).|
 
 **Returns**
 
@@ -2749,7 +2757,7 @@ Obtains the left position of a text box.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
+| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by calling [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
 | int | Index of the text box.|
 
 **Returns**
@@ -2775,7 +2783,7 @@ Obtains the position attribute of an **OH_Drawing_PositionAndAffinity** object.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_PositionAndAffinity | Pointer to an **OH_Drawing_PositionAndAffinity** object, which is obtained by [OH_Drawing_TypographyGetGlyphPositionAtCoordinate](#oh_drawing_typographygetglyphpositionatcoordinate) or [OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster](#oh_drawing_typographygetglyphpositionatcoordinatewithcluster).|
+| OH_Drawing_PositionAndAffinity | Pointer to an **OH_Drawing_PositionAndAffinity** object, which is obtained by calling [OH_Drawing_TypographyGetGlyphPositionAtCoordinate](#oh_drawing_typographygetglyphpositionatcoordinate) or [OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster](#oh_drawing_typographygetglyphpositionatcoordinatewithcluster).|
 
 **Returns**
 
@@ -2800,7 +2808,7 @@ Obtains the right position of a text box.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
+| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by calling [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
 | int | Index of the text box.|
 
 **Returns**
@@ -2826,7 +2834,7 @@ Obtains the number of text boxes.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
+| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by calling [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
 
 **Returns**
 
@@ -2851,7 +2859,7 @@ Obtains the start position of an **OH_Drawing_Range** object.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Range | Pointer to an **OH_Drawing_Range** object, which is obtained by [OH_Drawing_TypographyGetWordBoundary](#oh_drawing_typographygetwordboundary).|
+| OH_Drawing_Range | Pointer to an **OH_Drawing_Range** object, which is obtained by calling [OH_Drawing_TypographyGetWordBoundary](#oh_drawing_typographygetwordboundary).|
 
 **Returns**
 
@@ -2876,7 +2884,7 @@ Obtains the text direction of a text box.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
+| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by calling [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
 | int | Index of the text box.|
 
 **Returns**
@@ -2902,7 +2910,7 @@ Obtains the top position of a text box.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
+| OH_Drawing_TextBox | Pointer to an **OH_Drawing_TextBox** object, which is obtained by calling [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) or [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders).|
 | int | Index of the text box.|
 
 **Returns**
@@ -3262,7 +3270,7 @@ void OH_Drawing_PenDestroy (OH_Drawing_Pen * )
 
 **Description**
 
-Destroys an **OH_Drawing_Path** object and reclaims the memory occupied by the object.
+Destroys an **OH_Drawing_Pen** object and reclaims the memory occupied by the object.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3860,7 +3868,7 @@ Sets the text baseline.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | int | Text baseline. For details about the available options, see [OH_Drawing_TextBaseline](#oh_drawing_textbaseline).|
 
 
@@ -3882,7 +3890,7 @@ Sets the text color.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | uint32_t | Color.|
 
 
@@ -3904,7 +3912,7 @@ Sets the text decoration.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | int | Text decoration. For details about the available options, see [OH_Drawing_TextDecoration](#oh_drawing_textdecoration).|
 
 
@@ -3926,7 +3934,7 @@ Sets the color for the text decoration.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | uint32_t | Color.|
 
 
@@ -3948,7 +3956,7 @@ Sets the text decoration style.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | int | Text decoration style. For details about the available options, see [OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle).|
 
 
@@ -3970,7 +3978,7 @@ Sets the thickness scale factor of the text decoration line.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | double | Scale factor.|
 
 
@@ -3992,7 +4000,7 @@ Sets the ellipsis content for text.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | char\* | Pointer to the ellipsis content. The data type is a pointer pointing to char.|
 
 
@@ -4014,7 +4022,7 @@ Sets the ellipsis style for text.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | int | Ellipsis style. For details about the available options, see [OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal).|
 
 
@@ -4036,7 +4044,7 @@ Sets the font families.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | int | Number of font families.|
 | char | Pointer to the font families.|
 
@@ -4059,7 +4067,7 @@ Sets the font height.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | double | Font height.|
 
 
@@ -4081,7 +4089,7 @@ Sets the font size.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | double | Font size.|
 
 
@@ -4103,7 +4111,7 @@ Sets the font style.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | int | Font style. For details about the available options, see [OH_Drawing_FontStyle](#oh_drawing_fontstyle).|
 
 
@@ -4125,7 +4133,7 @@ Sets the font weight.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | int | Font weight. For details about the available options, see [OH_Drawing_FontWeight](#oh_drawing_fontweight).|
 
 
@@ -4147,7 +4155,7 @@ Sets half leading for text.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | bool | Whether to enable half leading. The value **true** means to enable half lading, and **false** means the opposite.|
 
 
@@ -4169,7 +4177,7 @@ Sets the letter spacing for text.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | double | Letter spacing.|
 
 
@@ -4191,7 +4199,7 @@ Sets the locale.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | char | Pointer to the locale.|
 
 
@@ -4213,7 +4221,7 @@ Sets the word spacing for text.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 | double | Word spacing.|
 
 
@@ -4235,7 +4243,7 @@ Sets the text alignment mode.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
+| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
 | int | Text alignment mode. For details about the available options, see [OH_Drawing_TextAlign](#oh_drawing_textalign).|
 
 
@@ -4257,7 +4265,7 @@ Sets the text break strategy.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
+| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
 | int | Text break strategy. For details about the available options, see [OH_Drawing_BreakStrategy](#oh_drawing_breakstrategy).|
 
 
@@ -4279,7 +4287,7 @@ Sets the text direction.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
+| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
 | int | Text direction. For details about the available options, see [OH_Drawing_TextDirection](#oh_drawing_textdirection).|
 
 
@@ -4301,7 +4309,7 @@ Sets the ellipsis style for text.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
+| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
 | int | Ellipsis style. For details about the available options, see [OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal).|
 
 
@@ -4323,7 +4331,7 @@ Sets the maximum number of lines in the text.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
+| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
 | int | Maximum number of lines.|
 
 
@@ -4345,7 +4353,7 @@ Sets the word break type.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
+| OH_Drawing_TypographyStyle | Pointer to an **OH_Drawing_TypographyStyle** object, which is obtained by calling [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle).|
 | int | Word break type. For details about the available options, see [OH_Drawing_WordBreakType](#oh_drawing_wordbreaktype).|
 
 
@@ -4627,7 +4635,7 @@ Checks whether the maximum number of lines is exceeded.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4652,7 +4660,7 @@ Obtains the alphabetic baseline.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4677,7 +4685,7 @@ Obtains the position and affinity of the glyph at the given coordinates.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 | double | X coordinate.|
 | double | Y coordinate.|
 
@@ -4704,7 +4712,7 @@ Obtains the position and affinity of the glyph cluster to which the glyph at the
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 | double | X coordinate.|
 | double | Y coordinate.|
 
@@ -4731,7 +4739,7 @@ Obtains the height.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4756,7 +4764,7 @@ Obtains the ideographic baseline.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4781,7 +4789,7 @@ Obtains the number of lines.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4806,7 +4814,7 @@ Obtains the height of a given line.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 | int | Target line.|
 
 **Returns**
@@ -4832,7 +4840,7 @@ Obtains the width of a line.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 | int | Target line.|
 
 **Returns**
@@ -4858,7 +4866,7 @@ Obtains the width of the longest line. You are advised to round up the return va
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4883,7 +4891,7 @@ Obtains the maximum intrinsic width.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4908,7 +4916,7 @@ Obtains the maximum width.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4933,7 +4941,7 @@ Obtains the minimum intrinsic width.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4958,7 +4966,7 @@ Obtains text boxes for placeholders.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 
 **Returns**
 
@@ -4983,7 +4991,7 @@ Obtains text boxes in a given range.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 | size_t | Start position.|
 | size_t | End position.|
 | OH_Drawing_RectHeightStyle | Height style. For details about the available options, see [OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle).|
@@ -5012,7 +5020,7 @@ Obtains the word boundary.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 | size_t | Index of the word.|
 
 **Returns**
@@ -5104,7 +5112,7 @@ Sets the text style.
 | Name| Description|
 | -------- | -------- |
 | OH_Drawing_TypographyCreate | Pointer to an **OH_Drawing_TypographyCreate** object. The pointer is obtained by [OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler).|
-| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
+| OH_Drawing_TextStyle | Pointer to an **OH_Drawing_TextStyle** object, which is obtained by calling [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle).|
 
 
 ### OH_Drawing_TypographyLayout()
@@ -5125,7 +5133,7 @@ Lays out the typography.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
 | double | Maximum text width.|
 
 
@@ -5147,7 +5155,7 @@ Paints text on the canvas.
 
 | Name| Description|
 | -------- | -------- |
-| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
-| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object, which is obtained by [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate).|
+| OH_Drawing_Typography | Pointer to an **OH_Drawing_Typography** object, which is obtained by calling [OH_Drawing_CreateTypography](#oh_drawing_createtypography).|
+| OH_Drawing_Canvas | Pointer to an **OH_Drawing_Canvas** object, which is obtained by calling [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate).|
 | double | X coordinate.|
 | double | Y coordinate. |
