@@ -36,93 +36,93 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 加载在线网页。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
-  ```
+}
+```
 
 隐私模式Webview加载在线网页。
 
-   ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
     }
   }
-  ```
+}
+```
 
 Web组件统一渲染模式。
 
-   ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
     }
   }
-  ```
+}
+```
 
 加载本地网页。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 通过$rawfile加载本地资源文件。
-        Web({ src: $rawfile("index.html"), controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      // 通过$rawfile加载本地资源文件。
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 通过resource协议加载本地资源文件。
-        Web({ src: "resource://rawfile/index.html", controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      // 通过resource协议加载本地资源文件。
+      Web({ src: "resource://rawfile/index.html", controller: this.controller })
     }
   }
-  ```
+}
+```
 
 加载沙箱路径下的本地资源文件。
 
@@ -1708,10 +1708,11 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
-> 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
-> Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
-> 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
+> - 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
+> - 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
+> - Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
+> - 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
+> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。全量展开场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1751,6 +1752,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
+> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1964,7 +1966,9 @@ struct WebComponent {
   ```
 ### enableNativeMediaPlayer<sup>12+</sup>
 
-开启应用接管网页媒体播放功能。
+enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
+
+开启[应用接管网页媒体播放功能](../../web/app-takeovers-web-media.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7317,10 +7321,7 @@ onOverrideUrlLoading的回调。
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
-type NativeMediaPlayerConfig = {
-  enable: boolean,
-  shouldOverlay: boolean
-}
+type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 用于[开启应用接管网页媒体播放功能](#enablenativemediaplayer12)的配置信息。
 
