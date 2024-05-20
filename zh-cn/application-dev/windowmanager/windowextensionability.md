@@ -9,6 +9,11 @@ WindowExtensionAbility必须和[UIExtensionComponent](../reference/apis-arkui/ar
 每个ExtensionAbility都有自己的Context，WindowExtensionAbility通过
 [WindowExtensionContext](../reference/apis-arkui/js-apis-inner-application-windowExtensionContext-sys.md)提供相关能力。本文描述中称被启动的WindowExtensionAbility为提供方，称启动WindowExtensionAbility的UIExtensionComponent组件为使用方。
 
+> **说明：**
+>
+> 本文档涉及系统接口的使用，请使用full-SDK进行开发。<!--Del-->具体使用可见[full-SDK替换指南](../faqs/full-sdk-switch-guide.md)。<!--DelEnd-->
+
+
 ## 设置一个嵌入式UIAbility
 
 WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生命周期回调，根据需要重写对应的回调方法。
