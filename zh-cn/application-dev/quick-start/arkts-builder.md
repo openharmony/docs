@@ -54,9 +54,6 @@ this.MyBuilderFunction()
 MyGlobalBuilderFunction()
 ```
 
-
-- 全局的自定义构建函数可以被整个应用获取，不允许使用this和bind方法。
-
 - 如果不涉及组件状态变化，建议使用全局的自定义构建方法。
 
 
