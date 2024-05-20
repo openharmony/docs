@@ -345,6 +345,12 @@ stop(): void
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+### reset<sup>12+</sup>
+
+reset(): void
+
+video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
+
 ### setCurrentTime
 
 setCurrentTime(value: number)
@@ -486,16 +492,19 @@ struct VideoCreateComponent {
       Row() {
         Button('start').onClick(() => {
           this.controller.start() // 开始播放
-        }).margin(5)
+        }).margin(2)
         Button('pause').onClick(() => {
           this.controller.pause() // 暂停播放
-        }).margin(5)
+        }).margin(2)
         Button('stop').onClick(() => {
           this.controller.stop() // 结束播放
-        }).margin(5)
+        }).margin(2)
+        Button('reset').onClick(() => {
+          this.controller.reset() // 重置AVPlayer
+        }).margin(2)
         Button('setTime').onClick(() => {
           this.controller.setCurrentTime(10, SeekMode.Accurate) // 精准跳转到视频的10s位置
-        }).margin(5)
+        }).margin(2)
       }
 
       Row() {
