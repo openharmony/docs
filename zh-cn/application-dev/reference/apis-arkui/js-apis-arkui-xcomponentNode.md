@@ -88,7 +88,7 @@ import { UIContext } from '@ohos.arkui.UIContext';
 
 class XComponentNodeController extends NodeController {
   private xComponentNode: MyXComponentNode | null = null;
-  private soName: string = "nativerender" // 该 so 由开发者通过 NAPI 编写并生成
+  private soName: string = "tetrahedron_napi" // 该 so 由开发者通过 NAPI 编写并生成
 
   constructor() {
     super();
@@ -138,5 +138,5 @@ struct Index {
 
 > **说明：**
 >
-> 示例中的Native层编译输出动态库参考自[OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
+> 示例中的Native层编译输出动态库参考自[OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)，生成完整示例需下载该工程后将cpp目录下所有文件拷贝至本工程cpp目录下。
 
