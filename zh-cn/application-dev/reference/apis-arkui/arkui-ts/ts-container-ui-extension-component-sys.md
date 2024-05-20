@@ -78,7 +78,7 @@ onResult(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#call
 本回调内可处理对端Ability的结果数据，可参考[AbilityResult](../../apis-ability-kit/js-apis-inner-ability-abilityResult.md)。
 
 > **说明：**
-> 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[onTerminated](#onterminated)替代。
+> 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[onTerminated](#onterminated12)替代。
 
 **参数：**
 
@@ -98,7 +98,7 @@ onRelease(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 被拉起的Ability扩展意外Crash或被kill时，触发本回调，此时releaseCode为1。
 
 > **说明：**
-> 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[onTerminated](#onterminated)或者[onError](#onerror)替代。
+> 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[onTerminated](#onterminated12)或者[onError](#onerror)替代。
 
 **参数：**
 
@@ -128,7 +128,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 | 参数名   | 类型   | 说明                                                                                     |
 | -------  | ------ | ---------------------------------------------------------------------------------------- |
-| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo)> | 回调函数，入参用于接收UIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo)。 |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo12)> | 回调函数，入参用于接收UIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo12)。 |
 
 > **说明：**
 >
