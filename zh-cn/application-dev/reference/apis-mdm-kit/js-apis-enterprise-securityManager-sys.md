@@ -124,6 +124,41 @@ try {
 }
 ```
 
+## securityManager.getPasswordPolicy<sup>12+</sup>
+
+getPasswordPolicy(): PasswordPolicy
+
+获取设备口令策略。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| [PasswordPolicy](./js-apis-enterprise-securityManager.md#passwordpolicy) | 设备口令策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+try {
+    let result: securityManager.PasswordPolicy = securityManager.getPasswordPolicy();
+    console.info(`Succeeded in getting password policy, result : ${JSON.stringify(result)}`);
+} catch(err) {
+    console.error(`Failed to get password policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## DeviceEncryptionStatus
 
 设备管理应用的文件系统加密状态。
