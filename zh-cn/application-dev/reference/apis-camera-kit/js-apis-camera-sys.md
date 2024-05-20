@@ -1393,8 +1393,8 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 
 | 名称     | 类型        |   只读   |   必填   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
-| featureType |   camera.SceneFeatureType   |   是     |    是    | 特性类型。 |
-| detected |   boolean   |   是     |    是    | 检测结果。true为检测到 |
+| featureType |   [SceneFeatureType](#scenefeaturetype12)   |   是     |    是    | 特性类型。 |
+| detected |   boolean   |   是     |    是    | 检测结果。true为检测到指定特性场景。 |
 
 ## SceneDetection<sup>12+</sup>
 
@@ -1404,11 +1404,17 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 
 isSceneFeatureSupported(featureType: camera.SceneFeatureType): boolean
 
-查询是否支持指定特性
+查询是否支持指定特性。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| featureType | [SceneFeatureType](#scenefeaturetype12) | 是 | 指定对应的场景特性。|
 
 **返回值：**
 
@@ -1439,7 +1445,7 @@ enableSceneFeature(featureType: camera.SceneFeatureType, enabled: boolean): void
 
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
-| featureType | camera.SceneFeatureType | 是 | 指定需要开启或关闭的特性。|
+| featureType | [SceneFeatureType](#scenefeaturetype12) | 是 | 指定需要开启或关闭的特性。|
 | enabled | boolean | 是 | true表明开启指定特性，false表明关闭指定特性。|
 
 **错误码：**
@@ -2478,8 +2484,8 @@ on(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callbac
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | 是   | 监听事件，固定为'featureDetectionStatus'，photoSession创建成功可监听。 |
-| featureType     | camera.SceneFeatureType      | 是   | 监听指定特性。 |
-| callback | AsyncCallback\<camera.SceneFeatureDetectionResult\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 监听指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
 
 **示例：**
 
@@ -2511,8 +2517,8 @@ off(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callba
 | 参数名    | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'featureDetectionStatus'，session创建成功可取消监听。|
-| featureType     | camera.SceneFeatureType      | 是   | 指定特性。 |
-| callback | AsyncCallback\<camera.SceneFeatureDetectionResult\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -2609,8 +2615,8 @@ on(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callbac
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | 是   | 监听事件，固定为'featureDetectionStatus'，videoSession创建成功可监听。 |
-| featureType     | camera.SceneFeatureType      | 是   | 监听指定特性。 |
-| callback | AsyncCallback\<camera.SceneFeatureDetectionResult\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 监听指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
 
 **示例：**
 
@@ -2642,8 +2648,8 @@ off(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callba
 | 参数名    | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'featureDetectionStatus'，session创建成功可取消监听。|
-| featureType     | camera.SceneFeatureType      | 是   | 指定特性。 |
-| callback | AsyncCallback\<camera.SceneFeatureDetectionResult\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
