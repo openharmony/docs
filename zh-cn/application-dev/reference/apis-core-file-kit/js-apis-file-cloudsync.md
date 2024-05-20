@@ -235,7 +235,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### stop<sup>12+</sup>
+### stop<sup>11+</sup>
 
 stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
@@ -250,7 +250,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
-| needClean | boolean | 否   | 是否删除已下载的文件，默认删除。 |
+| needClean<sup>12+</sup> | boolean | 否   | 是否删除已下载的文件，默认删除。<br>从API version12开始支持该参数。 |
 
 **返回值：**
 
