@@ -344,12 +344,12 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ## 跨端迁移中的数据迁移
-当前支持三种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
+当前支持两种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
   > **说明：**
   >
   > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)。
   >
-  > 如果涉及分布式对象和分布式文件迁移时应注意：
+  > 如果涉及分布式对象迁移时应注意：
   > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
   > 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
@@ -399,12 +399,16 @@ export default class MigrationAbility extends UIAbility {
   }
 }
 ```
-### 使用分布式对象迁移数据       
+### 使用分布式对象迁移数据和资产       
 
-当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)进行数据迁移。
+当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)进行数据迁移。使用分布式对象可分为迁移普通数据和迁移资产文件（文件、图片、视频等类型文件）两种方式。
 
-1. 在源端`onContinue()`接口中创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中，并将生成的`sessionId`通过`want`传递到对端。
+#### 迁移普通数据：
+
+1. 在源端`onContinue()`接口中创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)，将所要迁移的普通数据填充到分布式对象数据中，并将生成的`sessionId`通过`want`传递到对端。
 2. 对端在`onCreate()/onNewWant`中进行数据恢复时，可以从want中读取该`sessionId`，通过分布式对象恢复数据。
+
+#### 迁移资产文件：
 
 使用参考详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
 
