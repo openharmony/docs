@@ -1708,10 +1708,11 @@ layoutMode(mode: WebLayoutMode)
 
 > **说明：**
 >
-> 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
-> 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
-> Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
-> 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
+> - 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
+> - 选择WebLayoutMode.FIT_CONTENT时，如果网页内容宽或长度超过8000px，请在Web组件创建的时候指定RenderMode.SYNC_RENDER模式。
+> - Web组件创建后不支持动态切换layoutMode模式，且WebLayoutMode.FIT_CONTENT支持规格不超过50万px(屏幕像素点) 物理像素。
+> - 全量展开模式下，频繁更改页面宽高会触发Web组件重新布局，影响性能和体验。
+> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。全量展开场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
@@ -1751,6 +1752,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 默认scrollForward和scrollBackward模式为NestedScrollMode.SELF_FIRST。
 > - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
+> - 从API version 12开始，过滚动模式[overScrollMode](#overscrollmode11)默认改为开启。嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
 **参数：**
 
