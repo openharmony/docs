@@ -5195,24 +5195,6 @@ getRemoteObject(): rpc.RemoteObject;
   import rpc from '@ohos.rpc';
 
   class MyAuthenticator extends account_appAccount.Authenticator {
-    addAccountImplicitly(authType: string, callerBundleName: string,
-      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
-        let want: Want = {
-          bundleName: 'com.example.accountjsdemo',
-          abilityName: 'com.example.accountjsdemo.LoginAbility',
-        };
-        callback.onRequestRedirected(want);
-    }
-
-    authenticate(name: string, authType: string, callerBundleName: string,
-      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
-          name: name,
-          authType: authType,
-          token: 'xxxxxx'}
-        );
-    }
-
     verifyCredential(name: string,
       options: account_appAccount.VerifyCredentialOptions, callback: account_appAccount.AuthCallback) {
         let want: Want = {
@@ -5237,16 +5219,16 @@ getRemoteObject(): rpc.RemoteObject;
     }
 
     checkAccountLabels(name: string, labels: string[], callback: account_appAccount.AuthCallback) {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS);
+      callback.onResult(0);
     }
   
     checkAccountRemovable(name: string, callback: account_appAccount.AuthCallback) {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS);
+      callback.onResult(0);
     }
   }
 
   export default {
-    onConnect(want: Want): rpc.RemoteObject { // serviceAbility 生命周期函数
+    onConnect(want: Want): rpc.RemoteObject { // serviceAbility 生命周期函数, 需要放在serviceAbility中
       let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }
