@@ -3520,3 +3520,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.ACCESS_DEVICE_COLLABORATION_PRIVATE_ABILITY
+
+允许系统服务或系统应用访问多屏协同私有应用能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
