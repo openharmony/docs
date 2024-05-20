@@ -70,7 +70,7 @@ try {
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | message  | string\| [Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是   | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。 |
 | duration | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
-| bottom   | string\| number                                              | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp             |
+| bottom   | string\| number                                              | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp，设置了Alignment后不生效。 |
 | showMode<sup>11+</sup>   | [ToastShowMode](#toastshowmode11)    | 否   | 设置弹窗是否显示在应用之上。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。            |
 
 ### ToastShowMode<sup>11+</sup>
