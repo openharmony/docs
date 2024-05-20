@@ -737,6 +737,8 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
    
      DynamicRouter.registerRouterMap(RouterInfo.VIBRATE_EFFECT, wrapBuilder(getVibrateEffectView));
    ```
+
+<!--RP1--><!--RP1End-->   
    
 ## 相关实例
 
