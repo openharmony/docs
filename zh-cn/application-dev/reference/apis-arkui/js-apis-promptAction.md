@@ -484,7 +484,7 @@ closeCustomDialog(dialogId: number): void
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | message                 | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是   | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | duration                | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| bottom                  | string&nbsp;\|&nbsp;number                                   | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| bottom                  | string&nbsp;\|&nbsp;number                                   | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp，设置了Alignment后不生效。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | showMode<sup>11+</sup>  | [ToastShowMode](#toastshowmode11)                            | 否   | 设置弹窗是否显示在应用之上。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。 |
 | alignment<sup>12+</sup> | [Alignment](arkui-ts/ts-appendix-enums.md#alignment)         | 否   | 对齐方式。<br/>默认值：undefined，默认底部偏上位置。         |
 | offset<sup>12+</sup>    | [Offset](arkui-ts/ts-types.md#offset)                        | 否   | 在对齐方式上的偏移。<br/>默认值：{dx:0, dy:0}，默认没有偏移。 |
