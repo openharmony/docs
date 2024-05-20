@@ -5219,6 +5219,7 @@ img.release().then(() => {
 | pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式（MIME type）。  |
+| isHdr<sup>12+</sup> | boolean  | 是   | 否   | 图片是否为高动态范围（HDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
 
 ## Size
 
@@ -5338,6 +5339,7 @@ PixelMap的初始化选项。
 | index              | number                             | 是   | 是   | 解码图片序号。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
+| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 是   | 是   | 目标动态范围。 |
 
 ## Region<sup>7+</sup>
 
@@ -5368,6 +5370,7 @@ PixelMap的初始化选项。
 | format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。 |
 | bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。 |
+| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 是   | 是   | 目标动态范围。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -5611,6 +5614,29 @@ PixelMap的初始化选项。
 | rowStride     | number                           | 是   | 否   | 行距。       |
 | pixelStride   | number                           | 是   | 否   | 像素间距。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
+
+## DecodingDynamicRange<sup>12+</sup>
+
+描述解码时期望的图像动态范围。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| AUTO          | number    | 值为0。自适应，根据图片信息处理。即如果图片本身为HDR图片，则会按照HDR内容解码；反之按照SDR内容解码。  |
+| SDR           | number    | 值为1。按照标准动态范围处理图片。   |
+| HDR           | number    | 值为2。按照高动态范围处理图片。     |
+
+## PackingDynamicRange<sup>12+</sup>
+
+描述编码时期望的图像动态范围。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| AUTO          | number    | 值为0。自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容解码。  |
+| SDR           | number    | 值为1。按照标准动态范围处理图片。   |
 
 ## 补充说明
 ### SVG标签说明

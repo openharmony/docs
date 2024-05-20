@@ -618,6 +618,22 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | selectionStart | number | 是   | 所选文本的起始位置。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。 |
 
+### onMarqueeStateChange<sup>12+</sup>
+
+onMarqueeStateChange(callback: Callback<MarqueeState>)
+
+跑马灯动画在开始、完成一次滚动和停止时，触发该回调。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                  | 必填  | 说明                       |
+|--------|-------------------------------------|-----|--------------------------|
+| state  | [MarqueeState](#marqueestate12枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
+
 ## TextOptions<sup>11+</sup>
 
 Text初始化参数。
@@ -659,6 +675,47 @@ setStyledString(value: StyledString): void
 | 参数名   | 参数类型   | 必填   | 参数描述                |
 | ----- | ------ | ---- | ------------------- |
 | value | [StyledString](ts-universal-styled-string.md#styledstring) | 是    | 属性字符串。<br/>**说明：** <br/>StyledString的子类[MutableStyledString](ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。 |
+
+## marqueeOptions<sup>12+</sup>
+
+当overflow设置为TextOverflow.MARQUEE时，可以进行初始化。
+
+| 名称             | 类型                                             | 必填 | 说明            |
+|----------------|------------------------------------------------| -------- |---------------|
+| marqueeOptions | [MarqueeOptions](#marqueeoptions12) | 是 | marquee自定义选项。 |
+
+## MarqueeOptions<sup>12+</sup>
+
+marquee初始化参数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
+|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
+| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
+| step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
+| loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
+| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
+| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
+| fadeout            | boolean                                         | 否  | 设置文字超长渐隐。开启默认渐隐后，在非输入态默认使能；输入态超长时，有未展示的文字的一侧生效渐隐，两侧都有未展示的文字时，两侧同时渐隐。<br/>默认值：false  |
+| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy12枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
+
+## MarqueeStartPolicy<sup>12+</sup>枚举说明
+
+| 名称       | 描述            |
+|----------|---------------|
+| DEFAULT  | 默认持续滚动。       |
+| ON_FOCUS | 获焦以及鼠标悬浮时开始滚动。 |
+
+## MarqueeState<sup>12+</sup>枚举说明
+
+| 名称     | 描述                            |
+|--------|-------------------------------|
+| START  | 滚动开始时触发。                      |
+| BOUNCE | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。 |
+| FINISH | 滚动全部循环次数完成时触发回调。              |
 
 ## 示例
 
@@ -914,6 +971,24 @@ struct TextExample {
         .width(300)
         .borderWidth(1)
         .textOverflow({ overflow: TextOverflow.MARQUEE })
+        .marqueeOptions({
+            start:true,
+            fromStart: true,
+            step:6,
+            loop:-1,
+            delay:0,
+            fadeout:false,
+            marqueeStartPolicy:MarqueeStartPolicy.DEFAULT
+          })
+        .onMarqueeStateChange((state:MarqueeState)=>{
+            if(state == MarqueeState.START){
+              //"收到状态: START";
+            }else if(state == MarqueeState.BOUNCE){
+              //"收到状态: BOUNCE";
+            }else if(state == MarqueeState.FINISH){
+              //"收到状态: FINISH";
+            }
+          })
     }
   }
 }

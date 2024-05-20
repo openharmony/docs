@@ -96,6 +96,7 @@ struct NestedScroll {
                 scrollForward: this.NestedScrollModeF,
                 scrollBackward: this.NestedScrollModeB,
               })
+              .overScrollMode(OverScrollMode.NEVER)
               .height("40%")
               .width("100%")
 
@@ -118,6 +119,7 @@ struct NestedScroll {
               scrollForward: this.NestedScrollModeF,
               scrollBackward: this.NestedScrollModeB,
             })
+            .overScrollMode(OverScrollMode.NEVER)
             .height("40%")
             .width("90%")
 

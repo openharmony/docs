@@ -5246,24 +5246,6 @@ getRemoteObject(): rpc.RemoteObject;
   import { Want } from '@kit.AbilityKit';
   
   class MyAuthenticator extends appAccount.Authenticator {
-    addAccountImplicitly(authType: string, callerBundleName: string,
-      options: Record<string, Object>, callback: appAccount.AuthenticatorCallback) {
-        let want: Want = {
-          bundleName: 'com.example.accountjsdemo',
-          abilityName: 'com.example.accountjsdemo.LoginAbility',
-        };
-        callback.onRequestRedirected(want);
-    }
-
-    authenticate(name: string, authType: string, callerBundleName: string,
-      options: Record<string, Object>, callback: appAccount.AuthenticatorCallback) {
-        callback.onResult(appAccount.ResultCode.SUCCESS, {
-          name: name,
-          authType: authType,
-          token: 'xxxxxx'}
-        );
-    }
-
     verifyCredential(name: string,
       options: appAccount.VerifyCredentialOptions, callback: appAccount.AuthCallback) {
         let want: Want = {
@@ -5288,16 +5270,16 @@ getRemoteObject(): rpc.RemoteObject;
     }
 
     checkAccountLabels(name: string, labels: string[], callback: appAccount.AuthCallback) {
-      callback.onResult(appAccount.ResultCode.SUCCESS);
+      callback.onResult(0);
     }
   
     checkAccountRemovable(name: string, callback: appAccount.AuthCallback) {
-      callback.onResult(appAccount.ResultCode.SUCCESS);
+      callback.onResult(0);
     }
   }
 
   export default {
-    onConnect(want: Want): rpc.RemoteObject { // serviceAbility 生命周期函数
+    onConnect(want: Want): rpc.RemoteObject { // serviceAbility 生命周期函数, 需要放在serviceAbility中
       let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }
