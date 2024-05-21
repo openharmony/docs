@@ -887,12 +887,13 @@ struct ListExample {
       List({ space: 20, initialIndex: 0 }) {
         ForEach(this.arr, (item: number) => {
           ListItem() {
-            Text('' + item)
+            Text('')
               .width('100%').height(100).fontSize(16)
               .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
           }
         }, (item: string) => item)
       }
+      .fadingEdge(true) // 为true时，建议不在List上设置background相关属性
       .listDirection(Axis.Vertical) // 排列方向
       .scrollBar(BarState.Off)
       .friction(0.6)
