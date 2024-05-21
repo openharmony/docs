@@ -564,18 +564,18 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         }
     ```
 
-    硬件编码在处理buffer数据时（推送数据前），一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
-
+    硬件编码在处理buffer数据时（推送数据前），需要用户拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
+    一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
     ```c++
-        OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(decoder);
+        OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(videoEnc);
         int widthStride = 0;
         int heightStride = 0;
 
-        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+        int32_t ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
         if (ret != AV_ERR_OK) {
             // 异常处理
         }
-        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
         if (ret != AV_ERR_OK) {
             // 异常处理
         }
