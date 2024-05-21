@@ -362,7 +362,7 @@ start(): void
 | 12500004 | Authentication timeout.                          |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | The authentication task is busy.                 |
+| 12500007 | Authentication service is busy.                  |
 | 12500009 | Authentication is locked out.                    |
 | 12500010 | The type of credential has not been enrolled.    |
 | 12500011 | Switched to the custom authentication process.   |
@@ -779,7 +779,7 @@ start : () => void
 | 12500004 | Authentication timeout.  |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | The authentication task is busy. |
+| 12500007 | Authentication service is busy. |
 | 12500009 | Authentication is locked out. |
 | 12500010 | The type of credential has not been enrolled. |
 
