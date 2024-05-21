@@ -77,10 +77,10 @@
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
       });
       ```
 3. 删除通知。
@@ -88,9 +88,9 @@
    ```ts
     notificationManager.cancel(1, (err:Base.BusinessError) => {
       if (err) {
-        console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      console.info('Succeeded in cancel notification.');
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in cancel notification.');
     });
    ```

@@ -8,11 +8,10 @@
 
 基于当前的应用模型，可以通过以下几种方式来实现订阅系统环境变量的变化。
 
-- [订阅系统环境变量的变化](#订阅系统环境变量的变化)
-  - [使用ApplicationContext订阅回调](#使用applicationcontext订阅回调)
-  - [在AbilityStage组件容器中订阅回调](#在abilitystage组件容器中订阅回调)
-  - [在UIAbility组件中订阅回调](#在uiability组件中订阅回调)
-  - [在ExtensionAbility组件中订阅回调](#在extensionability组件中订阅回调)
+- [使用ApplicationContext订阅回调](#使用applicationcontext订阅回调)
+- [在AbilityStage组件容器中订阅回调](#在abilitystage组件容器中订阅回调)
+- [在UIAbility组件中订阅回调](#在uiability组件中订阅回调)
+- [在ExtensionAbility组件中订阅回调](#在extensionability组件中订阅回调)
 
 ## 使用ApplicationContext订阅回调
 
@@ -180,9 +179,13 @@ ExtensionAbility组件提供了`onConfigurationUpdate()`回调方法用于订阅
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import { Configuration } from '@ohos.app.ability.Configuration';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onConfigurationUpdate(newConfig: Configuration) {
+  onConfigurationUpdate(config: Configuration) {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
 

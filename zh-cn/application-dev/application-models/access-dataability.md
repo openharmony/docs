@@ -527,6 +527,7 @@
        }
        // ...
      }
+   }
    ```
    
 7. 调用batchInsert方法向指定的DataAbility子模块批量插入数据。

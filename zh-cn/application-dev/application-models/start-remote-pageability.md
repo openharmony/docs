@@ -133,9 +133,11 @@ struct PagePageAbilitySecond {
       } else {
         hilog.info(domain, TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null');
       }
-  } catch (error) {
-    hilog.info(domain, TAG, `getRemoteDeviceId error, error=${error}, message=${error.message}`);
+    } catch (error) {
+      hilog.info(domain, TAG, `getRemoteDeviceId error, error=${error}, message=${error.message}`);
+    }
   }
+
   build() {
     //...
   }

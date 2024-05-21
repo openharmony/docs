@@ -56,8 +56,8 @@
 3. 获取目标设备的设备ID。
 
    ```ts
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import hilog from '@ohos.hilog';
+   import distributedDeviceManager from '@ohos.distributedDeviceManager';
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -97,10 +97,12 @@
 4. 设置目标组件参数，调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { Want, common } from '@kit.AbilityKit';
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@ohos.base';
+   import hilog from '@ohos.hilog';
+   import Want from '@ohos.app.ability.Want';
+   import common from '@ohos.app.ability.common';
+   import distributedDeviceManager from '@ohos.distributedDeviceManager';
+   import promptAction from '@ohos.promptAction';
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -143,8 +145,10 @@
                let want: Want = {
                  deviceId: getRemoteDeviceId(),
                  bundleName: 'com.samples.stagemodelabilityinteraction',
-                 abilityName: 'CollaborateAbility'
+                 abilityName: 'CollaborateAbility',
+                 moduleName: 'entry' // moduleName非必选
                };
+               // context为发起端UIAbility的AbilityContext
                this.context.startAbility(want).then(() => {
                  promptAction.showToast({
                    message: $r('app.string.SuccessfulCollaboration')
@@ -166,10 +170,11 @@
 5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用[stopServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstopserviceextensionability-1)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { Want, common } from '@kit.AbilityKit';
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@ohos.base';
+   import hilog from '@ohos.hilog';
+   import Want from '@ohos.app.ability.Want';
+   import common from '@ohos.app.ability.common';
+   import distributedDeviceManager from '@ohos.distributedDeviceManager';
    import promptAction from '@ohos.promptAction';
    
    const TAG: string = '[Page_CollaborateAbility]';
@@ -212,9 +217,9 @@
            }
            // 退出由startAbility接口启动的ServiceExtensionAbility
            this.context.stopServiceExtensionAbility(want).then(() => {
-             console.info("stop service extension ability success")
+             hilog.info(DOMAIN_NUMBER, TAG, "stop service extension ability success")
            }).catch((err: BusinessError) => {
-             console.info("stop service extension ability err is " + JSON.stringify(err))
+             hilog.error(DOMAIN_NUMBER, TAG, `stop service extension ability err is ` + JSON.stringify(err));
            })
          })
      }
@@ -246,10 +251,12 @@
 3. 在发起端设置目标组件参数，调用startAbilityForResult()接口启动目标端UIAbility，异步回调中的data用于接收目标端UIAbility停止自身后返回给调用方UIAbility的信息。getRemoteDeviceId方法参照[通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据](#通过跨设备启动uiability和serviceextensionability组件实现多端协同无返回数据)。
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { Want, common } from '@kit.AbilityKit';
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@ohos.base';
+   import hilog from '@ohos.hilog';
+   import Want from '@ohos.app.ability.Want';
+   import common from '@ohos.app.ability.common';
+   import distributedDeviceManager from '@ohos.distributedDeviceManager';
+   import promptAction from '@ohos.promptAction';
    
    const DOMAIN_NUMBER: number = 0xFF00;
    const TAG: string = '[Page_CollaborateAbility]';
@@ -318,9 +325,9 @@
 4. 在目标端UIAbility任务完成后，调用terminateSelfWithResult()方法，将数据返回给发起端的UIAbility。
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { common } from '@kit.AbilityKit';
+   import common from '@ohos.app.ability.common';
+   import hilog from '@ohos.hilog';
+   import { BusinessError } from '@ohos.base';
    
    const TAG: string = '[Page_CollaborateAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -371,10 +378,11 @@
 5. 发起端UIAbility接收到目标端UIAbility返回的信息，对其进行处理。
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { Want, common } from '@kit.AbilityKit';
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+   import { BusinessError } from '@ohos.base';
+   import hilog from '@ohos.hilog';
+   import Want from '@ohos.app.ability.Want';
+   import common from '@ohos.app.ability.common';
+   import distributedDeviceManager from '@ohos.distributedDeviceManager';
    import promptAction from '@ohos.promptAction';
    
    const TAG: string = '[Page_CollaborateAbility]';
@@ -402,7 +410,7 @@
    
    @Entry
    @Component
-    struct Page_CollaborateAbility {
+   struct Page_CollaborateAbility {
      private context = getContext(this) as common.UIAbilityContext;
    
      build() {
@@ -481,11 +489,12 @@
    - 进行跨设备调用，获得目标端服务返回的结果。
      
       ```ts
-      import { BusinessError } from '@kit.BasicServicesKit';
-      import { hilog } from '@kit.PerformanceAnalysisKit';
-      import { Want, common } from '@kit.AbilityKit';
-      import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-      import { rpc } from '@kit.IPCKit';
+      import { BusinessError } from '@ohos.base';
+      import hilog from '@ohos.hilog';
+      import Want from '@ohos.app.ability.Want';
+      import common from '@ohos.app.ability.common';
+      import distributedDeviceManager from '@ohos.distributedDeviceManager';
+      import rpc from '@ohos.rpc';
 
       const TAG: string = '[Page_CollaborateAbility]';
       const DOMAIN_NUMBER: number = 0xFF00;
@@ -585,10 +594,11 @@
 5. 断开连接。调用disconnectServiceExtensionAbility()断开与后台服务的连接。
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { hilog } from '@kit.PerformanceAnalysisKit';
-   import { Want, common } from '@kit.AbilityKit';
-   import { rpc } from '@kit.IPCKit';
+   import { BusinessError } from '@ohos.base';
+   import hilog from '@ohos.hilog';
+   import Want from '@ohos.app.ability.Want';
+   import common from '@ohos.app.ability.common';
+   import rpc from '@ohos.rpc';
    import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
    import promptAction from '@ohos.promptAction';
    
@@ -687,14 +697,14 @@
      2. 导入UIAbility模块。
         
          ```ts
-         import { UIAbility } from '@kit.AbilityKit';
+         import UIAbility from '@ohos.app.ability.UIAbility';
          ```
      3. 定义约定的序列化数据。
          调用端及被调用端发送接收的数据格式需协商一致，如下示例约定数据由number和string组成。
 
          
          ```ts
-         import { rpc } from '@kit.IPCKit';
+         import type rpc from '@ohos.rpc';
          class MyParcelable {
            num: number = 0;
            str: string = '';
@@ -726,9 +736,13 @@
            如下示例在Ability的onCreate注册MSG_SEND_METHOD监听，在onDestroy取消监听，收到序列化数据后作相应处理并返回。应用开发者根据实际业务需要做相应处理。
            
          ```ts
-         import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
-         import { hilog } from '@kit.PerformanceAnalysisKit';
-         import { rpc } from '@kit.IPCKit';
+         import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+         import UIAbility from '@ohos.app.ability.UIAbility';
+         import type Want from '@ohos.app.ability.Want';
+         import type { Caller } from '@ohos.app.ability.UIAbility';
+         import hilog from '@ohos.hilog';
+         import type rpc from '@ohos.rpc';
+
 		 
          const TAG: string = '[CalleeAbility]';
          const MSG_SEND_METHOD: string = 'CallSendMsg';
@@ -743,7 +757,7 @@
              this.str = string;
            };
 		 
-           mySequenceable(num, string): void {
+           mySequenceable(num: number, string: string): void {
              this.num = num;
              this.str = string;
            };
@@ -815,18 +829,18 @@
    1. 导入UIAbility模块。
       
        ```ts
-       import { UIAbility } from '@kit.AbilityKit';
+       import UIAbility from '@ohos.app.ability.UIAbility';
        ```
    2. 获取Caller通信接口。
        Ability的context属性实现了startAbilityByCall方法，用于获取指定通用组件的Caller通信接口。如下示例通过this.context获取Ability实例的context属性，使用startAbilityByCall拉起Callee被调用端并获取Caller通信接口，注册Caller的onRelease和onRemoteStateChange监听。应用开发者根据实际业务需要做相应处理。
 
        
        ```ts
-       import { BusinessError } from '@kit.BasicServicesKit';
-       import { Caller, common } from '@kit.AbilityKit';
-       import { hilog } from '@kit.PerformanceAnalysisKit';
-       import { rpc } from '@kit.IPCKit';
-       import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+       import { BusinessError } from '@ohos.base';
+       import { Caller } from '@ohos.app.ability.UIAbility';
+       import common from '@ohos.app.ability.common';
+       import hilog from '@ohos.hilog';
+       import distributedDeviceManager from '@ohos.distributedDeviceManager';
 	   
        const TAG: string = '[Page_CollaborateAbility]';
        const DOMAIN_NUMBER: number = 0xFF00;
@@ -915,8 +929,9 @@
    1. 向被调用端发送Parcelable数据有两种方式，一种是不带返回值，一种是获取被调用端返回的数据，method以及序列化数据需要与被调用端协商一致。如下示例调用Call接口，向Callee被调用端发送数据。
       
        ```ts
-       import { UIAbility, Caller } from '@kit.AbilityKit';
-       import { rpc } from '@kit.IPCKit';
+       import UIAbility from '@ohos.app.ability.UIAbility';
+       import type { Caller } from '@ohos.app.ability.UIAbility';
+       import type rpc from '@ohos.rpc';
        import hilog from '@ohos.hilog';
        
        const TAG: string = '[CalleeAbility]';
@@ -931,7 +946,7 @@
            this.str = string;
          };
 	   
-         mySequenceable(num, string): void {
+         mySequenceable(num: number, string: string): void {
            this.num = num;
            this.str = string;
          };
@@ -968,8 +983,9 @@
    2. 如下示例调用CallWithResult接口，向Callee被调用端发送待处理的数据originMsg，并将’CallSendMsg’方法处理完毕的数据赋值给backMsg。
       
         ```ts
-        import { UIAbility, Caller } from '@kit.AbilityKit';
-        import { rpc } from '@kit.IPCKit';
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import type { Caller } from '@ohos.app.ability.UIAbility';
+        import type rpc from '@ohos.rpc';
         import hilog from '@ohos.hilog';
 
         const TAG: string = '[CalleeAbility]';
@@ -1032,7 +1048,8 @@
    Caller不再使用后，应用开发者可以通过release接口释放Caller。
 
    ```ts
-   import { UIAbility, Caller } from '@kit.AbilityKit';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import type { Caller } from '@ohos.app.ability.UIAbility';
    import hilog from '@ohos.hilog';
    
    export default class EntryAbility extends UIAbility {

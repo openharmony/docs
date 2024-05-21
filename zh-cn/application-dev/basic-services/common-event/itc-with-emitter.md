@@ -26,7 +26,7 @@ Emitter的开发步骤如下：
    // 收到eventId为1的事件后执行该回调
    let callback = (eventData: emitter.EventData): void => {
      promptAction.showToast({
-       message: JSON.stringify(eventData.data?.content)
+       message: JSON.stringify(eventData)
      });
      hilog.info(DOMAIN_NUMBER, TAG, 'event callback:' + JSON.stringify(eventData));
    };

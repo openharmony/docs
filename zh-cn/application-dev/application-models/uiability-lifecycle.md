@@ -99,6 +99,7 @@ export default class EntryAbility extends UIAbility {
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import hilog from '@ohos.hilog';
+import type { BusinessError } from '@ohos.base';
 
 const TAG: string = '[EntryAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
