@@ -288,3 +288,14 @@ Use **napi_create_threadsafe_function** to create a function that can be called 
 **References**
 
 [Thread Safety Development Using Node-API](../napi/use-napi-thread-safety.md)
+
+## What should I do to permanently hold a JS object created by napi_create_object or passed in as a parameter? (API version 10)
+
+**Question**
+
+What should I do if I need to permanently hold a JS object created by **napi_create_object** or passed in as a parameter, and destroy, increment, and decrement the reference count?
+
+**Solution**
+
+To hold an object persistently, use **napi_create_reference** to create a strong reference and then save the reference for use. To destroy a reference, use **napi_delete_reference**. To increment the reference count, use **napi_reference_ref**; to decrement the reference count, use **api_reference_unref**.
+
