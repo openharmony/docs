@@ -56,4 +56,4 @@ For the system API for switching between input method s, the system permission i
 
 - [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md)
 
-- [inputMethod.Pane](../reference/apis-ime-kit/js-apis-inputmethod-panel.md)
+- [inputMethod.Panel](../reference/apis-ime-kit/js-apis-inputmethod-panel.md)
