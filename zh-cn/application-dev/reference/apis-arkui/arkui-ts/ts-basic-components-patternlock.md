@@ -36,7 +36,7 @@ sideLength(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明               |
 | ------ | ---------------------------- | ---- | ------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 组件的宽度和高度。 |
+| value  | [Length](ts-types.md#length) | 是   | 组件的宽度和高度。默认值：288vp |
 
 ### circleRadius
 
