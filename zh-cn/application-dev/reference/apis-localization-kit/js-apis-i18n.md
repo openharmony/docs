@@ -2487,8 +2487,8 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 **示例：**
   ```ts
-  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = true
-  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = true
+  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = China
+  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = China
   ```
 
 
