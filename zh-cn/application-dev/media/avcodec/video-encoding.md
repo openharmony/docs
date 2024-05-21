@@ -564,23 +564,22 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         }
     ```
 
-    硬件编码在处理buffer数据时（推送数据前），一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
+    硬件编码在处理buffer数据时（推送数据前），一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
 
     ```c++
-        // OH_NativeBuffer *可以通过图形模块的接口可以获取数据的宽高、跨距等信息。
-        OH_NativeBuffer *ohNativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
-        if (ohNativeBuffer != nullptr) {
-            // 获取OH_NativeBuffer_Config结构体，包含OH_NativeBuffer的数据信息
-            OH_NativeBuffer_Config config;
-            OH_NativeBuffer_GetConfig(ohNativeBuffer, &config);
+        OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(decoder);
+        int widthStride = 0;
+        int heightStride = 0;
 
-            // 释放ohNativeBuffer
-            ret = OH_NativeBuffer_Unreference(ohNativeBuffer);
-            if (ret != AV_ERR_OK) {
-                // 异常处理
-            }
-            ohNativeBuffer = nullptr;
+        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+        if (ret != AV_ERR_OK) {
+            // 异常处理
         }
+        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        if (ret != AV_ERR_OK) {
+            // 异常处理
+        }
+        OH_AVFormat_Destory(format);
     ```
 
 9. 通知编码器结束。
