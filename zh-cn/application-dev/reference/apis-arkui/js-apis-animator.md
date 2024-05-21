@@ -93,7 +93,7 @@ reset(options: AnimatorOptions): void
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if no page is found for pageId or fail to get object property list. |
+| 100001    | The specified page is not found or the object property list is not obtained.|
 
 
 **示例：**
