@@ -956,7 +956,16 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_AcquireAudioBuffer (struct OH_AVS
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK， 否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数audiobuffer为空指针。
+
+AV_SCREEN_CAPTURE_ERR_NO_MEMORY：内存不足，audiobuffer分配失败。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或获取音频buffer失败。
+
 
 
 ### OH_AVScreenCapture_AcquireVideoBuffer()
@@ -1014,7 +1023,11 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddAudioContent (st
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数filter为空指针或输入参数content无效。
 
 
 ### OH_AVScreenCapture_Create()
@@ -1078,7 +1091,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ExcludeContent (struct OH_AVScree
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数filter为空指针。
+
+AV_SCREEN_CAPTURE_ERR_UNSUPPORT：操作不支持，对于流，在启动时应该调用AudioCapturer接口生效；对于capture文件，在启动时应该调用Recorder接口生效。
 
 
 ### OH_AVScreenCapture_Init()
@@ -1117,7 +1136,13 @@ OH_AVScreenCaptureConfig结构体变量的所有内存字节均设置为0，然�
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，初始化配置失败。
 
 
 ### OH_AVScreenCapture_Release()
@@ -1142,8 +1167,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Release (struct OH_AVScreenCaptur
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
 
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，OH_AVScreenCapture实例释放失败。
 
 ### OH_AVScreenCapture_ReleaseAudioBuffer()
 
@@ -1172,7 +1202,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseAudioBuffer (struct OH_AVS
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，不允许用于已设置过DataCallback或释放音频buffer失败。
 
 
 ### OH_AVScreenCapture_ReleaseContentFilter()
@@ -1197,7 +1233,11 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseContentFilter (struct OH_A
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数filter为空指针。
 
 
 ### OH_AVScreenCapture_ReleaseVideoBuffer()
@@ -1226,7 +1266,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseVideoBuffer (struct OH_AVS
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，不允许用于已设置过DataCallback或释放视频buffer失败。
 
 
 ### OH_AVScreenCapture_SetCallback()
@@ -1256,7 +1302,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCallback (struct OH_AVScreenCa
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数callback为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置监听接口失败。
 
 
 ### OH_AVScreenCapture_SetCanvasRotation()
@@ -1286,7 +1338,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCanvasRotation (struct OH_AVSc
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置录屏屏幕数据旋转失败。
 
 
 ### OH_AVScreenCapture_SetDataCallback()
@@ -1322,7 +1380,15 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetDataCallback (struct OH_AVScre
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数callback为空指针。
+
+AV_SCREEN_CAPTURE_ERR_NO_MEMORY：内存不足，内存分配失败。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置DataCallback失败。
 
 
 ### OH_AVScreenCapture_SetErrorCallback()
@@ -1353,7 +1419,15 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetErrorCallback (struct OH_AVScr
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数callback为空指针。
+
+AV_SCREEN_CAPTURE_ERR_NO_MEMORY：内存不足，内存分配失败。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置ErrorCallback失败。
 
 
 ### OH_AVScreenCapture_SetMicrophoneEnabled()
@@ -1381,7 +1455,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMicrophoneEnabled (struct OH_A
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置麦克风开关失败。
 
 
 ### OH_AVScreenCapture_SetStateCallback()
@@ -1418,7 +1498,15 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetStateCallback (struct OH_AVScr
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数callback为空指针。
+
+AV_SCREEN_CAPTURE_ERR_NO_MEMORY：内存不足，内存分配失败。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置StateCallback失败。
 
 
 ### OH_AVScreenCapture_StartScreenCapture()
@@ -1445,7 +1533,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture (struct OH_AVS
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或启动录屏失败。
 
 
 ### OH_AVScreenCapture_StartScreenCaptureWithSurface()
@@ -1471,7 +1565,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface (st
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针、输入参数window为空指针或window指向的windowSurface为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或启动ScreenCaptureWithSurface失败。
 
 
 ### OH_AVScreenCapture_StartScreenRecording()
@@ -1496,7 +1596,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording (struct OH_A
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置隐私权限启用失败或启用屏幕录制失败。
 
 
 ### OH_AVScreenCapture_StopScreenCapture()
@@ -1521,7 +1627,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture (struct OH_AVSc
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，结束录屏失败。
 
 
 ### OH_AVScreenCapture_StopScreenRecording()
@@ -1546,4 +1658,10 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording (struct OH_AV
 
 **返回：**
 
-执行成功返回AV_SCREEN_CAPTURE_ERR_OK，否则返回具体错误码，请参阅[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)。
+函数结果代码：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，停止屏幕录制失败。
