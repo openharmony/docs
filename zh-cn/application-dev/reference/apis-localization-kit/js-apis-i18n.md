@@ -46,7 +46,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -91,7 +91,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -160,7 +160,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -202,7 +202,7 @@ static isSuggested(language: string, region?: string): boolean
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -402,7 +402,7 @@ static setAppPreferredLanguage(language: string): void
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -546,7 +546,7 @@ constructor(locale?: string)
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -910,7 +910,7 @@ add(field: string, amount: number): void
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -1723,7 +1723,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -2173,7 +2173,7 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -2215,7 +2215,7 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 
@@ -2338,7 +2338,7 @@ constructor(icsPath: String)
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
@@ -2417,7 +2417,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts

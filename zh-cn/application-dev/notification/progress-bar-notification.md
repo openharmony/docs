@@ -11,7 +11,7 @@
 
 | **接口名** | **描述** |
 | -------- | -------- |
-| isSupportTemplate(templateName:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;):&nbsp;void | 查询模板是否存在。 |
+| isSupportTemplate(templateName: string): Promise\<boolean\> | 查询模板是否存在。 |
 
 
 ## 开发步骤
