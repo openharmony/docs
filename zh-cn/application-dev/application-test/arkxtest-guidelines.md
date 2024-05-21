@@ -48,13 +48,9 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 ### 新建测试脚本
 
-在DevEco Studio中新建应用开发工程，其中ohosTest和test目录均为测试脚本所在的目录，API10及以上版本支持创建Instrument Test和Local Test。
+1. 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
 
-Instrument Test：测试用例存放在ohosTest测试目录下，需要运行在设备或模拟器上，支持单元测试和UI测试。
-
-Local Test：测试用例存放在test测试目录下，不需要运行在设备或模拟器上，支持单元测试。
-
-Instrument Test和Local Test创建的具体操作，请参考[测试框架](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-test-0000001092459608)。
+2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
 
 ### 编写单元测试脚本
 
