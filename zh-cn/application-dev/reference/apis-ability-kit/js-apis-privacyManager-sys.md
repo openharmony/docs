@@ -70,7 +70,7 @@ privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1,
 });
 // with options param
 let options: privacyManager.AddPermissionUsedRecordOptions = {
-  .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
+  usedType: privacyManager.PermissionUsedType.PICKER_TYPE
 };
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
   console.log('addPermissionUsedRecord success');
