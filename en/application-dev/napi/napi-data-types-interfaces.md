@@ -4,7 +4,9 @@
 
 ### napi_status
 
-Enum indicating the success or failure of a Node-API call.
+Enum indicating the execution status of a Node-API call.
+
+Each time a Node-API function is called, a value of **napi_status** is returned indicating the execution result.
 
 ```c
 typedef enum {
@@ -56,7 +58,7 @@ Pointer used to represent a JavaScript (JS) value.
 
 - Context used by the underlying Node-API implementation. It is passed to the native functions when they are invoked, and must be passed back when Node-API calls are made.
 
-- The **napi_env** becomes invalid when an instance of the native addon is unloaded. A notification of this event is sent through the callbacks given to **napi_add_env_cleanup_hook** and **napi_set_instance_data**.
+- **napi_env** becomes invalid when the JS thread bound with **napi_env** exits.
 
 - Avoid caching **napi_env** or passing **napi_env** between instances of the same addon running on different worker threads.
 
@@ -179,7 +181,7 @@ Function pointer used in **napi_create_async_work**.
 
 **napi_async_complete_callback**
 
-Function pointer used when an asynchronous operation is complete. It is usually used in C++ addon development of Node.js. When an asynchronous operation is required, you can use **napi_create_async_work** to create an asynchronous operation work object and specify a **napi_async_complete_callback** callback. When the asynchronous operation is complete, the callback is automatically called for subsequent processing. Parameters of the callback include the status of the asynchronous operation and a return value, based on which corresponding processing can be performed.
+Function pointer used when an asynchronous operation is complete. When an asynchronous operation is required, you can use **napi_create_async_work** to create an asynchronous work and specify **napi_async_complete_callback**. When the asynchronous work is complete, the callback will be automatically invoked for subsequent processing. Parameters of the callback include the status of the asynchronous operation and a return value, based on which corresponding processing can be performed.
 
 **napi_threadsafe_function_call_js**
 
@@ -209,10 +211,9 @@ typedef enum {
 | QoS| Use Scenario|
 | -------- | -------- |
 | napi_qos_background | Low priority for works invisible to users, such as data synchronization and backup.|
-| napi_qos_utility | Medium priority for works that do not require immediate response, such as downloading or importing data. |
+| napi_qos_utility | Medium priority for works that do not require immediate response, such as downloading or importing data.|
 | napi_qos_default | Default priority.|
 | napi_qos_user_initiated | High priority for user-triggered works with visible progress, for example, opening a file.|
-
 
 ## APIs
 
@@ -239,7 +240,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_create_external_buffer | Creates a JS buffer of the specified size, and initializes it with the given data.|
 | napi_get_buffer_info | Obtains the underlying data of a JS buffer and its length.|
 | napi_is_buffer | Checks whether the given JS value is a **Buffer** object.|
-| napi_create_external_arraybuffer | Allocates a JS ArrayBuffer with external data.|
+| napi_create_external_arraybuffer | Allocates a JS **ArrayBuffer** with external data.|
 
 ### String
 
