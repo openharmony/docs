@@ -1674,7 +1674,7 @@ try {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-设置是否开启沉浸式布局。
+设置是否开启沉浸式布局，该调用不会改变窗口模式。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
