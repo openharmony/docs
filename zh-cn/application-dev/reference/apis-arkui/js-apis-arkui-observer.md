@@ -425,11 +425,11 @@ function Func(info: observer.RouterPageInfo) {
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // 通过匿名函数来设置监听，范围是当前uiContext
+    // 通过匿名函数来设置监听，范围是当前AbilityContext
     observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
       console.log('[observer] got info: ' + JSON.stringify(info))
     })
-    // 通过指定函数来设置监听，范围是当前uiContext
+    // 通过指定函数来设置监听，范围是当前AbilityContext
     observer.on('routerPageUpdate', this.context, Func)
   }
   // ... other function in EntryAbility
@@ -467,9 +467,9 @@ function Func(info: observer.RouterPageInfo) {
 
 export default class EntryAbility extends UIAbility {
   onDestroy(): void {
-    // 取消当前uiContext中指定函数Func的监听
+    // 取消当前AbilityContext中指定函数Func的监听
     observer.off('routerPageUpdate', this.context, Func)
-    // 取消当前uiContext中所有的监听
+    // 取消当前AbilityContext中所有的监听
     observer.off('routerPageUpdate', this.context)
   }
   // ... other function in EntryAbility
