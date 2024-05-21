@@ -14,9 +14,7 @@
 import AVCastPicker from '@ohos.multimedia.avCastPicker';
 ```
 
-## 接口
-
-AVCastPicker()
+## AVCastPicker()<sup>10+</sup>
 
 投播组件，可用于将音视频资源投放到其它设备播放。
 
