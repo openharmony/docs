@@ -289,4 +289,4 @@ async function release() {
 
 针对音频通话开发，有以下相关实例可供参考：
 
-- [音频通话示例（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VoiceCallDemo)
+- [音频通话示例（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Media/VoiceCallDemo)
