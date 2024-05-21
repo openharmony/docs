@@ -1556,7 +1556,7 @@
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis-arkdata/js-apis-data-distributedobject.md)
       - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (用户首选项)](reference/apis-arkdata/js-apis-data-preferences.md)
-      - [@ohos.data.sendablePreferences (共享用户首选项)](js-apis-data-sendablePreferences.md)
+      - [@ohos.data.sendablePreferences (共享用户首选项)](reference/apis-arkdata/js-apis-data-sendablePreferences.md)
       - [@ohos.data.relationalStore (关系型数据库)](reference/apis-arkdata/js-apis-data-relationalStore.md)
       - [@ohos.data.unifiedDataChannel (标准化数据通路)](reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)
       - [@ohos.data.uniformDataStruct (标准化数据结构)](reference/apis-arkdata/js-apis-data-uniformDataStruct.md)
