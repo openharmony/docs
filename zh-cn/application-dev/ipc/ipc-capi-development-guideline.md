@@ -135,7 +135,7 @@ OHIPCRemoteStub* IpcCApiStubTest::GetRemoteStub() {
 
 int IpcCApiStubTest::OnRemoteRequest(uint32_t code, const OHIPCParcel *data, OHIPCParcel *reply, void *userData) {
     int readLen = 0;
-    char* token = nullptr;
+    char *token = nullptr;
     // 接口校验
     if (OH_IPCParcel_ReadInterfaceToken(data, &token, &readLen, LocalMemoryAllocator) != OH_IPC_SUCCESS
         || NATIVE_REMOTE_STUB_TEST_TOKEN != token) {
@@ -284,7 +284,7 @@ IpcCApiProxyTest::~IpcCApiProxyTest() {
 }
 
 int IpcCApiProxyTest::AsyncAdd(int a, int b, int &result) {
-    OH_LOG_INFO(LOG_APP, "start %s %d + %d", __func__, a, b);
+    OH_LOG_INFO(LOG_APP, "start %d + %d", a, b);
     auto data = OH_IPCParcel_Create();
     if (data == nullptr) {
         return OH_IPC_CREATE_OBJECT_ERROR;
