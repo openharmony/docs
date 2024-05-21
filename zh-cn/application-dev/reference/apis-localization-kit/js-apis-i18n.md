@@ -126,7 +126,7 @@ static getSystemLanguages(): Array&lt;string&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
+    let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemLanguages failed, error code: ${err.code}, message: ${err.message}.`);
