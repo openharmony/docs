@@ -1,6 +1,8 @@
 # @ohos.sendableResourceManager (资源管理)
 
-资源管理导入sendableResourceManager模块，通过调用[resourceToSendableResource](#sendableresourcemanagerresourcetosendableresource)和[sendableResourceToResource](#sendableresourcemanagersendableresourcetoresource)方法可以将[Resource](#resource)对象和[SendableResource](#sendableresource)对象进行互转。Resource对象通过转换为SendableResource对象后，可以被[Sendable类](../../arkts-utils/arkts-sendable.md)持有。Sendable类在跨线程传输后，取出持有的SendableResource对象转为Resource对象，作为参数获取资源。
+资源管理导入sendableResourceManager模块，通过调用[resourceToSendableResource](#sendableresourcemanagerresourcetosendableresource)和[sendableResourceToResource](#sendableresourcemanagersendableresourcetoresource)方法可以将[Resource](#resource)对象和[SendableResource](#sendableresource)对象进行互转。
+
+Resource对象通过转换为SendableResource对象后，可以被[Sendable类](../../arkts-utils/arkts-sendable.md)持有。Sendable类在跨线程传输后，取出持有的SendableResource对象转为Resource对象，作为参数获取资源。
 
 > **说明：**
 >
@@ -33,6 +35,7 @@ resourceToSendableResource(resource: Resource): SendableResource
 | [SendableResource](#sendableresource)  | 转换后的SendableResource对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
@@ -74,6 +77,7 @@ sendableResourceToResource(sendableResource: SendableResource): Resource
 | [Resource](#resource) | 转换后的Resource对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
