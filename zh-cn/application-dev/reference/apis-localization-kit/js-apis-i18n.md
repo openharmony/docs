@@ -409,7 +409,7 @@ static setAppPreferredLanguage(language: string): void
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    i18n.System.setAppPreferredLanguage('zh'); // 设置应用当前语言为 "zh"
+    i18n.System.setAppPreferredLanguage('zh'); // 设置应用当前的偏好语言为 "zh"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
