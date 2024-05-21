@@ -132,6 +132,9 @@
           - [多端协同](application-models/hop-multi-device-collaboration.md)
         <!--DelEnd-->
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
+      - 应用间跳转
+        - 通用意图跳转
+        - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
       - [进程模型](application-models/process-model-stage.md)
       - [线程模型](application-models/thread-model-stage.md)
       <!--Del-->
@@ -225,10 +228,12 @@
       - 应用权限管控
         - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
         - 申请应用权限
+          <!--Del-->
           - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
+          <!--DelEnd-->
           - [声明权限](security/AccessToken/declare-permissions.md)
-          - [声明ACL权限](security/AccessToken/declare-permissions-in-acl.md)
           - [向用户申请授权](security/AccessToken/request-user-authorization.md)
+          - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
         - 应用权限列表
           - [对所有应用开放](security/AccessToken/permissions-for-all.md)
           <!--Del-->
@@ -349,6 +354,7 @@
           - [创建列表 (List)](ui/arkts-layout-development-create-list.md)
           - [创建网格 (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [创建轮播 (Swiper)](ui/arkts-layout-development-create-looping.md)
+          - [选项卡（Tabs）](ui/arkts-navigation-tabs.md)
       - 添加组件
         - 添加常用组件
           - [按钮 (Button)](ui/arkts-common-components-button.md)
@@ -365,10 +371,8 @@
         - 添加气泡和菜单
           - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
           - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
-      - 设置页面路由和组件导航
-        - 组件导航
-          - [Navigation](ui/arkts-navigation-navigation.md)
-          - [Tabs](ui/arkts-navigation-tabs.md)
+      - 设置组件导航和页面路由
+        - [组件导航（Navigation）](ui/arkts-navigation-navigation.md)
         - [页面路由 (@ohos.router)](ui/arkts-routing.md)
       - 显示图形
         - [绘制几何图形 (Shape)](ui/arkts-geometric-shape-drawing.md)
@@ -408,6 +412,8 @@
           - [单一手势](ui/arkts-gesture-events-single-gesture.md)
           - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
           - [多层级手势事件](ui/arkts-gesture-events-multi-level-gesture.md)
+      - 主题设置
+        - [设置主题换肤](ui/theme_skinning.md)
     - UI开发 (兼容JS的类Web开发范式)
       - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
       - 框架说明
@@ -480,6 +486,8 @@
             - [动画动效](ui/ui-js-animate-dynamic-effects.md)
             - [动画帧](ui/ui-js-animate-frame.md)
       - [自定义组件](ui/ui-js-custom-components.md)
+      - WebGL
+        - [使用WebGL绘制图形](webgl/webgl-2d-guidelines.md)
     - 窗口管理
       - [窗口开发概述](windowmanager/window-overview.md)
       - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
@@ -1438,6 +1446,7 @@
           - [hapModuleInfo](reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md)
           - [metadata](reference/apis-ability-kit/js-apis-bundleManager-metadata.md)
           - [OverlayModuleInfo](reference/apis-ability-kit/js-apis-bundleManager-overlayModuleInfo.md)
+          - [Skill](reference/apis-ability-kit/js-apis-bundleManager-skill.md)
           <!--Del-->
           - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
           - [BundlePackInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundlePackInfo-sys.md)
@@ -1547,6 +1556,7 @@
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis-arkdata/js-apis-data-distributedobject.md)
       - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (用户首选项)](reference/apis-arkdata/js-apis-data-preferences.md)
+      - [@ohos.data.sendablePreferences (共享用户首选项)](reference/apis-arkdata/js-apis-data-sendablePreferences.md)
       - [@ohos.data.relationalStore (关系型数据库)](reference/apis-arkdata/js-apis-data-relationalStore.md)
       - [@ohos.data.unifiedDataChannel (标准化数据通路)](reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)
       - [@ohos.data.uniformDataStruct (标准化数据结构)](reference/apis-arkdata/js-apis-data-uniformDataStruct.md)
@@ -1747,6 +1757,7 @@
         - [@ohos.arkui.inspector (布局回调)](reference/apis-arkui/js-apis-arkui-inspector.md)
         - [@ohos.arkui.node(自定义节点)](reference/apis-arkui/js-apis-arkui-node.md)
         - [@ohos.arkui.observer (无感监听)](reference/apis-arkui/js-apis-arkui-observer.md)
+        - [@ohos.arkui.Theme (主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
         - [@ohos.arkui.UIContext (UIContext)](reference/apis-arkui/js-apis-arkui-UIContext.md)
         - [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension.md)
         - [@ohos.curves (插值计算)](reference/apis-arkui/js-apis-curve.md)
@@ -1778,6 +1789,8 @@
           - [RenderNode](reference/apis-arkui/js-apis-arkui-renderNode.md)
           - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
           - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
+          - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
+          - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
       - 图形图像
         - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
         - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
@@ -1929,6 +1942,7 @@
           - [TimePicker](reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md)
           - [Toggle](reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md)
           - [XComponent](reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)
+          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md)
           <!--Del-->
           - [Component3D (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md)
           - [FormComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)
@@ -1996,6 +2010,8 @@
           - [OffscreenCanvas](reference/apis-arkui/arkui-ts/ts-components-offscreencanvas.md)
           - [OffscreenCanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
           - [Path2D](reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md)
+        - 渲染组件
+          - [ContentSlot](reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)
         - 高级组件
           - [@ohos.arkui.advanced.Chip (操作块)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [@ohos.arkui.advanced.ChipGroup (操作块组)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -2053,6 +2069,7 @@
         - 类型定义
           - [基础类型定义](reference/apis-arkui/arkui-ts/ts-types.md)
           - [图像类型定义](reference/apis-arkui/arkui-ts/ts-image-common.md)
+          - [文本类型定义](reference/apis-arkui/arkui-ts/ts-text-common.md)
         - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
         - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
         - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
