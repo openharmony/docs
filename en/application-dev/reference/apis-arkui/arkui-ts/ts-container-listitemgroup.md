@@ -26,7 +26,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options |  [ListItemGroupOptions](#listitemgroupoptions)| Yes| Parameters of the list item group.|
+| options |  [ListItemGroupOptions](#listitemgroupoptions)| No| Parameters of the list item group.|
 
 ## ListItemGroupOptions
 

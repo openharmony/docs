@@ -21,9 +21,17 @@ This component can contain the [\<FlowItem>](ts-container-flowitem.md) child com
 ## APIs
 
 
-WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
+WaterFlow(options?:  WaterFlowOptions)
 
 **Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| options |  [WaterFlowOptions](#waterflowoptions)| No| Parameters of the **\<WaterFlow>** component.|
+
+
+## WaterFlowOptions
+
 
 | Name    | Type                                       | Mandatory| Description                                    |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
@@ -46,10 +54,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |Main axis direction of the layout.<br>Default value: **FlexDirection.Column**|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
-| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
+| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>Since API version 11, the default value for non-wearable devices is **0.7**.<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
 | cachedCount<sup>11+</sup> | number | Number of items to be cached. This attribute is effective only in **LazyForEach**.<br> Default value: **1**<br>**NOTE**<br>Items<br>that exceed the display and cache range are released.<br>A value less than 0 evaluates to the default value.|
 | scrollBar<sup>11+</sup>            | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**<br>**NOTE**<br>Until the layout of the **\<WaterFlow>** component is complete, the position and length of the scrollbar are subject to the total height and current offset of the items that have been laid out.|
-| scrollBarWidth<sup>11+</sup> | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>If the width of the scrollbar exceeds its height, it will change to the default value.|
+| scrollBarWidth<sup>11+</sup> | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>After the width is set, the scrollbar is displayed with the set width in normal state and pressed state. If the set width exceeds the height of the **\<WaterFlow>** component on the main axis, the scrollbar reverts to the default width.|
 | scrollBarColor<sup>11+</sup> | string \| number \| [Color](ts-appendix-enums.md#color)   | Color of the scrollbar.|
 | edgeEffect<sup>11+</sup>     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11)        | Effect used at the edges of the component when the boundary of the scrollable content is reached.<br>\- **value**: effect used at the edges of the **\<WaterFlow>** component when the boundary of the scrollable content is reached. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>\- **options**: whether to enable the scroll effect when the component content size is smaller than the component itself.<br>Default value: **false**|
 
@@ -66,6 +74,20 @@ The priority of **layoutDirection** is higher than that of **rowsTemplate** and 
 - **layoutDirection** is not set
 
 	In this case, the default value of **layoutDirection** is used, which is **FlexDirection.Column**, and **columnsTemplate** is valid. For example, if **columnsTemplate** is set to **"1fr 1fr"** and **rowsTemplate** **"1fr 1fr 1fr"**, child components are arranged in vertical layout, with the cross axis equally divided into two columns.
+
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+Sets the maximum starting fling speed when the fling animation starts. The unit is vp/s.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                           |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | Yes  | Maximum starting fling speed when the fling animation starts.|
 
 ## Events
 
@@ -230,7 +252,7 @@ struct WaterFlowDemo {
   }
 
   // Save the width and height of the flow item.
-  getItemSizeArray() {
+  setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize())
       this.itemHeightArray.push(this.getSize())
@@ -238,7 +260,7 @@ struct WaterFlowDemo {
   }
 
   aboutToAppear() {
-    this.getItemSizeArray()
+    this.setItemSizeArray()
   }
 
   @Builder
@@ -286,6 +308,19 @@ struct WaterFlowDemo {
       .backgroundColor(0xFAEEE0)
       .width('100%')
       .height('100%')
+      .onReachStart(() => {
+        console.info('waterFlow reach start')
+      })
+      .onScrollStart(() => {
+        console.info('waterFlow scroll start')
+      })
+      .onScrollStop(() => {
+        console.info('waterFlow scroll stop')
+      })
+      .onScrollFrameBegin((offset: number, state: ScrollState) => {
+        console.info('waterFlow scrollFrameBegin offset: ' + offset + ' state: ' + state.toString())
+        return { offsetRemain: offset }
+      })
     }
   }
 }
@@ -316,7 +351,7 @@ struct WaterFlowDemo {
   }
 
   // Save the width and height of the flow item.
-  getItemSizeArray() {
+  setItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize())
       this.itemHeightArray.push(this.getSize())
@@ -324,7 +359,7 @@ struct WaterFlowDemo {
   }
 
   aboutToAppear() {
-    this.getItemSizeArray()
+    this.setItemSizeArray()
   }
 
   build() {
