@@ -49,6 +49,8 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
