@@ -156,7 +156,7 @@ observer.off('navDestinationUpdate', { navigationId: "testId" });
 
 ## observer.on('routerPageUpdate')<sup>11+</sup>
 
-on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Callback\<observer.RouterPageInfo\>): void
+on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Callback\<RouterPageInfo\>): void
 
 Subscribes to state changes of the page during routing.
 
@@ -175,15 +175,18 @@ Subscribes to state changes of the page during routing.
 ```ts
 // used in UIAbility
 import observer from '@ohos.arkui.observer';
+import { UIContext } from '@ohos.arkui.UIContext';
+function callBackFunc(info: observer.RouterPageInfo) {}
 // callBackFunc is user defined function
 observer.on('routerPageUpdate', this.context, callBackFunc);
 // uiContext could be got by window's function: getUIContext()
+uiContext: UIContext | null = null;
 observer.on('routerPageUpdate', this.uiContext, callBackFunc);
 ```
 
 ## observer.off('routerPageUpdate')<sup>11+</sup>
 
-off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: Callback\<observer.RouterPageInfo\>): void
+off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: Callback\<RouterPageInfo\>): void
 
 Unsubscribes to state changes of the page during routing.
 
@@ -202,9 +205,12 @@ Unsubscribes to state changes of the page during routing.
 ```ts
 // used in UIAbility
 import observer from '@ohos.arkui.observer';
+import { UIContext } from '@ohos.arkui.UIContext';
+function callBackFunc(info: observer.RouterPageInfo) {}
 // callBackFunc is user defined function
 observer.off('routerPageUpdate', this.context, callBackFunc);
 // uiContext could be got by window's function: getUIContext()
+uiContext: UIContext | null = null;
 observer.off('routerPageUpdate', this.uiContext, callBackFunc);
 ```
 <!--no_check-->

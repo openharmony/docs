@@ -102,7 +102,7 @@ Applies a saturation effect to the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Saturation of the component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. If the value is **1**, the original image is displayed. If the value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. If the value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage.<br>Default value: **1.0**<br>Value range: [0, 50)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
+| value  | number | Yes  | Saturation of the component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. If the value is **1**, the original image is displayed. If the value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. If the value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage.<br>Default value: **1.0**<br>Recommended value range: [0, 50)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
 
 ## contrast
 
@@ -118,7 +118,7 @@ Applies a contrast effect to the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Contrast of the component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than 1, a larger value indicates a higher contrast and a clearer image. If the value is less than 1, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage.<br>Default value: **1.0**<br>Value range: [0, 10]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
+| value  | number | Yes  | Contrast of the component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than 1, a larger value indicates a higher contrast and a clearer image. If the value is less than 1, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage.<br>Default value: **1.0**<br>Recommended value range: [0, 10)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
 
 ## invert
 
@@ -228,7 +228,7 @@ Defines how the component's content (including the content of it child component
 | Name| Type                           | Mandatory| Description                                                        |
 | ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [BlendMode](#blendmode11)  | Yes  | Blend mode.<br>Default value: **BlendMode.NONE**  |
-| type   | [BlendApplyType](ts-appendix-enums.md#blendapplytype11)  |    No   | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>Available options:<br>1. **BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. **BlendApplyType.OFFSCREEN**: The component's content (including the content of it child components) is drawn on the offscreen canvas, and then blended with the existing content on the canvas in the specified blend mode. |
+| type   | [BlendApplyType](ts-appendix-enums.md#blendapplytype11)  |    No   | Whether the blend mode is implemented offscreen.<br>Default value: **BlendApplyType.FAST**<br>**NOTE**<br>1. Available options:<br>**BlendApplyType.FAST**: The blend mode is not implemented offscreen.<br>2. **BlendApplyType.OFFSCREEN**: The component's content (including the content of it child components) is drawn on the offscreen canvas, and then blended with the existing content on the canvas in the specified blend mode.    |
 
 ## useShadowBatching<sup>11+</sup> 
 
@@ -244,7 +244,7 @@ Sets whether to draw shadows of child nodes in the component at the same layer, 
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to draw shadows of child nodes in the component at the same layer, so that the shadows of elements at the same layer overlap.<br>Default value: **false**<br>**NOTE**<br>1. This feature is disabled by default. In this case, if the shadow radius of a child node is large, the shadows of the child nodes may overlap. When feature is enabled, the shadows of elements do not overlap.<br>2. Avoid nesting **useShadowBatching**. When used in nested mode, **useShadowBatching** takes effect for the current child node only and cannot be recursively used.|
+| value  | boolean | Yes  | Whether to draw shadows of child nodes in the component at the same layer, so that the shadows of elements at the same layer overlap.<br>Default value: **false**<br>**NOTE**<br>1. When this feature is disabled (default), if the shadow radius of a child node is large, the shadows of the child nodes may overlap. This overlap issue does not occur when the feature is enabled.<br>2. Avoid nesting **useShadowBatching**. When used in nested mode, **useShadowBatching** takes effect for the current child node only and cannot be recursively used.|
 
 ## ShadowOptions
 
@@ -254,11 +254,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.|
+| radius  | number \| [Resource](ts-types.md#resource) | Yes   | Blur radius of the shadow.<br>Value range: [0, +∞)<br>Unit: px<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **radius** is of the Resource type, its value must be of the number type.<br>|
 | type<sup>10+</sup> | [ShadowType<sup>10+</sup>](ts-appendix-enums.md#shadowtype10)  |      No   | Shadow type.<br>Default value: **COLOR**       |
 | color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)\| [ColoringStrategy<sup>10+</sup> ](ts-types.md#coloringstrategy10) | No   | Color of the shadow.<br>The default color is black.<br>**NOTE**<br>Since API version 11, this API supports **ColoringStrategy**, which cannot be used with ArkTS widgets or the [textShadow](ts-basic-components-text.md#attributes) attribute.<br>With **ColoringStrategy**, the average color or primary color can be obtained, and the obtained color is applied to the shadow drawing area.<br>The **'average'** string can be used to trigger the mode for obtaining the average color, and the **'primary'** string for obtaining the primary color.                      |
-| offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>The default value is **0**.                     |
-| offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>The default value is **0**.                     |
+| offsetX | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the x-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetX** is of the Resource type, its value must be of the number type.<br>|
+| offsetY | number \| [Resource](ts-types.md#resource) | No   | Offset of the shadow along the y-axis.<br>Default value: **0**<br>Unit: px<br>**NOTE**<br>To use a value in the vp unit, call [vp2px](ts-pixel-units.md#pixel-unit-conversion) to convert it into px.<br>If **offsetY** is of the Resource type, its value must be of the number type.<br>|
 | fill<sup>11+</sup>     | boolean                                    | No   | Whether to fill the inside of the component with shadow.<br>The default value is **false**.<br>**NOTE**<br>This attribute does not take effect in [textShadow](ts-basic-components-text.md#attributes).                |
 
 ## ShadowStyle<sup>10+</sup>
@@ -313,10 +313,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## LinearGradientBlurOptions<sup>10+</sup>
 
-| Name         | Type                                                       | Description                                                        |
-| ------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| fractionStops | Array\<[FractionStop](#fractionstop)>                                    | Gradient blur stops. The value is a set of binary arrays, each of which indicates [blur degree, blur position] and consists of numbers ranging from 0 to 1 (those less than 0 evaluate to **0**, and those greater than 1 evaluate to **1**). The blur positions in the arrays must be in strict ascending order. Noncompliance will be logged. For the blur settings to take effect, the number of binary arrays must be greater than or equal to 2.|
-| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | Gradient blur direction.<br>Default value:<br>GradientDirection.Bottom |
+| Name         | Type                                                       | Mandatory | Description                                                        |
+| ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
+| fractionStops | Array\<[FractionStop](#fractionstop)>                                    | Yes   | Gradient blur stops. The value is a set of binary arrays, each of which indicates [blur degree, blur position] and consists of numbers ranging from 0 to 1 (those less than 0 evaluate to **0**, and those greater than 1 evaluate to **1**). The blur positions in the arrays must be in strict ascending order. Noncompliance will be logged. For the blur settings to take effect, the number of binary arrays must be greater than or equal to 2.|
+| direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | Yes   | Gradient blur direction.<br>Default value:<br>GradientDirection.Bottom |
 
 ## FractionStop
 
@@ -567,7 +567,8 @@ struct Index {
 
 ### Example 6
 
-Example of using **blendMode** with **backgroundEffect** to implement the gradient effect of text and images:
+This example uses **blendMode** with **backgroundEffect** to implement the gradient effect of text and images.<br>
+If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-layout-constraints.md#pixelRound11) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
 
 ```ts
 // xxx.ets
@@ -627,6 +628,12 @@ struct Index {
             }
           }
           .blendMode(BlendMode.DST_IN, BlendApplyType.OFFSCREEN)
+          .pixelRound({
+            start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+            end: PixelRoundCalcPolicy.FORCE_CEIL,
+            bottom: PixelRoundCalcPolicy.FORCE_CEIL
+          })
         }
         .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
         .backgroundEffect({
@@ -636,6 +643,12 @@ struct Index {
           color: this.getVolumeDialogWindowColor()
         })
         .justifyContent(FlexAlign.Center)
+        .pixelRound({
+          start: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          top: PixelRoundCalcPolicy.FORCE_FLOOR ,
+          end: PixelRoundCalcPolicy.FORCE_CEIL,
+          bottom: PixelRoundCalcPolicy.FORCE_CEIL
+        })
       }
     }
   }

@@ -20,7 +20,7 @@ Binds a sheet to the component, which can be displayed when the component is tou
 
 | Name | Type                                       | Mandatory| Description                                                        |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | boolean                                     | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| isShow  | boolean                                     | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the sheet.                                        |
 | options | [SheetOptions](#sheetoptions)               | No  | Optional attributes of the sheet.                                  |
 
@@ -28,14 +28,14 @@ Binds a sheet to the component, which can be displayed when the component is tou
 >
 > When no two-way binding is set up for the **isShow** parameter, closing the sheet by dragging does not change the parameter value.
 >
-> To synchronize the value of **isShow** with the actual state of the sheet, it is recommended that you use the [$$](../../quick-start/arkts-two-way-sync.md) to set up two-way binding for **isShow**.
+> To synchronize the value of **isShow** with the actual state of the sheet, it is recommended that you use the [$$](../../../quick-start/arkts-two-way-sync.md) to set up two-way binding for **isShow**.
 ## SheetOptions
 
 Inherited from [BindOptions](#bindoptions).
 
 | Name             | Type                                      | Mandatory  | Description             |
 | --------------- | ---------------------------------------- | ---- | --------------- |
-| height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**<br>**NOTE**<br>When the sheet is presented as a bottom sheet in portrait mode, this attribute has no effect if **sheetDetents** is set.<br>When the sheet is presented as a bottom sheet in portrait mode, it is 8 vp away from the signal bar at its maximum height.<br>When the sheet is presented as a bottom sheet in landscape mode, this attribute has no effect, and the sheet is 8 vp away from the top of the screen at its maximum height.<br>When the sheet is presented as a center or popup sheet, the **SheetSize.LARGE** and **SheetSize.MEDIUM** values have no effect, and the default value 560 vp is used. The minimum height of the center and popup sheets is 320 vp, and the maximum height is 90% of the shorter edge of the window. If the height specified by **Length** or the auto-determined height with **SheetSize.FIT_CONTENT** is greater than the maximum height, the maximum height is used instead. If the height is less than the minimum height, the minimum height is used instead.|
+| height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**<br>**NOTE**<br>When the sheet is presented as a bottom sheet in portrait mode, this attribute has no effect if **detents** is set.<br>When the sheet is presented as a bottom sheet in portrait mode, it is 8 vp away from the signal bar at its maximum height.<br>When the sheet is presented as a bottom sheet in landscape mode, this attribute has no effect, and the sheet is 8 vp away from the top of the screen at its maximum height.<br>When the sheet is presented as a center or popup sheet, the **SheetSize.LARGE** and **SheetSize.MEDIUM** values have no effect, and the default value 560 vp is used. The minimum height of the center and popup sheets is 320 vp, and the maximum height is 90% of the shorter edge of the window. If the height specified by **Length** or the auto-determined height with **SheetSize.FIT_CONTENT** is greater than the maximum height, the maximum height is used instead. If the height is less than the minimum height, the minimum height is used instead.|
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize) \| [Length](ts-types.md#length))?] | No| Array of heights where the sheet can rest.<br>**NOTE**<br>This attribute takes effect only for the bottom sheet in portrait mode. The first height in the tuple is the initial height.<br>The sheet can switch between heights by dragging. After the sheet is dragged and released, it switches to the target height or remains at the current height, depending on the velocity and distance.<br> If the velocity exceeds the threshold, the sheet switches to the target height in the same direction as the velocity. If the velocity is less than the threshold, the displacement distance is used for judgement. If the displacement distance is greater than 1/2 of the distance between the current and target positions, the sheet switches to the target height in the same direction as the velocity; otherwise, the sheet remains at the current height.<br> Velocity threshold: 1000; Distance threshold: 50%.|
 | preferType<sup>11+</sup> | [SheetType.CENTER](#sheettype11) \|  [SheetType.POPUP](#sheettype11) | No| Type of the sheet.<br>**NOTE**<br>**preferType** cannot be set to **SheetType.BOTTOM.**|
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | No| Whether to display the close icon. By default, the icon is displayed.<br>**NOTE**<br>The value of **Resource** must be of the Boolean type.|
@@ -93,7 +93,6 @@ struct SheetTransitionExample {
   @State isShow:boolean = false
   @State isShow2:boolean = false
   @State sheetHeight:number = 300;
-  @State showDragBar:boolean = true;
 
   @Builder myBuilder() {
     Column() {
@@ -109,13 +108,6 @@ struct SheetTransitionExample {
         .fontSize(20)
         .onClick(()=>{
           this.sheetHeight = -1;
-        })
-
-      Button("close dragBar")
-        .margin(10)
-        .fontSize(20)
-        .onClick(()=>{
-          this.showDragBar = false;
         })
 
       Button("close modal 1")
@@ -137,7 +129,12 @@ struct SheetTransitionExample {
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(), {height: this.sheetHeight, dragBar: this.showDragBar, backgroundColor: Color.Green, onAppear: () => {console.log("BindSheet onAppear.")}, onDisappear: () => {console.log("BindSheet onDisappear.")}})
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: this.sheetHeight, 
+          backgroundColor: Color.Green,
+          onAppear: () => {console.log("BindSheet onAppear.")}, 
+          onDisappear: () => {console.log("BindSheet onDisappear.")}
+        })
     }
     .justifyContent(FlexAlign.Center)
     .width('100%')
@@ -146,7 +143,7 @@ struct SheetTransitionExample {
 }
 ```
 
-![en-us_sheet](figures/en-us_sheet.gif)
+![en-us_sheet](figures/en-us_sheet1.gif)
 
 ## Example 2
 

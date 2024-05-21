@@ -1,7 +1,7 @@
 # Video Playback (Video)
 
 
-The **\<Video>** component is used to play a video and control its playback. It is usually used in video players and video list pages within applications. A video automatically plays once fully loaded. When the user clicks the video area, the video is paused and the playback progress bar is displayed. The user can drag the progress bar to the desired position. For details, see [Video](../reference/arkui-ts/ts-media-components-video.md).
+The **\<Video>** component is used to play a video and control its playback. It is usually used in video players and video list pages within applications. A video automatically plays once fully loaded. When the user clicks the video area, the video is paused and the playback progress bar is displayed. The user can drag the progress bar to the desired position. For details, see [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md).
 
 
 ## Creating a \<Video> Component
@@ -10,7 +10,7 @@ You can create a **\<Video>** component by calling the following API:
 
 Video(value: VideoOptions)
 
-A **VideoOptions** object contains the **src**, **currentProgressRate**, **previewUri**, and **controller** parameters. In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading Video](#loading-video). For details about **VideoOptions**, see [VideoOptions](../reference/arkui-ts/ts-media-components-video.md#videooptions).
+A **VideoOptions** object contains the **src**, **currentProgressRate**, **previewUri**, and **controller** parameters. In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading Video](#loading-video). For details about **VideoOptions**, see [VideoOptions](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#videooptions).
 
 
 ## Loading Video
@@ -115,7 +115,7 @@ export struct VideoPlayer{
 
 ## Adding Attributes
 
-Use the [attributes](../reference/arkui-ts/ts-media-components-video.md#attributes) of the **\<Video>** component to control video playback. For example, you can set whether to mute the video and whether to display the video playback control bar.
+Use the [attributes](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#attributes) of the **\<Video>** component to control video playback. For example, you can set whether to mute the video and whether to display the video playback control bar.
 
 
 ```ts
@@ -141,7 +141,7 @@ export struct VideoPlayer {
 
 ## Adding Events
 
-  The **\<Video>** component supports various callback events in addition to the universal events. For details, see [Events](../reference/arkui-ts/ts-media-components-video.md#events).
+  The **\<Video>** component supports various callback events in addition to the universal events. For details, see [Events](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#events).
 
 ```ts
 @Entry
@@ -174,7 +174,7 @@ struct VideoPlayer{
 
 ## Using the Video Controller
 
-The video controller is used to control video playback. For details, see [VideoController](../reference/arkui-ts/ts-media-components-video.md#videocontroller).
+The video controller is used to control video playback. For details, see [VideoController](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#videocontroller).
 
 - Default controller
 
@@ -266,4 +266,4 @@ The video controller is used to control video playback. For details, see [VideoC
 
 ## Remarks
 
-The **\<Video>** component has encapsulated the basic capabilities of video playback. You do not need to create video instances or set and obtain video information. Simply set the data source and basic information to play videos. To customize video playback, see [Video Playback](../media/video-playback.md).
+The **\<Video>** component has encapsulated the basic capabilities of video playback. You do not need to create video instances or set and obtain video information. Simply set the data source and basic information to play videos. To customize video playback, see [Video Playback](../media/media/video-playback.md).

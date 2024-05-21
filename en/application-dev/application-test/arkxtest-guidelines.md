@@ -61,7 +61,9 @@ Hardware: PC connected to a test device, such as a development board
 
 ### Writing a Unit Test Script
 
- The unit test script must contain the following basic elements:
+This section describes how to use the unit test framework to write a unit test script. For details about the functionality of the unit test framework, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
+
+The unit test script must contain the following basic elements:
 
 1. Import of the dependencies so that the dependent test APIs can be used.
 
@@ -106,9 +108,7 @@ export default function abilityTest() {
 
 ### Writing a UI Test Script
 
-To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest interface (providing a link) to a unit test script.
-
-In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
+To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. For details about the available APIs, see [@ohos.UiTest](../../application-dev/reference/apis-test-kit/js-apis-uitest.md).<br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
 
 1. Import the dependency.
 
@@ -415,7 +415,7 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool indicates the
 		"MAX_VEL": "40000", // Maximum velocity.
 		"VELO": "0.000000", // Hands-off velocity.
 		"W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // Starting component bounds.
-		"W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0", // Starting component hierarchy.
+		"W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // Starting component hierarchy.
 		"W1_ID": "", // ID of the starting component.
 		"W1_Text": "", // Text of the starting component.
 		"W1_Type": "Image", // Type of the starting component.
@@ -464,15 +464,15 @@ Example 3: Perform a long-click.
 ```
 Example 4: Perform a fling.
 ```shell  
-hdc shell uitest uiInput fling 0 0 200 200 500 
+hdc shell uitest uiInput fling 10 10 200 200 500 
 ```
 Example 5: Perform a swipe.
 ```shell  
-hdc shell uitest uiInput swipe 0 0 200 200 500 
+hdc shell uitest uiInput swipe 10 10 200 200 500 
 ```
 Example 6: Perform a drag and drop.
 ```shell  
-hdc shell uitest uiInput drag 0 0 100 100 500 
+hdc shell uitest uiInput drag 10 10 100 100 500 
 ```
 Example 7: Perform a fling-left.
 ```shell  
@@ -498,11 +498,11 @@ hdc shell uitest uiInput inputText 100 100 hello
 
 Example 12: Return to the home screen.
 ```shell  
-hdc shell uitest uiInput keyEvent home
+hdc shell uitest uiInput keyEvent Home
 ```
 Example 13: Return to the previous page.
 ```shell  
-hdc shell uitest uiInput keyEvent back
+hdc shell uitest uiInput keyEvent Back
 ```
 Example 14: Perform a key combination to copy and paste text.
 ```shell  
