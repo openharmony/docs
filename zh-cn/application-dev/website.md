@@ -492,6 +492,7 @@
       - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
       <!--Del-->
       - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
+      - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
       <!--DelEnd-->
       - [使用NaitveWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
   - ArkWeb（方舟Web）
@@ -1561,7 +1562,9 @@
       - [@ohos.data.ValuesBucket (数据集)](reference/apis-arkdata/js-apis-data-valuesBucket.md)
       <!--Del-->
       - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)
+      <!--DelEnd-->
       - [@ohos.data.cloudData (端云协同)](reference/apis-arkdata/js-apis-data-cloudData.md)
+      <!--Del-->
       - [@ohos.data.cloudData (端云协同)(系统接口)](reference/apis-arkdata/js-apis-data-cloudData-sys.md)
       - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](reference/apis-arkdata/js-apis-data-cloudExtension-sys.md)
       - [@ohos.data.dataShare (数据共享)(系统接口)](reference/apis-arkdata/js-apis-data-dataShare-sys.md)
