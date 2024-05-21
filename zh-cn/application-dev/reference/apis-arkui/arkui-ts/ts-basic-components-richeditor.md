@@ -361,13 +361,13 @@ onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
 
 **参数：** 
 
-| 参数名   | 参数类型                                    | 必填   | 参数描述        |
-| ----- | --------------------------------------- | ---- | ----------- |
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
 | callback | Callback<[RichEditorChangeValue](#richeditorchangevalue12) , boolean> | 是    | [RichEditorChangeValue](#richeditorchangevalue12)为文本变化信息；boolean表示当前文本是否允许被更改，true：允许文本被更改。false：不允许文本被更改。 |
 
 ### onDidChange<sup>12+</sup>
 
-onDidChange(callback: OnDidChangeCallback)
+onDidChange(callback: Callback\<OnDidChangeCallback\>)
 
 文本变化后，触发回调。
 
@@ -375,9 +375,9 @@ onDidChange(callback: OnDidChangeCallback)
 
 **参数：** 
 
-| 参数名   | 参数类型                                    | 必填   | 参数描述        |
-| ----- | --------------------------------------- | ---- | ----------- |
-| callback |OnDidChangeCallback | 是    | 文本变化后信息。与[RichEditorChangeValue](#richeditorchangevalue12)中的replacedSpans相同。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| callback | Callback<[OnDidChangeCallback](ts-universal-attributes-text-style.md#ondidchangecallback12)> | 是 | 文本变化前后的内容范围。 |
 
 ### onCut<sup>12+</sup>
 
@@ -601,8 +601,10 @@ setSelection的选择项配置。
 
 | 名称                    | 类型                                       | 必填   | 说明                  |
 | --------------------- | ---------------------------------------- | ---- | ------------------- |
-| originalSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换前文本Span的具体信息。 |
+| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是    | 替换前文本Span的具体信息。 |
 | replacedSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后文本Span的具体信息。 |
+| replacedImageSpans | Array<[RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 替换后ImageSpan的具体信息。 |
+| replacedSymbolSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后SymbolSpan的具体信息。 |
 
 ## RichEditorController
 
