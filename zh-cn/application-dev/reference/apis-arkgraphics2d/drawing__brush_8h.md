@@ -22,6 +22,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \* [OH_Drawing_BrushCreate](_drawing.md#oh_drawing_brushcreate) (void) | 用于创建一个画刷对象。 | 
+| [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \* [OH_Drawing_BrushCopy](_drawing.md#oh_drawing_brushcopy) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*brush) | 创建一个画刷对象副本[OH_Drawing_Brush](_drawing.md#oh_drawing_brush)，用于拷贝一个已有画刷对象。 | 
 | void [OH_Drawing_BrushDestroy](_drawing.md#oh_drawing_brushdestroy) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 用于销毁画刷对象并回收该对象占有的内存。 | 
 | bool [OH_Drawing_BrushIsAntiAlias](_drawing.md#oh_drawing_brushisantialias) (const [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 用于获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 | 
 | void [OH_Drawing_BrushSetAntiAlias](_drawing.md#oh_drawing_brushsetantialias) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, bool) | 用于设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 | 
