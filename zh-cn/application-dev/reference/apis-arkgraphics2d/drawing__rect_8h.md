@@ -23,3 +23,4 @@
 | -------- | -------- |
 | [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \* [OH_Drawing_RectCreate](_drawing.md#oh_drawing_rectcreate) (float left, float top, float right, float bottom) | 用于创建一个矩形对象。 |
 | void [OH_Drawing_RectDestroy](_drawing.md#oh_drawing_rectdestroy) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 用于销毁矩形对象并回收该对象占有的内存。 |
+| bool [OH_Drawing_RectJoin](_drawing.md#oh_drawing_rectjoin) ([OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*other) | 将两个矩形取并集。 | 
