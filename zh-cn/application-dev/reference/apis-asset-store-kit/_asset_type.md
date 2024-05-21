@@ -43,13 +43,14 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [Asset_TagType](#asset_tagtype) {<br/>ASSET_TYPE_BOOL = 0x1 &lt;&lt; 28,<br/>ASSET_TYPE_NUMBER = 0x2 &lt;&lt; 28,<br/>ASSET_TYPE_BYTES = 0x3 &lt;&lt; 28 } | 关键资产属性的类型定义。 | 
-| [Asset_Tag](#asset_tag) {<br/>ASSET_TAG_SECRET = ASSET_TYPE_BYTES \| 0x01,<br/>ASSET_TAG_ALIAS = ASSET_TYPE_BYTES \| 0x02,<br/>ASSET_TAG_ACCESSIBILITY = ASSET_TYPE_NUMBER \| 0x03,<br/>ASSET_TAG_REQUIRE_PASSWORD_SET = ASSET_TYPE_BOOL \| 0x04,<br/>ASSET_TAG_AUTH_TYPE = ASSET_TYPE_NUMBER \| 0x05,<br/>ASSET_TAG_AUTH_VALIDITY_PERIOD = ASSET_TYPE_NUMBER \| 0x06,<br/>ASSET_TAG_AUTH_CHALLENGE = ASSET_TYPE_BYTES \| 0x07,<br/>ASSET_TAG_AUTH_TOKEN = ASSET_TYPE_BYTES \| 0x08,<br/>ASSET_TAG_SYNC_TYPE = ASSET_TYPE_NUMBER \| 0x10,<br/>ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL \| 0x11,<br/>ASSET_TAG_DATA_LABEL_CRITICAL_1 = ASSET_TYPE_BYTES \| 0x20,<br/>ASSET_TAG_DATA_LABEL_CRITICAL_2 = ASSET_TYPE_BYTES \| 0x21,<br/>ASSET_TAG_DATA_LABEL_CRITICAL_3 = ASSET_TYPE_BYTES \| 0x22,<br/>ASSET_TAG_DATA_LABEL_CRITICAL_4 = ASSET_TYPE_BYTES \| 0x23,<br/>ASSET_TAG_DATA_LABEL_NORMAL_1 = ASSET_TYPE_BYTES \| 0x30,<br/>ASSET_TAG_DATA_LABEL_NORMAL_2 = ASSET_TYPE_BYTES \| 0x31,<br/>ASSET_TAG_DATA_LABEL_NORMAL_3 = ASSET_TYPE_BYTES \| 0x32,<br/>ASSET_TAG_DATA_LABEL_NORMAL_4 = ASSET_TYPE_BYTES \| 0x33,<br/>ASSET_TAG_RETURN_TYPE = ASSET_TYPE_NUMBER \| 0x40,<br/>ASSET_TAG_RETURN_LIMIT = ASSET_TYPE_NUMBER \| 0x41,<br/>ASSET_TAG_RETURN_OFFSET = ASSET_TYPE_NUMBER \| 0x42,<br/>ASSET_TAG_RETURN_ORDERED_BY = ASSET_TYPE_NUMBER \| 0x43,<br/>ASSET_TAG_CONFLICT_RESOLUTION = ASSET_TYPE_NUMBER \| 0x44<br/>} | 关键资产属性的名称。 | 
+| [Asset_Tag](#asset_tag) {<br/>ASSET_TAG_SECRET = ASSET_TYPE_BYTES \| 0x01,<br/>ASSET_TAG_ALIAS = ASSET_TYPE_BYTES \| 0x02,<br/>ASSET_TAG_ACCESSIBILITY = ASSET_TYPE_NUMBER \| 0x03,<br/>ASSET_TAG_REQUIRE_PASSWORD_SET = ASSET_TYPE_BOOL \| 0x04,<br/>ASSET_TAG_AUTH_TYPE = ASSET_TYPE_NUMBER \| 0x05,<br/>ASSET_TAG_AUTH_VALIDITY_PERIOD = ASSET_TYPE_NUMBER \| 0x06,<br/>ASSET_TAG_AUTH_CHALLENGE = ASSET_TYPE_BYTES \| 0x07,<br/>ASSET_TAG_AUTH_TOKEN = ASSET_TYPE_BYTES \| 0x08,<br/>ASSET_TAG_SYNC_TYPE = ASSET_TYPE_NUMBER \| 0x10,<br/>ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL \| 0x11,<br/>ASSET_TAG_DATA_LABEL_CRITICAL_1 = ASSET_TYPE_BYTES \| 0x20,<br/>ASSET_TAG_DATA_LABEL_CRITICAL_2 = ASSET_TYPE_BYTES \| 0x21,<br/>ASSET_TAG_DATA_LABEL_CRITICAL_3 = ASSET_TYPE_BYTES \| 0x22,<br/>ASSET_TAG_DATA_LABEL_CRITICAL_4 = ASSET_TYPE_BYTES \| 0x23,<br/>ASSET_TAG_DATA_LABEL_NORMAL_1 = ASSET_TYPE_BYTES \| 0x30,<br/>ASSET_TAG_DATA_LABEL_NORMAL_2 = ASSET_TYPE_BYTES \| 0x31,<br/>ASSET_TAG_DATA_LABEL_NORMAL_3 = ASSET_TYPE_BYTES \| 0x32,<br/>ASSET_TAG_DATA_LABEL_NORMAL_4 = ASSET_TYPE_BYTES \| 0x33,<br/>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x34,<br/>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x35,<br/>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x36,<br/>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x37,<br/>ASSET_TAG_RETURN_TYPE = ASSET_TYPE_NUMBER \| 0x40,<br/>ASSET_TAG_RETURN_LIMIT = ASSET_TYPE_NUMBER \| 0x41,<br/>ASSET_TAG_RETURN_OFFSET = ASSET_TYPE_NUMBER \| 0x42,<br/>ASSET_TAG_RETURN_ORDERED_BY = ASSET_TYPE_NUMBER \| 0x43,<br/>ASSET_TAG_CONFLICT_RESOLUTION = ASSET_TYPE_NUMBER \| 0x44,<br/>ASSET_TAG_UPDATE_TIME<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x45,<br/>ASSET_TAG_OPERATION_TYPE<sup>12+</sup> = ASSET_TYPE_NUMBER \| 0x46,<br/>} | 关键资产属性的名称。 | 
 | [Asset_ResultCode](#asset_resultcode) {<br/>ASSET_SUCCESS = 0,<br/>ASSET_PERMISSION_DENIED = 201,<br/>ASSET_INVALID_ARGUMENT = 401,<br/>ASSET_SERVICE_UNAVAILABLE = 24000001,<br/>ASSET_NOT_FOUND = 24000002,<br/>ASSET_DUPLICATED = 24000003,<br/>ASSET_ACCESS_DENIED = 24000004,<br/>ASSET_STATUS_MISMATCH = 24000005,<br/>ASSET_OUT_OF_MEMORY = 24000006,<br/>ASSET_DATA_CORRUPTED = 24000007,<br/>ASSET_DATABASE_ERROR = 24000008,<br/>ASSET_CRYPTO_ERROR = 24000009,<br/>ASSET_IPC_ERROR = 24000010,<br/>ASSET_BMS_ERROR = 24000011,<br/>ASSET_ACCOUNT_ERROR = 24000012,<br/>ASSET_ACCESS_TOKEN_ERROR = 24000013,<br/>ASSET_FILE_OPERATION_ERROR = 24000014,<br/>ASSET_GET_SYSTEM_TIME_ERROR = 24000015,<br/>ASSET_LIMIT_EXCEEDED = 24000016,<br/>ASSET_UNSUPPORTED = 24000017<br/>} | 调用ASSET返回的结果码。 | 
 | [Asset_Accessibility](#asset_accessibility) {<br/>ASSET_ACCESSIBILITY_DEVICE_POWERED_ON = 0,<br/>ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED = 1,<br/>ASSET_ACCESSIBILITY_DEVICE_UNLOCKED = 2<br/>} | 基于锁屏状态的访问控制类型。 | 
 | [Asset_AuthType](#asset_authtype) { ASSET_AUTH_TYPE_NONE = 0x00,<br/>ASSET_AUTH_TYPE_ANY = 0xFF } | 关键资产支持的用户认证类型。 | 
-| [Asset_SyncType](#asset_synctype) {<br/>ASSET_SYNC_TYPE_NEVER = 0,<br/>ASSET_SYNC_TYPE_THIS_DEVICE = 1 &lt;&lt; 0,<br/>ASSET_SYNC_TYPE_TRUSTED_DEVICE = 1 &lt;&lt; 1<br/>} | 关键资产支持的同步类型。 | 
+| [Asset_SyncType](#asset_synctype) {<br/>ASSET_SYNC_TYPE_NEVER = 0,<br/>ASSET_SYNC_TYPE_THIS_DEVICE = 1 &lt;&lt; 0,<br/>ASSET_SYNC_TYPE_TRUSTED_DEVICE = 1 &lt;&lt; 1,<br/>ASSET_SYNC_TYPE_TRUSTED_ACCOUNT<sup>12+</sup> = 1 &lt;&lt; 2<br/>} | 关键资产支持的同步类型。 | 
 | [Asset_ConflictResolution](#asset_conflictresolution) {<br/>ASSET_CONFLICT_OVERWRITE = 0,<br/>ASSET_CONFLICT_THROW_ERROR = 1<br/>} | 新增关键资产时的冲突（如：别名相同）处理策略。 | 
 | [Asset_ReturnType](#asset_returntype) {<br/>ASSET_RETURN_ALL = 0,<br/>ASSET_RETURN_ATTRIBUTES = 1<br/>} | 关键资产查询返回的结果类型。 | 
+| [Asset_OperationType](#asset_operationtype) {<br/>ASSET_NEED_SYNC = 0,<br/>ASSET_NEED_LOGOUT = 1<br/>} | 附属的操作类型。 | 
 
 
 ## 宏定义说明
@@ -197,6 +198,7 @@ enum Asset_SyncType
 | ASSET_SYNC_TYPE_NEVER | 不允许同步关键资产。 | 
 | ASSET_SYNC_TYPE_THIS_DEVICE | 只在本设备进行同步，如仅在本设备还原的备份场景。 | 
 | ASSET_SYNC_TYPE_TRUSTED_DEVICE | 只在可信设备间进行同步，如克隆场景。 | 
+| ASSET_SYNC_TYPE_TRUSTED_ACCOUNT<sup>12+</sup> | 只在登录可信账号的设备间进行同步，如云同步场景。 | 
 
 
 ### Asset_Tag
@@ -231,11 +233,17 @@ enum Asset_Tag
 | ASSET_TAG_DATA_LABEL_NORMAL_2 | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 | 
 | ASSET_TAG_DATA_LABEL_NORMAL_3 | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 | 
 | ASSET_TAG_DATA_LABEL_NORMAL_4 | 表示一个用户可自定义传入的字段，该字段可被更新，其值为bytes类型。 | 
+| ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_1 | 表示一个用户可自定义传入的字段，该字段可被更新，该项信息不会进行同步，其值为bytes类型。<br>**起始版本：** 12 | 
+| ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_2 | 表示一个用户可自定义传入的字段，该字段可被更新，该项信息不会进行同步，其值为bytes类型。<br>**起始版本：** 12 | 
+| ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3 | 表示一个用户可自定义传入的字段，该字段可被更新，该项信息不会进行同步，其值为bytes类型。<br>**起始版本：** 12 | 
+| ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4 | 表示一个用户可自定义传入的字段，该字段可被更新，该项信息不会进行同步，其值为bytes类型。<br>**起始版本：** 12 | 
 | ASSET_TAG_RETURN_TYPE | 表示查询关键资产时的返回类型，其值为uint32_t类型。 | 
 | ASSET_TAG_RETURN_LIMIT | 表示查询关键资产时的最大返回数量，其值为uint32_t类型。 | 
 | ASSET_TAG_RETURN_OFFSET | 表示查询关键资产时的偏移量，其值为uint32_t类型。 | 
 | ASSET_TAG_RETURN_ORDERED_BY | 表示查询关键资产时的排序依据，其值为uint32_t类型。 | 
 | ASSET_TAG_CONFLICT_RESOLUTION | 表示增加关键资产时的冲突处理策略，其值为uint32_t类型。 | 
+| ASSET_TAG_UPDATE_TIME | 表示关键资产的更新时间（时间戳形式），其值为bytes类型。<br>**起始版本：** 12 | 
+| ASSET_TAG_OPERATION_TYPE | 表示附加的操作类型，其值为uint32_t类型。<br>**起始版本：** 12 | 
 
 
 ### Asset_TagType
@@ -255,3 +263,21 @@ enum Asset_TagType
 | ASSET_TYPE_BOOL | 标识关键资产属性的类型是bool。 | 
 | ASSET_TYPE_NUMBER | 标识关键资产属性的类型是uint32_t。 | 
 | ASSET_TYPE_BYTES | 标识关键资产属性的类型是byte数组。 | 
+
+
+### Asset_OperationType
+
+```
+enum Asset_OperationType
+```
+
+**描述**
+
+附属的操作类型。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ASSET_NEED_SYNC | 需要进行同步操作。 | 
+| ASSET_NEED_LOGOUT | 需要进行登出操作。 | 
