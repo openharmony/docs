@@ -166,6 +166,9 @@ isBatteryConfigSupported(sceneName: string): boolean
   let totalEnergyInfo: number = batteryInfo.totalEnergy;
   console.info("The totalEnergyInfo is: " + totalEnergyInfo);
 
+  let nowCurrentInfo: number = batteryInfo.nowCurrent;
+  console.info("The nowCurrentInfo is: " + nowCurrentInfo);
+
   let remainingEnergyInfo: number = batteryInfo.remainingEnergy;
   console.info("The remainingEnergyInfo is: " + remainingEnergyInfo);
   ```
