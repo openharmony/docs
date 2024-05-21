@@ -3,7 +3,7 @@
 ## cl.commonlibrary.1 Error Code and Information Change
 The error codes and information returned by APIs of the **ArrayList**, **List**, **LinkedList**, **Stack**, **Queue**, **Deque**, **PlainArray**, **LightWeightMap**, **LightWeightSet**, **HashMap**, **HashSet**, **TreeMap**, and **TreeSet** classes are changed.
 
-For details about the changed error codes, see [Utils Error Codes](../../../application-dev/reference/errorcodes/errorcode-utils.md).
+For details about the changed error codes, see [Utils Error Codes](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/errorcodes/errorcode-utils.md).
 
 No adaptation is required for applications developed using these APIs.
 

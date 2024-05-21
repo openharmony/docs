@@ -186,4 +186,4 @@ The API names remain unchanged.
 
 **Adaptation Guide**
 
-The APIs of @ohos.file.fs support unified exception handling. For details, see [File Management](../../../application-dev/reference/apis/js-apis-file-fs.md).
+The APIs of @ohos.file.fs support unified exception handling. For details, see [File Management](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-file-fs.md).

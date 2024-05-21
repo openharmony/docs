@@ -11,7 +11,7 @@ The **getAbilityIcon** API does not take effect.
 The **getAbilityIcon** API is deleted from **@ohos.bundle.bundleManager.d.ts**.
 
 **Adaptation Guide**<br>
-If your application uses **getAbilityIcon** in **@ohos.bundle.bundleManager.d.ts**, replace it with **getMediaContent** in **@ohos.resourceManager.d.ts**. You need to obtain the icon ID in advance. For details, see [Usage Guide](../../../application-dev/reference/apis/js-apis-resource-manager.md#getmediacontent9).
+If your application uses **getAbilityIcon** in **@ohos.bundle.bundleManager.d.ts**, replace it with **getMediaContent** in **@ohos.resourceManager.d.ts**. You need to obtain the icon ID in advance. For details, see [Usage Guide](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Release/en/application-dev/reference/apis/js-apis-resource-manager.md#getmediacontent9).
 
 ## cl.bundlemanager.2 Bottom-Layer Capability Changed So That Only the System Resource HAP Supports Custom Permissions
 

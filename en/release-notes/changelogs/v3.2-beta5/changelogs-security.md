@@ -16,7 +16,7 @@ setSeed(seed : DataBlob) : void;
 
 **Adaptation Guide**
 See **setSeed()** in the following:
-[Crypto Framework](../../../application-dev/reference/apis/js-apis-cryptoFramework.md)
+[Crypto Framework](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cryptoFramework.md)
 
 
 ## cl.security.2 Move of DataArray from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -32,7 +32,7 @@ Moved **DataArray** from **@ohos.security.cryptoFramework.d.ts** to **@ohos.secu
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.3 Move of EncodingFormat from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -48,7 +48,7 @@ Moved **EncodingFormat** from **@ohos.security.cryptoFramework.d.ts** to **@ohos
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.4 Move of EncodingBlob from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -64,7 +64,7 @@ Moved **EncodingBlob** from **@ohos.security.cryptoFramework.d.ts** to **@ohos.s
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.5 Move of CertChainData from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -80,7 +80,7 @@ Moved **interface CertChainData** from **@ohos.security.cryptoFramework.d.ts** t
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.6 Move of X509Cert from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -96,7 +96,7 @@ Moved **X509Cert** from **@ohos.security.cryptoFramework.d.ts** to **@ohos.secur
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.7 Move of createX509Cert from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -112,7 +112,7 @@ Moved **createX509Cert** from **@ohos.security.cryptoFramework.d.ts** to **@ohos
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.8 Move of X509CrlEntry from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts.
@@ -128,7 +128,7 @@ Moved **X509CrlEntry** from **@ohos.security.cryptoFramework.d.ts** to **@ohos.s
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.9 Move of X509Crl from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -144,7 +144,7 @@ Moved **X509Crl** from **@ohos.security.cryptoFramework.d.ts** to **@ohos.securi
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.10 Move of createX509Crl from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -160,7 +160,7 @@ Moved **createX509Crl** from **@ohos.security.cryptoFramework.d.ts** to **@ohos.
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.11 Move of CertChainValidator from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -176,7 +176,7 @@ Moved **CertChainValidator** from **@ohos.security.cryptoFramework.d.ts** to **@
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.12 Move of createCertChainValidator from @ohos.security.cryptoFramework.d.ts to @ohos.security.cert.d.ts
@@ -192,7 +192,7 @@ Moved **createCertChainValidator** from **@ohos.security.cryptoFramework.d.ts** 
 Import and use the new .d.ts file:
 import cryptoCert from '@ohos.security.cert';
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.13 Change of getPublicKey() of X509Cert from Asynchronous to Synchronous
@@ -210,7 +210,7 @@ getPublicKey() : cryptoFramework.PubKey;
 
 **Adaptation Guide**
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.14 Change of checkValidityWithDate of X509Cert from Asynchronous to Synchronous
@@ -228,7 +228,7 @@ checkValidityWithDate(date: string) : void;
 
 **Adaptation Guide**
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.15 Change of getCertIssuer of X509CrlEntry from Asynchronous to Synchronous
@@ -247,7 +247,7 @@ getCertIssuer() : DataBlob;
 
 **Adaptation Guide**
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.16 Change of getRevocationDate of X509CrlEntry from Asynchronous to Synchronous
@@ -266,7 +266,7 @@ getRevocationDate() : string;
 
 **Adaptation Guide**
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.17 Change of isRevoked of X509Crl from Asynchronous to Synchronous
@@ -285,7 +285,7 @@ isRevoked(cert : X509Cert) : boolean;
 
 **Adaptation Guide**
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.18 Change of getRevokedCert of X509Crl from Asynchronous to Synchronous
@@ -304,7 +304,7 @@ getRevokedCert(serialNumber : number) : X509CrlEntry;
 
 **Adaptation Guide**
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.19 Change of getRevokedCertWithCert of X509Crl from Asynchronous to Synchronous
@@ -323,7 +323,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry;
 
 **Adaptation Guide**
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 
 ## cl.security.20 Change of getTbsInfo of X509Crl from Asynchronous to Synchronous
@@ -342,7 +342,7 @@ getTbsInfo() : DataBlob;
 
 **Adaptation Guide**
 See the following API reference:
-[Certificate](../../../application-dev/reference/apis/js-apis-cert.md)
+[Certificate](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cert.md)
 
 ## cl.security.21 Support of No-Hash Signing Mode for HUKS
 
@@ -399,7 +399,7 @@ let signOptions = {
 huks.initSession(keyAlias, signOptions);
 ```
 
-For for information about the sample code, see [HUKS Development](../../../application-dev/security/huks-guidelines.md) and [HUKS](../../../application-dev/reference/apis/js-apis-huks.md).
+For for information about the sample code, see [HUKS Development](../../../application-dev/security/huks-guidelines.md) and [HUKS](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-huks.md).
 
 ## cl.security.22 Support for Key Calculation Parameter Specifications During Key Usage
 
@@ -472,4 +472,5 @@ try {
 }
 ```
 
-For for information about the sample code, see [HUKS Development](../../../application-dev/security/huks-guidelines.md) and [HUKS](../../../application-dev/reference/apis/js-apis-huks.md).
+For for information about the sample code, see [HUKS Development](../../../application-dev/security/huks-guidelines.md) and [HUKS](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-huks.md).
+<!--no_check-->
