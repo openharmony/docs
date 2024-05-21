@@ -1697,7 +1697,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2013,7 +2013,7 @@ isEdited(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -4191,8 +4191,7 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types;
-3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
