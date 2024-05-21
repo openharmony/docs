@@ -358,15 +358,15 @@ start(): void
 | 401      | Incorrect parameters.                            |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
-| 12500003 | The operation is canceled.                       |
-| 12500004 | The operation is time-out.                       |
+| 12500003 | Authentication canceled.                         |
+| 12500004 | Authentication timeout.                          |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
 | 12500007 | The authentication task is busy.                 |
-| 12500009 | The authenticator is locked.                     |
+| 12500009 | Authentication is locked out.                    |
 | 12500010 | The type of credential has not been enrolled.    |
-| 12500011 | The authentication is canceled from widget's navigation button.      |
-| 12500013 | Indicates that current authentication failed because of PIN expired. |
+| 12500011 | Switched to the custom authentication process.   |
+| 12500013 | Operation failed because of PIN expired. |
 
 **示例：**
 
@@ -775,12 +775,12 @@ start : () => void
 | 401 | Incorrect parameters. |
 | 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
-| 12500003 | The operation is canceled. |
-| 12500004 | The operation is time-out. |
+| 12500003 | Authentication canceled. |
+| 12500004 | Authentication timeout.  |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500007 | The authentication task is busy. |
-| 12500009 | The authenticator is locked. |
+| 12500009 | Authentication is locked out. |
 | 12500010 | The type of credential has not been enrolled. |
 
 **示例：**
@@ -936,7 +936,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
-| 12500013 | Indicates that current operation failed because of PIN expired. |
+| 12500013 | Operation failed because of PIN expired. |
 
 **示例：**
 
