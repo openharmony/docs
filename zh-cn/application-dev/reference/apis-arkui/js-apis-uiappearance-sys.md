@@ -52,6 +52,7 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -- | -- |
+| 201 | Permission denied. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
@@ -103,6 +104,7 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | -- | -- |
+| 201 | Permission denied. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
@@ -146,6 +148,7 @@ getDarkMode(): DarkMode;
 
 | 错误码ID | 错误信息 |
 | -- | -- |
+| 201 | Permission denied. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
