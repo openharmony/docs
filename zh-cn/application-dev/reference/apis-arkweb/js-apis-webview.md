@@ -5526,7 +5526,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5630,7 +5630,7 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5682,7 +5682,7 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5764,7 +5764,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
