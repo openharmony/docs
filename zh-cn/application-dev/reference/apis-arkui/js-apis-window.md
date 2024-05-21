@@ -43,6 +43,8 @@ import { window } from '@kit.ArkUI';
 | ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口，使用该参数时会报错。<br>Stage模型必须使用该参数，用于创建悬浮窗、模态窗或系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
+| decorEnabled<sup>12+</sup> | bool | 否 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## AvoidAreaType<sup>7+</sup>
 
