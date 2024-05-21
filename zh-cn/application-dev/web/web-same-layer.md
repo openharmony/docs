@@ -2,7 +2,7 @@
 
 同层渲染支持组件范围请参考[NodeRenderType](../reference/apis-arkui/js-apis-arkui-builderNode.md#noderendertype)说明
 
-开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。
+开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。同层渲染不支持选中拖拽。一个应用建议不超过五个存活的同层标签（embed或object），超过这个范围需要关注体验和性能。
 
 
 同层渲染的标签背景是白色的，只支持Web组件嵌套一层Web组件。
@@ -14,7 +14,8 @@
   "ohos.permission.INTERNET"
   ```
 
-- 应用侧代码，同层渲染组件使用示例。
+
+- 应用侧代码组件使用示例。
 
   ```ts
   // 创建NodeController
