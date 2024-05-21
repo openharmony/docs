@@ -198,7 +198,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-   The following provides the FLAC invoking process.
+    The following provides the FLAC invoking process.
 
     ```cpp
     int32_t ret;
@@ -235,7 +235,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 5. Call **OH_AudioCodec_Prepare()** to prepare internal resources for the encoder.
 
     ```cpp
-    ret = OH_AudioCodec_Prepare(audioDec_);
+    ret = OH_AudioCodec_Prepare(audioEnc_);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }

@@ -18,6 +18,8 @@ import contextConstant from '@ohos.app.ability.contextConstant';
 
 Enumerates the data encryption levels.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name | Value| Description                                                                                                                  |

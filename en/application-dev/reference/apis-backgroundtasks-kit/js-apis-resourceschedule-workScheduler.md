@@ -455,8 +455,8 @@ Defines the information about the deferred task.
 | Name            | Type                               | Mandatory  | Description              |
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | Yes   | ID of the deferred task.         |
-| bundleName      | string                            | Yes   | Bundle name of the application that requests the task.          |
-| abilityName     | string                            | Yes   | Name of the component to be notified by a deferred task scheduling callback.|
+| bundleName      | string                            | Yes   | Bundle name of the application where the deferred task is located.          |
+| abilityName     | string                            | Yes   | Ability name in the bundle.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
 | isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |

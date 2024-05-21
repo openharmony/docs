@@ -50,8 +50,8 @@
 /*
  * 以下以AES 128密钥的Promise操作使用为例
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
+import { BusinessError} from "@kit.BasicServicesKit"
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle:number;
 let plainText = '123456';
@@ -192,7 +192,7 @@ async function EncryptData() {
     .then((data) => {
         handle = data.handle;
     }).catch((error: BusinessError)=>{
-        console.error(`promise: init encryptdata failed` + error);
+        console.error(`promise: init EncryptData failed` + error);
     })
     /*
     * 5. 调用finishSession获取加密后的密文
@@ -228,7 +228,7 @@ async function DecryptData() {
     .then((data) => {
         handle = data.handle;
     }).catch((error: BusinessError)=>{
-        console.error(`promise: init decryptdata failed` + error);
+        console.error(`promise: init DecryptData failed` + error);
     })
     /*
     * 5. 调用finishSession获取解密后的数据

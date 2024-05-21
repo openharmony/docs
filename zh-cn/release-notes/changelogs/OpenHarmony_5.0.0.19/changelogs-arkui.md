@@ -236,12 +236,6 @@ a) TextInput、TextArea、Search文本手柄颜色，显示样式变更
 
 变更后：TextInput、TextArea、Search文本手柄颜色，显示为光标颜色。
 
-b) TextInput、TextArea、Search文本选中底板颜色显示样式变更
-
-变更前：TextInput、TextArea、Search文本选中底板颜色，未设置颜色，显示为默认颜色，默认透明度20%。
-
-变更后：TextInput、TextArea、Search文本选中底板颜色，未设置颜色，显示为光标颜色，透明度在光标颜色透明度的基础上叠加20%。
-
 如下图所示为变更前后效果对比：
 
 ![handler color change](figures/handler_color_changelog.png)
@@ -522,3 +516,138 @@ API 12及之后，全屏模态转场/半模态转场的onAppear回调会在模�
 **适配指导**
 
 如有需要在模态页面显示动画开始前执行的逻辑，可以使用API 12新增的onWillAppear回调替代onAppear回调，请查阅[半模态转场](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)文档进行适配。
+
+## cl.arkui.9  Tabs组件底部页签样式去除按压态动效，默认高度变更为52vp
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX设计优化
+
+**变更影响**
+
+该变更为兼容性变更。
+
+API version 12开始，Tabs组件底部页签样式去除按压态动效，默认高度从56vp变更为52vp
+
+**起始API Level**
+
+9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**示例：**
+API version 12之前, Tabs组件底部页签样式, 默认高度为56vp, 点击时有按压态动效
+
+![底部页签动效图](figures/oldBottomTabBar.gif)
+
+API version 12开始, Tabs组件底部页签样式, 默认高度为52vp, 点击时无按压态动效
+
+![底部页签动效图](figures/newBottomTabBar.gif)
+
+**变更的接口/组件**
+
+Tabs组件
+
+**适配指导**
+
+UX默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期， 如不符合则应自定义修改效果控制变量以达到预期
+
+## cl.arkui.10 SubHeader组件边距、超长显示规则等默认样式变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更，只影响SubHeader组件的默认样式。
+
+- 变更前
+  1. SubHeader组件左右边距24vp。
+  2. SubHeader组件一级标题字重Medium,二级标题超长缩小字号，最小14号。
+  3. SubHeader组件显示规则：组件优先展示左侧内容信息。
+  <br/>
+  
+- 变更后
+  1. SubHeader组件左右边距16vp。
+  2. SubHeader组件一级标题字重Bold,二级标题超长不缩小字号。
+  3. SubHeader组件显示规则：组件右侧默认占据整体组件宽度的1/3，左侧默认占据整体组件宽度的2/3。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/SubHeader_Margin_Before.png) |  ![](figures/SubHeader_Margin_After.png) |
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**变更的接口/组件**
+
+SubHeader组件。
+
+**适配指导**
+
+UX默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.11 advanced.Dialog组件弹窗内边距、标题字重、对齐方式等默认样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更，只影响弹窗的默认样式，默认样式随系统风格变更。
+
+- 变更前
+  1. 弹窗内上边距为24vp，主标题字重为FontWeight.Medium。
+  2. 弹窗标题对齐方式为左对齐。
+  3. TipsDialog图片默认展示为充满边界。
+
+  <br/>
+- 变更后
+  1. 弹窗内上边距为8vp，主标题字重为FontWeight.Bold。
+  2. 弹窗标题对齐方式为居中对齐。
+  3. 优化图片显示规则，优先保证显示比例。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/SelectDialog_Before.png)  |  ![](figures/SelectDialog_After.png)  |
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**变更的接口/组件**
+
+advanced.Dialog.TipsDialog,advanced.Dialog.SelectDialog,advanced.Dialog.AlertDialog,advanced.Dialog.LoadingDialog
+
+**适配指导**
+
+UX默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。

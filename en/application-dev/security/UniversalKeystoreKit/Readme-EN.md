@@ -62,3 +62,4 @@
   - Exporting a Key
     - [Exporting a Key (ArkTS)](huks-export-key-arkts.md)
     - [Exporting a Key (C/C++)](huks-export-key-ndk.md)
+  - [Specifying the User for Key Operations (for System Applications Only)](huks-as-user-sys.md)

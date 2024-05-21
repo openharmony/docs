@@ -26,11 +26,13 @@ Creates a media session. This API uses a promise to return the result. An abilit
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type                           | Mandatory| Description                          |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Application context, which provides application environment information.|
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Context of the UIAbility, which is used to obtain information about the application component.|
 | tag    | string                          | Yes  | Custom session name.            |
 | type   | [AVSessionType](#avsessiontype10) | Yes  | Session type.|
 
@@ -79,7 +81,7 @@ Creates a media session. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Application context, which provides application environment information.    |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Context of the UIAbility, which is used to obtain information about the application component.    |
 | tag      | string                                  | Yes  | Custom session name.                                          |
 | type     | [AVSessionType](#avsessiontype10)         | Yes  | Session type.                              |
 | callback | AsyncCallback<[AVSession](#avsession10)\> | Yes  | Callback used to return the media session obtained, which can be used to obtain the session ID, set the metadata and playback state information, and send key events.|
@@ -121,14 +123,17 @@ Enumerates the protocol types supported by the remote device.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | Local device, which can be the built-in speaker or audio jack of the device, or an A2DP device.|
+| TYPE_LOCAL<sup>11+</sup>      | 0    | Local device, which can be the built-in speaker or audio jack of the device, or an A2DP device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+ stream mode, indicating that the media asset is being displayed on another device.|
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA protocol, indicating that the media asset is being displayed on another device.|
 
 ## AVSessionType<sup>10+<sup>
 
 Enumerates the session types supported by the session.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name | Type  | Description|
 | ----- | ------ | ---- |
@@ -144,6 +149,8 @@ An **AVSession** object is created by calling [avSession.createAVSession](#avses
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name     | Type  | Readable| Writable| Description                         |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
 | sessionId | string | Yes  | No  | Unique session ID of the **AVSession** object.|
@@ -152,8 +159,6 @@ An **AVSession** object is created by calling [avSession.createAVSession](#avses
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let sessionId: string = currentAVSession.sessionId;
 let sessionType: avSession.AVSessionType = currentAVSession.sessionType;
 ```
@@ -165,6 +170,8 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 Sets session metadata. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -190,7 +197,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let metadata: avSession.AVMetadata = {
@@ -243,7 +249,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let metadata: avSession.AVMetadata = {
@@ -303,7 +308,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.CallMetadata = {
@@ -345,21 +349,27 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg",
-};
-currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
-  if (err) {
-    console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`setCallMetadata successfully`);
-  }
-});
+async function setCallMetadata() {
+  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let imageSource= await image.createImageSource(value.buffer);
+  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+  let calldata: avSession.CallMetadata = {
+    name: "xiaoming",
+    phoneNumber: "111xxxxxxxx",
+    avatar: imagePixel,
+  };
+  currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
+    if (err) {
+      console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`setCallMetadata successfully`);
+    }
+  });
+}
 ```
 
 ### setAVCallState<sup>11+</sup>
@@ -394,11 +404,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.AVCallState = {
-  state: avSession.AVCallState.CALL_STATE_ACTIVE ,
+  state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(calldata).then(() => {
@@ -435,7 +444,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avcalldata: avSession.AVCallState = {
@@ -458,6 +466,8 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 Sets information related to the session playback state. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -483,7 +493,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let playbackState: avSession.AVPlaybackState = {
@@ -528,7 +537,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let PlaybackState: avSession.AVPlaybackState = {
@@ -702,10 +710,9 @@ Dispatches a custom event in the session, including the event name and event con
 | Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | Yes  | Name of the session event.|
-| args | {[key: string]: Object} | Yes  | Event content in key-value pair format.|
+| args | {[key: string]: Object} | Yes  | Content of the session event.|
 
 > **NOTE**
->
 > The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).
 
 **Return value**
@@ -726,7 +733,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -763,11 +769,11 @@ Dispatches a custom event in the session, including the event name and event con
 | Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | Yes  | Name of the session event.|
-| args | {[key: string]: Object} | Yes  | Event content in key-value pair format.|
+| args | {[key: string]: Object} | Yes  | Content of the session event.|
 | callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 > **NOTE**
->
+
 > The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).
 
 **Error codes**
@@ -782,7 +788,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -841,7 +846,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
@@ -910,7 +914,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
@@ -1068,7 +1071,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -1107,7 +1109,7 @@ Sets a custom media packet in the form of key-value pairs. This API uses an asyn
 | callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 > **NOTE**
->
+
 > The **extras** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).
 
 **Error codes**
@@ -1122,7 +1124,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -1266,6 +1267,8 @@ Obtains the cast controller when a casting connection is set up. This API uses a
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | Type                                                       | Description                                                        |
@@ -1304,6 +1307,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 Obtains information about the output device for this session. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -1377,6 +1382,8 @@ Activates this session. A session can be used only after being activated. This A
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | Type          | Description                         |
@@ -1448,6 +1455,8 @@ deactivate(): Promise\<void>
 Deactivates this session. You can use [activate](#activate10) to activate the session again. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -1522,6 +1531,8 @@ destroy(): Promise\<void>
 Destroys this session. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -1868,7 +1879,7 @@ Unsubscribes from playback events of a given media ID.
 | Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | Yes  | Event type, which is **'playFromAssetId'** in this case.|
-| callback | callback: (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+| callback | callback: (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. The **assetId** parameter in the callback indicates the media asset ID.                           |
 
 **Error codes**
 
@@ -2088,6 +2099,8 @@ Subscribes to output device change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name  | Type                                                   | Mandatory| Description                                                        |
@@ -2140,7 +2153,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
+
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
@@ -2569,6 +2582,8 @@ Unsubscribes from playback device change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name  | Type                                                   | Mandatory| Description                                                     |
@@ -2807,6 +2822,74 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 currentAVSession.off('toggleCallMute');
 ```
+
+### on('castDisplayChange')<sup>12+</sup>
+
+on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
+
+Subscribes to cast display change events in the case of extended screens.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type. The event **'castDisplayChange'** is triggered when the cast display in the case of extended screens changes.|
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | Yes  | Callback used to return the information about the cast display.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```ts
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
+    if (display.state === avSession.CastDisplayState.STATE_ON) {
+        castDisplay = display;
+        console.info('castDisplayChange display : ${display.id} ON');
+    } else if (display.state === avSession.CastDisplayState.STATE_OFF){
+        console.info('castDisplayChange display : ${display.id} OFF');
+    }
+});
+```
+### off('castDisplayChange')<sup>12+</sup>
+
+ off(type: 'castDisplayChange', callback?: Callback\<CastDisplayInfo>): void
+
+Unsubscribes from cast display change events in the case of extended screens.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'castDisplayChange'** in this case.|
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```ts
+currentAVSession.off('castDisplayChange');
+```
+
 ### stopCasting<sup>10+</sup>
 
 stopCasting(callback: AsyncCallback\<void>): void
@@ -2850,6 +2933,8 @@ stopCasting(): Promise\<void>
 Stops castings. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -2912,12 +2997,55 @@ try {
   console.error(`getOutputDeviceSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
+### getAllCastDisplays<sup>12+</sup>
+
+getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
+
+Obtains all displays that support extended screen projection in the current system. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**Return value**
+
+| Type                                           | Description                             |
+| ----------------------------------------------- | --------------------------------- |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| Promise used to return the information about all the cast displays.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID  | Error Message|
+|---------| --------------------------------------- |
+| 6600101 | Session service exception. |
+| 6600102 | The session does not exist. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.getAllCastDisplays()
+  .then((data: Array< avSession.CastDisplayInfo >) => {
+    if (data.length >= 1) {
+       castDisplay =  data[0];
+     } else {
+       console.info('There is not a cast display');
+     }
+   })
+   .catch((error: BusinessError) => {
+     console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
+   });
+```
 
 ## AVCastControlCommandType<sup>10+</sup>
 
 Enumerates the commands that can be sent by a cast controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name          | Type  | Description        |
 | -------------- | ------ | ------------ |
@@ -2939,6 +3067,8 @@ Enumerates the commands that can be sent by a cast controller.
 Defines the command that can be sent by a cast controller.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name     | Type                                             | Mandatory| Description          |
 | --------- | ------------------------------------------------- | ---- | -------------- |
@@ -2993,6 +3123,8 @@ Obtains the remote playback state. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | Type                                                       | Description                                                        |
@@ -3028,6 +3160,8 @@ Sends a control command to the session through the controller. This API uses a p
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name   | Type                                 | Mandatory| Description                          |
@@ -3053,7 +3187,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
@@ -3093,7 +3226,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
@@ -3133,7 +3265,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // Set playback parameters.
@@ -3173,6 +3304,8 @@ Prepares for the playback of a media asset, that is, loads and buffers a media a
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name   | Type                                 | Mandatory| Description                          |
@@ -3198,7 +3331,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // Set playback parameters.
@@ -3253,7 +3385,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // Set playback parameters.
@@ -3293,6 +3424,8 @@ Prepares for the playback of a media asset. This API uses a promise to return th
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name   | Type                                 | Mandatory| Description                          |
@@ -3318,7 +3451,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // Set playback parameters.
@@ -3390,6 +3522,8 @@ Obtains the information about the media asset that is being played. This API use
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | Type          | Description                         |
@@ -3414,6 +3548,79 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 }).catch((err: BusinessError) => {
   console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+
+```
+
+### processMediaKeyResponse<sup>12+</sup>
+
+processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
+
+Processes the response to a media key request during online DRM resource projection. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| assetId | string                  | Yes  | Media asset ID.|
+| response | Uint8Array             | Yes  | Response to the media key request.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the response is processed successfully, no result is returned. Otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import http from '@ohos.net.http'
+
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+   let licenseRequestStr: string = TypeConversion.byteToString(requestData);
+   //get media key from DRM server
+   let licenseResponeStr: string = 'defaultStr';
+   let httpRequest = http.createHttp();
+   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+   try {
+     let response: http.HttpResponse = await httpRequest.request(drmUrl, {
+        method: http.RequestMethod.POST,
+        header: {
+           'Content-Type': 'application/json',
+           'Accept-Encoding': 'gzip, deflate',
+        },
+        extraData: licenseRequestStr,
+        expectDataType: http.HttpDataType.STRING,
+      });
+      if (response?.responseCode == http.ResponseCode.OK) {
+        if (typeof response.result == 'string') {
+          licenseResponeStr = response.result;
+        }
+      }
+      httpRequest.destroy();
+   } catch (e) {
+     console.error(`HttpRequest error, error message: [` + JSON.stringify(e) + ']');
+     return;
+   }
+
+   let licenseResponeData: Unit8Array = TypeConversion.stringToByte(licenseResponeStr);
+   try {
+    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponeData);
+   } catch (err) {
+    let error = err as BusinessError;
+    console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
+   }
+}
 
 ```
 
@@ -3461,6 +3668,8 @@ Releases this cast controller. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | Type          | Description                         |
@@ -3495,6 +3704,8 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 Subscribes to playback state change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -3533,6 +3744,8 @@ Unsubscribes from playback state change events. This API is called by the contro
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
@@ -3561,6 +3774,8 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 Subscribes to media asset change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -3593,6 +3808,8 @@ Unsubscribes from media asset change events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
@@ -3620,6 +3837,8 @@ on(type: 'playNext', callback: Callback\<void>): void
 Subscribes to playNext command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -3652,6 +3871,8 @@ Unsubscribes from playNext command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
@@ -3679,6 +3900,8 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 Subscribes to playPrevious command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -3710,6 +3933,8 @@ off(type: 'playPrevious'): void
 Unsubscribes from playPrevious command events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -3859,6 +4084,8 @@ Subscribes to seek done events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
@@ -3889,6 +4116,8 @@ off(type: 'seekDone'): void
 Unsubscribes from the seek done events.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -3981,6 +4210,8 @@ Subscribes to remote AVPlayer errors. This event is used only for error prompt a
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name  | Type    | Mandatory| Description                                                        |
@@ -3990,7 +4221,7 @@ Subscribes to remote AVPlayer errors. This event is used only for error prompt a
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -4021,6 +4252,8 @@ Unsubscribes from remote AVPlayer errors.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                     |
@@ -4029,7 +4262,7 @@ Unsubscribes from remote AVPlayer errors.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -4047,11 +4280,123 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 aVCastController.off('error')
 ```
 
+### on('keyRequest')<sup>12+</sup>
+
+on(type: 'keyRequest', callback: KeyRequestCallback): void
+
+Subscribes to media key requests during the cast of online DRM resources.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string  | Yes  | Event type. The event **'keyRequest'** is triggered when a media key request is required during the cast of online DRM resources.|
+| callback | [KeyRequestCallback](#keyrequestcallback12)  | Yes  | Callback used to request the media resources and media key.|
+
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message          |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+aVCastController.on('keyRequest', keyRequestCallback);
+```
+### off('keyRequest')<sup>12+</sup>
+
+off(type: 'keyRequest', callback?: KeyRequestCallback): void
+
+Unsubscribes from media key requests during the cast of online DRM resources.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'keyRequest'** in this case.|
+| callback |  [KeyRequestCallback](#keyrequestcallback12)  | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message          |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+aVCastController.off('keyRequest');
+```
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+Describes the callback invoked for the media key request event.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | Yes  | Media asset ID.|
+| requestData |  Uint8Array  | Yes  | Data carried in the media key request.                           |
+
+**Example**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+```
+
+## CastDisplayState<sup>12+</sup>
+
+Enumerates the cast display states.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| Name                       | Value  | Description        |
+| --------------------------- | ---- | ----------- |
+| STATE_OFF      | 1    | The device is disconnected, and the extended screen does not display any content.   |
+| STATE_ON      | 2    | The device is connected, and the extended screen is available.|
+
+
+## CastDisplayInfo<sup>12+</sup>
+
+Describes the information about the cast display in the case of extended screens.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| Name           | Type                     | Readable| Writable| Description                                                                 |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| id            | number                  | Yes   | No   | ID of the cast display. The value must be an integer. |
+| name     | string                  | Yes   | No   | Name of the cast display.          |
+| state          | [CastDisplayState](#castdisplaystate12)          | Yes   | No   |State of the cast display.           |
+| width          | number          | Yes   | No   | Screen width of the cast display, in px. The value must be an integer.         |  
+| height          | number          | Yes   | No   | Screen height of the cast display, in px. The value must be an integer.           |  
+
 ## ConnectionState<sup>10+</sup>
 
 Enumerates the connection states.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
@@ -4065,26 +4410,29 @@ Describes the media metadata.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name           | Type                     | Mandatory| Description                                                                 |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | Yes  | Media asset ID. It is the unique ID of a song and defined by the application.                                    |
-| title           | string                  | No  | Title.                                                                |
-| artist          | string                  | No  | Artist.                                                               |
-| author          | string                  | No  | Author.                                                              |
+| assetId         | string                  | Yes  | Media asset ID. It is the unique ID of a song and defined by the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
+| title           | string                  | No  | Title.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
+| artist          | string                  | No  | Artist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| author          | string                  | No  | Author.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
 | avQueueId<sup>11+</sup>       | string                  | No  | Unique ID of the playlist.                                                              |
 | avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). |                       
-| album           | string                  | No  | Album name.                                                              |
-| writer          | string                  | No  | Writer.                                                               |
+| album           | string                  | No  | Album name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| writer          | string                  | No  | Writer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
 | composer        | string                  | No  | composer.                                                               |
-| duration        | number                  | No  | Media duration, in ms.                                                 |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Pixel map or image path (local path or network path) of the image.                            |
-| publishDate     | Date                    | No  | Release date.                                                              |
-| subtitle        | string                  | No  | Subtitle.                                                               |
-| description     | string                  | No  | Media description.                                                              |
+| duration        | number                  | No  | Media duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                 |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Pixel map or image path (local path or network path) of the image.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
+| publishDate     | Date                    | No  | Release date.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| subtitle        | string                  | No  | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| description     | string                  | No  | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
 | lyric           | string                  | No  | Lyric file path (local path or network path).|
-| previousAssetId | string                  | No  | ID of the previous media asset.                                                           |
-| nextAssetId     | string                  | No  | ID of the next media asset.                                                           |
-| filter<sup>11+</sup>        | number         | No  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype10).                  |
+| previousAssetId | string                  | No  | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
+| nextAssetId     | string                  | No  | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
+| filter<sup>11+</sup>        | number         | No  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype10).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | No  | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No  | Fast-forward or rewind interval supported by the media session. The default value is **SECONDS_15**, that is, 15 seconds.                           |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | No  | Display tags of the media asset.                                                         |
 
@@ -4094,33 +4442,39 @@ Describes the attributes related to the media metadata in the playlist.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name        | Type                   | Mandatory | Description                    |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | Yes  | Media ID in the playlist.         |
-| title        | string                  | No  | Name of the media asset in the playlist.       |
-| subtitle     | string                  | No  | Subname of the media asset in the playlist.     |
-| description  | string                  | No  | Description of the media asset in the playlist.  |
-| mediaImage | image.PixelMap          | No  | Pixel map of the image of the media asset in the playlist.|
+| assetId      | string                  | Yes  | Media ID in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
+| title        | string                  | No  | Name of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| subtitle     | string                  | No  | Subname of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| description  | string                  | No  | Description of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| mediaImage | image.PixelMap          | No  | Pixel map of the image of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | extras       | {[key: string]: any}    | No  | Additional fields of the media asset in the playlist.    |
-| mediaUri     | string                  | No  | URI of the media asset in the playlist.        |
-| mediaType     | string                  | No  | Type of the media asset in the playlist.        |
-| mediaSize     | number                  | No  | Size of the media asset in the playlist.        |
-| albumTitle     | string                  | No  | Album name of the media asset in the playlist.        |
-| albumCoverUri     | string                  | No  | URI of the album title of the media asset in the playlist.   |
-| lyricContent     | string                  | No  | Lyric content of the media asset in the playlist.        |
-| lyricUri     | string                  | No  | Lyric URI of the media asset in the playlist.        |
-| artist     | string                  | No  | Author of the lyric of the media asset in the playlist.        |
-| fdSrc     | media.AVFileDescriptor        | No  | Handle to the local media file in the playlist.        |
-| duration     | number                  | No  | Playback duration of the media asset in the playlist.        |
-| startPosition     | number                  | No  | Start position for playing the media asset in the playlist.        |
-| creditsPosition     | number                  | No  | Position for playing the closing credits of the media asset in the playlist.        |
-| appName     | string                  | No  | Name of the application provided by the playlist.        |
+| mediaUri     | string                  | No  | URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| mediaType     | string                  | No  | Type of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| mediaSize     | number                  | No  | Size of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| albumTitle     | string                  | No  | Album name of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| albumCoverUri     | string                  | No  | URI of the album title of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
+| lyricContent     | string                  | No  | Lyric content of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| lyricUri     | string                  | No  | Lyric URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| artist     | string                  | No  | Author of the lyric of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| fdSrc     | media.AVFileDescriptor        | No  | Handle to the local media file in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | No  | Descriptor of the data source in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| drmScheme<sup>12+</sup>     | string        | No  | DRM scheme supported by the playlist. The value is the UUID of the DRM scheme.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| duration     | number                  | No  | Playback duration of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| startPosition     | number                  | No  | Start position for playing the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| creditsPosition     | number                  | No  | Position for playing the closing credits of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| appName     | string                  | No  | Name of the application provided by the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
 
 ## AVQueueItem<sup>10+</sup>
 
 Describes the attributes of an item in the playlist.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name        | Type                                       | Mandatory| Description                       |
 | ------------ | ------------------------------------------ | ---- | --------------------------- |
@@ -4133,28 +4487,32 @@ Describes the information related to the media playback state.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name        | Type                                 | Mandatory| Description    |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate10)       | No  | Playback state.|
-| speed        | number                                | No  | Playback speed.|
-| position     | [PlaybackPosition](#playbackposition10) | No  | Playback position.|
-| bufferedTime | number                                | No  | Buffered time.|
-| loopMode     | [LoopMode](#loopmode10)                 | No  | Loop mode.|
-| isFavorite   | boolean                               | No  | Whether the media asset is favorited.|
-| activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.|
-| volume<sup>10+</sup> | number                  | No  | Media volume.|
-| maxVolume<sup>11+</sup> | number                    | No  | Maximum volume.|
-| muted<sup>11+</sup>     | boolean                   | No  | Mute status. The value **true** means the muted state.|
+| state        | [PlaybackState](#playbackstate10)       | No  | Playback state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| speed        | number                                | No  | Playback speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| position     | [PlaybackPosition](#playbackposition10) | No  | Playback position.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| bufferedTime | number                                | No  | Buffered time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| loopMode     | [LoopMode](#loopmode10)                 | No  | Loop mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isFavorite   | boolean                               | No  | Whether the media asset is favorited.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| volume<sup>10+</sup> | number                  | No  | Media volume.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| maxVolume<sup>11+</sup> | number                    | No  | Maximum volume.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| muted<sup>11+</sup>     | boolean                   | No  | Mute status. The value **true** means the muted state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | duration<sup>11+</sup>     | number                   | No  | Duration of the media asset.|
-| videoWidth<sup>11+</sup>  | number                  | No  | Video width of the media asset, in px.|
-| videoHeight<sup>11+</sup> |  number                 | No  | Video height of the media asset, in px.|
-| extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.|
+| videoWidth<sup>11+</sup>  | number                  | No  | Video width of the media asset, in px.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| videoHeight<sup>11+</sup> |  number                 | No  | Video height of the media asset, in px.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## PlaybackPosition<sup>10+</sup>
 
 Describes the information related to the playback position.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name       | Type  | Mandatory| Description              |
 | ----------- | ------ | ---- | ------------------ |
@@ -4171,7 +4529,7 @@ Defines the attributes related to call metadata.
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | No   | Name (alias) of the caller.   |                                                                                                                      
 | phoneNumber     | string                  | No   | Phone number of the caller.           |                                                   
-| avatar          | image.PixelMap[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | No   | Profile picture of the caller.           |                                                   
+| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | No   | Profile picture of the caller.           |                                                   
 
 ## AVCallState<sup>11+</sup>
 
@@ -4181,8 +4539,8 @@ Defines the attributes related to the call state.
 
 | Name           | Type                     | Mandatory| Description                                                                 |
 | --------------- |-------------------------  | ---- |---------------------------------------------------------------------|
-| state           | CallState[AVCallState](#avcallstate11)                 | Yes   | Call state.     |                                                                                                                      
-| muted           | boolean                   | Yes   | Whether the microphone is muted.|                                                                  
+| state           | [CallState](#callstate11)                 | Yes   | Call state.     |                                                                                                                      
+| muted           | boolean                   | Yes   | Whether the microphone is muted.<br>**true**: The microphone is muted.<br>**false**: The microphone is not muted.|                                                                  
  
 ## CallState<sup>11+</sup>
 
@@ -4216,6 +4574,8 @@ Enumerates the cast categories.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
 | CATEGORY_LOCAL      | 0    | Local playback. The sound is played from the local device or a connected Bluetooth headset by default.    |
@@ -4226,6 +4586,8 @@ Enumerates the cast categories.
 Enumerates the output device types.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
@@ -4240,6 +4602,8 @@ Describes the information related to the output device.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name      | Type          | Mandatory| Description                  |
 | ---------- | -------------- | ---- | ---------------------- |
 | castCategory   | AVCastCategory        | Yes  | Cast category.        |
@@ -4247,12 +4611,15 @@ Describes the information related to the output device.
 | deviceName | string | Yes  | Name of the output device.   |
 | deviceType | DeviceType | Yes  | Type of the output device.   |
 | supportedProtocols<sup>11+</sup> | number | No  | Protocol supported by the output device. The default value is **TYPE_LOCAL**. For details, see [ProtocolType](#protocoltype10).<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast   |
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | No  | DRM capability supported by the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
 Describes the information related to the output device.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name      | Type          | Mandatory| Description                  |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -4263,6 +4630,8 @@ Describes the information related to the output device.
 Enumerates the loop modes of media playback.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name              | Value  | Description    |
 | ------------------ | ---- | -------- |
@@ -4277,6 +4646,8 @@ Enumerates the loop modes of media playback.
 Enumerates the media playback states.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
@@ -5226,7 +5597,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
@@ -5272,7 +5642,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
@@ -5325,7 +5694,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5394,7 +5762,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5455,7 +5822,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5516,7 +5882,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6095,7 +6460,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6306,7 +6670,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6807,6 +7170,8 @@ Describes the command that can be sent to the session.
 Enumerates the error codes used in the media session.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                                  | Value     | Description                            |
 | -------------------------------------- | ------- | ------------------------------- |

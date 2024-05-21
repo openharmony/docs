@@ -987,7 +987,7 @@ let p: Person = {
 };
 
 for (let t in p) {
-  console.log(p[t]);
+  console.log(p[t]);  // log: "tom", "18" 
 }
 ```
 
@@ -1000,7 +1000,7 @@ let p: Record<string, string> = {
 };
 
 for (let ele of Object.entries(p)) {
-  console.log(ele[1]);
+  console.log(ele[1]);  // log: "tom", "18" 
 }
 ```
 
@@ -2126,6 +2126,43 @@ class Foo {
   static sub(left: number, right: number): number {
     return left - right;
   }
+}
+```
+
+## arkts-limited-esobj
+
+**Before adaptation**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+
+// main.ets
+let e0: ESObject = foo();
+
+function f() {
+  let e1 = foo();
+  let e2: ESObject = 1;
+  let e3: ESObject = {};
+  let e4: ESObject = '';
+}
+```
+
+**After adaptation**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+
+// main.ets
+interface I {}
+
+function f() {
+  let e0: ESObject = foo();
+  let e1: ESObject = foo();
+  let e2: number = 1;
+  let e3: I = {};
+  let e4: string = '';
 }
 ```
 

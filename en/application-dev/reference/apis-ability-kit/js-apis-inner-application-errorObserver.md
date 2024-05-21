@@ -18,6 +18,8 @@ onUnhandledException(errMsg: string): void;
 
 Called when an unhandled exception occurs in the JS runtime.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -49,6 +51,8 @@ try {
 onException?(errObject: Error): void;
 
 Called when an exception occurs during the application running.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

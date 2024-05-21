@@ -17,7 +17,7 @@ The AVMuxer module provides the functions for audio and video muxing.
 
 | Name| Description| 
 | -------- | -------- |
-| [native_avmuxer.h](native__avmuxer_8h.md) | Declares native APIs used for audio and video muxing.| 
+| [native_avmuxer.h](native__avmuxer_8h.md) | Declares the native APIs used for audio and video muxing.| 
 
 
 ### Types

@@ -26,7 +26,7 @@ Internal error.
 
 **错误信息**
 
-marshalling or unmarshalling error.
+Marshalling or unmarshalling error.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ marshalling or unmarshalling error.
 
 **错误信息**
 
-Failed to connect service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ Failed to connect service.
 
 **错误信息**
 
-Notification is not enabled.
+Notification disabled.
 
 **错误描述**
 
@@ -80,7 +80,7 @@ Notification is not enabled.
 
 **错误信息**
 
-Notification slot is not enabled.
+Notification slot disabled.
 
 **错误描述**
 
@@ -100,7 +100,7 @@ Notification slot is not enabled.
 
 **错误信息**
 
-Notification is not allowed to remove.
+Notification deletion disabled.
 
 **错误描述**
 
@@ -118,7 +118,7 @@ Notification is not allowed to remove.
 
 **错误信息**
 
-The notification is not exist.
+The notification does not exist.
 
 **错误描述**
 
@@ -136,7 +136,7 @@ The notification is not exist.
 
 **错误信息**
 
-The user is not exist.
+The user does not exist.
 
 **错误描述**
 
@@ -154,7 +154,7 @@ The user is not exist.
 
 **错误信息**
 
-Over max number notifications per second.
+The notification sending frequency reaches the upper limit.
 
 **错误描述**
 
@@ -190,7 +190,7 @@ Distributed operation failed.
 
 **错误信息**
 
-Read template config failed.
+Failed to read the template configuration.
 
 **错误描述**
 
@@ -221,6 +221,97 @@ No memory space.
 **处理步骤**
 
 确认系统内存是否足够。
+
+## 1600013 通知弹窗已弹出
+
+**错误信息**
+
+Enable Notification Dialog has been popping already.
+
+**错误描述**
+
+通知弹窗已经弹出，方法将返回该错误码。
+
+**可能原因**
+
+通知弹窗已经弹出。
+
+**处理步骤**
+
+确认通知弹窗是否弹出。
+
+
+## 1600014 没有相关权限
+
+**错误信息**
+
+No relevant right.
+
+**错误描述**
+
+没有相关权限，方法将返回该错误码。
+
+**可能原因**
+
+没有相关权限。
+
+**处理步骤**
+
+确认是否具有相关权限。
+
+## 1600015 当前通知状态不支持重复配置
+
+**错误信息**
+
+The current notification status does not support duplicate configurations.
+
+**错误描述**
+
+当前通知状态不支持重复配置，方法将返回该错误码。
+
+**可能原因**
+
+当前通知状态不支持重复配置。
+
+**处理步骤**
+
+确认是否重复配置通知状态。
+
+## 1600016 本次更新的通知版本太低
+
+**错误信息**
+
+The notification version for this update is too low.
+
+**错误描述**
+
+本次更新的通知版本太低，方法将返回该错误码。
+
+**可能原因**
+
+本次更新的通知版本太低。
+
+**处理步骤**
+
+确认通知版本。
+
+## 2300007 网络无法访问
+
+**错误信息**
+
+Network is unreachable.
+
+**错误描述**
+
+当网络无法访问时，系统会报此错误码。
+
+**可能原因**
+
+网络无法访问。
+
+**处理步骤**
+
+检查网络情况。
 
 ## 17700001 包名不存在
 

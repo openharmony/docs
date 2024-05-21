@@ -30,3 +30,4 @@
   - [XML生成](xml-generation.md)
   - [XML解析](xml-parsing.md)
   - [XML转换](xml-conversion.md)
+- [代码混淆](source-obfuscation.md)

@@ -42,10 +42,13 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
@@ -97,10 +100,13 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
@@ -157,10 +163,13 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
@@ -208,10 +217,13 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
@@ -261,10 +273,13 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 
@@ -317,10 +332,13 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
@@ -368,10 +386,13 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
@@ -421,10 +442,13 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700035 | The specified bundle is an overlay bundle. |
 

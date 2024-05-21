@@ -36,6 +36,8 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 
 计算文件的哈希值，使用Promise异步回调。
 
+**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
@@ -77,6 +79,8 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): void
 
 计算文件的哈希值，使用callback异步回调。
+
+**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

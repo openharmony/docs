@@ -19,6 +19,8 @@ GridRow(option?: GridRowOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
@@ -38,6 +40,8 @@ GridRow(option?: GridRowOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | x  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | 否   | 栅格子组件水平方向间距。    |
@@ -48,6 +52,8 @@ GridRow(option?: GridRowOptions)
 栅格在不同宽度设备类型下，栅格列数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -76,6 +82,8 @@ GridRow(option?: GridRowOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | xs  | [Length](ts-types.md#length) | 否    | 在最小宽度类型设备上，栅格子组件的间距。    |
@@ -90,6 +98,8 @@ GridRow(option?: GridRowOptions)
 设置栅格容器组件的断点。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -108,6 +118,8 @@ GridRow(option?: GridRowOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 描述 |
 | -------- | -------- |
 | WindowSize | 以窗口为参照。 |
@@ -116,6 +128,8 @@ GridRow(option?: GridRowOptions)
 ## GridRowDirection枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -147,6 +161,8 @@ alignItems(value: ItemAlign)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -165,6 +181,8 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 断点发生变化时触发回调。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

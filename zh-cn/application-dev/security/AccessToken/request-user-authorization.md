@@ -32,7 +32,7 @@
 
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 
-- 系统不鼓励频繁弹窗打扰用户，如果用户拒绝授权，将无法再次拉起弹窗。需要应用引导用户在系统应用“设置”的界面中手动授予权限。
+- 系统不鼓励频繁弹窗打扰用户，如果用户拒绝授权，将无法再次拉起弹窗，需要应用引导用户在系统应用“设置”的界面中手动授予权限。
 
 
 ## 开发步骤
@@ -50,9 +50,8 @@
    在进行权限申请之前，需要先检查当前应用程序是否已经被授予权限。可以通过调用[checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9)方法来校验当前是否已经授权。如果已经授权，则可以直接访问目标操作，否则需要进行下一步操作，即向用户申请授权。
 
    ```ts
-   import bundleManager from '@ohos.bundle.bundleManager';
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-   import { BusinessError } from '@ohos.base';
+   import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
    
@@ -98,15 +97,14 @@
    动态向用户申请权限是指在应用程序运行时向用户请求授权的过程。可以通过调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来实现。该方法接收一个权限列表参数，例如位置、日历、相机、麦克风等。用户可以选择授予权限或者拒绝授权。
 
    可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来动态申请权限，也可以根据业务需要在UI中向用户申请授权。
+   <!--RP1-->
 
    - 在UIAbility中向用户申请授权。
       
       ```ts
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import window from '@ohos.window';
-      import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-      import common from '@ohos.app.ability.common';
-      import { BusinessError } from '@ohos.base';
+      import { abilityAccessCtrl, common, Permissions, UIAbility } from '@kit.AbilityKit';
+      import { window } from '@kit.ArkUI';
+      import { BusinessError } from '@kit.BasicServicesKit';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
@@ -130,8 +128,11 @@
       }
       export default class EntryAbility extends UIAbility {
         onWindowStageCreate(windowStage: window.WindowStage): void {
-          reqPermissionsFromUser(permissions, this.context);
           // ...
+          windowStage.loadContent('pages/Index', (err, data) => {
+            reqPermissionsFromUser(permissions, this.context);
+          // ...
+          });
         }
       
         // ...
@@ -141,9 +142,8 @@
    - 在UI中向用户申请授权。
 
       ```ts
-      import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-      import common from '@ohos.app.ability.common';
-      import { BusinessError } from '@ohos.base';
+      import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
@@ -179,26 +179,10 @@
         }
       }
       ```
+   <!--RP1End-->
 
 4. 处理授权结果。
-   
-   调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限。
 
-   ```ts
-   import Want from '@ohos.app.ability.Want';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   function openPermissionsInSystemSettings(context: common.UIAbilityContext): void {
-     let wantInfo: Want = {
-       action: 'action.settings.app.info',
-       parameters: {
-         settingsParamBundleName: 'com.example.myapplication' // 打开指定应用的详情页面
-       }
-     }
-     context.startAbility(wantInfo).then(() => {
-       // ...
-     }).catch((err: BusinessError) => {
-       // ...
-     })
-   }
-   ```
+   调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统应用“设置”中打开相应的权限。
+
+   路径：设置 \> 隐私 \> 权限管理 \> 应用 \> 目标应用

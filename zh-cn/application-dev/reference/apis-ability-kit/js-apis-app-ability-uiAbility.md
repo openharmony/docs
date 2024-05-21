@@ -23,9 +23,9 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 是 | 上下文。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility启动时的参数。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility最后请求时的参数。|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 是 | 上下文。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility启动时的参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 是 | UIAbility最后请求时的参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | callee | [Callee](#callee) | 否 | 是 | 调用Stub（桩）服务对象。|
 
 ## UIAbility.onCreate
@@ -33,6 +33,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。同步接口，不支持异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -64,6 +66,8 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 当WindowStage创建后调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -86,11 +90,43 @@ onWindowStageCreate(windowStage: window.WindowStage): void
   ```
 
 
+## UIAbility.onWindowStageWillDestroy<sup>12+</sup>
+
+onWindowStageWillDestroy(windowStage: window.WindowStage): void
+
+当WindowStage即将销毁时调用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+
+**示例：**
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
+
+  class MyUIAbility extends UIAbility {
+      onWindowStageWillDestroy(windowStage: window.WindowStage) {
+          console.log('onWindowStageWillDestroy');
+      }
+  }
+  ```
+
+
 ## UIAbility.onWindowStageDestroy
 
 onWindowStageDestroy(): void
 
 当WindowStage销毁后调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -112,6 +148,8 @@ onWindowStageDestroy(): void
 onWindowStageRestore(windowStage: window.WindowStage): void
 
 当迁移多实例ability时，恢复WindowStage后调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -140,6 +178,8 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 onDestroy(): void | Promise&lt;void&gt;
 
 UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -181,6 +221,8 @@ onForeground(): void
 
 UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
@@ -201,6 +243,8 @@ UIAbility生命周期回调，当应用从后台转到前台时触发。同步�
 onBackground(): void
 
 UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -223,6 +267,12 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 当Ability准备迁移时触发，保存数据。
 
+**说明：**
+> 
+> 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)\>形式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -235,13 +285,12 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;AbilityConstant.OnContinueResult&gt;  | 接续的结果或带接续结果的Promise对象。 |
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&nbsp;\|&nbsp;Promise&lt;[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)&gt;  | 接续的结果或带接续结果的Promise对象。 |
 
 **示例：**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   class MyUIAbility extends UIAbility {
       onContinue(wantParams: Record<string, Object>) {
@@ -255,7 +304,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 支持应用在迁移时，使用异步接口进行数据保存。
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   class MyUIAbility extends UIAbility {
     async setWant(wantParams: Record<string, Object>) {
@@ -281,6 +330,8 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例时会回调执行该方法。即UIAbility实例[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时进入该生命周期回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -311,6 +362,8 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 onDump(params: Array\<string>): Array\<string>
 
 转储客户端信息时调用，可用于转储非敏感信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -345,6 +398,8 @@ onDump(params: Array\<string>): Array\<string>
 onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -382,6 +437,8 @@ onShare(wantParam: Record&lt;string, Object&gt;): void
 
 在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -411,6 +468,8 @@ onPrepareToTerminate(): boolean
 UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -463,6 +522,8 @@ UIAbility生命周期回调，当UIAbility侧滑返回时触发，根据返回�
 - 当targetSdkVersion<12时，默认返回值为false，会销毁UIAbility。
 - 当targetSdkVersion>=12时，默认返回值为true，会将UIAbility移动到后台不销毁。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **返回值：**
@@ -510,13 +571,14 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -597,13 +659,14 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -673,12 +736,12 @@ release(): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -725,11 +788,12 @@ release(): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -778,11 +842,12 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16200001 | Caller released. The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -833,11 +898,12 @@ on(type: 'release', callback: OnReleaseCallback): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16200001 | Caller released. The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -885,6 +951,14 @@ off(type: 'release', callback: OnReleaseCallback): void
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
 | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 回调函数，返回off回调结果。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
@@ -931,6 +1005,14 @@ off(type: 'release'): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -986,12 +1068,13 @@ on(method: string, callback: CalleeCallback): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16200004 | Method registered. The method has registered. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1057,13 +1140,13 @@ off(method: string): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16200005 | Method not registered. The method has not registered. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 
 **示例：**
 
@@ -1087,10 +1170,12 @@ off(method: string): void
 
 ## OnReleaseCallback
 
+### (msg: string)
+
+(msg: string): void
 
 注册通用组件服务端Stub（桩）断开监听通知的回调函数类型。
 
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -1098,14 +1183,15 @@ off(method: string): void
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 | 
-
-
+ 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
+### (msg: string)
+
+(msg: string): void
 
 注册协同场景下跨设备组件状态变化监听通知的回调函数类型。
 
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -1113,13 +1199,14 @@ off(method: string): void
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | ----- | --- | -------- |
 | msg | string | 是 | 用于传递释放消息。 | 
-
-
+ 
 ## CalleeCallback
 
+### (indata: rpc.MessageSequence)
+
+(indata: rpc.MessageSequence): rpc.Parcelable
 
 通用组件服务端注册消息通知的回调函数类型。
-
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

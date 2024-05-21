@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import displaySync from '@ohos.graphics.displaySync';
+import { displaySync } from '@kit.ArkGraphics2D';
 ```
 
 ## displaySync.create
@@ -158,6 +158,25 @@ backDisplaySync?.on("frame", callback)
 
 // 开始每帧回调
 backDisplaySync?.start()
+```
+
+> **说明：**
+>
+> start接口是将DisplaySync关联到UI实例和窗口，若在非UI页面中或者一些异步回调中进行start操作，可能无法跟踪到当前UI的上下文，导致start接口失败，会进一步导致订阅函数无法执行。
+> 因此可以使用UIContext的[runScopedTask](../apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)接口来指定start函数执行的UI上下文。
+
+**示例：**
+
+```ts
+import { UIContext } from '@kit.ArkUI';
+
+let uiContext: UIContext = this.getUIContext()
+
+// 在当前UI上下文中执行DisplaySync的start接口
+uiContext?.runScopedTask(() => {
+  backDisplaySync?.start()
+})
+
 ```
 
 ### stop

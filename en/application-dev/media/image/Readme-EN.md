@@ -12,3 +12,4 @@
 - [Image Encoding (ArkTS)](image-encoding.md)
 - [Image Encoding (C/C++)](image-encoding-native.md)
 - [Image Tool](image-tool.md)
+- [Image Effect Development (C/C++)](image-effect-guidelines.md)

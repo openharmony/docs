@@ -1224,7 +1224,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
 | description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
@@ -1246,7 +1246,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
 | longitude<sup>7+</sup> | number | 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
@@ -1279,7 +1279,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestprioritydeprecated)的定义。 |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenariodeprecated)的定义。 |
@@ -1299,7 +1299,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestprioritydeprecated)的定义。 |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenariodeprecated)的定义。 |
@@ -1319,7 +1319,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | satellitesNumber | number | 是 | 否 | 表示卫星个数。取值范围为大于等于0。 |
 | satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。取值范围为大于等于0。 |
@@ -1341,7 +1341,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | reportingPeriodSec | number | 是 | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。取值范围为大于0。 |
 | wakeUpCacheQueueFull | boolean | 是 | 是  | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
@@ -1359,7 +1359,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | latitude | number | 是 | 是 |表示纬度。取值范围为-90到90。 |
 | longitude | number | 是 |是 | 表示经度。取值范围为-180到180。 |
@@ -1369,7 +1369,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## GeofenceRequest<sup>(deprecated)</sup>
 
-请求添加GNSS围栏消息中携带的参数，包括定位优先级、定位场景和围栏信息。
+请求添加GNSS围栏消息中携带的参数，包括定位场景和围栏信息。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1379,7 +1379,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | 是 | 是  | 表示位置信息优先级。 |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | 是 | 是  | 表示定位场景。 |
@@ -1398,7 +1398,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated)  | 是 | 是  | 表示定位场景。 |
 | command | string | 是 | 是  | 扩展命令字符串。 |
@@ -1415,7 +1415,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
 | longitude<sup>7+</sup> | number | 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |

@@ -7,7 +7,7 @@
 
 2. 初始化参数集。
 
-   [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)中的properties字段中的参数必须包含[HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)，[HUKS_TAG_ATTESTATION_CHALLENGE](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)属性,可选参数包含[HUKS_TAG_ATTESTATION_ID_VERSION_INFO](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)，[HUKS_TAG_ATTESTATION_ID_ALIAS](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)属性。
+   [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)中的properties字段中的参数必须包含[HUKS_TAG_ATTESTATION_CHALLENGE](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)属性,可选参数包含[HUKS_TAG_ATTESTATION_ID_VERSION_INFO](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)，[HUKS_TAG_ATTESTATION_ID_ALIAS](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag)属性。
 
 3. 生成非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
@@ -17,8 +17,8 @@
 /*
  * 以下以anonAttestKey的Promise接口操作验证为例
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
+import { BusinessError} from "@kit.BasicServicesKit"
 /* 1.确定密钥别名 */
 let keyAliasString = "key anon attest";
 let aliasString = keyAliasString;

@@ -117,6 +117,9 @@ async function setListener() {
 }
 ```
 
+<!--RP1-->
+<!--RP1End-->
+
 ### 媒体资源金标
 
 对于长音频，播控中心提供了媒体资源金标的展示，媒体资源金标又可称为应用媒体音频音源的标识，目前暂时只支持展示AudioVivid标识。
@@ -330,7 +333,7 @@ async function unregisterSessionListener() {
     assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
     title: 'TITLE',
     mediaImage: 'IMAGE',
-    skipIntervals: SkipIntervals.SECONDS_10,
+    skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -400,26 +403,26 @@ async function setListener() {
  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
  // 应用启动时/内部切换循环模式，需要把应用内的当前的循环模式设置给AVSession
- let playBackState: AVSessionManager.AVPlayBackState = {
+ let playBackState: AVSessionManager.AVPlaybackState = {
    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
  };
- session.setAVPlayBackState(playBackState).then(() => {
-   console.info(`set AVPlayBackState successfully`);
+ session.setAVPlaybackState(playBackState).then(() => {
+   console.info(`set AVPlaybackState successfully`);
  }).catch((err: BusinessError) => {
-   console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+   console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
  });
 
  // 应用注册循环模式的控制监听
  session.on('setLoopMode', (mode) => {
    console.info(`on setLoopMode ${mode}`);
-   // 应用收到设置循环模式的指令后，应用自定下一个模式，切换完毕后通过AVPlayBackState上报切换后的LoopMode
-   let playBackState: AVSessionManager.AVPlayBackState = {
+   // 应用收到设置循环模式的指令后，应用自定下一个模式，切换完毕后通过AVPlaybackState上报切换后的LoopMode
+   let playBackState: AVSessionManager.AVPlaybackState = {
     loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
    };
-   session.setAVPlayBackState(playBackState).then(() => {
-     console.info(`set AVPlayBackState successfully`);
+   session.setAVPlaybackState(playBackState).then(() => {
+     console.info(`set AVPlaybackState successfully`);
    }).catch((err: BusinessError) => {
-     console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+     console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
    });
  });
 

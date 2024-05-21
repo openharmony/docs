@@ -1,6 +1,6 @@
 # 图片解码(ArkTS)
 
-图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、RAW、WebP、BMP、SVG、ICO、DNG。
+图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG。
 
 ## 开发步骤
 
@@ -138,13 +138,13 @@
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(buffer);
       ```
-   - 方法四：通过资源文件的RawFileDescriptor创建ImageSource。RawFileDescriptor可以通过步骤2的方案四获取。
+   - 方法四：通过资源文件的RawFileDescriptor创建ImageSource。RawFileDescriptor可以通过步骤2的方法四获取。
         
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
       ```
 
-4. 设置解码参数DecodingOptions，解码获取PixelMap图片对象。
+4. 设置解码参数DecodingOptions，解码获取pixelMap图片对象。
      
    ```ts
    import {BusinessError} from '@ohos.base';
@@ -152,7 +152,7 @@
        editable: true,
        desiredPixelFormat: 3,
    }
-   // 创建pixelMap并进行简单的旋转和缩放 
+   // 创建pixelMap
    imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
       console.log("Succeeded in creating PixelMap")
    }).catch((err : BusinessError) => {
@@ -160,7 +160,7 @@
    });
    ```
 
-   解码完成，获取到PixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
+   解码完成，获取到pixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
 
 5. 释放pixelMap。
    ```ts
@@ -199,7 +199,7 @@
          console.error("Failed to get RawFd")
       });
      ```
-3. 创建PixelMap。
+3. 创建pixelMap。
      
    ```ts
    imageSource.createPixelMap().then((pixelMap: image.PixelMap) => {
@@ -218,6 +218,6 @@
 
 针对图片解码开发，有以下相关实例可供参考：
 
-- [图片编辑（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEdit)
+- [图片编辑（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEdit)
 
-- [图片编辑（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
+- [图片编辑（JS）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)

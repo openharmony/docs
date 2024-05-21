@@ -15,7 +15,7 @@ Not supported
 
 Path(value?: { width?: number | string; height?: number | string; commands?: string })
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 

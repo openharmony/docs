@@ -41,8 +41,8 @@ Defines the style parameters of the popup.
 | icon      | [PopupIconOptions](#popupiconoptions)                        | No  | Icon of the popup.<br>**NOTE**<br>The icon is not displayed when **size** is set to an invalid value or **0**.|
 | title     | [PopupTextOptions](#popuptextoptions)                        | No  | Title of the popup.                 |
 | message   | [PopupTextOptions](#popuptextoptions)                        | Yes  | Content of the popup.<br>**NOTE**<br>**fontWeight** is not available for **messages**.|
-| showClose | boolean \| [Resource](ts-types.md#resource)                | No  | Whether to show the close button.                 |
-| onClose   | () => void                                                   | No  | Callback for the popup close button.         |
+| showClose | boolean \| [Resource](ts-types.md#resource)                | No  | Whether to show the close button.<br>Default value: **true**|
+| onClose   | () => void                                                   | No  | Callback for the popup close button.|
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | No  | Buttons of the popup. A maximum of two buttons can be set.|
 
 ## PopupTextOptions
@@ -54,9 +54,9 @@ Defines the text parameters of the popup.
 | Name      | Type                                                        | Mandatory| Description              |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Text content.    |
-| fontSize   | number \| string \| [Resource](ts-types.md#resource)         | No  | Text font size.|
-| fontColor  | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Text font color.|
-| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Text font weight.|
+| fontSize   | number \| string \| [Resource](ts-types.md#resource)         | No  | Text font size.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')** |
+| fontColor  | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Text font color.<br>Default value: **$r('sys.color.ohos_id_color_text_secondary')**|
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | No  | Text font weight.<br>Default value: **FontWeight.Regular**|
 
 ## PopupButtonOptions
 
@@ -67,9 +67,9 @@ Defines the button attributes and events.
 | Name     | Type                                                | Mandatory| Description                  |
 | --------- | ---------------------------------------------------- | ---- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | Yes  | Text of the button.        |
-| action    | () => void                                           | No  | Click callback of the button.   |
-| fontSize  | number \| string \| [Resource](ts-types.md#resource) | No  | Font size of the button text.|
-| fontColor | [ResourceColor](ts-types.md#resourcecolor)           | No  | Font color of the button text.|
+| action    | () => void                                           | No  | Click callback of the button.|
+| fontSize  | number \| string \| [Resource](ts-types.md#resource) | No  | Font size of the button text.<br>Default value: **$r('sys.float.ohos_id_text_size_button2')**|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor)           | No  | Font color of the button text.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**|
 
 ##  PopupIconOptions
 
@@ -83,7 +83,7 @@ Defines the attributes of the icon (in the upper right corner).
 | width        | [Dimension](ts-types.md#dimension10)                         | No  | Icon width.<br>Default value: **32VP**|
 | height       | [Dimension](ts-types.md#dimension10)                         | No  | Icon height.<br>Default value: **32VP**|
 | fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Icon fill color.                |
-| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Rounded corner of the icon.<br>Default value: **12VP**  |
+| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Rounded corner of the icon.<br>Default value: **$r('sys.float.ohos_id_corner_radius_default_s')** |
 
 ## Example  
 

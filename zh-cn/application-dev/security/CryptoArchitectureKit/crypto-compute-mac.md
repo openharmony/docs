@@ -46,36 +46,65 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
 6. 调用[Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength)，获取Mac消息认证码的长度，单位为字节。
 
-以使用await方式一次性传入数据，获取消息认证码计算结果为例：
+- 以使用await方式一次性传入数据，获取消息认证码计算结果为例：
 
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
-async function genSymKeyByData(symKeyData: Uint8Array) {
-  let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-  let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-  let symKey = await aesGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
-  return symKey;
-}
-async function doHmac() {
-  // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
-  let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
-  let key = await genSymKeyByData(keyData);
-  let macAlgName = 'SHA256'; // 摘要算法名
-  let message = 'hmacTestMessgae'; // 待进行HMAC的数据
-  let mac = cryptoFramework.createMac(macAlgName);
-  await mac.init(key);
-  // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
-  await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
-  let macResult = await mac.doFinal();
-  console.info('HMAC result:' + macResult.data);
-  let macLen = mac.getMacLength();
-  console.info('HMAC len:' + macLen);
-}
-```
+  async function genSymKeyByData(symKeyData: Uint8Array) {
+    let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
+    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+    let symKey = await aesGenerator.convertKey(symKeyBlob);
+    console.info('convertKey success');
+    return symKey;
+  }
+  async function doHmac() {
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
+    let key = await genSymKeyByData(keyData);
+    let macAlgName = 'SHA256'; // 摘要算法名
+    let message = 'hmacTestMessgae'; // 待进行HMAC的数据
+    let mac = cryptoFramework.createMac(macAlgName);
+    await mac.init(key);
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
+    let macResult = await mac.doFinal();
+    console.info('HMAC result:' + macResult.data);
+    let macLen = mac.getMacLength();
+    console.info('HMAC len:' + macLen);
+  }
+  ```
 
+- 以使用同步方式一次性传入数据，获取消息认证码计算结果为例：
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+
+  function genSymKeyByData(symKeyData: Uint8Array) {
+    let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
+    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+    let symKey =  aesGenerator.convertKeySync(symKeyBlob);
+    console.info('[Sync]convertKey success');
+    return symKey;
+  }
+  function doHmacBySync() {
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
+    let key = genSymKeyByData(keyData);
+    let macAlgName = 'SHA256'; // 摘要算法名
+    let message = 'hmacTestMessgae'; // 待进行HMAC的数据
+    let mac = cryptoFramework.createMac(macAlgName);
+    mac.initSync(key);
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
+    let macResult = mac.doFinalSync();
+    console.info('[Sync]HMAC result:' + macResult.data);
+    let macLen = mac.getMacLength();
+    console.info('HMAC len:' + macLen);
+  }
+  ```
 
 ### 分段HMAC
 
@@ -92,38 +121,74 @@ async function doHmac() {
 
 6. 调用[Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength)，获取Mac消息认证码的长度，单位为字节。
 
-以使用await方式分段传入数据，获取消息认证码计算结果为例：
+- 以使用await方式分段传入数据，获取消息认证码计算结果为例：
 
-```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
-async function genSymKeyByData(symKeyData: Uint8Array) {
-  let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-  let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-  let symKey = await aesGenerator.convertKey(symKeyBlob);
-  console.info('convertKey success');
-  return symKey;
-}
-async function doLoopHmac() {
-  // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
-  let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
-  let key = await genSymKeyByData(keyData);
-  let macAlgName = "SHA256"; // 摘要算法名
-  let mac = cryptoFramework.createMac(macAlgName);
-  // 假设信息总共43字节，根据utf-8解码后，也是43字节
-  let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
-  let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-  let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
-  await mac.init(key);
-  for (let i = 0; i < messageData.length; i += updateLength) {
-    let updateMessage = messageData.subarray(i, i + updateLength);
-    let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
-    await mac.update(updateMessageBlob);
+  async function genSymKeyByData(symKeyData: Uint8Array) {
+    let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
+    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+    let symKey = await aesGenerator.convertKey(symKeyBlob);
+    console.info('convertKey success');
+    return symKey;
   }
-  let macOutput = await mac.doFinal();
-  console.info("HMAC result: " + macOutput.data);
-  let macLen = mac.getMacLength();
-  console.info('HMAC len:' + macLen);
-}
-```
+  async function doLoopHmac() {
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
+    let key = await genSymKeyByData(keyData);
+    let macAlgName = "SHA256"; // 摘要算法名
+    let mac = cryptoFramework.createMac(macAlgName);
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
+    let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    await mac.init(key);
+    for (let i = 0; i < messageData.length; i += updateLength) {
+      let updateMessage = messageData.subarray(i, i + updateLength);
+      let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
+      await mac.update(updateMessageBlob);
+    }
+    let macOutput = await mac.doFinal();
+    console.info("HMAC result: " + macOutput.data);
+    let macLen = mac.getMacLength();
+    console.info('HMAC len:' + macLen);
+  }
+  ```
+
+- 以使用同步方式分段传入数据，获取消息认证码计算结果为例：
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
+
+  function genSymKeyByData(symKeyData: Uint8Array) {
+    let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
+    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+    let symKey = aesGenerator.convertKeySync(symKeyBlob);
+    console.info('[Sync]convertKey success');
+    return symKey;
+  }
+  function doLoopHmacBySync() {
+    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节
+    let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
+    let key = genSymKeyByData(keyData);
+    let macAlgName = "SHA256"; // 摘要算法名
+    let mac = cryptoFramework.createMac(macAlgName);
+    // 假设信息总共43字节，根据utf-8解码后，也是43字节
+    let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
+    let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
+    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求
+    mac.initSync(key);
+    for (let i = 0; i < messageData.length; i += updateLength) {
+      let updateMessage = messageData.subarray(i, i + updateLength);
+      let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
+      mac.updateSync(updateMessageBlob);
+    }
+    let macOutput = mac.doFinalSync();
+    console.info("[Sync]HMAC result: " + macOutput.data);
+    let macLen = mac.getMacLength();
+    console.info('HMAC len:' + macLen);
+  }
+  ```

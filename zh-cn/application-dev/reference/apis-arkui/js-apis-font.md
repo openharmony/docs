@@ -22,7 +22,7 @@ registerFont(options: FontOptions): void
 
 在字体管理中注册自定义字体。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,7 +34,7 @@ registerFont(options: FontOptions): void
 
 ## FontOptions
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -106,7 +106,7 @@ struct FontExample {
 ```
 > **说明：**
 >
-> 若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
+> 应用若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
 >
 > 在HSP工程中，不推荐采用相对路径的方式注册自定义字体，详见[HSP资源引用](../../quick-start/in-app-hsp.md#通过$r访问hsp中的资源)。
 
@@ -114,9 +114,9 @@ struct FontExample {
 
 getSystemFontList(): Array\<string>
 
-获取风格字体列表。
+获取系统字体列表。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -155,7 +155,7 @@ getFontByName(fontName: string): FontInfo
 
 根据传入的系统字体名称获取系统字体的相关信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -173,7 +173,7 @@ getFontByName(fontName: string): FontInfo
 
 ## FontInfo<sup>10+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -227,7 +227,7 @@ getUIFontConfig() : UIFontConfig
 
 获取系统的UI字体配置。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -238,7 +238,7 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontConfig<sup>11+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
@@ -249,7 +249,7 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontGenericInfo<sup>11+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
@@ -260,7 +260,7 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
@@ -270,7 +270,7 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontAliasInfo<sup>11+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
@@ -280,7 +280,7 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |
@@ -290,7 +290,7 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontFallbackInfo<sup>11+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 | 名称            | 类型    | 必填  | 说明                       |

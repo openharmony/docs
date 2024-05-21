@@ -22,6 +22,8 @@ onCreate(): void
 
 当应用创建时调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
@@ -42,6 +44,8 @@ class MyAbilityStage extends AbilityStage {
 onAcceptWant(want: Want): string
 
 启动一个specified ability时触发的事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,6 +116,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 环境变化通知接口，发生全局配置变更时回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -138,6 +144,8 @@ class MyAbilityStage extends AbilityStage {
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -166,6 +174,8 @@ context: AbilityStageContext
 
 指示AbilityStage的上下文。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 属性名      | 类型                        | 说明                                                         |
@@ -190,6 +200,8 @@ export default class MyAbilityStage extends AbilityStage {
 onDestroy(): void
 
 当应用销毁时调用, 此方法将在正常的调度生命周期中调用, 当应用程序异常退出或被终止时，将不会调用此方法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

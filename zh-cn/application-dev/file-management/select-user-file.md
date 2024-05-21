@@ -4,7 +4,7 @@
 
 根据用户文件的常见类型，选择器（FilePicker）分别提供以下接口：
 
-- [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker)：适用于图片或视频类型文件的选择与保存。优选使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)来选择文件。当前PhotoViewPicker对接的选择资源来自于图库，保存位置为系统文件管理器的特定目录，因此使用save接口保存的图片或视频无法在图库中展示。如需在图库中展示，请使用[安全控件创建媒体资源](photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
+- [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker)：适用于图片或视频类型文件的选择与保存。优选使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)来选择文件。当前PhotoViewPicker对接的选择资源来自于图库，保存位置为系统文件管理器的特定目录，因此使用save接口保存的图片或视频无法在图库中展示。如需在图库中展示，请使用[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
 
 - [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)：适用于文件类型文件的选择与保存。DocumentViewPicker对接的选择资源来自于FilePicker, 负责文件类型的资源管理，文件类型不区分后缀，比如浏览器下载的图片、文档等，都属于文件类型。
 
@@ -95,7 +95,7 @@
    documentSelectOptions.maxSelectNumber = 5;
    // 指定选择的文件或者目录路径（可选）
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
-   // 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选）
+   // 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔（可选），后缀类型名不能超过100
    documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4'];
    //选择是否对指定文件或目录授权，true为授权，当为true时，defaultFilePathUri为必选参数，拉起文管授权界面；false为非授权，拉起常规文管界面（可选）
    documentSelectOptions.authMode = true;
@@ -164,7 +164,7 @@
 
    select返回的uri权限是只读权限，开发者可以根据结果集中uri做读取文件数据操作。建议定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
 
-   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（FD），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
+   例如通过[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)根据uri拿到音频资源的文件句柄（fd），再配合媒体服务实现音频播放的开发，具体请参考[音频播放开发指导](../media/audio/audio-playback-overview.md)。
 
    ```ts
    
@@ -201,4 +201,4 @@
 
 针对用户文件的选择，有以下相关实例可供参考：
 
-- [选择并查看文档与媒体文件（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileShare/Picker) 
+- [选择并查看文档与媒体文件（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/FileManagement/FileShare/Picker) 

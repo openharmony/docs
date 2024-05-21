@@ -16,6 +16,8 @@ width(value: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -33,6 +35,8 @@ height(value: Length)
 从API version 10开始，该接口支持calc计算特性。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -56,6 +60,8 @@ size(value: SizeOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -66,7 +72,7 @@ size(value: SizeOptions)
 
 ## padding
 
-padding(value: Padding | Length)
+padding(value: Padding | Length | LocalizedPadding)
 
 设置内边距属性。
 
@@ -74,17 +80,19 @@ padding(value: Padding | Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| value | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[Length](ts-types.md#length) | 是    | 设置组件的内边距。<br/>参数为Length类型时，四个方向内边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
+| value | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;&nbsp; [LocalizedPadding](ts-types.md#localizedpadding12)<sup>12+</sup>| 是    | 设置组件的内边距。<br/>参数为Length类型时，四个方向内边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。 |
 
 ## margin
 
-margin(value: margin | Length)
+margin(value: margin | Length | LocalizedMargin)
 
 设置外边距属性。
 
@@ -92,13 +100,15 @@ margin(value: margin | Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填     | 说明                                                         |
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| value  | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在Row、Column、Flex交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件水平方向偏移10。 |
+| value  | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;[LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | &nbsp;是 | 设置组件的外边距。<br/>参数为Length类型时，四个方向外边距同时生效。<br/>默认值：0 <br/>单位：vp<br/>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。在Row、Column、Flex交叉轴上布局时，子组件交叉轴的大小与margin的和为整体。<br/>例如Column容器宽100，其中子组件宽50，margin left为10，right为20，子组件水平方向偏移10。 |
 
 ## layoutWeight
 
@@ -107,6 +117,8 @@ layoutWeight(value: number | string)
 对子组件进行重新布局。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -125,6 +137,8 @@ constraintSize(value: ConstraintSizeOptions)
 从API version 10开始，该接口支持calc计算特性。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -172,6 +186,7 @@ constraintSize(value: ConstraintSizeOptions)
 >  在Row、Column、RelativeContainer组件中，width、height设置auto表示自适应子组件。在TextInput组件中，width设置auto表示自适应文本宽度。
 
 ## 示例
+### 示例1
 
 ```ts
 // xxx.ets
@@ -228,3 +243,50 @@ struct SizeExample {
 ```
 
 ![size](figures/size.png)
+
+### 示例2
+```ts
+// xxx.ets
+// padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型
+
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct SizeExample {
+  build() {
+    Column({ space: 10 }) {
+      Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Row() {
+        // 宽度80 ,高度80 ,上下开始结束的外边距40、20、30、10(蓝色区域），上下开始结束的内边距分别为5、15、10、20（白色区域）
+        Row() {
+          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+        }
+        .width(80)
+        .height(80)
+        .padding({
+          top: LengthMetrics.vp(5),
+          bottom: LengthMetrics.vp(15),
+          start: LengthMetrics.vp(10),
+          end: LengthMetrics.vp(20)
+        })
+        .margin({
+          top: LengthMetrics.vp(40),
+          bottom: LengthMetrics.vp(20),
+          start: LengthMetrics.vp(30),
+          end: LengthMetrics.vp(10)
+        })
+        .backgroundColor(Color.White)
+      }.backgroundColor(Color.Blue)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+从左至右显示语言示例图
+
+![size](figures/size-ltr.png)
+
+从右至左显示语言示例图
+
+![size](figures/size-rtl.png)

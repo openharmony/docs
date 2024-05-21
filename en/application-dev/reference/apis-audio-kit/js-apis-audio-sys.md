@@ -317,7 +317,7 @@ import { BusinessError } from '@ohos.base';
 
 let kvpairs = {} as Record<string, string>;
 kvpairs = {
-  key_example: 'value_example'
+  'key_example': 'value_example'
 }
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
@@ -1914,10 +1914,10 @@ Subscribes to spatial audio rendering status changes.
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                      |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| Name  | Type                                                | Mandatory| Description                                          |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
 | type     | string                                               | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the status of spatial audio rendering.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the status of spatial audio rendering. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.   |
 
 **Error codes**
 
@@ -1954,7 +1954,7 @@ Unsubscribes from spatial audio rendering status changes.
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes.|
-| callback | Callback<boolean\> | No  | Callback used to return the status of spatial audio rendering.|
+| callback | Callback<boolean\> | No  | Callback used to return the status of spatial audio rendering. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2120,7 +2120,7 @@ Subscribes to head tracking status changes.
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the status of head tracking.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the status of head tracking. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2157,7 +2157,7 @@ Unsubscribes from head tracking status changes.
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes.|
-| callback | Callback<boolean\> | No  | Callback used to return the status of head tracking.|
+| callback | Callback<boolean\> | No  | Callback used to return the status of head tracking. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2225,6 +2225,87 @@ try {
 }
 ```
 
+### setSpatializationSceneType<sup>12+</sup>
+
+setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType): void
+
+Sets the scene type for spatial audio rendering. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| spatializationSceneType     | [AudioSpatializationSceneType](#audiospatializationscenetype12)     | Yes  | Scene type.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+| 401     | Input parameter type or number mismatch.    |
+| 6800101 | Invalid parameter error.                    |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
+  console.info(`AudioSpatializationManager setSpatializationSceneType success`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### getSpatializationSceneType<sup>12+</sup>
+
+getSpatializationSceneType(): AudioSpatializationSceneType
+
+Obtains the scene type of spatial audio rendering in use. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| [AudioSpatializationSceneType](#audiospatializationscenetype12) | Scene type.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let spatializationSceneType: AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+  console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
 ## AudioSpatialDeviceState<sup>11+</sup>
 
 Defines the state information of a spatial device.
@@ -2269,6 +2350,21 @@ Enumerates the types of spatial devices.
 | SPATIAL_DEVICE_TYPE_OVER_EAR_HEADPHONE     | 3      |  Over-ear headphones.      |
 | SPATIAL_DEVICE_TYPE_GLASSES                | 4      |  Glasses.      |
 | SPATIAL_DEVICE_TYPE_OTHERS                 | 5      |  Other type of the spatial device.|
+
+## AudioSpatializationSceneType<sup>12+</sup>
+
+Enumerates the scene types available for spatial audio rendering.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+| Name                              |  Value    | Description                      |
+| ---------------------------------- | ------ | ------------------------- |
+| DEFAULT                            | 0      |  Default scene.           |
+| MUSIC                              | 1      |  Music scene for spatial audio rendering.           |
+| MOVIE                              | 2      |  Movie scene for spatial audio rendering.           |
+| AUDIOBOOK                          | 3      |  Audiobook scene for spatial audio rendering.         |
 
 ## ToneType<sup>9+</sup>
 

@@ -6,6 +6,8 @@
 
 ## Resource
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 资源引用类型，用于设置组件属性的值。
 
 可以通过`$r`或者`$rawfile`创建Resource类型对象，不可以修改Resource中的各属性的值。
@@ -28,6 +30,8 @@
 
 长度类型，用于描述尺寸单位。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | string                | 需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。 |
@@ -37,6 +41,8 @@
 ## ResourceStr
 
 字符串类型，用于描述字符串入参可以使用的类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
@@ -56,6 +62,8 @@
 
 内边距类型，用于描述组件不同方向的内边距。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
 | top    | [Length](#length) | 否    | 上内边距，组件内元素距组件顶部的尺寸。  |
@@ -63,9 +71,22 @@
 | bottom | [Length](#length) | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
 | left   | [Length](#length) | 否    | 左内边距，组件内元素距组件左边界的尺寸。 |
 
+## LocalizedPadding<sup>12+</sup>
+
+内边距类型，用于描述组件不同方向的内边距。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上内边距，组件内元素距组件顶部的尺寸。  |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右内边距，组件内元素距组件右边界的尺寸。<br />从右至左显示语言模式下为<br />左内边距，组件内元素距组件左边界的尺寸。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左内边距，组件内元素距组件左边界的尺寸。<br />从右至左显示语言模式下为<br />右内边距，组件内元素距组件右边界的尺寸。 |
+
 ## Margin
 
 外边距类型，用于描述组件不同方向的外边距。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
@@ -74,9 +95,22 @@
 | bottom | [Length](#length) | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
 | left   | [Length](#length) | 否    | 左外边距，组件左边界距组件外元素的尺寸。 |
 
+## LocalizedMargin<sup>12+</sup>
+
+外边距类型，用于描述组件不同方向的外边距。
+
+| 名称     | 类型                | 必填   | 说明                   |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
+| end    | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 右外边距，组件右边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />左外边距，组件左边界距组件外元素的尺寸。 |
+| bottom | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
+| start  | [LengthMetrics<](../js-apis-arkui-graphics.md#lengthmetrics12)sup>12+</sup> | 否    | 左外边距，组件左边界距组件外元素的尺寸。<br />从右至左显示语言模式下为<br />右外边距，组件右边界距组件外元素的尺寸。 |
+
 ## EdgeWidths<sup>9+</sup>
 
 边框宽度类型，用于描述组件边框不同方向的宽度。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                | 必填   | 说明       |
 | ------ | ----------------- | ---- | -------- |
@@ -84,6 +118,17 @@
 | right  | [Length](#length) | 否    | 组件右边框宽度。 |
 | bottom | [Length](#length) | 否    | 组件下边框宽度。 |
 | left   | [Length](#length) | 否    | 组件左边框宽度。 |
+
+## LocalizedEdgeWidths<sup>12+</sup>
+
+边框宽度类型，用于描述组件边框不同方向的宽度。
+
+| 名称     | 类型                | 必填   | 说明       |
+| ------ | ----------------- | ---- | -------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件上边框宽度。 |
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右边框宽度。<br />从右至左显示语言模式下为组件左边框宽度。 |
+| bottom | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件下边框宽度。 |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左边框宽度。<br />从右至左显示语言模式下为组件右边框宽度。 |
 
 ## BorderRadiuses<sup>9+</sup>
 
@@ -96,9 +141,22 @@
 | bottomLeft  | [Length](#length) | 否    | 组件左下角圆角半径。 |
 | bottomRight | [Length](#length) | 否    | 组件右下角圆角半径。 |
 
+## LocalizedBorderRadiuses<sup>12+</sup>
+
+圆角类型，用于描述组件边框圆角半径。
+
+| 名称          | 类型                | 必填   | 说明         |
+| ----------- | ----------------- | ---- | ---------- |
+| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左上角圆角半径。<br />从右至左显示语言模式下为组件右上角圆角半径。 |
+| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右上角圆角半径。<br />从右至左显示语言模式下为组件左上角圆角半径。 |
+| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左下角圆角半径。<br />从右至左显示语言模式下为组件右下角圆角半径。 |
+| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件右下角圆角半径。<br />从右至左显示语言模式下为组件左下角圆角半径。 |
+
 ## EdgeColors<sup>9+</sup>
 
 边框颜色，用于描述组件边框四条边的颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                              | 必填   | 说明       |
 | ------ | ------------------------------- | ---- | -------- |
@@ -106,6 +164,17 @@
 | right  | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。 |
 | bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
 | left   | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。 |
+
+## LocalizedEdgeColors<sup>12+</sup>
+
+边框颜色，用于描述组件边框四条边的颜色。
+
+| 名称     | 类型                              | 必填   | 说明       |
+| ------ | ------------------------------- | ---- | -------- |
+| top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
+| end    | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。<br />从左至右显示语言模式下为组件左边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
+| start  | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。<br />从左至右显示语言模式下为组件右边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
@@ -122,6 +191,8 @@
 ## Offset
 
 相对布局完成位置坐标偏移量。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 类型                | 必填   | 说明       |
 | ---- | ----------------- | ---- | -------- |
@@ -143,6 +214,8 @@
 
 颜色类型，用于描述资源颜色类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [Color](ts-appendix-enums.md#color) | 颜色枚举值。                                                 |
@@ -156,13 +229,15 @@
 
 | 名称     | 描述              |
 | ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。 |
+| INVERT | 设置前景色为控件背景色的反色。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## LengthConstrain
 
 长度约束，用于对组件最大、最小长度做限制。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 类型                | 必填   | 说明      |
 | --------- | ----------------- | ---- | ------- |
@@ -174,6 +249,8 @@
 
 设置文本样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0 |
@@ -183,7 +260,9 @@
 
 ## Area<sup>8+</sup>
 
-区域类型，用于存储元素所占区域信息
+区域类型，用于存储元素所占区域信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称             | 类型                     | 说明                             |
 | -------------- | ---------------------- | ------------------------------ |
@@ -196,14 +275,27 @@
 
 位置类型，用于表示一个坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型                | 必填   | 说明                          |
 | ---- | ----------------- | ---- | --------------------------- |
 | x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
 | y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
 
+## LocalizedPosition<sup>12+</sup>
+
+位置类型，用于表示一个坐标点。
+
+| 名称   | 类型                | 必填   | 说明                          |
+| ---- | ----------------- | ---- | --------------------------- |
+| start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时x轴相对左边坐标，RTL模式x轴相对右边坐标。  |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | y轴坐标。 |
+
 ## Edges<sup>12+</sup>
 
 位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置left和right，仅left生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
@@ -212,9 +304,22 @@
 | left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
 | right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
 
+## LocalizedEdges<sup>12+</sup>
+
+位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置start和end，仅start生效。
+
+| 名称   | 类型     | 必填   | 说明                          |
+| ---- | ------ | ---- | --------------------------- |
+| top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对顶边的偏移量。 |
+| bottom    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对底边的偏移量。 |
+| start    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时相对左边的偏移量，RTL模式时相对右边的偏移量。|
+| end    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时相对右边的偏移量，RTL模式时相对左边的偏移量。 |
+
 ## ConstraintSizeOptions
 
 设置约束尺寸，组件布局时，进行尺寸范围限制。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 类型                | 必填   | 说明      |
 | --------- | ----------------- | ---- | ------- |
@@ -227,6 +332,8 @@
 
 设置宽高尺寸。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型                | 必填   | 说明    |
 | ------ | ----------------- | ---- | ----- |
 | width  | [Length](#length) | 否    | 元素宽度。 |
@@ -236,6 +343,8 @@
 ## BorderOptions
 
 边框属性集合，用于描述边框相关信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                                       | 必填   | 说明      |
 | ------ | ---------------------------------------- | ---- | ------- |
@@ -247,6 +356,8 @@
 ## ColorFilter<sup>9+</sup>
 
 创建具有4*5矩阵的颜色过滤器。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
@@ -265,6 +376,8 @@
 
 像素扩展属性集合,用于描述像素扩展的信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型                | 必填   | 说明             |
 | ------ | ----------------- | ---- | -------------- |
 | left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
@@ -276,6 +389,8 @@
 
 全屏模态转场方式枚举类型，用于设置全屏模态转场类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述           |
 | ------- | ------------ |
 | NONE    | 全屏模态无转场动画。   |
@@ -285,6 +400,8 @@
 ## Dimension<sup>10+</sup>
 
 长度类型，用于描述尺寸单位。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -299,6 +416,8 @@
 
 长度类型，用于描述以px像素单位为单位的长度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}px               | 需要指定以px像素单位，如'10px'。 |
@@ -306,6 +425,8 @@
 ## VP<sup>10+</sup>
 
 长度类型，用于描述以vp像素单位为单位的长度。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -315,6 +436,8 @@
 
 长度类型，用于描述以fp像素单位为单位的长度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}fp               | 需要指定以fp像素单位，如'10fp'。 |
@@ -322,6 +445,8 @@
 ## LPX<sup>10+</sup>
 
 长度类型，用于描述以lpx像素单位为单位的长度。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -331,6 +456,8 @@
 
 长度类型，用于描述以%像素单位为单位的长度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}%               | 需要指定以%像素单位，如'10%'。 |
@@ -339,13 +466,29 @@
 
 角度类型，用于描述以deg像素单位为单位的长度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}deg               | 需要指定以deg像素单位，如'10deg'。 |
 
+## MultiShadowOptions<sup>10+</sup>
+
+投影样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+
 ## SwiperAnimationEvent<sup>10+</sup>
 
 Swiper组件动画相关信息集合。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称            | 类型定义       | 必填            | 描述                                       |
 | ------------- | ---------------------- | ---------|------------------------------- |
@@ -357,6 +500,8 @@ Swiper组件动画相关信息集合。
 
 Tabs组件动画相关信息集合。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型定义      |  必填             | 描述                                       |
 | ------------- | ---------------------- | ----------------|------------------------ |
 | currentOffset | number | 是 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
@@ -367,6 +512,8 @@ Tabs组件动画相关信息集合。
 
 扩展安全区域的枚举类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
 | SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
@@ -376,6 +523,8 @@ Tabs组件动画相关信息集合。
 ## SafeAreaEdge<sup>10+</sup>
 
 扩展安全区域的方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述       |
 | ------ | ---------- |
@@ -397,6 +546,8 @@ Tabs组件动画相关信息集合。
 
 配置跟手点坐标，不配置时，默认居中。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 类型定义 | 描述       |
 | ------ | ----------------------| ---------- |
 | X | [Dimension](#dimension10) | 跟手点X轴坐标。 |
@@ -406,6 +557,8 @@ Tabs组件动画相关信息集合。
 
 Tabs自定义切换动画相关信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型定义         | 必填          | 描述                                       |
 | ------------- | ---------------------- | ------------------|---------------------- |
 | timeout | number | 否 | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
@@ -414,6 +567,8 @@ Tabs自定义切换动画相关信息。
 ## TabContentTransitionProxy<sup>11+</sup>
 
 Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称            | 类型定义     |  必填              | 描述                                       |
 | ------------- | ---------------------- | ----------------------|------------------ |
@@ -442,6 +597,8 @@ Callback<T,V = void> = (T) => V;
 
 带参数的函数回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## HoverCallback<sup>12+</sup>
 
 hover事件的回调类型。
@@ -459,11 +616,21 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | 名称   | 描述       |
 | ------ | ---------- |
 | TextStyle | 文本字体样式。 |
+| DecorationStyle | 文本装饰线样式。 |
+| BaselineOffsetStyle | 文本基线偏移量样式。 |
+| LetterSpacingStyle | 文本字符间距样式。 |
+| LineHeightStyle | 文本行高样式。 |
+| TextShadowStyle | 文本阴影样式。 |
 | GestureStyle | 事件手势样式。 |
+| ParagraphStyle | 文本段落样式。 |
+| ImageAttachment | 图片样式。 |
+| CustomSpan | 自定义绘制Span样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 
 定义用户提交事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称              | 类型       | 必填 | 描述                                               |
 | ----------------- | ---------- | ---- | -------------------------------------------------- |
@@ -474,10 +641,37 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 
 | 名称                   | 描述               |
 | ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。   |
-| Search                 | 显示为搜索样式。   |
-| Send                   | 显示为发送样式。   |
-| Next                   | 显示为下一步样式。 |
-| Done                   | 显示为完成样式。   |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。   |
+| Go                     | 显示为开始样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| Search                 | 显示为搜索样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| Send                   | 显示为发送样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| Next                   | 显示为下一步样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Done                   | 显示为完成样式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。  |
+
+## LengthMetrics<sup>12+</sup>
+
+用于设置长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**属性：**
+
+| 名称              | 类型       | 必填 | 描述                          |
+| ----------------- | ---------- | ---- | ----------------------------- |
+| value       | number | 是 | 长度属性的值。   |
+| unit | [LengthUnit](#lengthunit12)     | 是 | 长度属性的单位。|
+
+## LengthUnit<sup>12+</sup>
+
+长度属性单位枚举。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| [PX](#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
+| [VP](#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
+| [FP](#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
+| [PERCENT](#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
+| [LPX](#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |

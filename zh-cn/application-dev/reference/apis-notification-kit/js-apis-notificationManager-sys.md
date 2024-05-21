@@ -46,7 +46,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600004  | Notification is not enabled.                         |
 | 1600005  | Notification slot is not enabled.                    |
 | 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
+| 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No relevant right.                                   |
@@ -121,7 +121,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600004  | Notification is not enabled.                         |
 | 1600005  | Notification slot is not enabled.                    |
 | 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
+| 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No relevant right.                                   |
@@ -632,7 +632,7 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -656,7 +656,7 @@ notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback)
 
 isNotificationEnabled(userId: number): Promise\<boolean\>
 
-获取制定用户下的通知使能状态。使用Promise异步回调。
+获取指定用户下的通知使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -685,7 +685,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist..                  |
+| 1600008  | The user does not exist..                  |
 
 **示例：**
 
@@ -1149,7 +1149,7 @@ import Base from '@ohos.base';
 
 let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotsByBundle success, data is ${JSON.stringify(data)}`);
     }
@@ -1248,7 +1248,7 @@ import Base from '@ohos.base';
 
 let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
@@ -1308,7 +1308,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotNumByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1749,7 +1749,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -1810,7 +1810,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -1949,7 +1949,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -2003,7 +2003,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -2195,7 +2195,7 @@ let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2522,7 +2522,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2596,7 +2596,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2665,7 +2665,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2728,7 +2728,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -2786,7 +2786,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -2841,8 +2841,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
 | 1600007  | The notification is not exist.            |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600008  | The user does not exist.                    |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -3200,7 +3199,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -3254,7 +3253,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -3299,7 +3298,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -3351,7 +3350,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **示例：**
 
@@ -3651,6 +3650,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3706,6 +3706,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3760,6 +3761,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3810,6 +3812,7 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean>
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**

@@ -18,8 +18,8 @@
 /*
  * 以下以attestKey的Promise接口操作验证为例
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
+import { BusinessError} from "@kit.BasicServicesKit"
 /* 1.确定密钥别名 */
 let keyAliasString = "key attest";
 let aliasString = keyAliasString;

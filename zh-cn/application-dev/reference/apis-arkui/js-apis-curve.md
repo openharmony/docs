@@ -18,8 +18,9 @@ import Curves from '@ohos.curves'
 
 initCurve(curve?: Curve): ICurve
 
-
 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -37,9 +38,11 @@ initCurve(curve?: Curve): ICurve
 
 ## Curve
 
-插值曲线，动效请参考[贝塞尔曲线](../../../design/ux-design/animation-attributes.md)。
+插值曲线，动效请参考<!--RP1-->[贝塞尔曲线](../../../design/ux-design/animation-attributes.md)<!--RP1End-->。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -71,8 +74,9 @@ Curves.initCurve(Curve.EaseIn) // 创建一个默认先慢后快插值曲线
 
 stepsCurve(count: number, end: boolean): ICurve
 
-
 构造阶梯曲线对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -101,8 +105,9 @@ Curves.stepsCurve(9, true)  //创建一个阶梯曲线
 
 cubicBezierCurve(x1: number, y1: number, x2: number, y2: number): ICurve
 
-
 构造三阶贝塞尔曲线对象，曲线的值必须处于0-1之间。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -134,8 +139,9 @@ Curves.cubicBezierCurve(0.1, 0.0, 0.1, 1.0) // 创建一个三阶贝塞尔曲线
 
 springCurve(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
-
 构造弹簧曲线对象，曲线形状由弹簧参数决定，动画时长受animation、animateTo中的duration参数控制。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -168,6 +174,8 @@ Curves.springCurve(10, 1, 228, 30) // 创建一个弹簧插值曲线
 springMotion(response?: number, dampingFraction?: number, overlapDuration?: number): ICurve
 
 构造弹性动画曲线对象。如果对同一对象的同一属性进行多个弹性动画，每个动画会替换掉前一个动画，并继承之前的速度。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -203,6 +211,8 @@ responsiveSpringMotion(response?: number, dampingFraction?: number, overlapDurat
 
 构造弹性跟手动画曲线对象，是[springMotion](#curvesspringmotion9)的一种特例，仅默认参数不同，可与springMotion混合使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -231,8 +241,9 @@ Curves.responsiveSpringMotion() // 创建一个默认弹性跟手动画曲线
 
 interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
-
 构造插值器弹簧曲线对象，生成一条从0到1的动画曲线，实际动画值根据曲线进行插值计算。动画时间由曲线参数决定，不受animation、animateTo中的duration参数控制。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -263,6 +274,8 @@ customCurve(interpolate: (fraction: number) => number): ICurve
 
 构造自定义曲线对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -287,8 +300,6 @@ let interpolate = (fraction:number):number => {
 let curve = Curves.customCurve(interpolate) // 创建一个用户自定义插值曲线
 ```
 
-
-
 ## ICurve
 
 
@@ -299,6 +310,8 @@ interpolate(fraction:&nbsp;number): number
 插值曲线的插值计算函数，可以通过传入的归一化时间参数返回当前的插值
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 

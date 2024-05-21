@@ -20,13 +20,13 @@
 
 | 指定用户的接口 | 说明 | 不指定用户的接口示例参考 |
 | -------- | -------- | ----------| 
-| [generateKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksgeneratekeyitemasuser12)              |   生成密钥。           |  [generateKeyItem](huks-key-generation-arkts.md)             |
-| [deleteKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksdeletekeyitemasuser12)                  |   删除密钥。           |  [deleteKeyItem](huks-delete-key-arkts.md)               |
-| [importKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksimportkeyitemasuser12)                  |   明文导入密钥。      |  [importKeyItem](huks-import-key-in-plaintext-arkts.md)                |
-| [importWrappedKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksimportwrappedkeyitemasuser12)    |  加密导入密钥。        |  [importWrappedKeyItem](huks-import-wrapped-key-arkts.md)             |
-| [exportKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksexportkeyitemasuser12)                  |   导出密钥。        |  [exportKeyItem](huks-export-key-arkts.md)                |
-| [getKeyItemPropertiesAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksgetkeyitempropertiesasuser12)    |  获取密钥属性。     |  [getKeyItemProperties](huks-obtain-key-properties-arkts.md)             |
-| [hasKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#hukshaskeyitemasuser12)                        |  查询密钥是否存在。    |  [hasKeyItem](huks-check-key-arkts.md)               |
-| [initSessionAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksinitsessionasuser12)                      |  初始化密钥会话。       |  initSession   [加密解密](huks-encryption-decryption-arkts.md) [签名验签](huks-signing-signature-verification-arkts.md) [密钥协商](huks-key-agreement-arkts.md) [密钥派生](huks-key-derivation-arkts.md)           |
-| [attestKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksattestkeyitemasuser12)                  |  非匿名密钥证明。    |  [attestKeyItem](huks-key-attestation-arkts.md)                |
-| [anonAttestKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksanonattestkeyitemasuser12)          | 匿名密钥证明。     |  [anonAttestKeyItem](huks-key-anon-attestation-arkts.md)                |
+| [generateKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksgeneratekeyitemasuser)              |   生成密钥。           |  [generateKeyItem](huks-key-generation-arkts.md)             |
+| [deleteKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksdeletekeyitemasuser)                  |   删除密钥。           |  [deleteKeyItem](huks-delete-key-arkts.md)               |
+| [importKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksimportkeyitemasuser)                  |   明文导入密钥。      |  [importKeyItem](huks-import-key-in-plaintext-arkts.md)                |
+| [importWrappedKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksimportwrappedkeyitemasuser)    |  加密导入密钥。        |  [importWrappedKeyItem](huks-import-wrapped-key-arkts.md)             |
+| [exportKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksexportkeyitemasuser)                  |   导出密钥。        |  [exportKeyItem](huks-export-key-arkts.md)                |
+| [getKeyItemPropertiesAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksgetkeyitempropertiesasuser)    |  获取密钥属性。     |  [getKeyItemProperties](huks-obtain-key-properties-arkts.md)             |
+| [hasKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#hukshaskeyitemasuser)                        |  查询密钥是否存在。    |  [hasKeyItem](huks-check-key-arkts.md)               |
+| [initSessionAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksinitsessionasuser)                      |  初始化密钥会话。       |  initSession   [加密解密](huks-encryption-decryption-arkts.md) [签名验签](huks-signing-signature-verification-arkts.md) [密钥协商](huks-key-agreement-arkts.md) [密钥派生](huks-key-derivation-arkts.md)           |
+| [attestKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksattestkeyitemasuser)                  |  非匿名密钥证明。    |  [attestKeyItem](huks-key-attestation-arkts.md)                |
+| [anonAttestKeyItemAsUser](../../reference/apis-universal-keystore-kit/js-apis-huks-sys.md#huksanonattestkeyitemasuser)          | 匿名密钥证明。     |  [anonAttestKeyItem](huks-key-anon-attestation-arkts.md)                |

@@ -11,7 +11,7 @@ The **stationary** module provides APIs to report the device status, including a
 ## Modules to Import
 
 ```ts
-import stationary from '@ohos.stationary'
+import { stationary } from '@kit.MultimodalAwarenessKit';
 ```
 
 ## ActivityResponse

@@ -10,7 +10,8 @@
 > **说明：**
 >
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
-
+>
+> 从API version 11开始，这两个装饰器支持在元服务中使用。
 
 ## 概述
 
@@ -175,6 +176,8 @@ struct CompA {
 3. 当\@Consume装饰的数据变化时：
 
    通过初始渲染的步骤可知，子组件\@Consume持有\@Provide的实例。在\@Consume更新后调用\@Provide的更新方法，将更新的数值同步回\@Provide，以此实现\@Consume向\@Provide的同步更新。
+
+![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
 
 
 ## 使用场景

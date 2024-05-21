@@ -3,7 +3,7 @@
 ## 概述
 
 
-本文主要提供应用性能敏感场景下的高性能编程的相关建议，助力开发者开发出高性能的应用。高性能编程实践，是在开发过程中逐步总结出来的一些高性能的写法和建议，在业务功能实现过程中，我们要同步思考并理解高性能写法的原理，运用到代码逻辑实现中。ArkTS编程规范可参考[ArkTS编程规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。
+本文主要提供应用性能敏感场景下的高性能编程的相关建议，助力开发者开发出高性能的应用。高性能编程实践，是在开发过程中逐步总结出来的一些高性能的写法和建议，在业务功能实现过程中，我们要同步思考并理解高性能写法的原理，运用到代码逻辑实现中。<!--Del-->ArkTS编程规范可参考[ArkTS编程规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。<!--DelEnd-->
 
 ## 声明与表达式
 
@@ -25,7 +25,7 @@ let intNum = 1;
 intNum = 1.1;  // 该变量在声明时为整型数据，建议后续不要赋值浮点型数据
 
 let doubleNum = 1.1;
-doubleNum = 1.1;  // 该变量在声明时为浮点型数据，建议后续不要赋值整型数据
+doubleNum = 1;  // 该变量在声明时为浮点型数据，建议后续不要赋值整型数据
 ```
 
 
@@ -59,7 +59,6 @@ function getNum(num: number): number {
 ```
 
 优化后代码如下，可以将`Time.info[num - Time.start]`进行常量提取操作，这样可以大幅减少属性的访问次数，性能收益明显。
-
 
 ``` TypeScript
 class Time {
@@ -135,7 +134,6 @@ function add(left: number = 0, right: number = 0): number {
 
 如果是涉及纯数值计算的场合，推荐使用TypedArray数据结构。
 
-
 优化前
 ``` TypeScript
 const arr1 = new Array<number>([1, 2, 3]);
@@ -187,4 +185,56 @@ let arrUnion: (number | string)[] = [1, 'hello'];  // 联合类型数组
 let arrInt: number[] = [1, 2, 3];
 let arrDouble: number[] = [0.1, 0.2, 0.3];
 let arrString: string[] = ['hello', 'world'];
+```
+
+
+## 异常
+
+### 10. 避免频繁抛出异常
+
+创建异常时会构造异常的栈帧，造成性能损耗。在性能敏感场景下，例如在`for`循环语句中，避免频繁抛出异常。
+
+优化前
+
+``` TypeScript
+function div(a: number, b: number): number {
+  if (a <= 0 || b <= 0) {
+    throw new Error('Invalid numbers.')
+  }
+  return a / b
+}
+
+function sum(num: number): number {
+  let sum = 0
+  try {
+    for (let t = 1; t < 100; t++) {
+      sum += div(t, num)
+    }
+  } catch (e) {
+    console.log(e.message)
+  }
+  return sum
+}
+```
+
+优化后
+
+``` TypeScript
+function div(a: number, b: number): number {
+  if (a <= 0 || b <= 0) {
+    return NaN
+  }
+  return a / b
+}
+
+function sum(num: number): number {
+  let sum = 0
+  for (let t = 1; t < 100; t++) {
+    if (t <= 0 || num <= 0) {
+      console.log('Invalid numbers.')
+    }
+    sum += div(t, num)
+  }
+  return sum
+}
 ```

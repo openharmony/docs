@@ -39,6 +39,7 @@ Enumerates the resource information flags, which indicate the type of resource i
 | GET_RESOURCE_INFO_WITH_LABEL          | 0x00000002 | Only the application label is obtained.|
 | GET_RESOURCE_INFO_WITH_ICON           | 0x00000004 | Only the application icon is obtained.|
 | GET_RESOURCE_INFO_WITH_SORTED_BY_LABEL| 0x00000008 | The obtained information is sorted by label. It must be used together with **GET_RESOURCE_INFO_ALL** or **GET_RESOURCE_INFO_WITH_LABEL**.|
+| GET_RESOURCE_INFO_WITH_DRAWABLE_DESCRIPTOR<sup>12+</sup>| 0x00000010 | The [drawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md) object of the application icon is obtained.|
 
 
 ## APIs
@@ -75,6 +76,9 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 
@@ -126,6 +130,9 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 
 
@@ -164,6 +171,16 @@ Obtains resource information of all applications based on the given resource fla
 | ----------- | ------ | ---- | --------------------- |
 | resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
 | callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the application obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **Example**
 
@@ -210,6 +227,16 @@ Obtains resource information of all applications based on the given resource fla
 | ------------------------------------------------------------ | -------------------------------- |
 | Promise\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>> | Promise used to return the resource information of the application obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **Example**
 
 ```ts
@@ -248,6 +275,15 @@ Obtains resource information of the entry abilities of all applications based on
 | resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
 | callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the entry abilities obtained. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **Example**
 
@@ -293,6 +329,16 @@ Obtains resource information of the entry abilities of all applications based on
 | Type                                                        | Description                            |
 | ------------------------------------------------------------ | -------------------------------- |
 | Promise\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>> | Promise used to return the resource information of the entry abilities obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **Example**
 ```ts

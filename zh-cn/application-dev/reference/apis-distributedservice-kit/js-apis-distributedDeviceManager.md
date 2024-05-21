@@ -19,11 +19,11 @@
 ## 导入模块
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 ```
 
 
-## deviceManager.createDeviceManager
+## distributedDeviceManager.createDeviceManager
 
 createDeviceManager(bundleName: string): DeviceManager;
 
@@ -43,21 +43,29 @@ createDeviceManager(bundleName: string): DeviceManager;
   | ------------------------------------------- | --------- |
   | [DeviceManager](#devicemanager) | 返回设备管理器对象实例。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
+
 **示例：**
 
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
   } catch(err) {
     let e: BusinessError = err as BusinessError;
     console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
-## deviceManager.releaseDeviceManager
+## distributedDeviceManager.releaseDeviceManager
 
 releaseDeviceManager(deviceManager: DeviceManager): void;
 
@@ -75,21 +83,23 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import deviceManager from '@ohos.distributedDeviceManager';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-    deviceManager.releaseDeviceManager(dmInstance);
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+    distributedDeviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('release device manager errCode:' + e.code + ',errMessage:' + e.message);
@@ -148,21 +158,23 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+    let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
@@ -187,21 +199,22 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<deviceManager.DeviceBasicInfo>) => {
+    dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
       if (err) {
         console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
         return;
@@ -232,20 +245,21 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  dmInstance.getAvailableDeviceList().then((data: Array<deviceManager.DeviceBasicInfo>) => {
+  dmInstance.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
@@ -270,17 +284,18 @@ getLocalDeviceNetworkId(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
@@ -309,17 +324,18 @@ getLocalDeviceName(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceName: string = dmInstance.getLocalDeviceName();
@@ -348,17 +364,18 @@ getLocalDeviceType(): number;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceType: number = dmInstance.getLocalDeviceType();
@@ -387,17 +404,18 @@ getLocalDeviceId(): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceId: string = dmInstance.getLocalDeviceId();
@@ -432,17 +450,19 @@ getDeviceName(networkId: string): string;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
@@ -479,17 +499,19 @@ getDeviceType(networkId: string): number;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
@@ -521,18 +543,20 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Discovery repeats.                                              |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   interface DiscoverParam {
     discoverTargetType: number;
@@ -572,18 +596,20 @@ stopDiscovering(): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Stop discovery repeats.                                         |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     dmInstance.stopDiscovering();
@@ -613,18 +639,20 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
 | 11600103 | Bind invalid.                                                   |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     deviceId: string = '';
@@ -672,17 +700,19 @@ unbindTarget(deviceId: string): void;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceId = 'XXXXXXXX';
@@ -710,16 +740,25 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
   | type     | string                                   | 是    | 注册设备状态回调，固定为deviceStateChange。 |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
-    action: deviceManager.DeviceStateChange = 0;
-    device: deviceManager.DeviceBasicInfo = {
+    action: distributedDeviceManager.DeviceStateChange = 0;
+    device: distributedDeviceManager.DeviceBasicInfo = {
       deviceId: '',
       deviceName: '',
       deviceType: '',
@@ -754,16 +793,25 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调，固定为deviceStateChange。        |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange),&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
-    action: deviceManager.DeviceStateChange = 0;
-    device: deviceManager.DeviceBasicInfo = {
+    action: distributedDeviceManager.DeviceStateChange = 0;
+    device: distributedDeviceManager.DeviceBasicInfo = {
       deviceId: '',
       deviceName: '',
       deviceType: '',
@@ -798,15 +846,24 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
   | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序，固定为discoverSuccess。 |
   | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
-    device: deviceManager.DeviceBasicInfo = {
+    device: distributedDeviceManager.DeviceBasicInfo = {
       deviceId: '',
       deviceName: '',
       deviceType: '',
@@ -841,14 +898,23 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
   | type     | string                                   | 是    | 取消注册设备发现回调，固定为discoverSuccess。                 |
   | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
-    device: deviceManager.DeviceBasicInfo = {
+    device: distributedDeviceManager.DeviceBasicInfo = {
       deviceId: '',
       deviceName: '',
       deviceType: '',
@@ -883,11 +949,20 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
   | type     | string                                   | 是    | 注册设备名称改变回调，以便在设备名称改变时通知应用程序，固定为deviceNameChange。 |
   | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | 是    | 注册设备名称改变的回调方法。                 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     deviceName: string = '';
@@ -920,11 +995,20 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
   | type     | string                                   | 是    | 取消注册设备名称改变回调，固定为deviceNameChange。 |
   | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | 否    | 指示要取消注册设备名称改变的回调方法。                 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     deviceName: string = '';
@@ -957,11 +1041,20 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
   | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序，固定为discoverFailure。 |
   | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     reason: number = 0;
@@ -994,11 +1087,20 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
   | type     | string                                   | 是    | 取消注册设备发现失败回调，固定为discoverFailure。     |
   | callback | Callback&lt;{&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     reason: number = 0;
@@ -1031,11 +1133,20 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
   | type     | string                  | 是    | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序，固定为serviceDie。 |
   | callback | Callback&lt;{}&gt; | 否    | 注册serviceDie的回调方法。                       |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     dmInstance.on('serviceDie', () => {
@@ -1064,11 +1175,20 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
   | type     | string                  | 是    | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序，固定为serviceDie。 |
   | callback | Callback&lt;{}&gt; | 否    | 取消注册serviceDie的回调方法。                     |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
+
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     dmInstance.off('serviceDie', () => {

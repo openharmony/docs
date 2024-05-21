@@ -69,6 +69,16 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注册监听的事件类型。 |
 | callback | callback\<BundleChangedInfo>| 是   | 注册监听的回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
 ```ts
@@ -104,6 +114,16 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| [BundleChangedEvent](js-apis-bundleMonitor-sys.md#bundlechangedevent)| 是   | 注销监听的事件类型。                                         |
 | callback | callback\<BundleChangedInfo>| 否   | 注销监听的回调函数，默认值：注销当前事件的所有callback。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 

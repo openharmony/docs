@@ -16,6 +16,8 @@
 
 TextInput(value?: TextInputOptions)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 |类型|必填|说明|
@@ -23,6 +25,9 @@ TextInput(value?: TextInputOptions)
 | value | [TextInputOptions](#textinputoptions对象说明) | 否  | TextInput组件参数。 |
 
 ## TextInputOptions对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名                     | 参数类型                                     | 必填   | 参数描述                                     |
 | ----------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | placeholder             | [ResourceStr](ts-types.md#resourcestr)   | 否    | 设置无输入时的提示文本。                             |
@@ -39,6 +44,8 @@ type(value: InputType)
 
 设置输入框类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -52,6 +59,8 @@ type(value: InputType)
 contentType(value: ContentType)
 
 设置自动填充类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,6 +76,8 @@ placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -80,6 +91,8 @@ placeholderColor(value: ResourceColor)
 placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,6 +108,8 @@ enterKeyType(value: EnterKeyType)
 
 设置输入法回车键类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -108,6 +123,8 @@ enterKeyType(value: EnterKeyType)
 caretColor(value: ResourceColor)
 
 设置输入框光标颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -126,6 +143,8 @@ maxLength(value: number)
 
 设置文本的最大输入字符数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -141,6 +160,8 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
 
 从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -159,6 +180,8 @@ copyOption(value: CopyOptions)
 
 copyOption对于拖拽，只限制是否选中，不涉及拖拽范围。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -173,6 +196,8 @@ showPasswordIcon(value: boolean)
 
 设置当密码输入模式时，输入框末尾的图标是否显示。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -186,6 +211,8 @@ showPasswordIcon(value: boolean)
 style(value: TextInputStyle &nbsp;|&nbsp;TextContentStyle)
 
 设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -205,6 +232,8 @@ textAlign(value: TextAlign)
 
 可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -219,6 +248,8 @@ selectedBackgroundColor(value: ResourceColor)
 
 设置文本选中底板颜色。如果未设置不透明度，默认为20%不透明度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -227,14 +258,13 @@ selectedBackgroundColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
 
->  **说明：**     
->   从API version 12开始，如果文本选中底板未设置颜色，默认使用光标颜色，如果光标颜色有透明度，文本选中底板颜色透明度在光标颜色透明度的基础上再叠加20%。例如，光标颜色透明度为50%，文本选中底板颜色透明度为10%。如果文本选中底板设置颜色，显示设置颜色和透明度。
-
 ### caretStyle<sup>10+</sup>
 
 caretStyle(value: CaretStyle)
 
 设置光标风格。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -242,13 +272,15 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| value  | [CaretStyle](#caretstyle10对象说明) | 是   | 光标的风格。 |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标的风格。 |
 
 ### caretPosition<sup>10+</sup>
 
 caretPosition(value: number)
 
 设置光标位置。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -264,6 +296,8 @@ showUnit(value: CustomBuilder)
 
 设置控件作为文本框单位。需搭配showUnderline使用，当[showUnderline](#showunderline10)为true时生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -278,7 +312,9 @@ showError(value?: string | undefined)
 
 设置错误状态下提示的错误文本或者不显示错误状态。
 
-当参数类型为string并且输入内容不符合定义规范时，提示错误文本。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
+当参数类型为string并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -293,6 +329,8 @@ showError(value?: string | undefined)
 showUnderline(value: boolean)
 
 设置是否开启下划线。下划线默认颜色为'#33182431'，默认粗细为1px，文本框尺寸48vp，下划线只支持InputType.Normal类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -320,6 +358,8 @@ passwordIcon(value: PasswordIcon)
 
 设置当密码输入模式时，输入框末尾的图标。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -336,6 +376,8 @@ enableKeyboardOnFocus(value: boolean)
 
 从API version 10开始，获焦默认绑定输入法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -349,6 +391,8 @@ enableKeyboardOnFocus(value: boolean)
 selectionMenuHidden(value: boolean)
 
 设置长按、双击输入框或者右键输入框时，是否不弹出文本选择菜单。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -364,6 +408,8 @@ barState(value: BarState)
 
 设置内联输入风格编辑态时滚动条的显示模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -377,6 +423,8 @@ barState(value: BarState)
 maxLines(value: number)
 
 设置内联输入风格编辑态时文本可显示的最大行数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -408,16 +456,18 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 **参数：** 
 
-| 参数名                | 类型                                        | 必填 | 说明                             |
-| --------------------- | ------------------------------------------- | ---- | -------------------------------- |
-| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     |
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
+| 参数名                | 类型                                        | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。                             |
 
 ### enableAutoFill<sup>11+</sup>
 
 enableAutoFill(value: boolean)
 
 设置是否启用自动填充。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -433,6 +483,8 @@ passwordRules(value: string)
 
 定义生成密码的规则。在触发自动填充时，所设置的密码规则会透传给密码保险箱，用于新密码的生成。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -447,6 +499,8 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 设置右侧清除按钮样式。不支持内联模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -460,6 +514,8 @@ cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 selectAll(value: boolean)
 
 设置当初始状态，是否全选文本。不支持内联模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -477,9 +533,11 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
 
-当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。
+当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
 
 TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -489,13 +547,6 @@ TextInput组件显示边框需要设置为下划线模式，内联模式和密�
 | --------------------- | ----------------------------------------------------- | ---- | ---------------- |
 | value                 | boolean                                               | 是   | 是否显示计数器。 |
 | options<sup>11+</sup> | [InputCounterOptions](#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
-
->  **说明：**    
->  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> } 
->  
->  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: 12 vp,<br>&nbsp;right: 0 vp,<br>&nbsp;bottom: 12 vp,<br>&nbsp;left: 0 vp<br> }
->
->   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ### lineHeight<sup>12+</sup>
 
@@ -515,7 +566,7 @@ lineHeight(value: number | string | Resource)
 
 decoration(value: TextDecorationOptions)
 
-设置文本装饰线样式及其颜色。
+设置文本装饰线类型样式及其颜色。密码模式不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -523,7 +574,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -591,11 +642,11 @@ wordBreak(value: WordBreak)
 
 textOverflow(value: TextOverflow)
 
-设置文本超长时的显示方式。
+设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
 
 文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。建议优先组合wordBreak属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断。
 
-当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
+当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
 **卡片能力：** 该接口支持在ArkTS卡片中使用。
 
@@ -603,13 +654,12 @@ textOverflow(value: TextOverflow)
 
 **参数：** 
 
-| 参数名 | 类型                                                          | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>Inline模式下默认值：TextOverflow.Ellipsis，否则为TextOverflow.Clip                     |
+| 参数名 | 类型                                                          | 必填 | 说明                                                                                                |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip                     |
 
 >  **说明：**  
->   TextInput组件 InLine模式下支持TextOverflow.CLIP、TextOverflow.ELLIPSIS，其余模式下只支持显示TextOverflow.Clip
->   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 Inline模式下显示为TextOverflow.Ellipsis，否则显示为TextOverflow.Clip
+>   TextInput组件不支持设置TextOverflow.MARQUEE模式,当设置为TextOverflow.MARQUEE模式时 内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip
 
 ### textIndent<sup>12+</sup>
 
@@ -621,9 +671,9 @@ textIndent(value: Dimension)
 
 **参数：** 
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | Dimension                   | 是   | 首行文本缩进。<br/>默认值：0 |
+| 参数名 | 类型                                  | 必填 | 说明                         |
+| ------ | ------------------------------------ | ---- | ---------------------------- |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 首行文本缩进。<br/>默认值：0 |
 
 ### minFontSize<sup>12+</sup>
 
@@ -682,35 +732,74 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 是   | 文本自适应高度的方式。<br/>默认值：TextHeightAdaptivePolicy.MAX_LINES_FIRST |
 
-## CaretStyle<sup>10+</sup>对象说明
-| 参数名 | 类型  | 必填 | 说明  |
-| ------ | -------- | ---- | ------------------------------------------- |
-| width  | [Length](ts-types.md#length) | 否  | 光标尺寸，不支持百分比设置。 |
+### showPassword<sup>12+</sup>
+
+showPassword(visible: boolean)
+
+设置密码的显隐状态。
+
+需组合密码模式才能生效，非密码输入模式不生效。
+
+由于小眼睛图标内置更新密码模式的状态，建议在[onSecurityStateChange](#onsecuritystatechange12)上增加状态同步。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| visible  | boolean | 是  | 是否显示密码。<br/>默认值：false |
+
+### lineBreakStrategy<sup>12+</sup>
+
+lineBreakStrategy(value: LineBreakStrategy)
+
+设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/> 非Inline模式该属性不生效 |
+
+>  **说明：**    
+>  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
+>  
+>  输入框开启下划线模式时，通用属性padding的默认值为：<br>{<br>&nbsp;top: '12vp',<br>&nbsp;right: '0vp',<br>&nbsp;bottom: '12vp',<br>&nbsp;left: '0vp'<br> }
+>
+>   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
 
 ## TextDecorationOptions<sup>12+</sup>对象说明
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
+| type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线类型。 |
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
+| style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
 
 ## InputType枚举说明
 
-| 名称                                 | 描述                                       |
-| ---------------------------------- | ---------------------------------------- |
-| Normal                             | 基本输入模式，无特殊限制。                            |
-| Password                           | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。 |
-| Email                              | 邮箱地址输入模式。支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。 |
-| Number                             | 纯数字输入模式。                                 |
-| PhoneNumber<sup>9+</sup>           | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。      |
-| USER_NAME<sup>11+<sup>             | 用户名输入模式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。                |
-| NEW_PASSWORD<sup>11+<sup>          | 新密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。                                 |
-| NUMBER_PASSWORD<sup>11+</sup>      | 纯数字密码输入模式。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。 |
-| NUMBER_DECIMAL<sup>11+</sup>       | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。         |
+| 名称                          | 描述                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| Normal                        | 基本输入模式，无特殊限制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Password                      | 密码输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Email                         | 邮箱地址输入模式。<br/>支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Number                        | 纯数字输入模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| PhoneNumber<sup>9+</sup>      | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| USER_NAME<sup>11+</sup>       | 用户名输入模式。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NEW_PASSWORD<sup>11+</sup>    | 新密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
 
 自动填充类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                       | 值   | 描述                                                         |
 | -------------------------- | ---- | ------------------------------------------------------------ |
@@ -738,6 +827,8 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述                                       |
 | ------- | ---------------------------------------- |
 | Default | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。      |
@@ -745,10 +836,12 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
 ## PasswordIcon<sup>10+</sup>对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                                       | 必填   | 描述                        |
 | ---------- | ---------------------------------------- | ---- | ------------------------- |
-| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
-| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
+| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
 ## 事件
 
@@ -768,6 +861,8 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 3、键盘快捷键Ctrl+v。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -778,9 +873,11 @@ onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 ### onSubmit
 
-onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void)
+onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent&nbsp;=&gt;&nbsp;void))
 
 按下输入法回车键触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -813,6 +910,8 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -826,6 +925,8 @@ onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -841,6 +942,8 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -854,6 +957,8 @@ onCut(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 onPaste(callback:(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -870,6 +975,8 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 文本选择的位置发生变化时，触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -885,6 +992,8 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 文本内容滚动时，触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -894,9 +1003,25 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 | totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
 | totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
 
+### onSecurityStateChange<sup>12+</sup>
+
+onSecurityStateChange(callback: Callback\<boolean>)
+
+密码显隐状态切换时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名       | 类型   | 必填 | 说明                               |
+| ------------ | ------ | ---- | ---------------------------------- |
+| callback | Callback\<boolean> | 是   | 回调函数。|
+
 ## TextInputController<sup>8+</sup>
 
 TextInput组件的控制器。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ### 导入对象
 ```
@@ -907,6 +1032,8 @@ controller: TextInputController = new TextInputController()
 caretPosition(value:&nbsp;number): void
 
 设置输入光标的位置。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -919,18 +1046,20 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 
 设置文本选择区域并高亮显示。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名            | 参数类型   | 必填   | 参数描述                      |
 | -------------- | ------ | ---- | ------------------------- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
-| selectionEnd   | number | 是    | 文本选择区域结束位置。               |
-| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT。 |
+| selectionEnd   | number | 是    | 文本选择区域结束位置。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在元服务中使用。 |
 >  **说明：**
 >
 >  如果selectionStart或selectionEnd被赋值为undefined时，当作0处理。
 >
->  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.ALWAYS，调用setTextSelection也不弹出菜单。
+>  如果selectionMenuHidden被赋值为true或设备为2in1时，即使options被赋值为MenuPolicy.SHOW，调用setTextSelection也不弹出菜单。
 
 ### stopEditing<sup>10+</sup>
 
@@ -938,11 +1067,15 @@ stopEditing(): void
 
 退出编辑态。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### getTextContentRect<sup>10+</sup>
 
 getTextContentRect(): [RectResult](#rectresult10)
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -973,6 +1106,8 @@ getTextContentLineCount(): number
 
 获取已编辑文本内容的行数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型     | 说明         |
@@ -983,6 +1118,8 @@ getTextContentLineCount(): number
 getCaretOffset(): CaretOffset
 
 返回当前光标所在位置信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -995,6 +1132,9 @@ getCaretOffset(): CaretOffset
 > - 在当前帧更新光标位置同时调用该接口，该接口不生效。
 
 ## CaretOffset<sup>11+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名   | 类型     | 描述             |
 | ----- | ------ | -------------- |
 | index | number | 光标所在位置的索引值。    |
@@ -1002,6 +1142,8 @@ getCaretOffset(): CaretOffset
 | y     | number | 光标相对输入框的y坐标位值，单位px。 |
 
 ## InputCounterOptions<sup>11+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 参数名              | 类型    | 描述                                                         |
 | ------------------- | ------- | ------------------------------------------------------------ |
@@ -1012,19 +1154,9 @@ getCaretOffset(): CaretOffset
 
 setTextSelection选中文字时的配置。
 
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| NEVER   | 始终不弹出菜单。         |
-| ALWAYS  | 始终弹出菜单。           |
+| 名称       | 类型                                            | 必填 | 说明             |
+| ---------- | ----------------------------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
 
 ## UnderlineColor<sup>12+</sup>对象说明
 
@@ -1054,6 +1186,7 @@ setTextSelection选中文字时的配置。
 struct TextInputExample {
   @State text: string = ''
   @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
+  @State passwordState: boolean = false
   controller: TextInputController = new TextInputController()
 
   build() {
@@ -1093,6 +1226,12 @@ struct TextInputExample {
         .type(InputType.Password)
         .maxLength(9)
         .showPasswordIcon(true)
+        .showPassword(this.passwordState)
+        .onSecurityStateChange(((isShowPassword: boolean) => {
+          // 更新密码显示状态
+          console.info('isShowPassword',isShowPassword)
+          this.passwordState = isShowPassword
+        }))
       // 邮箱地址自动填充类型
       TextInput({ placeholder: 'input your email...' })
         .width('95%')
@@ -1480,12 +1619,12 @@ struct TextInputExample {
         TextInput({text: 'LineThrough, Red'})
           .border({ width: 1 }).padding(5).margin(5)
           .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextInput({text: 'Overline, Red'})
+        TextInput({text: 'Overline, Red, DASHED'})
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red})
-        TextInput({text: 'Underline, Red'})
+          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED})
+        TextInput({text: 'Underline, Red, WAVY'})
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red})
+          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
       }.height('90%')
     }
     .width('90%')
@@ -1632,3 +1771,50 @@ struct TextInputExample {
 ```
 
 ![TextInputAdaptFont](figures/textinput_adapt_font.png)
+
+### 示例13
+lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+
+```ts
+@Entry
+@Component
+struct TextExample1 {
+  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.GREEDY)
+      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
+      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      TextInput({text: this.message1})
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .maxLines(5)
+        .style(TextInputStyle.Inline)
+        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+    }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textInputLineBreakStrategy](figures/textInputLineBreakStrategy.PNG)

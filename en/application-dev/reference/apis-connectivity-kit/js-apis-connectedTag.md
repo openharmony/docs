@@ -238,7 +238,7 @@ Writes data to this active tag. This API uses a promise to return the result.
 import connectedTag from '@ohos.connectedTag';
 import { BusinessError } from '@ohos.base';
 
-let rawData = "010203"; // change it tobe correct.
+let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
     console.log("connectedTag writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
@@ -281,7 +281,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import connectedTag from '@ohos.connectedTag';
 import { BusinessError } from '@ohos.base';
 
-let rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
     console.log("connectedTag write NdefTag Promise success.");
 }).catch((err: BusinessError)=> {
@@ -311,7 +311,7 @@ Writes data to this active tag. This API uses an asynchronous callback to return
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-let rawData = "010203"; // change it tobe correct.
+let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
         console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
@@ -350,7 +350,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-let rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
     if (err) {
         console.log("connectedTag write NdefTag AsyncCallback err: " + err);

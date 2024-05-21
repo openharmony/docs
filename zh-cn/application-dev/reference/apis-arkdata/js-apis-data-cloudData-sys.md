@@ -49,20 +49,28 @@ import cloudData from '@ohos.data.cloudData';
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
-| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名和数据库表名，其中accountId和bundleName不能为空。 |
+| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名、数据库类型和数据库表名，所有字段均不能为空。
 
 **样例：**
 
 ```ts
-//token:用于校验应用信息
 //accountId:用户打开的云帐号ID
 //bundleName:应用包名
 //containerName:云上数据库名称
-//containerName:云上数据库表名
+//databaseScopes:云上数据库类型
+//recordTypes:云上数据库表名
 
 interface ExtraData {
   eventId: "cloud_data_change",
-  extraData: '{"header": { "token": "bbbbbb" },"data": {"accountId": "aaa","bundleName": "com.bbb.xxx","containerName": "alias","recordTypes": ["xxx", "yyy", "zzz",] }}'
+  extraData: '{
+    "data": "{
+     "accountId": "aaa",
+     "bundleName": "com.bbb.xxx",
+     "containerName": "alias",
+     "databaseScopes": ["private", "shared"],
+     "recordTypes": ["xxx", "yyy", "zzz"]
+    }"
+  }'
 }
 
 ```
@@ -79,6 +87,18 @@ interface ExtraData {
 | inserted   | number | 是   | 本地新增且云端还未同步数据的条数，如返回值为2，表示本地新增2条数据且云端还未同步。          |
 | updated   | number | 是   | 云端同步之后本地或云端修改还未同步的条数，如返回值为2，表示本地或云端修改还有2条数据未同步。     |
 | normal | number | 是   | 端云一致的数据。如返回值为2，表示本地与云端一致的数据为2条。                     |
+
+## SyncInfo<sup>12+</sup>
+
+返回数据，上一次端云同步所需要的信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称       | 类型                                                         | 必填 | 说明                       |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| startTime  | Date                                                         | 是   | 上一次端云同步的开始时间。 |
+| finishTime | Date                                                         | 是   | 上一次端云同步的结束时间。 |
+| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 上一次端云同步过程的状态。 |
 
 ## Config
 
@@ -429,7 +449,7 @@ try {
 import { BusinessError } from '@ohos.base';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 try {
   cloudData.Config.notifyDataChange({
     eventId: eventId, extraData: extraData
@@ -468,7 +488,7 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 import { BusinessError } from '@ohos.base';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 let userId: number = 100;
 try {
   cloudData.Config.notifyDataChange({
@@ -515,7 +535,7 @@ try {
 import { BusinessError } from '@ohos.base';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 let userId: number = 100;
 try {
   cloudData.Config.notifyDataChange({
@@ -571,7 +591,52 @@ cloudData.Config.queryStatistics(accountId, bundleName, storeId).then((result) =
 });
 ```
 
+### queryLastSyncInfo<sup>12+</sup>
+
+static queryLastSyncInfo(accountId: string, bundleName: string, storeId?: string): Promise&lt;Record<string, SyncInfo>>
+
+查询上一次端云同步信息，使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| ---------- | ------ | ---- | ------------------------------------------------------------ |
+| accountId  | string | 是   | 具体打开的云帐号ID。                                         |
+| bundleName | string | 是   | 应用包名。                                                   |
+| storeId    | string | 否   | 数据库名称。默认值为空字符串，此时查询当前应用下所有数据库上一次端云同步信息。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                         |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| Promise&lt;Record&lt;string, [SyncInfo](#syncinfo12)&gt;&gt; | 返回数据库名以及上一次端云同步的信息结果集。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+const accountId:string = "accountId";
+const bundleName:string = "bundleName";
+const storeId:string = "storeId";
+try {
+    cloudData.Config.queryLastSyncInfo(accountId, bundleName, storeId).then((result) => {
+    	console.info(`Succeeded in querying last syncinfo. Info is ${JSON.stringify(result)}`);
+	}).catch((err: BusinessError) => {
+    	console.error(`Failed to query last syncinfo. Error code is ${err.code}, message is ${err.message}`);
+	});
+} catch(e) {
+    let error = e as BusinessError;
+  	console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ### setGlobalCloudStrategy<sup>12+</sup>
+
 static setGlobalCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&gt;): Promise&lt;void&gt;
 
 设置全局云同步策略，使用Promise异步回调。
@@ -721,6 +786,7 @@ try {
 | STATE_ACCEPTED   | 1    | 端云共享已接受。请使用枚举名称而非枚举值。 |
 | STATE_REJECTED   | 2    | 端云共享被拒绝。请使用枚举名称而非枚举值。 |
 | STATE_SUSPENDED  | 3    | 端云共享被暂时挂起，未作处理。请使用枚举名称而非枚举值。 |
+| STATE_UNAVAILABLE<sup>12+</sup>   | 4    | 端云共享不可用。请使用枚举名称而非枚举值。 |
 
 ### SharingCode<sup>11+</sup>
 

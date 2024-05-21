@@ -16,6 +16,8 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 表示颜色模式的枚举。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称 | 值 | 说明 | 
@@ -29,6 +31,8 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 表示屏幕方向的枚举。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称 | 值 | 说明 | 
@@ -41,6 +45,8 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 ## ConfigurationConstant.ScreenDensity
 
 表示屏幕像素的枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 

@@ -28,8 +28,6 @@ Enumerates the window modes in which an ability can be displayed at startup. It 
 | ---                         | --- | ---                  |
 | WINDOW_MODE_UNDEFINED       | 0   | Undefined window mode.      |
 | WINDOW_MODE_FULLSCREEN      | 1   | The ability is displayed in full screen.           |
-| WINDOW_MODE_SPLIT_PRIMARY   | 100 | The left screen in horizontal direction or the upper screen in vertical direction is the primary window.  |
-| WINDOW_MODE_SPLIT_SECONDARY | 101 | The right screen in horizontal direction or the lower screen in vertical direction is the secondary window.  |
 | WINDOW_MODE_FLOATING        | 102 | The ability is displayed in a floating window.|
 
 **Example**

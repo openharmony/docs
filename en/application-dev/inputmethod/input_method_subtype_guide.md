@@ -1,4 +1,4 @@
-# Input Method Subtype Development
+# Setting Input Method Subtypes
 
 The input method subtype allows the input method to switch to a specific mode or language, for example, the Chinese or English keyboard.
 
@@ -29,7 +29,7 @@ The input method subtype allows the input method to switch to a specific mode or
    }
    ```
    
-2. Configure the subtype fields. For details about the fields, see [inputmethodsubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md). Make sure your configuration is in strict compliance with the configuration file and fields specifications. For details about how to configure the **locale** field, see [Language Tags (BCP 47)](https://tools.ietf.org/html/bcp47).
+2. Configure the subtype fields. For details about the fields, see [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype). Make sure your configuration is in strict compliance with the configuration file and field specifications. For details about how to configure the **locale** field, see [BCP 47](https://tools.ietf.org/html/bcp47).
    ```
    {
      "subtypes": [
@@ -56,14 +56,15 @@ The input method subtype allows the input method to switch to a specific mode or
    ```ts
    import { InputMethodSubtype, inputMethodEngine } from '@kit.IMEKit';
    
+   let panel: inputMethodEngine.Panel;
    let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
    inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-     this.subType = inputMethodSubtype; // Save the current input method subtype. You can also change the state variable value here, based on which different layouts are displayed.
+     let subType = inputMethodSubtype; // Save the current input method subtype. You can also change the state variable value here, based on which different layouts are displayed.
      if (inputMethodSubtype.id == 'InputMethodExtAbility') {// Different soft keyboard UIs are loaded according to the subtype.
-       this.panel.setUiContent('pages/Index'); 
+       panel.setUiContent('pages/Index'); 
      }
      if (inputMethodSubtype.id == 'InputMethodExtAbility1') { // Different soft keyboard UIs are loaded according to the subtype.
-       this.panel.setUiContent('pages/Index1');
+       panel.setUiContent('pages/Index1');
      }
    });
    ```

@@ -13,7 +13,7 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode } from "@ohos.arkui.node";
+import { FrameNode, LayoutConstraint } from "@ohos.arkui.node";
 ```
 
 ## FrameNode
@@ -24,7 +24,7 @@ constructor(uiContext: UIContext)
 
 FrameNode的构造函数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ getRenderNode(): RenderNode | null
 
 获取FrameNode中持有的RenderNode。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -343,6 +343,79 @@ getPositionToParent(): Position
 
 请参考[节点操作示例](#节点操作示例)。
 
+### getPositionToScreen<sup>12+</sup> 
+
+  getPositionToScreen(): Position
+
+获取FrameNode相对于屏幕的位置偏移。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明                            |
+| -------- | ------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+
+### getPositionToParentWithTransform<sup>12+</sup>
+
+getPositionToParentWithTransform(): Position
+
+获取FrameNode相对于父组件带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于父组件的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getPositionToWindowWithTransform<sup>12+</sup>
+
+getPositionToWindowWithTransform(): Position
+
+获取FrameNode相对于窗口带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于窗口的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getPositionToScreenWithTransform<sup>12+</sup>
+
+getPositionToScreenWithTransform(): Position
+
+获取FrameNode相对于屏幕带有绘制属性的位置偏移，绘制属性比如transform, translate等，返回的坐标是组件布局时左上角变换后的坐标。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [Position](./js-apis-arkui-graphics.md#position) | 节点相对于屏幕的位置偏移。 当设置了其他（比如：transform, translate等）绘制属性，由于浮点数精度的影响，返回值会有微小偏差。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
 
 ### getMeasuredSize<sup>12+</sup>
 
@@ -383,7 +456,7 @@ getLayoutPosition(): Position
 
 ### getUserConfigBorderWidth<sup>12+</sup>
 
-getUserConfigBorderWidth(): Edges\<LengthMetric\>
+getUserConfigBorderWidth(): Edges\<LengthMetrics\>
 
 获取用户设置的边框宽度。
 
@@ -393,7 +466,7 @@ getUserConfigBorderWidth(): Edges\<LengthMetric\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的边框宽度。 |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的边框宽度。 |
 
 **示例：**
 
@@ -401,7 +474,7 @@ getUserConfigBorderWidth(): Edges\<LengthMetric\>
 
 ### getUserConfigPadding<sup>12+</sup>
 
-getUserConfigPadding(): Edges\<LengthMetric\>
+getUserConfigPadding(): Edges\<LengthMetrics\>
 
 获取用户设置的内边距。
 
@@ -411,7 +484,7 @@ getUserConfigPadding(): Edges\<LengthMetric\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的内边距。 |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的内边距。 |
 
 **示例：**
 
@@ -419,7 +492,7 @@ getUserConfigPadding(): Edges\<LengthMetric\>
 
 ### getUserConfigMargin<sup>12+</sup>
 
-getUserConfigMargin(): Edges\<LengthMetric\>
+getUserConfigMargin(): Edges\<LengthMetrics\>
 
 获取用户设置的外边距。
 
@@ -429,7 +502,7 @@ getUserConfigMargin(): Edges\<LengthMetric\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的外边距。 |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的外边距。 |
 
 **示例：**
 
@@ -437,7 +510,7 @@ getUserConfigMargin(): Edges\<LengthMetric\>
 
 ### getUserConfigSize<sup>12+</sup>
 
-getUserConfigSize(): SizeT\<LengthMetric\>
+getUserConfigSize(): SizeT\<LengthMetrics\>
 
 获取用户设置的宽高。
 
@@ -447,7 +520,7 @@ getUserConfigSize(): SizeT\<LengthMetric\>
 
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetric](./js-apis-arkui-graphics.md#lengthmetric12)\> | 用户设置的宽高。 |
+| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的宽高。 |
 
 **示例：**
 
@@ -466,6 +539,24 @@ getId(): string
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
 | string | 用户设置的节点ID（通用属性设置的[ID](./arkui-ts/ts-universal-attributes-component-id.md)） |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getUniqueId<sup>12+</sup>
+
+getUniqueId(): number
+
+获取系统分配的唯一标识的节点UniqueID。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| number | 系统分配的唯一标识的节点UniqueID |
 
 **示例：**
 
@@ -565,7 +656,7 @@ isAttached(): boolean
 
 getInspectorInfo(): Object
 
-获取节点的结构信息，该信息和[DevEco Studio](../../quick-start/deveco-studio-user-guide-for-openharmony.md)内置ArkUI Inspector工具里面的一致。
+获取节点的结构信息，该信息和DevEco Studio内置ArkUI Inspector工具里面的一致。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -574,6 +665,30 @@ getInspectorInfo(): Object
 | 类型                                                           | 说明                                                                  |
 | -------------------------------------------------------------- | --------------------------------------------------------------------- |
 | Object | 节点的结构信息。 |
+
+**示例：**
+
+请参考[节点操作示例](#节点操作示例)。
+
+### getCustomProperty<sup>12+</sup>
+
+getCustomProperty(name: string): Object | undefined
+
+通过名称获取组件的自定义属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                 | 必填 | 说明                                                         |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| name  | string | 是   | 自定义属性的名称。 |
+
+**返回值：**
+
+| 类型                                                           | 说明                                                                  |
+| -------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Object \| undefined | 自定义属性的值。 |
 
 **示例：**
 
@@ -715,6 +830,169 @@ get commonEvent(): UICommonEvent
 
 请参考[基础事件示例](#基础事件示例)。
 
+### onDraw<sup>12+</sup>
+
+onDraw?(context: DrawContext): void
+
+FrameNode的自绘制方法，该方法会在FrameNode进行内容绘制时被调用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| context | [DrawContext](./js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。自绘制区域无法超出组件自身大小。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### onMeasure<sup>12+</sup>
+
+onMeasure(constraint: LayoutConstraint): void
+
+FrameNode的自定义测量方法，该方法会重写默认测量方法，在FrameNode进行测量时被调用，测量FrameNode及其内容的大小。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| constraint | [LayoutConstraint](#layoutconstraint12) | 是   | 组件进行测量时使用的布局约束。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### LayoutConstraint<sup>12+</sup>
+
+LayoutConstraint
+
+描述组件的布局约束。
+
+| 名称            |  类型  | 必填  | 说明                                       |
+| -------------- | ------ | ----- | ------------------------------------------ |
+| maxSize           | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最大尺寸。              |
+| minSize            | [Size](./js-apis-arkui-graphics.md#size) | 是    | 最小尺寸。                  |
+| percentReference      | [Size](./js-apis-arkui-graphics.md#size) | 是    | 子节点计算百分比时的尺寸基准。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onLayout<sup>12+</sup>
+
+onLayout(position: Position): void
+
+FrameNode的自定义布局方法，该方法会重写默认布局方法，在FrameNode进行布局时被调用，为FrameNode及其子节点指定位置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| position | [Position](./js-apis-arkui-graphics.md#position) | 是   | 组件进行布局时使用的位置信息。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### setMeasuredSize<sup>12+</sup>
+
+setMeasuredSize(size: Size): void
+
+设置FrameNode的测量后的尺寸，默认单位PX。若设置的宽高为负数，自动取零。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| size | [Size](./js-apis-arkui-graphics.md#size) | 是   | FrameNode的测量后的尺寸。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### setLayoutPosition<sup>12+</sup>
+
+setLayoutPosition(position: Position): void
+
+设置FrameNode的布局后的位置，默认单位PX。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| position | [Position](./js-apis-arkui-graphics.md#position) | 是   | FrameNode的布局后的位置。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### measure<sup>12+</sup>
+
+measure(constraint: LayoutConstraint): void
+
+调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。建议在[onMeasure](#onmeasure12)方法中调用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| constraint | [LayoutConstraint](#layoutconstraint12) | 是   | 组件进行测量时使用的父容器布局约束。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### layout<sup>12+</sup>
+
+layout(position: Position): void
+
+调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。建议在[onLayout](#onlayout12)方法中调用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| position | [Position](./js-apis-arkui-graphics.md#position) | 是   | 组件进行布局时使用的位置信息。 |
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### setNeedsLayout<sup>12+</sup>
+
+setNeedsLayout(): void
+
+该方法会将FrameNode标记为需要布局的状态，下一帧将会进行重新布局。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
+
+### invalidate<sup>12+</sup>
+
+invalidate(): void
+
+该方法会触发FrameNode自绘制内容的重新渲染。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[节点自定义示例](#节点自定义示例)。
 
 ## 节点操作示例
 ```ts
@@ -816,8 +1094,28 @@ class MyNodeController extends NodeController {
   }
   getPositionToParent()
   {
-    let positionToParent = this.frameNode?.getPositionToWindow();
+    let positionToParent = this.frameNode?.getPositionToParent();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
+  }
+  getPositionToScreen()
+  {
+    let positionToScreen = this.frameNode?.getPositionToScreen();
+    console.log(TEST_TAG + JSON.stringify(positionToScreen));
+  }
+  getPositionToWindowWithTransform()
+  {
+    let positionToWindowWithTransform = this.frameNode?.getPositionToWindowWithTransform();
+    console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
+  }
+  getPositionToParentWithTransform()
+  {
+    let positionToParentWithTransform = this.frameNode?.getPositionToParentWithTransform();
+    console.log(TEST_TAG + JSON.stringify(positionToParentWithTransform));
+  }
+  getPositionToScreenWithTransform()
+  {
+    let positionToScreenWithTransform = this.frameNode?.getPositionToScreenWithTransform();
+    console.log(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
   }
   getMeasuredSize()
   {
@@ -854,6 +1152,11 @@ class MyNodeController extends NodeController {
     let id = this.frameNode?.getId();
     console.log(TEST_TAG + id);
   }
+  getUniqueId()
+  {
+    let uniqueId = this.frameNode?.getUniqueId();
+    console.log(TEST_TAG + uniqueId);
+  }
   getNodeType()
   {
     let nodeType = this.frameNode?.getNodeType();
@@ -883,6 +1186,11 @@ class MyNodeController extends NodeController {
   {
     let inspectorInfo = this.frameNode?.getInspectorInfo();
     console.log(TEST_TAG + JSON.stringify(inspectorInfo));
+  }
+  getCustomProperty()
+  {
+    let customProperty = this.frameNode?.getCustomProperty();
+    console.log(TEST_TAG + customProperty);
   }
 
   throwError()
@@ -964,6 +1272,26 @@ struct Index {
         .onClick(()=>{
           this.myNodeController.getPositionToParent();
         })
+      Button("getPositionToScreen")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToScreen();
+        })
+      Button("getPositionToParentWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToParentWithTransform();
+        })
+      Button("getPositionToWindowWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToWindowWithTransform();
+        })
+      Button("getPositionToScreenWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToScreenWithTransform();
+        })
       Button("getMeasuredSize")
         .width(300)
         .onClick(()=>{
@@ -999,6 +1327,11 @@ struct Index {
         .onClick(()=>{
           this.myNodeController.getId();
         })
+      Button("getUniqueId")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getUniqueId();
+        })
       Button("getNodeType")
         .width(300)
         .onClick(()=>{
@@ -1029,6 +1362,11 @@ struct Index {
         .onClick(()=>{
           this.myNodeController.getInspectorInfo();
         })
+      Button("getCustomProperty")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getCustomProperty();
+        })
       Button("throwError")
         .width(300)
         .onClick(()=>{
@@ -1054,46 +1392,48 @@ struct Index {
 ## 基础事件示例
 
 ```ts
-import { FrameNode, NodeController } from "@ohos.arkui.node"
+import { FrameNode, NodeController } from '@ohos.arkui.node'
 
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
+
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
-    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Pink);
+    this.rootNode.commonAttribute.width(100)
+      .height(100)
+      .backgroundColor(Color.Pink);
     this.addCommonEvent(this.rootNode);
     return this.rootNode;
   }
 
-  addCommonEvent(frameNode : FrameNode)
-  {
-    frameNode.commonEvent.setOnHover(((isHover?: boolean, event?: HoverEvent):void => {
-      console.log( `isHover FrameNode: ${isHover}`);
-      console.log( `isHover FrameNode: ${JSON.stringify(event)}`);
+  addCommonEvent(frameNode: FrameNode) {
+    frameNode.commonEvent.setOnHover(((isHover: boolean, event: HoverEvent): void => {
+      console.log(`isHover FrameNode: ${isHover}`);
+      console.log(`isHover FrameNode: ${JSON.stringify(event)}`);
       event.stopPropagation();
     }))
-    frameNode.commonEvent.setOnClick((event)=>{
+    frameNode.commonEvent.setOnClick((event: ClickEvent) => {
       console.log(`Click FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnTouch((event)=>{
+    frameNode.commonEvent.setOnTouch((event: TouchEvent) => {
       console.log(`touch FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnAppear(()=>{
+    frameNode.commonEvent.setOnAppear(() => {
       console.log(`on Appear FrameNode`)
     })
-    frameNode.commonEvent.setOnDisappear(()=>{
+    frameNode.commonEvent.setOnDisappear(() => {
       console.log(`onDisAppear FrameNode`)
     })
-    frameNode.commonEvent.setOnFocus(()=>{
+    frameNode.commonEvent.setOnFocus(() => {
       console.log(`onFocus FrameNode`)
     })
-    frameNode.commonEvent.setOnBlur(()=>{
+    frameNode.commonEvent.setOnBlur(() => {
       console.log(`onBlur FrameNode`)
     })
-    frameNode.commonEvent.setOnKeyEvent((event)=>{
+    frameNode.commonEvent.setOnKeyEvent((event: KeyEvent) => {
       console.log(`Key FrameNode: ${JSON.stringify(event)}`)
     })
-    frameNode.commonEvent.setOnMouse((event)=>{
+    frameNode.commonEvent.setOnMouse((event: MouseEvent) => {
       console.log(`Mouse FrameNode: ${JSON.stringify(event)}`)
     })
     frameNode.commonEvent.setOnSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
@@ -1105,44 +1445,45 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
+  @State index: number = 0;
   private myNodeController: MyNodeController = new MyNodeController();
-  @State index : number = 0;
+
   build() {
     Column() {
       Button("add CommonEvent to Text")
-        .onClick(()=>{
-          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling()!)
+        .onClick(() => {
+          this.myNodeController!.addCommonEvent(this.myNodeController!.rootNode!.getParent()!.getPreviousSibling() !)
         })
       Text("this is a Text")
         .fontSize(16)
         .borderWidth(1)
-        .onHover(((isHover?: boolean, event?: HoverEvent):void => {
-          console.log( `isHover Text: ${isHover}`);
-          console.log( `isHover Text: ${JSON.stringify(event)}`);
+        .onHover(((isHover: boolean, event: HoverEvent): void => {
+          console.log(`isHover Text: ${isHover}`);
+          console.log(`isHover Text: ${JSON.stringify(event)}`);
           event.stopPropagation();
         }))
-        .onClick((event)=>{
+        .onClick((event: ClickEvent) => {
           console.log(`Click Text    : ${JSON.stringify(event)}`)
         })
-        .onTouch((event)=>{
+        .onTouch((event: TouchEvent) => {
           console.log(`touch Text    : ${JSON.stringify(event)}`)
         })
-        .onAppear(()=>{
+        .onAppear(() => {
           console.log(`on Appear Text`)
         })
-        .onDisAppear(()=>{
+        .onDisAppear(() => {
           console.log(`onDisAppear Text`)
         })
-        .onFocus(()=>{
+        .onFocus(() => {
           console.log(`onFocus Text`)
         })
-        .onBlur(()=>{
+        .onBlur(() => {
           console.log(`onBlur Text`)
         })
-        .onKeyEvent((event)=>{
+        .onKeyEvent((event: KeyEvent) => {
           console.log(`Key Text    : ${JSON.stringify(event)}`)
         })
-        .onMouse((event)=>{
+        .onMouse((event: MouseEvent) => {
           console.log(`Mouse Text : ${JSON.stringify(event)}`)
         })
         .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
@@ -1153,6 +1494,122 @@ struct Index {
         .width(300)
         .height(100)
     }.width("100%")
+  }
+}
+```
+
+## 节点自定义示例
+
+```ts
+import { UIContext } from '@ohos.arkui.UIContext';
+import { DrawContext, FrameNode, NodeController, LayoutConstraint, Size, Position } from '@ohos.arkui.node';
+import drawing from '@ohos.graphics.drawing';
+
+function GetChildLayoutConstraint(constraint: LayoutConstraint, child: FrameNode): LayoutConstraint {
+  const size = child.getUserConfigSize();
+  const width = Math.max(
+    Math.min(constraint.maxSize.width, size.width.value), 
+    constraint.minSize.width
+    );
+  const height = Math.max(
+    Math.min(constraint.maxSize.height, size.height.value), 
+    constraint.minSize.height
+    );
+  const finalSize: Size = { width, height };
+  const res: LayoutConstraint = {
+    maxSize: finalSize,
+    minSize: finalSize,
+    percentReference: finalSize
+  };
+
+  return res;
+}
+
+class MyFrameNode extends FrameNode {
+  public width: number = 10;
+  private space: number = 1;
+
+  onMeasure(constraint: LayoutConstraint): void {
+    let sizeRes: Size = { width: 100, height: 100 };
+    for (let i = 0;i < this.getChildrenCount();i++) {
+      let child = this.getChild(i);
+      if (child) {
+        let childConstraint = GetChildLayoutConstraint(constraint, child);
+        child.measure(childConstraint);
+        let size = child.getMeasuredSize();
+        sizeRes.height += size.height + this.space;
+        sizeRes.width = Math.max(sizeRes.width, size.width);
+      }
+    }
+    this.setMeasuredSize(sizeRes);
+  }
+
+  onLayout(position: Position): void {
+    let y = 0;
+    for (let i = 0;i < this.getChildrenCount();i++) {
+      let child = this.getChild(i);
+      if (child) {
+        child.layout({
+          x: 20,
+          y: y
+        });
+        y += child.getMeasuredSize().height + this.space;
+      }
+    }
+    this.setLayoutPosition(position);
+  }
+
+  onDraw(context: DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachPen(pen);
+    canvas.drawRect({ left: 0, right: this.width, top: 0, bottom: this.width });
+    canvas.detachPen();
+  }
+
+  addWidth() {
+    this.width += 10;
+  }
+}
+
+class MyNodeController extends NodeController {
+  public rootNode: MyFrameNode | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new MyFrameNode(context);
+    this.rootNode?.commonAttribute?.size({ width: 100, height: 100 }).backgroundColor(Color.Green);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private nodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(this.nodeController)
+          .width('100%')
+          .height(100)
+          .backgroundColor('#FFF0F0F0')
+        Button('Invalidate')
+          .onClick(() => {
+            this.nodeController?.rootNode?.addWidth();
+            this.nodeController?.rootNode?.invalidate();
+          })
+        Button('UpdateLayout')
+          .onClick(() => {
+            this.nodeController?.rootNode?.setNeedsLayout();
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
   }
 }
 ```

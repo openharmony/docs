@@ -4,7 +4,7 @@
 
 OAID会在下述场景中发生变化：
 - 用户恢复手机出厂设置。
-- 系统应用将bundleName配置到白名单文件后，可主动调用resetOAID()接口重置OAID。
+- 系统应用将bundleName配置到设备侧系统目录中，文件路径：etc/advertising/oaid/oaid_service_config_ext.json，配置方式：用英文逗号隔开，添加到数组末尾。即可主动调用resetOAID()接口重置OAID。
 下面为系统应用开发者给出重置OAID的开发指导。
 
 ## 接口说明

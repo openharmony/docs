@@ -81,7 +81,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
     ```ts
     import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
-    import hilog from '@ohos.hilog';
+    import {hilog} from '@Kit.PerformanceAnalysisKit';
     
     const TAG = `FileBackupExtensionAbility`;
     export default class BackupExtension extends  BackupExtensionAbility {

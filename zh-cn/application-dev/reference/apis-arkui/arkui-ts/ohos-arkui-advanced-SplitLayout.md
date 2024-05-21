@@ -30,6 +30,8 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 **装饰器类型：**@Component
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**

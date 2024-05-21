@@ -114,7 +114,7 @@ Sends an SMS message.
 >
 > This API is supported since API version 6 and deprecated since API version 10. You are advised to use [sendShortMessage](#smssendshortmessage10).
 
-**Required permissions**: ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.SEND_MESSAGES (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -168,7 +168,7 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 Sends an SMS message. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.SEND_MESSAGES (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -225,7 +225,7 @@ sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 Sends an SMS message. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.SEND_MESSAGES
+**Required permissions**: ohos.permission.SEND_MESSAGES (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.SmsMms
 

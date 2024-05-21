@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
+import { formBindingData } from '@kit.FormKit';
 ```
 
 
@@ -18,6 +18,8 @@ import formBindingData from '@ohos.app.form.formBindingData';
 卡片代理刷新订阅数据信息。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -31,6 +33,8 @@ import formBindingData from '@ohos.app.form.formBindingData';
 
 FormBindingData相关描述。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -43,6 +47,8 @@ FormBindingData相关描述。
 createFormBindingData(obj?: Object | string): FormBindingData
 
 创建一个FormBindingData对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -63,12 +69,12 @@ createFormBindingData(obj?: Object | string): FormBindingData
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
-import fs from '@ohos.file.fs';
-import Base from '@ohos.base';
+import { formBindingData } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 try {
-  let fd = fs.openSync('/path/to/form.png');
+  let fd = fileIo.openSync('/path/to/form.png');
   let formImagesParam: Record<string, object> = {
     'image': fd
   };
@@ -79,8 +85,8 @@ try {
 
   formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
-  let code = (error as Base.BusinessError).code;
-  let message = (error as Base.BusinessError).message;
+  let code = (error as BusinessError).code;
+  let message = (error as BusinessError).message;
   console.error(`catch error, code: ${code}, message: ${message}`);
 }
 ```

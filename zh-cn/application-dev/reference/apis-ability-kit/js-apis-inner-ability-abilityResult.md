@@ -22,6 +22,8 @@ import ability from '@ohos.ability.ability';
 
 ## 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称        |  类型                 | 只读 | 必填 | 说明                                                         |

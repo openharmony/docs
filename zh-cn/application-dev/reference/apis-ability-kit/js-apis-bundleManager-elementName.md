@@ -6,6 +6,8 @@
 ElementName信息，通过接口[Context.getElementName](js-apis-inner-app-context.md#contextgetelementname7)获取。
 ## ElementName
 
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |

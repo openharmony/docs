@@ -21,7 +21,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let uiAbilityContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -37,7 +37,7 @@
      export default class MyService extends ServiceExtensionAbility {
        onCreate(want: Want) {
          let serviceExtensionContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -48,7 +48,7 @@
      export default class MyAbilityStage extends AbilityStage {
        onCreate(): void {
          let abilityStageContext = this.context;
-         ...
+         //...
        }
      }
      ```
@@ -61,7 +61,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let applicationContext = this.context.getApplicationContext();
-         ...
+         //...
        }
      }
      ```
@@ -95,6 +95,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/temp |
   | databaseDir | <路径前缀>/<加密等级>/database |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data |
 
   示例代码如下所示。
 
@@ -112,7 +113,7 @@
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      ...
+      //...
       Button()
         .onClick(() => {
           let applicationContext = this.context.getApplicationContext();
@@ -123,6 +124,7 @@
           let bundleCodeDir = applicationContext.bundleCodeDir;
           let distributedFilesDir = applicationContext.distributedFilesDir;
           let preferencesDir = applicationContext.preferencesDir;
+          let cloudFileDir = applicationContext.cloudFileDir;
           // 获取应用文件路径
           let filePath = tempDir + 'test.txt';
           hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
@@ -147,6 +149,7 @@
   | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp |
   | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>** |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>** |
+  | cloudFileDir<sup>12+</sup> | <路径前缀>/el2/hmdfs/cloud/data/**\<module-name>** |
 
   示例代码如下所示。
 
@@ -164,7 +167,7 @@
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      ...
+      //...
       Button()
         .onClick(() => {
           let cacheDir = this.context.cacheDir;
@@ -174,6 +177,7 @@
           let bundleCodeDir = this.context.bundleCodeDir;
           let distributedFilesDir = this.context.distributedFilesDir;
           let preferencesDir = this.context.preferencesDir;
+          let cloudFileDir = this.context.cloudFileDir;
           // 获取应用文件路径
           let filePath = tempDir + 'test.txt';
           hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
@@ -240,20 +244,20 @@ struct Page_Context {
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    ...
+    //...
     Button()
       .onClick(() => {
         // 存储普通信息前，切换到EL1设备级加密
         if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
           this.context.area = contextConstant.AreaMode.EL1; // 修改area
           promptAction.showToast({
-            message: $r('app.string.SwitchToEL1')
+            message: 'SwitchToEL1'
           });
         }
         // 存储普通信息
       })
     
-    ...
+    //...
 
     Button()
       .onClick(() => {
@@ -261,13 +265,13 @@ struct Page_Context {
         if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
           this.context.area = contextConstant.AreaMode.EL2; // 修改area
           promptAction.showToast({
-            message: $r('app.string.SwitchToEL2')
+            message: 'SwitchToEL2'
           });
         }
         // 存储敏感信息
       })
     
-    ...
+    //...
   }
 }
 ```
@@ -376,7 +380,7 @@ export default class LifecycleAbility extends UIAbility {
     hilog.info(DOMAIN_NUMBER, TAG, `register callback number: ${this.lifecycleId}`);
   }
 
-  ...
+  //...
 
   onDestroy() : void {
     // 获取应用上下文

@@ -24,13 +24,14 @@ The AVSource module provides the functions for constructing audio and video reso
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_AVSource](#oh_avsource) [OH_AVSource](#oh_avsource) | Defines a struct that describes a native object for the media source interface. | 
+| typedef struct [OH_AVSource](#oh_avsource) [OH_AVSource](#oh_avsource) | Defines a struct that describes a native object for the media resource interface. | 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
+| [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithDataSource](#oh_avsource_createwithdatasource) ([OH_AVDataSource](_o_h___a_v_data_source.md) \*dataSource) | Creates an **OH_AVSource** instance with a user-defined data source. You can release the instance by calling **OH_AVSource_Destroy**. | 
 | [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | Creates an **OH_AVSource** instance based on a URI.| 
 | [OH_AVSource](#oh_avsource) \* [OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | Creates an **OH_AVSource** instance based on a file descriptor (FD).| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | Destroys an **OH_AVSource** instance and clears internal resources.| 
@@ -46,13 +47,40 @@ The AVSource module provides the functions for constructing audio and video reso
 ```
 typedef struct OH_AVSource OH_AVSource
 ```
+
 **Description**
-Defines a struct that describes a native object for the media source interface.
+
+Defines a struct that describes a native object for the media resource interface.
 
 **Since**: 10
 
 
 ## Function Description
+
+
+### OH_AVSource_CreateWithDataSource()
+
+```
+OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
+```
+
+**Description**
+
+Creates an **OH_AVSource** instance with a user-defined data source. You can release the instance by calling **OH_AVSource_Destroy**.
+
+**System capability**: SystemCapability.Multimedia.Media.Spliter
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| dataSource | User-defined data source. | 
+
+**Returns**
+
+Returns the pointer to an **OH_AVSource** instance.
 
 
 ### OH_AVSource_CreateWithFD()

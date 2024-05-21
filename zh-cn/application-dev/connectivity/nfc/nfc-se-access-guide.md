@@ -30,6 +30,8 @@
 ```ts
 import secureElement from '@ohos.secureElement';
 import { BusinessError } from '@ohos.base';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
 
 let seService : secureElement.SEService;
 let seReaders : secureElement.Reader[];
@@ -103,7 +105,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     // transmit data
-    var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
     try {
       seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'seChannel.transmit() response = %{public}s.', JSON.stringify(response));

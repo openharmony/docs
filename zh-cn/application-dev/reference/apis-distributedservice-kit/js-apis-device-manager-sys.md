@@ -36,6 +36,15 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **参数：**
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                        |
@@ -268,10 +277,12 @@ release(): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -308,10 +319,12 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -355,10 +368,12 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -393,6 +408,15 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
   | 参数名       | 类型                                     | 必填   | 说明                    |
   | -------- | ---------------------------------------- | ---- | --------------------- |
   | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | 是    | 获取所有可信设备列表的回调，返回设备信息。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                         |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -433,6 +457,15 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
   | ---------------------------------------- | --------------------- |
   | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                         |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -467,10 +500,12 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -505,6 +540,15 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
   | 参数名       | 类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取本地设备信息。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                         |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -546,6 +590,14 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise实例，用于获取异步返回结果。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                         |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -578,6 +630,15 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
   | -------- | ---------------------------------------- | ---- | --------- |
   | networkId| string                                   | 是   | 设备的网络标识。 |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取指定设备信息。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                         |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 
 **示例：**
 
@@ -626,6 +687,15 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise实例，用于获取异步返回结果。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                         |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -662,10 +732,13 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Discovery invalid.                                              |
 
@@ -725,10 +798,13 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Discovery invalid.                                              |
 
@@ -809,10 +885,13 @@ stopDeviceDiscovery(subscribeId: number): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -851,10 +930,13 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600105 | Publish invalid.                                                |
 
@@ -908,10 +990,13 @@ unPublishDeviceDiscovery(publishId: number): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -949,6 +1034,15 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   | deviceInfo | [DeviceInfo](#deviceinfo)                | 是    | 设备信息。   |
   | authParam  | [AuthParam](#authparam)                  | 是    | 认证参数。   |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | 是    | 认证结果回调。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1036,10 +1130,13 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 **错误码：**
 
-以下的错误码的详细介绍请参见[设备管理错误码](errorcode-device-manager.md)
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -1090,6 +1187,15 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | 是    | 认证信息。   |
   | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | 是    | 验证结果回调。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1156,6 +1262,16 @@ setUserOperation(operateAction: number, params: string): void;
   | operateAction | number          | 是    | 用户操作动作。       |
   | params        | string          | 是    | 表示用户的输入参数。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1197,6 +1313,15 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
   | ------------- | --------------- | ---- | ------------------- |
   | requestInfo   | string          | 是    | 请求凭据信息。       |
   | callback      | AsyncCallback<{registerInfo: string}>         | 是    | 凭据的注册信息回调。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
 
 **示例：**
 
@@ -1250,6 +1375,15 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
   | ------------- | --------------- | ---- | ------------------- |
   | credentialInfo| string          | 是    | 导入凭据信息。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 导入凭据结果回调。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **示例：**
 
@@ -1336,6 +1470,15 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
   | queryInfo     | string          | 是    | 删除凭据信息。       |
   | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 删除凭据结果回调。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1392,6 +1535,15 @@ ui状态变更回调。
   | type     | string                                | 是  | 注册的设备管理器 ui 状态回调，以便在状态改变时通知应用，固定为uiStateChange。 |
   | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 是  | 指示要注册的设备管理器 ui 状态回调，返回ui状态。        |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1438,6 +1590,15 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
   | type     | string                                | 是   | 取消注册的设备管理器 ui 状态回调，固定为uiStateChange。 |
   | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | 否   | 指示要取消注册的设备管理器 ui 状态，返回UI状态。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1470,6 +1631,15 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备状态回调，固定为deviceStateChange。 |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
 
@@ -1519,6 +1689,15 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调，固定为deviceStateChange。        |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1566,6 +1745,15 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序，固定为deviceFound。 |
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
 
@@ -1615,6 +1803,15 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
   | type     | string                                   | 是    | 取消注册设备发现回调，固定为deviceFound。                |
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 否    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1663,6 +1860,15 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
   | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序，固定为discoverFail。 |
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1702,6 +1908,15 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | 是    | 取消注册设备发现失败回调，固定为discoverFail。     |
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否    | 指示要取消注册的设备发现失败回调。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
 
@@ -1743,6 +1958,14 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
   | type     | string                                   | 是   | 注册发布设备成功回调，以便将发布成功时通知应用程序，固定为publishSuccess。 |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 是   | 注册设备发布成功的回调方法。               |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
 
@@ -1783,6 +2006,15 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
   | type     | string                                   | 是   | 取消注册设备发布成功回调，固定为publishSuccess。                 |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 否   | 指示要取消注册的设备发布成功回调。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1821,6 +2053,15 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
   | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序，固定为publishFail |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是   | 注册设备发布失败的回调方法。                 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
 
@@ -1862,6 +2103,15 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
   | type     | string                                                | 是   | 取消注册设备发布失败回调，固定为publishFail。     |
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否   | 指示要取消注册设备发布失败回调。 |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1902,6 +2152,15 @@ on(type: 'serviceDie', callback: () =&gt; void): void
   | type     | string                  | 是    | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序，固定为serviceDie。 |
   | callback | ()&nbsp;=&gt;&nbsp;void | 是    | 注册serviceDie的回调方法。                       |
 
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
@@ -1936,6 +2195,15 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
   | -------- | ----------------------- | ---- | ---------------------------------------- |
   | type     | string                  | 是    | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序，固定为serviceDie。 |
   | callback | ()&nbsp;=&gt;&nbsp;void | 否    | 取消注册serviceDie的回调方法。                     |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
 

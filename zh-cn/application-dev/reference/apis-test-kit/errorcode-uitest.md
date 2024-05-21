@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Initialize failed.
+Initialization failed.
 
 **错误描述**
 
@@ -25,7 +25,7 @@ Initialize failed.
 ## 17000002 当前无法调用
 **错误信息**
 
-API does not allow calling concurrently.
+The API cannot be called concurrently.
 
 **错误描述**
 
@@ -42,7 +42,7 @@ API没有使用await进行异步调用，造成堵塞。
 ## 17000003 断言失败
 **错误信息**
 
-Component existence assertion failed.
+User assertion about component existence failed.
 
 **错误描述**
 
@@ -59,7 +59,7 @@ Component existence assertion failed.
 ## 17000004 目标控件/窗口丢失
 **错误信息**
 
-Component lost/UiWindow lost.
+Component or UiWindow lost.
 
 **错误描述**
 

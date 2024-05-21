@@ -33,7 +33,7 @@ API 10在API 9的基础上新增支持多Ability的Stage模型应用开发。支
 
 **setRestartWant:** 指定由appRecovery发起重启的Ability。
 
-**restartApp:** 调用后框架会杀死当前应用进程，并重新拉起由**setRestartWant**指定的Ability，其中启动原因为APP_RECOVERY。API 9以及未使用**setRestartWant**指定Ability的场景，会拉起最后一个支持恢复且在前台的Ability，如果当前前台的Ability不支持恢复，则应用表现闪退。如果重启的Ability存在已经保存的状态，这些状态数据会在Ability的OnCreate生命周期回调的want参数中作为wantParam属性传入。
+**restartApp:** 调用后框架会杀死当前应用进程，并重新拉起由**setRestartWant**指定的Ability，其中启动原因为APP_RECOVERY。API 9以及未使用**setRestartWant**指定Ability的场景，会拉起最后一个支持恢复且在前台的Ability，如果当前前台的Ability不支持恢复，则应用表现闪退。如果重启的Ability存在已经保存的状态，这些状态数据会在Ability的OnCreate生命周期回调的want参数中作为wantParam属性传入。两次重启的间隔应大于一分钟，一分钟之内重复调用此接口只会退出应用不会重启应用。自动重启的行为与主动重启一致。
 
 ### 应用恢复状态管理示意
 从API 10起，应用恢复的场景不仅局限于异常时自动重启。所以需要理解应用何时会加载恢复的状态。

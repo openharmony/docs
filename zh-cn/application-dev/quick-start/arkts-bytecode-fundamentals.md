@@ -308,24 +308,24 @@ function foo(a: number, b: number): void {}
 |  0x07	|  IMM8_ID16	|  createobjectwithbuffer RR, @AAAA	|  R：方舟运行时内部使用的8位保留数字<br>A：16位的literal id	|  使用索引A对应的字面量数组，创建一个对象，并将其存放到acc中。   |
 |  0x08	|  IMM8_IMM8_V8	|  newobjrange RR, +AA, vBB	|  R：方舟运行时内部使用的8位保留数字<br>A：参数数量<br>B：类对象<br>B + 1, ..., B + A - 1：传递给构造函数的参数 |  	以B + 1, ..., B + A - 1作为参数，创建一个B类的实例，并将其存放到acc中。   |
 |  0x09	|  IMM8	|  newlexenv +AA	|  A：词法环境中的槽位数目	|  创建一个槽位数为A的词法环境，将其存放到acc中，并进入该词法环境。   |
-|  0x0a	|  IMM8_V8	|  add2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A + acc`，并将计算结果存放到acc中。   |
-|  0x0b	|  IMM8_V8	|  sub2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A - acc`，并将计算结果存放到acc中。   |
-|  0x0c	|  IMM8_V8	|  mul2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A * acc`，并将计算结果存放到acc中。   |
-|  0x0d	|  IMM8_V8	|  div2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A / acc`，并将计算结果存放到acc中。   |
-|  0x0e	|  IMM8_V8	|  mod2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A % acc`，并将计算结果存放到acc中。   |
-|  0x0f	|  IMM8_V8	|  eq RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A == acc`，并将计算结果存放到acc中。   |
-|  0x10	|  IMM8_V8	|  noteq RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A != acc`，并将计算结果存放到acc中。   |
-|  0x11	|  IMM8_V8	|  less RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A < acc`，并将计算结果存放到acc中。   |
-|  0x12	|  IMM8_V8	|  lesseq RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A <= acc`，并将计算结果存放到acc中。   |
-|  0x13	|  IMM8_V8	|  greater RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A > acc`，并将计算结果存放到acc中。   |
-|  0x14	|  IMM8_V8	|  greatereq RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A >= acc`，并将计算结果存放到acc中。   |
-|  0x15	|  IMM8_V8	|  shl2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A << acc`，并将计算结果存放到acc中。   |
-|  0x16	|  IMM8_V8	|  shr2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A >>> acc`，并将计算结果存放到acc中。   |
-|  0x17	|  IMM8_V8	|  ashr2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A >> acc`，并将计算结果存放到acc中。   |
-|  0x18	|  IMM8_V8	|  and2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A & acc`，并将计算结果存放到acc中。   |
-|  0x19	|  IMM8_V8	|  or2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A \| acc`，并将计算结果存放到acc中。   |
-|  0x1a	|  IMM8_V8	|  xor2 RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A ^ acc`，并将计算结果存放到acc中。
-|  0x1b	|  IMM8_V8	|  exp RR, vAA	|  默认入参：acc：操作数<br>A：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`A ** acc`，并将计算结果存放到acc中。   |
+|  0x0a	|  IMM8_V8	|  add2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A + acc`，并将计算结果存放到acc中。   |
+|  0x0b	|  IMM8_V8	|  sub2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A - acc`，并将计算结果存放到acc中。   |
+|  0x0c	|  IMM8_V8	|  mul2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A * acc`，并将计算结果存放到acc中。   |
+|  0x0d	|  IMM8_V8	|  div2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A / acc`，并将计算结果存放到acc中。   |
+|  0x0e	|  IMM8_V8	|  mod2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A % acc`，并将计算结果存放到acc中。   |
+|  0x0f	|  IMM8_V8	|  eq RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A == acc`，并将计算结果存放到acc中。   |
+|  0x10	|  IMM8_V8	|  noteq RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A != acc`，并将计算结果存放到acc中。   |
+|  0x11	|  IMM8_V8	|  less RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A < acc`，并将计算结果存放到acc中。   |
+|  0x12	|  IMM8_V8	|  lesseq RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A <= acc`，并将计算结果存放到acc中。   |
+|  0x13	|  IMM8_V8	|  greater RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A > acc`，并将计算结果存放到acc中。   |
+|  0x14	|  IMM8_V8	|  greatereq RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A >= acc`，并将计算结果存放到acc中。   |
+|  0x15	|  IMM8_V8	|  shl2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A << acc`，并将计算结果存放到acc中。   |
+|  0x16	|  IMM8_V8	|  shr2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A >>> acc`，并将计算结果存放到acc中。   |
+|  0x17	|  IMM8_V8	|  ashr2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A >> acc`，并将计算结果存放到acc中。   |
+|  0x18	|  IMM8_V8	|  and2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A & acc`，并将计算结果存放到acc中。   |
+|  0x19	|  IMM8_V8	|  or2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A \| acc`，并将计算结果存放到acc中。   |
+|  0x1a	|  IMM8_V8	|  xor2 RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A ^ acc`，并将计算结果存放到acc中。
+|  0x1b	|  IMM8_V8	|  exp RR, vAA	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字<br>A：操作数	|  计算`A ** acc`，并将计算结果存放到acc中。   |
 |  0x1c	|  IMM8	|  typeof RR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字	|  计算`typeof acc`，并将计算结果存放到acc中。   |
 |  0x1d	|  IMM8	|  tonumber RR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字	|  以acc作为参数，执行[ToNumber](https://262.ecma-international.org/12.0/#sec-tonumber)，将结果存放到acc中。   |
 |  0x1e	|  IMM8	|  tonumeric RR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字	|  以acc作为参数，执行[ToNumeric](https://262.ecma-international.org/12.0/#sec-tonumeric)，将结果存放到acc中。   |
@@ -335,10 +335,10 @@ function foo(a: number, b: number): void {}
 |  0x22	|  IMM8	|  dec RR	|  默认入参：acc：操作数<br>R：方舟运行时内部使用的8位保留数字	|  计算`acc - 1`，并将计算结果存放到acc中。   |
 |  0x23	|  NONE	|  istrue	|  默认入参：acc：对象	|  计算`acc == true`，并将计算结果存放到acc中。   |
 |  0x24	|  NONE	|  isfalse	|  默认入参：acc：对象	|  计算`acc == false`，并将计算结果存放到acc中。   |
-|  0x25	|  IMM8_V8	|  isin RR, vAA	|  默认入参：acc：对象<br>A：对象<br>R：方舟运行时内部使用的8位保留数字	|  计算`A in acc`，并将计算结果存放到acc中。   |
-|  0x26	|  IMM8_V8	|  instanceof RR, vAA	|  默认入参：acc：对象<br>A：对象<br>R：方舟运行时内部使用的8位保留数字	|  计算`A instanceof acc`，并将计算结果存放到acc中。   |
-|  0x27	|  IMM8_V8	|  strictnoteq RR, vAA	|  默认入参：acc：对象<br>A：对象<br>R：方舟运行时内部使用的8位保留数字	|  计算`acc !== A`，并将计算结果存放到acc中。   |
-|  0x28	|  IMM8_V8	|  stricteq RR, vAA	|  默认入参：acc：对象<br>A：对象<br>R：方舟运行时内部使用的8位保留数字	|  计算`acc === A`，并将计算结果存放到acc中。   |
+|  0x25	|  IMM8_V8	|  isin RR, vAA	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字<br>A：对象	|  计算`A in acc`，并将计算结果存放到acc中。   |
+|  0x26	|  IMM8_V8	|  instanceof RR, vAA	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字<br>A：对象	|  计算`A instanceof acc`，并将计算结果存放到acc中。   |
+|  0x27	|  IMM8_V8	|  strictnoteq RR, vAA	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字<br>A：对象	|  计算`acc !== A`，并将计算结果存放到acc中。   |
+|  0x28	|  IMM8_V8	|  stricteq RR, vAA	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字<br>A：对象	|  计算`acc === A`，并将计算结果存放到acc中。   |
 |  0x29	|  IMM8	|  callarg0 RR	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字	|  不传递参数，直接调用acc中存放的函数对象，并将结果存放到acc中。   |
 |  0x2a	|  IMM8_V8	|  callarg1 RR, vAA	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：参数	|  以A作为参数，调用acc中存放的函数对象，并将结果存放到acc中。   |
 |  0x2b	|  IMM8_V8_V8	|  callargs2 RR, vAA, vBB	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A, B：参数	|  以A，B作为参数，调用acc中存放的函数对象，并将结果存放到acc中。   |
@@ -349,9 +349,9 @@ function foo(a: number, b: number): void {}
 |  0x30	|  IMM8_V8_V8_V8_V8	|  callthis3 RR, vAA, vBB, vCC, vDD	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：对象<br>B, C, D：参数  |  将`this`的值设置为A，以B, C, D作为参数，调用acc中存放的函数对象，并将计算结果存放到acc中。   |
 |  0x31	|  IMM8_IMM8_V8	|  callthisrange RR, +AA, vBB	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：参数数量<br>B：对象<br>B + 1, ..., B + A：参数	|  将`this`的值设置为B，以B + 1，...，B + A作为参数，调用acc中存放的函数对象，并将计算结果存放到acc中。   |
 |  0x32	|  IMM8_IMM8_V8	|  supercallthisrange RR, +AA, vBB	|  R：方舟运行时内部使用的8位保留数字<br>A：参数数量<br>B, ..., B + A - 1：参数	|  以B, ..., B + A - 1作为参数, 调用`super`函数，并将结果存放到acc中。<br>当A的值是0时，B是**undefined**。<br>此指令仅出现在非箭头函数中。   |
-|  0x33	|  IMM8_ID16_IMM8	|  definefunc RR, @AAAA, +BB	|  R：方舟运行时内部使用的8位保留数字<br>A：method id<br>B：形参数量 | 创建方法A的函数对象，并将其存放到acc中。   |
-|  0x34	|  IMM8_ID16_IMM8	|  definemethod RR, @AAAA, +BB	|  默认入参：acc：类对象或类对象的对象原型，方法为静态方法时，acc中是类对象<br>R：方舟运行时内部使用的8位保留数字<br>A：method id<br>B：形参数量 	|  创建方法A的函数对象，将acc中的对象设置为该函数对象的[[[HomeObject]]](https://262.ecma-international.org/12.0/#sec-ecmascript-function-objects)属性，并将该函数对象存放到acc中。   |
-|  0x35	|  IMM8_ID16_ID16_IMM16_V8	|  defineclasswithbuffer RR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的8位保留数字<br>A：类的构造函数的method id<br>B：literal id<br>C：A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建A的类对象，并将其存放到acc中。   |
+|  0x33	|  IMM8_ID16_IMM8	|  definefunc RR, @AAAA, +BB	|  R：方舟运行时内部使用的8位保留数字<br>A：method id<br>B：方法A的形参数量 | 创建方法A的函数对象，并将其存放到acc中。   |
+|  0x34	|  IMM8_ID16_IMM8	|  definemethod RR, @AAAA, +BB	|  默认入参：acc：类对象或类对象的对象原型，方法为静态方法时，acc中是类对象<br>R：方舟运行时内部使用的8位保留数字<br>A：method id<br>B：方法A的形参数量 	|  创建方法A的函数对象，将acc中的对象设置为该函数对象的[[[HomeObject]]](https://262.ecma-international.org/12.0/#sec-ecmascript-function-objects)属性，并将该函数对象存放到acc中。   |
+|  0x35	|  IMM8_ID16_ID16_IMM16_V8	|  defineclasswithbuffer RR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的8位保留数字<br>A：类的构造函数的method id<br>B：literal id<br>C：方法A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建A的类对象，并将其存放到acc中。   |
 |  0x36	|  V8	|  getnextpropname vAA	| A：迭代器	|  执行[for-in迭代器](https://262.ecma-international.org/12.0/#sec-createiterresultobject)A的[next](https://262.ecma-international.org/12.0/#sec-%25foriniteratorprototype%25.next)方法，并将结果存放到acc中。   |
 |  0x37	|  IMM8_V8	|  ldobjbyvalue RR, vAA	|  默认入参：acc：属性键值<br>R：方舟运行时内部使用的8位保留数字<br>A：对象	|  加载A对象的键值为acc的属性，并将结果存放到acc中。
 |  0x38	|  IMM8_V8_V8	|  stobjbyvalue RR, vAA, vBB	|  默认入参：acc：值<br>R：方舟运行时内部使用的8位保留数字<br>A：对象<br>B：属性键值	|  将acc中的值存放到对象A的键值为B的属性上。   |
@@ -411,11 +411,11 @@ function foo(a: number, b: number): void {}
 |  0x6e	|  NONE	|  ldnewtarget	 |  	|  将当前函数的隐式参数NewTarget存放到acc中。<br>指令功能未使能，暂不可用。   |
 |  0x6f	|  NONE	|  ldthis	|   	|  将`this`存放到acc中。   |
 |  0x70	|  NONE	|  ldhole	 |  	|  将**hole**存放到acc中。   |
-|  0x71	|  IMM8_ID16_IMM8	|  createregexpwithliteral RR, @AAAA, +BB	|  R：方舟运行时内部使用的8位保留数字<br>A：string id	|  使用索引A对应的字符串创建一个正则表达式，并存放到acc中。   |
-|  0x72	|  IMM16_ID16_IMM8	|  createregexpwithliteral RRRR, @AAAA, +BB	|  R：方舟运行时内部使用的16位保留数字<br>A：string id	|  使用索引A对应的字符串创建一个正则表达式，并存放到acc中。   |
+|  0x71	|  IMM8_ID16_IMM8	|  createregexpwithliteral RR, @AAAA, +BB	|  R：方舟运行时内部使用的8位保留数字<br>A：string id<br>B：指代正则表达式修饰符	|  使用索引A对应的字符串和B指代的修饰符，创建一个正则表达式，并存放到acc中。<br>B和所指代的修饰符的对应关系为：0（默认值，无修饰符），1（g），2（i），4（m），8（s），16（u），32（y）；B也可以指代符合语法规范的修饰符的组合，例如3，指代的修饰符是gi。  |
+|  0x72	|  IMM16_ID16_IMM8	|  createregexpwithliteral RRRR, @AAAA, +BB	|  R：方舟运行时内部使用的16位保留数字<br>A：string id<br>B：指代正则表达式修饰符	|  使用索引A对应的字符串和B指代的修饰符，创建一个正则表达式，并存放到acc中。<br>B和所指代的修饰符的对应关系为：0（默认值，无修饰符），1（g），2（i），4（m），8（s），16（u），32（y）；B也可以指代符合语法规范的修饰符的组合，例如3，指代的修饰符是gi。  |
 |  0x73	|  IMM8_IMM8_V8	|  callrange RR, +AA, vBB	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：参数数量<br>B,..., B + A - 1：参数	|  以B, ..., B + A - 1作为参数，调用acc中存放的函数对象，并将结果存放到acc中。   |
-|  0x74	|  IMM16_ID16_IMM8	|  definefunc RRRR, @AAAA, +BB	|  R：方舟运行时内部使用的16位保留数字<br>A：method id<br>B：形参数量	|  创建方法A的函数对象，并将其存放到acc中。   |
-|  0x75	|  IMM16_ID16_ID16_IMM16_V8	|  defineclasswithbuffer RRRR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的16位保留数字<br>A：类的构造函数的method id<br>B：literal id<br>C：A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建A的类对象，并将其存放到acc中。   |
+|  0x74	|  IMM16_ID16_IMM8	|  definefunc RRRR, @AAAA, +BB	|  R：方舟运行时内部使用的16位保留数字<br>A：method id<br>B：方法A的形参数量	|  创建方法A的函数对象，并将其存放到acc中。   |
+|  0x75	|  IMM16_ID16_ID16_IMM16_V8	|  defineclasswithbuffer RRRR, @AAAA, @BBBB, +CCCC, vDD	|  R：方舟运行时内部使用的16位保留数字<br>A：类的构造函数的method id<br>B：literal id<br>C：方法A的形参数量<br>D：父类	|  使用索引B对应的字面量数组和父类D，创建A的类对象，并将其存放到acc中。   |
 |  0x76	|  IMM8	|  gettemplateobject RR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字	|  执行[GetTemplateObject](https://262.ecma-international.org/12.0/#sec-gettemplateobject)(acc)，并将结果存放到acc中。   |
 |  0x77	| IMM8_V8	| setobjectwithproto RR, vAA	|  默认入参：acc：对象<br>R：方舟运行时内部使用的8位保留数字<br>A：值	|  将acc中存放对象的 **\_\_proto\_\_** 属性设置为A。   |
 |  0x78	|  IMM8_V8_V8	|  stownbyvalue RR, vAA, vBB	|  默认入参：acc：值<br>R：方舟运行时内部使用的8位保留数字<br>A：对象<br>B：属性键值	|  将acc中的值存放到对象A的键值为B的属性上。   |
@@ -488,7 +488,7 @@ function foo(a: number, b: number): void {}
 |  0xbb	|  IMM8_IMM8_V8	|  supercallarrowrange RR, +AA, vBB	|  默认入参：acc：类对象<br>R：方舟运行时内部使用的8位保留数字<br>A：参数数量<br>B, ..., B + A - 1：参数	|  以B, ..., B + A - 1作为参数，调用acc中所存类的父类的构造函数，并将结果存放到acc中。<br>如果A的值为0，则B为**undefined**。<br>此指令仅出现在箭头函数中。   |
 |  0xbc	|  V8_V8_V8_V8	|  definegettersetterbyvalue vAA, vBB, vCC, vDD	|  默认入参：acc：是否需要为访问器设置名称，是一个布尔值<br>A：对象<br>B：属性键值<br>C：getter函数对象<br>D：setter函数对象	|  以getter方法 C和setter方法 D作为参数，定义对象A的键值为B的属性的访问器，并将结果对象存放到acc中。<br>如果C是**undefined**，则不会设置getter，如果D是**undefined**，则不会设置setter。   |
 |  0xbd	|  NONE	|  dynamicimport	|  默认入参：acc：值	|  使用acc中的值作为参数，执行[ImportCalls](https://262.ecma-international.org/12.0/#sec-import-calls)，并把结果存放到acc中。   |
-|  0xbe	|  IMM16_ID16_IMM8	|  definemethod RRRR, @AAAA, +BB	|  默认入参：acc：类对象或类对象的对象原型，方法为静态方法时，acc中是类对象<br>R：方舟运行时内部使用的16位保留数字<br>A：method id<br>B：形参数量	|  创建方法A的函数对象，将acc中的对象设置为该函数对象的[[[HomeObject]]](https://262.ecma-international.org/12.0/#sec-ecmascript-function-objects)属性，并将该函数对象存放到acc中。   |
+|  0xbe	|  IMM16_ID16_IMM8	|  definemethod RRRR, @AAAA, +BB	|  默认入参：acc：类对象或类对象的对象原型，方法为静态方法时，acc中是类对象<br>R：方舟运行时内部使用的16位保留数字<br>A：method id<br>B：方法A的形参数量	|  创建方法A的函数对象，将acc中的对象设置为该函数对象的[[[HomeObject]]](https://262.ecma-international.org/12.0/#sec-ecmascript-function-objects)属性，并将该函数对象存放到acc中。   |
 |  0xbf	|  NONE	|  resumegenerator	|  默认入参：acc：生成器	|  基于acc中存放的genarator，执行[GeneratorResume](https://262.ecma-international.org/12.0/#sec-generatorresume)，并将结果存放到acc中。   |
 |  0xc0	|  NONE	|  getresumemode	|  默认入参：acc：生成器	|  获取acc中所存放的genarator的执行完成后恢复值的类型，并将其存放到acc中。   |
 |  0xc1	|  IMM16	|  gettemplateobject RRRR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的16位保留数字	|  执行[GetTemplateObject](https://262.ecma-international.org/12.0/#sec-gettemplateobject)(acc)，并将结果存放到acc中。   |
@@ -518,7 +518,7 @@ function foo(a: number, b: number): void {}
 |  0xd9	|  IMM8_IMM16_IMM16_V8	|  stprivateproperty RR, +AAAA, +BBBB, vCC	|  A：词法环境层级<br>B：槽位号<br>C：对象	|  加载A个层次外的词法环境的B号槽位上的值，作为属性键值，将acc中的值存放到C中所存放对象的该键值上。   |
 |  0xda	|  IMM8_IMM16_IMM16	|  testin RR, +AAAA, +BBBB	|  默认入参：acc：对象<br>A：词法环境层级<br>B：槽位号	|  加载A个层次外的词法环境的B号槽位上的值，计算是否`in acc`，将结果存放到acc中。   |
 |  0xdb	|  IMM8_ID16_V8	|  definefieldbyname RR, @AAAA, vBB	|  默认入参：acc：值<br>A：string id<br>B：对象	|  为对象B定义一个键值为A的属性，并将acc中的值存放到其中。   |
-|  0xfb	|  PREF_NONE	|  callruntime.notifyconcurrentresult	|  默认入参：acc：result	|  将并发函数的返回值通知运行时。<br>此指令仅出现在并发函数中。   |
+|  0xfb	|  PREF_NONE	|  callruntime.notifyconcurrentresult	|  默认入参：acc：并发函数的返回值	|  将并发函数的返回值通知运行时。<br>此指令仅出现在并发函数中。   |
 |  0xfc	|  (deprecated)	 |  |  | （弃用的操作码） |
 |  0xfd	|  PREF_IMM16_V8_V8	|  wide.createobjectwithexcludedkeys +AAAA, vBB, vCC	|  A：范围寄存器数量<br>B：对象<br>C, ..., C + A：属性键值	|  基于对象B，创建一个排除了键值C, ..., C + A的对象，并将其存放到acc中。<br>这个指令用例支持使用析构和扩展语法创建对象。   |
 |  0xfe	|  PREF_NONE	|  throw	|  默认入参：acc：异常	|  抛出acc中存放的异常。   |

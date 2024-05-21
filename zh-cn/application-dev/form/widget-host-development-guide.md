@@ -57,13 +57,10 @@ formHost提供一系列的卡片使用方接口，来操作卡片的更新、删
 
 ```ts
 //Index.ets
-import formHost from '@ohos.app.form.formHost';
-import formInfo from '@ohos.app.form.formInfo';
-import HashMap from '@ohos.util.HashMap';
-import HashSet from '@ohos.util.HashSet';
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
-import { BusinessError } from '@ohos.base';
-import formObserver from '@ohos.app.form.formObserver';
+import { HashMap, HashSet } from '@kit.ArkTS';
+import { formHost, formInfo, formObserver } from '@kit.FormKit';
+import { bundleMonitor } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -124,9 +121,9 @@ struct formHostSample {
     transparencyEnabled: false
   }
   formInfoRecord: TextCascadePickerRangeContent[] = [];
+  pickerBtnMsg: Resource | string = $r('app.string.formType');
   @State showForm: boolean = true;
   @State selectFormId: string = '0';
-  @State pickerBtnMsg: Resource | string = $r('app.string.formType');
   @State pickDialogIndex: number = 0;
 
   aboutToAppear(): void {
@@ -271,7 +268,6 @@ struct formHostSample {
         // 点击查询所有卡片信息。
         Button($r('app.string.inquiryForm'))
           .onClick(() => {
-            console.log('===> 点击查询卡片成功');
             this.getAllBundleFormsInfo();
           })
 
@@ -311,10 +307,12 @@ struct formHostSample {
       }
       .margin({ left: 10 })
 
-      Text(this.pickerBtnMsg)
-        .margin({ top: 10, bottom: 10 })
-
       Divider().vertical(false).color(Color.Black).lineCap(LineCapStyle.Butt).margin({ top: 10, bottom: 10 })
+
+      if(this.showForm){
+        Text(this.pickerBtnMsg)
+          .margin({ top: 10, bottom: 10 })
+      }
 
       if (this.showForm) {
         Text('formId： ' + this.selectFormId)

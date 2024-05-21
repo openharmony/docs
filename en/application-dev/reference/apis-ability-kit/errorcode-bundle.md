@@ -448,7 +448,7 @@ The specified ability is disabled.
 
 **Solution**
 
-Check whether the ability is disabled. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the information.
+Check whether the ability is disabled. You can use [Bundle Manager](../../tools/bm-tool.md) to query the information.
 
 ## 17700030 Failure in Clearing Cache Files
 
@@ -465,8 +465,8 @@ When the **cleanBundleCacheFiles** API of the **bundleManager** module is called
 The application is a system application and the **AllowAppDataNotCleared** field is configured in the signing certificate.
 
 **Solution**
-1. Check whether the application is a system application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **isSystemApp** is **true**.
-2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can run the [bm commands](../../../readme/bundle-management.md#bm-commands) to query the application information and check whether the value of **userDataClearable** is **true**.
+1. Check whether the application is a system application. You can use [Bundle Manager](../../tools/bm-tool.md) to query the application information and check whether the value of **isSystemApp** is **true**.
+2. Check whether the **AllowAppDataNotCleared** field is configured for the application. You can use [Bundle Manager](../../tools/bm-tool.md) to query the application information and check whether the value of **userDataClearable** is **true**.
 
 ## 17700031 HAP Installation Fails Due to Overlay Feature Verification Failure
 
@@ -627,7 +627,7 @@ Failed to install because disallow install a shared bundle by hapFilePaths.
 During application installation, the installation package passed in is of the inter-application shared library type.
 
 **Possible Causes**
-1. When the Bundle Manager tool is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
+1. When [Bundle Manager](../../tools/bm-tool.md) is used to install an application, the **-p** parameter is set to the installation package path of an inter-application shared library.
 2. When the **install** API is called to install an application, the **hapFilePaths** parameter is set to the installation package path of an inter-application shared library.
 
 **Solution**
@@ -645,7 +645,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 During application uninstall, the bundle name of an inter-application shared library is passed in.
 
 **Possible Causes**
-1. When the Bundle Manager tool is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
+1. When [Bundle Manager](../../tools/bm-tool.md) is used to uninstall an application, the **-n** parameter is set to the bundle name of an inter-application shared library.
 2. When the **install** API is called to uninstall an application, the **bundleName** parameter is set to the bundle name of an inter-application shared library.
 
 **Solution**
@@ -897,7 +897,7 @@ The application has applied for an incorrect permission, causing the installatio
 **Solution**
 
 1. Check whether the application has applied for the [MDM permission](../../security/AccessToken/permissions-for-mdm-apps.md), which is available only for MDM applications.
-2. Check whether the [permission level](../../security/AccessToken/permissions-for-all.md) is higher than the [application's APL](../../security/app-provision-structure.md#internal-structure-of-the-bundle-info-object). If the application uses the default APL, which is normal, it can require the system_basic or system_core permission only. Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
+2. Check whether the [permission level](../../security/AccessToken/permissions-for-all.md) is higher than the [application's APL](../../security/app-provision-structure.md#bundle-info). If the application uses the default APL, which is normal, it can require the system_basic or system_core permission only. Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
 
 ## 17700055 Invalid Link
 
@@ -935,6 +935,78 @@ The scheme of the link is not configured in the **querySchemes** field.
 
 Check whether the URL scheme is configured in the **querySchemes** field.
 
+## 17700057 Specified Application Is Not a Preset Application
+
+**Error Message**
+
+Failed to uninstall updates because the HAP is not pre-installed.
+
+**Description**
+
+When the **uninstallUpdates** API of the **installer** module is called, the specified application is not a preset application.
+
+**Possible Causes**
+
+The **uninstallUpdates** API can only be used to uninstall the updates of a preset application.
+
+**Solution**
+
+Check whether the specified application is a preset application.
+
+## 17700059 Specified Developer ID Does Not Exist
+
+**Error Message**
+
+The specified developerId is invalid.
+
+**Description**
+
+When the **getAllBundleInfoByDeveloperId** API of the **bundleManager** module is called, the developer ID passed in is invalid.
+
+**Possible Causes**
+
+Applications with the specified developer ID are not installed on the device.
+
+**Solution**
+
+Check the validity of the developer ID.
+
+## 17700060 Specified Application Cannot Be Uninstalled
+
+**Error Message**
+
+The specified application can not be uninstalled.
+
+**Description**
+
+When the **switchUninstallState** API of the **bundleManager** module is called, the specified application cannot be uninstalled.
+
+**Possible Causes**
+
+The specified application is not uninstallable.
+
+**Solution**
+
+Check whether the specified application is uninstallable.
+
+## 17700065 Ability Specified by want in the ShortcutInfo Struct Cannot Be Started
+
+**Error Message**
+
+The specified shortcut want in shortcut info is not supported to be started.
+
+**Description**
+
+When the **startShortcut** API of the **launcherBundleManager** module is called, the ability specified by **want** in the **ShortcutInfo** struct fails to start.
+
+**Possible Causes**
+
+The ability specified by **want** in the **ShortcutInfo** struct does not exist, or the ability specified by **want** in the **ShortcutInfo** struct cannot be started.
+
+**Solution**
+
+Check the validity of **want** in the **ShortcutInfo** struct.
+
 ## 17700201 .abc File Verification Failure
 
 **Error Message**
@@ -970,3 +1042,105 @@ The .abc file does not exist.
 **Solution**
 
 Pass in a valid path of the .abc file.
+
+## 17700301 Failed to Add Extended Resources
+**Error Message**
+
+AddExtResource failed.
+
+**Description**
+
+Failed to add the extended resources.
+
+**Possible Causes**
+
+The .hsp file does not exist or is untrusted.
+
+**Solution**
+
+Pass in a correct and trusted .hsp file path.
+
+## 17700302 Failed to Delete Extended Resources
+**Error Message**
+
+RemoveExtResource failed.
+
+**Description**
+
+Failed to delete the extended resources.
+
+**Possible Causes**
+
+The HSP corresponding to the module name does not exist.
+
+**Solution**
+
+Pass in a valid module name.
+
+## 17700303 Failed to Obtain Extended Resources
+**Error Message**
+
+GetExtResource failed.
+
+**Description**
+
+Failed to obtain the extended resources.
+
+**Possible Causes**
+
+The HSP corresponding to the bundle name does not exist.
+
+**Solution**
+
+Pass in a valid bundle name.
+
+## 17700304 Failed to Enable the Dynamic Icon
+**Error Message**
+
+EnableDynamicIcon failed.
+
+**Description**
+
+Failed to enable the dynamic icon.
+
+**Possible Causes**
+
+The HSP does not contain the correct icon resource.
+
+**Solution**
+
+Before enabling the dynamic icon, ensure that the HSP corresponding to the module name is valid and contains the icon resource.
+
+## 17700305 Failed to Disable the Dynamic Icon
+**Error Message**
+
+DisableDynamicIcon failed.
+
+**Description**
+
+Failed to disable the dynamic icon.
+
+**Possible Causes**
+
+The HSP does not contain the correct icon resource.
+
+**Solution**
+
+Before disabling the dynamic icon, ensure that the HSP corresponding to the bundle name contains the icon resource.
+
+## 17700306 Failed to Obtain the Dynamic Icon
+**Error Message**
+
+GetDynamicIcon failed.
+
+**Description**
+
+Failed to obtain the dynamic icon.
+
+**Possible Causes**
+
+The HSP does not contain the correct icon resource.
+
+**Solution**
+
+Before querying the dynamic icon, ensure that the HSP corresponding to the bundle name contains the icon resource.

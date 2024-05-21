@@ -55,34 +55,37 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| \*[OH_AVPlayer_Create](#oh_avplayer_create) (void) | 创建播放器。 | 
-| [OH_AVPlayer_SetURLSource](#oh_avplayer_seturlsource) (OH_AVPlayer \*player, const char \*url) | 设置播放器的播放源。对应的源可以是http url。 | 
-| [OH_AVPlayer_SetFDSource](#oh_avplayer_setfdsource) (OH_AVPlayer \*player, int32_t fd, int64_t offset, int64_t size) | 设置播放器的播放媒体文件描述符来源。 | 
-| [OH_AVPlayer_Prepare](#oh_avplayer_prepare) (OH_AVPlayer \*player) | 准备播放环境，异步缓存媒体数据。 | 
-| [OH_AVPlayer_Play](#oh_avplayer_play) (OH_AVPlayer \*player) | 开始播放。 | 
-| [OH_AVPlayer_Pause](#oh_avplayer_pause) (OH_AVPlayer \*player) | 暂停播放。 | 
-| [OH_AVPlayer_Stop](#oh_avplayer_stop) (OH_AVPlayer \*player) | 停止播放。 | 
-| [OH_AVPlayer_Reset](#oh_avplayer_reset) (OH_AVPlayer \*player) | 将播放器恢复到初始状态。 | 
-| [OH_AVPlayer_Release](#oh_avplayer_release) (OH_AVPlayer \*player) | 异步释放播放器资源。 | 
-| [OH_AVPlayer_ReleaseSync](#oh_avplayer_releasesync) (OH_AVPlayer \*player) | 同步释放播放器资源。 | 
-| [OH_AVPlayer_SetVolume](#oh_avplayer_setvolume) (OH_AVPlayer \*player, float leftVolume, float rightVolume) | 设置播放器的音量。 | 
-| [OH_AVPlayer_Seek](#oh_avplayer_seek) (OH_AVPlayer \*player, int32_t mSeconds, [AVPlayerSeekMode](#avplayerseekmode) mode) | 改变播放位置。 | 
-| [OH_AVPlayer_GetCurrentTime](#oh_avplayer_getcurrenttime) (OH_AVPlayer \*player, int32_t \*currentTime) | 获取播放位置，精确到毫秒。 | 
-| [OH_AVPlayer_GetVideoWidth](#oh_avplayer_getvideowidth) (OH_AVPlayer \*player, int32_t \*videoWidth) | 获取视频宽度。 | 
-| [OH_AVPlayer_GetVideoHeight](#oh_avplayer_getvideoheight) (OH_AVPlayer \*player, int32_t \*videoHeight) | 获取视频高度。 | 
-| [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | 设置播放器播放速率。 | 
-| [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | 获取当前播放器播放速率。 | 
-| [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | 设置hls播放器使用的码率。 | 
-| [OH_AVPlayer_SetVideoSurface](#oh_avplayer_setvideosurface) (OH_AVPlayer \*player, OHNativeWindow \*window) | 设置播放画面窗口。 | 
-| [OH_AVPlayer_GetDuration](#oh_avplayer_getduration) (OH_AVPlayer \*player, int32_t \*duration) | 获取媒体文件的总时长，精确到毫秒。 | 
-| [OH_AVPlayer_GetState](#oh_avplayer_getstate) (OH_AVPlayer \*player, [AVPlayerState](#avplayerstate) \*state) | 获取当前播放状态。 | 
-| [OH_AVPlayer_IsPlaying](#oh_avplayer_isplaying) (OH_AVPlayer \*player) | 判断播放器是否在播放。 | 
-| [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | 判断是用循环播放。 | 
-| [OH_AVPlayer_SetLooping](#oh_avplayer_setlooping) (OH_AVPlayer \*player, bool loop) | 设置循环播放。 | 
-| [OH_AVPlayer_SetPlayerCallback](#oh_avplayer_setplayercallback) (OH_AVPlayer \*player, [AVPlayerCallback](_a_v_player_callback.md) callback) | 设置播放器回调方法。 | 
-| [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | 选择音频或字幕轨道。 | 
-| [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | 取消选择当前音频或字幕轨道。 | 
-| [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | 获取当前有效的轨道索引。 | 
+| OH_AVPlayer \*[OH_AVPlayer_Create](#oh_avplayer_create) (void) | 创建播放器。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetURLSource](#oh_avplayer_seturlsource) (OH_AVPlayer \*player, const char \*url) | 设置播放器的播放源。对应的源可以是http url。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetFDSource](#oh_avplayer_setfdsource) (OH_AVPlayer \*player, int32_t fd, int64_t offset, int64_t size) | 设置播放器的播放媒体文件描述符来源。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Prepare](#oh_avplayer_prepare) (OH_AVPlayer \*player) | 准备播放环境，异步缓存媒体数据。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Play](#oh_avplayer_play) (OH_AVPlayer \*player) | 开始播放。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Pause](#oh_avplayer_pause) (OH_AVPlayer \*player) | 暂停播放。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Stop](#oh_avplayer_stop) (OH_AVPlayer \*player) | 停止播放。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Reset](#oh_avplayer_reset) (OH_AVPlayer \*player) | 将播放器恢复到初始状态。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Release](#oh_avplayer_release) (OH_AVPlayer \*player) | 异步释放播放器资源。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_ReleaseSync](#oh_avplayer_releasesync) (OH_AVPlayer \*player) | 同步释放播放器资源。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVolume](#oh_avplayer_setvolume) (OH_AVPlayer \*player, float leftVolume, float rightVolume) | 设置播放器的音量。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Seek](#oh_avplayer_seek) (OH_AVPlayer \*player, int32_t mSeconds, [AVPlayerSeekMode](#avplayerseekmode) mode) | 改变播放位置。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTime](#oh_avplayer_getcurrenttime) (OH_AVPlayer \*player, int32_t \*currentTime) | 获取播放位置，精确到毫秒。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetVideoWidth](#oh_avplayer_getvideowidth) (OH_AVPlayer \*player, int32_t \*videoWidth) | 获取视频宽度。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetVideoHeight](#oh_avplayer_getvideoheight) (OH_AVPlayer \*player, int32_t \*videoHeight) | 获取视频高度。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlaybackSpeed](#oh_avplayer_setplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) speed) | 设置播放器播放速率。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetPlaybackSpeed](#oh_avplayer_getplaybackspeed) (OH_AVPlayer \*player, [AVPlaybackSpeed](#avplaybackspeed) \*speed) | 获取当前播放器播放速率。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectBitRate](#oh_avplayer_selectbitrate) (OH_AVPlayer \*player, uint32_t bitRate) | 设置hls播放器使用的码率。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetVideoSurface](#oh_avplayer_setvideosurface) (OH_AVPlayer \*player, OHNativeWindow \*window) | 设置播放画面窗口。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetDuration](#oh_avplayer_getduration) (OH_AVPlayer \*player, int32_t \*duration) | 获取媒体文件的总时长，精确到毫秒。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetState](#oh_avplayer_getstate) (OH_AVPlayer \*player, [AVPlayerState](#avplayerstate) \*state) | 获取当前播放状态。 | 
+| bool [OH_AVPlayer_IsPlaying](#oh_avplayer_isplaying) (OH_AVPlayer \*player) | 判断播放器是否在播放。 | 
+| bool [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | 判断是用循环播放。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetLooping](#oh_avplayer_setlooping) (OH_AVPlayer \*player, bool loop) | 设置循环播放。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlayerCallback](#oh_avplayer_setplayercallback) (OH_AVPlayer \*player, [AVPlayerCallback](_a_v_player_callback.md) callback) | 设置播放器回调方法。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | 选择音频或字幕轨道。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | 取消选择当前音频或字幕轨道。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | 获取当前有效的轨道索引。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetMediaKeySystemInfoCallback](#oh_avplayer_setmediakeysysteminfocallback) (OH_AVPlayer \*player, Player_MediaKeySystemInfoCallback callback) | 设置播放器媒体密钥系统信息回调的方法。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | 获取媒体密钥系统信息以创建媒体密钥会话。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, [MediaKeySession](_drm.md#mediakeysession) \*mediaKeySession, bool secureVideoPath) | 设置解密信息。 | 
 
 
 ### 变量
@@ -456,6 +459,32 @@ OH_AVErrCode OH_AVPlayer_GetDuration (OH_AVPlayer * player, int32_t * duration )
 **返回：**
 
 如果获取当前时长，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+
+
+### OH_AVPlayer_GetMediaKeySystemInfo()
+
+```
+OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo (OH_AVPlayer * player, DRM_MediaKeySystemInfo * mediaKeySystemInfo )
+```
+
+**描述**
+
+获取媒体密钥系统信息以创建媒体密钥会话。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| player | 指向OH_AVPlayer实例的指针 |
+| mediaKeySystemInfo | 媒体密钥系统信息 | 
+
+**返回：**
+
+如果成功获取，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
 
 
 ### OH_AVPlayer_GetPlaybackSpeed()
@@ -851,6 +880,33 @@ OH_AVErrCode OH_AVPlayer_SelectTrack (OH_AVPlayer * player, int32_t index )
 如果成功选择返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
 
 
+### OH_AVPlayer_SetDecryptionConfig()
+
+```
+OH_AVErrCode OH_AVPlayer_SetDecryptionConfig (OH_AVPlayer * player, MediaKeySession * mediaKeySession, bool secureVideoPath )
+```
+
+**描述**
+
+设置解密信息。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| player | 指向OH_AVPlayer实例的指针。 | 
+| mediaKeySession | 具有解密功能的媒体密钥会话实例。 | 
+| secureVideoPath | 是否需要安全解码器。 | 
+
+**返回：**
+
+如果成功设置返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+
+
 ### OH_AVPlayer_SetFDSource()
 
 ```
@@ -903,6 +959,32 @@ OH_AVErrCode OH_AVPlayer_SetLooping (OH_AVPlayer * player, bool loop )
 **返回：**
 
 如果设置了循环，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+
+
+### OH_AVPlayer_SetMediaKeySystemInfoCallback()
+
+```
+OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback (OH_AVPlayer * player, Player_MediaKeySystemInfoCallback callback )
+```
+
+**描述**
+
+设置播放器媒体密钥系统信息回调的方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| player | 指向OH_AVPlayer实例的指针。 | 
+| callback | 对象指针。 | 
+
+**返回：**
+
+如果设置成功，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
 
 
 ### OH_AVPlayer_SetPlaybackSpeed()

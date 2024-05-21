@@ -23,7 +23,7 @@ import systemDateTime from '@ohos.systemDateTime';
 | STARTUP | 0    | 自系统启动以来经过的毫秒数，包括深度睡眠时间。   |
 | ACTIVE  | 1    | 自系统启动以来经过的毫秒数，不包括深度睡眠时间。 |
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -37,6 +37,14 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | -------- | -------------- | ---- | ------------------ |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br>- true：表示返回结果为纳秒数（ns）。 <br>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间戳。         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                              |
+| -------- |-------------------------------------------------------------------|
+| 401       | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -57,7 +65,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -70,6 +78,14 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型               | 必填 | 说明                            |
 | -------- | ----------- | ---- | ---------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自Unix纪元以来经过的时间戳（ms）。         |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID    | 错误信息                                                              |
+|----------|-------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -90,7 +106,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -110,6 +126,14 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 | --------------------- | --------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自Unix纪元以来经过的时间戳。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                              |
+|---------|-------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -127,7 +151,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -141,6 +165,14 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | -------- | ---------- | ---- | -------------------------- |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                              |
+|---------|-------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -161,7 +193,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -174,6 +206,14 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型                        | 必填 | 说明    |
 | -------- | -------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                              |
+|---------|-------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -194,7 +234,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -214,6 +254,14 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 | -------------- | -------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自系统启动以来经过的时间，但不包括深度睡眠时间。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                              |
+|---------|-------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -231,7 +279,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -245,6 +293,14 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------- | ---- | ------------------------------- |
 | isNano   | boolean                     | 是   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                              |
+|---------|-------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -265,7 +321,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -278,6 +334,14 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型                        | 必填 | 说明      |
 | -------- | --------- | ---- | --------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                              |
+|---------|-------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -298,7 +362,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -317,6 +381,14 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 | 类型                  | 说明       |
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回自系统启动以来经过的时间，包括深度睡眠时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                              |
+|---------|-------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -376,9 +448,9 @@ getUptime(timeType: TimeType, isNanoseconds?: boolean): number
 
 **参数：**
 
-| 参数名        | 类型                    | 必填 | 说明                                                         |
-| ------------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| timeType      | [TimeType](#timetype10) | 是   | 获取时间的类型。                                             |
+| 参数名        | 类型                    | 必填 | 说明                                                                                |
+| ------------- | ----------------------- | ---- |-----------------------------------------------------------------------------------|
+| timeType      | [TimeType](#timetype10) | 是   | 获取时间的类型，仅能为`STARTUP`或者`ACTIVE`。                                                  |
 | isNanoseconds | boolean                 | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。<br>默认值为false。 |
 
 **返回值：**
@@ -415,6 +487,14 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 | 参数名   | 类型           | 必填 | 说明                   |
 | -------- | -------------- | ---- | --------------------- |
 | callback | AsyncCallback&lt;Date&gt; | 是   | 回调函数，返回当前系统日期。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                 |
+|-------|------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.System error. |
 
 **示例：**
 
@@ -453,6 +533,14 @@ getDate(): Promise&lt;Date&gt;
 | ------------------- | ----------------------------------------- |
 | Promise&lt;Date&gt; | Promise对象，返回当前系统日期。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                 |
+|-------|------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.System error. |
+
 **示例：**
 
 ```ts
@@ -483,6 +571,14 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 | 参数名   | 类型              | 必填 | 说明                 |
 | -------- | --------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                 |
+|---------|------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1.System error. |
 
 **示例：**
 
@@ -516,6 +612,14 @@ getTimezone(): Promise&lt;string&gt;
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
 | Promise&lt;string&gt; | Promise对象，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID   | 错误信息                                                 |
+|---------|------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1.System error. |
 
 **示例：**
 

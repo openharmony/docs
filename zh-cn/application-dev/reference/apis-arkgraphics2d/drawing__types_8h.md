@@ -41,15 +41,18 @@
 | typedef struct [OH_Drawing_Point](_drawing.md#oh_drawing_point)  [OH_Drawing_Point](_drawing.md#oh_drawing_point) | 定义一个点，用于描述坐标点。 | 
 | typedef struct [OH_Drawing_ColorSpace](_drawing.md#oh_drawing_colorspace)  [OH_Drawing_ColorSpace](_drawing.md#oh_drawing_colorspace) | 定义色彩空间，用于解释颜色信息。 | 
 | typedef struct [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)  [OH_Drawing_Point2D](_drawing.md#oh_drawing_point2d) | 定义一个二维的坐标点。 | 
+| typedef [OH_Drawing_Point2D](_o_h___drawing___point2_d.md)[OH_Drawing_Corner_Radii](_drawing.md#oh_drawing_corner_radii) | 定义一个圆角半径，该圆角半径由x轴方向和y轴方向上的半径组成。 | 
 | typedef struct [OH_Drawing_Point3D](_o_h___drawing___point3_d.md)  [OH_Drawing_Point3D](_drawing.md#oh_drawing_point3d) | 定义一个三维的坐标点。 | 
 | typedef struct [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect)  [OH_Drawing_PathEffect](_drawing.md#oh_drawing_patheffect) | 定义一个路径效果，用于影响描边路径。 | 
 | typedef struct [OH_Drawing_Rect](_drawing.md#oh_drawing_rect)  [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) | 用于描述矩形。 | 
 | typedef struct [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect)  [OH_Drawing_RoundRect](_drawing.md#oh_drawing_roundrect) | 用于描述圆角矩形。 | 
 | typedef struct [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix)  [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) | 定义一个矩阵，用于描述坐标变换。 | 
 | typedef struct [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect)  [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) | 定义一个着色器，用于描述绘制内容的源颜色。 | 
-| typedef struct [OH_Drawing_Filter](_drawing.md#oh_drawing_filter)  [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器和模板滤波器。 | 
+| typedef struct [OH_Drawing_ShadowLayer](_drawing.md#oh_drawing_shadowlayer)[OH_Drawing_ShadowLayer](_drawing.md#oh_drawing_shadowlayer) | 定义一个阴影层，用于描述绘制内容的阴影层。 | 
+| typedef struct [OH_Drawing_Filter](_drawing.md#oh_drawing_filter)  [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器，模板滤波器和图像滤波器。 | 
 | typedef struct [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter)  [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) | 定义模板滤波器，用于在绘制模板前对其进行转换。 | 
 | typedef struct [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter)  [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter) | 定义颜色滤波器，传入一个颜色并返回一个新的颜色。 | 
+| typedef struct [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter) | 定<br/>义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
 | typedef struct [OH_Drawing_Font](_drawing.md#oh_drawing_font)  [OH_Drawing_Font](_drawing.md#oh_drawing_font) | 用于描述字体。 | 
 | typedef struct [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream)  [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream) | 用于描述内存流。 | 
 | typedef struct [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface)  [OH_Drawing_Typeface](_drawing.md#oh_drawing_typeface) | 用于描述字形。 | 

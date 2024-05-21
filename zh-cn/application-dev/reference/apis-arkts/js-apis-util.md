@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 ```
 ## util.format<sup>9+</sup>
 
@@ -51,7 +51,7 @@ format(format: string,  ...args: Object[]): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 interface utilAddresstype {
   city: string;
@@ -402,11 +402,59 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 | Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
 
 
-## TextDecoderOptions<sup>11+</sup>
+## util.getHash<sup>12+</sup>
+
+getHash(object: object): number
+
+获取对象的Hash值。如果是第一次获取，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；如果不是第一次获取，则从Hash域中获取并返回Hash值（同一对象多次返回值保持不变）。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| object | object | 是 | 希望获取Hash值的对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | Hash值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+interface Person {
+  name: string,
+  age: number
+}
+let obj: Person = { name: 'Dany', age: 20 };
+let result1 = util.getHash(obj);
+console.info('result1 is ' + result1);
+let result2 = util.getHash(obj);
+console.info('result2 is ' + result2);
+// 输出：result1 与 result2 的值相等，且为随机的Hash值。
+```
+
+
+## TextDecoderOptions<sup>11+</sup>
+
 解码相关选项参数，存在两个属性fatal和ignoreBOM。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
@@ -416,9 +464,11 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ## DecodeWithStreamOptions<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 解码是否跟随附加数据块相关选项参数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -672,6 +722,8 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -697,6 +749,8 @@ let retStr = result.encoding
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -821,6 +875,8 @@ console.info("retStr = " + retStr);
 
 编码后的文本。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
 | read     | number  | 是 | 否 |表示已读取的字符数。 |
@@ -847,6 +903,8 @@ constructor()
 
 TextEncoder的构造函数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
@@ -860,6 +918,8 @@ let textEncoder = new util.TextEncoder();
 constructor(encoding?: string)
 
 TextEncoder的构造函数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -881,6 +941,8 @@ static create(encoding?: string): TextEncoder
 
 创建TextEncoder对象的方法。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -900,6 +962,8 @@ let textEncoder = util.TextEncoder.create("utf-8");
 encodeInto(input?: string): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -929,6 +993,8 @@ result = textEncoder.encodeInto("\uD800¥¥");
 encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 对字符串进行编码，将结果写入dest数组。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2653,6 +2719,8 @@ Base64Helper的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts 
@@ -2664,6 +2732,8 @@ Base64Helper的构造函数。
 encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2695,6 +2765,8 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 通过输入参数编码后输出对应文本。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2725,6 +2797,8 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 通过输入参数解码后输出对应Uint8Array对象。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2754,6 +2828,8 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步编码后输出对应Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2857,6 +2933,8 @@ constructor(encoding?: string)
 
 StringDecoder的构造函数。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2876,6 +2954,8 @@ StringDecoder的构造函数。
 write(chunk: string | Uint8Array): string
 
 返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2906,6 +2986,10 @@ end(chunk?: string | Uint8Array): string
 
 结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
 **参数：**
 
 | 参数名 | 类型       | 必填 | 说明                |
@@ -2935,12 +3019,13 @@ Base64编码格式枚举。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+
 | 名称   |值| 说明               |
 | ----- |---| ----------------- |
-| BASIC | 0 | 表示BASIC编码格式。|
-| MIME  | 1 | 表示MIME编码格式。 |
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
-| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
+| BASIC | 0 | 表示BASIC编码格式。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
+| MIME  | 1 | 表示MIME编码格式。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**元服务API**：从API version 12 开始，该接口支持在元服务中使用。|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
 
 
 ## types<sup>8+</sup>
@@ -4060,7 +4145,7 @@ isModuleNamespaceObject(value: Object): boolean
 
   ```ts
   // 本接口不支持在.ets文件中使用。
-  import url from '@ohos.url'
+  import { url } from '@kit.ArkTS';
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
   ```

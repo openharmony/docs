@@ -11,36 +11,67 @@
 
 | 名称                       | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| name                       | string                                                       | 是   | 否   | 应用程序的名称。                                                 |
-| description                | string                                                       | 是   | 否   | 标识应用的描述信息，使用示例："description": $string: mainability_description"。关于description的详细信息可参见descriptionResource字段说明。                                                 |
-| descriptionId              | number                                                       | 是   | 否   | 标识应用的描述信息的资源id。                                               |
-| enabled                    | boolean                                                      | 是   | 否   | 判断应用程序是否可以使用，默认为true。                           |
-| label                      | string                                                       | 是   | 否   | 标识应用的名称，使用示例："label": "$string: mainability_description"。关于label的详细信息可参见labelResource字段说明。|
-| labelId                    | number                                                       | 是   | 否   | 标识应用名称的资源id。                                               |
-| icon                       | string                                                       | 是   | 否   | 应用程序的图标，使用示例："icon": "$media:icon"。关于icon的详细信息可参见iconResource字段说明。                                                 |
-| iconId                     | number                                                       | 是   | 否   | 应用程序图标的资源id。                                               |
-| process                    | string                                                       | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称。                   |
-| permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_APPLICATION和GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION获取。 |
-| codePath                   | string                                                       | 是   | 否   | 应用程序的安装目录。                                             |
+| name                       | string                                                       | 是   | 否   | 应用程序的名称。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                 |
+| description                | string                                                       | 是   | 否   | 标识应用的描述信息，使用示例："description": $string: mainability_description"。关于description的详细信息可参见descriptionResource字段说明。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| descriptionId              | number                                                       | 是   | 否   | 标识应用的描述信息的资源id。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| enabled                    | boolean                                                      | 是   | 否   | 判断应用程序是否可以使用，默认为true。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| label                      | string                                                       | 是   | 否   | 标识应用的名称，使用示例："label": "$string: mainability_description"。关于label的详细信息可参见labelResource字段说明。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| labelId                    | number                                                       | 是   | 否   | 标识应用名称的资源id。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| icon                       | string                                                       | 是   | 否   | 应用程序的图标，使用示例："icon": "$media:icon"。关于icon的详细信息可参见iconResource字段说明。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| iconId                     | number                                                       | 是   | 否   | 应用程序图标的资源id。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| process                    | string                                                       | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_APPLICATION和GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION获取。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| codePath                   | string                                                       | 是   | 否   | 应用程序的安装目录。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | metadata<sup>(deprecated)<sup>  | Map\<string, Array\<[Metadata](js-apis-bundleManager-metadata.md)>> | 是   | 否   | 应用程序的元信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_APPLICATION和GET_BUNDLE_INFO_WITH_METADATA获取。<strong>注：</strong> 从API version 10开始不再维护，建议使用metadataArray替代。 |
-| metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata10)> | 是   | 否   | 应用程序的元信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_APPLICATION和GET_BUNDLE_INFO_WITH_METADATA获取。 |
-| removable                  | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。                                         |
-| accessTokenId             | number                                                       | 是   | 否   | 应用程序的accessTokenId。                                      |
-| uid                       | number                                                       | 是   | 否   | 应用程序的uid。                                                |
-| iconResource              | [Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的图标资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](../apis-localization-kit/js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。                     |
-| labelResource             | [Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的标签资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](../apis-localization-kit/js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。                         |
-| descriptionResource       | [Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的描述资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](../apis-localization-kit/js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。|
-| appDistributionType       | string                                                       | 是   | 否   | 应用程序签名证书的分发类型，分为：app_gallery、enterprise、os_integration和crowdtesting。    |
-| appProvisionType          | string                                                       | 是   | 否   | 应用程序签名证书文件的类型，分为debug和release两种类型。           |
-| systemApp          | boolean                                                       | 是   | 否   | 标识应用是否为系统应用。           |
-| bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP（应用）或者ATOMIC_SERVICE（元服务）。                                |
-| debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。        |
-| dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。        |
-| nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。                                                                                                   |
+| metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata10)> | 是   | 否   | 应用程序的元信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_APPLICATION和GET_BUNDLE_INFO_WITH_METADATA获取。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| removable                  | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| accessTokenId             | number                                                       | 是   | 否   | 应用程序的accessTokenId。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| uid                       | number                                                       | 是   | 否   | 应用程序的uid。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| iconResource              | [Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的图标资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](../apis-localization-kit/js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| labelResource             | [Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的标签资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](../apis-localization-kit/js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| descriptionResource       | [Resource](../apis-localization-kit/js-apis-resource-manager.md#resource9) | 是 | 否 | 应用程序的描述资源信息，通过ApplicationInfo 获取的resource 包含了该资源的信息的bundleName、moduleName 和 id，可以调用全球化的接口[getMediaContent](../apis-localization-kit/js-apis-resource-manager.md#getmediacontent9)来获取详细的资源数据信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| appDistributionType       | string                                                       | 是   | 否   | 应用程序签名证书的分发类型，分为：app_gallery、enterprise、os_integration和crowdtesting。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| appProvisionType          | string                                                       | 是   | 否   | 应用程序签名证书文件的类型，分为debug和release两种类型。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| systemApp          | boolean                                                       | 是   | 否   | 标识应用是否为系统应用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | 是   | 否   | 标识包的类型，取值为APP（应用）或者ATOMIC_SERVICE（元服务）。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。 |
+| dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                  |
+| multiAppMode<sup>12+</sup> | [MultiAppMode](#multiappmode12)    | 是   | 否   | 应用多开模式。|
+
+## MultiAppMode<sup>12+</sup>
+表示应用多开模式。
+
+ **参数：**
+
+| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| multiAppModeType<sup>12+</sup> | [MultiAppModeType](js-apis-bundleManager.md#multiappmodetype12)  | 是 | 否 |  应用多开模式的类型。  |
+| maxCount<sup>12+</sup> | number  | 是 | 否 |  应用多开的最大个数。  |
+
+
+## PreinstalledApplicationInfo<sup>12+<sup>
+
+描述预置应用部分信息。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+
+ **系统接口：**  此接口为系统接口。
+
+ **参数：**
+
+| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| bundleName     | string         | 是   | 否   | 应用包的名称。                 |
+| moduleName | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
+| iconId | number         | 是   | 否   | 应用图标Id。            |
+| labelId | number         | 是   | 否   | 应用标签Id。            |
 
 ## ModuleMetadata<sup>10+</sup>
 
 描述模块的元数据信息。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 

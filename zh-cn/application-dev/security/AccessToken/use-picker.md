@@ -16,6 +16,8 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 
 - [相机Picker （Camera Picker）](#相机picker)：拍照、录制
 
+<!--RP1--><!--RP1End-->
+
 ## 音频Picker
 
 使用音频Picker（AudioViewPicker）可访问、保存用户公共目录的音频文件。
@@ -32,24 +34,25 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 
 - 在应用需要申请权限**ohos.permission.WRITE_DOCUMENT**以修改用户公共目录中非媒体类型的文件时，可以使用FilePicker中的DocumentViewPicker替代，使用方式请参考：[保存文档类文件](../../file-management/save-user-file.md#保存文档类文件)。
 
-
 ## 照片Picker
 
 使用照片Picker（PhotoViewPicker）可访问、保存公共目录的图片或视频文件。
 
-- 在应用需要申请权限**ohos.permission.READ_IMAGEVIDEO**以访问用户公共目录的图片或视频文件时，可以使用FilePicker中的PhotoViewPicker替代，使用方式请参考：[选择图片或视频类文件](../../file-management/select-user-file.md#选择图片或视频类文件)。
+- 在应用需要申请权限**ohos.permission.READ_IMAGEVIDEO**以访问用户公共目录的图片或视频文件时，可以使用PhotoViewPicker替代，使用方式请参考：[选择媒体库资源](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用picker选择媒体库资源)。
 
 - 在应用需要申请权限**ohos.permission.WRITE_IMAGEVIDEO**以修改用户公共目录的图片或视频文件时，可以使用FilePicker中的PhotoViewPicker替代，使用方式请参考：[保存图片或视频类文件](../../file-management/save-user-file.md#保存图片或视频类文件)。
 
-
 ## 联系人Picker
 
-使用联系人Picker（Contacts Picker）可读取、写入联系人数据。
+使用联系人Picker（Contacts Picker）可读取联系人数据。
 
-在应用需要申请权限**ohos.permission.READ_CONTACTS**以读取联系人数据时，可以使用Contacts Picker替代，使用方式请参考：[contact.selectContacts](../../reference/apis-contacts-kit/js-apis-contact.md#contactselectcontacts10)。
+在应用需要申请权限**ohos.permission.READ_CONTACTS**以读取联系人数据时，可以使用Contacts Picker替代，使用方式请参考：[选择联系人](../../contacts/contacts-intro.md#选择联系人)。
 
 ## 相机Picker
 
 使用相机Picker （Camera Picker）可实现拍照、录制。
 
 在应用需要申请权限**ohos.permission.CAMERA**以使用相机时，可以使用Camera Picker替代，使用方式请参考：[cameraPicker.pick](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pick)。
+
+<!--RP2-->
+<!--RP2End-->

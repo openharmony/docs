@@ -894,7 +894,7 @@ get(member: string): MemberType
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称，在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
+| member | string | 是    | 成员参数名称，在get时，除了uri、photoType、photoSubtype和displayName四个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
 
 **返回值：**
 
@@ -2409,7 +2409,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       | if values to commit is invalid.         |
+| 401       | if value to modify is invalid.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2461,7 +2461,7 @@ commitModify(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401       |  if values to commit is invalid.         |
+| 401       |  if value to modify is invalid.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3589,9 +3589,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import image from '@ohos.multimedia.image'
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-    onDataPrepared(data: image.ImageSource) {
-        console.info('on image data prepared');
+  onDataPrepared(data: image.ImageSource) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
     }
+    console.info('on image data prepared');
+  }
 }
 
 async function example() {
@@ -3655,9 +3659,13 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-    onDataPrepared(data: ArrayBuffer) {
-        console.info('on image data prepared');
+  onDataPrepared(data: ArrayBuffer) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
     }
+    console.info('on image data prepared');
+  }
 }
 
 async function example() {
@@ -3723,6 +3731,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     console.info("moving photo acquired successfully, uri: " + movingPhoto.getUri());
   }
 }
@@ -3868,6 +3880,52 @@ async function example() {
 
 ```
 
+### loadMovingPhoto<sup>12+</sup>
+
+static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: string): Promise\<MovingPhoto>
+
+加载应用沙箱的动态照片。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                   | 必填 | 说明                      |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 传入AbilityContext或者UIExtensionContext的实例。 |
+| imageFileUri | string     | 是   | 应用沙箱动态照片的图片uri。 |
+| videoFileUri | string     | 是   | 应用沙箱动态照片的视频uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise\<MovingPhoto> | Promise对象，返回[MovingPhoto](#movingphoto12)实例。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      | Invalid parameter. 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+```ts
+async function example() {
+  try {
+    let imageFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg'; // 应用沙箱动态照片的图片uri
+    let videoFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4'; // 应用沙箱动态照片的视频uri
+    let movingPhoto: photoAccessHelper.MovingPhoto = await photoAccessHelper.MediaAssetManager.loadMovingPhoto(context, imageFileUri, videoFileUri);
+  } catch (err) {
+    console.error(`loadMovingPhoto failed with error: ${err.code}, ${err.message}`);
+  }
+}
+
+```
+
 ## MediaAssetDataHandler<sup>11+</sup>
 
 媒体资源处理器，应用在onDataPrepared方法中可自定义媒体资源处理逻辑。
@@ -3878,7 +3936,7 @@ async function example() {
 
 onDataPrepared(data: T): void
 
-媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。
+媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
 T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource)与[MovingPhoto](#movingphoto12)三种数据类型。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -3895,6 +3953,10 @@ import image from '@ohos.multimedia.image'
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
   onDataPrepared(data: image.ImageSource) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 自定义对ImageSource的处理逻辑
     console.info('on image data prepared');
   }
@@ -3902,6 +3964,10 @@ class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.Imag
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 自定义对ArrayBuffer的处理逻辑
     console.info('on image data prepared');
   }
@@ -3909,6 +3975,10 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<MovingPhoto> {
   onDataPrepared(data: MovingPhoto) {
+    if (data === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 自定义对MovingPhoto的处理逻辑
     console.info('on image data prepared');
   }
@@ -3951,6 +4021,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     console.info("moving photo acquired successfully, uri: " + movingPhoto.getUri());
   }
 }
@@ -4018,9 +4092,13 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 应用需要确保待写入的uri是有效的
     let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
-    let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.jpg";
+    let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4";
     try {
       await movingPhoto.requestContent(imageFileUri, videoFileUri);
       console.log("moving photo contents retrieved successfully");
@@ -4093,6 +4171,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     // 应用需要确保待写入的uri是有效的
     let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
     try {
@@ -4166,6 +4248,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
   async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
     try {
       let buffer: ArrayBuffer = await movingPhoto.requestContent(photoAccessHelper.ResourceType.IMAGE_RESOURCE);
       console.log("moving photo image content retrieved successfully, buffer length: " + buffer.byteLength);
@@ -4317,7 +4403,7 @@ title参数规格为：
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType、photoSubtype（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## RequestOptions<sup>11+</sup>
@@ -4400,7 +4486,7 @@ title参数规格为：
 
 ## RecommendationType<sup>11+</sup>
 
-枚举，推荐的照片类型。
+枚举，推荐的图片类型。
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4411,16 +4497,88 @@ title参数规格为：
 | BAR_CODE |  3 | 条码。 |
 | ID_CARD |  4 | 身份证。 |
 | PROFILE_PICTURE |  5 | 头像。 |
+| PASSPORT<sup>12+</sup> |  6 | 护照。 |
+| BANK_CARD<sup>12+</sup> |  7 | 银行卡。 |
+| DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。 |
+| DRIVING_LICENSE<sup>12+</sup> |  9 | 行驶证。 |
 
-## RecommendationOptions<sup>11+</sup>
+**示例：**
 
-照片推荐选项(基于照片数据分析结果，依赖设备适配)。
+```ts
+import { BusinessError } from '@ohos.base';
+async function example() {
+  try {
+    let recommendOptions: photoAccessHelper.RecommendationOptions = {
+      recommendationType: photoAccessHelper.RecommendationType.ID_CARD
+    }
+    let options: photoAccessHelper.PhotoSelectOptions = {
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+      maxSelectNumber: 1,
+      recommendationOptions: recommendOptions
+    }
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    }).catch((err: BusinessError) => {
+      console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## TextContextInfo<sup>12+</sup>
+
+文本信息，用于推荐图片的文本信息。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 可选择的照片推荐类型，若无此参数，则默认为不推荐照片。 |
+| text | string   | 否   | 如果需要根据文本(支持250字以内的简体中文)推荐相应的图片，则配置此参数。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+async function example() {
+  try {
+    let textInfo: photoAccessHelper.TextContextInfo = {
+      text: '上海野生动物园的大熊猫'
+    }
+    let recommendOptions: photoAccessHelper.RecommendationOptions = {
+      textContextInfo: textInfo
+    }
+    let options: photoAccessHelper.PhotoSelectOptions = {
+      MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+      maxSelectNumber: 1,
+      recommendationOptions: recommendOptions
+    }
+    let photoPicker = new photoAccessHelper.PhotoViewPicker();
+    photoPicker.select(options).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
+      console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
+    }).catch((err: BusinessError) => {
+      console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## RecommendationOptions<sup>11+</sup>
+
+图片推荐选项(基于图片数据分析结果，依赖设备适配)。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
+| textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。 |
 
 ## PhotoSelectOptions
 
@@ -4435,7 +4593,7 @@ title参数规格为：
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
-| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持照片推荐。      |
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持图片推荐。      |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。 |
 
 ## PhotoSelectResult

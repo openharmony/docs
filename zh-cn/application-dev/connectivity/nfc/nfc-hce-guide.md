@@ -103,7 +103,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力和HCE能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -113,8 +113,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
@@ -238,7 +238,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力和HCE能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }

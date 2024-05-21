@@ -191,7 +191,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 ```ts
 try {
-    colorSpace.getColorSpaceName();
+    let spaceName = colorSpace.getColorSpaceName();
 } catch (err) {
     console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
@@ -223,7 +223,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 ```ts
 try {
-    colorSpace.getWhitePoint();
+    let point = colorSpace.getWhitePoint();
 } catch (err) {
     console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
@@ -255,7 +255,7 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 ```ts
 try {
-    colorSpace.getGamma();
+    let gamma = colorSpace.getGamma();
 } catch (err) {
     console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }

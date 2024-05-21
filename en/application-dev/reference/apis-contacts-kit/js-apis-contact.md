@@ -19,6 +19,8 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 Adds a contact. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
 **System capability**: SystemCapability.Applications.ContactsData
@@ -99,6 +101,8 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 addContact(context: Context, contact: Contact): Promise<number&gt;
 
 Adds a contact. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Permission required**: ohos.permission.WRITE_CONTACTS
 
@@ -781,7 +785,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                      | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | id       | number                       | Yes  | Contact ID.                                        |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates indicates that the contact is included in my card, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -824,7 +828,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number                       | Yes  | Contact ID.                                        |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** indicates indicates that the contact is included in my card, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -861,7 +865,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates indicates that the contact is included in my card, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -908,7 +912,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the contact is included in my card, and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates indicates that the contact is included in my card, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -1230,6 +1234,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Selects a contact. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.Contacts
 
 **Parameters**
@@ -1250,10 +1256,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
   import { BusinessError } from '@ohos.base';
   contact.selectContacts((err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1262,6 +1268,8 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Selects a contact. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -1283,9 +1291,9 @@ Selects a contact. This API uses a promise to return the result.
   import { BusinessError } from '@ohos.base';
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.log(`selectContacts success: data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`selectContacts fail: err->${JSON.stringify(err)}`);
   });
   ```
 
@@ -1294,6 +1302,8 @@ Selects a contact. This API uses a promise to return the result.
 selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 Selects a contact. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -1318,10 +1328,10 @@ Selects a contact. This API uses an asynchronous callback to return the result.
     isMultiSelect:false
   }, (err: BusinessError, data) => {
       if (err) {
-          console.log(`selectContact callback: err->${JSON.stringify(err)}`);
+          console.log(`selectContacts callback: err->${JSON.stringify(err)}`);
           return;
       }
-      console.log(`selectContact callback: success data->${JSON.stringify(data)}`);
+      console.log(`selectContacts callback: success data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1330,6 +1340,8 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt;&gt;
 
 Selects a contact. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -1352,9 +1364,9 @@ Selects a contact. This API uses a promise to return the result.
   import { BusinessError } from '@ohos.base';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.log(`selectContact success: data->${JSON.stringify(data)}`);
+      console.log(`selectContacts success: data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`selectContact fail: err->${JSON.stringify(err)}`);
+      console.error(`selectContacts fail: err->${JSON.stringify(err)}`);
   });
   ```
 
@@ -1466,7 +1478,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -1505,7 +1517,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -1631,7 +1643,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -1673,7 +1685,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -1726,7 +1738,7 @@ Queries contacts based on the specified key, application, and attributes. This A
   // Obtain the context.
   let context = getContext(this) as Context;
   let promise = contact.queryContact(context, 'xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -1771,7 +1783,7 @@ Queries contacts based on the specified key, application, and attributes. This A
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryContact('xxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -1888,7 +1900,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -1926,7 +1938,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2049,7 +2061,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2090,7 +2102,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2141,7 +2153,7 @@ Queries all contacts based on the specified application and attributes. This API
   // Obtain the context.
   let context = getContext(this) as Context;
   let promise = contact.queryContacts(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2186,7 +2198,7 @@ Queries all contacts based on the specified application and attributes. This API
 ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryContacts({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2307,7 +2319,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2346,7 +2358,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2472,7 +2484,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2514,7 +2526,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2567,7 +2579,7 @@ Queries contacts based on the specified phone number, application, and attribute
   // Obtain the context.
   let context = getContext(this) as Context;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2613,7 +2625,7 @@ Queries contacts based on the specified phone number, application, and attribute
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2733,7 +2745,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2772,7 +2784,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -2898,7 +2910,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2940,7 +2952,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -2993,7 +3005,7 @@ Queries contacts based on the specified email address, application, and attribut
   // Obtain the context.
   let context = getContext(this) as Context;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -3039,7 +3051,7 @@ Queries contacts based on the specified email address, application, and attribut
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, {
@@ -3156,7 +3168,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryGroups(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -3194,7 +3206,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryGroups({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -3243,7 +3255,7 @@ Queries all groups of this contact based on the specified application. This API 
   // Obtain the context.
   let context = getContext(this) as Context;
   let promise = contact.queryGroups(context, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
@@ -3285,7 +3297,7 @@ Queries all groups of this contact based on the specified application. This API 
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryGroups({
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
@@ -3550,7 +3562,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   // Obtain the context.
   let context = getContext(this) as Context;
   contact.queryKey(context, /*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -3589,7 +3601,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   ```js
   import { BusinessError } from '@ohos.base';
   contact.queryKey(/*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   }, (err: BusinessError, data) => {
@@ -3639,7 +3651,7 @@ Queries the key of a contact based on the specified contact ID and application. 
   // Obtain the context.
   let context = getContext(this) as Context;
   let promise = contact.queryKey(context, /*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
@@ -3682,7 +3694,7 @@ Queries the key of a contact based on the specified contact ID and application. 
   ```js
   import { BusinessError } from '@ohos.base';
   let promise = contact.queryKey(/*id*/1, {
-      holderId: 0,
+      holderId: 1,
       bundleName: "",
       displayName: ""
   });
@@ -3697,6 +3709,8 @@ Queries the key of a contact based on the specified contact ID and application. 
 
 Defines the contact selection options.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.Contacts
 
 |                Name              |                  Type                | Mandatory |        Description     |
@@ -3708,6 +3722,8 @@ Defines the contact selection options.
 ## Contact
 
 Defines a contact.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -3780,6 +3796,8 @@ myContact.phoneNumbers = [phoneNumber];
 Provides a list of contact attributes, which are generally used as arguments. 
 If **null** is passed, all attributes are queried by default.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.ContactsData
 
 | Name      |            Type          | Readable| Writable| Description            |
@@ -3815,6 +3833,8 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 
 Enumerates contact attributes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.ContactsData
 
 | Name                 | Description                              |
@@ -3847,6 +3867,8 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 ## Email
 
 Defines a contact's email.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -3899,7 +3921,7 @@ Defines an application that creates the contact.
 
 | Name       | Type  | Readable| Writable| Description        |
 | ----------- | ------ | ---- | ---- | ------------ |
-| bundleName  | string | Yes  | No  | Bundle name.|
+| bundleName  | string | Yes  | No  | Bundle name. The value is **com.ohos.contacts**.|
 | displayName | string | Yes  | No  | Application name.  |
 | holderId    | number | Yes  | Yes  | Application ID.    |
 
@@ -3912,7 +3934,7 @@ Defines an application that creates the contact.
 let holder: contact.Holder = {
   bundleName: "com.ohos.contacts",
   displayName: "displayName",
-  holderId: 0
+  holderId: 1
 };
 ```
 
@@ -3920,13 +3942,15 @@ let holder: contact.Holder = {
 
 ```js
 let holder = new contact.Holder();
-holder.holderId = 0;
+holder.holderId = 1;
 ```
 
 
 ## Event
 
 Defines a contact's event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -3972,6 +3996,8 @@ event.eventDate = "xxxxxx";
 
 Defines a contact group.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.ContactsData
 
 | Name   |   Type  | Readable| Writable| Description              |
@@ -4002,6 +4028,8 @@ group.title = "title";
 ## ImAddress
 
 Enumerates IM addresses.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -4053,6 +4081,8 @@ imAddress.imAddress = "imAddress";
 
 Defines a contact's name.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.ContactsData
 
 | Name              |   Type  | Readable| Writable| Description                       |
@@ -4092,6 +4122,8 @@ name.fullName = "fullName";
 
 Defines a contact's nickname.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.ContactsData
 
 | Name    |   Type  | Readable| Writable| Description          |
@@ -4121,6 +4153,8 @@ nickName.nickName = "nickName";
 
 Defines a contact's note.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.ContactsData
 
 | Name       |   Type  | Readable| Writable| Description              |
@@ -4149,6 +4183,8 @@ note.noteContent = "noteContent";
 ## Organization
 
 Defines a contact's organization.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -4181,6 +4217,8 @@ organization.title = "title";
 ## PhoneNumber
 
 Defines a contact's phone number.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -4244,6 +4282,8 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
 Defines a contact's portrait.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.ContactsData
 
 | Name|   Type  | Readable| Writable| Description          |
@@ -4272,6 +4312,8 @@ portrait.uri = "uri";
 ## PostalAddress
 
 Defines a contact's postal address.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -4325,6 +4367,8 @@ postalAddress.postalAddress = "postalAddress";
 ## Relation
 
 Defines a contact's relationship.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
@@ -4383,6 +4427,8 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
 Defines a contact's SIP address.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Applications.ContactsData
 
 ### Constant
@@ -4425,6 +4471,8 @@ sipAddress.sipAddress = "sipAddress";
 ## Website
 
 Defines a contact's website.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.ContactsData
 

@@ -16,6 +16,8 @@ import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
 
 ## 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |

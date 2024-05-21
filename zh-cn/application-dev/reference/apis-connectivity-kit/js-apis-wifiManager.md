@@ -20,6 +20,8 @@ isWifiActive(): boolean
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -248,6 +250,8 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -285,6 +289,8 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;
 				console.info("frequency: " + scanInfoList[i].frequency);
 				console.info("channelWidth: " + scanInfoList[i].channelWidth);
 				console.info("timestamp: " + scanInfoList[i].timestamp);
+				console.info("supportedWifiCategory: " + scanInfoList[i].supportedWifiCategory);
+				console.info("isHiLinkNetwork: " + scanInfoList[i].isHiLinkNetwork);
 			}
 		}	
 	}catch(error){
@@ -302,19 +308,21 @@ WLAN热点信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
-| bssidType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| bssidType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
-| securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。 |
-| rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| rssi | number | 是 | 否 | 热点的信号强度(dBm)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
-| frequency | number | 是 | 否 | WLAN接入点的频率。 |
+| frequency | number | 是 | 否 | WLAN接入点的频率。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | channelWidth | number | 是 | 否 | WLAN接入点的带宽，具体定义参见[WifiChannelWidth](#wifichannelwidth9)。 |
 | centerFrequency0 | number | 是 | 否 | 热点的中心频率。 |
 | centerFrequency1 | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否| 热点支持的最高wifi类别。 |
+| isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hiLink，true:支持，&nbsp;false:不支持。 |
 
 ## DeviceAddressType<sup>10+</sup>
 
@@ -337,7 +345,7 @@ wifi 设备地址（mac/bssid）类型。
 | **名称** | **值** | **说明** |
 | -------- | -------- | -------- |
 | WIFI_SEC_TYPE_INVALID | 0 | 无效加密类型。 |
-| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。候选网络配置不支持该加密类型。 |
+| WIFI_SEC_TYPE_OPEN | 1 | 开放加密类型。候选网络配置不支持该加密类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | WIFI_SEC_TYPE_WEP | 2 | Wired&nbsp;Equivalent&nbsp;Privacy&nbsp;(WEP)加密类型。候选网络配置不支持该加密类型。 |
 | WIFI_SEC_TYPE_PSK | 3 | Pre-shared&nbsp;key&nbsp;(PSK)加密类型。 |
 | WIFI_SEC_TYPE_SAE | 4 | Simultaneous&nbsp;Authentication&nbsp;of&nbsp;Equals&nbsp;(SAE)加密类型。 |
@@ -418,12 +426,12 @@ WLAN配置信息。
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
-| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。 |
-| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。当securityType为WIFI_SEC_TYPE_OPEN时该字段需为空串，其他加密类型不能为空串。当securityType为WIFI_SEC_TYPE_WEP时，该字段长度只允许为5、10、13、26、16和32字节其中之一，并且当字段长度为偶数时，该字段必须为纯十六进制数字构成。当securityType为WIFI_SEC_TYPE_SAE时，该字段最小长度为1字节。当securityType为WIFI_SEC_TYPE_PSK时，该字段最小长度为8字节。 |
+| ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。<br>当securityType为WIFI_SEC_TYPE_OPEN时该字段需为空串，其他加密类型不能为空串。<br>当securityType为WIFI_SEC_TYPE_WEP时，该字段长度只允许为5、10、13、26、16和32字节其中之一，并且当字段长度为偶数时，该字段必须为纯十六进制数字构成。<br>当securityType为WIFI_SEC_TYPE_SAE时，该字段最小长度为1字节。<br>当securityType为WIFI_SEC_TYPE_PSK时，该字段最小长度为8字节。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
-| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。 |
+| securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 否 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
 
 
@@ -488,6 +496,17 @@ WLAN配置信息。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
+## WifiCategory<sup>12+</sup>
+
+表示热点支持的最高wifi类别。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
+| WIFI6 | 2 | Wifi6。 |
+| WIFI6_PLUS | 3 | Wifi6+。 |
 
 
 
@@ -498,6 +517,8 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 添加候选网络配置，使用Promise异步回调。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -592,6 +613,8 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
@@ -682,6 +705,8 @@ API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION 和 ohos.permis
 
 API 10起：ohos.permission.GET_WIFI_INFO
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -727,6 +752,8 @@ connectToCandidateConfig(networkId: number): void
 应用使用该接口连接到自己添加的候选网络（如果当前已经连接到热点，需要先断开连接）。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -815,6 +842,8 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 
 当macType是1 - 设备MAC地址时，获取 macAddress 还需申请ohos.permission.GET_WIFI_LOCAL_MAC权限（该权限仅系统应用可申请），无该权限时，macAddress 返回空字符串。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
@@ -887,15 +916,15 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | 热点的BSSID。 |
-| rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
+| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| bssid | string | 是 | 否 | 热点的BSSID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| rssi | number | 是 | 否 | 热点的信号强度(dBm)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | band | number | 是 | 否 | WLAN接入点的频段，1:2.4GHZ；2:5GHZ。 |
 | linkSpeed | number | 是 | 否 | WLAN接入点的上行速度。 |
 | rxLinkSpeed<sup>10+</sup> | number | 是 | 否 | WLAN接入点的下行速度。 |
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率。 |
 | maxSupportedRxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大下行速率。 |
-| frequency | number | 是 | 否 | WLAN接入点的频率。 |
+| frequency | number | 是 | 否 | WLAN接入点的频率。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 |
 | isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
@@ -904,6 +933,8 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | connState | [ConnState](#connstate9) | 是 | 否 | WLAN连接状态。 |
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 是 | 否 | 当前连接热点的信道带宽。 |
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的WiFi标准。 |
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否| 热点支持的最高wifi类别。 |
+| isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -930,6 +961,8 @@ isConnected(): boolean
 查询WLAN是否已连接。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1402,7 +1435,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-	// p2p处于连接状态，才能正常获取到当前组信息
+	// p2p已经建组或者连接成功，才能正常获取到当前组信息
 	wifiManager.getCurrentGroup((err, data) => {
     if (err) {
         console.error("get current P2P group error");
@@ -1475,7 +1508,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-	// p2p处于连接状态，才能正常获取到对端设备列表信息
+	// p2p发现阶段完成，才能正常获取到对端设备列表信息
 	wifiManager.getP2pPeerDevices((err, data) => {
     if (err) {
         console.error("get P2P peer devices error");
@@ -1569,7 +1602,7 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 **示例：**
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-	// p2p处于连接状态，才能正常获取到本端设备信息
+	// p2p已经建组或者连接成功，才能正常获取到本端设备信息
 	wifiManager.getP2pLocalDevice((err, data) => {
     if (err) {
         console.error("get P2P local device error");
@@ -1783,7 +1816,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 
 p2pCancelConnect(): void
 
-取消P2P连接。
+在P2P连接过程中，取消P2P连接。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 
 
@@ -1899,6 +1932,8 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
@@ -1933,6 +1968,8 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 取消注册WLAN状态改变事件。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -1975,6 +2012,8 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
@@ -2006,6 +2045,8 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 取消注册WLAN连接状态改变事件。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -2047,6 +2088,8 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
@@ -2078,6 +2121,8 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 取消注册扫描状态改变事件。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 

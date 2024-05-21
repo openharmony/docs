@@ -271,7 +271,7 @@ Specifies whether the image is draggable. This attribute cannot be used together
 
 edgeAntialiasing(value: boolean)
 
-Specifies whether to enable the AI analyzer. This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities. 
+Specifies whether to enable the AI image analyzer. This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities. 
 
 Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../../apis-image-kit/js-apis-image.md#pixelmap7) in [RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7) format can be passed in for analysis. For details, see [Example](#enabling-ai-analyzer-for-pixel-maps). 
 

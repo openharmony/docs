@@ -774,7 +774,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist.                   |
+| 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -816,7 +816,7 @@ isNotificationEnabled(): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist.                   |
+| 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1063,9 +1063,9 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 import Base from '@ohos.base';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+	console.info("getActiveNotifications success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+    console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1167,7 +1167,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 
 | 参数名       | 类型                     | 必填 | 说明                       |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| templateName | string                   | 是   | 模板名称。                   |
+| templateName | string                   | 是   | 模板名称。当前仅支持'downloadTemplate'。                   |
 | callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数（true：存在，false：不存在）。 |
 
 **错误码：**
@@ -1209,7 +1209,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 | 参数名       | 类型   | 必填 | 说明     |
 | ------------ | ------ | ---- | -------- |
-| templateName | string | 是   | 模板名称。 |
+| templateName | string | 是   | 模板名称。当前仅支持'downloadTemplate'。 |
 
 **返回值：**
 

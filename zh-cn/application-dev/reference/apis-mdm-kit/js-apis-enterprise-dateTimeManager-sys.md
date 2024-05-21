@@ -39,12 +39,15 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                       |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -90,12 +93,15 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -135,12 +141,15 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                       |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -186,12 +195,15 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -230,12 +242,15 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                       |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -280,12 +295,15 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

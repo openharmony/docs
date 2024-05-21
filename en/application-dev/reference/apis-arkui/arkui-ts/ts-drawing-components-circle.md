@@ -16,7 +16,7 @@ Not supported
 
 Circle(options?: {width?: string | number, height?: string | number})
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
@@ -59,7 +59,7 @@ Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less t
 
 | Name| Type                                                        | Mandatory| Description                          |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | Yes  | Opacity of the fill area.<br>Default value: **1**|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Opacity of the fill area.<br>Default value: **1**|
 
 ### stroke
 
@@ -107,7 +107,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
 
 ### strokeLineCap
 
@@ -129,7 +129,7 @@ Sets the cap style of the stroke.
 
 strokeLineJoin(value: LineJoinStyle)
 
-Sets the join style of the stroke. This attribute does not work for the **\<circle>** component, which does not have corners.
+Sets the join style of the stroke. This attribute does not work for the **\<Circle>** component, which does not have corners.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -155,7 +155,7 @@ Sets the limit on the ratio of the miter length to the value of **strokeWidth** 
 
 | Name| Type                      | Mandatory| Description                                          |
 | ------ | -------------------------- | ---- | ---------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | Yes  | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join.<br>Default value: **4**|
+| value  | number \| string | Yes  | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join.<br>Default value: **4**|
 
 ### strokeOpacity
 
@@ -171,13 +171,13 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 ev
 
 | Name| Type                                                        | Mandatory| Description                      |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | Yes  | Stroke opacity.<br>Default value: **1**|
+| value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Stroke opacity.<br>Default value: **1**|
 
 ### strokeWidth
 
 strokeWidth(value: Length)
 
-Sets the stroke width. If of the string type, this parameter cannot be set in percentage. A percentage is processed as 1 px.
+Sets the stroke width. If of the string type, this attribute cannot be set in percentage. A percentage is processed as 1 px.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 

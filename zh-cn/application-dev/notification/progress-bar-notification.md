@@ -11,7 +11,7 @@
 
 | **接口名** | **描述** |
 | -------- | -------- |
-| isSupportTemplate(templateName:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;):&nbsp;void | 查询模板是否存在。 |
+| isSupportTemplate(templateName: string): Promise\<boolean\> | 查询模板是否存在。 |
 
 
 ## 开发步骤
@@ -27,7 +27,6 @@
    
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
-     console.info(`[ANS] isSupportTemplate success`);
      console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持downloadTemplate模板类通知，false表示不支持
    }).catch((err:Base.BusinessError) => {

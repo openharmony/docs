@@ -18,14 +18,14 @@ import Configuration from '@ohos.app.ability.Configuration';
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| language | string | No| No| Language of the application, for example, **zh**.|
-| colorMode | [ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | No| No| Color mode. The default value is **COLOR_MODE_LIGHT**. The options are as follows:<br>- **COLOR_MODE_NOT_SET**: The color mode is not set.<br>- **COLOR_MODE_LIGHT**: light mode.<br>- **COLOR_MODE_DARK**: dark mode.|
-| direction | [Direction](js-apis-app-ability-configurationConstant.md#configurationconstantdirection) | No| No| Screen orientation. The options are as follows:<br>- **DIRECTION_NOT_SET**: The screen orientation is not set.<br>- **DIRECTION_HORIZONTAL**: horizontal direction.<br>- **DIRECTION_VERTICAL**: vertical direction.|
-| screenDensity  | [ScreenDensity](js-apis-app-ability-configurationConstant.md#configurationconstantscreendensity) | No| No| Pixel density of the screen. The options are as follows:<br>- **SCREEN_DENSITY_NOT_SET**: The pixel density is not set.<br>- **SCREEN_DENSITY_SDPI**: 120.<br>- **SCREEN_DENSITY_MDPI**: 160.<br>- **SCREEN_DENSITY_LDPI**: 240.<br>- **SCREEN_DENSITY_XLDPI**: 320.<br>- **SCREEN_DENSITY_XXLDPI**: 480.<br>- **SCREEN_DENSITY_XXXLDPI**: 640.|
-| displayId  | number | No| No| ID of the display where the application is located.|
-| hasPointerDevice  | boolean | No| No| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.|
-| fontSizeScale<sup>12+<sup> | number | No| No| Scale factor for the font size. The value ranges from 0 to 3.2.|
-| fontWeightScale<sup>12+<sup> | number | No| No| Scale factor for the font weight. The value ranges from 0 to 1.25.|
+| language | string | No| No| Language of the application, for example, **zh**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| colorMode | [ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | No| No| Color mode. The default value is **COLOR_MODE_LIGHT**. The options are as follows:<br>- **COLOR_MODE_NOT_SET**: The color mode is not set.<br>- **COLOR_MODE_LIGHT**: light mode.<br>- **COLOR_MODE_DARK**: dark mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| direction | [Direction](js-apis-app-ability-configurationConstant.md#configurationconstantdirection) | No| No| Screen orientation. The options are as follows:<br>- **DIRECTION_NOT_SET**: The screen orientation is not set.<br>- **DIRECTION_HORIZONTAL**: horizontal direction.<br>- **DIRECTION_VERTICAL**: vertical direction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| screenDensity  | [ScreenDensity](js-apis-app-ability-configurationConstant.md#configurationconstantscreendensity) | No| No| Pixel density of the screen. The options are as follows:<br>- **SCREEN_DENSITY_NOT_SET**: The pixel density is not set.<br>- **SCREEN_DENSITY_SDPI**: 120.<br>- **SCREEN_DENSITY_MDPI**: 160.<br>- **SCREEN_DENSITY_LDPI**: 240.<br>- **SCREEN_DENSITY_XLDPI**: 320.<br>- **SCREEN_DENSITY_XXLDPI**: 480.<br>- **SCREEN_DENSITY_XXXLDPI**: 640.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| displayId  | number | No| No| ID of the display where the application is located.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| hasPointerDevice  | boolean | No| No| Whether a pointer device, such as a keyboard, mouse, or touchpad, is connected.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fontSizeScale<sup>12+<sup> | number | No| No| Scale factor for the font size. The value ranges from 0 to 3.2.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fontWeightScale<sup>12+<sup> | number | No| No| Scale factor for the font weight. The value ranges from 0 to 1.25.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 For details about the fields, see the **ohos.app.ability.Configuration.d.ts** file.
 

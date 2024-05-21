@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework";
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 ```
 
 ## Result
@@ -20,15 +20,17 @@ import cryptoFramework from "@ohos.security.cryptoFramework";
 
 | 名称                                  |    值   |   说明                         |
 | ------------------------------------- | -------- | ---------------------------- |
-| INVALID_PARAMS                        | 401      | 非法入参。                   |
-| NOT_SUPPORT                           | 801      | 操作不支持。                 |
-| ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。                   |
-| ERR_RUNTIME_ERROR                     | 17620002 | 运行时外部错误。             |
-| ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。     |
+| INVALID_PARAMS                        | 401      | 非法入参。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                 |
+| NOT_SUPPORT                           | 801      | 操作不支持。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                 |
+| ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                   |
+| ERR_RUNTIME_ERROR                     | 17620002 | 运行时外部错误。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。           |
+| ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。     |
 
 ## DataBlob
 
 buffer数组，提供blob数据类型。
+
+ **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -46,6 +48,8 @@ buffer数组，提供blob数据类型。
 
 适用于需要iv等参数的对称加解密模式（对于无iv等参数的模式如ECB模式，无需构造，在[init()](#init-2)中传入null即可）。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -62,6 +66,8 @@ buffer数组，提供blob数据类型。
 
 适用于CBC、CTR、OFB、CFB这些仅使用iv作为参数的加解密模式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称 | 类型                  | 可读 | 可写 | 说明                                                         |
@@ -77,6 +83,8 @@ buffer数组，提供blob数据类型。
 加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。
 
 适用于GCM模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -98,6 +106,8 @@ buffer数组，提供blob数据类型。
 
 适用于CCM模式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
@@ -114,6 +124,8 @@ buffer数组，提供blob数据类型。
 
 表示加解密操作的枚举。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称         | 值   | 说明               |
@@ -124,6 +136,8 @@ buffer数组，提供blob数据类型。
 ## AsyKeySpecItem<sup>10+</sup>
 
 表示密钥参数的枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -164,6 +178,8 @@ buffer数组，提供blob数据类型。
 
 表示密钥参数类型的枚举。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称         | 值   | 说明             |
@@ -178,6 +194,8 @@ buffer数组，提供blob数据类型。
 表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。
 
 当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_MD_NAME_STR参数的支持，详细规格请参考[加解密规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -195,6 +213,8 @@ buffer数组，提供blob数据类型。
 
 当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_USER_ID_UINT8ARR参数的支持，详细规格请参考[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称         | 值   | 说明             |
@@ -210,6 +230,8 @@ buffer数组，提供blob数据类型。
 
 指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，所有bigint类型的密钥参数均采用大端写法，并使用正数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -222,6 +244,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公私钥包含的公共参数，随机生成公/私钥。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -237,6 +261,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -250,6 +276,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -262,6 +290,8 @@ buffer数组，提供blob数据类型。
 
 指定椭圆曲线的域。当前只支持Fp域。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -272,6 +302,8 @@ buffer数组，提供blob数据类型。
 
 指定椭圆曲线素数域。是[ECField](#ecfield10)的子类。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -281,6 +313,8 @@ buffer数组，提供blob数据类型。
 ## Point<sup>10+</sup>
 
 指定椭圆曲线上的一个点。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -294,6 +328,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公私钥包含的公共参数，随机生成公/私钥。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -312,6 +348,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -325,6 +363,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -337,6 +377,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公私钥包含的全量参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -352,6 +394,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -363,6 +407,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -376,6 +422,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公私钥包含的全量参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -391,6 +439,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
@@ -403,6 +453,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称 | 类型   | 可读 | 可写 | 说明                      |
@@ -414,6 +466,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公私钥包含的全量参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -428,6 +482,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
@@ -439,6 +495,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定X25519算法中公钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -452,6 +510,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称 | 类型   | 可读 | 可写 | 说明                     |
@@ -464,6 +524,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中公私钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -479,6 +541,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
@@ -491,6 +555,8 @@ buffer数组，提供blob数据类型。
 密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中公钥包含的参数。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -505,6 +571,8 @@ buffer数组，提供blob数据类型。
 
 在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                 |
@@ -517,6 +585,8 @@ buffer数组，提供blob数据类型。
 
 密钥派生函数参数，使用密钥派生函数进行密钥派生时，需要构建其子类对象并作为输入。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -526,6 +596,8 @@ buffer数组，提供blob数据类型。
 ## PBKDF2Spec<sup>11+</sup>
 
 密钥派生函数参数[KdfSpec](#kdfspec11)的子类，作为PBKDF2密钥派生函数进行密钥派生时的输入。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -543,6 +615,8 @@ buffer数组，提供blob数据类型。
 ## HKDFSpec<sup>12+</sup>
 
 密钥派生函数参数[KdfSpec](#kdfspec11)的子类，作为HKDF密钥派生函数进行密钥派生时的输入。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -565,6 +639,8 @@ buffer数组，提供blob数据类型。
 
 SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需要用到此对象。可以通过指定此参数，生成符合国密标准的ASN.1格式的SM2密文，反之，也可以从ASN.1格式的SM2密文中获取具体参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
@@ -586,6 +662,8 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
@@ -602,6 +680,8 @@ getEncoded(): DataBlob
 > **说明：**
 >
 > RSA算法使用密钥参数生成私钥时，私钥对象不支持getEncoded。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -623,7 +703,7 @@ getEncoded(): DataBlob
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 async function testGenerateAesKey() {
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
@@ -644,6 +724,8 @@ async function testGenerateAesKey() {
 clearMem(): void
 
 同步方法，将系统底层内存中的的密钥内容清零。建议在不再使用对称密钥实例时，调用本函数，避免内存中密钥数据存留过久。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -670,6 +752,8 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 同步方法，获取密钥参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -689,7 +773,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -713,6 +797,8 @@ getEncodedDer(format: string): DataBlob
 > 1. 本接口可根据入参决定数据的输出格式。
 > 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。（原始数据格式，指通过[convertKey](#convertkey-3)接口生成密钥对象时的数据格式）。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -732,7 +818,7 @@ getEncodedDer(format: string): DataBlob
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -742,6 +828,56 @@ getEncodedDer(format: string): DataBlob
 let key: cryptoFramework.PubKey; // Key is a public key object. The generation process is omitted here.
 let returnBlob = key.getEncodedDer('X509|UNCOMPRESSED');
 console.info('returnBlob data：' + returnBlob.data);
+```
+
+### getEncodedPem<sup>12+</sup>
+
+getEncodedPem(format: string): string
+
+同步方法，获取密钥数据的字符串。密钥可以为RSA公钥或者私钥。其中，公钥格式满足X.509规范、PKCS#1规范和PEM编码格式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 指定的获取密钥字符串的编码格式。其中，公钥可为'PKCS1' 或'X509'格式。|
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| string | 用于获取指定密钥格式的具体内容。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let publicPkcs1Str1024: string  =
+  "-----BEGIN RSA PUBLIC KEY-----\n"
+  + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
+  + "h7cO51WXMT2gyN45DCQySr/8cLE2UiUVHo7qlrSatdLA9ETtgob3sJ4qTaBg5Lxg\n"
+  + "SHy2gC+bvEpuIuRe64yXGuM/aP+ZvmIj9QBIVI9mJD8jLEOvQBBpAgMBAAE=\n"
+  + "-----END RSA PUBLIC KEY-----\n";
+
+function TestPubKeyPkcs1ToX509BySync1024() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = rsaGenerator.convertPemKeySync(publicPkcs1Str1024, null);
+  let pubPemKey = keyPair.pubKey;
+  let pubString = pubPemKey.getEncodedPem('X509');
+  console.info("[sync]TestPubKeyPkcs1ToX509BySync1024 pubString output is " + pubString);
+}
 ```
 
 ## PriKey
@@ -755,6 +891,8 @@ console.info('returnBlob data：' + returnBlob.data);
 clearMem(): void
 
 同步方法，将系统底层内存中的的密钥内容清零。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -770,6 +908,8 @@ key.clearMem(); // For the asymmetric private key, clearMem() releases the inter
 getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 同步方法，获取密钥参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -790,7 +930,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -813,6 +953,8 @@ getEncodedDer(format: string): DataBlob
 > 1. 本接口可根据入参决定数据的输出格式，当前支持获取PKCS8格式的ecc私钥数据。
 > 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -832,7 +974,7 @@ getEncodedDer(format: string): DataBlob
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -842,6 +984,66 @@ getEncodedDer(format: string): DataBlob
 let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
 let returnBlob = key.getEncodedDer('PKCS8');
 console.info('returnBlob data：' + returnBlob.data);
+```
+
+### getEncodedPem<sup>12+</sup>
+
+getEncodedPem(format: string): string
+
+同步方法，获取密钥数据的字符串。密钥可以为RSA公钥或者私钥。其中，私钥格式满足PKCS#8规范、PKCS#1规范和PEM编码方式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                 |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | 是   | 指定的获取密钥字符串的编码格式。其中，私钥可为'PKCS1' 或'PKCS8'格式。|
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| string | 用于获取指定密钥格式的具体内容。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+let priKeyPkcs1Str1024: string  =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+  + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
+  + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
+  + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
+  + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
+  + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
+  + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
+  + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
+  + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
+  + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
+  + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
+  + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
+  + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
+  + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
+  + "-----END RSA PRIVATE KEY-----\n";
+
+function TestPriKeyPkcs1ToPkcs8BySync1024() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = rsaGenerator.convertPemKeySync(null, priKeyPkcs1Str1024);
+  let priPemKey = keyPair.priKey;
+  let priString = priPemKey.getEncodedPem('PKCS8');
+  console.info("[sync]TestPriKeyPkcs1ToPkcs8BySync1024 priString output is " + priString);
+}
 ```
 
 ## KeyPair
@@ -858,6 +1060,8 @@ console.info('returnBlob data：' + returnBlob.data);
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明           |
@@ -872,6 +1076,8 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 通过指定算法名称的字符串，获取相应的对称密钥生成器实例。
 
 支持的规格详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -890,7 +1096,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
 
 **示例：**
@@ -906,6 +1112,8 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个SymKeyGenerator实例。
 
 ### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -927,6 +1135,8 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 >
 > 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如指定“HMAC|SHA256”会随机生成256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKey](#convertkey)方式生成对称密钥数据。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -945,7 +1155,7 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
   symKeyGenerator.generateSymKey((err, symKey) => {
@@ -962,6 +1172,8 @@ generateSymKey(): Promise\<SymKey>
 必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
 
 目前支持使用OpenSSL的RAND_priv_bytes()作为底层能力生成随机密钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -981,8 +1193,8 @@ generateSymKey(): Promise\<SymKey>
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   symKeyGenerator.generateSymKey()
@@ -1007,6 +1219,8 @@ generateSymKeySync(): SymKey
 >
 > 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如指定“HMAC|SHA256”会随机生成256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKeySync](#convertkeysync12)方式生成对称密钥数据。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **错误码：**
@@ -1019,7 +1233,7 @@ generateSymKeySync(): SymKey
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function testGenerateSymKeySync() {
   // 创建SymKeyGenerator实例
@@ -1043,6 +1257,8 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 >
 > 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如传入SHA256对应256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1057,13 +1273,13 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | --------------------------------------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                       |
 
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
@@ -1091,6 +1307,8 @@ convertKey(key: DataBlob): Promise\<SymKey>
 
 必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1110,14 +1328,14 @@ convertKey(key: DataBlob): Promise\<SymKey>
 
 | 错误码ID | 错误信息                                          |
 | -------- | --------------------------------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                |
 
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
@@ -1152,6 +1370,8 @@ convertKeySync(key: DataBlob): SymKey
 >
 > 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如传入SHA256对应256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1165,13 +1385,13 @@ convertKeySync(key: DataBlob): SymKey
 
 | 错误码ID | 错误信息                                               |
 | -------- | --------------------------------------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                       |
 
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function testConvertKeySync() {
   // 对称密钥长度为64字节，512比特
@@ -1194,6 +1414,8 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1213,7 +1435,7 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
 | 17620001 | memory error. |
 
@@ -1229,6 +1451,8 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                             |
@@ -1240,6 +1464,8 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 异步获取非对称密钥生成器随机生成的密钥，通过注册回调函数获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1254,14 +1480,14 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 asyKeyGenerator.generateKeyPair((err, keyPair) => {
@@ -1278,6 +1504,8 @@ asyKeyGenerator.generateKeyPair((err, keyPair) => {
 generateKeyPair(): Promise\<KeyPair>
 
 异步获取该非对称密钥生成器随机生成的密钥，通过Promise获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1299,7 +1527,7 @@ generateKeyPair(): Promise\<KeyPair>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 let keyGenPromise = asyKeyGenerator.generateKeyPair();
@@ -1315,6 +1543,8 @@ keyGenPromise.then(keyPair => {
 generateKeyPairSync(): KeyPair
 
 同步获取该非对称密钥生成器随机生成的密钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1336,7 +1566,7 @@ generateKeyPairSync(): KeyPair
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 try {
@@ -1357,6 +1587,8 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCall
 
 异步获取指定数据生成非对称密钥，通过注册回调函数获取结果。详情请看下方**密钥转换说明**。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1372,14 +1604,14 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCall
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
@@ -1401,6 +1633,8 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 
 异步获取指定数据生成非对称密钥，通过Promise获取结果。详情请看下方**密钥转换说明**。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1421,14 +1655,14 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
@@ -1448,6 +1682,8 @@ keyGenPromise.then(keyPair => {
 convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
 
 同步获取指定数据生成非对称密钥。详情请看下方**密钥转换说明**。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1469,14 +1705,14 @@ convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error.          |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
@@ -1500,6 +1736,150 @@ try {
 1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，其中对于ecc私钥，返回的是RFC5915定义格式。上述数据可用于跨应用传输或持久化存储。
 2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、DER编码格式，私钥应满足ASN.1语法、PKCS#8规范、DER编码格式。
 3. convertKey方法中，公钥和密钥二进制数据非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
+4. convertKey或convertKeySync方法将外来二进制数据转换为算法库非对称密钥对象时，不会校验生成的密钥对象的规格与创建非对称密钥生成器时指定的密钥规格是否一致。
+
+### convertPemKey<sup>12+</sup>
+
+convertPemKey(pubKey: string | null, priKey: string | null): Promise\<KeyPair>
+
+异步获取指定数据生成非对称密钥，通过Promise获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明             |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | string \| null | 是  | 指定的公钥材料。如果公钥不需要转换，可直接传入null。|
+| priKey | string \| null | 是  | 指定的私钥材料。如果私钥不需要转换，可直接传入null。注：公钥和私钥材料不能同时为null。|
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let priKeyPkcs1Str1024: string  =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+  + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
+  + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
+  + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
+  + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
+  + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
+  + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
+  + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
+  + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
+  + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
+  + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
+  + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
+  + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
+  + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
+  + "-----END RSA PRIVATE KEY-----\n";
+  let publicPkcs1Str1024: string  =
+  "-----BEGIN RSA PUBLIC KEY-----\n"
+  + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
+  + "h7cO51WXMT2gyN45DCQySr/8cLE2UiUVHo7qlrSatdLA9ETtgob3sJ4qTaBg5Lxg\n"
+  + "SHy2gC+bvEpuIuRe64yXGuM/aP+ZvmIj9QBIVI9mJD8jLEOvQBBpAgMBAAE=\n"
+  + "-----END RSA PUBLIC KEY-----\n";
+async function TestConvertPemKeyByPromise() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyGenPromise = await asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024);
+  keyGenPromise.then(keyPair => {
+    console.info('convertPemKey success.');
+  }).catch((error: BusinessError) => {
+    console.error("convertPemKey error.");
+  });
+}
+```
+
+### convertPemKeySync<sup>12+</sup>
+
+convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
+
+同步获取指定数据生成非对称密钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明             |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | string \| null| 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。|
+| priKey | string \| null| 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。注：公钥和私钥材料不能同时为null。|
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | 非对称密钥。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let priKeyPkcs1Str1024: string  =
+  "-----BEGIN RSA PRIVATE KEY-----\n"
+  + "MIICXQIBAAKBgQCwIN3mr21+N96ToxnVnaS+xyK9cNRAHiHGgrbjHw6RAj3V+l+W\n"
+  + "Y68IhIe3DudVlzE9oMjeOQwkMkq//HCxNlIlFR6O6pa0mrXSwPRE7YKG97CeKk2g\n"
+  + "YOS8YEh8toAvm7xKbiLkXuuMlxrjP2j/mb5iI/UASFSPZiQ/IyxDr0AQaQIDAQAB\n"
+  + "AoGAEvBFzBNa+7J4PXnRQlYEK/tvsd0bBZX33ceacMubHl6WVZbphltLq+fMTBPP\n"
+  + "LjXmtpC+aJ7Lvmyl+wTi/TsxE9vxW5JnbuRT48rnZ/Xwq0eozDeEeIBRrpsr7Rvr\n"
+  + "7ctrgzr4m4yMHq9aDgpxj8IR7oHkfwnmWr0wM3FuiVlj650CQQDineeNZ1hUTkj4\n"
+  + "D3O+iCi3mxEVEeJrpqrmSFolRMb+iozrIRKuJlgcOs+Gqi2fHfOTTL7LkpYe8SVg\n"
+  + "e3JxUdVLAkEAxvcZXk+byMFoetrnlcMR13VHUpoVeoV9qkv6CAWLlbMdgf7uKmgp\n"
+  + "a1Yp3QPDNQQqkPvrqtfR19JWZ4uy1qREmwJALTU3BjyBoH/liqb6fh4HkWk75Som\n"
+  + "MzeSjFIOubSYxhq5tgZpBZjcpvUMhV7Zrw54kwASZ+YcUJvmyvKViAm9NQJBAKF7\n"
+  + "DyXSKrem8Ws0m1ybM7HQx5As6l3EVhePDmDQT1eyRbKp+xaD74nkJpnwYdB3jyyY\n"
+  + "qc7A1tj5J5NmeEFolR0CQQCn76Xp8HCjGgLHw9vg7YyIL28y/XyfFyaZAzzK+Yia\n"
+  + "akNwQ6NeGtXSsuGCcyyfpacHp9xy8qXQNKSkw03/5vDO\n"
+  + "-----END RSA PRIVATE KEY-----\n";
+  let publicPkcs1Str1024: string  =
+  "-----BEGIN RSA PUBLIC KEY-----\n"
+  + "MIGJAoGBALAg3eavbX433pOjGdWdpL7HIr1w1EAeIcaCtuMfDpECPdX6X5ZjrwiE\n"
+  + "h7cO51WXMT2gyN45DCQySr/8cLE2UiUVHo7qlrSatdLA9ETtgob3sJ4qTaBg5Lxg\n"
+  + "SHy2gC+bvEpuIuRe64yXGuM/aP+ZvmIj9QBIVI9mJD8jLEOvQBBpAgMBAAE=\n"
+  + "-----END RSA PUBLIC KEY-----\n";
+function TestConvertPemKeyBySync() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  try {
+    let keyPairData = asyKeyGenerator.convertPemKeySync(publicPkcs1Str1024, priKeyPkcs1Str1024);
+    if (keyPairData != null) {
+      console.info('[Sync]: convert pem key pair success');
+    } else {
+      console.error("[Sync]: convert pem key pair result fail!");
+    }
+  } catch (e) {
+    console.error(`Sync error, ${e.code}, ${e.message}`);
+  }
+}
+```
 
 ## cryptoFramework.createAsyKeyGeneratorBySpec<sup>10+</sup>
 
@@ -1508,6 +1888,8 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 通过指定密钥参数，获取相应的非对称密钥生成器实例。
 
 支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1528,7 +1910,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
 | 17620001 | memory error. |
 
@@ -1570,6 +1952,8 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                       |
@@ -1584,6 +1968,8 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1597,7 +1983,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>Incorrect parameter types;         |
 | 17620001 | memory error.           |
 | 17630001 | crypto operation error. |
 
@@ -1623,6 +2009,8 @@ generateKeyPair(): Promise\<KeyPair>
 
 当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
@@ -1643,7 +2031,7 @@ generateKeyPair(): Promise\<KeyPair>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
@@ -1662,6 +2050,8 @@ generateKeyPairSync(): KeyPair
 同步获取该非对称密钥生成器生成的密钥。
 
 当使用[COMMON_PARAMS_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到随机生成的密钥对；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到各项数据与密钥参数一致的密钥对。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1683,7 +2073,7 @@ generateKeyPairSync(): KeyPair
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
@@ -1708,6 +2098,8 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1721,7 +2113,7 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>Incorrect parameter types;         |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -1747,6 +2139,8 @@ generatePriKey(): Promise\<PriKey>
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
@@ -1767,7 +2161,7 @@ generatePriKey(): Promise\<PriKey>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
@@ -1786,6 +2180,8 @@ generatePriKeySync(): PriKey
 同步获取该非对称密钥生成器生成的密钥。
 
 当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1807,7 +2203,7 @@ generatePriKeySync(): PriKey
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
@@ -1831,6 +2227,8 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1844,7 +2242,7 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes:<br> Incorrect parameter types;        |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -1870,6 +2268,8 @@ generatePubKey(): Promise\<PubKey>
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
@@ -1890,7 +2290,7 @@ generatePubKey(): Promise\<PubKey>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
@@ -1909,6 +2309,8 @@ generatePubKeySync(): PubKey
 同步获取该非对称密钥生成器生成的密钥。
 
 当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1930,7 +2332,7 @@ generatePubKeySync(): PubKey
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
@@ -1956,6 +2358,8 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
 根据椭圆曲线相应的NID(Name IDentifier)字符串名称生成相应的非对称公共密钥参数。详见[ECC密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#ecc)和[SM2密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#sm2)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -1975,15 +2379,15 @@ static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | invalid parameters.              |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801      | this operation is not supported. |
 | 17620001 | memory error.                    |
 
 **示例：**
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework";
-import { BusinessError } from '@ohos.base';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_brainpoolP160r1');
     console.info('genECCCommonParamsSpec success');
@@ -2005,6 +2409,8 @@ static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 > 1. 非压缩的点数据，表示为：前缀0x04\|x坐标\|y坐标；
 > 2. 压缩的点数据，对于Fp素数域上的点（当前暂不支持F2m域），表示为：前缀0x03\|x坐标 (坐标y是奇数时)，前缀0x02\|x坐标 (坐标y是偶数时)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2025,7 +2431,7 @@ static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -2043,6 +2449,8 @@ console.info('returnPoint: ' + returnPoint.x.toString(16));
 static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Array
 
 根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，按照指定的点数据格式，将Point对象转换为点数据。当前支持压缩/非压缩格式的点数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2065,7 +2473,7 @@ static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Ar
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error. |
 | 17630001 | crypto operation error. |
 
@@ -2097,6 +2505,8 @@ static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 
 根据素数P的长度和私钥长度（bit位数）生成DH公共密钥参数。详见[DH密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#dh)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2117,7 +2527,7 @@ static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | invalid parameters.              |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801      | this operation is not supported. |
 | 17620001 | memory error.                    |
 | 17630001 | crypto operation error.          |
@@ -2125,8 +2535,8 @@ static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 **示例：**
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework";
-import { BusinessError } from '@ohos.base';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let DHCommonParamsSpec = cryptoFramework.DHKeyUtil.genDHCommonParamsSpec(2048);
     console.info('genDHCommonParamsSpec success');
@@ -2145,6 +2555,8 @@ try {
 static genCipherTextBySpec(spec: SM2CipherTextSpec, mode?: string): DataBlob
 
 根据指定的SM2密文参数，生成符合国密标准的ASN.1格式的SM2密文。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2166,15 +2578,15 @@ static genCipherTextBySpec(spec: SM2CipherTextSpec, mode?: string): DataBlob
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | invalid parameters.              |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                    |
 | 17630001 | crypto operation error.          |
 
 **示例：**
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework";
-import { BusinessError } from '@ohos.base';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let spec : cryptoFramework.SM2CipherTextSpec = {
       xCoordinate: BigInt('20625015362595980457695435345498579729138244358573902431560627260141789922999'),
@@ -2194,6 +2606,8 @@ try {
 static getCipherTextSpec(cipherText: DataBlob, mode?: string): SM2CipherTextSpec
 
 从符合国密标准的ASN.1格式的SM2密文中，获取具体的SM2密文参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2215,13 +2629,13 @@ static getCipherTextSpec(cipherText: DataBlob, mode?: string): SM2CipherTextSpec
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | invalid parameters.              |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                    |
 | 17630001 | crypto operation error.          |
 
 ```ts
-import cryptoFramework from "@ohos.security.cryptoFramework";
-import { BusinessError } from '@ohos.base';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let cipherTextArray = new Uint8Array([48,118,2,32,45,153,88,82,104,221,226,43,174,21,122,248,5,232,105,41,92,95,102,224,216,149,85,236,110,6,64,188,149,70,70,183,2,32,107,93,198,247,119,18,40,110,90,156,193,158,205,113,170,128,146,109,75,17,181,109,110,91,149,5,110,233,209,78,229,96,4,32,87,167,167,247,88,146,203,234,83,126,117,129,52,142,82,54,152,226,201,111,143,115,169,125,128,42,157,31,114,198,109,244,4,14,100,227,78,195,249,179,43,70,242,69,169,10,65,123])；
     let cipherText : cryptoFramework.DataBlob = {data : cipherTextArray};
@@ -2239,6 +2653,8 @@ createCipher(transformation: string): Cipher
 通过指定算法名称，获取相应的[Cipher](#cipher)实例。
 
 支持的规格详见[对称密钥加解密算法规格](../../security/CryptoArchitectureKit/crypto-sym-encrypt-decrypt-spec.md)和[非对称密钥加解密算法规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2265,14 +2681,14 @@ createCipher(transformation: string): Cipher
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported. |
 | 17620001 | memory error.          |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let cipherAlgName = '3DES192|ECB|PKCS7';
 try {
@@ -2297,6 +2713,8 @@ try {
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
@@ -2310,6 +2728,8 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2327,7 +2747,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 
 | 错误码ID | 错误信息                                                 |
 | -------- | --------------------------------------------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                            |
 | 17620002 | runtime error.                                           |
 | 17630001 | crypto operation error.|
@@ -2339,6 +2759,8 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 初始化加解密的cipher对象，通过Promise获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2361,7 +2783,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                     |
 | 17620002 | runtime error.                                    |
 | 17630001 | crypto operation error.|
@@ -2373,6 +2795,8 @@ initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
 初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。initSync、updateSync、doFinalSync为三段式接口，需要成组使用。其中initSync和doFinalSync必选，updateSync可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2389,7 +2813,7 @@ initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401      | invalid parameters.     |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -2410,6 +2834,8 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 >    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2424,7 +2850,7 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                               |
 | 17620002 | runtime error.                              |
 | 17630001 | crypto operation error.                     |
@@ -2446,6 +2872,8 @@ update(data: DataBlob): Promise\<DataBlob>
 >    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2465,20 +2893,22 @@ update(data: DataBlob): Promise\<DataBlob>
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                |
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
 
 ### updateSync<sup>12+</sup>
 
-updateSync(data: DataBlob): void
+updateSync(data: DataBlob): DataBlob
 
 分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。
 
 必须在对[Cipher](#cipher)实例使用[initSync()](#initsync12)初始化后，才能使用本函数。
 
 其他注意事项同上异步接口说明。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2493,7 +2923,7 @@ updateSync(data: DataBlob): void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401      | invalid parameters.     |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -2516,6 +2946,8 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
 >  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2530,7 +2962,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -2540,8 +2972,8 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 function genGcmParamsSpec() {
   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -2601,6 +3033,8 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
 >  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2620,7 +3054,7 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.                                |
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
@@ -2630,8 +3064,8 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 function genGcmParamsSpec() {
   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -2670,7 +3104,7 @@ async function cipherByPromise() {
 
 ### doFinalSync<sup>12+</sup>
 
-doFinalSync(data: DataBlob | null): void
+doFinalSync(data: DataBlob | null): DataBlob
 
 （1）在对称加解密中，doFinalSync加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinalSync中一次性传入数据，而不使用updateSync；如果在本次加解密流程中，已经使用[updateSync](#updatesync12)传入过数据，可以在doFinalSync的data参数处传入null。<br/>根据对称加解密的模式不同，doFinalSync的输出有如下区别：
 
@@ -2680,6 +3114,8 @@ doFinalSync(data: DataBlob | null): void
 （2）在RSA、SM2非对称加解密中，doFinalSync加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinalSync，拼接结果得到完整的明文/密文。
 
 其他注意事项同接口[doFinal()](#dofinal)说明。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2694,7 +3130,7 @@ doFinalSync(data: DataBlob | null): void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 401      | invalid parameters.     |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -2704,8 +3140,8 @@ doFinalSync(data: DataBlob | null): void
 此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 function genGcmParamsSpec() {
   let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -2749,6 +3185,8 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
 设置加解密参数。常用的加解密参数可以直接通过[createCipher](#cryptoframeworkcreatecipher) 来指定，剩余参数可以通过本接口指定。当前只支持RSA算法。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2763,7 +3201,7 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
@@ -2781,6 +3219,8 @@ cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSo
 getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 获取加解密参数。当前只支持RSA算法和SM2算法，从API version 11开始，支持SM2算法获取加解密参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2801,7 +3241,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
@@ -2820,6 +3260,8 @@ createSign(algName: string): Sign
 Sign实例生成。
 
 支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2840,7 +3282,7 @@ Sign实例生成。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 
@@ -2872,7 +3314,11 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 当使用update分段传入原文时，sign接口API 10之前只支持传入DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用sign进行签名。
 
+当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+
 ### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2888,6 +3334,8 @@ init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
 Sign类暂不支持重复init。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -2902,7 +3350,7 @@ Sign类暂不支持重复init。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -2914,6 +3362,8 @@ init(priKey: PriKey): Promise\<void>
 使用私钥初始化Sign对象，通过Promise获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
 Sign类暂不支持重复init。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2934,7 +3384,7 @@ Sign类暂不支持重复init。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -2952,7 +3402,10 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 > 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[sign](#sign-1)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
 > 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
-> OnlySign模式下，不支持update操作，需要直接使用sign传入数据。
+> OnlySign模式下，不支持update操作，需要直接使用sign传入数据。<br/>
+> 当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2968,7 +3421,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -2986,7 +3439,10 @@ update(data: DataBlob): Promise\<void>
 > 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
 > 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
-> OnlySign模式下，不支持update操作，需要直接使用sign传入数据。
+> OnlySign模式下，不支持update操作，需要直接使用sign传入数据。<br/>
+> 当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3007,7 +3463,7 @@ update(data: DataBlob): Promise\<void>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3017,6 +3473,8 @@ update(data: DataBlob): Promise\<void>
 sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 对数据进行签名，通过注册回调函数获取签名结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3032,7 +3490,7 @@ sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3042,6 +3500,8 @@ sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 sign(data: DataBlob | null): Promise\<DataBlob>
 
 对数据进行签名，通过Promise方式返回签名结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3062,7 +3522,7 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3072,8 +3532,8 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 function signByCallback() {
   let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
@@ -3101,8 +3561,8 @@ function signByCallback() {
 此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
   let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
@@ -3137,6 +3597,8 @@ setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3151,7 +3613,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
@@ -3169,6 +3631,8 @@ signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 getSignSpec(itemType: SignSpecItem): string | number
 
 获取签名参数。当前只支持RSA算法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3189,7 +3653,7 @@ getSignSpec(itemType: SignSpecItem): string | number
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
@@ -3208,6 +3672,8 @@ createVerify(algName: string): Verify
 Verify实例生成。
 
 支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3228,7 +3694,7 @@ Verify实例生成。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 
@@ -3254,7 +3720,11 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参在API 10之前只支持DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
 
+当使用DSA算法进行验签，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+
 ### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3267,6 +3737,8 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 传入公钥初始化Verify对象，通过注册回调函数获取结果。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3282,7 +3754,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3292,6 +3764,8 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 init(pubKey: PubKey): Promise\<void>
 
 传入公钥初始化Verify对象，通过Promise获取结果。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3312,7 +3786,7 @@ init(pubKey: PubKey): Promise\<void>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3329,7 +3803,10 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 >
 > 根据数据量，可以不调用update（即[init](#init-4)完成后直接调用[verify](#verify-1)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
+> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
+> 当使用DSA算法进行验签，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3345,7 +3822,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3362,7 +3839,10 @@ update(data: DataBlob): Promise\<void>
 >
 > 根据数据量，可以不调用update（即[init](#init-5)完成后直接调用[verify](#verify-2)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
+> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
+> 当使用DSA算法进行验签，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3383,7 +3863,7 @@ update(data: DataBlob): Promise\<void>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3393,6 +3873,8 @@ update(data: DataBlob): Promise\<void>
 verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<boolean>): void
 
 对数据进行验签，通过注册回调函数返回返回验签结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3409,7 +3891,7 @@ verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3419,6 +3901,8 @@ verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<
 verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 
 对数据进行验签，通过Promise返回验签结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3440,7 +3924,7 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3450,8 +3934,8 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 function verifyByCallback() {
   let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
@@ -3482,8 +3966,8 @@ function verifyByCallback() {
 此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
   let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
@@ -3521,6 +4005,8 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 >
 > - 目前仅RSA支持。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3540,7 +4026,7 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3548,8 +4034,8 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
   let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
@@ -3593,6 +4079,8 @@ recoverSync(signatureData: DataBlob): DataBlob | null
 >
 > - 目前仅RSA支持。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3612,7 +4100,7 @@ recoverSync(signatureData: DataBlob): DataBlob | null
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3629,6 +4117,8 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 验签的参数应当与签名的参数保持一致。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3643,7 +4133,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
@@ -3664,6 +4154,8 @@ getVerifySpec(itemType: SignSpecItem): string | number
 
 验签的参数应当与签名的参数保持一致。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3683,7 +4175,7 @@ getVerifySpec(itemType: SignSpecItem): string | number
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
@@ -3702,6 +4194,8 @@ createKeyAgreement(algName: string): KeyAgreement
 KeyAgreement实例生成。
 
 支持的规格详见[密钥协商规格](../../security/CryptoArchitectureKit/crypto-key-agreement-overview.md)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3722,7 +4216,7 @@ KeyAgreement实例生成。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 
@@ -3739,6 +4233,8 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
@@ -3750,6 +4246,8 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob>): void
 
 基于传入的私钥与公钥进行密钥协商，通过注册回调函数返回共享秘密。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3766,7 +4264,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3776,6 +4274,8 @@ generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob
 generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
 基于传入的私钥与公钥进行密钥协商，通过Promise返回共享秘密。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3797,7 +4297,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
@@ -3805,7 +4305,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 **callback示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
 let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
@@ -3821,7 +4321,7 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, se
 **Promise示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
 let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
@@ -3840,6 +4340,8 @@ createMd(algName: string): Md
 生成Md实例，用于进行消息摘要的计算与操作。
 
 支持的规格详见[MD消息摘要算法规格](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#支持的算法与规格)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3860,13 +4362,13 @@ createMd(algName: string): Md
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401 | invalid parameters.       |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Set algName based on the algorithm supported.
@@ -3882,6 +4384,8 @@ try {
 Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前，需要通过[createMd](#cryptoframeworkcreatemd)构造Md实例。
 
 ### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3899,6 +4403,8 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 >
 > Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -3913,7 +4419,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.       |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
 
 ### update
@@ -3925,6 +4431,8 @@ update(input: DataBlob): Promise\<void>
 > **说明：**
 >
 > Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3943,6 +4451,38 @@ update(input: DataBlob): Promise\<void>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17630001 | crypto operation error. |
+
+### updateSync<sup>12+</sup>
+
+updateSync(input: DataBlob): void
+
+传入消息进行Md更新计算，通过同步方式更新。updateSync和digestSync为两段式接口，需要成组使用。其中digestSync必选，updateSync可选。
+
+> **说明：**
+>
+> Md算法多次调用updateSync更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 参数名 | 类型     | 必填 | 说明         |
+| ------ | -------- | ---- | ------------ |
+| input  | DataBlob | 是   | 传入的消息。 |
+
+**返回值：**
+
+| 类型           | 说明          |
+| -------------- | ------------- |
+| void | 无返回结果。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
@@ -3951,6 +4491,8 @@ update(input: DataBlob): Promise\<void>
 digest(callback: AsyncCallback\<DataBlob>): void
 
 通过注册回调函数返回Md的计算结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3969,8 +4511,8 @@ digest(callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 function mdByCallback() {
   let md = cryptoFramework.createMd('SHA256');
@@ -3988,6 +4530,8 @@ function mdByCallback() {
 digest(): Promise\<DataBlob>
 
 通过Promise返回Md的计算结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4008,8 +4552,8 @@ digest(): Promise\<DataBlob>
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 async function mdByPromise() {
   let md = cryptoFramework.createMd('SHA256');
@@ -4020,11 +4564,54 @@ async function mdByPromise() {
 }
 ```
 
+### digestSync<sup>12+</sup>
+
+digestSync(): DataBlob
+
+通过同步方式返回Md的计算结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**返回值：**
+
+| 类型               | 说明        |
+| ------------------ | ----------- |
+| [DataBlob](#datablob) | 表示生成的Md计算结果。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.           |
+| 17620001 | memory error. |
+| 17620002 | runtime error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
+
+async function mdBySync() {
+  let md = cryptoFramework.createMd('SHA256');
+  md.updateSync({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) });
+  let mdOutput = md.digestSync();
+  console.info('[Sync]: MD result: ' + mdOutput.data);
+  console.info('[Sync]: MD len: ' + md.getMdLength());
+}
+```
+
 ### getMdLength
 
 getMdLength(): number
 
 获取Md消息摘要长度（字节数）。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4044,7 +4631,7 @@ getMdLength(): number
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
 function getLength() {
   let md = cryptoFramework.createMd('SHA256');
@@ -4059,6 +4646,8 @@ createMac(algName: string): Mac
 生成Mac实例，用于进行消息认证码的计算与操作。
 
 支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac.md#支持的算法与规格)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4079,13 +4668,13 @@ createMac(algName: string): Mac
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401 | invalid parameters.       |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // Set algName based on the algorithm supported.
@@ -4101,6 +4690,8 @@ try {
 Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密计算。调用前，需要通过[createMac](#cryptoframeworkcreatemac)构造Mac实例。
 
 ### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4118,6 +4709,8 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
   >
   > 建议通过[HMAC密钥生成规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md#hmac)创建对称密钥生成器，调用[generateSymKey](#generatesymkey)随机生成对称密钥或调用[convertKey](#convertkey)传入与密钥规格长度一致的二进制密钥数据生成密钥。<br/>当指定“HMAC”生成对称密钥生成器时，仅支持调用[convertKey](#convertkey)传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据生成密钥。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
@@ -4132,7 +4725,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.       |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
 
 ### init
@@ -4140,6 +4733,8 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 init(key: SymKey): Promise\<void>
 
 使用对称密钥初始化Mac计算，通过Promise获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4160,6 +4755,36 @@ init(key: SymKey): Promise\<void>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17630001 | crypto operation error. |
+
+### initSync<sup>12+</sup>
+
+initSync(key: SymKey): void
+
+使用对称密钥初始化Mac计算，通过同步方式获取结果。initSync、updateSync、doFinalSync为三段式接口，需要成组使用。其中initSync和doFinalSync必选，updateSync可选。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| key    | [SymKey](#symkey) | 是   | 共享对称密钥。 |
+
+**返回值：**
+
+| 类型           | 说明          |
+| -------------- | ------------- |
+| void | 无返回结果。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
@@ -4172,6 +4797,8 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 > **说明：**
 >
 > HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4187,7 +4814,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.       |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17630001 | crypto operation error. |
 
 ### update
@@ -4199,6 +4826,8 @@ update(input: DataBlob): Promise\<void>
 > **说明：**
 >
 > HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4219,6 +4848,40 @@ update(input: DataBlob): Promise\<void>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17630001 | crypto operation error. |
+
+### updateSync<sup>12+</sup>
+
+updateSync(input: DataBlob): void
+
+传入消息进行Mac更新计算，通过同步方式获取结果。
+
+> **说明：**
+>
+> HMAC算法多次调用updateSync更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明       |
+| ------ | -------- | ---- | ---------- |
+| input  | [DataBlob](#datablob) | 是   | 传入的消息。 |
+
+**返回值：**
+
+| 类型           | 说明          |
+| -------------- | ------------- |
+| void | 无返回结果的对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
@@ -4227,6 +4890,8 @@ update(input: DataBlob): Promise\<void>
 doFinal(callback: AsyncCallback\<DataBlob>): void
 
 通过注册回调函数返回Mac的计算结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4249,8 +4914,8 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 此外，更多HMAC的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 function hmacByCallback() {
   let mac = cryptoFramework.createMac('SHA256');
@@ -4275,6 +4940,8 @@ doFinal(): Promise\<DataBlob>
 
 通过Promise返回Mac的计算结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值：**
@@ -4296,8 +4963,8 @@ doFinal(): Promise\<DataBlob>
 此外，更多HMAC的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import buffer from '@ohos.buffer';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 async function hmacByPromise() {
   let mac = cryptoFramework.createMac('SHA256');
@@ -4312,11 +4979,60 @@ async function hmacByPromise() {
 }
 ```
 
+### doFinalSync<sup>12+</sup>
+
+doFinalSync(): DataBlob
+
+通过同步方式返回Mac的计算结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**返回值：**
+
+| 类型               | 说明        |
+| ------------------ | ----------- |
+| [DataBlob](#datablob) | 返回Mac的计算结果。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters.           |
+| 17620001 | memory error.           |
+| 17620002 | runtime error. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+此外，更多HMAC的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
+
+async function hmacBySync() {
+  let mac = cryptoFramework.createMac('SHA256');
+  let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let symKey = symKeyGenerator.convertKeySync(keyBlob);
+  mac.initSync(symKey);
+  mac.updateSync({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) });
+  let macOutput = mac.doFinalSync();
+  console.info('[Sync]: HMAC result: ' + macOutput.data);
+  console.info('[Sync]: MAC len: ' + mac.getMacLength());
+}
+```
+
 ### getMacLength
 
 getMacLength(): number
 
 获取Mac消息认证码的长度（字节数）。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4336,8 +5052,8 @@ getMacLength(): number
 **示例：**
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mac = cryptoFramework.createMac('SHA256');
 console.info('Mac algName is: ' + mac.algName);
@@ -4371,6 +5087,8 @@ createRandom(): Random
 
 支持的规格详见框架概述[随机数算法规格](../../security/CryptoArchitectureKit/crypto-generate-random-number.md#支持的算法与规格)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **返回值**：
@@ -4389,7 +5107,7 @@ createRandom(): Random
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rand = cryptoFramework.createRandom();
@@ -4405,6 +5123,8 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 
 ### 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                 |
@@ -4416,6 +5136,8 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 异步生成指定长度的随机数，通过注册回调函数返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4431,14 +5153,14 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rand = cryptoFramework.createRandom();
 rand.generateRandom(12, (err, randData) => {
@@ -4455,6 +5177,8 @@ rand.generateRandom(12, (err, randData) => {
 generateRandom(len: number): Promise\<DataBlob>
 
 异步生成指定长度的随机数，通过Promise返回。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4475,14 +5199,14 @@ generateRandom(len: number): Promise\<DataBlob>
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
 | 17630001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rand = cryptoFramework.createRandom();
 let promiseGenerateRand = rand.generateRandom(12);
@@ -4498,6 +5222,8 @@ promiseGenerateRand.then(randData => {
 generateRandomSync(len: number): DataBlob
 
 同步生成指定长度的随机数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4518,14 +5244,14 @@ generateRandomSync(len: number): DataBlob
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.           |
 | 17630001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rand = cryptoFramework.createRandom();
 try {
@@ -4547,6 +5273,8 @@ setSeed(seed: DataBlob): void
 
 设置指定的种子。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 参数名 | 类型     | 必填 | 说明         |
@@ -4563,7 +5291,7 @@ setSeed(seed: DataBlob): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rand = cryptoFramework.createRandom();
 rand.generateRandom(12, (err, randData) => {
@@ -4585,7 +5313,9 @@ rand.generateRandom(12, (err, randData) => {
 
 createKdf(algName: string): Kdf
 
-密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见[密钥派生函数规格](../../security/CryptoArchitectureKit/crypto-key-derivation.md#支持的算法与规格)。
+密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见[密钥派生函数规格](../../security/CryptoArchitectureKit/crypto-key-derivation-overview.md)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4606,7 +5336,7 @@ createKdf(algName: string): Kdf
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 801 | this operation is not supported.          |
 | 17620001 | memory error.          |
 
@@ -4622,6 +5352,8 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
@@ -4630,9 +5362,11 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 
 ### generateSecret
 
-generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
+generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 基于传入的密钥派生参数进行密钥派生，通过注册回调函数返回派生得到的密钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4640,7 +5374,7 @@ generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 | 参数名   | 类型                     | 必填 | 说明                   |
 | -------- | ------------------------ | ---- | ---------------------- |
-| spec   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
+| params   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
 
 **错误码：**
@@ -4648,7 +5382,7 @@ generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
-| 401 | invalid parameters.          |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory error.          |
 | 17630001 | crypto operation error. |
 
@@ -4656,7 +5390,7 @@ generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 - PBKDF2算法
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   let spec: cryptoFramework.PBKDF2Spec = {
     algName: 'PBKDF2',
     password: '123456',
@@ -4676,7 +5410,7 @@ generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 - HKDF算法
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   let spec: cryptoFramework.HKDFSpec = {
     algName: 'HKDF',
     key: '123456',
@@ -4696,9 +5430,86 @@ generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 ### generateSecret
 
-generateSecret(spec: KdfSpec): Promise\<DataBlob>
+generateSecret(params: KdfSpec): Promise\<DataBlob>
 
 基于传入的密钥派生参数进行密钥派生，通过Promise形式返回派生得到的密钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| params   | [KdfSpec](#kdfspec11)        | 是   | 设置密钥派生函数的参数。 |
+
+**返回值：**
+
+| 类型               | 说明     |
+| ------------------ | -------- |
+| Promise\<[DataBlob](#datablob)> | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+- PBKDF2算法
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then(secret => {
+    console.info('key derivation output is ' + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+  ```
+
+- HKDF算法
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let spec: cryptoFramework.HKDFSpec = {
+    algName: 'HKDF',
+    key: '123456',
+    salt: new Uint8Array(16),
+    info: new Uint8Array(16),
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then(secret => {
+    console.info('key derivation output is ' + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+  ```
+
+### generateSecretSync<sup>12+</sup>
+
+generateSecretSync(spec: KdfSpec): DataBlob
+
+基于传入的密钥派生参数进行密钥派生，通过同步方式返回派生得到的密钥。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -4712,7 +5523,7 @@ generateSecret(spec: KdfSpec): Promise\<DataBlob>
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
+| [DataBlob](#datablob) | 用于获取派生得到的密钥DataBlob数据。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4721,14 +5532,15 @@ generateSecret(spec: KdfSpec): Promise\<DataBlob>
 | -------- | ---------------------- |
 | 401 | invalid parameters.          |
 | 17620001 | memory error.          |
+| 17620002 | runtime error. |
 | 17630001 | crypto operation error. |
 
 **示例：**
 
 - PBKDF2算法
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let spec: cryptoFramework.PBKDF2Spec = {
     algName: 'PBKDF2',
@@ -4738,18 +5550,14 @@ generateSecret(spec: KdfSpec): Promise\<DataBlob>
     keySize: 32
   };
   let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-  let kdfPromise = kdf.generateSecret(spec);
-  kdfPromise.then(secret => {
-    console.info('key derivation output is ' + secret.data);
-  }).catch((error: BusinessError) => {
-    console.error("key derivation error.");
-  });
+  let secret = kdf.generateSecretSync(spec);
+  console.info("[Sync]key derivation output is " + secret.data);
   ```
 
 - HKDF算法
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let spec: cryptoFramework.HKDFSpec = {
     algName: 'HKDF',
@@ -4759,10 +5567,6 @@ generateSecret(spec: KdfSpec): Promise\<DataBlob>
     keySize: 32
   };
   let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
-  let kdfPromise = kdf.generateSecret(spec);
-  kdfPromise.then(secret => {
-    console.info('key derivation output is ' + secret.data);
-  }).catch((error: BusinessError) => {
-    console.error("key derivation error.");
-  });
+  let secret = kdf.generateSecretSync(spec);
+  console.info("[Sync]key derivation output is " + secret.data);
   ```

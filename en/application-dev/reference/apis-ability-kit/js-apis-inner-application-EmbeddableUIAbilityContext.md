@@ -7,7 +7,6 @@
 >  - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 >  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
->  - The APIs of this module can be used only in atomic services.
 
 ## Modules to Import
 
@@ -18,6 +17,8 @@ import common from '@ohos.app.ability.common';
 ## Attributes
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -35,13 +36,13 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
- - If the ability to start is in another mission stack and the result needs to be returned to the caller, set the **want** parameter by following the description provided in [Want](js-apis-app-ability-want.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -113,12 +114,13 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -133,20 +135,21 @@ Observe the following when using this API:
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16200003 | The target application is not self application. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -196,12 +199,13 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 Starts an ability. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -234,7 +238,10 @@ Observe the following when using this API:
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16200003 | The target application is not self application. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -282,18 +289,18 @@ export default class EntryAbility extends EmbeddableUIAbility {
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability and obtains the result when the ability is terminated. This API uses an asynchronous callback to return the result.
-
 The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -366,18 +373,18 @@ export default class EntryAbility extends EmbeddableUIAbility {
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability with the start options specified and obtains the result when the ability is terminated. This API uses an asynchronous callback to return the result.
-
 The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -392,13 +399,11 @@ Observe the following when using this API:
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -456,18 +461,18 @@ export default class EntryAbility extends EmbeddableUIAbility {
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 Starts an ability and obtains the result when the ability is terminated. This API uses a promise to return the result.
-
 The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#embeddableuiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -553,6 +558,8 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -563,9 +570,6 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -610,6 +614,8 @@ Terminates this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | Type| Description|
@@ -620,9 +626,6 @@ Terminates this ability. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -667,6 +670,8 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -678,9 +683,6 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -738,6 +740,8 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -754,9 +758,6 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -836,10 +837,10 @@ Connects this ability to a ServiceExtensionAbility.
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -1031,7 +1032,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local UIAbility is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes|  Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId**, and **parameters** (optional). If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -1046,14 +1047,12 @@ Observe the following when using this API:
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -1152,6 +1151,8 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 > **NOTE**
 >
 > This API is available only for the EmbeddableUIAbility in redirection startup mode.
@@ -1197,6 +1198,8 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 Sets a label for this ability in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 > **NOTE**
 >
@@ -1253,6 +1256,8 @@ Sets the mission continuation state of this ability. This API uses an asynchrono
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 > **NOTE**
 >
 > This API is available only for the EmbeddableUIAbility in redirection startup mode.
@@ -1296,6 +1301,8 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 Sets the mission continuation state of this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 > **NOTE**
 >
@@ -1348,6 +1355,8 @@ Restores the WindowStage data in the ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 > **NOTE**
 >
 > This API is available only for the EmbeddableUIAbility in redirection startup mode.
@@ -1388,6 +1397,8 @@ Checks whether this ability is in the terminating state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 > **NOTE**
 >
 > This API is available only for the EmbeddableUIAbility in redirection startup mode.
@@ -1425,10 +1436,9 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1507,10 +1517,9 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1594,7 +1603,10 @@ export default class EntryAbility extends EmbeddableUIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
- **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -1649,11 +1661,13 @@ export default class EntryAbility extends EmbeddableUIAbility {
 ## EmbeddableUIAbilityContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
+    abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>): void
 
 Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 > **NOTE**
 >
@@ -1705,11 +1719,13 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 ## EmbeddableUIAbilityContext.startAbilityByType
 
 startAbilityByType(type: string, wantParam: Record<string, Object>,
-    abilityStartCallback: AbilityStartCallback) : Promise\<void>
+    abilityStartCallback: AbilityStartCallback): Promise\<void>
 
 Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 > **NOTE**
 >
@@ -1763,7 +1779,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   ```
 ## EmbeddableUIAbilityContext.showAbility
 
-showAbility() : Promise\<void>
+showAbility(): Promise\<void>
 
 Shows the current ability. This API uses a promise to return the result. It takes effect only on tablets.
 
@@ -1804,7 +1820,7 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   ```
 ## EmbeddableUIAbilityContext.hideAbility
 
-hideAbility() : Promise\<void>
+hideAbility(): Promise\<void>
 
 Hides the current ability. This API uses a promise to return the result. It takes effect only on tablets.
 
@@ -1850,6 +1866,8 @@ moveAbilityToBackground(): Promise\<void>
 Moves this ability from the foreground to the background. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 > **NOTE**
 >

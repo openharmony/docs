@@ -17,7 +17,7 @@ List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，�
 ## 导入模块
 
 ```ts
-import List from '@ohos.util.List';
+import { List } from '@kit.ArkTS';
 ```
 
 

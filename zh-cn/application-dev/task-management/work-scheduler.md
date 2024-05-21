@@ -20,7 +20,7 @@
 
 - **数量限制**：一个应用同一时刻最多申请10个延迟任务。
 
-- **执行频率限制**：系统会根据[应用的活跃分组](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)，对延迟任务做分级管控，限制延迟任务调度的执行频率。通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。
+- **执行频率限制**：系统会根据<!--RP1-->[应用的活跃分组](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)<!--RP1End-->，对延迟任务做分级管控，限制延迟任务调度的执行频率。通过能效资源接口申请了WORK_SCHEDULER资源的应用，会被放在能效资源豁免分组中。
 
   **表1** 应用活跃程度分组   
   | 应用活跃分组 | 延迟任务执行频率 |
@@ -54,7 +54,7 @@
 
 **表2** 延迟任务主要接口
 
-以下是延迟任务开发使用的相关接口，更多接口及使用方式请见[延迟任务](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)文档。
+以下是延迟任务开发使用的相关接口，更多接口及使用方式请见[延迟任务调度](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | startWork(work: WorkInfo): void; | 申请延迟任务 |
@@ -99,7 +99,7 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 **表4** 延迟任务回调接口
 
-以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务回调](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)文档。
+以下是延迟任务回调开发使用的相关接口，更多接口及使用方式请见[延迟任务调度回调](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)文档。
 | 接口名 | 接口描述 |
 | -------- | -------- |
 | onWorkStart(work: workScheduler.WorkInfo): void | 延迟调度任务开始的回调 |
@@ -217,4 +217,4 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
 
 针对延迟任务调度的开发，有以下相关示例可供参考：
 
-- [延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler)
+- [延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/TaskManagement/WorkScheduler)

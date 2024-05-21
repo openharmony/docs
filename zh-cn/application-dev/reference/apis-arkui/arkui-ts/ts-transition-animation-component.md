@@ -17,9 +17,12 @@
 
 ## TransitionEffect<sup>10+</sup>对象说明
 TransitionEffect以函数的形式指定转场效果。提供了以下接口：
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 接口名称 | 参数类型 | 是否静态函数 | 参数描述 |
 | -------- | ---------- | -------- | -------- |
-| opacity | number | 是 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置小于0或大于1的非法值时，按1处理。 |
+| opacity | number | 是 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。<br/>取值范围： [0, 1]<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置小于0的非法值按0处理，大于1的非法值按1处理。 |
 | translate | [TranslateOptions](ts-universal-attributes-transformation.md#translateoptions对象说明) | 是 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | scale |   [ScaleOptions](ts-universal-attributes-transformation.md#scaleoptions对象说明)| 是 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：当前为二维显示，该参数无效 。<br/>-&nbsp;centerX、centerY指缩放中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为缩放中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
 | rotate | [RotateOptions](ts-universal-attributes-transformation.md#rotateoptions对象说明)  | 是 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量分量。<br/>-y：纵向的旋转向量分量。<br/>-z：竖向的旋转向量分量。<br/>-&nbsp;centerX、centerY指旋转中心点，centerX和centerY默认值是"50%"，即默认以组件的中心点为旋转中心点。<br/>-&nbsp;中心点为(0, 0)代表组件的左上角。<br/>-centerZ指z轴锚点，即3D旋转中心点的z轴分量，centerZ默认值是0。<br/>-perspective指视距，即视点到z=0平面的距离，perspective默认值是0。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |

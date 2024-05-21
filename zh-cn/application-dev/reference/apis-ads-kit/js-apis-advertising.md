@@ -11,11 +11,13 @@
 ## 导入模块
 
 ```ts
-import advertising from '@ohos.advertising';
+import { advertising } from '@kit.AdsKit';
 ```
 ## AdLoader
 
 提供加载广告的功能
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -24,6 +26,8 @@ import advertising from '@ohos.advertising';
 constructor(context: common.Context);
 
 构造函数。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -38,8 +42,8 @@ constructor(context: common.Context);
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@ohos.advertising';
-import common from '@ohos.app.ability.common';
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
 
 function createConstructor(context: common.Context): void {
   const load: advertising.AdLoader = new advertising.AdLoader(context);
@@ -52,6 +56,8 @@ function createConstructor(context: common.Context): void {
 loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener): void
 
 请求单广告位广告。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -71,38 +77,44 @@ loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener)
 | -------- | -------- |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **示例：**
 
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@ohos.advertising';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog'; 
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function requestAd(context: common.Context): void {
   const adRequestParam: advertising.AdRequestParams = {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom8", 
+    adId: "testy63txaom8",
   };
   const adOptions: advertising.AdOptions = {
     // 设置广告内容分级上限
     adContentClassification: 'A',
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
     allowMobileTraffic: 0,
+    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
+    tagForChildProtection: -1,
+    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
+    tagForUnderAgeOfPromise: -1,
   };
   // 广告请求回调监听
   const adLoaderListener: advertising.AdLoadListener = {
     // 广告请求失败回调
     onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-      hilog.error(0x0000, 'testTag', '%{public}s', `request single ad errorCode is: ${errorCode}, errorMsg is: ${errorMsg}`);
+      hilog.error(0x0000, 'testTag', '%{public}s',
+        `request single ad errorCode is: ${errorCode}, errorMsg is: ${errorMsg}`);
     },
     // 广告请求成功回调
     onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'request single ad success!');
+      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed in requesting single ad!');
       // 保存请求到的广告内容用于展示
       const returnAds = ads;
     }
@@ -122,6 +134,8 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 
 请求多广告位广告。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 **参数：**
@@ -140,28 +154,29 @@ loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener
 | -------- | -------- |
 | 21800001 | System internal error. | 
 | 21800003 | Failed to load the ad request. | 
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. | 
 
 **示例：**
 
 其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
 
 ```ts
-import advertising from '@ohos.advertising';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog'; 
+import { advertising } from '@kit.AdsKit';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 function requestMultiAd(context: common.Context): void {
   const adRequestParamArray: advertising.AdRequestParams[] = [{
-      // 广告类型
-      adType: 3,
-      // 测试广告位ID
-      adId: "testy63txaom8",
-    } as advertising.AdRequestParams,
+    // 广告类型
+    adType: 3,
+    // 测试广告位ID
+    adId: "testy63txaom8",
+  } as advertising.AdRequestParams,
     {
       // 广告类型
       adType: 3,
       // 测试广告位ID
-      adId: "testy63txaom8", 
+      adId: "testy63txaom8",
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
@@ -169,16 +184,21 @@ function requestMultiAd(context: common.Context): void {
     adContentClassification: 'A',
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
     allowMobileTraffic: 0,
+    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
+    tagForChildProtection: -1,
+    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
+    tagForUnderAgeOfPromise: -1,
   };
   // 广告请求回调监听
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
     // 广告请求失败回调
     onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-      hilog.error(0x0000, 'testTag', '%{public}s', `request multi ads errorCode is: ${errorCode}, errorMsg is: ${errorMsg}`);
+      hilog.error(0x0000, 'testTag', '%{public}s',
+        `request multi ads errorCode is: ${errorCode}, errorMsg is: ${errorMsg}`);
     },
     // 广告请求成功回调
     onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'request multi ads success!');
+      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed in requesting multi ads!');
       // 保存请求到的广告内容为数组用于展示
       let returnAds: Array<advertising.Advertisement> = [];
       ads.forEach((adsArray) => returnAds.push(...adsArray));
@@ -198,6 +218,8 @@ function requestMultiAd(context: common.Context): void {
 showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityContext): void
 
 展示全屏广告。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -226,9 +248,9 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
-import hilog from '@ohos.hilog'; 
-import common from '@ohos.app.ability.common';
+import { advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'; 
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -265,20 +287,24 @@ export struct ShowAd {
 
 广告配置参数。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| tagForChildProtection | number | 否 | 设置儿童保护标签。<br/>- -1：您不希望表明您的广告内容是否需要符合COPPA的规定。<br/>- 0：表明您的广告内容不需要符合COPPA的规定。<br/>- 1：表明您的广告内容需要符合COPPA的规定（该广告请求无法获取到任何广告）。 | 
-| adContentClassification | string | 否 | 设置广告内容分级上限。<br/>- W：适合幼儿及以上年龄段观众的内容。<br/>- PI：适合少儿及以上年龄段观众的内容。<br/>- J：适合青少年及以上年龄段观众的内容。<br/>- A：仅适合成人观众的内容。 | 
-| nonPersonalizedAd | number | 否 | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。 | 
-| [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。<br/> - totalDuration：类型number，单位：s。贴片广告必填自定义参数，用于设置贴片广告展示时长。<br/> - placementAdCountDownDesc：类型string。贴片广告可选自定义参数，用于设置贴片广告倒计时文案，该参数需要使用encodeURI()方法编码。填写了该参数，则展示倒计时文案，否则只展示倒计时。<br/> - allowMobileTraffic：类型number。可选自定义参数，设置是否允许使用流量下载广告素材。0：不允许，1：允许 |
+| tagForChildProtection | number | 否 | 设置儿童保护标签。<br/>- -1：您不希望表明您的广告内容是否需要符合COPPA的规定。<br/>- 0：表明您的广告内容不需要符合COPPA的规定。<br/>- 1：表明您的广告内容需要符合COPPA的规定（该广告请求无法获取到任何广告）。默认-1 | 
+| adContentClassification | string | 否 | 设置广告内容分级上限。<br/>- W：适合幼儿及以上年龄段观众的内容。<br/>- PI：适合少儿及以上年龄段观众的内容。<br/>- J：适合青少年及以上年龄段观众的内容。<br/>- A：仅适合成人观众的内容。 默认为""| 
+| nonPersonalizedAd | number | 否 | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。不填以业务逻辑为准。 | 
+| [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。<br/> - totalDuration：类型number，单位：s。贴片广告必填自定义参数，用于设置贴片广告展示时长。<br/> - placementAdCountDownDesc：类型string。贴片广告可选自定义参数，用于设置贴片广告倒计时文案，该参数需要使用encodeURI()方法编码。填写了该参数，则展示倒计时文案，否则只展示倒计时。<br/> - allowMobileTraffic：类型number。可选自定义参数，设置是否允许使用流量下载广告素材。0：不允许，1：允许 <br/> - tagForUnderAgeOfPromise：类型number。非必填参数，用于设置未成年保护标签，表示是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求。-1：默认值不确定 0：不希望 1：希望|
 
 
 ## AdRequestParams
 
 广告请求参数。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -287,9 +313,9 @@ export struct ShowAd {
 | -------- | -------- | -------- | -------- |
 | adId | string | 是 | 广告位ID。 | 
 | adType | number | 否 | 请求的广告类型。<br/>- 1：开屏广告。<br/>- 3：原生广告。<br/>- 7：激励广告。<br/>- 8：banner广告。<br/>- 12：插屏广告。<br/>- 60：贴片广告。 |
-| adCount | number | 否 | 请求的广告数量。 | 
-| adWidth | number | 否 | 广告位宽度。 | 
-| adHeight | number | 否 | 广告位高度。 | 
+| adCount | number | 否 | 请求的广告数量。不填以业务逻辑为准 | 
+| adWidth | number | 否 | 广告位宽度，必须大于0。不填以业务逻辑为准 | 
+| adHeight | number | 否 | 广告位高度，必须大于0。不填以业务逻辑为准 | 
 | adSearchKeyword | string | 否 | 广告关键字。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。 | 
 
@@ -298,6 +324,8 @@ export struct ShowAd {
 
 单广告位广告请求回调。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 ### onAdLoadFailure
@@ -305,6 +333,8 @@ export struct ShowAd {
 onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 广告请求失败回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -316,9 +346,11 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 ### onAdLoadSuccess
 
-onAdLoadSuccess(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): void
+onAdLoadSuccess(ads: Array&lt;advertising.Advertisement&gt;): void
 
 广告请求成功后回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -330,14 +362,12 @@ onAdLoadSuccess(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): 
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
+import { advertising } from '@kit.AdsKit';
 
 let adLoaderListener: advertising.AdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-
   },
-  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void {
-
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
   }
 }
 
@@ -348,6 +378,8 @@ let adLoaderListener: advertising.AdLoadListener = {
 
 多广告位广告请求回调。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Advertising.Ads
 
 ### onAdLoadFailure
@@ -355,6 +387,8 @@ let adLoaderListener: advertising.AdLoadListener = {
 onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 多广告位广告请求失败回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -366,9 +400,11 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 ### onAdLoadSuccess
 
-onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;): void
+onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void
 
 多广告位广告请求成功后回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -380,14 +416,12 @@ onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#adv
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
+import { advertising } from '@kit.AdsKit';
 
 let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
   onAdLoadFailure: (errorCode: number, errorMsg: string) => {
-
   },
-  onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>): void {
-
+  onAdLoadSuccess: (adsMap: Map<string, Array<advertising.Advertisement>>) => {
   }
 }
 ```
@@ -398,6 +432,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 请求的广告内容。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -418,16 +453,17 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告展示参数。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| customData | string | 否 | 媒体自定义数据。用于服务端通知媒体服务器某位用户因为与激励视频广告互动而应予以奖励，从而规避欺骗的行为。 | 
-| userId | string | 否 | 媒体自定义用户id。用于服务端通知媒体服务器某位用户因为与激励视频广告互动而应予以奖励，从而规避欺骗的行为。 | 
+| customData | string | 否 | 媒体自定义数据。用于服务端通知媒体服务器某位用户因为与激励视频广告互动而应予以奖励，从而规避欺骗的行为（不填则不会通知）。 | 
+| userId | string | 否 | 媒体自定义用户id。用于服务端通知媒体服务器某位用户因为与激励视频广告互动而应予以奖励，从而规避欺骗的行为（不填则不会通知）。 | 
 | useMobileDataReminder | boolean | 否 | 使用移动数据播放视频或下载应用时是否弹框通知用户。<br/>- true：弹框通知。<br/>- false：不弹框通知。 | 
-| mute | boolean | 否 | 广告视频播放是否静音。<br/>- true：静音播放。<br/>- false：非静音播放。 | 
+| mute | boolean | 否 | 广告视频播放是否静音。<br/>- true：静音播放。<br/>- false：非静音播放。不填默认为true | 
 | audioFocusType | number | 否 | 视频播放过程中获得音频焦点的场景类型。<br/>- 0：视频播放静音、非静音时都获取焦点。<br/>- 1：视频静音播放时不获取焦点。<br/>- 2：视频播放静音、非静音时都不获取焦点。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。<br/>- refreshTime：类型number，单位：ms，取值范围[30000, 120000]。AutoAdComponent组件可选自定义参数，用于控制广告的轮播时间间隔。填写了该参数，则广告按照参数配置的时间间隔轮播，否则广告不会轮播，只会展示广告响应中的第一个广告内容。 |
 
@@ -437,14 +473,17 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 广告状态变化回调。
 
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
 ### onStatusChanged
 
-onStatusChanged(status: number, ad: advertising.[Advertisement](#advertisement), data: string)
+onStatusChanged(status: string, ad: advertising.[Advertisement](#advertisement), data: string)
 
 广告状态回调。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
@@ -457,11 +496,202 @@ onStatusChanged(status: number, ad: advertising.[Advertisement](#advertisement),
 **示例：**
 
 ```ts
-import advertising from '@ohos.advertising';
+import { advertising } from '@kit.AdsKit';
 
 let adInteractionListener: advertising.AdInteractionListener = {
   onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
 
+  }
+}
+```
+
+## getAdRequestBody<sup>12+</sup>  
+getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise<string>
+
+获取广告请求体。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**参数：**
+| **参数名** | **类型** | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| adParam | [AdRequestParams](#adrequestparams) | 是 | 广告请求参数。 | 
+| adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | Invalid input parameter.         |
+| 21800001 | System internal error.           |
+
+**示例代码**  
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { advertising } from '@kit.AdsKit';
+import { Prompt } from '@kit.ArkUI';
+
+function getAdRequestBody(): void {
+  let adReqParamsListForRequest: Array<advertising.AdRequestParams> = [];
+  const adReqParams: Record<string, Object> = {
+    'adId': 'testu7m3hc4gvm',
+    'adType': 3,
+    'adCount': 2,
+    'adWidth': 100,
+    'adHeight': 100,
+  };
+
+  adReqParamsListForRequest.push(adReqParams as advertising.AdRequestParams);
+  const adOption: Record<string, Object> = {
+    'adContentClassification': 'A',
+    'nonPersonalizedAd': 0,
+    'tagForChildProtection': 1,
+  };
+  advertising.getAdRequestBody(adReqParamsListForRequest, adOption as advertising.AdOptions).then((data) => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting AdRequestBody by promise: ${data}`);
+    Prompt.showToast({
+      message: data,
+      duration: 1000,
+    });
+  }).catch((error: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s',
+      `getAdRequestBody failed, code: ${error.code}, message: ${error.message}`);
+    Prompt.showToast({
+      message: error.code.toString() + ',' + error.message,
+      duration: 1000,
+    });
+  })
+}
+```
+
+## parseAdResponse<sup>12+</sup>
+
+parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context: common.UIAbilityContext): void
+
+解析并处理广告响应体。
+
+**元服务API：** 从API version12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**参数：**
+
+| **参数名** | **类型**                                                     | 必填 | 说明                    |
+| ---------- | ------------------------------------------------------------ | ---- | ----------------------- |
+| adResponse | string                                                       | 是   | 广告请求参数。          |
+| listener   | [MultiSlotsAdLoadListener](#multislotsadloadlistener)        | 是   | 请求广告回调监听。      |
+| context    | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是   | UIAbility的上下文环境。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | Invalid input parameter. Possible causes: parameter is null.|
+| 21800001 | System internal error.           |
+| 21800005 | Failed to parse the ad response. |
+
+**示例：**
+
+其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md#概述)。
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+function parseAdResponse(adResponse: string, context: common.Context): void {
+  // 广告解析处理回调监听
+  const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
+    // 广告解析处理失败回调
+    onAdLoadFailure: (errorCode: number, errorMsg: string) => {
+      hilog.error(0x0000, 'testTag', '%{public}s',
+        `request multi ads errorCode is: ${errorCode}, errorMsg is: ${errorMsg}`);
+    },
+    // 广告解析处理成功回调
+    onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>) => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'succeeded in requesting multi ads!');
+      // 保存解析处理完成的广告内容为数组用于展示
+      let returnAds: Array<advertising.Advertisement> = [];
+      ads.forEach((adsArray) => returnAds.push(...adsArray));
+    }
+  };
+  // 调用响应体解析接口
+  hilog.info(0x0000, 'testTag', '%{public}s', 'parse ad response!');
+  advertising.parseAdResponse(adResponse, multiSlotsAdLoaderListener, context);
+}
+```
+
+## registerWebAdInterface<sup>12+</sup>
+
+registerWebAdInterface(controller: web_webview.WebviewController, context: common.UIAbilityContext): void
+
+注入广告JavaScript对象到Web组件中。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Advertising.Ads
+
+**参数：**
+
+
+| **参数名** | **类型** | 必填 | 说明 | 
+| -------- | -------- | -------- | -------- |
+| controller | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller) | 是 | Web组件控制器。 | 
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是 | UIAbility的上下文环境。 | 
+
+
+**错误码：**
+
+
+以下错误码的详细介绍请参见[广告服务框架错误码参考](errorcode-ads.md)。
+
+
+| 错误码ID | 错误信息 | 
+| -------- | -------- |
+| 401 | Invalid input parameter. Possible causes: parameter is null. | 
+| 21800001 | System internal error. | 
+
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { advertising } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+@Entry
+@Component
+struct Index {
+  private webController: webview.WebviewController = new webview.WebviewController();
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+
+  build() {
+    Column() {
+      Button('广告对象注入Web')
+        .onClick(() => {
+          try {
+            advertising.registerWebAdInterface(this.webController, this.context);
+          } catch (err) {
+            hilog.error(0x0000, 'testTag', '%{public}s', `register web ad interface error: ${err.code}, ${err.message}`);
+          }
+        })
+
+      Web({
+        src: 'www.example.com',
+        controller: this.webController,
+      })
+        .width("100%")
+        .height("100%")
+    }
   }
 }
 ```

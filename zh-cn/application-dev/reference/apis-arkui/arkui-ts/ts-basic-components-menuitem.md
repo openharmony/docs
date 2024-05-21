@@ -14,6 +14,8 @@
 
 MenuItem(value?: MenuItemOptions| CustomBuilder)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：** 
 
 | 参数  | 类型                                                                                                                          | 必填 | 参数描述                     |
@@ -22,6 +24,8 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 
 ## MenuItemOptions类型说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 类型                                        | 必填 | 描述                                   |
 | --------- | ------------------------------------------- | ---- | -------------------------------------- |
 | startIcon | [ResourceStr](ts-types.md#resourcestr)      | 否   | item中显示在左侧的图标信息路径。       |
@@ -29,6 +33,8 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 | endIcon   | [ResourceStr](ts-types.md#resourcestr)      | 否   | item中显示在右侧的图标信息路径。       |
 | labelInfo | [ResourceStr](ts-types.md#resourcestr)      | 否   | 定义结束标签信息，如快捷方式Ctrl+C等。 |
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否   | 用于构建二级菜单。                     |
+| symbolStartIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | item中显示在左侧的HMSymbol图标信息路径。                     |
+| symbolEndIcon<sup>12+</sup>   | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | item中显示在右侧的HMSymbol图标信息路径。                     |
 
 ## 属性
 
@@ -41,6 +47,8 @@ selected(value: boolean)
 设置菜单项是否选中。
 
 从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -56,19 +64,23 @@ selectIcon(value: boolean | ResourceStr)
 
 设置当菜单项被选中时，是否显示被选中的图标。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | boolean&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 是   | 菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true: 菜单项被选中时，显示默认的对勾图标<br/>false: 即使菜单项被选中也不显示图标<br/>ResourceStr: 菜单项被选中时，显示指定的图标 |
+| value  | boolean&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>|&nbsp;[SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)<sup>12+</sup> | 是   | 菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true: 菜单项被选中时，显示默认的对勾图标<br/>false: 即使菜单项被选中也不显示图标<br/>ResourceStr: 菜单项被选中时，显示指定的图标 |
 
 ### contentFont<sup>10+</sup>
 
 contentFont(value: Font)
 
 设置菜单项中内容信息的字体样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,6 +96,8 @@ contentFontColor(value: ResourceColor)
 
 设置菜单项中内容信息的字体颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -98,6 +112,8 @@ labelFont(value: Font)
 
 设置菜单项中标签信息的字体样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -111,6 +127,8 @@ labelFont(value: Font)
 labelFontColor(value: ResourceColor)
 
 设置菜单项中标签信息的字体颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -127,6 +145,8 @@ labelFontColor(value: ResourceColor)
 onChange(callback: (selected: boolean) => void)
 
 当选中状态发生变化时，触发该回调。只有手动触发且MenuItem状态改变时才会触发onChange回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

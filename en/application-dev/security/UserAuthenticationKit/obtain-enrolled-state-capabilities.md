@@ -10,7 +10,7 @@ For details about the parameters, return values, and error codes, see [getEnroll
 
 | API| Description| 
 | -------- | -------- |
-| getEnrolledState(authType : UserAuthType): EnrolledStated | Obtains information about the enrolled credentials based on the specified authentication type.| 
+| getEnrolledState(authType : UserAuthType): EnrolledState | Obtains the status of the enrolled credentials based on the specified authentication type.| 
 
 
 ## How to Develop

@@ -10,7 +10,7 @@ The visible area change event of a component refers to the change in the visual 
 
 onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void): T
 
-Called when the visual area of the component changes.
+Called when the visible area of the component changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

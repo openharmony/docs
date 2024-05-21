@@ -16,6 +16,8 @@
 
 Navigator(value?: {target: string, type?: NavigationType})
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型       | 必填 | 参数描述                                       |
@@ -24,6 +26,8 @@ Navigator(value?: {target: string, type?: NavigationType})
 | type   | [NavigationType](#navigationtype枚举说明) | 否   | 指定路由方式。<br/>默认值：NavigationType.Push |
 
 ## NavigationType枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 枚举值  | 描述                         |
 | ------- | ------- | -------------------------- |
@@ -39,6 +43,8 @@ active(value: boolean)
 
 设置当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -52,6 +58,8 @@ active(value: boolean)
 params(value: object)
 
 设置跳转时传递到目标页面的数据。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,6 +75,8 @@ target(value: string)
 
 设置跳转目标页面的路径。 目标页面需加入main_pages.json文件中。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -79,6 +89,8 @@ target(value: string)
 type(value: NavigationType)
 
 设置路由跳转方式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

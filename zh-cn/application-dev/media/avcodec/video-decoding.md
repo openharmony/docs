@@ -10,6 +10,8 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
+<!--RP1--><!--RP1End-->
+
 ## Surface输出与Buffer输出
 
 两者数据的输出方式不同。
@@ -53,6 +55,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/player_framework/native_avcodec_base.h>
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
+    #include <fstream>
     ```
 
 2. 创建解码器实例对象。
@@ -138,7 +141,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 4. 调用OH_VideoDecoder_Configure()配置解码器。
 
-    详细可配置选项的说明请参考[变量](../../reference/apis-avcodec-kit/_codec_base.md#变量)。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    
+    参数校验规则请参考[OH_VideoDecoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure)。
+    
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
@@ -147,9 +153,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     // 配置视频帧宽度（必须）
-    constexpr uint32_t DEFAULT_WIDTH = 320; 
+    constexpr int32_t DEFAULT_WIDTH = 320; 
     // 配置视频帧高度（必须）
-    constexpr uint32_t DEFAULT_HEIGHT = 240;
+    constexpr int32_t DEFAULT_HEIGHT = 240;
     // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 
@@ -176,6 +182,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
 6. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
     ```c++
     OH_AVFormat *format = OH_AVFormat_Create();
@@ -391,6 +398,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     #include <multimedia/player_framework/native_avformat.h>
     #include <multimedia/player_framework/native_avbuffer.h>
     #include <native_buffer/native_buffer.h>
+    #include <fstream>
     ```
 
 2. 创建解码器实例对象。
@@ -429,6 +437,15 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     开发者可以通过处理该回调报告的信息，确保解码器正常运转。
 
     ```c++
+    int32_t width = 0;
+    int32_t height = 0;
+    int32_t widthStride = 0;
+    int32_t heightStride = 0;
+    int32_t cropTop = 0;
+    int32_t cropBottom = 0;
+    int32_t cropLeft = 0;
+    int32_t cropRight = 0;
+    bool isFirstFrame = true;
     // 解码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -437,16 +454,24 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         (void)errorCode;
         (void)userData;
     }
-
+    
     // 解码数据流变化回调OH_AVCodecOnStreamChanged实现
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         // 可通过format获取到变化后的视频宽、高、跨距等
         (void)codec;
-        (void)format;
         (void)userData;
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        // 获取裁剪矩形信息可选
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, cropTop);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, cropBottom);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, cropLeft);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, cropRight);
     }
-
+    
     // 解码输入回调OH_AVCodecOnNeedInputBuffer实现
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
@@ -455,12 +480,27 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 数据处理，请参考:
         // - 写入解码码流
     }
-
+    
     // 解码输出回调OH_AVCodecOnNewOutputBuffer实现
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
+        // 获取视频宽、高、跨距
+        if (isFirstFrame) {
+            OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+            // 获取裁剪矩形信息可选
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_TOP, cropTop);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_BOTTOM, cropBottom);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_LEFT, cropLeft);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_CROP_RIGHT, cropRight);
+            OH_AVFormat_Destroy(format);
+            isFirstFrame = false;
+        }
         // 数据处理，请参考:
         // - 释放解码帧
     }
@@ -476,9 +516,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ```c++
     // 配置视频帧宽度（必须）
-    constexpr uint32_t DEFAULT_WIDTH = 320; 
+    constexpr int32_t DEFAULT_WIDTH = 320; 
     // 配置视频帧高度（必须）
-    constexpr uint32_t DEFAULT_HEIGHT = 240;
+    constexpr int32_t DEFAULT_HEIGHT = 240;
     // 配置视频颜色格式（必须）
     constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
 
@@ -568,7 +608,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-    硬件解码在处理buffer数据时（释放数据前），一般需要获取数据的宽高、跨距来保证解码输出数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
+    硬件解码在处理buffer数据时（释放数据前），一般需要获取数据的宽高、跨距、像素格式来保证解码输出数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
 
     ```c++
     // OH_NativeBuffer *可以通过图形模块的接口可以获取数据的宽高、跨距等信息。

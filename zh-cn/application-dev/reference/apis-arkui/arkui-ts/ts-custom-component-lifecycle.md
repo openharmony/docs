@@ -16,6 +16,14 @@ aboutToAppear函数在创建自定义组件的新实例后，在执行其build()
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+## onDidBuild<sup>12+</sup>
+
+onDidBuild?(): void
+
+onDidBuild函数在执行自定义组件的build()函数之后执行。不建议在onDidBuild函数中更改状态变量、使用animateTo等功能，这可能会导致不稳定的UI表现。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## aboutToDisappear
 
 aboutToDisappear?(): void
@@ -24,12 +32,15 @@ aboutToDisappear函数在自定义组件析构销毁之前执行。不允许在a
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## onPageShow
 
 onPageShow?(): void
 
 页面每次显示时触发一次，包括路由过程、应用进入前台等场景，仅\@Entry装饰的自定义组件生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ## onPageHide
 
@@ -37,6 +48,7 @@ onPageHide?(): void
 
 页面每次隐藏时触发一次，包括路由过程、应用进入后台等场景，仅\@Entry装饰的自定义组件生效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ## onBackPress
 
@@ -44,6 +56,7 @@ onBackPress?(): void | boolean
 
 当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。返回true表示页面自己处理返回逻辑，不进行页面路由；返回false表示使用默认的路由返回逻辑，不设置返回值按照false处理。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ```ts
 // xxx.ets
@@ -84,6 +97,8 @@ struct IndexComponent {
 aboutToReuse?(params: { [key: string]: unknown }): void
 
 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -143,3 +158,87 @@ struct Child {
   }
 }
 ```
+
+## onWillApplyTheme<sup>12+</sup>
+
+onWillApplyTheme?(theme: Theme): void
+
+onWillApplyTheme函数在创建自定义组件的新实例后，在执行其build()函数之前执行。允许在onWillApplyTheme函数中改变状态变量，更改将在后续执行build()函数中生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名    | 类型                                       | 说明         |
+|--------|------------------------------------------|------------|
+| theme | [Theme](../js-apis-arkui-theme.md#theme) | 自定义组件当前生效的Theme对象。|
+
+```ts
+// xxx.ets
+// onWillApplyTheme自定义生命周期函数中可获取当前theme对象。
+import { CustomTheme, CustomColors, Theme, ThemeControl } from '@ohos.arkui.theme';
+
+class BlueColors implements CustomColors {
+  fontPrimary = Color.White;
+  backgroundPrimary = Color.Blue;
+}
+
+class PageCustomTheme implements CustomTheme {
+  colors?: CustomColors;
+
+  constructor(colors: CustomColors) {
+    this.colors = colors;
+  }
+}
+const BlueColorsTheme = new PageCustomTheme(new BlueColors());
+// 在页面build之前执行ThemeControl.setDefaultTheme,将BlueColorsTheme设置为当前默认Theme，在onWillApplyTheme中可获取。
+ThemeControl.setDefaultTheme(BlueColorsTheme);
+
+@Entry
+@Component
+struct IndexComponent {
+  @State textColor: ResourceColor = $r('sys.color.font_primary');
+  @State columBgColor: ResourceColor = $r('sys.color.background_primary');
+  
+  // 在onWillApplyTheme生命周期函数中更改状态变量textColor、columBgColor，赋值为BlueColorsTheme中配色。
+  onWillApplyTheme(theme: Theme) {
+    this.textColor = theme.colors.fontPrimary;
+    this.columBgColor = theme.colors.backgroundPrimary;
+    console.info('IndexComponent onWillApplyTheme');
+  }
+
+  build() {
+    Column() {
+      // 组件初始值配色样式
+      Column() {
+        Text('Hello World')
+          .fontColor($r('sys.color.font_primary'))
+          .fontSize(30)
+      }
+      .width('100%')
+      .height('25%')
+      .borderRadius('10vp')
+      .backgroundColor($r('sys.color.background_primary'))
+      
+      // 组件颜色生效为onWillApplyTheme中配置颜色。
+      Column() {
+        Text('onWillApplyTheme')
+          .fontColor(this.textColor)
+          .fontSize(30)
+        Text('Hello World')
+          .fontColor(this.textColor)
+          .fontSize(30)
+      }
+      .width('100%')
+      .height('25%')
+      .borderRadius('10vp')
+      .backgroundColor(this.columBgColor)
+    }
+    .padding('16vp')
+    .backgroundColor('#dcdcdc')
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![onWillApplyThemePage](figures/onWillApplyTheme.png)

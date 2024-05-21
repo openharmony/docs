@@ -49,6 +49,16 @@ setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&l
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -87,6 +97,16 @@ setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 | -------- | -------- | -------- | -------- |
 | source | string | 是 | mp4文件的Uri路径。 |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **返回值：**
 
@@ -130,6 +150,16 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: Async
 | source | string | 是 | 指定的zip资源包。 |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -176,6 +206,16 @@ setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;voi
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -210,6 +250,15 @@ on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceTyp
 | type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
 | callback | function | 是 | 壁纸变化触发该回调方法，返回壁纸类型和壁纸资源类型。<br/>- wallpaperType：壁纸类型。<br/>- resourceType：壁纸资源类型。<br/>- uri：壁纸资源地址。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -239,6 +288,15 @@ off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceT
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
 | callback | function | 否 |   表示要取消的壁纸变化回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- wallpaperType：壁纸类型。<br/>- resourceType：壁纸资源类型。<br/>- uri：壁纸资源地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -289,6 +347,15 @@ getColorsSync(wallpaperType: WallpaperType): Array&lt;RgbaColor&gt;
 | -------- | -------- |
 | Array&lt;[RgbaColor](js-apis-wallpaper.md#rgbacolordeprecated)&gt; | 返回壁纸的主要颜色信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例**：
 
 ```ts
@@ -316,6 +383,14 @@ getMinHeightSync(): number
 | -------- | -------- |
 | number | 返回壁纸的最小高度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的高度值代替。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+
 **示例：**
 
 ```ts
@@ -337,6 +412,14 @@ getMinWidthSync(): number
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 壁纸的最小宽度值，单位是像素。如果返回值等于0，说明没有设置壁纸，调用者应该使用默认显示的宽度值代替。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
 
 **示例：**
 
@@ -362,6 +445,16 @@ restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，移除壁纸成功，error为undefined，否则返回error信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -401,6 +494,16 @@ restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -432,6 +535,16 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 | source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -495,6 +608,16 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -547,6 +670,16 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -586,6 +719,16 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md)&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 201          | permission denied.                                                                              |
+| 202          | permission verification failed, application which is not a system application uses system API.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 

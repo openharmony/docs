@@ -20,7 +20,7 @@ init(options: [number,number,number,number,number,number,number,number,number,nu
 
 Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，矩阵为列优先。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,7 +87,7 @@ identity(): Matrix4Transit
 
 Matrix的初始化函数，可以返回一个单位矩阵对象。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -134,7 +134,7 @@ copy(): Matrix4Transit
 
 Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -183,7 +183,7 @@ combine(options: Matrix4Transit): Matrix4Transit
 
 Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。会改变调用该函数的原始矩阵。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -238,7 +238,7 @@ invert(): Matrix4Transit
 
 Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效果正好相反。会改变调用该函数的原始矩阵。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -283,7 +283,7 @@ translate(options: TranslateOption): Matrix4Transit
 
 Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。会改变调用该函数的原始矩阵。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -329,7 +329,7 @@ scale(options: ScaleOption): Matrix4Transit
 
 Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。会改变调用该函数的原始矩阵。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -373,8 +373,6 @@ struct Test {
 skew(x: number, y: number): Matrix4Transit
 
 Matrix的倾斜函数，可以为当前矩阵增加x轴/y轴倾斜效果。会改变调用该函数的原始矩阵。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -420,7 +418,7 @@ rotate(options: RotateOption): Matrix4Transit
 
 Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。会改变调用该函数的原始矩阵。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -466,7 +464,7 @@ transformPoint(options: [number, number]): [number, number]
 
 Matrix的坐标点转换函数，可以将当前的变换效果作用到一个坐标点上。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -531,7 +529,7 @@ setPolyToPoly(options: PolyToPolyOptions): Matrix4Transit
 
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
-| option | PolyToPolyOptions(#PolyToPolyOptions)  | 是   | 映射相关的参数。 |
+| option | [PolyToPolyOptions](#polytopolyoptions12)  | 是   | 映射相关的参数。 |
 
 **返回值：**
 
@@ -548,14 +546,14 @@ import matrix4 from '@ohos.matrix4'
 @Component
 struct Index {
   private matrix1 = matrix4.identity().setPolyToPoly({ src: [{x:0, y:0}, {x:200, y:0}, {x:0, y:200}, {x:200, y:200} ],
-    dst:[{x:150, y:0}, {x:250, y:0}, {x:0, y:200}, {x:200, y:200} ], pointCount:4})
+    dst:[{x:10, y:0}, {x:250, y:0}, {x:0, y:200}, {x:200, y:200} ], pointCount:4})
 
   build() {
     Stack() {
-      Image($r("app.media.1"))
+      Image($r("app.media.transition_image1"))
         .transform(this.matrix1)
-        .width(150)
-        .height(150)
+        .width(200)
+        .height(200)
     }.width("100%").height("100%")
   }
 }
@@ -563,7 +561,7 @@ struct Index {
 ![zh-cn_image_0000001174422898](figures/setPolyTopoly.png)
 ## TranslateOption
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -575,7 +573,7 @@ struct Index {
 
 ## ScaleOption
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -584,12 +582,12 @@ struct Index {
 | x       | number | 否   | x轴的缩放倍数。x>1时以x轴方向放大，0&lt;x&lt;1时以x轴方向缩小，x<0时沿x轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
 | y       | number | 否   | y轴的缩放倍数。y>1时以y轴方向放大，0&lt;y&lt;1时以y轴方向缩小，y<0时沿y轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
 | z       | number | 否   | z轴的缩放倍数。z>1时以z轴方向放大，0&lt;z&lt;1时以z轴方向缩小，z<0时沿z轴反向并缩放。<br/>默认值：1<br/>取值范围 (-∞, +∞) |
-| centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)    |
-| centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)    |
+| centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：组件中心点x轴坐标。<br/>取值范围 (-∞, +∞)    |
+| centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：组件中心点y轴坐标。<br/>取值范围 (-∞, +∞)    |
 
 ## RotateOption
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -599,12 +597,12 @@ struct Index {
 | y       | number | 否   | 旋转轴向量y坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞) |
 | z       | number | 否   | 旋转轴向量z坐标。<br/>默认值：0。<br/>取值范围 (-∞, +∞)。<br/>**说明：** 旋转向量中x、y、z至少有一个不为0才有意义。 |
 | angle   | number | 否   | 旋转角度。<br/>默认值：0                                |
-| centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：0                       |
-| centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：0                       |
+| centerX | number | 否   | 变换中心点x轴坐标。<br/>默认值：组件中心点x轴坐标。                    |
+| centerY | number | 否   | 变换中心点y轴坐标。<br/>默认值：组件中心点y轴坐标。                   |
 
 ## PolyToPolyOptions<sup>12+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -618,7 +616,7 @@ struct Index {
 
 ## Point<sup>12+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

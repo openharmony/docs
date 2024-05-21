@@ -121,8 +121,8 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
   
 ```ts
 import audio from '@ohos.multimedia.audio';
-import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
 
 const TAG = 'AudioCapturerDemo';
 

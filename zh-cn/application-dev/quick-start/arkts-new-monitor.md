@@ -1,6 +1,6 @@
 # \@Monitor装饰器：状态变量修改监听
 
-为了增强现有状态管理框架对类对象中属性变化的监听能力，开发者可以使用\@Monitor装饰器对类对象中的属性进行监听。
+为了增强现有状态管理框架对状态变量变化的监听能力，开发者可以使用\@Monitor装饰器对状态变量进行监听。
 
 >**说明：**
 >
@@ -8,9 +8,11 @@
 
 ## 概述
 
-\@Monitor装饰器用于监听状态变量修改，使得类对象中属性具有深度监听的能力：
+\@Monitor装饰器用于监听状态变量修改，使得状态变量具有深度监听的能力：
 
-- \@Monitor装饰器需要与[\@ObservedV2、\@Trace](arkts-new-ObservedV2-and-Trace.md)配合使用，不允许在未被\@ObservedV2装饰的类中使用\@Monitor装饰器。未被\@Trace装饰的属性无法被\@Monitor监听到变化。
+- \@Monitor装饰器支持在\@ComponentV2装饰的自定义组件中使用，未被状态变量装饰器[\@Local](arkts-new-local.md)、[\@Param](arkts-new-param.md)、[\@Provider](arkts-new-Provider-and-Consumer.md)、[\@Comsumer](arkts-new-Provider-and-Consumer.md)、[\@Computed](arkts-new-Computed.md)装饰的变量无法被\@Monitor监听到变化。
+
+- \@Monitor装饰器支持在类中与[\@ObservedV2、\@Trace](arkts-new-observedV2-and-trace.md)配合使用，不允许在未被\@ObservedV2装饰的类中使用\@Monitor装饰器。未被\@Trace装饰的属性无法被\@Monitor监听到变化。
 - 当观测的属性变化时，\@Monitor装饰器定义的回调方法将被调用。判断属性是否变化使用的是严格相等（===），当严格相等为false的情况下，就会触发\@Monitor的回调。当在一次事件中多次改变同一个属性时，将会使用初始值和最终值进行比较以判断是否变化。
 - 单个\@Monitor装饰器能够同时监听多个属性的变化，当这些属性在一次事件中共同变化时，只会触发一次\@Monitor的回调方法。
 - \@Monitor装饰器具有深度监听的能力，能够监听嵌套类、多维数组、对象数组中指定项的变化。对于嵌套类、对象数组中成员属性变化的监听要求该类被\@ObservedV2装饰且该属性被\@Trace装饰。
@@ -98,6 +100,78 @@ IMonitorValue\<T\>类型保存了属性变化的信息，包括属性名、变�
 
 ## 监听变化
 
+### 在\@ComponentV2装饰的自定义组件中使用\@Monitor
+
+使用\@Monitor监听的状态变量发生变化时，会触发\@Monitor的回调方法。
+
+- \@Monitor监听的变量需要被\@Local、\@Param、\@Provider、\@Consumer、\@Computed装饰，未被状态变量装饰器装饰的变量在变化时无法被监听。\@Monitor可以同时监听多个状态变量，这些变量名之间用","隔开。
+
+  ```ts
+  @Entry
+  @ComponentV2
+  struct Index {
+    @Local message: string = "Hello World";
+    @Local name: string = "Tom";
+    @Local age: number = 24;
+    @Monitor("message", "name")
+    onStrChange(monitor: IMonitor) {
+      monitor.dirty.forEach((path: string) => {
+        console.log(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
+      })
+    }
+    build() {
+      Column() {
+        Button("change string")
+          .onClick(() => {
+            this.message += "!";
+            this.name = "Jack";
+        })
+      }
+    }
+  }
+  ```
+
+- \@Monitor监听的状态变量为类对象时，仅能监听对象整体的变化。监听类属性的变化需要类属性被\@Trace装饰。
+
+  ```ts
+  class Info {
+    name: string;
+    age: number;
+    constructor(name: string, age: number) {
+      this.name = name;
+      this.age = age;
+    }
+  }
+  @Entry
+  @ComponentV2
+  struct Index {
+    @Local info: Info = new Info("Tom", 25);
+    @Monitor("info")
+    infoChange(monitor: IMonitor) {
+      console.log(`info change`);
+    }
+    @Monitor("info.name")
+    infoPropertyChange(monitor: IMonitor) {
+      console.log(`info name change`);
+    }
+    build() {
+      Column() {
+        Text(`name: ${this.info.name}, age: ${this.info.age}`)
+        Button("change info")
+          .onClick(() => {
+            this.info = new Info("Lucy", 18); // 能够监听到
+          })
+        Button("change info.name")
+          .onClick(() => {
+            this.info.name = "Jack"; // 监听不到
+          })
+      }
+    }
+  }
+  ```
+
+### 在\@ObservedV2装饰的类中使用\@Monitor
+
 使用\@Monitor监听的属性发生变化时，会触发\@Monitor的回调方法。
 
 - \@Monitor监听的对象属性需要被\@Trace装饰，未被\@Trace装饰的属性的变化无法被监听。\@Monitor可以同时监听多个属性，这些属性之间用","隔开。
@@ -128,7 +202,7 @@ class Info {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   info: Info = new Info();
   build() {
@@ -170,7 +244,7 @@ class Outer {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   outer: Outer = new Outer();
   build() {
@@ -183,6 +257,51 @@ struct Index {
   }
 }
 ```
+
+- 在继承类场景下，可以在继承链中对同一个属性进行多次监听。
+
+```ts
+@ObservedV2
+class Base {
+  @Trace name: string;
+  // 基类监听name属性
+  @Monitor("name")
+  onBaseNameChange(monitor: IMonitor) {
+    console.log(`Base Class name change`);
+  }
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+@ObservedV2
+class Derived extends Base {
+  // 继承类监听name属性
+  @Monitor("name")
+  onDerivedNameChange(monitor: IMonitor) {
+    console.log(`Derived Class name change`);
+  }
+  constructor(name: string) {
+    super(name);
+  }
+}
+@Entry
+@ComponentV2
+struct Index {
+  derived: Derived = new Derived("AAA");
+  build() {
+    Column() {
+      Button("change name")
+        .onClick(() => {
+          this.derived.name = "BBB"; // 能够先后触发onBaseNameChange、onDerivedNameChange方法
+        })
+    }
+  }
+}
+```
+
+### 通用监听能力
+
+\@Monitor还有一些通用的监听能力。
 
 - \@Monitor支持对数组中的项进行监听，包括多维数组，对象数组。\@Monitor无法监听内置类型（Array、Map、Date、Set）的API调用引起的变化。当\@Monitor监听数组整体时，只能观测到数组整体的赋值。可以通过监听数组的长度变化来判断数组是否有插入、删除等变化。当前仅支持使用"."的方式表达深层属性、数组项的监听。
 
@@ -235,7 +354,7 @@ class ArrMonitor {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   arrMonitor: ArrMonitor = new ArrMonitor();
   build() {
@@ -273,47 +392,6 @@ struct Index {
 }
 ```
 
-- 在继承类场景下，可以在继承链中对同一个属性进行多次监听。
-
-```ts
-@ObservedV2
-class Base {
-  @Trace name: string;
-  // 基类监听name属性
-  @Monitor("name")
-  onBaseNameChange(monitor: IMonitor) {
-    console.log(`Base Class name change`);
-  }
-  constructor(name: string) {
-    this.name = name;
-  }
-}
-@ObservedV2
-class Derived extends Base {
-  // 继承类监听name属性
-  @Monitor("name")
-  onDerivedNameChange(monitor: IMonitor) {
-    console.log(`Derived Class name change`);
-  }
-  constructor(name: string) {
-    super(name);
-  }
-}
-@Entry
-@Component
-struct Index {
-  derived: Derived = new Derived("AAA");
-  build() {
-    Column() {
-      Button("change name")
-        .onClick(() => {
-          this.derived.name = "BBB"; // 能够先后触发onBaseNameChange、onDerivedNameChange方法
-        })
-    }
-  }
-}
-```
-
 - 对象整体改变，但监听的属性不变时，不触发\@Monitor回调。
 
 ```ts
@@ -342,7 +420,7 @@ class Person {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   info: Info = new Info("Tom", 25);
   build() {
@@ -376,7 +454,7 @@ class Frequence {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   frequence: Frequence = new Frequence();
   build() {
@@ -421,7 +499,7 @@ class Info {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   info: Info = new Info();
   build() {
@@ -468,7 +546,7 @@ class Info {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   info: Info = new Info();
   build() {
@@ -523,13 +601,14 @@ class Info {
 
 \@Monitor与\@Watch的用法、功能对比如下：
 
-|                    | \@Watch                      | \@Monitor                         |
-| ------------------ | ---------------------------- | --------------------------------- |
-| 参数               | 回调方法名                   | 监听属性名                        |
-| 监听目标数         | 只能监听单个状态变量         | 能同时监听多个状态变量            |
-| 监听能力           | 跟随状态变量观察能力（一层） | 跟随状态变量观察能力（深层）      |
-| 能否获取变化前的值 | 不能获取变化前的值           | 能获取变化前的值                  |
-| 监听条件           | 监听对象为状态变量           | 监听对象为\@Trace装饰的类成员属性 |
+|                    | \@Watch                                 | \@Monitor                                                    |
+| ------------------ | --------------------------------------- | ------------------------------------------------------------ |
+| 参数               | 回调方法名                              | 监听状态变量名、属性名                                       |
+| 监听目标数         | 只能监听单个状态变量                    | 能同时监听多个状态变量                                       |
+| 监听能力           | 跟随状态变量观察能力（一层）            | 跟随状态变量观察能力（深层）                                 |
+| 能否获取变化前的值 | 不能获取变化前的值                      | 能获取变化前的值                                             |
+| 监听条件           | 监听对象为状态变量                      | 监听对象为状态变量或为\@Trace装饰的类成员属性                |
+| 使用限制           | 仅能在\@Component装饰的自定义组件中使用 | 能在\@ComponentV2装饰的自定义组件中使用，也能在\@ObservedV2装饰的类中使用 |
 
 ## 使用场景
 
@@ -547,8 +626,8 @@ class Info {
 @ObservedV2
 class UIStyle {
   info: Info = new Info();
-  color: Color = Color.Black;
-  fontSize: number = 45;
+  @Trace color: Color = Color.Black;
+  @Trace fontSize: number = 45;
   @Monitor("info.value")
   onValueChange(monitor: IMonitor) {
     let lastValue: number = monitor.value()?.before as number;
@@ -569,7 +648,7 @@ class UIStyle {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   textStyle: UIStyle = new UIStyle();
   build() {

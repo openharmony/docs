@@ -20,6 +20,8 @@ onApplicationForeground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从后台切换到前台时触发回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
@@ -31,6 +33,8 @@ onApplicationForeground(): void
 onApplicationBackground(): void
 
 注册当前应用前后台变化的监听后，在当前应用从前台切换到后台时触发回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

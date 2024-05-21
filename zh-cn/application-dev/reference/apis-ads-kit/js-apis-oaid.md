@@ -1,7 +1,7 @@
 # @ohos.identifier.oaid (广告标识服务)
 
 
-本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, OAID，以下简称OAID）的获取和重置能力。
+本模块提供开放匿名设备标识符（Open Anonymous Device Identifier, OAID，以下简称OAID）的获取能力。
 
 
 > **说明：**
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```
-import identifier from '@ohos.identifier.oaid';
+import { identifier } from '@kit.AdsKit';
 ```
 
 
@@ -42,14 +42,14 @@ getOAID(): Promise&lt;string&gt;
 
 **示例：**
 ```
-import identifier from '@ohos.identifier.oaid';
-import hilog from '@ohos.hilog';
-import { BusinessError } from '@ohos.base';
+import { identifier } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   identifier.getOAID().then((data) => {
     const oaid: string = data;
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise success, oaid: ${oaid}`);
+    hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting oaid by promise, oaid: ${oaid}`);
   }).catch((err: BusinessError) => {
     hilog.error(0x0000, 'testTag', '%{public}s',
       `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
@@ -91,9 +91,9 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 ```
-import identifier from '@ohos.identifier.oaid';
-import hilog from '@ohos.hilog'; 
-import { BusinessError } from '@ohos.base';
+import { identifier } from '@kit.AdsKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
  
 try {
   identifier.getOAID((err: BusinessError, data: string) => {
@@ -101,7 +101,7 @@ try {
       hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by callback failed, error: ${err.code} ${err.message}`);
     } else {
       const oaid: string = data;
-      hilog.info(0x0000, 'testTag', '%{public}s', 'get oaid by callback success');
+      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed in getting oaid by callback');
     }
    });
 } catch (err) {

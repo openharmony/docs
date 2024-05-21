@@ -2,6 +2,7 @@
 
 - ArkTS APIs
   - [@ohos.security.huks (HUKS)](js-apis-huks.md)
+  - [@ohos.security.huks (HUKS) (System API)](js-apis-huks-sys.md)
 - C APIs
   - Modules
     - [HuksKeyApi](_huks_key_api.md)

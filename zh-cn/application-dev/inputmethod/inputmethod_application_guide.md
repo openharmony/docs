@@ -339,7 +339,25 @@
 
 ## 验证方法
 
-1. 使用hdc命令，拉起选择输入法弹窗应用：`hdc shell aa start ability -a InputMethod -b com.ohos.inputmethodchoosedialog`
+1. 在应用中通过接口拉起输入法切换列表弹窗。
+
+  ```ts
+  import { inputMethod } from '@kit.IMEKit';
+  import { BusinessError } from '@ohos.base';
+   
+  let inputMethodSetting = inputMethod.getSetting();
+  try {
+    inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
+      if (err) {
+        console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.log('Succeeded in showing optionalInputMethods.');
+    });
+  } catch (err) {
+    console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
+  }
+  ```
 
 2. 在弹窗上显示的输入法应用列表中，选择并点击demo应用，将demo应用切换为当前输入法。
 
@@ -362,4 +380,4 @@
 
 针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
-- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput) 
+- [轻量级输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput) 

@@ -238,7 +238,7 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 import connectedTag from '@ohos.connectedTag';
 import { BusinessError } from '@ohos.base';
 
-let rawData = "010203"; // change it tobe correct.
+let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
     console.log("connectedTag writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
@@ -281,7 +281,7 @@ write(data: number[]): Promise&lt;void&gt;
 import connectedTag from '@ohos.connectedTag';
 import { BusinessError } from '@ohos.base';
 
-let rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
     console.log("connectedTag write NdefTag Promise success.");
 }).catch((err: BusinessError)=> {
@@ -311,7 +311,7 @@ writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-let rawData = "010203"; // change it tobe correct.
+let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
         console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
@@ -350,7 +350,7 @@ write(data: number[], callback: AsyncCallback&lt;void&gt;): void
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-let rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
     if (err) {
         console.log("connectedTag write NdefTag AsyncCallback err: " + err);
@@ -407,7 +407,7 @@ connectedTag.on("notify", (rfState : number)=> {
 let initStatus = connectedTag.init();
 console.log("connectedTag init status: " + initStatus);
 
-// Add nfc connecected tag business oprations here...
+// Add nfc connected tag business operations here...
 // connectedTag.writeNdefTag(rawData)
 // connectedTag.readNdefTag()
 

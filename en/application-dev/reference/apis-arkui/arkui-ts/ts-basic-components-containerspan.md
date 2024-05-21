@@ -16,11 +16,21 @@ ContainerSpan()
 
 ## Attributes
 
-Only the [TextBackgroundStyle](#textbackgroundstyle) attribute is supported.
+Only the following attributes are supported.
 
-| Name                                      | Type                                | Description                                                                                                                                               |
-| ------------------------------------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| textBackgroundStyle | [TextBackgroundStyle](#textbackgroundstyle) | Text background style.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} <br>**NOTE**<br>If this attribute is not separately set for a child component, the child component inherits the settings from the component.|
+### textBackgroundStyle
+
+textBackgroundStyle(style: TextBackgroundStyle)
+
+Sets the text background style If this attribute is not separately set for a child component, the child component inherits the settings from the component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                                        |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| style  | [TextBackgroundStyle](#textbackgroundstyle) | Yes  | Text background style.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} |
 
 ## TextBackgroundStyle
 

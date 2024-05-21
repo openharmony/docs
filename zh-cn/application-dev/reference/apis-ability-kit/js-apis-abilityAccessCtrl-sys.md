@@ -49,11 +49,14 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 
 **示例：**
 
@@ -98,11 +101,14 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 
 **示例：**
 
@@ -154,11 +160,14 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 
 **示例：**
 
@@ -203,11 +212,14 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The tokenID is 0, or the string size of permissionName is larger than 256, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be revoked with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 
 **示例：**
 
@@ -258,11 +270,14 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The operation is not allowed. Either the application is a sandbox or the tokenID is from a remote device. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 
 **示例：**
 
@@ -310,9 +325,12 @@ setPermissionRequestToggleStatus(permissionName: Permissions, status: Permission
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The string size of permissionName is larger than 256, or the status value is invalid. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The string size of permissionName is larger than 256, or the status value is invalid. |
 | 12100003 | The specified permission does not exist. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 
 **示例：**
 
@@ -360,9 +378,12 @@ getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;Permis
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The string size of permissionName is larger than 256. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The string size of permissionName is larger than 256. |
 | 12100003 | The specified permission does not exist. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 
 **示例：**
 
@@ -399,6 +420,10 @@ getVersion(): Promise&lt;number&gt;
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回查询到的版本号。 |
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
 
 **示例：**
 
@@ -443,9 +468,12 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The tokenID is 0, or the string size of permissionName is larger than 256. |
 | 12100002 | The specified tokenID does not exist. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 
 **示例：**
 
@@ -493,10 +521,13 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
-| 12100004 | The interface is called repeatedly with the same input. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The tokenID is 0, or the string size of permissionName is larger than 256. |
+| 12100004 | The API is used repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -547,9 +578,12 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenIDs or permissionNames in the list are all invalid. |
-| 12100004 | The interface is not used together with 'on'. |
-| 12100007 | Service is abnormal. |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100001 | Invalid Parameter. The tokenIDs or permissionNames in the list are all invalid. |
+| 12100004 | The API is not used in pair with 'on'. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**

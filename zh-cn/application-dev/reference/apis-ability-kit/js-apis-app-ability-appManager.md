@@ -12,11 +12,29 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 import appManager from '@ohos.app.ability.appManager';
 ```
 
+## ProcessState<sup>10+</sup>
+
+表示进程状态的枚举。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                 | 值  | 说明                               |
+| -------------------- | --- | --------------------------------- |
+| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |
+
 ## appManager.isRunningInStabilityTest
 
 isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -28,11 +46,12 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -55,6 +74,8 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -65,11 +86,11 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -91,6 +112,8 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 查询是否为ram受限设备。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -101,11 +124,11 @@ isRamConstrainedDevice(): Promise\<boolean>
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -126,6 +149,8 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 查询是否为ram受限设备。使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -136,11 +161,12 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -162,6 +188,8 @@ getAppMemorySize(): Promise\<number>
 
 获取当前应用程序可以使用的内存的值。使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -172,11 +200,11 @@ getAppMemorySize(): Promise\<number>
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -197,6 +225,8 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
 获取当前应用程序可以使用的内存的值。使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -207,11 +237,12 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -237,6 +268,8 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 >
 > API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -247,11 +280,11 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -263,5 +296,48 @@ appManager.getRunningProcessInformation().then((data) => {
     console.log(`The running process information is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
+});
+```
+
+## appManager.getRunningProcessInformation
+
+getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
+
+获取当前运行进程的有关信息。使用callback异步回调。
+
+> **说明：**
+>
+> API version 11之前的版本，该接口需要申请权限ohos.permission.GET_RUNNING_INFO（该权限仅系统应用可申请）。从API version 11开始，该接口不再需要申请权限。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 |以callback方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.getRunningProcessInformation((err, data) => {
+    if (err) {
+        console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
+    } else {
+        console.log(`The running process information is: ${JSON.stringify(data)}`);
+    }
 });
 ```

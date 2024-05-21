@@ -2,7 +2,7 @@
 
 ## 功能介绍
 
-SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单易用。工具可以检测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Temp等，通过量化的指标项了解应用性能状况。在开发过程中，使用的可能是有屏或无屏设备，对此SmartPerf提供了两种方式：分别是SmartPerf-Device和SmartPerf-Daemon。SmartPerf-Device适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。SmartPerf-Daemon支持shell命令行方式，同时适用于有屏和无屏设备。
+SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单易用。工具可以检测性能、功耗相关指标，包括FPS、CPU、GPU、RAM、Temp等，通过量化的指标项了解应用性能状况。<!--Del-->在开发过程中，使用的可能是有屏或无屏设备，对此SmartPerf提供了两种方式：分别是SmartPerf-Device和SmartPerf-Daemon。SmartPerf-Device适用于有屏设备，支持可视化操作。测试时是通过悬浮窗的开始和暂停来实时展示性能指标数据，保存后可生成数据报告，在报告中可分析各指标数据详情。<!--DelEnd-->SmartPerf-Daemon支持shell命令行方式，同时适用于有屏和无屏设备。
 
 - CPU：每秒读取一次设备节点下CPU大中小核的频点和各核使用率，衡量应用占用CPU资源的情况，占用过多的CPU资源会导致芯片发烫。
 - GPU：每秒读取一次设备节点下GPU的频点和负载信息，衡量应用占用GPU资源的情况，当GPU占用过多时，会导致性能下降，应用程序的运行速度变慢。
@@ -14,20 +14,21 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 
 ## 实现原理
 
-下图展示了SmartPerf工具的主要功能组成。Device设置好采集项和采集参数后，启动应用，FPS、RAM、Trace等指标通过消息发送给Daemon端，Daemon端进行数据采集、持久化和数据分析，将生成的报告回传给Device，Device进行可视化显示。
+下图展示了SmartPerf工具的主要功能组成。Device设置好采集项和采集参数后，启动应用，FPS、RAM、Trace等指标通过消息发送给Daemon端，Daemon端进行数据采集、持久化和数据分析<!--Del-->，将生成的报告回传给Device，Device进行可视化显示<!--DelEnd-->。
 
 ![图片说明](figures/SmartPerfStru.png)
 
 ## 约束与限制
 
-1.SmartPerf-Device、SmartPerf-Daemon在API 9版本开始预置使用。
+1.<!--Del-->SmartPerf-Device、<!--DelEnd-->SmartPerf-Daemon在API 9版本开始预置使用。
 
-2.SmartPerf-Device需在有屏幕设备使用，SmartPerf-Daemon执行需连接硬件设备。
+2.<!--Del-->SmartPerf-Device需在有屏幕设备使用，<!--DelEnd-->SmartPerf-Daemon执行需连接硬件设备。
 
 3.SmartPerf-Daemon执行前需完成[hdc环境配置](https://gitee.com/openharmony/developtools_hdc)。
 
 ## 执行性能测试
 
+<!--Del-->
 ### SmartPerf-Device
 
 下面的操作步骤和界面内容以RK3568设备为例。
@@ -57,6 +58,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 
 ![图片说明](figures/SmartPerfReport1.png)
 ![图片说明](figures/SmartPerfReport2.png)
+<!--DelEnd-->
 
 ### SmartPerf-Daemon
 
@@ -121,6 +123,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
 
   ```
   # SP_daemon --help
+  OpenHarmony performance testing tool SmartPerf command-line version
   Usage: SP_daemon <options> <arguments>
   options:
   These are common commands list:
@@ -333,12 +336,14 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   /data/local/tmp/capture created!
 
   order:0 timestamp=1705041754324
-  order:1 capture=data/local/tmp/capture/screenCap_1705041754324.png
+  order:1 capture=NA
 
   command exec finished!
   #
   ```
   >**说明**
+  >
+  >- 截图采集是2秒截取一次
   >
   >- 截图报告存放路径为：data/local/tmp/capture
   >
@@ -619,20 +624,7 @@ SmartPerf是一款基于系统开发的性能功耗测试工具，操作简单�
   >
   >- activeMode表示当前屏幕分辨率，refreshrate表示屏幕刷新率
   >
-  >- 该命令需单独采集，采集结果不写入data.csv
-
-  5.21 导出csv文件到指定路径
-
-  ``` 
-  #SP_daemon -OUT data/1
-  command exec finished!
-  #
-  ```
-  >**说明**
-  >
-  >- cd 到data路径下，ls查看自定义的文件：1.csv，导出方式如下
-  >
-  >- 该命令需单独采集  
+  >- 该命令需单独采集，采集结果不写入data.csv 
 
 6.输出采集结果和查看采集结果。
 

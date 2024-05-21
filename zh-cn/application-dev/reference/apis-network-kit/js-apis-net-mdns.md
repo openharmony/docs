@@ -8,7 +8,7 @@ MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、
 ## 导入模块
 
 ```ts
-import mdns from '@ohos.net.mdns'
+import { mdns } from '@kit.NetworkKit';
 ```
 
 ## mdns.addLocalService
@@ -16,6 +16,8 @@ import mdns from '@ohos.net.mdns'
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
 添加一个mDNS服务，使用callback方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -32,11 +34,11 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -46,10 +48,10 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 获取context
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -74,6 +76,8 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 添加一个mDNS服务，使用Promise方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -94,11 +98,11 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -108,10 +112,10 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 获取context
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -135,6 +139,8 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 移除一个mDNS服务，使用callback方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**: SystemCapability.Communication.NetManager.MDNS
 
 **参数**
@@ -150,11 +156,11 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -164,10 +170,10 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 获取context
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -192,6 +198,8 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 移除一个mDNS服务. 使用Promise方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**: SystemCapability.Communication.NetManager.MDNS
 
 **参数**
@@ -212,11 +220,11 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -226,8 +234,8 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 Stage模型示例：
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = getContext(this) as Context;
 
@@ -251,6 +259,8 @@ mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalService
 createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 返回一个DiscoveryService对象，该对象用于发现指定服务类型的mDNS服务。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -278,10 +288,10 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 获取context
 let context = getContext(this) as Context;
 
 let serviceType = "_print._tcp";
@@ -293,6 +303,8 @@ let discoveryService : Object = mdns.createDiscoveryService(context, serviceType
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
 解析一个mDNS服务，使用callback方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**: SystemCapability.Communication.NetManager.MDNS
 
@@ -309,11 +321,11 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -323,10 +335,10 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 获取context
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -351,6 +363,8 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 解析一个mDNS服务，使用Promise方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**: SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -371,11 +385,11 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
@@ -385,10 +399,10 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 获取context
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -415,6 +429,8 @@ startSearchingMDNS(): void
 
 开始搜索局域网内的mDNS服务。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **示例：**
@@ -422,10 +438,10 @@ startSearchingMDNS(): void
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 获取context
 let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -438,6 +454,8 @@ stopSearchingMDNS(): void
 
 停止搜索局域网内的mDNS服务。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **示例：**
@@ -445,10 +463,10 @@ stopSearchingMDNS(): void
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 获取context
 let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -460,6 +478,8 @@ discoveryService.stopSearchingMDNS();
 on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 
 订阅开启监听mDNS服务的通知。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -473,8 +493,8 @@ on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 **示例：**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 参考mdns.createDiscoveryService
 let context = getContext(this) as Context;
@@ -495,6 +515,8 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 
 取消开启监听mDNS服务的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -507,8 +529,8 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 **示例：**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 参考mdns.createDiscoveryService
 let context = getContext(this) as Context;
@@ -533,6 +555,8 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 
 订阅停止监听mDNS服务的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -545,8 +569,8 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 **示例：**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 参考mdns.createDiscoveryService
 let context = getContext(this) as Context;
@@ -567,6 +591,8 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 
 取消订阅停止监听mDNS服务的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -579,8 +605,8 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 **示例：**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 参考mdns.createDiscoveryService
 let context = getContext(this) as Context;
@@ -605,6 +631,8 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 订阅发现mDNS服务的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -617,8 +645,8 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 **示例：**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 参考mdns.createDiscoveryService
 let context = getContext(this) as Context;
@@ -639,6 +667,8 @@ off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅发现mDNS服务的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -651,8 +681,8 @@ off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 **示例：**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 参考mdns.createDiscoveryService
 let context = getContext(this) as Context;
@@ -677,6 +707,8 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 订阅移除mDNS服务的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -689,8 +721,8 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 **示例：**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 参考mdns.createDiscoveryService
 let context = getContext(this) as Context;
@@ -711,6 +743,8 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅移除mDNS服务的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -723,8 +757,8 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 **示例：**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 参考mdns.createDiscoveryService
 let context = getContext(this) as Context;
@@ -747,6 +781,8 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 
 mDNS服务信息
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 | 名称                  | 类型                                | 必填 | 说明                     |
@@ -761,6 +797,8 @@ mDNS服务信息
 
 mDNS服务属性信息
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 | 名称                  | 类型                                | 必填 | 说明                     |
@@ -772,6 +810,8 @@ mDNS服务属性信息
 
 监听到的mDNS服务事件信息
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 |    名称     |            类型                     | 必填 | 说明                  |
@@ -782,6 +822,8 @@ mDNS服务属性信息
 ## MdnsError
 
 mDNS错误信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 

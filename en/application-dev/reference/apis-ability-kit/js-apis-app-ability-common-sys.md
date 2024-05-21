@@ -1,6 +1,6 @@
 # @ohos.app.ability.common (Context) (System API)
 
-The **Common** module provides all level-2 module APIs for developers to export.
+You can use this module to reference the ability public module class.
 
 > **NOTE**
 > 

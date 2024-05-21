@@ -151,7 +151,8 @@
 > - **全路径表达式**：`scheme://host:port/path`
 > - **前缀表达式**：`scheme://host:port/pathStartWith`
 > - **正则表达式**：`scheme://host:port/pathRegex`
-
+>
+> 系统应用预留uri的scheme统一以`ohos`开头，例如`ohosclock://`。三方应用组件配置的uri不能与系统应用重复，否则会导致无法通过该uri拉起三方应用组件。
 
 ### type匹配规则
 

@@ -124,6 +124,8 @@ getDefaultDisplaySync(): Display
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                           | 说明                                           |
@@ -144,11 +146,8 @@ getDefaultDisplaySync(): Display
 import display from '@ohos.display';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+
+displayClass = display.getDefaultDisplaySync();
 ```
 
 ## display.getAllDisplays<sup>9+</sup>
@@ -184,7 +183,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -225,7 +224,7 @@ promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -244,6 +243,14 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
 | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数应为整数。                                                                                                     |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **示例：**
 
 ```ts
@@ -252,11 +259,8 @@ import { Callback } from '@ohos.base';
 let callback: Callback<number> = (data: number) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on("add", callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+
+display.on("add", callback);
 ```
 
 ## display.off('add'|'remove'|'change')
@@ -274,14 +278,26 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
 | callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **示例：**
 
 ```ts
-try {
-  display.off("remove");
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
+display.off("remove");
+
+let callback: Callback<number> = (data: number) => {
+  console.info('Succeeded in unregistering the callback for display remove. Data: ' + JSON.stringify(data))
+};
+// 关闭传入的callback监听
+display.off('remove', callback);
 ```
 
 ## display.isFoldable<sup>10+</sup>
@@ -299,10 +315,11 @@ isFoldable(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -310,27 +327,8 @@ isFoldable(): boolean
 ```ts
 import display from '@ohos.display';
 
-let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-
-  let ret: boolean = false;
-  try {
-    ret = display.isFoldable();
-  } catch (exception) {
-    console.error('Failed to check is foldable or not. Code: ' + JSON.stringify(exception));
-  }
-  if (ret == undefined) {
-    console.log("Failed to check is foldable or not.");
-  }
-  if (ret) {
-    console.log("The device is foldable.");
-  } else if (!ret) {
-    console.log("The device is not foldable.");
-  }
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+let ret: boolean = false;
+ret = display.isFoldable();
 ```
 
 ## display.getFoldStatus<sup>10+</sup>
@@ -348,10 +346,11 @@ getFoldStatus(): FoldStatus
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -359,11 +358,8 @@ getFoldStatus(): FoldStatus
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getFoldStatus();
-} catch (exception) {
-  console.error('Failed to obtain the fold status. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldStatus = display.getFoldStatus();
+console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data));
 ```
 
 ## display.getFoldDisplayMode<sup>10+</sup>
@@ -381,10 +377,11 @@ getFoldDisplayMode(): FoldDisplayMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -392,11 +389,8 @@ getFoldDisplayMode(): FoldDisplayMode
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getFoldDisplayMode();
-} catch (exception) {
-  console.error('Failed to obtain the fold display mode. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldDisplayMode = display.getFoldDisplayMode();
+console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify(data));
 ```
 
 ## display.getCurrentFoldCreaseRegion<sup>10+</sup>
@@ -414,10 +408,11 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -425,11 +420,8 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getCurrentFoldCreaseRegion();
-} catch (exception) {
-  console.error('Failed to obtain the current fold crease region. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
+console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.stringify(data));
 ```
 
 ## display.on('foldStatusChange')<sup>10+</sup>
@@ -449,10 +441,12 @@ on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -463,11 +457,7 @@ import { Callback } from '@ohos.base';
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on('foldStatusChange', callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+display.on('foldStatusChange', callback);
 ```
 
 ## display.off('foldStatusChange')<sup>10+</sup>
@@ -487,20 +477,191 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-try {
-  display.off('foldStatusChange');
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
+display.off('foldStatusChange');
+
+let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
+  console.info('unregistering FoldStatus changes callback. Data: ' + JSON.stringify(data));
+};
+// 关闭传入的callback监听
+display.off('foldStatusChange', callback);
+```
+
+## display.on('foldAngleChange')<sup>12+</sup>
+
+on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
+
+开启折叠设备折叠角度变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                      | 必填 | 说明                                                    |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是 | 监听事件，固定为'foldAngleChange'，表示折叠设备折叠角度发生变化。|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。表示折叠设备屏幕折叠角度值（0度~180度）。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<Array<number>> = (angles: Array<number>) => {
+  console.info('Listening fold angles length: ' + angles.length);
+};
+display.on('foldAngleChange', callback);
+```
+
+## display.off('foldAngleChange')<sup>12+</sup>
+
+off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): void
+
+关闭折叠设备折叠角度变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                    | 是  | 监听事件，固定为'foldAngleChange'表示折叠设备折叠角度发生变化。|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | 否  | 需要取消注册的回调函数。若无此参数，则取消注册折叠角度变化监听的所有回调函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+display.off('foldAngleChange');
+```
+
+## display.on('captureStatusChange')<sup>12+</sup>
+
+on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
+
+开启屏幕截屏、投屏、录屏状态变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏或者录屏状态发生变化。|
+| callback | Callback&lt;boolean&gt; | 是 | 回调函数。表示设备截屏、投屏、录屏状态发生变化。true表示设备开始截屏、投屏或者录屏，false表示结束截屏、投屏、录屏。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<boolean> = (captureStatus: boolean) => {
+  console.info('Listening capture status: ' + captureStatus);
+};
+display.on('captureStatusChange', callback);
+```
+
+## display.off('captureStatusChange')<sup>12+</sup>
+
+off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭屏幕截屏、投屏、录屏状态变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                                                    |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | 是 | 监听事件，固定为'captureStatusChange'表示设备截屏、投屏、录屏状态发生变化。|
+| callback | Callback&lt;boolean&gt; | 否 | 需要取消注册的回调函数。若无此参数，则取消注册截屏、投屏、录屏状态变化监听的所有回调函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+display.off('captureStatusChange');
+```
+
+## display.isCaptured<sup>12+</sup>
+isCaptured(): boolean
+
+检查设备是否正在截屏、投屏、录屏。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| boolean | boolean值，返回当前设备是否有截屏、投屏或者录屏。true表示有截屏、投屏、录屏，否则返回false。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801 | Capability not supported on this device. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import display from '@ohos.display';
+
+let ret: boolean = false;
+ret = display.isCaptured();
 ```
 
 ## display.on('foldDisplayModeChange')<sup>10+</sup>
@@ -520,10 +681,12 @@ on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -534,11 +697,7 @@ import { Callback } from '@ohos.base';
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on('foldDisplayModeChange', callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+display.on('foldDisplayModeChange', callback);
 ```
 
 ## display.off('foldDisplayModeChange')<sup>10+</sup>
@@ -558,21 +717,28 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[屏幕错误码](errorcode-display.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
 
 ```ts
-try {
-  display.off('foldDisplayModeChange');
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
+display.off('foldDisplayModeChange');
+
+let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
+  console.info('unregistering FoldDisplayMode changes callback. Data: ' + JSON.stringify(data));
+};
+// 关闭传入的callback监听
+display.off('foldDisplayModeChange', callback);
 ```
+
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 
@@ -601,7 +767,7 @@ let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+    console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
@@ -638,7 +804,7 @@ promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+  console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -668,7 +834,7 @@ import { BusinessError } from '@ohos.base';
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -702,7 +868,7 @@ let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -722,12 +888,12 @@ promise.then((data: Array<display.Display>) => {
 | alive | boolean | 是 | 否 | 显示设备是否启用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。                                                                                                      |
 | refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。                                                                                             |
-| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。 |
-| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。                                                                                        |
-| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。                                                                                        |
+| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                        |
+| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                        |
 | densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px，支持的范围为[80.0，640.0]。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。                                                                   |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。                                                                                                  |
-| densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。                                                                  |
+| densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                  |
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
@@ -761,20 +927,16 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}');
+    return;
+  }
+  console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+});
 ```
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
@@ -803,16 +965,11 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-
-  let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
-  promise.then((data: display.CutoutInfo) => {
-    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+displayClass = display.getDefaultDisplaySync();
+let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
+promise.then((data: display.CutoutInfo) => {
+  console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+});
 ```

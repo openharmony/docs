@@ -29,8 +29,8 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | ------------ |
-| sceneName  | string | 是   | 设置场景名称 |
-| sceneValue | string | 是   | 设置场景的值 |
+| sceneName  | string | 是   | 设置场景名称；该参数必须为字符串类型。 |
+| sceneValue | string | 是   | 设置场景的值；该参数必须为字符串类型。 |
 
 **返回值**：
 
@@ -45,6 +45,7 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例**：
 
@@ -72,7 +73,7 @@ getBatteryConfig(sceneName: string): string
 
 | 参数名    | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| sceneName | string | 是   | 设置场景名称 |
+| sceneName | string | 是   | 设置场景名称；该参数必须为字符串类型。 |
 
 **返回值**：
 
@@ -87,6 +88,7 @@ getBatteryConfig(sceneName: string): string
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例**：
 
@@ -113,7 +115,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 | 参数名    | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
-| sceneName | string | 是   | 设置场景名称 |
+| sceneName | string | 是   | 设置场景名称；该参数必须为字符串类型。 |
 
 **返回值**：
 
@@ -128,6 +130,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例**：
 

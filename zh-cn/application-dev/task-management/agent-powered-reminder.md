@@ -38,7 +38,7 @@
 
 1. 申请ohos.permission.PUBLISH_AGENT_REMINDER权限，配置方式请参阅[声明权限](../security/AccessToken/declare-permissions.md)。
 
-2. [使能通知开关](../notification/notification-enable.md)。获得用户授权后，才能使用代理提醒功能。
+2. [请求通知授权](../notification/notification-enable.md)。获得用户授权后，才能使用代理提醒功能。
 
 3. 导入模块。
    
@@ -190,6 +190,6 @@
 
 - [后台代理提醒（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ReminderAgentManager)
 
-- [翻页闹钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
+- [翻页时钟（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/FlipClock)
 
 - [闹钟（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)

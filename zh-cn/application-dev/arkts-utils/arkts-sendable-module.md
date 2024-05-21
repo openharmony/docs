@@ -26,6 +26,20 @@
 
   共享模块在线程间可共享，则模块导出的对象都要是可共享的，可共享对象参考[Sendable规格](arkts-sendable.md)。
 
+- 共享模块中不允许直接导出模块。
+
+  ```ts
+  // test.ets
+  export let num = 1;
+  export let str = 'aaa';
+
+  // 共享模块
+  'use shared'
+
+  export * from './test'; // 编译报错，不允许直接导出模块
+  export {num, str} from './test'; // 正确示例，导出对象合集
+  ```
+
 - 共享模块可以引用共享模块或非共享模块。
 
   不限制共享模块的引用和被引用场景。

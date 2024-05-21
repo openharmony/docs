@@ -17,6 +17,8 @@ CalendarPicker(options?: CalendarOptions)
 
 日历选择器。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -35,6 +37,8 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 
 设置选择器与入口组件的对齐方式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -48,15 +52,17 @@ edgeAlign(alignType: CalendarAlign, offset?: Offset)
 
 textStyle(value: PickerTextStyle)
 
-设置选择器与入口组件的对齐方式。
+入口区的文本颜色、字号、字体粗细。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 必填 | 说明                                          |
-| ------ | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ## 事件
 
@@ -68,6 +74,8 @@ onChange(callback: (value: Date) => void)
 
 选择日期时触发该事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -78,12 +86,16 @@ onChange(callback: (value: Date) => void)
 
 ##  CalendarOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
 | hintRadius | number \| [Resource](ts-types.md#resource) | 否    | 描述日期选中态底板样式。<br/>默认值：底板样式为圆形。<br />**说明：**<br />hintRadius为0，底板样式为直角矩形。hintRadius为0 ~ 16，底板样式为圆角矩形。hintRadius>=16，底板样式为圆形 |
 | selected | Date | 否    | 设置选中项的日期。选中的日期未设置或日期格式不符合规范则为默认值。<br/>默认值：当前系统日期。 |
 
 ## CalendarAlign枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述                     |
 | ------ | ------------------------ |

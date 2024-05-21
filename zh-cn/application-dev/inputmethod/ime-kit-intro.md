@@ -56,4 +56,4 @@ ArkUI: IME Kit在输入法软键盘和自绘编辑框时使用ArkUI提供的部�
 
 - [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md)
 
-- [inputMethod.Pane](../reference/apis-ime-kit/js-apis-inputmethod-panel.md)
+- [inputMethod.Panel](../reference/apis-ime-kit/js-apis-inputmethod-panel.md)

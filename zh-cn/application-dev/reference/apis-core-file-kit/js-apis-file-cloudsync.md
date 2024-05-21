@@ -57,7 +57,7 @@ constructor()
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **示例：**
 
@@ -86,7 +86,7 @@ on(event: 'progress', callback: Callback\<DownloadProgress>): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -121,7 +121,7 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -184,7 +184,7 @@ start(uri: string): Promise&lt;void&gt;
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
@@ -211,7 +211,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
@@ -235,7 +235,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### stop<sup>12+</sup>
+### stop<sup>11+</sup>
 
 stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
@@ -250,7 +250,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
-| needClean | boolean | 否   | 是否删除已下载的文件，默认删除。 |
+| needClean<sup>12+</sup> | boolean | 否   | 是否删除已下载的文件，默认删除。<br>从API version12开始支持该参数。 |
 
 **返回值：**
 
@@ -264,7 +264,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 14000002 | Invalid uri. |
@@ -308,7 +308,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 14000002 | Invalid uri. |

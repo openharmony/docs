@@ -38,6 +38,14 @@ Obtains the request information from Want.
 | ------ | ------------------------ |
 | [RequestInfo](#requestinfo) | **RequestInfo** object obtained, which is used to bind a modal dialog box.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -80,6 +88,14 @@ Obtains the request callback from Want.
 | Type  | Description                    |
 | ------ | ------------------------ |
 | [RequestCallback](#requestcallback) | **RequestCallback** object obtained, which is used to set the return result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 
@@ -196,11 +212,11 @@ Sets the result of the request for the modal dialog box.
 
 **Error codes**
 
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 

@@ -50,7 +50,35 @@ interface ParticleInterface {
 | value | {<br/>particles:Array&lt;[ParticleOptions](#particleoptions)&lt;<br/>[PARTICLE](#particletype), <br/>[COLOR_UPDATER](#particleupdater),<br/>[OPACITY_UPDATER](#particleupdater),<br/>[SCALE_UPDATER](#particleupdater),<br/>[ACC_SPEED_UPDATER](#particleupdater),<br/> [ACC_ANGLE_UPDATER](#particleupdater),<br/>[SPIN_UPDATER](#particleupdater)<br/>&gt;&gt;<br/>} | 是 | 粒子动画的集合。每一个的粒子动画（ParticleOptions）包含粒子发射，同时可配置粒子的颜色、透明度、大小、速度、加速度与旋转速度，旋转速度，详见[ParticleOptions](#particleoptions)属性说明。
 
 ## 属性
-支持[通用属性](ts-universal-attributes-size.md)
+
+除支持[通用属性](ts-universal-attributes-size.md)外还支持以下属性：
+
+### disturbanceFields<sup>12+</sup>
+
+disturbanceFields(fields: Array&lt;DisturbanceFieldsOptions&gt;)
+
+设置扰动场。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| fields  | Array<[DisturbanceFieldsOptions](#disturbancefieldsoptions12)> | 是   | 扰动场数组。 |
+
+### emitter<sup>12+</sup>
+emitter(value: Array&lt;EmitterProperty&gt;)
+
+支持发射器位置动态更新
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| value  | Array<[EmitterProperty](#emitterproperty12)> | 是   | 需要更新的emitter参数数组 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
@@ -82,6 +110,8 @@ interface ParticleOptions<
   spin?: ParticlePropertyOptions<number, SPIN_UPDATER>;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -115,7 +145,7 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | particle | {<br>type: [PARTICLE](#particletype),<br>config: [ParticleConfigs](#particleconfigs),<br>count: number,<br>lifetime?: number<br>lifeTimeRange?:number<sup>12+<sup><br>} | 是 | 粒子配置。<br>-type表示粒子类型，可以选择图片或者是点。<br>-config表示对应类型的配置。<br>-config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br>-count表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br>-lifetime表示单个粒子的生命周期，默认值1000（即1000ms，1s）,lifetime>=-1,当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。<br>-lifeTimeRange表示粒子生命周期取值范围，设置lifeTimeRange后粒子的生命周期为 [lifetime-lifeTimeRange,lifeTime+lifeTimeRange]中间的一个随机整数。lifeTimeRange 默认值为0，取值范围为为0到正无穷。设置为负值时取默认值。|
-| emitRate | number | 否 | 发射器发射速率（即每秒发射粒子数）。 默认值：5。|
+| emitRate | number | 否 | 发射器发射速率（即每秒发射粒子数）。 默认值：5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。|
 | shape | [ParticleEmitterShape](#particleemittershape) | 否 | 发射器形状。默认值：ParticleEmitterShape.RECTANGLE。 |
 | position | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 否 | 发射器位置（距离组件左上角的位置。第一个参数为x方向上的相对偏移，第二个参数为y轴方向相对偏移。） <br>默认值：`[0.0, 0.0]`。|
 | size |  \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]     |否 | 发射窗口的大小。第一个参数为发射器宽，第二个参数为发射器高。<br>默认值`['100%','100%']`(即发射窗口占满Particle组件)。 |
@@ -129,6 +159,7 @@ interface ParticleConfigs {
 }
 ```
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
@@ -141,6 +172,9 @@ interface PointParticleParameters {
   radius: VP;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
 | radius      | [VP](ts-types.md#vp10)| 是    | 粒子半径。 |
@@ -153,6 +187,9 @@ interface ImageParticleParameters {
   objectFit?: ImageFit;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
 | src      | [ResourceStr](ts-types.md#resourcestr) | 是    | 图片路径。暂不支持svg图片类型。 |
@@ -164,6 +201,7 @@ interface ImageParticleParameters {
 ```typescript
 interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
   range: [ResourceColor, ResourceColor]; 
+  distributionType?: DistributionType;
   updater?: {
     type: UPDATER;
     config: ParticleColorPropertyUpdaterConfigs[UPDATER];
@@ -173,7 +211,8 @@ interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | range | \[[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)\] | 是 | 粒子初始颜色区间，粒子发射器生成粒子的初始颜色在range区间随机取值。<br>默认值：range:[Color.White,Color.White]
-| updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | 否 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 |
+| distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | 否 | 粒子初始颜色随机值分布，允许用户选择颜色随机值生成的分布类型，支持均匀分布或正态（高斯）分布。<br>默认值：DistributionType.UNIFORM
+| updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | 否 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 <br>**说明**：<br>当type为ParticleUpdater.RANDOM或者ParticleUpdater.CURVE时，updater中颜色配置的优先级高于range中的颜色配置。在updater配置的动画时间周期内，以updater中的颜色配置来变化；在updater配置的动画时间周期外，以range中的颜色配置来变化。 |
 
 
 ## ParticleColorPropertyUpdaterConfigs
@@ -189,6 +228,9 @@ interface ParticleColorPropertyUpdaterConfigs {
   [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<ResourceColor>>;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 |[ParticleUpdater.NONE]|void | 是 | 无变化。|
@@ -205,6 +247,9 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
   };
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 | range | [TYPE, TYPE] | 是 | 粒子初始属性值区间，粒子发射器生成粒子的属性值在range区间随机取值。<br/>**说明**<br/>各项属性的非法输入取默认值，当最大值小于最小值的时候取默认区间。TYPE为number。<br/>不同属性的默认值不同：<br>1、opacity属性：range:[1.0,1.0]，取值范围0到1，默认值为0.0。<br/>2、scale属性：range:[1.0,1.0]，取值范围大于等于0，默认值为1.0。<br/>3、acceleration加速度speed属性：range:[0.0,0.0]，取值范围大于等于0，默认值为0.0。<br/>4、acceleration加速度angle属性：range:[0.0,0.0]，取值范围大于等于0，默认值为0.0。<br/>5、spin属性：range:[0.0,0.0]，默认值为0.0。
@@ -219,6 +264,9 @@ interface ParticlePropertyUpdaterConfigs<T> {
     [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<T>>;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 [[ParticleUpdater.NONE]|void | 是 | 无变化。|
@@ -237,6 +285,9 @@ interface ParticlePropertyAnimation<T> {
   curve?: Curve | ICurve;
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
 |from| T | 是 | 属性起始值。非法输入取对应属性的默认值。|
@@ -253,6 +304,8 @@ enum ParticleType {
   IMAGE = 'image',
 }
 ```
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 描述 |
 | -------- |  -------- | 
 POINT |点状粒子|
@@ -268,12 +321,26 @@ enum ParticleEmitterShape {
   ELLIPSE = 'ellipse',
 }
 ```
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称  | 描述 |
 | -------- |  -------- | 
 RECTANGLE |粒子发射器为矩形|
 CIRCLE | 粒子发射器为圆形|
 ELLIPSE |粒子发射器为椭圆形|
 
+## DistributionType<sup>12+<sup>
+```typescript
+enum DistributionType {
+  UNIFORM = 0,
+  GAUSSIAN = 1,
+}
+```
+| 名称  | 描述 |
+| -------- |  -------- | 
+| UNIFORM |初始颜色随机值分布为均匀分布。|
+| GAUSSIAN | 初始颜色随机值分布为高斯分布。|
 
 ## ParticleUpdater
 ```typescript
@@ -288,6 +355,36 @@ enum ParticleUpdater {
 |NONE |无变化|
 |RANDOM | 随机变化|
 |CURVE |动画曲线变化|
+
+## DisturbanceFieldsOptions<sup>12+</sup>
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| strength  | number | 否   |场强，表示场从中心向外的排斥力的强度，默认值0。正数表示排斥力方向朝外，负数表示吸引力，方向朝内。 |
+| shape  |   [DisturbanceFieldsShape](#disturbancefieldsshape12) | 否   | 场的形状。<br/>默认为DisturbanceFieldsShape.RECT。 |
+| size  | [SizeT](../js-apis-arkui-graphics.md#sizet12)&lt;number&gt;| 否  |场的大小。<br/>默认值 {width:0，height:0}。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |场的位置。<br/>默认值{x:0，y:0}。 |
+| feather  | number | 否   |羽化值，表示场从中心点到场边缘的衰减程度，取值范围0到100的整数，如果0则表示场是一个刚体，所有范围内的粒子都被排斥在外。羽化值越大场的缓和程度越大，场范围内出现越多靠近中心点的粒子。<br/>默认值为0。 |
+| noiseScale  | number | 否   |噪声尺度，用于控制噪声图案的整体大小，取值大于等于0。<br/>默认值1。 |
+| noiseFrequency  | number | 否   |噪声频率，频率越大噪声越细腻，取值大于等于0。<br/> 默认值1。 |
+| noiseAmplitude  | number | 否   |噪声震幅，噪声的波动的范围，震幅越大噪音之间差异越大。取值大于等于0。<br/> 默认值1。 |
+
+## DisturbanceFieldsShape<sup>12+</sup>
+
+| 名称        | 描述   |
+| --------| ----------|
+| RECT    | 长方形。   |
+|  CIRCLE | 圆。       |
+| ELLIPSE | 椭圆。     |
+
+## EmitterProperty<sup>12+</sup>
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| index   | number | 是   |索引，按初始化参数中发射器的数组索引指定对应的发射器。异常默认值为0。 |
+| emitRate  | number  | 否   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。需传入两个有效参数，若其中一个为异常值，则position不生效。 |
+| size  | [SizeT](../js-apis-arkui-graphics.md#sizet12)&lt;number&gt;| 否  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。需传入两个有效参数，若其中一个为异常值，则size不生效。 |
 
 ## 示例
 
@@ -794,3 +891,201 @@ struct ParticleExample {
 }
 ```
 ![particle](figures/particle_image.gif)
+
+### 示例3
+粒子扰动场的干扰下运动轨迹发生变化。
+```
+@Entry
+@Component
+struct ParticleExample {
+  build() {
+    Stack() {
+      Text()
+        .width(300).height(300).backgroundColor(Color.Black)
+      Particle({particles:[
+        {
+          emitter:{
+            particle:{
+              type:ParticleType.POINT,//粒子类型
+              config:{
+                radius:10//圆点半径
+              },
+              count: 500,//粒子总数
+              lifetime:10000//粒子生命周期，单位ms
+            },
+            emitRate:10,//每秒发射粒子数
+            position:[0,0],
+            shape:ParticleEmitterShape.RECTANGLE//发射器形状
+          },
+          color:{
+            range:[Color.Red,Color.Yellow],//初始颜色范围
+            updater:{
+              type:ParticleUpdater.CURVE,//变化方式为曲线变化
+              config:[
+                {
+                  from:Color.White,//变化起始值
+                  to:Color.Pink,//变化终点值
+                  startMillis:0,//开始时间
+                  endMillis:3000,//结束时间
+                  curve:Curve.EaseIn//变化曲线
+                },
+                {
+                  from:Color.Pink,
+                  to:Color.Orange,
+                  startMillis:3000,
+                  endMillis:5000,
+                  curve:Curve.EaseIn
+                },
+                {
+                  from:Color.Orange,
+                  to:Color.Pink,
+                  startMillis:5000,
+                  endMillis:8000,
+                  curve:Curve.EaseIn
+                },
+              ]
+            }
+          },
+          opacity:{
+            range:[0.0,1.0],//粒子透明度的初始值从[0.0,1.0]随机产生
+            updater:{
+              type:ParticleUpdater.CURVE,//透明度的变化方式是随机变化
+              config:[
+                {
+                  from:0.0,
+                  to:1.0,
+                  startMillis:0,
+                  endMillis:3000,
+                  curve:Curve.EaseIn
+                },
+                {
+                  from:1.0,
+                  to:0.0,
+                  startMillis:5000,
+                  endMillis:10000,
+                  curve:Curve.EaseIn
+                }
+              ]
+            }
+          },
+          scale:{
+            range:[0.0,0.0],
+            updater:{
+              type:ParticleUpdater.CURVE,
+              config:[
+                {
+                  from:0.0,
+                  to:0.5,
+                  startMillis:0,
+                  endMillis:3000,
+                  curve: Curve.EaseIn
+                }
+              ]
+            }
+          },
+          acceleration:{//加速度的配置，从大小和方向两个维度变化，speed表示加速度大小，angle表示加速度方向
+            speed:{
+              range:[3,9],
+              updater:{
+                type:ParticleUpdater.RANDOM,
+                config:[1,20]
+              }
+            },
+            angle:{
+              range:[90,90]
+            }
+          }
+
+        }
+      ]
+      }).width(300).height(300).disturbanceFields([{
+        strength:10,
+        shape:DisturbanceFieldShape.RECT,
+        size:{width:100,height:100},
+        position:{x:100,y:100},
+        feather:15,
+        noiseScale:10,
+        noiseFrequency:15,
+        noiseAmplitude:5
+      }])
+    }.width("100%").height("100%").align(Alignment.Center)
+  }
+}
+
+```
+![particle](figures/disturbanceFields.gif)
+
+### 示例4
+通过emitter()调整粒子发射器的位置。
+```ts
+@Entry
+@Component
+struct ParticleExample {
+  @State emitterProterties: Array<EmitterProperty> = [
+    {
+      index: 0,
+      emitRate: 100,
+      position: { x: 300, y: 400 },
+      size: { width: 500, height: 500 }
+    }
+  ]
+
+  build() {
+    Stack() {
+      Text()
+        .width(300).height(300).backgroundColor(Color.Black)
+      Particle({ particles: [
+        {
+          emitter: {
+            particle: {
+              type: ParticleType.POINT, // 粒子类型
+              config: {
+                radius: 5// 圆点半径
+              },
+              count: 400, // 粒子总数
+              lifetime: -1// 粒子的生命周期，1表示粒子生命周期无限大
+            },
+            emitRate: 10, // 每秒发射粒子数
+            position: [0, 0], // 粒子发射位置
+            shape: ParticleEmitterShape.CIRCLE// 发射器形状
+          },
+          color: {
+            range: [Color.Red, Color.Yellow], // 初始颜色范围
+            updater: {
+              type: ParticleUpdater.CURVE, // 变化方式为曲线变化
+              config: [
+                {
+                  from: Color.White,
+                  to: Color.Pink,
+                  startMillis: 0,
+                  endMillis: 3000,
+                  curve: Curve.EaseIn
+                },
+                {
+                  from: Color.Pink,
+                  to: Color.Orange,
+                  startMillis: 3000,
+                  endMillis: 5000,
+                  curve: Curve.EaseIn
+                },
+                {
+                  from: Color.Orange,
+                  to: Color.Pink,
+                  startMillis: 5000,
+                  endMillis: 8000,
+                  curve: Curve.EaseIn
+                },
+              ]
+            }
+          },
+        },
+      ]
+      })
+        .width(300)
+        .height(300)
+        .emitter(this.emitterProterties)
+    }.width("100%").height("100%").align(Alignment.Center)
+  }
+}
+```
+![particle](figures/emitters.gif)

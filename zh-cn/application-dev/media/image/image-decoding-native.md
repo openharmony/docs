@@ -4,11 +4,11 @@
 
 ## 开发步骤
 
-图片解码相关API的详细介绍请参见：[图片解码接口说明](../../reference/apis-image-kit/js-apis-image.md#imagesource)。
+图片解码相关API的详细介绍请参见：[图片解码接口文档](../../reference/apis-image-kit/js-apis-image.md)。
 
 ### 添加依赖
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libpixelmap_ndk.z.so libimage_source_ndk.z.so librawfile.z.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libace_napi.z.so，libpixelmap_ndk.z.so，libimage_source_ndk.z.so，librawfile.z.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so libimage_source_ndk.z.so librawfile.z.so)

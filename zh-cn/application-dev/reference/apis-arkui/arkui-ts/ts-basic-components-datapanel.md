@@ -28,6 +28,8 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名            | 参数类型   | 必填  | 参数描述 |
 | ----------------- | -------- | ----- | -------- |
 | values            | number[]   | 是    | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
@@ -37,7 +39,9 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelType<sup>8+</sup>枚举说明
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------| ------------ |
@@ -57,6 +61,8 @@ closeEffect(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -70,6 +76,8 @@ closeEffect(value: boolean)
 valueColors(value: Array<ResourceColor | LinearGradient>)
 
 设置各数据段颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,6 +93,8 @@ trackBackgroundColor(value: ResourceColor)
 
 设置底板颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -98,6 +108,8 @@ trackBackgroundColor(value: ResourceColor)
 strokeWidth(value: Length)
 
 设置圆环粗细。数据面板的类型为DataPanelType.Line时该属性不生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,6 +125,8 @@ trackShadow(value: DataPanelShadowOptions)
 
 设置投影样式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -121,20 +135,38 @@ trackShadow(value: DataPanelShadowOptions)
 | ------ | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | value  | [DataPanelShadowOptions](#datapanelshadowoptions10对象说明) | 是   | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。 |
 
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
+
+定制DataPanel内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<DataPanelConfiguration>](#datapanelconfiguration12对象说明) | 是   | 在DataPanel组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 
 ## DataPanelShadowOptions<sup>10+</sup>对象说明
+
+DataPanelShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10)，具有MultiShadowOptions的全部属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
 | colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 否 | 各数据段投影的颜色。 <br/>默认值：与valueColors值相同 <br/>**说明：** <br/>若设置的投影颜色的个数少于数据段个数时，则显示的投影颜色的个数和设置的投影颜色个数一致。<br/>若设置的投影颜色的个数多于数据段个数时，则显示的投影颜色的个数和数据段个数一致。|
-| offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 
 ## LinearGradient<sup>10+</sup>对象说明
 
 线性渐变颜色描述。
 
 LinearGradient(colorStops: ColorStop[])
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
@@ -145,10 +177,21 @@ LinearGradient(colorStops: ColorStop[])
 
 颜色断点类型，用于描述渐进色颜色断点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是 | 颜色值。|
 | offset | [Length](ts-types.md#length) | 是 | 渐变色断点（0~1之间的比例值，若数据值小于0则置为0，若数据值大于1则置为1）。<br>**说明：** <br/>若传入字符串类型且内容为数字，则转换为对应的数值。<br/>例如'10vp'转换为10，'10%'转换为0.1。 |
+
+## DataPanelConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    |    默认值      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |
+| values | number[] | - | 当前DataPanel的数据值，最大长度为9。 |
+| maxValue | number | 100 | DataPanel显示的最大值。 |
 
 ## 示例
 
@@ -195,7 +238,7 @@ struct DataPanelExample {
         }
       }.margin({ bottom: 59 })
 
-      DataPanel({ values: this.valueArr, max: 100, type: DataPanelType.Line }).width(300).height(10)
+      DataPanel({ values: this.valueArr, max: 100, type: DataPanelType.Line }).width(300).height(20)
     }.width('100%').margin({ top: 5 })
   }
 }
@@ -247,3 +290,74 @@ struct LinearGradientDataPanelExample {
 ```
 
 ![LinearGradientDataPanel](figures/LinearGradientDataPanel.PNG)
+
+### 示例3
+
+```ts
+// xxx.ets
+@Builder
+function buildDataPanel(config: DataPanelConfiguration) {
+  Column() {
+    Column() {
+      ForEach(config.values, (item: number, index: number) => {
+        ChildItem({ item: item, index: index, max:config.maxValue})
+      }, (item: string) => item)
+    }.padding(10)
+    Line().width(360).backgroundColor("#ff373737").margin({bottom:5})
+    Row() {
+      Text('Length=' + config.values.length + '    ').margin({ left: 10 }).align(Alignment.Start)
+      Text('Max=' + config.maxValue).margin({ left: 10 }).align(Alignment.Start)
+    }
+  }
+}
+
+class DataPanelBuilder implements ContentModifier<DataPanelConfiguration> {
+  constructor() {
+  }
+  applyContent () : WrappedBuilder<[DataPanelConfiguration]> {
+    return wrapBuilder(buildDataPanel)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text("Data panel").margin({ top: 12 });
+      Row() {
+        DataPanel({ values: [12.3, 21.1, 13.4, 35.2, 26.0, 32.0], max: 140, type: DataPanelType.Circle })
+          .width(400).height(260)
+          .padding({ top: 10 })
+          .contentModifier(new DataPanelBuilder())
+      }.margin(15).backgroundColor("#fff5f5f5")
+    }
+  }
+}
+
+@Component
+struct ChildItem {
+  @Prop item: number;
+  @Prop index: number;
+  @Prop max: number;
+  public color1: string = "#65ff00dd"
+  public color2: string = "#6500ff99"
+  public color3: string = "#65ffe600"
+  public color4: string = "#6595ff00"
+  public color5: string = "#65000dff"
+  public color6: string = "#650099ff"
+  public colorArray: Array<string> = [this.color1, this.color2, this.color3, this.color4, this.color5, this.color6]
+
+  build() {
+    RelativeContainer() {
+      Row() {
+        Rect().height(25).width(this.item * 600 / this.max).foregroundColor(this.colorArray[this.index]).radius(5)
+          .align(Alignment.Start)
+        Text(" "+this.item)
+          .fontSize(17)
+      }
+    }.height(28)
+  }
+}
+```
+![LinearGradientDataPanel](figures/ContentModifierDataPanel.jpg)
