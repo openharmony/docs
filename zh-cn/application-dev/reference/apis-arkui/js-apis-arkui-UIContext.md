@@ -2560,9 +2560,9 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2611,9 +2611,9 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2670,9 +2670,9 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2727,9 +2727,9 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2791,7 +2791,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
 
@@ -2838,7 +2838,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
 
@@ -2893,7 +2893,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if can not get the delegate, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
 
@@ -2946,7 +2946,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
 
@@ -3004,9 +3004,9 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.   |
 
 **示例：**
 
@@ -3055,9 +3055,9 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.   |
 
 **示例：**
 
@@ -3113,9 +3113,9 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.   |
 
 **示例：**
 
@@ -3170,9 +3170,9 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.   |
 
 **示例：**
 
@@ -3234,7 +3234,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100004 | Named route error. The named route does not exist.         |
 
 **示例：**
 
@@ -3281,7 +3281,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100004 | Named route error. The named route does not exist.         |
 
 **示例：**
 
@@ -3337,7 +3337,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if can not get the delegate, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100004 | Named route error. The named route does not exist.         |
 
 **示例：**
 
@@ -3390,7 +3390,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100004 | Named route error. The named route does not exist.         |
 
 **示例：**
 
@@ -3639,7 +3639,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3729,7 +3729,7 @@ showToast(options: promptAction.ShowToastOptions): void
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3773,7 +3773,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3842,7 +3842,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3902,7 +3902,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if UI execution context not found. |
+| 100001   | Internal error. |
 
 **示例：**
 
@@ -3963,7 +3963,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -4023,7 +4023,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -4087,7 +4087,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
-| 103302 | the ComponentContent has already been opened. |
+| 103302 | Dialog content already exists. |
 
 **示例：**
 
@@ -5251,7 +5251,7 @@ requestFocus(key: string): void
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 150001 | This component is not focusable. |
-| 150002 | This component has unfocusable ancestor.      |
+| 150002 | This component has an unfocusable ancestor.      |
 | 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
 
 **示例：**

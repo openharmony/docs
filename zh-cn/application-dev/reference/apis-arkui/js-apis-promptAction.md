@@ -41,7 +41,7 @@ showToast(options: ShowToastOptions): void
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -108,7 +108,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -169,7 +169,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -269,7 +269,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -334,7 +334,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -405,7 +405,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if UI execution context not found. |
+| 100001   | Internal error. |
 
 **示例：**
 
@@ -487,7 +487,7 @@ closeCustomDialog(dialogId: number): void
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if UI execution context not found. |
+| 100001   | Internal error. |
 
 **示例：**
 
