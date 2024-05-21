@@ -54,7 +54,7 @@ Instrument Test：测试用例存放在ohosTest测试目录下，需要运行在
 
 Local Test：测试用例存放在test测试目录下，不需要运行在设备或模拟器上，支持单元测试。
 
-Instrument Test和Local Test创建的具体操作，请参考[测试框架](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
+Instrument Test和Local Test创建的具体操作，请参考[测试框架](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-test-0000001092459608)。
 
 ### 编写单元测试脚本
 
