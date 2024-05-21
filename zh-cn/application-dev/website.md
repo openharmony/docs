@@ -134,7 +134,7 @@
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
       - 应用间跳转
         - 通用意图跳转
-        - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+        - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
       - [进程模型](application-models/process-model-stage.md)
       - [线程模型](application-models/thread-model-stage.md)
       <!--Del-->
