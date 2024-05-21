@@ -210,8 +210,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 190001    | GetData failed, data not found. |
-| 190002    | GetData failed, data error. |
+| 190001    | Data not found.|
+| 190002    | Data error. |
 
 ## DragResult<sup>10+</sup>枚举说明
 

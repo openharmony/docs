@@ -38,7 +38,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if some internal handling failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 
@@ -141,7 +141,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if some internal handling failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 
@@ -411,7 +411,7 @@ startDrag(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 100001   | if some internal handling failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 ```ts
