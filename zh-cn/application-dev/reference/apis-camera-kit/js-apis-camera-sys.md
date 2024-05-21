@@ -48,8 +48,24 @@ import camera from '@ohos.multimedia.camera';
 | ----------------------- | --------- | ------------ |
 | PORTRAIT_PHOTO       | 3      | 人像拍照模式。**系统接口：** 此接口为系统接口。            |
 | NIGHT_PHOTO        | 4      | 夜景拍照模式。**系统接口：** 此接口为系统接口。             |
+| SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
 | MACRO_PHOTO<sup>12+</sup>        | 8      | 超级微距拍照模式。**系统接口：** 此接口为系统接口。             |
 | MACRO_VIDEO<sup>12+</sup>        | 9      | 超级微距录像模式。**系统接口：** 此接口为系统接口。             |
+
+## SlowMotionStatus<sup>12+</sup>
+
+枚举，慢动作状态。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值   | 说明            |
+|----------------|-----|---------------|
+| DISABLED       | 0   | 慢动作关闭状态。      |
+| READY          | 1   | 慢动作就绪状态。      |
+| VIDEO_START    | 2   | 慢动作视频开始状态。    |
+| VIDEO_DONE     | 3   | 慢动作视频完成状态。    |
+| FINISHED       | 4   | 慢动作结束状态。      |
+
 
 ## CameraManager
 
@@ -3021,3 +3037,391 @@ function unregisterSmoothZoomInfo(nightPhotoSession: camera.NightPhotoSession): 
 | ------------- | -------- | ---- | ---- | ---------- |
 | status        | number   | 否   | 是   | 画中画当前的状态。0：已停止，1：已启动，2：停止中，3：启动中。|
 | sketchRatio   | number   | 否   | 是   | 画中画画面的Zoom倍率。|
+
+
+## SlowMotionVideoSession<sup>12+</sup>
+
+SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
+
+慢动作录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置人像拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+> **说明：**
+> 慢动作模式下只能添加预览流和录像流。
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听人像拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                           |
+| -------- | --------------------------------- | ---- | ------------------------------ |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError): void {
+  console.error(`Portrait photo session error code: ${err.code}`);
+}
+
+function registerSessionError(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听人像拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                           |
+| -------- | -------------------------- | ---- | ------------------------------ |
+| type     | string                     | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
+
+**示例：**
+
+```ts
+function unregisterSessionError(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+监听相机聚焦的状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机聚焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+
+**示例：**
+
+```ts
+function unregisterFocusStateChange(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.off('focusStateChange');
+}
+```
+
+### on('smoothZoomInfoAvailable')<sup>12+</sup>
+
+on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
+
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                   | 必填 | 说明                       |
+| -------- | ----------------------- | ---- | ------------------------ |
+| type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
+function registerSmoothZoomInfo(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.on('smoothZoomInfoAvailable', callback);
+}
+```
+
+### off('smoothZoomInfoAvailable')<sup>12+</sup>
+
+off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>): void
+
+注销监听相机平滑变焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+
+**示例：**
+
+```ts
+function unregisterSmoothZoomInfo(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### on('slowMotionStatus')<sup>12+</sup>
+
+on(type: 'slowMotionStatus', callback: AsyncCallback\<SlowMotionStatus\>): void
+
+监听慢动作状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                                        | 必填 | 说明                                         |
+| -------- |---------------------------------------------------------------------------| ---- |--------------------------------------------|
+| type     | string                                                                    | 是   | 监听事件，固定为'slowMotionStatus'，session创建成功可监听。 |
+| callback | AsyncCallback\<[SlowMotionStatus](#slowmotionstatus12)\> | 是   | 回调函数，用于获取当前慢动作状态。当慢动作状态发生变动时，此回调函数也会被执行。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, slowMotionStatus: camera.SlowMotionStatus): void {
+  console.info(`The slow motion status: ${slowMotionStatus}`);
+}
+
+function registerSlowMotionStatus(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.on('slowMotionStatus', callback);
+}
+```
+
+### off('slowMotionStatus')<sup>12+</sup>
+
+off(type: 'slowMotionStatus', callback?: AsyncCallback\<SlowMotionStatus\>): void
+
+注销慢动作状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string              | 是   | 监听事件，固定为'slowMotionStatus'，session创建成功可监听。|
+| callback | AsyncCallback\<[SlowMotionStatus](#slowmotionstatus12)\> | 否   | 回调函数，可选，有就是匹配on('slowMotionStatus') callback（callback对象不可是匿名函数）。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application.                               |
+
+**示例：**
+
+```ts
+function unregisterSlowMotionStatus(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.off('slowMotionStatus');
+}
+```
+## isSlowMotionDetectionSupported<sup>12+</sup>
+
+isSlowMotionDetectionSupported(): boolean;
+
+查询当前设备是否支持慢动作检测功能。
+
+> **说明：**
+> 该接口需要在[commitConfig](js-apis-camera.md#commitconfig11-1)之后调用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                                                                                     |
+| ---------- |----------------------------------------------------------------------------------------|
+| boolean    | 返回true表示支持慢动作检测功能，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application.                               |
+| 7400103 |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function isSlowMotionDetectionSupported(slowMotionVideoSession: camera.SlowMotionVideoSession): boolean {
+  let isSupported: boolean = false;
+  try {
+    isSupported = slowMotionVideoSession.isSlowMotionDetectionSupported();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The isFocusModeSupported call failed. error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+## setSlowMotionDetectionArea<sup>12+</sup>
+
+setSlowMotionDetectionArea(area: Rect): void;
+
+设置一个进行慢动作检测的区域。
+
+> **说明：**
+> 在调用该方法之前，先调用[isSlowMotionDetectionSupported](#isslowmotiondetectionsupported12)确认设备是否支持慢动作检测功能, 确认支持下并且调用[enableMotionDetection](#enablemotiondetection12)接口使能，才能保证其他相关方法的正常运行。 
+该接口需要在[commitConfig](js-apis-camera.md#commitconfig11-1)之后调用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                            | 必填 | 说明                          |
+| -------- | ---------------------------------------------- | ---- | --------------------------- |
+| area  | [Rect](js-apis-camera.md#rect)      | 是   | 矩形定义。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application.                            |
+| 7400101 |  Parameter missing or parameter type incorrect.     |
+| 7400103 |  Session not config.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  try {
+    slowMotionVideoSession.setSlowMotionDetectionArea({topLeftX: 0.1, topLeftY: 0.1, width: 0.8, height: 0.8});
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setSlowMotionDetectionArea call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```
+
+## enableMotionDetection<sup>12+</sup>
+
+enableMotionDetection(isEnable: boolean): void;
+
+启用或禁用运动检测功能。
+
+> **说明：**
+> 在调用该方法之前，先调用[isSlowMotionDetectionSupported](#isslowmotiondetectionsupported12)确认设备是否支持慢动作检测功能。只有在返回值为 true ，设备支持该功能时，才能保证其他相关方法的正常运行。 
+该接口需要在[commitConfig](js-apis-camera.md#commitconfig11-1)之后调用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明    |
+| -------- |---------|---|-------|
+| isEnable  | boolean | 是 | 设为true将启用动作检测，设为false将禁用动作检测。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application.                            |
+| 7400101 |  Parameter missing or parameter type incorrect.     |
+| 7400103 |  Session not config.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function enableMotionDetection(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  try {
+    slowMotionVideoSession.enableMotionDetection(true);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableMotionDetection call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```

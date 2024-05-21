@@ -88,6 +88,6 @@ user_grant指的是用户授权类型，在该类型的权限许可下，应用�
 
   如上所述，权限APL等级和应用APL等级是一一对应的。原则上，拥有低APL等级的应用默认无法申请更高等级的权限。访问控制列表ACL（Access Control List）提供了解决低等级应用访问高等级权限问题的特殊渠道。
 
-  系统权限均定义了“ACL使能”字段，当该权限的ACL使能为TRUE，应用可以使用ACL方式跨级别申请该权限。具体单个权限的定义，可参考[系统应用可用的权限](permissions-for-system-apps.md)。
+  系统权限均定义了“ACL使能”字段，当该权限的ACL使能为TRUE，应用可以使用ACL方式跨级别申请该权限。<!--Del-->具体单个权限的定义，可参考[系统应用可用的权限](permissions-for-system-apps.md)。<!--DelEnd-->
 
   场景举例：如开发者正在开发APL等级为normal的A应用，由于功能场景需要，A应用需要申请等级为system_basic的P权限。在P权限的ACL使能为TRUE的情况下，A应用可以通过ACL方式跨级申请权限P。

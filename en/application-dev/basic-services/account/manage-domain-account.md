@@ -11,14 +11,13 @@ The user can add a domain account to a device so that the domain account user ca
 2. Import the **osAccount** module.
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
-   import { AsyncCallback, BusinessError } from '@ohos.base';
+   import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. Obtain an **AccountManager** instance of the system account.
 
    ```ts
-   let osAccountMgr = account_osAccount.getAccountManager();
+   let osAccountMgr = osAccount.getAccountManager();
    ```
 
 ## Checking for a Domain Account
@@ -30,7 +29,7 @@ Before adding a domain account, the user may need to check whether the domain ac
 1. Define the domain account to check.
 
    ```ts
-   let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+   let domainAccountInfo: osAccount.DomainAccountInfo = {
      accountName: 'testAccountName',
      domain: 'testDomain'
    }
@@ -39,7 +38,7 @@ Before adding a domain account, the user may need to check whether the domain ac
 2. Use [hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10) to check whether the domain account exists.
 
    ```ts
-   let isAccountExisted: boolean = await account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
+   let isAccountExisted: boolean = await osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
    ```
 
 ## Adding a Domain Account
@@ -51,7 +50,7 @@ The user can add a domain account in **Settings** to allow the domain account us
 1. Define domain account information, including the domain name, account name, and account ID (optional).
 
    ```ts
-   let domainInfo: account_osAccount.DomainAccountInfo = {
+   let domainInfo: osAccount.DomainAccountInfo = {
      domain: 'testDomain',
      accountName: 'testAccountName'
    };
@@ -61,8 +60,8 @@ The user can add a domain account in **Settings** to allow the domain account us
 
    ```ts
    try {
-     accountMgr.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo,
-     (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+     osAccountMgr.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
+     (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
        console.log('createOsAccountForDomain err:' + JSON.stringify(err));
        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
    });
@@ -80,13 +79,14 @@ The user can delete the domain account that is not required. Since a domain acco
 1. Use [getOsAccountLocalIdForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfordomain9) to obtain the system account ID based on the domain account information.
 
    ```ts
-   let domainInfo: account_osAccount.DomainAccountInfo = {
+   let domainInfo: osAccount.DomainAccountInfo = {
        domain: 'testDomain',
        accountName: 'testAccountName'
    };
+   let localId: number = 0;
 
    try {
-     let localId: number = accountMgr.getOsAccountLocalIdForDomain(domainInfo);
+     localId = await osAccountMgr.getOsAccountLocalIdForDomain(domainInfo);
    } catch (err) {
      console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
    }
@@ -96,7 +96,7 @@ The user can delete the domain account that is not required. Since a domain acco
 
    ```ts
    try {
-     accountMgr.removeOsAccount(osAccountInfo.localId, (err: BusinessError)=>{
+     osAccountMgr.removeOsAccount(localId, (err: BusinessError)=>{
        if (err) {
            console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
        } else {
@@ -117,7 +117,7 @@ After passing the authentication, the user can query their own or others' domain
 1. Specify the query options, including the domain name and account name. The option type is [GetDomainAccountInfoOptions](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getdomainaccountinfooptions10).
 
    ```ts
-   let options: account_osAccount.GetDomainAccountInfoOptions = {
+   let options: osAccount.GetDomainAccountInfoOptions = {
        domain: 'testDomain',
        accountName: 'testAccountName'
    }
@@ -127,8 +127,8 @@ After passing the authentication, the user can query their own or others' domain
 
    ```ts
    try {
-     account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
-       (err: BusinessError, result: account_osAccount.DomainAccountInfo) => {
+     osAccount.DomainAccountManager.getAccountInfo(options,
+       (err: BusinessError, result: osAccount.DomainAccountInfo) => {
        if (err) {
            console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
        } else {
