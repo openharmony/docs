@@ -574,6 +574,43 @@ getAppMemoryLimit() : MemoryLimit
 | vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位       |
 | vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位      |
 
+## hidebug.setAppResourceLimit<sup>12+</sup>
+
+setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
+
+设置应用的fd数量、线程数量、js内存或者native内存资源限制。
+**注意：** 当设置的开发者选项开关打开时,此功能有效。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type | string |  是  | 泄漏资源类型，共四种类型:pss_memory(native内存)、js_heap(js堆内存)、fd(文件描述符)或thread(线程) |
+| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型[1024, 4 * 1024 * 1024](单位：KB), js_heap类型[85, 95](分配给JS堆内存上限的85%~95%), fd类型[10, 10000], thread类型[1, 1000] |
+| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false，请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed,Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
+| 11400104 | Set limit failed due to remote exception |
+
+**示例：**
+
+```ts
+import hidebug from '@ohos.hidebug';
+
+let type: string = 'js_heap';
+let value: number = 85;
+let enableDebugLog: boolean = false;
+hidebug.setAppResourceLimit(type, value, enableDebugLog);
+```
+
 ## VMMemoryInfo<sup>12+</sup>
 
 描述VM内存信息。
