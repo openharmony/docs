@@ -826,7 +826,7 @@ get(field: string): number
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
   let hourOfDay: number = calendar.get("hour_of_day"); // hourOfDay = 8
   ```
 
