@@ -1666,7 +1666,7 @@ static getCityDisplayName(cityID: string, locale: string): string
 
 **示例：**
   ```ts
-  let displayName: string = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "上海(中国)"
+  let displayName: string = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "上海 (中国)"
   ```
 
 
