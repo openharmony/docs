@@ -14,6 +14,9 @@ The **hid** module provides APIs for using the Bluetooth Human Interface Device 
 import hid from '@ohos.bluetooth.hid';
 ```
 
+## HidHostProfile
+
+Before using any API of **HidHostProfile**, you need to create an instance of this class by using **createHidHostProfile()**.
 
 ### connect
 

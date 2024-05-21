@@ -27,7 +27,7 @@ You can implement the call service in either of the following ways:
 ## Available APIs
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [call API Reference](../reference/apis/js-apis-call.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-call.md).
 
 |                                  Name                                            | Description                                                        |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
@@ -35,7 +35,7 @@ You can implement the call service in either of the following ways:
 | dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Makes a call. This is a system API.                                     |
 | makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Redirects to the dial screen and displays the called number.                                 |
 
-The **observer** module provides the functions of subscribing to and unsubscribing from the call service status. For details about the APIs, see [observer API Reference](../reference/apis/js-apis-observer.md).
+The **observer** module provides the functions of subscribing to and unsubscribing from the call service status. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-observer.md).
 
 | Name                                                      | Description              |
 | ------------------------------------------------------------ | ------------------ |

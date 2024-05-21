@@ -16,10 +16,11 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 - 创建Worker时，有手动和自动两种创建方式，手动创建Worker线程目录及文件时，还需同步进行相关配置，详情请参考[创建Worker的注意事项](#创建worker的注意事项)。
 - 使用Worker能力时，构造函数中传入的Worker线程文件的路径在不同版本有不同的规则，详情请参见[文件路径注意事项](#文件路径注意事项)。
-- Worker创建后需要手动管理生命周期，且最多同时运行的Worker子线程数量为8个，详情请参见[生命周期注意事项](#生命周期注意事项)。
+- Worker创建后需要手动管理生命周期，且最多同时运行的Worker子线程数量为64个，详情请参见[生命周期注意事项](#生命周期注意事项)。
 - 由于不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用，具体请见[多线程安全注意事项](multi-thread-safety.md)。
 - 序列化传输的数据量大小限制为16MB。
 - 使用Worker模块时，需要在主线程中注册onerror接口，否则当worker线程出现异常时会发生jscrash问题。
+- 不支持跨HAP使用Worker线程文件。
 
 ### 创建Worker的注意事项
 
@@ -149,4 +150,4 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker("ThreadFile/worke
 - Worker的创建和销毁耗费性能，建议开发者合理管理已创建的Worker并重复使用。Worker空闲时也会一直运行，因此当不需要Worker时，可以调用[terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9)接口或[parentPort.close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
 
 
-- Worker存在数量限制，支持最多同时存在8个Worker。当Worker数量超出限制时，会抛出“Worker initialization failure, the number of workers exceeds the maximum.”错误。
+- Worker的数量由内存管理策略决定，设定的内存阈值为1.5GB和设备物理内存的60%中的较小者。在内存允许的情况下，系统最多可以同时运行64个Worker。如果尝试创建的Worker数量超出这一上限，系统将抛出错误：“Worker initialization failure, the number of workers exceeds the maximum.”。实际运行的Worker数量会根据当前内存使用情况动态调整。一旦所有Worker和主线程的累积内存占用超过了设定的阈值，系统将触发内存溢出（OOM）错误，导致应用程序崩溃。

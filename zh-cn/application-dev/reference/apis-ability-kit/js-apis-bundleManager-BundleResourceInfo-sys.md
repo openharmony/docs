@@ -19,3 +19,4 @@
 | bundleName              | string | 是   | 否   | 应用的包名。 |
 | icon              | string | 是   | 否   | 应用图标，为Base64编码格式。  |
 | label                     | string | 是   | 否   | 应用名称。 |
+| drawableDescriptor<sup>12+</sup>                     | [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor-sys.md) | 是   | 否   | 应用图标的drawableDescriptor对象。 |

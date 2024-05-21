@@ -27,6 +27,14 @@ Sets the visible status of the mouse pointer. This API uses an asynchronous call
 | visible  | boolean                   | Yes   | Whether the mouse pointer is visible. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -63,6 +71,14 @@ Sets the visible status of the mouse pointer. This API uses a promise to return 
 | ------------------- | ------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -89,6 +105,14 @@ Sets the visible status of the mouse pointer. This API returns the result synchr
 | ------- | ------- | ---- | ---------------------------------------- |
 | visible | boolean | Yes   | Whether the mouse pointer is visible. The value **true** indicates that the mouse pointer is visible, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -112,7 +136,15 @@ Checks the visible status of the mouse pointer. This API uses an asynchronous ca
 
 | Name      | Type                          | Mandatory  | Description            |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** indicates that the mouse pointer is displayed, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -196,6 +228,14 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 | windowId | number                                   | Yes   | Window ID.   |
 | callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -242,6 +282,14 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 | Name                                      | Description                 |
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -290,6 +338,14 @@ Obtains the mouse pointer style. This API returns the result synchronously.
 | ---------------------------------------- | ------------------- |
 | [PointerStyle](#pointerstyle) | Mouse pointer style.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -316,6 +372,14 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 | windowId     | number                         | Yes   | Window ID.                         |
 | pointerStyle | [PointerStyle](#pointerstyle) | Yes   | Pointer style.                            |
 | callback     | AsyncCallback&lt;void&gt;      | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -358,6 +422,14 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 | pointerStyle        | [PointerStyle](#pointerstyle) | Yes   | Pointer style.         |
 | Promise&lt;void&gt; | void                           | Yes   | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -398,6 +470,14 @@ Sets the mouse pointer style. This API returns the result synchronously.
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | Yes   | Window ID.      |
 | pointerStyle        | [PointerStyle](#pointerstyle) | Yes   | Pointer style.         |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 ```js
@@ -522,6 +602,14 @@ Sets a custom cursor. This API uses a promise to return the result.
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -529,7 +617,7 @@ import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer = svgFileData.buffer;
+const svgBuffer: image.Buffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
 svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
@@ -563,6 +651,14 @@ Sets a custom cursor. This API returns the result synchronously.
 | focusX  | number | No   | Focus x of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
 | focusY  | number | No   | Focus y of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -570,7 +666,7 @@ import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer = svgFileData.buffer;
+const svgBuffer: image.Buffer = svgFileData.buffer;
 let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
 let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
 svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {

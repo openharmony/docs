@@ -27,7 +27,7 @@ Before using the **ServiceExtensionContext** module, you must define a child cla
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import rpc from '@ohos.rpc';
 
-let commRemote: rpc.IRemoteObject; // Release the instance when the connection is disconnected.
+let commRemote: rpc.IRemoteObject | null; // Release the instance when the connection is disconnected.
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
       let context = this.context; // Obtain a ServiceExtensionContext instance.
@@ -54,8 +54,12 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -67,12 +71,11 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -131,8 +134,12 @@ Starts an ability. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -144,12 +151,11 @@ Starts an ability. This API uses a promise to return the result.
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -207,8 +213,12 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -220,12 +230,11 @@ Starts an ability with the start options specified. This API uses an asynchronou
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -270,10 +279,9 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -291,8 +299,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -304,12 +317,11 @@ Observe the following when using this API:
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -351,10 +363,9 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 Starts an ability with the account ID and start options specified. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -373,8 +384,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -386,12 +402,11 @@ Observe the following when using this API:
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -438,10 +453,9 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 Starts an ability with the account ID specified. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -465,8 +479,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -478,12 +497,11 @@ Observe the following when using this API:
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -542,8 +560,13 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -555,8 +578,6 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -615,8 +636,13 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -628,8 +654,6 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -690,8 +714,13 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -703,9 +732,6 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 
 **Example**
 
@@ -772,8 +798,13 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -785,8 +816,6 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -828,10 +857,9 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -842,12 +870,17 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -864,15 +897,13 @@ Observe the following when using this API:
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends extension {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -899,10 +930,9 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 Starts an ability with the caller information and start options specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -914,12 +944,17 @@ Observe the following when using this API:
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -934,16 +969,14 @@ Observe the following when using this API:
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends extension {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -974,10 +1007,9 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
 Starts an ability with the caller information specified. The caller information is carried in **want** and identified at the system service layer. The ability can obtain the caller information from the **want** parameter in the **onCreate** lifecycle callback. When this API is used to start an ability, the caller information carried in **want** is not overwritten by the current application information. The system service layer can obtain the initial caller information. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -998,8 +1030,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1016,17 +1053,15 @@ Observe the following when using this API:
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
-
 **Example**
 
 ```ts
-import extension from '@ohos.app.ability.ServiceExtensionAbility';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends extension {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want contains the information about the caller who starts the application.
     let localWant: Want = want;
@@ -1070,8 +1105,13 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1080,8 +1120,6 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1140,8 +1178,13 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1150,8 +1193,6 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1212,8 +1253,13 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1222,8 +1268,6 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1290,8 +1334,13 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1300,8 +1349,6 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1355,16 +1402,17 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1405,6 +1453,8 @@ Terminates this ability. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
@@ -1413,8 +1463,6 @@ Terminates this ability. This API uses a promise to return the result.
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1460,8 +1508,12 @@ Connects this ability to a ServiceExtensionAbility.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1472,8 +1524,6 @@ Connects this ability to a ServiceExtensionAbility.
 | 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1534,12 +1584,17 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the connection.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1550,8 +1605,6 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 | 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1609,12 +1662,13 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1642,7 +1696,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // Process input parameter errors.
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1672,12 +1726,13 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1706,7 +1761,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // Process input parameter errors.
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1733,7 +1788,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId**, and **parameters** (optional). If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -1743,8 +1798,12 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1754,8 +1813,6 @@ Observe the following when using this API:
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -1843,10 +1900,9 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1861,10 +1917,12 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1919,10 +1977,9 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
 You can use this API to carry start options.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1938,10 +1995,12 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -2001,10 +2060,9 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 Starts an ability. If the ability has multiple instances, the latest instance is started.
 This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2019,10 +2077,12 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -2108,8 +2168,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -2121,8 +2186,6 @@ Observe the following when using this API:
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -2174,9 +2237,11 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses a promise to return the result.
 
-Observe the following when using this API:
-- If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-- For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2196,11 +2261,13 @@ Observe the following when using this API:
 
 **Error codes**
 
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 16000050 | Internal error. |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message|
+| ------- | -------- |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -2248,9 +2315,10 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 Requests the specified foreground application to start the UIExtensionAbility of the corresponding type. The foreground application is specified by **bundleName** in **want.parameters**. If **bundleName** is left unspecified, or if the application specified by **bundleName** is not running in the foreground or does not exist, the UIExtensionAbility is directly started on the system UI. The UIExtensionAbility to start is determined by the combination of the **bundleName**, **abilityName**, and **moduleName** fields in **want**, and its type is determined by the **ability.want.params.uiExtensionType** field in **want.parameters**. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
-- If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-- For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> If **exported** of the target ability is **false** in cross-application scenarios, the specified foreground application or the caller (when the UIExtensionAbility is directly started on the system UI) must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2265,11 +2333,13 @@ Observe the following when using this API:
 
 **Error codes**
 
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 16000050 | Internal error. |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message|
+| ------- | -------- |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
 
 **Example**
 
@@ -2307,6 +2377,106 @@ class ServiceExtension extends ServiceExtensionAbility {
       let message = (err as BusinessError).message;
       console.error(`requestModalUIExtension failed, code is ${code}, message is ${message}`);
     }
+  }
+}
+```
+
+## ServiceExtensionContext.openLink<sup>12+<sup>
+openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
+
+Starts a UIAbility through App Linking. This API uses a promise to return the result.
+
+A URI in the standard format is passed in to the **link** field to start the target UIAbility based on the implicit Want matching rules. The target UIAbility must have the following filter characteristics to process links of App Linking:
+- The **actions** field contains **ohos.want.action.viewData**.
+- The **entities** field contains **entity.system.browsable**.
+- The **uris** field contains elements whose **scheme** is **https** and **autoVerify** is **true**.
+
+If an input parameter is invalid, for example, **link** is not set or is set to a URL not in the standard format, an exception is thrown. If the parameter verification is successful but an error occurs when starting the target UIAbility, the error information is returned through promise.
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+ 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| link | string | Yes| URL to open, which must be in the standard format.|
+| options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | No| Options of the URL.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
+| 16200001 | The caller has been released. |
+
+**Example**
+
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { BusinessError } from '@ohos.base';
+
+function log(info: string) {
+  console.error("[ServiceExtApp]:: ", info);
+}
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onCreate(want: Want) {
+    log("ServiceExtAbility OnCreate");
+  }
+
+  onRequest(want: Want, startId) {
+    log("ServiceExtAbility onRequest");
+    let link: string = "https://www.example.com"
+    let openLinkOptions: OpenLinkOptions = {
+      appLinkingOnly: false
+    };
+    try {
+      this.context.openLink(
+        link,
+        openLinkOptions
+      ).then(()=>{
+        log('open link success.');
+      }).catch((err: BusinessError)=>{
+        log('open link failed, errCode ' + JSON.stringify(err.code));
+      })
+    }
+    catch (e) {
+      log('exception occured, errCode ' + JSON.stringify(e.code));
+    }
+  }
+
+  onDestroy() {
+    log("ServiceExtAbility onDestroy");
   }
 }
 ```

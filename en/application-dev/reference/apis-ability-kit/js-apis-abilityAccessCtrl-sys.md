@@ -64,15 +64,11 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags: number = 1;
-try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-        console.log('grantUserGrantedPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
+  console.log('grantUserGrantedPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### grantUserGrantedPermission
@@ -117,17 +113,13 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags: number = 1;
-try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('grantUserGrantedPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('grantUserGrantedPermission success');
+  }
+});
 ```
 
 ### revokeUserGrantedPermission
@@ -177,15 +169,11 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags: number = 1;
-try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
-        console.log('revokeUserGrantedPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
+  console.log('revokeUserGrantedPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ### revokeUserGrantedPermission
@@ -230,17 +218,13 @@ import { BusinessError } from '@ohos.base';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags: number = 1;
-try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('revokeUserGrantedPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('revokeUserGrantedPermission success');
+  }
+});
 ```
 
 ### getPermissionFlags
@@ -288,15 +272,116 @@ import { BusinessError } from '@ohos.base';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-try {
-    atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
-        console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: number) => {
+  console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
+});
+```
+
+### setPermissionRequestToggleStatus<sup>12+</sup>
+
+setPermissionRequestToggleStatus(permissionName: Permissions, status: PermissionRequestToggleStatus): Promise&lt;void&gt;
+
+Sets the toggle state of a permission. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.DISABLE_PERMISSION_DIALOG
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name   | Type               | Mandatory| Description                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| permissionName | Permissions              | Yes  | Permission to be set with the toggle state. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| status | [PermissionRequestToggleStatus](#permissionrequesttogglestatus12)    | Yes  | Toggle state to set.            |
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Access Control Error Codes](errorcode-access-token.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The string size of permissionName is larger than 256, or the status value is invalid. |
+| 12100003 | The specified permission does not exist. |
+| 12100007 | Service is abnormal. |
+
+**Example**
+
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+
+let atManager = abilityAccessCtrl.createAtManager();
+let permission: Permissions = 'ohos.permission.CAMERA';
+
+atManager.setPermissionRequestToggleStatus(permission, abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED).then((err) => {
+  console.info('toggle_status: Set closed successful');
+}).catch((err: BusinessError) => {
+  console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+});
+```
+
+### getPermissionRequestToggleStatus<sup>12+</sup>
+
+getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;PermissionRequestToggleStatus&gt;
+
+Obtains the toggle state of a permission. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_SENSITIVE_PERMISSIONS
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name   | Type               | Mandatory| Description                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| permissionName | Permissions              | Yes  | Permission whose toggle state is to be obtained. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| Promise&lt;[PermissionRequestToggleStatus](#permissionrequesttogglestatus12)&gt; | Promise used to return the toggle state obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Access Control Error Codes](errorcode-access-token.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The string size of permissionName is larger than 256. |
+| 12100003 | The specified permission does not exist. |
+| 12100007 | Service is abnormal. |
+
+**Example**
+
+```ts
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+
+let atManager = abilityAccessCtrl.createAtManager();
+let permission: Permissions = 'ohos.permission.CAMERA';
+
+atManager.getPermissionRequestToggleStatus(permission).then((res) => {
+  if (res == abilityAccessCtrl.PermissionRequestToggleStatus.CLOSED) {
+    console.info('toggle_status: The toggle status is close');
+  } else {
+    console.info('toggle_status: The toggle status is open');
+  }
+}).catch((err: BusinessError) => {
+console.error('toggle_status: Code is ${err.code}, message is ${err.message}');
+});
 ```
 
 ### getVersion<sup>9+</sup>
@@ -324,6 +409,56 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let promise = atManager.getVersion();
 promise.then((data: number) => {
     console.log(`promise: data->${JSON.stringify(data)}`);
+});
+```
+
+### getPermissionsStatus<sup>12+</sup>
+
+getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;): Promise&lt;Array&lt;PermissionStatus&gt;&gt;
+
+Obtains the status of the specified permissions. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_SENSITIVE_PERMISSIONS (available only to system applications)
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name   | Type               | Mandatory| Description                         |
+| --------- | ------------------- | ---- | ------------------------------------------------------------ |
+| tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).           |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | Permissions whose status is to be obtained. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+
+**Return value**
+
+| Type         | Description                               |
+| :------------ | :---------------------------------- |
+| Promise&lt;Array&lt;[PermissionStatus](#permissionstatus12)&gt;&gt; | Promise used to return the permission status obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Access Control Error Codes](errorcode-access-token.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 12100001 | The parameter is invalid. The tokenID is 0, or permissionName exceeds 256 bytes.|
+| 12100002 | The specified tokenID does not exist. |
+| 12100007 | Service is abnormal. |
+
+**Example**
+
+```ts
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
+
+let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+let tokenID: number = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
+atManager.getPermissionsStatus(tokenID, ['ohos.permission.CAMERA']).then((data: abilityAccessCtrl.PermissionStatus) => {
+  console.log(`getPermissionsStatus success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionsStatus fail, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -447,6 +582,17 @@ Enumerates the operations that trigger permission grant state changes.
 | PERMISSION_REVOKED_OPER | 0      | Operation to revoke the permission.|
 | PERMISSION_GRANTED_OPER | 1      | Operation to grant the permission.|
 
+### PermissionRequestToggleStatus<sup>12+</sup>
+
+Enumerates the permission toggle states.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Name              |    Value| Description       |
+| ------------------ | ----- | ----------- |
+| CLOSED  | 0    | The permission request toggle is disabled.|
+| OPEN | 1     | The permission request toggle is enabled.|
+
 ### PermissionStateChangeInfo<sup>9+</sup>
 
 Defines detailed information about the permission grant state change.
@@ -455,10 +601,24 @@ Defines detailed information about the permission grant state change.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name          | Type                      | Readable| Writable| Description               |
+| Name          | Type                      | Read Only| Mandatory| Description               |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
-| change         | [PermissionStateChangeType](#permissionstatechangetype9) | Yes  | No  | Operation that triggers the permission grant state change.       |
-| tokenID        | number                    | Yes  | No  | Application token ID.|
-| permissionName | Permissions                    | Yes  | No  | Permission whose grant state changes. For details about the permissions, see the [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md). |
+| change         | [PermissionStateChangeType](#permissionstatechangetype9) | Yes  | Yes  | Operation that triggers the permission grant state change.       |
+| tokenID        | number                    | Yes  | Yes  | Application token ID.|
+| permissionName | Permissions                    | Yes  | Yes  | Permission whose grant state changes. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 
-<!--no_check-->
+### PermissionStatus<sup>12+</sup>
+
+Enumerates the permission states.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Name              |    Value| Description       |
+| ------------------ | ----- | ----------- |
+| DENIED  | -1    | The permission is not granted.|
+| GRANTED | 0     | The permission is granted.|
+| NOT_DETERMINED | 1     | The permission state is not determined.|
+| INVALID | 2     | The permission is invalid.|
+| RESTRICTED | 3     | The permission is restricted.|

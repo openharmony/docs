@@ -18,6 +18,8 @@ import dataPreferences from '@ohos.data.preferences';
 
 ## 常量
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
@@ -32,6 +34,8 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 获取Preferences实例，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -41,6 +45,15 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 | context  | Context            | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。                                                 |
 | name     | string                                           | 是   | Preferences实例的名称。                                      |
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -92,6 +105,8 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 获取Preferences实例，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -106,6 +121,15 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 | 类型                                       | 说明                               |
 | ------------------------------------------ | ---------------------------------- |
 | Promise&lt;[Preferences](#preferences)&gt; | Promise对象，返回Preferences实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -156,6 +180,8 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 获取Preferences实例，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -168,10 +194,13 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
+| 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
+| 15500000 | Inner error.                  |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
 
@@ -229,6 +258,8 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 获取Preferences实例，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -246,10 +277,13 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
+| 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
 
@@ -304,6 +338,8 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 获取Preferences实例，此为同步接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -321,10 +357,13 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode.   |
 | 15501002 | The data group id is not valid. |
 
@@ -367,6 +406,8 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -379,10 +420,12 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------|
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 
 **示例：**
@@ -433,6 +476,8 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -450,10 +495,12 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------|
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 
 **示例：**
@@ -502,6 +549,8 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -514,10 +563,13 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                           |
-| -------- | ---------------------------------- |
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
+| 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid. |
@@ -573,6 +625,8 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -590,10 +644,13 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                           |
-| -------- | ---------------------------------- |
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
+| 15500000 | Inner error.                   |
 | 15500010 | Failed to delete preferences file. |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid. |
@@ -649,6 +706,8 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -658,6 +717,15 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 | context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。                                         |
 | name     | string                                | 是   | Preferences实例的名称。                              |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -708,6 +776,8 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -722,6 +792,15 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -770,6 +849,8 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -778,6 +859,15 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 | ------- | ------------------------------------- | ---- | ----------------------- |
 | context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -813,6 +903,8 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -825,10 +917,13 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
+| 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
 
@@ -883,6 +978,8 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -900,10 +997,13 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
+| 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode. |
 | 15501002 | The data group id is not valid.     |
 
@@ -956,6 +1056,8 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -967,10 +1069,13 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
+| 15500000 | Inner error.                   |
 | 15501001 | Only supported in stage mode.   |
 | 15501002 | The data group id is not valid. |
 
@@ -1004,6 +1109,8 @@ class EntryAbility extends UIAbility {
 
 Preferences实例配置选项。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称        | 类型   | 必填 | 说明                                                         |
@@ -1025,15 +1132,26 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                                       | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype)                      | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
-| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误对象。 |
+| 参数名   | 类型                                         | 必填 | 说明               |
+| -------- | -------------------------------------------- | ---- |---------------------------|
+| key      | string                                       | 是   | 要获取的存储Key名称，不能为空。   |
+| defValue | [ValueType](#valuetype)                      | 是   | 默认返回值。 |
+| callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | 是   | 回调函数。当获取成功时，err为undefined，data为键对应的值；否则err为错误对象。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1055,20 +1173,31 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
  **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
+| 参数名   | 类型                    | 必填 | 说明  |
+| -------- | ----------------------- | ---- |--------|
+| key      | string                  | 是   | 要获取的存储Key名称，不能为空。  |
+| defValue | [ValueType](#valuetype) | 是   | 默认返回值。 |
 
 **返回值：**
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
 | Promise<[ValueType](#valuetype)&gt; | Promise对象，返回键对应的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1089,20 +1218,31 @@ getSync(key: string, defValue: ValueType): ValueType
 
 从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，此为同步接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
-| 参数名   | 类型                    | 必填 | 说明                                                         |
-| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                  | 是   | 要获取的存储Key名称，不能为空。                              |
-| defValue | [ValueType](#valuetype) | 是   | 默认返回值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
+| 参数名   | 类型                    | 必填 | 说明            |
+| -------- | ----------------------- | ---- |---------------------|
+| key      | string                  | 是   | 要获取的存储Key名称，不能为空。  |
+| defValue | [ValueType](#valuetype) | 是   | 默认返回值。 |
 
 **返回值：**
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
 | [ValueType](#valuetype) | 返回键对应的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1116,6 +1256,8 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 从缓存的Preferences实例中获取所有键值数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1123,6 +1265,15 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;Object&gt; | 是   | 回调函数。当获取成功，err为undefined，value为所有键值数据；否则err为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Mandatory parameters are left unspecified.|
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1154,6 +1305,8 @@ getAll(): Promise&lt;Object&gt;
 
 从缓存的Preferences实例中获取所有键值数据。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
@@ -1161,6 +1314,14 @@ getAll(): Promise&lt;Object&gt;
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
 | Promise&lt;Object&gt; | Promise对象，返回含有所有键值数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1190,6 +1351,8 @@ getAllSync(): Object
 
 从缓存的Preferences实例中获取所有键值数据，此为同步接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
@@ -1197,6 +1360,14 @@ getAllSync(): Object
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
 | Object | 返回含有所有键值数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1220,15 +1391,30 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
 
+  > **说明：**
+  >
+  > 当对应的键已经存在时，put()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| key      | string                    | 是   | 要修改的存储的Key，不能为空。                                |
-| value    | [ValueType](#valuetype)   | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误对象。   |
+| 参数名   | 类型                      | 必填 | 说明                       |
+| -------- | ------------------------- | ---- |-------------------------|
+| key      | string                    | 是   | 要修改的存储的Key，不能为空。 |
+| value    | [ValueType](#valuetype)   | 是   | 存储的新值。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据写入成功，err为undefined；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1251,20 +1437,35 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
 
+  > **说明：**
+  >
+  > 当对应的键已经存在时，put()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
-| 参数名 | 类型                    | 必填 | 说明                                                         |
-| ------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key    | string                  | 是   | 要修改的存储的Key，不能为空。                                |
-| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
+| 参数名 | 类型                    | 必填 | 说明                         |
+| ------ | ----------------------- | ---- |--------------------------|
+| key    | string                  | 是   | 要修改的存储的Key，不能为空。  |
+| value  | [ValueType](#valuetype) | 是   | 存储的新值。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1286,14 +1487,29 @@ putSync(key: string, value: ValueType): void
 
 将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
+  > **说明：**
+  >
+  > 当对应的键已经存在时，putSync()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
 
 | 参数名 | 类型                    | 必填 | 说明                                                         |
-| ------ | ----------------------- | ---- | ------------------------------------------------------------ |
-| key    | string                  | 是   | 要修改的存储的Key，不能为空。                                |
-| value  | [ValueType](#valuetype) | 是   | 存储的新值。支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array类型。 |
+| ------ | ----------------------- | ---- | ------------------------ |
+| key    | string                  | 是   | 要修改的存储的Key，不能为空。 |
+| value  | [ValueType](#valuetype) | 是   | 存储的新值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1308,6 +1524,8 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1316,6 +1534,15 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                       | 是   | 要检查的存储key名称，不能为空。                              |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回Preferences实例是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1342,6 +1569,8 @@ has(key: string): Promise&lt;boolean&gt;
 
 检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1355,6 +1584,15 @@ has(key: string): Promise&lt;boolean&gt;
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise对象。返回Preferences实例是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1380,6 +1618,8 @@ hasSync(key: string): boolean
 
 检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，此为同步接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1393,6 +1633,15 @@ hasSync(key: string): boolean
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | boolean | 返回Preferences实例是否包含给定key的存储键值对，true表示存在，false表示不存在。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1412,6 +1661,8 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1420,6 +1671,15 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | 是   | 要删除的存储Key名称，不能为空。                      |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当删除成功，err为undefined；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1442,6 +1702,8 @@ delete(key: string): Promise&lt;void&gt;
 
 从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1455,6 +1717,15 @@ delete(key: string): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1476,6 +1747,8 @@ deleteSync(key: string): void
 
 从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1483,6 +1756,15 @@ deleteSync(key: string): void
 | 参数名 | 类型   | 必填 | 说明                            |
 | ------ | ------ | ---- | ------------------------------- |
 | key    | string | 是   | 要删除的存储key名称，不能为空。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1497,6 +1779,8 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1504,6 +1788,15 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当保存成功，err为undefined；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Mandatory parameters are left unspecified.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1526,6 +1819,8 @@ flush(): Promise&lt;void&gt;
 
 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
@@ -1533,6 +1828,14 @@ flush(): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1554,6 +1857,8 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1561,6 +1866,15 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当清除成功，err为undefined；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Mandatory parameters are left unspecified.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1583,6 +1897,8 @@ clear(): Promise&lt;void&gt;
 
 清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **返回值：**
@@ -1590,6 +1906,14 @@ clear(): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1611,6 +1935,8 @@ clearSync(): void
 
 清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **示例：**
@@ -1626,6 +1952,8 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
 订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1634,6 +1962,15 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 | -------- | -------- | ---- | ---------------------------------------- |
 | type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。 |
 | callback | Callback&lt;string&gt; | 是   | 回调函数。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1660,6 +1997,8 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1671,10 +2010,12 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                               |
+| 错误码ID | 错误信息                                |
 | -------- | -------------------------------------- |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                           |
 | 15500019 | Failed to obtain subscription service. |
 
 **示例：**
@@ -1696,11 +2037,64 @@ preferences.flush((err: BusinessError) => {
 })
 ```
 
+### on('dataChange')<sup>12+</sup>
+
+on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&lt;string, ValueType&gt;&gt;): void
+
+精确订阅数据变更，只有被订阅的key值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件类型，固定值'dataChange'，表示精确的数据变更。           |
+| keys     | Array&lt;string&gt;                                          | 是   | 需要订阅的key集合。                                          |
+| callback | Callback&lt;Record&lt;string, [ValueType](#valuetype)&gt;&gt; | 是   | 回调函数。回调支持返回多个键值对，其中键为发生变更的订阅key，值为变更后的数据：支持number、string、boolean、Array\<number>、Array\<string>、Array\<boolean>、Uint8Array、object类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+
+let observer = (data: Record<string, dataPreferences.ValueType>) => {
+  for (const keyValue of Object.entries(data)) {
+    console.info(`observer : ${keyValue}`)
+  }
+  console.info("The observer called.")
+}
+let keys = ['name', 'age']
+preferences.on('dataChange', keys, observer);
+preferences.putSync('name', 'xiaohong');
+preferences.putSync('weight', 125);
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
+})
+```
+
 ### off('change')
 
 off(type: 'change', callback?: Callback&lt;string&gt;): void
 
 取消订阅数据变更。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1710,6 +2104,15 @@ off(type: 'change', callback?: Callback&lt;string&gt;): void
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件类型，固定值'change'，表示数据变更。                     |
 | callback | Callback&lt;string&gt; | 否   | 需要取消的回调函数，不填写则全部取消。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1737,6 +2140,8 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 取消订阅进程间数据变更。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **参数：**
@@ -1745,6 +2150,15 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件类型，固定值'multiProcessChange'，表示多进程间的数据变更。 |
 | callback | Callback&lt;string&gt; | 否   | 需要取消的回调函数，不填写则全部取消。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
 
 **示例：**
 
@@ -1765,18 +2179,74 @@ preferences.flush((err: BusinessError) => {
 })
 preferences.off('multiProcessChange', observer);
 ```
+### off('dataChange')<sup>12+</sup>
+
+off(type: 'dataChange', keys: Array&lt;string&gt;,  callback?: Callback&lt;Record&lt;string, ValueType&gt;&gt;): void
+
+取消精确订阅数据变更。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 事件类型，固定值'dataChange'，表示精确的数据变更。           |
+| keys     | Array&lt;string&gt;                                          | 是   | 需要取消订阅的key集合，当keys为空数组时，表示取消订阅全部key；当keys为非空数组时，表示只取消订阅key集合中的key。 |
+| callback | Callback&lt;Record&lt;string, [ValueType](#valuetype)&gt;&gt; | 否   | 需要取消的回调函数，若callback不填写，表示所有的callback都需要处理；若callback填写，表示只处理该callback。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 15500000 | Inner error.                   |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+
+let observer = (data: Record<string, dataPreferences.ValueType>) => {
+  for (const keyValue of Object.entries(data)) {
+    console.info(`observer : ${keyValue}`)
+  }
+  console.info("The observer called.")
+}
+let keys = ['name', 'age']
+preferences.on('dataChange', keys, observer);
+preferences.putSync('name', 'xiaohong');
+preferences.putSync('weight', 125);
+preferences.flush((err: BusinessError) => {
+  if (err) {
+    console.error("Failed to flush. Cause: " + err);
+    return;
+  }
+  console.info("Succeeded in flushing.");
+})
+preferences.off('dataChange', keys, observer);
+```
+
 ## ValueType
 
 用于表示允许的数据字段类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 类型            | 说明                              |
-| --------------- | --------------------------------- |
-| number          | 表示值类型为数字。                |
-| string          | 表示值类型为字符串。              |
-| boolean         | 表示值类型为布尔值。              |
-| Array\<number>  | 表示值类型为数字类型的数组。      |
-| Array\<boolean> | 表示值类型为布尔类型的数组。      |
-| Array\<string>  | 表示值类型为字符串类型的数组。    |
-| Uint8Array<sup>11+</sup>      | 表示值类型为8位无符号整型的数组。 |
+| 类型                       | 说明                |
+|--------------------------|-------------------|
+| number                   | 表示值类型为数字。         |
+| string                   | 表示值类型为字符串。        |
+| boolean                  | 表示值类型为布尔值。        |
+| Array\<number>           | 表示值类型为数字类型的数组。    |
+| Array\<boolean>          | 表示值类型为布尔类型的数组。    |
+| Array\<string>           | 表示值类型为字符串类型的数组。   |
+| Uint8Array<sup>11+</sup> | 表示值类型为8位无符号整型的数组。 |
+| object<sup>12+</sup>     | 表示值类型为对象。 |
+| bigint<sup>12+</sup>     | 表示值类型为任意精度格式的整数。  |

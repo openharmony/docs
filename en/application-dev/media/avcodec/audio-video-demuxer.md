@@ -1,4 +1,4 @@
-# Audio and Video Demuxing (C/C++)
+# Audio and Video Demuxing
 
 You can call the native APIs provided by the **AVDemuxer** module to demux audio and video, that is, to extract audio and video frame data from bit stream data.
 
@@ -39,13 +39,14 @@ Read [AVDemuxer](../../reference/apis-avcodec-kit/_a_v_demuxer.md) and [AVSource
 
 > **NOTE**
 >
-> - To call the demuxing APIs to parse a network playback path, declare the **ohos.permission.INTERNET** permission by following the instructions provided in [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+> - To call the demuxer APIs to parse a network playback path, declare the **ohos.permission.INTERNET** permission by following the instructions provided in [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 > - To call the demuxer APIs to write a local file, request the **ohos.permission.READ_MEDIA** permission by following the instructions provided in [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 > - You can also use **ResourceManager.getRawFd** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
 
 ### Linking the Dynamic Library in the CMake Script
 
 ``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
@@ -61,10 +62,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    #include <multimedia/player_framework/native_avbuffer.h>
+   #include <fcntl.h>
+   #include <sys/stat.h>
    ```
 
-2. Create a demuxer instance.
-
+2. Create a resource object.
    ```c++
    // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
    std::string filePath = "test.mp4";
@@ -85,8 +87,70 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    // (Optional) Create a source resource object for the URI resource file.
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
+
+   // (Optional) Create a source resource object for the custom data source. Before the operation, you must implement AVSourceReadAt.
+   // Add g_filePath when OH_AVSource_CreateWithDataSource is used.
+   // g_filePath = filePath ;
+   // OH_AVDataSource dataSource = {fileSize, AVSourceReadAt};
+   // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
    ```
 
+   Implement the **AVSourceReadAt** API before creating the resource object.
+
+   ```c++
+   // Add the header file.
+   #include <fstream>
+   ```
+
+   ```c++
+   static std::string g_filePath;
+
+   enum MediaDataSourceError : int32_t {
+      SOURCE_ERROR_IO = -2,
+      SOURCE_ERROR_EOF = -1
+   };
+
+   int32_t AVSourceReadAt(OH_AVBuffer *data, int32_t length, int64_t pos)
+   {
+      if (data == nullptr) {
+         printf("AVSourceReadAt : data is nullptr!\n");
+         return MediaDataSourceError::SOURCE_ERROR_IO;
+      }
+
+      std::ifstream infile(g_filePath, std::ofstream::binary);
+      if (!infile.is_open()) {
+         printf("AVSourceReadAt : open file failed! file:%s\n", g_filePath.c_str());
+         return MediaDataSourceError::SOURCE_ERROR_IO; // Failed to open the file.
+      }
+
+      infile.seekg(0, std::ios::end);
+      int64_t fileSize = infile.tellg();
+      if (pos >= fileSize) {
+         printf("AVSourceReadAt : pos over or equals file size!\n");
+         return MediaDataSourceError::SOURCE_ERROR_EOF; // pos is already at the end of the file and cannot be read.
+      }
+
+      if (pos + length > fileSize) {
+         length of length = fileSize - pos; // When the sum of pos and length exceeds the file size, the data from pos to the end of the file is read.
+      }
+
+      infile.seekg(pos, std::ios::beg);
+      if (length <= 0) {
+         printf("AVSourceReadAt : raed length less than zero!\n");
+         return MediaDataSourceError::SOURCE_ERROR_IO;
+      }
+      char* buffer = new char[length];
+      infile.read(buffer, length);
+      infile.close();
+
+      memcpy(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(data)),
+         buffer, length);
+      delete[] buffer;
+
+      return length;
+   }
+   ```
+3. Create a demuxer instance.
    ```c++
    // Create a demuxer for the resource object.
    OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
@@ -95,7 +159,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
-3. (Optional) Register a [callback to obtain the media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback). If the stream is not a DRM stream or the [media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo) has been obtained, you can skip this step.
+4. (Optional) Register a [callback to obtain the media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback). If the stream is not a DRM stream or the [media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo) has been obtained, you can skip this step.
 
    Import the header file.
    ```c++
@@ -124,7 +188,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
 
-4. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
+5. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
 
    ```c++
    // Obtain the number of tracks from the file source information.
@@ -138,7 +202,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-5. (Optional) Obtain the track index and format. If you know the track information, skip this step.
+6. (Optional) Obtain the track index and format. If you know the track information, skip this step.
 
    ```c++
    uint32_t audioTrackIndex = 0;
@@ -164,7 +228,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-6. Select a track, from which the demuxer reads data.
+7. Select a track, from which the demuxer reads data.
 
    ```c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
@@ -179,7 +243,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-7. (Optional) Seek to the specified time for the selected track.
+8. (Optional) Seek to the specified time for the selected track.
 
    ```c++
    // Demuxing is performed from this time.
@@ -189,7 +253,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-8. Start demuxing and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
+9. Start demuxing and cyclically obtain frame data. The code snippet below uses a file that contains audio and video tracks as an example.
 
    ```c++
    // Create a buffer to store the data obtained after demuxing.
@@ -231,7 +295,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVBuffer_Destroy(buffer);
    ```
 
-9. Destroy the demuxer instance.
+10. Destroy the demuxer instance.
 
    ```c++
    // Manually set the instance to NULL after OH_AVSource_Destroy is called. Do not call this API repeatedly for the same instance; otherwise, a program error occurs.

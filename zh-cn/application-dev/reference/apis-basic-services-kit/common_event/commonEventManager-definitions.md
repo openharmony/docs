@@ -11,7 +11,7 @@
 * COMMON_EVENT_LOCKED_BOOT_COMPLETED
 （预留事件，暂未支持）表示用户已完成引导，系统已加载，但屏幕仍锁定的公共事件的操作。
   - 值：usual.event.LOCKED_BOOT_COMPLETED
-  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 * [COMMON_EVENT_SHUTDOWN](../common_event/commonEvent-powermgr.md#common_event_shutdown)
 表示设备正在关闭的公共事件的操作。
@@ -207,7 +207,7 @@
 * COMMON_EVENT_USER_STARTING
 （预留事件，暂未支持）表示要启动用户的公共事件的动作。
   - 值：usual.event.USER_STARTING
-  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 * [COMMON_EVENT_USER_UNLOCKED](../common_event/commonEvent-account.md#common_event_user_unlocked)
 设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。
@@ -217,7 +217,7 @@
 * COMMON_EVENT_USER_STOPPING
 （预留事件，暂未支持）表示要停止用户的公共事件的动作。
   - 值：usual.event.USER_STOPPING
-  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 * COMMON_EVENT_USER_STOPPED
 （预留事件，暂未支持）表示用户已停止的公共事件的动作。
@@ -592,32 +592,32 @@ Wi-Fi P2P群组信息已更改。
 * COMMON_EVENT_DISK_REMOVED
 （预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
   - 值：usual.event.data.DISK_BAD_REMOVAL
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 * COMMON_EVENT_DISK_UNMOUNTED
 （预留事件，暂未支持）部存储设备状态变更为卸载时发送此公共事件。
   - 值：usual.event.data.DISK_UNMOUNTABLE
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 * COMMON_EVENT_DISK_MOUNTED
 （预留事件，暂未支持）外部存储设备状态变更为挂载时发送此公共事件。
   - 值：usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 * COMMON_EVENT_DISK_BAD_REMOVAL
 （预留事件，暂未支持）外部存储设备状态变更为挂载状态下移除时发送此公共事件。
   - 值：usual.event.data.DISK_REMOVED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 * COMMON_EVENT_DISK_UNMOUNTABLE
 （预留事件，暂未支持）外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。
   - 值：usual.event.data.DISK_UNMOUNTED
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 * COMMON_EVENT_DISK_EJECT
 （预留事件，暂未支持）用户已表示希望删除外部存储介质时发送此公共事件。
   - 值：usual.event.data.DISK_EJECT
-  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER
+  - 订阅者所需权限：ohos.permission.STORAGE_MANAGER，该权限仅系统应用可申请。
 
 * [COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup> ](../common_event/commonEvent-filemanagement.md#common_event_volume_removed9)
 外部存储设备状态变更为移除时发送此公共事件。
@@ -637,17 +637,17 @@ Wi-Fi P2P群组信息已更改。
 * COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
 （预留事件，暂未支持）表示帐户可见更改的公共事件的动作。
   - 值：usual.event.data.VISIBLE_ACCOUNTS_UPDATED
-  - 订阅者所需权限：ohos.permission.GET_APP_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.GET_APP_ACCOUNTS，该权限仅系统应用可申请。
 
 * COMMON_EVENT_ACCOUNT_DELETED
 （预留事件，暂未支持）删除帐户的公共事件的动作。
   - 值：usual.event.data.ACCOUNT_DELETED
-  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+  - 订阅者所需权限：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 * COMMON_EVENT_FOUNDATION_READY
 （预留事件，暂未支持）表示foundation已准备好的公共事件的动作。
   - 值：usual.event.data.FOUNDATION_READY
-  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
+  - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED（该权限仅系统应用可申请）
 
 * COMMON_EVENT_AIRPLANE_MODE_CHANGED
 表示设备飞行模式已更改的公共事件的动作。
@@ -771,3 +771,9 @@ Wi-Fi P2P群组信息已更改。
 
 * [COMMON_EVENT_CONNECTIVITY_CHANGE<sup>10+</sup> ](../common_event/commonEvent-netmanager.md#common_event_connectivity_change10)
 提示网络连接状态变化。
+
+* [COMMON_EVENT_MINORSMODE_ON<sup>12+<sup> ](../common_event/commonEvent-accountkit.md#common_event_minorsmode_on12)
+表示未成年人模式开启。
+
+* [COMMON_EVENT_MINORSMODE_OFF<sup>12+<sup> ](../common_event/commonEvent-accountkit.md#common_event_minorsmode_off12)
+表示未成年人模式关闭。

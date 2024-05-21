@@ -1,0 +1,122 @@
+# Creating an ArkTs Runtime Environment Using Node-API
+
+## **Scenario**
+
+After creating a thread using **pthread_create**, you can use **napi_create_ark_runtime** to create an ArkTS runtime environment and load the ArkTS modules through the created runtime environment. Currently, the ArkTS modules support only the **console** interface and the **timer** feature. To destroy an ArkTS runtime environment that is not required, use **napi_destroy_ark_runtime**.
+
+## Example
+
+1. Declare the APIs, configure compile settings, and register the modules.
+
+   **Declare the APIs.**
+
+   ```ts
+   // index.d.ts
+   export const createArkRuntime: () => object;
+   ```
+
+   **Configure compile settings.**
+
+   ```
+   // CMakeLists.txt
+   # the minimum version of CMake.
+   cmake_minimum_required(VERSION 3.4.1)
+   project(MyApplication)
+   
+   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   
+   include_directories(${NATIVERENDER_ROOT_PATH}
+                       ${NATIVERENDER_ROOT_PATH}/include)
+   add_library(entry SHARED create_ark_runtime.cpp)
+   target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
+   ```
+
+   **Register modules.**
+
+   ```cpp
+   // create_ark_runtime.cpp
+   EXTERN_C_START
+   static napi_value Init(napi_env env, napi_value exports)
+   {
+       napi_property_descriptor desc[] = {
+           { "createArkRuntime", nullptr, CreateArkRuntime, nullptr, nullptr, nullptr, napi_default, nullptr }
+       };
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       return exports;
+   }
+   EXTERN_C_END
+   
+   static napi_module nativeModule = {
+       .nm_version = 1,
+       .nm_flags = 0,
+       .nm_filename = nullptr,
+       .nm_register_func = Init,
+       .nm_modname = "entry",
+       .nm_priv = nullptr,
+       .reserved = { 0 },
+   };
+   
+   extern "C" __attribute__((constructor)) void RegisterQueueWorkModule()
+   {
+       napi_module_register(&nativeModule);
+   }
+   ```
+
+2. Create a thread and an ArkTS runtime environment.
+
+   ```cpp
+   // create_ark_runtime.cpp
+   #include <pthread.h>
+   
+   #include "napi/native_api.h"
+   
+   static void *CreateArkRuntimeFunc(void *arg)
+   {
+       // 1. Create the basic runtime environment.
+       napi_env env;
+       napi_status ret = napi_create_ark_runtime(&env);
+       if (ret != napi_ok) {
+           return nullptr;
+       }
+   
+       // 2. Load custom modules.
+       napi_value objUtils;
+       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
+       if (ret != napi_ok) {
+           return nullptr;
+       }
+   
+       // 3. Use the logger in ArkTS.
+       napi_value logger;
+       ret = napi_get_named_property(env, objUtils, "Logger", &logger);
+       if (ret != napi_ok) {
+           return nullptr;
+       }
+       ret = napi_call_function(env, objUtils, logger, 0, nullptr, nullptr);
+   
+       // 4. Destroy the ArkTS runtime environment.
+       ret = napi_destroy_ark_runtime(&env);
+   
+       return nullptr;
+   }
+   
+   
+   static napi_value CreateArkRuntime(napi_env env, napi_callback_info info)
+   {
+       pthread_t tid;
+       pthread_create(&tid, nullptr, CreateArkRuntimeFunc, nullptr);
+       pthread_join(tid, nullptr);
+       return nullptr;
+   }
+   ```
+
+3. The following provides the sample ArkTS code.
+
+   ```ts
+   // ObjectUtils.ets
+   export function Logger() {
+       console.log("print log");
+   }
+   ```
+
+   

@@ -137,6 +137,19 @@ The **authType** parameter set in **getAvailableStatus** of the **userAuth** mod
 
 Check that the related type of credential has been enrolled in the device.
 
+## 12500011 Authentication Canceled by the User Authentication Widget
+
+**Error Message**
+
+Indicates that this operation is canceled from widget's navigation button.
+
+**Possible Causes**
+
+The authentication is canceled by the user, who tapped the authentication widget button to apply custom authentication.
+
+**Solution**
+
+Initiate the authentication again.
 ## 12700001 Failed to Enroll Faces
 
 **Error Message**

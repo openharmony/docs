@@ -17,7 +17,7 @@ HashSet和[TreeSet](js-apis-treeset.md)相比，HashSet中的数据无序存放�
 ## 导入模块
 
 ```ts
-import HashSet from '@ohos.util.HashSet';
+import { HashSet } from '@kit.ArkTS';
 ```
 
 ## HashSet

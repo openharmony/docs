@@ -89,7 +89,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-| 名称      | 类型   | 可读 | 可写 | 说明           |
+| 名称      | 类型   | 只读 | 可写 | 说明           |
 | --------- | ------ | --- | ---- | -------------- |
 | appSize   | number | 是 | 否 | app数据大小（不包含空目录）（单位为Byte）    |
 | cacheSize | number | 是 | 否 | 缓存数据大小（单位为Byte）   |

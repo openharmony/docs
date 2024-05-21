@@ -75,7 +75,7 @@ onResult(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#call
 
 被拉起的Ability扩展调用terminateSelfWithResult时会先触发本回调函数，再触发OnRelease。
 
-本回调内可处理对端Ability的结果数据，可参考[AbilityResult](../../apis-as/js-apis-inner-ability-abilityResult.md)。
+本回调内可处理对端Ability的结果数据，可参考[AbilityResult](../../apis-ability-kit/js-apis-inner-ability-abilityResult.md)。
 
 **参数：**
 
@@ -120,6 +120,15 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 | 参数名               | 参数类型                                 | 必填 | 参数描述                                                                                                      |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false。 |
+| placeholder<sup>12+<sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
+| dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI。 |
+
+## DpiFollowStrategy<sup>12+</sup>
+
+| 名称                             | 描述             |
+| -------------------------------- | --------------- |
+| FOLLOW_HOST_DPI                  | 表示DPI跟随宿主。 |
+| FOLLOW_UI_EXTENSION_ABILITY_DPI  | 表示DPI跟随UIExtensionAbility。 |
 
 ## UIExtensionProxy
 
@@ -232,6 +241,16 @@ off(type: 'syncReceiverRegister', callback?: (proxy: UIExtensionProxy) => void):
 
 ```ts
 // 组件使用示例：
+import { ComponentContent } from "@ohos.arkui.node";
+class Params {
+}
+@Builder
+function LoadingBuilder(params: Params) {
+  Column() {
+   LoadingProgress()
+      .color(Color.Blue)
+  }
+}
 @Entry
 @Component
 struct Second {
@@ -242,6 +261,7 @@ struct Second {
   @State wid: number = 300
   @State hei: number = 300
   private proxy: UIExtensionProxy | null = null;
+  private contentNode = new ComponentContent(this.getUIContext(), wrapBuilder(LoadingBuilder), new Params);
 
 
   build() {
@@ -255,8 +275,10 @@ struct Second {
           abilityName: "UIExtensionProvider",
           parameters: {
             "ability.want.params.uiExtensionType": "dialog"
-          }
-        })
+          }},
+          {
+            placeholder: this.contentNode
+          })
           .width(this.wid)
           .height(this.hei)
           .border({width: 5, color: Color.Blue})

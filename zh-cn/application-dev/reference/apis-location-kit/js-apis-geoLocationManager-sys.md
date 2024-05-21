@@ -53,9 +53,9 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 是 | 否 | 表示地名信息是否来自于逆地理编码模拟功能。<br>**系统API**：此接口为系统接口。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| isFromMock | Boolean | 否 | 是 | 否 | true：地名信息来自于逆地理编码模拟功能<br/>false：地名信息不是来自于逆地理编码模拟功能<br/>**系统API**：此接口为系统接口。 |
 
 
 ## Location
@@ -64,9 +64,9 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | 是 | 否 | 表示位置信息是否来自于位置模拟功能。<br>**系统API**：此接口为系统接口。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| isFromMock | Boolean | 否 | 是 | 否 | true：位置信息来自于位置模拟功能<br/>false：位置信息不是来自于位置模拟功能<br/>**系统API**：此接口为系统接口。 |
 
 
 ## ReverseGeocodingMockInfo
@@ -77,10 +77,10 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | 是 | 是 | 表示经纬度信息。 |
-| geoAddress |  [GeoAddress](#geoaddress) | 是 | 是 |表示地名信息。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | 是 | 是 | 是 | 表示经纬度信息。 |
+| geoAddress |  [GeoAddress](#geoaddress) | 是 | 是 | 是 |表示地名信息。 |
 
 
 ## LocationMockConfig
@@ -91,10 +91,10 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| timeInterval | number | 是 | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
-| locations | Array&lt;[Location](#location)&gt; | 是 | 是 | 表示模拟位置数组。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| timeInterval | number | 是 | 是 | 是 | 表示模拟位置上报的时间间隔，单位是秒。 |
+| locations | Array&lt;[Location](#location)&gt; | 是 | 是 | 是 | 表示模拟位置数组。 |
 
 ## LocatingRequiredDataConfig<sup>10+</sup>
 
@@ -104,12 +104,12 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 是 | 是 | 表示请求获取数据的类型。 |
-| needStartScan |  boolean | 是 | 是 | 表示是否需要发起扫描。 |
-| scanInterval |  number | 是 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
-| scanTimeout |  number | 是 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 是 | 是 | 是 | 表示请求获取数据的类型。 |
+| needStartScan |  boolean | 是 | 是 | 是 | true：需要发起扫描<br/>false：不需要发起扫描 |
+| scanInterval |  number | 否 | 是 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
+| scanTimeout |  number | 否 | 是 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
 
 
 ## LocatingRequiredData<sup>10+</sup>
@@ -120,10 +120,10 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| wifiData | [WifiScanInfo](#wifiscaninfo10) | 是 | 否 | 表示WiFi扫描结果。 |
-| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | 是 | 否 | 表示蓝牙扫描结果。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| wifiData | [WifiScanInfo](#wifiscaninfo10) | 否 | 是 | 否 | 表示WiFi扫描结果。 |
+| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | 否 | 是 | 否 | 表示蓝牙扫描结果。 |
 
 
 ## WifiScanInfo<sup>10+</sup>
@@ -134,13 +134,13 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | WiFi热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 是 | 否 | WiFi热点的BSSID。 |
-| rssi | number | 是 | 否 | WiFi热点的信号强度(dBm)。 |
-| frequency | number | 是 | 否 | WiFi热点的频率。 |
-| timestamp | number | 是 | 否 | 时间戳。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| ssid | string | 是 | 是 | 否 | WiFi热点的SSID，编码格式为UTF-8。 |
+| bssid | string | 是 | 是 | 否 | WiFi热点的BSSID。 |
+| rssi | number | 是 | 是 | 否 | WiFi热点的信号强度(dBm)。 |
+| frequency | number | 是 | 是 | 否 | WiFi热点的频率。 |
+| timestamp | number | 是 | 是 | 否 | 时间戳。 |
 
 
 ## BluetoothScanInfo<sup>10+</sup>
@@ -151,12 +151,12 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 **系统API**：此接口为系统接口。
 
-| 名称 | 类型 | 可读|可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| deviceName | string | 是 | 否 | 蓝牙设备名称。 |
-| macAddress | string | 是 | 否 | 蓝牙设备的MAC地址。 |
-| rssi | number | 是 | 否 | 蓝牙设备的信号强度(dBm)。 |
-| timestamp | number | 是 | 否 | 时间戳。 |
+| 名称 | 类型 | 必填 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| deviceName | string | 是 | 是 | 否 | 蓝牙设备名称。 |
+| macAddress | string | 是 | 是 | 否 | 蓝牙设备的MAC地址。 |
+| rssi | number | 是 | 是 | 否 | 蓝牙设备的信号强度(dBm)。 |
+| timestamp | number | 是 | 是 | 否 | 时间戳。 |
 
 ## LocationPrivacyType
 
@@ -189,7 +189,7 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
 
-订阅定位业务所需数据的变化，主要包含WiFi和蓝牙扫描信息；根据入参决定是否启动WiFi和蓝牙扫描。
+订阅定位业务所需数据的变化，主要包含WiFi和蓝牙扫描信息；根据入参决定是否启动WiFi和蓝牙扫描。使用callback异步回调。
 
 **需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
 
@@ -203,7 +203,7 @@ on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callb
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locatingRequiredDataChange”，表示订阅定位业务所需数据的变化。 |
   | config | [LocatingRequiredDataConfig](#locatingrequireddataconfig10) | 是 | 表示获取定位所需数据时的配置参数。 |
-  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 是 | 接收定位业务所需数据的上报。 |
+  | callback | Callback&lt;Array&lt;[LocatingRequiredData](#locatingrequireddata10)&gt;&gt; | 是 | 回调函数，返回定位业务所需数据。 |
 
 **错误码**：
 
@@ -274,7 +274,7 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
 
 enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
-打开位置服务，使用callback回调异步返回结果。
+打开位置服务，使用callback异步回调。
 
 **系统API**：此接口为系统接口。
 
@@ -286,7 +286,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 用来接收错误码信息。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，当打开位置服务成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -317,7 +317,7 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
 enableLocation(): Promise&lt;void&gt;
 
-打开位置服务，使用Promise方式异步返回结果。
+打开位置服务，使用Promise异步回调。
 
 **系统API**：此接口为系统接口。
 
@@ -329,7 +329,7 @@ enableLocation(): Promise&lt;void&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;void&gt; | 返回Promise对象。 |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象 |
 
 **错误码**：
 
@@ -348,7 +348,7 @@ enableLocation(): Promise&lt;void&gt;
       geoLocationManager.enableLocation().then(() => {
           console.log('promise, enableLocation succeed');
       })
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
@@ -630,7 +630,7 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 表示用户是否同意定位服务隐私申明。 |
+  | boolean | true：用户同意定位服务隐私申明<br/>false：用户不同意定位服务隐私申明 |
 
 **错误码**：
 
@@ -670,7 +670,7 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | [LocationPrivacyType](#locationprivacytype) | 是 | 指定隐私申明场景，例如开机向导中的隐私申明、开启网络定位功能时弹出的隐私申明等。 |
-  | isConfirmed | boolean | 是 | 表示用户是否同意定位服务隐私申明。 |
+  | isConfirmed | boolean | 是 | true：用户同意定位服务隐私申明<br/>false：用户不同意定位服务隐私申明 |
 
 **错误码**：
 
@@ -735,7 +735,7 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
       geoLocationManager.getLocatingRequiredData(config).then((result) => {
           console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
       })  
-      .catch((error:number) => {
+      .catch((error:BusinessError.BusinessError) => {
           console.error('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
       });
   } catch (err) {

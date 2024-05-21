@@ -95,7 +95,7 @@ The ArkUI that uses the JavaScript-based web-like development paradigm supports 
   ```
 
 
-In this example, the parent component passes the customized attribute through title to the child component, and the child component receives the attribute value in props. The child component passes text to the parent through the bound event, and the passed value is obtained via e.detail. To successfully bind the child component event to the parent component, ensure that the event name meet the requirements for event binding. For details, see [Basic Usage of Custom Components](../reference/arkui-js/js-components-custom-basic-usage.md). The following figures show how the custom component works.
+In this example, the parent component passes the customized attribute through title to the child component, and the child component receives the attribute value in props. The child component passes text to the parent through the bound event, and the passed value is obtained via e.detail. To successfully bind the child component event to the parent component, ensure that the event name meet the requirements for event binding. For details, see [Basic Usage of Custom Components](../reference/apis-arkui/arkui-js/js-components-custom-basic-usage.md). The following figures show how the custom component works.
 
 **Figure 1** Running effect
 

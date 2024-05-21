@@ -5,7 +5,7 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 
 > **说明：**
 >
-> 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
+> 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
 
 
   **表1** bm工具命令列表
@@ -16,9 +16,9 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | install | 安装命令，用来安装应用 |
 | uninstall | 卸载命令，用来卸载应用 |
 | dump | 查询命令，用来查询应用的相关信息 |
-| clean | 清理命令，用来清理应用的缓存和数据 |
-| enable | 使能命令，用来使能应用，使能后应用可以继续使用 |
-| disable | 禁用命令，用来禁用应用，禁用后应用无法使用 |
+| clean | 清理命令，用来清理应用的缓存和数据。此命令在root版本下可用，在user版本下打开开发者模式可用。其它情况不可用。|
+| enable | 使能命令，用来使能应用，使能后应用可以继续使用。此命令在root版本下可用，在user版本下不可用。 |
+| disable | 禁用命令，用来禁用应用，禁用后应用无法使用。此命令在root版本下可用，在user版本下不可用。 |
 | get | 获取udid命令，用来获取设备的udid |
 | quickfix | 快速修复相关命令，用来执行补丁相关操作，如补丁安装、补丁查询 |
 

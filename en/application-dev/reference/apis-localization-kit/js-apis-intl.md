@@ -22,7 +22,7 @@ import Intl from '@ohos.intl';
 
 ### Attributes
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -176,7 +176,8 @@ Since API version 11, this API is supported in ArkTS widgets.
 Represents the locale options.
 
 Since API version 9, the attributes in **LocaleOptions** are optional.
-Since API version 11, **LocaleOptions** is supported in ArkTS widgets.
+
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -197,7 +198,7 @@ constructor()
 
 Creates a **DateTimeOptions** object for the specified locale.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -338,29 +339,30 @@ Since API version 11, this API is supported in ArkTS widgets.
 Provides the options for the **DateTimeFormat** object. For details about the parameter values and implementation effects, see [Date and Time Formatting](../../internationalization/i18n-time-date.md).
 
 Since API version 9, the attributes in **DateTimeOptions** are optional.
-Since API version 11, **DateTimeOptions** is supported in ArkTS widgets.
+
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
 | Name             | Type     | Mandatory  | Description                                      |
 | --------------- | ------- | ---- |  ---------------------------------------- |
 | locale          | string  | No   |Locale, for example, **zh-Hans-CN**.                |
-| dateStyle       | string  | No    |Date display format. The value can be **long**, **short**, **medium**, or **full**.|
-| timeStyle       | string  | No    |Time display format. The value can be **long**, **short**, **medium**, or **full**.|
+| dateStyle       | string  | No    |Date display format. The value can be **long**, **short**, **medium**, **full**, or **auto**.|
+| timeStyle       | string  | No    |Time display format. The value can be **long**, **short**, **medium**, **full**, or **auto**.|
 | hourCycle       | string  | No    |Time system for the locale. The value can be any of the following: **h11**, **h12**, **h23**, or **h24**.|
 | timeZone        | string  | No    |Time zone represented by a valid IANA time zone ID.                     |
 | numberingSystem | string  | No    |Numbering system for the locale. The value can be any of the following: **adlm**, **ahom**, **arab**, **arabext**, **bali**, **beng**, **bhks**, **brah**, **cakm**, **cham**, **deva**, **diak**, **fullwide**, **gong**, **gonm**, **gujr**, **guru**, **hanidec**, **hmng**, **hmnp**, **java**, **kali**, **khmr**, **knda**, **lana**, **lanatham**, **laoo**, **latn**, **lepc**, **limb**, **mathbold**, **mathdbl**, **mathmono**, **mathsanb**, **mathsans**, **mlym**, **modi**, **mong**, **mroo**, **mtei**, **mymr**, **mymrshan**, **mymrtlng**, **newa**, **nkoo**, **olck**, **orya**, **osma**, **rohg**, **saur**, **segment**, **shrd**, **sind**, **sinh**, **sora**, **sund**, **takr**, **talu**, **tamldec**, **telu**, **thai**, **tibt**, **tirh**, **vaii**, **wara**, **wcho**.|
 | hour12          | boolean | No    | Whether to use the 12-hour clock. If **hour12** and **hourCycle** are not set and the 24-hour clock is turned on, the default value of **hour12** is **false**.        |
-| weekday         | string  | No    | Workday display format. The value can be **long**, **short**, or **narrow**.|
-| era             | string  | No    | Era display format. The value can be **long**, **short**, or **narrow**.|
+| weekday         | string  | No    | Workday display format. The value can be **long**, **short**, **narrow**, or **auto**.|
+| era             | string  | No    | Era display format. The value can be **long**, **short**, **narrow**, or **auto**.|
 | year            | string  | No    | Year display format. The value can be **numeric** or **2-digit**.  |
-| month           | string  | No    | Month display format. The value can be any of the following: **numeric**, **2-digit**, **long**, **short**, **narrow**.|
+| month           | string  | No    | Month display format. The value can be **numeric**, **2-digit**, **long**, **short**, **narrow**, or **auto**.|
 | day             | string  | No    | Day display format. The value can be **numeric** or **2-digit**. |
 | hour            | string  | No    | Hour display format. The value can be **numeric** or **2-digit**. |
 | minute          | string  | No    | Minute display format. The value can be **numeric** or **2-digit**. |
 | second          | string  | No    | Seconds display format. The value can be **numeric** or **2-digit**. |
-| timeZoneName    | string  | No    | Localized representation of a time zone name.                             |
-| dayPeriod       | string  | No    | Time period display format. The value can be **long**, **short**, or **narrow**.|
+| timeZoneName    | string  | No    | Localized representation of the time zone name. The value can be **long**, **short**, or **auto**.                             |
+| dayPeriod       | string  | No    | Time period display format. The value can be **long**, **short**, **narrow**, or **auto**.|
 | localeMatcher   | string  | No    | Locale matching algorithm. The value can be **lookup** or **best fit**.|
 | formatMatcher   | string  | No    | Format matching algorithm. The value can be **basic** or **best fit**.|
 
@@ -470,11 +472,11 @@ Since API version 9, the attributes in **NumberOptions** are optional.
 | ------------------------ | ------- | ---- |  ---------------------------------------- |
 | locale                   | string  | No   | Locale, for example, **zh-Hans-CN**. The default value is the system locale.              |
 | currency                 | string  | No   | Currency unit, for example, **EUR**, **CNY**, or **USD**.        |
-| currencySign             | string  | No   | Currency unit symbol. The options are "standard" and "accounting". The default value is **standard**.|
+| currencySign             | string  | No   | Currency unit symbol. The options are "standard" and "accounting**. The default value is **standard**.|
 | currencyDisplay          | string  | No   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**. The default value is **symbol**.|
 | unit                     | string  | No   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
-| unitDisplay              | string  | No   | Unit display format. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
-| unitUsage<sup>8+</sup>   | string  | No   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**. The default value is **default**.|
+| unitDisplay              | string  | No   | Display format of units. The value can be **long**, **short**, or **narrow**. The default value is **short**.|
+| unitUsage<sup>8+</sup>   | string  | No   | Application scenario of units. The value can be "default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel",&nbsp;"elapsed-time-second",&nbsp;"size-file-byte", or &nbsp;"size-shortfile-byte". The default value is **default**.|
 | signDisplay              | string  | No   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**. The default value is **auto**.|
 | compactDisplay           | string  | No   | Compact display format. The value can be **long** or **short**. The default value is **short**.     |
 | notation                 | string  | No   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**. The default value is **standard**.|

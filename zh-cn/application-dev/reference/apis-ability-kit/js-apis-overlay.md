@@ -39,6 +39,7 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700033 | The specified module is not an overlay module. |
 
@@ -86,6 +87,7 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700033 | The specified module is not an overlay module. |
 
@@ -138,6 +140,7 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -182,6 +185,7 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -233,6 +237,7 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 
@@ -276,6 +281,7 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found.  |
 | 17700034 | The specified module is an overlay module. |
 

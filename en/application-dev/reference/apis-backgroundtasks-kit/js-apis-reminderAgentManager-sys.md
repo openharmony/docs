@@ -1,6 +1,6 @@
 # @ohos.reminderAgentManager (Agent-Powered Reminders) (System API)
 
-The **reminderAgentManager** module provides APIs related to agent-powered reminders. When your application is frozen or exits, the timing and notification functions of your application will be taken over by a system service running in the background. You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks.
+The reminderAgentManager module provides APIs related to agent-powered reminders. When your application is frozen or exits, the timing and notification functions of your application will be taken over by a system service running in the background. You can use the APIs to create scheduled reminders for countdown timers, calendar events, and alarm clocks.
 
 > **NOTE**
 >
@@ -41,6 +41,10 @@ Defines the button on the reminder displayed.
 
 Defines the information about the redirected-to ability.
 
+> **NOTE**
+>
+> Since API version 12, the **uri** parameter is open to all applications.
+
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
@@ -61,3 +65,13 @@ The data provider needs to set the ID, read/write permissions, and basic informa
 | uri | string | Yes| URI of the data, which is the unique identifier for cross-application data access.|
 | equalTo | Record<string, number \| string \| boolean> | Yes| Filter criteria. Currently, only equal to is supported.|
 | value | [ValueBucket](../apis-arkdata/js-apis-data-valuesBucket.md#valuesbucket) | Yes| New data.|
+
+## ReminderRequestCalendar
+
+Defines a reminder for a calendar event.
+
+**System capability**: SystemCapability.Notification.ReminderAgent
+
+| Name                        | Type                   | Mandatory| Description                                              |
+| ---------------------------- | ----------------------- | ---- | -------------------------------------------------- |
+| rruleWantAgent<sup>12+</sup> | [WantAgent](#wantagent) | No  | Custom reminder, which specifies the ServiceExtensionAbility to start.|

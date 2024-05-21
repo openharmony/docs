@@ -18,7 +18,9 @@ Progress(options: ProgressOptions\<Type\>)
 
 创建进度组件，用于显示内容加载或操作处理进度。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：** 
 
@@ -28,16 +30,20 @@ Progress(options: ProgressOptions\<Type\>)
 
 ## ProgressOptions\<Type\>对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 参数名                        | 参数类型                                | 必填   | 参数描述                                     |
 | -------------------------- | ----------------------------------- | ---- | ---------------------------------------- |
-| value                      | number                              | 是    | 指定当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| total                      | number                              | 否    | 指定进度总长。<br/>默认值：100<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| type<sup>8+</sup>          | [ProgressType](#progresstype8枚举说明)   | 否    | 指定进度条类型。<br/>默认值：ProgressType.Linear<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| value                      | number                              | 是    | 指定当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| total                      | number                              | 否    | 指定进度总长。<br/>默认值：100<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| type<sup>8+</sup>          | [ProgressType](#progresstype8枚举说明)   | 否    | 指定进度条类型。<br/>默认值：ProgressType.Linear<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | style<sup>(deprecated)</sup> | [ProgressStyle](#progressstyle枚举说明) | 否    | 指定进度条样式。<br/>该参数从API version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
 
 ## ProgressType<sup>8+</sup>枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                     | 描述                                       |
 | ---------------------- | ---------------------------------------- |
@@ -49,7 +55,9 @@ Progress(options: ProgressOptions\<Type\>)
 
 ##  ProgressStyle枚举说明 
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
@@ -71,6 +79,8 @@ value(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -89,6 +99,8 @@ color(value: ResourceColor | LinearGradient)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，暂不支持LinearGradient。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -101,7 +113,7 @@ color(value: ResourceColor | LinearGradient)
 
 backgroundColor(value: ResourceColor)
 
-设置进度条底色。当设置[通用属性backgroundColor](./ts-universal-attributes-background.md)时，生效的是进度条的底色，而不是整个Progress组件的背景色。
+设置进度条底色。当设置[通用属性backgroundColor](./ts-universal-attributes-background.md#backgroundcolor)时，生效的是进度条的底色，而不是整个Progress组件的背景色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -121,6 +133,8 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -129,7 +143,41 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8)&nbsp;\|&nbsp;[CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10)&nbsp;\|&nbsp;<br/>[RingStyleOptions<sup>10+</sup>](#ringstyleoptions10)&nbsp;\|&nbsp;[LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10)&nbsp;\|&nbsp;<br/>[ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10)&nbsp;\|&nbsp;[EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10) | 是   | 组件的样式。<br/>- CapsuleStyleOptions：设置Capsule的样式。<br/>- RingStyleOptions：设置Ring的样式。<br/>- LinearStyleOptions：设置Linear的样式。<br/>- ScaleRingStyleOptions：设置ScaleRing的样式。<br/>- EclipseStyleOptions：设置Eclipse的样式。<br/>- ProgressStyleOptions：仅可设置各类型进度条的基本样式。<br/>ProgressStyleOptions，暂不支持其它的参数类型。 |
 
+### contentModifier<sup>12+</sup>
+contentModifier(modifier:ContentModifier\<ProgressConfiguration\>)
+
+定制progress内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| modifier | [ContentModifier\<ProgressConfiguration\>](#progressconfiguration12) | 是   | 在progress组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
+### privacySensitive<sup>12+</sup>
+
+privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
+
+设置隐私敏感。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明                                                  |
+| ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下进度清零，文字将被遮罩。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+
+## ProgressConfiguration<sup>12+</sup>
+| 名称 | 参数类型  | 描述         |
+| ------ | ------ | ------------|
+| value  | number | 当前进度值。 |
+| total  | number | 进度总长。   |
 ## ProgressStyleOptions<sup>8+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
@@ -138,6 +186,9 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 | enableSmoothEffect<sup>10+</sup> | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## CapsuleStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 内描边颜色。<br/>默认值：<br/>API version 10：'\#33006cde'<br/>API version 11及以上：'\#33007dff' |
@@ -150,6 +201,9 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## RingStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置），宽度大于等于半径时，默认修改宽度至半径值的二分之一。<br/>默认值：4.0vp |
@@ -159,6 +213,9 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## LinearStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称           | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp |
@@ -167,6 +224,9 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## ScaleRingStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0vp                                            |
@@ -175,11 +235,17 @@ style(value: ProgressStyleOptions \| CapsuleStyleOptions \| RingStyleOptions \| 
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## EclipseStyleOptions<sup>10+</sup>
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型                      | 必填 | 描述                                                                                        |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | enableSmoothEffect | boolean | 否 | 进度平滑动效的开关。开启平滑动效后设置进度，进度会从当前值渐变至设定值，否则进度从当前值突变至设定值。<br/>默认值：true |
 
 ## ProgressStatus<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |
 | LOADING  | 加载中。 |
@@ -372,3 +438,111 @@ struct Index {
 
 ```
 ![progressSmoothEffect](figures/arkts-progressSmoothEffect.gif)
+
+### 示例6
+
+该示例实现了自定义进度条的功能，自定义实现星形，其中总进度为3，且当前值可通过按钮进行增减，达到的进度被填充自定义颜色。
+
+```ts
+// xxx.ets
+class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
+  color: Color = Color.White
+
+
+  constructor(color:Color) {
+    this.color = color
+  }
+  applyContent() : WrappedBuilder<[ProgressConfiguration]>
+  {
+    return wrapBuilder(myProgress)
+  }
+}
+
+@Builder function myProgress(config: ProgressConfiguration ) {
+
+  Column({space:30}) {
+    Text("当前进度：" + config.value + "/" + config.total).fontSize(20)
+    Row() {
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+        Path()
+          .width('30%')
+          .height('30%')
+          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
+          .fill(config.enabled && config.value >=1 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width('30%')
+          .height('30%')
+          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
+          .fill(config.enabled && config.value >=2 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width('30%')
+          .height('30%')
+          .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
+          .fill(config.enabled && config.value >=3 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+      }.width('100%')
+    }
+  }.margin({bottom:100})
+}
+
+@Entry
+@Component
+struct Index {
+  @State currentValue: number = 0
+  modifier = new MyProgressModifier(Color.Red)
+  @State myModifier:(MyProgressModifier | undefined)  = this.modifier
+  build() {
+    Column() {
+        Progress({ value: this.currentValue, total: 3, type: ProgressType.Ring}).contentModifier(this.modifier)
+        Button('Progress++').onClick(()=>{
+          if (this.currentValue < 3) {
+            this.currentValue += 1
+          }
+        }).width('30%')
+        Button('addProgress--').onClick(()=>{
+          if (this.currentValue > 0) {
+            this.currentValue -= 1
+          }
+        }).width('30%')
+    }.width('100%').height('100%')
+  }
+}
+
+```
+![progressCustom](figures/arkts-progressCustom.gif)
+
+### 示例7
+
+该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+
+```ts
+@Entry
+@Component
+struct ProgressExample {
+  build() {
+    Scroll() {
+      Column({ space: 15 }) {
+        Row() {
+          Progress({ value: 50, total: 100, type: ProgressType.Capsule }).width(100).height(50)
+            .style({
+              borderColor: Color.Blue,
+              borderWidth: 1,
+              content: 'Installing...',
+              font: { size: 13, style: FontStyle.Normal },
+              fontColor: Color.Gray,
+              enableScanEffect: false,
+              showDefaultPercentage: true
+            })
+            .privacySensitive(true)
+        }
+      }
+    }
+  }
+}
+```
+![progressSensitive](figures/progress-privacysensitive.gif)

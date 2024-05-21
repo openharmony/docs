@@ -26,11 +26,13 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                            | 必填 | 说明                           |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。 |
 | tag    | string                          | 是   | 会话的自定义名称。             |
 | type   | [AVSessionType](#avsessiontype10) | 是   | 会话类型。 |
 
@@ -79,7 +81,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
 | type     | [AVSessionType](#avsessiontype10)         | 是   | 会话类型。                               |
 | callback | AsyncCallback<[AVSession](#avsession10)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
@@ -121,14 +123,17 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
 ## AVSessionType<sup>10+<sup>
 
 当前会话支持的会话类型。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称  | 类型   | 说明 |
 | ----- | ------ | ---- |
@@ -144,6 +149,8 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称      | 类型   | 可读 | 可写 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
 | sessionId | string | 是   | 否   | AVSession对象唯一的会话标识。 |
@@ -152,8 +159,6 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let sessionId: string = currentAVSession.sessionId;
 let sessionType: avSession.AVSessionType = currentAVSession.sessionType;
 ```
@@ -165,6 +170,8 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 设置会话元数据。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -190,7 +197,6 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let metadata: avSession.AVMetadata = {
@@ -243,7 +249,6 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let metadata: avSession.AVMetadata = {
@@ -303,7 +308,6 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.CallMetadata = {
@@ -345,21 +349,27 @@ setCallMetadata(data: CallMetadata, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
+import image from '@ohos.multimedia.image';
+import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg",
-};
-currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
-  if (err) {
-    console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`setCallMetadata successfully`);
-  }
-});
+async function setCallMetadata() {
+  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let imageSource= await image.createImageSource(value.buffer);
+  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+  let calldata: avSession.CallMetadata = {
+    name: "xiaoming",
+    phoneNumber: "111xxxxxxxx",
+    avatar: imagePixel,
+  };
+  currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
+    if (err) {
+      console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`setCallMetadata successfully`);
+    }
+  });
+}
 ```
 
 ### setAVCallState<sup>11+</sup>
@@ -394,11 +404,10 @@ setAVCallState(state: AVCallState): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let calldata: avSession.AVCallState = {
-  state: avSession.AVCallState.CALL_STATE_ACTIVE ,
+  state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(calldata).then(() => {
@@ -435,7 +444,6 @@ setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avcalldata: avSession.AVCallState = {
@@ -458,6 +466,8 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 设置会话播放状态。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -483,7 +493,6 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let playbackState: avSession.AVPlaybackState = {
@@ -528,7 +537,6 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let PlaybackState: avSession.AVPlaybackState = {
@@ -725,7 +733,6 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -781,7 +788,6 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -840,7 +846,6 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
@@ -909,7 +914,6 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): voi
 import image from '@ohos.multimedia.image';
 import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
@@ -1067,7 +1071,6 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -1121,7 +1124,6 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -1265,6 +1267,8 @@ getAVCastController(): Promise\<AVCastController>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                                                        | 说明                                                         |
@@ -1303,6 +1307,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 通过会话获取播放设备信息。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1376,6 +1382,8 @@ activate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1447,6 +1455,8 @@ deactivate(): Promise\<void>
 禁用当前会话的功能，可通过[activate](#activate10)恢复。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1521,6 +1531,8 @@ destroy(): Promise\<void>
 销毁当前会话，使当前会话完全失效。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2087,6 +2099,8 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -2139,7 +2153,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
+
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
@@ -2568,6 +2582,8 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                      |
@@ -2806,6 +2822,74 @@ off(type: 'toggleCallMute', callback?: Callback\<void>): void;
 ```ts
 currentAVSession.off('toggleCallMute');
 ```
+
+### on('castDisplayChange')<sup>12+</sup>
+
+on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
+
+设置扩展屏投播显示设备变化的监听事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | 是   | 事件回调类型，支持事件`'castDisplayChange'`：当扩展屏投播显示设备变化时触发事件。 |
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | 是   | 回调函数。参数是扩展屏投播显示设备信息。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
+    if (display.state === avSession.CastDisplayState.STATE_ON) {
+        castDisplay = display;
+        console.info('castDisplayChange display : ${display.id} ON');
+    } else if (display.state === avSession.CastDisplayState.STATE_OFF){
+        console.info('castDisplayChange display : ${display.id} OFF');
+    }
+});
+```
+### off('castDisplayChange')<sup>12+</sup>
+
+ off(type: 'castDisplayChange', callback?: Callback\<CastDisplayInfo>): void
+
+取消扩展屏投播显示设备变化事件监听，关闭后，不再进行该事件回调。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | 是   | 关闭对应的监听事件，支持的事件是`'castDisplayChange'`。 |
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+currentAVSession.off('castDisplayChange');
+```
+
 ### stopCasting<sup>10+</sup>
 
 stopCasting(callback: AsyncCallback\<void>): void
@@ -2849,6 +2933,8 @@ stopCasting(): Promise\<void>
 结束投播。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2911,12 +2997,55 @@ try {
   console.error(`getOutputDeviceSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
+### getAllCastDisplays<sup>12+</sup>
+
+getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
+
+获取当前系统中所有支持扩展屏投播的显示设备。通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**返回值：**
+
+| 类型                                            | 说明                              |
+| ----------------------------------------------- | --------------------------------- |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| 当前支持扩展屏投播的显示设备属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID   | 错误信息 |
+|---------| --------------------------------------- |
+| 6600101 | Session service exception. |
+| 6600102 | The session does not exist. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.getAllCastDisplays()
+  .then((data: Array< avSession.CastDisplayInfo >) => {
+    if (data.length >= 1) {
+       castDisplay =  data[0];
+     } else {
+       console.info('There is not a cast display');
+     }
+   })
+   .catch((err: BusinessError) => {
+     console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
+   });
+```
 
 ## AVCastControlCommandType<sup>10+</sup>
 
 投播控制器可传递的命令。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称           | 类型   | 说明         |
 | -------------- | ------ | ------------ |
@@ -2938,6 +3067,8 @@ try {
 投播控制器接受的命令的对象描述。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
@@ -2992,6 +3123,8 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                                                        | 说明                                                         |
@@ -3027,6 +3160,8 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
@@ -3052,7 +3187,6 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
@@ -3092,7 +3226,6 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
@@ -3132,7 +3265,6 @@ prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3172,6 +3304,8 @@ prepare(item: AVQueueItem): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
@@ -3197,7 +3331,6 @@ prepare(item: AVQueueItem): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3252,7 +3385,6 @@ start(item: AVQueueItem, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3292,6 +3424,8 @@ start(item: AVQueueItem): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
@@ -3317,7 +3451,6 @@ start(item: AVQueueItem): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 // 设置播放参数，开始播放
@@ -3389,6 +3522,8 @@ getCurrentItem(): Promise\<AVQueueItem>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -3413,6 +3548,79 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 }).catch((err: BusinessError) => {
   console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+
+```
+
+### processMediaKeyResponse<sup>12+</sup>
+
+processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
+
+在线DRM资源投播时，处理许可证响应。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                  |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| assetId | string                  | 是   | 媒体ID。 |
+| response | Uint8Array             | 是   | 许可证响应。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象，当处理许可证响应成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import http from '@ohos.net.http'
+
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+   let licenseRequestStr: string = TypeConversion.byteToString(requestData);
+   //get media key from DRM server
+   let licenseResponseStr: string = 'defaultStr';
+   let httpRequest = http.createHttp();
+   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+   try {
+     let response: http.HttpResponse = await httpRequest.request(drmUrl, {
+        method: http.RequestMethod.POST,
+        header: {
+           'Content-Type': 'application/json',
+           'Accept-Encoding': 'gzip, deflate',
+        },
+        extraData: licenseRequestStr,
+        expectDataType: http.HttpDataType.STRING,
+      });
+      if (response?.responseCode == http.ResponseCode.OK) {
+        if (typeof response.result == 'string') {
+          licenseResponseStr = response.result;
+        }
+      }
+      httpRequest.destroy();
+   } catch (e) {
+     console.error(`HttpRequest error, error message: [` + JSON.stringify(e) + ']');
+     return;
+   }
+
+   let licenseResponseData: Uint8Array = TypeConversion.stringToByte(licenseResponseStr);
+   try {
+    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponseData);
+   } catch (err) {
+    let error = err as BusinessError;
+    console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
+   }
+}
 
 ```
 
@@ -3460,6 +3668,8 @@ release(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -3494,6 +3704,8 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 设置播放状态变化的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3532,6 +3744,8 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): v
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -3560,6 +3774,8 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 设置投播当前播放媒体内容的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3592,6 +3808,8 @@ off(type: 'mediaItemChange'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -3619,6 +3837,8 @@ on(type: 'playNext', callback: Callback\<void>): void
 设置播放下一首资源的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3651,6 +3871,8 @@ off(type: 'playNext'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -3678,6 +3900,8 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 设置播放上一首资源的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3709,6 +3933,8 @@ off(type: 'playPrevious'): void
 取消设置播放上一首资源的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3858,6 +4084,8 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -3888,6 +4116,8 @@ off(type: 'seekDone'): void
 取消设置seek结束的监听事件。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -3980,6 +4210,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
@@ -4020,6 +4252,8 @@ off(type: 'error'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -4046,11 +4280,123 @@ off(type: 'error'): void
 aVCastController.off('error')
 ```
 
+### on('keyRequest')<sup>12+</sup>
+
+on(type: 'keyRequest', callback: KeyRequestCallback): void
+
+在线DRM资源投播时，设置许可证请求的事件监听。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string  | 是   | 事件回调类型，支持事件`'keyRequest'`：当DRM资源播放需要许可证时，触发该事件。 |
+| callback | [KeyRequestCallback](#keyrequestcallback12)  | 是   | 回调函数，媒体资源及许可证请求数据。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+aVCastController.on('keyRequest', keyRequestCallback);
+```
+### off('keyRequest')<sup>12+</sup>
+
+off(type: 'keyRequest', callback?: KeyRequestCallback): void
+
+取消监听许可证请求的事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持的事件是`'keyRequest'`。 |
+| callback |  [KeyRequestCallback](#keyrequestcallback12)  | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.off('keyRequest');
+```
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+许可证请求事件的回调函数。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | 是   | 媒体ID。 |
+| requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
+
+**示例：**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+```
+
+## CastDisplayState<sup>12+</sup>
+
+投播显示设备状态。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| 名称                        | 值   | 说明         |
+| --------------------------- | ---- | ----------- |
+| STATE_OFF      | 1    | 设备断开，扩展屏不再显示内容。    |
+| STATE_ON      | 2    | 设备连接成功，扩展屏可用。 |
+
+
+## CastDisplayInfo<sup>12+</sup>
+
+扩展屏投播显示设备相关属性。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| 名称            | 类型                      | 可读 | 可写 | 说明                                                                  |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| id            | number                  | 是    | 否    | 投播显示设备的ID，该参数应为整数。  |
+| name     | string                  | 是    | 否    | 投播显示设备的名称。           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 是    | 否    |投播显示设备状态。            |
+| width          | number          | 是    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 是    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
+
 ## ConnectionState<sup>10+</sup>
 
 连接状态枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4064,26 +4410,30 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。                                     |
-| title           | string                  | 否   | 标题。                                                                 |
-| artist          | string                  | 否   | 艺术家。                                                                |
-| author          | string                  | 否   | 专辑作者。                                                               |
+| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
+| title           | string                  | 否   | 标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                 |
+| artist          | string                  | 否   | 艺术家。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
+| author          | string                  | 否   | 专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| avQueueName<sup>12+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
 | avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
-| album           | string                  | 否   | 专辑名称。                                                               |
-| writer          | string                  | 否   | 词作者。                                                                |
+| album           | string                  | 否   | 专辑名称。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| writer          | string                  | 否   | 词作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
-| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
-| publishDate     | Date                    | 否   | 发行日期。                                                               |
-| subtitle        | string                  | 否   | 子标题。                                                                |
-| description     | string                  | 否   | 媒体描述。                                                               |
+| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                  |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                             |
+| publishDate     | Date                    | 否   | 发行日期。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| subtitle        | string                  | 否   | 子标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
+| description     | string                  | 否   | 媒体描述。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
 | lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
-| previousAssetId | string                  | 否   | 上一首媒体ID。                                                            |
-| nextAssetId     | string                  | 否   | 下一首媒体ID。                                                            |
-| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。                   |
+| previousAssetId | string                  | 否   | 上一首媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                            |
+| nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                            |
+| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                   |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
 
@@ -4093,33 +4443,39 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                    | 必填  | 说明                     |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | 是   | 播放列表媒体ID。          |
-| title        | string                  | 否   | 播放列表媒体标题。        |
-| subtitle     | string                  | 否   | 播放列表媒体子标题。      |
-| description  | string                  | 否   | 播放列表媒体描述的文本。   |
-| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。 |
+| assetId      | string                  | 是   | 播放列表媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。          |
+| title        | string                  | 否   | 播放列表媒体标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。        |
+| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。      |
+| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。   |
+| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | extras       | {[key: string]: any}    | 否   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 播放列表媒体URI。         |
-| mediaType     | string                  | 否   | 播放列表媒体类型。         |
-| mediaSize     | number                  | 否   | 播放列表媒体的大小。         |
-| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。         |
-| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。    |
-| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。         |
-| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。         |
-| artist     | string                  | 否   | 播放列表媒体专辑作者。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。         |
-| duration     | number                  | 否   | 播放列表媒体播放时长。         |
-| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。         |
-| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。         |
-| appName     | string                  | 否   | 播放列表提供的应用的名字。         |
+| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。    |
+| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core         |
+| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
 
 ## AVQueueItem<sup>10+</sup>
 
 播放列表中单项的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 类型                                        | 必填 | 说明                        |
 | ------------ | ------------------------------------------ | ---- | --------------------------- |
@@ -4132,28 +4488,32 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态 |
-| speed        | number                                | 否   | 播放倍速 |
-| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置 |
-| bufferedTime | number                                | 否   | 缓冲时间 |
-| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式 |
-| isFavorite   | boolean                               | 否   | 是否收藏 |
-| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
-| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量 |
-| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量 |
-| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音 |
+| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| speed        | number                                | 否   | 播放倍速<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| bufferedTime | number                                | 否   | 缓冲时间<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| isFavorite   | boolean                               | 否   | 是否收藏<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
-| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。 |
-| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
+| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## PlaybackPosition<sup>10+</sup>
 
 媒体播放位置的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称        | 类型   | 必填 | 说明               |
 | ----------- | ------ | ---- | ------------------ |
@@ -4170,7 +4530,7 @@ aVCastController.off('error')
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | 否    | 来电人姓名（别名）。    |                                                                                                                      
 | phoneNumber     | string                  | 否    | 来电电话号码            |                                                   
-| avatar          | image.PixelMap[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
+| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
 
 ## AVCallState<sup>11+</sup>
 
@@ -4215,6 +4575,8 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | CATEGORY_LOCAL      | 0    | 本地播放，默认播放设备，声音从本机或者连接的蓝牙耳机设备出声。     |
@@ -4225,6 +4587,8 @@ aVCastController.off('error')
 播放设备的类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4239,6 +4603,8 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
 | castCategory   | AVCastCategory        | 是   | 投播的类别。         |
@@ -4246,12 +4612,15 @@ aVCastController.off('error')
 | deviceName | string | 是   | 播放设备的名称。    |
 | deviceType | DeviceType | 是   | 播放设备的类型。    |
 | supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype10)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
 播放设备的相关信息。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -4262,6 +4631,8 @@ aVCastController.off('error')
 表示媒体播放循环模式的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称               | 值   | 说明     |
 | ------------------ | ---- | -------- |
@@ -4276,6 +4647,8 @@ aVCastController.off('error')
 表示媒体播放状态的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -5225,7 +5598,6 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
@@ -5271,7 +5643,6 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
@@ -5324,7 +5695,6 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5393,7 +5763,6 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5454,7 +5823,6 @@ getExtras(): Promise\<{[key: string]: Object}>
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5515,7 +5883,6 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -5717,7 +6084,7 @@ avsessionController.on('callMetadataChange', 'all', (callmetadata: avSession.Cal
 });
 
 avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.CallMetadata) => {
-  console.info(`on callMetadataChange state : ${callmetadata.state}`);
+  console.info(`on callMetadataChange state : ${callmetadata.name}`);
 });
 ```
 
@@ -6094,7 +6461,6 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6305,7 +6671,6 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 **示例：**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
 import { BusinessError } from '@ohos.base';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
@@ -6807,6 +7172,8 @@ try {
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称                                   | 值      | 说明                             |
 | -------------------------------------- | ------- | ------------------------------- |
 | ERR_CODE_SERVICE_EXCEPTION             | 6600101 | Session service exception.               |
@@ -6816,7 +7183,7 @@ try {
 | ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
 | ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
 | ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connection failed.       |
 | ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
 
 ## SkipIntervals<sup>11+</sup>

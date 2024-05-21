@@ -6,12 +6,39 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 >
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## 属性
 
-| 名称   | 参数说明     | 描述                         |
-| -----| -------- | ----------------------------- |
-| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### id
+
+id(value: string): T
+
+组件的唯一标识，唯一性由使用者保证。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称   | 类型      | 必填 | 说明                       |
+| ------ | -------- | -----|---------------------- |
+| value  | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
+
+### key<sup>12+</sup>
+
+key(value: string): T
+
+组件的唯一标识，唯一性由使用者保证。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称   | 类型      | 必填 | 说明                       |
+| ------ | -------- | -----|---------------------- |
+| value   | string   | 是 | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
 
 
 ## 接口
@@ -27,13 +54,13 @@ getInspectorByKey(id: string): string
 
 **参数:**
 
-| 参数   | 类型      | 必填     | 描述        |
+| 参数名   | 类型      | 必填     | 说明        |
 | ---- | -------- | ---- | -------------|
 | id   | string   | 是    | 要获取属性的组件id。 |
 
 **返回值:**
 
-| 类型        | 描述             |
+| 类型        | 说明             |
 | -------| -------------- |
 | string | 组件属性列表的JSON字符串。<br />**说明**：<br /> 字符串信息包含组件的tag、id、位置信息(相对于窗口左上角的坐标)以及用于测试检查的组件所包含的相关属性信息。 |
 
@@ -47,7 +74,7 @@ getInspectorTree(): Object
 
 **返回值:**
 
-| 类型     | 描述                            |
+| 类型     | 说明                            |
 | ------ | --------------------------- |
 | Object | 组件树及组件属性列表的JSON对象。 |
 
@@ -61,7 +88,7 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 **参数:**
 
-| 参数       | 类型      | 必填       | 描述                         |
+| 参数名       | 类型      | 必填       | 说明                         |
 | ------ | -------| ---- | -------------------------- |
 | id     | string | 是    | 要触发事件的组件的id。                      |
 | action | number | 是    | 要触发的事件类型，目前支持取值：<br/>-&nbsp;点击事件Click:&nbsp;10<br/>-&nbsp;长按事件LongClick:&nbsp;11。 |
@@ -69,7 +96,7 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 **返回值:**
 
-| 类型          | 描述                         |
+| 类型          | 说明                         |
 | -------- | --------------------------|
 | boolean  | 找不到指定id的组件时返回false，其余情况返回true。 |
 
@@ -83,13 +110,13 @@ sendTouchEvent(event: TouchObject): boolean
 
 **参数:**
 
-| 参数      | 类型            | 必填  | 描述                                                         |
+| 参数名      | 类型            | 必填  | 说明                                                         |
 | ----- | ----------- | ---- | ------------------------------------------------------------ |
 | event | [TouchObject](ts-universal-events-touch.md#touchobject对象说明) | 是    | 触发触摸事件的位置，event参数见[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)中TouchObject的介绍。 |
 
 **返回值:**
 
-| 类型      | 描述                         |
+| 类型      | 说明                         |
 | ------- | ---------------------------|
 | boolean | 事件发送失败时返回false，其余情况返回true。 |
 
@@ -103,13 +130,13 @@ sendKeyEvent(event: KeyEvent): boolean
 
 **参数:**
 
-| 参数    | 类型     | 必填      | 描述                                                         |
+| 参数名    | 类型     | 必填      | 说明                                                         |
 | ----- | -------- | ----  | ------------------------------------------------------------ |
 | event | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 是     | 按键事件，event参数见[KeyEvent](ts-universal-events-key.md#keyevent对象说明)介绍。 |
 
 **返回值:**
 
-| 类型      | 描述                           |
+| 类型      | 说明                           |
 | ------- | ------------------------------|
 | boolean | 事件发送失败时时返回false，其余情况返回true。 |
 
@@ -123,13 +150,13 @@ sendMouseEvent(event: MouseEvent): boolean
 
 **参数：**
 
-| 参数     | 类型       | 必填       | 描述                                     |
+| 参数名     | 类型       | 必填       | 说明                                     |
 | ----- | ---------- | ----  | --------------------------------------- |
 | event | [MouseEvent](ts-universal-mouse-key.md#mouseevent对象说明) | 是    | 鼠标事件，event参数见[MouseEvent](ts-universal-mouse-key.md#mouseevent对象说明)介绍。 |
 
 **返回值：**
 
-| 类型      | 描述                                 |
+| 类型      | 说明                                 |
 | ------- | ---------------------------------- |
 | boolean | 事件发送失败时返回false，其余情况返回true。 |
 

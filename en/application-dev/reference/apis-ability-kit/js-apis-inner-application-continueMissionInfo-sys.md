@@ -1,6 +1,6 @@
 # ContinueMissionInfo (System API)
 
-The **ContinueMissionInfo** module defines the parameters required for initiating mission continuation with the bundle name specified. For details about mission continuation, see [continueMission](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission10).
+The ContinueMissionInfo module defines the parameters required for initiating mission continuation with the bundle name specified. For details about mission continuation, see [continueMission](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission10).
 
 > **NOTE**
 >

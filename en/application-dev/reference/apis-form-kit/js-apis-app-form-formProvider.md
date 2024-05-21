@@ -3,6 +3,7 @@
 The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and request a widget release.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -16,6 +17,8 @@ import formProvider from '@ohos.app.form.formProvider';
 setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -67,6 +70,8 @@ try {
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 Sets the next refresh time for a widget. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -121,6 +126,8 @@ try {
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void
 
 Updates a widget. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -177,6 +184,8 @@ try {
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;
 
 Updates a widget. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -237,6 +246,8 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 
 Obtains the application's widget information on the device. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -279,6 +290,8 @@ try {
 getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 Obtains the application's widget information that meets a filter criterion on the device. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -329,6 +342,8 @@ try {
 getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 Obtains the application's widget information on the device. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 

@@ -48,6 +48,8 @@ import camera from '@ohos.multimedia.camera';
 | ----------------------- | --------- | ------------ |
 | PORTRAIT_PHOTO       | 3      | 人像拍照模式。**系统接口：** 此接口为系统接口。            |
 | NIGHT_PHOTO        | 4      | 夜景拍照模式。**系统接口：** 此接口为系统接口。             |
+| MACRO_PHOTO<sup>12+</sup>        | 8      | 超级微距拍照模式。**系统接口：** 此接口为系统接口。             |
+| MACRO_VIDEO<sup>12+</sup>        | 9      | 超级微距录像模式。**系统接口：** 此接口为系统接口。             |
 
 ## CameraManager
 
@@ -1375,6 +1377,121 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 }
 ```
 
+## SceneFeatureType<sup>12+</sup>
+
+枚举，场景特性枚举。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                     | 值        | 说明         |
+| ----------------------- | --------- | ------------ |
+| MOON_CAPTURE_BOOST       | 0      | 月亮场景。**系统接口：** 此接口为系统接口。            |
+
+## SceneFeatureDetectionResult<sup>12+</sup>
+
+场景检测结果信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   必填   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| featureType |   [SceneFeatureType](#scenefeaturetype12)   |   是     |    是    | 特性类型。 |
+| detected |   boolean   |   是     |    是    | 检测结果。true为检测到指定特性场景。 |
+
+## SceneDetection<sup>12+</sup>
+
+场景检测能力。
+
+### isSceneFeatureSupported<sup>12+</sup>
+
+isSceneFeatureSupported(featureType: camera.SceneFeatureType): boolean
+
+查询是否支持指定特性。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| featureType | [SceneFeatureType](#scenefeaturetype12) | 是 | 指定对应的场景特性。|
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 返回是否支持指定特性。 |
+
+**示例：**
+
+```ts
+function isSceneFeatureSupported(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): boolean {
+  let isSupported: boolean = photoSession.isSceneFeatureSupported(featureType);
+  return isSupported;
+}
+```
+
+### enableSceneFeature<sup>12+</sup>
+
+enableSceneFeature(featureType: camera.SceneFeatureType, enabled: boolean): void
+
+使能指定特性，该接口应当在收到对应场景检测回调结果[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)之后调用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| featureType | [SceneFeatureType](#scenefeaturetype12) | 是 | 指定需要开启或关闭的特性。|
+| enabled | boolean | 是 | true表明开启指定特性，false表明关闭指定特性。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103         |  Session not config.                      |
+| 202             |  Not System Application.                  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function enableSceneFeature(photoSession: camera.PhotoSession): void {
+  try {
+    photoSession.beginConfig();
+    photoSession.addInput(cameraInput);
+    photoSession.addOutput(previewOutput);
+    photoSession.commitConfig();
+
+    photoSession.on('featureDetectionStatus', camera.SceneFeatureType.MOON_CAPTURE_BOOST,
+      (err, statusObject) => {
+        console.info(
+          `on featureDetectionStatus featureType:${statusObject.featureType} detected:${statusObject.detected}`);
+        if (statusObject.featureType === camera.SceneFeatureType.MOON_CAPTURE_BOOST) {
+          try {
+            photoSession.enableSceneFeature(statusObject.featureType, statusObject.detected);
+          } catch (error) {
+            return false;
+          }
+        }
+      });
+
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableSceneFeature call failed. error code: ${err.code}`);
+  }
+}
+```
+
 ## Zoom<sup>11+</sup>
 
 变焦类，对设备变焦操作。
@@ -1756,127 +1873,6 @@ function getColorEffect(session: camera.PhotoSessionForSys): camera.ColorEffectT
 | NORMAL                | 0    | 常规的色彩效果。  |
 | BRIGHT                | 1    | 明艳的色彩效果。  |
 | SOFT                  | 2    | 柔和的色彩效果。  |
-
-## ColorManagement<sup>11+</sup>
-
-色彩管理类，用于设置色彩空间参数。
-
-### getSupportedColorSpaces<sup>11+</sup>
-
-getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
-
-获取支持的色彩空间列表。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                                             | 说明                           |
-| ----------------------------------------------- | ---------------------------- |
-| Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103         |  Session not config.                       |
-| 202             |  Not System Application.                   |
-
-**示例：**
-
-```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-
-function getSupportedColorSpaces(session: camera.PhotoSessionForSys): Array<colorSpaceManager.ColorSpace> {
-  let colorSpaces: Array<colorSpaceManager.ColorSpace> = session.getSupportedColorSpaces();
-  return colorSpaces;
-}
-```
-
-### setColorSpace<sup>11+</sup>
-
-setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
-
-设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces11)获取当前设备所支持的ColorSpaces。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名         | 类型                 | 必填 | 说明                      |
-| ------------ |---------------------- | -- | -------------------------- |
-| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces11)接口获取。   |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202             |  Not System Application.                       |
-| 7400102         |  The colorSpace does not match the format.     |
-| 7400103         |  Session not config.                           |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-
-function setColorSpace(session: camera.PhotoSessionForSys, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
-  if (colorSpaces === undefined || colorSpaces.length <= 0) {
-    return;
-  }
-  try {
-    session.setColorSpace(colorSpaces[0]);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`The setColorSpace call failed, error code: ${err.code}`);
-  }
-}
-```
-
-### getActiveColorSpace<sup>11+</sup>
-
-getActiveColorSpace(): colorSpaceManager.ColorSpace
-
-获取当前设置的色彩空间。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                                             | 说明                           |
-| ----------------------------------------------- | ---------------------------- |
-| [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)               | 当前设置的色彩空间。                |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400103                |  Session not config.                                   |
-| 202             |  Not System Application.                         |
-
-**示例：**
-
-```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
-
-function getActiveColorSpace(session: camera.PhotoSessionForSys): colorSpaceManager.ColorSpace {
-  let colorSpace: colorSpaceManager.ColorSpace = session.getActiveColorSpace();
-  return colorSpace;
-}
-```
 
 ## Portrait<sup>11+</sup>
 
@@ -2405,7 +2401,7 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 ## PhotoSessionForSys<sup>11+</sup>
 
-PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro
+PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
 
 提供给系统应用的PhotoSession，普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -2415,7 +2411,7 @@ PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, M
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom
+PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
 普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -2475,9 +2471,68 @@ function unregisterMacroStatusChanged(photoSession: camera.PhotoSession): void {
 }
 ```
 
+### on('featureDetectionStatus')<sup>12+</sup>
+
+on(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+
+监听相机特性检测状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string      | 是   | 监听事件，固定为'featureDetectionStatus'，photoSession创建成功可监听。 |
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 监听指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, result: camera.SceneFeatureDetectionResult): void {
+  console.info(`feature type: ${result.featureType}`);
+  console.info(`feature status: ${result.detected}`);
+}
+
+function registerFeatureDetectionStatus(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): void {
+  photoSession.on('featureDetectionStatus', featureType, callback);
+}
+```
+
+### off('featureDetectionStatus')<sup>12+</sup>
+
+off(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback?: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+
+注销监听相机特性检测状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | ------------------------ |
+| type     | string                   | 是   | 监听事件，固定为'featureDetectionStatus'，session创建成功可取消监听。|
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
+
+**示例：**
+
+```ts
+function unregisterFeatureDetectionStatus(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): void {
+  photoSession.off('featureDetectionStatus', featureType);
+}
+```
+
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
 
 提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -2487,7 +2542,7 @@ VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, M
 
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization
+VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
 普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -2544,6 +2599,65 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 ```ts
 function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
   videoSession.off('macroStatusChanged');
+}
+```
+
+### on('featureDetectionStatus')<sup>12+</sup>
+
+on(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+
+监听相机特性检测状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string      | 是   | 监听事件，固定为'featureDetectionStatus'，videoSession创建成功可监听。 |
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 监听指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, result: camera.SceneFeatureDetectionResult): void {
+  console.info(`feature type: ${result.featureType}`);
+  console.info(`feature status: ${result.detected}`);
+}
+
+function registerFeatureDetectionStatus(videoSession: camera.VideoSession, featureType: camera.SceneFeatureType): void {
+  videoSession.on('featureDetectionStatus', featureType, callback);
+}
+```
+
+### off('featureDetectionStatus')<sup>12+</sup>
+
+off(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback?: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+
+注销监听相机特性检测状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | ------------------------ |
+| type     | string                   | 是   | 监听事件，固定为'featureDetectionStatus'，session创建成功可取消监听。|
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
+
+**示例：**
+
+```ts
+function unregisterFeatureDetectionStatus(videoSession: camera.VideoSession, featureType: camera.SceneFeatureType): void {
+  videoSession.off('featureDetectionStatus', featureType);
 }
 ```
 

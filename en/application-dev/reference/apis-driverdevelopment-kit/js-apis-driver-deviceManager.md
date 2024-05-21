@@ -65,7 +65,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
-You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -75,7 +75,7 @@ You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obta
 
 | Name      | Type                                                                                                | Mandatory| Description                                  |
 | ------------ | ---------------------------------------------------------------------------------------------------- | ---- | -------------------------------------- |
-| deviceId     | number                                                                                               | Yes  | ID of the device to bind. It can be obtained by **queryDevices()**.          |
+| deviceId     | number                                                                                               | Yes  | ID of the device to unbind. It can be obtained by **queryDevices()**.          |
 | onDisconnect | AsyncCallback&lt;number&gt;                                                                          | Yes  | Callback to be invoked when the bound peripheral device is disconnected.                    |
 | callback     | AsyncCallback&lt;{deviceId: number, remote: [rpc.IRemoteObject](../apis-ipc-kit/js-apis-rpc.md#iremoteobject)}&gt; | Yes  | Callback invoked to return the communication object of the peripheral device bound.|
 
@@ -120,7 +120,7 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
-You need to use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
+You can use [deviceManager.queryDevices](#devicemanagerquerydevices) to obtain the peripheral device information first.
 
 **Required permissions**: ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 

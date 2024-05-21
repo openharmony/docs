@@ -28,7 +28,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
 3. Obtain the surface ID.
    
-   Call **createImageReceiver(**) of the image module to create an **ImageReceiver** instance, and call **getReceivingSurfaceId()** of the instance to obtain the surface ID.
+   Call **createImageReceiver()** of the image module to create an **ImageReceiver** instance, and call **getReceivingSurfaceId()** of the instance to obtain the surface ID.
 
 4. Call **OH_CameraManager_GetSupportedCameraOutputCapability()** to obtain the preview capability supported by the current device based on the surface ID. Then call **OH_CameraManager_CreatePreviewOutput()** to create a **PreviewOutput** instance, with the parameters set to the **cameraManager** pointer, the first item in the **previewProfiles** array, the surface ID obtained in step 3, and the returned **previewOutput** pointer, respectively.
      

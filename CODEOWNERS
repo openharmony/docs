@@ -32,7 +32,7 @@ zh-cn/application-dev/quick-start/in-app-hsp.md @nezha-father  @changzheng6  @ho
 zh-cn/application-dev/quick-start/quickfix*.md @nezha-father  @changzheng6  @hou-xiangyu1029  @lixiaogang30
 
 [入门-资源分类与访问]
-zh-cn/application-dev/quick-start/resource-categories-and-access.md @Buda-Liu @ningningW @wangyong @yangqing3
+zh-cn/application-dev/quick-start/resource-categories-and-access.md @Buda-Liu @ningningW @budda-wang @yangqing3
 
 [入门-学习Arkts语言]
 zh-cn/application-dev/quick-start/arkts-get-started.md @zhang_yixin13 @flyingwolf
@@ -222,19 +222,19 @@ zh-cn/application-dev/web/ @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 
 
 [开发-Background Tasks Kit]
-zh-cn/application-dev/task-management/background-task-overview.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/task-management/transient-task.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/task-management/continuous-task.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/task-management/work-scheduler.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/task-management/agent-powered-reminder.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/task-management/efficiency-resource-request.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/device-usage-statistics/ @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/task-management/background-task-overview.md @ningningW @yuanzhizhong @hmosdeveloper
+zh-cn/application-dev/task-management/transient-task.md @ningningW @yuanzhizhong @hmosdeveloper
+zh-cn/application-dev/task-management/continuous-task.md @ningningW @yuanzhizhong @hmosdeveloper
+zh-cn/application-dev/task-management/work-scheduler.md @ningningW @yuanzhizhong @hmosdeveloper
+zh-cn/application-dev/task-management/agent-powered-reminder.md @ningningW @yuanzhizhong @hmosdeveloper
+zh-cn/application-dev/task-management/efficiency-resource-request.md @ningningW @yuanzhizhong @hmosdeveloper
+zh-cn/application-dev/device-usage-statistics/ @ningningW @yuanzhizhong @hmosdeveloper
 
 [开发-Basic Services Kit-帐号]
 zh-cn/application-dev/account/ @zengyawen
 
 [开发-Basic Services Kit-公共事件]
-zh-cn/application-dev/application-models/common-event*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/application-models/common-event*.md @huipeizi  @idanny   @lixiaogang30
 
 [开发-Basic Services Kit-设备管理]
 zh-cn/application-dev/device/usb-overview.md @warehouse12 @Kevin-Lau @liuhonggang123
@@ -252,16 +252,16 @@ zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @hu-zhiqiong
 
 
 [开发-Connectivity Kit]
-zh-cn/application-dev/communication/bluetooth/  @zhang_yixin13 @lilong32 @quanli125
+zh-cn/application-dev/communication/bluetooth/  @zhang_yixin13 @xujiang1981 @quanli125
 zh-cn/application-dev/communication/nfc/ @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
 
 
 [开发-Contacts Kit]
-zh-cn/application-dev/telephony/contacts-intro.md @jiayanhong-hw @zhang_yixin13 @caowyan @zhaodengqi
+zh-cn/application-dev/telephony/contacts-intro.md @zhang_yixin13 @caowyan 
 
 
 [开发-Core File Kit]
-zh-cn/application-dev/file-management/ @zengyawen
+zh-cn/application-dev/file-management/ @foryourself
 
 
 [开发-Driverdevelopment kit]
@@ -271,17 +271,14 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @warehouse12
 
 
 [开发-Form Kit]
-zh-cn/application-dev/application-models/formkit-overview.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/arkts-ui-widget*.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/js-ui-widget*.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/application-models/widget*.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/application-models/formkit-overview.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/arkts-ui-widget*.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/js-ui-widget*.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/application-models/widget*.md @arondave @hehe9876 @nezha-father
 
 
 [开发-DFX]
-zh-cn/application-dev/dfx/ @zengyawen
-zh-cn/application-dev/dfx/errormanager-guidelines.md  @huipeizi @lixiaogang30  @Maplestorys
-zh-cn/application-dev/dfx/apprecovery-guidelines.md   @huipeizi @lixiaogang30  @Maplestorys
-
+zh-cn/application-dev/dfx/ @foryourself
 
 [开发-IDL]
 zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixiaogang30
@@ -297,13 +294,13 @@ zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @mur
 zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @hu-zhiqiong @SuperShrimp @murphy1984
 
 [开发-Input kit]
-zh-cn/application-dev/device/inputdevice-guidelines.md @houpengfei @ningningW @mayunteng
-zh-cn/application-dev/device/pointerstyle-guidelines.md @houpengfei @ningningW @mayunteng
-zh-cn/application-dev/device/inputmonitor-guidelines.md @houpengfei @ningningW @mayunteng
-zh-cn/application-dev/device/inputeventclient-guidelines.md @houpengfei @ningningW @mayunteng
-zh-cn/application-dev/device/inputconsumer-guidelines.md @houpengfei @ningningW @mayunteng
-zh-cn/application-dev/device/shortkey-guidelines.md @houpengfei @ningningW @mayunteng
-zh-cn/application-dev/device/input-overview.md  @houpengfei @ningningW @mayunteng
+zh-cn/application-dev/device/inputdevice-guidelines.md @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
+zh-cn/application-dev/device/pointerstyle-guidelines.md @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
+zh-cn/application-dev/device/inputmonitor-guidelines.md @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
+zh-cn/application-dev/device/inputeventclient-guidelines.md @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
+zh-cn/application-dev/device/inputconsumer-guidelines.md @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
+zh-cn/application-dev/device/shortkey-guidelines.md @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
+zh-cn/application-dev/device/input-overview.md  @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
 
 [开发-IPC Kit]
 zh-cn/application-dev/connectivity/ipc-rpc-overview.md @zhang_yixin13 @luodh0157  @zhaopeng_gitee @zhang-yang123321
@@ -343,16 +340,16 @@ zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong 
 
 
 [开发-Network Kit]
-zh-cn/application-dev/connectivity/net-mgmt-overview.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/http-request.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/websocket-connection.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/socket-connection.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-sharing.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-ethernet.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-connection-manager.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-mdns.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-statistics.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
-zh-cn/application-dev/connectivity/net-vpn.md @zhang_yixin13 @jiayanhong-hw @ustblx @maosiping
+zh-cn/application-dev/connectivity/net-mgmt-overview.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/http-request.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/websocket-connection.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/socket-connection.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-sharing.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-ethernet.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-connection-manager.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-mdns.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-statistics.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
+zh-cn/application-dev/connectivity/net-vpn.md @zhang_yixin13 @jiayanhong-hw @w30013702 @rain_myf
 
 
 [开发-Neural NetWork Runtime Kit]
@@ -360,14 +357,14 @@ zh-cn/application-dev/napi/neural-network-runtime-guidelines.md @ge-yafang @prin
 
 
 [开发-NDK]
-zh-cn/application-dev/napi/  @foryourself @niulihua @tomatodevboy
+zh-cn/application-dev/napi/  @foryourself
 zh-cn/application-dev/napi/rawfile-guidelines.md @ningningW @Buda-Liu @budda-wang @yangqing3
 zh-cn/application-dev/napi/usb-ddk-guidelines.md @warehouse12 @Kevin-Lau @liuhonggang123
 
 
 [开发-Notification Kit]
-zh-cn/application-dev/notification/ @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/notification/ @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi  @idanny   @event_notification
 
 
 [开发-Performance]
@@ -380,23 +377,23 @@ zh-cn/application-dev/security/ @zengyawen
 
 
 [开发-Sensor Service Kit]
-zh-cn/application-dev/device/sensor-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor-guidelines.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensorservice-kit-intro.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/device-dev/subsystems/subsys-sensor-overview.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-overview-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain @lixiangpeng221
+zh-cn/application-dev/device/sensor-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensorservice-kit-intro.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/device-dev/subsystems/subsys-sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-overview-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
 
 
 [开发-Telephony Kit]
-zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13 @jiayanhong-hw @zhaodengqi @dingxiaochen
-zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13 @jiayanhong-hw @zhaodengqi @dingxiaochen
-zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 @jiayanhong-hw @zhaodengqi @dingxiaochen
+zh-cn/application-dev/telephony/telephony-overview.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
+zh-cn/application-dev/telephony/telephony-call.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
+zh-cn/application-dev/telephony/telephony-sms.md @zhang_yixin13 @jiayanhong-hw @w30013702 @dingxiaochen
 
 
 [开发-Test Kit]
@@ -660,7 +657,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-timepick
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md	@zhangfanfan2	@zhanghaibo0	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @songzhenlei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @hehe9876		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md @ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md @HelloCrease
@@ -673,7 +670,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@cc5
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @songzhenlei			@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @hehe9876			@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@ileft2019	@crazyracing0726	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
@@ -787,7 +784,7 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent.md    @seasid
 zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md    @niulihua  @zhangshuang-xiaohuihui	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-router.md   @raulnaruto_admin  @pangxinyu10128 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-getContext.md   @zhangshuang-xiaohuihui	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md    @arondave  @songzhenlei		@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-postCardAction.md    @arondave  @hehe9876		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md   @ileft2019   @crazyracing0726  @pangxinyu10128 @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md   @lushi1202  @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md    @piggyguy  @tomatodevboy	@HelloCrease
@@ -828,39 +825,42 @@ zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @bigpumpkin @He
 
 
 [API参考-Background Tasks Kit]
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md @ningningW @yuanzhizhong  @hmosdeveloper
 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md @foolish-older-man @ningningW @very0228
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md @foolish-older-man @ningningW @yuanzhizhong 
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md @ningningW @yuanzhizhong  @hmosdeveloper
 
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-workScheduler.md @ningningW @very0228 @hmosdeveloper
-zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md @ningningW @very0228 @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-workScheduler.md @ningningW @yuanzhizhong  @hmosdeveloper
+zh-cn/application-dev/reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md @ningningW @yuanzhizhong  @hmosdeveloper
+
+[API参考-Basic Services Kit-配置策略]
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-configPolicy-sys.md @ningningW @yangqing3 @liubingbing
 
 [API参考-Basic Services Kit-帐号]
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-appAccount.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md @zengyawen
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account-sys.md
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account-sys.md @zengyawen
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
 [API参考-Basic Services Kit-公共事件]
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-commonEvent*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-inner-commonEvent*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-emitter.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-definitions.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEventManager-definitions.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-ability.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-bundleManager.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventService.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-commonEvent*.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-inner-commonEvent*.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-emitter.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-definitions.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEventManager-definitions.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-ability.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-bundleManager.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventService.md @huipeizi  @idanny   @event_notification
 
 
 [API参考-Basic Services Kit-设备管理]
@@ -917,40 +917,40 @@ zh-cn/application-dev/reference/apis-calendar-kit/ @hu-zhiqiong @jt_123456 @edol
 
 
 [API参考-Connectivity Kit-bluetooth]
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md  @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md @zhang_yixin13 @lilong32 @quanli125
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-bluetoothManager.md @zhang_yixin13 @lilong32 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-ble.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-socket.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager.md  @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-a2dp-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-access-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-connection-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-bluetoothManager-sys.md @zhang_yixin13 @xujiang1981 @quanli125
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-bluetoothManager.md @zhang_yixin13 @xujiang1981 @quanli125
 
 [API参考-Connectivity Kit-wifi]
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiext.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManagerExt.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager-sys.md @yanxiaotao @zhang_yixin13  @xiangkejin123
-zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-wifi.md @yanxiaotao @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifi.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiext.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManagerExt.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-wifiManager-sys.md @legendtau @zhang_yixin13  @xiangkejin123
+zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-wifi.md @legendtau @zhang_yixin13  @xiangkejin123
 
 [API参考-Connectivity Kit-nfc]
 zh-cn/application-dev/reference/apis-connectivity-kit/js-apis-cardEmulation.md @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
@@ -967,15 +967,15 @@ zh-cn/application-dev/reference/apis-connectivity-kit/errorcode-se.md @knpingan 
 
 
 [API参考-Contacts Kit]
-zh-cn/application-dev/reference/apis-contacts-kit/ @jiayanhong-hw @zhang_yixin13 @caowyan @zhaodengqi
+zh-cn/application-dev/reference/apis-contacts-kit/  @zhang_yixin13 @caowyan 
 
 
 [API参考-Core File Kit]
-zh-cn/application-dev/reference/apis-core-file-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-core-file-kit/ @foryourself
 
 
 [API参考-DFX]
-zh-cn/application-dev/reference/apis-performance-analysis-kit/ @zengyawen
+zh-cn/application-dev/reference/apis-performance-analysis-kit/ @foryourself
 
 
 
@@ -989,13 +989,13 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @warehouse12
 
 
 [API参考-Form Kit]
-zh-cn/application-dev/reference/apis-form-kit/  @arondave  @songzhenlei  @nezha-fathe
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @songzhenlei @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @songzhenlei @nezha-father
+zh-cn/application-dev/reference/apis-form-kit/  @arondave  @hehe9876  @nezha-fathe
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @hehe9876 @nezha-father
 
 
 [API参考-IME kit]
@@ -1003,7 +1003,7 @@ zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @feng-aiwen  
 
 
 [API参考-Input Kit]
-zh-cn/application-dev/reference/apis-input-kit/ @houpengfei @ningningW @mayunteng
+zh-cn/application-dev/reference/apis-input-kit/ @hhh2 @ningningW @mayunteng @star-wind-snow-and-rain
 
 
 [API参考-IPC Kit]
@@ -1014,15 +1014,15 @@ zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n.md  @ningning
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @ningningW @mengjingzhimo @yangqing3
 zh-cn/application-dev/reference/apis-Localization-kit/errorcode-i18n.md  @ningningW @mengjingzhimo @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-resource-manager.md  @ningningW @wangyong @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/rawfile.md  @ningningW @wangyong @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/raw__dir_8h.md  @ningningW @wangyong @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/raw__file__manager_8h.md  @ningningW @wangyong @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/raw__file_8h.md  @ningningW @wangyong @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor.md  @ningningW @wangyong @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor64.md  @ningningW @wangyong @yangqing3
-zh-cn/application-dev/reference/apis-Localization-kit/errorcode-resource-manager.md  @ningningW @wangyong @yangqing3
-zh-cn/application-dev/napi/rawfile-guidelines.md @ningningW @wangyong @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/js-apis-resource-manager.md  @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/rawfile.md  @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/raw__dir_8h.md  @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/raw__file__manager_8h.md  @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/raw__file_8h.md  @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor.md  @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor64.md  @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/reference/apis-Localization-kit/errorcode-resource-manager.md  @ningningW @budda-wang @yangqing3
+zh-cn/application-dev/napi/rawfile-guidelines.md @ningningW @budda-wang @yangqing3
 
 [API参考-Location Kit]
 zh-cn/application-dev/reference/apis-location-kit/ @cheng_guohong @RayShih @cheng_guohong @xiangkejin123
@@ -1057,7 +1057,7 @@ zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.
 
 
 [API参考-Network Kit]
-zh-cn/application-dev/reference/apis-network-kit/ @jiayanhong-hw @zhang_yixin13 @ustblx @maosiping
+zh-cn/application-dev/reference/apis-network-kit/ @jiayanhong-hw @zhang_yixin13 @w30013702 @rain_myf
 
 
 [API参考-Neural NetWork Runtime Kit]
@@ -1065,9 +1065,9 @@ zh-cn/application-dev/reference/apis-neural-network-runtime-kit/_neural_network_
 
 
 [API参考-Notification Kit]
-zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification*.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/reference/apis-notification-kit/errorcode-DistributedNotificationService.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification*.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-notification-kit/errorcode-DistributedNotificationService.md @huipeizi  @idanny   @event_notification
 
 
 [API参考-Security]
@@ -1084,26 +1084,26 @@ zh-cn/application-dev/reference/apis-ability-kit/errorcode-access-token.md @zeng
 
 
 [API参考-Sensor Service Kit]
-zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @hu-zhiqiong @hellohyh001 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
 
 
 [API参考-Telephony Kit]
-zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin13 @zhaodengqi @dingxiaochen
+zh-cn/application-dev/reference/apis-telephony-kit/ @jiayanhong-hw @zhang_yixin13 @w30013702 @dingxiaochen
 
 
 [API参考-Test Kit]
@@ -1119,12 +1119,12 @@ zh-cn/application-dev/tools/bm-tool.md @nezha-father  @changzheng6  @hou-xiangyu
 zh-cn/application-dev/tools/packing-tool.md @nezha-father  @changzheng6  @hou-xiangyu1029  @lixiaogang30
 zh-cn/application-dev/tools/unpacking-tool.md @nezha-father  @changzheng6  @hou-xiangyu1029  @lixiaogang30
 zh-cn/application-dev/tools/app-check-tool.md @nezha-father  @changzheng6  @hou-xiangyu1029  @lixiaogang30
-zh-cn/application-dev/tools/cem-tool.md @huipeizi   @idanny  @suzhenxuan  @lixiaogang30
-zh-cn/application-dev/tools/anm-tool.md @huipeizi   @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/tools/cem-tool.md @huipeizi   @idanny   @event_notification
+zh-cn/application-dev/tools/anm-tool.md @huipeizi   @idanny   @event_notification
 
 
 [FAQ]
 zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/faqs/faqs-ability.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
 zh-cn/application-dev/faqs/faqs-bundle-management.md @huipeizi  @changzheng6  @hou-xiangyu1029  @lixiaogang30
-zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi  @idanny  @suzhenxuan  @lixiaogang30
+zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi  @idanny   @event_notification

@@ -23,7 +23,7 @@ The USB Driver Development Kit (USB DDK) is a toolset that helps you develop USB
 | OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | Creates a buffer. To avoid resource leakage, use **OH_Usb_DestroyDeviceMemMap()** to destroy a buffer after use.|
 | OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
 
-For details about the APIs, see [USB DDK](../reference/native-apis/_usb_ddk.md).
+For details about the APIs, see [USB DDK](../reference/apis-driverdevelopment-kit/_usb_ddk.md).
 
 ## How to Develop 
 

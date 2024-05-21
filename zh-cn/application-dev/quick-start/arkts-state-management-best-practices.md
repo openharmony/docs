@@ -182,7 +182,7 @@ struct CompA {
 
 ## 精准控制状态变量关联的组件数
 
-精准控制状态变量关联的组件数能减少不必要的组件刷新，提高组件的刷新效率。有时开发者会将同一个状态变量绑定多个同级组件的属性，当状态变量改变时，会让这些组件做出相同的改变，这有时会造成组件的不必要刷新，如果存在某些比较复杂的组件，则会大大影响整体的性能。但是如果将这个状态变量绑定在这些同级组件的父组件上，则可以减少需要刷新的组件数，从而提高刷新的性能。
+建议每个状态变量关联的组件数应该少于20个。精准控制状态变量关联的组件数能减少不必要的组件刷新，提高组件的刷新效率。有时开发者会将同一个状态变量绑定多个同级组件的属性，当状态变量改变时，会让这些组件做出相同的改变，这有时会造成组件的不必要刷新，如果存在某些比较复杂的组件，则会大大影响整体的性能。但是如果将这个状态变量绑定在这些同级组件的父组件上，则可以减少需要刷新的组件数，从而提高刷新的性能。
 
 【反例】
 
@@ -292,3 +292,81 @@ struct Page1 {
 }
 ```
 
+## 合理控制对象类型状态变量关联的组件数量
+
+
+如果将一个复杂对象定义为状态变量，需要合理控制其关联的组件数。当对象中某一个成员属性发生变化时，会导致该对象关联的所有组件刷新，尽管这些组件可能并没有直接使用到该改变的属性。为了避免这种“冗余刷新”对性能产生影响，建议合理拆分该复杂对象，控制对象关联的组件数量。具体可参考<!--Del-->[<!--DelEnd-->精准控制组件的更新范围<!--Del-->](../performance/precisely-control-render-scope.md)<!--DelEnd-->和[状态管理合理使用开发指导](../quick-start/properly-use-state-management-to-develope.md) 两篇文章。
+
+## 查询状态变量关联的组件数
+
+在应用开发中，可以通过HiDumper查看状态变量关联的组件数，进行性能优化。具体可参考<!--Del-->[<!--DelEnd-->状态变量组件定位工具实践<!--Del-->](../performance/state_variable_dfx_pratice.md)<!--DelEnd-->。
+
+
+## 避免在for、while等循环逻辑中频繁读取状态变量
+
+在应用开发中，应避免在循环逻辑中频繁读取状态变量，而是应该放在循环外面读取。
+
+【反例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  build() {
+    Column() {
+      Button('点击打印日志')
+        .onClick(() => {
+          for (let i = 0; i < 10; i++) {
+            hilog.info(0x0000, 'TAG', '%{public}s', this.message);
+          }
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```
+
+【正例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '';
+
+  build() {
+    Column() {
+      Button('点击打印日志')
+        .onClick(() => {
+          let logMessage: string = this.message;
+          for (let i = 0; i < 10; i++) {
+            hilog.info(0x0000, 'TAG', '%{public}s', logMessage);
+          }
+        })
+        .width('90%')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .margin({
+          top: 10
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .alignItems(HorizontalAlign.Center)
+    .margin({
+      top: 15
+    })
+  }
+}
+```

@@ -1,6 +1,6 @@
 # 使用OHAudio开发音频播放功能(C/C++)
 
-OHAudio是OpenHarmony在API version 10中引入的一套全新Native API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
+OHAudio是系统在API version 10中引入的一套C API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
 
 ## 使用入门
 
@@ -11,7 +11,9 @@ OHAudio是OpenHarmony在API version 10中引入的一套全新Native API，此AP
 ``` cmake
 target_link_libraries(sample PUBLIC libohaudio.so)
 ```
+
 ### 添加头文件
+
 开发者通过引入<[native_audiostreambuilder.h](../../reference/apis-audio-kit/native__audiostreambuilder_8h.md)>和<[native_audiorenderer.h](../../reference/apis-audio-kit/native__audiorenderer_8h.md)>头文件，使用音频播放相关API。
 
 ```cpp
@@ -173,6 +175,56 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 ```C
 OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
+```
+
+## 设置音频声道布局
+
+播放音频文件时，可以通过设置音频的声道布局信息，指定渲染或播放时的扬声器摆位，使得渲染和播放效果更佳，获得更高质量的音频体验。
+
+开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetChannelLayout()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setchannellayout)设置声道布局信息。
+
+当声道布局与声道数不匹配时，创建音频流会失败。建议在设置声道布局时，确认下发的声道布局信息是正确的。
+
+如果不知道准确的声道布局信息，或者开发者需要使用默认声道布局，可以不调用设置声道布局接口，或者下发CH_LAYOUT_UNKNOWN，以使用基于声道数的默认声道布局。
+
+对于HOA格式的音频，想要获得正确的渲染和播放效果，必须指定声道布局信息。
+
+开发示例
+
+```C
+OH_AudioStreamBuilder_SetChannelLayout(builder, CH_LAYOUT_STEREO);
+```
+
+## 播放AudioVivid格式音源
+
+播放AudioVivid格式音频文件时，需要使用与普通播放不同的数据写入回调函数，该回调可以同时写入PCM数据与元数据。
+
+开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setwritedatawithmetadatacallback)设置PCM数据与元数据同时写入的回调函数，同时调用[OH_AudioStreamBuilder_SetEncodingType()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setencodingtype)设置编码类型为AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID。
+
+在播放AudioVivid时，帧长是固定的，不可通过[OH_AudioStreamBuilder_SetFrameSizeInCallback()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback)设置回调帧长。同时，在设置播放声道数和声道布局时，需要将写入音源的声床数和对象数相加后进行设置。
+
+开发示例
+
+```C
+// 自定义同时写入PCM数据和元数据函数
+int32_t MyOnWriteDataWithMetadata(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    void* audioData,
+    int32_t audioDataSize,
+    void* metadata,
+    int32_t metadataSize)
+{
+    // 将待播放的PCM数据和元数据，分别按audioDataSize和metadataSize写入buffer
+    return 0;
+}
+
+// 设置编码类型
+OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID);
+// 配置回调函数
+OH_AudioRenderer_WriteDataWithMetadataCallback metadataCallback = MyOnWriteDataWithMetadata;
+// 设置同时写入PCM数据和元数据的回调
+OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback(builder, metadataCallback, nullptr);
 ```
 
 ## 相关实例

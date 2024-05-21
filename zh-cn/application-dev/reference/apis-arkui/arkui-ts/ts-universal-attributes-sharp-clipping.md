@@ -36,17 +36,23 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 
 | 参数名 | 类型                                                         | 必填 | 说明                             |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
-| value  | [ProgressMask](#progressmask10)<sup>10+</sup>&nbsp;\|&nbsp;[CircleAttribute](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[EllipseAttribute](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[PathAttribute](ts-drawing-components-path.md)&nbsp;\|&nbsp;[RectAttribute](ts-drawing-components-rect.md) | 是   | 在当前组件上加上指定形状的遮罩。 |
+| value  | [CircleAttribute](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[EllipseAttribute](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[PathAttribute](ts-drawing-components-path.md)&nbsp;\|&nbsp;[RectAttribute](ts-drawing-components-rect.md) \|&nbsp;[ProgressMask](#progressmask10)<sup>10+</sup> | 是   | 在当前组件上加上指定形状的遮罩。 |
 
 ## ProgressMask<sup>10+</sup>
 
 ProgressMask设置遮罩的进度、最大值和遮罩颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ### constructor<sup>10+</sup>
 
 constructor(value: number, total: number, color: ResourceColor)
 
 构造ProgressMask对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -62,6 +68,10 @@ updateProgress(value: number): void
 
 更新进度遮罩的进度值。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述           |
@@ -74,12 +84,29 @@ updateColor(value: ResourceColor): void
 
 更新进度遮罩的颜色。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 参数类型                                   | 必填 | 参数描述         |
 | ------ | ------------------------------------------ | ---- | ---------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 进度遮罩的颜色。 |
 
+### enableBreathingAnimation<sup>12+</sup>
+
+enableBreathingAnimation(value: boolean): void
+
+进度满时的呼吸光晕动画开关。默认关闭呼吸光晕动画。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 参数类型                                   | 必填 | 参数描述         |
+| ------ | ------------------------------------------ | ---- | ---------------- |
+| value  | boolean | 是   | 设置为true则开启呼吸光晕动画。默认值：false |
 
 
 ## 示例
@@ -132,6 +159,7 @@ struct ProgressMaskExample {
   @State progressflag1: boolean = true;
   @State color: Color = 0x01006CDE;
   @State value: number = 10.0;
+  @State enableBreathingAnimation: boolean = false;
   @State progress: ProgressMask = new ProgressMask(10.0, 100.0, Color.Gray);
   build() {
     Column({ space: 15 }) {
@@ -165,6 +193,13 @@ struct ProgressMaskExample {
           }
           this.progressflag1 = !this.progressflag1
         }).width(200).height(50).margin(20)
+      
+      // 开关呼吸光晕动画
+      Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
+        .onClick((event?: ClickEvent) => {
+          this.enableBreathingAnimation = !this.enableBreathingAnimation
+          this.progress.enableBreathingAnimation(this.enableBreathingAnimation);
+        }).width(200).height(50).margin(20)
 
       // 恢复进度遮罩
       Button('click reset!')
@@ -179,4 +214,4 @@ struct ProgressMaskExample {
 }
 ```
 
-![progressMask](figures/progressMask.PNG)
+![progressMask](figures/progressMask.gif)

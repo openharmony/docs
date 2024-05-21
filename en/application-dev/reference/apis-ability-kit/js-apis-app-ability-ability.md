@@ -20,6 +20,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the ability is running is updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -46,6 +48,8 @@ class MyUIAbility extends UIAbility {
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system adjusts the memory level.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 

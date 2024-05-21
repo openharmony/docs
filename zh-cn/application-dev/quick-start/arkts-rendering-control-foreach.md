@@ -22,7 +22,7 @@ ForEach(
 
 | 参数名        | 参数类型                                | 是否必填 | 参数描述                                                     |
 | ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
-| arr           | Array<any>                                   | 是       | 数据源，为`Array`类型的数组。<br/>**说明：**<br/>- 可以设置为空数组，此时不会创建子组件。<br/>- 可以设置返回值为数组类型的函数，例如`arr.slice(1, 3)`，但设置的函数不应改变包括数组本身在内的任何状态变量，例如不应使用`Array.splice()`,`Array.sort()`或`Array.reverse()`这些会改变原数组的函数。 |
+| arr           | Array\<any\>                                   | 是       | 数据源，为`Array`类型的数组。<br/>**说明：**<br/>- 可以设置为空数组，此时不会创建子组件。<br/>- 可以设置返回值为数组类型的函数，例如`arr.slice(1, 3)`，但设置的函数不应改变包括数组本身在内的任何状态变量，例如不应使用`Array.splice()`,`Array.sort()`或`Array.reverse()`这些会改变原数组的函数。 |
 | itemGenerator | `(item: any, index: number) => void`   | 是       | 组件生成函数。<br/>- 为数组中的每个元素创建对应的组件。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 组件的类型必须是`ForEach`的父容器所允许的。例如，`ListItem`组件要求`ForEach`的父容器组件必须为`List`组件。 |
 | keyGenerator  | `(item: any, index: number) => string` | 否       | 键值生成函数。<br/>- 为数据源`arr`的每个数组项生成唯一且持久的键值。函数返回值为开发者自定义的键值生成规则。<br/>- `item`参数：`arr`数组中的数据项。<br/>- `index`参数（可选）：`arr`数组中的数据项索引。<br/>**说明：**<br/>- 如果函数缺省，框架默认的键值生成函数为`(item: T, index: number) => { return index + '__' + JSON.stringify(item); }`<br/>- 键值生成函数不应改变任何组件状态。 |
 
@@ -30,6 +30,22 @@ ForEach(
 >
 > - `ForEach`的`itemGenerator`函数可以包含`if/else`条件渲染逻辑。另外，也可以在`if/else`条件渲染语句中使用`ForEach`组件。
 > - 在初始化渲染时，`ForEach`会加载数据源的所有数据，并为每个数据项创建对应的组件，然后将其挂载到渲染树上。如果数据源非常大或有特定的性能需求，建议使用`LazyForEach`组件。
+
+## 事件
+### onMove
+
+onMove(handler: Optional<(from: index, to: index) => void>)
+
+拖拽排序数据移动回调。只有在List组件中使用，并且ForEach每次迭代都生成一个ListItem组件时才生效拖拽排序。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型      | 必填 | 说明       |
+| ------ | --------- | ---- | ---------- |
+| from  | number | 是   | 数据源移动起始索引号。 |
+| to  | number | 是   | 数据源移动目标索引号。 |
 
 ## 键值生成规则
 
@@ -206,10 +222,10 @@ struct ArticleList {
 
   build() {
     Column() {
-      ForEach(this.simpleList, (item: string) => {
+      ForEach(this.simpleList, (item: number) => {
         ArticleSkeletonView()
           .margin({ top: 20 })
-      }, (item: string) => item)
+      }, (item: number) => item.toString())
     }
     .padding(20)
     .width('100%')
@@ -482,6 +498,48 @@ struct ArticleCard {
 4. 在此处，`ForEach`键值生成规则为数组项的`id`属性值。当`ForEach`遍历新数据源时，数组项的`id`均没有变化，不会新建组件。
 5. 渲染第1个数组项对应的`ArticleCard`组件时，读取到的`isLiked`和`likesCount`为修改后的新值。
 
+### 拖拽排序
+当ForEach在List组件下使用，并且设置了onMove事件，ForEach每次迭代都生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。
+
+```ts
+@Entry
+@Component
+struct ForEachSort {
+  @State arr: Array<string> = [];
+
+  build() {
+    Row() {
+      List() {
+        ForEach(this.arr, (item:number)=> {
+          ListItem() {
+            Text(item.toString())
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .size({height: 100, width: "100%"})
+          }.margin(10)
+          .borderRadius(10)
+          .backgroundColor("#FFFFFFFF")
+        })
+        .onMove((from:number, to:number)=>{
+          let tmp = this.arr.splice(from, 1);
+          this.arr.splice(to, 0, tmp[0])
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor("#FFDCDCDC")
+    }
+  }
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.arr.push(i.toString())
+    }
+  }
+}
+```
+
+**图8** ForEach拖拽排序效果图  
+![ForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
 ## 使用建议
 
 - 尽量避免在最终的键值生成规则中包含数据项索引`index`，以防止出现[渲染结果非预期](#渲染结果非预期)和[渲染性能降低](#渲染性能降低)。如果业务确实需要使用`index`，例如列表需要通过`index`进行条件渲染，开发者需要接受`ForEach`在改变数据源后重新创建组件所带来的性能损耗。
@@ -533,9 +591,9 @@ struct ChildItem {
 }
 ```
 
-上述代码的初始渲染效果（左图）和点击“在第1项后插入新项”文本组件后的渲染效果（右图）如下图所示。
+上述代码的初始渲染效果和点击“在第1项后插入新项”文本组件后的渲染效果如下图所示。
 
-**图8**  渲染结果非预期运行效果图  
+**图9**  渲染结果非预期运行效果图  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
 
 `ForEach`在首次渲染时，创建的键值依次为"0"、"1"、"2"。
@@ -592,14 +650,14 @@ struct ChildItem {
 }
 ```
 
-以上代码的初始渲染效果（左图）和点击"在第1项后插入新项"文本组件后的渲染效果（右图）如下所示。
+以上代码的初始渲染效果和点击"在第1项后插入新项"文本组件后的渲染效果如下图所示。
 
-**图9**  渲染性能降低案例运行效果图  
+**图10**  渲染性能降低案例运行效果图  
 ![ForEach-RenderPerformanceDecrease](figures/ForEach-RenderPerformanceDecrease.gif)
 
 点击“在第1项后插入新项”文本组件后，IDE的日志打印结果如下所示。
 
-**图10**  渲染性能降低案例日志打印图  
+**图11**  渲染性能降低案例日志打印图  
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
 
 插入新项后，`ForEach`为`new item`、 `two`、 `three`三个数组项创建了对应的组件`ChildItem`，并执行了组件的[`aboutToAppear()`](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)生命周期函数。这是因为：

@@ -15,7 +15,7 @@ import abilitymanager from '@ohos.app.ability.abilityManager';
 
 ## Usage
 
-The ability running information is obtained by calling [getAbilityRunningInfos](../apis/js-apis-app-ability-abilityManager.md#getabilityrunninginfos) in **abilityManager**.
+The ability running information is obtained by calling [getAbilityRunningInfos](js-apis-app-ability-abilityManager-sys.md#getabilityrunninginfos) in **abilityManager**.
 
 ## Attributes
 
@@ -30,7 +30,7 @@ The ability running information is obtained by calling [getAbilityRunningInfos](
 | uid | number | Yes| No| User ID. |
 | processName | string | Yes| No| Process name. |
 | startTime | number | Yes| No| Ability start time. |
-| abilityState | [abilityManager.AbilityState](../apis/js-apis-app-ability-abilityManager.md#abilitystate) | Yes| No| Ability state. |
+| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager-sys.md#abilitystate) | Yes| No| Ability state. |
 
 **Example**
 

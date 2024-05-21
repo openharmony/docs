@@ -5,9 +5,13 @@
 
 Defines an array of relative coordinates.
 
-**Since**: 11
+**Since**
 
-**Related module**: [HidDdk](_hid_ddk.md)
+11
+
+**Related module**
+
+[HID DDK](_hid_ddk.md)
 
 
 ## Summary
@@ -17,5 +21,32 @@ Defines an array of relative coordinates.
 
 | Name| Description| 
 | -------- | -------- |
-| [hidRelAxes](_hid_ddk.md#hidrelaxes) | [Hid_RelAxes](_hid_ddk.md#hid_relaxes) \* | 
-| [length](_hid_ddk.md#length-45) | uint16_t | 
+| [hidRelAxes](#hidrelaxes) | Array of relative coordinates.| 
+| [length](#length) | Length of the array.| 
+
+
+## Member Variable Description
+
+
+### hidrelaxes
+
+
+```
+Hid_RelAxes Hid_RelAxesArray::*hidRelAxes
+```
+
+**Description**
+
+Array of relative coordinates.
+
+
+### length
+
+
+```
+uint16_t Hid_RelAxesArray::length
+```
+
+**Description**
+
+Length of the array.

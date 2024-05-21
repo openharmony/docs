@@ -9,7 +9,7 @@
 
 ## 加载网络页面
 
-开发者可以在Web组件创建时，指定默认加载的网络页面 。在默认页面加载完成后，如果开发者需要变更此Web组件显示的网络页面，可以通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口加载指定的网页。
+开发者可以在Web组件创建时，指定默认加载的网络页面 。在默认页面加载完成后，如果开发者需要变更此Web组件显示的网络页面，可以通过调用[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)接口加载指定的网页。[Web组件](../reference/apis-arkweb/ts-basic-components-web.md#web)的第一个参数变量src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl)重新加载。
 
 
 在下面的示例中，在Web组件加载完“www\.example.com”页面后，开发者可通过loadUrl接口将此Web组件显示页面变更为“www\.example1.com”。
@@ -24,7 +24,7 @@ import business_error from '@ohos.base';
 @Entry
 @Component
 struct WebComponent {
-  webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
 
   build() {
     Column() {
@@ -32,14 +32,14 @@ struct WebComponent {
         .onClick(() => {
           try {
             // 点击按钮时，通过loadUrl，跳转到www.example1.com
-            this.webviewController.loadUrl('www.example1.com');
+            this.controller.loadUrl('www.example1.com');
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
       // 组件创建时，加载www.example.com
-      Web({ src: 'www.example.com', controller: this.webviewController})
+      Web({ src: 'www.example.com', controller: this.controller})
     }
   }
 }
@@ -71,7 +71,7 @@ struct WebComponent {
   @Entry
   @Component
   struct WebComponent {
-    webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
 
     build() {
       Column() {
@@ -79,14 +79,14 @@ struct WebComponent {
           .onClick(() => {
             try {
               // 点击按钮时，通过loadUrl，跳转到local1.html
-              this.webviewController.loadUrl($rawfile("local1.html"));
+              this.controller.loadUrl($rawfile("local1.html"));
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           })
         // 组件创建时，通过$rawfile加载本地文件local.html
-        Web({ src: $rawfile("local.html"), controller: this.webviewController })
+        Web({ src: $rawfile("local.html"), controller: this.controller })
       }
     }
   }
@@ -101,6 +101,18 @@ struct WebComponent {
   <html>
     <body>
       <p>Hello World</p>
+    </body>
+  </html>
+  ```
+
+- local1.html页面代码。
+
+  ```html
+  <!-- local1.html -->
+  <!DOCTYPE html>
+  <html>
+    <body>
+      <p>This is local1 page</p>
     </body>
   </html>
   ```
@@ -145,13 +157,13 @@ struct WebComponent {
 }
 ```
 
-## 动态创建web组件
+## 动态创建Web组件
 支持命令式创建Web组件，这种方式创建的组件不会立即挂载到组件树，即不会对用户呈现（组件状态为Hidden和InActive），开发者可以在后续使用中按需动态挂载。后台启动的Web实例不建议超过200个。  
 
 ```ts
 // 载体Ability
 // EntryAbility.ets
-import {createNWeb} from "../pages/common"
+import { createNWeb } from "../pages/common"
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
     // 创建Web动态组件（需传入UIContext），loadContent之后的任意时机均可创建
@@ -238,7 +250,7 @@ export const createNWeb = (url: string, uiContext: UIContext) => {
   // 创建NodeController 
   let baseNode = new myNodeController();
   let controller = new web_webview.WebviewController() ;
-  // 初始化自定义web组件
+  // 初始化自定义Web组件
   baseNode.initWeb(url, uiContext, controller);
   controllerMap.set(url, controller)
   NodeMap.set(url, baseNode);
@@ -251,7 +263,7 @@ export const getNWeb = (url : string) : myNodeController | undefined => {
 ```ts
 // 使用NodeController的Page页
 // Index.ets
-import {createNWeb, getNWeb} from "./common"
+import { getNWeb } from "./common"
 @Entry
 @Component
 struct Index {

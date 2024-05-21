@@ -61,6 +61,7 @@
 | [OH_Usb_SendControlReadRequest](#oh_usb_sendcontrolreadrequest) (uint64_t [interfaceHandle](usb__ddk__types_8h.md#interfacehandle), const struct [UsbControlRequestSetup](_usb_control_request_setup.md) \*setup, uint32_t [timeout](usb__ddk__types_8h.md#timeout), uint8_t \*data, uint32_t \*dataLen) | 发送控制读请求，该接口为同步接口。 |
 | [OH_Usb_SendControlWriteRequest](#oh_usb_sendcontrolwriterequest) (uint64_t [interfaceHandle](usb__ddk__types_8h.md#interfacehandle), const struct [UsbControlRequestSetup](_usb_control_request_setup.md) \*setup, uint32_t [timeout](usb__ddk__types_8h.md#timeout), const uint8_t \*data, uint32_t dataLen) | 发送控制写请求，该接口为同步接口。 |
 | [OH_Usb_SendPipeRequest](#oh_usb_sendpiperequest) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | 发送管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。 |
+| [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | 发送共享内存管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。 |
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | 创建缓冲区。请在缓冲区使用完后，调用[OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap)销毁缓冲区，否则会造成资源泄露。 |
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
 
@@ -68,6 +69,21 @@
 
 设备ID（deviceId）的获取可通过外设查询接口queryDevices()查询。
 具体请查阅[扩展外设管理开发指导](../../device/driver/externaldevice-guidelines.md)。
+
+#### 函数参数deviceId转换指导
+
+通过外设查询接口queryDevices()获取到的deviceId，还需要通过数据转换，才能得到[OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor) 等函数的入参deviceId。
+<p>转换原理：提取queryDevices()获取到的deviceId的前32位作为C_API的deviceId。</p>
+<p>以下代码仅供参考：</p>
+
+ ~~~
+uint64_t JsDeviceIdToNative(uint64_t deviceId)
+{
+    uint32_t busNum = (uint32_t)(deviceId >> 48);
+    uint32_t devNum = (uint32_t)((deviceId & 0x0000FFFF00000000) >> 32);
+    return (((static_cast<uint64_t>(busNum)) << 32) | devNum);
+}
+~~~
 
 ## 枚举类型说明
 
@@ -422,6 +438,31 @@ int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMem
 | -------- | -------- |
 | pipe | 要传输数据的管道信息。 |
 | devMmap | 数据缓冲区，可以通过[OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap)获得。 |
+
+**返回:**
+
+成功返回0，否则返回负数。
+
+
+### OH_Usb_SendPipeRequestWithAshmem()
+
+
+```
+int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem);
+```
+
+**描述:**
+
+发送共享内存的管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| pipe | 要传输数据的管道信息。 |
+| ashmem | 共享内存，可以通过[OH_DDK_CreateAshmem()](_base_ddk.md#oh_ddk_createashmem)获得。 |
 
 **返回:**
 

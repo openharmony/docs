@@ -20,6 +20,14 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 **系统能力：**  SystemCapability.USB.USBManager
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error. No parameters are required. |
+
 **返回值：**
 
 | 类型                                                   | 说明      |
@@ -110,9 +118,10 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 以下错误码的详细介绍参见[USB服务错误码](errorcode-usb.md)。
 
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 14400001 |Permission denied. Need call requestRight to get permission. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 14400001 | Permission denied. Need call requestRight to get permission. |
 
 **示例：**
 
@@ -144,6 +153,14 @@ hasRight(deviceName: string): boolean
 | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 设备名称。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -171,6 +188,14 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 设备名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 
@@ -200,6 +225,14 @@ removeRight(deviceName: string): boolean
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 设备名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 
@@ -233,6 +266,14 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引。 |
 | force | boolean | 否 | 可选参数，是否强制获取。默认值为false&nbsp;，表示不强制获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 
@@ -272,6 +313,14 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 
@@ -313,6 +362,14 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 | config | [USBConfiguration](#usbconfiguration) | 是 | 用于确定需要设置的配置。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -351,6 +408,14 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | ----- | ------------------------------- | --- | ------------- |
 | pipe  | [USBDevicePipe](#usbdevicepipe) | 是   | 用于确定总线号和设备地址。 |
 | iface | [USBInterface](#usbinterface)   | 是   | 用于确定需要设置的接口。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 
@@ -391,6 +456,14 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -425,6 +498,14 @@ getFileDescriptor(pipe: USBDevicePipe): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 
@@ -462,6 +543,14 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
 | controlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 
@@ -521,6 +610,14 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 | buffer | Uint8Array | 是 | 用于写入或读取数据的缓冲区。 |
 | timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -566,6 +663,14 @@ closePipe(pipe: USBDevicePipe): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定USB设备消息控制通道。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 

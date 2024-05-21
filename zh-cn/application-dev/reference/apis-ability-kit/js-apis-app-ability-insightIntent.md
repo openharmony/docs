@@ -22,13 +22,15 @@ import insightIntent from '@ohos.app.ability.insightIntent';
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| UI_ABILITY_FOREGROUND | 0 | 将UIAbility在前台显示。 |
-| UI_ABILITY_BACKGROUND | 1 | 将UIAbility在后台拉起。 |
+| UI_ABILITY_FOREGROUND | 0 | 将UIAbility在前台显示。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| UI_ABILITY_BACKGROUND | 1 | 将UIAbility在后台拉起。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | UI_EXTENSION_ABILITY | 2 | 拉起UIExtensionAbility。 |
 
 ## ExecuteResult
 
 意图调用的返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

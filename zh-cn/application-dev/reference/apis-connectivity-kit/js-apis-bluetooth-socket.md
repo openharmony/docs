@@ -48,11 +48,13 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 ```js
 import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
-function serverSocket(code: BusinessError, number: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + number);
+let serverSocket = (code: BusinessError, number: number) => {
+  if (code) {
+    console.error('sppListen error, code is ' + code);
+    return;
+  } else {
     serverNumber = number;
+    console.info('sppListen success, serverNumber = ' + serverNumber);
   }
 }
 
@@ -95,25 +97,20 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 import { BusinessError } from '@ohos.base';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, number: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + number);
-    serverNumber = number;
-  }
-}
 let clientNumber = -1;
-function acceptClientSocket(code: BusinessError, number: number) {
+let serverNumber = -1;
+let acceptClientSocket = (code: BusinessError, number: number) => {
   console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth clientSocket Number: ' + number);
-    // 获取的clientNumber用作服务端后续读/写操作socket的id。
-    clientNumber = number;
+  if (code) {
+    console.error('sppListen error, code is ' + code);
+    return;
+  } else {
+    clientNumber = number; // 获取的clientNumber用作客户端后续读/写操作socket的id。
+    console.info('sppListen success, serverNumber = ' + clientNumber);
   }
 }
 try {
-    socket.sppAccept(serverNumber, acceptClientSocket);
+    socket.sppAccept(serverNumber, acceptClientSocket); // serverNumber是sppListen回调中得到的serverNumber。
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -155,13 +152,15 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 import { BusinessError } from '@ohos.base';
 
 let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+let clientSocket = (code: BusinessError, number: number) => {
+  if (code) {
+    console.error('sppListen error, code is ' + code);
     return;
+  } else {
+    console.log('bluetooth serverSocket Number: ' + number);
+    // 获取的clientNumber用作客户端后续读/写操作socket的id。
+    clientNumber = number;
   }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // 获取的clientNumber用作客户端后续读/写操作socket的id。
-  clientNumber = number;
 }
 let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
 try {
@@ -199,14 +198,7 @@ sppCloseServerSocket(socket: number): void
 
 ```js
 import { BusinessError } from '@ohos.base';
-let serverNumber = -1;
-function serverSocket(code: BusinessError, number: number) {
-  console.log('bluetooth error code: ' + code.code);
-  if (code.code == 0) {
-    console.log('bluetooth serverSocket Number: ' + number);
-    serverNumber = number;
-  }
-}
+let serverNumber = -1; // 此处serverNumber需赋值为调用sppListen接口后，回调中得到的serverNumber。
 try {
     socket.sppCloseServerSocket(serverNumber);
 } catch (err) {
@@ -242,15 +234,7 @@ sppCloseClientSocket(socket: number): void
 
 ```js
 import { BusinessError } from '@ohos.base';
-let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
-    return;
-  }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // 获取的clientNumber用作客户端后续读/写操作socket的id。
-  clientNumber = number;
-}
+let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 try {
     socket.sppCloseClientSocket(clientNumber);
 } catch (err) {
@@ -287,15 +271,7 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 
 ```js
 import { BusinessError } from '@ohos.base';
-let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
-    return;
-  }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // 获取的clientNumber用作客户端后续读/写操作socket的id。
-  clientNumber = number;
-}
+let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
@@ -336,16 +312,8 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 ```js
 import { BusinessError } from '@ohos.base';
-let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
-    return;
-  }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // 获取的clientNumber用作客户端后续读/写操作socket的id。
-  clientNumber = number;
-}
-function dataRead(dataBuffer: ArrayBuffer) {
+let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+let dataRead = (dataBuffer: ArrayBuffer) => {
   let data = new Uint8Array(dataBuffer);
   console.log('bluetooth data is: ' + data[0]);
 }
@@ -377,15 +345,7 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 
 ```js
 import { BusinessError } from '@ohos.base';
-let clientNumber = -1;
-function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
-    return;
-  }
-  console.log('bluetooth serverSocket Number: ' + number);
-  // 获取的clientNumber用作客户端后续读/写操作socket的id。
-  clientNumber = number;
-}
+let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 try {
     socket.off('sppRead', clientNumber);
 } catch (err) {

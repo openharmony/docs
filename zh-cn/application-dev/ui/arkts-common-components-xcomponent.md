@@ -80,6 +80,7 @@ static napi_value Init(napi_env env, napi_value exports)
 {
 	// 定义暴露在模块上的方法
     napi_property_descriptor desc[] ={
+        // 通过DECLARE_NAPI_FUNCTION宏完成方法名的映射，这里就是将native侧的PluginRender::NapiChangeColor方法映射到ets侧的changeColor方法
         DECLARE_NAPI_FUNCTION("changeColor", PluginRender::NapiChangeColor),
     };
     // 通过此接口开发者可在exports上挂载native方法（即上面的PluginRender::NapiChangeColor），exports会通过js引擎绑定到js层的一个js对象
@@ -100,7 +101,7 @@ static napi_module nativerenderModule = {
 extern "C" __attribute__((constructor)) void RegisterModule(void)
 {
     // 注册so模块
-    napi_module_register(&nativerenderModule);c
+    napi_module_register(&nativerenderModule);
 }
 ```
 
@@ -134,7 +135,7 @@ NativeXComponent为XComponent提供了在native层的实例，可作为js层和n
 
 ### 注册XComponent事件回调
 
-依赖[解析XComponent组件的NativeXComponent实例](#解析xcomponent组件的nativexcomponent实例)拿到的NativeXComponent指针，通过OH_NativeXComponent_RegisterCallback接口进行回调注册
+依赖[解析XComponent组件的NativeXComponent实例](#解析xcomponent组件的nativexcomponent实例)拿到的NativeXComponent指针，通过OH_NativeXComponent_RegisterCallback接口进行回调注册。一般的会在模块被加载时的回调内（即[Napi模块注册](#napi模块注册)中的Init函数）进行回调注册。
 
 
 
@@ -186,7 +187,11 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   .onDestroy(() => {})
 ```
 
-- id : 与XComponent组件为一一对应关系，不可重复。通常开发者可以在native侧通过OH_NativeXComponent_GetXComponentId接口来获取对应的id从而绑定对应的XComponent。
+- id : 与XComponent组件为一一对应关系，不建议重复。通常开发者可以在native侧通过OH_NativeXComponent_GetXComponentId接口来获取对应的id从而绑定对应的XComponent。
+
+  >**说明：**
+  >
+  > 如果id重复，在native侧将无法对多个XComponent进行区分。
 
 - libraryname：加载模块的名称，必须与在native侧Napi模块注册时nm_modname的名字一致。
 

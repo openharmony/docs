@@ -10,6 +10,7 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。以下异步调用的API示例均采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
 如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
 
+<!--Del-->
 ## 创建用户相册（仅向系统应用开放）
 
 通过[MediaAlbumChangeRequest.createAlbumRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#createalbumrequest11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口创建用户相册。
@@ -24,7 +25,7 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以创建一个用户相册为例。
 
@@ -51,6 +52,7 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->
 
 ## 获取用户相册
 
@@ -59,7 +61,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取一个相册名为'albumName'的用户相册为例。
 
@@ -113,7 +115,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以将一个相册名为'albumName'的用户相册重命名为例。
 
@@ -163,7 +165,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以将往相册名为'albumName'的用户相册中添加一张图片为例。
 
@@ -225,7 +227,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以获取相册名为'albumName'的用户相册中的一张图片为例。
 
@@ -283,7 +285,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以将往相册名为'albumName'的用户相册中移除一张图片为例。
 
@@ -338,6 +340,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ## 删除用户相册（仅向系统应用开放）
 
 先[获取用户相册](#获取用户相册)对象，然后调用[MediaAlbumChangeRequest.deleteAlbums](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#deletealbums11)删除用户相册。
@@ -345,7 +348,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以删除一个相册名为'albumName'的用户相册为例。
 
@@ -382,3 +385,4 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->

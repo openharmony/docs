@@ -70,7 +70,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    编码接口可按输出方式分为向缓存区（内存）输出和向文件输出两种接口，入参均为上述内容。
    应用可根据输出的不同需求选择编码接口。
 
-   例向缓存区（内存）输出：
+   例如向缓存区（内存）输出：
    ```cpp
    // 编码参数
    struct ImagePacker_Opts_ opts;
@@ -85,7 +85,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    // 开始对输入source进行编码过程，返回result为 IMAGE_RESULT_SUCCESS则编码成功，同时bufferSize中包含编码实际使用缓存区大小
    int32_t result = OH_ImagePacker_PackToData(nativePacker, source, &opts, outData, &bufferSize);
    ```
-   例向文件输出：
+   例如向文件输出：
    ```cpp
    // 编码参数
    struct ImagePacker_Opts_ opts;

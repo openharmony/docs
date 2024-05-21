@@ -1,4 +1,4 @@
-# Audio and Video Muxing (C/C++)
+# Audio and Video Muxing
 
 You can call the native APIs provided by the **AVMuxer** module to mux audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
 
@@ -49,6 +49,7 @@ The following walks you through how to implement the entire process of audio and
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    #include <multimedia/player_framework/native_avbuffer.h>
+   #include <fcntl.h>
    ```
 
 2. Call **OH_AVMuxer_Create()** to create an **OH_AVMuxer** instance.

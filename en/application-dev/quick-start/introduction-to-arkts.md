@@ -1548,10 +1548,10 @@ y = c.value! + 1; // ok，2
 
 ### Null-Coalescing Operator
 
-The null-coalescing binary operator `??` checks whether the evaluation of the left-hand-side expression is equal to null.
+The null-coalescing binary operator `??` checks whether the evaluation of the left-hand-side expression is equal to `null` or `undefined`.
 If it is, then the result of the expression is the right-hand-side expression; otherwise, it is the left-hand-side expression.
 
-In other words, `a ?? b` equals the ternary operator `a != null ? a : b`.
+In other words, `a ?? b` equals the ternary operator `(a != null && a != undefined) ? a : b`.
 
 In the following example, the method `getNick` returns a nickname if it is set; otherwise, an empty string is returned:
 
@@ -1698,6 +1698,51 @@ function main() {
   console.log('this is the program entry')
 }
 ```
+
+## Keywords
+
+### this
+
+The keyword `this` can only be used in instance methods of a class.
+
+**Example**
+
+```typescript
+class A {
+  count: string = 'a'
+  m(i: string): void {
+    this.count = i;
+  }
+}
+```
+
+Constraints:
+
+* Type Notation Using `this` Is Not Supported
+* Using `this` Inside Stand-Alone Functions Is Not Supported
+
+**Example**
+
+```typescript
+class A {
+  n: number = 0
+  f1(arg1: this) {} // Compile-time error, type notation using this is not supported
+  static f2(arg1: number) {
+    this.n = arg1;  // Compile-time error, using this inside stand-alone functions is not supported
+  }
+}
+
+function foo(arg1: number) {
+  this.n = i;       // Compile-time error, using this inside stand-alone functions is not supported
+}
+```
+
+The keyword `this` used as a primary expression denotes a value that is a reference to the following:
+
+* Object for which the instance method is called; or
+* Object being constructed.
+
+The value denoted by this in a lambda body and in the surrounding context is the same.
 
 ## Support for ArkUI
 

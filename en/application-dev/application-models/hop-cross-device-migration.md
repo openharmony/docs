@@ -39,6 +39,13 @@ Cross-device migration supports the following features:
 2. The distributed framework provides a mechanism for saving and restoring application UI, page stacks, and service data across devices. It sends the data from the source device to the target device.
 3. On the target device, the same UIAbility uses the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback (in the case of cold start) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback (in the case of hot start) to restore the service data.
 
+## Cross-Device Migration Process
+
+The following figure shows the cross-device migration process when a migration request is initiated from the migration entry of the peer device.
+
+![hop-cross-device-migration](figures/hop-cross-device-migration7.png)
+
+
 
 ## Constraints
 
@@ -69,11 +76,11 @@ Cross-device migration supports the following features:
 
 2. Implement [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) in the UIAbility on the source device.
 
-   When a migration is triggered for the UIAbility, [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can save the data in this method to implement application compatibility check and migration decision.
+   When a migration is triggered for the UIAbility, [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can use either synchronous or asynchronous mode to save the data in this method to implement application compatibility check and migration decision.
 
    - Saving data to migrate: You can save the data to migrate in key-value pairs in **wantParam**.
-   - Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback and compare it with the application version on the source device.
-   - Making a migration decision: You can determine whether migration is supported based on the return value of [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue).
+   - Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback and compare it with the application version on the source device.
+   - Making a migration decision: You can determine whether migration is supported based on the return value of [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue). For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult).
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -110,7 +117,13 @@ Cross-device migration supports the following features:
 3. On the source device, call APIs to restore data and load the UI. The APIs vary according to the cold or hot start mode in use. For the UIAbility on the target device, implement [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data.
    
 
-   The **launchReason** parameter in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration. If the launch is triggered by migration, you must obtain the saved data from **want** and call **restoreWindowStage()** to trigger page restoration, including page stack information, after data restoration.
+In the stage model, applications with different launch types can call different APIs to restore data and load the UI, as shown below.
+
+![hop-cross-device-migration](figures/hop-cross-device-migration8.png)
+
+   - The **launchReason** parameter in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration.
+   - You can obtain the saved data from the **want** parameter.
+   - After data restoration is complete, call **restoreWindowStage()** to trigger page restoration, including page stack information.
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -429,7 +442,7 @@ A mission center demo is provided for you to verify the migration capability of 
 
 #### Environment Configuration
 
-[Switch to the full SDK](../../application-dev/faqs/full-sdk-switch-guide.md) on DevEco Studio. This is because the mission center uses the system API [@ohos.distributedDeviceManager](../../application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md), which is not provided in the public SDK.
+[Switch to the full SDK](../../application-dev/faqs/full-sdk-switch-guide.md) in DevEco Studio. This is because the mission center uses the system API [@ohos.distributedDeviceManager](../../application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md), which is not provided in the public SDK.
 
 > **NOTE**
 >
@@ -447,7 +460,7 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
 2. Complete the signature, build, and installation.
 
-   The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. Specifically, change **"apl":"normal"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
+   The default signature permission provided by the automatic signature template of DevEco Studio is normal. The mission center demo requires the **ohos.permission.MANAGE_MISSIONS** permission, which is at the system_core level. Therefore, you must escalate the permission to the system_core level. ​Specifically, change **"apl":"normal"** to **"apl":"system_core"** in the **UnsignedReleasedProfileTemplate.json** file in **openharmony\*apiVersion*\toolchains\lib**. Then sign the files as follows:
 
    1. Choose **File > Project Structure**.
 
@@ -481,4 +494,3 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
    ![hop-cross-device-migration](figures/hop-cross-device-migration6.png)
 
- <!--no_check--> 

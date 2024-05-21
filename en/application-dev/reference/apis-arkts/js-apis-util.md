@@ -648,7 +648,7 @@ Provides APIs to decode byte arrays into strings. It supports multiple formats, 
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format.<br>- Supported formats: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
+| encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le |
 | fatal | boolean | Yes| No| Whether to display fatal errors.|
 | ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
@@ -668,7 +668,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string, options?: TextDecoderOptions): TextDecoder
+static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
 
@@ -837,7 +837,7 @@ Provides APIs to encode strings into byte arrays. It supports multiple formats, 
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format. The default format is **'utf-8'**.|
+| encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr<br>The default value is **'utf-8'**. |
 
 
 ### constructor
@@ -872,6 +872,26 @@ A constructor used to create a **TextEncoder** object.
 
 ```ts
 let textEncoder = new util.TextEncoder("utf-8");
+```
+
+### create<sup>12+</sup>
+
+static create(encoding?: string): TextEncoder
+
+Creates a **TextEncoder** object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ----- | ---- | ---- | ---- |
+| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
+
+**Example**
+
+```ts
+let textEncoder = util.TextEncoder.create("utf-8");
 ```
 
 ### encodeInto<sup>9+</sup>
@@ -1139,7 +1159,7 @@ Checks whether this **RationalNumber** object equals the given object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| object | Object | Yes| Object used to compare with this **RationalNumber** object.|
+| obj | Object | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
 
@@ -2651,7 +2671,7 @@ Encodes the input content into a Uint8Array object.
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>**util.Type.BASIC** (default): Base64 encoding.<br>**util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
+| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. |
 
 **Return value**
 

@@ -18,6 +18,10 @@ import dialogRequest from '@ohos.app.ability.dialogRequest';
 
 getRequestInfo(want: Want): RequestInfo
 
+> **NOTE**
+>
+>  This API can be used by a ServiceExtensionAbility. If the ServiceExtensionAbility implements modal dialog boxes, the request information can be obtained from Want. If this API is used in other scenarios, no return value is obtained.
+
 Obtains the request information from Want.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -33,6 +37,14 @@ Obtains the request information from Want.
 | Type  | Description                    |
 | ------ | ------------------------ |
 | [RequestInfo](#requestinfo) | **RequestInfo** object obtained, which is used to bind a modal dialog box.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 
@@ -59,6 +71,10 @@ getRequestCallback(want: Want): RequestCallback
 
 Obtains the request callback from Want.
 
+> **NOTE**
+>
+>  This API can be used by a ServiceExtensionAbility. If the ServiceExtensionAbility implements modal dialog boxes, the request callback can be obtained from Want. If this API is used in other scenarios, no return value is obtained.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -72,6 +88,14 @@ Obtains the request callback from Want.
 | Type  | Description                    |
 | ------ | ------------------------ |
 | [RequestCallback](#requestcallback) | **RequestCallback** object obtained, which is used to set the return result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 
@@ -188,11 +212,11 @@ Sets the result of the request for the modal dialog box.
 
 **Error codes**
 
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 

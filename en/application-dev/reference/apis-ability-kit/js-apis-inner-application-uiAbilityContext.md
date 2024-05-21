@@ -20,13 +20,14 @@ import common from '@ohos.app.ability.common';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes| No| UIAbility information.|
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| HAP information.|
-| config | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| UIAbility configuration, such as the language and color mode.|
+| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes| No| UIAbility information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| HAP information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| config | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| UIAbility configuration, such as the language and color mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | Yes| No| **WindowStage** object.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 > **NOTE**
 >
-> In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+> In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ## UIAbilityContext.startAbility
 
@@ -34,11 +35,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
- - If the ability to start is in another mission stack and the result needs to be returned to the caller, set the **want** parameter by following the description provided in [Want](js-apis-app-ability-want.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -64,6 +65,8 @@ Observe the following when using this API:
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -79,7 +82,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-  
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -112,10 +114,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -142,10 +145,15 @@ Observe the following when using this API:
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16300003 | The target application is not self application. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -158,7 +166,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -195,10 +202,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 Starts an ability. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -230,10 +238,15 @@ Observe the following when using this API:
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000067 | Start options check failed. |
+| 16000068 | Ability already running. |
 | 16200001 | The caller has been released. |
+| 16300003 | The target application is not self application. |
 
 For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
@@ -246,14 +259,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -281,14 +293,15 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -314,6 +327,8 @@ Observe the following when using this API:
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -330,7 +345,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -363,14 +377,15 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -397,6 +412,8 @@ Observe the following when using this API:
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -414,7 +431,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -422,7 +438,7 @@ export default class EntryAbility extends UIAbility {
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -451,14 +467,15 @@ export default class EntryAbility extends UIAbility {
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](../apis/#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+ - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -491,6 +508,8 @@ Observe the following when using this API:
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
@@ -508,14 +527,13 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
       abilityName: 'EntryAbility'
     };
     let options: StartOptions = {
-      displayId: 0,
+      displayId: 0
     };
 
     try {
@@ -543,6 +561,8 @@ export default class EntryAbility extends UIAbility {
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 Terminates this ability. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -572,7 +592,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf((err: BusinessError) => {
@@ -600,6 +619,8 @@ export default class EntryAbility extends UIAbility {
 terminateSelf(): Promise&lt;void&gt;
 
 Terminates this ability. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -629,7 +650,6 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     try {
       this.context.terminateSelf()
@@ -656,7 +676,9 @@ export default class EntryAbility extends UIAbility {
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
-Terminates this ability. If the ability is started by calling [startAbilityForResult](../apis/#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -689,7 +711,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -727,7 +748,9 @@ export default class EntryAbility extends UIAbility {
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
-Terminates this ability. If the ability is started by calling [startAbilityForResult](../apis/#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -765,7 +788,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -802,7 +824,7 @@ export default class EntryAbility extends UIAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
-Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template.
+Connects this ability to a ServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -817,7 +839,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the connection.|
 
 **Error codes**
 
@@ -846,7 +868,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -857,16 +878,17 @@ export default class EntryAbility extends UIAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.info('onFailed...');
       }
     };
     let connection: number;
+
     try {
       connection = this.context.connectServiceExtensionAbility(want, options);
     } catch (err) {
@@ -916,7 +938,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     // connection is the return value of connectServiceExtensionAbility.
     let connection = 1;
@@ -930,7 +951,7 @@ export default class EntryAbility extends UIAbility {
       }).catch((err: BusinessError) => {
         // Process service logic errors.
         console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
-      })
+      });
     } catch (err) {
       commRemote = null;
       // Process input parameter errors.
@@ -974,7 +995,6 @@ import { BusinessError } from '@ohos.base';
 import rpc from '@ohos.rpc';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     // connection is the return value of connectServiceExtensionAbility.
     let connection = 1;
@@ -1008,15 +1028,15 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 Starts an ability in the foreground or background in the cross-device scenario and obtains the caller object for communicating with the ability.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 > **NOTE**
 >
-> In versions earlier than API version 11, the permission **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** is required. Since API version 11, only the permission **ohos.permission.DISTRIBUTED_DATASYNC** is required.
+> In versions earlier than API version 11, this API requires the **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** permission, which is available only for system applications. Since API version 11, this API requires the **ohos.permission.DISTRIBUTED_DATASYNC** permission.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1024,7 +1044,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId**, and **parameters** (optional). If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -1045,6 +1065,7 @@ Observe the following when using this API:
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1061,10 +1082,8 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // Start an ability in the background by not passing parameters.
     let wantBackground: Want = {
       bundleName: 'com.example.myapplication',
@@ -1102,10 +1121,8 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let caller: Caller;
-
     // Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
     let wantForeground: Want = {
       bundleName: 'com.example.myapplication',
@@ -1141,7 +1158,9 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a label for this UIAbility in the mission. This API uses an asynchronous callback to return the result.
+Sets a label for this ability in the mission. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1170,7 +1189,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
       console.info(`setMissionLabel: ${JSON.stringify(result)}`);
@@ -1183,7 +1201,9 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-Sets a label for this UIAbility in the mission. This API uses a promise to return the result.
+Sets a label for this ability in the mission. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1217,7 +1237,6 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
       console.info('success');
@@ -1234,7 +1253,9 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mission continuation state of this UIAbility. This API uses an asynchronous callback to return the result.
+Sets the mission continuation state of this ability. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1274,7 +1295,9 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
-Sets the mission continuation state of this UIAbility. This API uses a promise to return the result.
+Sets the mission continuation state of this ability. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1321,7 +1344,9 @@ export default class EntryAbility extends UIAbility {
 
 restoreWindowStage(localStorage: LocalStorage): void
 
-Restores the WindowStage data in the UIAbility.
+Restores the WindowStage data in the ability.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1357,7 +1382,9 @@ export default class EntryAbility extends UIAbility {
 
 isTerminating(): boolean
 
-Checks whether this UIAbility is in the terminating state.
+Checks whether this ability is in the terminating state.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1365,7 +1392,7 @@ Checks whether this UIAbility is in the terminating state.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | The value **true** means that the UIAbility is in the terminating state, and **false** means the opposite.|
+| boolean | The value **true** means that the ability is in the terminating state, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1394,10 +1421,9 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1405,7 +1431,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want |[Want](js-apis-app-ability-want.md) | Yes| Want information for starting the ServiceExtensionAbility.|
 | result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1472,10 +1498,9 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 Starts a ServiceExtensionAbility that supports modal dialog boxes. After the ServiceExtensionAbility is started, the application displays a modal dialog box. You can call [setRequestResult](js-apis-app-ability-dialogRequest.md#requestcallbacksetrequestresult) to obtain the result, which is returned to the caller in promise mode.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1483,7 +1508,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Want information for starting the ServiceExtensionAbility.|
 
 
 **Return value**
@@ -1523,7 +1548,6 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1555,7 +1579,10 @@ export default class EntryAbility extends UIAbility {
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 Reports an event indicating that page loading is complete (**loadContent()** is successfully called). This API uses an asynchronous callback to return the result.
- **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -1602,7 +1629,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
       }
     });
-    console.log("MainAbility onWindowStageCreate")
+    console.log("MainAbility onWindowStageCreate");
   }
 };
   ```
@@ -1614,6 +1641,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 Implicitly starts a given type of UIExtensionAbility. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -1622,7 +1651,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1632,6 +1661,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
+| 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1640,23 +1670,32 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45'
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+      
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
+        if (err) {
+          console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+        } else {
+          console.log(`success`);
+        }
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
-    if (err) {
-      console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-    } else {
-      console.log(`success`);
-    }
-  });
   ```
 
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
@@ -1666,6 +1705,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 Implicitly starts a given type of UIExtensionAbility. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
@@ -1674,7 +1715,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 
 **Return value**
 
@@ -1689,6 +1730,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
+| 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -1697,20 +1739,486 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-    'time':'2023-10-23 20:45',
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let wantParam: Record<string, Object> = {
+        'time': '2023-10-23 20:45'
+      };
+      let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+          console.log(`code:` + code + `name:` + name + `message:` + message);
+        },
+        onResult: (abilityResult: common.AbilityResult) => {
+          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        }
+      };
+
+      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
+        console.log(`startAbilityByType success`);
+      }).catch((err: BusinessError) => {
+        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+      });
     }
   }
-  context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
-    console.log(`startAbilityByType success`);
-  }).catch((err: BusinessError) => {
-    console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-  })
   ```
+
+## UIAbilityContext.showAbility<sup>12+</sup>
+
+showAbility() : Promise\<void>
+
+Shows the current ability. This API uses a promise to return the result. It takes effect only on tablets.
+
+To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+  ```ts
+  // Index.ets
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+
+  @Entry
+  @Component
+  struct Index {
+    @State showAbility: string = 'showAbility'
+
+    build() {
+      Row() {
+        Column() {
+          Text(this.showAbility)
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              let context = getContext(this) as common.UIAbilityContext;
+
+              context.showAbility().then(() => {
+                console.log(`showAbility success`);
+              }).catch((err: BusinessError) => {
+                console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
+              });
+            });
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+  ```ts
+  // EntryAbility.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import contextConstant from '@ohos.app.ability.contextConstant';
+  import { BusinessError } from '@ohos.base';
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility'
+      };
+      let options: StartOptions = {
+        displayId: 0,
+        processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // Process service logic errors.
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // Carry out normal service processing.
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // Process input parameter errors.
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
+  }
+  ```
+
+## UIAbilityContext.hideAbility<sup>12+</sup>
+
+hideAbility() : Promise\<void>
+
+Hides the current ability. This API uses a promise to return the result. It takes effect only on tablets.
+
+To call this API, the current ability must be started through [UIAbilityContext.startAbility](#uiabilitycontextstartability-1), in which [options.processMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) must be set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+| 16000067 | Start options check failed. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+  ```ts
+    // Index.ets
+  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@ohos.base';
+
+  @Entry
+  @Component
+  struct Index {
+    @State hideAbility: string = 'hideAbility'
+
+    build() {
+      Row() {
+        Column() {
+          Text(this.hideAbility)
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              let context = getContext(this) as common.UIAbilityContext;
+
+              context.hideAbility().then(() => {
+                console.log(`hideAbility success`);
+              }).catch((err: BusinessError) => {
+                console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
+              });
+            });
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+  ```ts
+  // EntryAbility.ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import contextConstant from '@ohos.app.ability.contextConstant';
+  import { BusinessError } from '@ohos.base';
+
+  export default class EntryAbility extends UIAbility {
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility'
+      };
+      let options: StartOptions = {
+        displayId: 0,
+        processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // Process service logic errors.
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // Carry out normal service processing.
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // Process input parameter errors.
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
+  }
+  ```
+
+## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
+moveAbilityToBackground(): Promise\<void>
+
+Moves this ability from the foreground to the background. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000061 | Operation not supported. |
+| 16000065 | The interface can be called only when ability is foreground. |
+| 16000066 | An ability cannot move to foreground or background in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+@Entry
+@Component
+struct Index {
+  @State moveAbilityToBackground: string = 'Move To Background'
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.moveAbilityToBackground)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+
+            context.moveAbilityToBackground().then(() => {
+              console.log(`moveAbilityToBackground success.`);
+            }).catch((err: BusinessError) => {
+              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`);
+            });
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## UIAbilityContext.openAtomicService<sup>12+<sup>
+openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
+
+Starts an [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) in jump-out mode and obtains the result. This API uses a promise to return the result.
+The following situations may be possible for a started EmbeddableUIAbility:
+ - Normally, you can call [terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1) to terminate the EmbeddableUIAbility. The result is returned to the caller.
+ - If an exception occurs, for example, the EmbeddableUIAbility is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
+ - If different applications call this API to start an EmbeddableUIAbility and then call [terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1) to terminate the EmbeddableUIAbility, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+ 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| appId | string | Yes| Unique ID of the application, which is allocated by the cloud.|
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | No| Parameter carried in the request for starting the EmbeddableUIAbility in jump-out mode.|
+
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise used to return the result, which is an [AbilityResult](js-apis-inner-ability-abilityResult.md) object.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000002 | Incorrect ability type. |
+| 16000003 | The appId does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000011 | The context does not exist. |
+| 16000012 | The application is controlled.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let appId: string = '6918661953712445909';
+    let options: AtomicServiceOptions = {
+      displayId: 0
+    };
+
+    try {
+      this.context.openAtomicService(appId, options)
+        .then((result: common.AbilityResult) => {
+          // Carry out normal service processing.
+          console.info('openAtomicService succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`openAtomicService failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`openAtomicService failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
+## UIAbilityContext.openLink<sup>12+<sup>
+openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
+
+Starts a UIAbility through App Linking. This API uses a promise to return the result.
+
+A URI in the standard format is passed in to the **link** field to start the target UIAbility based on the implicit Want matching rules. The target UIAbility must have the following filter characteristics to process links of App Linking:
+- The **actions** field contains **ohos.want.action.viewData**.
+- The **entities** field contains **entity.system.browsable**.
+- The **uris** field contains elements whose **scheme** is **https** and **autoVerify** is **true**.
+
+If you want to obtain the result after the started UIAbility is terminated, set the **callback** parameter. For details about how to use this parameter, see [startAbilityForResult](#uiabilitycontextstartabilityforresult).
+If an input parameter is invalid, for example, a mandatory parameter is not set or the URL set in **link** is not in the standard format, an exception is thrown. If the parameter verification is successful but an error occurs when starting the target UIAbility, the error information is returned through promise.
+
+> **NOTE**
+>
+> For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| link | string | Yes| URL to open, which must be in the standard format.|
+| options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | No| Options of the URL.|
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | No| Callback used to return the result.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
+
+**Example**
+
+```ts
+import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
+import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { BusinessError } from '@ohos.base';
+
+const DOMAIN = 0xeeee;
+const TAG: string = '[openLinkDemo]';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'I am caller';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button('start browser', { type: ButtonType.Capsule, stateEffect: true })
+          .width('87%')
+          .height('5%')
+          .margin({ bottom: '12vp' })
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
+            let link: string = "https://www.example.com";
+            let openLinkOptions: OpenLinkOptions = {
+              appLinkingOnly: true,
+              parameters: {demo_key: "demo_value"}
+            };
+            
+            try {
+              context.openLink(
+                link,
+                openLinkOptions,
+                (err, result) => {
+                  hilog.error(DOMAIN, TAG, 'openLink callback error.code:' + JSON.stringify(err));
+                  hilog.info(DOMAIN, TAG, 'openLink callback result:' + JSON.stringify(result.resultCode));
+                  hilog.info(DOMAIN, TAG, 'openLink callback result data:' + JSON.stringify(result.want));
+                }
+              ).then(()=>{
+                hilog.info(DOMAIN, TAG, 'open link success.');
+              }).catch((err: BusinessError)=>{
+                hilog.error(DOMAIN, TAG, 'open link failed, errCode ' + JSON.stringify(err.code));
+              });
+            }
+            catch (e) {
+              hilog.error(DOMAIN, TAG, 'exception occured, errCode ' + JSON.stringify(e.code));
+            }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

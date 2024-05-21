@@ -35,7 +35,7 @@ Obtains the global HTTP proxy configuration of the network. This API uses an asy
 | ------- | -----------------------------  |
 | 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -70,9 +70,8 @@ Obtains the global HTTP proxy configuration of the network. This API uses a prom
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -115,7 +114,7 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 | 401     | Parameter error.               |
 | 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -126,14 +125,17 @@ import { BusinessError } from '@ohos.base';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
-connection.setGlobalHttpProxy({
-  host: "192.168.xx.xxx",
-  port: 8080,
-  exclusionList: exclusionArray
-} as connection.HttpProxy).then(() => {
-  console.info("success");
-}).catch((error: BusinessError) => {
-  console.info(JSON.stringify(error));
+let httpProxy: connection.HttpProxy = {
+    host: "192.168.xx.xxx",
+    port: 8080,
+    exclusionList: exclusionArray
+}
+connection.setGlobalHttpProxy(httpProxy, (err: BusinessError) => {
+    if (err) {
+        console.error(`setGlobalHttpProxy failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setGlobalHttpProxy success.`);
 });
 ```
 
@@ -169,7 +171,7 @@ Sets the global HTTP proxy configuration of the network. This API uses a promise
 | 401     | Parameter error.               |
 | 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -217,7 +219,7 @@ Enables the airplane mode. This API uses an asynchronous callback to return the 
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -255,8 +257,7 @@ Enables the airplane mode. This API uses a promise to return the result.
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -294,7 +295,7 @@ Disables the airplane mode. This API uses an asynchronous callback to return the
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -332,8 +333,7 @@ Disables the airplane mode. This API uses a promise to return the result.
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
@@ -371,8 +371,7 @@ Resets the network settings to factory defaults. This API uses a promise to retu
 | ------- | ------------------------------------------  |
 | 201     | Permission denied.                          |
 | 202     | Non-system applications use system APIs.    |
-| 401     | Parameter error.                            |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.                      |
 
 **Example**

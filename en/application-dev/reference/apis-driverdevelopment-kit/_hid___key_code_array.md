@@ -5,9 +5,13 @@
 
 Defines an array of key codes.
 
-**Since**: 11
+**Since**
 
-**Related module**: [HidDdk](_hid_ddk.md)
+11
+
+**Related module**
+
+[HID DDK](_hid_ddk.md)
 
 
 ## Summary
@@ -17,5 +21,32 @@ Defines an array of key codes.
 
 | Name| Description| 
 | -------- | -------- |
-| [hidKeyCode](_hid_ddk.md#hidkeycode) | [Hid_KeyCode](_hid_ddk.md#hid_keycode) \* | 
-| [length](_hid_ddk.md#length-25) | uint16_t | 
+| [hidKeyCode](#hidkeycode) | Array of key codes.| 
+| [length](#length) | Length of the array.| 
+
+
+## Member Variable Description
+
+
+### hidKeyCode
+
+
+```
+Hid_KeyCode Hid_KeyCodeArray::*hidKeyCode
+```
+
+**Description**
+
+Array of key codes.
+
+
+### length
+
+
+```
+uint16_t Hid_KeyCodeArray::length
+```
+
+**Description**
+
+Length of the array.

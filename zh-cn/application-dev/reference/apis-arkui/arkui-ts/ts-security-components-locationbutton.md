@@ -25,6 +25,8 @@ LocationButton(option:LocationButtonOptions)
 
 创建包含指定元素的位置按钮。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -32,6 +34,8 @@ LocationButton(option:LocationButtonOptions)
 | option | [LocationButtonOptions](#locationbuttonoptions) | 否 | 创建包含指定元素的位置按钮。 |
 
 ## LocationButtonOptions
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -42,6 +46,8 @@ LocationButton(option:LocationButtonOptions)
 
 ## LocationIconStyle枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | FULL_FILLED |  0 | 位置按钮展示填充样式图标。 |
@@ -49,6 +55,8 @@ LocationButton(option:LocationButtonOptions)
 
 
 ## LocationDescription枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
@@ -67,6 +75,8 @@ LocationButton(option:LocationButtonOptions)
 
 ## LocationButtonOnClickResult枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- | -------- |
 | SUCCESS | 0 | 位置按钮点击成功。 |
@@ -82,9 +92,22 @@ LocationButton(option:LocationButtonOptions)
 
 不支持通用事件，仅支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：位置权限的授权结果。<br/>event：见ClickEvent对象说明。 |
+### onClick
+
+onClick(event: (event: ClickEvent, result: LocationButtonOnClickResult) =&gt; void)
+
+点击动作触发该回调
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
+| result | [LocationButtonOnClickResult](#locationbuttononclickresult枚举说明)| 是 | 位置权限的授权结果。|
 
 
 ## 示例

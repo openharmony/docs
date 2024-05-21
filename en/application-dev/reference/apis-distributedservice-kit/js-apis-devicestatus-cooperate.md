@@ -929,7 +929,7 @@ Enables listening for screen hopping status change events.
 | Name               | Type                                                            | Mandatory| Description                           |
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
 | type                 | string                                                          |  Yes | Event type. The value is **cooperate**.|
-| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](##cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
+| callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  Yes | Callback used to return the result.|
 
 
 

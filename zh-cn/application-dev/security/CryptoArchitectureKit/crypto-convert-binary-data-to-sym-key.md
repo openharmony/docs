@@ -19,8 +19,8 @@
 - 以使用callback方式生成3DES密钥为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   function genKeyMaterialBlob(): cryptoFramework.DataBlob {
     let arr = [
@@ -51,14 +51,13 @@
     } catch (error) { // 参数检查发现错误立即抛出异常
       let e: BusinessError = error as BusinessError;
       console.error(`convertKey failed, ${e.code}, ${e.message}`);
-      return;
     }
   }
   ```
 
 - 同步方法（调用方法[convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genKeyMaterialBlob(): cryptoFramework.DataBlob {
     let arr = [
@@ -95,8 +94,8 @@
 - 以使用await方式生成HMAC密钥为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   async function testConvertHmacKey() {
     // 对称密钥长度为64字节，512比特
@@ -113,8 +112,8 @@
 
 - 同步方法（调用方法[convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12)）：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   function testConvertKeySync() {
     // 对称密钥长度为64字节，512比特

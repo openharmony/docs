@@ -487,7 +487,7 @@ console.timeEnd('timer1');
 
 ## console.trace<sup>10+</sup>
 
-trace(...arguments: Object[]): void
+static trace(...arguments: Object[]): void
 
 打印当前堆栈。
 
@@ -508,4 +508,20 @@ console.trace();
 console.trace("Show the trace");
 // Trace: Show the trace
 //     xxxxxxxxxx(当前堆栈信息)
+```
+
+## console.traceHybridStack<sup>12+</sup>
+
+static traceHybridStack(): void
+
+在主线程/worker线程中可打印当前线程混合堆栈信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**示例：**
+
+```ts
+console.traceHybridStack();
+// TraceHybridStack:
+//     xxxxxxxxxx(当前线程混合堆栈信息)
 ```

@@ -25,11 +25,11 @@ These parameters are used to control the playback volume, number of loops, and p
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | No | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever.                  |
-| rate | number    | No | Playback rate. For details, see [AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8).|
-| leftVolume  | number | No | Volume of the left channel. The value ranges from 0.0 to 1.0.                                   |
-| rightVolume | number  | No | Volume of the right channel. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.)|
-| priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority.     |
+| loop | number   | No | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever. Default value: **0**                  |
+| rate | number    | No | Playback rate. For details, see [AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8). Default value: **0**|
+| leftVolume  | number | No | Volume of the left channel. The value ranges from 0.0 to 1.0. Default value: **1.0**                                   |
+| rightVolume | number  | No | Volume of the right channel. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.) Default value: **1.0**|
+| priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority. Default value: **0**     |
 
 ## SoundPool
 

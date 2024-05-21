@@ -2,9 +2,9 @@
 
 Multithread safe ensures the correctness and reliability of programs when multiple threads access or modify shared resources at the same time.
 
-When you use **TaskPool** or **Worker** for multithread development, ensure that the APIs and modules imported to the worker thread of **TaskPool** and **Worker** support multithread safe. Otherwise, multithread data competition may occur, causing application exceptions or breakdown.
+When you use TaskPool or Worker for multithreading development, ensure that the APIs and modules imported to the worker thread of TaskPool and Worker support multithread safe. Otherwise, multithread data competition may occur, causing application exceptions or breakdown.
 
-The following modules can be used in the worker thread of **TaskPool** and **Worker**. If other modules are used, you must check whether the thread security requirements are met.
+The following modules can be used in the worker thread of TaskPool and Worker. If other modules are used, you must check whether the thread security requirements are met.
 
  - console
  - setInterval

@@ -560,15 +560,15 @@ struct Index {
       NodeContainer(this.myNodeController)
         .width(200)
         .height(350)
-      Button('getNextSibling')
+      Button('getPreviousSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const previousSibling = child.getPreviousSibling()
+          const previousSibling = child!.getPreviousSibling()
           if (child === null || previousSibling === null) {
-            console.log('the child or nextChild is null');
+            console.log('the child or previousChild is null');
           } else {
             console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
-              `the position of nextSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
+              `the position of previousSibling is x: ${previousSibling.position.x}, y: ${previousSibling.position.y}`);
           }
         })
     }
@@ -711,7 +711,7 @@ struct Index {
 
 set opacity(value: number)
 
-设置当前RenderNode的不透明度。
+设置当前RenderNode的不透明度。若输入的数值小于0，会被视为0。若输入的数值大于1，会被视为1。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1864,7 +1864,7 @@ set borderStyle(style: Edges\<BorderStyle>)
 
 | 参数名 | 类型                                                                                                   | 必填 | 说明                   |
 | ------ | ------------------------------------------------------------------------------------------------------ | ---- | ---------------------- |
-| style  | [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 是   | RenderNode的边框样式。 |
+| style  | [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 是   | RenderNode的边框样式。 |
 
 get borderStyle(): Edges\<BorderStyle>
 
@@ -1876,7 +1876,7 @@ get borderStyle(): Edges\<BorderStyle>
 
 | 类型                                                                                                   | 说明                   |
 | ------------------------------------------------------------------------------------------------------ | ---------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | RenderNode的边框样式。 |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | RenderNode的边框样式。 |
 
 **示例：**
 ```ts
@@ -1935,7 +1935,7 @@ set borderWidth(width: Edges\<number>)
 
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | 是   | RenderNode的边框宽度。 |
+| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | 是   | RenderNode的边框宽度，单位为vp。 |
 
 get borderWidth(): Edges\<number>
 
@@ -1947,7 +1947,7 @@ get borderWidth(): Edges\<number>
 
 | 类型                                                | 说明                   |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框宽度。 |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | RenderNode的边框宽度，默认所有边框宽度为0vp。 |
 
 **示例：**
 
@@ -2001,7 +2001,7 @@ set borderColor(color: Edges\<number>)
 
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | 是   | RenderNode的边框颜色。 |
+| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | 是   | RenderNode的边框颜色。 |
 
 get borderColor(): Edges\<number>
 
@@ -2013,7 +2013,7 @@ get borderColor(): Edges\<number>
 
 | 类型                                                | 说明                   |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框颜色。 |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | RenderNode的边框颜色，默认所有边框颜色为0XFF000000。 |
 
 **示例：**
 
@@ -2068,7 +2068,7 @@ set borderRadius(radius: BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                   |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------- |
-| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | 是   | RenderNode的边框圆角。 |
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | 是   | RenderNode的边框圆角，单位为vp。 |
 
 
 get borderRadius(): BorderRadiuses
@@ -2081,7 +2081,7 @@ get borderRadius(): BorderRadiuses
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | RenderNode的边框圆角。 |
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | RenderNode的边框圆角，默认所有边框圆角为0vp。 |
 
 **示例：**
 
@@ -2218,7 +2218,7 @@ class MyNodeController extends NodeController {
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
 
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.size = { width: 200, height: 200 };
       rootRenderNode.backgroundColor = 0xff00ff00;

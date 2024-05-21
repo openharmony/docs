@@ -61,7 +61,9 @@ Hardware: PC connected to a test device, such as a development board
 
 ### Writing a Unit Test Script
 
- The unit test script must contain the following basic elements:
+This section describes how to use the unit test framework to write a unit test script. For details about the functionality of the unit test framework, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
+
+The unit test script must contain the following basic elements:
 
 1. Import of the dependencies so that the dependent test APIs can be used.
 
@@ -106,9 +108,7 @@ export default function abilityTest() {
 
 ### Writing a UI Test Script
 
-To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest interface (providing a link) to a unit test script.
-
-In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
+To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. For details about the available APIs, see [@ohos.UiTest](../../application-dev/reference/apis-test-kit/js-apis-uitest.md).<br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
 
 1. Import the dependency.
 
@@ -233,7 +233,7 @@ The table below lists the keywords in **aa** test commands.
 | --bundleName  | -b           | Application bundle name.                        | - b com.test.example               |
 | --packageName | -p           | Application module name, which is applicable to applications developed in the FA model.          | - p com.test.example.entry         |
 | --moduleName  | -m           | Application module name, which is applicable to applications developed in the stage model.       | -m entry                           |
-| NA            | -s           | \<key, value> pair.| - s unittest OpenHarmonyTestRunner |
+| NA            | -s           | \<key, value> pair.| - s unittest /ets/testrunner/OpenHarmonyTestRunner |
 
 The framework supports multiple test case execution modes, which are triggered by the key-value pair following the **-s** keyword. The table below lists the available keys and values.
 
@@ -447,7 +447,7 @@ Supported operation types: click, double-click, long press, fling, swipe, drag, 
 | swipe       | Simulates a swipe.                                 | from_x (X coordinate of the swipe start point. Mandatory.)<br> from_y (Y coordinate of the fling start point. Mandatory.)<br> to_x (X coordinate of the fling end point. Mandatory.)<br> to_y (Y coordinate of the swipe end point. Mandatory.)<br> swipeVelocityPps_ (Swipe speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
 | drag        | Simulates a drag and drop.                                 | from_x (X coordinate of the drag point. Mandatory.)<br> from_y (Y coordinate of the drag point. Mandatory.)<br> to_x (X coordinate of the drop point. Mandatory.)<br> to_y (Y coordinate of the drop point. Mandatory.)<br> swipeVelocityPps_ (Drag speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
 | dircFling   | Simulates a directional fling.                             | direction (Fling direction. Value range: [0, 1, 2, 3]. Fling direction: [left, right, up, down]. Default value: 0. Optional.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Optional.)                                                                                                                                 | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
-| input       | Simulates text input in a text box.                            | point_x (X coordinate of the text box. Mandatory.)<br> point_y (Y coordinate of the text box. Mandatory.)<br> input (Text entered.)                                                                                                                                | hdc shell uitest uiInput input point_x point_y text                                 |
+| inputText       | Simulates text input in a text box.                            | point_x (X coordinate of the text box. Mandatory.)<br> point_y (Y coordinate of the text box. Mandatory.)<br> input (Text entered.)                                                                                                                                | hdc shell uitest uiInput input point_x point_y text                                 |
 | keyEvent    | Simulates a physical key event (such as pressing a keyboard key, pressing the power key, returning to the previous page, or returning to the home screen) or a key combination.| keyID (ID of a physical key. Mandatory.)<br> keyID2 (ID of a physical key. Optional.)                                                                                                                                                  | hdc shell uitest uiInput keyEvent keyID                                             |
 
 Example 1: Perform a click.

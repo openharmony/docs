@@ -10,8 +10,8 @@
    生成或导入密钥时，在密钥属性集中需指定三个参数：用户认证类型[HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9)、授权访问类型[HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9)、挑战值类型[HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9)。
 
    ```ts
-   import huks from '@ohos.security.huks';
-   import { BusinessError } from '@ohos.base';
+   import { huks } from "@kit.UniversalKeystoreKit";
+   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -105,9 +105,9 @@
 2. 初始化密钥会话，发起指纹认证获取认证令牌。
    
    ```ts
-   import huks from '@ohos.security.huks';
+   import { huks } from "@kit.UniversalKeystoreKit";
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -141,7 +141,7 @@
    }
    properties[5] = {
        tag: huks.HuksTag.HUKS_TAG_IV,
-       value: StringToUint8Arry(IV),
+       value: StringToUint8Array(IV),
    }
    let huksOptions : huks.HuksOptions = {
        properties: properties,
@@ -241,8 +241,8 @@
    /*
    * 以下以SM4 128密钥为例
    */
-   import huks from '@ohos.security.huks';
-   import { BusinessError } from '@ohos.base';
+   import { huks } from "@kit.UniversalKeystoreKit";
+   import { BusinessError} from "@kit.BasicServicesKit"
    /*
    * 确定封装密钥属性参数集
    */

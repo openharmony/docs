@@ -79,7 +79,7 @@ NFC标签读写完整的JS API说明以及实例代码请参考：[NFC标签接�
       {
         // Add the permission for nfc tag operations.
         "name": "ohos.permission.NFC_TAG",
-        "reason": "nfc_tag",
+        "reason": "$string:app_name",
       }
     ]
 ```
@@ -87,11 +87,13 @@ NFC标签读写完整的JS API说明以及实例代码请参考：[NFC标签接�
 ```ts
 import tag from '@ohos.nfc.tag';
 import { BusinessError } from '@ohos.base';
+import bundleManager from '@ohos.bundle.bundleManager'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
-var nfcTagElementName;
-var foregroundRegister;
+let nfcTagElementName: bundleManager.ElementName;
+let foregroundRegister: boolean;
 
-async function readerModeCb(error, tagInfo) {
+async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
   if (!error) {
     // 获取特定技术类型的NFC标签对象
     if (tagInfo == null || tagInfo == undefined) {
@@ -109,8 +111,8 @@ async function readerModeCb(error, tagInfo) {
 
     // 执行读写接口完成标签数据的读取或写入数据到标签
     // use the IsoDep technology to access this nfc tag.
-    var isoDep;
-    for (var i = 0; i < tagInfo.technology.length; i++) {
+    let isoDep : tag.IsoDepTag | null = null;
+    for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
         try {
           isoDep = tag.getIsoDep(tagInfo);
@@ -139,9 +141,9 @@ async function readerModeCb(error, tagInfo) {
     }
 
     // transmit data to the connected tag.
-    var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
     try {
-      isoDep.transmit(cmdData).then((response) => {
+      isoDep.transmit(cmdData).then((response : number[]) => {
         hilog.info(0x0000, 'testTag', 'readerModeCb isoDep.transmit() response = %{public}s.', JSON.stringify(response));
       }).catch((err : BusinessError)=> {
         hilog.error(0x0000, 'testTag', 'readerModeCb isoDep.transmit() err = %{public}s.', JSON.stringify(err));
@@ -161,14 +163,14 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
 
     nfcTagElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName,
     }
   }
@@ -178,7 +180,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     if (nfcTagElementName != undefined) {
       // 调用tag模块中前台优先的接口，使能前台应用程序优先处理所发现的NFC标签功能
-      let techList = [tag.NFC_A, tag.NFC_B, tag.NFC_F, tag.NFC_V];
+      let techList : number[] = [tag.NFC_A, tag.NFC_B, tag.NFC_F, tag.NFC_V];
       try {
         tag.on('readerMode', nfcTagElementName, techList, readerModeCb);
         foregroundRegister = true;
@@ -250,7 +252,7 @@ export default class EntryAbility extends UIAbility {
       {
         // Add the permission for nfc tag operations.
         "name": "ohos.permission.NFC_TAG",
-        "reason": "nfc_tag",
+        "reason": "$string:app_name",
       }
     ]
 ```
@@ -264,7 +266,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 获取特定技术类型的NFC标签对象
-    var tagInfo;
+    let tagInfo : tag.TagInfo;
     try {
       tagInfo = tag.getTagInfo(want);
     } catch (error) {
@@ -287,8 +289,8 @@ export default class EntryAbility extends UIAbility {
 
     // 执行读写接口完成标签数据的读取或写入数据到标签
     // use the IsoDep technology to access this nfc tag.
-    var isoDep;
-    for (var i = 0; i < tagInfo.technology.length; i++) {
+    let isoDep : tag.IsoDepTag | null = null;
+    for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
         try {
           isoDep = tag.getIsoDep(tagInfo);
@@ -317,9 +319,9 @@ export default class EntryAbility extends UIAbility {
     }
 
     // transmit data to the connected tag.
-    var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
     try {
-      isoDep.transmit(cmdData).then((response) => {
+      isoDep.transmit(cmdData).then((response : number[]) => {
         hilog.info(0x0000, 'testTag', 'isoDep.transmit() response = %{public}s.', JSON.stringify(response));
       }).catch((err : BusinessError)=> {
         hilog.error(0x0000, 'testTag', 'isoDep.transmit() err = %{public}s.', JSON.stringify(err));

@@ -3,7 +3,7 @@
 OpenHarmony is prebuilt with the **FileManager** application. You can also develop your own file manager application as required.
 
 ## How to Develop
-For details about the APIs used to develop a file manager, see [User File Access and Management](../reference/apis/js-apis-fileAccess.md).
+For details about the APIs used to develop a file manager, see [User File Access and Management](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md).
 
 1. Apply for permissions required.<br>
    Apply for the ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permissions. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
@@ -129,7 +129,7 @@ For details about the APIs used to develop a file manager, see [User File Access
    ```
 
 5. Perform operations on files or folders.<br>
-   You can integrate APIs of the user file access framework to implement user behaviors, such as deleting, renaming, creating, and moving a file or folder. The following example shows how to create a file. For details about other APIs, see [User File Access and Management](../reference/apis/js-apis-fileAccess.md).
+   You can integrate APIs of the user file access framework to implement user behaviors, such as deleting, renaming, creating, and moving a file or folder. The following example shows how to create a file. For details about other APIs, see [User File Access and Management](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md).
 
    ```ts
    import { BusinessError } from '@ohos.base';
@@ -158,7 +158,7 @@ For details about the APIs used to develop a file manager, see [User File Access
 
 ## Listening for Device Online/Offline Status
 
-For details about the APIs to be used, see [User File Access and Management](../reference/apis/js-apis-fileAccess.md).
+For details about the APIs, see [User File Access and Management](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md).
 
 The **notify** interface can be used to observe not only the changes of directories, but also the device online/offline status.
 
@@ -169,10 +169,9 @@ The **notify** interface can be used to observe not only the changes of director
 
    > **NOTE**
    >
-   > **ohos.permission.FILE_ACCESS_MANAGER** allows your application to use the user file access framework APIs.
-   >
-   > **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
-
+   > - **ohos.permission.FILE_ACCESS_MANAGER** allows your application to use the user file access framework APIs.
+   >- **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** allows your application to obtain information about file management server applications supported by the system.
+   
 2. Import dependent modules.
 
    ```ts
@@ -196,23 +195,26 @@ The **notify** interface can be used to observe not only the changes of director
 
 4. Subscribe to the device online/offline status.
 
-   Pass in the constant [DEVICES_URI](../reference/apis/js-apis-fileAccess.md#) to the **registerObserver** method to listen for the device online/offline status.
+     Pass in the constant [DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#constant) to the **registerObserver** method to listen for the device online/offline status.
 
    ```ts
-   import { BusinessError } from '@ohos.base';
-   async function UnregisterObserver03() {
-     try {
-       // Listen for the device online/offline status.
-       fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
-     } catch (err) {
-       let error: BusinessError = err as BusinessError;
-       console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
-     }
-   }
+    import { BusinessError } from '@ohos.base';
+      async function UnregisterObserver03() {
+        try {
+          // Listen for the device online/offline status.
+          fileAccessHelper.registerObserver(fileAccess.DEVICES_URI, true, callbackDir1);
+        } catch (err) {
+          let error: BusinessError = err as BusinessError;
+          console.error("unregisterObserver failed, errCode:" + error.code + ", errMessage:" + error.message);
+        }
+      }
    ```
+
+     
+
 5. Unsubscribe from the device online/offline status.
 
-   Pass in the constant [DEVICES_URI](../reference/apis/js-apis-fileAccess.md#) to the **unregisterObserver** method to unsubscribe from the device online/offline status.
+   Pass in the constant [DEVICES_URI](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#constant) to the **unregisterObserver** method to unsubscribe from the device online/offline status.
 
    ```ts
    import { BusinessError } from '@ohos.base';

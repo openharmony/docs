@@ -28,6 +28,8 @@ matchMediaSync(condition: string): MediaQueryListener
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -56,6 +58,8 @@ let listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orienta
 
 **卡片能力：** 从API version 12开始，该类型支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
@@ -73,6 +77,8 @@ on(type: 'change', callback: Callback&lt;MediaQueryResult&gt;): void
 通过句柄向对应的查询条件注册回调，当媒体属性发生变更时会触发该回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,6 +101,8 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 通过句柄向对应的查询条件取消注册回调，当媒体属性发生变更时不再触发指定的回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -127,6 +135,8 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 用于执行媒体查询操作。
 
 **卡片能力：** 从API version 12开始，该类型支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

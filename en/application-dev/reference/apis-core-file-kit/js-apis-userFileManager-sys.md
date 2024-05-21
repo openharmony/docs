@@ -489,7 +489,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -528,7 +528,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -666,6 +666,8 @@ getAlbums(type: AlbumType, subType: AlbumSubType, options: FetchOptions, callbac
 
 Obtain albums based on the specified options and album type. This API uses an asynchronous callback to return the result.
 
+This API cannot be used to obtain hidden albums. Use [getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11) to obtain hidden albums.
+
 Before the operation, ensure that the albums to obtain exist.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -725,6 +727,8 @@ getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;Fet
 
 Obtains albums by type. This API uses an asynchronous callback to return the result.
 
+This API cannot be used to obtain hidden albums. Use [getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11) to obtain hidden albums.
+
 Before the operation, ensure that the albums to obtain exist.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -774,6 +778,8 @@ async function example() {
 getAlbums(type: AlbumType, subType: AlbumSubType, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
 
 Obtain albums based on the specified options and album type. This API uses a promise to return the result.
+
+This API cannot be used to obtain hidden albums. Use [getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11) to obtain hidden albums.
 
 Before the operation, ensure that the albums to obtain exist.
 
@@ -838,6 +844,8 @@ getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResul
 
 Obtains image and video albums. This API uses an asynchronous callback to return the result.
 
+This API cannot be used to obtain hidden albums. Use [getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11) to obtain hidden albums.
+
 This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -893,6 +901,8 @@ async function example() {
 getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
 
 Obtains image and video albums. This API uses a promise to return the result.
+
+This API cannot be used to obtain hidden albums. Use [getHiddenAlbums](../apis-media-library-kit/js-apis-photoAccessHelper-sys.md#gethiddenalbums11) to obtain hidden albums.
 
 This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead.
 
@@ -1605,7 +1615,7 @@ Registers a listener for the specified URI.
 | Name   | Type                                       | Mandatory| Description                                                        |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
-| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album. <br>If **uri** is the URI of a file asset, there is no difference between **true** and **false** for **forSubUri**.<br>If **uri** is **DefaultChangeUri**, **forSubUri** must be set to **true**. If **forSubUri** is **false**, the URI cannot be found and no message can be received.|
+| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening.<br>If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album. <br>If **uri** is the URI of a file asset, there is no difference whether **forSubUri** is **true** or **false**. <br>If **uri** is **DefaultChangeUri**, **forSubUri** must be set to **true**. If **forSubUri** is **false**, the URI cannot be found and no message can be received.|
 | callback  | Callback&lt;[ChangeData](#changedata10)&gt; | Yes  | Callback invoked to return [ChangeData](#changedata10). <br>**NOTE**: Different callbacks can be registered for a URI. You can use [off<sup>10+</sup>](#off10) to disable the specified callback or all callbacks for the URI.|
 
 **Error codes**
@@ -2543,6 +2553,7 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 | GPSDateStamp | GPS date stamp.|
 | ImageDescription | Image description.|
 | Make | Camera vendor.|
+| MakeNote | Description of the camera vendor.|
 | Model | Model.|
 | PhotoMode | Photo mode.|
 | SensitivityType | Sensitivity type.|
@@ -2632,6 +2643,7 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 | GPSDateStamp | GPS date stamp.|
 | ImageDescription | Image description.|
 | Make | Camera vendor.|
+| MakeNote | Description of the camera vendor.|
 | Model | Model.|
 | PhotoMode | Photo mode.|
 | SensitivityType | Sensitivity type.|
@@ -4390,7 +4402,7 @@ Defines the key information about an image or video file.
 | URI           | uri                 | URI of the file.                                                  |
 | FILE_TYPE     | file_type           | Type of the file.                                             |
 | DISPLAY_NAME  | display_name        | File name displayed.                                                  |
-| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | TITLE         | title               | Title of the file.                                                  |
 | DURATION      | duration            | Duration, in ms.                                   |
@@ -4416,7 +4428,7 @@ Defines the key album information.
 | URI           | uri                 | URI of the album.                                                  |
 | FILE_TYPE     | file_type           | Type of the file.                                             |
 | ALBUM_NAME    | album_name          | Name of the album.                                                  |
-| DATE_ADDED    | date_added          | Date when the album was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_ADDED    | date_added          | Date when the album was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | date_modified       | Date when the album file content (not the album name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 
 ## PhotoCreateOptions<sup>10+</sup>

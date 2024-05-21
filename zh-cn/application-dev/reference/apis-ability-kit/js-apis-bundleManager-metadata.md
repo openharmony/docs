@@ -8,6 +8,8 @@
 
 ## Metadata
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 | 名称     | 类型   | 可读 | 可写 | 说明       |
 | -------- | ------ | ---- | ---- | ---------- |

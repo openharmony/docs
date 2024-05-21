@@ -203,6 +203,10 @@ struct Page {
 
 ### 将复杂大对象拆分成多个小对象的集合
 
+> **说明：**
+>
+> 从API version 11开始，推荐优先使用[@Track装饰器](arkts-track.md)解决该场景的问题。
+
 在开发过程中，我们有时会定义一个大的对象，其中包含了很多样式相关的属性，并且在父子组件间传递这个对象，将其中的属性绑定在组件上。
 
 ```typescript
@@ -232,7 +236,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -272,7 +276,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
+            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -433,7 +437,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.needRenderImage.imageWidth) // !! use this.needRenderImage.xxx rather than this.uiStyle.needRenderImage.xxx !!
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
@@ -481,7 +485,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon'))
+          Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // use this.needRenderXxx.xxx rather than this.uiStyle.needRenderXxx.xxx
@@ -596,7 +600,168 @@ struct Page {
 - 经常被同时使用的属性可以被拆分进同一个新类，即示例中的NeedRenderScale、NeedRenderTranslate、NeedRenderPos、NeedRenderSize。适用于属性经常成对出现，或者被作用在同一个样式上的情况，例如.translate、.position、.scale等（这些样式通常会接收一个对象作为参数）。
 - 可能被用在多个组件上或相对较独立的属性应该被单独拆分进一个新类，即示例中的NeedRenderAlpha，NeedRenderBorderRadius、NeedRenderFontSize。适用于一个属性作用在多个组件上或者与其他属性没有联系的情况，例如.opacity、.borderRadius等（这些样式通常相对独立）。
 
-属性拆分的原理和属性合并类似，都是在嵌套场景下，状态管理无法观测二层以上的属性变化，所以不会因为二层的数据变化导致一层关联的其他属性被刷新，同时利用@Observed和@ObjectLink在父子节点间传递二层的对象，从而在子组件中正常的观测二层的数据变化，实现精准刷新。关于属性拆分的详细内容，可以查看[精准控制组件的更新范围](../performance/precisely-control-render-scope.md)。
+属性拆分的原理和属性合并类似，都是在嵌套场景下，状态管理无法观测二层以上的属性变化，所以不会因为二层的数据变化导致一层关联的其他属性被刷新，同时利用@Observed和@ObjectLink在父子节点间传递二层的对象，从而在子组件中正常的观测二层的数据变化，实现精准刷新。<!--Del-->关于属性拆分的详细内容，可以查看[精准控制组件的更新范围](../performance/precisely-control-render-scope.md)。<!--DelEnd-->
+
+使用@Track装饰器则无需做属性拆分，也能达到同样控制组件更新范围的作用。
+
+```ts
+@Observed
+class UIStyle {
+  @Track translateX: number = 0;
+  @Track translateY: number = 0;
+  @Track scaleX: number = 0.3;
+  @Track scaleY: number = 0.3;
+  @Track width: number = 336;
+  @Track height: number = 178;
+  @Track posX: number = 10;
+  @Track posY: number = 50;
+  @Track alpha: number = 0.5;
+  @Track borderRadius: number = 24;
+  @Track imageWidth: number = 78;
+  @Track imageHeight: number = 78;
+  @Track translateImageX: number = 0;
+  @Track translateImageY: number = 0;
+  @Track fontSize: number = 20;
+}
+@Component
+struct SpecialImage {
+  @ObjectLink uiStyle: UIStyle;
+  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+    console.log("SpecialImage is rendered");
+    return 1;
+  }
+  build() {
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+      .width(this.uiStyle.imageWidth)
+      .height(this.uiStyle.imageHeight)
+      .margin({ top: 20 })
+      .translate({
+        x: this.uiStyle.translateImageX,
+        y: this.uiStyle.translateImageY
+      })
+      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+  }
+}
+@Component
+struct CompA {
+  @ObjectLink uiStyle: UIStyle
+  // the following functions are used to show whether the component is called to be rendered
+  private isRenderColumn() : number {
+    console.log("Column is rendered");
+    return 1;
+  }
+  private isRenderStack() : number {
+    console.log("Stack is rendered");
+    return 1;
+  }
+  private isRenderImage() : number {
+    console.log("Image is rendered");
+    return 1;
+  }
+  private isRenderText() : number {
+    console.log("Text is rendered");
+    return 1;
+  }
+  build() {
+    Column() {
+      SpecialImage({
+        // in low version, Dev Eco may throw a warning
+        // But you can still build and run the code
+        uiStyle: this.uiStyle
+      })
+      Stack() {
+        Column() {
+            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
+              .opacity(this.uiStyle.alpha)
+              .scale({
+                x: this.uiStyle.scaleX,
+                y: this.uiStyle.scaleY
+              })
+              .padding(this.isRenderImage())
+              .width(300)
+              .height(300)
+        }
+        .width('100%')
+        .position({ y: -80 })
+        Stack() {
+          Text("Hello World")
+            .fontColor("#182431")
+            .fontWeight(FontWeight.Medium)
+            .fontSize(this.uiStyle.fontSize)
+            .opacity(this.isRenderText())
+            .margin({ top: 12 })
+        }
+        .opacity(this.isRenderStack())
+        .position({
+          x: this.uiStyle.posX,
+          y: this.uiStyle.posY
+        })
+        .width('100%')
+        .height('100%')
+      }
+      .margin({ top: 50 })
+      .borderRadius(this.uiStyle.borderRadius)
+      .opacity(this.isRenderStack())
+      .backgroundColor("#FFFFFF")
+      .width(this.uiStyle.width)
+      .height(this.uiStyle.height)
+      .translate({
+        x: this.uiStyle.translateX,
+        y: this.uiStyle.translateY
+      })
+      Column() {
+        Button("Move")
+          .width(312)
+          .fontSize(20)
+          .backgroundColor("#FF007DFF")
+          .margin({ bottom: 10 })
+          .onClick(() => {
+            animateTo({
+              duration: 500
+            },() => {
+              this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
+            })
+          })
+        Button("Scale")
+          .borderRadius(20)
+          .backgroundColor("#FF007DFF")
+          .fontSize(20)
+          .width(312)
+          .onClick(() => {
+            this.uiStyle.scaleX = (this.uiStyle.scaleX + 0.6) % 0.8;
+          })
+      }
+      .position({
+        y:666
+      })
+      .height('100%')
+      .width('100%')
+
+    }
+    .opacity(this.isRenderColumn())
+    .width('100%')
+    .height('100%')
+
+  }
+}
+@Entry
+@Component
+struct Page {
+  @State uiStyle: UIStyle = new UIStyle();
+  build() {
+    Stack() {
+      CompA({
+        // in low version, Dev Eco may throw a warning
+        // But you can still build and run the code
+        uiStyle: this.uiStyle
+      })
+    }
+    .backgroundColor("#F1F3F5")
+  }
+}
+```
+
+
 
 ### 使用@Observed装饰或被声明为状态变量的类对象绑定组件
 
@@ -933,7 +1098,7 @@ ChildList类型在定义的时候使用了@Observed进行装饰，所以用new�
 
 ## 合理使用ForEach/LazyForEach
 
-#### 减少使用LazyForEach的重建机制刷新UI
+### 减少使用LazyForEach的重建机制刷新UI
 
 开发过程中通常会将LazyForEach和状态变量结合起来使用。
 
@@ -1038,7 +1203,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
     }
   }
 
@@ -1160,8 +1325,8 @@ class MyDataSource extends BasicDataSource {
 
 @Observed
 class StringData {
-  message: string;
-  imgSrc: Resource;
+  @Track message: string;
+  @Track imgSrc: Resource;
   constructor(message: string, imgSrc: Resource) {
     this.message = message;
     this.imgSrc = imgSrc;
@@ -1175,7 +1340,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
     }
   }
 
@@ -1218,7 +1383,7 @@ struct ChildComponent {
 
 可以观察到UI能够正常刷新，图片没有“闪烁”，且没有输出日志信息，说明没有对Text组件和Image组件进行重建。
 
-这是因为使用自定义组件之后，可以通过@Observed和@ObjectLink配合去直接更改自定义组件内的状态变量实现刷新，而不需要利用LazyForEach进行重建。在上述代码中就将更新范围缩小到了指定的Text组件，而不是整个ListItem。
+这是因为使用自定义组件之后，可以通过@Observed和@ObjectLink配合去直接更改自定义组件内的状态变量实现刷新，而不需要利用LazyForEach进行重建。使用[@Track装饰器](arkts-track.md)分别装饰StringData类型中的message和imgSrc属性可以使更新范围进一步缩小到指定的Text组件。
 
 ### 在ForEach中使用自定义组件搭配对象数组
 

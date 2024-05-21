@@ -298,7 +298,7 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 | 类型           | 说明                         |
 | -------------- | ---------------------------- |
-| Promise\<void> | 表示设置静态订阅事件使能状态的对象。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
 
@@ -319,5 +319,63 @@ CommonEventManager.setStaticSubscriberState(false).then(() => {
     console.info(`Set static subscriber state promise success`);
 }).catch ((err:Base.BusinessError) => {
     console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
+});
+```
+
+## CommonEventManager.setStaticSubscriberState<sup>12+</sup>
+
+setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
+
+为当前应用设置静态订阅事件的使能状态，并且记录事件名称。使用Promise异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Notification.CommonEvent
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                                                 |
+| ------ | ------------- | ---- | ---------------------------------------------------- |
+| enable | boolean       | 是   | 表示静态订阅事件使能状态。 true：使能 false：去使能。|
+| events | array<string> | 否   | 表示记录事件名称。                                   |
+
+**返回值：**
+
+| 类型           | 说明                                 |
+| -------------- | ------------------------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)。
+
+| 错误码ID | 错误信息                                               |
+| -------- | ------------------------------------------------------ |
+| 1500007  | error sending message to Common Event Service.         |
+| 1500008  | Common Event Service does not complete initialization. |
+
+**示例：**
+
+
+```ts
+import Base from '@ohos.base'
+import promptAction from '@ohos.promptAction'
+import CommonEventManager from '@ohos.commonEventManager'
+
+let evenName: string[] = ['usual.event.SEND_DATA'];
+CommonEventManager.setStaticSubscriberState(true, evenName).then(() => {
+  try {
+    promptAction.showToast({
+      message: 'app.string.static_subscribe_enabled',
+      duration: 2000,
+    });
+  } catch (error) {
+    console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+  }
+  console.info(`Set static subscriber state success, state is ${true}`);
+}).catch((err: Base.BusinessError) => {
+  console.info(`Set static subscriber state failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

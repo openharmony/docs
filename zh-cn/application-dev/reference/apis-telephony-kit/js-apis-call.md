@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 
@@ -25,7 +25,7 @@ dial\(phoneNumber: string, callback: AsyncCallback\<boolean\>\): void
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -39,7 +39,7 @@ dial\(phoneNumber: string, callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.dial("138xxxxxxxx", (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -57,7 +57,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -72,7 +72,7 @@ dial\(phoneNumber: string, options: DialOptions, callback: AsyncCallback\<boolea
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialOptions: call.DialOptions = {
     extras: false
@@ -92,7 +92,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 >
 > 从API version 6 开始支持，从API version 9 开始废弃。替代接口能力仅对系统应用开放。
 
-**需要权限**：ohos.permission.PLACE_CALL
+**需要权限**：ohos.permission.PLACE_CALL（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
@@ -112,7 +112,7 @@ dial\(phoneNumber: string, options?: DialOptions\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialOptions: call.DialOptions = {
     extras: false
@@ -129,6 +129,8 @@ call.dial("138xxxxxxxx", dialOptions).then((data: boolean) => {
 makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 跳转到拨号界面，并显示待拨出的号码。使用callback异步回调。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -154,7 +156,7 @@ makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.makeCall("138xxxxxxxx", (err: BusinessError) => {
     if (err) {
@@ -171,6 +173,8 @@ call.makeCall("138xxxxxxxx", (err: BusinessError) => {
 makeCall\(phoneNumber: string\): Promise\<void\>
 
 跳转到拨号界面，并显示待拨出的号码。使用Promise异步回调。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -201,7 +205,7 @@ makeCall\(phoneNumber: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.makeCall("138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
@@ -227,7 +231,7 @@ hasCall\(callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hasCall((err: BusinessError, data: boolean) => {
     if (err) {
@@ -256,7 +260,7 @@ hasCall\(\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hasCall().then(() => {
     console.log(`hasCall success`);
@@ -304,7 +308,7 @@ getCallState\(callback: AsyncCallback\<CallState\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallState((err: BusinessError, data: call.CallState) => {
     if (err) {
@@ -333,7 +337,7 @@ getCallState\(\): Promise\<CallState\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallState().then((data: call.CallState) => {
     console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
@@ -412,7 +416,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, callback: AsyncCallback\<boolean\>\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isEmergencyPhoneNumber("138xxxxxxxx", (err: BusinessError, data: boolean) => {
     if (err) {
@@ -455,7 +459,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: call.EmergencyNumberOptions = {slotId: 1}
 call.isEmergencyPhoneNumber("112", options, (err: BusinessError, data: boolean) => {
@@ -504,7 +508,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: call.EmergencyNumberOptions = {slotId: 1}
 call.isEmergencyPhoneNumber("138xxxxxxxx", options).then((data: boolean) => {
@@ -546,7 +550,7 @@ formatPhoneNumber\(phoneNumber: string, callback: AsyncCallback\<string\>\): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.formatPhoneNumber("138xxxxxxxx", (err: BusinessError, data: string) => {
     if (err) {
@@ -590,7 +594,7 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: call.NumberFormatOptions = {
     countryCode: "CN"
@@ -643,7 +647,7 @@ formatPhoneNumber\(phoneNumber: string, options?: NumberFormatOptions\): Promise
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: call.NumberFormatOptions = {
     countryCode: "CN"
@@ -688,7 +692,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err: BusinessError, data: string) => {
     if (err) {
@@ -740,7 +744,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise\<st
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.formatPhoneNumberToE164("138xxxxxxxx", "CN").then((data: string) => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);

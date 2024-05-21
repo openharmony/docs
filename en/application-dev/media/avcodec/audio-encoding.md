@@ -1,4 +1,4 @@
-# Audio Encoding (C/C++)
+# Audio Encoding
 
 You can call the native APIs provided by the audio codec module to encode audio, that is, to compress audio PCM data into a desired format.
 
@@ -198,7 +198,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-   The following provides the FLAC invoking process.
+    The following provides the FLAC invoking process.
 
     ```cpp
     int32_t ret;
@@ -235,7 +235,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 5. Call **OH_AudioCodec_Prepare()** to prepare internal resources for the encoder.
 
     ```cpp
-    ret = OH_AudioCodec_Prepare(audioDec_);
+    ret = OH_AudioCodec_Prepare(audioEnc_);
     if (ret != AV_ERR_OK) {
         // Exception handling.
     }
@@ -257,7 +257,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-7. Call **OH_AudioCodec_PushInputData()** to write the data to encode.
+7. Call **OH_AudioCodec_PushInputBuffer()** to write the data to encode.
    
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
    

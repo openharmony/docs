@@ -10,13 +10,14 @@
 
 taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkts-utils/taskpool-introduction.md#taskpool注意事项)。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
 ```ts
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 ```
 ## taskpool.execute
 
@@ -25,6 +26,8 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 将待执行的函数放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式不可取消任务。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -67,9 +70,11 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。该任务可以多次调用execute执行。
+将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -125,6 +130,8 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名     | 类型                        | 必填 | 说明                                                           |
@@ -179,9 +186,11 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。该任务可以多次调用executeDelayed执行。
+延时执行任务。当前执行模式可以设置任务优先级和尝试调用cancel进行任务取消。该任务不可以是任务组任务和串行队列任务。若该任务非长时任务，可以多次调用executeDelayed执行，长时任务仅支持执行一次。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -210,7 +219,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 ```ts
 @Concurrent
 // import BusinessError
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 function printArgs(args: number): void {
     console.info("printArgs: " + args);
@@ -234,6 +243,8 @@ cancel(task: Task): void
 取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回undefined作为结果；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -311,6 +322,8 @@ cancel(group: TaskGroup): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                 |
@@ -361,6 +374,77 @@ function concurrntFunc() {
 concurrntFunc();
 ```
 
+## taskpool.terminateTask<sup>12+</sup>
+
+terminateTask(longTask: LongTask): void
+
+中止任务池中的长时任务，在长时任务执行完成后调用。中止后，执行长时任务的线程可能会被回收。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| longTask   | [LongTask](#longtask12) | 是   | 需要中止的长时任务。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function longTask(arg: number): number {
+  let t: number = Date.now();
+  while (Date.now() - t < arg) {
+    continue;
+  }
+  console.info("longTask has been executed.");
+  return arg;
+}
+
+function concurrntFunc() {
+  let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
+  taskpool.execute(task1).then((res: Object)=>{
+    taskpool.terminateTask(task1);
+    console.info("taskpool longTask result: " + res);
+  });
+}
+
+concurrntFunc();
+```
+
+## taskpool.isConcurrent<sup>12+</sup>
+
+isConcurrent(func: Function): boolean
+
+检查函数是否为并发函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| function   | Function | 是   | 需要检查的函数。 |
+
+**返回值：**
+
+| 类型    | 说明                                 |
+| ------- | ------------------------------------ |
+| boolean | 如果被检查函数标注了[@Concurrent装饰器](../../arkts-utils/arkts-concurrent.md)，返回true，否则返回false。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function test() {}
+
+let result: Boolean = taskpool.isConcurrent(test)
+console.info("result is: " + result)
+```
 
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
 
@@ -369,6 +453,8 @@ getTaskPoolInfo(): TaskPoolInfo
 获取任务池内部信息，包含线程信息和任务信息。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -384,9 +470,11 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 ## Priority
 
-表示所创建任务（Task）执行时的优先级。
+表示所创建任务（Task）执行时的优先级。工作线程优先级跟随任务优先级同步更新，对应关系参考[QoS等级定义](../../napi/qos-guidelines.md#qos等级定义)。
 
 **系统能力：**  SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -431,6 +519,21 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循
 
 表示任务。使用[constructor](#constructor)方法构造Task。任务可以多次执行或放入任务组执行或放入串行队列执行或添加依赖关系执行。
 
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
+| 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
+| -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
+| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
+| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。                                    |
+| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
+| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
+| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
+
 ### constructor
 
 constructor(func: Function, ...args: Object[])
@@ -438,6 +541,8 @@ constructor(func: Function, ...args: Object[])
 Task的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -473,6 +578,8 @@ constructor(name: string, func: Function, ...args: Object[])
 Task的构造函数，可以指定任务名称。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -512,6 +619,8 @@ static isCanceled(): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型    | 说明                                 |
@@ -534,7 +643,8 @@ function inspectStatus(arg: number): number {
 }
 ```
 
-> **说明：**<br/>
+> **说明：**
+>
 > isCanceled方法需要和taskpool.cancel方法搭配使用，如果不调用cancel方法，isCanceled方法默认返回false。
 
 **示例：**
@@ -575,10 +685,13 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 设置任务的传输列表。使用该方法前需要先构造Task。不调用该接口，则传给任务的数据中的ArrayBuffer默认transfer转移。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 此接口可以设置任务池中ArrayBuffer的transfer列表，transfer列表中的ArrayBuffer对象在传输时不会复制buffer内容到工作线程而是转移buffer控制权至工作线程，传输后当前的ArrayBuffer失效。若ArrayBuffer为空，则不会transfer转移。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -636,16 +749,19 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 设置任务的拷贝列表。使用该方法前需要先构造Task。
 
-> **说明：**<br/>
-> 当前仅支持拷贝，[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)需搭配该接口使用，否则会抛异常。
+> **说明：**
+>
+> 需搭配[@Sendable装饰器](../../arkts-utils/arkts-sendable.md#sendable装饰器声明并校验sendable-class)使用，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
 | 参数名    | 类型                      | 必填 | 说明                                          |
 | --------- | ------------------------ | ---- | --------------------------------------------- |
-| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[SendableClass](../../arkts-utils/arkts-sendable.md#基本概念)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的SendableClass实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝，即修改传输后的对象不会对原有对象产生任何影响。 |
+| cloneList | Object[] \| ArrayBuffer[]  | 是 | - 传入数组的类型必须为[sendable数据](../../arkts-utils/arkts-sendable.md#sendable数据)或ArrayBuffer。<br/>- 所有传入cloneList的对象持有的[Sendable class](../../arkts-utils/arkts-sendable.md#sendable-class)实例或ArrayBuffer类型对象，在线程间传输的行为都会变成拷贝传递，即修改传输后的对象不会对原有对象产生任何影响。 |
 
 **错误码：**
 
@@ -658,11 +774,10 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 **示例：**
 
 ```ts
-import taskpool from '@ohos.taskpool'
-import { BusinessError } from '@ohos.base'
-
+// sendable.ets
+// 定义两个Sendable class：BaseClass及其子类DeriveClass
 @Sendable
-class BaseClass {
+export class BaseClass {
   private str: string = "sendable: BaseClass";
   static num :number = 10;
   str1: string = "sendable: this is BaseClass's string";
@@ -701,7 +816,7 @@ class BaseClass {
 }
 
 @Sendable
-class DeriveClass extends BaseClass {
+export class DeriveClass extends BaseClass {
   name: string = "sendable: this is DeriveClass";
   printName() {
     console.info(this.name);
@@ -710,6 +825,15 @@ class DeriveClass extends BaseClass {
     super();
   }
 }
+```
+
+
+```ts
+// index.ets
+// 主线程调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { BaseClass, DeriveClass } from './sendable'
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
@@ -786,6 +910,8 @@ static sendData(...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型          | 必填 | 说明                                              |
@@ -820,10 +946,13 @@ onReceiveData(callback?: Function): void
 
 为任务注册回调函数，以接收和处理来自任务池工作线程的数据。使用该方法前需要先构造Task。
 
-> **说明：**<br/>
+> **说明：**
+>
 > 不支持给同一个任务定义多种回调函数，如果重复赋值只有最后一个会生效。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -865,6 +994,8 @@ addDependency(...tasks: Task[]): void
 为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。该任务和被依赖的任务不可以是任务组任务、串行队列任务和已执行的任务。存在依赖关系的任务（依赖其他任务的任务或被依赖的任务）执行后不可以再次执行。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -921,6 +1052,8 @@ removeDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -972,18 +1105,247 @@ taskpool.execute(task3).then(() => {
 })
 ```
 
-### 属性
+
+### onEnqueued<sup>12+</sup>
+
+onEnqueued(callback: CallbackFunction): void
+
+注册一个回调函数，并在任务入队时调用它。需在任务执行前注册，否则会抛异常。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
-| -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
-| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。                                    |
-| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
-| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
-| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12) | 是   | 需注册的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(delay, 1);
+task.onEnqueued(()=>{
+  console.info("taskpool: onEnqueued")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+
+### onStartExecution<sup>12+</sup>
+
+onStartExecution(callback: CallbackFunction): void
+
+注册一个回调函数，并在执行任务前调用它。需在任务执行前注册，否则会抛异常。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12)  | 是   | 需注册的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(test, 1);
+task.onStartExecution(()=>{
+  console.info("taskpool: onStartExecution")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+### onExecutionFailed<sup>12+</sup>
+
+onExecutionFailed(callback: CallbackFunctionWithError): void
+
+注册一个回调函数，并在任务执行失败时调用它。需在任务执行前注册，否则会抛异常。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunctionWithError](#callbackfunctionwitherror12)  | 是   | 需注册的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Concurrent
+function test(args:number) {
+  let t = Date.now()
+  while ((Date.now() - t) < 100) {
+    continue;
+  }
+  let hashMap1: HashMap<string, number> = new HashMap();
+  hashMap1.set('a', args);
+  return hashMap1;
+}
+
+let task2 = new taskpool.Task(test, 1);
+task2.onExecutionFailed((e:Error)=>{
+  console.info("taskpool: onExecutionFailed error is " + e);
+})
+taskpool.execute(task2).then(()=>{
+  console.info("taskpool: execute task success")
+}).catch((e:BusinessError)=>{
+  console.error(`taskpool: error code: ${e.code}, error info: ${e.message}`);
+})
+```
+
+### onExecutionSucceeded<sup>12+</sup>
+
+onExecutionSucceeded(callback: CallbackFunction): void
+
+注册一个回调函数，并在任务执行成功时调用它。需在任务执行前注册，否则会抛异常。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| callback  | [CallbackFunction](#callbackfunction12)  | 是   | 需注册的回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200034  | The executed task does not support the registration of listeners. |
+
+**示例：**
+
+```ts
+import { taskpool } from '@kit.ArkTS'
+
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	  continue;
+  }
+  return args;
+}
+
+let task: taskpool.Task = new taskpool.Task(delay, 1);
+task.onExecutionSucceeded(()=>{
+  console.info("taskpool: onExecutionSucceeded")
+});
+taskpool.execute(task).then(()=> {
+  console.info("taskpool: execute task success")
+});
+```
+
+## CallbackFunction<sup>12+</sup>
+
+type CallbackFunction = () => void
+
+注册的回调函数类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+
+## CallbackFunctionWithError<sup>12+</sup>
+
+type CallbackFunctionWithError = (e: Error) => void
+
+注册带有错误码的回调函数类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| e  | Error | 是   | 错误信息。 |
+
+
+## LongTask<sup>12+</sup>
+
+**系统能力：** SystemCapability.Utils.Lang
+
+表示长时任务。LongTask继承自[Task](#task)。
+长时任务不设置执行时间上限，长时间运行不会触发超时异常，但不支持在任务组（TaskGroup）执行和多次执行。
+执行长时任务的线程一直存在，直到执行完成后调用[terminateTask](#taskpoolterminatetask12)，该线程会在空闲时被回收。
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: string): string {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first LongTask");
+```
 
 ## TaskGroup<sup>10+</sup>
 
@@ -996,6 +1358,8 @@ constructor()
 TaskGroup的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **示例：**
 
@@ -1010,6 +1374,8 @@ constructor(name: string)
 TaskGroup的构造函数，可以指定任务组名称。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1032,6 +1398,8 @@ addTask(func: Function, ...args: Object[]): void
 将待执行的函数添加到任务组中。使用该方法前需要先构造TaskGroup。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1065,9 +1433,11 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务和已执行的任务。
+将创建好的任务添加到任务组中。使用该方法前需要先构造TaskGroup。任务组不可以添加其他任务组任务、串行队列任务、有依赖关系的任务、长时任务和已执行的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1101,6 +1471,8 @@ taskGroup.addTask(task);
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
 | name<sup>11+</sup> | string | 是   | 是   | 创建任务组时指定的任务组名称。 |
@@ -1116,6 +1488,8 @@ constructor(priority?: Priority)
 SequenceRunner的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1141,6 +1515,8 @@ execute(task: Task): Promise\<Object>
 > - 前面的任务执行失败或取消不影响后续任务执行。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1210,6 +1586,8 @@ async function seqRunner()
 
 **系统能力：**  SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称      | 值        | 说明          |
 | --------- | -------- | ------------- |
 | WAITING   | 1        | 任务正在等待。 |
@@ -1229,10 +1607,10 @@ async function seqRunner()
 
 | 名称     | 类型                | 可读 | 可写 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。                                                     |
-| taskId   | number             | 是   | 否   | 任务的ID。                                                     |
-| state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。  |
+| name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                    |
+| taskId   | number             | 是   | 否   | 任务的ID。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                     |
+| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。                                                    |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **元服务API**：从API version 11 开始，该接口支持在元服务中使用。  |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -1243,6 +1621,8 @@ async function seqRunner()
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
@@ -1259,6 +1639,8 @@ async function seqRunner()
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称          | 类型                              | 可读 | 可写 | 说明                  |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
@@ -1278,7 +1660,7 @@ async function seqRunner()
 ```ts
 // 支持普通函数、引用入参传递
 @Concurrent
-function printArgs(args: number): number {
+function printArgs(args: string): string {
   console.info("func: " + args);
   return args;
 }
@@ -1349,7 +1731,7 @@ taskpoolExecute();
 
 ```ts
 // c.ets
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {

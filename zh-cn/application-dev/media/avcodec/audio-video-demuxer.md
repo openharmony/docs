@@ -5,7 +5,7 @@
 当前支持的数据输入类型有：远程连接(http协议)和文件描述符(fd)。
 
 支持的解封装格式如下：
-
+<!--RP1-->
 | 媒体格式  | 封装格式                      | 码流格式                      |
 | -------- | :----------------------------| :----------------------------|
 | 音视频     | mp4                        |视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)|
@@ -18,6 +18,7 @@
 | 音频       | flac                        |音频码流：FLAC|
 | 音频       | wav                        |音频码流：PCM|
 | 音频       | amr                        |音频码流：AMR(amrnb/amrwb)|
+<!--RP1End-->
 
 **适用场景**：
 
@@ -46,6 +47,7 @@
 ### 在 CMake 脚本中链接动态库
 
 ``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
@@ -61,10 +63,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    #include <multimedia/player_framework/native_avbuffer.h>
+   #include <fcntl.h>
+   #include <sys/stat.h>
    ```
 
-2. 创建解封装器实例对象。
-
+2. 创建资源管理实例对象。
    ```c++
    // 创建文件操作符 fd，打开时对文件句柄必须有读权限(filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在)
    std::string filePath = "test.mp4";
@@ -85,8 +88,70 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    // 为 uri 资源文件创建 source 资源对象(可选)
    // OH_AVSource *source = OH_AVSource_CreateWithURI(uri);
+
+   // 为自定义数据源创建 source 资源对象(可选)。使用该方式前，需要先实现AVSourceReadAt接口函数实现。
+   // 当使用OH_AVSource_CreateWithDataSource时需要补充g_filePath
+   // g_filePath = filePath ;
+   // OH_AVDataSource dataSource = {fileSize, AVSourceReadAt};
+   // OH_AVSource *source = OH_AVSource_CreateWithDataSource(&dataSource);
    ```
 
+   AVSourceReadAt接口函数，需要放在创建资源管理实例对象前实现：:
+
+   ```c++
+   // 添加头文件
+   #include <fstream>
+   ```
+
+   ```c++
+   static std::string g_filePath;
+
+   enum MediaDataSourceError : int32_t {
+      SOURCE_ERROR_IO = -2,
+      SOURCE_ERROR_EOF = -1
+   };
+
+   int32_t AVSourceReadAt(OH_AVBuffer *data, int32_t length, int64_t pos)
+   {
+      if (data == nullptr) {
+         printf("AVSourceReadAt : data is nullptr!\n");
+         return MediaDataSourceError::SOURCE_ERROR_IO;
+      }
+
+      std::ifstream infile(g_filePath, std::ofstream::binary);
+      if (!infile.is_open()) {
+         printf("AVSourceReadAt : open file failed! file:%s\n", g_filePath.c_str());
+         return MediaDataSourceError::SOURCE_ERROR_IO;  // 打开文件失败
+      }
+
+      infile.seekg(0, std::ios::end);
+      int64_t fileSize = infile.tellg();
+      if (pos >= fileSize) {
+         printf("AVSourceReadAt : pos over or equals file size!\n");
+         return MediaDataSourceError::SOURCE_ERROR_EOF;  // pos已经是文件末尾位置，无法读取
+      }
+
+      if (pos + length > fileSize) {
+         length = fileSize - pos;    // pos+length长度超过文件大小时，读取从pos到文件末尾的数据
+      }
+
+      infile.seekg(pos, std::ios::beg);
+      if (length <= 0) {
+         printf("AVSourceReadAt : raed length less than zero!\n");
+         return MediaDataSourceError::SOURCE_ERROR_IO;
+      }
+      char* buffer = new char[length];
+      infile.read(buffer, length);
+      infile.close();
+
+      memcpy(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(data)),
+         buffer, length);
+      delete[] buffer;
+
+      return length;
+   }
+   ```
+3. 创建解封装器实例对象。
    ```c++
    // 为资源对象创建对应的解封装器
    OH_AVDemuxer *demuxer = OH_AVDemuxer_CreateWithSource(source);
@@ -95,7 +160,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
-3. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
+4. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
 
    加入头文件
    ```c++
@@ -124,7 +189,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
 
-4. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
+5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
    // 从文件 source 信息获取文件轨道数
@@ -138,7 +203,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(sourceFormat);
    ```
 
-5. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
+6. 获取轨道index及信息（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
    uint32_t audioTrackIndex = 0;
@@ -164,7 +229,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-6. 添加解封装轨道。
+7. 添加解封装轨道。
 
    ```c++
    if(OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex) != AV_ERR_OK){
@@ -179,7 +244,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    // OH_AVDemuxer_UnselectTrackByID(demuxer, audioTrackIndex);
    ```
 
-7. 调整轨道到指定时间点(可选)。
+8. 调整轨道到指定时间点(可选)。
 
    ```c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装
@@ -189,7 +254,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-8. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
+9. 开始解封装，循环获取帧数据(以含音频、视频两轨的文件为例)。
 
    ```c++
    // 创建 buffer，用与保存用户解封装得到的数据
@@ -231,7 +296,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVBuffer_Destroy(buffer);
    ```
 
-9. 销毁解封装实例。
+10. 销毁解封装实例。
 
    ```c++
    // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误

@@ -11,11 +11,11 @@ The following scenarios are common for native window development:
 
 ## Available APIs
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.|
-| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption.|
-| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.|
+| OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | Requests an **OHNativeWindowBuffer** through an **OHNativeWindow** instance for content production.| 
+| OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption.| 
+| OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.| 
 
 For details about the APIs, see [native_window](../reference/apis-arkgraphics2d/_native_window.md).
 
@@ -39,7 +39,7 @@ libnative_window.so
 
 1. Obtain an **OHNativeWindow** instance.
 
-    You can call the APIs provided by [OH_NativeXComponent_Callback](../reference/native-apis/_o_h___native_x_component___callback.md) to obtain an **OHNativeWindow** instance. An example code snippet is provided below. For details about how to use the **\<XComponent>**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
+    You can call the APIs provided by [OH_NativeXComponent_Callback](../reference/apis-arkui/_o_h___native_x_component___callback.md) to obtain an **OHNativeWindow** instance. An example code snippet is provided below. For details about how to use the **\<XComponent>**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
     1. Add an **\<XComponent>** to the .ets file.
         ```ts
         XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry'})

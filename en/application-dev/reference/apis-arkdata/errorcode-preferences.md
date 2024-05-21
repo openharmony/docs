@@ -4,6 +4,23 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
+## 15500000 Internal Error
+**Error Message**
+
+Inner error.
+
+**Description**
+
+An internal error occurred.
+
+**Possible Causes**
+
+The persistent file fails to be read or written.
+
+**Procedure**
+
+Locate the cause based on the log information or contact the technical support.
+
 ## 15500010 Failed to Delete the User Preference Persistence File
 **Error Message**
 
@@ -42,7 +59,7 @@ The platform does not support service subscription.
 
 Deploy the subscription service on the platform.
 
-## 14801001 Stage Model Required
+## 15501001 Stage Model Required
 
 **Error Message**
 

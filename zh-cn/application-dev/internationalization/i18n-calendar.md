@@ -44,13 +44,13 @@ let minimalDaysInFirstWeek : number = calendar.getMinimalDaysInFirstWeek(); // 1
 calendar.setMinimalDaysInFirstWeek(3);
 
 // 获取日历对象中与field相关联的值
-let value: number = calendar.get("year"); // 2023
+let value: number = calendar.get("year"); // 2022
 
 // 获取日历对象本地化名称
 let calendarName: string = calendar.getDisplayName("zh-Hans"); // 公历
 
 // 判断指定的日期在日历中是否为周末
-let isWeekend : boolean= calendar.isWeekend(new Date(2023, 10, 15)); // true
+let isWeekend : boolean= calendar.isWeekend(new Date(2023, 9, 15)); // true
 
 // 在日历的给定字段进行加减操作
 calendar.set(2023, 10, 15);
@@ -69,7 +69,7 @@ let calendar : I18n.Calendar = I18n.getCalendar("zh-Hans", "chinese");
 calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
 //获取农历年月日
 calendar.get("year"); // 返回干支纪年40，范围1-60
-calendar.get("month"); // 5月
+calendar.get("month"); // 结果为5，指6月
 calendar.get("date"); // 8日
 ```
 

@@ -34,7 +34,7 @@ Before using this module, you need to obtain the application sandbox path of the
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| path<sup>10+</sup> | string | Yes| No| Path of the file. |
+| path<sup>10+</sup> | string | Yes| No| Path of the file.|
 | name<sup>10+</sup> | string | Yes| No| Name of the file.|
 
 ### constructor<sup>10+</sup>
@@ -49,11 +49,11 @@ A constructor used to create a **FileUri** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| uriOrPath | string | Yes| URI or path. The following types of URIs are available:<br>- Application sandbox URI: **file://\<bundleName>/\<sandboxPath>**<br>- User file URI: **file://docs/storage/Users/currentUser/\<publicPath>**<br>- User media asset URI: **file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName>** |
+| uriOrPath | string | Yes| URI or path. The following types of URIs are available:<br>- Application sandbox URI: **file://\<bundleName>/\<sandboxPath>**<br>- User file URI: **file://docs/storage/Users/currentUser/\<publicPath>**<br>- User media asset URI: **file://media/\<mediaType>/IMG_DATATIME_ID/\<displayName>**|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 13900005 | I/O error |
@@ -74,13 +74,13 @@ toString(): string
 
 **System capability**: SystemCapability.FileManagement.AppFileService
 
-Obtains the URI of the string type.
+Converts this URI into a string.
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| string | URI of the string type obtained.|
+| string | URI obtained, in the string format.|
 
 **Example**
 
@@ -96,7 +96,7 @@ getFullDirectoryUri(): string
 
 Obtains the URI of the full directory of this file or folder.
 
-For a file, this API returns the URI of the directory where the file is located. For example, **xxx** will be returned for the  **xxx/example.txt** file.
+For a file, this API returns the URI of the directory where the file is located. For example, **xxx** will be returned for the **xxx/example.txt** file.
 
 For a folder, this API returns the URI of the folder.
 
@@ -110,7 +110,7 @@ For a folder, this API returns the URI of the folder.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md)..
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message                     |
 | ---------------------------- |---------------------------|
@@ -132,11 +132,47 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   }
   ```
 
+### isRemoteUri<sup>12+</sup>
+
+isRemoteUri(): boolean
+
+Checks whether this URI is a remote URI.
+
+**System capability**: SystemCapability.FileManagement.AppFileService
+
+**Return value**
+
+| Type                 | Description                               |
+| --------------------- |-----------------------------------|
+| boolean | - Returns **true** if the URI points to a remote file or folder, for example, **xxx/example.txt? networkid=xxx**.<br>- Returns **false** if the URI points to a local file or folder.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID                    | Error Message                     |
+| ---------------------------- |---------------------------|
+| 13900042 | Unknown error             |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  function isRemoteUriExample() {
+    let uri = "file://com.example.demo/data/stroage/el2/base/test.txt?networkid=xxxx";// ?networkid identifies a remote device.
+    let fileUriObject = new fileUri.FileUri(uri);
+    let ret = fileUriObject.isRemoteUri();
+    if (ret) {
+        console.log(`It is a remote uri.`);
+    }
+  }
+  ```
+
 ## fileUri.getUriFromPath
 
 getUriFromPath(path: string): string
 
-Obtains the URI based on a file path. This API returns the result synchronously.
+Obtains the URI from a file path. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.AppFileService
 
@@ -144,7 +180,7 @@ Obtains the URI based on a file path. This API returns the result synchronously.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| path   | string | Yes  | Application sandbox path of the file. |
+| path   | string | Yes  | Application sandbox path of the file.|
 
 **Return value**
 
@@ -154,7 +190,7 @@ Obtains the URI based on a file path. This API returns the result synchronously.
 
 **Error codes** 
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 401 | The input parameter is invalid |

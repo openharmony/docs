@@ -3,7 +3,9 @@
 
 ## 概述
 
-视频采集信息。
+视频录制信息。
+
+当videoFrameWidth和videoFrameHeight同时为0时，忽略视频相关参数不录制屏幕数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 

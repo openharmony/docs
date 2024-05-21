@@ -35,7 +35,7 @@ Implements backup and restore for application access data. You can use [onBackup
 
 | Name                 | Type                                                             | Readable| Writable| Description                                               |
 | --------------------- | ----------------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context<sup>11+</sup> | [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | Yes  | No  | Context of the BackupExtensionAbility. It inherits from **Context**.|
+| context<sup>11+</sup> | [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | Yes  | No  | BackupExtensionAbility context, which inherits from **Context**.|
 
 ### onBackup
 
@@ -81,4 +81,3 @@ Called when data is being restored. You need to implement extended data restore 
     }
   }
   ```
-<!--no_check-->

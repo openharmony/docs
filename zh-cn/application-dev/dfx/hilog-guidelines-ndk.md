@@ -40,8 +40,8 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
   | 格式说明符（specifier） | 说明 | 示例 |
   | -------- | -------- | -------- |
-  | d/i | 支持打印number和bigint类型。 | 123 |
-  | s | 支持打印string undefined bool 和null类型。 | "123" |
+  | d/i | 支持打印number、bool和bigint类型。 | 123 |
+  | s | 支持打印string、undefined和null类型。 | "123" |
 
   格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为string的变参标识，具体取值在args中定义。
 

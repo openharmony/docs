@@ -173,7 +173,7 @@ getSystemResourceManager(): ResourceManager
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001009  | If application can't access system resource.                       |
+| 9001009  | Failed to access the system resource.                       |
 
 **示例：**
   ```js
@@ -198,6 +198,8 @@ import { BusinessError } from '@ohos.base';
 
 用于表示设备屏幕方向。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 | 名称                   | 值  | 说明   |
@@ -210,19 +212,23 @@ import { BusinessError } from '@ohos.base';
 
 用于表示当前设备类型。
 
-**系统能力**：SystemCapability.Global.ResourceManager
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力**：SystemCapability.Global.ResourceManager
+<!--RP1-->
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板。   |
 | DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
 | DEVICE_TYPE_TV       | 0x04 | 电视。  |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
-
+<!--RP1End-->
 
 ## ScreenDensity
 
 用于表示当前设备屏幕密度。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -236,23 +242,47 @@ import { BusinessError } from '@ohos.base';
 | SCREEN_XXXLDPI | 640  | 超特大规模的屏幕密度。 |
 
 
+## ColorMode<sup>12+</sup>
+
+用于表示当前设备颜色模式。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+| 名称  | 值   | 说明       |
+| ----- | ---- | ---------- |
+| DARK  | 0    | 深色模式。 |
+| LIGHT | 1    | 浅色模式。 |
+
+
 ## Configuration
 
 表示当前设备的状态。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
 
-| 名称        | 类型                    | 可读   | 可写   | 说明       |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | 是    | 否    | 当前设备屏幕方向。 |
-| locale    | string                  | 是    | 否    | 当前系统语言。   |
+| 名称                        | 类型                            | 可读 | 可写 | 说明               |
+| --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
+| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。         |
+| locale                      | string                          | 是   | 是   | 语言文字国家地区。 |
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。         |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。         |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。         |
+| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。       |
+| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。       |
+
 
 
 ## DeviceCapability
 
 表示设备支持的能力。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -314,6 +344,8 @@ getStringSync(resId: number): string
 
 用户获取指定资源ID对应的字符串，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -330,13 +362,14 @@ getStringSync(resId: number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -357,6 +390,8 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -364,7 +399,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -373,15 +408,15 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | string | 资源ID值对应的格式化字符串。|
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | ----------------------------------------------- |
-| 9001001  | If the resId invalid.                               |
-| 9001002  | If the resource not found by resId.                 |
-| 9001006  | If the resource re-ref too much.                    |
-| 9001007  | If the resource obtained by resId formatting error. |
+| -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                               |
+| 9001002  | No matching resource is found based on the resource ID.                 |
+| 9001006  | The resource is referenced cyclically.                    |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
   ```ts
@@ -402,6 +437,8 @@ getStringSync(resource: Resource): string
 
 用户获取指定resource对象对应的字符串，使用同步方式返回字符串。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -420,13 +457,14 @@ getStringSync(resource: Resource): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -453,6 +491,8 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -462,7 +502,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -471,15 +511,15 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | string | resource对象对应的格式化字符串。|
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-| 9001007  | If the resource obtained by resId formatting error. |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **示例：** 
   ```ts
@@ -506,6 +546,8 @@ getStringByNameSync(resName: string): string
 
 用户获取指定资源名称对应的字符串，使用同步方式返回字符串。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -522,13 +564,14 @@ getStringByNameSync(resName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -549,6 +592,8 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 用户获取指定资源名称对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -556,7 +601,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
 
 **返回值：**
 
@@ -566,14 +611,15 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
-| 9001008  | If the resource obtained by resName formatting error. |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001008  | Failed to format the resource obtained based on the resource Name. |
 
 **示例：** 
   ```ts
@@ -594,6 +640,8 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -605,13 +653,14 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **示例Stage：** 
   ```ts
@@ -638,6 +687,8 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的字符串，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -654,13 +705,14 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -685,6 +737,8 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的字符串，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -702,9 +756,10 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -737,6 +792,8 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的字符串，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -759,9 +816,10 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -792,6 +850,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源名称对应的字符串，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -802,14 +862,14 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 | callback | AsyncCallback&lt;string&gt; | 是    |返回获取的字符串。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -836,6 +896,8 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的字符串，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -852,13 +914,14 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -883,6 +946,8 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 用户获取指定资源ID对应的字符串数组，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -903,9 +968,10 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -925,6 +991,8 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 用户获取指定resource对象对应的字符串数组，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -948,9 +1016,10 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -977,6 +1046,8 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 用户获取指定资源名称对应的字符串数组，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -997,9 +1068,10 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1018,6 +1090,8 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 
 用户获取指定资源ID对应的字符串数组，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1028,14 +1102,14 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1062,6 +1136,8 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源ID对应的字符串数组，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1077,14 +1153,14 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1108,6 +1184,9 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 用户获取指定resource对象对应的字符串数组，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1125,9 +1204,10 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1160,6 +1240,8 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定resource对象对应的字符串数组，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1182,9 +1264,10 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1215,6 +1298,8 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 用户获取指定资源名称对应的字符串数组，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -1226,13 +1311,14 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1259,6 +1345,8 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 用户获取指定资源名称对应的字符串数组，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1275,13 +1363,14 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1310,6 +1399,8 @@ getPluralStringValueSync(resId: number, num: number): string
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1331,9 +1422,10 @@ getPluralStringValueSync(resId: number, num: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1358,6 +1450,8 @@ getPluralStringValueSync(resource: Resource, num: number): string
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1381,9 +1475,10 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1414,6 +1509,8 @@ getPluralStringByNameSync(resName: string, num: number): string
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1435,9 +1532,10 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1462,6 +1560,8 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1474,13 +1574,14 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1511,6 +1612,8 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1528,13 +1631,14 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1563,6 +1667,8 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1581,9 +1687,10 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1620,6 +1727,8 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1639,13 +1748,14 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.                |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1680,6 +1790,8 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1692,13 +1804,14 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1729,6 +1842,8 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1746,13 +1861,14 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -1777,6 +1893,8 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 用户获取指定资源ID对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -1798,8 +1916,9 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
@@ -1828,6 +1947,8 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1851,8 +1972,9 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
@@ -1887,6 +2009,8 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 用户获取指定资源名称对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -1908,8 +2032,9 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **示例：**
   ```ts
@@ -1938,6 +2063,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1949,12 +2076,13 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -1981,6 +2109,8 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1993,12 +2123,13 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2025,6 +2156,8 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2041,12 +2174,13 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2071,6 +2205,8 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2092,8 +2228,9 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2118,6 +2255,8 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 用户获取指定resource对象对应的媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2135,8 +2274,9 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2169,6 +2309,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2187,8 +2329,9 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2221,6 +2364,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 用户获取指定resource对象对应的媒体文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2243,8 +2388,9 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2275,6 +2421,8 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2298,8 +2446,9 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2330,6 +2479,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取指定资源名称对应的媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2340,13 +2491,13 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
-
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -2373,6 +2524,8 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2389,8 +2542,9 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -2417,6 +2571,8 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源名称对应的媒体文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2433,12 +2589,13 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -2463,6 +2620,8 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2484,8 +2643,9 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -2510,6 +2670,8 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 用户获取指定资源ID对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2531,8 +2693,9 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2561,6 +2724,8 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2584,8 +2749,9 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2620,6 +2786,8 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 用户获取指定资源名称对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2641,8 +2809,9 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **示例：** 
   ```ts
@@ -2671,6 +2840,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** Content
@@ -2682,12 +2853,13 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2714,6 +2886,8 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2730,8 +2904,9 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2758,6 +2933,8 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2774,12 +2951,13 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2804,6 +2982,8 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -2825,8 +3005,9 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2851,6 +3032,8 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 用户获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2868,8 +3051,9 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2902,6 +3086,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2920,8 +3106,9 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -2954,6 +3141,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 用户获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -2976,8 +3165,9 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -3008,6 +3198,8 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3031,8 +3223,9 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：** 
   ```ts
@@ -3063,6 +3256,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 用户获取指定资源名称对应的图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3074,12 +3269,13 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -3106,6 +3302,8 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3122,8 +3320,9 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -3150,6 +3349,8 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的图片资源Base64编码，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3166,12 +3367,13 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -3196,6 +3398,8 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3217,8 +3421,9 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：** 
   ```ts
@@ -3239,9 +3444,11 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定资源ID对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3261,12 +3468,13 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
@@ -3297,9 +3505,11 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3321,12 +3531,13 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **示例：**
   ```ts
@@ -3363,9 +3574,11 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 ### getDrawableDescriptorByName<sup>10+</sup>
 
-getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor
 
 用户获取指定资源名称对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3385,12 +3598,13 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **示例：**
   ```ts
@@ -3425,6 +3639,8 @@ getBoolean(resId: number): boolean
 
 使用同步方式，返回获取指定资源ID对应的布尔结果。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3441,13 +3657,14 @@ getBoolean(resId: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3467,6 +3684,8 @@ getBoolean(resource: Resource): boolean
 
 使用同步方式，返回获取指定resource对象对应的布尔结果。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3485,13 +3704,14 @@ getBoolean(resource: Resource): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3518,6 +3738,8 @@ getBooleanByName(resName: string): boolean
 
 使用同步方式，返回获取指定资源名称对应的布尔结果。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3534,13 +3756,14 @@ getBooleanByName(resName: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3561,6 +3784,8 @@ getNumber(resId: number): number
 
 用户获取指定资源ID对应的integer数值或者float数值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3577,13 +3802,14 @@ getNumber(resId: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3612,6 +3838,8 @@ getNumber(resource: Resource): number
 
 用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3626,17 +3854,18 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值, 具体参考示例代码。 |
+| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3649,7 +3878,7 @@ getNumber(resource: Resource): number
     id: $r('app.integer.integer_test').id
   };
   try {
-    this.context.resourceManager.getNumber(resource);// integer对应返回的是原数值, float对应返回的是真实像素点值
+    this.context.resourceManager.getNumber(resource);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3663,6 +3892,8 @@ getNumberByName(resName: string): number
 
 用户获取指定资源名称对应的integer数值或者float数值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -3675,17 +3906,18 @@ getNumberByName(resName: string): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 资源名称对应的数值。 |
+| number | 资源名称对应的数值。Interger对应的是原数值，float不带单位对应的是原数值；带"vp","fp"单位时对应的是px值。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：** 
   ```ts
@@ -3714,6 +3946,8 @@ getColorSync(resId: number) : number;
 
 用户获取指定资源ID对应的颜色值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3734,9 +3968,10 @@ getColorSync(resId: number) : number;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -3756,6 +3991,8 @@ getColorSync(resId: number) : number;
 getColorSync(resource: Resource): number
 
 用户获取指定resource对象对应的颜色值，使用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3779,9 +4016,10 @@ getColorSync(resource: Resource): number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -3808,6 +4046,8 @@ getColorByNameSync(resName: string) : number;
 
 用户获取指定资源名称对应的颜色值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3828,9 +4068,10 @@ getColorByNameSync(resName: string) : number;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -3851,6 +4092,8 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 用户获取指定资源ID对应的颜色值，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3866,9 +4109,10 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **示例Stage：**
   ```ts
@@ -3895,6 +4139,8 @@ getColor(resId: number): Promise&lt;number&gt;
 
 用户获取指定资源ID对应的颜色值，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -3915,9 +4161,10 @@ getColor(resId: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -3942,6 +4189,8 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 用户获取指定resource对象对应的颜色值，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -3959,9 +4208,10 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -3994,6 +4244,8 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 用户获取指定resource对象对应的颜色值，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -4016,9 +4268,10 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4049,6 +4302,8 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 用户获取指定资源名称对应的颜色值，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4064,9 +4319,10 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4093,6 +4349,8 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 用户获取指定资源名称对应的颜色值，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4113,9 +4371,10 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -4140,6 +4399,8 @@ getRawFileContentSync(path: string): Uint8Array
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用同步形式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4160,7 +4421,8 @@ getRawFileContentSync(path: string): Uint8Array
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
@@ -4181,6 +4443,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4192,11 +4456,11 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 
 **示例：** 
   ```ts
@@ -4223,6 +4487,8 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4239,11 +4505,12 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4272,6 +4539,8 @@ getRawFileListSync(path: string): Array\<string>
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4292,7 +4561,8 @@ getRawFileListSync(path: string): Array\<string>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.       |
 
 **示例：**
   ```ts
@@ -4317,6 +4587,8 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4332,7 +4604,8 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.       |
 
 **示例：** 
   ```ts
@@ -4363,6 +4636,8 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 >
 > 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4383,7 +4658,8 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4408,6 +4684,8 @@ getRawFdSync(path: string): RawFileDescriptor
 
 用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4428,7 +4706,8 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：**
   ```ts
@@ -4449,6 +4728,8 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 用户获取resources/rawfile目录下对应rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4460,11 +4741,12 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4494,6 +4776,8 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 用户获取resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4510,11 +4794,12 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4542,6 +4827,8 @@ closeRawFdSync(path: string): void
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4556,6 +4843,7 @@ closeRawFdSync(path: string): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **示例：**
@@ -4577,6 +4865,8 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用callback异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4588,10 +4878,11 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **示例：** 
@@ -4617,6 +4908,8 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 用户关闭resources/rawfile目录下rawfile文件所在hap的descriptor信息，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -4633,11 +4926,12 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **示例：** 
   ```ts
@@ -4657,6 +4951,8 @@ closeRawFd(path: string): Promise&lt;void&gt;
 getConfigurationSync(): Configuration
 
 用户获取设备的Configuration，使用同步形式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4682,6 +4978,8 @@ getConfigurationSync(): Configuration
 getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 用户获取设备的Configuration，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4715,6 +5013,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 用户获取设备的Configuration，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4746,6 +5046,8 @@ getDeviceCapabilitySync(): DeviceCapability
 
 用户获取设备的DeviceCapability，使用同步形式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4770,6 +5072,8 @@ getDeviceCapabilitySync(): DeviceCapability
 getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 用户获取设备的DeviceCapability，使用callback异步回调。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4803,6 +5107,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 用户获取设备的DeviceCapability，使用Promise异步回调。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **返回值：**
@@ -4834,6 +5140,8 @@ release()
 
 用户释放创建的resourceManager, 此接口暂不支持。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **示例：** 
@@ -4851,6 +5159,8 @@ addResource(path: string) : void
 
 应用运行时，加载指定的资源路径，实现资源覆盖。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4865,7 +5175,8 @@ addResource(path: string) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001010  | If the overlay path is invalid.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001010  | Invalid overlay path.            |
 
 **示例：**
   ```ts
@@ -4887,6 +5198,8 @@ removeResource(path: string) : void
 
 用户运行时，移除指定的资源路径，还原被覆盖前的资源。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4901,7 +5214,8 @@ removeResource(path: string) : void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001010  | If the overlay path is invalid.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001010  | Invalid overlay path.            |
 
 **示例：**
   ```ts
@@ -4922,6 +5236,8 @@ removeResource(path: string) : void
 getLocales(includeSystem?: boolean): Array\<string>
 
 获取应用的语言列表。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4973,6 +5289,8 @@ getSymbol(resId: number):number
 
 用户获取指定资源ID对应的符号值，是用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -4993,9 +5311,10 @@ getSymbol(resId: number):number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -5014,6 +5333,8 @@ getSymbol(resId: number):number
 getSymbol(resource: Resource): number
 
 用户获取指定resource对象对应的符号值，是用同步方式返回。
+
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5037,9 +5358,10 @@ getSymbol(resource: Resource): number
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -5066,6 +5388,8 @@ getSymbolByName(resName: string) : number;
 
 用户获取指定资源名称对应的符号值，使用同步方式返回。
 
+**元服务API**： 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -5086,9 +5410,10 @@ getSymbolByName(resName: string) : number;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **示例：**
   ```ts
@@ -5100,6 +5425,161 @@ getSymbolByName(resName: string) : number;
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getSymbolByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### isRawDir<sup>12+</sup>
+
+isRawDir(path: string) : bool
+
+用户判断指定路径是否是rawfile下的目录，使用同步方式返回。
+
+**元服务API**： 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| path | string | 是    | rawfile路径。 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------ | ---------- |
+| bool |是否是rawfile下的目录。<br>true：表示是rawfile下的目录 <br>false：表示不是rawfile下的目录|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.isRawDir("test.txt");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`isRawDir failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideResourceManager<sup>12+</sup>
+
+getOverrideResourceManager(configuration?: Configuration) : ResourceManager
+
+获取可以加载差异化资源的资源管理对象，使用同步方式返回。
+
+普通的资源管理对象获取的资源的样式（语言、深浅色、分辨率、横竖屏等）是由系统决定的，而通过该接口返回的对象，应用可以获取符合指定配置的资源，即差异化资源，比如浅色模式时可以获取深色资源。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名        | 类型                            | 必填 | 说明                                                         |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | 否   | 指定想要获取的资源样式。<br>通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入该函数。<br>若缺省则获取与当前系统最匹配的资源。 |
+
+**返回值：**
+
+| 类型            | 说明                               |
+| --------------- | ---------------------------------- |
+| ResourceManager | 可以加载差异化资源的资源管理对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getOverrideResourceManager failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideConfiguration<sup>12+</sup>
+
+getOverrideConfiguration() : Configuration
+
+获取差异化资源的配置，使用同步方式返回。普通资源管理对象与通过它的[getOverrideResourceManager](#getoverrideresourcemanager12)接口获取的差异化资源管理对象调用该方法可获得相同的返回值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| [Configuration](#configuration) | 差异化资源的配置 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
+  ```
+
+### updateOverrideConfiguration<sup>12+</sup>
+
+updateOverrideConfiguration(configuration: Configuration) : void
+
+更新差异化资源配置。普通资源管理对象与通过它的[getOverrideResourceManager](#getoverrideresourcemanager12)接口获取的差异化资源管理对象调用该方法均可更新差异化资源管理对象的配置。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名        | 类型                            | 必填 | 说明                                                         |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | 是   | 指定差异化资源的配置项。通过[getOverrideConfiguration](#getoverrideconfiguration12)获取差异化配置后，根据需求修改配置项，再作为参数传入。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`updateOverrideConfiguration failed, error code: ${code}, message: ${message}.`);
   }
   ```
 

@@ -1,8 +1,7 @@
-# Application Models
+# Ability Kit
 
-- Application Model Overview
-  - [Elements of the Application Model](application-model-composition.md)
-  - [Interpretation of the Application Model](application-model-description.md)
+- [Introduction to Ability Kit](abilitykit-overview.md)
+- [Application Models](application-models.md)
 - Stage Model Development
   - [Stage Model Development Overview](stage-model-development-overview.md)
   - Stage Model Application Components
@@ -14,72 +13,27 @@
       - [UIAbility Usage](uiability-usage.md)
       - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
       - [Intra-Device Interaction Between UIAbility Components](uiability-intra-device-interaction.md)
-    - ExtensionAbility Component
-      - [ExtensionAbility Overview](extensionability-overview.md)
-      - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [AccessibilityExtensionAbility](accessibilityextensionability.md)
-      - [ServiceExtensionAbility](serviceextensionability.md)
-      - [WindowExtensionAbility (for System Applications Only)](windowextensionability.md)
-      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
-      - [DriverExtensionAbility](driverextensionability.md)
-    - Service Widget Development in Stage Model
-      - [Service Widget Overview](service-widget-overview.md)
-      - Developing an ArkTS Widget
-        - [ArkTS Widget Working Principles](arkts-ui-widget-working-principles.md)
-        - [ArkTS Widget Related Modules](arkts-ui-widget-modules.md)
-        - ArkTS Widget Development
-          - [Creating an ArkTS Widget](arkts-ui-widget-creation.md)
-          - [Configuring Widget Configuration Files](arkts-ui-widget-configuration.md)
-          - [Widget Lifecycle Management](arkts-ui-widget-lifecycle.md)
-          - Widget Page Development
-            - [Widget Page Capability Overview](arkts-ui-widget-page-overview.md)
-            - [Using Animations in the Widget](arkts-ui-widget-page-animation.md)
-            - [Applying Custom Drawing in the Widget](arkts-ui-widget-page-custom-drawing.md)
-          - Widget Event Development
-            - [Widget Event Capability Overview](arkts-ui-widget-event-overview.md)
-            - [Redirecting to a UIAbility Through the router Event](arkts-ui-widget-event-router.md)
-            - [Launching a UIAbility in the Background Through the call Event](arkts-ui-widget-event-call.md)
-            - [Updating Widget Content Through the message Event](arkts-ui-widget-event-formextensionability.md)
-            - [Updating Widget Content Through the router or call Event](arkts-ui-widget-event-uiability.md)
-          - Widget Data Interaction
-            - [Widget Data Interaction Overview](arkts-ui-widget-interaction-overview.md)
-            - [Configuring a Widget to Update Periodically](arkts-ui-widget-update-by-time.md)
-            - [Updating Widget Content Through a Proxy](arkts-ui-widget-update-by-proxy.md)
-            - [Updating Local and Online Images in the Widget](arkts-ui-widget-image-update.md)
-            - [Updating Widget Content by State](arkts-ui-widget-update-by-status.md)
-            - [Updating Widget Content by Widget Host (for System Applications Only)](arkts-ui-widget-content-update.md)
-      - [Developing a JS Widget](js-ui-widget-development.md)
+    - [ExtensionAbility Component](extensionability-overview.md)
+      - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
+      - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want
       - [Want Overview](want-overview.md)
       - [Matching Rules of Explicit Want and Implicit Want](explicit-implicit-want-mappings.md)
-      - [Common action and entities Values](actions-entities.md)
       - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
       - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
+    - [AppStartup Development](app-startup.md)
     - Inter-Device Application Component Interaction (Continuation)
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
       - [Cross-Device Migration](hop-cross-device-migration.md)
       - [Multi-device Collaboration](hop-multi-device-collaboration.md)
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
-  - Process Model
-    - [Process Model Overview](process-model-stage.md)
-    - Common Events
-      - [Introduction to Common Events](common-event-overview.md)
-      - Common Event Subscription
-        - [Common Event Subscription Overview](common-event-subscription-overview.md)
-        - [Subscribing to Common Events in Dynamic Mode](common-event-subscription.md)
-        - [Subscribing to Common Events in Static Mode (for System Applications Only)](common-event-static-subscription.md)
-        - [Unsubscribing from Common Events in Dynamic Mode](common-event-unsubscription.md)
-      - [Publishing Common Events](common-event-publish.md)
-      - [Removing Sticky Common Events (for System Applications Only)](common-event-remove-sticky.md)
-    - [Background Services](background-services.md)
-  - Thread Model
-    - [Thread Model Overview](thread-model-stage.md)
-    - [Using EventHub for Intra-Thread Communication](itc-with-eventHub.md)
-  - Mission Management
+  - [Process Model (Stage Model)](process-model-stage.md)
+  - [Thread Model (Stage Model)](thread-model-stage.md)
+  - Mission Management (for System Applications Only)
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission and Launch Type](mission-management-launch-type.md)
     - [Page Stack and Mission List](page-mission-stack.md)
@@ -117,18 +71,12 @@
       - [Starting a DataAbility](start-dataability.md)
       - [Accessing a DataAbility](access-dataability.md)
       - [DataAbility Permission Control](dataability-permission-control.md)
-    - [Service Widget Development in FA Model](widget-development-fa.md)
     - [Context](application-context-fa.md)
     - [Want](want-fa.md)
     - [Component Startup Rules (FA Model)](component-startup-rules-fa.md)
-  - Process Model
-    - [Process Model Overview](process-model-fa.md)
-    - [Common Events](common-event-fa.md)
-    - [Background Services](rpc.md)
-  - Thread Model
-    - [Thread Model Overview](thread-model-fa.md)
-    - [Using Emitter for Inter-Thread Communication](itc-with-emitter.md)
-  - [Mission Management](mission-management-fa.md)
+  - [Process Model (Stage Model)](process-model-fa.md)
+  - [Thread Model (Stage Model)](thread-model-fa.md)
+  - [Mission Management (for System Applications Only)](mission-management-fa.md)
   - [Application Configuration File](config-file-fa.md)
 - Development of Component Interaction Between the FA Model and Stage Model
   - [Component Interaction Between the FA Model and Stage Model](fa-stage-interaction-overview.md)
@@ -163,3 +111,4 @@
     - [resourceManager Switching](resourcemanager-switch.md)
     - [window Switching](window-switch.md)
     - [Storage Switching](storage-switch.md)
+- [Ability Access Control](../security/AccessToken/Readme-EN.md)

@@ -105,16 +105,18 @@ let conn = connection.createNetConnection(netSpecifier, timeout);
 
 // 订阅指定网络状态变化的通知
 conn.register((err: BusinessError, data: void) => {
-  // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
-  conn.on('netAvailable', ((data: connection.NetHandle) => {
-    console.log("net is available, netId is " + data.netId);
-  }));
-
-  // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
-  conn.on('netUnavailable', ((data: void) => {
-    console.log("net is unavailable, data is " + JSON.stringify(data));
-  }));
+  console.log(JSON.stringify(err));
 });
+
+// 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
+conn.on('netAvailable', ((data: connection.NetHandle) => {
+  console.log("net is available, netId is " + data.netId);
+}));
+
+// 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
+conn.on('netUnavailable', ((data: void) => {
+  console.log("net is unavailable, data is " + JSON.stringify(data));
+}));
 
 // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅
 conn.unregister((err: BusinessError, data: void) => {

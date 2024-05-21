@@ -23,22 +23,22 @@
 
 
 - **跨应用启动组件，需校验目标组件Visible**
-  - 只针对跨应用场景
-  - 若目标组件visible字段配置为false，则需校验`ohos.permission.START_INVISIBLE_ABILITY`权限
-  - [组件visible配置参考](../quick-start/module-structure.md#abilities对象的内部结构)
+  - 只针对跨应用场景。
+  - 若目标组件visible字段配置为false，则需校验`ohos.permission.START_INVISIBLE_ABILITY`权限（该权限仅系统应用可申请）。
+  - [组件visible配置参考](../quick-start/module-structure.md#abilities对象的内部结构)。
 
 - **位于后台的应用，启动组件需校验BACKGROUND权限**
 > **说明：**
 > 基于API 8或更早版本SDK开发的应用在启动ServiceAbility组件或DataAbility组件时不受此限制的约束。
 
-  - 应用前后台判断标准：若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用
-  - 需校验`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+  - 应用前后台判断标准：若应用进程获焦或所属的UIAbility位于前台则判定为前台应用，否则为后台应用。
+  - 需校验`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限（该权限仅系统应用可申请）。
 
 - **跨应用启动FA模型的ServiceAbility组件或DataAbility组件，对端应用需配置关联启动**
-  - 只针对跨应用场景
-  - 只针对目标组件为ServiceAbility与DataAbility生效
-  - 目标应用的AssociateWakeUp为**true**，其提供的ServiceAbility与DataAbility才允许被其他应用访问
-  - 只有系统预置应用才允许配置AssociateWakeUp字段，其余应用AssociateWakeUp默认为**false**
+  - 只针对跨应用场景。
+  - 只针对目标组件为ServiceAbility与DataAbility生效。
+  - 目标应用的AssociateWakeUp为**true**，其提供的ServiceAbility与DataAbility才允许被其他应用访问。
+  - 只有系统预置应用才允许配置AssociateWakeUp字段，其余应用AssociateWakeUp默认为**false**。
 
 
 > **说明：**

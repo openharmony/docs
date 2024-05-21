@@ -1,6 +1,6 @@
 # Copying Files Across Devices
 
-The distributed file system provides the cross-device file copy capability for applications. You can use the [file management APIs](../reference/apis/js-apis-file-fs.md) to copy files across devices and applications. This topic walks you through the process of copying a file from device A to device B.
+The distributed file system provides the cross-device file copy capability for applications. You can use [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) to copy files across devices and applications. This topic walks you through the process of copying a file from device A to device B.
 
 ## How to Develop
 
@@ -28,25 +28,28 @@ The distributed file system provides the cross-device file copy capability for a
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
-   } catch (err: BusinessError) {
+   } catch (error) {
+    let err: BusinessError = error as BusinessError;
     console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
    }
 
    // Obtain the URI of the file to copy.
-   let fileUri = fileUri.getUriFromPath(filePath);
+   let srcUri = fileUri.getUriFromPath(filePath);
    
    // Copy the file from the sandbox directory to the distributed file directory.
    let destUri: string = fileUri.getUriFromPath(distributedPathDir + '/src.txt');
 
    try {
     // Copy the file from the sandbox directory to the distributed file directory.
-    fs.copy(fileUri, destUri).then(()=>{
+    fs.copy(srcUri, destUri).then(()=>{
       console.info("Succeeded in copying---. ");
-      console.info("src: " + fileUri + "dest: " + destUri);
-    }).catch((err: BusinessError)=>{
+      console.info("src: " + srcUri + "dest: " + destUri);
+    }).catch((error)=>{
+      let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (err: BusinessError) {
+   } catch (error) {
+    let err: BusinessError = error as BusinessError;
     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -83,11 +86,13 @@ The distributed file system provides the cross-device file copy capability for a
     // Copy the file in the distributed file directory to the destination sandbox directory.
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
-      console.info("src: " + fileUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
-    }).catch((err: BusinessError)=>{
+      console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
+    }).catch((error)=>{
+      let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-   } catch (err: BusinessError) {
+   } catch (error) {
+    let err: BusinessError = error as BusinessError;
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
    }
    ```

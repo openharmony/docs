@@ -4,7 +4,9 @@ The **Image** module provides APIs for image processing. You can use the APIs to
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - Since API version 12, the APIs of this module are supported in ArkTS widgets.
 
 ## Modules to Import
 
@@ -160,7 +162,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -192,7 +194,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](#region7)  | Yes  | Size of the image after cropping.                        |
+| region                 | [Region](#region7)  | Yes  | Size of the image.                        |
 
 **Return value**
 | Type                            | Description                 |
@@ -216,7 +218,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await image.createPixelMapFromSurface(surfaceId, region).then(() => {
+    image.createPixelMapFromSurface(surfaceId, region).then(() => {
         console.info('Succeeded in creating pixelmap from Surface');
     }).catch((error: BusinessError) => {
         console.error('Failed to create pixelmap');
@@ -224,9 +226,322 @@ async function Demo(surfaceId: string) {
 } 
 ```
 
+## image.createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
+
+Creates a **PixelMap** object with the pixel properties specified. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format.                                       |
+| options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+
+**Return value**
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
+    return pixelMap;
+}
+```
+
+## image.createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options: InitializationOptions): PixelMap
+
+Creates a **PixelMap** object with the pixel properties specified. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+
+**Return value**
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401          | Invalid input parameter|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
+    return pixelMap;
+}
+```
+
+## image.createPremultipliedPixelMap<sup>12+</sup>
+
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
+
+Converts a non-premultiplied alpha of a pixel map to a premultiplied one and stores the converted data to a target pixel map. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                      |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+|callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+
+**Return value**
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  62980103     | The image data is not supported |
+|  401          | Invalid input parameter|
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createPremultiplyPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+        if(error) {
+            console.error('Failed to convert pixelmap.');
+            return;
+        } else {
+            console.info('Succeeded in converting pixelmap.');
+        }
+    })
+}
+```
+
+## image.createPremultipliedPixelMap<sup>12+</sup>
+
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise<void>
+
+Converts a non-premultiplied alpha of a pixel map to a premultiplied one and stores the converted data to a target pixel map. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                      |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+
+**Return value**
+
+| Type                            | Description                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401          | Invalid input parameter|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createUnPremultiplyPixelMap(srcPixelmap, dstPixelMap).then(() => {
+        console.info('Succeeded in converting pixelmap.');
+    }).catch((error: BusinessError) => {
+        console.error('Failed to convert pixelmap.');
+    })
+}
+```
+
+## image.createUnpremultipliedPixelMap<sup>12+</sup>
+
+createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
+
+Converts a premultiplied alpha of a pixel map to a non-premultiplied one and stores the converted data to a target pixel map. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                      |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+|callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401          | Invalid input parameter|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createUnPremultiplyPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+        if(error) {
+            console.error('Failed to convert pixelmap.');
+            return;
+        } else {
+            console.info('Succeeded in converting pixelmap.');
+        }
+    })
+}
+```
+
+## image.createUnpremultipliedPixelMap<sup>12+</sup>
+
+createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
+
+Converts a premultiplied alpha of a pixel map to a non-premultiplied one and stores the converted data to a target pixel map. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+
+**Return value**
+
+| Type                            | Description                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  62980103    | The image data is not supported |
+|  60980246    | Failed to read the PixelMap |
+|  60980248    | PixelMap does not allow modification |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createPremultiplyPixelMap(srcPixelmap, dstPixelMap).then(() => {
+        console.info('Succeeded in converting pixelmap.');
+    }).catch((error: BusinessError) => {
+        console.error('Failed to convert pixelmap.');
+    })
+}
+```
+
+
 ## PixelMap<sup>7+</sup>
 
-Provides APIs to read or write image pixel map data and obtain image pixel map information. Before calling any API in **PixelMap**, you must use [createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
+Provides APIs to read or write pixel map data and obtain pixel map information. Before calling any API in **PixelMap**, you must use [createPixelMap](#imagecreatepixelmap8) to create a **PixelMap** object. Currently, the maximum size of a serialized pixel map is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
 Since API version 11, **PixelMap** supports cross-thread calls through workers. If a **PixelMap** object is invoked by another thread through [Worker](../apis-arkts/js-apis-worker.md), all APIs of the **PixelMap** object cannot be called in the original thread. Otherwise, error 501 is reported, indicating that the server cannot complete the request. 
 
@@ -238,14 +553,14 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the image pixel map is editable.|
-| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the image memory is the DMA memory.|
+| isEditable        | boolean | Yes  | No  | Indicates whether the image pixel map is editable.|
+| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Indicates whether the image memory is the DMA memory.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API uses a promise to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixel map data of this image and writes the data to an **ArrayBuffer**. This API uses a promise to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -253,7 +568,7 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 
 | Name| Type       | Mandatory| Description                                                                                                 |
 | ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst    | ArrayBuffer | Yes  | Buffer to which the image pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
+| dst    | ArrayBuffer | Yes  | Buffer to which the pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
 
 **Return value**
 
@@ -268,11 +583,13 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-        console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
-    }).catch((error: BusinessError) => {
-        console.error('Failed to read image pixel data.'); // Called if no condition is met.
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+            console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
+        }).catch((error: BusinessError) => {
+            console.error('Failed to read image pixel data.'); // Called if no condition is met.
+        })
+    }
 }
 ```
 
@@ -280,7 +597,7 @@ async function Demo() {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixel map data of this image and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -288,7 +605,7 @@ Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API
 
 | Name  | Type                | Mandatory| Description                                                                                                 |
 | -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst      | ArrayBuffer          | Yes  | Buffer to which the image pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
+| dst      | ArrayBuffer          | Yes  | Buffer to which the pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                                                                       |
 
 **Example**
@@ -298,14 +615,52 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
-    pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
-        if(err) {
-            console.error('Failed to read image pixel data.');  // Called if no condition is met.
-            return;
-        } else {
-            console.info('Succeeded in reading image pixel data.');  // Called if the condition is met.
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
+            if(err) {
+                console.error('Failed to read image pixel data.');  // Called if no condition is met.
+                return;
+            } else {
+                console.info('Succeeded in reading image pixel data.');  // Called if the condition is met.
+            }
+        })
+    }
+}
+```
+
+### readPixelsToBufferSync<sup>12+</sup>
+
+readPixelsToBufferSync(dst: ArrayBuffer): void
+
+Reads the pixel map data of this image and writes the data to an **ArrayBuffer**. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                                                                                                 |
+| -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| dst      | ArrayBuffer          | Yes  | Buffer to which the pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsToBufferSync(readBuffer);
+    }
 }
 ```
 
@@ -313,7 +668,7 @@ async function Demo() {
 
 readPixels(area: PositionArea): Promise\<void>
 
-Reads image pixel map data in an area. This API uses a promise to return the result.
+Reads the pixel map data in an area. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -321,7 +676,7 @@ Reads image pixel map data in an area. This API uses a promise to return the res
 
 | Name| Type                          | Mandatory| Description                    |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [PositionArea](#positionarea7) | Yes  | Area from which the image pixel map data will be read.|
+| area   | [PositionArea](#positionarea7) | Yes  | Area from which the pixel map data will be read.|
 
 **Return value**
 
@@ -341,11 +696,13 @@ async function Demo() {
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    pixelMap.readPixels(area).then(() => {
-        console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
-    }).catch((error: BusinessError) => {
-        console.error('Failed to read the image data in the area.'); // Called if no condition is met.
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixels(area).then(() => {
+            console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
+        }).catch((error: BusinessError) => {
+            console.error('Failed to read the image data in the area.'); // Called if no condition is met.
+        })
+    }
 }
 ```
 
@@ -353,7 +710,7 @@ async function Demo() {
 
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Reads image pixel map data in an area. This API uses an asynchronous callback to return the result.
+Reads the pixel map data in an area. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -361,7 +718,7 @@ Reads image pixel map data in an area. This API uses an asynchronous callback to
 
 | Name  | Type                          | Mandatory| Description                          |
 | -------- | ------------------------------ | ---- | ------------------------------ |
-| area     | [PositionArea](#positionarea7) | Yes  | Area from which the image pixel map data will be read.      |
+| area     | [PositionArea](#positionarea7) | Yes  | Area from which the pixel map data will be read.      |
 | callback | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -376,14 +733,48 @@ async function Demo() {
         stride: 8,
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
-    pixelMap.readPixels(area, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error('Failed to read pixelmap from the specified area.');
-            return;
-        } else {
-            console.info('Succeeded to read pixelmap from the specified area.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.readPixels(area, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error('Failed to read pixelmap from the specified area.');
+                return;
+            } else {
+                console.info('Succeeded to read pixelmap from the specified area.');
+            }
+        })
+    }
+}
+```
+
+### readPixelsSync<sup>12+</sup>
+
+readPixelsSync(area: PositionArea): void
+
+Reads the pixel map data in an area. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description                    |
+| ------ | ------------------------------ | ---- | ------------------------ |
+| area   | [PositionArea](#positionarea7) | Yes  | Area from which the pixel map data will be read.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsSync(area);
+    }
 }
 ```
 
@@ -391,7 +782,7 @@ async function Demo() {
 
 writePixels(area: PositionArea): Promise\<void>
 
-Writes image pixel map data to an area. This API uses a promise to return the result.
+Writes the pixel map data to an area. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -399,7 +790,7 @@ Writes image pixel map data to an area. This API uses a promise to return the re
 
 | Name| Type                          | Mandatory| Description                |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [PositionArea](#positionarea7) | Yes  | Area to which the image pixel map data will be written.|
+| area   | [PositionArea](#positionarea7) | Yes  | Area to which the pixel map data will be written.|
 
 **Return value**
 
@@ -423,11 +814,13 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writePixels(area).then(() => {
-        console.info('Succeeded to write pixelmap into the specified area.');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writePixels(area).then(() => {
+            console.info('Succeeded to write pixelmap into the specified area.');
+        }).catch((error: BusinessError) => {
+            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+        })
+    }
 }
 ```
 
@@ -435,7 +828,7 @@ async function Demo() {
 
 writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
-Writes image pixel map data to an area. This API uses an asynchronous callback to return the result.
+Writes the pixel map data to an area. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -443,7 +836,7 @@ Writes image pixel map data to an area. This API uses an asynchronous callback t
 
 | Name   | Type                          | Mandatory| Description                          |
 | --------- | ------------------------------ | ---- | ------------------------------ |
-| area      | [PositionArea](#positionarea7) | Yes  | Area to which the image pixel map data will be written.          |
+| area      | [PositionArea](#positionarea7) | Yes  | Area to which the pixel map data will be written.          |
 | callback  | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -461,14 +854,61 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writePixels(area, (error : BusinessError) => {
-        if (error != undefined) {
-            console.error('Failed to write pixelmap into the specified area.');
-            return;
-        } else {
-            console.info('Succeeded to write pixelmap into the specified area.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writePixels(area, (error : BusinessError) => {
+            if (error != undefined) {
+                console.error('Failed to write pixelmap into the specified area.');
+                return;
+            } else {
+                console.info('Succeeded to write pixelmap into the specified area.');
+            }
+        })
+    }
+}
+```
+
+### writePixelsSync<sup>12+</sup>
+
+writePixelsSync(area: PositionArea): void
+
+Writes the pixel map data to an area. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description                |
+| ------ | ------------------------------ | ---- | -------------------- |
+| area   | [PositionArea](#positionarea7) | Yes  | Area to which the pixel map data will be written.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const area: image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    if (pixelMap != undefined) {
+        pixelMap.writePixelsSync(area);
+    }
 }
 ```
 
@@ -503,11 +943,13 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writeBufferToPixels(color).then(() => {
-        console.info("Succeeded in writing data from a buffer to a PixelMap.");
-    }).catch((error: BusinessError) => {
-        console.error("Failed to write data from a buffer to a PixelMap.");
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixels(color).then(() => {
+            console.info("Succeeded in writing data from a buffer to a PixelMap.");
+        }).catch((error: BusinessError) => {
+            console.error("Failed to write data from a buffer to a PixelMap.");
+        })
+    }
 }
 ```
 
@@ -537,16 +979,59 @@ async function Demo() {
     for (let i = 0; i < bufferArr.length; i++) {
         bufferArr[i] = i + 1;
     }
-    pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to write data from a buffer to a PixelMap.");
-            return;
-        } else {
-            console.info("Succeeded in writing data from a buffer to a PixelMap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to write data from a buffer to a PixelMap.");
+                return;
+            } else {
+                console.info("Succeeded in writing data from a buffer to a PixelMap.");
+            }
+        })
+    }
 }
 ```
+
+### writeBufferToPixelsSync<sup>12+</sup>
+
+writeBufferToPixelsSync(src: ArrayBuffer): void
+
+Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description          |
+| ------ | ----------- | ---- | -------------- |
+| src    | ArrayBuffer | Yes  | Buffer from which the image data will be read.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixelsSync(color);
+    }
+}
+```
+
 
 ### getImageInfo<sup>7+</sup>
 
@@ -568,14 +1053,16 @@ Obtains pixel map information of this image. This API uses a promise to return t
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-        if (imageInfo == undefined) {
-            console.error("Failed to obtain the image pixel map information.");
-        }
-        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.info("Succeeded in obtaining the image pixel map information.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+            if (imageInfo == undefined) {
+                console.error("Failed to obtain the image pixel map information.");
+            }
+            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+                console.info("Succeeded in obtaining the image pixel map information.");
+            }
+        })
+    }
 }
 ```
 
@@ -599,15 +1086,52 @@ Obtains pixel map information of this image. This API uses an asynchronous callb
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
-        if (imageInfo == undefined) {
-            console.error("Failed to obtain the image pixel map information.");
-            return;
-        }
-        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-            console.info("Succeeded in obtaining the image pixel map information.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
+            if (imageInfo == undefined) {
+                console.error("Failed to obtain the image pixel map information.");
+                return;
+            }
+            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+                console.info("Succeeded in obtaining the image pixel map information.");
+            }
+        })
+    }
+}
+```
+
+### getImageInfoSync<sup>12+</sup>
+
+getImageInfoSync(): ImageInfo
+
+Obtains pixel map information of this image. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Return value**
+
+| Type                             | Description                                                       |
+| --------------------------------- | ----------------------------------------------------------- |
+| [ImageInfo](#imageinfo)           | Pixel map information.                                               |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  501    | Resource Unavailable |
+
+**Example**
+ 
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    if (pixelMap != undefined) {
+        let imageInfo : image.PixelMap = pixelMap.getImageInfoSync();
+        return imageInfo;
+    }
 }
 ```
 
@@ -615,7 +1139,7 @@ async function Demo() {
 
 getBytesNumberPerRow(): number
 
-Obtains the number of bytes per row of this image pixel map.
+Obtains the number of bytes per row of this image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -635,7 +1159,7 @@ let rowCount: number = pixelMap.getBytesNumberPerRow();
 
 getPixelBytesNumber(): number
 
-Obtains the total number of bytes of this image pixel map.
+Obtains the total number of bytes of this image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -655,7 +1179,7 @@ let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 
 getDensity():number
 
-Obtains the density of this image pixel map.
+Obtains the density of this image.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -663,7 +1187,7 @@ Obtains the density of this image pixel map.
 
 | Type  | Description           |
 | ------ | --------------- |
-| number | Density of the image pixel map.|
+| number | Density of the image.|
 
 **Example**
 
@@ -675,7 +1199,7 @@ let getDensity: number = pixelMap.getDensity();
 
 opacity(rate: number, callback: AsyncCallback\<void>): void
 
-Sets an opacity rate for this image pixel map. This API uses an asynchronous callback to return the result.
+Sets an opacity rate for this image. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -693,14 +1217,16 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let rate: number = 0.5;
-    pixelMap.opacity(rate, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to set opacity.");
-            return;
-        } else {
-            console.info("Succeeded in setting opacity.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.opacity(rate, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to set opacity.");
+                return;
+            } else {
+                console.info("Succeeded in setting opacity.");
+            }
+        })
+    }
 }
 ```
 
@@ -708,7 +1234,7 @@ async function Demo() {
 
 opacity(rate: number): Promise\<void>
 
-Sets an opacity rate for this image pixel map. This API uses a promise to return the result.
+Sets an opacity rate for this image. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -731,11 +1257,49 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let rate: number = 0.5;
-    await pixelMap.opacity(rate).then(() => {
-        console.info('Sucessed in setting opacity.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to set opacity.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.opacity(rate).then(() => {
+            console.info('Sucessed in setting opacity.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to set opacity.');
+        })
+    }
+}
+```
+
+### opacitySync<sup>12+</sup>
+
+opacitySync(rate: number): void
+
+Sets an opacity rate for this pixel map and initializes the pixel map. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                          |
+| -------- | -------------------- | ---- | ------------------------------ |
+| rate     | number               | Yes  | Opacity rate to set.  |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let rate : number = 0.5;
+    if (pixelMap != undefined) {
+        pixelMap.opacitySync(rate);
+    }
 }
 ```
 
@@ -759,11 +1323,13 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
-        console.info('Succeeded in creating alpha pixelmap.');
-    }).catch((error: BusinessError) => {
-        console.error('Failed to create alpha pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+            console.info('Succeeded in creating alpha pixelmap.');
+        }).catch((error: BusinessError) => {
+            console.error('Failed to create alpha pixelmap.');
+        })
+    }
 }
 ```
 
@@ -787,14 +1353,50 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
-        if (alphaPixelMap == undefined) {
-            console.error('Failed to obtain new pixel map.');
-            return;
-        } else {
-            console.info('Succeed in obtaining new pixel map.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
+            if (alphaPixelMap == undefined) {
+                console.error('Failed to obtain new pixel map.');
+                return;
+            } else {
+                console.info('Succeed in obtaining new pixel map.');
+            }
+        }) 
+    }
+}
+```
+
+### createAlphaPixelmapSync<sup>12+</sup>
+
+createAlphaPixelmapSync(): PixelMap
+
+Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
+    return pixelmap;
 }
 ```
 
@@ -822,14 +1424,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
-    pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to scale pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in scaling pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to scale pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in scaling pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -862,11 +1466,51 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
-    await pixelMap.scale(scaleX, scaleY).then(() => {
-        console.info('Sucessed in scaling pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to scale pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.scale(scaleX, scaleY).then(() => {
+            console.info('Sucessed in scaling pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to scale pixelmap.');
+        })   
+    }
+}
+```
+
+### scaleSync<sup>12+</sup>
+
+scaleSync(x: number, y: number): void
+
+Scales this image based on the input width and height. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| x      | number | Yes  | Scaling multiple of the width.|
+| y      | number | Yes  | Scaling multiple of the height.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let scaleX: number = 2.0;
+    let scaleY: number = 1.0;
+    if (pixelMap != undefined) {
+        pixelMap.scaleSync(scaleX, scaleY);
+    }
 }
 ```
 
@@ -894,14 +1538,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
-    pixelMap.translate(translateX, translateY, (err: BusinessError) => {
-        if (err) {
-            console.error("Failed to translate pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in translating pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.translate(translateX, translateY, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to translate pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in translating pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -934,11 +1580,51 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
-    await pixelMap.translate(translateX, translateY).then(() => {
-        console.info('Sucessed in translating pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to translate pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.translate(translateX, translateY).then(() => {
+            console.info('Sucessed in translating pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to translate pixelmap.');
+        })
+    }
+}
+```
+
+### translateSync<sup>12+</sup>
+
+translateSync(x: number, y: number): void
+
+Translates this image based on the input coordinates. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                           |
+| -------- | -------------------- | ---- | ------------------------------- |
+| x        | number               | Yes  | Scaling multiple of the width.|
+| y        | number               | Yes  | Scaling multiple of the height.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    if (pixelMap != undefined) {
+        pixelMap.translateSync(translateX, translateY);
+    }
 }
 ```
 
@@ -964,14 +1650,16 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle: number = 90.0;
-    pixelMap.rotate(angle, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to rotate pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in rotating pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.rotate(angle, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to rotate pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in rotating pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1002,11 +1690,49 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle: number = 90.0;
-    await pixelMap.rotate(angle).then(() => {
-        console.info('Sucessed in rotating pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to rotate pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.rotate(angle).then(() => {
+            console.info('Sucessed in rotating pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to rotate pixelmap.');
+        })
+    }
+}
+```
+
+### rotateSync<sup>12+</sup>
+
+rotateSync(angle: number): void
+
+Rotates this image based on the input angle. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                         |
+| -------- | -------------------- | ---- | ----------------------------- |
+| angle    | number               | Yes  | Angle to rotate.             |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let angle : number = 90.0;
+    if (pixelMap != undefined) {
+        pixelMap.rotateSync(angle);
+    }
 }
 ```
 
@@ -1022,8 +1748,8 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 
 | Name    | Type                | Mandatory| Description                         |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally.                   |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically.                   |
+| horizontal | boolean              | Yes  | Indicates whether to flip the image horizontally.                   |
+| vertical   | boolean              | Yes  | Indicates whether to flip the image vertically.                   |
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
@@ -1034,14 +1760,16 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
-    pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to flip pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in flipping pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to flip pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in flipping pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1057,8 +1785,8 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 
 | Name    | Type   | Mandatory| Description     |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | Yes  | Whether to flip the image horizontally.|
-| vertical   | boolean | Yes  | Whether to flip the image vertically.|
+| horizontal | boolean | Yes  | Indicates whether to flip the image horizontally.|
+| vertical   | boolean | Yes  | Indicates whether to flip the image vertically.|
 
 **Return value**
 
@@ -1074,11 +1802,51 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
-    await pixelMap.flip(horizontal, vertical).then(() => {
-        console.info('Sucessed in flipping pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to flip pixelmap.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.flip(horizontal, vertical).then(() => {
+            console.info('Sucessed in flipping pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to flip pixelmap.');
+        })
+    }
+}
+```
+
+### flipSync<sup>12+</sup>
+
+flipSync(horizontal: boolean, vertical: boolean): void
+
+Flips this image horizontally or vertically, or both. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description                         |
+| ---------- | -------------------- | ---- | ----------------------------- |
+| horizontal | boolean              | Yes  | Indicates whether to flip the image horizontally.                   |
+| vertical   | boolean              | Yes  | Indicates whether to flip the image vertically.                   |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    if (pixelMap != undefined) {
+        pixelMap.flipSync(horizontal, vertical);
+    }
 }
 ```
 
@@ -1104,14 +1872,16 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    pixelMap.crop(region, (err: BusinessError) => {
-        if (err != undefined) {
-            console.error("Failed to crop pixelmap.");
-            return;
-        } else {
-            console.info("Succeeded in cropping pixelmap.");
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.crop(region, (err: BusinessError) => {
+            if (err != undefined) {
+                console.error("Failed to crop pixelmap.");
+                return;
+            } else {
+                console.info("Succeeded in cropping pixelmap.");
+            }
+        })
+    }
 }
 ```
 
@@ -1142,11 +1912,49 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await pixelMap.crop(region).then(() => {
-        console.info('Sucessed in cropping pixelmap.');
-    }).catch((err: BusinessError) => {
-        console.error('Failed to crop pixelmap.');
-    });
+    if (pixelMap != undefined) {
+        pixelMap.crop(region).then(() => {
+            console.info('Sucessed in cropping pixelmap.');
+        }).catch((err: BusinessError) => {
+            console.error('Failed to crop pixelmap.');
+        });
+    }
+}
+```
+
+### cropSync<sup>12+</sup>
+
+cropSync(region: Region): void
+
+Crops this image based on the input size. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                         |
+| -------- | -------------------- | ---- | ----------------------------- |
+| region   | [Region](#region7)   | Yes  | Size of the image after cropping.                 |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Invalid input parameter |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    if (pixelMap != undefined) {
+        pixelMap.cropSync(region);
+    }
 }
 ```
 
@@ -1178,7 +1986,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 async function Demo() {
-    let csm = pixelMap.getColorSpace();
+    if (pixelMap != undefined) {
+        let csm = pixelMap.getColorSpace();
+    }
 }
 ```
 
@@ -1212,7 +2022,9 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelMap.setColorSpace(csm);
+    if (pixelMap != undefined) {
+        pixelMap.setColorSpace(csm);
+    }
 }
 ```
 
@@ -1251,14 +2063,16 @@ import { BusinessError } from '@ohos.base'
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
-        if (err) {
-            console.error('Failed to apply color space for pixelmap object.');
-            return;
-        } else {
-            console.info('Succeeded in applying color space for pixelmap object.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
+            if (err) {
+                console.error('Failed to apply color space for pixelmap object.');
+                return;
+            } else {
+                console.info('Succeeded in applying color space for pixelmap object.');
+            }
+        })
+    }
 }
 ```
 
@@ -1353,7 +2167,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1374,7 +2188,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1441,7 +2255,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1462,7 +2276,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1499,11 +2313,13 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.release().then(() => {
-        console.info('Succeeded in releasing pixelmap object.');
-    }).catch((error: BusinessError) => {
-        console.error('Failed to release pixelmap object.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.release().then(() => {
+            console.info('Succeeded in releasing pixelmap object.');
+        }).catch((error: BusinessError) => {
+            console.error('Failed to release pixelmap object.');
+        })
+    }
 }
 ```
 
@@ -1527,14 +2343,16 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    pixelMap.release((err: BusinessError) => {
-        if (err != undefined) {
-            console.error('Failed to release pixelmap object.');
-            return;
-        } else {
-            console.info('Succeeded in releasing pixelmap object.');
-        }
-    })
+    if (pixelMap != undefined) {
+        pixelMap.release((err: BusinessError) => {
+            if (err != undefined) {
+                console.error('Failed to release pixelmap object.');
+                return;
+            } else {
+                console.info('Succeeded in releasing pixelmap object.');
+            }
+        })
+    }
 }
 ```
 
@@ -1550,7 +2368,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>. |
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw, .dng, [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
 
 **Return value**
 
@@ -1578,8 +2396,8 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>. |
-| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw, .dng, [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
+| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1633,7 +2451,7 @@ Creates an **ImageSource** instance based on the file descriptor.
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
 | fd      | number                          | Yes  | File descriptor.                     |
-| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
+| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1689,7 +2507,7 @@ Creates an **ImageSource** instance based on the buffers.
 | Name| Type                            | Mandatory| Description                                |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | buf    | ArrayBuffer                      | Yes  | Array of image buffers.                    |
-| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
+| options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1718,7 +2536,7 @@ Creates an **ImageSource** instance by using the raw file descriptor of the imag
 | Name| Type                            | Mandatory| Description                                |
 | ------ | -------------------------------- | ---- | ------------------------------------ |
 | rawfile | [resourceManager.RawFileDescriptor](../apis-localization-kit/js-apis-resource-manager.md#rawfiledescriptor8) | Yes| Raw file descriptor of the image resource file.|
-| options | [SourceOptions](#sourceoptions9) | No| Image properties, including the image index and default property value.|
+| options | [SourceOptions](#sourceoptions9) | No| Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1781,7 +2599,7 @@ Creates an **ImageSource** instance in incremental mode based on the buffers.
 | Name | Type                           | Mandatory| Description                                |
 | ------- | ------------------------------- | ---- | ------------------------------------ |
 | buf     | ArrayBuffer                     | Yes  | Incremental data.                          |
-| options | [SourceOptions](#sourceoptions9) | No  | Image properties, including the image index and default property value.|
+| options | [SourceOptions](#sourceoptions9) | No  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
 
@@ -1807,7 +2625,7 @@ Provides APIs to obtain image information. Before calling any API in **ImageSour
 
 | Name            | Type          | Readable| Writable| Description                                                        |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including PNG, JPEG, BMP, GIF, WebP, and RAW.|
+| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including PNG, JPEG, BMP, GIF, WebP, RAW, and dng.|
 
 ### getImageInfo
 
@@ -1899,11 +2717,48 @@ imageSourceApi.getImageInfo(0)
 	})
 ```
 
+### getImageInfoSync<sup>12+</sup>
+
+getImageInfoSync(index?: number): ImageInfo
+
+Obtains information about an image with the specified index. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                 |
+| ----- | ------ | ---- | ------------------------------------- |
+| index | number | No  | Index of the image. If this parameter is not set, the default value **0** is used.|
+
+**Return value**
+
+| Type                            | Description                  |
+| -------------------------------- | ---------------------- |
+| [ImageInfo](#imageinfo) | Image information.|
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let imageInfo = imageSource.getImageInfoSync(0);
+    if (imageInfo == undefined) {
+        console.error('getImageInfoSync failed.');
+    } else {
+        console.info('getImageInfoSync succeeded.');
+        console.info('imageInfo.size.height:' + imageInfo.size.height);
+        console.info('imageInfo.size.width:' + imageInfo.size.width);
+    }
+```
+
 ### getImageProperty<sup>11+</sup>
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG or PNG format and contain EXIF information.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1926,7 +2781,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401  | The parameter check failed.              |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
 | 62980096| The operation failed.             |
 | 62980103| The image data is not supported.            |
 | 62980110| The image source data is incorrect.            |
@@ -1958,7 +2813,7 @@ imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG or PNG format and contain EXIF information.
 
 > **NOTE**
 >
@@ -1996,7 +2851,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG or PNG format and contain EXIF information.
 
 > **NOTE**
 >
@@ -2029,7 +2884,7 @@ imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: st
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG or PNG format and contain EXIF information.
 
 > **NOTE**
 >
@@ -2060,6 +2915,58 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 })
 ```
 
+### getImageProperties<sup>12+</sup>
+
+getImageProperties(key: Array<PropertyKey>): Promise<Record<PropertyKey, string|null>>
+
+Obtains the values of properties with the given names in this image. This API uses a promise to return the result. The image must be in JPEG or PNG format and contain EXIF information.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name | Type                                                | Mandatory| Description                                |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | Array\<[PropertyKey](#propertykey7)>                                 | Yes  | Array of properties names.                        |
+
+**Return value**
+
+| Type            | Description                                                             |
+| ---------------- | ----------------------------------------------------------------- |
+| Promise\<Record<[PropertyKey](#propertykey7), string \| null>> | Promise used to return the property values. If the operation fails, null is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.            |
+| 62980135| The EXIF value is invalid.            |
+| 62980146| The EXIF data failed to be written to the file.            |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+const { EXPOSURE_TIME, SCENE_TYPE, F_NUMBER } = image.PropertyKey;
+    let key = [EXPOSURE_TIME, F_NUMBER,SCENE_TYPE];
+    await getFd("test_exif1.jpg");
+    imageSourceApi = image.createImageSource(fdNumber);
+    if (imageSourceApi == undefined) {
+        console.info(`create image source failed`);
+    }
+    imageSourceApi.getImageProperties(key)
+        .then((data) => {
+        console.info(JSON.stringify(data));})
+        .catch((error) => {
+        console.log(JSON.stringify(error));
+    });
+```
+
 ### modifyImageProperty<sup>11+</sup>
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
@@ -2087,7 +2994,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401  | The parameter check failed.              |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
 | 62980123| Images in EXIF format are not supported.             |
 | 62980133| The EXIF data is out of range.    |
 | 62980135| The EXIF value is invalid.             |
@@ -2184,6 +3091,69 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 })
 ```
 
+### modifyImageProperties<sup>12+</sup>
+
+modifyImageProperties(records: Record<[PropertyKey](#propertykey7), string|null>): Promise\<void>
+
+Modifies the values of properties in this image. This API uses a promise to return the result. The image must be in JPEG or PNG format and contain EXIF information.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| key     | [Record<[PropertyKey](#propertykey7), string|null>]   | Yes  | Array of property names and property values.|
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;      |
+| 62980096| The operation failed.             |
+| 62980110| The image source data is incorrect.             |
+| 62980113| Unknown image format.             |
+| 62980116| Failed to decode the image.             |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+await getFd("test_exif1.jpg");
+imageSourceApi = image.createImageSource(fdNumber);
+let key = {
+            ExposureTime: "1/33 sec.",
+            ISOSpeedRatings: "400",
+            FNumber: "f/1.8"
+};
+if (imageSourceApi == undefined) {
+	console.info(`create image source failed`);
+}
+imageSourceApi.modifyImageProperties(key)
+.then(() => {
+    imageSourceApi
+    .getImageProperties(key)
+    .then((data) => {
+        console.info(data);
+    })
+    .catch((err) => {
+        console.info(err);
+    });
+})
+.catch((error) => {
+	console.log(JSON.stringify(error));
+});
+```
+
 ### updateData<sup>9+</sup>
 
 updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number): Promise\<void>
@@ -2197,7 +3167,7 @@ Updates incremental data. This API uses a promise to return the result.
 | Name    | Type       | Mandatory| Description        |
 | ---------- | ----------- | ---- | ------------ |
 | buf        | ArrayBuffer | Yes  | Incremental data.  |
-| isFinished | boolean     | Yes  | Whether the update is complete.|
+| isFinished | boolean     | Yes  | Indicates whether the update is complete.|
 | offset      | number      | Yes  | Offset for data reading.    |
 | length     | number      | Yes  | Array length.    |
 
@@ -2234,7 +3204,7 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 | Name    | Type               | Mandatory| Description                |
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | Yes  | Incremental data.          |
-| isFinished | boolean             | Yes  | Whether the update is complete.        |
+| isFinished | boolean             | Yes  | Indicates whether the update is complete.        |
 | offset      | number              | Yes  | Offset for data reading.            |
 | length     | number              | Yes  | Array length.            |
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.|
@@ -2350,6 +3320,50 @@ imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: im
         console.info('Succeeded in creating pixelMap object.');
     }
 })
+```
+
+### createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options?: DecodingOptions): PixelMap
+
+Creates a **PixelMap** object based on image decoding parameters. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                      |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | No  | Image decoding parameters.                |
+
+**Return value**
+
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | **PixelMap** object.|
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: 3,
+    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+    index: 0
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+    if (pixelmap != undefined) {
+        console.info('Succeeded in creating pixelMap object.');
+    } else {
+        console.info('Failed to create pixelMap.');
+    }
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -2533,7 +3547,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-Obtains an array of delay times. This API uses an asynchronous callback to return the result. It is used only for GIF images.
+Obtains an array of delay times. This API uses an asynchronous callback to return the result. This API applies only to images in GIF or WebP format.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2579,7 +3593,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-Obtains an array of delay times. This API uses a promise to return the result. It is used only for GIF images.
+Obtains an array of delay times. This API uses a promise to return the result. This API applies only to images in GIF or WebP format.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2704,6 +3718,43 @@ imageSourceApi.getFrameCount().then((frameCount: number) => {
     console.info('Succeeded in getting frame count.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+})
+```
+
+### getDisposalTypeList<sup>12+</sup>
+
+getDisposalTypeList(): Promise\<Array\<number>>
+
+Obtains the list of disposal types. This API uses a promise to return the result. It is used only for GIF images.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<Array\<number>> | Promise used to return an array of disposal types.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
+| 62980096 | The operation failed.      |
+| 62980101 | The image data is abnormal. |
+| 62980137 | Invalid media operation.        |
+| 62980149 | Invalid image source mime type.      |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
+    console.info('Succeeded in disposalTypes object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -3184,7 +4235,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401| The parameter check failed.            |
+| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;   |
 
 **Example**
 
@@ -3513,7 +4564,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401| The parameter check failed.            |
+| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;          |
 
 **Example**
 
@@ -3808,6 +4859,7 @@ Provides APIs for basic image operations, including obtaining image information 
 | clipRect | [Region](#region7) | Yes  | Yes  | Image area to be cropped.                                |
 | size     | [Size](#size)      | Yes  | No  | Image size.                                        |
 | format   | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format).|
+| timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp.|
 
 ### getComponent<sup>9+</sup>
 
@@ -3952,6 +5004,9 @@ Describes image information.
 | size | [Size](#size) | Yes  | Yes  | Image size.|
 | density<sup>9+</sup> | number | Yes  | Yes  | Pixel density, in ppi.|
 | stride<sup>11+</sup> | number | Yes  | Yes  | Number of bytes from one row of pixels in memory to the next row of pixels in memory.stride >= region.size.width*4  |
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel format.|
+| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | Yes  | Yes  | Alpha type. |
+| mimeType<sup>12+</sup> | string  | Yes  | Yes  | Actual image format (MIME type). |
 
 ## Size
 
@@ -3961,8 +5016,8 @@ Describes the size of an image.
 
 | Name  | Type  | Readable| Writable| Description          |
 | ------ | ------ | ---- | ---- | -------------- |
-| height | number | Yes  | Yes  | Image height.|
-| width  | number | Yes  | Yes  | Image width.|
+| height | number | Yes  | Yes  | Image height, in px.|
+| width  | number | Yes  | Yes  | Image width, in px.|
 
 ## PixelMapFormat<sup>7+</sup>
 
@@ -4028,14 +5083,15 @@ Defines pixel map initialization options.
 | Name                    | Type                              | Readable| Writable| Description          |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
 | alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
-| editable                 | boolean                            | Yes  | Yes  | Whether the image is editable.  |
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
+| editable                 | boolean                            | Yes  | Yes  | Indicates whether the image is editable.  |
+| srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel format of the input raw data.|
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel format.    |
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | Yes  | Yes  | Scale mode.      |
 | size                     | [Size](#size)                      | Yes  | Yes  | Image size.|
 
 ## DecodingOptions<sup>7+</sup>
 
-Defines image decoding options.
+Describes the image decoding options.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4043,12 +5099,12 @@ Defines image decoding options.
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
 | sampleSize         | number                             | Yes  | Yes  | Thumbnail sampling size. Currently, this option can only be set to **1**.|
 | rotate             | number                             | Yes  | Yes  | Rotation angle.      |
-| editable           | boolean                            | Yes  | Yes  | Whether the image is editable. If this option is set to **false**, the image cannot be edited again, and operations such as cropping will fail. |
+| editable           | boolean                            | Yes  | Yes  | Indicates whether the image is editable. If this option is set to **false**, the image cannot be edited again, and operations such as cropping will fail. |
 | desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel format for decoding. Only RGBA_8888, BGRA_8888, and RGB_565 are supported. RGB_565 is not supported for images with alpha channels, such as PNG, GIF, ICO, and WEBP.|
 | index              | number                             | Yes  | Yes  | Index of the image to decode.  |
-| fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Image pixel density, in ppi.  |
+| fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Pixel density, in ppi.  |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Yes  | Target color space.|
 
 ## Region<sup>7+</sup>
@@ -4065,7 +5121,7 @@ Describes region information.
 
 ## PackingOption
 
-Defines the option for image packing.
+Describes the options for image packing.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4077,7 +5133,7 @@ Defines the option for image packing.
 
 ## ImagePropertyOptions<sup>11+</sup>
 
-Describes image properties.
+Describes the image properties.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4088,7 +5144,7 @@ Describes image properties.
 
 ## GetImagePropertyOptions<sup>(deprecated)</sup>
 
-Describes image properties.
+Describes the image properties.
 
 > **NOTE**
 >
@@ -4109,20 +5165,20 @@ Describes the exchangeable image file format (EXIF) data of an image.
 
 | Name             |   Value                   | Description                    |
 | ----------------- | ----------------------- | ------------------------ |
-| BITS_PER_SAMPLE                           | "BitsPerSample"              | Number of bits per pixel.                           |
+| BITS_PER_SAMPLE                           | "BitsPerSample"              | Number of bits per component.                           |
 | ORIENTATION                               | "Orientation"                | Image orientation.                                 |
 | IMAGE_LENGTH                              | "ImageLength"                | Image length.                                 |
 | IMAGE_WIDTH                               | "ImageWidth"                 | Image width.                                 |
 | GPS_LATITUDE                              | "GPSLatitude"                | Image latitude.                                 |
 | GPS_LONGITUDE                             | "GPSLongitude"               | Image longitude.                                 |
-| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | Latitude reference, for example, N or S.                       |
-| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | Longitude reference, for example, W or E.                       |
-| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | Shooting time, for example, 2022:09:06 15:48:00.        |
-| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | Exposure time, for example, 1/33 sec.                   |
-| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | Shooting scene type, for example, portrait, scenery, motion, and night.|
+| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | Indicates whether the latitude is north or south latitude.                       |
+| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | Indicates whether the longitude is east or west longitude.                       |
+| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | Time when the original image data was generated, for example, 2022:09:06 15:48:00.        |
+| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | Exposure time, for example, 1/33 seconds.                   |
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | Type of the scene, for example, portrait, scenery, motion, and night.|
 | ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"            | ISO sensitivity or ISO speed, for example, 400.                       |
-| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | Aperture, for example, f/1.8.                        |
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | Date and time.                                 |
+| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | F number, for example, f/1.8.                        |
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | Date and time of image creation.                                 |
 | GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"               | GPS timestamp.                                  |
 | GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"               | GPS date stamp.                                  |
 | IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"           | Image description.                               |
@@ -4133,33 +5189,153 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity"  | Standard output sensitivity.                             |
 | RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"   | Recommended exposure index.                               |
 | ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"            | ISO speed.                                |
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | Aperture value.                                     |
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | Exposure bias value.                                 |
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | Lens aperture.                                     |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | Exposure bias.                                 |
 | METERING_MODE<sup>10+</sup>               | "MeteringMode"               | Metering mode.                                   |
 | LIGHT_SOURCE<sup>10+</sup>                | "LightSource"                | Light source.                                       |
 | FLASH <sup>10+</sup>                      | "Flash"                      | Flash status.                      |
-| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | Focal length.                                       |
-| USER_COMMENT <sup>10+</sup>               | "UserComment"                | User comment.                                   |
+| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | Focal length of the lens.                                       |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"                | User comments.                                   |
 | PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"            | Pixel X dimension.                                  |
 | PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"            | Pixel Y dimension.                                  |
 | WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"               | White balance.                                     |
 | FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"      | Focal length in 35mm film.                             |
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | Capture mode. Currently, this attribute is read-only.                 |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | Physical aperture. Currently, this attribute is read-only.       |
-| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | Rolling angle. Currently, this attribute is read-only.                 |
-| PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | Pitch angle. Currently, this attribute is read-only.                 |
-| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | Photographing scene: food. Currently, this attribute is read-only.           |
-| SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | Photographing scene: stage. Currently, this attribute is read-only.           |
-| SCENE_BLUE_SKY_CONF<sup>11+</sup>       | "HwMnoteSceneBlueSkyConf"    | Photographing scene: blue sky. Currently, this attribute is read-only.           |
-| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | Photographing scene: green plants. Currently, this attribute is read-only.      |
-| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | Photographing scene: beach. Currently, this attribute is read-only.           |
-| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | Photographing scene: snow. Currently, this attribute is read-only.           |
-| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | Photographing scene: sunset. Currently, this attribute is read-only.           |
-| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | Photographing scene: flowers. Currently, this attribute is read-only.             |
-| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | Photographing scene: night. Currently, this attribute is read-only.           |
-| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | Photographing scene: text. Currently, this attribute is read-only.           |
-| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | Number of faces. Currently, this attribute is read-only.                 |
-| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | Focus mode. Currently, this attribute is read-only.                 |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | Capture mode. Currently, this property is read-only.                 |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | Physical aperture. Currently, this property is read-only.       |
+| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | Rolling angle. Currently, this property is read-only.                 |
+| PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | Pitch angle. Currently, this property is read-only.                 |
+| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | Photographing scene: food. Currently, this property is read-only.           |
+| SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | Photographing scene: stage. Currently, this property is read-only.           |
+| SCENE_BLUE_SKY_CONF<sup>11+</sup>       | "HwMnoteSceneBlueSkyConf"    | Photographing scene: blue sky. Currently, this property is read-only.           |
+| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | Photographing scene: green plants. Currently, this property is read-only.      |
+| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | Photographing scene: beach. Currently, this property is read-only.           |
+| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | Photographing scene: snow. Currently, this property is read-only.           |
+| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | Photographing scene: sunset. Currently, this property is read-only.           |
+| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | Photographing scene: flowers. Currently, this property is read-only.             |
+| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | Photographing scene: night. Currently, this property is read-only.           |
+| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | Photographing scene: text. Currently, this property is read-only.           |
+| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | Number of faces. Currently, this property is read-only.                 |
+| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | Focus mode. Currently, this property is read-only.                 |
+| COMPRESSION <sup>12+</sup> | "Compression" | Compression scheme used on the image data.|
+| PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | Color space of the image data, for example, RGB or YCbCr.|
+| STRIP_OFFSETS <sup>12+</sup> | "StripOffsets" | Byte offset of each strip.|
+| SAMPLES_PER_PIXEL <sup>12+</sup> | "SamplesPerPixel" | Number of components per pixel. The value is 3 for RGB and YCbCr images. The **JPEG** key is used in JPEG compressed data.|
+| ROWS_PER_STRIP <sup>12+</sup> | "RowsPerStrip" | Number of rows per strip.|
+| STRIP_BYTE_COUNTS <sup>12+</sup> | "StripByteCounts"      | Number of bytes in each strip after compression.                             |
+| X_RESOLUTION <sup>12+</sup> | "XResolution"      | Number of pixels per ResolutionUnit in the ImageWidth direction.                            |
+| Y_RESOLUTION <sup>12+</sup> | "YResolution"      | Number of pixels per ResolutionUnit in the ImageLength direction.                            |
+| PLANAR_CONFIGURATION <sup>12+</sup> | "PlanarConfiguration"      | Storage format of components of each pixel, which can be chunky or planar.                            |
+| RESOLUTION_UNIT <sup>12+</sup> | "ResolutionUnit"      | Unit of measurement for XResolution and YResolution.                            |
+| TRANSFER_FUNCTION <sup>12+</sup> | "TransferFunction"      | Transfer function for the image, which is usually used for color correction.                            |
+| SOFTWARE <sup>12+</sup> | "Software"      | Name and version number of the software used to create the image.                            |
+| ARTIST <sup>12+</sup> | "Artist"      | Person who created the image.                            |
+| WHITE_POINT <sup>12+</sup> | "WhitePoint"      | Chromaticity of the white point of the image.                            |
+| PRIMARY_CHROMATICITIES <sup>12+</sup> | "PrimaryChromaticities"      | Chromaticities of the primaries of the image.                            |
+| YCBCR_COEFFICIENTS <sup>12+</sup> | "YCbCrCoefficients"      | Transformation from RGB to YCbCr image data.                            |
+| YCBCR_SUB_SAMPLING <sup>12+</sup> | "YCbCrSubSampling"      | Subsampling factors used for the chrominance components of a YCbCr image.                            |
+| YCBCR_POSITIONING <sup>12+</sup> | "YCbCrPositioning"      | Positioning of subsampled chrominance components relative to luminance samples.                            |
+| REFERENCE_BLACK_WHITE <sup>12+</sup> | "ReferenceBlackWhite"      | A pair of headroom and footroom image data values (codes) for each pixel component.                            |
+| COPYRIGHT <sup>12+</sup> | "Copyright"      | Copyright notice of the image.                            |
+| JPEG_INTERCHANGE_FORMAT <sup>12+</sup> | "JPEGInterchangeFormat" | Offset of the SOI marker of a JPEG interchange format bitstream.|
+| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | Number of bytes of the JPEG stream.|
+| EXPOSURE_PROGRAM <sup>12+</sup> | "ExposureProgram" | Class of the program used by the camera to set exposure when the image was captured.|
+| SPECTRAL_SENSITIVITY <sup>12+</sup> | "SpectralSensitivity" | Spectral sensitivity of each channel of the camera.|
+| OECF <sup>12+</sup> | "OECF" | Opto-Electric Conversion Function (OECF) specified in ISO 14524.|
+| EXIF_VERSION <sup>12+</sup> | "ExifVersion" | Version of the supported EXIF standard.|
+| DATE_TIME_DIGITIZED <sup>12+</sup> | "DateTimeDigitized" | Date and time when the image was stored as digital data, in the format of YYYY:MM:DD HH:MM:SS.|
+| COMPONENTS_CONFIGURATION <sup>12+</sup> | "ComponentsConfiguration" | Specific information about compressed data.|
+| SHUTTER_SPEED <sup>12+</sup> | "ShutterSpeedValue" | Shutter speed, expressed in Additive System of Photographic Exposure (APEX) values.|
+| BRIGHTNESS_VALUE <sup>12+</sup> | "BrightnessValue" | Value of brightness, expressed in Additive System of Photographic Exposure (APEX) values.|
+| MAX_APERTURE_VALUE <sup>12+</sup> | "MaxApertureValue" | Smallest F number of the lens.|
+| SUBJECT_DISTANCE <sup>12+</sup> | "SubjectDistance" | Distance to the subject, in meters.|
+| SUBJECT_AREA <sup>12+</sup> | "SubjectArea" | Location and area of the main subject in the entire scene.|
+| MAKER_NOTE <sup>12+</sup> | "MakerNote" | Marker used by EXIF/DCF manufacturers to record any required information.|
+| SUBSEC_TIME <sup>12+</sup> | "SubsecTime" | Tag used to record fractions of seconds for the **DateTime** tag.|
+| SUBSEC_TIME_ORIGINAL <sup>12+</sup> | "SubsecTimeOriginal" | Tag used to record fractions of seconds for the **DateTimeOriginal** tag.|
+| SUBSEC_TIME_DIGITIZED <sup>12+</sup> | "SubsecTimeDigitized" | Tag used to record fractions of seconds for the **DateTimeDigitized** tag.|
+| FLASHPIX_VERSION <sup>12+</sup> | "FlashpixVersion" | FlashPix format version supported by an FPXR file. It is used to enhance device compatibility.|
+| COLOR_SPACE <sup>12+</sup> | "ColorSpace" | Color space information, which is usually recorded as a color space specifier.|
+| RELATED_SOUND_FILE <sup>12+</sup> | "RelatedSoundFile" | Name of an audio file related to the image data.|
+| FLASH_ENERGY <sup>12+</sup> | "FlashEnergy" | Strobe energy at the time the image was captured, in Beam Candle Power Seconds (BCPS).|
+| SPATIAL_FREQUENCY_RESPONSE <sup>12+</sup> | "SpatialFrequencyResponse" | Spatial frequency table of the camera or input device.|
+| FOCAL_PLANE_X_RESOLUTION <sup>12+</sup> | "FocalPlaneXResolution" | Number of pixels in the image width (X) direction per FocalPlaneResolutionUnit.|
+| FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup> | "FocalPlaneYResolution" | Number of pixels in the image height (Y) direction per FocalPlaneResolutionUnit.|
+| FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit" | Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution.|
+| SUBJECT_LOCATION <sup>12+</sup> | "SubjectLocation" | Location of the main subject relative to the left edge.|
+| EXPOSURE_INDEX <sup>12+</sup> | "ExposureIndex" | Exposure index selected at the time the image is captured.|
+| SENSING_METHOD <sup>12+</sup> | "SensingMethod" | Type of the image sensor on the camera.|
+| FILE_SOURCE <sup>12+</sup> | "FileSource" | Image source.|
+| CFA_PATTERN <sup>12+</sup> | "CFAPattern" | Color Filter Array (CFA) geometric pattern of the image sensor.|
+| CUSTOM_RENDERED <sup>12+</sup> | "CustomRendered"      | Special processing on image data.                             |
+| EXPOSURE_MODE <sup>12+</sup> | "ExposureMode"      | Exposure mode set when the image was captured.                             |
+| DIGITAL_ZOOM_RATIO <sup>12+</sup> | "DigitalZoomRatio"      | Digital zoom ratio when the image was captured.                             |
+| SCENE_CAPTURE_TYPE <sup>12+</sup> | "SceneCaptureType"      | Type of the scene that was captured.                             |
+| GAIN_CONTROL <sup>12+</sup> | "GainControl"      | Degree of overall image gain adjustment.                             |
+| CONTRAST <sup>12+</sup> | "Contrast"      | Direction of contrast processing used by the camera.                             |
+| SATURATION <sup>12+</sup> | "Saturation"      | Direction of saturation processing used by the camera.                             |
+| SHARPNESS <sup>12+</sup> | "Sharpness"      | Direction of sharpness processing used by the camera.                             |
+| DEVICE_SETTING_DESCRIPTION <sup>12+</sup> | "DeviceSettingDescription"      | Information about the photographing conditions of a specific camera model.                             |
+| SUBJECT_DISTANCE_RANGE <sup>12+</sup> | "SubjectDistanceRange"      | Distance to the subject.                             |
+| IMAGE_UNIQUE_ID <sup>12+</sup> | "ImageUniqueID"      | Unique identifier assigned to each image.                            |
+| GPS_VERSION_ID <sup>12+</sup> | "GPSVersionID"      | Version of GPSInfoIFD.                            |
+| GPS_ALTITUDE_REF <sup>12+</sup> | "GPSAltitudeRef"      | Indicates whether the latitude is north or south latitude.                            |
+| GPS_ALTITUDE <sup>12+</sup> | "GPSAltitude"      | Altitude based on the reference in GPSAltitudeRef.                            |
+| GPS_SATELLITES <sup>12+</sup> | "GPSSatellites"      | GPS satellites used for measurement.                            |
+| GPS_STATUS <sup>12+</sup> | "GPSStatus"      | Status of the GPS receiver when the image was recorded.                            |
+| GPS_MEASURE_MODE <sup>12+</sup> | "GPSMeasureMode"      | GPS measurement pmode.                            |
+| GPS_DOP <sup>12+</sup> | "GPSDOP"      | GPS DOP (data degree of precision)                            |
+| GPS_SPEED_REF <sup>12+</sup> | "GPSSpeedRef"      | Unit used to express the movement speed of the GPS receiver.                            |
+| GPS_SPEED <sup>12+</sup> | "GPSSpeed"      | Movement speed of the GPS receiver.                            |
+| GPS_TRACK_REF <sup>12+</sup> | "GPSTrackRef"      | Reference of the movement direction of the GPS receiver.                            |
+| GPS_TRACK <sup>12+</sup> | "GPSTrack"      | Movement direction of the GPS receiver.                            |
+| GPS_IMG_DIRECTION_REF <sup>12+</sup> | "GPSImgDirectionRef"      | Reference of the direction of the image when it was captured.                            |
+| GPS_IMG_DIRECTION <sup>12+</sup> | "GPSImgDirection"      | Direction of the image when it was captured.                            |
+| GPS_MAP_DATUM <sup>12+</sup> | "GPSMapDatum"      | Geodetic survey data used by the GPS receiver.                            |
+| GPS_DEST_LATITUDE_REF <sup>12+</sup> | "GPSDestLatitudeRef"      | Indicates whether the latitude of the destination point is north or south latitude.                            |
+| GPS_DEST_LATITUDE <sup>12+</sup> | "GPSDestLatitude"      | Latitude of the destination point.                            |
+| GPS_DEST_LONGITUDE_REF <sup>12+</sup> | "GPSDestLongitudeRef"      | Indicates whether the longitude of the destination point is east or west longitude.                            |
+| GPS_DEST_LONGITUDE <sup>12+</sup> | "GPSDestLongitude"      | Longitude of the destination point.                            |
+| GPS_DEST_BEARING_REF <sup>12+</sup> | "GPSDestBearingRef"      | Reference of the bearing to the destination point.                            |
+| GPS_DEST_BEARING <sup>12+</sup> | "GPSDestBearing" | Bearing to the destination point.|
+| GPS_DEST_DISTANCE_REF <sup>12+</sup> | "GPSDestDistanceRef" | Unit used to express the distance to the destination point.|
+| GPS_DEST_DISTANCE <sup>12+</sup> | "GPSDestDistance" | Distance to the destination point.|
+| GPS_PROCESSING_METHOD <sup>12+</sup> | "GPSProcessingMethod" | Character string that records the name of the method used for positioning.|
+| GPS_AREA_INFORMATION <sup>12+</sup> | "GPSAreaInformation" | Character string that records the name of the GPS area.|
+| GPS_DIFFERENTIAL <sup>12+</sup> | "GPSDifferential" | Indicates whether differential correction is applied to the GPS receiver. It is critical to accurate location accuracy.|
+| BODY_SERIAL_NUMBER <sup>12+</sup> | "BodySerialNumber" | Serial number of the camera body.|
+| CAMERA_OWNER_NAME <sup>12+</sup> | "CameraOwnerName" | Name of the camera owner.|
+| COMPOSITE_IMAGE <sup>12+</sup> | "CompositeImage" | Indicates whether the image is a composite image.|
+| COMPRESSED_BITS_PER_PIXEL <sup>12+</sup> | "CompressedBitsPerPixel" | Number of bits per pixel. It is specific to compressed data.|
+| DNG_VERSION <sup>12+</sup> | "DNGVersion" | DNG version. It encodes the DNG 4-tier version number.|
+| DEFAULT_CROP_SIZE <sup>12+</sup> | "DefaultCropSize" | Size of the final image area, in raw image coordinates, taking into account extra pixels around the edges of the final image.|
+| GAMMA <sup>12+</sup> | "Gamma" | Gamma value.|
+| ISO_SPEED_LATITUDE_YYY <sup>12+</sup> | "ISOSpeedLatitudeyyy" | ISO speed latitude yyy value of the camera or input device, which is defined in ISO 12232.|
+| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup> | "ISOSpeedLatitudezzz" | ISO speed latitude zzz value of the camera or input device, which is defined in ISO 12232.|
+| LENS_MAKE <sup>12+</sup> | "LensMake" | Manufacturer of the lens.|
+| LENS_MODEL <sup>12+</sup> | "LensModel" | Model of the lens.|
+| LENS_SERIAL_NUMBER <sup>12+</sup> | "LensSerialNumber" | Serial number of the lens.|
+| LENS_SPECIFICATION <sup>12+</sup> | "LensSpecification" | Specifications of the lens.|
+| NEW_SUBFILE_TYPE <sup>12+</sup> | "NewSubfileType" | Data type of a subfile, such as a full-resolution image, a thumbnail, or a part of a multi-frame image. The value is a bit mask. The value 0 indicates a full-resolution image, **1** indicates a thumbnail, and **2** indicates a part of a multi-frame image.|
+| OFFSET_TIME <sup>12+</sup> | "OffsetTime"      | Time with an offset from UTC when the image was captured, in the format of ±HH:MM.                             |
+| OFFSET_TIME_DIGITIZED <sup>12+</sup> | "OffsetTimeDigitized"      | Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.                             |
+| OFFSET_TIME_ORIGINAL <sup>12+</sup> | "OffsetTimeOriginal"      | Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.                             |
+| SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"      | Exposure time of source images of the composite image.                             |
+| SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceImageNumberOfCompositeImage"      | Number of source images of the composite image.                             |
+| SUBFILE_TYPE <sup>12+</sup> | "SubfileType"      | Type of data contained in this subfile. This tag has been deprecated. Use **NewSubfileType** instead.                             |
+| GPS_H_POSITIONING_ERROR <sup>12+</sup> | "GPSHPositioningError"      | Horizontal positioning error, in meters.                             |
+| PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup> | "PhotographicSensitivity"      | Sensitivity of the camera or input device when the image was captured.                             |
+| BURST_NUMBER <sup>12+</sup> | "HwMnoteBurstNumber"      | Number of burst shooting times.                             |
+| FACE_CONF <sup>12+</sup> | "HwMnoteFaceConf"      | Face confidence.                             |
+| FACE_LEYE_CENTER <sup>12+</sup> | "HwMnoteFaceLeyeCenter" | Left eye centered.|
+| FACE_MOUTH_CENTER <sup>12+</sup> | "HwMnoteFaceMouthCenter" | Mouth centered.|
+| FACE_POINTER <sup>12+</sup> | "HwMnoteFacePointer" | Face pointer.|
+| FACE_RECT <sup>12+</sup> | "HwMnoteFaceRect" | Face rectangle.|
+| FACE_REYE_CENTER <sup>12+</sup> | "HwMnoteFaceReyeCenter" | Right eye centered.|
+| FACE_SMILE_SCORE <sup>12+</sup> | "HwMnoteFaceSmileScore" | Smile score of for faces.|
+| FACE_VERSION <sup>12+</sup> | "HwMnoteFaceVersion" | Facial recognition algorithm version.|
+| FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | Indicates whether the front camera is used to take a selfie.|
+| SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | Pointer to the scene.|
+| SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | Scene algorithm version.|
 
 ## ImageFormat<sup>9+</sup>
 
@@ -4201,7 +5377,7 @@ Describes the color components of an image.
 ## Supplementary Information
 ### SVG Tags
 
-The SVG tags are supported since API version 10. The used version is (SVG) 1.1. Currently, the following tags are supported:
+The SVG tags are supported since API version 10. The used version is (SVG) 1.1. An XML declaration that starts with **<?xml** needs to be added to an SVG file, and the width and height of the SVG tag need to be set. Currently, the following tags are supported:
 - a
 - circla
 - clipPath
@@ -4240,5 +5416,3 @@ The SVG tags are supported since API version 10. The used version is (SVG) 1.1. 
 - textPath
 - tspan
 - use
-
- <!--no_check--> 

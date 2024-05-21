@@ -54,7 +54,7 @@ libnative_buffer.so
 
 1. Initialize the EGL environment.
 
-   Refer to the code snippet below.
+   Refer to the code snippet below. For details about how to use the **\<XComponent>**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
    ```c++
    #include <iostream>
    #include <string>
@@ -71,6 +71,9 @@ libnative_buffer.so
    EGLContext eglContext_ = EGL_NO_CONTEXT;
    EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
    static inline EGLConfig config_;
+   static inline EGLSurface eglsurface_;
+   // OHNativeWindow obtained from the <XComponent>.
+   OHNativeWindow *eglNativeWindow_;
    
    // Check the EGL extension.
    static bool CheckEglExtension(const char *extensions, const char *extension) {
@@ -159,8 +162,14 @@ libnative_buffer.so
            std::cout << "Failed to create egl context %{public}x, error:" << eglGetError() << std::endl;
        }
    
+       // Create an eglSurface.
+       eglSurface_ = eglCreateWindowSurface(eglDisplay_, config_, eglNativeWindow_, context_attribs);
+       if (eglSurface_ == EGL_NO_SURFACE) {
+           std::cout << "Failed to create egl surface %{public}x, error:" << eglGetError() << std::endl;
+       }
+   
        // Associate the context.
-       eglMakeCurrent(eglDisplay_, EGL_NO_SURFACE, EGL_NO_SURFACE, eglContext_);
+       eglMakeCurrent(eglDisplay_, eglSurface_, eglSurface_, eglContext_);
    
        // The EGL environment initialization is complete.
        std::cout << "Create EGL context successfully, version" << major << "." << minor << std::endl;
@@ -261,6 +270,12 @@ libnative_buffer.so
    if (ret != 0) {
        std::cout << "OH_NativeImage_GetTransformMatrix failed" << std::endl;
    }
+   
+   // Perform OpenGL post-processing on the texture, and then display the texture on the screen.
+   EGLBoolean eglRet = eglSwapBuffers(eglDisplay_, eglSurface_);
+   if (eglRet == EGL_FALSE) {
+       std::cout << "eglSwapBuffers failed" << std::endl;
+   }
    ```
 
 7. Detach the **OH_NativeImage** from the current OpenGL texture and attach it to a new external texture.
@@ -283,3 +298,5 @@ libnative_buffer.so
    // Destroy the OH_NativeImage instance.
    OH_NativeImage_Destroy(&image);
    ```
+
+ <!--no_check--> 

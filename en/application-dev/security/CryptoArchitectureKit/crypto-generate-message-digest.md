@@ -38,13 +38,13 @@ The following provides examples of MD operations with different data passing met
 
 ### MD (Passing In Full Data)
 
-1. Use [cryptoFramework.createMd](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
+1. Use [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
 
-2. Use [Md.update](../../reference/apis/js-apis-cryptoFramework.md#update-6) to pass in the full data. The data to be passed in by a single **update()** operation is not size bound.
+2. Use [Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-6) to pass in the full data. The data to be passed in by a single **update()** operation is not size bound.
 
-3. Use [Md.digest](../../reference/apis/js-apis-cryptoFramework.md#digest) to generate an MD.
+3. Use [Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest) to generate an MD.
 
-4. Use [Md.getMdLength](../../reference/apis/js-apis-cryptoFramework.md#getmdlength) to obtain the length of the MD, in bytes.
+4. Use [Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength) to obtain the MD length, in bytes.
 
 Example: Pass in the full data to calculate an MD using **await**.
 
@@ -60,19 +60,21 @@ async function doMd() {
   await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
   let mdResult = await md.digest();
   console.info('Md result:' + mdResult.data);
+  let mdLen = md.getMdLength();
+  console.info("md len: " + mdLen);
 }
 ```
 
 
 ### MD (Passing In Data by Segment)
 
-1. Use [cryptoFramework.createMd](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
+1. Use [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **SHA256** to create a message digest (**Md**) instance.
 
-2. Call [Md.update](../../reference/apis/js-apis-cryptoFramework.md#update-7) multiple times to pass in 20 bytes each time.
+2. Call [Md.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-7) multiple times to pass in 20 bytes each time.
 
-3. Use [Md.digest](../../reference/apis/js-apis-cryptoFramework.md#digest-1) to generate an MD.
+3. Use [Md.digest](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#digest-1) to generate an MD.
 
-4. Use [Md.getMdLength](../../reference/apis/js-apis-cryptoFramework.md#getmdlength) to obtain the length of the MD, in bytes.
+4. Use [Md.getMdLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmdlength) to obtain the MD length, in bytes.
 
 Example: Pass in data by segment to calculate an MD using **await**.
 
@@ -94,5 +96,7 @@ async function doLoopMd() {
   }
   let mdOutput = await md.digest();
   console.info("md result: " + mdOutput.data);
+  let mdLen = md.getMdLength();
+  console.info("md len: " + mdLen);
 }
 ```

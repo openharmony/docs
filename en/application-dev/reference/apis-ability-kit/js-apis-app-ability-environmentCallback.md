@@ -22,6 +22,8 @@ onConfigurationUpdated(config: Configuration): void
 
 Called when the system environment changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Parameters**
@@ -39,6 +41,8 @@ See [Usage of EnvironmentCallback](#usage-of-environmentcallback).
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system memory level changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 

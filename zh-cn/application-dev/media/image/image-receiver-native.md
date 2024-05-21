@@ -6,7 +6,7 @@
 
 ### 添加依赖
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libimage_ndk.z.so libimage_receiver_ndk.z.so libnative_image.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libace_napi.z.so，libimage_ndk.z.so，libimage_receiver_ndk.z.so，libnative_image.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libimage_ndk.z.so libimage_receiver_ndk.z.so libnative_image.so)
@@ -32,7 +32,7 @@ EXTERN_C_END
 
 ### 添加权限申请
 
-开启调试功能需要在DevEco Studio应用工程的src\main\module.json5文件中增加权限, 配置文件个字段含义详见[module.json5配置文件](../../quick-start/module-configuration-file.md)：
+开启调试功能需要在DevEco Studio应用工程的src\main\module.json5文件中增加权限, 配置文件各字段含义详见[module.json5配置文件](../../quick-start/module-configuration-file.md)：
 
    ```
    "requestPermissions":[

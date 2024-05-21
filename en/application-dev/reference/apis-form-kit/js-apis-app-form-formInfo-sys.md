@@ -23,7 +23,10 @@ Enumerates the widget parameters.
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | Device ID.<br>**System API**: This is a system API. |
-
+| FORM_LOCATION_KEY    | 'ohos.extra.param.key.form_location'   | Widget location. |
+| FORM_PERMISSION_NAME_KEY | 'ohos.extra.param.key.permission_name' | Name of the permission.|
+| FORM_PERMISSION_GRANTED_KEY | 'ohos.extra.param.key.permission_granted' | Whether the permission is granted.|
+| THEME_KEY | 'ohos.extra.param.key.form_is_theme' | Whether the widget is a theme widget.|
 
 ## FormUsageState
 
@@ -58,6 +61,8 @@ Defines the information about an added widget, which can be either in use or not
 | dimension | number               | Yes   | No    | Widget specifications.  |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | Yes   | No    | Usage status of the widget.  |
 | formDescription<sup>11+</sup> | string         | Yes   | No    | Description in the widget configuration file of the provider.  |
+| formLocation<sup>12+</sup> | [FormLocation](#formlocation)| Yes   | No    | Location of the widget.  |
+| extraData<sup>12+</sup> | Record<string, Object>| Yes   | No    | Extended information of the widget.  |
 
 ## formProviderFilter<sup>10+</sup>
 
@@ -76,3 +81,21 @@ Defines the information about the widget provider.
 | moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.       |
 | abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.       |
 | isUnusedIncluded<sup>11+</sup> | boolean               | Yes   | No    | Whether an unused widget is included.       |
+
+## FormLocation
+
+Enumerates the widget locations.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name                        | Value  | Description                            |
+| ---------------------------- | ---- | -------------------------------- |
+| OTHER                        | -1   | The widget is not located in any of the following defined positions.          |
+| DESKTOP                      | 0    | The widget is located on the home screen.              |
+| FORM_CENTER                  | 1    | The widget is located in the widget center of the home screen.    |
+| FORM_MANAGER                 | 2    | The widget is located in the widget manager of the home screen.  |
+| NEGATIVE_SCREEN              | 3    | The widget is located on the minus 1 screen.            |
+| FORM_CENTER_NEGATIVE_SCREEN  | 4    | The widget is located in the service panel of the minus 1 screen.  |
+| FORM_MANAGER_NEGATIVE_SCREEN | 5    | The widget is located in the widget manager of the minus 1 screen.|
+| SCREEN_LOCK                  | 6    | The widget is located on the locked screen.              |
+| AI_SUGGESTION                | 7    | The widget is located in the area of Celia Suggestions.    |

@@ -149,7 +149,13 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 ## 开发步骤
 
-### IDL工具的获取
+### 获取IDL工具
+#### 方法一（推荐）：
+1. 在linux系统，下载OpenHarmony的两个仓：ability_idl_tool代码仓、third_party_bounds_checking_function代码仓。
+2. 进入ability_idl_tool代码仓，在Makefile所在目录执行make命令（**注意修改MakefileLinux中关于bounds_checking_function的相对位置**）。
+3. make执行完成后，在当前目录下会生成idl-gen可执行文件，可用于idl文件本地调试。
+
+#### 方法二：
 首先，打开DevEco Studio—>Tools—>SDK Manager，查看OpenHarmony SDK的本地安装路径，此处以DevEco Studio 3.0.0.993版本为例，查看方式如下图所示。
 ![SDKpath](./figures/SDKpath.png)
 ![SDKpath](./figures/SDKpath2.png)
@@ -480,6 +486,123 @@ interface OHOS.AAFwk.IQuickFixManager {
 ```
 
 #### 修改BUILD.gn文件
+提供两种配置方法，选择其中一种即可
+
+##### 修改方法一（推荐，支持批量处理idl文件并编译为so）
+
+1. 导入IDL工具模板到当前BUILD.gn文件。
+
+   ```bash
+   # 此处不需要修改，直接复制到gn中即可
+   import("//foundation/ability/idl_tool/idl_config.gni")
+   ```
+
+2. 调用IDL工具生成C++模板文件。
+
+   ```bash
+   
+   # 使用idl_gen_interface生成模板文件、输入的参数名在deps中会使用
+   idl_gen_interface("EEEFFFGGG") {
+     # 开发者定义的.idl名，须与gn文件在同一路径下
+     sources = [
+      "IAxxBxxCxx.idl",
+      "IAxxBxxCxx2.idl",
+     ]
+
+     # 根据idl文件中对自定义对象的使用，编译为so时需要增加自定义对应使用的cpp的编译，默认为空
+     sources_cpp = []
+
+     # 编译so时增加configs配置
+     configs = []
+
+     # 编译so时增加public_deps配置
+     sequenceable_pub_deps = []
+
+     # 编译so时增加external_deps配置
+     sequeceable_ext_deps = []
+
+     # 编译so时增加innerapi_tags
+     innerapi_tags = ""
+
+     # 编译so时增加sanitize
+     sanitize = ""
+
+
+     # 开启hitrace，值是hitrace_meter.h文件中定义的uint64_t类型标识,需要填入常量的变量名
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     
+     # 开启hilog，Domain ID 使用16进制的整数
+     log_domainid = "0xD003900"
+     # 开启hilog，字符串类型tag名、一般为子系统名称
+     log_tag = "QuickFixManagerService"
+
+     # 必填：编译so时增加subsystem_name，与业务保持一致，如quick_fix使用：
+     subsystem_name = "ability"
+     # 必填：编译so时增加part_name，与业务保持一致，如quick_fix使用：
+     part_name = "ability_runtime"
+   }
+   ```
+
+   配置hilog，参数log_domainid和log_tag必须成对出现，若只写一个会编译错误，quick_fix示例如下：
+
+   ```bash
+   idl_gen_interface("quickfix_manager_interface") {
+     sources = [
+      "IQuickFixManager.idl"
+     ]
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService"    #只有一个log_tag，编译会错误，同理只有log_domainid，编译也会错误
+   }
+   ```
+
+3. 在BUILD.gn中添加依赖“EEEFFFGGG”。
+
+   ```bash
+   deps = [
+      # 使用idl_gen_interface函数参数名，前面加上lib，后面加上_proxy和_stub即为生成的so名称
+      ":libEEEFFFGGG_proxy", # 如果需要 proxy 的so，加上这个依赖
+      ":libEEEFFFGGG_stub", # 如果需要 stub 的so，加上这个依赖
+     ]
+   ```
+
+   deps添加的依赖名，必须同idl_gen_interface函数参数名相同，quick_fix示例如下：
+
+   ```bash
+   idl_gen_interface("quickfix_manager_interface") {
+     sources = [
+      "IQuickFixManager.idl"
+     ]
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService"
+   }
+   deps = [
+    "${ability_runtime_innerkits_path}/app_manager:app_manager",
+    ":libquickfix_manager_interface_proxy", # idl_gen_interface函数参数名前面加上lib，后面加上_proxy
+    ":libquickfix_manager_interface_stub", # idl_gen_interface函数参数名前面加上lib，后面加上_stub
+   ]
+   ```
+
+6. 在BUILD.gn中添加模板文件的外部依赖。
+
+   模板文件的外部依赖需要自己添加到external_deps里。
+   若之前已存在，不需要重复添加，若重复添加会导致编译错误。
+
+   ```bash
+     external_deps = [
+     # 模板文件必须的依赖
+     "c_utils:utils",
+     # hilog输出必须的依赖
+     "hilog:libhilog",
+     # hitrace输出必须的依赖（如果idl_gen_interface中未配置hitrace，则不需要此依赖）
+     "hitrace:hitrace_meter",
+     # 模板文件必须的依赖
+     "ipc:ipc_core",
+   ]
+   ```
+
+##### 修改方法二
 
 1. 导入IDL工具模板到当前BUILD.gn文件。
 

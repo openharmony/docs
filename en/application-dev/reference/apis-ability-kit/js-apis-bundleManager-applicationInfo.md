@@ -8,6 +8,8 @@ The **ApplicationInfo** module defines the application information. A third-part
 
 ## ApplicationInfo
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                      | Type                                                        | Readable| Writable| Description                                                        |
@@ -39,9 +41,24 @@ The **ApplicationInfo** module defines the application information. A third-part
 | dataUnclearable<sup>11+</sup>       | boolean                      | Yes  | No  | Whether the application data is unclearable. The value **true** means that the application data is unclearable, and **false** means the opposite. The default value is **false**.       |
 | nativeLibraryPath<sup>12+</sup> | string                                                                     | Yes  | No  | Local library file path of the application.                                                                                                  |
 
+## PreinstalledApplicationInfo<sup>12+<sup>
+
+Describes the information about a preinstalled application.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+| Name     | Type          | Readable| Writable| Description                       |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| bundleName     | string         | Yes  | No  | Bundle name of the application.                |
+| moduleName | string         | Yes  | No  | Module name of the application. By default, the name of the entry module is returned. If the entry module does not exist, the name of the feature module is returned.           |
+| iconId | number         | Yes  | No  | Icon ID of the application.           |
+| labelId | number         | Yes  | No  | Label ID of the application.           |
+
 ## ModuleMetadata<sup>10+</sup>
 
 Describes the metadata of a module.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 

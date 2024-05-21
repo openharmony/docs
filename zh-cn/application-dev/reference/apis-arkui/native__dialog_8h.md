@@ -28,7 +28,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef bool(\* [OnWillDismissEvent](_ark_u_i___native_module.md#onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
+| typedef bool(\* [ArkUI_OnWillDismissEvent](_ark_u_i___native_module.md#arkui_onwilldismissevent)) (int32_t reason) | 弹窗关闭的回调函数。  | 
 
 
 ### 枚举

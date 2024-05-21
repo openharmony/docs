@@ -73,7 +73,7 @@ PageAbility的图标和标签配置请参见[PageAbility组件配置](pageabilit
 #### 入口图标和标签管控规则
 系统对无图标应用实施严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
 
-如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
+如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。详细的入口图标及入口标签的显示规则如下。
 
 * HAP中包含PageAbility
   * 在config.json配置文件的abilities标签中设置了入口图标

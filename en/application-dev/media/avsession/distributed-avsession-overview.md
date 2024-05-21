@@ -35,7 +35,7 @@ There are two scenarios for projection implemented using the distributed AVSessi
 
 - System projection: The controller (for example, Media Controller) initiates a projection.
 
-  This type of projection takes effect for all applications. After a system projection, all audios on the local device are played from the distributed device by default.
+  This type of projection takes effect for all applications. After a system projection, all audio files on the local device are played from the distributed device by default.
 
 - Application projection: An audio and video application integrates the projection component to initiate a projection. (This scenario is not supported yet.)
   

@@ -49,7 +49,7 @@ The ability with the specified type does not support the API invocation.
 1. Pass in correct values of **bundleName**, **moduleName**, and **abilityName** in **want**.
 2. Call APIs based on the ability type. For example, call [startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) to start the ServiceExtensionAbility, or call [connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to the ServiceExtensionAbility.
 
-## 16000003 Nonexistent ID
+## 16000003 ID Not Exist
 
 **Error Message**
 
@@ -84,7 +84,25 @@ Visibility verification fails.
 **Solution**
 
 1. Check whether [exported](../../quick-start/module-configuration-file.md#abilities) under the **Ability** field in the **module.json5** file of the ability is set to **true**. If this parameter is set to **true**, the ability can be started by other applications. If this parameter is set to **false**, the ability cannot be started by other applications.
-2. To start the ability for which **exported** is set to **false**, the caller must request the [ohos.permission.START_INVISIBLE_ABILITY](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionstart_invisible_ability) permission.
+2. To start the ability for which **exported** is set to **false**, the caller must request the **ohos.permission.START_INVISIBLE_ABILITY** permission, which is available only for system applications.
+
+## 16000005 Process Permission Verification Failure
+
+**Error Message**
+
+The specified process does not have the permission.
+
+**Description**
+
+This error code is reported when the specified process fails permission verification.
+
+**Possible Causes**
+
+Permission verification for the specified process fails.
+
+**Solution**
+
+Check whether the permission of the specified process is correct.
 
 ## 16000006 Cross-User Operation Is Not Allowed
 
@@ -176,7 +194,7 @@ The continuation flag is not allowed for the API call.
 
 Remove the continuation flag.
 
-## 16000011 Nonexistent Context
+## 16000011 Context Not Exist
 
 **Error Message**
 
@@ -265,6 +283,34 @@ The system has a large number of concurrent requests.
 **Solution**
 
 No action is required. Wait for the previous abilities to finish startup.
+
+## 16000018 Restricting Redirection to Third-Party Applications of API Version 11 or Later
+
+**Error Message**
+
+The application is not allow jumping to other applications when api version is above 11.
+
+**Description**
+
+When the API version of an application is later than 11, the application cannot be explicitly redirected to a third-party application.
+
+**Solution**
+
+Use implicit startup or [openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) for redirection.
+
+## 16000019 No Matching Application Is Found During Implicit Startup
+
+**Error Message**
+
+Can not match any component.
+
+**Description**
+
+A matching ability is not found during implicit startup.
+
+**Solution**
+
+Modify the items used for matching in implicit startup.
 
 ## 16000050 Internal Error
 
@@ -501,6 +547,159 @@ The number of created subprocesses has reached the upper limit.
 **Solution**
 
 Limit the number of created subprocesses. The maximum number is 128.
+
+## 16000063 Invalid Ability During Application Restart
+
+**Error Message**
+
+The target to restart does not belong to the current app or is not a UIAbility.
+
+**Description**
+
+This error code is reported when the specified ability name or type is invalid during application restart.
+
+**Possible Causes**
+
+The specified ability name or type is invalid.
+
+**Solution**
+
+Ensure that the specified ability name exists in the current application and the ability type is UIAbility.
+
+## 16000064 Frequent Application Restart
+
+**Error Message**
+
+Restart too frequently. Try again at least 10s later.
+
+**Description**
+
+An API is called to restart the application and start a specified ability. This error code is reported when the API is called again within 10 seconds.
+
+**Possible Causes**
+
+The API is frequently called.
+
+**Solution**
+
+Call the API again after 10 seconds.
+
+## 16000065 API Can Be Called for a Foreground Ability
+
+**Error Message**
+
+The interface can be called only when ability is foreground.
+
+**Description**
+
+This error code is reported when the API is called while the ability is not running in the foreground.
+
+**Possible Causes**
+
+The ability is not in the foreground when the API is called.
+
+**Solution**
+
+Switch the ability to the foreground before calling the API.
+
+## 16000066 Ability Cannot Be Switched to the Foreground or Background in Wukong Mode
+
+**Error Message**
+
+An ability cannot move to foreground or background in Wukong mode.
+
+**Description**
+
+This error code is reported when the API used to switch the ability to the foreground or background is called in Wukong mode.
+
+**Possible Causes**
+
+In Wukong mode, the ability cannot be switched to the foreground or background.
+
+**Solution**
+
+Exit wukong mode, and then call the API to switch the ability to the foreground or background.  
+
+## 16000067 Ability Startup Parameter Verification Failure
+
+**Error Message**
+
+Start options check failed.
+
+**Description**
+
+This error code is reported when verification on **StartOptions** fails.
+
+**Possible Causes**
+
+1. **startAbility()**, with **processMode** set to **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM**, is called, but the application icon is not displayed in the status bar.
+2. **showAbility()** or **hideAbility()** is called, but the caller is not started in **NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM** mode.
+
+**Solution**
+
+Check whether the constraints for **StartOptions** are met.
+
+## 16000068 Ability Is Already Running
+
+**Error Message**
+
+Ability already running.
+
+**Description**
+
+This error code is reported when the target ability is already running.
+
+**Possible Causes**
+
+**startAbility()** is called, with **processMode** and **startupVisibility** specified. **launchType** of the target ability is singleton or specified, and the target ability is running.
+
+**Solution**
+
+When **launchType** of the target ability is singleton or specified, do not specify **processMode** and **startupVisibility** in **startAbility()**.
+
+## 16000100 Failed to Call AbilityMonitor APIs to Listen for Ability Lifecycle Changes
+
+**Error Message**
+
+ - AddAbilityMonitor failed.
+
+ - AddAbilityMonitorSync failed.
+
+ - RemoveAbilityMonitor failed.
+
+ - RemoveAbilityMonitorSync failed.
+
+ - WaitAbilityMonitor failed.
+
+ - GetCurrentTopAbility failed.
+
+ - DoAbilityForeground failed.
+
+ - DoAbilityBackground failed.
+
+ - FinishTest failed.
+
+ - AddAbilityStageMonitor failed.
+
+ - AddAbilityStageMonitorSync failed.
+
+ - RemoveAbilityStageMonitor failed.
+
+ - RemoveAbilityStageMonitorSync failed.
+
+ - WaitAbilityStageMonitor failed.
+
+**Description**
+
+This error code is reported when an AbilityMonitor API for monitoring the lifecycle change of a specified ability fails to be executed.
+
+**Possible Causes**
+
+Creating an **AbilityDelegatorRegistry** instance fails.
+
+**Solution**
+
+Check whether an **AbilityDelegatorRegistry** instance is created.
 
 ## 16000101 shell Command Failure
 
@@ -926,4 +1125,38 @@ When you try to cancel a quick fix task for an application, the application has 
 
 Wait until the quick fix task is complete.
 
- <!--no_check--> 
+## 16300004 Observer Does Not Exist
+
+**Error Message**
+
+observer not found.
+
+**Description**
+
+This error code is reported when the specified observer does not exist.
+
+**Possible Causes**
+
+The observer does not exist or has been unregistered.
+
+**Solution**
+
+Check whether the observer exists.
+
+## 16300005 Bundle Information Does Not Exist
+
+**Error Message**
+
+The target bundle does not exist.
+
+**Description**
+
+This error code is reported when the bundle information of the preinstalled application does not exist.
+
+**Possible Causes**
+
+The value of **bundleName**, **userId**, or **appIndex** is incorrect, leading to the query failure.
+
+**Solution**
+
+Pass in correct values for **bundleName**, **userId**, and **appIndex**.

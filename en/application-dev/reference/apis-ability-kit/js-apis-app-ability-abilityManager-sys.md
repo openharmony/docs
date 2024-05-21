@@ -30,6 +30,20 @@ Enumerates the ability states. This enum can be used together with [AbilityRunni
 | FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
 | BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
 
+## UserStatus<sup>12+</sup>
+
+Enumerates the assertion result for different user operations.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| ASSERT_TERMINATE | 0 | Assertion result of the terminate operation.|
+| ASSERT_CONTINUE | 1 | Assertion result of the continue operation.|
+| ASSERT_RETRY | 2 | Assertion result of the retry operation.|
+
 ## updateConfiguration
 
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
@@ -51,11 +65,14 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -115,11 +132,14 @@ Updates the configuration. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -171,11 +191,13 @@ Obtains the UIAbility running information. This API uses an asynchronous callbac
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -218,11 +240,12 @@ Obtains the UIAbility running information. This API uses a promise to return the
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -264,11 +287,13 @@ Obtains the ExtensionAbility running information. This API uses an asynchronous 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -319,11 +344,13 @@ Obtains the ExtensionAbility running information. This API uses a promise to ret
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -364,11 +391,13 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -403,11 +432,12 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -441,11 +471,13 @@ Called by a system dialog box to obtain shared data, which is set by the target 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -493,11 +525,13 @@ Called by a system dialog box to obtain shared data, which is set by the target 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -540,11 +574,13 @@ Used by the [Data Loss Prevention (DLP)](../apis-data-loss-prevention-kit/js-api
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -606,11 +642,13 @@ Used by the [Data Loss Prevention (DLP)](../apis-data-loss-prevention-kit/js-api
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -664,11 +702,14 @@ Registers an observer to listen for ability start or exit events.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -694,7 +735,7 @@ try {
 
 off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
-Deregisters the observer used to listen for ability start or exit events.
+Unregisters the observer used to listen for ability start or exit events.
 
 **System API**: This is a system API.
 
@@ -711,11 +752,14 @@ Deregisters the observer used to listen for ability start or exit events.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -764,15 +808,18 @@ Obtains the information about the UIAbilities of an application that is running 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | Yes|Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in this callback.|
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | Yes|Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -805,15 +852,17 @@ Obtains the information about the UIAbilities of an application that is running 
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | Promise used to return the API call result and the UIAbility information. You can perform error handling or custom processing in this callback.|
+| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | Promise used to return the API call result and the UIAbility information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
 | ID| Error Message|
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](errorcode-ability.md).
 
 **Example**
 
@@ -826,4 +875,125 @@ abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.Abili
 }).catch((error: BusinessError) => {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
 });
+```
+
+## abilityManager.notifyDebugAssertResult<sup>12+</sup>
+
+notifyDebugAssertResult(sessionId: string, status: UserStatus): Promise\<void>
+
+Notifies the application of the assertion result. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.NOTIFY_DEBUG_ASSERT_RESULT
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | -------- | -------- | -------- |
+| sessionId | string | Yes| Session ID of the AssertFault.|
+| status | [UserStatus](#userstatus12) | Yes| Assertion result of the user operation.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import wantConstant from '@ohos.app.ability.wantConstant';
+import type Want from '@ohos.app.ability.Want';
+import type UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
+export default class UiExtAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let sessionId:string = '';
+    if(want.parameters){
+      sessionId  = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string;
+    }
+    let status = abilityManager.UserStatus.ASSERT_TERMINATE;
+    abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
+      console.log('notifyDebugAssertResult success.');
+    }).catch((err: BusinessError) => {
+      console.error(`notifyDebugAssertResult failed, error: ${JSON.stringify(err)}`);
+    });
+  }
+}
+
+```
+
+## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+
+isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
+
+Checks whether the [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) can be started in embedded mode. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------- | -------- | -------- | -------- |
+| context | [Context](js-apis-inner-application-context.md) | Yes| Context of the caller.|
+| appId | string | Yes| Unique ID of the application, which is allocated by the cloud.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that embedded startup is allowed, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let appId: string = '6918661953712445909';
+
+    try {
+      abilityManager.isEmbeddedOpenAllowed(this.context, appId).then((data) => {
+        console.info(`isEmbeddedOpenAllowed data: ${JSON.stringify(data)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`isEmbeddedOpenAllowed failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // Process input parameter errors.
+      console.error(`param is invalid, code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
 ```

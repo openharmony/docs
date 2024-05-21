@@ -58,13 +58,64 @@ Failed to obtain the geographical location.
 
 1.GNSS信号弱，导致定位超时。
 
-2.网络定位异常导致定位超时。
+2.网络定位异常，导致定位超时。
 
-3.系统无缓存位置，导致获取上一次位置失败。
+3.定位结果不满足定位请求参数中的精度要求(maxAccuracy)，导致定位超时。
+
+4.系统无缓存位置，导致获取上一次位置失败。
+
+5.系统时间设置错误，导致获取位置失败。
 
 **处理步骤**
 
-请重新发起定位请求。
+1.请移动至开阔地带再发起定位。
+
+2.请检查设备是否能联网，设备是否插入SIM卡，WiFi开关是否开启等。
+
+3.请检查定位请求中的maxAccuracy字段是否合理。
+
+4.系统无缓存位置的情况下，请使用getCurrentLocation接口获取实时位置信息。
+
+5.请在“日期和时间”页面勾选自动设置。
+
+## 3301201 网络不通导致网络定位失败
+
+**错误信息**
+
+Network locating failure due to internet access failure.
+
+**错误描述**
+
+网络不通导致网络定位失败。
+
+**可能原因**
+
+1.WiFi开关未开启且移动数据开关未开启。
+
+2.蜂窝或WiFi信号弱。
+
+**处理步骤** 
+
+如果处于室内环境请确保WiFi开关或移动数据开关处于开启状态，并且能上网，然后再发起定位。
+
+## 3301202 APP无后台定位权限导致定位失败
+
+**错误信息**
+
+Locating failure due to no background locating permission.
+
+**错误描述**
+
+APP无ohos.permission.LOCATION_IN_BACKGROUND权限导致定位失败。
+
+**可能原因**
+
+1.APP在后台定位且无ohos.permission.LOCATION_IN_BACKGROUND权限且未申请LOCATION类型的[长时任务](../../task-management/continuous-task.md)。
+
+**处理步骤**
+
+如果需要在后台进行定位业务，请申请LOCATION类型的[长时任务](../../task-management/continuous-task.md)。
+或者提示用户在位置信息页面设置本应用位置信息访问权限为“始终允许”。
 
 ## 3301300 逆地理编码查询失败
 
@@ -139,6 +190,42 @@ Failed to operate the geofence.
 **处理步骤**
 
 请停止调用地理围栏操作接口。
+
+## 3301601 地理围栏个数超过最大值限制导致添加围栏失败
+
+**错误信息**
+
+The number of geofences exceeds the maximum.
+
+**错误描述**
+
+地理围栏个数超过最大限制导致添加围栏失败。
+
+**可能原因**
+
+1.系统中存在的地理围栏个数超过最大值限制。
+
+**处理步骤**
+
+请在删除多余围栏之后再添加新的围栏。
+
+## 3301602 地理围栏ID错误导致删除围栏失败
+
+**错误信息**
+
+Failed to delete a geofence due to an incorrect ID.
+
+**错误描述**
+
+地理围栏ID错误导致删除围栏失败。
+
+**可能原因**
+
+1.APP调用删除地理围栏接口时传入的围栏ID错误。
+
+**处理步骤**
+
+请在调用删除地理围栏接口时传入正确的围栏ID。
 
 ## 3301700 请求无响应
 

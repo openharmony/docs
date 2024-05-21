@@ -79,7 +79,7 @@ import drm from '@ohos.multimedia.drm';
 | CERT_STATUS_PROVISIONED        | 0    | 设备已安装设备证书   |
 | CERT_STATUS_NOT_PROVISIONED   | 1    | 设备未安装设备证书     |
 | CERT_STATUS_EXPIRED    | 2    | 设备证书过期       |
-| CERT_STATUS_INVALID  | 3    | 无效设备证书     |
+| CERT_STATUS_INVALID  | 3    | 设备证书无效     |
 | CERT_STATUS_UNAVAILABLE  | 4    | 设备证书不可用     |
 
 ## MediaKeyRequestType
@@ -180,7 +180,7 @@ import drm from '@ohos.multimedia.drm';
 
 ## KeysInfo
 
-许可证状态
+许可证信息
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -191,14 +191,25 @@ import drm from '@ohos.multimedia.drm';
 
 ## MediaKeySystemInfo
 
-用于指示媒体源的drm信息。
+指示媒体源的drm信息。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
 | -------- | ----------------------------- |---- | ------------- |
-| uuid   | string | 是  | 插件类型Id      |
+| uuid   | string | 是  | 插件唯一标识码      |
 | pssh     | Uint8Array                 | 是  | drm info内的保护方案特定标头       |
+
+## MediaKeySystemDescription<sup>12+</sup>
+
+设备支持的插件信息，包含插件名称和插件唯一标识码uuid。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+| 名称      | 类型                           | 必填 | 说明         |
+| -------- | ----------------------------- |---- | ------------- |
+| name   | string | 是  | 插件名称      |
+| uuid   | string | 是  | 插件唯一标识码      |
 
 ## drm.createMediaKeySystem
 
@@ -226,7 +237,7 @@ createMediaKeySystem(name: string): MediaKeySystem
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
 | 24700103                |  Meet max MediaKeySystem num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
@@ -270,7 +281,7 @@ isMediaKeySystemSupported(name: string): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -316,7 +327,7 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.                |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -362,7 +373,7 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed.  Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed, the param name's length is zero or too big(exceeds 4096 Bytes)               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -379,6 +390,92 @@ try {
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
 
+```
+
+## drm.getMediaKeySystemUuid<sup>12+</sup>
+
+getMediaKeySystemUuid(): string
+
+获取设备支持的DRM插件的名称和uuid。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | 是   | 插件名称。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| uuid  | string     | 是   | 插件唯一识别码。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 401                |  The parameter check failed                |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+import { BusinessError } from '@ohos.base';
+try {
+  let uuid: string = drm.getMediaKeySystemUuid();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getMediaKeySystemUuid ERROR: ${error}`);  
+}
+```
+
+## drm.getMediaKeySystems<sup>12+</sup>
+
+getMediaKeySystems(): MediaKeySystemDescription[]
+
+获取设备支持的DRM插件的名称和uuid。
+
+**系统能力：** SystemCapability.Multimedia.Drm.Core
+
+**参数：**
+
+| 参数名     | 类型                                             | 必填 | 说明                           |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | 是   | 插件名称。                   |
+| uuid  | string     | 是   | 插件唯一识别码。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [MediaKeySystemDescription[]](#mediakeysystemdescription12)           | 设备支持的插件信息，包含插件名称和插件唯一标识码uuid。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[DRM错误码](errorcode-drm.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**示例：**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+import { BusinessError } from '@ohos.base';
+try {
+  let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getMediaKeySystems ERROR: ${error}`);  
+}
 ```
 
 ## MediaKeySystem
@@ -405,7 +502,7 @@ setConfigurationString(configName: string, value: string): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -451,7 +548,7 @@ getConfigurationString(configName: string): string
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed, the param's length is zero or too big(exceeds 4096 Bytes).                              |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -492,7 +589,7 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -539,7 +636,7 @@ getConfigurationByteArray(configName: string): Uint8Array
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.        |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -579,7 +676,6 @@ getStatistics(): StatisticKeyValue[]
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                     |  The parameter check failed               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -591,7 +687,7 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let statisticKeyValue: StatisticKeyValue[] = mediaKeysystem.getStatistics();
+  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeysystem.getStatistics();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
@@ -619,7 +715,6 @@ getMaxContentProtectionLevel(): ContentProtectionLevel
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -643,7 +738,7 @@ try {
 
 generateKeySystemRequest(): Promise<ProvisionRequest\>
 
-生成获取mediaKeySystem设备证书的请求
+生成获取mediaKeySystem设备证书的请求。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -659,7 +754,6 @@ generateKeySystemRequest(): Promise<ProvisionRequest\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -697,7 +791,7 @@ processKeySystemResponse(response: Uint8Array): Promise<void\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  he parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -736,7 +830,6 @@ getCertificateStatus():CertificateStatus
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -768,8 +861,8 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。设备证书请求时触发该事件并返回 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明需要请求设备证书                 |
+| type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。设备证书请求时触发该事件并返回。 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果，只要有该事件返回就证明需要请求设备证书。                 |
 
 **错误码：**
 
@@ -777,7 +870,7 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.               |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -796,7 +889,7 @@ function registerkeySystemRequired(mediaKeysystem: drm.MediaKeySystem): void {
 
 off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听设备证书请求。
+注销监听设备证书请求，注销设备证书请求事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -805,7 +898,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选。                |
 
 **错误码：**
 
@@ -813,7 +906,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.               |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -850,7 +943,7 @@ createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.The param level exceeds reasonable range, please use value in ContentProtectionLevel.          |
 | 24700101                 |  MAll unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
@@ -955,7 +1048,7 @@ try {
 
 getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
-获取离线许可证状态返回。
+获取离线许可证返回状态。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -977,7 +1070,7 @@ getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1018,7 +1111,7 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed.Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.           |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1104,7 +1197,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                | The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1116,12 +1209,12 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-let OptionsData = [
-    {name : "optionalsDataNameA", value : "optionalsDataValueA"},
-    {name : "optionalsDataNameB", value : "optionalsDataValueB"},
+let optionsData: drm.OptionsData[]  = [
+    {name : "optionsDataNameA", value : "optionsDataValueA"},
+    {name : "optionsDataNameB", value : "optionsDataValueB"}
 ];
 let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
+mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, optionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
   console.log('generateMediaKeyRequest' + mediaKeyRequest);
 }).catch((err: BusinessError) => {
   console.error(`generateMediaKeyRequest: ERROR: ${err}`);
@@ -1154,7 +1247,7 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1274,7 +1367,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1321,7 +1414,7 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1369,7 +1462,7 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1461,7 +1554,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.      |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1503,7 +1596,7 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1522,7 +1615,7 @@ function registerKeyRequired(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听密钥请求事件。
+注销监听密钥请求事件，注销密钥请求事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1539,7 +1632,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.             |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1573,7 +1666,7 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.          |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1592,7 +1685,7 @@ function registerKeyExpired(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听密钥过期事件。
+注销监听密钥过期事件，注销密钥过期事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1609,7 +1702,7 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1643,7 +1736,7 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1662,7 +1755,7 @@ function registerVendorDefinedt(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听第三方定义事件。
+注销监听第三方定义事件，注销第三方定义事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1679,7 +1772,7 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.      |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1713,7 +1806,7 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.        |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1732,7 +1825,7 @@ function registerExpirationUpdate(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
-注销监听过期更新事件。
+注销监听过期更新事件，注销过期更新事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1749,7 +1842,7 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.       |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1783,7 +1876,7 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.             |
 | 24700101                |  All unknown errors                  |
 
 **示例：**
@@ -1792,8 +1885,8 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 import drm from '@ohos.multimedia.drm';
 
 function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keysChange', (eventInfo: drm.EventInfo) => {
-        console.log('keysChange' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
+    mediaKeysession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
+        console.log('keysChange' + 'keyId:' + keyInfo.keyId + ' data:' + keyInfo.value);
     });
 }
 ```
@@ -1802,7 +1895,7 @@ function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
 
 off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
-注销监听密钥变化事件。
+注销监听密钥变化事件，注销密钥变化事件回调函数。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1819,7 +1912,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 
 **示例：**

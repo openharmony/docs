@@ -55,17 +55,22 @@ Called when saving fails.
       console.log("save request on failure");
     }
   }
-  ...
-  Button('requestAutoSave')
-    .onClick(() => {
-      try {
-        // Initiate a saving request.
-        autoFillManager.requestAutoSave(uiContext, callback);
-      } catch (error) {
-        console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
-      }
-    })
-  ...
+  
+  @Entry
+  @Component
+  struct Index {
+    build() {
+      Button('requestAutoSave')
+        .onClick(() => {
+          try {
+            // Initiate a saving request.
+            autoFillManager.requestAutoSave(uiContext, callback);
+          } catch (error) {
+            console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+          }
+        })
+    }
+  }
   ```
 
 > **NOTE**

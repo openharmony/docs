@@ -1,14 +1,14 @@
 # 图片解码(C/C++)
 
-图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO。
+图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG。
 
 ## 开发步骤
 
-图片解码相关API的详细介绍请参见：[图片解码接口说明](../../reference/apis-image-kit/js-apis-image.md#imagesource)。
+图片解码相关API的详细介绍请参见：[图片解码接口文档](../../reference/apis-image-kit/js-apis-image.md)。
 
 ### 添加依赖
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添libpixelmap_ndk.z.so libimage_source_ndk.z.so librawfile.z.so 以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加libace_napi.z.so，libpixelmap_ndk.z.so，libimage_source_ndk.z.so，librawfile.z.so 以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so libimage_source_ndk.z.so librawfile.z.so)

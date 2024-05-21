@@ -6,6 +6,7 @@
 >
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 该组件的父组件只能是[List](ts-container-list.md)或者[ListItemGroup](ts-container-listitemgroup.md)。
+> - 当ListItem配合LazyForEach使用时，ListItem子组件在ListItem创建时创建。配合if/else、ForEach使用时，或父组件为List/ListItemGroup时，ListItem子组件在ListItem布局时创建。
 
 ## 子组件
 
@@ -13,11 +14,13 @@
 
 ## 接口
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 ### ListItem<sup>10+</sup>
 
 ListItem(value?: ListItemOptions)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -81,6 +84,8 @@ selectable(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -97,6 +102,8 @@ selected(value: boolean)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -110,6 +117,8 @@ selected(value: boolean)
 swipeAction(value: SwipeActionOptions)
 
 用于设置ListItem的划出组件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -136,6 +145,9 @@ swipeAction(value: SwipeActionOptions)
 | Movable |  2  | 可移动。 |
 
 ## SwipeEdgeEffect<sup>9+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 枚举值 | 描述        |
 | ------ | ------ | --------- |
 |   Spring   |    0    | ListItem划动距离超过划出组件大小后可以继续划动。<br>如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，<br/>松手后按照弹簧阻尼曲线回弹。 |
@@ -149,10 +161,10 @@ start和end对应的@builder函数中顶层必须是单个组件，不能是if/e
 
 | 名称                         | 类型                                                         | 必填 | 描述                                                         |
 | ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| start                        | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。 |
-| end                          | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。 |
-| edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9枚举说明)                 | 否   | 滑动效果。                                                   |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。                                   |
+| start                        | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| end                          | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9枚举说明)                 | 否   | 滑动效果。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。                                     <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ## SwipeActionItem<sup>10+</sup>对象说明
 
@@ -161,13 +173,15 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| actionAreaDistance | [Length](ts-types.md#length) | 否 | 设置组件长距离滑动删除距离阈值。<br/>默认值：56vp <br/>**说明：** <br/>不支持设置百分比。<br/>删除距离阈值大于item宽度减去划出组件宽度，或删除距离阈值小于等于0就不会设置删除区域。|
-| onAction | () => void | 否 | 组件进入长距删除区后删除ListItem时调用，进入长距删除区后抬手时触发。<br/>**说明：** <br/> 滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才会触发。|
-| onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 |
-| onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
-| builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
-| onStateChange<sup>11+</sup> | (swipeActionState) => void | 否 |当列表项滑动状态变化时候触发。 |
+| actionAreaDistance | [Length](ts-types.md#length) | 否 | 设置组件长距离滑动删除距离阈值。<br/>默认值：56vp <br/>**说明：** <br/>不支持设置百分比。<br/>删除距离阈值大于item宽度减去划出组件宽度，或删除距离阈值小于等于0就不会设置删除区域。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| onAction | () => void | 否 | 组件进入长距删除区后删除ListItem时调用，进入长距删除区后抬手时触发。<br/>**说明：** <br/> 滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才会触发。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| onStateChange<sup>11+</sup> | (swipeActionState) => void | 否 |当列表项滑动状态变化时候触发。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 ## ListItemOptions<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -181,12 +195,16 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 ## ListItemStyle<sup>10+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 枚举值  | 描述               |
 | ---- | ---- | ------------------ |
 | NONE | 0 | 无样式。           |
 | CARD | 1 | 显示默认卡片样式。 |
 
 ## SwipeActionState<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称      | 枚举值     | 描述                                                         |
 | --------- | --------- | ------------------------------------------------------------ |
@@ -203,6 +221,8 @@ onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 ListItem元素被鼠标框选的状态改变时触发回调。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

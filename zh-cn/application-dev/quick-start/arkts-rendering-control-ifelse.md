@@ -124,7 +124,7 @@ struct MainView {
 }
 ```
 
-CounterView（label为 'CounterView \#positive'）子组件在初次渲染时创建。此子组件携带名为counter的状态变量。当修改CounterView.counter状态变量时，CounterView（label为 'CounterView \#positive'）子组件重新渲染时并保留状态变量值。当MainView.toggle状态变量的值更改为false时，MainView父组件内的if语句将更新，随后将删除CounterView（label为 'CounterView \#positive'）子组件。与此同时，将创建新的CounterView（label为 'CounterView \#negative'）实例。而它自己的counter状态变量设置为初始值0。
+CounterView（label为 'CounterView \#positive'）子组件在初次渲染时创建。此子组件携带名为counter的状态变量。当修改CounterView.counter状态变量时，CounterView（label为 'CounterView \#positive'）子组件重新渲染并保留状态变量值。当MainView.toggle状态变量的值更改为false时，MainView父组件内的if语句将更新，随后将删除CounterView（label为 'CounterView \#positive'）子组件。与此同时，将创建新的CounterView（label为 'CounterView \#negative'）实例。而它自己的counter状态变量设置为初始值0。
 
 > **说明：**
 >

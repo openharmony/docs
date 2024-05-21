@@ -38,25 +38,26 @@ add(attributes: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000003 | The Asset already exists.                                  |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000003 | The asset already exists.                                  |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000014 | The operation of file is failed.                           |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.                           |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -71,11 +72,12 @@ attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 try {
   asset.add(attr).then(() => {
     console.info(`Asset added successfully.`);
-  }).catch(() => {
-    console.error(`Failed to add Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
   })
 } catch (error) {
-  console.error(`Failed to add Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -99,25 +101,26 @@ addSync(attributes: AssetMap): void
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000003 | The Asset already exists.                                  |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000003 | The asset already exists.                                  |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000014 | The operation of file is failed.                           |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.                           |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -132,7 +135,8 @@ attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 try {
   asset.addSync(attr);
 } catch (error) {
-  console.error(`Failed to add Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to add Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -161,22 +165,23 @@ remove(query: AssetMap): Promise\<void>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -188,11 +193,12 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
   asset.remove(query).then(() => {
     console.info(`Asset removed successfully.`);
-  }).catch(() => {
-    console.error(`Failed to remove Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to remove Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -215,22 +221,23 @@ removeSync(query: AssetMap): void
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -242,7 +249,8 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
   asset.removeSync(query);
 } catch (error) {
-  console.error(`Failed to remove Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to remove Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -272,24 +280,25 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -303,11 +312,12 @@ attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 try {
   asset.update(query, attrsToUpdate).then(() => {
     console.info(`Asset updated successfully.`);
-  }).catch(() => {
-    console.error(`Failed to update Asset.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to update Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -331,24 +341,25 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -362,7 +373,8 @@ attrsToUpdate.set(asset.Tag.SECRET, stringToArray('demo_pwd_new'));
 try {
   asset.updateSync(query, attrsToUpdate);
 } catch (error) {
-  console.error(`Failed to update Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to update Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -370,7 +382,7 @@ try {
 
 preQuery(query: AssetMap): Promise\<Uint8Array>
 
-查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promist方式异步返回结果。
+查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -391,17 +403,17 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The argument is invalid.                                     |
-| 24000001 | The ASSET Service is unavailable.                            |
-| 24000002 | The queried Asset can not be found.                          |
-| 24000005 | The screen lock status mismatches.                           |
+| 24000001 | The ASSET service is unavailable.                            |
+| 24000002 | The asset is not found.                          |
+| 24000005 | The screen lock status does not match.                           |
 | 24000006 | Insufficient memory.                                         |
-| 24000007 | The Asset is corrupted.                                      |
-| 24000008 | The database operation is failed.                            |
-| 24000009 | The cryptography operation is failed.                        |
-| 24000010 | IPC communication is failed                                  |
-| 24000011 | The operation of calling Bundle Manager Service is failed.   |
-| 24000012 | The operation of calling OS Account Service is failed.       |
-| 24000013 | The operation of calling Access Token Service is failed.     |
+| 24000007 | The asset is corrupted.                                      |
+| 24000008 | The database operation failed.                            |
+| 24000009 | The cryptography operation failed.                        |
+| 24000010 | IPC failed.                                  |
+| 24000011 | Calling the Bundle Manager service failed.   |
+| 24000012 | Calling the OS Account service failed.       |
+| 24000013 | Calling the Access Token service failed.     |
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
@@ -410,6 +422,7 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -421,11 +434,12 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
   asset.preQuery(query).then((challenge: Uint8Array) => {
     console.info(`Succeeded in pre-querying Asset.`);
-  }).catch (() => {
-    console.error(`Failed to pre-query Asset.`);
+  }).catch ((err: BusinessError) => {
+    console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to pre-query Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -454,17 +468,17 @@ preQuerySync(query: AssetMap): Uint8Array
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The argument is invalid.                                     |
-| 24000001 | The ASSET Service is unavailable.                            |
-| 24000002 | The queried Asset can not be found.                          |
-| 24000005 | The screen lock status mismatches.                           |
+| 24000001 | The ASSET service is unavailable.                            |
+| 24000002 | The asset is not found.                          |
+| 24000005 | The screen lock status does not match.                           |
 | 24000006 | Insufficient memory.                                         |
-| 24000007 | The Asset is corrupted.                                      |
-| 24000008 | The database operation is failed.                            |
-| 24000009 | The cryptography operation is failed.                        |
-| 24000010 | IPC communication is failed                                  |
-| 24000011 | The operation of calling Bundle Manager Service is failed.   |
-| 24000012 | The operation of calling OS Account Service is failed.       |
-| 24000013 | The operation of calling Access Token Service is failed.     |
+| 24000007 | The asset is corrupted.                                      |
+| 24000008 | The database operation failed.                            |
+| 24000009 | The cryptography operation failed.                        |
+| 24000010 | IPC failed.                                  |
+| 24000011 | Calling the Bundle Manager service failed.   |
+| 24000012 | Calling the OS Account service failed.       |
+| 24000013 | Calling the Access Token service failed.     |
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
@@ -473,6 +487,7 @@ preQuerySync(query: AssetMap): Uint8Array
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -484,7 +499,8 @@ query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 try {
   let challenge: Uint8Array = asset.preQuerySync(query);
 } catch (error) {
-  console.error(`Failed to pre-query Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to pre-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -513,18 +529,18 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000004 | The access to Asset is denied.                             |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000004 | Access to the asset is denied.                             |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
 **示例代码：**
@@ -532,6 +548,7 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -547,11 +564,12 @@ try {
       let accessibility: number = res[i].get(asset.Tag.ACCESSIBILITY) as number;
     }
     console.info(`Asset query succeeded.`);
-  }).catch (() => {
-    console.error(`Failed to query Asset.`);
+  }).catch ((err: BusinessError) => {
+    console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to query Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -580,18 +598,18 @@ querySync(query: AssetMap): Array\<AssetMap>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000004 | The access to Asset is denied.                             |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000004 | Access to the asset is denied.                             |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
 **示例代码：**
@@ -599,6 +617,7 @@ querySync(query: AssetMap): Array\<AssetMap>
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
 import { util } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToArray(str: string): Uint8Array {
   let textEncoder = new util.TextEncoder();
@@ -617,7 +636,8 @@ try {
     }
   }
 } catch (error) {
-  console.error(`Failed to query Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -646,17 +666,18 @@ postQuery(handle: AssetMap): Promise\<void>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
+| 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
 **示例代码：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuery执行成功返回的挑战值
@@ -664,11 +685,12 @@ handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 try {
   asset.postQuery(handle).then(() => {
     console.info(`Succeeded in post-querying Asset.`);
-  }).catch (() => {
-    console.error(`Failed to post-query Asset.`);
+  }).catch ((err: BusinessError) => {
+    console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
   });
 } catch (error) {
-  console.error(`Failed to post-query Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -691,17 +713,18 @@ postQuerySync(handle: AssetMap): void
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
+| 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
 **示例代码：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let handle: asset.AssetMap = new Map();
 // 此处传入的new Uint8Array(32)仅作为示例，实际应传入asset.preQuerySync执行成功返回的挑战值
@@ -709,7 +732,8 @@ handle.set(asset.Tag.AUTH_CHALLENGE, new Uint8Array(32));
 try {
   asset.postQuerySync(handle)
 } catch (error) {
-  console.error(`Failed to post-query Asset.`);
+  let err = error as BusinessError;
+  console.error(`Failed to post-query Asset. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -733,7 +757,7 @@ try {
 
 > **说明：**
 >
-> 以下为Tag类型的全量枚举值，每个接口可传的Tag枚举及对应的Value取值范围不同，详见[开发指南](../../security/AssetStoreKit/Readme-CN.md)。
+> 以下为Tag类型的全量枚举值，每个接口可传的Tag枚举及对应的Value取值范围不同，详见[各个场景的开发指导](../../security/AssetStoreKit/asset-store-kit-overview.md)。
 
 | 名称 | 值                                  | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -755,11 +779,17 @@ try {
 | DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
 | DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
 | DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
+| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
 | RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | 关键资产查询返回的结果类型                                         |
 | RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | 关键资产查询返回的结果数量                                         |
 | RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | 关键资产查询返回的结果偏移量<br>**说明：** 用于分批查询场景，指定从第几个开始返回                                 |
 | RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序<br>**说明：** 默认按照关键资产新增的顺序返回。 |
 | CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | 新增关键资产时的冲突（如：别名相同）处理策略                             |
+| UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | 数据的更新时间（时间戳形式） |
+| OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | 附加的操作类型 |
 
 ## Value
 
@@ -810,11 +840,12 @@ type AssetMap = Map\<Tag, Value>
 
 **系统能力：** SystemCapability.Security.Asset
 
-| 名称           | 值     | 说明                                             |
-| -------------- | ------ | ------------------------------------------------ |
-| NEVER          | 0      | 不允许同步关键资产。                             |
-| THIS_DEVICE    | 1 << 0 | 只在本设备进行同步，如仅在本设备还原的备份场景。 |
-| TRUSTED_DEVICE | 1 << 1 | 只在可信设备间进行同步，如克隆场景。             |
+| 名称                          | 值     | 说明                                             |
+| ----------------------------- | ------ | ------------------------------------------------ |
+| NEVER                         | 0      | 不允许同步关键资产。                             |
+| THIS_DEVICE                   | 1 << 0 | 只在本设备进行同步，如仅在本设备还原的备份场景。 |
+| TRUSTED_DEVICE                | 1 << 1 | 只在可信设备间进行同步，如克隆场景。             |
+| TRUSTED_ACCOUNT<sup>12+</sup> | 1 << 2 | 只在登录可信账号的设备间进行同步，如云同步场景。 |
 
 ## ReturnType
 
@@ -837,3 +868,42 @@ type AssetMap = Map\<Tag, Value>
 | ----------- | ---- | ---------------------------- |
 | OVERWRITE   | 0    | 覆盖原有的关键资产。    |
 | THROW_ERROR | 1    | 抛出异常，由业务进行后续处理。 |
+
+## OperationType<sup>12+</sup>
+
+枚举，附属的操作类型。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 名称        | 值   | 说明               |
+| ----------- | ---- | ------------------ |
+| NEED_SYNC   | 0    | 需要进行同步操作。 |
+| NEED_LOGOUT | 1    | 需要进行登出操作。 |
+
+## AssetErrorCode
+
+表示错误码的枚举。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 名称                       | 值    | 说明 |
+| -------------------------- | ----- | ---- |
+| PERMISSION_DENIED | 201     |The caller doesn't have the permission.|
+| INVALID_ARGUMENT | 401    |The argument is invalid.|
+| SERVICE_UNAVAILABLE | 24000001    |The ASSET service is unavailable.|
+| NOT_FOUND | 24000002    |The asset is not found.|
+| DUPLICATED | 24000003    |The asset already exists.|
+| ACCESS_DENIED | 24000004    |Access to the asset is denied.|
+| STATUS_MISMATCH | 24000005    |The screen lock status does not match.|
+| OUT_OF_MEMORY | 24000006    |Insufficient memory.|
+| DATA_CORRUPTED | 24000007    |The asset is corrupted.|
+| DATABASE_ERROR | 24000008   |The database operation failed.|
+| CRYPTO_ERROR | 24000009   |The cryptography operation failed.|
+| IPC_ERROR | 24000010   |IPC failed.|
+| BMS_ERROR | 24000011   |Calling the Bundle Manager service failed.|
+| ACCOUNT_ERROR | 24000012   |Calling the OS Account service failed.|
+| ACCESS_TOKEN_ERROR | 24000013   |Calling the Access Token service failed.|
+| FILE_OPERATION_ERROR | 24000014   |The file operation failed.|
+| GET_SYSTEM_TIME_ERROR | 24000015   |Getting the system time failed.|
+| LIMIT_EXCEEDED | 24000016   |The cache exceeds the limit.|
+| UNSUPPORTED | 24000017   |The capability is not supported.|

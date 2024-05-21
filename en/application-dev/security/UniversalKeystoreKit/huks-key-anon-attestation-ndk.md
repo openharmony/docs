@@ -5,9 +5,9 @@
 
 1. Set the key alias (**keyAlias**), which cannot exceed 64 bytes.
 
-2. Initialize the parameter set. Use [OH_Huks_InitParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/native-apis/_huks_param_set_api.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_buildparamset) to construct **paramSet**. **paramSet** must contain [OH_Huks_KeyAlg](../../reference/native-apis/_huks_type_api.md#oh_huks_keyalg), [OH_Huks_KeySize](../../reference/native-apis/_huks_type_api.md#oh_huks_keysize), and [OH_Huks_KeyPurpose](../../reference/native-apis/_huks_type_api.md#oh_huks_keypurpose).
+2. Initialize the parameter set. Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset), [OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams), and [OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset) to construct **paramSet**. **paramSet** must contain [OH_Huks_KeyAlg](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg), [OH_Huks_KeySize](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize), and [OH_Huks_KeyPurpose](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose).
 
-3. Use [OH_Huks_AnonAttestKeyItem](../../reference/native-apis/_huks_key_api.md#oh_huks_anonattestkeyitem) with the key alias and parameter set to perform key attestation.
+3. Use [OH_Huks_AnonAttestKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_anonattestkeyitem) with the key alias and parameter set to perform key attestation.
 
 ```c++
 #include "huks/native_huks_api.h"
@@ -140,4 +140,3 @@ static napi_value AnonAttestKey(napi_env env, napi_callback_info info)
     return ret;
 }
 ```
-<!--no_check-->

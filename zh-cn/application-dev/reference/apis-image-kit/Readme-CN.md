@@ -5,7 +5,11 @@
 - C API
   - 模块
     - [Image](image.md)
+    - [ImageEffect](_image_effect.md)
   - 头文件
+    - [image_effect.h](image__effect_8h.md)
+    - [image_effect_errors.h](image__effect__errors_8h.md)
+    - [image_effect_filter.h](image__effect__filter_8h.md)
     - [image_mdk.h](image__mdk_8h.md)
     - [image_mdk_common.h](image__mdk__common_8h.md)
     - [image_packer_mdk.h](image__packer__mdk_8h.md)
@@ -14,6 +18,12 @@
     - [image_receiver_mdk.h](image__receiver__mdk_8h.md)
     - [image_source_mdk.h](image__source__mdk_8h.md)
   - 结构体
+    - [ImageEffect_Any](_image_effect___any.md)
+    - [ImageEffect_DataValue](union_image_effect___data_value.md)
+    - [ImageEffect_FilterDelegate](_image_effect___filter_delegate.md)
+    - [ImageEffect_FilterNames](_image_effect___filter_names.md)
+    - [ImageEffect_Region](_image_effect___region.md)
+    - [ImageEffect_Size](_image_effect___size.md)
     - [ImagePacker_Opts_](_image_packer___opts__.md)
     - [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
     - [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)

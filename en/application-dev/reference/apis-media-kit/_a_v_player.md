@@ -17,38 +17,38 @@ The AVPlayer module provides APIs related to media playback.
 
 | Name| Description| 
 | -------- | -------- |
-| [avplayer.h](avplayer_8h.md) | Declares the AVPlayer APIs. You can use the native AVPlayer APIs to play a media asset.| 
-| [avplayer_base.h](avplayer__base_8h.md) | Declares the structs and enums of the AVPlayer.| 
+| [avplayer.h](avplayer_8h.md) | Declares the AVPlayer APIs. You can use the native AVPlayer APIs to play a media asset.<br>**File to include**:<br> \<multimedia/player_framework/avplayer.h> <br>**Library**: <text>libavplayer.so</text>| 
+| [avplayer_base.h](avplayer__base_8h.md) | Declares the structs and enums of the AVPlayer.<br>**File to include**:<br> \<multimedia/player_framework/avplayer_base.h> <br>**Library**: <text>libavplayer.so</text>| 
 
 
 ### Structs
 
 | Name| Description| 
 | -------- | -------- |
-| [AVPlayerCallback](_a_v_player_callback.md) | Defines all the callback function pointers of an **OH_AVPlayer** instance.| 
+| [AVPlayerCallback](_a_v_player_callback.md) | Describes all the callback function pointers of an **OH_AVPlayer** instance.| 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| [AVPlayerState](#avplayerstate) | Defines an enum that enumerates the AVPlayer states.| 
-| [AVPlayerSeekMode](#avplayerseekmode) | Defines an enum that enumerates the seek modes of the AVPlayer.| 
-| [AVPlaybackSpeed](#avplaybackspeed) | Defines an enum that enumerates the playback speeds of the AVPlayer.| 
-| [AVPlayerOnInfoType](#avplayeroninfotype) | Defines an enum that enumerates the types of messages received by the AVPlayer.| 
+| [AVPlayerState](#avplayerstate) | Defines an enum for AVPlayer states.| 
+| [AVPlayerSeekMode](#avplayerseekmode) | Defines an enum for seek modes of the AVPlayer.| 
+| [AVPlaybackSpeed](#avplaybackspeed) | Defines an enum for playback speeds of the AVPlayer.| 
+| [AVPlayerOnInfoType](#avplayeroninfotype) | Defines an enum for types of messages received by the AVPlayer.| 
 | (\*[OH_AVPlayerOnInfo](#oh_avplayeroninfo)) (OH_AVPlayer \*player, [AVPlayerOnInfoType](#avplayeroninfotype) type, int32_t extra) | Defines the callback when the AVPlayer receives a message.| 
 | (\*[OH_AVPlayerOnError](#oh_avplayeronerror)) (OH_AVPlayer \*player, int32_t errorCode, const char \*errorMsg) | Defines the callback when an error occurs in the AVPlayer. This type is available in API version 9 or later.| 
-| [AVPlayerCallback](#avplayercallback) | Defines all the callback function pointers of an **OH_AVPlayer** instance.| 
+| [AVPlayerCallback](#avplayercallback) | Defines a struct that describes all the callback function pointers of an **OH_AVPlayer** instance.| 
 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [AVPlayerState](#avplayerstate) {<br>AV_IDLE = 0, AV_INITIALIZED = 1, AV_PREPARED = 2, AV_PLAYING = 3,<br>AV_PAUSED = 4, AV_STOPPED = 5, AV_COMPLETED = 6, AV_RELEASED = 7,<br>AV_ERROR = 8<br>} | Enumerates the AVPlayer states.| 
-| [AVPlayerSeekMode](#avplayerseekmode) { AV_SEEK_NEXT_SYNC = 0, AV_SEEK_PREVIOUS_SYNC } | Enumerates the seek modes of the AVPlayer.| 
-| [AVPlaybackSpeed](#avplaybackspeed) {<br>AV_SPEED_FORWARD_0_75_X, AV_SPEED_FORWARD_1_00_X, AV_SPEED_FORWARD_1_25_X, AV_SPEED_FORWARD_1_75_X,<br>AV_SPEED_FORWARD_2_00_X<br>} | Enumerates the playback speeds of the AVPlayer.| 
-| [AVPlayerOnInfoType](#avplayeroninfotype) {<br>AV_INFO_TYPE_SEEKDONE = 0, AV_INFO_TYPE_SPEEDDONE = 1, AV_INFO_TYPE_BITRATEDONE = 2, AV_INFO_TYPE_EOS = 3,<br>AV_INFO_TYPE_STATE_CHANGE = 4, AV_INFO_TYPE_POSITION_UPDATE = 5, AV_INFO_TYPE_MESSAGE = 6, AV_INFO_TYPE_VOLUME_CHANGE = 7,<br>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, AV_INFO_TYPE_BUFFERING_UPDATE = 9, AV_INFO_TYPE_BITRATE_COLLECT = 10, AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br>AV_INFO_TYPE_DURATION_UPDATE = 12, AV_INFO_TYPE_IS_LIVE_STREAM = 13, AV_INFO_TYPE_TRACKCHANGE = 14, AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br>} | Enumerates the types of messages received by the AVPlayer.| 
+| [AVPlayerState](#avplayerstate) {<br>AV_IDLE = 0, <br>AV_INITIALIZED = 1, <br>AV_PREPARED = 2, <br>AV_PLAYING = 3,<br>AV_PAUSED = 4, <br>AV_STOPPED = 5, <br>AV_COMPLETED = 6, <br>AV_RELEASED = 7,<br>AV_ERROR = 8<br>} | Enumerates the AVPlayer states.| 
+| [AVPlayerSeekMode](#avplayerseekmode) { <br>AV_SEEK_NEXT_SYNC = 0, <br>AV_SEEK_PREVIOUS_SYNC, <br>AV_SEEK_CLOSEST = 2<br>} | Enumerates the seek modes of the AVPlayer.| 
+| [AVPlaybackSpeed](#avplaybackspeed) {<br>AV_SPEED_FORWARD_0_75_X, <br>AV_SPEED_FORWARD_1_00_X, <br>AV_SPEED_FORWARD_1_25_X, <br> AV_SPEED_FORWARD_1_75_X,<br>AV_SPEED_FORWARD_2_00_X<br>} | Enumerates the playback speeds of the AVPlayer.| 
+| [AVPlayerOnInfoType](#avplayeroninfotype) {<br>AV_INFO_TYPE_SEEKDONE = 0, <br>AV_INFO_TYPE_SPEEDDONE = 1, <br>AV_INFO_TYPE_BITRATEDONE = 2, <br>AV_INFO_TYPE_EOS = 3,<br>AV_INFO_TYPE_STATE_CHANGE = 4, <br>AV_INFO_TYPE_POSITION_UPDATE = 5, <br>AV_INFO_TYPE_MESSAGE = 6, <br>AV_INFO_TYPE_VOLUME_CHANGE = 7,<br>AV_INFO_TYPE_RESOLUTION_CHANGE = 8, <br>AV_INFO_TYPE_BUFFERING_UPDATE = 9, <br>AV_INFO_TYPE_BITRATE_COLLECT = 10, <br>AV_INFO_TYPE_INTERRUPT_EVENT = 11,<br>AV_INFO_TYPE_DURATION_UPDATE = 12, <br>AV_INFO_TYPE_IS_LIVE_STREAM = 13, <br>AV_INFO_TYPE_TRACKCHANGE = 14, <br>AV_INFO_TYPE_TRACK_INFO_UPDATE = 15,<br>AV_INFO_TYPE_SUBTITLE_UPDATE = 16, AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17<br>} | Enumerates the types of messages received by the AVPlayer.| 
 
 
 ### Functions
@@ -89,8 +89,8 @@ The AVPlayer module provides APIs related to media playback.
 
 | Name| Description| 
 | -------- | -------- |
-| [AVPlayerCallback::onInfo](#oninfo) | Defines the AVPlayer process information. For details, see [OH_AVPlayerOnInfo](oh_avplayeroninfo).| 
-| [AVPlayerCallback::onError](#onerror) | Defines the AVPlayer error information. For details, see [OH_AVPlayerOnError](_oh_avplayeronerror).| 
+| [AVPlayerCallback::onInfo](#oninfo) | AVPlayer process information. For details, see [OH_AVPlayerOnInfo](oh_avplayeroninfo).| 
+| [AVPlayerCallback::onError](#onerror) | AVPlayer error information. For details, see [OH_AVPlayerOnError](#oh_avplayeronerror).| 
 
 
 ## Type Description
@@ -99,12 +99,12 @@ The AVPlayer module provides APIs related to media playback.
 ### AVPlaybackSpeed
 
 ```
-typedef enum AVPlaybackSpeedAVPlaybackSpeed
+typedef enum AVPlaybackSpeed AVPlaybackSpeed
 ```
 
 **Description**
 
-Defines an enum that enumerates the playback speeds of the AVPlayer.
+Defines an enum for playback speeds of the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -114,7 +114,7 @@ Defines an enum that enumerates the playback speeds of the AVPlayer.
 ### AVPlayerCallback
 
 ```
-typedef struct AVPlayerCallbackAVPlayerCallback
+typedef struct AVPlayerCallback AVPlayerCallback
 ```
 
 **Description**
@@ -129,12 +129,12 @@ Defines all the callback function pointers of an **OH_AVPlayer** instance. To en
 ### AVPlayerOnInfoType
 
 ```
-typedef enum AVPlayerOnInfoTypeAVPlayerOnInfoType
+typedef enum AVPlayerOnInfoType AVPlayerOnInfoType
 ```
 
 **Description**
 
-Defines an enum that enumerates the types of messages received by the AVPlayer.
+Defines an enum for types of messages received by the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -144,12 +144,12 @@ Defines an enum that enumerates the types of messages received by the AVPlayer.
 ### AVPlayerSeekMode
 
 ```
-typedef enum AVPlayerSeekModeAVPlayerSeekMode
+typedef enum AVPlayerSeekMode AVPlayerSeekMode
 ```
 
 **Description**
 
-Defines an enum that enumerates the seek modes of the AVPlayer.
+Defines an enum for seek modes of the AVPlayer.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -159,12 +159,12 @@ Defines an enum that enumerates the seek modes of the AVPlayer.
 ### AVPlayerState
 
 ```
-typedef enum AVPlayerStateAVPlayerState
+typedef enum AVPlayerState AVPlayerState
 ```
 
 **Description**
 
-Defines an enum that enumerates the AVPlayer states.
+Defines an enum for AVPlayer states.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -241,6 +241,8 @@ Enumerates the playback speeds of the AVPlayer.
 | AV_SPEED_FORWARD_1_25_X | Plays the video at 1.25 times the normal speed.| 
 | AV_SPEED_FORWARD_1_75_X | Plays the video at 1.75 times the normal speed.| 
 | AV_SPEED_FORWARD_2_00_X | Plays the video at 2.0 times the normal speed.| 
+| AV_SPEED_FORWARD_0_50_X | Plays the video at 0.5 times the normal speed.<br>**Since**: 12| 
+| AV_SPEED_FORWARD_1_50_X | Plays the video at 1.5 times the normal speed.<br>**Since**: 12| 
 
 
 ### AVPlayerOnInfoType
@@ -287,7 +289,7 @@ enum AVPlayerSeekMode
 
 **Description**
 
-Enumerates the seek modes of the AVPlayer.
+Enumerates the seek modes.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -297,6 +299,7 @@ Enumerates the seek modes of the AVPlayer.
 | -------- | -------- |
 | AV_SEEK_NEXT_SYNC | Seeks to the next key frame at the specified position.| 
 | AV_SEEK_PREVIOUS_SYNC | Seeks to the previous key frame at the specified position.| 
+| AV_SEEK_CLOSEST | Seeks to the frame closest to the specified position.<br>**Since**: 12| 
 
 
 ### AVPlayerState
@@ -371,7 +374,7 @@ Deselects an audio or subtitle track.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the track is deselected; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_GetCurrentTime()
@@ -397,7 +400,7 @@ Obtains the playback position, in milliseconds.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the playback position is obtained; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the playback position is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_GetCurrentTrack()
@@ -426,7 +429,7 @@ You can set the track to the prepared, playing, paused, or completed state.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the operation is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_GetDuration()
@@ -452,7 +455,7 @@ Obtains the total duration of a media file, in milliseconds.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the total duration is obtained; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the total duration is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_GetPlaybackSpeed()
@@ -478,7 +481,7 @@ Obtains the playback speed of an AVPlayer.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the playback speed is obtained; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the playback speed is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_GetState()
@@ -504,7 +507,7 @@ Obtains the AVPlayer state.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the state is obtained; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the state is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_GetVideoHeight()
@@ -530,7 +533,7 @@ Obtains the video height.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the video height is obtained; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the video height is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_GetVideoWidth()
@@ -556,7 +559,7 @@ Obtains the video width.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the video width is obtained; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the video width is obtained; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_IsLooping()
@@ -631,7 +634,7 @@ Pauses playback.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the playback is paused; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if **Pause** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_Play()
@@ -658,7 +661,7 @@ This function must be called after **Prepare**. In other words, you can call thi
 
 **Returns**
 
-Returns **AV_ERR_OK** if the playback starts; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the playback starts; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_Prepare()
@@ -685,7 +688,7 @@ This function must be called after **SetSource**.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the playback environment is prepared; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if **Prepare** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_Release()
@@ -712,7 +715,7 @@ The asynchronous function ensures the performance, but cannot ensure that the su
 
 **Returns**
 
-Returns **AV_ERR_OK** if the AVPlayer is released; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if **Release** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_ReleaseSync()
@@ -739,7 +742,7 @@ The synchronous function ensures that the surface buffer of the playback window 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the AVPlayer is released; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the AVPlayer is released; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_Reset()
@@ -766,7 +769,7 @@ After the function is called, you can call **SetSource** to set the media source
 
 **Returns**
 
-Returns **AV_ERR_OK** if the AVPlayer is reset; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if **Reset** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_Seek()
@@ -817,7 +820,7 @@ in bit/s. This function is valid only for HLS network streams. By default, the p
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_SelectTrack()
@@ -845,7 +848,7 @@ By default, the first audio stream with data is played, and the subtitle track i
 
 **Returns**
 
-Returns **AV_ERR_OK** if a track is selected; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if a track is selected; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_SetFDSource()
@@ -873,7 +876,7 @@ Sets the file descriptor of a media source to be played by an AVPlayer.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_SetLooping()
@@ -899,7 +902,7 @@ Enables loop playback.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_SetPlaybackSpeed()
@@ -941,11 +944,11 @@ Sets a callback for an AVPlayer.
 | Name| Description| 
 | -------- | -------- |
 | player | Pointer to an **OH_AVPlayer** instance.| 
-| callback | Callback.| 
+| callback | Callback used to return the result.| 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_SetURLSource()
@@ -971,7 +974,7 @@ Sets the HTTP URL of a media source to be played by an AVPlayer.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_SetVideoSurface()
@@ -1020,7 +1023,7 @@ This function can be used when the AVPlayer is in the playing or paused state. T
 
 **Returns**
 
-Returns **AV_ERR_OK** if the setting is successful; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if the setting is successful; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ### OH_AVPlayer_Stop()
@@ -1045,7 +1048,7 @@ Stops playback.
 
 **Returns**
 
-Returns **AV_ERR_OK** if the AVPlayer is stopped; returns an error code defined in **native_averrors.h** otherwise.
+Returns **AV_ERR_OK** if **Stop** is added to the task queue; returns an error code of [OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) defined in [native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md) otherwise.
 
 
 ## Variable Description
@@ -1059,7 +1062,7 @@ OH_AVPlayerOnError AVPlayerCallback::onError
 
 **Description**
 
-Defines the AVPlayer error information. For details, see [OH_AVPlayerOnError](_oh_avplayeronerror).
+AVPlayer error information. For details, see [OH_AVPlayerOnError](#oh_avplayeronerror).
 
 
 ### onInfo
@@ -1070,4 +1073,4 @@ OH_AVPlayerOnInfo AVPlayerCallback::onInfo
 
 **Description**
 
-Defines the AVPlayer process information. For details, see [OH_AVPlayerOnInfo](oh_avplayeroninfo).
+AVPlayer process information. For details, see [OH_AVPlayerOnInfo](#oh_avplayeroninfo).

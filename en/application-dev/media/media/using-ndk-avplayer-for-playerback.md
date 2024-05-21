@@ -56,7 +56,7 @@ void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
         case AV_INFO_TYPE_STATE_CHANGE:
             switch (extra) {
                 case AV_IDLE: // This state is reported upon a successful callback of OH_AVPlayer_Reset().
-                    *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3"
+                    url = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
                     ret = OH_AVPlayer_SetURLSource (player, url); // Set the URL.
                     if (ret != AV_ERR_OK) {
                     // Exception processing.

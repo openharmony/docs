@@ -18,7 +18,7 @@ This component supports only one child component.
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name                   | Type     | Default Value  | Mandatory  | Description          |
 | --------------------- | ------- | ----- | ---- | ------------ |
@@ -31,12 +31,12 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
-Only the **width**, **height**, **margin**, **margin-[left|top|right|bottom]**, and **margin-[start|end]** styles in [Universal Styles](../arkui-js/js-components-common-styles.md) are supported.
+Only the **width**, **height**, **margin**, **margin-[left|top|right|bottom]**, and **margin-[start|end]** styles in [Universal Styles](js-components-common-styles.md) are supported.
 
 
 ## Events
 
-The following events are supported. The [universal events](../arkui-js/js-components-common-events.md) are not supported.
+The following events are supported. The [universal events](js-components-common-events.md) are not supported.
 
 | Name                | Parameter  | Description                        |
 | ------------------ | ---- | -------------------------- |
@@ -47,7 +47,7 @@ The following events are supported. The [universal events](../arkui-js/js-compon
 
 ## Methods
 
-The following methods are supported. The [universal methods](../arkui-js/js-components-common-methods.md) are not supported.
+The following methods are supported. The [universal methods](js-components-common-methods.md) are not supported.
 
 | Name   | Parameter  | Description    |
 | ----- | ---- | ------ |

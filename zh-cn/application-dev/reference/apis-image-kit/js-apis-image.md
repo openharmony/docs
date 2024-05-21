@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> - 从API version 12开始，本模块接口支持在ArkTS卡片中使用。
 
 ## 导入模块
 
@@ -44,7 +46,7 @@ async function Demo() {
     image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
         console.info('Succeeded in creating pixelmap.');
     }).catch((error: BusinessError) => {
-        console.error('Failed to create pixelmap.');
+        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
     })
 }
 ```
@@ -75,7 +77,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
         if(error) {
-            console.error('Failed to create pixelmap.');
+            console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
             return;
         } else {
             console.info('Succeeded in creating pixelmap.');
@@ -141,7 +143,7 @@ class MySequence implements rpc.Parcelable {
             this.pixel_map = image.createPixelMapFromParcel(messageSequence);
         } catch(e) {
             let error = e as BusinessError;
-            console.error(`createPixelMapFromParcel error: ${error}`);
+            console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
             return false;
         }
       return true;
@@ -160,7 +162,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -216,10 +218,10 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await image.createPixelMapFromSurface(surfaceId, region).then(() => {
+    image.createPixelMapFromSurface(surfaceId, region).then(() => {
         console.info('Succeeded in creating pixelmap from Surface');
     }).catch((error: BusinessError) => {
-        console.error('Failed to create pixelmap');
+        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
     });
 } 
 ```
@@ -250,7 +252,7 @@ createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMa
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 
 **示例：**
 
@@ -264,6 +266,270 @@ async function Demo() {
     return pixelMap;
 }
 ```
+
+## image.createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options: InitializationOptions): PixelMap
+
+通过属性创建PixelMap，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
+    return pixelMap;
+}
+```
+
+## image.createPremultipliedPixelMap<sup>12+</sup>
+
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
+
+将PixelMap的透明通道非预乘模式转变为预乘模式，转换后的数据存入目标PixelMap，通过回调函数返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。 |
+|callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+        if(error) {
+            console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+            return;
+        } else {
+            console.info('Succeeded in converting pixelmap.');
+        }
+    })
+}
+```
+
+## image.createPremultipliedPixelMap<sup>12+</sup>
+
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
+
+将PixelMap数据按照透明度不前乘格式转为前乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象 |
+
+**返回值：**
+
+| 类型                             | 说明                                                                    |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
+        console.info('Succeeded in converting pixelmap.');
+    }).catch((error: BusinessError) => {
+        console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+}
+```
+
+## image.createUnpremultipliedPixelMap<sup>12+</sup>
+
+createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
+
+将PixelMap的透明通道预乘模式转变为非预乘模式，转换后的数据存入目标PixelMap，通过回调函数返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。|
+|callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+        if(error) {
+            console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+            return;
+        } else {
+            console.info('Succeeded in converting pixelmap.');
+        }
+    })
+}
+```
+
+## image.createUnpremultipliedPixelMap<sup>12+</sup>
+
+createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
+
+将PixelMap的透明通道预乘模式转变为非预乘模式，转换后的数据存入目标PixelMap，通过Promise返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
+| dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。 |
+
+**返回值：**
+
+| 类型                             | 说明                                                                    |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  62980103    | The image data is not supported |
+|  60980246    | Failed to read the PixelMap |
+|  60980248    | PixelMap does not allow modification |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
+        console.info('Succeeded in converting pixelmap.');
+    }).catch((error: BusinessError) => {
+        console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+}
+```
+
 
 ## PixelMap<sup>7+</sup>
 
@@ -279,7 +545,7 @@ async function Demo() {
 
 | 名称              | 类型    | 可读 | 可写 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 |
+| isEditable        | boolean | 是   | 否   | 设定是否图像像素可被编辑。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | isStrideAlignment<sup>11+</sup> | boolean | 是   | 否   | 设定图像内存是否为DMA内存。 |
 
 ### readPixelsToBuffer<sup>7+</sup>
@@ -287,6 +553,10 @@ async function Demo() {
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -313,7 +583,7 @@ async function Demo() {
         pixelMap.readPixelsToBuffer(readBuffer).then(() => {
             console.info('Succeeded in reading image pixel data.'); // 符合条件则进入 
         }).catch((error: BusinessError) => {
-            console.error('Failed to read image pixel data.'); // 不符合条件则进入
+            console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
         })
     }
 }
@@ -324,6 +594,10 @@ async function Demo() {
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -342,9 +616,9 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4
     if (pixelMap != undefined) {
-        pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
-            if(err) {
-                console.error('Failed to read image pixel data.');  //不符合条件则进入
+        pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
+            if(error) {
+                console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
                 return;
             } else {
                 console.info('Succeeded in reading image pixel data.');  //符合条件则进入
@@ -360,6 +634,10 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 以同步方法读取PixelMap到Buffer里。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -374,7 +652,7 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -395,6 +673,10 @@ async function Demo() {
 readPixels(area: PositionArea): Promise\<void>
 
 读取区域内的图片数据，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -426,7 +708,7 @@ async function Demo() {
         pixelMap.readPixels(area).then(() => {
             console.info('Succeeded in reading the image data in the area.'); //符合条件则进入
         }).catch((error: BusinessError) => {
-            console.error('Failed to read the image data in the area.'); //不符合条件则进入
+            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入
         })
     }
 }
@@ -437,6 +719,10 @@ async function Demo() {
 readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读取区域内的图片数据，使用callback形式返回读取结果。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -460,9 +746,9 @@ async function Demo() {
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
     if (pixelMap != undefined) {
-        pixelMap.readPixels(area, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error('Failed to read pixelmap from the specified area.');
+        pixelMap.readPixels(area, (error: BusinessError) => {
+            if (error) {
+                console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
                 console.info('Succeeded to read pixelmap from the specified area.');
@@ -472,11 +758,58 @@ async function Demo() {
 }
 ```
 
+### readPixelsSync<sup>12+</sup>
+
+readPixelsSync(area: PositionArea): void
+
+读取区域内的图片数据并同步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                     |
+| ------ | ------------------------------ | ---- | ------------------------ |
+| area   | [PositionArea](#positionarea7) | 是   | 区域大小，根据区域读取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsSync(area);
+    }
+}
+```
+
 ### writePixels<sup>7+</sup>
 
 writePixels(area: PositionArea): Promise\<void>
 
 将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -524,6 +857,10 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 将PixelMap写入指定区域内，使用callback形式返回写入结果。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -550,8 +887,8 @@ async function Demo() {
     }
     if (pixelMap != undefined) {
         pixelMap.writePixels(area, (error : BusinessError) => {
-            if (error != undefined) {
-                console.error('Failed to write pixelmap into the specified area.');
+            if (error) {
+                console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
                 console.info('Succeeded to write pixelmap into the specified area.');
@@ -561,11 +898,15 @@ async function Demo() {
 }
 ```
 
- ### writePixelsSync<sup>12+</sup>
+### writePixelsSync<sup>12+</sup>
 
 writePixelsSync(area: PositionArea): void
 
 以同步方法将PixelMap写入指定区域内。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -581,7 +922,7 @@ writePixelsSync(area: PositionArea): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -612,6 +953,10 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -641,7 +986,7 @@ async function Demo() {
         pixelMap.writeBufferToPixels(color).then(() => {
             console.info("Succeeded in writing data from a buffer to a PixelMap.");
         }).catch((error: BusinessError) => {
-            console.error("Failed to write data from a buffer to a PixelMap.");
+            console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -652,6 +997,10 @@ async function Demo() {
 writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -674,9 +1023,9 @@ async function Demo() {
         bufferArr[i] = i + 1;
     }
     if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to write data from a buffer to a PixelMap.");
+        pixelMap.writeBufferToPixels(color, (error: BusinessError) => {
+            if (error) {
+                console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
                 console.info("Succeeded in writing data from a buffer to a PixelMap.");
@@ -686,11 +1035,60 @@ async function Demo() {
 }
 ```
 
+### writeBufferToPixelsSync<sup>12+</sup>
+
+writeBufferToPixelsSync(src: ArrayBuffer): void
+
+读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明           |
+| ------ | ----------- | ---- | -------------- |
+| src    | ArrayBuffer | 是   | 图像像素数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixelsSync(color);
+    }
+}
+```
+
+
 ### getImageInfo<sup>7+</sup>
 
 getImageInfo(): Promise\<ImageInfo>
 
 获取图像像素信息，使用Promise形式返回获取的图像像素信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -708,12 +1106,11 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            if (imageInfo == undefined) {
-                console.error("Failed to obtain the image pixel map information.");
+            if (imageInfo != undefined) {
+                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
             }
-            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-                console.info("Succeeded in obtaining the image pixel map information.");
-            }
+        }).catch((error: BusinessError) => {
+            console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -724,6 +1121,10 @@ async function Demo() {
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图像像素信息，使用callback形式返回获取的图像像素信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -740,13 +1141,12 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
-            if (imageInfo == undefined) {
-                console.error("Failed to obtain the image pixel map information.");
+        pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
+            if (error) {
+                console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
                 return;
-            }
-            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-                console.info("Succeeded in obtaining the image pixel map information.");
+            } else {
+                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
             }
         })
     }
@@ -758,6 +1158,10 @@ async function Demo() {
 getImageInfoSync(): ImageInfo
 
 以同步方法获取图像像素信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -782,7 +1186,7 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        let imageInfo : image.PixelMap = pixelMap.getImageInfoSync();
+        let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
         return imageInfo;
     }
 }
@@ -793,6 +1197,10 @@ async function Demo() {
 getBytesNumberPerRow(): number
 
 获取图像像素每行字节数。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -814,6 +1222,10 @@ getPixelBytesNumber(): number
 
 获取图像像素的总字节数。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
@@ -833,6 +1245,10 @@ let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 getDensity():number
 
 获取当前图像像素的密度。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -854,6 +1270,10 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 
 通过设置透明比率来让PixelMap达到对应的透明效果，使用callback形式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -873,7 +1293,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.opacity(rate, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to set opacity.");
+                console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in setting opacity.");
@@ -888,6 +1308,10 @@ async function Demo() {
 opacity(rate: number): Promise\<void>
 
 通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -911,11 +1335,49 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let rate: number = 0.5;
     if (pixelMap != undefined) {
-        await pixelMap.opacity(rate).then(() => {
+        pixelMap.opacity(rate).then(() => {
             console.info('Sucessed in setting opacity.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to set opacity.');
+            console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
         })
+    }
+}
+```
+
+### opacitySync<sup>12+</sup>
+
+opacitySync(rate: number): void
+
+设置PixelMap的透明比率，初始化PixelMap并同步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| -------- | -------------------- | ---- | ------------------------------ |
+| rate     | number               | 是   | 透明比率的值。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let rate : number = 0.5;
+    if (pixelMap != undefined) {
+        pixelMap.opacitySync(rate);
     }
 }
 ```
@@ -925,6 +1387,10 @@ async function Demo() {
 createAlphaPixelmap(): Promise\<PixelMap>
 
 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -941,10 +1407,10 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
             console.info('Succeeded in creating alpha pixelmap.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to create alpha pixelmap.');
+            console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -955,6 +1421,10 @@ async function Demo() {
 createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -973,7 +1443,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
             if (alphaPixelMap == undefined) {
-                console.error('Failed to obtain new pixel map.');
+                console.error(`Failed to obtain new pixel map. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info('Succeed in obtaining new pixel map.');
@@ -983,11 +1453,51 @@ async function Demo() {
 }
 ```
 
+### createAlphaPixelmapSync<sup>12+</sup>
+
+createAlphaPixelmapSync(): PixelMap
+
+根据Alpha通道的信息，生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，同步返回PixelMap类型的结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
+    return pixelmap;
+}
+```
+
 ### scale<sup>9+</sup>
 
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 根据输入的宽高对图片进行缩放，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1010,7 +1520,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to scale pixelmap.");
+                console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in scaling pixelmap.");
@@ -1025,6 +1535,10 @@ async function Demo() {
 scale(x: number, y: number): Promise\<void>
 
 根据输入的宽高对图片进行缩放，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1050,10 +1564,11 @@ async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
     if (pixelMap != undefined) {
-        await pixelMap.scale(scaleX, scaleY).then(() => {
+        pixelMap.scale(scaleX, scaleY).then(() => {
             console.info('Sucessed in scaling pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to scale pixelmap.');
+            console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+            
         })   
     }
 }
@@ -1064,6 +1579,8 @@ async function Demo() {
 scaleSync(x: number, y: number): void
 
 以同步方法根据输入的宽高对图片进行缩放。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1080,7 +1597,7 @@ scaleSync(x: number, y: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **示例：**
@@ -1103,6 +1620,10 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 根据输入的坐标对图片进行位置变换，使用callback形式返回。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
@@ -1124,7 +1645,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.translate(translateX, translateY, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to translate pixelmap.");
+                console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in translating pixelmap.");
@@ -1139,6 +1660,10 @@ async function Demo() {
 translate(x: number, y: number): Promise\<void>
 
 根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1164,11 +1689,51 @@ async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
     if (pixelMap != undefined) {
-        await pixelMap.translate(translateX, translateY).then(() => {
+        pixelMap.translate(translateX, translateY).then(() => {
             console.info('Sucessed in translating pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to translate pixelmap.');
+            console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
         })
+    }
+}
+```
+
+### translateSync<sup>12+</sup>
+
+translateSync(x: number, y: number): void
+
+根据输入的坐标对图片进行位置变换并同步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                            |
+| -------- | -------------------- | ---- | ------------------------------- |
+| x        | number               | 是   | 宽度的缩放倍数。|
+| y        | number               | 是   | 高度的缩放倍数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    if (pixelMap != undefined) {
+        pixelMap.translateSync(translateX, translateY);
     }
 }
 ```
@@ -1178,6 +1743,10 @@ async function Demo() {
 rotate(angle: number, callback: AsyncCallback\<void>): void
 
 根据输入的角度对图片进行旋转，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1195,11 +1764,10 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle: number = 90.0;
-    let angle: number = 90.0;]
     if (pixelMap != undefined) {
         pixelMap.rotate(angle, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to rotate pixelmap.");
+            if (err) {
+                console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in rotating pixelmap.");
@@ -1214,6 +1782,10 @@ async function Demo() {
 rotate(angle: number): Promise\<void>
 
 根据输入的角度对图片进行旋转，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1237,11 +1809,49 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
-        await pixelMap.rotate(angle).then(() => {
+        pixelMap.rotate(angle).then(() => {
             console.info('Sucessed in rotating pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to rotate pixelmap.');
+            console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
         })
+    }
+}
+```
+
+### rotateSync<sup>12+</sup>
+
+rotateSync(angle: number): void
+
+根据输入的角度对图片进行旋转并同步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| angle    | number               | 是   | 图片旋转的角度。              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let angle : number = 90.0;
+    if (pixelMap != undefined) {
+        pixelMap.rotateSync(angle);
     }
 }
 ```
@@ -1251,6 +1861,10 @@ async function Demo() {
 flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): void
 
 根据输入的条件对图片进行翻转，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1272,8 +1886,8 @@ async function Demo() {
     let vertical: boolean = false;
     if (pixelMap != undefined) {
         pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to flip pixelmap.");
+            if (err) {
+                console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in flipping pixelmap.");
@@ -1288,6 +1902,10 @@ async function Demo() {
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 根据输入的条件对图片进行翻转，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1313,11 +1931,52 @@ async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
     if (pixelMap != undefined) {
-        await pixelMap.flip(horizontal, vertical).then(() => {
+        pixelMap.flip(horizontal, vertical).then(() => {
             console.info('Sucessed in flipping pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to flip pixelmap.');
+            console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
+            
         })
+    }
+}
+```
+
+### flipSync<sup>12+</sup>
+
+flipSync(horizontal: boolean, vertical: boolean): void
+
+根据输入的条件对图片进行翻转并同步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                          |
+| ---------- | -------------------- | ---- | ----------------------------- |
+| horizontal | boolean              | 是   | 水平翻转。                    |
+| vertical   | boolean              | 是   | 垂直翻转。                    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    if (pixelMap != undefined) {
+        pixelMap.flipSync(horizontal, vertical);
     }
 }
 ```
@@ -1327,6 +1986,10 @@ async function Demo() {
 crop(region: Region, callback: AsyncCallback\<void>): void
 
 根据输入的尺寸对图片进行裁剪，使用callback形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1346,8 +2009,8 @@ async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     if (pixelMap != undefined) {
         pixelMap.crop(region, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to crop pixelmap.");
+            if (err) {
+                console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in cropping pixelmap.");
@@ -1362,6 +2025,10 @@ async function Demo() {
 crop(region: Region): Promise\<void>
 
 根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1384,12 +2051,51 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-     if (pixelMap != undefined) {
-        await pixelMap.crop(region).then(() => {
-            console.info('Sucessed in cropping pixelmap.');
+    if (pixelMap != undefined) {
+        pixelMap.crop(region).then(() => {
+            console.info('Succeeded in cropping pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to crop pixelmap.');
+            console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
+
         });
+    }
+}
+```
+
+### cropSync<sup>12+</sup>
+
+cropSync(region: Region): void
+
+根据输入的尺寸裁剪图片。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    if (pixelMap != undefined) {
+        pixelMap.cropSync(region);
     }
 }
 ```
@@ -1485,7 +2191,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401 | The parameter check failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -1502,7 +2208,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
             if (err) {
-                console.error('Failed to apply color space for pixelmap object.');
+                console.error(`Failed to apply color space for pixelmap object. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info('Succeeded in applying color space for pixelmap object.');
@@ -1538,7 +2244,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
-| 401 | The parameter check failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -1555,7 +2261,7 @@ async function Demo() {
     pixelmap.applyColorSpace(targetColorSpace).then(() => {
         console.info('Succeeded in applying color space for pixelmap object.');
     }).catch((error: BusinessError) => {
-        console.error('Failed to apply color space for pixelmap object.');
+        console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`); 
     })
 }
 ```
@@ -1603,7 +2309,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1624,7 +2330,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1691,7 +2397,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1712,7 +2418,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1720,7 +2426,6 @@ async function Demo() {
      let parcelable: MySequence = new MySequence(pixelMap);
      let data : rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
-
 
     // 反序列化 rpc获取到data
      let ret : MySequence = new MySequence(pixelMap);
@@ -1734,6 +2439,10 @@ async function Demo() {
 release():Promise\<void>
 
 释放PixelMap对象，使用Promise形式返回释放结果。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1753,7 +2462,7 @@ async function Demo() {
         pixelMap.release().then(() => {
             console.info('Succeeded in releasing pixelmap object.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to release pixelmap object.');
+            console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -1764,6 +2473,10 @@ async function Demo() {
 release(callback: AsyncCallback\<void>): void
 
 释放PixelMap对象，使用callback形式返回释放结果。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1781,8 +2494,8 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.release((err: BusinessError) => {
-            if (err != undefined) {
-                console.error('Failed to release pixelmap object.');
+            if (err) {
+                console.error(`Failed to release pixelmap object. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info('Succeeded in releasing pixelmap object.');
@@ -1798,13 +2511,16 @@ createImageSource(uri: string): ImageSource
 
 通过传入的uri创建图片源实例。
 
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -1826,13 +2542,17 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 通过传入的uri创建图片源实例。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
@@ -1845,7 +2565,9 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 ```ts
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-let imageSourceApi: image.ImageSource = image.createImageSource('test.png', sourceOptions);
+const context: Context = getContext(this);
+const path: string = context.filesDir + "/test.png";
+let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOptions);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1853,6 +2575,8 @@ let imageSourceApi: image.ImageSource = image.createImageSource('test.png', sour
 createImageSource(fd: number): ImageSource
 
 通过传入文件描述符来创建图片源实例。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1879,6 +2603,10 @@ const imageSourceApi: image.ImageSource = image.createImageSource(0);
 createImageSource(fd: number, options: SourceOptions): ImageSource
 
 通过传入文件描述符来创建图片源实例。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1908,6 +2636,10 @@ createImageSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区创建图片源实例。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -1935,6 +2667,10 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
 通过缓冲区创建图片源实例。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1964,6 +2700,8 @@ const imageSourceApi: image.ImageSource = image.createImageSource(data, sourceOp
 createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOptions): ImageSource
 
 通过图像资源文件的RawFileDescriptor创建图片源实例。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2061,13 +2799,17 @@ const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSou
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，RAW。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，dng。 |
 
 ### getImageInfo
 
 getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 获取指定序号的图片信息，使用callback形式返回图片信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2098,6 +2840,10 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图片信息，使用callback形式返回图片信息。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2126,6 +2872,10 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 获取图片信息，使用Promise形式返回图片信息。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2153,11 +2903,48 @@ imageSourceApi.getImageInfo(0)
 	})
 ```
 
+### getImageInfoSync<sup>12+</sup>
+
+getImageInfoSync(index?: number): ImageInfo
+
+获取指定序号的图片信息，使用同步形式返回图片信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名| 类型   | 必填 | 说明                                  |
+| ----- | ------ | ---- | ------------------------------------- |
+| index | number | 否   | 创建图片源时的序号，不选择时默认为0。 |
+
+**返回值：**
+
+| 类型                             | 说明                   |
+| -------------------------------- | ---------------------- |
+| [ImageInfo](#imageinfo) | 同步返回获取到的图片信息。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let imageInfo = imageSource.getImageInfoSync(0);
+if (imageInfo == undefined) {
+    console.error('getImageInfoSync failed.');
+} else {
+    console.info('getImageInfoSync succeeded.');
+    console.info('imageInfo.size.height:' + imageInfo.size.height);
+    console.info('imageInfo.size.width:' + imageInfo.size.width);
+}
+```
+
 ### getImageProperty<sup>11+</sup>
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2180,7 +2967,7 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401  | The parameter check failed.              |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
 | 62980096| The operation failed.             |
 | 62980103| The image data is not supported.            |
 | 62980110| The image source data is incorrect.            |
@@ -2212,7 +2999,7 @@ imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
 
 > **说明：**
 >
@@ -2250,7 +3037,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
 
 > **说明：**
 >
@@ -2283,7 +3070,7 @@ imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: st
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-获取图片指定属性键的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+获取图片指定属性键的值，callback形式返回结果，仅支持JPEG和PNG文件，且需要包含exif信息。
 
 > **说明：**
 >
@@ -2314,6 +3101,58 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 })
 ```
 
+### getImageProperties<sup>12+</sup>
+
+getImageProperties(key: Array<PropertyKey>): Promise<Record<PropertyKey, string|null>>
+
+批量获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                 |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | Array\<[PropertyKey](#propertykey7)>                                 | 是   | 图片属性名的数组。                         |
+
+**返回值：**
+
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
+| Promise\<Record<[PropertyKey](#propertykey7), string \| null>> | Promise实例，用于异步获取图片属性值，如获取失败则返回null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.            |
+| 62980135| The EXIF value is invalid.            |
+| 62980146| The EXIF data failed to be written to the file.            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+const { EXPOSURE_TIME, SCENE_TYPE, F_NUMBER } = image.PropertyKey;
+    let key = [EXPOSURE_TIME, F_NUMBER,SCENE_TYPE];
+    await getFd("test_exif1.jpg");
+    imageSourceApi = image.createImageSource(fdNumber);
+    if (imageSourceApi == undefined) {
+        console.info(`create image source failed`);
+    }
+    imageSourceApi.getImageProperties(key)
+        .then((data) => {
+        console.info(JSON.stringify(data));})
+        .catch((error) => {
+        console.log(JSON.stringify(error));
+    });
+```
+
 ### modifyImageProperty<sup>11+</sup>
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
@@ -2341,7 +3180,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401  | The parameter check failed.              |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
 | 62980123| Images in EXIF format are not supported.             |
 | 62980133| The EXIF data is out of range.    |
 | 62980135| The EXIF value is invalid.             |
@@ -2438,6 +3277,69 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 })
 ```
 
+### modifyImageProperties<sup>12+</sup>
+
+modifyImageProperties(records: Record<[PropertyKey](#propertykey7), string|null>): Promise\<void>
+
+批量通过指定的键修改图片属性的值，使用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| key     | [Record<[PropertyKey](#propertykey7), string|null>]   | 是   | 包含图片属性名和属性值的数组。 |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;      |
+| 62980096| The operation failed.             |
+| 62980110| The image source data is incorrect.             |
+| 62980113| Unknown image format.             |
+| 62980116| Failed to decode the image.             |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+await getFd("test_exif1.jpg");
+imageSourceApi = image.createImageSource(fdNumber);
+let key = {
+            ExposureTime: "1/33 sec.",
+            ISOSpeedRatings: "400",
+            FNumber: "f/1.8"
+};
+if (imageSourceApi == undefined) {
+	console.info(`create image source failed`);
+}
+imageSourceApi.modifyImageProperties(key)
+.then(() => {
+    imageSourceApi
+    .getImageProperties(key)
+    .then((data) => {
+        console.info(data);
+    })
+    .catch((err) => {
+        console.info(err);
+    });
+})
+.catch((error) => {
+	console.log(JSON.stringify(error));
+});
+```
+
 ### updateData<sup>9+</sup>
 
 updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number): Promise\<void>
@@ -2514,6 +3416,10 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 通过图片解码参数创建PixelMap对象。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2546,6 +3452,10 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 通过默认参数创建PixelMap对象，使用callback形式返回结果。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -2573,6 +3483,10 @@ imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => 
 createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过图片解码参数创建PixelMap对象。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2604,6 +3518,50 @@ imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: im
         console.info('Succeeded in creating pixelMap object.');
     }
 })
+```
+
+### createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options?: DecodingOptions): PixelMap
+
+通过图片解码参数同步创建PixelMap对象。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | 否   | 解码参数。                 |
+
+**返回值：**
+
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 用于同步返回创建结果。 |
+
+**示例：**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: 3,
+    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+    index: 0
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+    if (pixelmap != undefined) {
+        console.info('Succeeded in creating pixelMap object.');
+    } else {
+        console.info('Failed to create pixelMap.');
+    }
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -2787,7 +3745,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片。
+获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片和webp图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2833,7 +3791,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片。
+获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片和webp图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2961,6 +3919,43 @@ imageSourceApi.getFrameCount().then((frameCount: number) => {
 })
 ```
 
+### getDisposalTypeList<sup>12+</sup>
+
+getDisposalTypeList(): Promise\<Array\<number>>
+
+获取图像帧过渡模式数组，使用Promise形式返回结果。此接口仅用于gif图片。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<Array\<number>> | Promise实例，异步返回帧过渡模式数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
+| 62980096 | The operation failed.      |
+| 62980101 | The image data is abnormal. |
+| 62980137 | Invalid media operation.        |
+| 62980149 | Invalid image source mime type.      |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
+    console.info('Succeeded in disposalTypes object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
+})
+```
+
 ### release
 
 release(callback: AsyncCallback\<void>): void
@@ -3021,6 +4016,8 @@ createImagePacker(): ImagePacker
 
 创建ImagePacker实例。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
@@ -3053,6 +4050,8 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 图片压缩或重新打包，使用callback形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
@@ -3084,6 +4083,8 @@ imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: Arra
 packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -3121,6 +4122,8 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 图片压缩或重新打包，使用callback形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
@@ -3153,6 +4156,8 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -3438,7 +4443,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401| The parameter check failed.            |
+| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;   |
 
 **示例：**
 
@@ -3767,7 +4772,7 @@ createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCrea
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401| The parameter check failed.            |
+| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;          |
 
 **示例：**
 
@@ -4062,6 +5067,7 @@ creator.release().then(() => {
 | clipRect | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
+| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。|
 
 ### getComponent<sup>9+</sup>
 
@@ -4186,6 +5192,10 @@ img.release().then(() => {
 
 表示图片指定区域内的数据。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
@@ -4203,15 +5213,21 @@ img.release().then(() => {
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
-| size | [Size](#size) | 是   | 是   | 图片大小。 |
-| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。 |
-| stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4  |
-| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。 |
-| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。  |
+| size<sup>6+</sup> | [Size](#size) | 是   | 是   | 图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式（MIME type）。  |
+| isHdr<sup>12+</sup> | boolean  | 是   | 否   | 图片是否为高动态范围（HDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
 
 ## Size
 
 表示图片尺寸。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -4223,6 +5239,10 @@ img.release().then(() => {
 ## PixelMapFormat<sup>7+</sup>
 
 枚举，图片像素格式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -4242,6 +5262,10 @@ img.release().then(() => {
 
 枚举，图像的透明度类型。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     |   值   | 说明                    |
@@ -4255,6 +5279,10 @@ img.release().then(() => {
 
 枚举，图像的缩放模式。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称            |   值   | 说明                                               |
@@ -4265,6 +5293,10 @@ img.release().then(() => {
 ## SourceOptions<sup>9+</sup>
 
 ImageSource的初始化选项。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -4283,11 +5315,12 @@ PixelMap的初始化选项。
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明           |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
-| editable                 | boolean                            | 是   | 是   | 是否可编辑。   |
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
-| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| editable                 | boolean                            | 是   | 是   | 是否可编辑。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 传入的原始数据像素格式。|
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 
 ## DecodingOptions<sup>7+</sup>
 
@@ -4297,19 +5330,24 @@ PixelMap的初始化选项。
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。 |
-| rotate             | number                             | 是   | 是   | 旋转角度。       |
-| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。  |
-| desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
-| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。 |
-| index              | number                             | 是   | 是   | 解码图片序号。   |
-| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
+| sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| rotate             | number                             | 是   | 是   | 旋转角度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| index              | number                             | 是   | 是   | 解码图片序号。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
+| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 是   | 是   | 目标动态范围。 |
 
 ## Region<sup>7+</sup>
 
 表示区域信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -4323,6 +5361,8 @@ PixelMap的初始化选项。
 
 表示图片打包选项。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
@@ -4330,6 +5370,7 @@ PixelMap的初始化选项。
 | format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。 |
 | bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。 |
+| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 是   | 是   | 目标动态范围。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -4416,6 +5457,126 @@ PixelMap的初始化选项。
 | SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | 拍照场景：文本，当前为只读属性。            |
 | FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | 人脸数量，当前为只读属性。                  |
 | FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | 对焦模式，当前为只读属性。                  |
+| COMPRESSION <sup>12+</sup> | "Compression" | 图像压缩方案。 |
+| PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | 像素构成，例如 RGB 或 YCbCr。 |
+| STRIP_OFFSETS <sup>12+</sup> | "StripOffsets" | 每个strip的字节偏移量。 |
+| SAMPLES_PER_PIXEL <sup>12+</sup> | "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。在 JPEG 压缩数据中，使用 JPEG 标记代替该标签。 |
+| ROWS_PER_STRIP <sup>12+</sup> | "RowsPerStrip" | 每个strip的图像数据行数。 |
+| STRIP_BYTE_COUNTS <sup>12+</sup> | "StripByteCounts"      | 每个图像数据带的总字节数。                              |
+| X_RESOLUTION <sup>12+</sup> | "XResolution"      | 图像宽度方向的分辨率。                             |
+| Y_RESOLUTION <sup>12+</sup> | "YResolution"      | 图像高度方向的分辨率。                             |
+| PLANAR_CONFIGURATION <sup>12+</sup> | "PlanarConfiguration"      | 表示像素组件的记录格式，chunky格式或是planar格式。                             |
+| RESOLUTION_UNIT <sup>12+</sup> | "ResolutionUnit"      | 用于测量XResolution和YResolution的单位。                             |
+| TRANSFER_FUNCTION <sup>12+</sup> | "TransferFunction"      | 图像的传递函数，通常用于颜色校正。                             |
+| SOFTWARE <sup>12+</sup> | "Software"      | 用于生成图像的软件的名称和版本。                             |
+| ARTIST <sup>12+</sup> | "Artist"      | 创建图像的用户名称。                             |
+| WHITE_POINT <sup>12+</sup> | "WhitePoint"      | 图像的白点色度。                             |
+| PRIMARY_CHROMATICITIES <sup>12+</sup> | "PrimaryChromaticities"      | 图像的主要颜色的色度。                             |
+| YCBCR_COEFFICIENTS <sup>12+</sup> | "YCbCrCoefficients"      | 从RGB到YCbCr图像数据的转换矩阵系数。                             |
+| YCBCR_SUB_SAMPLING <sup>12+</sup> | "YCbCrSubSampling"      | 色度分量与亮度分量的采样比率。                             |
+| YCBCR_POSITIONING <sup>12+</sup> | "YCbCrPositioning"      | 色度分量相对于亮度分量的位置。                             |
+| REFERENCE_BLACK_WHITE <sup>12+</sup> | "ReferenceBlackWhite"      | 参考黑点值和参考白点值。                             |
+| COPYRIGHT <sup>12+</sup> | "Copyright"      | 图像的版权信息。                             |
+| JPEG_INTERCHANGE_FORMAT <sup>12+</sup> | "JPEGInterchangeFormat" | JPEG压缩缩略图数据开始字节（SOI）的偏移。 |
+| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | JPEG压缩缩略图数据的字节数。 |
+| EXPOSURE_PROGRAM <sup>12+</sup> | "ExposureProgram" | 拍照时相机用来设置曝光的程序的类别。 |
+| SPECTRAL_SENSITIVITY <sup>12+</sup> | "SpectralSensitivity" | 表示所用相机的每个通道的光谱灵敏度。 |
+| OECF <sup>12+</sup> | "OECF" | 表示ISO 14524中规定的光电转换函数（OECF）。 |
+| EXIF_VERSION <sup>12+</sup> | "ExifVersion" | 支持的Exif标准版本。 |
+| DATE_TIME_DIGITIZED <sup>12+</sup> | "DateTimeDigitized" | 图像作为数字数据存储的日期和时间，格式为YYYY:MM:DD HH:MM:SS |
+| COMPONENTS_CONFIGURATION <sup>12+</sup> | "ComponentsConfiguration" | 压缩数据的特定信息。 |
+| SHUTTER_SPEED <sup>12+</sup> | "ShutterSpeedValue" | 快门速度，以APEX（摄影曝光的加法系统）值表示。 |
+| BRIGHTNESS_VALUE <sup>12+</sup> | "BrightnessValue" | 图像的亮度值，以APEX单位表示。 |
+| MAX_APERTURE_VALUE <sup>12+</sup> | "MaxApertureValue" | 最小F数镜头。 |
+| SUBJECT_DISTANCE <sup>12+</sup> | "SubjectDistance" | 测量单位为米的主体距离。 |
+| SUBJECT_AREA <sup>12+</sup> | "SubjectArea" | 该标签指示整个场景中主要主体的位置和区域。 |
+| MAKER_NOTE <sup>12+</sup> | "MakerNote" | Exif/DCF制造商使用的标签，用于记录任何所需信息。 |
+| SUBSEC_TIME <sup>12+</sup> | "SubsecTime" | 用于为DateTime标签记录秒的分数的标签。 |
+| SUBSEC_TIME_ORIGINAL <sup>12+</sup> | "SubsecTimeOriginal" | 用于为DateTimeOriginal标签记录秒的分数的标签。 |
+| SUBSEC_TIME_DIGITIZED <sup>12+</sup> | "SubsecTimeDigitized" | 用于为DateTimeDigitized标签记录秒的分数的标签。 |
+| FLASHPIX_VERSION <sup>12+</sup> | "FlashpixVersion" | 该标签表示FPXR文件支持的Flashpix格式版本，增强了设备兼容性。 |
+| COLOR_SPACE <sup>12+</sup> | "ColorSpace" | 色彩空间信息标签，通常记录为色彩空间指定符。 |
+| RELATED_SOUND_FILE <sup>12+</sup> | "RelatedSoundFile" | 与图像数据相关的音频文件的名称。 |
+| FLASH_ENERGY <sup>12+</sup> | "FlashEnergy" | 图像捕获时的闪光能量，以BCPS表示。 |
+| SPATIAL_FREQUENCY_RESPONSE <sup>12+</sup> | "SpatialFrequencyResponse" | 相机或输入设备的空间频率表。 |
+| FOCAL_PLANE_X_RESOLUTION <sup>12+</sup> | "FocalPlaneXResolution" | 图像宽度中每FocalPlaneResolutionUnit的像素。 |
+| FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup> | "FocalPlaneYResolution" | 图像高度中每FocalPlaneResolutionUnit的像素。 |
+| FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit" | 测量FocalPlaneXResolution和FocalPlaneYResolution的单位。 |
+| SUBJECT_LOCATION <sup>12+</sup> | "SubjectLocation" | 主要对象相对于左边缘的位置。 |
+| EXPOSURE_INDEX <sup>12+</sup> | "ExposureIndex" | 捕获时选定的曝光指数。 |
+| SENSING_METHOD <sup>12+</sup> | "SensingMethod" | 相机上的图像传感器类型。 |
+| FILE_SOURCE <sup>12+</sup> | "FileSource" | 表明图像来源。 |
+| CFA_PATTERN <sup>12+</sup> | "CFAPattern" | 图像传感器的色彩滤光片（CFA）几何图案。 |
+| CUSTOM_RENDERED <sup>12+</sup> | "CustomRendered"      | 指示图像数据上的特殊处理。                              |
+| EXPOSURE_MODE <sup>12+</sup> | "ExposureMode"      | 拍摄时设置的曝光模式。                              |
+| DIGITAL_ZOOM_RATIO <sup>12+</sup> | "DigitalZoomRatio"      | 捕获时的数字变焦比率。                              |
+| SCENE_CAPTURE_TYPE <sup>12+</sup> | "SceneCaptureType"      | 捕获的场景类型。                              |
+| GAIN_CONTROL <sup>12+</sup> | "GainControl"      | 整体图像增益调整的程度。                              |
+| CONTRAST <sup>12+</sup> | "Contrast"      | 相机应用的对比度处理方向。                              |
+| SATURATION <sup>12+</sup> | "Saturation"      | 相机应用的饱和度处理方向。                              |
+| SHARPNESS <sup>12+</sup> | "Sharpness"      | 相机应用的锐度处理方向。                              |
+| DEVICE_SETTING_DESCRIPTION <sup>12+</sup> | "DeviceSettingDescription"      | 特定相机模型的拍照条件信息。                              |
+| SUBJECT_DISTANCE_RANGE <sup>12+</sup> | "SubjectDistanceRange"      | 表示主体到相机的距离范围。                              |
+| IMAGE_UNIQUE_ID <sup>12+</sup> | "ImageUniqueID"      | 为每张图片唯一分配的标识符。                             |
+| GPS_VERSION_ID <sup>12+</sup> | "GPSVersionID"      | GPSInfoIFD的版本。                             |
+| GPS_ALTITUDE_REF <sup>12+</sup> | "GPSAltitudeRef"      | 用于GPS高度的参照高度。                             |
+| GPS_ALTITUDE <sup>12+</sup> | "GPSAltitude"      | 基于GPSAltitudeRef的高度。                             |
+| GPS_SATELLITES <sup>12+</sup> | "GPSSatellites"      | 用于测量的GPS卫星。                             |
+| GPS_STATUS <sup>12+</sup> | "GPSStatus"      | 录制图像时GPS接收器的状态。                             |
+| GPS_MEASURE_MODE <sup>12+</sup> | "GPSMeasureMode"      | GPS测量模式。                             |
+| GPS_DOP <sup>12+</sup> | "GPSDOP"      | GPS DOP（数据精度等级）。                             |
+| GPS_SPEED_REF <sup>12+</sup> | "GPSSpeedRef"      | 用来表示GPS接收器移动速度的单位。                             |
+| GPS_SPEED <sup>12+</sup> | "GPSSpeed"      | GPS接收器的移动速度。                             |
+| GPS_TRACK_REF <sup>12+</sup> | "GPSTrackRef"      | GPS接收机移动方向的参照。                             |
+| GPS_TRACK <sup>12+</sup> | "GPSTrack"      | GPS接收机的移动方向。                             |
+| GPS_IMG_DIRECTION_REF <sup>12+</sup> | "GPSImgDirectionRef"      | 图像方向的参照。                             |
+| GPS_IMG_DIRECTION <sup>12+</sup> | "GPSImgDirection"      | 拍摄时图像的方向。                             |
+| GPS_MAP_DATUM <sup>12+</sup> | "GPSMapDatum"      | GPS接收器使用的大地测量数据。                             |
+| GPS_DEST_LATITUDE_REF <sup>12+</sup> | "GPSDestLatitudeRef"      | 目的地点的纬度参照。                             |
+| GPS_DEST_LATITUDE <sup>12+</sup> | "GPSDestLatitude"      | 目的地点的纬度。                             |
+| GPS_DEST_LONGITUDE_REF <sup>12+</sup> | "GPSDestLongitudeRef"      | 目的地点的经度参照。                             |
+| GPS_DEST_LONGITUDE <sup>12+</sup> | "GPSDestLongitude"      | 目的地点的经度。                             |
+| GPS_DEST_BEARING_REF <sup>12+</sup> | "GPSDestBearingRef"      | 指向目的地点的方位参照。                             |
+| GPS_DEST_BEARING <sup>12+</sup> | "GPSDestBearing" | 目的地方位。 |
+| GPS_DEST_DISTANCE_REF <sup>12+</sup> | "GPSDestDistanceRef" | 目标点距离的测量单位。 |
+| GPS_DEST_DISTANCE <sup>12+</sup> | "GPSDestDistance" | 到目的地点的距离。 |
+| GPS_PROCESSING_METHOD <sup>12+</sup> | "GPSProcessingMethod" | 记录定位方法名的字符字符串。 |
+| GPS_AREA_INFORMATION <sup>12+</sup> | "GPSAreaInformation" | 记录GPS区域名的字符字符串。 |
+| GPS_DIFFERENTIAL <sup>12+</sup> | "GPSDifferential" | 此字段表示GPS数据是否应用了差分校正，对于精确的位置准确性至关重要。 |
+| BODY_SERIAL_NUMBER <sup>12+</sup> | "BodySerialNumber" | 相机机身的序列号。 |
+| CAMERA_OWNER_NAME <sup>12+</sup> | "CameraOwnerName" | 相机所有者的姓名。 |
+| COMPOSITE_IMAGE <sup>12+</sup> | "CompositeImage" | 表示图像是否为合成图像。 |
+| COMPRESSED_BITS_PER_PIXEL <sup>12+</sup> | "CompressedBitsPerPixel" | 用于压缩图像的压缩模式，单位为每像素位数。 |
+| DNG_VERSION <sup>12+</sup> | "DNGVersion" | DNG版本标签编码了符合DNG规范的四级版本号。|
+| DEFAULT_CROP_SIZE <sup>12+</sup> | "DefaultCropSize" | DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。|
+| GAMMA <sup>12+</sup> | "Gamma" | 表示系数伽马的值。|
+| ISO_SPEED_LATITUDE_YYY <sup>12+</sup> | "ISOSpeedLatitudeyyy" | 该标签指示摄像机或输入设备的ISO速度纬度yyy值，该值在ISO 12232中定义。|
+| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup> | "ISOSpeedLatitudezzz" | 该标签指示摄像机或输入设备的ISO速度纬度zzz值，该值在ISO 12232中定义。|
+| LENS_MAKE <sup>12+</sup> | "LensMake" | 镜头的制造商。|
+| LENS_MODEL <sup>12+</sup> | "LensModel" | 镜头的型号名称。|
+| LENS_SERIAL_NUMBER <sup>12+</sup> | "LensSerialNumber" | 镜头的序列号。|
+| LENS_SPECIFICATION <sup>12+</sup> | "LensSpecification" | 使用的镜头规格。|
+| NEW_SUBFILE_TYPE <sup>12+</sup> | "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。|
+| OFFSET_TIME <sup>12+</sup> | "OffsetTime"      | 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。                              |
+| OFFSET_TIME_DIGITIZED <sup>12+</sup> | "OffsetTimeDigitized"      | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。                              |
+| OFFSET_TIME_ORIGINAL <sup>12+</sup> | "OffsetTimeOriginal"      | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。                              |
+| SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"      | 合成图像的源图像曝光时间。                              |
+| SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceImageNumberOfCompositeImage"      | 用于合成图像的源图像数量。                              |
+| SUBFILE_TYPE <sup>12+</sup> | "SubfileType"      | 此标签指示此子文件中的数据类型。标签已弃用，请使用NewSubfileType替代。                              |
+| GPS_H_POSITIONING_ERROR <sup>12+</sup> | "GPSHPositioningError"      | 此标签指示水平定位误差，单位为米。                              |
+| PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup> | "PhotographicSensitivity"      | 此标签指示拍摄图像时相机或输入设备的灵敏度。                              |
+| BURST_NUMBER <sup>12+</sup> | "HwMnoteBurstNumber"      | 连拍次数。                              |
+| FACE_CONF <sup>12+</sup> | "HwMnoteFaceConf"      | 人脸置信度。                              |
+| FACE_LEYE_CENTER <sup>12+</sup> | "HwMnoteFaceLeyeCenter" | 左眼中心。 |
+| FACE_MOUTH_CENTER <sup>12+</sup> | "HwMnoteFaceMouthCenter" | 嘴中心。 |
+| FACE_POINTER <sup>12+</sup> | "HwMnoteFacePointer" | 脸部指针。 |
+| FACE_RECT <sup>12+</sup> | "HwMnoteFaceRect" | 脸部矩形。 |
+| FACE_REYE_CENTER <sup>12+</sup> | "HwMnoteFaceReyeCenter" | 右眼中心。 |
+| FACE_SMILE_SCORE <sup>12+</sup> | "HwMnoteFaceSmileScore" | FaceCount张人脸的笑脸分数。 |
+| FACE_VERSION <sup>12+</sup> | "HwMnoteFaceVersion" | 人脸算法版本信息。 |
+| FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | 是否是前置相机自拍。 |
+| SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | 场景指针。 |
+| SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | 场景算法版本信息。 |
 
 ## ImageFormat<sup>9+</sup>
 
@@ -4454,10 +5615,33 @@ PixelMap的初始化选项。
 | pixelStride   | number                           | 是   | 否   | 像素间距。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
 
+## DecodingDynamicRange<sup>12+</sup>
+
+描述解码时期望的图像动态范围。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| AUTO          | number    | 值为0。自适应，根据图片信息处理。即如果图片本身为HDR图片，则会按照HDR内容解码；反之按照SDR内容解码。  |
+| SDR           | number    | 值为1。按照标准动态范围处理图片。   |
+| HDR           | number    | 值为2。按照高动态范围处理图片。     |
+
+## PackingDynamicRange<sup>12+</sup>
+
+描述编码时期望的图像动态范围。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型       | 说明         |
+| ------------- | ----------| ------------ |
+| AUTO          | number    | 值为0。自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容解码。  |
+| SDR           | number    | 值为1。按照标准动态范围处理图片。   |
+
 ## 补充说明
 ### SVG标签说明
 
-从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG文件需添加xml声明，应以“<?xml”开头，并且SVG标签需设置width，height。当前支持的标签列表有：
 - a
 - circla
 - clipPath

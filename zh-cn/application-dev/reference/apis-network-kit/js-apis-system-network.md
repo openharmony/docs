@@ -111,11 +111,9 @@ unsubscribe(): void
 **示例：**
 
 ```
-export default {    
-  unsubscribe() {        
-    network.unsubscribe();    
-  },
-}
+import network from '@system.network';
+
+network.unsubscribe();
 ```
 
 

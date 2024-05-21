@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import account_osAccount from '@ohos.account.osAccount';
+import { osAccount } from '@kit.BasicServicesKit';
 ```
 
-## account_osAccount.getAccountManager
+## osAccount.getAccountManager
 
 getAccountManager(): AccountManager
 
@@ -29,7 +29,7 @@ getAccountManager(): AccountManager
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   ```
 
 ## OsAccountType
@@ -66,13 +66,14 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.checkMultiOsAccountEnabled((err: BusinessError, isEnabled: boolean) => {
       if (err) {
@@ -104,14 +105,15 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
-    let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+    let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
     accountManager.checkMultiOsAccountEnabled().then((isEnabled: boolean) => {
       console.log('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
@@ -132,7 +134,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -147,6 +149,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -154,8 +157,8 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountActivated(localId, (err: BusinessError, isActivated: boolean) => {
@@ -180,7 +183,7 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -200,6 +203,7 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -207,8 +211,8 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountActivated(localId).then((isActivated: boolean) => {
@@ -245,13 +249,14 @@ isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let constraint: string = 'constraint.wifi';
   try {
     accountManager.isOsAccountConstraintEnabled(constraint).then((isEnabled: boolean) => {
@@ -274,7 +279,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -290,6 +295,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
@@ -297,8 +303,8 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
@@ -324,7 +330,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -345,6 +351,7 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId or constraint.    |
 | 12300003 | Account not found. |
@@ -352,8 +359,8 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
@@ -385,13 +392,14 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountTestable((err: BusinessError, isTestable: boolean) => {
       if (err) {
@@ -423,13 +431,14 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountTestable().then((isTestable: boolean) => {
       console.log('checkOsAccountTestable successfully, isTestable: ' + isTestable);
@@ -459,13 +468,14 @@ isOsAccountUnlocked(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.isOsAccountUnlocked().then((isVerified: boolean) => {
       console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
@@ -499,13 +509,14 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountVerified((err: BusinessError, isVerified: boolean) => {
       if (err) {
@@ -541,13 +552,14 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountVerified().then((isVerified: boolean) => {
       console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
@@ -569,7 +581,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -584,6 +596,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -591,8 +604,8 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountVerified(localId, (err: BusinessError, isVerified: boolean) => {
@@ -617,7 +630,7 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -637,6 +650,7 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -644,8 +658,8 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.checkOsAccountVerified(localId).then((isVerified: boolean) => {
@@ -676,13 +690,14 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountVerified().then((isVerified: boolean) => {
       console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
@@ -700,7 +715,7 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
 获取已创建的系统帐号数量。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -714,13 +729,14 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountCount((err: BusinessError, count: number) => {
       if (err) {
@@ -740,7 +756,7 @@ getOsAccountCount(): Promise&lt;number&gt;
 
 获取已创建的系统帐号数量。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -754,13 +770,14 @@ getOsAccountCount(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountCount().then((count: number) => {
       console.log('getOsAccountCount successfully, count: ' + count);
@@ -790,13 +807,14 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalId((err: BusinessError, localId: number) => {
       if (err) {
@@ -828,13 +846,14 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalId().then((localId: number) => {
       console.log('getOsAccountLocalId successfully, localId: ' + localId);
@@ -865,14 +884,15 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
 
 | 错误码ID | 错误信息         |
 | -------- | --------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid.    |
 
 **示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
     accountManager.getOsAccountLocalIdForUid(uid, (err: BusinessError, localId: number) => {
@@ -910,14 +930,15 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid uid. |
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
     accountManager.getOsAccountLocalIdForUid(uid).then((localId: number) => {
@@ -954,12 +975,13 @@ getOsAccountLocalIdForUidSync(uid: number): number
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300002 | Invalid uid. |
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let uid: number = 12345678;
   try {
     let localId : number = accountManager.getOsAccountLocalIdForUidSync(uid);
@@ -975,7 +997,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 根据域帐号信息，获取与其关联的系统帐号ID。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -990,15 +1012,16 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainInfo. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainInfo: osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo, (err: BusinessError, localId: number) => {
       if (err) {
@@ -1018,7 +1041,7 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1038,15 +1061,16 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid domainInfo. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let domainInfo: osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId: number) => {
       console.log('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
@@ -1068,7 +1092,7 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1083,6 +1107,7 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1090,8 +1115,8 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 **示例：** 获取ID为100的系统帐号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountConstraints(localId, (err: BusinessError, constraints: string[]) => {
@@ -1116,7 +1141,7 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1136,6 +1161,7 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1143,8 +1169,8 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 **示例：** 获取ID为100的系统帐号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountConstraints(localId).then((constraints: string[]) => {
@@ -1175,13 +1201,14 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | parameter error. Possible cause: 1.Mandatory parameter are left unspecified. 2.Incorrect parameter types |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getActivatedOsAccountLocalIds((err: BusinessError, idArray: number[])=>{
       console.log('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
@@ -1213,13 +1240,14 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getActivatedOsAccountLocalIds().then((idArray: number[]) => {
       console.log('getActivatedOsAccountLocalIds, idArray: ' + idArray);
@@ -1241,7 +1269,7 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1255,15 +1283,16 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.getCurrentOsAccount((err: BusinessError, curAccountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.getCurrentOsAccount((err: BusinessError, curAccountInfo: osAccount.OsAccountInfo)=>{
       console.log('getCurrentOsAccount err:' + JSON.stringify(err));
       console.log('getCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
     });
@@ -1282,7 +1311,7 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 >
 > 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1296,15 +1325,16 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.getCurrentOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.getCurrentOsAccount().then((accountInfo: osAccount.OsAccountInfo) => {
       console.log('getCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
       console.log('getCurrentOsAccount err: ' + JSON.stringify(err));
@@ -1332,15 +1362,16 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.getOsAccountType((err: BusinessError, accountType: account_osAccount.OsAccountType) => {
+    accountManager.getOsAccountType((err: BusinessError, accountType: osAccount.OsAccountType) => {
       console.log('getOsAccountType err: ' + JSON.stringify(err));
       console.log('getOsAccountType accountType: ' + accountType);
     });
@@ -1367,15 +1398,16 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.getOsAccountType().then((accountType: account_osAccount.OsAccountType) => {
+    accountManager.getOsAccountType().then((accountType: osAccount.OsAccountType) => {
       console.log('getOsAccountType, accountType: ' + accountType);
     }).catch((err: BusinessError) => {
       console.log('getOsAccountType err: ' + JSON.stringify(err));
@@ -1391,7 +1423,7 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID。使用callback异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1405,13 +1437,14 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
       console.log('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
@@ -1428,7 +1461,7 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID。使用Promise异步回调。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1442,13 +1475,14 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryDistributedVirtualDeviceId().then((virtualID: string) => {
       console.log('queryDistributedVirtualDeviceId, virtualID: ' + virtualID);
@@ -1479,6 +1513,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid serialNumber. |
 | 12300003 | The account indicated by serialNumber dose not exist. |
@@ -1486,8 +1521,8 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let serialNumber: number = 12345;
   try {
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
@@ -1523,6 +1558,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid serialNumber. |
 | 12300003 | The account indicated by serialNumber dose not exist. |
@@ -1530,8 +1566,8 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let serialNumber: number = 12345;
   try {
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber).then((localId: number) => {
@@ -1563,6 +1599,7 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1570,8 +1607,8 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
 **示例：** 获取ID为100的系统帐号关联的SN码
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getSerialNumberForOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
@@ -1607,6 +1644,7 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
@@ -1614,8 +1652,8 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
 **示例：** 获取ID为100的系统帐号关联的SN码
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getSerialNumberForOsAccountLocalId(localId).then((serialNumber: number) => {
@@ -1649,8 +1687,8 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err: BusinessError, isEnabled: boolean) => {
     if (err) {
       console.log('isMultiOsAccountEnable failed, error: ' + JSON.stringify(err));
@@ -1681,8 +1719,8 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled: boolean) => {
     console.log('isMultiOsAccountEnable successfully, isEnabled: ' + isEnabled);
   }).catch((err: BusinessError) => {
@@ -1700,7 +1738,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 >
 > 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1714,8 +1752,8 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.isOsAccountActived(localId, (err: BusinessError, isActived: boolean) => {
     if (err) {
@@ -1736,7 +1774,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 >
 > 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1755,8 +1793,8 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.isOsAccountActived(localId).then((isActived: boolean) => {
     console.log('isOsAccountActived successfully, isActived: ' + isActived);
@@ -1775,7 +1813,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1790,8 +1828,8 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint, (err: BusinessError, isEnabled: boolean) => {
@@ -1813,7 +1851,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1833,8 +1871,8 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint).then((isEnabled: boolean) => {
@@ -1865,8 +1903,8 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.isTestOsAccount((err: BusinessError, isTestable: boolean) => {
     if (err) {
       console.log('isTestOsAccount failed, error: ' + JSON.stringify(err));
@@ -1897,8 +1935,8 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
     accountManager.isTestOsAccount().then((isTestable: boolean) => {
       console.log('isTestOsAccount successfully, isTestable: ' + isTestable);
     }).catch((err: BusinessError) => {
@@ -1916,7 +1954,7 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1929,8 +1967,8 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err: BusinessError, isVerified: boolean) => {
     if (err) {
       console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
@@ -1948,9 +1986,9 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1964,8 +2002,8 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.isOsAccountVerified(localId, (err: BusinessError, isVerified: boolean) => {
     if (err) {
@@ -1984,9 +2022,9 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverified9-2)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2005,8 +2043,8 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.isOsAccountVerified().then((isVerified: boolean) => {
     console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err: BusinessError) => {
@@ -2024,7 +2062,7 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2037,8 +2075,8 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err: BusinessError, count: number)=>{
     if (err) {
       console.log('getCreatedOsAccountsCount failed, error: ' + JSON.stringify(err));
@@ -2058,7 +2096,7 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9-1)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2071,8 +2109,8 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((count: number) => {
     console.log('getCreatedOsAccountsCount successfully, count: ' + count);
   }).catch((err: BusinessError) => {
@@ -2101,8 +2139,8 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err: BusinessError, localId: number) => {
     if (err) {
       console.log('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
@@ -2133,8 +2171,8 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((localId: number) => {
     console.log('getOsAccountLocalIdFromProcess successfully, localId: ' + localId);
   }).catch((err: BusinessError) => {
@@ -2164,8 +2202,8 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let uid: number = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid, (err: BusinessError, localId: number) => {
     if (err) {
@@ -2203,8 +2241,8 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 **示例：** 查询值为12345678的uid所属的系统帐号ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let uid: number = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((localId: number) => {
     console.log('getOsAccountLocalIdFromUid successfully, localId: ' + localId);
@@ -2223,7 +2261,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2237,9 +2275,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainInfo: osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err: BusinessError, localId: number) => {
     if (err) {
       console.log('getOsAccountLocalIdFromDomain failed, error: ' + JSON.stringify(err));
@@ -2259,7 +2297,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 >
 > 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2278,9 +2316,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let domainInfo: account_osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let domainInfo: osAccount.DomainAccountInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((localId: number) => {
     console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
   }).catch((err: BusinessError) => {
@@ -2298,7 +2336,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2312,8 +2350,8 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 **示例：** 获取ID为100的系统帐号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getOsAccountAllConstraints(localId, (err: BusinessError, constraints: string[])=>{
     console.log('getOsAccountAllConstraints err:' + JSON.stringify(err));
@@ -2325,13 +2363,13 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
+获取指定系统帐号的全部约束。使用Promise异步回调。
+
 > **说明：**
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-获取指定系统帐号的全部约束。使用Promise异步回调。
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2350,8 +2388,8 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 **示例：** 获取ID为100的系统帐号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getOsAccountAllConstraints(localId).then((constraints: string[]) => {
     console.log('getOsAccountAllConstraints, constraints: ' + constraints);
@@ -2381,8 +2419,8 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err: BusinessError, idArray: number[])=>{
     console.log('queryActivatedOsAccountIds err:' + JSON.stringify(err));
     console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
@@ -2413,8 +2451,8 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray: number[]) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
   }).catch((err: BusinessError) => {
@@ -2432,7 +2470,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2445,9 +2483,9 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.queryCurrentOsAccount((err: BusinessError, curAccountInfo: account_osAccount.OsAccountInfo)=>{
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  accountManager.queryCurrentOsAccount((err: BusinessError, curAccountInfo: osAccount.OsAccountInfo)=>{
     console.log('queryCurrentOsAccount err:' + JSON.stringify(err));
     console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
   });
@@ -2463,7 +2501,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2476,9 +2514,9 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.queryCurrentOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  accountManager.queryCurrentOsAccount().then((accountInfo: osAccount.OsAccountInfo) => {
     console.log('queryCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err: BusinessError) => {
     console.log('queryCurrentOsAccount err: ' + JSON.stringify(err));
@@ -2506,9 +2544,9 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.getOsAccountTypeFromProcess((err: BusinessError, accountType: account_osAccount.OsAccountType) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  accountManager.getOsAccountTypeFromProcess((err: BusinessError, accountType: osAccount.OsAccountType) => {
     console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
     console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
   });
@@ -2535,9 +2573,9 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  accountManager.getOsAccountTypeFromProcess().then((accountType: account_osAccount.OsAccountType) => {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  accountManager.getOsAccountTypeFromProcess().then((accountType: osAccount.OsAccountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
   }).catch((err: BusinessError) => {
     console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
@@ -2554,7 +2592,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2567,8 +2605,8 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
     console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
     console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
@@ -2585,7 +2623,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 >
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2598,8 +2636,8 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID: string) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
   }).catch((err: BusinessError) => {
@@ -2629,8 +2667,8 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let serialNumber: number = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
     console.log('ger localId err:' + JSON.stringify(err));
@@ -2665,8 +2703,8 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let serialNumber: number = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId: number) => {
     console.log('getOsAccountLocalIdBySerialNumber localId: ' + localId);
@@ -2697,8 +2735,8 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 **示例：** 获取ID为100的系统帐号关联的SN码
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
     console.log('ger serialNumber err:' + JSON.stringify(err));
@@ -2733,14 +2771,49 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 **示例：** 获取ID为100的系统帐号关联的SN码
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber: number) => {
     console.log('getSerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
   }).catch((err: BusinessError) => {
     console.log('getSerialNumberByOsAccountLocalId err: ' + JSON.stringify(err));
   });
+  ```
+
+### getOsAccountName<sup>12+</sup>
+
+getOsAccountName(): Promise&lt;string&gt;
+
+查询调用方所属系统帐号的名称。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                      | 说明                     |
+| :------------------------ | ----------------------- |
+| Promise&lt;string&gt; | Promise对象，返回调用方所属系统帐号的名称。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    accountManager.getOsAccountName().then((name: string) => {
+      console.log('getOsAccountName, name: ' + name);
+    }).catch((err: BusinessError) => {
+      console.log('getOsAccountName err: ' + err);
+    });
+  } catch (e) {
+    console.log('getOsAccountName exception: ' + e);
+  }
   ```
 
 ## OsAccountInfo
@@ -2836,7 +2909,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 | constraint.autofill | 禁止使用自动填充服务 |
 | constraint.content.capture | 禁止捕获用户屏幕 |
 | constraint.content.suggestions | 禁止接收内容建议 |
-| constraint.os.account.start | 禁止切换用户 |
+| constraint.os.account.activate | 禁止前台启动用户 |
 | constraint.location.set | 禁止配置位置服务 |
 | constraint.airplane.mode.set | 禁止飞行模式 |
 | constraint.brightness.set | 禁止配置亮度 |

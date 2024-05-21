@@ -31,11 +31,17 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeImage](#oh_nativeimage) | 提供OH_NativeImage结构体声明。 |
-| [OHNativeWindow](#ohnativewindow) | typedef struct NativeWindow<br/>提供对NativeWindow结构体声明。 |
-| [OH_OnFrameAvailable](#oh_onframeavailable) | 有buffer可获取时触发的回调函数。 |
-| [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过[OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener)接口注册， 该监听结构体，当有buffer可获取时，将触发回调给用户。 |
+| typedef struct [OH_NativeImage](#oh_nativeimage)  [OH_NativeImage](#oh_nativeimage) | 提供OH_NativeImage结构体声明。  | 
+| typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | 提供对NativeWindow的访问功能。  | 
+| typedef void(\* [OH_OnFrameAvailable](#oh_onframeavailable)) (void \*context) | 有buffer可获取时触发的回调函数。  | 
+| typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过{\@Link OH_NativeImage_SetOnFrameAvailableListener}接口注册 该监听结构体，当有buffer可获取时，将触发回调给用户。  | 
+| typedef enum [OHNativeErrorCode](ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
 
+### 枚举
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [OHNativeErrorCode](ohnativeerrorcode) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_IS_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IS_INCACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_INCACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOW = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOW = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000 | 接口错误码说明（仅用于查询）。  | 
 
 ### 函数
 
@@ -52,7 +58,7 @@
 | [OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image, [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) listener) | 设置帧可用回调。 |
 | [OH_NativeImage_UnsetOnFrameAvailableListener](#oh_nativeimage_unsetonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image) | 取消设置帧可用回调。 |
 | [OH_NativeImage_Destroy](#oh_nativeimage_destroy) ([OH_NativeImage](#oh_nativeimage) \*\*image) | 销毁通过OH_NativeImage_Create创建的**OH_NativeImage**实例, 销毁后该**OH_NativeImage**指针会被赋值为空。 |
-
+| int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。  |
 
 ## 类型定义说明
 
@@ -60,7 +66,7 @@
 ### OH_NativeImage
 
 ```
-typedef struct OH_NativeImageOH_NativeImage
+typedef struct OH_NativeImage OH_NativeImage
 ```
 
 **描述**
@@ -104,6 +110,18 @@ typedef struct OH_OnFrameAvailableListener OH_OnFrameAvailableListener
 **起始版本：** 11
 
 
+### OHNativeErrorCode
+
+```
+typedef enum OHNativeErrorCode OHNativeErrorCode
+```
+**描述**
+
+接口错误码说明（仅用于查询）。
+
+**起始版本：** 12
+
+
 ### OHNativeWindow
 
 ```
@@ -115,6 +133,39 @@ typedef struct NativeWindow OHNativeWindow
 提供对NativeWindow的访问功能。
 
 **起始版本：** 9
+
+
+## 枚举类型说明
+
+
+### OHNativeErrorCode
+
+```
+enum OHNativeErrorCode
+```
+**描述**
+
+接口错误码说明（仅用于查询）。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| NATIVE_ERROR_OK  | 成功   | 
+| NATIVE_ERROR_INVALID_ARGUMENTS  | 入参无效   | 
+| NATIVE_ERROR_NO_PERMISSION  | 无权限操作   | 
+| NATIVE_ERROR_NO_BUFFER  | 无空闲可用的buffer   | 
+| NATIVE_ERROR_NO_CONSUMER  | 消费端不存在   | 
+| NATIVE_ERROR_NOT_INIT  | 未初始化   | 
+| NATIVE_ERROR_CONSUMER_IS_CONNECTED  | 消费端已经被连接   | 
+| NATIVE_ERROR_BUFFER_STATE_INVALID  | buffer状态不符合预期   | 
+| NATIVE_ERROR_BUFFER_IS_INCACHE  | buffer已在缓存队列中   | 
+| NATIVE_ERROR_BUFFER_QUEUE_FULL  | 队列已满   | 
+| NATIVE_ERROR_BUFFER_NOT_INCACHE  | buffer不在缓存队列中   | 
+| NATIVE_ERROR_UNSUPPORT  | 当前设备或平台不支持   | 
+| NATIVE_ERROR_UNKNOW  | 未知错误，请查看日志   | 
+| NATIVE_ERROR_EGL_STATE_UNKNOW  | egl环境状态异常   | 
+| NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
 
 
 ## 函数说明
@@ -172,7 +223,7 @@ GL_TEXTURE_EXTERNAL_OES, 并通过OH_NativeImage进行更新。
 
 **返回：**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
 
 
 ### OH_NativeImage_Create()
@@ -246,7 +297,7 @@ int32_t OH_NativeImage_DetachContext (OH_NativeImage * image)
 
 **返回：**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
 
 
 ### OH_NativeImage_GetSurfaceId()
@@ -272,7 +323,7 @@ int32_t OH_NativeImage_GetSurfaceId (OH_NativeImage * image, uint64_t * surfaceI
 
 **返回：**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
 
 
 ### OH_NativeImage_GetTimestamp()
@@ -323,8 +374,30 @@ int32_t OH_NativeImage_GetTransformMatrix (OH_NativeImage * image, float matrix[
 
 **返回：**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
 
+### OH_NativeImage_GetTransformMatrixV2()
+
+```
+int32_t OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage* image, float matrix[16] )
+```
+**描述**
+根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 是指向**OH_NativeImage**实例的指针。  | 
+| matrix | 用来存储要获取的4\*4的变化矩阵。  | 
+
+**返回：**
+
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
 
 ### OH_NativeImage_SetOnFrameAvailableListener()
 
@@ -349,7 +422,7 @@ int32_t OH_NativeImage_SetOnFrameAvailableListener (OH_NativeImage * image, OH_O
 
 **返回：**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
 
 
 ### OH_NativeImage_UnsetOnFrameAvailableListener()
@@ -374,7 +447,7 @@ int32_t OH_NativeImage_UnsetOnFrameAvailableListener (OH_NativeImage * image)
 
 **返回：**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
 
 
 ### OH_NativeImage_UpdateSurfaceImage()
@@ -399,4 +472,4 @@ int32_t OH_NativeImage_UpdateSurfaceImage (OH_NativeImage * image)
 
 **返回：**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。

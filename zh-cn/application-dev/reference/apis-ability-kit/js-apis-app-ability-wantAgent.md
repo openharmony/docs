@@ -29,12 +29,13 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -112,12 +113,13 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -185,12 +187,13 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -281,12 +284,13 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -368,12 +372,13 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -464,12 +469,13 @@ getUid(agent: WantAgent): Promise\<number\>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -550,12 +556,13 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -646,12 +653,13 @@ cancel(agent: WantAgent): Promise\<void\>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -730,6 +738,14 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | TriggerInfo对象。                 |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -741,7 +757,10 @@ import { BusinessError } from '@ohos.base';
 let wantAgent: _WantAgent;
 // triggerInfo
 let triggerInfo: WantAgent.TriggerInfo = {
-    code: 0 //自定义义结果码
+    code: 0, //自定义义结果码
+    startOptions : {
+        windowMode: 101
+    }
 };
 //WantAgentInfo对象
 let wantAgentInfo: WantAgent.WantAgentInfo = {
@@ -815,7 +834,15 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
 | otherAgent | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
+| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。返回true表示两个WantAgent实例相等，false表示两个WantAgent实例不相等。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -905,7 +932,15 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。返回true表示两个WantAgent实例相等，false表示两个WantAgent实例不相等。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -987,13 +1022,14 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 
 **示例：**
 
@@ -1082,8 +1118,11 @@ getOperationType(agent: WantAgent): Promise\<number>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID    | 错误信息            |
 |-----------|--------------------|
+| 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy, there are concurrent tasks, waiting for retry.|
 | 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
@@ -1153,6 +1192,8 @@ try {
 
 ## WantAgentFlags
 
+表示使用WantAgent类型的枚举。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 值             | 说明                                                                      |
@@ -1172,6 +1213,8 @@ try {
 
 ## OperationType
 
+表示操作WantAgent类型的枚举。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称              | 值            | 说明                      |
@@ -1185,6 +1228,8 @@ try {
 
 
 ## CompleteData 
+
+表示主动激发WantAgent返回的数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

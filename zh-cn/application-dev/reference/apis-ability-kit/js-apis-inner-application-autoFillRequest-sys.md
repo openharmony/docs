@@ -24,10 +24,21 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | 是   | 自动填充类型。          |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+| isPopup<sup>12+</sup>    | boolean               | 是   | 自动填充服务是否拉起popup窗口。<br>true：当前拉起popup窗口。<br>false：当前拉起模态窗。              |
 
 ## SaveRequest
 
 自动保存请求信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称        | 类型                 | 必填 | 说明                                                         |
+| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
+| viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
+
+## UpdateRequest<sup>12+</sup>
+
+自动填充更新信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -234,11 +245,17 @@ onFailure(): void
 
 ### FillRequestCallback.onCancel
 
-onCancel(): void
+onCancel(fillContent?: string): void
 
 通知自动填充已被取消。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名                    | 类型   | 必填 | 说明                 |
+| ------------------------- | ------ | ---- | -------------------- |
+| fillContent<sup>12+</sup> | string | 否   | 表示通知自动填充取消后，返回给输入法框架的填充内容。 |
 
 **错误码：**
 
@@ -316,6 +333,127 @@ onCancel(): void
       .height('100%')
     }
   }
+  ```
+
+### FillRequestCallback.setAutoFillPopupConfig
+
+setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
+
+动态调整气泡弹窗的尺寸和位置。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | ------------------------------ |
+| autoFillPopupConfig | [AutoFillPopupConfig](js-apis-inner-application-autoFillPopupConfig-sys.md) | 是 | 气泡弹窗尺寸和位置信息。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 202  | Permission verification failed. Possible causes: non-system app called system api. |
+| 401  | Parameter error. Possible causes: Incorrect parameter types. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+  ```ts
+import autoFillManager from '@ohos.app.ability.autoFillManager'
+import hilog from '@ohos.hilog';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
+
+export default class AutoFillAbility extends AutoFillExtensionAbility {
+  onCreate(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onDestroy');
+  }
+
+  onSessionDestroy(session: UIExtensionContentSession) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onSessionDestroy');
+    hilog.info(0x0000, 'testTag', 'session content: %{public}s', JSON.stringify(session));
+  }
+
+  onForeground(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onForeground');
+  }
+
+  onBackground(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onBackground');
+  }
+
+  onUpdateRequest(request: autoFillManager.UpdateRequest): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onUpdateRequest');
+    console.log("get fill request viewData: ", JSON.stringify(request.viewData));
+    let storage = LocalStorage.getShared();
+    let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback')
+
+    if (fillCallback) {
+      try {
+        hilog.info(0x0000, 'testTag', 'pageNodeInfos.value: ' + JSON.stringify(request.viewData.pageNodeInfos[0].value));
+        fillCallback.setAutoFillPopupConfig({
+          popupSize: {
+            width: 400 + request.viewData.pageNodeInfos[0].value.length * 10,
+            height: 200 + request.viewData.pageNodeInfos[0].value.length * 10
+          },
+          placement: autoFillManager.PopupPlacement.TOP
+        })
+      } catch (err) {
+        hilog.info(0x0000, 'testTag', 'autoFillPopupConfig err: ' + err.code);
+      }
+    }
+  }
+
+  onFillRequest(session: UIExtensionContentSession, request: autoFillManager.FillRequest, callback: autoFillManager.FillRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
+    hilog.info(0x0000, 'testTag', 'Fill RequestCallback: %{public}s ', JSON.stringify(callback));
+    console.log('testTag', "Get fill request viewData: ", JSON.stringify(request.viewData));
+    console.log('testTag', "Get fill request type: ", JSON.stringify(request.type));
+
+    try {
+      let localStorageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData | autoFillManager.AutoFillType> = {
+        'message': 'AutoFill Page',
+        'fillCallback': callback,
+        'viewData': request.viewData,
+        'autoFillType': request.type,
+      }
+      let storage_fill = new LocalStorage(localStorageData);
+      console.info('testTag', 'session: ', session);
+      let size:autoFillManager.PopupSize = {
+        width: 400,
+        height: 200
+      }
+      callback.setAutoFillPopupConfig({popupSize:size});
+      session.loadContent('pages/SelectorList', storage_fill);
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'autofill failed to load content: ' + JSON.stringify(err));
+    }
+  }
+
+  onSaveRequest(session: UIExtensionContentSession, request: autoFillManager.SaveRequest, callback: autoFillManager.SaveRequestCallback) {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onSaveRequest');
+    try {
+      let localStorageData: Record<string, string | autoFillManager.SaveRequestCallback> = {
+        'message': 'AutoFill Page',
+        'saveCallback': callback,
+      };
+      let storage_save = new LocalStorage(localStorageData);
+      if (session) {
+        session.loadContent('pages/SavePage', storage_save);
+      } else {
+        hilog.error(0x0000, 'testTag', '%{public}s', 'session is null');
+      }
+    } catch (err) {
+      hilog.error(0x0000, 'testTag', '%{public}s', 'failed to load content');
+    }
+  }
+}
   ```
 
 ## SaveRequestCallback
@@ -462,7 +600,7 @@ onFailure(): void
   import hilog from '@ohos.hilog';
 
   let storage: LocalStorage = LocalStorage.getShared();
-  let saveCallback: autoFillManager.FillRequestCallback | undefined =
+  let saveCallback: autoFillManager.SaveRequestCallback | undefined =
     storage.get<autoFillManager.SaveRequestCallback>('saveCallback');  
 
   @Entry

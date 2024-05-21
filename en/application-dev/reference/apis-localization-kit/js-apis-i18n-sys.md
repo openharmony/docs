@@ -24,7 +24,7 @@ static setSystemLanguage(language: string): void
 
 Sets the system language. Currently, this API does not support real-time updating of the system language.
 
-To listen for [common_event_locale_changed](../apis/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED) events after the system language is set, you need to add an [event subscriber](../apis/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1).
+To listen for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEvent-locale.md#common_event_locale_changed11) events after the system language is set, you need to add an [event subscriber](..//apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1).
 
 **System API**: This is a system API.
 
@@ -36,15 +36,17 @@ To listen for [common_event_locale_changed](../apis/commonEventManager-definitio
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Language ID.|
+| language | string | Yes   | Valid language ID.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -95,15 +97,17 @@ Sets the system region.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| region | string | Yes   | System region ID.|
+| region | string | Yes   | Valid region ID.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -135,15 +139,17 @@ Sets the system locale.
 
 | Name   | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| locale | string | Yes   | System locale ID, for example, **zh-CN**.|
+| locale | string | Yes   | Valid locale ID, for example, **zh-CN**.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -178,11 +184,13 @@ Sets the system time to the 24-hour clock.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -213,16 +221,18 @@ Adds a preferred language to the specified position on the preferred language li
 
 | Name     | Type    | Mandatory  | Description        |
 | -------- | ------ | ---- | ---------- |
-| language | string | Yes   | Preferred language to add. |
+| language | string | Yes   | Valid ID of the language to be added as a preferred language. |
 | index    | number | No   | Position to which the preferred language is added. The default value is the length of the preferred language list.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -259,11 +269,13 @@ Deletes a preferred language from the specified position on the preferred langua
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -299,11 +311,13 @@ Specifies whether to enable use of local digits.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -349,7 +363,7 @@ Obtains the language sorting array.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| languages | Array&lt;string&gt; | Yes  | List of languages to be sorted.|
+| languages | Array&lt;string&gt; | Yes  | Valid IDs of the languages to be sorted.|
 | options   | [SortOptions](#sortoptions10)   | No  | Language sorting option.|
 
 **Return value**
@@ -360,11 +374,12 @@ Obtains the language sorting array.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
@@ -398,7 +413,7 @@ Obtains the country/region sorting array.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| regions   | Array&lt;string&gt; | Yes  | List of countries/regions to be sorted.|
+| regions   | Array&lt;string&gt; | Yes  | Valid IDs of the countries or regions to be sorted.|
 | options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option. The default value of **locale** is the system locale, the default value of **isUseLocalName** is **false**, and the default value of **isSuggestedFirst** is **true**.|
 
 **Return value**
@@ -409,11 +424,12 @@ Obtains the country/region sorting array.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | param value not valid. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts

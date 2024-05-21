@@ -38,8 +38,6 @@ struct AnimateToDemo {
       Column() {
       }
       .rotate({ angle: this.rotateValue })
-      // 第三步：通过属性动画接口开启属性动画
-      .animation({ curve: curves.springMotion() })
       .backgroundColor('#317AF7')
       .justifyContent(FlexAlign.Center)
       .width(100)
@@ -48,7 +46,7 @@ struct AnimateToDemo {
       .onClick(() => {
         animateTo({ curve: curves.springMotion() }, () => {
           this.animate = !this.animate;
-          // 第四步：闭包内通过状态变量改变UI界面
+          // 第三步：闭包内通过状态变量改变UI界面
           // 这里可以写任何能改变UI的逻辑比如数组添加，显隐控制，系统会检测改变后的UI界面与之前的UI界面的差异，对有差异的部分添加动画
           // 组件一的rotate属性发生变化，所以会给组件一添加rotate旋转动画
           this.rotateValue = this.animate ? 90 : 0;
@@ -147,7 +145,7 @@ struct AnimationDemo {
 ![zh-cn_image_0000001649279705](figures/zh-cn_image_0000001649279705.gif)
 
 > **说明：**
-> - 在对组件的位置大小的变化做动画的时候，由于布局属性的改变会触发测量布局，性能开销大。[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)属性的改变不会触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如跟手触发组件大小变化的场景，推荐适用scale。
+> - 在对组件的位置大小的变化做动画的时候，由于布局属性的改变会触发测量布局，性能开销大。[scale](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)属性的改变不会触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如跟手触发组件大小变化的场景，推荐适用scale。
 > 
 > - 属性动画应该作用于始终存在的组件，对于将要出现或者将要消失的组件的动画应该使用[转场动画](arkts-transition-overview.md)。
 > 

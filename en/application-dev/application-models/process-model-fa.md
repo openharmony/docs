@@ -1,4 +1,4 @@
-# Process Model Overview (FA Model)
+# Process Model (FA Model)
 
 
 The process model is shown below.
@@ -13,9 +13,8 @@ The process model is shown below.
 ![process-model-fa](figures/process-model-fa.png)
 
 
-The system provides two inter-process communication (IPC) mechanisms.
+The system provides the following inter-process communication (IPC) mechanism:
 
+[Common Events](../basic-services/common-event/common-event-fa.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.
 
-- [Common Events](common-event-fa.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.
-
-- [Background Services](rpc.md): This mechanism is implemented through [ServiceAbility](serviceability-overview.md).
+ <!--no_check--> 

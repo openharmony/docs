@@ -50,6 +50,12 @@ int32_t OhosImageComponent::componentType
 
 像素数据类型
 
+| 值 | 说明 |
+| ------ | ----------------------- |
+| 1 | OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y 亮度信息 |
+| 2 | OHOS_IMAGE_COMPONENT_FORMAT_YUV_U 色度信息 |
+| 3 | OHOS_IMAGE_COMPONENT_FORMAT_YUV_V 色差值信息 |
+| 4 | OHOS_IMAGE_COMPONENT_FORMAT_JPEG Jpeg 格式 |
 
 ### pixelStride
 

@@ -45,3 +45,17 @@ The input certificate or credential is invalid.
 **Solution**
 
 Check that the certificate or credential is valid.
+
+## 17500005 Application Not Authorized
+
+**Error Message**
+
+The application is not authorized by user.
+
+**Possible Causes**
+
+The user has not authorized the application to use the specified credential.
+
+**Solution**
+
+Check that the credential is correct, and authorize the application to use the credential.

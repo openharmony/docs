@@ -11,12 +11,14 @@ Buffer对象用于表示固定长度的字节序列，是专门存放二进制�
 ## 导入模块
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 ```
 
 ## BufferEncoding
 
 表示支持的编码格式类型。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -40,6 +42,8 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 
 创建一定字节长度的Buffer对象，并初始化。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -59,7 +63,7 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.alloc(5);
 let buf2 = buffer.alloc(5, 'a');
@@ -72,6 +76,8 @@ allocUninitializedFromPool(size: number): Buffer
 
 创建指定大小未被初始化的Buffer对象。内存从缓冲池分配。
 创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -90,7 +96,7 @@ allocUninitializedFromPool(size: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(10);
 buf.fill(0);
@@ -102,6 +108,8 @@ allocUninitialized(size: number): Buffer
 
 创建指定大小未被初始化的Buffer实例。内存不从缓冲池分配。
 创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -120,7 +128,7 @@ allocUninitialized(size: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitialized(10);
 buf.fill(0);
@@ -131,6 +139,8 @@ buf.fill(0);
 byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | SharedArrayBuffer, encoding?: BufferEncoding): number
 
 根据不同的编码方法，返回指定字符串的字节数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -150,7 +160,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let str = '\u00bd + \u00bc = \u00be';
 console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
@@ -163,6 +173,7 @@ compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
 返回两个数组的比较结果，通常用于对Buffer对象数组进行排序。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -182,7 +193,7 @@ compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
@@ -198,6 +209,8 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 将数组中的内容复制指定字节长度到新的Buffer对象中并返回。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -223,7 +236,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
@@ -238,6 +251,8 @@ from(array: number[]): Buffer;
 根据指定数组创建新的Buffer对象。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -254,7 +269,7 @@ from(array: number[]): Buffer;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
 console.log(buf.toString('hex')); // 627566666572
@@ -265,6 +280,8 @@ console.log(buf.toString('hex')); // 627566666572
 from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?: number): Buffer
 
 创建指定长度的与`arrayBuffer`共享内存的Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -293,7 +310,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
@@ -304,6 +321,8 @@ let buf = buffer.from(ab, 0, 2);
 from(buffer: Buffer | Uint8Array): Buffer
 
 创建并复制`buffer`数据到新的Buffer对象并返回。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -322,7 +341,7 @@ from(buffer: Buffer | Uint8Array): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
@@ -333,6 +352,8 @@ let buf2 = buffer.from(buf1);
 from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 
 根据指定的`object`类型数据，创建新的Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -353,7 +374,7 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from(new String('this is a test'), 'utf8', 14);
 ```
@@ -363,6 +384,8 @@ let buf = buffer.from(new String('this is a test'), 'utf8', 14);
 from(string: String, encoding?: BufferEncoding): Buffer
 
 根据指定编码格式的字符串，创建新的Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -382,7 +405,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('this is a test');
 let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
@@ -397,6 +420,8 @@ console.log(buf2.toString()); // 打印: this is a test
 isBuffer(obj: Object): boolean
 
 判断`obj`是否为Buffer。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -415,7 +440,7 @@ isBuffer(obj: Object): boolean
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let result = buffer.isBuffer(buffer.alloc(10)); // true
 let result1 = buffer.isBuffer(buffer.from('foo')); // true
@@ -429,6 +454,8 @@ let result4 = buffer.isBuffer(new Uint8Array(1024)); // false
 isEncoding(encoding: string): boolean
 
 判断`encoding`是否为支持的编码格式。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -447,7 +474,7 @@ isEncoding(encoding: string): boolean
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 console.log(buffer.isEncoding('utf-8').toString());	// 打印: true
 console.log(buffer.isEncoding('hex').toString());	// 打印: true
@@ -462,6 +489,8 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 将给定的Buffer或Uint8Array对象从一种字符编码重新编码为另一种。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -480,7 +509,7 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
@@ -491,6 +520,8 @@ console.log(newBuf.toString('ascii'));
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -509,7 +540,7 @@ console.log(newBuf.toString('ascii'));
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("1236");
 console.log(JSON.stringify(buf.length));
@@ -523,6 +554,8 @@ console.log(JSON.stringify(buf.byteOffset));
 compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, sourceStart?: number, sourceEnd?: number): -1 | 0 | 1
 
 当前Buffer对象与目标Buffer对象进行比较，并返回Buffer在排序中的顺序结果。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -553,7 +586,7 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
@@ -568,6 +601,8 @@ console.log(buf1.compare(buf2, 5, 6, 5).toString());	// 打印: 1
 copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sourceEnd?: number): number
 
 将`this`实例中指定位置的数据复制到`target`的指定位置上，并返回复制的字节总长度。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -597,7 +632,7 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 let buf2 = buffer.allocUninitializedFromPool(26).fill('!');
@@ -617,6 +652,8 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 
 返回一个包含key和value的迭代器。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -628,7 +665,7 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
 let pair = buf.entries();
@@ -644,6 +681,8 @@ while (!next.done) {
 equals(otherBuffer: Uint8Array | Buffer): boolean
 
 比较`this`实例和otherBuffer实例是否相等。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -662,7 +701,7 @@ equals(otherBuffer: Uint8Array | Buffer): boolean
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('ABC');
 let buf2 = buffer.from('414243', 'hex');
@@ -677,6 +716,8 @@ console.log(buf1.equals(buf3).toString());	// 打印: false
 fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number, encoding?: BufferEncoding): Buffer
 
 用`value`填充当前对象指定位置的数据，默认为循环填充，并返回填充后的Buffer对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -706,7 +747,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let b = buffer.allocUninitializedFromPool(50).fill('h');
 console.log(b.toString());
@@ -718,6 +759,8 @@ console.log(b.toString());
 includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): boolean
 
 检查Buffer对象是否包含`value`值。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -738,7 +781,7 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
 console.log(buf.includes('this').toString());	// 打印: true
@@ -750,6 +793,8 @@ console.log(buf.includes('be').toString());	// 打印: false
 indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
 查找当前对象中第一次出现`value`的索引，如果不包含`value`，则为-1。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -770,7 +815,7 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
 console.log(buf.indexOf('this').toString());	// 打印: 0
@@ -783,6 +828,8 @@ keys(): IterableIterator&lt;number&gt;
 
 返回一个包含key值的迭代器。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -794,7 +841,7 @@ keys(): IterableIterator&lt;number&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
 let numbers = Array.from(buf.values());
@@ -808,6 +855,8 @@ for (const key of numbers) {
 lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
 返回`this`实例中最后一次出现`value`的索引，如果对象不包含，则为-1。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -828,7 +877,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this buffer is a buffer');
 console.log(buf.lastIndexOf('this').toString());	// 打印: 0
@@ -841,6 +890,8 @@ console.log(buf.lastIndexOf('buffer').toString());	// 打印: 17
 readBigInt64BE(offset?: number): bigint
 
 从指定的`offset`处读取有符号的大端序64位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -867,7 +918,7 @@ readBigInt64BE(offset?: number): bigint
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
@@ -883,6 +934,8 @@ readBigInt64LE(offset?: number): bigint
 
 从指定的`offset`处读取有符号的小端序64位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -908,7 +961,7 @@ readBigInt64LE(offset?: number): bigint
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
@@ -924,6 +977,8 @@ readBigUInt64BE(offset?: number): bigint
 
 从指定的`offset`处读取无符号的大端序64位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -949,7 +1004,7 @@ readBigUInt64BE(offset?: number): bigint
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
@@ -965,6 +1020,8 @@ readBigUInt64LE(offset?: number): bigint
 
 从指定的`offset`处读取无符号的小端序64位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -990,7 +1047,7 @@ readBigUInt64LE(offset?: number): bigint
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
@@ -1006,6 +1063,8 @@ readDoubleBE(offset?: number): number
 
 从指定`offset`处读取64位大端序双精度值。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1031,7 +1090,7 @@ readDoubleBE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleBE(0).toString());
@@ -1046,6 +1105,8 @@ readDoubleLE(offset?: number): number
 
 从指定`offset`处读取64位小端序双精度值。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1071,7 +1132,7 @@ readDoubleLE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleLE(0).toString());
@@ -1086,6 +1147,8 @@ readFloatBE(offset?: number): number
 
 从指定`offset`处读取32位大端序浮点数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1111,7 +1174,7 @@ readFloatBE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatBE(0).toString());
@@ -1126,6 +1189,8 @@ readFloatLE(offset?: number): number
 
 从指定`offset`处读取32位小端序浮点数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1151,7 +1216,7 @@ readFloatLE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatLE(0).toString());
@@ -1165,6 +1230,8 @@ let result = buf1.writeFloatLE(0xcabcbcbc, 0);
 readInt8(offset?: number): number
 
 从指定的`offset`处读取有符号的8位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1191,7 +1258,7 @@ readInt8(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([-1, 5]);
 console.log(buf.readInt8(0).toString());	// 打印: 0
@@ -1207,6 +1274,8 @@ readInt16BE(offset?: number): number
 
 从指定的`offset`处读取有符号的大端序16位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1232,7 +1301,7 @@ readInt16BE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16BE(0).toString());	// 打印: 5
@@ -1247,6 +1316,8 @@ readInt16LE(offset?: number): number
 
 从指定的`offset`处读取有符号的小端序16位整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1272,7 +1343,7 @@ readInt16LE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16LE(0).toString());	// 打印: 1280
@@ -1286,6 +1357,8 @@ let result = buf1.writeInt16BE(0x1234, 0);
 readInt32BE(offset?: number): number
 
 从指定的`offset`处读取有符号的大端序32位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1312,7 +1385,7 @@ readInt32BE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32BE(0).toString());	// 打印: 5
@@ -1326,6 +1399,8 @@ let result = buf1.writeInt32BE(0x12345678, 0);
 readInt32LE(offset?: number): number
 
 从指定的`offset`处读取有符号的小端序32位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1352,7 +1427,7 @@ readInt32LE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
@@ -1366,6 +1441,8 @@ let result = buf1.writeInt32BE(0x12345678, 0);
 readIntBE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取byteLength个字节，并将结果解释为支持最高48位精度的大端序、二进制补码有符号值。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1394,7 +1471,7 @@ readIntBE(offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
@@ -1410,6 +1487,8 @@ let result = buf1.writeIntBE(0x123456789011, 0, 6);
 readIntLE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的小端序、二进制补码有符号值。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1438,7 +1517,7 @@ readIntLE(offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readIntLE(0, 6).toString(16));
@@ -1452,6 +1531,8 @@ let result = buf1.writeIntLE(0x123456789011, 0, 6);
 readUInt8(offset?: number): number
 
 从`offset`处读取8位无符号整型数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1479,7 +1560,7 @@ readUInt8(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, -2]);
 console.log(buf.readUInt8(0).toString());
@@ -1497,6 +1578,8 @@ readUInt16BE(offset?: number): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1521,7 +1604,7 @@ readUInt16BE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16BE(0).toString(16));
@@ -1536,6 +1619,8 @@ let result = buf1.writeUInt16BE(0x1234, 0);
 readUInt16LE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的小端序16位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1563,7 +1648,7 @@ readUInt16LE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16LE(0).toString(16));
@@ -1578,6 +1663,8 @@ let result = buf1.writeUInt16LE(0x1234, 0);
 readUInt32BE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的大端序32位整数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1605,7 +1692,7 @@ readUInt32BE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32BE(0).toString(16));
@@ -1622,6 +1709,8 @@ readUInt32LE(offset?: number): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1646,7 +1735,7 @@ readUInt32LE(offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32LE(0).toString(16));
@@ -1661,6 +1750,8 @@ readUIntBE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的无符号大端序整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1688,7 +1779,7 @@ readUIntBE(offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntBE(0, 6).toString(16));
@@ -1703,6 +1794,8 @@ readUIntLE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的无符号小端序整数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -1730,7 +1823,7 @@ readUIntLE(offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntLE(0, 6).toString(16));
@@ -1746,6 +1839,8 @@ subarray(start?: number, end?: number): Buffer
 截取当前对象指定位置的数据并返回。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1763,7 +1858,7 @@ subarray(start?: number, end?: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 
@@ -1780,6 +1875,8 @@ console.log(buf2.toString('ascii', 0, buf2.length));
 swap16(): Buffer
 
 将当前对象解释为无符号的16位整数数组，并交换字节顺序。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1801,7 +1898,7 @@ swap16(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -1815,6 +1912,8 @@ console.log(buf1.toString('hex'));	// 打印: 0201040306050807
 swap32(): Buffer
 
 将当前对象解释为无符号的32位整数数组，并交换字节顺序。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1836,7 +1935,7 @@ swap32(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -1850,6 +1949,8 @@ console.log(buf1.toString('hex'));	// 打印: 0403020108070605
 swap64(): Buffer
 
 将当前对象解释为无符号的64位整数数组，并交换字节顺序。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1871,7 +1972,7 @@ swap64(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -1885,6 +1986,8 @@ toJSON(): Object
 
 将Buffer转为JSON并返回。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 
@@ -1897,7 +2000,7 @@ toJSON(): Object
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
 let obj = buf1.toJSON();
@@ -1910,6 +2013,8 @@ console.log(JSON.stringify(obj));
 toString(encoding?: string, start?: number, end?: number): string
 
 将当前对象中指定位置数据转成指定编码格式字符串并返回。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1930,7 +2035,7 @@ toString(encoding?: string, start?: number, end?: number): string
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 for (let i = 0; i < 26; i++) {
@@ -1946,6 +2051,8 @@ values(): IterableIterator&lt;number&gt;
 
 返回一个包含value的迭代器。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1957,7 +2064,7 @@ values(): IterableIterator&lt;number&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('buffer');
 let pair = buf1.values()
@@ -1973,6 +2080,8 @@ while (!next.done) {
 write(str: string, offset?: number, length?: number, encoding?: string): number
 
 从Buffer对象的offset偏移写入指定编码的字符串str，写入的字节长度为length。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2003,7 +2112,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.alloc(256);
 let len = buf.write('\u00bd + \u00bc = \u00be', 0);
@@ -2020,6 +2129,8 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入有符号的大端序64位BigInt型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2047,7 +2158,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64BE(BigInt(0x0102030405060708), 0);
@@ -2059,6 +2170,8 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入有符号的小端序64位BigInt型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2086,7 +2199,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
@@ -2095,6 +2208,8 @@ let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
 ### writeBigUInt64BE
 
 writeBigUInt64BE(value: bigint, offset?: number): number
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 从Buffer对象的offset偏移写入无符号的大端序64位BigUInt型数据value。
 
@@ -2125,7 +2240,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
@@ -2136,6 +2251,8 @@ let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 writeBigUInt64LE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入无符号的小端序64位BigUInt型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2164,7 +2281,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
@@ -2175,6 +2292,8 @@ let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
 writeDoubleBE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的64位双浮点型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2203,7 +2322,7 @@ writeDoubleBE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleBE(123.456, 0);
@@ -2214,6 +2333,8 @@ let result = buf.writeDoubleBE(123.456, 0);
 writeDoubleLE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的64位双浮点型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2242,7 +2363,7 @@ writeDoubleLE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleLE(123.456, 0);
@@ -2253,6 +2374,8 @@ let result = buf.writeDoubleLE(123.456, 0);
 writeFloatBE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位浮点型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2281,7 +2404,7 @@ writeFloatBE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatBE(0xcafebabe, 0);
@@ -2294,6 +2417,8 @@ writeFloatLE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位浮点型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2321,7 +2446,7 @@ writeFloatLE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatLE(0xcafebabe, 0);
@@ -2332,6 +2457,8 @@ let result = buf.writeFloatLE(0xcafebabe, 0);
 writeInt8(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入8位有符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2360,7 +2487,7 @@ writeInt8(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt8(2, 0);
@@ -2374,6 +2501,8 @@ writeInt16BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的16位有符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2401,7 +2530,7 @@ writeInt16BE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16BE(0x0102, 0);
@@ -2414,6 +2543,8 @@ writeInt16LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的16位有符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2441,7 +2572,7 @@ writeInt16LE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16LE(0x0304, 0);
@@ -2452,6 +2583,8 @@ let result = buf.writeInt16LE(0x0304, 0);
 writeInt32BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位有符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2480,7 +2613,7 @@ writeInt32BE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32BE(0x01020304, 0);
@@ -2493,6 +2626,8 @@ writeInt32LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位有符号整型数据value。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2520,7 +2655,7 @@ writeInt32LE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32LE(0x05060708, 0);
@@ -2531,6 +2666,8 @@ let result = buf.writeInt32LE(0x05060708, 0);
 writeIntBE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入大端序的有符号value数据，value字节长度为byteLength。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2560,7 +2697,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntBE(0x1234567890ab, 0, 6);
@@ -2573,6 +2710,8 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入小端序的有符号value数据，value字节长度为byteLength。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2601,7 +2740,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntLE(0x1234567890ab, 0, 6);
@@ -2612,6 +2751,8 @@ let result = buf.writeIntLE(0x1234567890ab, 0, 6);
 writeUInt8(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入8位无符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2640,7 +2781,7 @@ writeUInt8(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt8(0x3, 0);
@@ -2654,6 +2795,8 @@ let result3 = buf.writeUInt8(0x42, 3);
 writeUInt16BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的16位无符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2682,7 +2825,7 @@ writeUInt16BE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16BE(0xdead, 0);
@@ -2694,6 +2837,8 @@ let result1 = buf.writeUInt16BE(0xbeef, 2);
 writeUInt16LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的16位无符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2722,7 +2867,7 @@ writeUInt16LE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16LE(0xdead, 0);
@@ -2734,6 +2879,8 @@ let result1 = buf.writeUInt16LE(0xbeef, 2);
 writeUInt32BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位无符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2762,7 +2909,7 @@ writeUInt32BE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32BE(0xfeedface, 0);
@@ -2773,6 +2920,8 @@ let result = buf.writeUInt32BE(0xfeedface, 0);
 writeUInt32LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位无符号整型数据value。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2801,7 +2950,7 @@ writeUInt32LE(value: number, offset?: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32LE(0xfeedface, 0);
@@ -2813,6 +2962,8 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入大端序的无符号value数据，value字节长度为byteLength。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2841,7 +2992,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntBE(0x1234567890ab, 0, 6);
@@ -2853,6 +3004,8 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入小端序的无符号value数据，value字节长度为byteLength。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2881,7 +3034,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
@@ -2890,6 +3043,8 @@ let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
 ## Blob
 
 ### 属性
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2904,6 +3059,8 @@ constructor(sources: string[] | ArrayBuffer[] | TypedArray[] | DataView[] | Blob
 
 Blob的构造函数。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2916,7 +3073,7 @@ Blob的构造函数。
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
 
@@ -2934,6 +3091,8 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
 将Blob中的数据放入到ArrayBuffer中，并返回一个Promise。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2943,7 +3102,7 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.arrayBuffer();
@@ -2957,6 +3116,8 @@ pro.then((val: ArrayBuffer) => {
 slice(start?: number, end?: number, type?: string): Blob
 
 创建并返回一个复制原Blob对象中指定数据长度的Blob新对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2975,7 +3136,7 @@ slice(start?: number, end?: number, type?: string): Blob
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
@@ -2988,6 +3149,8 @@ text(): Promise&lt;string&gt;
 
 使用UTF8进行解码并返回一个文本。使用Promise异步回调。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -2997,7 +3160,7 @@ text(): Promise&lt;string&gt;
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();

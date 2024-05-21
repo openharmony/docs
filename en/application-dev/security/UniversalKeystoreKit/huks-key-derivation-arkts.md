@@ -14,7 +14,7 @@ This topic walks you through on how to derive a 256-bit key using HKDF. For deta
    - **HUKS_STORAGE_ONLY_USED_IN_HUKS**: The key is stored and managed by HUKS.
    - **HUKS_STORAGE_KEY_EXPORT_ALLOWED** (default): The key is directly exported to the service and not managed by HUKS.
 
-3. Use [generateKeyItem](../../reference/apis/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
+3. Use [generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9) to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
 
 Alternatively, you can [import a key](huks-key-import-overview.md).
 
@@ -22,15 +22,15 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 1. Obtain the key alias and set the **HuksOptions** parameter.
 
-2. Use [initSession](../../reference/apis/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
+2. Use [initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9) to initialize a key session. The session handle is returned after the initialization.
 
-3. Use [updateSession](../../reference/apis/js-apis-huks.md#huksupdatesession9) to process data.
+3. Use [updateSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksupdatesession9) to process data.
 
-4. Use [finishSession](../../reference/apis/js-apis-huks.md#huksfinishsession9) to derive a key.
+4. Use [OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession) to derive a key.
 
 **Key Deletion**
 
-Use [deleteKeyItem](../../reference/apis/js-apis-huks.md#huksdeletekeyitem9) to delete the key that is not required. For details, see [Deleting a Key](huks-delete-key-arkts.md).
+Use [deleteKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksdeletekeyitem9) to delete the key that is not required. For details, see [Deleting a Key](huks-delete-key-arkts.md).
 
 ```ts
 /*

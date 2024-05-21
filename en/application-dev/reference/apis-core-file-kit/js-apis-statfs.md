@@ -1,11 +1,10 @@
 # @ohos.statfs (statfs)
 
-The **statfs** module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
+The **statfs** module provides APIs for obtaining file system information, including the total size and free size of a file system, in bytes.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
 > - The APIs provided by this module are deprecated since API version 9. You are advised to use [@ohos.file.statvfs](js-apis-file-statvfs.md).
 
 ## Modules to Import
@@ -13,11 +12,12 @@ The **statfs** module provides APIs for obtaining file system information, inclu
 ```ts
 import statfs from '@ohos.statfs';
 ```
+
 ## statfs.getFreeBytes
 
 getFreeBytes(path:string):Promise&lt;number&gt;
 
-Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses a promise to return the result.
+Obtains the free size of the specified file system, in bytes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -25,13 +25,13 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
   | Name| Type  | Mandatory| Description                        |
   | ------ | ------ | ---- | ---------------------------- |
-  | path   | string | Yes  | File path of the file system.|
+  | path   | string | Yes  | Path of the file system.|
 
 **Return value**
 
   | Type                 | Description          |
   | --------------------- | -------------- |
-  | Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
+  | Promise&lt;number&gt; | Promise used to return the free size obtained.|
 
 **Example**
 
@@ -49,7 +49,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 
-Obtains the number of free bytes of the specified file system in asynchronous mode. This API uses a callback to return the result.
+Obtains the free size of the specified file system, in bytes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -57,18 +57,21 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | Yes  | File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
+  | path     | string                      | Yes  | Path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the free size obtained.|
 
 **Example**
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  let context = featureAbility.getContext();
-  context.getFilesDir().then(function (path) {
-      statfs.getFreeBytes(path, function (err, number) {
-          console.info("getFreeBytes callback successfully:" + number);
-      });
+  ```ts
+  import common from '@ohos.app.ability.common';
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
+  statfs.getFreeBytes(path, (err: BusinessError, freeBytes:Number) => {
+      if (err) {
+          console.error('getFreeBytes callback failed');
+      } else {
+          console.info('getFreeBytes callback success' + freeBytes);
+      }
   });
   ```
 
@@ -76,7 +79,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 getTotalBytes(path: string): Promise&lt;number&gt;
 
-Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses a promise to return the result.
+Obtains the total size of the specified file system, in byte. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -84,13 +87,13 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
   | Name| Type  | Mandatory| Description                        |
   | ---- | ------ | ---- | ---------------------------- |
-  | path | string | Yes  | File path of the file system.|
+  | path | string | Yes  | Path of the file system.|
 
 **Return value**
 
   | Type                 | Description        |
   | --------------------- | ------------ |
-  | Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
+  | Promise&lt;number&gt; | Promise used to return the total size obtained.|
 
 **Example**
 
@@ -108,7 +111,7 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the total number of bytes of the specified file system in asynchronous mode. This API uses a callback to return the result.
+Obtains the total size of the specified file system, in bytes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -116,17 +119,20 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
   | Name  | Type                       | Mandatory| Description                        |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | Yes  | File path of the file system.|
-  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
+  | path     | string                      | Yes  | Path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size obtained.  |
 
 **Example**
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  let context = featureAbility.getContext();
-  context.getFilesDir().then(function (path) {
-      statfs.getTotalBytes(path, function(err, number) {
-          console.info("getTotalBytes callback successfully:" + number);
-      });
+  ```ts
+  import common from '@ohos.app.ability.common';
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
+  statfs.getTotalBytes(path, (err: BusinessError, totalBytes:Number) => {
+      if (err) {
+          console.error('getTotalBytes callback failed');
+      } else {
+          console.info('getTotalBytes callback success' + totalBytes);
+      }
   });
   ```

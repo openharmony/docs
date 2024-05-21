@@ -11,7 +11,7 @@
    
    如何生成RSA非对称密钥对，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)和[指定密钥参数生成密钥对](crypto-generate-asym-key-pair-from-key-spec.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
-2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'RSA|PKCS1_OAEP|SHA256|MGF1_SHA1'，创建非对称密钥类型为RSA1024、填充模式为PKCS1_OAEP、摘要算法为SHA256、掩码摘要为MGF1_SHA1的RSA密钥的Cipher实例，用于完成加解密操作。
+2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1'，创建非对称密钥类型为RSA2048、填充模式为PKCS1_OAEP、摘要算法为SHA256、掩码摘要为MGF1_SHA1的RSA密钥的Cipher实例，用于完成加解密操作。
 
 3. 调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)，设置模式为加密（CryptoMode.ENCRYPT_MODE），指定加密密钥（KeyPair.PubKey），初始化加密Cipher实例。
    
@@ -37,8 +37,8 @@
 - 异步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
   // 根据密钥参数属性构造RSA非对称密钥对密钥参数
   function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -68,8 +68,8 @@
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
     // 根据RSA密钥对参数生成RSA密钥对
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
-    let cipher = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
-    let decoder = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
+    let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
+    let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // RSA加解密PKCS1-OAEP模式填充字节流P
     let pSource = new Uint8Array([1, 2, 3, 4]);
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };
@@ -125,8 +125,8 @@
 - 同步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
   // 根据密钥参数属性构造RSA非对称密钥对密钥参数
   function genRsaKeyPairSpec(nIn: bigint, eIn: bigint, dIn: bigint) {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -156,8 +156,8 @@
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
     // 根据RSA密钥对参数生成RSA密钥对
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaKeyPairSpec);
-    let cipher = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
-    let decoder = cryptoFramework.createCipher("RSA|PKCS1_OAEP|SHA256|MGF1_SHA1");
+    let cipher = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
+    let decoder = cryptoFramework.createCipher("RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA1");
     // RSA加解密PKCS1-OAEP模式填充字节流P
     let pSource = new Uint8Array([1, 2, 3, 4]);
     let input: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan, 'utf-8').buffer) };

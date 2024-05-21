@@ -14,7 +14,7 @@ Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-ut
 ## 导入模块
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 ```
 
 
@@ -24,7 +24,7 @@ import worker from '@ohos.worker';
 
 | 名称                              | 类型                                                         | 可读 | 可写 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。                         |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。                         |
 | parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持,从API version 9 开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
 
 
@@ -36,8 +36,8 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
-| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。 |
+| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。 |
+| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
 | shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 |
 
 ## ThreadWorker<sup>9+</sup>
@@ -49,6 +49,8 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 constructor(scriptURL: string, options?: WorkerOptions)
 
 ThreadWorker构造函数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -73,7 +75,7 @@ ThreadWorker构造函数。
 此处以在Stage模型中Ability加载Worker文件为例，使用Library加载Worker线程文件的场景参考[文件路径注意事项](../../arkts-utils/worker-introduction.md#文件路径注意事项)。
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // 主要说明以下两种场景：
 
@@ -92,6 +94,8 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 宿主线程通过转移对象所有权的方式向Worker线程发送消息。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -124,6 +128,8 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 宿主线程通过转移对象所有权或者拷贝数据的方式向Worker线程发送消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -152,6 +158,73 @@ workerInstance.postMessage("hello world");
 let buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
+
+
+### postMessageWithSharedSendable<sup>12+</sup>
+
+postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
+
+宿主线程向Worker线程发送消息，消息中的Sendable对象通过引用传递，消息中的非Sendable对象通过序列化传递。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message   | Object	     | 是   | 发送至Worker的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。默认值为空数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+
+**示例：**
+
+```ts
+// index.ets
+// 新建SendableObject实例并通过宿主线程传递至worker线程
+
+import { worker } from '@kit.ArkTS';
+import { SendableObject } from './sendable'
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+let object: SendableObject = new SendableObject();
+workerInstance.postMessageWithSharedSendable(object);
+```
+
+```ts
+// sendable.ets
+// 定义SendableObject
+
+@Sendable
+export class SendableObject {
+  a:number = 45;
+}
+```
+
+```ts
+// worker文件路径为：entry/src/main/ets/workers/Worker.ets
+// Worker.ets
+// 接收宿主线程传递至worker线程的数据并访问
+
+import { SendableObject } from '../pages/sendable'
+import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  let obj: SendableObject = e.data;
+  console.info("sendable obj is: " + obj.a);
+}
+```
+
 
 ### on<sup>9+</sup>
 
@@ -343,6 +416,8 @@ terminate(): void
 
 销毁Worker线程，终止Worker接收消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -366,6 +441,8 @@ workerInstance.terminate();
 onexit?: (code: number) =&gt; void
 
 回调函数。表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中code类型为number，异常退出为1，正常退出为0。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -401,6 +478,8 @@ onerror?: (err: ErrorEvent) =&gt; void
 
 回调函数。表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中err类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -415,7 +494,7 @@ onerror?: (err: ErrorEvent) =&gt; void
 **示例：**
 
 ```ts
-import worker, { ErrorEvent } from '@ohos.worker';
+import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onerror = (err: ErrorEvent) => {
@@ -430,6 +509,8 @@ onmessage?: (event: MessageEvents) =&gt; void
 
 回调函数。表示宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -444,7 +525,7 @@ onmessage?: (event: MessageEvents) =&gt; void
 **示例：**
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -461,6 +542,8 @@ onmessageerror?: (event: MessageEvents) =&gt; void
 
 回调函数。表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。其中回调函数中event类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -475,7 +558,7 @@ onmessageerror?: (event: MessageEvents) =&gt; void
 **示例：**
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.onmessageerror = (err: MessageEvents) => {
@@ -590,7 +673,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
@@ -769,7 +852,7 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); //timeStamp暂未
 分发事件（dispatchEvent）可与监听接口（on、once、addEventListener）搭配使用，示例如下：
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 
@@ -848,6 +931,8 @@ postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -870,7 +955,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ```ts
 // main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -881,7 +966,7 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -895,6 +980,8 @@ workerPort.onmessage = (e: MessageEvents): void => {
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
 Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线程发送消息。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -918,7 +1005,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 ```ts
 // main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -929,13 +1016,83 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
 }
 ```
+
+
+### postMessageWithSharedSendable<sup>12+</sup>
+
+postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
+
+Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用传递，消息中的非Sendable对象通过序列化传递。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| --------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| message   | Object	     | 是   | 发送至宿主线程的数据，该数据对象必须是可序列化或可共享，序列化支持类型见[序列化类型说明](#序列化支持类型)，共享支持类型见[共享类型说明](../../arkts-utils/arkts-sendable.md#sendable数据)。 |
+| transfer  | ArrayBuffer[] | 否   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到宿主线程，在Worker线程中将会变为不可用，仅在宿主线程中可用，数组不可传入null。默认值为空数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+
+**示例：**
+
+```ts
+// worker文件路径为：entry/src/main/ets/workers/Worker.ets
+// Worker.ets
+// 新建SendableObject实例并通过worker线程传递至宿主线程
+
+import { SendableObject } from '../pages/sendable'
+import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
+
+const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents) => {
+  let object: SendableObject = new SendableObject();
+  workerPort.postMessageWithSharedSendable(object);
+}
+```
+
+```ts
+// sendable.ets
+// 定义SendableObject
+
+@Sendable
+export class SendableObject {
+  a:number = 45;
+}
+```
+
+```ts
+// Index.ets
+// 接收worker线程传递至宿主线程的数据并访问其属性
+
+import { worker, MessageEvents } from '@kit.ArkTS';
+import { SendableObject } from './sendable'
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/Worker.ets");
+workerInstance.postMessage(1);
+workerInstance.onmessage = (e: MessageEvents) => {
+  let obj: SendableObject = e.data;
+  console.info("sendable index obj is: " + obj.a);
+}
+```
+
 
 ### callGlobalCallObjectMethod<sup>11+</sup>
 
@@ -975,7 +1132,7 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 **示例：**
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -1004,6 +1161,8 @@ close(): void
 
 销毁Worker线程，终止Worker接收消息。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -1018,14 +1177,14 @@ close(): void
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -1040,6 +1199,8 @@ onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 回调函数。ThreadWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -1055,7 +1216,7 @@ onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -1063,7 +1224,7 @@ workerInstance.postMessage("hello world");
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
@@ -1078,6 +1239,8 @@ onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 回调函数。ThreadWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。其中this指调用者对象本身[ThreadWorkerGlobalScope](#threadworkerglobalscope9)，ev类型为[MessageEvents](#messageevents9)，表示收到的Worker消息数据。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **错误码：**
@@ -1093,14 +1256,14 @@ onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
 // worker.ets
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = (err: MessageEvents) => {
@@ -1152,6 +1315,8 @@ workerInstance.addEventListener("alert", (e)=>{
 
 Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1174,14 +1339,14 @@ onerror?: (ev: ErrorEvent) =&gt; void
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets")
 ```
 
 ```ts
 // worker.ets
-import worker, { ErrorEvent } from '@ohos.worker';
+import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort
 workerPort.onerror = (err: ErrorEvent) => {
@@ -1192,6 +1357,8 @@ workerPort.onerror = (err: ErrorEvent) => {
 ## MessageEvents<sup>9+</sup>
 
 消息类，持有Worker线程间传递的数据。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1235,7 +1402,7 @@ RestrictedWorker构造函数。使用以下方法前，均需先构造Restricted
 受限的Worker线程文件只允许导入Worker模块，不允许导入任何其他API，以下为示例代码：
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // 主要说明以下两种场景：
 
@@ -1248,9 +1415,9 @@ const workerStageModel02 = new worker.RestrictedWorker('phone/ets/ThreadFile/wor
 
 ```ts
 // 受限worker线程文件
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
-//import process from '@ohos.process'; // 受限Worker线程内不允许导入除了worker之外的API。
+//import { process } from '@kit.ArkTS'; // 受限Worker线程内不允许导入除了worker之外的API。
 
 const workerPort = worker.workerPort;
 
@@ -1292,7 +1459,7 @@ Worker构造函数。
 
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 // 主要说明以下两种场景：
 
@@ -1504,7 +1671,7 @@ onerror?: (err: ErrorEvent) =&gt; void
 **示例：**
 
 ```ts
-import worker, { ErrorEvent } from '@ohos.worker';
+import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onerror = (err: ErrorEvent) => {
@@ -1527,7 +1694,7 @@ onmessage?: (event: MessageEvent) =&gt; void
 **示例：**
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onmessage = (e): void => {
@@ -1550,7 +1717,7 @@ onmessageerror?: (event: MessageEvent) =&gt; void
 **示例：**
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.onmessageerror = (err) => {
@@ -1761,7 +1928,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -1772,7 +1939,7 @@ workerInstance.onmessage = (e): void => {
 ```
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e): void => {
@@ -1804,7 +1971,7 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
@@ -1815,7 +1982,7 @@ workerInstance.onmessage = (e): void => {
 ```
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e): void => {
@@ -1839,13 +2006,13 @@ close(): void
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 ```
 ```ts
 // worker.ets
-import workerfrom '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e): void => {
@@ -1869,14 +2036,14 @@ onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 workerInstance.postMessage("hello world");
 ```
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e): void => {
@@ -1900,13 +2067,13 @@ DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到�
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets");
 ```
 ```ts
 // worker.ets
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = (e) => {
@@ -1918,6 +2085,8 @@ parentPort.onmessageerror = (e) => {
 ## PostMessageOptions
 
 明确数据传递过程中需要转移所有权对象的类，传递所有权的对象必须是ArrayBuffer，发送它的上下文中将会变为不可用，仅在接收方可用。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1975,6 +2144,8 @@ workerInstance.addEventListener("alert", (e)=>{
 
 错误事件类，用于表示Worker执行过程中出现异常的详细信息，ErrorEvent类继承[Event](#event)。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 | 名称     | 类型   | 可读 | 可写 | 说明                 |
@@ -2029,13 +2200,13 @@ WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被�
 
 ```ts
 // main thread
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 const workerInstance = new worker.Worker("workers/worker.ets")
 ```
 ```ts
 // worker.ets
-import worker, { ErrorEvent } from '@ohos.worker';
+import { worker, ErrorEvent } from '@kit.ArkTS';
 
 const parentPort = worker.parentPort
 parentPort.onerror = (err: ErrorEvent) => {
@@ -2056,7 +2227,7 @@ parentPort.onerror = (err: ErrorEvent) => {
 
 ```ts
 // main thread
-import worker, { MessageEvents } from '@ohos.worker';
+import { worker, MessageEvents } from '@kit.ArkTS';
 
 const workerInstance = new worker.ThreadWorker("workers/worker.ets");
 workerInstance.postMessage("message from main thread to worker");
@@ -2067,7 +2238,7 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 ```
 ```ts
 // worker.ets
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const workerPort = worker.workerPort;
 class MyModel {
@@ -2110,7 +2281,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 
 ```ts
 // main thread(同级目录为例)
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("workers/worker.ets");
@@ -2139,7 +2310,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 ```
 ```ts
 // worker.ets
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // 创建worker线程中与主线程通信的对象
 const workerPort = worker.workerPort
@@ -2172,7 +2343,7 @@ build-profile.json5 配置 :
 ### Stage模型
 ```ts
 // main thread（以不同目录为例）
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ets");
@@ -2200,7 +2371,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 ```
 ```ts
 // worker.ets
-import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // 创建worker线程中与主线程通信的对象
 const workerPort = worker.workerPort

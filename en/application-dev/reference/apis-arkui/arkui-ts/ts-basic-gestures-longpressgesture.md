@@ -17,6 +17,8 @@ If the minimum duration of the long press gesture is less than 500 ms, the long 
 
 If the minimum duration of the long press gesture is greater than or equal to 500 ms, the drag action receives a higher response priority than the long press gesture.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -30,9 +32,9 @@ If the minimum duration of the long press gesture is greater than or equal to 50
 
 | Name| Description|
 | -------- | -------- |
-| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a long press gesture is recognized.|
-| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the last finger is lifted after the long press gesture is recognized.|
-| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.|
+| onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the last finger is lifted after the long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 
@@ -55,13 +57,13 @@ struct LongPressGestureExample {
         .gesture(
         LongPressGesture({ repeat: true })
           // When repeat is set to true, the event callback is triggered continuously when the gesture is detected. The triggering interval is specified by duration (500 ms by default).
-          .onAction((event?: GestureEvent) => {
+          .onAction((event: GestureEvent) => {
             if (event && event.repeat) {
               this.count++
             }
           })
             // Triggered when the long press gesture ends.
-          .onActionEnd(() => {
+          .onActionEnd((event: GestureEvent) => {
             this.count = 0
           })
         )

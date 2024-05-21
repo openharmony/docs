@@ -33,45 +33,12 @@
 4. 执行推理并读取输出。使用predict接口进行模型推理。
 
 ```ts
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-
-}
-```
-
-```ts
-import { GlobalContext } from '../GlobalContext';
 import mindSporeLite from '@ohos.ai.mindSporeLite';
 import common from '@ohos.app.ability.common';
-export class Test {
-  value:number = 0;
-  foo(): void {
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 let inputBuffer : ArrayBuffer | null = null;
 let inputName: string = 'mnet_caffemodel_nhwc.bin';
 
-globalContext.resourceManager.getRawFileContent(inputName).then((buffer : Uint8Array) => {
+getContext(this).resourceManager.getRawFileContent(inputName).then((buffer : Uint8Array) => {
   inputBuffer = buffer.buffer as object as ArrayBuffer ;
   console.log('=========input bin byte length: ' + buffer.byteLength)
 })

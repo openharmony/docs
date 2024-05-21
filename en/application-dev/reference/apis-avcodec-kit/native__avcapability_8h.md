@@ -21,16 +21,16 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[OH_AVRange](_o_h___a_v_range.md) | Defines the value range, which contains the minimum value and maximum value.| 
+| struct&nbsp;&nbsp;[OH_AVRange](_o_h___a_v_range.md) | Describes the value range, which contains the minimum value and maximum value.| 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) | Defines an enum that enumerates the bit rate modes of an encoder.| 
+| typedef struct [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) | Defines an enum for bit rate modes of an encoder.| 
 | typedef struct [OH_AVRange](_a_v_capability.md#oh_avrange-1) [OH_AVRange](_a_v_capability.md#oh_avrange) | Defines the value range, which contains the minimum value and maximum value.| 
-| typedef enum [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) | Defines an enum that enumerates the codec categories.| 
+| typedef enum [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) | Defines an enum for codec categories.| 
 
 
 ### Enums

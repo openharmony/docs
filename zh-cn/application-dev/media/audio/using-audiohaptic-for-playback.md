@@ -6,6 +6,13 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 
 使用AudioHaptic播放音频并同步开启振动，涉及到音频及振动资源的管理、音频时延模式及音频流使用类型的配置、音振播放器的创建及管理等。本开发指导将以一次音振协同播放的过程为例，向开发者讲解如何使用AudioHaptic进行音振协同播放，建议配合[AudioHaptic的API说明](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager)阅读。
 
+### 权限申请
+
+如果应用创建的AudioHapticPlayer需要触发振动，则需要校验应用是否拥有该权限：`ohos.permission.VIBRATE`。
+
+1. [声明权限](../../security/AccessToken/declare-permissions.md)。
+2. [向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
+
 ### 开发步骤及注意事项
 
 1. 获取音振管理器实例，并注册音频及振动资源，资源支持情况可以查看[AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager)。

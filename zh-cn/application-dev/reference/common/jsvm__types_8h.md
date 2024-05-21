@@ -1,0 +1,71 @@
+# jsvm_types.h
+
+
+## 概述
+
+提供JSVM-API类型定义。
+
+通过API接口为开发者提供独立、标准、完整的JavaScript引擎能力， 包括管理引擎生命周期、编译运行JS代码、实现JS/C++跨语言调用、拍摄快照等。
+
+**库：** libjsvm.so
+
+**系统能力：** SystemCapability.ArkCompiler.JSVM
+
+**起始版本：** 11
+
+**相关模块：**[JSVM](_j_s_v_m.md)
+
+
+## 汇总
+
+
+### 结构体
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| struct&nbsp;&nbsp;[JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) | 用户提供的native函数的回调函数指针和数据，这些函数通过JSVM-API接口暴露给JavaScript。  | 
+| struct&nbsp;&nbsp;[JSVM_HeapStatistics](_j_s_v_m___heap_statistics.md) | Heapstatisics结构体，用于保存有关JavaScript堆内存使用情况的统计信息。  | 
+| struct&nbsp;&nbsp;[JSVM_InitOptions](_j_s_v_m___init_options.md) | 初始化选项，用于初始化JavaScript虚拟机。  | 
+| struct&nbsp;&nbsp;[JSVM_CreateVMOptions](_j_s_v_m___create_v_m_options.md) | 创建JavaScript虚拟机的选项。  | 
+| struct&nbsp;&nbsp;[JSVM_VMInfo](_j_s_v_m___v_m_info.md) | JavaScript虚拟机信息。  | 
+| struct&nbsp;&nbsp;[JSVM_PropertyDescriptor](_j_s_v_m___property_descriptor.md) | 属性描述符。  | 
+| struct&nbsp;&nbsp;[JSVM_ExtendedErrorInfo](_j_s_v_m___extended_error_info.md) | 扩展的异常信息。  | 
+| struct&nbsp;&nbsp;[JSVM_TypeTag](_j_s_v_m___type_tag.md) | 类型标记，存储为两个无符号64位整数的128位值。 作为一个UUID，通过它，JavaScript对象可以是"tagged"， 以确保它们的类型保持不变。  | 
+| struct&nbsp;&nbsp;[JSVM_PropertyHandlerConfigurationStruct](_j_s_v_m___property_handler_configuration_struct.md) | 当执行对象的getter、setter、deleter和enumerator作时，对应的的回调将会触发。  | 
+
+
+### 类型定义
+
+| 名称 | 描述 | 
+| -------- | -------- |
+|  typedef uint16_t **char16_t** |  | 
+| typedef struct JSVM_VM__ \* [JSVM_VM](_j_s_v_m.md#jsvm_vm) | 表示JavaScript虚拟机实例。  | 
+| typedef struct JSVM_VMScope__ \* [JSVM_VMScope](_j_s_v_m.md#jsvm_vmscope) | 表示JavaScript虚拟机作用域。  | 
+| typedef struct JSVM_EnvScope__ \* [JSVM_EnvScope](_j_s_v_m.md#jsvm_envscope) | 表示用于控制附加到当前虚拟机实例的环境。只有当线程通过 OH_JSVM_OpenEnvScope进入该环境的JSVM_EnvScope后，该环境才 对线程的虚拟机实例可用。  | 
+| typedef struct JSVM_Script__ \* [JSVM_Script](_j_s_v_m.md#jsvm_script) | 表示一段JavaScript代码。  | 
+| typedef struct JSVM_Env__ \* [JSVM_Env](_j_s_v_m.md#jsvm_env) | 表示虚拟机特定状态的上下文环境，需要在调用native函数时作为参数传递， 并且传递给后续任何的JSVM-API嵌套调用。  | 
+| typedef struct JSVM_CpuProfiler__ \* [JSVM_CpuProfiler](_j_s_v_m.md#jsvm_cpuprofiler) | 表示一个JavaScript CPU时间性能分析器。  | 
+| typedef struct JSVM_Value__ \* [JSVM_Value](_j_s_v_m.md#jsvm_value) | 表示JavaScript值。  | 
+| typedef struct JSVM_Ref__ \* [JSVM_Ref](_j_s_v_m.md#jsvm_ref) | 表示JavaScript值的引用。  | 
+| typedef struct JSVM_HandleScope__ \* [JSVM_HandleScope](_j_s_v_m.md#jsvm_handlescope) | 表示JavaScript值的作用域，用于控制和修改在特定范围内创建的对象的生命周期。 通常，JSVM-API值是在JSVM_HandleScope的上下文中创建的。当从JavaScript调用native方法时， 将存在默认JSVM_HandleScope。如果用户没有显式创建新的JSVM_HandleScope，将在默认 JSVM_HandleScope中创建JSVM-API值。对于native方法执行之外的任何代码调用（例如，在libuv回调调用期间）， 模块需要在调用任何可能导致创建JavaScript值的函数之前创建一个作用域。JSVM_HandleScope是使用 OH_JSVM_OpenHandleScope创建的，并使用OH_JSVM_CloseHandleScope销毁的。 关闭作用域代表向GC指示在JSVM_HandleScope作用域的生命周期内创建的所有JSVM_Value将不再从当前堆的栈帧中引用。  | 
+| typedef struct JSVM_EscapableHandleScope__ \* [JSVM_EscapableHandleScope](_j_s_v_m.md#jsvm_escapablehandlescope) | 表示一种特殊类型的handle scope，用于将在特定handle scope内创建的值返回到父作用域。  | 
+| typedef struct JSVM_CallbackInfo__ \* [JSVM_CallbackInfo](_j_s_v_m.md#jsvm_callbackinfo) | 表示传递给回调函数的不透明数据类型。可用于获取调用该函数的上下文的附加信息。  | 
+| typedef struct JSVM_Deferred__ \* [JSVM_Deferred](_j_s_v_m.md#jsvm_deferred) | 表示Promise延迟对象。  | 
+| typedef [JSVM_CallbackStruct](_j_s_v_m___callback_struct.md) \* [JSVM_Callback](_j_s_v_m.md#jsvm_callback) | 用户提供的native函数的函数指针类型，这些函数通过JSVM-API接口暴露给JavaScript。  | 
+| typedef void(JSVM_CDECL \* [JSVM_Finalize](_j_s_v_m.md#jsvm_finalize)) ([JSVM_Env](_j_s_v_m.md#jsvm_env) env, void \*finalizeData, void \*finalizeHint) | 函数指针类型，当native类型对象或数据与JS对象被关联时，传入该指针。该函数将会 在关联的JS对象被GC回收时被调用，用以执行native的清理动作。  | 
+| typedef bool(JSVM_CDECL \* [JSVM_OutputStream](_j_s_v_m.md#jsvm_outputstream)) (const char \*data, int size, void \*streamData) | ASCII输出流回调的函数指针类型。参数data是指输出的数据指针。参数size是指输出的数据大小。 空数据指针指示流的结尾。参数streamData是指与回调一起传递给API函数的指针，该API函数向输出流生成数据。回 调返回true表示流可以继续接受数据。否则，它将中止流。  | 
+| typedef [JSVM_PropertyHandlerConfigurationStruct](_j_s_v_m___property_handler_configuration_struct.md) \* [JSVM_PropertyHandlerCfg](_j_s_v_m.md#jsvm_propertyhandlercfg) | 包含属性监听回调的结构的指针类型。  | 
+
+
+### 枚举
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [JSVM_PropertyAttributes](_j_s_v_m.md#jsvm_propertyattributes) {<br/>[JSVM_DEFAULT](_j_s_v_m.md) = 0, [JSVM_WRITABLE](_j_s_v_m.md) = 1 &lt;&lt; 0, [JSVM_ENUMERABLE](_j_s_v_m.md) = 1 &lt;&lt; 1, [JSVM_CONFIGURABLE](_j_s_v_m.md) = 1 &lt;&lt; 2,<br/>[JSVM_STATIC](_j_s_v_m.md) = 1 &lt;&lt; 10, [JSVM_DEFAULT_METHOD](_j_s_v_m.md) = JSVM_WRITABLE \| JSVM_CONFIGURABLE, [JSVM_DEFAULT_JSPROPERTY](_j_s_v_m.md) = JSVM_WRITABLE \| JSVM_ENUMERABLE \| JSVM_CONFIGURABLE<br/>} | 用于控制JavaScript对象属性的行为。  | 
+| [JSVM_ValueType](_j_s_v_m.md#jsvm_valuetype) {<br/>[JSVM_UNDEFINED](_j_s_v_m.md), [JSVM_NULL](_j_s_v_m.md), [JSVM_BOOLEAN](_j_s_v_m.md), [JSVM_NUMBER](_j_s_v_m.md),<br/>[JSVM_STRING](_j_s_v_m.md), [JSVM_SYMBOL](_j_s_v_m.md), [JSVM_OBJECT](_j_s_v_m.md), [JSVM_FUNCTION](_j_s_v_m.md),<br/>[JSVM_EXTERNAL](_j_s_v_m.md), [JSVM_BIGINT](_j_s_v_m.md)<br/>} | 描述JSVM_Value的类型。  | 
+| [JSVM_TypedarrayType](_j_s_v_m.md#jsvm_typedarraytype) {<br/>[JSVM_INT8_ARRAY](_j_s_v_m.md), [JSVM_UINT8_ARRAY](_j_s_v_m.md), [JSVM_UINT8_CLAMPED_ARRAY](_j_s_v_m.md), [JSVM_INT16_ARRAY](_j_s_v_m.md),<br/>[JSVM_UINT16_ARRAY](_j_s_v_m.md), [JSVM_INT32_ARRAY](_j_s_v_m.md), [JSVM_UINT32_ARRAY](_j_s_v_m.md), [JSVM_FLOAT32_ARRAY](_j_s_v_m.md),<br/>[JSVM_FLOAT64_ARRAY](_j_s_v_m.md), [JSVM_BIGINT64_ARRAY](_j_s_v_m.md), [JSVM_BIGUINT64_ARRAY](_j_s_v_m.md)<br/>} | 描述TypedArray的类型。  | 
+| [JSVM_Status](_j_s_v_m.md#jsvm_status) {<br/>[JSVM_OK](_j_s_v_m.md), [JSVM_INVALID_ARG](_j_s_v_m.md), [JSVM_OBJECT_EXPECTED](_j_s_v_m.md), [JSVM_STRING_EXPECTED](_j_s_v_m.md),<br/>[JSVM_NAME_EXPECTED](_j_s_v_m.md), [JSVM_FUNCTION_EXPECTED](_j_s_v_m.md), [JSVM_NUMBER_EXPECTED](_j_s_v_m.md), [JSVM_BOOLEAN_EXPECTED](_j_s_v_m.md),<br/>[JSVM_ARRAY_EXPECTED](_j_s_v_m.md), [JSVM_GENERIC_FAILURE](_j_s_v_m.md), [JSVM_PENDING_EXCEPTION](_j_s_v_m.md), [JSVM_CANCELLED](_j_s_v_m.md),<br/>[JSVM_ESCAPE_CALLED_TWICE](_j_s_v_m.md), [JSVM_HANDLE_SCOPE_MISMATCH](_j_s_v_m.md), [JSVM_CALLBACK_SCOPE_MISMATCH](_j_s_v_m.md), [JSVM_QUEUE_FULL](_j_s_v_m.md),<br/>[JSVM_CLOSING](_j_s_v_m.md), [JSVM_BIGINT_EXPECTED](_j_s_v_m.md), [JSVM_DATE_EXPECTED](_j_s_v_m.md), [JSVM_ARRAYBUFFER_EXPECTED](_j_s_v_m.md),<br/>[JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED](_j_s_v_m.md), [JSVM_WOULD_DEADLOCK](_j_s_v_m.md), [JSVM_NO_EXTERNAL_BUFFERS_ALLOWED](_j_s_v_m.md), [JSVM_CANNOT_RUN_JS](_j_s_v_m.md)<br/>} | 表示JSVM-API调用成功或失败的完整状态码。  | 
+| [JSVM_KeyCollectionMode](_j_s_v_m.md#jsvm_keycollectionmode) { [JSVM_KEY_INCLUDE_PROTOTYPES](_j_s_v_m.md), [JSVM_KEY_OWN_ONLY](_j_s_v_m.md) } | 限制查找属性的范围。  | 
+| [JSVM_KeyFilter](_j_s_v_m.md#jsvm_keyfilter) {<br/>[JSVM_KEY_ALL_PROPERTIES](_j_s_v_m.md) = 0, [JSVM_KEY_WRITABLE](_j_s_v_m.md) = 1, [JSVM_KEY_ENUMERABLE](_j_s_v_m.md) = 1 &lt;&lt; 1, [JSVM_KEY_CONFIGURABLE](_j_s_v_m.md) = 1 &lt;&lt; 2,<br/>[JSVM_KEY_SKIP_STRINGS](_j_s_v_m.md) = 1 &lt;&lt; 3, [JSVM_KEY_SKIP_SYMBOLS](_j_s_v_m.md) = 1 &lt;&lt; 4<br/>} | 属性过滤器，可以通过使用or来构造一个复合过滤器。  | 
+| [JSVM_KeyConversion](_j_s_v_m.md#jsvm_keyconversion) { [JSVM_KEY_KEEP_NUMBERS](_j_s_v_m.md), [JSVM_KEY_NUMBERS_TO_STRINGS](_j_s_v_m.md) } | 键转换选项。  | 
+| [JSVM_MemoryPressureLevel](_j_s_v_m.md#jsvm_memorypressurelevel) { [JSVM_MEMORY_PRESSURE_LEVEL_NONE](_j_s_v_m.md), [JSVM_MEMORY_PRESSURE_LEVEL_MODERATE](_j_s_v_m.md), [JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL](_j_s_v_m.md) } | 内存压力水平。  | 

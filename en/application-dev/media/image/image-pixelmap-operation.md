@@ -1,4 +1,4 @@
-# PixelMap Operation (ArkTS)
+# PixelMap Operation
 
 To process a certain area in an image, you can perform PixelMap operations, which are usually used to beautify the image.
 
@@ -12,7 +12,7 @@ As shown in the figure below, the pixel data of a rectangle in an image is read,
 
 Read [Image](../../reference/apis-image-kit/js-apis-image.md#pixelmap7) for APIs related to PixelMap operations.
 
-1. Complete [image decoding](image-decoding.md#how-to-develop) and obtain a **PixelMap** object.
+1. Complete [image decoding](image-decoding.md) and obtain a **PixelMap** object.
 
 2. Obtain information from the **PixelMap** object.
      

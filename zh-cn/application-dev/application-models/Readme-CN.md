@@ -1,8 +1,7 @@
-# 应用模型
+# Ability Kit（程序框架服务）
 
-- 应用模型概述
-  - [应用模型的构成要素](application-model-composition.md)
-  - [应用模型解读](application-model-description.md)
+- [Ability Kit简介](abilitykit-overview.md)
+- [应用模型](application-models.md)
 - Stage模型开发指导
   - [Stage模型开发概述](stage-model-development-overview.md)
   - Stage模型应用组件
@@ -14,39 +13,40 @@
       - [UIAbility组件基本用法](uiability-usage.md)
       - [UIAbility组件与UI的数据同步](uiability-data-sync-with-ui.md)
       - [UIAbility组件间交互（设备内）](uiability-intra-device-interaction.md)
-    - ExtensionAbility组件
-      - [ExtensionAbility组件概述](extensionability-overview.md)
-      - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [ServiceExtensionAbility](serviceextensionability.md)
-      - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
-      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
-      - [DriverExtensionAbility](driverextensionability.md)
+    - [ExtensionAbility组件](extensionability-overview.md)
+      <!--Del-->
+      - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
+      <!--DelEnd-->
+      - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
-      - [常见action与entities](actions-entities.md)
       - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
+    - [AppStartup开发指南](app-startup.md)
+    <!--Del-->
     - 应用组件跨设备交互（流转）
       - [流转概述](inter-device-interaction-hop-overview.md)
       - [跨端迁移](hop-cross-device-migration.md)
       - [多端协同](hop-multi-device-collaboration.md)
+    <!--DelEnd-->
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
-  - 了解进程模型
-    - [进程模型概述](process-model-stage.md)
-    - [后台服务](background-services.md)
-  - 了解线程模型
-    - [线程模型概述](thread-model-stage.md)
-    - [使用EventHub进行线程内通信](itc-with-eventHub.md)
-  - 任务（Mission）管理
+  - 应用间跳转
+    - 通用意图跳转
+      - [通过startAbilityByType拉起垂类应用](start-intent-panel.md)
+  - [进程模型](process-model-stage.md)
+  - [线程模型](thread-model-stage.md)
+  <!--Del-->
+  - 任务（Mission）管理（仅对系统应用开放）
     - [任务（Mission）管理场景介绍](mission-management-overview.md)
     - [任务（Mission）与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
     - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
+  <!--DelEnd-->
   - [Stage模型应用配置文件](config-file-stage.md)
 - FA模型开发指导
   - [FA模型开发概述](fa-model-development-overview.md)
@@ -83,13 +83,13 @@
     - [FA模型的Context](application-context-fa.md)
     - [信息传递载体Want](want-fa.md)
     - [组件启动规则（FA模型）](component-startup-rules-fa.md)
-  - 了解进程模型
-    - [进程模型概述](process-model-fa.md)
-    - [后台服务](rpc.md)
-  - 了解线程模型
-    - [线程模型概述](thread-model-fa.md)
-  - [任务管理](mission-management-fa.md)
+  - [进程模型](process-model-fa.md)
+  - [线程模型](thread-model-fa.md)
+  <!--Del-->
+  - [任务管理（仅对系统应用开放）](mission-management-fa.md)
+  <!--DelEnd-->
   - [FA模型应用配置文件](config-file-fa.md)
+<!--Del-->
 - FA模型与Stage模型应用组件互通指导
   - [FA模型与Stage模型应用组件互通综述](fa-stage-interaction-overview.md)
   - [FA模型启动Stage模型UIAbility](start-uiability-from-fa.md)
@@ -123,3 +123,5 @@
     - [resourceManager接口切换](resourcemanager-switch.md)
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
+<!--DelEnd-->
+- [程序访问控制](../security/AccessToken/Readme-CN.md)

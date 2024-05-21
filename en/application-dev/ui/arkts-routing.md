@@ -13,9 +13,9 @@ Page redirection is an important part of the development process. When using an 
 
 ![router-jump-to-detail](figures/router-jump-to-detail.gif)
 
-The **Router** module provides two redirection modes: [router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9) and [router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9). Whether the target page will replace the current page depends on the mode used.
+The **Router** module provides two redirection modes: [router.pushUrl()](../reference/apis-arkui/js-apis-router.md#routerpushurl9) and [router.replaceUrl()](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9). Whether the target page will replace the current page depends on the mode used.
 
-- **router.pushUrl()**: The target page is pushed into the page stack and does not replace the current page. In this mode, the state of the current page is retained, and users can return to the current page by pressing the back button or calling the [router.back()](../reference/apis/js-apis-router.md#routerback) API.
+- **router.pushUrl()**: The target page is pushed into the page stack and does not replace the current page. In this mode, the state of the current page is retained, and users can return to the current page by pressing the back button or calling the [router.back()](../reference/apis-arkui/js-apis-router.md#routerback) API.
 
 - **router.replaceUrl()**: The target page replaces and destroys the current page. In this mode, the resources of the current page can be released, and users cannot return to the current page.
 
@@ -24,7 +24,7 @@ The **Router** module provides two redirection modes: [router.pushUrl()](../refe
 >- When creating a page, configure the route to this page by following instructions in [Building the Second Page](../quick-start/start-with-ets-stage.md#building-the-second-page).
 >
 >
->- The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear()](../reference/apis/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.
+>- The maximum capacity of a page stack is 32 pages. If this limit is exceeded, the [router.clear()](../reference/apis-arkui/js-apis-router.md#routerclear) API can be called to clear the historical page stack and free the memory.
 
 The **Router** module also provides two instance modes: **Standard** and **Single**. Depending on the mode, the target URL is mapped to one or more instances.
 
@@ -164,7 +164,7 @@ function onJumpClick(): void {
 }
 ```
 
-On the target page, you can call the [getParams()](../reference/apis/js-apis-router.md#routergetparams) API of the **Router** module to obtain the passed parameters. Example:
+On the target page, you can call the [getParams()](../reference/apis-arkui/js-apis-router.md#routergetparams) API of the **Router** module to obtain the passed parameters. Example:
 
 
 ```ts
@@ -306,7 +306,7 @@ Such a dialog box can be in the [default style](#default-confirmation-dialog-box
 
 ### Default Confirmation Dialog Box
 
-To implement this function, you can use the [router.showAlertBeforeBackPage()](../reference/apis/js-apis-router.md#routershowalertbeforebackpage9) and [router.back()](../reference/apis/js-apis-router.md#routerback) APIs provided by the **Router** module.
+To implement this function, you can use the [router.showAlertBeforeBackPage()](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9) and [router.back()](../reference/apis-arkui/js-apis-router.md#routerback) APIs provided by the **Router** module.
 
 Before using the **Router** module, import it first.
 
@@ -315,7 +315,7 @@ Before using the **Router** module, import it first.
 import router from '@ohos.router';
 ```
 
-To enable the confirmation dialog box for page return, call the [router.showAlertBeforeBackPage()](../reference/apis/js-apis-router.md#routershowalertbeforebackpage9) API (for setting the information about the dialog box), then the [router.back()](../reference/apis/js-apis-router.md#routerback) API. For example, define a click event processing function for the back button on the payment page:
+To enable the confirmation dialog box for page return, call the [router.showAlertBeforeBackPage()](../reference/apis-arkui/js-apis-router.md#routershowalertbeforebackpage9) API (for setting the information about the dialog box), then the [router.back()](../reference/apis-arkui/js-apis-router.md#routerback) API. For example, define a click event processing function for the back button on the payment page:
 
 
 ```ts
@@ -345,11 +345,11 @@ The **router.showAlertBeforeBackPage()** API receives an object as a parameter. 
 **message**: content of the dialog box. The value is of the string type.
 If the API is called successfully, the confirmation dialog box is displayed on the target page. Otherwise, an exception is thrown and the error code and error information is obtained through **err.code** and **err.message**.
 
-When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects Cancel, the application stays on the current page. If the user selects OK, the **router.back()** API is triggered and the redirection is performed based on the parameters.
+When the user clicks the back button, a confirmation dialog box is displayed, prompting the user to confirm their operation. If the user selects **Cancel**, the application stays on the current page. If the user selects OK, the **router.back()** API is called and the redirection is performed based on the parameters.
 
 ### Custom Confirmation Dialog Box
 
-To implement a custom confirmation dialog box, use APIs in the [PromptAction](../reference/apis/js-apis-promptAction.md#promptactionshowdialog) module or customize a popup window.  This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
+To implement a custom confirmation dialog box, use APIs in the [PromptAction]((../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) module or customize a popup window . This topic uses the APIs in the **PromptAction** module an example to describe how to implement a custom confirmation dialog box.
 
 Before using the **Router** module, import it first.
 
@@ -358,7 +358,7 @@ Before using the **Router** module, import it first.
 import router from '@ohos.router';
 ```
 
-In the event callback, call the [promptAction.showDialog()](../reference/apis/js-apis-promptAction.md#promptactionshowdialog) API of the **PromptAction** module.
+In the event callback, call the [promptAction.showDialog()](../reference/apis-arkui/js-apis-promptAction.md#promptactionshowdialog) API of the **PromptAction** module.
 
 
 ```ts
@@ -402,7 +402,7 @@ When the user clicks the back button, the custom confirmation dialog box is disp
 
 ## Named Route
 
-To redirect to a [page in a shared package](../quick-start/shared-guide.md), you can use [router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute10).
+To redirect to a page in a [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md), you can use [router.pushNamedRoute()](../reference/apis-arkui/js-apis-router.md#routerpushnamedroute10).
 
   **Figure 4** Named route redirection 
 
@@ -415,7 +415,7 @@ Before using the **Router** module, import it first.
 import router from '@ohos.router';
 ```
 
-In the target page in the [shared package](../quick-start/shared-guide.md), name the [@Entry decorated custom component](../quick-start/arkts-create-custom-components.md#entryoptions10).
+In the target page in the [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md), name the [@Entry decorated custom component](../quick-start/arkts-create-custom-components.md#entryoptions10).
 
 ```ts
 // library/src/main/ets/pages/Index.ets
@@ -442,7 +442,7 @@ When the configuration is successful, import the named route page to the page fr
 ```ts
 import router from '@ohos.router';
 import { BusinessError } from '@ohos.base';
-const module = import('library/src/main/ets/pages/Index');  // Import the named route page in the shared package.
+import('library/src/main/ets/pages/Index');  // Import the named route page from the library of the shared package.
 @Entry
 @Component
 struct Index {
@@ -476,3 +476,15 @@ struct Index {
   }
 }
 ```
+
+>**NOTE**
+>
+>To use the named route for redirection, you must configure dependencies in the **oh-package.json5** file of the application package. Example:
+>
+>```ts
+>"dependencies": {
+>    "@ohos/library": "file:../library",
+>    ...
+> }
+>```
+

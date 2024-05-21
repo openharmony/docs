@@ -42,7 +42,6 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnError)(OH_AudioC
 
 Defines a function pointer to the callback function used to process audio recording errors.
 
-**Since**: 10
 
 
 ### OH_AudioCapturer_OnInterruptEvent
@@ -55,7 +54,6 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnInterruptEvent)(
 
 Defines a function pointer to the callback function used to process audio recording interruption events.
 
-**Since**: 10
 
 
 ### OH_AudioCapturer_OnReadData
@@ -78,5 +76,3 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnStreamEvent)(OH_
 **Description**
 
 Defines a function pointer to the callback function used to process audio recording stream events.
-
-**Since**: 10

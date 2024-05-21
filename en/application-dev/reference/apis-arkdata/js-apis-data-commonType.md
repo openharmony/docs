@@ -9,7 +9,7 @@ The **commonType** module defines common data types in data management.
 ## Modules to Import
 
 ```ts
-import { commonType } from '@ohos.data.commonType';
+import commonType from '@ohos.data.commonType';
 ```
 
 ## AssetStatus

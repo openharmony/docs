@@ -14,16 +14,17 @@ OffscreenCanvas组件用于自定义绘制图形。
 
 ## 接口
 
-OffscreenCanvas(width: number, height: number)
+OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                              |
 | ------ | -------- | ---- | ------ | ------------------------------------- |
-| width  | number   | 是   | 0      | OffscreenCanvas组件的宽度，单位为vp。 |
-| height | number   | 是   | 0      | OffscreenCanvas组件的高度，单位为vp。 |
+| width  | number   | 是   | 0      | OffscreenCanvas组件的宽度，默认单位为vp。 |
+| height | number   | 是   | 0      | OffscreenCanvas组件的高度，默认单位为vp。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否   | DEFAULT | 用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同CanvasRenderingContext2D。<br> DEFAULT: vp模式 <br> PX: px模式 |
 
 ## 属性
 
@@ -31,8 +32,8 @@ OffscreenCanvas支持以下属性：
 
 | 名称   | 类型   | 默认值 | 描述                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 0      | OffscreenCanvas组件的宽度，单位为vp。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | 0      | OffscreenCanvas组件的高度，单位为vp。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| width  | number | 0      | OffscreenCanvas组件的宽度，默认单位为vp。**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| height | number | 0      | OffscreenCanvas组件的高度，默认单位为vp。**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ### width
 
@@ -114,7 +115,7 @@ transferToImageBitmap(): ImageBitmap
 
 从OffscreenCanvas组件中最近渲染的图像创建一个ImageBitmap对象。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **返回值：**
 
@@ -165,6 +166,8 @@ struct OffscreenCanvasPage {
 getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
 
 返回OffscreenCanvas组件的绘图上下文。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 

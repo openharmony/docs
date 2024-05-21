@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import convertxml from '@ohos.convertxml';
+import { convertxml } from '@kit.ArkTS';
 ```
 
 ## ConvertXML
@@ -20,6 +20,8 @@ import convertxml from '@ohos.convertxml';
 convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 转换xml文本为JavaScript对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -122,6 +124,8 @@ console.log(result);
 ## ConvertOptions
 
 转换选项。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

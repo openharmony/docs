@@ -1,7 +1,7 @@
 # 导航转场
 
 
-导航转场是页面的路由转场方式，也就是一个界面消失，另外一个界面出现的动画效果。导航转场的动画效果开发者也可以自定义。
+导航转场是页面的路由转场方式，也就是一个界面消失，另外一个界面出现的动画效果。开发者也可以自定义导航转场的动画效果，具体请参考[Navigation示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)。
 
 
 导航转场推荐使用[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)组件实现，可搭配[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)组件实现导航功能。

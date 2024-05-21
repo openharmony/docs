@@ -66,7 +66,17 @@ Obtains the business ability information based on the specified filter criteria.
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | filter | [BusinessAbilityFilter](#businessabilityfilter) | Yes   | Object used to filter the business abilities.|
-| callback | AsyncCallback\<Array\<[BusinessAbilityInfo](../apis/js-apis-bundleManager-businessAbilityInfo.md#businessabilityinfo)\>\> | Yes| Callback used to return the result. If the operation is successful, the business ability information that meets the filter criteria is returned; otherwise, an error object is returned.|
+| callback | AsyncCallback\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | Yes| Callback used to return the result. If the operation is successful, the business ability information that meets the filter criteria is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 
@@ -112,7 +122,17 @@ Obtains the business ability information based on the specified filter criteria.
 
 | Type                                                        | Description                                       |
 | ------------------------------------------------------------ | ------------------------------------------- |
-| Promise\<Array\<[BusinessAbilityInfo](../apis/js-apis-bundleManager-businessAbilityInfo.md#businessabilityinfo)\>\> | Promise used to return the business ability information that meets the filter criteria.|
+| Promise\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | Promise used to return the business ability information that meets the filter criteria.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 

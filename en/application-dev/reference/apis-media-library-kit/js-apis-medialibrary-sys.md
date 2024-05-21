@@ -24,7 +24,7 @@ Before calling this API, call [FileAsset.trash](js-apis-medialibrary.md#trash8) 
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper.md#deleteassets-3) instead.
+> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper-sys.md#deleteassetsdeprecated-3) instead.
 
 **System API**: This is a system API.
 
@@ -81,7 +81,7 @@ Before calling this API, call [FileAsset.trash](js-apis-medialibrary.md#trash8) 
 
 > **NOTE**
 >
-> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper.md#deleteassets-2) instead.
+> This API is deprecated since API version 9. Use [deleteAssets](js-apis-photoAccessHelper-sys.md#deleteassetsdeprecated-2) instead.
 
 **System API**: This is a system API.
 

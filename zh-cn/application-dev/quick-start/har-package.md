@@ -331,6 +331,34 @@ HAR可以作为二方库和三方库提供给其他应用使用，如果需要�
   }
   ```
 
+### 编译生成TS文件
+
+> **场景说明**
+>
+>在har中使用Sendable class时，开启该配置。
+
+har模块中arkts文件编译后，默认产物为js文件，想要将产物修改为ts文件，可以在har模块src/main目录下的module.json5文件中的"metadata"字段下的"UseTsHar"进行设置，配置如下所示：
+
+  ```json
+  {
+    "module": {
+      "name": "TsClosedHar",
+      "type": "har",
+      "deviceTypes": [
+        "default",
+        "tablet",
+        "2in1"
+      ],
+      "metadata": [
+        {
+          "name": "UseTsHar",
+          "value": "true"
+        }
+      ]
+    }
+  }
+  ```
+
 ## 发布
 
 详见[发布HAR](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512)。

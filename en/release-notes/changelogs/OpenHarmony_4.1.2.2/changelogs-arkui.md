@@ -1,5 +1,5 @@
 # ArkUI Subsystem Changelog
-## cl.Arkui.1 Changes in the Default QR Code Color, Background Color, and Size
+## cl.arkui.1 Changes in the Default QR Code Color, Background Color, and Size
 
 **Access Level**
 
@@ -29,7 +29,7 @@ Since API version 11, the **\<QRCode>** component uses the following default set
 
 **Adaptation Guide**
 
-For details, see [QRCode](../../../application-dev/reference/arkui-ts/ts-basic-components-qrcode.md).
+For details, see [QRCode](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-qrcode.md).
 
 Sample code:
 ```ts
@@ -69,13 +69,23 @@ Since API version 11, child components of the **\<Refresh>** component move down
 
 2. Custom refresh settings with the builder API
 
-In versions earlier than API version 11, the **\<Refresh>** component is embedded with child components, with a height not greater than 64 vp. The edge bounce effect of the component and the custom refresh style for the pull-down gesture take effect at the same time.
+In versions earlier than API version 11, the **\<Refresh>** component is embedded with child components, with a height not greater than 64 vp. The edge bounce effect of the scrolling component and the custom refresh style for the pull-down gesture take effect at the same time.
 
 ![refresh](figures/refreshApi9Builder.gif)
 
 Since API version 11, child components of the **\<Refresh>** component move down with the pull-down gesture. There are no constraints on the height of the custom refresh component with the builder API.
 
 ![refresh](figures/refreshApi11Builder.gif)
+
+3. **friction** API
+
+In versions earlier than API version 11, the **\<Refresh>** component's sensitivity to the pull-down gesture is set through the **friction** API.
+Since API version 11, the **\<Refresh>** component's sensitivity to the pull-down gesture decreases with the pull-down gesture. The **friction** API has no effect.
+
+4. **offset** API
+
+In versions earlier than API version 11, the pull-down distance required for the **\<loadingProgress>** component to start to display is set through the **offset** API of the **\<Refresh>** component.
+Since API version 11, the pull-down distance required for the **\<loadingProgress>** component to start to display is fixed at 16 vp. The **friction** API has no effect.
 
 **API Level**
 
@@ -93,7 +103,7 @@ Refresh
 
 1. Default refresh settings
 
-For details, see [Refresh](../../../application-dev/reference/arkui-ts/ts-container-refresh.md).
+For details, see [Refresh](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md).
 
 Sample code:
 
@@ -142,7 +152,7 @@ struct RefreshExample {
 
 2. Custom refresh settings with the builder API
 
-For details, see [Refresh](../../../application-dev/reference/arkui-ts/ts-container-refresh.md).
+For details, see [Refresh](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-refresh.md).
 
 Sample code:
 
@@ -202,3 +212,7 @@ struct RefreshExample {
   }
 }
 ```
+
+3. **friction** and **offset** APIs
+
+No adaptation is required.

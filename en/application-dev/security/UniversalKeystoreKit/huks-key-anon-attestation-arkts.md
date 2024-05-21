@@ -7,11 +7,11 @@
 
 2. Initializes a parameter set.
 
-   The **properties** field in [HuksOptions](../../reference/apis/js-apis-huks.md#huksoptions) must contain [HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO](../../reference/apis/js-apis-huks.md#hukstag) and [HUKS_TAG_ATTESTATION_CHALLENGE](../../reference/apis/js-apis-huks.md#hukstag) attributes. The optional parameters include [HUKS_TAG_ATTESTATION_ID_VERSION_INFO](../../reference/apis/js-apis-huks.md#hukstag) and [HUKS_TAG_ATTESTATION_ID_ALIAS](../../reference/apis/js-apis-huks.md#hukstag).
+   The **properties** field in [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions) must contain [HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag) and [HUKS_TAG_ATTESTATION_CHALLENGE](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag). Optional parameters include [HUKS_TAG_ATTESTATION_ID_VERSION_INFO](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag) and [HUKS_TAG_ATTESTATION_ID_ALIAS](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag).
 
 3. Generate an asymmetric key. For details, see [Key Generation](huks-key-generation-overview.md).
 
-4. Use [huks.anonAttestKeyItem](../../reference/apis/js-apis-huks.md#huksanonattestkeyitem11) with the key alias and parameter set to perform key attestation.
+4. Use [huks.anonAttestKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksanonattestkeyitem11) with the key alias and parameter set to perform key attestation.
 
 ```ts
 /*

@@ -10,6 +10,8 @@
 
 使用AVScreenCapture录制屏幕涉及到AVScreenCapture实例的创建、音视频采集参数的配置、采集的开始与停止、资源的释放等。
 
+开始屏幕录制时正在通话中或者屏幕录制过程中来电，录屏将自动停止。因通话中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL状态。
+
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
 
 ## 开发步骤及注意事项
@@ -170,7 +172,17 @@ void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
 
 void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
     (void)capture;
-    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPT_BY_OTHER) {
+    
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        // 处理状态变更
+        //可选 配置录屏旋转
+        int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+        // 通话中断状态处理
+        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 处理状态变更
     }
     (void)userData;
@@ -194,15 +206,18 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     }
 }
 
-int main() {
+struct OH_AVScreenCapture *capture;
+static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 实例化ScreenCapture
-    struct OH_AVScreenCapture *capture;
+    capture = OH_AVScreenCapture_Create();
     
     // 设置回调 
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
 
+    // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
+    OH_AVScreenCapture_SetCanvasRotation(capture, true);
     // 可选 [过滤音频]
     OH_AVScreenCapture_ContentFilter contentFilter= OH_AVScreenCapture_CreateContentFilter();
     // 添加过滤通知音
@@ -238,13 +253,16 @@ int main() {
     OH_AVScreenCapture_StartScreenCapture(capture);
     // mic开关设置
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
-    //可选 配置录屏旋转
-    int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
+
     sleep(10); // 录制10s
     // 结束录屏
     OH_AVScreenCapture_StopScreenCapture(capture);
     // 释放ScreenCapture
     OH_AVScreenCapture_Release(capture);
-    return 0;
+    // 返回调用结果，示例仅返回随意值
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
+
+    return sum;
 }
 ```

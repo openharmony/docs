@@ -1,6 +1,6 @@
 # Image Decoding (ArkTS)
 
-Image decoding refers to the process of decoding an archived image in a supported format into a [pixel map](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, RAW, WebP, BMP, SVG, and ICO.
+Image decoding refers to the process of decoding an archived image in a supported format into a [pixel map](image-overview.md) for image display or [processing](image-transformation.md). Currently, the following image formats are supported: JPEG, PNG, GIF, RAW, WebP, BMP, SVG, ICO, and DNG.
 
 ## How to Develop
 
@@ -13,7 +13,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
    ```
 
 2. Obtain an image.
-   - Method 1: Obtain the sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../../file-management/app-sandbox-directory.md).
+   - Method 1: Obtain the sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
         
       ```ts
       // Code on the stage model
@@ -28,7 +28,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       const context = featureAbility.getContext();
       const filePath = context.getCacheDir() + "/test.jpg";
       ```
-   - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference] (../../reference/apis-core-file-kit/js-apis-file-fs.md).
+   - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference](../../reference/apis-core-file-kit/js-apis-file-fs.md).
       To use this method, you must import the \@ohos.file.fs module first.
 
       ```ts
@@ -152,7 +152,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
        editable: true,
        desiredPixelFormat: 3,
    }
-   // Create a pixel map and perform rotation and scaling on it.
+   // Create a pixel map.
    imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
       console.log("Succeeded in creating PixelMap")
    }).catch((err : BusinessError) => {
@@ -202,9 +202,8 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
 3. Create a **PixelMap** instance.
      
    ```ts
-   imageSource.createPixelMap().then((image.PixelMap) => {
+   imageSource.createPixelMap().then((pixelMap: image.PixelMap) => {
       console.log("Succeeded in creating PixelMap")
-      const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
    }).catch((err : BusinessError) => {
       console.error("Failed to creating PixelMap")
    });

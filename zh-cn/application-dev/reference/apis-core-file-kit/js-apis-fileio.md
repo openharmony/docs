@@ -65,7 +65,7 @@ stat(path: string): Promise&lt;Stat&gt;
   fileio.stat(filePath).then((stat: fileio.Stat) => {
     console.info("getFileInfo succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("getFileInfo failed with error:" + err);
+    console.error("getFileInfo failed with error:" + err);
   });
   ```
 
@@ -164,7 +164,7 @@ opendir(path: string): Promise&lt;Dir&gt;
   fileio.opendir(dirPath).then((dir: fileio.Dir) => {
     console.info("opendir succeed");
   }).catch((err: BusinessError) => {
-    console.info("opendir failed with error:" + err);
+    console.error("opendir failed with error:" + err);
   });
   ```
 
@@ -265,7 +265,7 @@ access(path: string, mode?: number): Promise&lt;void&gt;
   fileio.access(filePath).then(() => {
     console.info("access succeed");
   }).catch((err: BusinessError) => {
-    console.info("access failed with error:" + err);
+    console.error("access failed with error:" + err);
   });
   ```
 
@@ -329,7 +329,7 @@ accessSync(path: string, mode?: number): void
     fileio.accessSync(filePath);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.info("accessSync failed with error:" + err);
+    console.error("accessSync failed with error:" + err);
   }
   ```
 
@@ -367,7 +367,7 @@ close(fd: number): Promise&lt;void&gt;
   fileio.close(fd).then(() => {
     console.info("close file succeed");
   }).catch((err: BusinessError) => {
-    console.info("close file failed with error:" + err);
+    console.error("close file failed with error:" + err);
   });
   ```
 
@@ -465,7 +465,7 @@ copyFile(src: string|number, dest: string|number, mode?: number): Promise&lt;voi
   fileio.copyFile(srcPath, dstPath).then(() => {
     console.info("copyFile succeed");
   }).catch((err: BusinessError) => {
-    console.info("copyFile failed with error:" + err);
+    console.error("copyFile failed with error:" + err);
   });
   ```
 
@@ -565,7 +565,7 @@ mkdir(path: string, mode?: number): Promise&lt;void&gt;
   fileio.mkdir(dirPath).then(() => {
     console.info("mkdir succeed");
   }).catch((error: BusinessError) => {
-    console.info("mkdir failed with error:" + error);
+    console.error("mkdir failed with error:" + error);
   });
   ```
 
@@ -662,7 +662,7 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
   fileio.open(filePath, 0o1, 0o0200).then((number: number) => {
     console.info("open file succeed");
   }).catch((err: BusinessError) => {
-    console.info("open file failed with error:" + err);
+    console.error("open file failed with error:" + err);
   });
   ```
 
@@ -790,7 +790,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
     console.log(`The content of file: ${buf.toString()}`);
     fileio.closeSync(fd);
   }).catch((err: BusinessError) => {
-    console.info("read file data failed with error:" + err);
+    console.error("read file data failed with error:" + err);
   });
   ```
 
@@ -903,7 +903,7 @@ rmdir(path: string): Promise&lt;void&gt;
   fileio.rmdir(dirPath).then(() => {
     console.info("rmdir succeed");
   }).catch((err: BusinessError) => {
-    console.info("rmdir failed with error:" + err);
+    console.error("rmdir failed with error:" + err);
   });
   ```
 
@@ -997,7 +997,7 @@ unlink(path: string): Promise&lt;void&gt;
   fileio.unlink(filePath).then(() => {
     console.info("remove file succeed");
   }).catch((error: BusinessError) => {
-    console.info("remove file failed with error:" + error);
+    console.error("remove file failed with error:" + error);
   });
   ```
 
@@ -1093,7 +1093,7 @@ write(fd: number, buffer: ArrayBuffer|string, options?: { offset?: number; lengt
   fileio.write(fd, "hello, world").then((number: number) => {
     console.info("write data to file succeed and size is:" + number);
   }).catch((err: BusinessError) => {
-    console.info("write data to file failed with error:" + err);
+    console.error("write data to file failed with error:" + err);
   });
   ```
 
@@ -1201,7 +1201,7 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
   fileio.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("calculate file hash failed with error:" + err);
+    console.error("calculate file hash failed with error:" + err);
   });
   ```
 
@@ -1272,7 +1272,7 @@ chmod(path: string, mode: number): Promise&lt;void&gt;
   fileio.chmod(filePath, 0o700).then(() => {
     console.info("chmod succeed");
   }).catch((err: BusinessError) => {
-    console.info("chmod failed with error:" + err);
+    console.error("chmod failed with error:" + err);
   });
   ```
 
@@ -1368,7 +1368,7 @@ fstat(fd: number): Promise&lt;Stat&gt;
   fileio.fstat(fd).then((stat: fileio.Stat) => {
     console.info("fstat succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("fstat failed with error:" + err);
+    console.error("fstat failed with error:" + err);
   });
   ```
 
@@ -1471,7 +1471,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
   fileio.ftruncate(fd, 5).then(() => {
     console.info("truncate file succeed");
   }).catch((err: BusinessError) => {
-    console.info("truncate file failed with error:" + err);
+    console.error("truncate file failed with error:" + err);
   });
   ```
 
@@ -1572,7 +1572,7 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
   fileio.truncate(filePath, len).then(() => {
     console.info("truncate file succeed");
   }).catch((err: BusinessError) => {
-    console.info("truncate file failed with error:" + err);
+    console.error("truncate file failed with error:" + err);
   });
   ```
 
@@ -1670,7 +1670,7 @@ readText(filePath: string, options?: { position?: number; length?: number; encod
   fileio.readText(filePath).then((str: string) => {
     console.info("readText succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("readText failed with error:" + err);
+    console.error("readText failed with error:" + err);
   });
   ```
 
@@ -1787,7 +1787,7 @@ lstat(path: string): Promise&lt;Stat&gt;
   fileio.lstat(filePath).then((stat: fileio.Stat) => {
     console.info("get link status succeed, the size of file is" + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("get link status failed with error:" + err);
+    console.error("get link status failed with error:" + err);
   });
   ```
 
@@ -1888,7 +1888,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
   fileio.rename(srcFile, dstFile).then(() => {
     console.info("rename succeed");
   }).catch((err: BusinessError) => {
-    console.info("rename failed with error:" + err);
+    console.error("rename failed with error:" + err);
   });
   ```
 
@@ -1984,7 +1984,7 @@ fsync(fd: number): Promise&lt;void&gt;
   fileio.fsync(fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error:" + err);
+    console.error("sync data failed with error:" + err);
   });
   ```
 
@@ -2080,7 +2080,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
   fileio.fdatasync(fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error:" + err);
+    console.error("sync data failed with error:" + err);
   });
   ```
 
@@ -2177,7 +2177,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
   fileio.symlink(srcFile, dstFile).then(() => {
     console.info("symlink succeed");
   }).catch((err: BusinessError) => {
-    console.info("symlink failed with error:" + err);
+    console.error("symlink failed with error:" + err);
   });
   ```
 
@@ -2277,7 +2277,7 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
   fileio.chown(filePath, stat.uid, stat.gid).then(() => {
     console.info("chown succeed");
   }).catch((err: BusinessError) => {
-    console.info("chown failed with error:" + err);
+    console.error("chown failed with error:" + err);
   });
   ```
 
@@ -2374,7 +2374,7 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
   fileio.mkdtemp(pathDir + "/XXXXXX").then((pathDir: string) => {
     console.info("mkdtemp succeed:" + pathDir);
   }).catch((err: BusinessError) => {
-    console.info("mkdtemp failed with error:" + err);
+    console.error("mkdtemp failed with error:" + err);
   });
   ```
 
@@ -2474,7 +2474,7 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
   fileio.fchmod(fd, mode).then(() => {
     console.info("chmod succeed");
   }).catch((err: BusinessError) => {
-    console.info("chmod failed with error:" + err);
+    console.error("chmod failed with error:" + err);
   });
   ```
 
@@ -2574,7 +2574,7 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
   fileio.createStream(filePath, "r+").then((stream: fileio.Stream) => {
     console.info("createStream succeed");
   }).catch((err: BusinessError) => {
-    console.info("createStream failed with error:" + err);
+    console.error("createStream failed with error:" + err);
   });
   ```
 
@@ -2677,7 +2677,7 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   fileio.fdopenStream(fd, "r+").then((stream: fileio.Stream) => {
     console.info("openStream succeed");
   }).catch((err: BusinessError) => {
-    console.info("openStream failed with error:" + err);
+    console.error("openStream failed with error:" + err);
   });
   ```
 
@@ -2784,7 +2784,7 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
   fileio.fchown(fd, stat.uid, stat.gid).then(() => {
     console.info("chown succeed");
   }).catch((err: BusinessError) => {
-    console.info("chown failed with error:" + err);
+    console.error("chown failed with error:" + err);
   });
   ```
 
@@ -2888,7 +2888,7 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
   fileio.lchown(filePath, stat.uid, stat.gid).then(() => {
     console.info("chown succeed");
   }).catch((err: BusinessError) => {
-    console.info("chown failed with error:" + err);
+    console.error("chown failed with error:" + err);
   });
   ```
 
@@ -2997,7 +2997,7 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.File.FileIO。
 
-| 名称        | 类型       | 可读   | 可写   | 说明                |
+| 名称        | 类型       | 只读   | 可写   | 说明                |
 | --------- | ---------- | ---- | ---- | ----------------- |
 | bytesRead | number     | 是    | 是    | 实际读取长度。           |
 | offset    | number     | 是    | 是    | 读取数据相对于缓冲区首地址的偏移。 |
@@ -3016,7 +3016,7 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 ### 属性
 
-| 名称     | 类型   | 可读   | 可写   | 说明                                       |
+| 名称     | 类型   | 只读   | 可写   | 说明                                       |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
 | dev    | number | 是    | 否    | 标识包含该文件的主设备号。                            |
 | ino    | number | 是    | 否    | 标识该文件。通常同设备上的不同文件的INO不同。                 |
@@ -3048,7 +3048,7 @@ isBlockDevice(): boolean
 
   | 类型      | 说明               |
   | ------- | ---------------- |
-  | boolean | 表示文件是否是块特殊设备。 |
+  | boolean | 表示文件是否是块特殊设备。true为是，false为不是。 |
 
 **示例：**
 
@@ -3074,7 +3074,7 @@ isCharacterDevice(): boolean
 
   | 类型      | 说明                |
   | ------- | ----------------- |
-  | boolean | 表示文件是否是字符特殊设备。 |
+  | boolean | 表示文件是否是字符特殊设备。true为是，false为不是。 |
 
 **示例：**
 
@@ -3100,7 +3100,7 @@ isDirectory(): boolean
 
   | 类型      | 说明            |
   | ------- | ------------- |
-  | boolean | 表示文件是否是目录。 |
+  | boolean | 表示文件是否是目录。true为是，false为不是。 |
 
 **示例：**
 
@@ -3126,7 +3126,7 @@ isFIFO(): boolean
 
   | 类型      | 说明                    |
   | ------- | --------------------- |
-  | boolean | 表示文件是否是&nbsp;FIFO。 |
+  | boolean | 表示文件是否是&nbsp;FIFO。true为是，false为不是。 |
 
 **示例：**
 
@@ -3152,7 +3152,7 @@ isFile(): boolean
 
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示文件是否是普通文件。 |
+  | boolean | 表示文件是否是普通文件。true为是，false为不是。 |
 
 **示例：**
 
@@ -3178,7 +3178,7 @@ isSocket(): boolean
 
   | 类型      | 说明             |
   | ------- | -------------- |
-  | boolean | 表示文件是否是套接字。 |
+  | boolean | 表示文件是否是套接字。true为是，false为不是。 |
 
 **示例：**
 
@@ -3204,7 +3204,7 @@ isSymbolicLink(): boolean
 
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示文件是否是符号链接。 |
+  | boolean | 表示文件是否是符号链接。true为是，false为不是。 |
 
 **示例：**
 
@@ -3302,7 +3302,7 @@ close(): Promise&lt;void&gt;
   ss.close().then(() => {
     console.info("close fileStream succeed");
   }).catch((err: BusinessError) => {
-    console.info("close fileStream  failed with error:" + err);
+    console.error("close fileStream  failed with error:" + err);
   });
   ```
 
@@ -3385,7 +3385,7 @@ flush(): Promise&lt;void&gt;
   ss.flush().then(() => {
     console.info("flush succeed");
   }).catch((err: BusinessError) => {
-    console.info("flush failed with error:" + err);
+    console.error("flush failed with error:" + err);
   });
   ```
 
@@ -3485,7 +3485,7 @@ write(buffer: ArrayBuffer|string, options?: { offset?: number; length?: number; 
   ss.write("hello, world", option).then((number: number) => {
     console.info("write succeed and size is:" + number);
   }).catch((err: BusinessError) => {
-    console.info("write failed with error:" + err);
+    console.error("write failed with error:" + err);
   });
   ```
 
@@ -3626,7 +3626,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
     let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
     console.info(`The content of file: ${buf.toString()}`);
   }).catch((err: BusinessError) => {
-    console.info("read data failed with error:" + err);
+    console.error("read data failed with error:" + err);
   });
   ```
 
@@ -3755,7 +3755,7 @@ read(): Promise&lt;Dirent&gt;
   dir.read().then((dirent: fileio.Dirent) => {
     console.log("read succeed, the name of dirent is " + dirent.name);
   }).catch((err: BusinessError) => {
-    console.info("read failed with error:" + err);
+    console.error("read failed with error:" + err);
   });
   ```
 
@@ -3891,7 +3891,7 @@ closeSync(): void
 
 ### 属性
 
-| 名称   | 类型   | 可读   | 可写   | 说明      |
+| 名称   | 类型   | 只读   | 可写   | 说明      |
 | ---- | ------ | ---- | ---- | ------- |
 | name | string | 是    | 否    | 目录项的名称。 |
 
@@ -3912,7 +3912,7 @@ isBlockDevice(): boolean
 
   | 类型      | 说明               |
   | ------- | ---------------- |
-  | boolean | 表示当前目录项是否是块特殊设备。 |
+  | boolean | 表示当前目录项是否是块特殊设备。true为是，false为不是。 |
 
 **示例：**
 
@@ -3938,7 +3938,7 @@ isCharacterDevice(): boolean
 
   | 类型      | 说明                |
   | ------- | ----------------- |
-  | boolean | 表示当前目录项是否是字符特殊设备。 |
+  | boolean | 表示当前目录项是否是字符特殊设备。true为是，false为不是。 |
 
 **示例：**
 
@@ -3964,7 +3964,7 @@ isDirectory(): boolean
 
   | 类型      | 说明            |
   | ------- | ------------- |
-  | boolean | 表示当前目录项是否是目录。 |
+  | boolean | 表示当前目录项是否是目录。true为是，false为不是。 |
 
 **示例：**
 
@@ -3990,7 +3990,7 @@ isFIFO(): boolean
 
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示当前目录项是否是FIFO。 |
+  | boolean | 表示当前目录项是否是FIFO。true为是，false为不是。 |
 
 **示例：**
 
@@ -4016,7 +4016,7 @@ isFile(): boolean
 
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示当前目录项是否是普通文件。 |
+  | boolean | 表示当前目录项是否是普通文件。true为是，false为不是。 |
 
 **示例：**
 
@@ -4042,7 +4042,7 @@ isSocket(): boolean
 
   | 类型      | 说明             |
   | ------- | -------------- |
-  | boolean | 表示当前目录项是否是套接字。 |
+  | boolean | 表示当前目录项是否是套接字。true为是，false为不是。 |
 
 **示例：**
 
@@ -4068,7 +4068,7 @@ isSymbolicLink(): boolean
 
   | 类型      | 说明              |
   | ------- | --------------- |
-  | boolean | 表示当前目录项是否是符号链接。 |
+  | boolean | 表示当前目录项是否是符号链接。true为是，false为不是。 |
 
 **示例：**
 

@@ -13,7 +13,7 @@ Promise is an object used to process asynchronous operations. It converts asynch
 
 Promise has three states: pending, fulfilled, and rejected. A Promise object is in the pending state after being created and changes to the fulfilled or rejected state when the asynchronous operation is complete.
 
-The most common usage for Promise is to instantiate a Promise object through a constructor and pass in a function (usually named **executor**) with two parameters. The **executor** function receives two parameters: **resolve** and **reject**, which represent the callback functions that should be called when the asynchronous operation succeeds and fails, respectively. The code snippet below creates a Promise object and simulates an asynchronous operation:
+The most common usage for Promise is to instantiate a Promise object through a constructor and pass in a function (usually named **executor**) with two parameters. The two parameters are **resolve** and **reject**, which represent the callback functions that should be called when the asynchronous operation succeeds and fails, respectively. The code snippet below creates a Promise object and simulates an asynchronous operation:
 
 
 ```ts
@@ -29,9 +29,9 @@ setTimeout(() => {
 })
 ```
 
-In the preceding code, the **setTimeout** function simulates an asynchronous operation that generates a random number one second later. If the random number is greater than 0.5, the **resolve** callback function is executed and the random number is passed in as a parameter. Otherwise, the **reject** callback function is executed and an error object is passed in as a parameter.
+In the preceding code, the **setTimeout** function simulates an asynchronous operation that generates a random number one second later. If the random number is greater than 0.5, the **resolve** callback function is executed and the random number is passed in as a parameter. Otherwise, the **reject** callback function is executed and an error object is passed in.
 
-After the Promise object is created, you can use the **then** and **catch** methods to register the callback functions for the fulfilled and rejected states. The **then** method can receive two parameters: one for processing the fulfilled state and the other for processing the rejected state. If only one parameter is passed in, the callback function is executed as long as the state changes. The **catch** method receives a callback function to process the failure result, that is, capture the exception thrown when the Promise state changes to **rejected** or the operation fails. The code snippet below shows the use of **then** and **catch** methods:
+After the Promise object is created, you can use the **then** and **catch** methods to register the callback functions for the fulfilled and rejected states. The **then** method can receive two parameters: one for processing the fulfilled state and the other for processing the rejected state. If only one parameter is passed in, the callback function is executed as long as the state changes. The **catch** method receives a callback function to process the failure result, that is, capture the exception thrown when the Promise state changes to **rejected** or the operation fails. The code snippet below shows the use of the **then** and **catch** methods:
 
 
 ```ts
@@ -51,7 +51,7 @@ In the preceding code, the callback function of the **then** method receives the
 
 Async/Await is a Promise syntax sugar used to process asynchronous operations, making it easier to read and write asynchronous code. The async keyword is used to declare an asynchronous function, and the await keyword is used to wait for Promise parsing (fulfilled or rejected). In this way, the asynchronous operation logic is coded as a synchronous operation.
 
-The **async** function returns a Promise object to represent an asynchronous operation. Inside the **async** function, you can use the await keyword to wait for the parsing of the Promise object and return its parsed value. If an **async** function throws an exception, the Promise object returned by the function is rejected, and the exception information is passed to the **onRejected()** method of the Promise object.
+The **async** function returns a Promise object to represent an asynchronous operation. Inside the **async** function, you can use the await keyword to wait for the parsing of the Promise object and return its parsed value. If an **async** function throws an exception, the Promise object returned by the function is rejected, and the exception information is passed in to the **onRejected()** method of the Promise object.
 
 The code snippet below uses async/await to simulate an asynchronous operation that returns a string three seconds later.
 

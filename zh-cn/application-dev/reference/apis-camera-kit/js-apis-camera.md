@@ -838,7 +838,7 @@ off(type: 'cameraStatus', callback?: AsyncCallback\<CameraStatusInfo\>): void
 | 参数名     | 类型            | 必填 | 说明       |
 | -------- | -----------------| ---- | --------- |
 | type     | string           | 是   | 监听事件，固定为'cameraStatus'。cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | 否   | 回调函数，可选，有就是匹配on('cameraStatus') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -1004,7 +1004,7 @@ off(type: 'torchStatusChange', callback?: AsyncCallback\<TorchStatusInfo\>): voi
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | 是   | 监听事件，固定为'torchStatusChange'。cameraManager对象获取成功后可监听。 |
-| callback | AsyncCallback\<TorchStatusInfo> | 否   | 回调函数，可选参数，有就是匹配on('torchStatusChange') callback（callback对象不可是匿名函数）。               |
+| callback | AsyncCallback\<TorchStatusInfo> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -1278,7 +1278,7 @@ off(type: 'error', camera: CameraDevice, callback?: ErrorCallback): void
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 监听事件，固定为'error'，CameraInput对象创建成功可监听。相机设备出错情况下可触发该事件并返回结果，比如设备不可用或者冲突等返回对应错误信息。 |
 | camera   | [CameraDevice](#cameradevice)    | 是   | CameraDevice对象。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -1576,7 +1576,7 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                     |
 | -------- | -------------------- | ---- | --------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameStart'，previewOutput创建成功可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有就是匹配on('frameStart') callback（callback对象不可是匿名函数）。    |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -1626,7 +1626,7 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameEnd'，previewOutput创建成功可监听。 |
-| callback | AsyncCallback\<void\> | 否   |  回调函数，可选，有就是匹配on('frameEnd') callback（callback对象不可是匿名函数）。                |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -1678,7 +1678,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | 是   | 监听事件，固定为'error'，previewOutput创建成功可监听。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2005,7 +2005,7 @@ off(type: 'photoAvailable', callback?: AsyncCallback\<Photo\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'photoAvailable'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[Photo](#photo11)\> | 否   | 回调函数，可选，有就是匹配on('photoAvailable') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<[Photo](#photo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2064,7 +2064,7 @@ off(type: 'captureStartWithInfo', callback?: AsyncCallback\<CaptureStartInfo\>):
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'captureStartWithInfo'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[CaptureStartInfo](#capturestartinfo11)\> | 否   | 回调函数，可选，有就是匹配on('captureStartWithInfo') callback（callback对象不可是匿名函数）。            |
+| callback | AsyncCallback\<[CaptureStartInfo](#capturestartinfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2073,6 +2073,118 @@ import { BusinessError } from '@ohos.base';
 
 function unRegisterCaptureStartWithInfo(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('captureStartWithInfo');
+}
+```
+
+### isMovingPhotoSupported<sup>12+</sup>
+
+isMovingPhotoSupported(): boolean
+
+查询是否支持动态照片拍摄。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 返回是否支持动态照片拍照，true表示支持，false表示不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |                               |
+| 7400201                |  Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
+  let isSupported: boolean = false;
+  try {
+    isSupported = photoOutput.isMovingPhotoSupported();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+### enableMovingPhoto<sup>12+</sup>
+
+enableMovingPhoto(enabled: boolean): void
+
+使能动态照片拍照。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                                       |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| enabled  | boolean                | 是   | true为开启动态照片，false为关闭动态照片。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |     
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400201                |  Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
+  try {
+    photoOutput.enableMovingPhoto(true);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableMovingPhoto call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### on('photoAssetAvailable')<sup>12+</sup>
+
+on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
+
+注册监听photoAsset上报。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                  |
+| -------- | ---------- | --- | ------------------------------------ |
+| type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 是   | 回调函数，用于监听photoAsset上报。 |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
+    if (err) {
+      console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+      return;
+    }
+    console.info('photoOutPutCallBack photoAssetAvailable');
+    // 保存或使用照片，需开发者实现
+    photoAsset.saveCameraPhoto();
+  });
 }
 ```
 
@@ -2147,7 +2259,7 @@ off(type: 'captureStart', callback?: AsyncCallback\<number\>): void
 | 参数名      | 类型                    | 必填 | 说明                                       |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'captureStart'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<number\> | 否   | 回调函数，可选，有就是匹配on('captureStart') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<number\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2200,7 +2312,7 @@ off(type: 'frameShutter', callback?: AsyncCallback\<FrameShutterInfo\>): void
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'frameShutter'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | 否   | 回调函数，可选，有就是匹配on('frameShutter') callback（callback对象不可是匿名函数）。             |
+| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2253,13 +2365,169 @@ off(type: 'captureEnd', callback?: AsyncCallback\<CaptureEndInfo\>): void
 | 参数名     | 类型           | 必填 | 说明                                       |
 | -------- | --------------- | ---- | ---------------------------------------- |
 | type     | string          | 是   | 监听事件，固定为'captureEnd'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | 否   | 回调函数，可选，有就是匹配on('captureEnd') callback（callback对象不可是匿名函数）。                  |
+| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
 ```ts
 function unregisterPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('captureEnd');
+}
+```
+
+### on('frameShutterEnd')<sup>12+</sup>
+
+on(type: 'frameShutterEnd', callback: AsyncCallback\<FrameShutterEndInfo\>): void
+
+监听拍照曝光结束捕获，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'frameShutterEnd'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | 是   | 回调函数，用于获取相关信息。该回调返回表示拍照曝光结束。   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, frameShutterEndInfo: camera.FrameShutterEndInfo): void {
+  console.info(`CaptureId for frame : ${frameShutterEndInfo.captureId}`);
+}
+
+function registerPhotoOutputFrameShutterEnd(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('frameShutterEnd', callback);
+}
+```
+
+### off('frameShutterEnd')<sup>12+</sup>
+
+off(type: 'frameShutterEnd', callback?: AsyncCallback\<FrameShutterEndInfo\>): void
+
+注销监听拍照帧输出捕获。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'frameShutterEnd'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterPhotoOutputFrameShutterEnd(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('frameShutterEnd');
+}
+```
+
+### on('captureReady')<sup>12+</sup>
+
+on(type: 'captureReady', callback: AsyncCallback\<void\>): void;
+
+监听可拍下一张，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                         |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。当下一张可拍时可触发该事件发生并返回相应信息。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取相关信息。                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(): void {
+  console.info(`photo capture ready`);
+}
+
+function registerPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('captureReady', callback);
+}
+```
+
+### off('captureReady')<sup>12+</sup>
+
+off(type: 'captureReady', callback?: AsyncCallback<void>): void;
+
+注销监听监听可拍下一张。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                                         |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                               | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[CaptureReadyInfo](#captureendinfo)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('captureReady');
+}
+```
+
+### on('estimatedCaptureDuration')<sup>12+</sup>
+
+on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void;
+
+监听预估的拍照时间，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明                                                         |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
+| callback | AsyncCallback\<number> | 是   | 回调函数，用于获取相关信息。                                 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, duration: number): void {
+  console.info(`photo estimated capture duration : ${duration}`);
+}
+
+function registerPhotoOutputEstimatedCaptureDuration(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('estimatedCaptureDuration', callback);
+}
+```
+
+### off('estimatedCaptureDuration')<sup>12+</sup>
+
+off(type: 'estimatedCaptureDuration', callback?: AsyncCallback\<number\>): void;
+
+注销监听预估的拍照时间。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                                         |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | 是   | 监听事件，固定为'estimatedCaptureDuration'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<number\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+
+**示例：**
+
+```ts
+function unregisterPhotoOutputEstimatedCaptureDuration(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('estimatedCaptureDuration');
 }
 ```
 
@@ -2305,7 +2573,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2325,6 +2593,16 @@ function unregisterPhotoOutputError(photoOutput: camera.PhotoOutput): void {
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | 否   | 是   | 拍照的ID。  |
 | timestamp | number | 否   | 是   | 快门时间戳。 |
+
+## FrameShutterEndInfo<sup>12+</sup>
+
+拍照曝光结束信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称      | 类型   | 只读 | 必填 | 说明       |
+| --------- | ------ | ---- | ---- | ---------- |
+| captureId | number | 否   | 是   | 拍照的ID。 |
 
 ## CaptureStartInfo<sup>11+</sup>
 
@@ -2528,7 +2806,7 @@ off(type: 'frameStart', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ----------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'frameStart'，videoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有就是匹配on('frameStart') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2579,7 +2857,7 @@ off(type: 'frameEnd', callback?: AsyncCallback\<void\>): void
 | 参数名      | 类型                  | 必填 | 说明                                       |
 | -------- | -------------------- | ---- | ------------------------------------------ |
 | type     | string               | 是   | 监听事件，固定为'frameEnd'，videoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<void\> | 否   | 回调函数，可选，有就是匹配on('frameEnd') callback（callback对象不可是匿名函数）。    |
+| callback | AsyncCallback\<void\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2631,7 +2909,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | 是   | 监听事件，固定为'error'，photoOutput创建成功后可监听。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。               |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2823,7 +3101,7 @@ off(type: 'metadataObjectsAvailable', callback?: AsyncCallback\<Array\<MetadataO
 | 参数名      | 类型         | 必填 | 说明                                  |
 | -------- | -------------- | ---- | ------------------------------------ |
 | type     | string         | 是   | 监听事件，固定为'metadataObjectsAvailable'，metadataOutput创建成功后可监听。 |
-| callback | AsyncCallback\<Array\<[MetadataObject](#metadataobject)\>\> | 否   | 回调函数，可选，有就是匹配on('metadataObjectsAvailable') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<Array\<[MetadataObject](#metadataobject)\>\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -2875,7 +3153,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                                     |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | 是   | 监听事件，固定为'error'，metadataOutput创建成功后可监听。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。           |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -3916,9 +4194,9 @@ setMeteringPoint(point: Point): void
 import { BusinessError } from '@ohos.base';
 
 function setMeteringPoint(photoSession: camera.PhotoSession): void {
-  const exposurePoint: camera.Point = {x: 1, y: 1};
+  const point: camera.Point = {x: 1, y: 1};
   try {
-    photoSession.setMeteringPoint(exposurePoint);
+    photoSession.setMeteringPoint(point);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
@@ -4735,6 +5013,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
     console.info('Promise returned to indicate the commit config success.');
   }).catch((error: BusinessError) => {
     // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
     console.error(`The commitConfig call failed. error code: ${err.code}`);
   });
 }
@@ -5333,7 +5612,7 @@ function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode |
 
 ### isExposureModeSupported<sup>(deprecated)</sup>
 
-isExposureModeSupported(aeMode: ExposureMode): boolean;
+isExposureModeSupported(aeMode: ExposureMode): boolean
 
 检测曝光模式是否支持。
 
@@ -5525,7 +5804,7 @@ setMeteringPoint(point: Point): void
 
 | 参数名           | 类型                            | 必填 | 说明                 |
 | ------------- | -------------------------------| ---- | ------------------- |
-| exposurePoint | [Point](#point)                | 是   | 曝光点，x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。             |
+| point | [Point](#point)                | 是   | 曝光点，x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。             |
 
 **错误码：**
 
@@ -5541,9 +5820,9 @@ setMeteringPoint(point: Point): void
 import { BusinessError } from '@ohos.base';
 
 function setMeteringPoint(captureSession: camera.CaptureSession): void {
-  const exposurePoint: camera.Point = {x: 1, y: 1};
+  const point: camera.Point = {x: 1, y: 1};
   try {
-    captureSession.setMeteringPoint(exposurePoint);
+    captureSession.setMeteringPoint(point);
   } catch (error) {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
@@ -6263,7 +6542,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session 创建成功可监听。|
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -6319,7 +6598,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -6328,10 +6607,140 @@ function unregisterCaptureSessionError(captureSession: camera.CaptureSession): v
   captureSession.off('error');
 }
 ```
+## ColorManagementQuery<sup>12+</sup>
+
+色彩管理类，用于查询色彩空间参数。
+
+### getSupportedColorSpaces<sup>12+</sup>
+
+getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
+
+获取支持的色彩空间列表。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| 支持的色彩空间列表。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103         |  Session not config, only throw in session usage.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
+  let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
+  try {
+    colorSpaces = session.getSupportedColorSpaces();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getSupportedColorSpaces call failed. error code: ${err.code}`);
+  }
+  return colorSpaces;
+}
+```
+## ColorManagement<sup>12+</sup>
+
+ColorManagement extends ColorManagementQuery
+
+色彩管理类，继承自ColorManagementQuery，用于设置色彩空间参数。
+
+### setColorSpace<sup>12+</sup>
+
+setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
+
+设置色彩空间。可以先通过[getSupportedColorSpaces](#getsupportedcolorspaces12)获取当前设备所支持的ColorSpaces。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名         | 类型                 | 必填 | 说明                      |
+| ------------ |---------------------- | -- | -------------------------- |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | 是 | 色彩空间，通过[getSupportedColorSpaces](#getsupportedcolorspaces12)接口获取。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400102         |  The colorSpace does not match the format.     |
+| 7400103         |  Session not config.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
+  if (colorSpaces === undefined || colorSpaces.length <= 0) {
+    return;
+  }
+  try {
+    session.setColorSpace(colorSpaces[0]);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setColorSpace call failed, error code: ${err.code}`);
+  }
+}
+```
+
+### getActiveColorSpace<sup>12+</sup>
+
+getActiveColorSpace(): colorSpaceManager.ColorSpace
+
+获取当前设置的色彩空间。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)               | 当前设置的色彩空间。                |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
+  let colorSpace: colorSpaceManager.ColorSpace | undefined = undefined;
+  try {
+    colorSpace = session.getActiveColorSpace();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getActiveColorSpace call failed. error code: ${err.code}`);
+  }
+  return colorSpace;
+}
+```
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom
+PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
 普通拍照模式会话类，继承自[Session](#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
 
@@ -6360,9 +6769,7 @@ function callback(err: BusinessError): void {
 }
 
 function registerSessionError(photoSession: camera.PhotoSession): void {
-  photoSession.on('error', (error: BusinessError) => {
-    console.error(`Photo session error code: ${error.code}`);
-  });
+  photoSession.on('error', callback);
 }
 ```
 
@@ -6379,7 +6786,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                            | 必填 | 说明                           |
 | -------- | -------------------------------- | ---- | ------------------------------ |
 | type     | string                           | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。     |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -6431,7 +6838,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -6483,7 +6890,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -6495,7 +6902,7 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization
+VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
 普通录像模式会话类，继承自[Session](#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](#camerainput)、[CameraOutput](#cameraoutput)。
 
@@ -6541,7 +6948,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名     | 类型                          | 必填 | 说明                           |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | type     | string                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。      |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -6593,7 +7000,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否  | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 
@@ -6645,7 +7052,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **示例：**
 

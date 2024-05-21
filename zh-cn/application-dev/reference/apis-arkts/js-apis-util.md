@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 ```
 ## util.format<sup>9+</sup>
 
@@ -51,7 +51,7 @@ format(format: string,  ...args: Object[]): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 interface utilAddresstype {
   city: string;
@@ -402,11 +402,59 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 | Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
 
 
-## TextDecoderOptions<sup>11+</sup>
+## util.getHash<sup>12+</sup>
+
+getHash(object: object): number
+
+获取对象的Hash值。如果是第一次获取，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；如果不是第一次获取，则从Hash域中获取并返回Hash值（同一对象多次返回值保持不变）。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| object | object | 是 | 希望获取Hash值的对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | Hash值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+interface Person {
+  name: string,
+  age: number
+}
+let obj: Person = { name: 'Dany', age: 20 };
+let result1 = util.getHash(obj);
+console.info('result1 is ' + result1);
+let result2 = util.getHash(obj);
+console.info('result2 is ' + result2);
+// 输出：result1 与 result2 的值相等，且为随机的Hash值。
+```
+
+
+## TextDecoderOptions<sup>11+</sup>
+
 解码相关选项参数，存在两个属性fatal和ignoreBOM。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
@@ -416,9 +464,11 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 ## DecodeWithStreamOptions<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 解码是否跟随附加数据块相关选项参数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -648,7 +698,7 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrilli、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le。 |
+| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le。 |
 | fatal | boolean | 是 | 否 | 是否显示致命错误。 |
 | ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte&nbsp;order&nbsp;marker）标记，默认值为false&nbsp;，表示解码结果包含BOM标记。 |
 
@@ -671,6 +721,8 @@ let retStr = result.encoding;
 static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -697,6 +749,8 @@ let retStr = result.encoding
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -821,6 +875,8 @@ console.info("retStr = " + retStr);
 
 编码后的文本。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
 | read     | number  | 是 | 否 |表示已读取的字符数。 |
@@ -829,7 +885,8 @@ console.info("retStr = " + retStr);
 
 ## TextEncoder
 
-TextEncoder用于将字符串编码为字节数组，支持多种编码格式，包括utf-8、utf-16le/be等。需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的。例如，utf-8编码下中文字符通常占3个字节，而utf-16le/be编码下中文字符通常占2个字节。因此，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
+TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
+需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
 
 ### 属性
 
@@ -837,7 +894,7 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式，
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr。 <br/>-&nbsp; 默认值是：'utf-8'。 |
+| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
 
 ### constructor
@@ -845,6 +902,8 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式，
 constructor()
 
 TextEncoder的构造函数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -859,6 +918,8 @@ let textEncoder = new util.TextEncoder();
 constructor(encoding?: string)
 
 TextEncoder的构造函数。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -880,6 +941,8 @@ static create(encoding?: string): TextEncoder
 
 创建TextEncoder对象的方法。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -899,6 +962,8 @@ let textEncoder = util.TextEncoder.create("utf-8");
 encodeInto(input?: string): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -928,6 +993,8 @@ result = textEncoder.encodeInto("\uD800¥¥");
 encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 对字符串进行编码，将结果写入dest数组。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2652,6 +2719,8 @@ Base64Helper的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **示例：**
 
   ```ts 
@@ -2663,6 +2732,8 @@ Base64Helper的构造函数。
 encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2694,6 +2765,8 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 通过输入参数编码后输出对应文本。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2724,6 +2797,8 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 通过输入参数解码后输出对应Uint8Array对象。
 
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2753,6 +2828,8 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步编码后输出对应Uint8Array对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2846,6 +2923,95 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
   })
   ```
 
+## StringDecoder<sup>12+</sup>
+
+提供将二进制流解码为字符串的能力。支持的编码类型包括：utf-8、iso-8859-2、koi8-r、macintosh、windows-1250、windows-1251、gbk、gb18030、big5、utf-16be、utf-16le等。
+
+### constructor<sup>12+</sup>
+
+constructor(encoding?: string)
+
+StringDecoder的构造函数。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明                              |
+| ------ | ------------------------------ | ---- | --------------------------------- |
+| encoding  | string | 否   | 输入数据的编码类型。默认值：'utf-8'。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder();
+  ```
+
+### write<sup>12+</sup>
+
+write(chunk: string | Uint8Array): string
+
+返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                |
+| ------ | ---------- | ---- | ------------------- |
+| chunk  | string \| Uint8Array | 是   | 需要解码的字符串。会根据输入的编码类型进行解码，参数为Uint8Array时会正常解码，参数为string类型时会原路返回。 |
+
+**返回值：**
+
+| 类型       | 说明                          |
+| ---------- | ----------------------------- |
+| string | 返回解码后的字符串。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder('utf-8');
+  let input =  new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+  const decoded = decoder.write(input);
+  console.info("decoder:", decoded);// 你好
+  ```
+
+### end<sup>12+</sup>
+
+end(chunk?: string | Uint8Array): string
+
+结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明                |
+| ------ | ---------- | ---- | ------------------- |
+| chunk  | string \| Uint8Array | 否   | 需要解码的字符串。默认为undefined。 |
+
+**返回值：**
+
+| 类型       | 说明                          |
+| ---------- | ----------------------------- |
+| string | 返回解码后的字符串。 |
+
+**示例：**
+
+  ```ts
+  let decoder = new util.StringDecoder('utf-8');
+  let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+  const decoded = decoder.write(input.slice(0, 5));
+  const decodedend = decoder.end(input.slice(5));
+  console.info("decoded:", decoded);// 你
+  console.info("decodedend:", decodedend);// 好
+  ```
 
 ## Type<sup>10+</sup>
 
@@ -2853,12 +3019,13 @@ Base64编码格式枚举。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+
 | 名称   |值| 说明               |
 | ----- |---| ----------------- |
-| BASIC | 0 | 表示BASIC编码格式。|
-| MIME  | 1 | 表示MIME编码格式。 |
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
-| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
+| BASIC | 0 | 表示BASIC编码格式。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
+| MIME  | 1 | 表示MIME编码格式。**元服务API**：从API version 11 开始，该接口支持在元服务中使用。|
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**元服务API**：从API version 12 开始，该接口支持在元服务中使用。|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**元服务API**：从API version 12 开始，该接口支持在元服务中使用。 |
 
 
 ## types<sup>8+</sup>
@@ -3978,7 +4145,7 @@ isModuleNamespaceObject(value: Object): boolean
 
   ```ts
   // 本接口不支持在.ets文件中使用。
-  import url from '@ohos.url'
+  import { url } from '@kit.ArkTS';
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
   ```

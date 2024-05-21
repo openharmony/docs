@@ -14,7 +14,9 @@ import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 ## ConfigurationConstant.ColorMode
 
-You can obtain the value of this constant by calling the **ConfigurationConstant.ColorMode** API.
+Enumerates the color modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -27,7 +29,9 @@ You can obtain the value of this constant by calling the **ConfigurationConstant
 
 ## ConfigurationConstant.Direction
 
-You can obtain the value of this constant by calling the **ConfigurationConstant.Direction** API.
+Enumerates the display orientations.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -40,7 +44,9 @@ You can obtain the value of this constant by calling the **ConfigurationConstant
 
 ## ConfigurationConstant.ScreenDensity
 
-You can obtain the value of this constant by calling the **ConfigurationConstant.ScreenDensity** API.
+Enumerates the screen density modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 

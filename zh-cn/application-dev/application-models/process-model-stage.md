@@ -1,4 +1,4 @@
-# 进程模型概述
+# 进程模型
 
 
 系统的进程模型如下图所示。
@@ -23,9 +23,9 @@
 ![multi-process](figures/multi-process.png)
 
 
-基于当前的进程模型，针对应用间和应用内存在多个进程的情况，系统提供了如下两种进程间通信机制：
+基于当前的进程模型，针对应用间和应用内存在多个进程的情况，系统提供了如下进程间通信机制：
 
 
-- [公共事件机制](../basic-services/common-event/common-event-overview.md)：多用于一对多的通信场景，公共事件发布者可能存在多个订阅者同时接收事件。
+[公共事件机制](../basic-services/common-event/common-event-overview.md)：多用于一对多的通信场景，公共事件发布者可能存在多个订阅者同时接收事件。
 
-- [后台服务机制](background-services.md)：通过[ServiceExtensionAbility](serviceextensionability.md)的能力实现。
+

@@ -3,14 +3,11 @@
 
 ## Overview
 
-Defines the structure of an ECC key.
+Defines the structure of an Elliptic Curve Cryptography (ECC) key.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -18,63 +15,60 @@ Defines the structure of an ECC key.
 
 ### Member Variables
 
-| Name | Description | 
+| Name| Description|
 | -------- | -------- |
-| [keyAlg](#keyalg) |Algorithm of the key.  | 
-| [keySize](#keysize) | Length of the key.  | 
-| [xSize](#xsize) | Length of the x value.  | 
-| [ySize](#ysize) | Length of the y value.  | 
-| [zSize](#zsize) | Length of the z value.  | 
+| enum [OH_Huks_KeyAlg](_huks_type_api.md#oh_huks_keyalg) [keyAlg](#keyalg) | Algorithm of the key. |
+| uint32_t [keySize](#keysize) | Length of the key. |
+| uint32_t [xSize](#xsize) | Length of **x**. |
+| uint32_t [ySize](#ysize) | Length of **y**. |
+| uint32_t [zSize](#zsize) | Length of **z**. |
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### keyAlg
 
-  
 ```
 enum OH_Huks_KeyAlg OH_Huks_KeyMaterialEcc::keyAlg
 ```
-**Description**<br>
+**Description**
+
 Algorithm of the key.
 
 
 ### keySize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialEcc::keySize
 ```
-**Description**<br>
+**Description**
+
 Length of the key.
 
 
 ### xSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialEcc::xSize
 ```
-**Description**<br>
-Length of the x value.
+**Description**
+Length of **x**.
 
 
 ### ySize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialEcc::ySize
 ```
-**Description**<br>
-Length of the y value.
+**Description**
+Length of **y**.
 
 
 ### zSize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterialEcc::zSize
 ```
-**Description**<br>
-Length of the z value.
+**Description**
+Length of **z**.

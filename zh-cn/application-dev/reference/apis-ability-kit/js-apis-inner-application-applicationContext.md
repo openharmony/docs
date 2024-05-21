@@ -1,6 +1,6 @@
 # ApplicationContext
 
-ApplicationContext模块提供开发者应用级别的的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口。
+ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，提供开发者应用级别的的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口。
 
 > **说明：**
 >
@@ -21,7 +21,9 @@ import common from '@ohos.app.ability.common';
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
-注册监听应用内生命周期。不支持多线程并发调用。
+注册监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -95,7 +97,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void>): void
 
-取消监听应用内生命周期。不支持多线程并发调用。
+取消监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -105,7 +109,7 @@ off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'abilityLifecycle' | 是   | 取消监听事件的类型。 |
 | callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
-| callback | AsyncCallback\<void> | 是   | 回调方法。                   |
+| callback | AsyncCallback\<void> | 是   | 回调方法。当取消监听应用内生命周期成功，err为undefined，否则为错误对象。   |
 
 **示例：**
 
@@ -133,7 +137,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
-取消监听应用内生命周期。不支持多线程并发调用。
+取消监听应用内生命周期。使用Promise异步回调。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -172,6 +178,8 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 注册对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -179,7 +187,7 @@ on(type: 'environment', callback: EnvironmentCallback): number
 | 参数名                   | 类型     | 必填 | 说明                           |
 | ------------------------ | -------- | ---- | ------------------------------ |
 | type | 'environment' | 是   | 监听事件的类型。 |
-| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | 是   | 回调方法，返回注册监听事件的ID。 |
+| callback | [EnvironmentCallback](js-apis-app-ability-environmentCallback.md) | 是   | 回调方法，提供应用上下文ApplicationContext对系统环境变量监听回调的能力。 |
 
 **返回值：**
 
@@ -221,6 +229,8 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 取消对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -229,7 +239,7 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | 是   | 取消监听事件的类型。 |
 | callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
-| callback | AsyncCallback\<void> | 是   | 回调方法。                  |
+| callback | AsyncCallback\<void> | 是   | 回调方法。当取消对系统环境变化的监听成功，err为undefined，否则为错误对象。   |
 
 **示例：**
 
@@ -256,7 +266,9 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'environment', callbackId: number): Promise\<void\>
 
-取消对系统环境变化的监听。不支持多线程并发调用。
+取消对系统环境变化的监听。使用Promise异步回调。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -294,6 +306,8 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 
 注册对当前应用前后台变化的监听。使用callback异步回调。不支持多线程并发调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -301,7 +315,7 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 | 参数名   | 类型                                                         | 必填 | 说明             |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
 | type     | 'applicationStateChange'                                     | 是   | 监听事件类型。 |
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **示例：**
 
@@ -330,11 +344,13 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
+## ApplicationContext.off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback)<sup>10+</sup>
 
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
-取消当前应用注册的前后台变化的全部监听。不支持多线程并发调用。
+取消当前应用注册的前后台变化的全部监听。使用callback异步回调。不支持多线程并发调用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -343,7 +359,7 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
 | type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
-| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 对于该事件监听的回调方法，可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+| callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **示例：**
 
@@ -362,7 +378,9 @@ export default class MyAbility extends UIAbility {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-获取有关运行进程的信息。以Promise形式返回。
+获取有关运行进程的信息。使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -370,7 +388,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Promise对象，返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -403,7 +421,9 @@ export default class MyAbility extends UIAbility {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
-获取有关运行进程的信息。以Callback形式返回。
+获取有关运行进程的信息。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -411,7 +431,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | 是   | 获取有关运行进程的信息的回调。 |
+| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | 是   | 回调函数，返回有关运行进程的信息。 |
 
 **错误码**：
 
@@ -445,7 +465,9 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。以Promise形式返回。
+杀死应用所在的进程。使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -453,7 +475,7 @@ killAllProcesses(): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void\> | 以Promise方式返回杀死应用所在的进程结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -480,7 +502,9 @@ export default class MyAbility extends UIAbility {
 
 killAllProcesses(callback: AsyncCallback\<void\>)
 
-杀死应用所在的进程。以Callback形式返回。
+杀死应用所在的进程。使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -488,7 +512,7 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback    | AsyncCallback\<void\>   | 是   | 以callback方式返回杀死应用所在的进程结果。 |
+| callback    | AsyncCallback\<void\>   | 是   | 回调函数。当杀死应用所在的进程成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -519,6 +543,8 @@ export default class MyAbility extends UIAbility {
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 设置应用的颜色模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -557,6 +583,8 @@ setLanguage(language: string): void
 
 设置应用的语言。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -593,13 +621,17 @@ clearUpApplicationData(): Promise\<void\>
 
 清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。
 
+> **说明：**
+>
+> 该接口会停止应用进程，应用进程停止后，后续的所有回调都不会再触发。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -628,6 +660,10 @@ export default class MyAbility extends UIAbility {
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
 清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。
+
+> **说明：**
+>
+> 该接口会停止应用进程，应用进程停止后，后续的所有回调都不会再触发。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -666,6 +702,8 @@ export default class MyAbility extends UIAbility {
 restartApp(want: Want): void
 
 应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

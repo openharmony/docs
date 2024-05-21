@@ -20,15 +20,15 @@ import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 
 | 名称   | 值 | 说明                                   |
 | -------- | -------------------------------------- | -------------------------------------- |
-| BROWSER  | "Web Browser" | 默认浏览器。                            |
-| IMAGE    | "Image Gallery" | 默认图片查看器。                         |
-| AUDIO    | "Audio Player" | 默认音频播放器。                         |
-| VIDEO    | "Video Player" | 默认视频播放器。                         |
-| PDF      | "PDF Viewer" | 默认PDF文档查看器。                      |
-| WORD     | "Word Viewer" | 默认WORD文档查看器。                     |
-| EXCEL    | "Excel Viewer" | 默认EXCEL文档查看器。                    |
-| PPT      | "PPT Viewer" | 默认PPT文档查看器。                      |
-| EMAIL<sup>12+</sup>    | "Email" | 默认邮件。                      |
+| BROWSER  | 'Web Browser' | 默认浏览器。                            |
+| IMAGE    | 'Image Gallery' | 默认图片查看器。                         |
+| AUDIO    | 'Audio Player' | 默认音频播放器。                         |
+| VIDEO    | 'Video Player' | 默认视频播放器。                         |
+| PDF      | 'PDF Viewer' | 默认PDF文档查看器。                      |
+| WORD     | 'Word Viewer' | 默认WORD文档查看器。                     |
+| EXCEL    | 'Excel Viewer' | 默认EXCEL文档查看器。                    |
+| PPT      | 'PPT Viewer' | 默认PPT文档查看器。                      |
+| EMAIL<sup>12+</sup>    | 'Email' | 默认邮件。                      |
 
 ## defaultAppMgr.isDefaultApplication
 
@@ -50,6 +50,14 @@ isDefaultApplication(type: string): Promise\<boolean>
 | ------------------------- | ------------------ |
 | Promise\<boolean> | Promise形式返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **示例：**
 
@@ -79,6 +87,15 @@ isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | type  | string                          | 是    | 要查询的应用类型，取[ApplicationType](#defaultappmgrapplicationtype)中的值。                            |
 | callback    | AsyncCallback\<boolean> | 是    | 程序启动作为入参的回调函数，返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **示例：**
 
@@ -115,6 +132,14 @@ isDefaultApplicationSync(type: string): boolean
 | ------- | -------------------- |
 | boolean | 返回当前应用是否是默认应用，true表示是默认应用，false表示不是默认应用。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                    |
+| -------- | ---------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
 
 **示例：**
 

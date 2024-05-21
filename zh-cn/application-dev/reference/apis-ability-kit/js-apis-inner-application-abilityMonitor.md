@@ -14,11 +14,13 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## 使用说明
 
-可以作为abilityDelegator中的[addAbilityMonitor](js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来监听指定Ability的生命周期变化。
+可以作为abilityDelegator中的[addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来监听指定Ability的生命周期变化。
 
 ## AbilityMonitor
 
 Ability监听器
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 

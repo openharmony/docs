@@ -125,7 +125,7 @@ Column() {
     })
   ```
 
-- 使用组件的成员函数配置组件的事件方法，不需要bind this。
+- 使用组件的成员函数配置组件的事件方法，需要bind this。
 
   ```ts
   myClickHandler(): void {
@@ -133,7 +133,7 @@ Column() {
   }
   ...
   Button('add counter')
-    .onClick(this.myClickHandler)
+    .onClick(this.myClickHandler.bind(this))
   ```
 
 - 使用声明的箭头函数，可以直接调用，不需要bind this。

@@ -8,7 +8,7 @@ Node-API是用于封装JavaScript能力为Native插件的API，独立于底层Ja
 
 Node-API可以去除底层的JavaScript引擎的差异，提供一套稳定的接口。
 
-OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
+OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持Node-API标准库中的部分接口。
 
 ## 已从Node-API组件标准库中导出的符号列表
 
@@ -178,3 +178,401 @@ OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对�
 |FUNC|napi_create_object_with_properties|使用给定的napi_property_descriptor创建js `Object`。descriptor的键名必须为 string，且不可转为number。|11|
 |FUNC|napi_create_object_with_named_properties|使用给定的napi_value和键名创建js `Object`。键名必须为 string，且不可转为number。|11|
 |FUNC|napi_coerce_to_native_binding_object|强制将js `Object`和Native对象绑定。|11|
+|FUNC|napi_create_ark_runtime|创建基础运行时环境。|12|
+|FUNC|napi_destroy_ark_runtime|销毁基础运行时环境。|12|
+|FUNC|napi_run_event_loop|触发底层的事件循环。|12|
+|FUNC|napi_stop_event_loop|停止底层的事件循环。|12|
+|FUNC|napi_load_module_with_info|将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。|12|
+|FUNC|napi_serialize|将ArkTS对象转换为native数据。|12|
+|FUNC|napi_deserialize|将native数据转为ArkTS对象。|12|
+|FUNC|napi_delete_serialization_data|删除序列化数据。|12|
+|FUNC|napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|12|
+
+### napi_qos_t
+
+```cpp
+typedef enum {
+    napi_qos_background = 0,      // 低等级，用户不可见任务，例如数据同步、备份。
+    napi_qos_utility = 1,         // 中低等级，不需要立即看到响应效果的任务，例如下载或导入数据。
+    napi_qos_default = 2,         // 默认
+    napi_qos_user_initiated = 3,  // 高等级，用户触发并且可见进展，例如打开文档。
+} napi_qos_t;
+```
+
+**描述：**
+表示QoS的枚举值，QoS决定了线程调度的优先级
+
+### napi_event_mode
+
+```cpp
+typedef enum {
+    napi_event_mode_default = 0,  // 阻塞式的运行底层事件循环，直到循环中没有任何任务时退出事件循环。
+    napi_event_mode_nowait = 1,   // 非阻塞式的运行底层事件循环，尝试去处理一个任务，处理完之后退出事件循环；如果事件循环中没有任务，立刻退出事件循环。
+} napi_event_mode;
+```
+
+**描述：**
+用于运行事件循环的事件模式。
+
+### napi_queue_async_work_with_qos
+
+```cpp
+napi_status napi_queue_async_work_with_qos(napi_env env,
+                                           napi_async_work work,
+                                           napi_qos_t qos);
+```
+
+**描述：**
+
+将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] work: 一个表示异步工作项的对象。这个对象通常是通过napi_create_async_work函数创建的。
+
+- [in] qos: 决定了线程调度的优先级。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_run_script_path
+
+```cpp
+napi_status napi_run_script_path(napi_env env,
+                                 const char* abcPath,
+                                 napi_value* result);
+```
+
+**描述：**
+
+运行指定abc文件。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] abcPath: 要运行的脚本的JavaScript路径。这是一个字符串，指定了要运行的脚本文件的位置。
+
+- [out] result: 一个指向napi_value类型的指针，用于存储运行脚本的结果。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_load_module
+
+```cpp
+napi_status napi_load_module(napi_env env,
+                             const char* path,
+                             napi_value* result);
+```
+
+**描述：**
+
+加载系统模块或开发者自定义的模块，返回模块的命名空间。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] path: 要加载的系统模块的名称或开发者自定义模块的路径。
+
+- [out] result: 一个指向napi_value类型的指针，用于存储加载模块的结果。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_create_object_with_properties
+
+```cpp
+napi_status napi_create_object_with_properties(napi_env env,
+                                               napi_value* result,
+                                               size_t property_count,
+                                               const napi_property_descriptor* properties);
+```
+
+**描述：**
+
+属性描述符napi_property_descriptor用于描述一个属性，它包括属性的名称获取和设置方法、属性特性等信息。通过传入这些描述符，可以在创建对象时就定义属性。
+
+使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为string，且不可转为number。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [out] result: 一个指向napi_value类型的指针，用于存储创建的对象。
+
+- [in] property_count: 要添加到对象中的属性的数量。
+
+- [in] properties: 一个指向napi_property_descriptor数组的指针，描述了要添加到对象中的属性的信息。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_create_object_with_named_properties
+
+```cpp
+napi_status napi_create_object_with_named_properties(napi_env env,
+                                                     napi_value* result,
+                                                     size_t property_count,
+                                                     const char** keys,
+                                                     const napi_value* values);
+```
+
+**描述：**
+
+使用给定的napi_value和键名创建js Object。键名必须为string，且不可转为number。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [out] result: 一个指向napi_value类型的指针，用于存储创建的对象。
+
+- [in] property_count: 要添加到对象中的属性的数量。
+
+- [in] keys: 一个指向const char*数组的指针，表示属性的名称。
+
+- [in] values: 一个指向napi_value数组的指针，表示属性的值，与属性名称一一对应。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_coerce_to_native_binding_object
+
+```cpp
+napi_status napi_coerce_to_native_binding_object(napi_env env,
+                                                 napi_value js_object,
+                                                 napi_native_binding_detach_callback detach_cb,
+                                                 napi_native_binding_attach_callback attach_cb,
+                                                 void* native_object,
+                                                 void* hint);
+```
+
+**描述：**
+
+用于给JS Object绑定回调和回调所需的参数，转成携带Native信息的JS Object。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] js_object: 要转换的JavaScript对象。
+
+- [in] detach_cb: 解绑回调，一般在序列化时调用，可在对象解绑时执行一些清理操作。
+
+- [in] attach_cb: 绑定回调，一般在序列化时调用。
+
+- [in] native_object: 需要传递给回调的参数，不能为空。
+
+- [in] hint: 一个指针，可以用于传递附加的信息给回调函数。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_create_ark_runtime
+
+```cpp
+napi_status napi_create_ark_runtime(napi_env *env)
+```
+
+**描述：**
+
+创建基础运行时环境。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_destroy_ark_runtime
+
+```cpp
+napi_status napi_destroy_ark_runtime(napi_env *env)
+```
+
+**描述：**
+
+销毁基础运行时环境。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_run_event_loop
+
+```cpp
+napi_status napi_run_event_loop(napi_env env, napi_event_mode mode)
+```
+
+**描述：**
+
+触发底层的事件循环。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+- [in] mode: 用于运行事件循环的事件模式。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_stop_event_loop
+
+```cpp
+napi_status napi_stop_event_loop(napi_env env)
+```
+
+**描述：**
+
+停止底层的事件循环。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_load_module_with_info
+
+```cpp
+napi_status napi_load_module_with_info(napi_env env,
+                                       const char* path,
+                                       const char* module_info,
+                                       napi_value* result)
+```
+
+**描述：**
+
+将abc文件作为模块加载，返回模块的命名空间。可在新创建的ArkTs基础运行时环境中使用。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] path: 要加载的模块的路径。
+
+- [in] module_info: 模块信息。这是一个包含模块信息字符串。模块信息可以用于指定模块的版本、作者、描述等详细信息。
+
+- [out] result: 指向napi_value的指针，用于接收模块的结果。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_serialize
+
+```cpp
+napi_status napi_serialize(napi_env env,
+                           napi_value object,
+                           napi_value transfer_list,
+                           napi_value clone_list,
+                           void** result)
+```
+
+**描述：**
+
+将ArkTS对象转换为native数据。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] object: 要序列化的JavaScript对象。
+
+- [in] transfer_list: 传输列表，包含需要在序列化过程中转移的JavaScript对象。
+
+- [in] clone_list: 克隆列表，包含需要在序列化过程中克隆的JavaScript对象。
+
+- [out] result: 用于接收序列化结果的指针。在调用完成后，指向实际结果的指针会存储在此位置。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_deserialize
+
+```cpp
+napi_status napi_deserialize(napi_env env, void* buffer, napi_value* object)
+```
+
+**描述：**
+
+将native数据转为ArkTS对象。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] buffer: 指向包含二进制数据的指针。这些二进制数据需要被反序列化为JavaScript对象。
+
+- [out] object: 用于接收反序列化后的JavaScript对象。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_delete_serialization_data
+
+```cpp
+napi_status napi_delete_serialization_data(napi_env env, void* buffer)
+```
+
+**描述：**
+
+删除序列化数据。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] buffer: 指向包含序列化数据的内存缓冲区的指针。这些数据在序列化完成后不再需要，并且可以通过调用此函数来释放相应的内存。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_call_threadsafe_function_with_priority
+
+```cpp
+napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
+                                                        void *data,
+                                                        napi_task_priority priority,
+                                                        bool isTail)
+```
+
+**描述：**
+
+将指定优先级和入队方式的任务投递到ArkTS线程。
+
+**参数：**
+
+- [in] func: 线程安全函数对象，在创建线程安全函数时返回。
+
+- [in] data: 传递给 JavaScript 回调函数的参数数据。
+
+- [in] priority: 指定调用 JavaScript 回调函数的任务优先级。
+
+- [in] isTail: 一个布尔值，指示调用是否应该排队等待在事件循环的尾部执行。如果为 true，则调用将在事件循环的尾部执行；如果为 false，则调用将立即执行，不会排队等待。
+
+**返回：**
+
+如果API成功，则返回napi_ok。

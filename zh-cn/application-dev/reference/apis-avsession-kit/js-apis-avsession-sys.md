@@ -1134,7 +1134,7 @@ avSession.startCastDeviceDiscovery(filter, (err: BusinessError) => {
 
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
 
-startCastDeviceDiscovery(filter?: number): Promise\<void>
+startCastDeviceDiscovery(filter?: number, drmSchemes?: Array\<string>): Promise\<void>
 
 开始设备搜索发现。结果通过Promise异步回调方式返回。
 
@@ -1147,6 +1147,7 @@ startCastDeviceDiscovery(filter?: number): Promise\<void>
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | filter | number | 否 | 进行设备发现的过滤条件，由ProtocolType的组合而成 |
+| drmSchemes | Array\<string> | 否 | 进行支持DRM资源播放的设备发现的过滤条件，由DRM uuid组合而成。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
@@ -1160,7 +1161,8 @@ startCastDeviceDiscovery(filter?: number): Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 let filter = 2;
-avSession.startCastDeviceDiscovery(filter).then(() => {
+let drmSchemes = ['3d5e6d35-9b9a-41e8-b843-dd3c6e72c42c'];
+avSession.startCastDeviceDiscovery(filter, drmSchemes).then(() => {
   console.info(`startCastDeviceDiscovery successfully`);
 }).catch((err: BusinessError) => {
   console.error(`startCastDeviceDiscovery BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -1307,7 +1309,7 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备被发现时触发回调。 |
-| callback | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
+| callback | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
 
 **示例：**
 
@@ -1334,7 +1336,7 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | 是    | 事件回调类型，支持事件`'deviceAvailable'`：设备发现回调。|
-| callback     | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10) => void                 | 否    | 用于返回设备信息。|
+| callback     | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)) => void                 | 否    | 用于返回设备信息。|
 
 **示例：**
 

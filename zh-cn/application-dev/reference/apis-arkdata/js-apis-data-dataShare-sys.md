@@ -23,10 +23,9 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 创建DataShareHelper实例。使用callback异步回调。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标DataShareExtension的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -40,10 +39,11 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
@@ -76,10 +76,9 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 创建DataShareHelper实例。使用callback异步回调。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标DataShareExtension的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -93,10 +92,11 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
@@ -129,10 +129,9 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 创建DataShareHelper实例。使用Promise异步回调。
 
-使用规则：
- - 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
- - 跨应用场景下，目标DataShareExtension的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -152,10 +151,11 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
@@ -209,11 +209,12 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
-| 15700011 | The Uri is not exist. |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700011 | The URI is not exist. |
 
 **示例：**
 
@@ -257,11 +258,12 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
-| 15700011 | The Uri is not exist. |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700011 | The URI is not exist. |
 
 **示例：**
 
@@ -366,6 +368,40 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 | values     | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。     |
 
+## ChangeType<sup>12+</sup>
+
+数据变更类型枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| 名称     | 值          | 说明          |
+| ---------| ------------| --------------|
+| INSERT   | 0           | 表示数据添加。|
+| DELETE   | 1           | 表示数据删除。|
+| UPDATE   | 2           | 表示数据更新。|
+
+## SubscriptionType<sup>12+</sup>
+
+数据订阅类型枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| 名称                        | 值   | 说明                         |
+| ----------------------------|------| ---------------------------- |
+| SUBSCRIPTION_TYPE_EXACT_URI | 0    | 表示订阅指定uri路径的数据变更。|
+
+## ChangeInfo<sup>12+</sup>
+
+数据变更时通知用户具体变更的内容，包括数据变更类型、变化的uri、变更的数据内容。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+| 名称       | 类型                                                         | 必填 | 说明           |
+| ---------- | ------------------------------------------------------------ | ---- | -------------- |
+| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型 |
+| uri        | string                                                       | 是   | 指定uri。      |
+| values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| 是   | 更新的数据。   |
+
 ## DataShareHelper
 
 DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
@@ -386,6 +422,15 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 | uri      | string               | 是   | 表示指定的数据路径。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当有其他用户触发了变更通知时调用，err为undefined；否则不被触发或为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -395,6 +440,46 @@ let onCallback: () => void = (): void => {
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper !== undefined) {
   (dataShareHelper as dataShare.DataShareHelper).on("dataChange", uri, onCallback);
+}
+```
+
+### on('dataChange')<sup>12+</sup>
+
+on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
+
+订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册变更通知，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知，通知携带数据变更类型、变化的uri、变更的数据内容。使用callback回调。仅支持非静默访问。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| event     | string               | 是   | 订阅的事件/回调类型，支持的事件为'dataChange'，当有其他用户触发了变更通知时，触发该事件。 |
+| type     | [SubscriptionType](#subscriptiontype12)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| uri      | string               | 是   | 表示指定的数据路径。 |
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt; | 是   | 回调函数。当有其他用户触发了变更通知时会回调该函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let uri = ("datashare:///com.acts.datasharetest");
+export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
+    console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
+}
+if (dataShareHelper !== undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on('dataChange', dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
 }
 ```
 
@@ -412,7 +497,16 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
 | uri      | string               | 是   | 表示指定的数据路径。 |
-| callback | AsyncCallback&lt;void&gt; | 否   | 表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -424,6 +518,48 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).on("dataChange", uri, callback);
   (dataShareHelper as dataShare.DataShareHelper).off("dataChange", uri, callback);
+}
+```
+
+
+### off('dataChange')<sup>12+</sup>
+
+off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt;): void
+
+取消订阅指定URI下指定callback对应的数据资源的变更通知。仅支持非静默访问。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名     | 类型                 | 必填 | 说明                    |
+| -------- | -------------------- | ---- | ------------------------ |
+| event     | string               | 是   | 取消订阅的事件/回调类型，支持的事件为'dataChange'。 |
+| type     | [SubscriptionType](#subscriptiontype12)| 是   | 表示数据更改时按指定数据路径通知变更。 |
+| uri      | string               | 是   | 表示指定的数据路径。 |
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| 否   | 表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。如果不为空，传入的callback必须和注册为同一个。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base'
+
+let uri = ("datashare:///com.acts.datasharetest");
+export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
+    console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
+}
+if (dataShareHelper !== undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).on("dataChange", dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
+  (dataShareHelper as dataShare.DataShareHelper).off("dataChange", dataShare.SubscriptionType.SUBSCRIPTION_TYPE_EXACT_URI, uri, callback);
 }
 ```
 
@@ -445,11 +581,13 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
-| 15700011 | The uri is not exist.|
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700011 | The URI is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -489,11 +627,13 @@ delTemplate(uri: string, subscriberId: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
-| 15700011 | The uri is not exist.|
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700011 | The URI is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -540,6 +680,15 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 | ---------------- | ------------------------------------------------------------ |
 | Array&lt;[OperationResult](#operationresult10)&gt; | 返回操作结果。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -576,13 +725,22 @@ off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, ca
 | type      | string                                      | 是   | 取消订阅的事件类型，支持的事件为'rdbDataChange'，表示rdb数据的变更事件。   |
 | uris    | Array&lt;string&gt;                           | 是   | 要操作的数据的路径。           |
 | templateId | [TemplateId](#templateid10)                | 是   | 处理回调的templateId。        |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | 否   | 回调函数。表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。 |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | 否   | 回调函数。表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。 |
 
 **返回值：**
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
 | Array&lt;[OperationResult](#operationresult10)&gt; | 返回操作结果。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -616,6 +774,15 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
 | Array&lt;[OperationResult](#operationresult10)&gt; | 返回操作结果。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -657,13 +824,22 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 | type      | string                                      | 是   | 取消订阅的事件类型，支持的事件为'publishedDataChange'，表示已发布数据的变更事件。|
 | uris    | Array&lt;string&gt;                           | 是   | 要操作的数据的路径。           |
 | subscriberId | string                                   | 是   | 指定处理回调的用户ID。           |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | 否   | 回调函数。表示指定取消订阅的callback通知，如果为空，则取消订阅该uri下所有的通知事件。 |
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | 否   | 回调函数。表示指定取消订阅的callback通知，如果为空、为undefined、null，则取消订阅该uri下所有的通知事件。 |
 
 **返回值：**
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
 | Array&lt;[OperationResult](#operationresult10)&gt; | 返回操作结果。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -699,11 +875,13 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -746,11 +924,13 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 ```ts
 import { BusinessError } from '@ohos.base'
@@ -791,11 +971,13 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -826,11 +1008,13 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -867,11 +1051,13 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -896,6 +1082,15 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 | uri      | string                                                    | 是   | 要插入的数据的路径。                                     |
 | value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是   | 要插入的数据。如果此参数为空，将插入一个空行。           |
 | callback | AsyncCallback&lt;number&gt;                               | 是   | 回调函数。当将单条数据插入数据库成功，err为undefined，data为获取到的插入数据记录的索引；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此callback也无法返回索引值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -953,6 +1148,15 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise对象。返回插入数据记录的索引。<br />因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此Promise也无法返回索引值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -1002,6 +1206,15 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。谓词内方法为空时，默认全表删除。 |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当从数据库中删除一条或多条数据记录成功，err为undefined，data为获取到的已删除的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回删除的数据记录数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -1049,6 +1262,15 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise对象。返回已删除的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回删除的数据记录数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -1089,6 +1311,15 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。谓词内方法为空时，默认全表查询。 |
 | columns    | Array&lt;string&gt;                                          | 是   | 要查询的列。如果此参数为空，则查询所有列。               |
 | callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | 是   | 回调函数。当查询数据库中的数据成功，err为undefined，data为获取到的查询到的结果集；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -1140,6 +1371,15 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 | ------------------------------------------------------------ | --------------------------------- |
 | Promise&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | Promise对象。返回查询到的结果集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -1182,6 +1422,15 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。谓词内方法为空时，默认全表更新。 |
 | value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据。可以为null。                                  |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当更新数据库中的数据记录成功，err为undefined，data为获取到的更新的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -1243,6 +1492,15 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise对象。返回更新的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回更新的数据记录数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -1297,16 +1555,17 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 
 | 类型                                                  | 说明                                                         |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Promise对象。返回更新的数据记录数集合，更新失败的UpdateOperation的数据记录数为-1。 |
+| Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Promise对象。返回更新的数据记录数集合，更新失败的UpdateOperation的数据记录数为-1。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回更新的数据记录数。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700000 | Inner error.                         |
-| 15700010 | The datasharehelper has been closed. |
+| 15700013 | The DataShareHelper instance is already closed. |
 
 **示例：**
 
@@ -1347,11 +1606,14 @@ try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
       // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
-      for (const [key, values] of Object.entries(data)) {
-          console.info(`Update uri:${key}`);
-          for (const value of values) {
-              console.info(`Update result:${value}`);
-          }
+      let a = Object.entries(data);
+      for (let i =0, i < a.length; i++) {
+        let key = a[i][0];
+        let values = a[i][1]
+        console.info(`Update uri:${key}`);
+        for (const value of values) {
+          console.info(`Update result:${value}`);
+        }
       }
     }).catch((err: BusinessError) => {
       console.error(`Batch update error: code: ${err.code}, message: ${err.message} `);
@@ -1379,6 +1641,15 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 | uri      | string                                                       | 是   | 要插入的数据的路径。                                     |
 | values   | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 要插入的数据。                                           |
 | callback | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当将批量数据插入数据库成功，err为undefined，data为获取到的插入的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -1436,6 +1707,15 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise对象。返回插入的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -1516,6 +1796,15 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 | uri      | string                 | 是   | 要规范化的[URI](../apis-arkts/js-apis-uri.md#uri)。      |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当将给定的DataShare URI转换为规范化URI成功，err为undefined，data为获取到的规范化URI（如果支持URI规范化，则返回规范化URI，否则返回空）；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -1553,6 +1842,15 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 | ---------------- | ---------------------------------------------- |
 | Promise&lt;string&gt; | Promise对象。如果支持URI规范化，则返回规范化URI，否则返回空。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -1582,6 +1880,15 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | 是   | 要反规范化的[URI](../apis-arkts/js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当将指定的URI转换为非规范化URI，err为undefined，data为获取到的反规范化URI（如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空）；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -1620,6 +1927,15 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 | ---------------- | ----------------------------------------- |
 | Promise&lt;string&gt; | Promise对象。如果反规范化成功，则返回反规范化的URI；如果无需执行任何操作，则返回原始URI；若不支持则返回空。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
@@ -1649,6 +1965,15 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | 是   | 表示指定的数据路径。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当通知已注册的观察者指定URI对应的数据资源已发生变更成功，err为undefined；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Mandatory parameters are left unspecified.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **示例：**
 
@@ -1681,11 +2006,65 @@ notifyChange(uri: string): Promise&lt;void&gt;
 | -------------- | --------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Mandatory parameters are left unspecified.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **示例：**
 
 ```ts
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(uri);
+}
+```
+
+### notifyChange<sup>12+</sup>
+
+notifyChange(data: ChangeInfo): Promise&lt;void&gt;
+
+通知已注册的观察者指定URI对应的数据资源已发生变更类型及变更内容。使用Promise异步回调。仅支持非静默访问。
+
+**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ---- | ------ | ---- | -------------------- |
+| data  | [ChangeInfo](#changeinfo12) | 是   | 表示数据变更类型、变化的uri、变更的数据内容。 |
+
+**返回值：**
+
+| 类型           | 说明                  |
+| -------------- | --------------------- |
+| Promise&lt;void&gt; |  无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
+**示例：**
+
+```ts
+import values from '@ohos.data.ValuesBucket';
+
+let dsUri = ("datashare:///com.acts.datasharetest");
+let bucket1: values.ValuesBucket = {"name": "LiSi"};
+let bucket2: values.ValuesBucket = {"name": "WangWu"};
+let bucket3: values.ValuesBucket = {"name": "ZhaoLiu"};
+let people: Array<values.ValuesBucket> = new Array(bucket1, bucket2, bucket3);
+let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
+if (dataShareHelper != undefined) {
+  (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);
 }
 ```

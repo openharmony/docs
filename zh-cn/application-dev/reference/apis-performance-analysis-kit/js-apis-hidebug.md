@@ -195,8 +195,8 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed,Possible causes:1.the parameter type error 2.the args parameter is not string array  |
 | 11400101 | the service id is invalid                                           |
-| 401 | the parameter check failed                                            |
 
 **示例：**
 
@@ -256,7 +256,7 @@ startJsCpuProfiling(filename : string) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed                                            |
+| 401 | the parameter check failed,Parameter type error                        |
 
 **示例：**
 
@@ -280,12 +280,6 @@ stopJsCpuProfiling() : void
 停止虚拟机Profiling方法跟踪，`startJsCpuProfiling()`方法的调用需要与`stopJsCpuProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| filename | string | 是   | 用户自定义的profiling文件名，根据传入的`filename`，将在应用的`files`目录生成`filename.json`文件。 |
 
 **示例：**
 
@@ -322,7 +316,7 @@ dumpJsHeapData(filename : string) : void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed                                            |
+| 401 | the parameter check failed, Parameter type error                      |
 
 **示例：**
 
@@ -341,7 +335,7 @@ try {
 
 startProfiling(filename : string) : void
 
-> **说明：** 
+> **说明：**
 > 从 API Version 9 开始废弃，建议使用[hidebug.startJsCpuProfiling](#hidebugstartjscpuprofiling9)替代。
 
 启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
@@ -425,6 +419,9 @@ getAppVMMemoryInfo(): VMMemoryInfo
 **示例：**
 
   ```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
 let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
 hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
 hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
@@ -450,6 +447,9 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 **示例：**
 
   ```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
     hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
@@ -487,7 +487,7 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
-| 401 | the parameter check failed                                            |
+| 401 | the parameter check failed.Possible causes:1.The limitSize is too small 2.The parameter value is not in enum 3. The parameter type error|
 | 11400102 | Have already capture trace                                          |
 | 11400103 | Without write permission on the file                                |
 | 11400104 | The status of the trace is abnormal                                 |
@@ -495,6 +495,8 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 **示例：**
 
 ```ts
+import hidebug from '@ohos.hidebug';
+
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
@@ -527,6 +529,8 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
+import hidebug from '@ohos.hidebug';
+
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
@@ -554,6 +558,8 @@ getAppMemoryLimit() : MemoryLimit
 **示例**
 
 ```ts
+ import hidebug from '@ohos.hidebug';
+
  let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
 ## MemoryLimit<sup>12+</sup>
@@ -567,6 +573,43 @@ getAppMemoryLimit() : MemoryLimit
 | rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制，以KB为单位     |
 | vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位       |
 | vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位      |
+
+## hidebug.setAppResourceLimit<sup>12+</sup>
+
+setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
+
+设置应用的fd数量、线程数量、js内存或者native内存资源限制。
+**注意：** 当设置的开发者选项开关打开时,此功能有效。
+
+**系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type | string |  是  | 泄漏资源类型，共四种类型:pss_memory(native内存)、js_heap(js堆内存)、fd(文件描述符)或thread(线程) |
+| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型[1024, 4 * 1024 * 1024](单位：KB), js_heap类型[85, 95](分配给JS堆内存上限的85%~95%), fd类型[10, 10000], thread类型[1, 1000] |
+| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false，请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Hidebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed,Possible causes:1.The limit parameter is too small 2.The parameter is not in the specified type 3.The parameter type error or parameter order error  |
+| 11400104 | Set limit failed due to remote exception |
+
+**示例：**
+
+```ts
+import hidebug from '@ohos.hidebug';
+
+let type: string = 'js_heap';
+let value: number = 85;
+let enableDebugLog: boolean = false;
+hidebug.setAppResourceLimit(type, value, enableDebugLog);
+```
 
 ## VMMemoryInfo<sup>12+</sup>
 
@@ -658,6 +701,8 @@ getSystemCpuUsage() : number
 
 **示例**
   ```ts
+  import hidebug from '@ohos.hidebug';
+
   let cpuUsage: number = hidebug.getSystemCpuUsage();
   ```
 
@@ -678,6 +723,9 @@ getAppNativeMemInfo(): NativeMemInfo
 **示例**
 
 ```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
 
 hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
@@ -727,6 +775,9 @@ getSystemMemInfo(): SystemMemInfo
 **示例**
 
 ```ts
+import hidebug from '@ohos.hidebug';
+import hilog from '@ohos.hilog';
+
 let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
 hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);

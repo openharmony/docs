@@ -57,6 +57,7 @@ import cloudSync from '@ohos.file.cloudSync';
 | BATTERY_LEVEL_WARNING |  4 | 告警电量（低于10%） |
 | CLOUD_STORAGE_FULL |  5 | 云端空间不足 |
 | LOCAL_STORAGE_FULL |  6 | 本地空间不足 |
+| DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 设备温度过高 |
 
 ## SyncProgress
 
@@ -260,7 +261,7 @@ start(): Promise&lt;void&gt;
   gallerySync.start().then(() => {
 	  console.info("start sync successfully");
   }).catch((err: BusinessError) => {
-	  console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -303,7 +304,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   gallerySync.start((err: BusinessError) => {
     if (err) {
-      console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("start sync successfully");
     }
@@ -351,7 +352,7 @@ stop(): Promise&lt;void&gt;
   gallerySync.stop().then(() => {
 	  console.info("stop sync successfully");
   }).catch((err: BusinessError) => {
-	  console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -395,7 +396,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   gallerySync.stop((err: BusinessError) => {
     if (err) {
-      console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("stop sync successfully");
     }
@@ -585,7 +586,7 @@ start(uri: string): Promise&lt;void&gt;
   download.start(uri).then(() => {
 	  console.info("start download successfully");
   }).catch((err: BusinessError) => {
-	  console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -641,7 +642,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   download.start(uri, (err: BusinessError) => {
     if (err) {
-      console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("start download successfully");
     }
@@ -696,7 +697,7 @@ stop(uri: string): Promise&lt;void&gt;
   download.stop(uri).then(() => {
 	  console.info("stop download successfully");
   }).catch((err: BusinessError) => {
-	  console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("stop download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -742,7 +743,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   download.stop(uri, (err: BusinessError) => {
     if (err) {
-      console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("stop download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("stop download successfully");
     }
@@ -776,6 +777,37 @@ constructor()
 
   ```ts
   let fileSync = new cloudSync.FileSync()
+  ```
+
+### constructor<sup>12+</sup>
+
+constructor(bundleName: string)
+
+端云同步流程的构造函数，用于获取FileSync类的实例。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| bundleName | string | 是   | 应用包名|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+
+**示例：**
+
+  ```ts
+  let fileSync = new cloudSync.FileSync("com.ohos.demo")
   ```
 
 ### on<sup>11+</sup>
@@ -910,7 +942,7 @@ start(): Promise&lt;void&gt;
   fileSync.start().then(() => {
 	  console.info("start sync successfully");
   }).catch((err: BusinessError) => {
-	  console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -954,7 +986,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   fileSync.start((err: BusinessError) => {
     if (err) {
-      console.info("start sync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("start sync successfully");
     }
@@ -1001,7 +1033,7 @@ stop(): Promise&lt;void&gt;
   fileSync.stop().then(() => {
 	  console.info("stop sync successfully");
   }).catch((err: BusinessError) => {
-	  console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1044,7 +1076,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   fileSync.stop((err: BusinessError) => {
     if (err) {
-      console.info("stop sync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("stop sync successfully");
     }
@@ -1090,7 +1122,7 @@ getLastSyncTime(): Promise&lt;number&gt;
     let date = new Date(timeStamp);
     console.info("get last sync time successfully:"+ date);
   }).catch((err: BusinessError) => {
-	  console.info("get last sync time failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("get last sync time failed with error message: " + err.message + ", error code: " + err.code);
   });
 
   ```
@@ -1132,7 +1164,7 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
 
   fileSync.getLastSyncTime((err: BusinessError, timeStamp: number) => {
     if (err) {
-      console.info("get last sync time with error message: " + err.message + ", error code: " + err.code);
+      console.error("get last sync time with error message: " + err.message + ", error code: " + err.code);
     } else {
       let date = new Date(timeStamp);
       console.info("get last sync time successfully:"+ date);
@@ -1190,7 +1222,7 @@ cleanCache(uri: string): void;
     fileCache.cleanCache(uri);
   } catch (err) {
     let error:BusinessError = err as BusinessError;
-    console.info("clean cache failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("clean cache failed with error message: " + err.message + ", error code: " + err.code);
   } 
 
   ```
@@ -1243,7 +1275,7 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
         console.info("get file sync state successfully" + syncStates[i]);
     }
   }).catch((err: BusinessError) => {
-	  console.info("get file sync state failed with error message: " + err.message + ", error code: " + err.code);
+	  console.error("get file sync state failed with error message: " + err.message + ", error code: " + err.code);
   });
 
   ```
@@ -1288,7 +1320,7 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris, (err: BusinessError, syncStates: Array<cloudSync.FileSyncState>) => {
     if (err) {
-      console.info("get file sync state with error message: " + err.message + ", error code: " + err.code);
+      console.error("get file sync state with error message: " + err.message + ", error code: " + err.code);
     } else {
       for(let i = 0, len = syncStates.length; i < len; i++){
         console.info("get file sync state successfully" + syncStates[i]);
@@ -1296,6 +1328,184 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
     }
   });
   ```
+
+## cloudSync.getFileSyncState<sup>12+</sup>
+
+getFileSyncState(uri: string): FileSyncState
+
+获取文件同步状态。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri。 |
+
+**返回值：**
+
+| 类型                  | 说明             |
+| --------------------- | ---------------- |
+| [FileSyncState](#filesyncstate11) | 返回给定文件的同步状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13900002  | No such file or directory. |
+| 13900004  | Interrupted system call. |
+| 13900010  | Try again. |
+| 13900012  | Permission denied by the file system. |
+| 13900031  | Function not implemented. |
+| 13900042  | Unknown error. |
+| 14000002  | Invalid uri. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import fileUri from '@ohos.file.fileuri';
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  try {
+    let state = fileSync.getFileSyncState(uri)
+  }.catch(err) {
+    let error:BusinessError = err as BusinessError;
+    console.error("getFileSyncStatefailed with error:" + JSON.stringify(error));
+  }
+  ```
+
+## cloudSync.registerChange<sup>12+</sup>
+
+registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData&gt;): void
+
+订阅监听指定文件的变化通知。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri。 |
+| recursion | boolean | 是   | true为监听该uri以及子文件和子目录，false为仅监听该uri文件。|
+| callback | Callback&lt;[ChangeData](#changedata12)&gt; | 是   | 返回更改的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13900001  | Operation not permitted. |
+| 13900002  | No such file or directory. |
+| 13900012  | Permission denied. |
+| 14000002  | Invalid uri. |
+
+**示例：**
+
+  ```ts
+  import fileUri from '@ohos.file.fileuri';
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  let onCallback1 = (changeData: ChangeData) => {
+    if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
+      //file had added, do something
+    } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
+      //file had removed, do something
+    }
+	}
+  cloudSync.registerChange(uri, false, onCallback1);
+  // 取消注册监听
+  cloudSync.unRegisterChange(uri);
+  ```
+
+## cloudSync.unregisterChange<sup>12+</sup>
+
+unregisterChange(uri: string): void
+
+取消订阅监听指定文件的变化通知。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13900001  | Operation not permitted. |
+| 13900002  | No such file or directory. |
+| 13900012  | Permission denied. |
+| 14000002  | Invalid uri. |
+
+**示例：**
+
+  ```ts
+  import fileUri from '@ohos.file.fileuri';
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  let onCallback1 = (changeData: ChangeData) => {
+    if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
+      //file had added, do something
+    } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
+      //file had removed, do something
+    }
+	}
+  cloudSync.registerChange(uri, false, onCallback1);
+  // 取消注册监听
+  cloudSync.unRegisterChange(uri);
+  ```
+
+## NotifyType<sup>12+</sup>
+
+数据变更通知类型。
+
+**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+| 名称 |  值|  说明 |
+| ----- |  ---- |  ---- |
+| NOTIFY_ADDED |  0 | 文件已新建 |
+| NOTIFY_MODIFIED |  1 | 文件已修改 |
+| NOTIFY_DELETED |  2 | 文件已被删除 |
+| NOTIFY_RENAMED |  3 | 文件被重命名或者移动 |
+
+## ChangeData<sup>12+</sup>
+
+定义变更数据。
+
+**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口：** 该接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| type | [NotifyType](#notifytype12) | 是   | 更改的通知类型|
+| isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的uri是否为目录|
+| uris | Array&lt;string&gt; | 是   | 更改的uris|
 
 ## FileSyncState<sup>11+</sup>
 
@@ -1311,3 +1521,6 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 | DOWNLOADING |  1 | 下行同步中 |
 | COMPLETED |  2 | 同步成功 |
 | STOPPED |  3 | 同步已停止 |
+| TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行 |
+| UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行 |
+| UPLOAD_FAILURE<sup>12+</sup> |  6 | 文件上行失败 |

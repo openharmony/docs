@@ -3,21 +3,13 @@
 
 ## Overview
 
-The **OH_RecorderInfo** struct defines recording file information.
-
-> **NOTE**
->
-> This struct is reserved and will be provided in later versions.
+The **OH_RecorderInfo** struct describes the recording file information.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[AVScreenCapture](_a_v_screen_capture.md)
+**Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
 
 ## Summary
@@ -27,9 +19,9 @@ The **OH_RecorderInfo** struct defines recording file information.
 
 | Name| Description| 
 | -------- | -------- |
-| [url](#url) | Defines the URL of the recording file.| 
-| [urlLen](#urllen) | Defines the URL length.| 
-| [fileFormat](#fileformat) | Defines the format of the recording file.| 
+| char \* [url](#url) | URL of the recording file.| 
+| uint32_t [urlLen](#urllen) | URL length.| 
+| [OH_ContainerFormatType](_a_v_screen_capture.md#oh_containerformattype) [fileFormat](#fileformat) | Format of the recording file.| 
 
 
 ## Member Variable Description
@@ -43,7 +35,7 @@ OH_ContainerFormatType OH_RecorderInfo::fileFormat
 
 **Description**
 
-Defines the format of the recording file.
+Format of the recording file.
 
 
 ### url
@@ -54,7 +46,7 @@ char* OH_RecorderInfo::url
 
 **Description**
 
-Defines the URL of the recording file.
+URL of the recording file.
 
 
 ### urlLen
@@ -65,4 +57,4 @@ uint32_t OH_RecorderInfo::urlLen
 
 **Description**
 
-Defines the URL length.
+URL length.

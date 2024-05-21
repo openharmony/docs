@@ -72,7 +72,7 @@ The specified user ID is not found.
 ## 17700005 指定的appId为空字符串
 
 **错误信息**<br/>
-The specified app ID is empty string.
+The specified app ID is an empty string.
 
 **错误描述**<br/>
 调用appControl模块中的相关接口时，传入的appId为空字符串。
@@ -217,7 +217,7 @@ Failed to install the HAP since the version of the HAP to install is too early.
 ## 17700018 安装失败，依赖的模块不存在
 
 **错误信息**<br/>
-Failed to install because the dependent module does not exist.
+Failed to install the HAP or HSP because the dependent module does not exist.
 
 **错误描述**<br/>
 安装hap或者hsp时，依赖的模块不存在。
@@ -377,7 +377,7 @@ The specified ability is disabled.
 指定的ability被禁用。
 
 **处理步骤**<br/>
-确认指定的ability是否被禁用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息。
+确认指定的ability是否被禁用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息。
 
 ## 17700030 指定的应用不支持清除缓存文件
 
@@ -391,13 +391,13 @@ The specified bundle does not support clearing of cache files.
 指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
 
 **处理步骤**<br/>
-1. 确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看isSystemApp是否为true。
-2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看userDataClearable是否为true。
+1. 确认指定的应用是否为系统应用，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看isSystemApp是否为true。
+2. 确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具](../../tools/bm-tool.md)查询对应的应用信息，查看userDataClearable是否为true。
 
 ## 17700031 Overlay特性校验失败导致HAP安装失败
 
 **错误信息**<br/>
-Failed to install the HAP because the overlay check of the HAP is failed.
+Failed to install the HAP because the overlay check of the HAP failed.
 
 **错误描述**<br/>
 当安装overlay特征的应用时，指定的应用和待安装的overlay特征应用不为预置应用，或者目标应用/目标module是overlay特征的应用/module。
@@ -473,7 +473,7 @@ The specified bundle is an overlay bundle.
 ## 17700036 共享库缺少AllowAppShareLibrary特权导致安装失败
 
 **错误信息**<br/>
-Failed to install the HSP because lacks appropriate permissions.
+Failed to install the HSP due to the lack of required permission.
 
 **错误描述**<br/>
 共享库未申请配置AllowAppShareLibrary特权，可能存在安全隐私风险，不允许安装。
@@ -487,7 +487,7 @@ Failed to install the HSP because lacks appropriate permissions.
 ## 17700037 被卸载的shared library版本被其他应用依赖
 
 **错误信息**<br/>
-The version of shared bundle is dependent on other applications.
+The version of the shared bundle is dependent on other applications.
 
 **错误描述**<br/>
 当卸载shared library某一版本时，指定的shared library的版本被其他应用依赖，卸载失败。
@@ -518,13 +518,13 @@ The specified shared bundle does not exist.
 
 ## 17700039 不允许安装应用间共享库
 **错误信息**<br/>
-Failed to install because disallow install a shared bundle by hapFilePaths.
+Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **错误描述**<br/>
 安装应用时，传入的安装包为应用间共享库类型。
 
 **可能原因**<br/>
-1. 通过bm工具安装应用时，-p参数传入了应用间共享库的安装包路径。
+1. 通过[bm工具](../../tools/bm-tool.md)安装应用时，-p参数传入了应用间共享库的安装包路径。
 2. 通过install接口安装应用时，hapFilePaths参数传入了应用间共享库的安装包路径。
 
 **处理步骤**<br/>
@@ -539,7 +539,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 卸载应用时，传入的是应用间共享库的包名。
 
 **可能原因**<br/>
-1. 通过bm工具卸载应用时，-n参数传入了应用间共享库的包名。
+1. 通过[bm工具](../../tools/bm-tool.md)卸载应用时，-n参数传入了应用间共享库的包名。
 2. 通过uninstall接口卸载应用时，bundleName传入的是应用间共享库的包名。
 
 **处理步骤**<br/>
@@ -548,7 +548,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 
 ## 17700041 企业设备管理不允许安装该应用
 **错误信息**<br/>
-Failed to install because enterprise device management disallow install.
+Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **错误描述**<br/>
 安装应用时，企业设备管理不允许安装。
@@ -605,7 +605,7 @@ Failed to install the HAP because the isolationMode configured is not supported.
 
 ## 17700045 企业设备管理不允许卸载该应用
 **错误信息**<br/>
-Failed to uninstall because enterprise device management disallow uninstall.
+Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **错误描述**<br/>
 卸载应用时，企业设备管理不允许卸载。
@@ -633,7 +633,7 @@ Failed to install the HAP because the VersionCode to be updated is not greater t
 
 ## 17700048 代码签名校验失败
 **错误信息**<br/>
-Failed to install the HAP because the code signature verification is failed.
+Failed to install the HAP because the code signature verification failed.
 
 **错误描述**<br/>
 安装应用时，安装包的代码签名文件校验失败。
@@ -663,7 +663,7 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 
 ## 17700050 企业设备校验失败
 **错误信息**<br/>
-Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **错误描述**<br/>
 安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
@@ -677,7 +677,7 @@ Failed to install the HAP because enterprise normal/MDM bundle cannot be install
 
 ## 17700051 应用自升级时安装的应用与调用方包名不同
 **错误信息**<br/>
-Failed to install the HAP because the distribution type of caller application is not enterprise_mdm.
+Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
 **错误描述**<br/>
 企业mdm应用自升级时，调用方的分发类型不是企业mdm。
@@ -690,7 +690,7 @@ Failed to install the HAP because the distribution type of caller application is
 
 ## 17700052 非开发者模式下不允许安装调试应用
 **错误信息**<br/>
-Failed to install the HAP because debug bundle cannot be installed under non-developer mode.
+Failed to install the HAP because a debug bundle can be installed only in developer mode.
 
 **错误描述**<br/>
 安装调试应用时，设备处于非开发者模式，不允许安装。
@@ -703,7 +703,7 @@ Failed to install the HAP because debug bundle cannot be installed under non-dev
 
 ## 17700053 非应用市场调用
 **错误信息**<br/>
-Not app gallery call.
+The caller is not AppGallery.
 
 **错误描述**<br/>
 非应用市场的应用调用，仅供应用市场调用的接口。
@@ -726,8 +726,8 @@ Failed to install the HAP because the HAP requests wrong permissions.
 2. 应用的权限级别比其申请权限的权限级别低。
 
 **处理步骤**<br/>
-1. 排查是否申请了[MDM类型的权限](../../security/AccessToken/permissions-for-mdm-apps.md)，MDM类型的权限仅针对应用类型为MDM的应用开放。
-2. 排查申请的权限的[权限级别](../../security/AccessToken/permissions-for-all.md)是否比[应用的权限级别](../../security/app-provision-structure.md#bundle-info对象内部结构)高。由于默认应用等级为normal，只能使用normal等级的权限，如果使用了system_basic或system_core等级的权限，将导致报错。在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 排查是否申请了<!--Del-->[<!--DelEnd-->MDM类型的权限<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->，MDM类型的权限仅针对应用类型为MDM的应用开放。
+2. 排查申请的权限是否为开放权限。详情请见[权限列表](../../security/AccessToken/permissions-for-all.md)。
 
 ## 17700055 指定的link无效
 
@@ -757,9 +757,83 @@ The scheme of the specified link is not in the querySchemes.
 **处理步骤**<br/>
 检查是否在querySchemes字段下配置了相应的URL scheme。
 
+## 17700057 指定的应用不是预置应用
+
+**错误信息**<br/>
+Failed to uninstall updates because the HAP is not pre-installed.
+
+**错误描述**<br/>
+调用installer模块中的uninstallUpdates接口时，指定的应用不是预置应用。
+
+**可能原因**<br/>
+指定的应用不是预置应用，无法调用uninstallUpdates接口。
+
+**处理步骤**<br/>
+确认指定的应用是否为预置应用。
+
+## 17700059 指定的开发者ID不存在
+
+**错误信息**<br/>
+The specified developerId is invalid.
+
+**错误描述**<br/>
+调用bundleManager模块中的getAllBundleInfoByDeveloperId接口时，指定的developerId无效。
+
+**可能原因**<br/>
+设备上未安装指定开发者ID的应用。
+
+**处理步骤**<br/>
+检查输入的开发者ID有效性。
+
+## 17700060 指定的应用不允许被卸载
+
+**错误信息**<br/>
+The specified application cannot be uninstalled.
+
+**错误描述**<br/>
+调用bundleManager模块中的switchUninstallState接口时，指定的应用不允许被卸载。
+
+**可能原因**<br/>
+指定的应用具有不可卸载特权。
+
+**处理步骤**<br/>
+检查指定的应用是否具有不可卸载特权。
+
+## 17700061 指定的应用分身索引无效
+
+**错误信息**<br/>
+The appIndex is invalid.
+
+**错误描述**<br/>
+调用应用分身相关的接口时，指定的应用分身索引无效。
+
+**可能原因**<br/>
+1. 分身索引超出允许的范围。
+2. 应用没有该索引的分身。
+3. 创建应用分身时，该索引已存在。
+
+**处理步骤**<br/>
+1. 检查索引是否再允许范围内。
+2. 检查应用是否有该索引的分身。
+3. 检查是否调用createAppClone，且该索引的应用分身是否已存在。
+
+## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
+
+**错误信息**<br/>
+The ability specified by want in the ShortcutInfo struct cannot be started.
+
+**错误描述**<br/>
+调用launcherBundleManager模块中的startShortcut接口时，ShortcutInfo结构体中的want指定的ability不支持被拉起。
+
+**可能原因**<br/>
+ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体中的want指定的ability不能被拉起等。
+
+**处理步骤**<br/>
+检查ShortcutInfo结构体中的want有效性。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
-Failed to verify abc.
+Failed to verify the abc file.
 
 **错误描述**<br/>
 .abc文件路径校验失败。
@@ -772,7 +846,7 @@ Failed to verify abc.
 
 ## 17700202 abc文件删除失败
 **错误信息**<br/>
-Failed to delete abc.
+Failed to delete the abc file.
 
 **错误描述**<br/>
 .abc文件删除失败。
@@ -782,3 +856,81 @@ Failed to delete abc.
 
 **处理步骤**<br/>
 请传递有效的.abc文件的路径。
+
+## 17700301 扩展资源添加失败
+**错误信息**<br/>
+Failed to add extended resources.
+
+**错误描述**<br/>
+扩展资源添加失败。
+
+**可能原因**<br/>
+hsp文件不存在或者不可信。
+
+**处理步骤**<br/>
+请传递正确且可信hsp文件路径。
+
+## 17700302 扩展资源删除失败
+**错误信息**<br/>
+Failed to remove extended resources.
+
+**错误描述**<br/>
+扩展资源删除失败。
+
+**可能原因**<br/>
+moduleName对应的hsp不存在。
+
+**处理步骤**<br/>
+请传递有效的moduleName。
+
+## 17700303 扩展资源查询失败
+**错误信息**<br/>
+Failed to obtain extended resources.
+
+**错误描述**<br/>
+扩展资源查询失败。
+
+**可能原因**<br/>
+bundleName没有hsp。
+
+**处理步骤**<br/>
+请传递有效的bundleName。
+
+## 17700304 动态图标使能失败
+**错误信息**<br/>
+Failed to enable the dynamic icon.
+
+**错误描述**<br/>
+动态图标使能失败。
+
+**可能原因**<br/>
+hsp包没有正确的图标资源。
+
+**处理步骤**<br/>
+使能动态图标前确保moduleName对应的hsp有效且包含图标资源。
+
+## 17700305 动态图标去使能失败
+**错误信息**<br/>
+Failed to disable the dynamic icon.
+
+**错误描述**<br/>
+动态图标去使能失败。
+
+**可能原因**<br/>
+bundleName没有动态图标。
+
+**处理步骤**<br/>
+去使能动态图标前确保bundleName存在动态图标。
+
+## 17700306 动态图标查询失败
+**错误信息**<br/>
+Failed to obtain the dynamic icon.
+
+**错误描述**<br/>
+动态图标查询失败。
+
+**可能原因**<br/>
+bundleName没有动态图标。
+
+**处理步骤**<br/>
+查询动态图标前确保bundleName存在动态图标。

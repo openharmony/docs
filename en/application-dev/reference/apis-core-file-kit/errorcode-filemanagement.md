@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 The error codes of the file management subsystem include the following:
 - [Basic File IO Error Codes](#basic-file-io-error-codes)

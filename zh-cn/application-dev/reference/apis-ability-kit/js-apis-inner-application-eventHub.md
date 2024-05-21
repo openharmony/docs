@@ -41,6 +41,8 @@ on(event: string, callback: Function): void;
 >
 >  callback被emit触发时，调用方是EventHub对象，如果要修改callback中this的指向，可以使用箭头函数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -49,6 +51,14 @@ on(event: string, callback: Function): void;
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 事件名称。 |
 | callback | Function | 是 | 事件回调，事件触发后调用。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -87,6 +97,8 @@ off(event: string, callback?: Function): void;
  - 传入callback：取消指定的callback对指定事件的订阅，当该事件触发后，将不会回调该callback。
  - 不传callback：取消所有callback对指定事件的订阅。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -95,6 +107,14 @@ off(event: string, callback?: Function): void;
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 事件名称。 |
 | callback | Function | 否 | 事件回调。如果不传callback，则取消订阅该事件下所有callback。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -126,6 +146,8 @@ emit(event: string, ...args: Object[]): void;
 
 触发指定事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -134,6 +156,14 @@ emit(event: string, ...args: Object[]): void;
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 事件名称。 |
 | ...args | Object[] | 否 | 可变参数，事件触发时，传递给回调函数的参数。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 

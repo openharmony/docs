@@ -21,11 +21,11 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 2. Obtain the plaintext to be signed.
 
-3. Use [OH_Huks_InitParamSet](../../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset) to set algorithm parameters.
+3. Use [OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset) to set algorithm parameters.
 
-4. Use [OH_Huks_InitSession](../../reference/native-apis/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
+4. Use [OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.  
 
-5. Use [OH_Huks_FinishSession](../../reference/native-apis/_huks_key_api.md#oh_huks_finishsession) to generate a signature.
+5. Use [OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession) to generate a signature.
 
 **Signature Verification**
 
@@ -33,13 +33,13 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 2. Obtain the signature to be verified.
 
-3. Set [algorithm parameters](../../reference/native-apis/_huks_param_set_api.md#oh_huks_initparamset).
+3. Set [algorithm parameters](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset).
 
-4. Use [OH_Huks_InitSession](../../reference/native-apis/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
+4. Use [OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
 
-5. Use [OH_Huks_UpdateSession](../../reference/native-apis/_huks_key_api.md#oh_huks_updatesession) to process data.
+5. Use [OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_updatesession) to process data.
 
-6. Use [OH_Huks_FinishSession](../../reference/native-apis/_huks_key_api.md#oh_huks_finishsession) to finish signature verification.
+6. Use [OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession) to finish signature verification.
 
 **Key Deletion**
 

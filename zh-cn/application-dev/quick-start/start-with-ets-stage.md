@@ -3,13 +3,13 @@
 
 > **说明：**
 >
-> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例<!--Del-->，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接<!--DelEnd-->。
 
 ## 创建ArkTS工程
 
 1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已经打开了一个工程，请在菜单栏选择**File** &gt; **New** &gt; **Create Project**来创建一个新工程。
 
-2. 选择**Application**应用开发（本文以应用开发为例，Atomic Service对应为元服务开发），选择模板“**[OpenHarmony]Empty Ability**”，点击**Next**进行下一步配置。
+2. 选择**Application**应用开发（本文以应用开发为例，Atomic Service对应为原子化服务开发），选择模板“**[OpenHarmony]Empty Ability**”，点击**Next**进行下一步配置。
 
    ![createProject](figures/createProject.png)
 
@@ -310,4 +310,4 @@
 
    ![zh-cn_image_0000001364254729](figures/zh-cn_image_0000001364254729.png)
 
-恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来<!--Del-->[<!--DelEnd-->探索更多的OpenHarmony功能<!--Del-->](../application-dev-guide.md)<!--DelEnd-->吧。

@@ -1,9 +1,9 @@
-# MediaQuery (@ohos.mediaquery)
+# Media Query (@ohos.mediaquery)
 
 
 ## Overview
 
-[Media queries](../reference/apis/js-apis-mediaquery.md) are at the core of responsive design and widely used on mobile devices. You can use media queries to apply application styles based on the device type or device state. Specifically, media queries allow you to:
+[Media queries](../reference/../reference/apis-arkui/js-apis-mediaquery.md) are at the core of responsive design and widely used on mobile devices. You can use media queries to apply application styles based on the device type or device state. Specifically, media queries allow you to:
 
 1. Design a layout style based on the device and application attributes (such as display area, dark light color, and resolution).
 
@@ -130,6 +130,9 @@ The media features include the width and height of the application display area,
 | round-screen      | Screen type. The value **true** indicates a circular screen, and **false** indicates a non-circular screen.             |
 | dark-mode         | Whether the device is in dark mode. The value **true** means that the device is in dark mode, and **false** means the opposite.                 |
 
+>**NOTE**
+>
+>Of the preceding media features, only height and width are supported on widgets.
 
 ## Example Scenario
 

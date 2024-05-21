@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
 ```
 
 ## dlpPermission.isDLPFile
@@ -37,19 +37,19 @@ isDLPFile(fd: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 
 try {
   let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
@@ -57,7 +57,7 @@ try {
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
-fs.closeSync(file);
+fileIo.closeSync(file);
 ```
 
 ## dlpPermission.isDLPFile
@@ -81,19 +81,19 @@ isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-let file = fs.openSync(uri);
+let file = fileIo.openSync(uri);
 
 try {
   dlpPermission.isDLPFile(file.fd, (err, res) => {
@@ -102,11 +102,11 @@ try {
     } else {
       console.info('res', res);
     }
-    fs.closeSync(file);
+    fileIo.closeSync(file);
   });
 } catch (err) {
   console.error('isDLPFile error,', (err as BusinessError).code, (err as BusinessError).message);
-  fs.closeSync(file);
+  fileIo.closeSync(file);
 }
 ```
 
@@ -137,8 +137,8 @@ getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
@@ -172,7 +172,7 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -180,9 +180,9 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.isInSandbox().then((inSandbox) => { // 是否在沙箱内
@@ -233,8 +233,8 @@ getOriginalFileName(fileName: string): string
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res = dlpPermission.getOriginalFileName('test.txt.dlp'); // 获取原始文件名
@@ -269,8 +269,8 @@ getDLPSuffix(): string
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res = dlpPermission.getDLPSuffix(); // 获取DLP拓展名
@@ -301,7 +301,7 @@ on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -309,8 +309,8 @@ on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.on('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
@@ -341,7 +341,7 @@ off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -349,8 +349,8 @@ off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.off('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
@@ -387,8 +387,8 @@ isInSandbox(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内
@@ -418,15 +418,15 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.isInSandbox((err, data) => {
@@ -467,8 +467,8 @@ getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res = dlpPermission.getDLPSupportedFileTypes(); // 获取支持DLP的文件类型
@@ -498,15 +498,15 @@ getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): vo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getDLPSupportedFileTypes((err, res) => {
@@ -547,7 +547,7 @@ setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -555,8 +555,8 @@ setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -591,7 +591,7 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100006 | This API can only be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -599,8 +599,8 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -643,15 +643,15 @@ cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -682,15 +682,15 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
@@ -732,7 +732,7 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -740,8 +740,8 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res: Promise<Array<dlpPermission.RetentionSandboxInfo>> = dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
@@ -772,7 +772,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -780,8 +780,8 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getRetentionSandboxList("bundleName", (err, res) => {
@@ -816,7 +816,7 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -824,8 +824,8 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getRetentionSandboxList((err, res) => {
@@ -867,8 +867,8 @@ getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let res: Promise<Array<dlpPermission.AccessedDLPFileInfo>> = dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
@@ -898,7 +898,7 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -906,8 +906,8 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getDLPFileAccessRecords((err, res) => {
@@ -951,7 +951,7 @@ startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 | 19100016 | Uri does not exist in want. |
@@ -960,12 +960,9 @@ startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import common from '@ohos.app.ability.common';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility'
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
@@ -1009,7 +1006,7 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -1018,8 +1015,8 @@ setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
@@ -1056,8 +1053,8 @@ cleanSandboxAppConfig(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
@@ -1092,8 +1089,8 @@ getSandboxAppConfig(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   dlpPermission.getSandboxAppConfig().then((res) => {
@@ -1127,11 +1124,11 @@ isDLPFeatureProvided(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import dlpPermission from '@ohos.dlpPermission';
-import { BusinessError } from '@ohos.base';
+import { dlpPermission } from '@kit.DataLossPreventionKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async checkIsDLPFeatureProvided() {
-  dlpPermission.isDLPFeatureProvided().then((res) => {git
+  dlpPermission.isDLPFeatureProvided().then((res) => {
     console.info('res', JSON.stringify(res));
   }).catch((err: BusinessError) => {
     console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错

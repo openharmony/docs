@@ -1,6 +1,6 @@
 # ContinueCallback (System API)
 
-The **ContinueCallback** module defines the callback function that indicates the result of mission continuation. For details about mission continuation, see [continueMission](../apis/js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission).
+The ContinueCallback module defines the callback function that indicates the result of mission continuation. For details about mission continuation, see [continueMission](js-apis-distributedMissionManager-sys.md#distributedmissionmanagercontinuemission).
 
 > **NOTE**
 >

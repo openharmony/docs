@@ -157,7 +157,7 @@ hiperf report --help
 
 ## 脚本
 
-一般用户用脚本执行采样操作，可生成可视化的火焰图。
+一般用户用脚本执行采样操作，可生成可视化的火焰图。工具可在[developtools_hiperf仓库](https://gitee.com/openharmony/developtools_hiperf/tree/master/script)中获取。
 
 1. 采样。
 

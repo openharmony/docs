@@ -12,6 +12,8 @@ focusable(value: boolean)
 
 设置当前组件是否可以获焦。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -25,6 +27,8 @@ focusable(value: boolean)
 tabIndex(index: number)
 
 自定义组件tab键走焦能力。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,6 +44,8 @@ defaultFocus(value: boolean)
 
 设置当前组件是否为当前页面上的默认焦点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -53,6 +59,8 @@ defaultFocus(value: boolean)
 groupDefaultFocus(value: boolean)
 
 设置当前组件是否为当前组件所在容器获焦时的默认焦点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -68,6 +76,8 @@ focusOnTouch(value: boolean)
 
 设置当前组件是否支持点击获焦能力。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -76,9 +86,26 @@ focusOnTouch(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 设置当前组件是否支持点击获焦能力。<br/>默认值：false<br/>**说明：** <br/>仅在组件可点击时才能正常获取焦点。 |
 
+## focusBox<sup>12+</sup>
+
+focusBox(style: FocusBoxStyle): T
+
+设置当前组件系统焦点框样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| style  | [FocusBoxStyle](#focusboxstyle12对象说明) | 是   | 设置当前组件系统焦点框样式。<br/>**说明：** <br/>该样式仅影响走焦状态下展示了系统焦点框的组件。 |
+
+
 ## focusControl<sup>9+</sup>
 
 焦点控制模块
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ### requestFocus<sup>9+</sup>
 
@@ -102,7 +129,12 @@ requestFocus(value: string): boolean
 >
 >  支持焦点控制的组件：[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Search](ts-basic-components-search.md)、[Button](ts-basic-components-button.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)。焦点事件当前仅支持在真机上显示运行效果。
 
-## clearFocus<sup>12+</sup>
+
+## FocusController<sup>12+</sup>
+以下clearFocus，requestFocus 两个API需先使用UIContext中的[getFocusController()](../js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取实例，再通过此实例调用对应方法。
+
+
+### clearFocus<sup>12+</sup>
 
 clearFocus(): void
 
@@ -110,7 +142,59 @@ clearFocus(): void
 
 >  **说明：**
 >
->  调用该接口需要先获取[UIContext](../js-apis-arkui-UIContext.md)，具体使用方式可以参考[示例3](./ts-universal-attributes-focus.md#示例3)。
+>  详细介绍请参见[clearFocus](../js-apis-arkui-UIContext.md#clearfocus12)。
+
+### requestFocus<sup>12+</sup>
+
+requestFocus(key: string): void
+
+通过组件的id将焦点转移到组件树对应的实体节点。
+
+>  **说明：**
+>
+>  详细介绍请参见[requestFocus](../js-apis-arkui-UIContext.md#requestfocus12)。
+
+## FocusBoxStyle<sup>12+</sup>对象说明
+
+| 名称 | 参数类型 | 必填 | 描述 |
+| ---- | ---- | ---- | ---- |
+| margin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 焦点框相对组件边缘的距离。<br/>正数代表外侧，负数代表内侧。不支持百分比。 |
+| strokeColor  | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 焦点框颜色 |
+| strokeWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 焦点框宽度。<br/>不支持负数与百分比。|
+
+## focusScopePriority<sup>12+</sup>
+
+focusScopePriority(scopeId: string, priority?: FocusPriority): T
+
+设置当前组件在指定容器内获焦的优先级。需要配合focusScopeId一起使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| scopeId  | string | 是   | 当前组件设置的获焦优先级生效的容器组件的id标识。<br/>**说明：** <br/>1.当前组件必须在scopeId所标识的容器内或者当前组件所属容器在scopeId所标识的容器内 。<br/>2.组件不可重复设置多个优先级。<br/>3.设置了focusScopeId的容器组件不可设置优先级。 |
+| priority  | [FocusPriority](ts-appendix-enums.md#FocusPriority12)  | 否   | 获焦优先级。<br/>**说明：** <br/>priority不设置则组件为默认AUTO优先级。<br/>优先级对走焦以及获焦组件的影响：<br/>1.容器整体获焦（层级页面切换/焦点切换到焦点组/容器组件使用requestFocus申请焦点）时，若容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由容器内上次获焦的组件获焦；<br/>2.容器非整体获焦（非焦点组场景下使用tab键/方向键走焦）时，若容器为首次获焦，则容器内优先级最高的组件获焦，若容器非首次获焦，不考虑优先级按照位置顺序走焦。 |
+
+## focusScopeId<sup>12+</sup>
+
+focusScopeId(id: string, isGroup?: boolean)
+
+设置当前容器组件的id标识，设置当前容器组件是否为焦点组。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| id  | string | 是   | 设置当前容器组件的id标识。<br/>**说明：** <br/>单个层级页面下，id标识全局唯一，不可重复。 |
+| isGroup  | boolean | 否   | 设置当前容器组件是否为焦点组。<br/>**说明：** <br/>焦点组不可嵌套，不可重复配置。<br/>配置焦点组的目的时使得容器及容器内的元素可以按照焦点组规则走焦。焦点组走焦规则：<br/>1.焦点组容器内只能通过方向键走焦，tab键会使焦点跳出焦点组容器。<br/>2.通过方向键使焦点从焦点组容器外切换到焦点组容器内时，若焦点组容器内存在优先级为PREVIOUS的组件，则优先级为PREVIOUS的组件获焦，否则，由焦点组容器内上次获焦的组件获焦。|
 
 ## 示例
 
@@ -354,59 +438,161 @@ struct RequestFocusExample {
 
 ### 示例3
 
-```ts
+focusBox示例代码：
 
+使用focusBox修改组件的焦点框样式示例代码：使焦点框变为红色/加粗/内边框。
+```ts
 @Entry
 @Component
-struct ClearFocusExample {
-  @State inputValue: string = ''
-  @State btColor: Color = Color.Blue
-
+struct RequestFocusExample {
   build() {
-    Column({ space: 20 }) {
-      Column({ space: 5 }) {
-        Button('button1')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .focusOnTouch(true)
-          .backgroundColor(Color.Blue)
-        Button('button2')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .focusOnTouch(true)
-          .backgroundColor(this.btColor)
-          .defaultFocus(true)
-          .onFocus(() => {
-            this.btColor = Color.Red
-          })
-          .onBlur(() => {
-            this.btColor = Color.Blue
-          })
-        Button('clearFocus')
-          .width(200)
-          .height(70)
-          .fontColor(Color.White)
-          .backgroundColor(Color.Blue)
-          .onClick(() => {
-            this.getUIContext().getFocusController().clearFocus()
-          })
-      }
+    Column({ space: 30 }) {
+      Button("small black focus box")
+        .focusBox({
+          margin: new LengthMetrics(0),
+          strokeColor: ColorMetrics.rgba(0, 0, 0),
+        })
+      Button("large red focus box")
+        .focusBox({
+          margin: LengthMetrics.px(20),
+          strokeColor: ColorMetrics.rgba(255, 0, 0),
+          strokeWidth: LengthMetrics.px(10)
+        })
     }
+    .alignItems(HorizontalAlign.Center)
     .width('100%')
-    .height('100%')
   }
 }
-
 ```
 
-示意图：
+![focusBox](figures/focusBox.gif)
 
-首次进入页面，Button2按钮获焦，背景颜色为红色
 
-![clearFocus1](figures/clearFocus1.jpg)
+### 示例4
 
-点击ClearFocus按钮，清除焦点，Button2失焦，触发onBlur失焦回调将背景颜色变为蓝色。
+focusScopePriority/focusScopeId示例代码：
 
-![clearFocus2](figures/clearFocus2.jpg)
+focusScopePriority可以使绑定的组件成为所属容器首次获焦时的焦点。focusScopeId可以使绑定的容器组件组件成为焦点组。
+
+```ts
+// focusTest.ets
+@Entry
+@Component
+struct FocusableExample {
+  @State inputValue: string = ''
+
+  build() {
+    Scroll() {
+      Row({ space: 20 }) {
+        Column({ space: 20 }) {  // 标记为Column1
+          Column({ space: 5 }) {
+            Button('Group1')
+              .width(165)
+              .height(40)
+              .fontColor(Color.White)
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+            }
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+            }
+          }.borderWidth(2).borderColor(Color.Red).borderStyle(BorderStyle.Dashed)
+          Column({ space: 5 }) {
+            Button('Group2')
+              .width(165)
+              .height(40)
+              .fontColor(Color.White)
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+                .focusScopePriority('ColumnScope1', FocusPriority.PRIOR)  // Column1首次获焦时获焦
+            }
+            Row({ space: 5 }) {
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+              Button()
+                .width(80)
+                .height(40)
+                .fontColor(Color.White)
+            }
+          }.borderWidth(2).borderColor(Color.Green).borderStyle(BorderStyle.Dashed)
+        }
+        .focusScopeId('ColumnScope1')
+        Column({ space: 5 }) {  // 标记为Column2
+          TextInput({placeholder: 'input', text: this.inputValue})
+            .onChange((value: string) => {
+              this.inputValue = value
+            })
+            .width(156)
+          Button('Group3')
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+          }
+          Button()
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+            .focusScopePriority('ColumnScope2', FocusPriority.PREVIOUS)  // Column2获焦时获焦
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+          }
+          Button()
+            .width(165)
+            .height(40)
+            .fontColor(Color.White)
+          Row({ space: 5 }) {
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+            Button()
+              .width(80)
+              .height(40)
+              .fontColor(Color.White)
+          }
+        }.borderWidth(2).borderColor(Color.Orange).borderStyle(BorderStyle.Dashed)
+        .focusScopeId('ColumnScope2', true)  // Column2为焦点组
+      }.alignItems(VerticalAlign.Top)
+    }
+  }
+}
+```

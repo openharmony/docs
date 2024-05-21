@@ -1,4 +1,4 @@
-# Video Playback (ArkTS)
+# Video Playback
 
 The system provides two solutions for video playback development:
 
@@ -44,7 +44,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    >
    > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
    > 
-   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../../file-management/app-sandbox-directory.md).
+   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
    > 
    > - If a network playback path is used, you must [declare the ohos.permission.INTERNET permission](../../security/AccessToken/declare-permissions.md).
    > 
@@ -134,7 +134,7 @@ export class AVPlayerDemo {
           break;
         case 'stopped': // This state is reported upon a successful callback of stop().
           console.info('AVPlayer state stopped called.');
-          avPlayer.reset(); // Call reset() to reset the AVPlayer state.
+          avPlayer.reset(); // Call reset() to reset the AVPlayer.
           break;
         case 'released':
           console.info('AVPlayer state released called.');
@@ -255,6 +255,16 @@ export class AVPlayerDemo {
     this.setAVPlayerCallback(avPlayer);
     this.isSeek = false; // The seek operation is not supported.
     avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // Play live webcasting streams using HLS.
+  }
+
+  // The following demo uses setMediaSource to set the network address to implement video pre-download.
+  async preDownloadDemo() {
+    // Create an AVPlayer instance.
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  {"User-Agent" : "User-Agent-Value"});
+    let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
+    // Set the media source and playback policy.
+    avPlayer.setMediaSource(mediaSource, playbackStrategy);
   }
 }
 ```

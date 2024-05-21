@@ -49,7 +49,7 @@ A locale consists of four parts: language, script, country/region, and extended 
 
 ## How to Develop
 
-The following uses date and time formatting as an example. For details about APIs, see [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat).
+The following uses date and time formatting as an example. For details about APIs, see [getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10).
 
 1. Import the **intl** module.
    ```ts
@@ -62,7 +62,7 @@ The following uses date and time formatting as an example. For details about API
    - Use the default **Locale** constructor to create a **Locale** object. This object will be used to represent the current system locale.
 
    ```ts
-   let date = new Date(2023, 9, 25);
+   let date = new Date(2023, 9, 23);
    
    // Method 1: Create a Locale object using the locale string.
    let zhLocale = new Intl.Locale("zh-Hans-CN-u-nu-latn");

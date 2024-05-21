@@ -57,7 +57,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
+// Default constructor.
 let treeSet : TreeSet<string | number | boolean | Object> = new TreeSet();
+```
+
+```ts
 // Use the comparator firstValue < secondValue if the elements are expected to be sorted in ascending order. Use firstValue > secondValue if the elements are expected to be sorted in descending order.
 let treeSet : TreeSet<string> = new TreeSet<string>((firstValue: string, secondValue: string) : boolean => {return firstValue < secondValue});
 treeSet.add("a");
@@ -69,6 +73,7 @@ for (let item of numbers) {
   console.log("TreeSet:" + item);
 }
 ```
+
 ```ts
 // When a custom type is inserted, a comparator must be provided.
 class TestEntry{

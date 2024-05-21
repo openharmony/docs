@@ -5,9 +5,13 @@
 
 Defines basic device information.
 
-**Since**: 11
+**Since**
 
-**Related module**: [HidDdk](_hid_ddk.md)
+11
+
+**Related module**
+
+[HID DDK](_hid_ddk.md)
 
 
 ## Summary
@@ -17,10 +21,97 @@ Defines basic device information.
 
 | Name| Description| 
 | -------- | -------- |
-| [deviceName](_hid_ddk.md#devicename) | const char \* | 
-| [vendorId](_hid_ddk.md#vendorid) | uint16_t | 
-| [productId](_hid_ddk.md#productid) | uint16_t | 
-| [version](_hid_ddk.md#version) | uint16_t | 
-| [bustype](_hid_ddk.md#bustype) | uint16_t | 
-| [properties](_hid_ddk.md#properties) | [Hid_DeviceProp](_hid_ddk.md#hid_deviceprop) \* | 
-| [propLength](_hid_ddk.md#proplength) | uint16_t | 
+| [deviceName](#devicename) | Device name.| 
+| [vendorId](#vendorid) | Vendor ID.| 
+| [productId](#productid) | Product ID.| 
+| [version](#version) | Version number.| 
+| [bustype](#bustype) | Bus type.| 
+| [properties](#properties) | Device properties.| 
+| [propLength](#proplength) | Number of device properties.| 
+
+
+## Member Variable Description
+
+
+### deviceName
+
+
+```
+const char Hid_Device::deviceName
+```
+
+**Description**
+
+Device name.
+
+
+### vendorId
+
+
+```
+uint16_t Hid_Device::vendorId
+```
+
+**Description**
+
+Vendor ID.
+
+
+### productId
+
+
+```
+uint16_t  Hid_Device::productId
+```
+
+**Description**
+
+Product ID.
+
+
+### version
+
+
+```
+uint16_t Hid_Device::version
+```
+
+**Description**
+
+Version number.
+
+
+### bustype
+
+
+```
+uint16_t Hid_Device::bustype
+```
+
+**Description**
+
+Bus type.
+
+
+### properties
+
+
+```
+Hid_DeviceProp Hid_Device::properties
+```
+
+**Description**
+
+Device properties.
+
+
+### propLength
+
+
+```
+uint16_t Hid_Device::propLength
+```
+
+**Description**
+
+Number of device properties.

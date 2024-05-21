@@ -12,24 +12,32 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import picker from '@ohos.file.picker';
+  import { BusinessError } from '@ohos.base';
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+
     build() {
       Column() {
-        // 加载本地local.html页面
         Web({ src: $rawfile('local.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-              // 开发者设置要上传的文件路径
-             let fileList: Array<string> = [
-                'xxx/test.png',
-             ]
-             if (event) {
-                event.result.handleFileList(fileList)
-             }
-             return true;
+            console.log('MyFileUploader onShowFileSelector invoked')
+            const documentSelectOptions = new picker.DocumentSelectOptions();
+            let uri: string | null = null;
+            const documentViewPicker = new picker.DocumentViewPicker();
+            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+              uri = documentSelectResult[0];
+              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+              if (event) {
+                event.result.handleFileList([uri]);
+              }
+            }).catch((err: BusinessError) => {
+              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+            })
+            return true
           })
       }
     }
@@ -46,10 +54,11 @@ Web组件支持前端页面选择文件上传功能，应用开发者可以使�
       <meta charset="utf-8">
       <title>Document</title>
   </head>
-  
+
   <body>
   <!-- 点击上传文件按钮 -->
   <input type="file" value="file"></br>
+  <meta name="viewport" content="width=device-width" />
   </body>
   </html>
   ```

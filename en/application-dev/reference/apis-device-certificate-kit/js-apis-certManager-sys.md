@@ -5,7 +5,7 @@ The **certManager** module provides system-level certificate management capabili
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.security.certManager](errorcode-certManager.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.security.certManager (Certificate Management)](js-apis-certManager.md).
 
 ## Modules to Import
 
@@ -39,7 +39,7 @@ Obtains all private credentials. This API uses an asynchronous callback to retur
 
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | Yes  | Callback invoked to return the result. If the operation is successful, **credentialList** in [CMResult](js-apis-certManager.md#cmresult) is returned.|
+| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | Yes  | Callback invoked to return **credentialList** in [CMResult](js-apis-certManager.md#cmresult).|
 
 **Error codes**
 
@@ -88,7 +88,7 @@ Obtains all private credentials. This API uses a promise to return the result.
 
 | Type                                       | Description                |
 | ------------------------------------------- | -------------------- |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return the result. If the operation is successful, **credentialList** in [CMResult](js-apis-certManager.md#cmresult) is returned.|
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return **credentialList** in [CMResult](js-apis-certManager.md#cmresult).|
 
 **Error codes**
 

@@ -19,7 +19,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name  | Type    | Default Value | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
@@ -90,25 +90,25 @@ When **type** is set to **multi-text**, a multi-column text selector is used.
 
 ## Styles
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name                        | Type                        | Default Value       | Mandatory  | Description                                      |
 | -------------------------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
 | text-color                 | &lt;color&gt;              | -          | No   | Text color of the selector.                               |
 | font-size                  | &lt;length&gt;             | -          | No   | Font size of the selector.                               |
 | allow-scale                | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
-| letter-spacing             | &lt;length&gt;             | 0          | No   | Letter spacing of the selector. For details, see **letter-spacing** in the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
-| text-decoration            | string                     | -          | No   | Text decoration of the selector. For details, see **text-decoration** in the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
-| font-style                 | string                     | normal     | No   | Font style of the selector. For details, see **font-style** in the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
-| font-weight                | number \| string | normal     | No   | Font weight of the selector. For details, see **font-weight** in the **[\<text>](../arkui-js/js-components-basic-text.md#styles)** component.|
-| font-family                | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| letter-spacing             | &lt;length&gt;             | 0          | No   | Letter spacing of the selector. For details, see **letter-spacing** in the **[\<text>](js-components-basic-text.md#styles)** component.|
+| text-decoration            | string                     | -          | No   | Text decoration of the selector. For details, see **text-decoration** in the **[\<text>](js-components-basic-text.md#styles)** component.|
+| font-style                 | string                     | normal     | No   | Font style of the selector. For details, see **font-style** in the **[\<text>](js-components-basic-text.md#styles)** component.|
+| font-weight                | number \| string | normal     | No   | Font weight of the selector. For details, see **font-weight** in the **[\<text>](js-components-basic-text.md#styles)** component.|
+| font-family                | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 | line-height                | &lt;length&gt;             | 0px        | No   | Text line height of the selector.                               |
 | column-height<sup>5+</sup> | &lt;length&gt;             | -          | No   | Height of the selector option list.                            |
 
 
 ## Events
 
-In addition to the [universal events](../arkui-js/js-components-common-events.md), the following events are supported.
+In addition to the [universal events](js-components-common-events.md), the following events are supported.
 
 
 ### Common Selector
@@ -154,7 +154,7 @@ In addition to the [universal events](../arkui-js/js-components-common-events.md
 
 ## Methods
 
-In addition to the [universal methods](../arkui-js/js-components-common-methods.md), the following methods are supported.
+In addition to the [universal methods](js-components-common-methods.md), the following methods are supported.
 
 | Name  | Parameter  | Description             |
 | ---- | ---- | --------------- |

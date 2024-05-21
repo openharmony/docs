@@ -1,17 +1,13 @@
-# Connectivity
+# Connectivity Kit (Short-Range Communication Service)
 
-- Network Management
-  - [Network Management Overview](net-mgmt-overview.md)
-  - [HTTP Data Request](http-request.md)
-  - [WebSocket Connection](websocket-connection.md)
-  - [Socket Connection](socket-connection.md)
-  - [Network Sharing](net-sharing.md)
-  - [Ethernet Connection](net-ethernet.md)
-  - [Network Connection Management](net-connection-manager.md)
-  - [mDNS Management](net-mdns.md)
-  - [Traffic Management](net-statistics.md)
-  - [VPN Management](net-vpn.md)
-- IPC & RPC
-  - [IPC & RPC Overview](ipc-rpc-overview.md)
-  - [IPC & RPC Development](ipc-rpc-development-guideline.md)
-  - [Subscribing to State Changes of a Remote Object](subscribe-remote-state.md)
+- [Introduction to Connectivity Kit](connectivity-kit-intro.md)
+- Bluetooth
+  - [Bluetooth Overview](bluetooth/bluetooth-overview.md)
+  - [Bluetooth Setting Development](bluetooth/br-development-guide.md)
+  - [BLE Development](bluetooth/ble-development-guide.md)
+  - [GATT Development](bluetooth/gatt-development-guide.md)
+  - [SPP Development](bluetooth/spp-development-guide.md)
+- NFC
+  - [NFC Tag Read/Write Development](nfc/nfc-tag-access-guide.md)
+  - [HCE Development](nfc/nfc-hce-guide.md)
+  - [SE Access Development](nfc/nfc-se-access-guide.md)

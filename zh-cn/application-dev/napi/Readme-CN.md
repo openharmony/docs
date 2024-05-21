@@ -11,6 +11,7 @@
   - [代码开发概述](develop-code-overview.md)
   - C/C++标准库
     - [C/C++标准库机制概述](c-cpp-overview.md)
+    - [fdsan使用指导](fdsan.md)
   - 使用Node-API实现跨语言交互
     - [Node-API简介](napi-introduction.md)
     - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
@@ -22,12 +23,23 @@
       - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
       - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
       - [使用Node-API接口创建ArkTs运行时环境](use-napi-ark-runtime.md)
-      - [使用NAPI接口在主线程中进行模块加载](use-napi-load-module.md)
+      - [使用Node-API接口在主线程中进行模块加载](use-napi-load-module.md)
+      - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
+      - [使用Node-API接口进行模块加载](use-napi-load-module-with-info.md)
+      - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](use-call-threadsafe-function-with-priority.md)
+      - [Node-API扩展能力接口](use-napi-about-extension.md)
     - [Node-API常见问题](use-napi-faqs.md)
+  - 使用JSVM-API实现JS与C/C++语言交互
+    - [JSVM-API简介](jsvm-introduction.md)
+    - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
+    - [JSVM-API开发规范](jsvm-guidelines.md)
+    - [使用JSVM-API进行JS代码的调试调优](jsvm-debugger-cpuprofiler-heapsnapshot.md)
+    - JSVM-API典型使用场景
+      - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
-  - 资源调度
-    - [FFRT开发指导](ffrt-guidelines.md)
+  - 线程调度
+    - [QOS开发指导](qos-guidelines.md)
   - 内存管理
     - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
   - 设备管理

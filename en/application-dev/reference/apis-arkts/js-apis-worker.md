@@ -1100,10 +1100,8 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 ```
 
 ```ts
-import worker, { MessageEvents } from '@ohos.worker';
-
 // worker.ets
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
 
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = (err: MessageEvents) => {
@@ -1469,7 +1467,7 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Called when the worker thread exits. The event handler is executed in the host thread. In the callback function, the **code** value is of the number type, where the value 1 indicates abnormal exit and 0 indicates normal exit.
+Called when the worker thread exits. The event handler is executed in the host thread. In the callback function, the **code** value is of the number type, where the value **1** indicates abnormal exit and **0** indicates normal exit.
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker.onexit<sup>9+</sup>](#onexit9) instead.
@@ -2234,5 +2232,4 @@ Configuration of the **build-profile.json5** file:
     }
   }
 ```
-
- <!--no_check--> 
+<!--no_check-->

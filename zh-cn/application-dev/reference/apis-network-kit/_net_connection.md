@@ -84,6 +84,7 @@
 | [OH_NetConn_GetAllNets](#oh_netconn_getallnets) ([NetConn_NetHandleList](_net_conn___net_handle_list.md) \*netHandleList) | 查询所有激活的数据网络。 | 
 | [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | 注册自定义 DNS 解析器。 | 
 | [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver) (void) | 取消注册自定义 DNS 解析器。 | 
+| [OH_NetConn_BindSocket](#oh_netconn_bindsocket) (int32_t socketFd, [NetConn_NetHandle](_net_conn___net_handle.md) \*netHandle) | 将套接字与指定的网络进行绑定。 |
 
 
 ## 类型定义说明
@@ -92,7 +93,7 @@
 ### NetConn_ConnectionProperties
 
 ```
-typedef struct NetConn_ConnectionPropertiesNetConn_ConnectionProperties
+typedef struct NetConn_ConnectionProperties NetConn_ConnectionProperties
 ```
 
 **描述**
@@ -105,7 +106,7 @@ typedef struct NetConn_ConnectionPropertiesNetConn_ConnectionProperties
 ### NetConn_HttpProxy
 
 ```
-typedef struct NetConn_HttpProxyNetConn_HttpProxy
+typedef struct NetConn_HttpProxy NetConn_HttpProxy
 ```
 
 **描述**
@@ -118,7 +119,7 @@ typedef struct NetConn_HttpProxyNetConn_HttpProxy
 ### NetConn_NetAddr
 
 ```
-typedef struct NetConn_NetAddrNetConn_NetAddr
+typedef struct NetConn_NetAddr NetConn_NetAddr
 ```
 
 **描述**
@@ -131,7 +132,7 @@ typedef struct NetConn_NetAddrNetConn_NetAddr
 ### NetConn_NetBearerType
 
 ```
-typedef enum NetConn_NetBearerTypeNetConn_NetBearerType
+typedef enum NetConn_NetBearerType NetConn_NetBearerType
 ```
 
 **描述**
@@ -144,7 +145,7 @@ typedef enum NetConn_NetBearerTypeNetConn_NetBearerType
 ### NetConn_NetCap
 
 ```
-typedef enum NetConn_NetCapNetConn_NetCap
+typedef enum NetConn_NetCap NetConn_NetCap
 ```
 
 **描述**
@@ -157,7 +158,7 @@ typedef enum NetConn_NetCapNetConn_NetCap
 ### NetConn_NetCapabilities
 
 ```
-typedef struct NetConn_NetCapabilitiesNetConn_NetCapabilities
+typedef struct NetConn_NetCapabilities NetConn_NetCapabilities
 ```
 
 **描述**
@@ -170,7 +171,7 @@ typedef struct NetConn_NetCapabilitiesNetConn_NetCapabilities
 ### NetConn_NetHandle
 
 ```
-typedef struct NetConn_NetHandleNetConn_NetHandle
+typedef struct NetConn_NetHandle NetConn_NetHandle
 ```
 
 **描述**
@@ -183,7 +184,7 @@ typedef struct NetConn_NetHandleNetConn_NetHandle
 ### NetConn_NetHandleList
 
 ```
-typedef struct NetConn_NetHandleListNetConn_NetHandleList
+typedef struct NetConn_NetHandleList NetConn_NetHandleList
 ```
 
 **描述**
@@ -196,7 +197,7 @@ typedef struct NetConn_NetHandleListNetConn_NetHandleList
 ### NetConn_Route
 
 ```
-typedef struct NetConn_RouteNetConn_Route
+typedef struct NetConn_Route NetConn_Route
 ```
 
 **描述**
@@ -675,3 +676,35 @@ int32_t OHOS_NetConn_UnregisterDnsResolver (void )
 **Permission：**
 
 ohos.permission.INTERNET
+
+
+### OH_NetConn_BindSocket()
+
+```
+int32_t OH_NetConn_BindSocket (int32_t socketFd, NetConn_NetHandle * netHandle)
+```
+
+**描述**
+
+将套接字与指定的网络进行绑定。
+
+**系统能力：** SystemCapability.Communication.NetManager.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| socketFd | 用户创建的套接字. |
+| netHandle | 存放网络ID. |
+
+**返回：**
+
+0 - 成功.
+
+401 - 参数错误.
+
+2100002 - 无法连接到服务.
+
+2100003 - 内部错误.

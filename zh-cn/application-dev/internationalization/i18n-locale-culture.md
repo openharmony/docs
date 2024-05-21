@@ -62,7 +62,7 @@
    - 使用默认的Locale构造函数，创建区域识别对象。使用默认Locale构造函数创建的区域对象表示当前系统区域。
 
    ```ts
-   let date = new Date(2023, 9, 25);
+   let date = new Date(2023, 9, 23);
    
    // 方法一：通过区域标识字符串创建区域标识对象
    let zhLocale = new Intl.Locale("zh-Hans-CN-u-nu-latn");

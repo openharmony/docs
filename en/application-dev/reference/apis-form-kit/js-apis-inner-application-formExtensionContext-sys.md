@@ -36,7 +36,6 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](errorcode-form.md).
@@ -108,7 +107,6 @@ Starts an ability. This API uses a promise to return the result.
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](errorcode-form.md).

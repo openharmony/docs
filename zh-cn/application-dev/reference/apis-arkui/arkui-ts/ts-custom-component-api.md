@@ -13,6 +13,8 @@ getUIContext(): UIContext
 
 获取UIContext对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -39,11 +41,43 @@ struct MyComponent {
 }
 ```
 
+## getUniqueId<sup>12+</sup>
+
+getUniqueId(): number
+
+获取当前Component的UniqueId。UniqueId为系统为每个组件分配的Id，可保证唯一性。若在组件未构建时获取，返回无效UniqueId：-1。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                      | 说明                    |
+| --------------------------------------------------------- | ----------------------- |
+| number | 返回当前Component的UniqueId。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let uniqueId: number = this.getUniqueId();
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+
 ## queryNavDestinationInfo
 
 queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
-获取NavDestinationInfo实例对象。
+查询自定义组件所属的NavDestination信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -58,11 +92,22 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 ```ts
 import observer from '@ohos.arkui.observer';
 
-@Entry
+@Component
+export struct NavDestinationExample {
+  build() {
+    NavDestination() {
+      MyComponent()
+    }
+  }
+}
+
 @Component
 struct MyComponent {
+  navDesInfo: observer.NavDestinationInfo | undefined
+
   aboutToAppear() {
-    let info: observer.NavDestinationInfo | undefined = this.queryNavDestinationInfo();
+    this.navDesInfo = this.queryNavDestinationInfo();
+    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
   }
 
   build() {
@@ -70,3 +115,88 @@ struct MyComponent {
   }
 }
 ```
+
+## queryNavigationInfo<sup>12+</sup>
+
+queryNavigationInfo(): NavigationInfo | undefined
+
+查询自定义组件所属的Navigation信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                                       | 说明      |
+| -------------------------------------------------------------------------- | --------- |
+| [NavigationInfo](../js-apis-arkui-observer.md#navigationinfo) \| undefined | 返回NavigationInfo实例对象。 |
+
+**示例：**
+
+```ts
+// index.ets
+
+@Entry
+@Component
+struct MainPage {
+  pathStack: NavPathStack = new NavPathStack()
+
+  build() {
+    Navigation(this.pathStack) {
+      // ...
+    }.id("NavigationId")
+  }
+}
+
+import observer from '@ohos.arkui.observer';
+@Component
+export struct PageOne() {
+  pathStack: NavPathStack = new NavPathStack()
+
+  aboutToAppear() {
+    let navigationInfo: observer.NavigationInfo | undefined = this.queryNavigationInfo()
+    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
+    if (navigationInfo !== undefined) {
+      this.pathStack = navigationInfo.pathStack
+    }
+  }
+
+  build() {
+    NavDestination() {
+      // ...
+    }.title('PageOne')
+  }
+}
+```
+
+## queryRouterPageInfo<sup>12+</sup>
+
+queryRouterPageInfo(): RouterPageInfo | undefined;
+
+获取RouterPageInfo实例对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                         | 说明                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [RouterPageInfo](../js-apis-arkui-observer.md#routerpageinfo) \| undefined | 返回RouterPageInfo实例对象。 |
+
+**示例：**
+
+```ts
+import observer from '@ohos.arkui.observer';
+
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let info: observer.RouterPageInfo | undefined = this.queryRouterPageInfo();
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+

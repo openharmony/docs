@@ -29,9 +29,9 @@
 | int32_t(\* [addChildGesture](#addchildgesture) )(ArkUI_GestureRecognizer \*group, ArkUI_GestureRecognizer \*child) | 手势组增加子手势。  | 
 | int32_t(\* [removeChildGesture](#removechildgesture) )(ArkUI_GestureRecognizer \*group, ArkUI_GestureRecognizer \*child) | 删除子手势。  | 
 | int32_t(\* [setGestureEventTarget](#setgestureeventtarget) )(ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureEventActionTypeMask](_ark_u_i___native_module.md#arkui_gestureeventactiontypemask) actionTypeMask, void \*extraParams, void(\*targetReceiver)(ArkUI_GestureEvent \*event, void \*extraParams)) | 创建手势关联回调方法。  | 
-| int32_t(\* [addGestureToNode](#addgesturetonode) )(ArkUI_NodeHandle node, ArkUI_GestureRecognizer \*recognizer, [ArkUI_GesturePriority](_ark_u_i___native_module.md#arkui_gesturepriority) mode, [ArkUI_GestureMask](_ark_u_i___native_module.md#arkui_gesturemask) mask) | 将手势添加到UI组件。  | 
-| int32_t(\* [removeGestureFromNode](#removegesturefromnode) )(ArkUI_NodeHandle node, ArkUI_GestureRecognizer \*recognizer) | 在节点中移除手势。  | 
-| int32_t(\* [setGestureInterrupterToNode](#setgestureinterruptertonode) )(ArkUI_NodeHandle node, [ArkUI_GestureInterruptResult](_ark_u_i___native_module.md#arkui_gestureinterruptresult)(\*interrupter)(ArkUI_GestureInterruptInfo \*info)) | 设置节点手势打断回调。  | 
+| int32_t(\* [addGestureToNode](#addgesturetonode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, ArkUI_GestureRecognizer \*recognizer, [ArkUI_GesturePriority](_ark_u_i___native_module.md#arkui_gesturepriority) mode, [ArkUI_GestureMask](_ark_u_i___native_module.md#arkui_gesturemask) mask) | 将手势添加到UI组件。  | 
+| int32_t(\* [removeGestureFromNode](#removegesturefromnode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, ArkUI_GestureRecognizer \*recognizer) | 在节点中移除手势。  | 
+| int32_t(\* [setGestureInterrupterToNode](#setgestureinterruptertonode) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_GestureInterruptResult](_ark_u_i___native_module.md#arkui_gestureinterruptresult)(\*interrupter)(ArkUI_GestureInterruptInfo \*info)) | 设置节点手势打断回调。  | 
 | [ArkUI_GestureRecognizerType](_ark_u_i___native_module.md#arkui_gesturerecognizertype)(\* [getGestureType](#getgesturetype) )(ArkUI_GestureRecognizer \*recognizer) | 获取手势类别。  | 
 
 

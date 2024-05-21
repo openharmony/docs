@@ -1,4 +1,4 @@
-# 创建销毁ArkTS运行时环境
+# 使用Node-API接口创建ArkTs运行时环境
 
 ## 场景介绍
 
@@ -66,7 +66,7 @@
 
    ```cpp
    // create_ark_runtime.cpp
-   #include <pthread>
+   #include <pthread.h>
    
    #include "napi/native_api.h"
    
@@ -81,13 +81,13 @@
    
        // 2. 加载自定义模块
        napi_value objUtils;
-       ret = napi_load_module_with_info(env, &objUtils, "ets/pages/ObjectUtils", "com.exmaple.myapplication");
+       ret = napi_load_module_with_info(env, "entry/src/main/ets/pages/ObjectUtils", "com.exmaple.myapplication/entry", &objUtils);
        if (ret != napi_ok) {
            return nullptr;
        }
    
        // 3. 使用ArtTs中的logger
-       napi_value logger；
+       napi_value logger;
        ret = napi_get_named_property(env, objUtils, "Logger", &logger);
        if (ret != napi_ok) {
            return nullptr;

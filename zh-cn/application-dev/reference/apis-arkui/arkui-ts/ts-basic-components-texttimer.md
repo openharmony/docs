@@ -14,13 +14,17 @@
 
 TextTimer(options?: TextTimerOptions)
 
-**参数：**
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**参数：** 
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | options |  [TextTimerOptions](#texttimeroptions对象说明)| 否 | 通过文本显示计时信息并控制其计时器状态的组件参数。 |
 
 ## TextTimerOptions对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名     | 参数类型     | 必填  | 参数描述                   |
 | ----------- | -------- | -------- | -------- |
@@ -40,6 +44,8 @@ format(value: string)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -54,6 +60,8 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。不支持fill字段, 不支持智能取色模式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -62,6 +70,20 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | value  | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 是   | 文字阴影效果。 |
 
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<TextTimerConfiguration>)
+
+定制TextTimer内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<TextTimerConfiguration>](#texttimerconfiguration12对象说明) | 是   | 在TextTimer组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
 ## 事件
 
 ### onTimer
@@ -69,6 +91,8 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 onTimer(event:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 时间文本发生变化时触发。锁屏状态和应用后台状态下不会触发该事件。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,11 +107,12 @@ onTimer(event:&nbsp;(utc:&nbsp;number,&nbsp;elapsedTime:&nbsp;number)&nbsp;=&gt;
 
 TextTimer组件的控制器，用于控制文本计时器。一个TextTimer组件仅支持绑定一个控制器。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### 导入对象
 
 ```
 textTimerController: TextTimerController = new TextTimerController()
-
 ```
 
 ### start
@@ -96,17 +121,34 @@ start()
 
 计时开始。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### pause
 
 pause()
 
 计时暂停。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 ### reset
 
 reset()
 
 重置计时器。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+## TextTimerConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    |    默认值      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |
+| count | number | 60000 | 倒计时时间（isCountDown为true时生效），单位为毫秒。最长不超过86400000毫秒（24小时）。 0<count<86400000时，count值为倒计时初始值。否则，使用默认值为倒计时初始值。 |
+| isCountDown | boolean| false | 是否倒计时。 |
+| started | boolean | - | 是否已经开始了倒计时。 |
+| elapsedTime | number | - | 计时器经过的时间，单位为设置格式的最小单位。 |
 
 ## 示例
 ### 示例1
@@ -148,6 +190,7 @@ struct TextTimerExample {
 
 ### 示例2
 ``` ts
+// xxx.ets
 @Entry
 @Component
 struct TextTimerExample {
@@ -162,3 +205,76 @@ struct TextTimerExample {
 }
 ```
 ![TextshadowExample](figures/text_timer_textshadow.png)
+
+### 示例3
+该示例实现了两个简易秒表，使用浅灰色背景。计时器开始后，会实时显示时间变化。倒计时器开始后，背景会变成黑色，正计时器开始后，背景会变成灰色。
+``` ts
+// xxx.ets
+class MyTextTimerModifier implements ContentModifier<TextTimerConfiguration> {
+  constructor() {
+  }
+  applyContent() : WrappedBuilder<[TextTimerConfiguration]>
+  {
+      return wrapBuilder(buildTextTimer)
+  }
+}
+
+@Builder function buildTextTimer(config: TextTimerConfiguration) {
+  Column() {
+     Stack({ alignContent: Alignment.Center }) {
+       Circle({ width: 150, height: 150 }).fill(config.started ? (config.isCountDown ? 0xFF232323 : 0xFF717171) : 0xFF929292)
+       Column(){
+         Text(config.isCountDown ? "倒计时" : "正计时").fontColor(Color.White)
+         Text(
+           (config.isCountDown ? "剩余" : "已经过去了") + (config.isCountDown?
+             (Math.max((config.count - config.elapsedTime) / 1000,0)).toFixed(1) + "/" + (config.count / 1000).toFixed(0)
+             :((config.elapsedTime / 1000).toFixed(0))
+           ) + "秒"
+         ).fontColor(Color.White)
+       }
+     }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State count: number = 10000
+  @State myTimerModifier: MyTextTimerModifier = new MyTextTimerModifier()
+  countDownTextTimerController: TextTimerController = new TextTimerController()
+  countUpTextTimerController: TextTimerController = new TextTimerController()
+
+  build() {
+    Row() {
+      Column() {
+        TextTimer({isCountDown: true, count: this.count, controller: this.countDownTextTimerController})
+          .contentModifier(this.myTimerModifier)
+          .onTimer((utc: number, elapsedTime: number) => {
+            console.info('textTimer onTimer utc is：' + utc + ', elapsedTime: ' + elapsedTime)
+          })
+          .margin(10)
+        TextTimer({isCountDown: false, controller: this.countUpTextTimerController})
+          .contentModifier(this.myTimerModifier)
+          .onTimer((utc: number, elapsedTime: number) => {
+            console.info('textTimer onTimer utc is：' + utc + ', elapsedTime: ' + elapsedTime)
+          })
+        Row() {
+          Button("start").onClick(()=>{
+            this.countDownTextTimerController.start()
+            this.countUpTextTimerController.start()
+          }).margin(10)
+          Button("pause").onClick(()=>{
+            this.countDownTextTimerController.pause()
+            this.countUpTextTimerController.pause()
+          }).margin(10)
+          Button("reset").onClick(()=>{
+            this.countDownTextTimerController.reset()
+            this.countUpTextTimerController.reset()
+          }).margin(10)
+        }.margin(20)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+![text_timer_content_modifier](figures/text_timer_content_modifier.gif)

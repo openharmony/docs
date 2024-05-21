@@ -30,9 +30,8 @@
 10. 设备A、B删除用于加密导入的密钥。
 
 ```ts
-import { expect } from '@ohos/hypium';
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
+import { BusinessError} from "@kit.BasicServicesKit"
 let IV = '0000000000000000';
 let AAD = "abababababababab";
 let NONCE = "hahahahahaha";
@@ -275,11 +274,9 @@ async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOp
         })
         .catch((err: BusinessError) => {
             console.error(`promise: generateKeyItem failed` + err);
-            expect(null).assertFail();
         })
     } catch (err) {
         console.error(`promise: generateKeyItem invalid` + err);
-        expect(null).assertFail();
     }
 }
 async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -290,11 +287,9 @@ async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksO
             console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
         }).catch((err: BusinessError) => {
             console.error(`promise: importKeyItem failed` + err);
-            expect(null).assertFail();
         })
     } catch (err) {
         console.error(`promise: importKeyItem input arg invalid` + err);
-        expect(null).assertFail();
     }
 }
 async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -306,11 +301,9 @@ async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksO
         })
         .catch((err: BusinessError) => {
             console.error(`promise: deleteKeyItem failed` + err);
-            expect(null).assertFail();
         })
     } catch (err) {
         console.error(`promise: deleteKeyItem input arg invalid` + err);
-        expect(null).assertFail();
     }
 }
 function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
@@ -324,7 +317,6 @@ function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOp
                 }
             });
         } catch (error) {
-            expect(null).assertFail();
         }
     });
 }
@@ -340,11 +332,9 @@ async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: st
         })
         .catch((error: BusinessError) => {
             console.error(`promise: importWrappedKeyItem failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: importWrappedKeyItem input arg invalid` + error);
-        expect(null).assertFail();
     }
 }
 async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
@@ -356,11 +346,9 @@ async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias:
         })
         .catch((error: BusinessError) => {
             console.error(`promise: importWrappedKeyItem failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: importWrappedKeyItem input arg invalid` + error);
-        expect(null).assertFail();
     }
 }
 async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -374,11 +362,9 @@ async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions
         })
         .catch((error: BusinessError) => {
             console.error(`promise: doInit key failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doInit input arg invalid` + error);
-        expect(null).assertFail();
     }
     return handle;
 }
@@ -390,7 +376,7 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
     let inDataSegPosition = 0;
     let isFinished = false;
     let outData: number[] = [];
-    
+
     while (inDataSegPosition <= lastInDataPosition) {
         if (inDataSegPosition + maxUpdateSize > lastInDataPosition) {
             isFinished = true;
@@ -410,17 +396,14 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
             })
             .catch((error: BusinessError) => {
                 console.error(`promise: doUpdate failed` + error);
-                expect(null).assertFail();
             });
         } catch (error) {
             console.error(`promise: doUpdate input arg invalid` + error);
-            expect(null).assertFail();
         }
         if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
             console.log(`update size invalid isFinished = ${isFinished}`);
             console.log(`inDataSegPosition = ${inDataSegPosition}`);
             console.log(`lastInDataPosition = ${lastInDataPosition}`);
-            expect(null).assertFail();
             return;
         }
         inDataSegPosition += maxUpdateSize;
@@ -438,11 +421,9 @@ async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions
         })
         .catch((error: BusinessError) => {
             console.error(`promise: doFinish key failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doFinish input arg invalid` + error);
-        expect(null).assertFail();
     }
     return new Uint8Array(outData);
 }
@@ -464,11 +445,9 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
         })
         .catch((error: BusinessError) => {
             console.error(`promise: doUpdate failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doUpdate input arg invalid` + error);
-        expect(null).assertFail();
     }
     console.info(`enter promise doInit`);
     try {
@@ -479,11 +458,9 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
         })
         .catch((error: BusinessError) => {
             console.error(`promise: doInit key failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doInit input arg invalid` + error);
-        expect(null).assertFail();
     }
     return outSharedKey;
 }
@@ -507,11 +484,9 @@ async function generateAndExportPublicKey(keyAlias: string, HuksOptions: huks.Hu
         })
         .catch((error: BusinessError) => {
             console.error(`promise: exportKeyItem failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: generate pubKey failed` + error);
-        expect(null).assertFail();
     }
 }
 async function EncryptImportedPlainKeyAndKek(keyAlias: string) {
@@ -572,8 +547,8 @@ async function ImportWrappedKey() {
      */
 
     /* 2.设备B生成一个加密导入用途的、用于协商的非对称密钥对Wrapping_Key（公钥Wrapping_Pk，私钥Wrapping_Sk），其密钥用途设置为unwrap，导出Wrapping_Key公钥Wrapping_Pk存放在变量huksPubKey中 */
-    const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
-    await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+    const srcKeyAliasWrap = 'HUKS_Basic_Capability_Import_0200';
+    await generateAndExportPublicKey(srcKeyAliasWrap, genWrappingKeyParams, false);
 
     /* 3.设备A使用和设备B同样的算法，生成一个加密导入用途的、用于协商的非对称密钥对Caller_Key（公钥Caller_Pk，私钥Caller_Sk），导出Caller_Key公钥Caller_Pk存放在变量callerSelfPublicKey中 */
     await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
@@ -583,22 +558,22 @@ async function ImportWrappedKey() {
      * 5.设备A基于Caller_Key的私钥Caller_Sk和Wrapping_Key的公钥Wrapping_Pk，协商出Shared_Key
      */
     await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
-    
+
     /**
      * 6.设备A使用Caller_Kek加密To_Import_Key，生成To_Import_Key_Enc
      * 7.设备A使用Shared_Key加密Caller_Kek，生成Caller_Kek_Enc
      */
     await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
-   
+
     /* 8.设备A封装Caller_Pk、To_Import_Key_Enc、Caller_Kek_Enc等加密导入的材料并发送给设备B。本示例作为变量存放在callerSelfPublicKey，PlainKeyEncData，KekEncData */
     let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
     importWrappedAes192Params.inData = wrappedData;
-    
+
     /* 9.设备B导入封装的加密密钥材料 */
-    await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
-    
+    await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliasWrap, importWrappedAes192Params);
+
     /* 10.设备A、B删除用于加密导入的密钥 */
-    await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+    await publicDeleteKeyItemFunc(srcKeyAliasWrap, genWrappingKeyParams);
     await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
     await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
     await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
@@ -611,7 +586,7 @@ async function ImportWrappedKey() {
 调用[huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9)验证密钥是否存在，如密钥存在即表示密钥导入成功。
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from "@kit.UniversalKeystoreKit";
 /*
  * 确定密钥别名和封装密钥属性参数集
  */

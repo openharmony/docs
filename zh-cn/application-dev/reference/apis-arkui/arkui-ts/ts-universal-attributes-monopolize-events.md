@@ -13,6 +13,8 @@ monopolizeEvents(monopolize: boolean)
 
 设置组件是否独占事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -30,11 +32,41 @@ monopolizeEvents(monopolize: boolean)
 @Component
 struct Index {
   @State message: string = 'set monopolizeEvents false'
+  @State messageOut: string = ' '
+  @State messageInner: string = ' '
   @State monopolize: boolean = false
 
   build() {
     Column() {
       Text(this.message)
+        .fontSize(22)
+        .margin(10)
+      Text(this.messageOut)
+        .fontSize(22)
+        .margin(10)
+      Text(this.messageInner)
+        .fontSize(22)
+        .margin(10)
+      Button('clean')
+        .fontSize(22)
+        .margin(10)
+        // 通过button的点击事件来切换内层column的独占控制属性
+        .onClick(()=>{
+          this.messageOut = " "
+          this.messageInner = " "
+        })
+      Button('change monopolizeEvents')
+        .fontSize(22)
+        .margin(10)
+        // 通过button的点击事件来切换内层column的独占控制属性
+        .onClick(()=>{
+          this.monopolize = !this.monopolize
+          if (!this.monopolize) {
+            this.message = "set monopolizeEvents false"
+          } else {
+            this.message = "set monopolizeEvents true"
+          }
+        })
       Column() {
         Column(){}
         // this.monopolize是true时，点击内层column只会触发自身的触摸事件，不会触发外层column的触摸事件
@@ -45,20 +77,11 @@ struct Index {
         .backgroundColor(Color.Blue)
         // 内层column绑定触摸事件
         .onTouch((event:TouchEvent)=>{
-            if (event.type == TouchType.Down) {
-                console.log("inner column touch down")
-            }
+          if (event.type == TouchType.Down) {
+            console.log("inner column touch down")
+            this.messageInner = "inner column touch down"
+          }
         })
-        Button('change monopolizeEvents')
-        // 通过button的点击事件来切换内层column的独占控制属性
-          .onClick(()=>{
-              this.monopolize = !this.monopolize
-            if (!this.monopolize) {
-              this.message = "set monopolizeEvents false"
-            } else {
-              this.message = "set monopolizeEvents true"
-            }
-          })
       }
       .backgroundColor(Color.Gray)
       .height('100%')
@@ -67,6 +90,7 @@ struct Index {
       .onTouch((event)=>{
         if (event.type == TouchType.Down) {
           console.log("outside column touch down")
+          this.messageOut = "inner column touch down"
         }
       })
     }
@@ -74,3 +98,4 @@ struct Index {
   }
 }
 ```
+![obscured](figures/monopolize-events.gif)

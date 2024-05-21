@@ -512,3 +512,165 @@ Can not set an arraybuffer to both transferList and cloneList.
 **处理步骤**
 
 调用时，确保同一个ArrayBuffer只被设置为transferList或cloneList中的一种。无法保证时，需要捕获异常。
+
+## 10200030 锁不存在
+
+**错误信息**
+
+No such lock.
+
+**描述**
+
+请求的锁不存在。
+
+**可能的原因**
+
+某个异步锁函数使用了一个不正确的锁名称作为参数。
+
+**处理步骤**
+
+确保在调用接口时，使用正确的锁名称。
+
+## 10200031 lockAsync超时
+
+**错误信息**
+
+Timeout exceeded.
+
+**描述**
+
+[lockAsync](js-apis-arkts-utils.md#lockasync)函数在指定时间内无法获取锁。
+
+**可能的原因**
+
+某处存在死锁。
+
+**处理步骤**
+
+检查锁之间是否存在循环依赖。尝试在[lockAsync](js-apis-arkts-utils.md#lockasync)调用中添加catch语句，并查看错误信息。错误信息将包含有关现有异步锁实例和可能的死锁警告的信息。
+
+## 10200201 Concurrent修改错误
+
+**错误信息**
+
+Concurrent modification error.
+
+**错误描述**
+
+并发修改错误。
+
+**可能原因**
+
+使用collections提供的非并发安全的容器时，多个并发实例同时修改容器产生的结果是未定义的。
+
+**处理步骤**
+
+使用collections提供的非并发安全的容器时，使用异步锁进行保护。
+
+## 10200034 监听任务未注册回调函数
+
+**错误信息**
+
+The executed task does not support the registration of listeners.
+
+**错误描述**
+
+执行的任务不支持注册监听器。
+
+**可能原因**
+
+未注册回调函数或在执行任务之后注册回调函数。
+
+**处理步骤**
+
+确保在任务执行之前注册回调函数。
+
+## 10200035 doWrite接口未实现
+
+**错误信息**
+
+The doWrite method has not been implemented.
+
+**错误描述**
+
+doWrite接口未实现。
+
+**可能原因**
+
+继承Writable类，未实现[doWrite](js-apis-stream.md#dowrite)接口。
+
+**处理步骤**
+
+在继承类中实现doWrite接口函数。
+
+## 10200036 流已经结束仍进行写操作
+
+**错误信息**
+
+The stream has been ended.
+
+**错误描述**
+
+流已经结束仍然进行写操作。
+
+**可能原因**
+
+调用[end](js-apis-stream.md#end)接口之后仍进行数据写操作。
+
+**处理步骤**
+
+调整调用接口的顺序，在end之后不进行写操作。
+
+## 10200037 多次调用callback
+
+**错误信息**
+
+The callback is invoked multiple times consecutively.
+
+**错误描述**
+
+多次调用callback回调函数。
+
+**可能原因**
+
+实现[doWrite](js-apis-stream.md#dowrite)接口，并且在一次写入时多次调用callback。
+
+**处理步骤**
+
+检查[doWrite](js-apis-stream.md#dowrite)接口实现，排除一次写入多次调用callback的情况。
+
+## 10200038 doRead接口未实现
+
+**错误信息**
+
+The doRead method has not been implemented.
+
+**错误描述**
+
+doRead接口未实现。
+
+**可能原因**
+
+继承Readable类，未实现[doRead](js-apis-stream.md#doread)接口。
+
+**处理步骤**
+
+在继承类中实现doWrite接口函数。
+
+## 10200039 doTransform接口未实现
+
+**错误信息**
+
+The doTransform method has not been implemented for a class that inherits from Transform.
+
+**错误描述**
+
+doTransform接口未实现。
+
+**可能原因**
+
+继承Transform类，未实现[doTransform](js-apis-stream.md#dotransform)接口。
+
+**处理步骤**
+
+在继承类中实现doTransform接口函数。

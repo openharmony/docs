@@ -58,7 +58,7 @@ typedef struct {
 
 - 用于表示Node-API执行时的上下文，Native侧函数入参，并传递给函数中的Node-API接口。
 
-- 退出Native侧插件时，napi_env将失效，该事件通过回调传递给napi_add_env_cleanup_hook和napi_set_instance_data。
+- napi_env与JS线程绑定，JS线程退出后，napi_env将失效。
 
 - 禁止缓存napi_env，禁止在不同Worker中传递napi_env。
 
@@ -214,6 +214,42 @@ typedef enum {
 | napi_qos_utility | 中低等级，不需要立即看到响应效果的任务，例如下载或导入数据。 |
 | napi_qos_default | 默认 |
 | napi_qos_user_initiated | 高等级，用户触发并且可见进展，例如打开文档。 |
+
+### 事件循环模式
+
+napi提供了运行底层事件循环的两种模式, 其定义如下：
+
+```c
+typedef enum {
+    napi_event_mode_default = 0,
+    napi_event_mode_nowait = 1,
+} napi_event_mode;
+```
+
+| 事件循环运行模式 | 解释说明 |
+| -------- | -------- |
+| napi_event_mode_default | 阻塞式的运行底层事件循环，直到循环中没有任何任务时退出事件循环。 |
+| napi_event_mode_nowait | 非阻塞式的运行底层事件循环，尝试去处理一个任务，处理完之后退出事件循环；如果事件循环中没有任务，立刻退出事件循环。 |
+
+### 线程安全任务优先级
+
+napi提供了线程安全任务的优先级, 底层任务队列中的任务会根据其优先级被依次执行, 优先级的定义如下：
+
+```c
+typedef enum {
+    napi_priority_immediate = 0,
+    napi_priority_high = 1,
+    napi_priority_low = 2,
+    napi_priority_idle = 3,
+} napi_task_priority;
+```
+
+| 任务优先级 | 解释说明 |
+| -------- | -------- |
+| napi_priority_immediate | 该优先级的级别最高。|
+| napi_priority_high | 该优先级的级别低于napi_priority_immediate。|
+| napi_priority_low | 该优先级的级别低于napi_priority_immediate和napi_priority_high。|
+| napi_priority_idle | 该优先级的级别最低。 |
 
 ## 支持的Node-API接口
 
@@ -436,14 +472,23 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 ### 扩展能力
 
+[组件扩展的符号列表](../reference/native-lib/napi.md)
+
 | 接口 | 功能说明 |
 | -------- | -------- |
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
 | napi_run_script_path | 运行指定abc文件。 |
 | napi_load_module | 将abc文件作为模块加载，返回模块的命名空间。 |
+| napi_load_module_with_info | 将abc文件作为模块加载，返回模块的命名空间, 可在新创建的ArkTs基础运行时环境中使用。 |
 | napi_create_object_with_properties | 使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为 string，且不可转为number。 |
 | napi_create_object_with_named_properties | 使用给定的napi_value和键名创建js Object。键名必须为 string，且不可转为number。 |
 | napi_coerce_to_native_binding_object | 强制将js Object和Native对象绑定。 |
+| napi_run_event_loop | 触发底层的事件循环。|
+| napi_stop_event_loop | 停止底层的事件循环。|
+| napi_serialize | 将ArkTS对象转换为native数据。|
+| napi_deserialize | 将native数据转为ArkTS对象。|
+| napi_delete_serialization_data | 删除序列化数据。|
+| napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|
 
 #### napi_queue_async_work_with_qos
 
@@ -499,6 +544,49 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                  napi_native_binding_attach_callback attach_cb,
                                                  void* native_object,
                                                  void* hint);  
+```
+
+#### napi_run_event_loop
+
+```c
+napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
+```
+
+#### napi_stop_event_loop
+
+```c
+napi_status napi_stop_event_loop(napi_env env);
+```
+
+#### napi_serialize
+
+```c
+napi_status napi_serialize(napi_env env,
+                           napi_value object,
+                           napi_value transfer_list,
+                           napi_value clone_list,
+                           void** result);
+```
+
+#### napi_deserialize
+
+```c
+napi_status napi_deserialize(napi_env env, void* buffer, napi_value* object);
+```
+
+#### napi_delete_serialization_data
+
+```c
+napi_status napi_delete_serialization_data(napi_env env, void* buffer);
+```
+
+#### napi_call_threadsafe_function_with_priority
+
+```c
+napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
+                                                        void *data,
+                                                        napi_task_priority priority,
+                                                        bool isTail);
 ```
 
 ### 环境生命周期

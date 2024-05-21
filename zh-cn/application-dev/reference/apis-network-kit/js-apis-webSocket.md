@@ -14,14 +14,14 @@
 ## 导入模块
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 ```
 
 ## 完整示例
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
@@ -62,12 +62,12 @@ ws.connect(defaultIpAddress, {
   header:{
       name1: 'value1',
       name2: 'value2',
-      name2: 'value3'
+      name3: 'value3'
   },
   proxy: {
       host: '192.168.0.150',
       port: 8888,
-      excludeList: []
+      exclusionList: []
   },
   protocol: 'my-protocol',
   }, (err: BusinessError, value: boolean) => {
@@ -92,6 +92,8 @@ createWebSocket(): WebSocket
 
 创建一个WebSocket，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -103,7 +105,7 @@ createWebSocket(): WebSocket
 **示例：**
 
 ```ts
-let ws: webSocket = webSocket.createWebSocket();
+let ws: webSocket.WebSocket = webSocket.createWebSocket();
 ```
 
 ## WebSocket<sup>6+</sup>
@@ -120,6 +122,8 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
 
 **需要权限**：ohos.permission.INTERNET
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -140,8 +144,8 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://";
@@ -165,6 +169,8 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **需要权限**：ohos.permission.INTERNET
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -185,8 +191,8 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let header: Map<string, string> | undefined;
@@ -215,6 +221,8 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **需要权限**：ohos.permission.INTERNET
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -240,7 +248,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
@@ -259,6 +267,8 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 通过WebSocket连接发送数据，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -279,13 +289,22 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err: BusinessError, value: boolean) => {
-  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+    ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -295,6 +314,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
+> **说明**
+>
+> send接口必须在监听到open事件后才可以调用。
+
 ### send<sup>6+</sup>
 
 send(data: string | ArrayBuffer): Promise\<boolean\>
@@ -302,6 +325,8 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 通过WebSocket连接发送数据，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -327,12 +352,22 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+
 ws.connect(url, (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
   let promise = ws.send("Hello, server!");
   promise.then((value: boolean) => {
     console.log("send success")
@@ -342,6 +377,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 });
 ```
 
+> **说明**
+>
+> send接口必须在监听到open事件后才可以调用。
+
 ### close<sup>6+</sup>
 
 close(callback: AsyncCallback\<boolean\>): void
@@ -349,6 +388,8 @@ close(callback: AsyncCallback\<boolean\>): void
 关闭WebSocket连接，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -368,8 +409,8 @@ close(callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.close((err: BusinessError) => {
@@ -388,6 +429,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 根据可选参数code和reason，关闭WebSocket连接，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -408,8 +451,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 
@@ -435,6 +478,8 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 **需要权限**：ohos.permission.INTERNET
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -459,7 +504,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 let options: webSocket.WebSocketCloseOptions | undefined;
@@ -481,6 +526,8 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -493,8 +540,8 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError, Callback } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
 let ws= webSocket.createWebSocket();
 class OutValue {
@@ -515,6 +562,8 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -527,8 +576,8 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 class OutValue {
@@ -552,6 +601,8 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -564,8 +615,8 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
@@ -583,6 +634,8 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -595,7 +648,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('message');
@@ -606,6 +659,8 @@ ws.off('message');
 on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 订阅WebSocket的关闭事件，使用callback方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -619,8 +674,8 @@ on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
@@ -637,6 +692,8 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -649,7 +706,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.off('close');
@@ -660,6 +717,8 @@ ws.off('close');
 on(type: 'error', callback: ErrorCallback): void
 
 订阅WebSocket的Error事件，使用callback方式作为异步方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -673,8 +732,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
@@ -691,6 +750,8 @@ off(type: 'error', callback?: ErrorCallback): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -703,7 +764,8 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
@@ -726,7 +788,7 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('dataEnd', () => {
@@ -755,7 +817,8 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('dataEnd');
 ```
@@ -778,7 +841,7 @@ on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('headerReceive', (data) => {
@@ -807,7 +870,8 @@ off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 **示例：**
 
 ```ts
-import webSocket from '@ohos.net.webSocket';
+import { webSocket } from '@kit.NetworkKit';
+
 let ws = webSocket.createWebSocket();
 ws.off('headerReceive');
 ```
@@ -820,7 +884,7 @@ ws.off('headerReceive');
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
+| header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | caPath<sup>11+</sup> | string | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否   | 支持传输客户端证书。 |
 | proxy<sup>12+</sup> | ProxyConfiguration | 否 | 通信过程中的代理信息，默认使用系统网络代理。 |
@@ -842,7 +906,7 @@ ws.off('headerReceive');
 
 网络代理配置信息
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
@@ -854,6 +918,8 @@ ws.off('headerReceive');
 
 关闭WebSocket连接时，可选参数的类型和说明。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型   | 必填 | 说明                                                         |
@@ -864,6 +930,8 @@ ws.off('headerReceive');
 ## CloseResult<sup>10+</sup>
 
 关闭WebSocket连接时，订阅close事件得到的关闭结果。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

@@ -32,7 +32,7 @@ For example, in Arabic, the rules are as follows:
 
 ## How to Develop
 
-For details about how to use the APIs, see [getPluralStringValueSync](../reference/apis/js-apis-resource-manager.md#getpluralstringvaluesync10).
+For details about how to use the APIs, see [getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10).
 
 ```ts
 import { BusinessError } from '@ohos.base'; 

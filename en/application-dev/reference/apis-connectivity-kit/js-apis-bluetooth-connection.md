@@ -239,7 +239,7 @@ Obtains the paired devices.
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | Addresses of the paired Bluetooth devices obtained. |
+| Array&lt;string&gt; | Addresses of the paired Bluetooth devices. For security purposes, the device addresses obtained are random MAC addresses.|
 
 **Error codes**
 
@@ -714,6 +714,55 @@ try {
 }
 ```
 
+## connection.setRemoteDeviceName<sup>12+</sup>
+
+setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
+
+Sets the name of a remote Bluetooth device.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory  | Description                                    |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| deviceId     | string                              | Yes   | MAC address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| name | string | Yes   | Name of the remote device to set. The name cannot exceed 64 bytes.   |
+
+**Return value**
+
+| Type                 | Description           |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise used to return the device name set. If the operation fails, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+//promise
+try {
+    connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
+        console.info('setRemoteDeviceName success');
+    }, (error: BusinessError) => {
+        console.error('setRemoteDeviceName: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 
 ## connection.on('bluetoothDeviceFind')
 
@@ -730,7 +779,7 @@ Subscribes to the discovery of a Bluetooth device.
 | Name     | Type                                 | Mandatory  | Description                                    |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | Yes   | Event type. The value is **bluetoothDeviceFind**, which indicates an event of discovering a Bluetooth device.|
-| callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback.   |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback. For security purposes, the device addresses are random MAC addresses.   |
 
 **Error codes**
 
@@ -770,7 +819,7 @@ Unsubscribes from the discovery of a Bluetooth device.
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | Yes   | Event type. The value is **bluetoothDeviceFind**, which indicates an event of discovering a Bluetooth device.  |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
 
 **Error codes**
 
@@ -851,7 +900,7 @@ Unsubscribes from Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **bondStateChange**, which indicates a Bluetooth pairing state change event.    |
-| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | No   | Callback to unregister. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -932,7 +981,7 @@ Unsubscribes from the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.            |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback to unregister. The input parameter is the pairing request parameter. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**. |
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback to unregister. The input parameter is the pairing request parameter. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 

@@ -41,7 +41,7 @@ Obtains the connected devices.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of the connected devices.|
+| Array&lt;string&gt; | Addresses of the connected devices. For security purposes, the device addresses obtained are random MAC addresses.|
 
 **Error codes**
 

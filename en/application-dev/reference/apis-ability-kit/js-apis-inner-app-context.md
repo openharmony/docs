@@ -5,7 +5,7 @@ The **Context** module provides context for abilities or applications. It allows
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
+> 
 > The APIs of this module can be used only in the FA model.
 
 ## Modules to Import
@@ -91,7 +91,7 @@ context.getOrCreateLocalDir().then((data) => {
 
 verifyPermission(permission: string, options: PermissionOptions, callback: AsyncCallback\<number>): void
 
-Verifies whether a specific PID and UID have the given permission. This API uses an asynchronous callback to return the result.
+Verifies whether a PID and UID have the given permission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -100,7 +100,7 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 | Name        | Type                                     | Mandatory  | Description                  |
 | ---------- | --------------------------------------- | ---- | -------------------- |
 | permission | string                                  | Yes   | Name of the permission to verify.            |
-| options    | [PermissionOptions](../apis/#permissionoptions7) | Yes   | Permission options.               |
+| options    | [PermissionOptions](#permissionoptions7) | Yes   | Permission options.               |
 | callback   | AsyncCallback\<number>                  | Yes   | Callback used to return the permission verification result. The value **0** means that the PID and UID have the given permission, and the value **-1** means the opposite.|
 
 **Example**
@@ -159,7 +159,7 @@ context.verifyPermission('com.example.permission', (error, data) =>{
 
 verifyPermission(permission: string, options?: PermissionOptions): Promise\<number>
 
-Verifies whether a specific PID and UID have the given permission. This API uses a promise to return the result.
+Verifies whether a PID and UID have the given permission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -168,7 +168,7 @@ Verifies whether a specific PID and UID have the given permission. This API uses
 | Name        | Type                                     | Mandatory  | Description      |
 | ---------- | --------------------------------------- | ---- | -------- |
 | permission | string                                  | Yes   | Name of the permission to verify.|
-| options    | [PermissionOptions](../apis/#permissionoptions7) | No   | Permission options.   |
+| options    | [PermissionOptions](#permissionoptions7) | No   | Permission options.   |
 
 **Return value**
 
@@ -191,7 +191,7 @@ context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](../apis/#permissionrequestresult7)>): void
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback\<PermissionRequestResult>): void
 
 Requests certain permissions from the system. This API uses an asynchronous callback to return the result.
 
@@ -202,8 +202,8 @@ Requests certain permissions from the system. This API uses an asynchronous call
 | Name            | Type                                      | Mandatory  | Description                                 |
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | Yes   | Permissions to request. This parameter cannot be **null**.             |
-| requestCode    | number                                   | Yes   | Request code to be passed to **PermissionRequestResult**.|
-| resultCallback | AsyncCallback<[PermissionRequestResult](../apis/#permissionrequestresult7)> | Yes   | Callback used to return the permission request result.                          |
+| requestCode    | number                                   | Yes   | Request code to be passed to [PermissionRequestResult](#permissionrequestresult7).|
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | Yes   | Callback used to return the permission request result.                          |
 
 **Example**
 
@@ -231,7 +231,7 @@ context.requestPermissionsFromUser(
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<[PermissionRequestResult](../apis/#permissionrequestresult7)>
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Promise\<PermissionRequestResult>
 
 Requests certain permissions from the system. This API uses a promise to return the result.
 
@@ -242,13 +242,13 @@ Requests certain permissions from the system. This API uses a promise to return 
 | Name          | Type                | Mandatory | Description                                         |
 | -------------- | ------------------- | ----- | -------------------------------------------- |
 | permissions    | Array\<string>      | Yes   | Permissions to request. This parameter cannot be **null**.        |
-| requestCode    | number              | Yes   | Request code to be passed to **PermissionRequestResult**.|
+| requestCode    | number              | Yes   | Request code to be passed to [PermissionRequestResult](#permissionrequestresult7).|
 
 **Return value**
 
 | Type                                                          | Description            |
 | ------------------------------------------------------------- | ---------------- |
-| Promise\<[PermissionRequestResult](../apis/#permissionrequestresult7)> | Promise used to return the permission request result.|
+| Promise\<[PermissionRequestResult](#permissionrequestresult7)> | Promise used to return the permission request result.|
 
 **Example**
 
@@ -274,7 +274,7 @@ context.requestPermissionsFromUser(
 
 getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
-Obtains information about the current application. This API uses an asynchronous callback to return the result.
+Obtains information about the application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -305,7 +305,7 @@ context.getApplicationInfo((error, data) => {
 
 getApplicationInfo(): Promise\<ApplicationInfo>
 
-Obtains information about the current application. This API uses a promise to return the result.
+Obtains information about the application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -443,6 +443,9 @@ context.getDisplayOrientation().then((data) => {
 getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 Obtains the external cache directory of the application. This API uses an asynchronous callback to return the result.
+
+**NOTE**
+>
 > This API is deprecated since API version 7.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -473,6 +476,9 @@ context.getExternalCacheDir((error, data) => {
 getExternalCacheDir(): Promise\<string>
 
 Obtains the external cache directory of the application. This API uses a promise to return the result.
+
+**NOTE**
+>
 > This API is deprecated since API version 7.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -507,7 +513,7 @@ Sets the display orientation for this ability. This API uses an asynchronous cal
 | Name         | Type                                      | Mandatory  | Description          |
 | ----------- | ---------------------------------------- | ---- | ------------ |
 | orientation | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | Yes   | Display orientation to set.|
-| callback    | AsyncCallback\<void> | Yes   | Callback used to return the display orientation.   |
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
 **Example**
 
@@ -532,7 +538,7 @@ Sets the display orientation for this ability. This API uses a promise to return
 
 **Parameters**
 
-| Type                                      | Type                                      | Mandatory  | Description                                      |
+| Name                                      | Type                                      | Mandatory  | Description                                      |
 | ---------------------------------------- | ---------------------------------------- | ---- | ------------ |
 | orientation                              | [bundle.DisplayOrientation](js-apis-bundleManager.md#displayorientation) | Yes   | Callback used to return the display orientation.                               |
 
@@ -560,6 +566,9 @@ context.setDisplayOrientation(orientation).then((data) => {
 setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 Sets whether to show this feature at the top of the lock screen so that the feature remains activated. This API uses an asynchronous callback to return the result.
+
+**NOTE**
+>
 > This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9) instead.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -569,7 +578,7 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 | Name      | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | show     | boolean              | Yes   | Whether to show this feature at the top of the lock screen. The value **true** means to show this feature at the top of the lock screen, and **false** means the opposite.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.                                 |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
 
@@ -588,6 +597,9 @@ context.setShowOnLockScreen(show, (error) => {
 setShowOnLockScreen(show: boolean): Promise\<void>
 
 Sets whether to show this feature at the top of the lock screen so that the feature remains activated. This API uses a promise to return the result.
+
+**NOTE**
+>
 > This API is deprecated since API version 9. You are advised to use [window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9) instead.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -602,7 +614,7 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -629,7 +641,7 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 | Name      | Type                  | Mandatory  | Description                               |
 | -------- | -------------------- | ---- | --------------------------------- |
 | wakeUp   | boolean              | Yes   | Whether to wake up the screen. The value **true** means to wake up the screen, and **false** means the opposite.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.                          |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -661,7 +673,7 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -740,7 +752,7 @@ context.getProcessInfo().then((data) => {
 
 getElementName(callback: AsyncCallback\<ElementName>): void
 
-Obtains the **ohos.bundleManager.ElementName** object of this ability. This API uses an asynchronous callback to return the result.
+Obtains the element name of this ability. This API uses an asynchronous callback to return the result.
 
 This API is available only to Page abilities.
 
@@ -750,7 +762,7 @@ This API is available only to Page abilities.
 
 | Name      | Type                         | Mandatory  | Description                                    |
 | -------- | --------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the **ohos.bundleManager.ElementName** object.|
+| callback | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes   | Callback used to return the element name, which is an **ohos.bundleManager.ElementName** object.|
 
 **Example**
 
@@ -773,7 +785,7 @@ context.getElementName((error, data) => {
 
 getElementName(): Promise\<ElementName>
 
-Obtains the **ohos.bundleManager.ElementName** object of this ability. This API uses a promise to return the result.
+Obtains the element name of this ability. This API uses a promise to return the result.
 
 This API is available only to Page abilities.
 
@@ -783,7 +795,7 @@ This API is available only to Page abilities.
 
 | Type                   | Description                                  |
 | --------------------- | ------------------------------------ |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the **ohos.bundleManager.ElementName** object.|
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)> | Promise used to return the element name, which is an **ohos.bundleManager.ElementName** object.|
 
 **Example**
 
@@ -1024,7 +1036,7 @@ getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
 
 Obtains the distributed file path for storing ability or application data files. This API uses an asynchronous callback to return the result.
 
-If the distributed file path does not exist, the system will create one and return the created path.
+If the distributed file path does not exist, the system will create a path and return the created path.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1055,7 +1067,7 @@ getOrCreateDistributedDir(): Promise\<string>
 
 Obtains the distributed file path for storing ability or application data files. This API uses a promise to return the result.
 
-If the distributed file path does not exist, the system will create one and return the created path.
+If the distributed file path does not exist, the system will create a path and return the created path.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1134,7 +1146,7 @@ context.getAppType().then((data) => {
 
 getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
-Obtains the **ModuleInfo** object of the application. This API uses an asynchronous callback to return the result.
+Obtains the module information of the application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1142,7 +1154,7 @@ Obtains the **ModuleInfo** object of the application. This API uses an asynchron
 
 | Name      | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
-| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the **ModuleInfo** object.|
+| callback | AsyncCallback\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Yes   | Callback used to return the module information, which is a **ModuleInfo** object.|
 
 **Example**
 
@@ -1171,7 +1183,7 @@ Obtains the **ModuleInfo** object of the application. This API uses a promise to
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the **ModuleInfo** object.|
+| Promise\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)> | Promise used to return the module information, which is a **ModuleInfo** object.|
 
 **Example**
 
@@ -1326,7 +1338,7 @@ Checks whether the configuration of this ability is being updated. This API uses
 
 | Name      | Type                     | Mandatory  | Description                           |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Returns **true** if the configuration of the capability is being updated; returns **false** otherwise.|
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** means that the configuration of the ability is being updated, and **false** means the opposite.|
 
 **Example**
 
@@ -1355,7 +1367,7 @@ Checks whether the configuration of this ability is being updated. This API uses
 
 | Type               | Description                           |
 | ----------------- | ----------------------------- |
-| Promise\<boolean> | Returns **true** if the configuration of the capability is being updated; returns **false** otherwise.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the configuration of the ability is being updated, and **false** means the opposite.|
 
 **Example**
 
@@ -1380,7 +1392,7 @@ Notifies the system of the time required to draw this page function. This API us
 
 | Name      | Type                  | Mandatory  | Description         |
 | -------- | -------------------- | ---- | ----------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the notification is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1405,7 +1417,7 @@ Notifies the system of the time required to draw this page function. This API us
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 

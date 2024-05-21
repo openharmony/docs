@@ -168,6 +168,8 @@ Creates an **AVRecorder** instance. This API uses a promise to return the result
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | Type                                | Description                                                        |
@@ -377,6 +379,44 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
 });
 ```
 
+## media.createAVScreenCaptureRecorder<sup>12+</sup>
+
+createAVScreenCaptureRecorder(): Promise\<AVScreenCaptureRecorder>
+
+Creates an **AVScreenCaptureRecorder** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Return value**
+
+| Type                                                        | Description                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Promise\<[AVScreenCaptureRecorder](#avscreencapturerecorder12)> | Promise used to return the result. If the operation is successful, an **AVScreenCaptureRecorder** instance is returned; otherwise, **null** is returned. The instance can be used for screen capture.|
+
+**Error codes**
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 5400101  | No memory. Return by callback. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let avScreenCaptureRecorder: media.AVScreenCaptureRecorder;
+media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptureRecorder) => {
+  if (captureRecorder != null) {
+    avScreenCaptureRecorder = captureRecorder;
+    console.info('createAVScreenCaptureRecorder success');
+  } else {
+    console.error('createAVScreenCaptureRecorder fail');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`createAVScreenCaptureRecorder catchCallback, error message:${error.message}`);
+});
+```
+
 ## AVErrorCode<sup>9+</sup>
 
 Enumerates the [media error codes](errorcode-media.md).
@@ -422,7 +462,7 @@ Enumerates the codec MIME types.
 | VIDEO_MPEG4  | 'video/mp4v-es'         | Video in MPEG-4 format.    |
 | VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.      |
 | VIDEO_HEVC<sup>11+</sup>   | 'video/hevc'          | Video in H.265 format.|
-| AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.|
+| AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.   |
 | AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.     |
 
@@ -444,6 +484,7 @@ Enumerates the media description keys.
 | MD_KEY_FRAME_RATE        | 'frame_rate'    | Video frame rate, which is a number, in units of 100 fps.|
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Number of audio channels, which is a number.                        |
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.      |
+| MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | Bit depth, which is a number, in units of bits.         |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -473,7 +514,7 @@ Enumerates the reasons for the state transition of the **AVPlayer** or **AVRecor
 
 A playback management class that provides APIs to manage and play media assets. Before calling any API in **AVPlayer**, you must use [createAVPlayer()](#mediacreateavplayer9) to create an **AVPlayer** instance.
 
-For details about the audio and video playback demo, see [Audio Playback](../../media/using-avplayer-for-playback.md) and [Video Playback](../../media/video-playback.md).
+For details about the audio and video playback demo, see [Audio Playback](../../media/media/using-avplayer-for-playback.md) and [Video Playback](../../media/media/video-playback.md).
 
 ### Attributes
 
@@ -484,11 +525,11 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 | url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | FD of the media asset. It can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.<br>**NOTE**<br>WebM is no longer supported since API version 11.|
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Descriptor of a streaming media asset. It can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.<br>**NOTE**<br>WebM is no longer supported since API version 11.|
-| surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window. It can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
+| surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window.<br>This parameter can be set when the AVPlayer is in the initialized state.<br>It can be set again when the AVPlayer is in the prepared, playing, paused, completed, or stopped state, in the prerequisite that the a video window ID has been set in the initialized state. After the new setting is performed, the video is played in the new window.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
 | loop<sup>9+</sup>                                   | boolean                                                      | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.|
-| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scaling type. The default value is **VIDEO_SCALE_TYPE_FIT**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
+| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>To take effect, this attribute must be set before [play()](#play9) is called for the first time.|
-| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default values of **usage** and **rendererFlags** are **STREAM_USAGE_MUSIC** and **0**, respectively.<br>It can be set only when the AVPlayer is in the initialized state.<br>To take effect, this attribute must be set before [prepare()](#prepare9) is called for the first time.|
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default values of **usage** and **rendererFlags** are **STREAM_USAGE_MUSIC** and **0**, respectively.<br>This parameter can be set only when the AVPlayer is in the initialized state.<br>To take effect, this attribute must be set before [prepare()](#prepare9) is called for the first time.|
 | audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](../apis-audio-kit/js-apis-audio.md#audioeffectmode10)  | Yes  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **usage** of **audioRendererInfo** is changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
 | currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
@@ -507,6 +548,8 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 Subscribes to AVPlayer state changes.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -582,6 +625,8 @@ Subscribes to AVPlayer errors. This event is used only for error prompt and does
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name  | Type    | Mandatory| Description                                                        |
@@ -636,6 +681,48 @@ Unsubscribes from AVPlayer errors.
 avPlayer.off('error')
 ```
 
+### setMediaSource<sup>12+</sup>
+
+setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
+
+Sets a source of streaming media that can be pre-downloaded, downloads the media data, and temporarily stores the data in the memory. For details about how to use the API, see [Video Playback](../../media/media/video-playback.md)
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| src | [MediaSource](#mediasource12) | Yes  | Source of the streaming media to pre-download.|
+| strategy | [PlaybackStrategy](#playbackstrategy12) | No  | strategy for playing the pre-downloaded streaming media.|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Return by callback.       |
+| 5400102  | Operation not allowed. Return by callback. |
+
+**Example**
+
+```ts
+import media from '@ohos.multimedia.media'
+
+let player = await media.createAVPlayer();
+let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
+player.setMediaSource(mediaSource, playStrategy);
+```
+
 ### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
@@ -648,7 +735,7 @@ Prepares for audio and video playback. This API uses an asynchronous callback to
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -720,7 +807,7 @@ Starts to play an audio and video asset. This API uses an asynchronous callback 
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -790,7 +877,7 @@ Pauses audio and video playback. This API uses an asynchronous callback to retur
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -860,7 +947,7 @@ Stops audio and video playback. This API uses an asynchronous callback to return
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -930,7 +1017,7 @@ Resets audio and video playback. This API uses an asynchronous callback to retur
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1000,7 +1087,7 @@ Releases the playback resources. This API uses an asynchronous callback to retur
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| callback | function | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1154,7 +1241,7 @@ let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm')
 // Create a media key session.
 let keySession:drm.MediaKeySession = keySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
 // Flag indicating whether a secure video channel is used.
-var secureVideoPath:boolean = false;
+let secureVideoPath:boolean = false;
 // Set the decryption configuration.
 avPlayer.setDecryptionConfig(keySession, secureVideoPath);
 ```
@@ -1180,7 +1267,7 @@ import drm from '@ohos.multimedia.drm'
 
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
-for (var i = 0; i < infos.length; i++) {
+for (let i = 0; i < infos.length; i++) {
   console.info('GetMediaKeySystemInfos uuid: ' + infos[i]["uuid"]);
   console.info('GetMediaKeySystemInfos pssh: ' + infos[i]["pssh"]);
 }
@@ -1350,7 +1437,7 @@ Subscribes to the event to check whether the bit rate is successfully set.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'bitrateDone'** in this case. This event is triggered each time **setBitrate()** is called.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It reports the effective bit rate.            |
+| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the effective bit rate.            |
 
 **Example**
 
@@ -1446,7 +1533,7 @@ Subscribes to media key system information changes.
 import drm from './@ohos.multimedia.drm';
 
 avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
-    for (var i = 0; i < mediaKeySystemInfo.length; i++) {
+    for (let i = 0; i < mediaKeySystemInfo.length; i++) {
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
       console.info('mediaKeySystemInfoUpdate happened pssh: ' + mediaKeySystemInfo[i]["pssh"]);
     }
@@ -1508,7 +1595,7 @@ Subscribes to the event to check whether the volume is successfully set.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'volumeChange'** in this case. This event is triggered each time **setVolume()** is called.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It reports the effective volume.           |
+| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the effective volume.           |
 
 **Example**
 
@@ -1595,7 +1682,7 @@ The **'timeUpdate'** event is not supported in live mode.
 | Name  | Type    | Mandatory| Description                                          |
 | -------- | -------- | ---- | ---------------------------------------------- |
 | type     | string   | Yes  | Event type, which is **'timeUpdate'** in this case.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It reports the current playback position, in ms.                                    |
+| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the current playback position, in ms.                                    |
 
 **Example**
 
@@ -1630,7 +1717,7 @@ avPlayer.off('timeUpdate')
 
 on(type: 'durationUpdate', callback: Callback\<number>): void
 
-Subscribes to media asset duration changes. It is used to refresh the length of the progress bar. By default, this event is reported once when the AVPlayer switches to the prepared state. However, it can be repeatedly reported for special streams that trigger duration changes.
+Subscribes to media asset duration changes. It is used to refresh the length of the progress bar. By default, this event is reported once in the prepared state. However, it can be repeatedly reported for special streams that trigger duration changes.
 The **'durationUpdate'** event is not supported in live mode.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1640,7 +1727,7 @@ The **'durationUpdate'** event is not supported in live mode.
 | Name  | Type    | Mandatory| Description                                              |
 | -------- | -------- | ---- | -------------------------------------------------- |
 | type     | string   | Yes  | Event type, which is **'durationUpdate'** in this case.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It reports the media asset duration, in ms.                                        |
+| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the media asset duration, in ms.                                        |
 
 **Example**
 
@@ -1717,7 +1804,7 @@ avPlayer.off('bufferingUpdate')
 
 on(type: 'startRenderFrame', callback: Callback\<void>): void
 
-Subscribes to the event that indicates rendering starts for the first frame. This subscription is supported only in the video playback scenarios. This event only means that the playback service sends the first frame to the display module. The actual rendering effect depends on the rendering performance of the display service.
+Subscribes to the event that indicates rendering starts for the first frame. This subscription is supported only in video playback scenarios. This event only means that the playback service sends the first frame to the display module. The actual rendering effect depends on the rendering performance of the display service.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1760,7 +1847,7 @@ avPlayer.off('startRenderFrame')
 
 on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
 
-Subscribes to video size (width and height) changes. This subscription is supported only in the video playback scenarios. By default, this event is reported only once in the prepared state. However, it is also reported upon resolution changes in the case of HLS streams.
+Subscribes to video size (width and height) changes. This subscription is supported only in video playback scenarios. By default, this event is reported only once in the prepared state. However, it is also reported upon resolution changes in the case of HLS streams.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1857,7 +1944,7 @@ Subscribes to audio stream output device changes and reasons. This API uses an a
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | Yes  | Event type. The event **'outputDeviceChangeWithInfo'** is triggered when the output device is changed.|
-| callback | Callback\<[AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | Yes  | Callback used to return the output device descriptor of the current audio stream and the change reason.|
+| callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | Yes  | Callback used to return the output device descriptor of the current audio stream and the change reason.|
 
 **Error codes**
 
@@ -1888,7 +1975,7 @@ Unsubscribes from audio stream output device changes and reasons. This API uses 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
 | type     | string                     | Yes  | Event type. The event **'outputDeviceChange'** is triggered when the audio output device is changed.|
-| callback | Callback\<[AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | No  | Callback used to return the output device descriptor of the current audio stream and the change reason.|
+| callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | No  | Callback used to return the output device descriptor of the current audio stream and the change reason.|
 
 **Error codes**
 
@@ -1904,7 +1991,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 ## AVPlayerState<sup>9+</sup>
 
-Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](##onstatechange9) event. For details about the rules for state transition, see [Audio Playback](../../media/using-avplayer-for-playback.md).
+Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](##onstatechange9) event. For details about the rules for state transition, see [Audio Playback](../../media/media/using-avplayer-for-playback.md).
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1918,7 +2005,7 @@ Enumerates the states of the [AVPlayer](#avplayer9). Your application can proact
 |            completed            | string | The AVPlayer enters this state when a media asset finishes playing and loop playback is not set (no **loop = true**). In this case, if [play()](#play9) is called, the AVPlayer enters the playing state and replays the media asset; if [stop()](#stop9) is called, the AVPlayer enters the stopped state.|
 |             stopped             | string | The AVPlayer enters this state when [stop()](#stop9) is called in the prepared, playing, paused, or completed state. In this case, the playback engine retains the attributes but releases the memory resources. You can call [prepare()](#prepare9) to prepare the resources again, call [reset()](#reset9) to reset the attributes, or call [release()](#release9) to destroy the playback engine.|
 |            released             | string | The AVPlayer enters this state when [release()](#release9) is called. The playback engine associated with the **AVPlayer** instance is destroyed, and the playback process ends. This is the final state.|
-| error | string | The AVPlayer enters this state when an irreversible error occurs in the playback engine. You can call [reset()](#reset9) to reset the attributes or call [release()](#release9) to destroy the playback engine. For details on the errors, see [Media Error Codes](errorcode-media.md).<br>**NOTE** Relationship between the error state and the [on('error')](#onerror9) event<br>1. When the AVPlayer enters the error state, the **on('error')** event is triggered. You can obtain the detailed error information through this event.<br>2. When the AVPlayer enters the error state, the playback service stops. This requires the client to design a fault tolerance mechanism to call [reset()](#reset9) or [release()](#release9).<br>3. The client receives **on('error')** event but the AVPlayer does not enter the error state. This situation occurs due to either of the following reasons:<br>Cause 1: The client calls an API in an incorrect state or passes in an incorrect parameter, and the AVPlayer intercepts the call. If this is the case, the client must correct its code logic.<br>Cause 2: A stream error is detected during playback. As a result, the container and decoding are abnormal for a short period of time, but continuous playback and playback control operations are not affected. If this is the case, the client does not need to design a fault tolerance mechanism.|
+| error | string | The AVPlayer enters this state when an irreversible error occurs in the playback engine. You can call [reset()](#reset9) to reset the attributes or call [release()](#release9) to destroy the playback engine. For details about the error codes, see [Media Error Codes](errorcode-media.md).<br>**NOTE** Relationship between the error state and the [on('error')](#onerror9) event<br>1. When the AVPlayer enters the error state, the **on('error')** event is triggered. You can obtain the detailed error information through this event.<br>2. When the AVPlayer enters the error state, the playback service stops. This requires the client to design a fault tolerance mechanism to call [reset()](#reset9) or [release()](#release9).<br>3. The client receives **on('error')** event but the AVPlayer does not enter the error state. This situation occurs due to either of the following reasons:<br>Cause 1: The client calls an API in an incorrect state or passes in an incorrect parameter, and the AVPlayer intercepts the call. If this is the case, the client must correct its code logic.<br>Cause 2: A stream error is detected during playback. As a result, the container and decoding are abnormal for a short period of time, but continuous playback and playback control operations are not affected. If this is the case, the client does not need to design a fault tolerance mechanism.|
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -1954,6 +2041,7 @@ Enumerates the video playback seek modes, which can be passed in the **seek** AP
 | -------------- | ---- | ------------------------------------------------------------ |
 | SEEK_NEXT_SYNC | 0    | Seeks to the next key frame at the specified position. You are advised to use this value for the rewind operation.|
 | SEEK_PREV_SYNC | 1    | Seeks to the previous key frame at the specified position. You are advised to use this value for the fast-forward operation.|
+| SEEK_CLOSEST<sup>12+</sup> | 2    | Seeks to the frame closest to the specified position. You are advised to use this value for accurate seek.|
 
 ## PlaybackSpeed<sup>8+</sup>
 
@@ -1968,6 +2056,8 @@ Enumerates the video playback speeds, which can be passed in the **setSpeed** AP
 | SPEED_FORWARD_1_25_X | 2    | Plays the video at 1.25 times the normal speed.|
 | SPEED_FORWARD_1_75_X | 3    | Plays the video at 1.75 times the normal speed.|
 | SPEED_FORWARD_2_00_X | 4    | Plays the video at 2.00 times the normal speed.|
+| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | Plays the video at 0.50 times the normal speed.|
+| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | Plays the video at 1.50 times the normal speed.|
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -2026,7 +2116,7 @@ media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
 
 A recording management class that provides APIs to record media assets. Before calling any API in **AVRecorder**, you must use [createAVRecorder()](#mediacreateavrecorder9) to create an **AVRecorder** instance.
 
-For details about the audio and video recording demo, see [Audio Recording](../../media/using-avrecorder-for-recording.md) and [Video Recording](../../media/video-recording.md).
+For details about the audio and video recording demo, see [Audio Recording](../../media/media/using-avrecorder-for-recording.md) and [Video Recording](../../media/media/video-recording.md).
 
 > **NOTE**
 >
@@ -2038,7 +2128,7 @@ For details about the audio and video recording demo, see [Audio Recording](../.
 
 | Name   | Type                                | Readable| Writable| Description              |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| state9+ | [AVRecorderState](#avrecorderstate9) | Yes  | No  | AVRecorder state.|
+| state9+ | [AVRecorderState](#avrecorderstate9) | Yes  | No  | AVRecorder state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### prepare<sup>9+</sup>
 
@@ -2122,6 +2212,8 @@ To use the camera to record videos, the camera module is required. For details a
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type                                  | Mandatory| Description                      |
@@ -2195,7 +2287,7 @@ This API can be called only after the [prepare()](#prepare9-2) API is called.
 
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to obtain the result.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2266,6 +2358,53 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
 });
 ```
 
+### updateRotation<sup>12+</sup>
+
+updateRotation(rotation: number): Promise\<void>
+
+Updates the video rotation angle.
+
+This API can be called only after the [prepare()](#prepare9-3) event is triggered and before the [start()](#start9) API is called.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                       |
+| -------- | -------------------- | ---- | --------------------------- |
+| rotation | number | Yes  | Rotation angle, which can only be 0, 90, 180, or 270 degrees.|
+
+**Return value**
+
+| Type            | Description                            |
+| ---------------- | -------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+|   401    | Parameter error. Return by callback.   |
+| 5400102  | Operate not permit. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let rotation = 90
+
+avRecorder.updateRotation(rotation).then(() => {
+  console.info('updateRotation success');
+}).catch((err: BusinessError) => {
+  console.error('updateRotation failed and catch error is ' + err.message);
+});
+```
+
 ### start<sup>9+</sup>
 
 start(callback: AsyncCallback\<void>): void
@@ -2316,6 +2455,8 @@ For audio-only recording, this API can be called only after the [prepare()](#pre
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Return value**
 
 | Type          | Description                                 |
@@ -2358,7 +2499,7 @@ This API can be called only after the [start()](#start9) API is called. You can 
 
 | Name  | Type                | Mandatory| Description                       |
 | -------- | -------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to obtain the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2393,6 +2534,8 @@ Pauses recording. This API uses a promise to return the result.
 This API can be called only after the [start()](#start9-1) API is called. You can call [resume()](#resume9-1) to resume recording.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -2471,6 +2614,8 @@ Resumes recording. This API uses a promise to return the result.
 This API can be called only after the [pause()](#pause9-3) API is called.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -2553,6 +2698,8 @@ This API can be called only after the [start()](#start9-1) or [pause()](#pause9-
 For audio-only recording, you can call [prepare()](#prepare9-3) again for re-recording. For video-only recording or audio and video recording, you can call [prepare()](#prepare9-3) and [getInputSurface()](#getinputsurface9-1) again for re-recording.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -2705,6 +2852,8 @@ Releases the audio and video recording resources. This API uses a promise to ret
 After the resources are released, you can no longer perform any operation on the **AVRecorder** instance.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -3028,7 +3177,7 @@ This API can be called only after [prepare()](#prepare9-3) is called.
 | Promise\<[AVRecorderConfig](#avrecorderconfig9)> | Promise used to return the real-time configuration.|
 
 **Error codes**
-  
+
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
@@ -3091,6 +3240,8 @@ off(type: 'stateChange'): void
 Unsubscribes from AVRecorder state changes.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -3225,6 +3376,8 @@ Enumerates the AVRecorder states. You can obtain the state through the **state**
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name    | Type  | Description                                                        |
 | -------- | ------ | ------------------------------------------------------------ |
 | idle     | string | The AVRecorder enters this state after it is just created or the [AVRecorder.reset()](#reset9-2) API is called when the AVRecorder is in any state except released. In this state, you can call [AVRecorder.prepare()](#prepare9-2) to set recording parameters.  |
@@ -3245,10 +3398,10 @@ The **audioSourceType** and **videoSourceType** parameters are used to distingui
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.                  |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | No  | Type of the video source to record. This parameter is mandatory for video recording.                  |
-| profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.                                   |
-| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory.|
+| profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                  |
+| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | rotation        | number                                   | No  | Rotation angle of the recorded video. The value can be 0 (default), 90, 180, or 270 for MP4 videos.      |
 | location        | [Location](#location)                    | No  | Geographical location of the recorded video. By default, the geographical location information is not recorded.                    |
 
@@ -3260,10 +3413,10 @@ Describes the audio and video recording profile.
 
 | Name            | Type                                        | Mandatory| Description                                                        |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording. The value range is [8000 - 384000].|
-| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording. The value range is [1 - 2].       |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Only **AUDIO_AAC** is supported.     |
-| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording. The value range is [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000].|
+| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording. The value range is [8000 - 384000].<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording. The value range is [1 - 2].<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Only **AUDIO_AAC** is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
+| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording. The value range is [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000].<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory.                                  |
 | videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [1 - 3000000]. |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Currently, VIDEO_AVC is supported.       |
@@ -3271,6 +3424,7 @@ Describes the audio and video recording profile.
 | videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1080].        |
 | videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 30].            |
 | isHdr<sup>11+</sup>            | boolean                        | No  | HDR encoding. This parameter is optional for video recording. The default value is **false**, and there is no requirement on the encoding format. When **isHdr** is set to **true**, the encoding format must be **video/hevc**.|
+| enableTemporalScale<sup>12+</sup>            | boolean                        | No  | Whether layered encoding is supported. This parameter is optional for video recording. The default value is **false**.|
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -3281,7 +3435,7 @@ Enumerates the audio source types for video recording.
 | Name                     | Value  | Description                  |
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source.|
-| AUDIO_SOURCE_TYPE_MIC     | 1    | Mic audio input source. |
+| AUDIO_SOURCE_TYPE_MIC     | 1    | Microphone audio input source.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## VideoSourceType<sup>9+</sup>
 
@@ -3303,7 +3457,7 @@ Enumerates the container format types (CFTs).
 | Name       | Value   | Description                 |
 | ----------- | ----- | --------------------- |
 | CFT_MPEG_4  | 'mp4' | Video container format MP4.|
-| CFT_MPEG_4A | 'm4a' | Audio container format M4A.|
+| CFT_MPEG_4A | 'm4a' | Audio container format M4A.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## Location
 
@@ -3350,7 +3504,7 @@ Describes a range.
 
 Provides APIs to obtain metadata from media resources. Before calling any API of **AVMetadataExtractor**, you must use [createAVMetadataExtractor()](#mediacreateavmetadataextractor11) to create an **AVMetadataExtractor** instance.
 
-For details about the demo for obtaining audio or video metadata, see [Obtaining Audio/Video Metadata](../../media/avmetadataextractor.md).
+For details about the demo for obtaining audio or video metadata, see [Obtaining Audio/Video Metadata](../../media/media/avmetadataextractor.md).
 
 ### Attributes
 
@@ -3358,7 +3512,7 @@ For details about the demo for obtaining audio or video metadata, see [Obtaining
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br> **Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.|
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Streaming media resource descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br> When an application obtains a media file from the remote, you can set **dataSrc** to obtain the metadata before the application finishes the downloading.|
 
 ### fetchMetadata<sup>11+</sup>
@@ -3388,25 +3542,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-// Obtain the metadata.
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
-      if (error) {
-        console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
-        return;
-      }
-      console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
+avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
+  if (error) {
+    console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
+    return;
   }
+  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
 });
 ```
 
@@ -3437,23 +3579,11 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-// Obtain the metadata.
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-      console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
-    }).catch((error: BusinessError) => {
-      console.error(`fetchMetadata catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  }
+avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
+  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
+}).catch((error: BusinessError) => {
+  console.error(`fetchMetadata catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -3484,27 +3614,16 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 import image from '@ohos.multimedia.image';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-// Obtain the album cover.
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
-      if (error) {
-        console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
-        return;
-      }
-      pixel_map = pixelMap;
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
+  if (error) {
+    console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
+    return;
+  }
+  pixel_map = pixelMap;
 });
 ```
 
@@ -3535,25 +3654,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 import image from '@ohos.multimedia.image';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
-// Obtain the album cover.
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
-      pixel_map = pixelMap;
-    }).catch((error: BusinessError) => {
-      console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
+  pixel_map = pixelMap;
+}).catch((error: BusinessError) => {
+  console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -3583,25 +3691,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-// Release the instance.
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.release((error: BusinessError) => {
-      if (error) {
-        console.error(`release failed, err = ${JSON.stringify(error)}`);
-        return;
-      }
-      console.info(`release success.`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.release((error: BusinessError) => {
+  if (error) {
+    console.error(`release failed, err = ${JSON.stringify(error)}`);
+    return;
+  }
+  console.info(`release success.`);
 });
 ```
 
@@ -3631,23 +3727,11 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
 
-let avMetadataExtractor: media.AVMetadataExtractor | undefined = undefined;
-
-// Release the instance.
-media.createAVMetadataExtractor((err: BusinessError, extractor: media.AVMetadataExtractor) => {
-  if(extractor != null){
-    avMetadataExtractor = extractor;
-    console.error(`createAVMetadataExtractor success`);
-    avMetadataExtractor.release().then(() => {
-      console.info(`release success.`);
-    }).catch((error: BusinessError) => {
-      console.error(`release catchCallback, error message:${error.message}`);
-    });
-  } else {
-    console.error(`createAVMetadataExtractor fail, error message:${err.message}`);
-  };
+avMetadataExtractor.release().then(() => {
+  console.info(`release success.`);
+}).catch((error: BusinessError) => {
+  console.error(`release catchCallback, error message:${error.message}`);
 });
 ```
 
@@ -4294,7 +4378,7 @@ Provides APIs to manage and play video. Before calling any API of **VideoPlayer*
 
 | Name                           | Type                                                  | Readable| Writable| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The mainstream video formats (MP4, MPEG-TS, and MKV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>5. File type: file\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
+| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The video formats MP4, MPEG-TS, and MKV are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>5. File type: file\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>               | boolean                                                | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | Yes  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**.                                              |
@@ -5730,7 +5814,7 @@ media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
 
 Provides APIs to obtain a thumbnail from a video. Before calling any API of **AVImageGenerator**, you must use [createAVImageGenerator()](#mediacreateavimagegenerator12) to create an **AVImageGenerator** instance.
 
-For details about the demo for obtaining video thumbnails, see [Obtaining Video Thumbnails](../../media/avimagegenerator.md).
+For details about the demo for obtaining video thumbnails, see [Obtaining Video Thumbnails](../../media/media/avimagegenerator.md).
 
 ### Attributes
 
@@ -5738,7 +5822,7 @@ For details about the demo for obtaining video thumbnails, see [Obtaining Video 
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br> **Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.|
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -5989,3 +6073,382 @@ Defines the format parameters of the video thumbnail to be obtained.
 | -------- | ------ |   ------| ------ | ---------------------- |
 | width     | number |  Yes  |  Yes  |  Width of the thumbnail.        |
 | height | number |  Yes  |  Yes  | Height of the thumbnail.|
+
+## media.createMediaSourceWithUrl<sup>12+</sup>
+
+createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSource
+
+Creates a media source for streaming media to be pre-downloaded.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| url | string | Yes  | URL of the media source. The following streaming media formats are supported: HLS, HTTP-FLV, DASH, and HTTPS. |
+| header | Record\<string, string> | No  | HTTP header customized for streaming media pre-download.|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| [MediaSource](#mediasource12) | **MediaSource** instance.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Return by callback.       |
+| 5400101  | No memory. Return by callback. |
+
+**Example**
+
+```ts
+import media from '@ohos.multimedia.media'
+
+let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+```
+
+## MediaSource<sup>12+</sup>
+
+Defines the media data information, which is from [createMediaSourceWithUrl](#mediacreatemediasourcewithurl12).
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+## PlaybackStrategy<sup>12+</sup>
+
+Describes the playback strategy.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| preferredWidth| number | No  | Preferred width, which is of the int type, for example, **1080**.|
+| preferredHeight | number | No  | Preferred height, which is of the int type, for example, **1920**.|
+| preferredBufferDuration | number | No | Preferred buffer duration, in seconds. The value ranges from 1 to 20.|
+| preferredHdr | boolean | No  | Whether HDR is preferred. The value **true** means that HDR is preferred, and **false** means the opposite.|
+
+## AVScreenCaptureRecordPreset<sup>12+</sup>
+
+Enumerates the encoding and encapsulation formats used during screen capture.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+| Name                             | Value  | Description                                        |
+| --------------------------------- | ---- | -------------------------------------------- |
+| SCREEN_RECORD_PRESET_H264_AAC_MP4 | 0    | The H.264 video encoding format, AAC audio encoding format, and MP4 encapsulation format are used.|
+| SCREEN_RECORD_PRESET_H265_AAC_MP4 | 1    | The H.265 video encoding format, AAC audio encoding format, and MP4 encapsulation format are used.|
+
+## AVScreenCaptureStateCode<sup>12+</sup>
+
+Enumerates the screen capture states used in callbacks.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+| Name                                    | Value  | Description                    |
+| ---------------------------------------- | ---- | ------------------------ |
+| SCREENCAPTURE_STATE_STARTED              | 0    | Screen capture is started.            |
+| SCREENCAPTURE_STATE_CANCELED             | 1    | Screen capture is canceled.            |
+| SCREENCAPTURE_STATE_STOPPED_BY_USER      | 2    | Screen capture is manually stopped by the user.    |
+| SCREENCAPTURE_STATE_INTERRUPTED_BY_OTHER | 3    | Screen capture is interrupted by another screen capture.    |
+| SCREENCAPTURE_STATE_STOPPED_BY_CALL      | 4    | Screen capture is interrupted by an incoming call.        |
+| SCREENCAPTURE_STATE_MIC_UNAVAILABLE      | 5    | The microphone is unavailable during screen capture.|
+| SCREENCAPTURE_STATE_MIC_MUTED_BY_USER    | 6    | The microphone is muted by the user.      |
+| SCREENCAPTURE_STATE_MIC_UNMUTED_BY_USER  | 7    | The microphone is unmuted by the user.      |
+| SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE  | 8    | The system enters a privacy page during screen capture.      |
+| SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE   | 9    | The system exits a privacy page during screen capture.      |
+
+## AVScreenCaptureRecordConfig<sup>12+</sup>
+
+Defines the screen capture parameters.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+| Name             | Type                                                        | Mandatory| Description                                                        |
+| ----------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| fd                | number                                                       | Yes  | FD of the file output.                                          |
+| frameWidth        | number                                                       | No  | Video width, in px. The default value varies according to the display in use.|
+| frameHeight       | number                                                       | No  | Video height, in px. The default value varies according to the display in use.|
+| videoBitrate      | number                                                       | No  | Video bit rate . The default value is **10000000**.                            |
+| audioSampleRate   | number                                                       | No  | Audio sampling rate. This value is used for both internal capture and external capture (using microphones). Only **48000** (default value) and **16000** are supported.|
+| audioChannelCount | number                                                       | No  | Number of audio channels. This value is used for both internal capture and external capture (using microphones). Only **1** and **2** (default) are supported.|
+| audioBitrate      | number                                                       | No  | Audio bit rate. This value is used for both internal capture and external capture (using microphones). The default value is **96000**.|
+| preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | No  | Encoding and encapsulation format used. The default value is **SCREEN_RECORD_PRESET_H264_AAC_MP4**.|
+
+## AVScreenCaptureRecorder<sup>12+</sup>
+
+Provides APIs to manage screen capture. Before calling any API in **AVScreenCaptureRecorder**, you must use **createAVScreenCaptureRecorder()** to create an **AVScreenCaptureRecorder** instance.
+
+### init<sup>12+</sup>
+
+init(config: AVScreenCaptureRecordConfig): Promise\<void>
+
+Initializes screen capture and sets screen capture parameters. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                    |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------ |
+| config | [AVScreenCaptureRecordConfig](#avscreencapturerecordconfig12) | Yes  | Screen capture parameters to set.|
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                                      |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400103  | IO error. Return by promise.                   |
+| 5400105  | Service died. Return by promise.               |
+
+**Example**
+
+```ts
+let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
+    fd: 0, // Before passing in an FD to this parameter, the file must be created by the caller and granted with the write permissions.
+    frameWidth: 640,
+    frameHeight: 480
+    // Add other parameters.
+}
+
+avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
+    console.info('avScreenCaptureRecorder init success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder init failed, error: ' + err.message);
+})
+```
+
+### startRecording<sup>12+</sup>
+
+startRecording(): Promise\<void>
+
+Starts screen capture. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Return value**
+
+| Type          | Description                            |
+| -------------- | -------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**Example**
+
+```ts
+avScreenCaptureRecorder.startRecording().then(() => {
+    console.info('avScreenCaptureRecorder start success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder start failed, error: ' + err.message);
+})
+```
+
+### stopRecording+</sup>
+
+stopRecording(): Promise\<void>
+
+Stops screen capture. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Return value**
+
+| Type          | Description                             |
+| -------------- | --------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**Example**
+
+```ts
+avScreenCaptureRecorder.stopRecording().then(() => {
+    console.info('avScreenCaptureRecorder stop success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder stop failed, error: ' + err.message);
+})
+```
+
+### setMicEnabled<sup>12+</sup>
+
+setMicEnabled(enable: boolean): Promise\<void>
+
+Enables or disables the microphone. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                     |
+| ------ | ------- | ---- | --------------------------------------------------------- |
+| enable | boolean | Yes  | Whether to enable or disable the microphone. The value **true** means to enable the microphone, and **false** means the opposite.|
+
+**Return value**
+
+| Type          | Description                                   |
+| -------------- | --------------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**Example**
+
+```ts
+avScreenCaptureRecorder.setMicEnabled(true).then(() => {
+    console.info('avScreenCaptureRecorder setMicEnabled success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder setMicEnabled failed, error: ' + err.message);
+})
+```
+
+### release+</sup>
+
+release(): Promise\<void>
+
+Releases this **AVScreenCaptureRecorder** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Return value**
+
+| Type          | Description                             |
+| -------------- | --------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**Example**
+
+```ts
+avScreenCaptureRecorder.release().then(() => {
+    console.info('avScreenCaptureRecorder release success');
+}).catch((err: BussinessError) => {
+    console.info('avScreenCaptureRecorder release failed, error: ' + err.message);
+})
+```
+
+### on('stateChange')<sup>12+</sup>
+
+on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
+
+Subscribes to screen capture state changes. An application can subscribe to only one screen capture state change event. When the application initiates multiple subscriptions to this event, the last subscription prevails.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'stateChange'** in this case.           |
+| callback | function | Yes  | Callback invoked when the event is triggered. **AVScreenCaptureStateCode** indicates the new state.|
+
+**Example**
+
+```ts
+avScreenCaptureRecorder.on('stateChange', (state: media.AVScreenCaptureStateCode) => {
+    console.info('avScreenCaptureRecorder stateChange to ' + state);
+})
+```
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to AVScreenCaptureRecorder errors. You can handle the errors based on the application logic. An application can subscribe to only one AVScreenCaptureRecorder error event. When the application initiates multiple subscriptions to this event, the last subscription prevails.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                   |
+| -------- | ------------- | ---- | --------------------------------------- |
+| type     | string        | Yes  | Event type, which is **'error'** in this case.|
+| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                 |
+
+**Error codes**
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**Example**
+
+```ts
+avScreenCaptureRecorder.on('error', (err: BusinessError) => {
+    console.error('avScreenCaptureRecorder error:' + err.message);
+})
+```
+
+### off('stateChange')<sup>12+</sup>
+
+ off(type: 'stateChange', callback?: Callback\<AVScreenCaptureStateCode>): void
+
+Unsubscribes from screen capture state changes. You can specify a callback to cancel the specified subscription.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'stateChange'** in this case.           |
+| callback | function | No  | Callback used for unsubscription. **AVScreenCaptureStateCode** indicates the new state. If this parameter is not specified, the last subscription is canceled.|
+
+**Example**
+
+```ts
+avScreenCaptureRecorder.off('stateChange');
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+Unsubscribes from AVScreenCaptureRecorder errors. You can specify a callback to cancel the specified subscription.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                      |
+| -------- | -------- | ---- | ---------------------------------------------------------- |
+| type     | string   | Yes  | Event type, which is **'error'** in this case.               |
+| callback | function | No  | Callback used for unsubscription. If this parameter is not specified, the last subscription is canceled.|
+
+**Example**
+
+```ts
+avScreenCaptureRecorder.off('error');
+```

@@ -20,6 +20,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
@@ -46,6 +48,8 @@ class MyUIAbility extends UIAbility {
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 当内存到达不同级别时系统回调该方法。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

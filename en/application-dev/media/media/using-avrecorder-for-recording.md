@@ -1,4 +1,4 @@
-# Using AVRecorder for Audio Recording (ArkTS)
+# Using AVRecorder for Audio Recording
 
 You will learn how to use the AVRecorder to develop audio recording functionalities including starting, pausing, resuming, and stopping recording.
 
@@ -15,7 +15,7 @@ For details about the state, see [AVRecorderState](../../reference/apis-media-ki
 
 Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) for the API reference.
 
-1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
+1. Create an **AVRecorder** instance. The AVRecorder is in the **idle** state.
 
    > **NOTE**
    >

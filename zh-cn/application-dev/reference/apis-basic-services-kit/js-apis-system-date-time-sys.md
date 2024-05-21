@@ -42,6 +42,16 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 | time     | number                    | 是   | 目标时间戳（ms）。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                             |
+| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -87,6 +97,16 @@ setTime(time : number) : Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                             |
+| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -124,10 +144,20 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明             |
-| -------- | ------------- | ---- | --------------------- |
-| date     | Date                      | 是   | 目标日期。                                 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                      | 必填 | 说明          |
+| -------- | ------------- | ---- |-------------|
+| date     | Date                      | 是   | 目标日期，且必须>0。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                                                            |
+| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                              |
+| 202       | Permission denied, Non system application use system APIs.                                                                                      |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -169,13 +199,23 @@ setDate(date: Date): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明       |
 | ------ | ---- | ---- | ---------- |
-| date   | Date | 是   | 目标日期。 |
+| date   | Date | 是   | 目标日期，且必须。 |
 
 **返回值：**
 
 | 类型                | 说明                 |
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                                                            |
+| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                              |
+| 202       | Permission denied, Non system application use system APIs.                                                                                      |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -213,6 +253,16 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------- | ---- | -------------------------- |
 | timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。        |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                             |
+| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -256,6 +306,16 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 | 类型                | 说明                 |
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                             |
+| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 

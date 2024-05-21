@@ -113,7 +113,7 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | Callback\<[DownloadProgress](#downloadprogress11)> | 否   | 云文件下载过程事件回调。 |
+| callback | Callback\<[DownloadProgress](#downloadprogress11)> | 否   | 云文件下载过程事件回调，若填写，将视为取消指定的回调函数，否则为取消当前订阅的所有回调函数。 |
 
 **错误码：**
 
@@ -123,9 +123,6 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 | ---------------------------- | ---------- |
 | 401 | The input parameter is invalid. |
 | 13600001  | IPC error. |
-| 13900002  | No such file or directory. |
-| 13900025  | No space left on device. |
-| 14000002  | Invalid uri. |
 
 **示例：**
 
@@ -177,7 +174,7 @@ start(uri: string): Promise&lt;void&gt;
   fileCache.start(uri).then(() => {
     console.info("start download successfully");
   }).catch((err: BusinessError) => {
-    console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -231,7 +228,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   fileCache.start(uri, (err: BusinessError) => {
     if (err) {
-      console.info("start download failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("start download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("start download successfully");
     }
@@ -240,7 +237,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 ### stop<sup>11+</sup>
 
-stop(uri: string): Promise&lt;void&gt;
+stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
 异步方法停止云盘文件缓存, 以Promise形式返回结果。
 
@@ -253,6 +250,7 @@ stop(uri: string): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
+| needClean<sup>12+</sup> | boolean | 否   | 是否删除已下载的文件，默认删除。<br>从API version12开始支持该参数。 |
 
 **返回值：**
 
@@ -280,10 +278,10 @@ stop(uri: string): Promise&lt;void&gt;
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
-  fileCache.stop(uri).then(() => {
+  fileCache.stop(uri, true).then(() => {
     console.info("stop download successfully");
   }).catch((err: BusinessError) => {
-    console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("stop download failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -326,7 +324,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
   fileCache.stop(uri, (err: BusinessError) => {
     if (err) {
-      console.info("stop download failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("stop download failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("stop download successfully");
     }

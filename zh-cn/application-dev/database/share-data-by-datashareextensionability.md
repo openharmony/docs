@@ -115,24 +115,27 @@
        }
      }
      // 重写batchUpdate接口
-     batchUpdate(operations, callback) {
-        let recordOps : Record<string, Array<UpdateOperation>> = operations;
-        let results : Record<string, Array<number>> = {};
-           for (const [key, values] of Object.entries(recordOps)) {
-               let result : number[] = [];
-               for (const value of values) {
-                   await rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
-                       console.info('Update row count is ' + rows);
-                       result.push(rows);
-                   }).catch((err) => {
-                       console.info("Update failed, err is " + JSON.stringify(err));
-                       result.push(-1);
-                   })
-               }
-               results[key] = result;
-           }
-           callback(null, results);
+     batchUpdate(operations:Record<string, Array<UpdateOperation>>, callback:Function) {
+       let recordOps : Record<string, Array<UpdateOperation>> = operations;
+       let results : Record<string, Array<number>> = {};
+       let a = Object.entries(recordOps);
+       for (let i = 0; i < a.length; i++) {
+         let key = a[i][0];
+         let values = a[i][1];
+         let result : number[] = [];
+         for (const value of values) {
+           rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
+             console.info('Update row count is ' + rows);
+             result.push(rows);
+           }).catch((err:BusinessError) => {
+             console.info('Update failed, err is ' + JSON.stringify(err));
+             result.push(-1)
+           })
+         }
+         results[key] = result;
        }
+       callback(null, results);
+     }
      // 可根据应用需求，选择性重写各个接口
    };
    ```

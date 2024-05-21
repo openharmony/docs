@@ -487,7 +487,7 @@ console.timeEnd('timer1');
 
 ## console.trace<sup>10+</sup>
 
-trace(...arguments: Object[]): void
+static trace(...arguments: Object[]): void
 
 Creates a stack trace.
 
@@ -508,4 +508,20 @@ console.trace();
 console.trace("Show the trace");
 // Trace: Show the trace
 //     xxxxxxxxxx (current stack information)
+```
+
+## console.traceHybridStack<sup>12+</sup>
+
+static traceHybridStack(): void
+
+Prints information about the current hybrid stack of the calling thread in the main thread or worker thread.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Example**
+
+```ts
+console.traceHybridStack();
+// TraceHybridStack:
+// xxxxxxxxxxxxx (information about the current hybrid stack of the calling thread)
 ```

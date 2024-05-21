@@ -5,6 +5,20 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
+## 501 API Call Failed
+
+**Error Message**
+
+Resource Unavailable.
+
+**Possible Cause**
+
+The image is transferred across threads, and the original object cannot call the API.
+
+**Solution**
+
+Check the image and follow the instructions to decode it.
+
 ## 62980096 Operation Failed
 
 **Error Message**
@@ -468,6 +482,34 @@ The image attribute is missing.
 **Solution**
 
 Correct the image data or use another image.
+
+## 62980137 Invalid Image Operation
+
+**Error Message**
+
+Invalid media operation.
+
+**Possible Cause**
+
+The target image format does not support this operation.
+
+**Solution**
+
+Use another image.
+
+## 62980149 Invalid Image Parameter
+
+**Error Message**
+
+Invalid image source mime type.
+
+**Possible Cause**
+
+The target image format does not support this operation.
+
+**Solution**
+
+Use another image.
 
 ## 62980246 Failure in Reading the Pixel Map
 

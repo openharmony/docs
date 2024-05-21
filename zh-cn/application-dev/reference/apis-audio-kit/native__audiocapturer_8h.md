@@ -17,8 +17,8 @@
 
 ### 函数
 
-| 名称                                                                                                                                                                                                                                                                                           | 描述 | 
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| 名称        | 描述 | 
+|--------------| -------- |
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Release](_o_h_audio.md#oh_audiocapturer_release)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                               | 释放输入音频流。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Start](_o_h_audio.md#oh_audiocapturer_start)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                   | 开始获取音频数据。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Pause](_o_h_audio.md#oh_audiocapturer_pause)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                   | 暂停输入音频流。  | 
@@ -35,3 +35,4 @@
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetFrameSizeInCallback](_o_h_audio.md#oh_audiocapturer_getframesizeincallback)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, int32_t \*frameSize)                                            | 在回调中查询帧大小。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetTimestamp](_o_h_audio.md#oh_audiocapturer_gettimestamp)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp)                    | 获取输入音频流时间戳和位置信息。  | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetFramesRead](_o_h_audio.md#oh_audiocapturer_getframesread)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, int64_t \*frames)                                                                 | 查询自创建流以来已读取的帧数。  | 
+| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetOverflowCount](_o_h_audio.md#oh_audiocapturer_getoverflowcount) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, uint32_t \*count) | 查询当前录制音频流过载数。  | 

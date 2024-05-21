@@ -5,9 +5,13 @@
 
 Defines an array of absolute coordinates.
 
-**Since**: 11
+**Since**
 
-**Related module**: [HidDdk](_hid_ddk.md)
+11
+
+**Related module**
+
+[HID DDK](_hid_ddk.md)
 
 
 ## Summary
@@ -17,5 +21,32 @@ Defines an array of absolute coordinates.
 
 | Name| Description| 
 | -------- | -------- |
-| [hidAbsAxes](_hid_ddk.md#hidabsaxes) | [Hid_AbsAxes](_hid_ddk.md#hid_absaxes) \* | 
-| [length](_hid_ddk.md#length-35) | uint16_t | 
+| [hidAbsAxes](#hidabsaxes) | Array of absolute coordinates.| 
+| [length](#length) | Length of the array.| 
+
+
+## Member Variable Description
+
+
+### hidAbsAxes
+
+
+```
+Hid_AbsAxes Hid_AbsAxesArray::*hidAbsAxes
+```
+
+**Description**
+
+Array of absolute coordinates.
+
+
+### length
+
+
+```
+uint16_t Hid_AbsAxesArray::length
+```
+
+**Description**
+
+Length of the array.

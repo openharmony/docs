@@ -30,6 +30,7 @@ void OHOS_SystemInit(void)
 ## 移植实例
 
 1. 在“config.json”中添加启动子系统。
+
    路径：“vendor/MyVendorCompany/MyProduct/config.json”
 
    修改如下：
@@ -37,8 +38,8 @@ void OHOS_SystemInit(void)
      
    ```
    {
-       subsystem": "startup",
-       components": [
+       "subsystem": "startup",
+       "components": [
            { "component": "bootstrap_lite", "features":[] },
            { "component": "syspara_lite", "features":[] }
        ]

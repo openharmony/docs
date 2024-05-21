@@ -56,12 +56,12 @@ In addition to general application privileges, device vendors can define device-
 | --------------------- | -------- | ------ | ------------------------------------------------- |
 | removable             | bool     | true   | Allows an application to be uninstalled. This privilege takes effect only for preset applications.              |
 | keepAlive             | bool     | false  | Allows an application to keep running in the background.                                |
-| singleton             | bool     | false  | Allows an application to be installed for a single user (User 0).                  |
+| singleton             | bool     | false  | Allows an application to be installed for a single user (user 0).                 |
 | allowCommonEvent      | string[] | -      | Allows an application to be started by a static broadcast.                            |
 | associatedWakeUp      | bool     | false  | Allows an application in the FA model to be woken up by an associated application.                    |
 | runningResourcesApply | bool     | false  | Allows an application to request running resources, such as the CPU, event notifications, and Bluetooth.|
 | allowAppDataNotCleared | bool | false|Prevents deletion of application data.|
-| allowAppMultiProcess | bool | false| Allows an application to run on multiple processes.|
+| allowAppMultiProcess | bool | false| Allows multiple instances for an application.|
 | allowAppDesktopIconHide | bool | false| Allows the application icon to be hidden from the home screen.|
 | allowAbilityPriorityQueried | bool | false| Allows the ability priority to be queried.   |
 | allowAbilityExcludeFromMissions | bool | false| Allows an ability to be hidden in the mission stack.|
@@ -83,21 +83,21 @@ Configure the required privileges in the [configuration file](https://gitee.com/
     "install_list": [
         {
             "bundleName": "com.example.kikakeyboard",
-            "singleton": true,                       // The application is installed for a single user.
-            "keepAlive": true,                       // The application can keep running in the background.
-            "runningResourcesApply": true,           // The application can apply for running resources such as the CPU, event notifications, and Bluetooth.
-            "associatedWakeUp": true,                // The application in the FA model can be woken up by an associated application.
-            "app_signature": ["****"],               // The setting takes effect only when the configured certificate fingerprint is the same as the HAP certificate fingerprint.
+            "singleton": true,                      // The application is installed for a single user.
+            "keepAlive": true,                      // The application can keep running in the background.
+            "runningResourcesApply": true,          // The application can apply for running resources such as the CPU, event notifications, and Bluetooth.
+            "associatedWakeUp": true,               // The application in the FA model can be woken up by an associated application.
+            "app_signature": ["****"],              // The setting takes effect only when the configured certificate fingerprint is the same as the HAP certificate fingerprint.
             "allowCommonEvent": ["usual.event.SCREEN_ON", "usual.event.THERMAL_LEVEL_CHANGED"]
-            "allowAppDataNotCleared": true,          // The application data cannot be deleted.
-            "allowAppMultiProcess": true,            // The application can run on multiple processes.
-            "allowAppDesktopIconHide": true,         // The application icon can be hidden from the home screen.
-            "allowAbilityPriorityQueried": true,     // The ability priority can be queried.
-            "allowAbilityExcludeFromMissions": true, // Allow the ability to be excluded from the mission stack.
-            "allowAppUsePrivilegeExtension": true,   // The application can use ServiceExtension and DataExtension abilities.
-            "allowFormVisibleNotify": true           // The widget is visible on the home screen.
-            "allowAppShareLibrary": true             // Allow the application to provide the inter-application HSP capability.
-            "allowMissionNotCleared": true           // The mission cannot be cleared.
+            "allowAppDataNotCleared": true,         // The application data cannot be deleted.
+            "allowAppMultiProcess": true,           // Allow multiple instances for the application.
+            "allowAppDesktopIconHide": true,        // The application icon can be hidden from the home screen.
+            "allowAbilityPriorityQueried": true,    // The ability priority can be queried.
+            "allowAbilityExcludeFromMissions": true,// Allow the ability to be excluded from the mission stack.
+            "allowAppUsePrivilegeExtension": true,  // The application can use ServiceExtension and DataExtension abilities.
+            "allowFormVisibleNotify": true          // The widget is visible on the home screen.
+            "allowAppShareLibrary": true            // Allow the application to provide the inter-application HSP capability.
+            "allowMissionNotCleared": true          // The mission cannot be cleared.
         },
 }
 ```

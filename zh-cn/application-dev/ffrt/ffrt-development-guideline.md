@@ -35,6 +35,10 @@ Function Flow编程模型是一种基于任务和数据驱动的并发编程模�
 | ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)  | 提交一个任务到队列中调度执行，并返回任务句柄。 |
 | ffrt_queue_wait(ffrt_task_handle_t handle)    | 等待队列中一个任务执行完成。 |
 | ffrt_queue_cancel(ffrt_task_handle_t handle)     | 取消队列中一个任务。 |
+| ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency)    | 设置并行队列最大并发度。 |
+| ffrt_queue_attr_get_max_concurrency(ffrt_queue_attr_t* attr)     | 获取并行队列最大并发度。 |
+| ffrt_get_main_queue()     | 获取主线程队列。 |
+| ffrt_get_current_queue()     | 获取Worker线程队列。 |
 | ffrt_usleep(uint64_t usec)   | 延迟usec微秒。 |
 | ffrt_yield(void)     | 当前任务主动放权，让其他任务有机会调度执行。 |
 | ffrt_task_attr_init(ffrt_task_attr_t* attr)     | 初始化任务属性。 |
@@ -45,6 +49,9 @@ Function Flow编程模型是一种基于任务和数据驱动的并发编程模�
 | ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr)      | 获取任务qos。 |
 | ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us)    | 设置任务延迟时间。 |
 | ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr)      | 获取任务延迟时间。 |
+| ffrt_task_attr_set_queue_priority(ffrt_task_attr_t* attr, ffrt_queue_priority_t priority)     | 设置并行队列任务优先级。 |
+| ffrt_task_attr_get_queue_priority(const ffrt_task_attr_t* attr)      | 获取并行队列任务优先级。 |
+| ffrt_this_task_get_qos()      | 获取任务qos。 |
 | ffrt_this_task_update_qos(ffrt_qos_t qos)    | 更新任务qos。 |
 | ffrt_this_task_get_id(void)    | 获取任务id。 |
 | ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind)     | 申请函数执行结构的内存。 |
@@ -53,8 +60,15 @@ Function Flow编程模型是一种基于任务和数据驱动的并发编程模�
 | ffrt_task_handle_destroy(ffrt_task_handle_t handle)    | 销毁任务句柄。 |
 | ffrt_skip(ffrt_task_handle_t handle)     | 跳过指定任务。 |
 | ffrt_wait_deps(const ffrt_deps_t* deps)    | 等待依赖的任务完成，当前任务开始执行。 |
-
-
+| ffrt_loop_create(ffrt_queue_t queue)    | 创建loop对象。 |
+| ffrt_loop_destory(ffrt_loop_t loop)    | 销毁loop对象。 |
+| ffrt_loop_run(ffrt_loop_t loop)    | 启动loop循环。 |
+| ffrt_loop_stop(ffrt_loop_t loop)    | 停止loop循环。 |
+| ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void* data, ffrt_poller_cb cb)    | 管理LOOP上的监听事件。 |
+| ffrt_loop_timer_start(ffrt_loop_t loop, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)    | 在LOOP上启动一个定时器。 |
+| ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle)   | 在LOOP上停止定时器。 |
+| ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)   | 启动timer定时器。 |
+| ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);   | 停止timer定时器。 |
 
 ## 函数介绍
 
@@ -531,9 +545,6 @@ int main(int narg, char** argv)
 }
 ```
 
-
-
-
 #### ffrt_submit_h_base
 
 <hr/>
@@ -564,7 +575,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 
 * 该参数是可选的。
 * 该参数用于描述该任务的输出依赖。
-* `注意`：该依赖值本质上是一个数值，ffrt没办法区分该值是合理的还是不合理的，会假定输入的值是合理的进行处理；但不建议采用NULL，1, 2 等值来建立依赖关系，建议采用实际的内存地址，因为前者使用不当会建立起不必要的依赖，影响并发。
+* `注意`：该依赖值本质上是一个数值，ffrt没办法区分该值是合理还是不合理的，会假定输入的值是合理的进行处理；但不建议采用NULL，1, 2 等值来建立依赖关系，建议采用实际的内存地址，因为前者使用不当会建立起不必要的依赖，影响并发。
 
 `attr`
 
@@ -725,15 +736,32 @@ uint64_t ffrt_this_task_get_id();
 
 ##### 样例
 
-* 忽略。
+```{.c}
+#include "timer.h"
 
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
 
+    ffrt::submit([=]() {
+    ffrt_qos_t taskQos = ffrt_this_task_get_qos();
+    ffrt_timer_start(taskQos, timeout1, data, cb, false);
+    usleep(200);
+    }, {}, {});
+    ffrt::wait();
+    return 0;
+}
+
+```
 
 #### ffrt_this_task_update_qos
 
 <hr/>
 
-* 更新当前正在执行的task的优先级。
+* 更新当前正在执行的task的qos等级。
 
 ##### 声明
 
@@ -743,7 +771,7 @@ int ffrt_this_task_update_qos(ffrt_qos_t qos);
 
 ##### 参数
 
-* `qos` 新的优先级。
+* `qos` 新的qos等级。
 
 ##### 返回值
 
@@ -755,6 +783,34 @@ int ffrt_this_task_update_qos(ffrt_qos_t qos);
 * 如果新设定的qos与当前的qos不一致，则会block当前task的执行，再按照新的qos恢复执行。
 * 如果新设定的qos与当前的qos一致，则接口会立即返回0，不做任何处理。
 * **如果在非task内部调用该接口，则返回非0值，用户可以选择忽略或其他处理。**
+
+##### 样例
+
+* 忽略。
+
+#### ffrt_this_task_get_qos
+
+<hr/>
+
+* 获取当前正在执行的task的qos等级。
+
+##### 声明
+
+```{.c}
+ffrt_qos_t ffrt_this_task_get_qos();
+```
+
+##### 参数
+
+* NA
+
+##### 返回值
+
+* `qos` 任务qos等级。
+
+##### 描述
+
+* 获取当前正在执行的task的qos等级。
 
 ##### 样例
 
@@ -796,7 +852,7 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 
 ##### 声明
 ```{.c}
-typedef enum { ffrt_queue_serial, ffrt_queue_max } ffrt_queue_type_t;
+typedef enum { ffrt_queue_serial, ffrt_queue_concurrent, ffrt_queue_max } ffrt_queue_type_t;
 typedef void* ffrt_queue_t;
 
 ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
@@ -874,6 +930,312 @@ int main(int narg, char** argv)
     ffrt_queue_destroy(queue_handle);
 }
 ```
+
+#### ffrt_get_main_queue
+<hr/>
+获取主线程任务队列。
+
+##### 声明
+```{.c}
+ffrt_queue_t ffrt_get_main_queue();
+```
+
+##### 参数
+
+NA
+
+##### 返回值
+
+主线程队列。
+
+##### 描述
+获取主线程队列，用于FFRT线程与主线程通信。
+
+##### 样例
+```{.c}
+#include "queue.h"
+
+int main(int narg, char** argv)
+{
+    ffrt::queue *serialQueue = new ffrt::queue("ffrt_normal_queue", {});
+    ffrt_queue_t mainQueue = ffrt_get_main_queue();
+    ffrt_task_attr_t attr;
+    ffrt_task_attr_init(&attr);
+    ffrt_task_attr_set_qos(&attr, ffrt_qos_user_initiated);
+    int result = 0;
+    std::function<void()>&& basicFunc = [&result]() {
+        OnePlusForTest(static_cast<void*>(&result));
+        OnePlusForTest(static_cast<void*>(&result));
+        EXPECT_EQ(result, 2);
+        usleep(3000);
+    };
+    
+    ffrt::task_handle handle = serialQueue->submit_h(
+        [&] {
+            result = result + 1;
+            ffrt_queue_submit(mainQueue, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue),
+                            &attr);
+        },
+        ffrt::task_attr().qos(3).name("ffrt main_queue."));
+    
+    serialQueue->wait(handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+result=1
+```
+
+#### ffrt_get_current_queue
+<hr/>
+获取ArkTs Worker线程任务队列。
+
+##### 声明
+```{.c}
+ffrt_queue_t ffrt_get_current_queue();
+```
+
+##### 参数
+
+NA
+
+##### 返回值
+
+ArkTs Worker线程任务队列。
+
+##### 描述
+获取ArkTs Worker线程队列，用于FFRT线程与ArkTs Worker线程通信。
+
+##### 样例
+```{.c}
+#include "queue.h"
+
+int main(int narg, char** argv)
+{
+    ffrt::queue *serialQueue = new ffrt::queue("ffrt_normal_queue", {});
+    ffrt_queue_t currentQueue = ffrt_get_current_queue();
+    ffrt_task_attr_t attr;
+    ffrt_task_attr_init(&attr);
+    ffrt_task_attr_set_qos(&attr, ffrt_qos_user_initiated);
+    int result = 0;
+    std::function<void()>&& basicFunc = [&result]() {
+        OnePlusForTest(static_cast<void*>(&result));
+        OnePlusForTest(static_cast<void*>(&result));
+        EXPECT_EQ(result, 3);
+        usleep(3000);
+    };
+    
+    ffrt::task_handle handle = serialQueue->submit_h(
+        [&] {
+            result = result + 1;
+            ffrt_queue_submit(currentQueue, ffrt::create_function_wrapper(basicFunc, ffrt_function_kind_queue),
+                            &attr);
+        },
+        ffrt::task_attr().qos(3).name("ffrt current_queue."));
+    
+    serialQueue->wait(handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+result=1
+```
+
+
+### 并行队列
+<hr />
+FFRT支持并行队列，并支持设置并行队列的并发度和任务优先级。
+
+#### ffrt_queue_attr_set_max_concurrency
+<hr/>
+FFRT并行队列设置最大并发度。
+
+##### 声明
+```{.c}
+void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency);
+```
+
+##### 参数
+
+`attr`
+
+* 该参数用于描述queue的属性，详见ffrt_queue_attr_t章节。
+
+`max_concurrency`
+
+* 最大并发度，当用户设置小于等于0时，并发度是1。
+
+##### 返回值
+
+NA
+
+##### 描述
+FFRT并行队列设置最大并发度，需要注意的是，当设置很大的并发度时，如100，受限于硬件能力，最终的并发度不会达到100。
+
+##### 样例
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    uint64_t concurrency = 4;
+    ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
+    concurrency = ffrt_queue_attr_get_max_concurrency(&queue_attr);
+    ffrt_queue_attr_destroy(&queue_attr);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+concurrency=4
+```
+
+#### ffrt_queue_attr_get_max_concurrency
+<hr/>
+获取FFRT并行队列设置的最大并发度。
+
+##### 声明
+```{.c}
+int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
+```
+
+##### 参数
+
+`attr`
+
+* 该参数用于描述queue的属性，详见ffrt_queue_attr_t章节。
+
+##### 返回值
+
+用户设置的最大并发度。
+
+##### 描述
+获取FFRT并行队列设置的最大并发度。
+
+##### 样例
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    uint64_t concurrency = 4;
+    ffrt_queue_attr_set_max_concurrency(&queue_attr, concurrency);
+    concurrency = ffrt_queue_attr_get_max_concurrency(&queue_attr);
+    ffrt_queue_attr_destroy(&queue_attr);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+concurrency=4
+```
+
+#### ffrt_task_attr_set_queue_priority
+<hr/>
+设置并行队列任务优先级。
+
+##### 声明
+```{.c}
+/* 任务优先级 */
+typedef enum {
+ffrt_queue_priority_immediate = 0,
+ffrt_queue_priority_high,
+ffrt_queue_priority_low,
+ffrt_queue_priority_idle,
+} ffrt_queue_priority_t;
+
+void ffrt_task_attr_set_queue_priority(ffrt_task_attr_t* attr, ffrt_queue_priority_t priority);
+```
+
+##### 参数
+
+`attr`
+
+* 该参数用于描述task的属性，详见ffrt_task_attr_t章节。
+
+`priority`
+
+* 任务优先级，支持四种优先级，定义参考ffrt_queue_priority_t。
+
+##### 返回值
+
+NA
+
+##### 描述
+设置并行队列任务优先级。
+
+##### 样例
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_task_attr_t task_attr;
+    (void)ffrt_task_attr_init(&task_attr);
+    uint64_t priority = 3;
+    ffrt_task_attr_set_queue_priority(&task_attr, priority);
+    priority = ffrt_task_attr_get_queue_priority(&task_attr);
+    ffrt_task_attr_destroy(&task_attr);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+priority=3
+```
+
+#### ffrt_task_attr_get_queue_priority
+<hr/>
+获取开发者设置的并行队列任务优先级。
+
+##### 声明
+```{.c}
+ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_task_attr_t* attr);
+```
+
+##### 参数
+
+`attr`
+
+* 该参数用于描述queue的属性，详见ffrt_queue_attr_t章节。
+
+##### 返回值
+
+任务优先级。
+
+##### 描述
+获取开发者设置的并行队列任务优先级。
+
+##### 样例
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_task_attr_t task_attr;
+    (void)ffrt_task_attr_init(&task_attr);
+    uint64_t priority = 3;
+    ffrt_task_attr_set_queue_priority(&task_attr, priority);
+    priority = ffrt_task_attr_get_queue_priority(&task_attr);
+    ffrt_task_attr_destroy(&task_attr);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+priority=3
+```
+
 ### 同步原语
 
 #### ffrt_mutex_t
@@ -1216,8 +1578,6 @@ a=1
 
 * 该例子为功能示例，实际中并不鼓励这样使用。
 
-### 杂项
-
 #### ffrt_usleep
 
 <hr/>
@@ -1335,6 +1695,550 @@ void ffrt_yield();
 
 * 省略。
 
+### ffrt timer
+<hr />
+FFRT支持启动和停止定时器的能力。
+
+#### ffrt_timer_start
+<hr/>
+启动timer定时器。
+
+##### 声明
+```{.c}
+typedef int ffrt_timer_t;
+typedef void (*ffrt_timer_cb)(void* data);
+
+ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat);
+```
+
+##### 参数
+
+`qos`
+
+* qos等级。
+
+`timeout`
+
+* 超时时间。
+
+`data`
+
+* 超时后回调函数的入参。
+
+`cb`
+
+* 超时后回调函数。
+
+`repeat`
+
+* 是否重复执行该定时器（该功能暂未支持）。
+
+##### 返回值
+
+返回该定时器句柄。
+
+##### 描述
+启动timer定时器。
+
+##### 样例
+```{.c}
+
+static void testfun(void *data)
+{
+    *(int *)data += 1;
+}
+
+void (*cb)(void *) = testfun;
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int *xf = &x;
+    void *data = xf;
+    uint64_t timeout = 200;
+    int handle = ffrt_timer_start(ffrt_qos_default, timeout, data, cb, false);
+    usleep(300000);
+    ffrt_timer_stop(ffrt_qos_default, handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+回调函数testfun中的 data=1
+```
+
+#### ffrt_timer_stop
+<hr/>
+停止timer定时器。
+
+##### 声明
+```{.c}
+int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle);
+```
+
+##### 参数
+
+`qos`
+
+* qos等级。
+
+`handle`
+
+* 定时器句柄。
+
+##### 返回值
+
+返回0成功，返回-1失败。
+
+##### 描述
+停止timer定时器。
+
+##### 样例
+```{.c}
+
+static void testfun(void *data)
+{
+    *(int *)data += 1;
+}
+
+void (*cb)(void *) = testfun;
+
+int main(int narg, char** argv)
+{
+    static int x = 0;
+    int *xf = &x;
+    void *data = xf;
+    uint64_t timeout = 200;
+    int handle = ffrt_timer_start(ffrt_qos_default, timeout, data, cb, false);
+    usleep(300000);
+    ffrt_timer_stop(ffrt_qos_default, handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+回调函数testfun中的 data=1
+```
+
+### ffrt looper
+<hr />
+FFRT 提供looper机制，looper支持任务提交，事件监听，定时器功能，looper运行在用户线程。
+
+#### ffrt_loop_create
+<hr/>
+创建loop对象。
+
+##### 声明
+```{.c}
+typedef void* ffrt_loop_t;
+
+ffrt_loop_t ffrt_loop_create(ffrt_queue_t queue);
+```
+
+##### 参数
+
+`queue`
+
+* 需要是并行队列。
+
+##### 返回值
+
+loop对象。
+
+##### 描述
+创建loop对象。
+
+##### 样例
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+创建的loop对象不为空。
+```
+
+#### ffrt_loop_destory
+<hr/>
+销毁loop对象。
+
+##### 声明
+```{.c}
+int ffrt_loop_destroy(ffrt_loop_t loop);
+```
+
+##### 参数
+
+`loop`
+
+* loop对象。
+
+##### 返回值
+
+返回0表示成功，-1表示失败。
+
+##### 描述
+销毁loop对象。
+
+##### 样例
+```{.c}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+正常销毁loop对象，返回值是0。
+```
+
+#### ffrt_loop_run
+<hr/>
+启动loop循环。
+
+##### 声明
+```{.c}
+int ffrt_loop_run(ffrt_loop_t loop);
+```
+
+##### 参数
+
+`loop`
+
+* loop对象。
+
+##### 返回值
+
+返回0表示成功，-1表示失败。
+
+##### 描述
+启动loop循环。
+
+##### 样例
+```{.c}
+void* ThreadFunc(void* p)
+{
+    int ret = ffrt_loop_run(p);
+    return nullptr;
+}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+    pthread_t thread;
+    pthread_create(&thread, 0, ThreadFunc, loop);
+
+    ffrt_loop_stop(loop);
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+正常启动loop对象，返回值是0。
+```
+
+#### ffrt_loop_stop
+<hr/>
+停止loop循环。
+
+##### 声明
+```{.c}
+void ffrt_loop_stop(ffrt_loop_t loop);
+```
+
+##### 参数
+
+`loop`
+
+* loop对象。
+
+##### 返回值
+
+NA。
+
+##### 描述
+停止loop循环。
+
+##### 样例
+```{.c}
+void* ThreadFunc(void* p)
+{
+    int ret = ffrt_loop_run(p);
+    return nullptr;
+}
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+    pthread_t thread;
+    pthread_create(&thread, 0, ThreadFunc, loop);
+
+    ffrt_loop_stop(loop);
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+正常启动loop对象，返回值是0。
+```
+
+#### ffrt_loop_epoll_ctl
+<hr/>
+管理loop上的监听事件。
+
+##### 声明
+```{.c}
+int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void *data, ffrt_poller_cb cb);
+```
+
+##### 参数
+
+`loop`
+
+* loop对象。
+
+`op`
+
+* fd操作符，如EPOLL_CTL_ADD和EPOLL_CLT_DEL。
+
+`fd`
+
+* 事件描述符。
+
+`events`
+
+* 事件。
+
+`data`
+
+* 事件变化时触发的回调函数的入参。
+
+`cb`
+
+* 事件变化时触发的回调函数。
+
+##### 返回值
+
+返回0表示成功，-1表示失败。
+
+##### 描述
+管理loop上的监听事件。
+
+##### 样例
+```{.c}
+void* ThreadFunc(void* p)
+{
+    int ret = ffrt_loop_run(p);
+    return nullptr;
+}
+
+static void testfun(void* data)
+{
+    *(int*)data += 1;
+}
+
+static void (*cb)(void*) = testfun;
+
+int main(int narg, char** argv)
+{
+    ffrt_queue_attr_t queue_attr;
+    (void)ffrt_queue_attr_init(&queue_attr);
+    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_concurrent, "test_queue", &queue_attr);
+
+    auto loop = ffrt_loop_create(queue_handle);
+    int result1 = 0;
+    std::function<void()> &&basicFunc1 = [&result1]() {result += 10;};
+    ffrt_task_handle_t task1 = ffrt_queue_submit_h(queue_handle, create_function_wrapper(basicFunc1, ffrt_function_kind_queue), nullptr);
+    
+    pthread_t thread;
+    pthread_create(&thread, 0, ThreadFunc, loop);
+    
+    static int x = 0;
+    int* xf = &x;
+    void* data = xf;
+    uint64_t timeout1 = 20;
+    uint64_t timeout2 = 10;
+    uint64_t expected = 0xabacadae;
+    
+    int testFd = evetfd(0, EFD_NONBLOCK | EFD_CLOEXEC)；
+    struct TestData testData {.fd = testFd, .expected = expected};
+    ffrt_timer_t timeHandle = ffrt_loop_timer_start(loop, timeout1, data, cb, false);
+    
+    ffrt_loop_epoll_ctl(loop, EPOLL_CTL_ADD, testFd, EPOLLIN, (void*)(&testData), testCallBack);
+    ssize_t n = write(testFd, &expected, sizeof(uint64_t));
+    usleep(25000);
+    ffrt_loop_epoll_ctl(loop, EPOLL_CTL_DEL, testFd, 0, nullptr, nullptr);
+
+    ffrt_loop_stop(loop);
+    pthread_join(thread, nullptr);
+    ffrt_loop_timer_stop(loop, timeHandle);
+    int ret = ffrt_loop_destroy(loop);
+
+    ffrt_queue_attr_destroy(&queue_attr);
+    ffrt_queue_destroy(queue_handle);
+    return 0;
+}
+```
+
+预期输出为：
+
+```
+ffrt_loop_epoll_ctl执行成功。
+```
+
+#### ffrt_loop_timer_start
+<hr/>
+在loop上启动定时器。
+
+##### 声明
+```{.c}
+ffrt_timer_t ffrt_loop_timer_start(ffrt_loop_t loop, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat);
+```
+
+##### 参数
+
+`loop`
+
+* loop对象。
+
+`timeout`
+
+* 超时时间。
+
+`data`
+
+* 事件变化时触发的回调函数的入参。
+
+`cb`
+
+* 事件变化时触发的回调函数。
+
+`repeat`
+
+* 是否重复执行该定时器（该功能暂未支持）。
+
+##### 返回值
+
+定时器句柄。
+
+##### 描述
+在loop上启动定时器。
+
+##### 样例
+参考ffrt_loop_epoll_ctl接口样例。
+
+#### ffrt_loop_timer_stop
+<hr/>
+停止timer定时器。
+
+##### 声明
+```{.c}
+int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle)
+```
+
+##### 参数
+
+`loop`
+
+* loop对象。
+
+`handle`
+
+* 定时器句柄。
+
+##### 返回值
+
+返回0表示成功，返回-1表示失败。
+
+##### 描述
+停止timer定时器。
+
+##### 样例
+参考ffrt_loop_epoll_ctl接口样例。
+
+## 长耗时任务监测
+
+### 机制  
+* 当任务执行时间超过一秒时，会触发一次堆栈打印，后续该任务堆栈打印频率调整为一分钟。连续打印十次后，打印频率调整为十分钟。再触发十次打印后，打印频率固定为三十分钟。
+* 该机制的堆栈打印调用的是DFX的 `GetBacktraceStringByTid` 接口，该接口会向阻塞线程发送抓栈信号，触发中断并抓取调用栈返回。  
+
+### 样例  
+在对应进程日志中搜索 `RecordSymbolAndBacktrace` 关键字，对应的日志示例如下：
+
+```
+W C01719/ffrt: 60500:RecordSymbolAndBacktrace:159 Tid[16579] function occupies worker for more than [1]s.
+W C01719/ffrt: 60501:RecordSymbolAndBacktrace:164 Backtrace:
+W C01719/ffrt: #00 pc 00000000000075f0 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #01 pc 0000000000008758 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #02 pc 0000000000012b98 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #03 pc 000000000002aaa0 /system/lib64/platformsdk/libfilemgmt_libn.z.so
+W C01719/ffrt: #04 pc 0000000000054b2c /system/lib64/platformsdk/libace_napi.z.so
+W C01719/ffrt: #05 pc 00000000000133a8 /system/lib64/platformsdk/libuv.so
+W C01719/ffrt: #06 pc 00000000000461a0 /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #07 pc 0000000000046d44 /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #08 pc 0000000000046a6c /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #09 pc 00000000000467b0 /system/lib64/chipset-sdk/libffrt.so
+```
+该维测会打印出worker上执行时间超过阈值的任务堆栈、worker线程号、执行时间，请自行根据堆栈找对应组件确认阻塞原因。
+
+
+### 注意事项
+长耗时任务监测会发送中断信号，如果用户的代码中存在 `sleep` 等会被中断唤醒的阻塞，用户需主动接收该阻塞的返回值，并重新调用。  
+示例如下：
+```
+unsigned int leftTime = sleep(10);
+while (leftTime != 0) {
+    leftTime = sleep(leftTime);
+}
+```
 
 ## 开发步骤
 
@@ -1441,7 +2345,7 @@ libffrt.z.so
    
 2. **设置task属性值**。
 
-    用户提交任务时可以设置任务属性，包括qos优先级，名称等，具体可参考接口文档。
+    用户提交任务时可以设置任务属性，包括qos等级，名称等，具体可参考接口文档。
     ```c++
     // ******初始化并行任务属性******
     ffrt_task_attr_t attr;
@@ -1457,7 +2361,7 @@ libffrt.z.so
     // 初始化队列属性
     (void)ffrt_queue_attr_init(&queue_attr);
 
-    // 如有需要，设置指定优先级
+    // 如有需要，设置指定qos等级
     ffrt_queue_attr_set_qos(&queue_attr, static_cast<ffrt_qos_t>(ffrt_qos_inherit));
     // 如有需要，设置超时时间(ms)
     ffrt_queue_attr_set_timeout(&queue_attr, 10000);

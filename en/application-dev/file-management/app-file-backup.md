@@ -10,11 +10,11 @@ The backup and restoration framework provides a complete data backup and restora
 
 ## How to Develop
 
-For details about the APIs to be used, see [Backup and Restoration](../reference/apis/js-apis-file-backup.md).
+For details about how to use the APIs, see [Backup and Restore](../reference/apis-core-file-kit/js-apis-file-backup-sys.md).
 
 Before using the APIs, you need to:
 
-1. Apply for the **ohos.permission.BACKUP** permission. For details, see [Apply for Permissions](../security/accesstoken-guidelines.md).
+1. Apply for the ohos.permission.BACKUP permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Import **@ohos.file.backup**.
 
@@ -89,7 +89,7 @@ async function getLocalCapabilities(): Promise<void> {
 
 You can select the application data to be backed up based on the application information in the capability files.
 
-The Backup & Restore service packages the application data to be backed up. The package file handle is returned by the [onFileReady](../reference/apis/js-apis-file-backup.md#onfileready) callback registered when the **SessionBackup** instance is created.
+The Backup & Restore service packages the application data to be backed up. The package file handle is returned by the [onFileReady](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#onfileready) callback registered when the **SessionBackup** instance is created.
 
 You can save the file to a local directory as required.
 
@@ -171,7 +171,7 @@ You can save the file to a local directory as required.
 
 You can select the application data to be restored based on the application information in the capability files.
 
-The Backup and Restore service returns the FD of the application data to be restored in the [onFileReady](../reference/apis/js-apis-file-backup.md#onfileready) callback registered when the **SessionRestore** instance is created. The file handle is obtained by [getFileHandle](../reference/apis/js-apis-file-backup.md#getfilehandle). Then, the data to be restored is written to the file handle based on the [uri](../reference/apis/js-apis-file-backup.md#filemeta) returned. After the data is written, use [publishFile()](../reference/apis/js-apis-file-backup.md#publishfile) to notify the service that the data write is complete.
+The Backup and Restore service returns the FD of the application data to be restored in the [onFileReady](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#onfileready) callback registered when the **SessionRestore** instance is created. The file handle is obtained by [getFileHandle](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#getfilehandle). Then, the data to be restored is written to the file handle based on the [uri](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#filemeta) returned. After the data is written, use [publishFile](../reference/apis-core-file-kit/js-apis-file-backup-sys.md#publishfile) to notify the service that the data write is complete.
 
 When all the data of the application is ready, the service starts to restore the application data.
 

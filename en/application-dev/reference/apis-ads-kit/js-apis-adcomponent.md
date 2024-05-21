@@ -43,6 +43,7 @@ import advertising from '@ohos.advertising';
 import { AdComponent } from '@ohos.advertising.AdComponent';
 import hilog from '@ohos.hilog';
 
+@Entry
 @Component
 export struct ShowNonFullScreenAd {
   // Requested ad content.

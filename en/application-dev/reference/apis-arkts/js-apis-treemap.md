@@ -61,7 +61,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
+// Default constructor.
 let treeMap : TreeMap<number, number> = new TreeMap();
+```
+
+```ts
 // Use the comparator firstValue < secondValue if the elements are expected to be sorted in ascending order. Use firstValue > secondValue if the elements are expected to be sorted in descending order.
 let treeMap : TreeMap<string,string> = new TreeMap<string,string>((firstValue: string, secondValue: string) : boolean => {return firstValue > secondValue});
 treeMap.set("aa","3");
@@ -73,6 +77,7 @@ for (let item of numbers) {
   console.log("treeMap:" + item);
 }
 ```
+
 ```ts
 // When a custom type is inserted, a comparator must be provided.
  class TestEntry{

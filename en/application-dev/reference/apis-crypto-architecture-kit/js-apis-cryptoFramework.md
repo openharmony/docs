@@ -36,6 +36,10 @@ Defines a buffer array of the Binary Large Object (BLOB) type.
 | ---- | ---------- | ---- | ---- | ------ |
 | data | Uint8Array | Yes  | Yes  | Binary data array.|
 
+> **NOTE**
+>
+> The Uint8Array typed array represents an array of 8-bit unsigned integers.
+
 ## ParamsSpec
 
 Encapsulates the parameters used for encryption or decryption. You need to construct its child class object and pass it to [init()](#init-2) for symmetric encryption or decryption. 
@@ -80,13 +84,13 @@ Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 1 to 16 bytes. A 12-byte IV is commonly used.                            |
 | aad     | [DataBlob](#datablob) | Yes  | Yes  | Additional authentication data (AAD), which is of 0 to INT_MAX bytes. A 16-byte AAD is commonly used.                            |
-| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>When the GCM mode is used for encryption, the last 16 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as **authTag** in [GcmParamsSpec](#gcmparamsspec) of [init()](#init-2).|
+| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 16 bytes.<br>If the GCM mode is used for encryption, **authTag** in the parameter **GcmParamsSpec** of [init()](#init-2) or [initSync()](#initsync12) is the last 16 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) or [doFinalSync()](#dofinalsync12).|
 
 > **NOTE**
 >
-> 1. Before passing **GcmParamsSpec** to [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
-> 2. The IV to use is not length bound. However, the operation result depends on whether the underlying OpenSSL supports the IV.
-> 3. If **aad** is not required or the length of **aad** is **0**, you can set **aad** to an empty Uint8Array, that is, **aad: { data: new Uint8Array() }**.
+> - Before passing **GcmParamsSpec** to [init()](#init-2), specify **algName** for its parent class [ParamsSpec](#paramsspec).
+> - The IV to use is not length bound. However, the operation result depends on whether the underlying OpenSSL supports the IV.
+> - If **aad** is not required or the length of **aad** is **0**, you can set **aad** to an empty Uint8Array, that is, **aad: { data: new Uint8Array() }**.
 
 ## CcmParamsSpec
 
@@ -100,7 +104,7 @@ Defines the child class of [ParamsSpec](#paramsspec). It is a parameter of [init
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv      | [DataBlob](#datablob) | Yes  | Yes  | IV, which is of 7 bytes.                             |
 | aad     | [DataBlob](#datablob) | Yes  | Yes  | AAD, which is of 8 bytes.                            |
-| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>When the CCM mode is used for encryption, the last 12 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) are used as **authTag** in [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2).|
+| authTag | [DataBlob](#datablob) | Yes  | Yes  | Authentication tag, which is of 12 bytes.<br>If the CCM mode is used for encryption, **authTag** in the parameter [CcmParamsSpec](#ccmparamsspec) of [init()](#init-2) or [initSync()](#initsync12) is the last 12 bytes of [DataBlob](#datablob) output by [doFinal()](#dofinal-2) or [doFinalSync()](#dofinalsync12).|
 
 > **NOTE**
 >
@@ -130,9 +134,9 @@ Enumerates the asymmetric key parameters.
 | DSA_G_BN | 103 | Parameter **g** in the DSA algorithm.|
 | DSA_SK_BN | 104 | Private key **sk** in the DSA algorithm.|
 | DSA_PK_BN | 105 | Public key **pk** in the DSA algorithm.|
-| ECC_FP_P_BN | 201 | Prime number **p** in the **Fp** fields of the elliptic curve in the DSA algorithm.|
-| ECC_A_BN | 202 | First coefficient **a** of the elliptic curve in the DSA algorithm.|
-| ECC_B_BN | 203 | Second coefficient **b** of the elliptic curve in the DSA algorithm.|
+| ECC_FP_P_BN | 201 | Prime number **p** in the **Fp** field of the elliptic curve in the ECC algorithm.|
+| ECC_A_BN | 202 | First coefficient **a** of the elliptic curve in the ECC algorithm.|
+| ECC_B_BN | 203 | Second coefficient **b** of the elliptic curve in the ECC algorithm.|
 | ECC_G_X_BN | 204 | X coordinate of the base point **g** in the ECC algorithm.|
 | ECC_G_Y_BN | 205 | Y coordinate of the base point **g** in the ECC algorithm.|
 | ECC_N_BN | 206 | Order **n** of the base point **g** in the ECC algorithm.|
@@ -497,7 +501,7 @@ To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySp
 
 ## DHKeyPairSpec<sup>11+</sup>
 
-Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify all parameters of the public and private keys in the DH algorithm.
+Defines a child class of [AsyKeySpec](#asykeyspec10) used to specify full parameters of the public and private keys in the DH algorithm.
 
 To generate a key based on key parameters, pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
@@ -521,13 +525,13 @@ Defines the parameters of the key derivation function. When the key derivation f
 
 ## PBKDF2Spec<sup>11+</sup>
 
-Defines the child class of [KdfSpec](#kdfspec11). It is used as an input of the PBKDF2 key derivation function.
+Defines the child class of [KdfSpec](#kdfspec11). It is used as a parameter for PBKDF2 key derivation.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string \| Uint8Array | Yes  | Yes  | Original password entered by the user. |
+| password | string \| Uint8Array | Yes  | Yes  | Original password entered by the user.|
 | salt | Uint8Array | Yes  | Yes  | Salt value.|
 | iterations | number | Yes  | Yes  | Number of iterations. The value must be a positive integer.|
 | keySize | number | Yes  | Yes  | Length of the derived key, in bytes.|
@@ -535,6 +539,44 @@ Defines the child class of [KdfSpec](#kdfspec11). It is used as an input of the 
 > **NOTE**
 >
 > **password** specifies the original password. If **password** is of the string type, pass in the data used for key derivation rather than a string of the HexString or Base64 type. In addition, the string must be in utf-8 format. Otherwise, the key derived may be different from the one expected.
+
+## HKDFSpec<sup>12+</sup>
+
+Defines the child class of [KdfSpec](#kdfspec11). It is a parameter for HKDF key derivation.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name   | Type  | Readable| Writable| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| key | string \| Uint8Array | Yes  | Yes  | Key material.|
+| salt | Uint8Array | Yes  | Yes  | Salt value.|
+| info | Uint8Array | Yes  | Yes  | Information used to expand the key.|
+| keySize | number | Yes  | Yes  | Length of the key to derive, in bytes.|
+
+> **NOTE**
+>
+> **key** is the original key material entered by the user. **info** and **salt** are optional. An empty string can be passed in based on the mode.
+>
+> For example, if the mode is **EXTRACT_AND_EXPAND**, all parameter values must be passed in. If the mode is **EXTRACT_ONLY**, **info** can be empty. When **HKDFspec** is constructed, pass in **null** to **info**.
+>
+> The default mode is **EXTRACT_AND_EXPAND**. The value **HKDF|SHA256|EXTRACT_AND_EXPAND** is equivalent to **HKDF|SHA256**.
+
+## SM2CipherTextSpec<sup>12+</sup>
+
+Represents the SM2 ciphertext parameters. You can use this object to generate SM2 ciphertext in ASN.1 format or obtain SM2 parameters from the SM2 ciphertext in ASN.1 format.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name   | Type  | Readable| Writable| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| xCoordinate | bigint | Yes  | Yes  | Coordinate X.|
+| yCoordinate | bigint | Yes  | Yes  | Coordinate Y.|
+| cipherTextData | Uint8Array | Yes  | Yes  | Ciphertext.|
+| hashData | Uint8Array | Yes  | Yes  | Hash value.|
+
+> **NOTE**
+>
+> **hashData** is a value obtained by applying the SM3 algorithm to the plaintext. It has a fixed length of 256 bits. **cipherTextData** is the ciphertext with the same length as the plaintext.
 
 ## Key
 
@@ -634,13 +676,13 @@ Obtains a key parameter. This API returns the result synchronously.
 
 | Name| Type                 | Mandatory| Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| bigint\|string\|number | Content of the key parameter obtained.|
+| bigint \| string \| number | Content of the key parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -657,6 +699,51 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 let key: cryptoFramework.PubKey; // key is a public key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
 console.info('ecc item --- p: ' + p.toString(16));
+```
+
+### getEncodedDer<sup>12+</sup>
+
+getEncodedDer(format: string): DataBlob
+
+Obtains the public key data that complies with the ASN.1 syntax and DER encoding based on the specified format (such as the specification to use and whether to compress the key). Currently, only compressed and uncompressed ECC public key data can be obtained.
+
+> **NOTE**
+>
+> The difference between [Key.getEncoded()](#getencoded) and this API is as follows:<br>
+>
+> You can specify the format of the data to be obtained in this API.
+>
+> The format of the key to be obtained cannot be specified in [Key.getEncoded()](#getencoded). That is, the format of the data obtained must be the same as that of the original data. The original data format is the format of the key object generated by [convertKey](#convertkey-3).
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name| Type                 | Mandatory| Description                |
+| ---- | --------------------- | ---- | -------------------- |
+| format  | string | Yes  | Format of the key. The value can be **X509\|COMPRESSED** or **X509\|UNCOMPRESSED** only. |
+
+**Return value**
+
+| Type                       | Description                             |
+| --------------------------- | --------------------------------- |
+| [DataBlob](#datablob) | Public key data in the specified format.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**Example**
+
+```ts
+let key: cryptoFramework.PubKey; // Key is a public key object. The generation process is omitted here.
+let returnBlob = key.getEncodedDer('X509|UNCOMPRESSED');
+console.info('returnBlob data: ' + returnBlob.data);
 ```
 
 ## PriKey
@@ -692,13 +779,13 @@ Obtains a key parameter. This API returns the result synchronously.
 
 | Name| Type                 | Mandatory| Description                |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
+| itemType  | [AsyKeySpecItem](#asykeyspecitem10) | Yes  | Key parameter to obtain.|
 
 **Return value**
 
 | Type                       | Description                             |
 | --------------------------- | --------------------------------- |
-| bigint\|string\|number | Content of the key parameter obtained.|
+| bigint \| string \| number | Content of the key parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -752,7 +839,7 @@ For details about the supported specifications, see [Symmetric Key Generation an
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see "String Parameter" in [Symmetric Key Generation and Conversion Specifications](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).|
+| algName | string | Yes  | Algorithm used to create the **symKeyGenerator** instance.<br>For details, see **String Parameter** in [Symmetric Key Generation and Conversion Specifications] (../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md).|
 
 **Return value**
 
@@ -776,7 +863,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 Provides APIs for using the **symKeyGenerator**.
 
-Before using any API of the **SymKeyGenerator** class, you must create a **symKeyGenerator** instance by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+Before using any API of the **SymKeyGenerator** class, you must create a **SymKeyGenerator** instance by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
 
 ### Attributes
 
@@ -798,7 +885,7 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 > **NOTE**
 >
-> For the symmetric key used in the hash-based message authentication code (HMAC) algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key with the same length as the hash value will be randomly generated. For example, if **HMAC|SHA256** is specified, a 256-bit key will be randomly generated. <br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), symmetric key data cannot be randomly generated. In this case, you can use [convertKey](#convertkey) to generate symmetric key data.
+> For the symmetric key used with the HMAC algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key with the same length as the hash value will be randomly generated. For example, if **HMAC|SHA256** is specified, a 256-bit key will be randomly generated.<br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), symmetric key data cannot be randomly generated. In this case, you can use [convertKey](#convertkey) to generate symmetric key data.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -861,9 +948,47 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
   symKeyGenerator.generateSymKey()
     .then(symKey => {
       console.info('Generate symKey success, algName: ' + symKey.algName);
-    }, (error: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
     });
+```
+
+### generateSymKeySync<sup>12+</sup>
+
+generateSymKeySync(): SymKey
+
+Generates a symmetric key randomly. This API returns the result synchronously.
+
+This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+
+**RAND_priv_bytes()** of OpenSSL can be used to generate random keys.
+
+> **NOTE**
+>
+> For the symmetric key used with the HMAC algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, a binary key with the same length as the hash value will be randomly generated. For example, if **HMAC|SHA256** is specified, a 256-bit key will be randomly generated.<br>If no hash algorithm is specified when the symmetric key generator is created (for example, only **HMAC** is specified), symmetric key data cannot be randomly generated. In this case, you can use [convertKeySync](#convertkeysync12) to generate symmetric key data.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 17620001 | memory error. |
+
+**Example**
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function testGenerateSymKeySync() {
+  // Create a SymKeyGenerator instance.
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
+  // Use SymKeyGenerator to randomly generate a symmetric key.
+  let key = symKeyGenerator.generateSymKeySync();
+  let encodedKey = key.getEncoded();
+  console.info('key hex:' + encodedKey.data);
+}
 ```
 
 ### convertKey
@@ -876,7 +1001,7 @@ This API can be used only after a **symKeyGenerator** instance is created by usi
 
 > **NOTE**
 >
-> For the symmetric key used in the HMAC algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data to be passed in must be of the same length as the hash. For example, if **HMAC|SHA256** is specified, a 256-bit key must be passed in. <br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), the length of the binary key data is in the range of [1,4096], in bytes.
+> For the symmetric key used with the HMAC algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data to be passed in must be of the same length as the hash. For example, if **HMAC|SHA256** is specified, a 256-bit key must be passed in.<br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), the length of the binary key data is in the range of [1,4096], in bytes.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -969,9 +1094,55 @@ function testConvertKey() {
   symKeyGenerator.convertKey(keyMaterialBlob)
     .then(symKey => {
       console.info('Convert symKey success, algName: ' + symKey.algName);
-    }, (error: BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
     });
+}
+```
+
+### convertKeySync<sup>12+</sup>
+
+convertKeySync(key: DataBlob): SymKey
+
+Converts data into a symmetric key. This API returns the result synchronously.
+
+This API can be used only after a **symKeyGenerator** instance is created by using [createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator).
+
+> **NOTE**
+>
+> For the symmetric key used with the HMAC algorithm, if the hash algorithm (for example, **HMAC|SHA256**) is specified when the symmetric key generator is created, the binary key data to be passed in must be of the same length as the hash. For example, if **HMAC|SHA256** is specified, a 256-bit key must be passed in.<br>If no hash algorithm is specified when the symmetric key generator is created (for example, only HMAC is specified), the length of the binary key data is in the range of [1,4096], in bytes.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name    | Type         | Mandatory| Description                      |
+| -------- | ------------------- | ---- | ---------------------|
+| key      | [DataBlob](#datablob)             | Yes  | Data to convert.                                        |
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message                                              |
+| -------- | --------------------------------------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.                                       |
+
+**Example**
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function testConvertKeySync() {
+  // The symmetric key length is 64 bytes, that is, 512 bits.
+  let keyMessage = '87654321abcdefgh87654321abcdefgh87654321abcdefgh87654321abcdefgh';
+  let keyBlob: cryptoFramework.DataBlob = {
+    data : new Uint8Array(buffer.from(keyMessage, 'utf-8').buffer)
+  }
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('HMAC');
+  let key = symKeyGenerator.convertKeySync(keyBlob);
+  let encodedKey = key.getEncoded();
+  console.info('key encoded data: ' + encodedKey.data);
 }
 ```
 
@@ -1099,6 +1270,47 @@ keyGenPromise.then(keyPair => {
 });
 ```
 
+### generateKeyPairSync<sup>12+</sup>
+
+generateKeyPairSync(): KeyPair
+
+Generates a key pair randomly. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | Asymmetric key pair generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
+try {
+  let keyPairData = asyKeyGenerator.generateKeyPairSync();
+  if (keyPairData != null) {
+    console.info('[Sync]: key pair success');
+  } else {
+    console.error("[Sync]: get key pair result fail!");
+  }
+} catch (e) {
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
 ### convertKey
 
 convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCallback\<KeyPair\>): void
@@ -1189,6 +1401,58 @@ keyGenPromise.then(keyPair => {
 }).catch((error: BusinessError) => {
   console.error("convertKey error.");
 });
+```
+
+### convertKeySync<sup>12+</sup>
+
+convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
+
+Converts data into an asymmetric key pair. This API returns the result synchronously. For details, see **Key Conversion**.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name  | Type   | Mandatory| Description            |
+| ------ | -------- | ---- | ---------------- |
+| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Public key material to convert. If no public key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
+| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | Yes  | Private key material to convert. If no private key is required, set this parameter to **null**. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | Asymmetric key pair generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error.          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
+let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
+let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray }; // Binary data of the public key.
+let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray }; // Binary data of the private key.
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
+try {
+  let keyPairData = asyKeyGenerator.convertKeySync(pubKeyBlob, priKeyBlob);
+  if (keyPairData != null) {
+    console.info('[Sync]: key pair success');
+  } else {
+    console.error("[Sync]: convert key pair result fail!");
+  }
+} catch (e) {
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
 ```
 
 **Key Conversion**
@@ -1351,6 +1615,51 @@ keyGenPromise.then(keyPair => {
 });
 ```
 
+### generateKeyPairSync<sup>12+</sup>
+
+generateKeyPairSync(): KeyPair
+
+Generates an asymmetric key pair. This API returns the result synchronously.
+
+If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used to create the key generator, a key pair will be randomly generated. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain a key pair that is consistent with the specified key parameters.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [KeyPair](#keypair) | Asymmetric key pair generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
+let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
+try {
+  let keyPairData = asyKeyGeneratorBySpec.generateKeyPairSync();
+  if (keyPairData != null) {
+    console.info('[Sync]: key pair success');
+  } else {
+    console.error("[Sync]: get key pair result fail!");
+  }
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
 ### generatePriKey
 
 generatePriKey(callback: AsyncCallback\<PriKey>): void
@@ -1428,6 +1737,50 @@ keyGenPromise.then(priKey => {
 }).catch((error: BusinessError) => {
   console.error("generatePriKey error.");
 });
+```
+
+### generatePriKeySync<sup>12+</sup>
+
+generatePriKeySync(): PriKey
+
+Generates a private key randomly. This API returns the result synchronously.
+
+If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, a private key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the private key from the key pair generated.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [PriKey](#prikey) | Private key generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
+let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
+try {
+  let priKeyData = asyKeyGeneratorBySpec.generatePriKeySync();
+  if (priKeyData != null) {
+    console.info('[Sync]: pri key success');
+  } else {
+    console.error("[Sync]: get pri key result fail!");
+  }
+} catch (e) {
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
 ```
 
 ### generatePubKey
@@ -1509,6 +1862,50 @@ keyGenPromise.then(pubKey => {
 });
 ```
 
+### generatePubKeySync<sup>12+</sup>
+
+generatePubKeySync(): PubKey
+
+Generates a public key. This API returns the result synchronously.
+
+If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, the specified public key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the specified public key from the key pair generated.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [PubKey](#pubkey) | Private key generated.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17630001 | crypto operation error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // Use DSA as an example. asyKeyPairSpec specifies full parameters of the private and public keys. The generation process is omitted here.
+let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
+try {
+  let pubKeyData = asyKeyGeneratorBySpec.generatePubKeySync();
+  if (pubKeyData != null) {
+    console.info('[Sync]: pub key success');
+  } else {
+    console.error("[Sync]: get pub key result fail!");
+  }
+} catch (e) {
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
 ## ECCKeyUtil<sup>11+</sup>
 
 Provides APIs for generating common parameters for an asymmetric key pair based on the elliptic curve name.
@@ -1525,7 +1922,7 @@ Generates common parameters for an asymmetric key pair based on the specified na
 
 | Name | Type  | Mandatory| Description                                          |
 | ------- | ------ | ---- | ---------------------------------------------- |
-| algName | string | Yes  | NID of the elliptic curve.|
+| curveName | string | Yes  | NID of the elliptic curve.|
 
 **Return value**
 
@@ -1554,6 +1951,100 @@ try {
     let e: BusinessError = err as BusinessError;
     console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
 }
+```
+
+### convertPoint<sup>12+</sup>
+
+static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
+
+Converts the specified point data into a **Point** object based on the curve name, that is, Name IDentifier (NID). Currently, compressed and uncompressed point data is supported. 
+
+> **NOTE**
+>
+> According to section 2.2 in RFC 5480:<br>
+> 1. The uncompressed point data is represented as **0x04**\|coordinate x \|coordinate y.
+> 2. The compressed point data in the **Fp** field (the **F2m** field is not supported currently) is represented as follows: **0x03**\|coordinate x  (when coordinate y is an odd number); **0x02**\|coordinate x (when coordinate y is an even number).
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name      | Type       | Mandatory| Description                                          |
+| ------------ | ---------- | ---- | ---------------------------------------------- |
+| curveName    | string     | Yes  | Elliptic curve name that is, the NID.|
+| encodedPoint | Uint8Array | Yes  | Data of the point on the ECC elliptic curve to convert.|
+
+**Return value**
+
+| Type             | Description                |
+| ----------------- | ------------------- |
+| [Point](#point10) | **Point** object obtained.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**Example**
+
+```ts
+// Randomly generated uncompressed point data.
+let pkData = new Uint8Array([4, 143, 39, 57, 249, 145, 50, 63, 222, 35, 70, 178, 121, 202, 154, 21, 146, 129, 75, 76, 63, 8, 195, 157, 111, 40, 217, 215, 148, 120, 224, 205, 82, 83, 92, 185, 21, 211, 184, 5, 19, 114, 33, 86, 85, 228, 123, 242, 206, 200, 98, 178, 184, 130, 35, 232, 45, 5, 202, 189, 11, 46, 163, 156, 152]);
+let returnPoint = cryptoFramework.ECCKeyUtil.convertPoint('NID_brainpoolP256r1', pkData);
+console.info('returnPoint: ' + returnPoint.x.toString(16));
+```
+
+### getEncodedPoint<sup>12+</sup>
+
+static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Array
+
+Obtains the point data in the specified format from a **Point** object. Currently, compressed and uncompressed point data is supported.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name      | Type              | Mandatory| Description                                          |
+| ------------ | ----------------- | ---- | ---------------------------------------------- |
+| curveName    | string            | Yes  | Elliptic curve name that is, the NID.|
+| point        | [Point](#point10) | Yes  | **Point** object of the elliptic curve.|
+| format       | string            | Yes  | Format of the point data to obtain. Currently, the value can be **COMPRESSED** or **UNCOMPRESSED** only.|
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| Uint8Array | Point data in the specified format.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters. |
+| 17620001 | memory error. |
+| 17630001 | crypto operation error. |
+
+**Example**
+
+```ts
+let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
+let keyPair = await generator.generateKeyPair();
+let eccPkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
+let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+console.info('ECC_PK_X_BN 16: ' + eccPkX.toString(16));
+console.info('ECC_PK_Y_BN 16: ' + eccPkY.toString(16));
+// Place eccPkX.toString(16) in x and eccPkY.toString(16) in y.
+let returnPoint: cryptoFramework.Point = {
+  x: BigInt('0x' + eccPkX.toString(16)),
+  y: BigInt('0x' + eccPkY.toString(16))
+};
+let returnData = cryptoFramework.ECCKeyUtil.getEncodedPoint('NID_brainpoolP256r1', returnPoint, 'UNCOMPRESSED');
+console.info('returnData: ' + returnData);
 ```
 
 ## DHKeyUtil<sup>11+</sup>
@@ -1605,6 +2096,102 @@ try {
 }
 ```
 
+## SM2CryptoUtil<sup>12+</sup>
+
+Provides APIs for SM2 cryptographic operations.
+
+### genCipherTextBySpec<sup>12+</sup>
+
+static genCipherTextBySpec(spec: SM2CipherTextSpec, mode?: string): DataBlob
+
+Generates SM2 ciphertext in ASN.1 format.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                            |
+| ------ | ------ | ---- | ------------------------------------------------ |
+| spec   | [SM2CipherTextSpec](#sm2ciphertextspec12) | Yes  | SM2 ciphertext parameters.|
+| mode  | string | No  | Order of the SM2 parameters in the ciphertext. Currently, only C1C3C2 is supported. |
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [DataBlob](#datablob) | SM2 ciphertext in ASN.1 format.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 17620001 | memory error.                    |
+| 17630001 | crypto operation error.          |
+
+**Example**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let spec : cryptoFramework.SM2CipherTextSpec = {
+      xCoordinate: BigInt('20625015362595980457695435345498579729138244358573902431560627260141789922999'),
+      yCoordinate: BigInt('48563164792857017065725892921053777369510340820930241057309844352421738767712'),
+      cipherTextData: new Uint8Array([100,227,78,195,249,179,43,70,242,69,169,10,65,123]),
+      hashData: new Uint8Array([87,167,167,247,88,146,203,234,83,126,117,129,52,142,82,54,152,226,201,111,143,115,169,125,128,42,157,31,114,198,109,244]),
+    }
+    let data = cryptoFramework.SM2CryptoUtil.genCipherTextBySpec(spec, 'C1C3C2');
+    console.info('genCipherTextBySpec success');
+} catch (err) {
+    console.error(`genCipherTextBySpec error, ${e.code}, ${e.message}`);
+}
+```
+
+### getCipherTextSpec<sup>12+</sup>
+
+static getCipherTextSpec(cipherText: DataBlob, mode?: string): SM2CipherTextSpec
+
+Obtains SM2 ciphertext parameters from the SM2 ciphertext in ASN.1 format.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                            |
+| ------ | ------ | ---- | ------------------------------------------------ |
+| cipherText     | [DataBlob](#datablob)                 | Yes  | SM2 ciphertext in ASN.1 format. |
+| mode  | string | No  | Order of the SM2 parameters in the ciphertext. Currently, only C1C3C2 is supported. |
+
+**Return value**
+
+| Type             | Description                             |
+| ----------------- | --------------------------------- |
+| [SM2CipherTextSpec](#sm2ciphertextspec12) | SM2 ciphertext parameters obtained.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 17620001 | memory error.                    |
+| 17630001 | crypto operation error.          |
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let cipherTextArray = new Uint8Array([48,118,2,32,45,153,88,82,104,221,226,43,174,21,122,248,5,232,105,41,92,95,102,224,216,149,85,236,110,6,64,188,149,70,70,183,2,32,107,93,198,247,119,18,40,110,90,156,193,158,205,113,170,128,146,109,75,17,181,109,110,91,149,5,110,233,209,78,229,96,4,32,87,167,167,247,88,146,203,234,83,126,117,129,52,142,82,54,152,226,201,111,143,115,169,125,128,42,157,31,114,198,109,244,4,14,100,227,78,195,249,179,43,70,242,69,169,10,65,123]);
+    let cipherText : cryptoFramework.DataBlob = {data : cipherTextArray};
+    let spec : cryptoFramework.SM2CipherTextSpec = cryptoFramework.SM2CryptoUtil.getCipherTextSpec(cipherText, 'C1C3C2');
+    console.info('getCipherTextSpec success');
+} catch (err) {
+    console.error(`getCipherTextSpec error, ${e.code}, ${e.message}`);
+}
+```
+
 ## cryptoFramework.createCipher
 
 createCipher(transformation: string): Cipher
@@ -1623,9 +2210,9 @@ For details about the supported specifications, see [Symmetric Key Encryption an
 
 > **NOTE**
 >
-> 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed.
-> <br>You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
-> 2. When RSA or SM2 is used for asymmetric encryption and decryption, create a **Cipher** instance for encryption and decryption respectively. Do not use the same **Cipher** instance for encryption and decryption. For symmetric encryption and decryption, one **cipher** object can be used to perform both encryption and decryption as long as the algorithm specifications are the same.
+> 1. In symmetric encryption and decryption, the implementation of PKCS #5 is the same as that of PKCS #7. PKCS #5 and PKCS #7 use the same padding length and block length. That is, data is padded with 8 bytes in 3DES and 16 bytes in AES. **noPadding** indicates that no padding is performed.<br>
+> You need to understand the differences between different block cipher modes and use the correct parameter specifications. For example, padding is required for ECB and CBC. Otherwise, ensure that the plaintext length is an integer multiple of the block size. No padding is recommended for other modes. In this case, the ciphertext length is the same as the plaintext length.
+> 2. When RSA or SM2 is used for asymmetric encryption and decryption, create a **Cipher** instance for encryption and decryption respectively. Do not use the same **Cipher** instance for encryption and decryption. For symmetric encryption and decryption, one **Cipher** object can be used to perform both encryption and decryption as long as the algorithm specifications are the same.
 
 **Return value**
 
@@ -1739,6 +2326,34 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | 17620002 | runtime error.                                    |
 | 17630001 | crypto operation error.|
 
+### initSync<sup>12+</sup>
+
+initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
+
+Initializes a [cipher](#cipher) instance. This API returns the result synchronously. **initSync**, **updateSync**, and **doFinalSync** must be used together. **initSync** and **doFinalSync** are mandatory, and **updateSync** is optional.
+
+This API can be used only after a [Cipher](#cipher) instance is created by using [createCipher](#cryptoframeworkcreatecipher).
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| opMode | [CryptoMode](#cryptomode)                       | Yes  | Operation (encryption or decryption) to perform.                                          |
+| key    | [Key](#key)                                     | Yes  | Key for encryption or decryption.                                      |
+| params | [ParamsSpec](#paramsspec)  | Yes  | Parameters for encryption or decryption. For algorithm modes without parameters (such as ECB), **null** can be passed in.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 401      | invalid parameters.     |
+| 17620001 | memory error.           |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
 ### update
 
 update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
@@ -1749,9 +2364,9 @@ This API can be called only after the [Cipher](#cipher) instance is initialized 
 
 > **NOTE**
 >
-> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update** is output. That is, encrypted/decrypted data is returned as long as the data passed in by **update** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update**/**doFinal**.<br>When **doFinal** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> 2. You can use **update** multiple times or do not use it (use **doFinal** after **init**), depending on the size of the data.<br>
->    The data to be passed in by **update** (once or accumulatively) is not size bound. For symmetric encryption and decryption of a large amount of data, you are advised to call **update** multiple times to pass in the data by segment.<br>
+> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.  <br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update** is output. That is, encrypted/decrypted data is returned as long as the data passed in by **update** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update**/**doFinal**.<br>When **doFinal** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 2. You can use **update** multiple times or do not use it (use **doFinal** after **init**), depending on the data volume.<br>
+>    The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update()** multiple times to pass in the data by segment.<br>
 >    For details about the sample code for calling **update** multiple times, see [Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
 > 3. RSA or SM2 asymmetric encryption and decryption do not support **update**.
 
@@ -1784,11 +2399,12 @@ This API can be called only after the [Cipher](#cipher) instance is initialized 
 
 > **NOTE**
 >
-> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext.<br>For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update** is output. That is, encrypted/decrypted data is returned as long as the data passed in by **update()** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update**/**doFinal**.<br>When **doFinal** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
-> 2. You can use **update** multiple times or do not use it (use **doFinal** after **init**), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. For symmetric encryption and decryption of a large amount of data, you are advised to call **update** multiple times to pass in the data by segment.<br>
+> 1. The **update** and **doFinal** operation results vary with the block mode used. If you are not familiar with the block modes for symmetric encryption and decryption, add a judgment to determine whether the result of each **update** and **doFinal** is null. If the result is not null, obtain the data to concatenate the complete ciphertext or plaintext. <br>
+> For example, in ECB and CBC modes, data is encrypted or decrypted by block no matter whether the data passed in by **update** is an integer multiple of the block length, and the encryption/decryption block result generated by this **update** is output. That is, encrypted/decrypted data is returned as long as the data passed in by **update** reaches the size of a block. Otherwise, **null** is returned and the data will be retained until a block is formed in the next **update**/**doFinal**.<br>When **doFinal** is called, the data that has not been encrypted or decrypted will be padded based on the padding mode set in [createCipher](#cryptoframeworkcreatecipher) to an integer multiple of the block length, and then encrypted or decrypted.<br>For a mode in which a block cipher can be converted into a stream cipher, the length of the ciphertext may be the same as that of the plaintext.
+> 2. You can call **update** multiple times or do not use it (use **doFinal** after **init**), depending on the data volume.<br>
+>    The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment.<br>
 >    For details about the sample code for calling **update** multiple times, see [Encryption and Decryption by Segment with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
->    3. RSA or SM2 asymmetric encryption and decryption do not support **update**.
+> 3. RSA or SM2 asymmetric encryption and decryption do not support **update**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1814,13 +2430,41 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
 
+### updateSync<sup>12+</sup>
+
+updateSync(data: DataBlob): void
+
+Updates the data to encrypt or decrypt by segment. This API returns the encrypted or decrypted data synchronously.
+
+This API can be called only after the [Cipher](#cipher) instance is initialized by using [initSync()](#initsync12).
+
+See **NOTE** in **update()** for other precautions.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name| Type                 | Mandatory| Description                                                        |
+| ------ | --------------------- | ---- | ------------------------------------------------------------ |
+| data   | [DataBlob](#datablob) | Yes  | Data to encrypt or decrypt. It cannot be **null** or {data:Uint8Array (empty)}.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 401      | invalid parameters.     |
+| 17620001 | memory error.           |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
 ### doFinal
 
 doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
  (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finalize the symmetric encryption or decryption. This API uses an asynchronous callback to return the encrypted or decrypted data.<br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**.<br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
-- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **data** in **doFinal** is null, the result of **doFinal** is **authTag**.<br>Set **authTag** to [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) for decryption. The ciphertext is used as the input parameter **data** for decryption.
+- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. **authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
  (2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API uses an asynchronous callback to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
@@ -1829,7 +2473,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 >
 >  1. In symmetric encryption and decryption, after **doFinal** is called, the encryption and decryption process is complete and the [Cipher](#cipher) instance is cleared. When a new encryption and decryption process is started, **init()** must be called with a complete parameter list for initialization.<br>Even if the same symmetric key is used to encrypt and decrypt the same **Cipher** instance, the **params** parameter must be set when **init** is called during decryption.
 >  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **init()**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
->  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
+>  3. The result of **doFinal** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal** result.
 >  4. For details about the sample code for calling **doFinal** multiple times in asymmetric encryption and decryption, see [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md). The operations are similar for SM2 and RSA.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -1853,7 +2497,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Encryption with AES GCM (example)**
 
-For more encryption and decryption examples, see Encryption and Decryption with an AES Symmetric Key (GCM Mode)(../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
+For more encryption and decryption examples, see [Encryption and Decryption with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -1914,7 +2558,7 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 >
 >  1. In symmetric encryption and decryption, after **doFinal** is called, the encryption and decryption process is complete and the [Cipher](#cipher) instance is cleared. When a new encryption and decryption process is started, **init()** must be called with a complete parameter list for initialization.<br>Even if the same symmetric key is used to encrypt and decrypt the same **Cipher** instance, the **params** parameter must be set when **init** is called during decryption.
 >  2. If a decryption fails, check whether the data to be encrypted and decrypted matches the parameters in **init()**. For the GCM mode, check whether the **authTag** obtained after encryption is obtained from the **GcmParamsSpec** for decryption.
->  3. The result of **doFinal()** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal()** result.
+>  3. The result of **doFinal** may be **null**. To avoid exceptions, determine whether the result is **null** before using the **.data** field to access the **doFinal** result.
 >  4. For details about the sample code for calling **doFinal** multiple times in asymmetric encryption and decryption, see [Encryption and Decryption by Segment with an RSA Asymmetric Key Pair](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md). The operations are similar for SM2 and RSA.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -1943,7 +2587,7 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Encryption with AES GCM (example)**
 
-For more encryption and decryption examples, see Encryption and Decryption with an AES Symmetric Key (GCM Mode)(../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
+For more encryption and decryption examples, see [Encryption and Decryption with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -1982,6 +2626,81 @@ async function cipherByPromise() {
   gcmParams.authTag = await cipher.doFinal(null);
   console.info('encryptUpdate plainText: ' + encryptUpdate.data);
 }
+```
+
+### doFinalSync<sup>12+</sup>
+
+doFinalSync(data: DataBlob | null): void
+
+ (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinalSync()** to finalize the symmetric encryption or decryption. This API returns the result synchronously.<br>If the data volume is small, you can pass in all the data in **doFinalSync** without using **updateSync**. If data has been passed using [updateSync](#updatesync12), you can pass in **null** in **doFinalSync**.<br>The output of **doFinalSync** varies with the symmetric cipher mode in use.
+
+- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **data** in **doFinalSync** is **null**, the result of **doFinalSync** is **authTag**.<br>Set **authTag** to [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) for decryption. The ciphertext is used as the input parameter **data** for decryption.
+- Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext, obtained by concatenating the output of each **updateSync** and **doFinalSync**.
+
+ (2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API returns the result synchronously. If a large amount of data needs to be encrypted/decrypted, call **doFinalSync** multiple times and concatenate the result of each **doFinalSync** to obtain the complete plaintext/ciphertext.
+
+See **NOTE** in [doFinal()](#dofinal) for other precautions.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                                        |
+| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| data   | [DataBlob](#datablob)  | Yes  | Data to encrypt or decrypt. It can be **null** in symmetric encryption or decryption, but cannot be {data:Uint8Array(empty)}.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 401      | invalid parameters.     |
+| 17620001 | memory error.           |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+**Encryption with AES GCM (example)**
+
+For more encryption and decryption examples, see [Encryption and Decryption with an AES Symmetric Key (GCM Mode)](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md).
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: cryptoFramework.DataBlob = {
+    data: dataTag
+  };
+  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
+    iv: ivBlob,
+    aad: aadBlob,
+    authTag: tagBlob,
+    algName: "GcmParamsSpec"
+  };
+  return gcmParamsSpec;
+}
+
+async function cipherBySync() {
+  let gcmParams = genGcmParamsSpec();
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+  let symKey = await symKeyGenerator.generateSymKey();
+  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
+  let message = "This is a test";
+  let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+  let encryptUpdate = cipher.updateSync(plainText);
+  gcmParams.authTag = cipher.doFinalSync(null);
+  console.info('encryptUpdate plainText: ' + encryptUpdate.data);
+}
+
 ```
 
 ### setCipherSpec<sup>10+</sup>
@@ -2035,7 +2754,7 @@ Obtains cipher specifications. Currently, only RSA and SM2 (available since API 
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string\|Uint8Array | Returns the value of the cipher parameter obtained.|
+| string \| Uint8Array | Returns the value of the cipher parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2068,7 +2787,7 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.|
+| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.<br>When RSA is used for signing, you can set **OnlySign** to enable the input data digest to be used only for signing.|
 
 **Return value**
 
@@ -2095,6 +2814,8 @@ let signer2 = cryptoFramework.createSign('RSA1024|PSS|SHA256|MGF1_SHA256');
 let signer3 = cryptoFramework.createSign('ECC224|SHA256');
 
 let signer4 = cryptoFramework.createSign('DSA2048|SHA256');
+
+let signer5 = cryptoFramework.createSign('RSA1024|PKCS1|SHA256|OnlySign');
 ```
 
 ## Sign
@@ -2188,9 +2909,10 @@ This API can be called only after the [Sign](#sign) instance is initialized by u
 
 > **NOTE**
 >
-> You can call **update** multiple times or do not use **update** (call [sign](#sign-1) after [init](#init-2)), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. If a large amount of data needs to be signed, you are advised to use **update** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
-> For details about the sample code for calling **update** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
+> You can call **update** multiple times or do not use **update** (call [sign](#sign-1) after [init](#init-2)), depending on the data volume.<br>
+> The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
+> For details about the sample code for calling **update** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.<br>
+> **OnlySign** cannot be used with **update**. If **OnlySign** is specified, use **sign** to pass in data.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2221,9 +2943,10 @@ This API can be called only after the [Sign](#sign) instance is initialized by u
 
 > **NOTE**
 >
-> You can call **update** multiple times or do not use **update** (call [sign](#sign-2) after [init](#init-3)), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. If a large amount of data needs to be signed, you are advised to use **update** multiple times to pass in data. This can prevent too much memory from being requested at a time.<br>
-> For details about the sample code for calling **update** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
+> You can call **update** multiple times or do not use **update** (call [sign](#sign-2) after [init](#init-3)), depending on the data volume.<br>
+> The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
+> For details about the sample code for calling **update** multiple times in signing, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.<br>
+> **OnlySign** cannot be used with **update**. If **OnlySign** is specified, use **sign** to pass in data.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2368,11 +3091,11 @@ async function signByPromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 Sets signing specifications. You can use this API to set signing parameters that cannot be set by [createSign](#cryptoframeworkcreatesign).
 
-Currently, only RSA and SM2 are supported. Since API version 11, signature parameters can be set for the SM2 algorithm.
+Currently, only RSA and SM2 are supported. Since API version 11, SM2 signing parameters can be set.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2381,7 +3104,7 @@ Currently, only RSA and SM2 are supported. Since API version 11, signature param
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signing parameter to set.|
-| itemValue | number\|Uint8Array<sup>11+</sup> | Yes  | Value of the signing parameter to set.|
+| itemValue | number \| Uint8Array<sup>11+</sup> | Yes  | Value of the signing parameter to set.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2419,7 +3142,7 @@ Obtains signing specifications. Currently, only RSA is supported.
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string\|number | Returns the value of the signing parameter obtained.|
+| string \| number | Returns the value of the signing parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2452,7 +3175,7 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.|
+| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.<br>When the RSA algorithm is used for signature verification, you can use **Recover** to verify and recover the signed data.|
 
 **Return value**
 
@@ -2475,6 +3198,8 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 let verifyer1 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
 
 let verifyer2 = cryptoFramework.createVerify('RSA1024|PSS|SHA256|MGF1_SHA256');
+
+let verifyer3 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256|Recover');
 ```
 
 ## Verify
@@ -2483,7 +3208,7 @@ Provides APIs for signature verification. Before using any API of the **Verify**
 
 The **Verify** class does not support repeated initialization. When a new key is used for signature verification, you must create a new **Verify** instance and call **init()** for initialization.
 
-The signature verification mode is determined in **createVerify()**, and key is set by **init()**.
+The signature verification mode is determined in **createVerify()**, and the key is set by **init()**.
 
 If the signed message is short, you can call **verify()** to pass in the signed message and signature (**signatureData**) for signature verification after **init()**. That is, you do not need to use **update()**.
 
@@ -2562,8 +3287,8 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 
 > **NOTE**
 >
-> You can call **update** multiple times or do not use **update** (call [verify](#verify-1) after [init](#init-4)), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. If the data is considerably long, you are advised to use **update()** multiple times to pass in data by segment. This prevents too much memory from being requested at a time.<br>
+> You can call **update** multiple times or do not use **update** (call [verify](#verify-1) after [init](#init-4)), depending on the data volume.<br>
+> The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
 > For details about the sample code for calling **update** multiple times in signature verification, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2595,8 +3320,8 @@ This API can be called only after the [Verify](#verify) instance is initialized 
 
 > **NOTE**
 >
-> You can call **update()** multiple times or do not use **update** (call [verify](#verify-2) after [init](#init-5)), depending on the size of the data.<br>
-> The data to be passed in by **update** (once or accumulatively) is not size bound. If the data is considerably long, you are advised to use **update()** multiple times to pass in data by segment. This prevents too much memory from being requested at a time.<br>
+> You can call **update** multiple times or do not use **update** (call [verify](#verify-2) after [init](#init-5)), depending on the data volume.<br>
+> The amount of the data to be passed in by **update** (one-time or accumulative) is not limited. If there is a large amount of data, you are advised to call **update** multiple times to pass in the data by segment. This prevents too much memory from being requested at a time.<br>
 > For details about the sample code for calling **update** multiple times in signature verification, see [Signing and Signature Verification by Segment with an RSA Key Pair (PKCS1 Mode)](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md). The operations of other algorithms are similar.
 
 **System capability**: SystemCapability.Security.CryptoFramework
@@ -2746,15 +3471,121 @@ async function verifyByPromise() {
 }
 ```
 
+### recover<sup>12+</sup>
+
+recover(signatureData: DataBlob): Promise\<DataBlob | null>
+
+Recovers the original data from a signature. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> Currently, only RSA is supported.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name       | Type    | Mandatory| Description      |
+| ------------- | -------- | ---- | ---------- |
+| signatureData | [DataBlob](#datablob)  | Yes  | Signature data. |
+
+**Return value**
+
+| Type             | Description                          |
+| ----------------- | ------------------------------ |
+| Promise\<[DataBlob](#datablob)  \| null> | Promise used to return the data restored.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
+**Example**
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = await rsaGenerator.convertKey(pubKeyBlob, priKeyBlob);
+  console.info('convertKey success');
+  return keyPair;
+}
+
+async function recoverByPromise() {
+  // Key generated based on the key data and input data for signature verification. If the data in verify() is the same as that in sign(), the signature verification is successful.
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair = await genKeyPairByData(pkData, skData);
+  // The data is signData.data in Sign().
+  let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) };
+  let verifier = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256|Recover');
+  await verifier.init(keyPair.pubKey);
+  try {
+    let rawSignData = await verifier.recover(signMessageBlob);
+    if (rawSignData != null) {
+      console.info('[Promise]: recover result: ' + rawSignData.data);
+    } else {
+      console.error("[Promise]: get verify recover result fail!");
+    }
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`promise error, ${e.code}, ${e.message}`);
+  }
+}
+```
+
+### recoverSync<sup>12+</sup>
+
+recoverSync(signatureData: DataBlob): DataBlob | null
+
+Recovers the original data from a signature. This API returns the result synchronously.
+
+> **NOTE**
+>
+> Currently, only RSA is supported.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name       | Type    | Mandatory| Description      |
+| ------------- | -------- | ---- | ---------- |
+| signatureData | [DataBlob](#datablob)  | Yes  | Signature data. |
+
+**Return value**
+
+| Type             | Description                          |
+| ----------------- | ------------------------------ |
+| [DataBlob](#datablob)  \| null | Data restored.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
+
+| ID| Error Message              |
+| -------- | ---------------------- |
+| 401 | invalid parameters.          |
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
 ### setVerifySpec<sup>10+</sup>
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 Sets signature verification specifications. You can use this API to set signature verification parameters that cannot be set by [createVerify](#cryptoframeworkcreateverify).
 
-Currently, only RSA and SM2 (available since API version 11) are supported.
+Currently, only RSA and SM2 are supported. Since API version 11, SM2 signing parameters can be set.
 
 The parameters for signature verification must be the same as those for signing.
 
@@ -2765,7 +3596,7 @@ The parameters for signature verification must be the same as those for signing.
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signature verification parameter to set.|
-| itemValue | number\|Uint8Array<sup>11+</sup> | Yes  | Value of the signature verification parameter to set.|
+| itemValue | number \| Uint8Array<sup>11+</sup> | Yes  | Value of the signature verification parameter to set.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -2805,7 +3636,7 @@ The parameters for signature verification must be the same as those for signing.
 
 | Type          | Description       |
 | -------------- | ----------- |
-| string\|number | Returns the value of the parameter obtained.|
+| string \| number | Returns the value of the parameter obtained.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](errorcode-crypto-framework.md).
@@ -3300,7 +4131,7 @@ Updates the message for MAC computation. This API uses an asynchronous callback 
 
 > **NOTE**
 >
-> For details about the code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
+> For details about the sample code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3327,7 +4158,7 @@ Updates the message for MAC computation. This API uses a promise to return the r
 
 > **NOTE**
 >
-> For details about the code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
+> For details about the sample code for calling **update** multiple times in an HMAC operation, see [HMAC (Passing In Full Data)](../../security/CryptoArchitectureKit/crypto-compute-mac.md#hmac-passing-in-full-data).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3722,7 +4553,7 @@ Creates a key derivation function instance.<br>For details about the supported s
 
 | Name | Type  | Mandatory| Description                             |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only the PBKDF2 algorithm is supported. For example, **PBKDF2\|SHA1**.| |
+| algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only PBKDF2 and HKDF are supported. For example, **PBKDF2\|SHA256** and **HKDF\|SHA256**.  |
 
 **Return value**
 
@@ -3740,10 +4571,9 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 | 17620001 | memory error.          |
 
 **Example**
-
+- PBKDF2
 ```ts
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA1');
-
+let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 ```
 
 ## Kdf<sup>11+</sup>
@@ -3760,7 +4590,7 @@ Defines the key derivation function class. Before using APIs of this class, you 
 
 ### generateSecret
 
-generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
+generateSecret(spec: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 Generates a key based on the specified key derivation parameters. This API uses an asynchronous callback to return the result.
 
@@ -3784,27 +4614,49 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Example**
 
-```ts
-let spec: cryptoFramework.PBKDF2Spec = {
-  algName: 'PBKDF2',
-  password: '123456',
-  salt: new Uint8Array(16),
-  iterations: 10000,
-  keySize: 32
-};
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-kdf.generateSecret(spec, (err, secret) => {
-  if (err) {
-    console.error("key derivation error.");
-    return;
-  }
-  console.info('key derivation output is ' + secret.data);
-});
-```
+- PBKDF2
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  kdf.generateSecret(spec, (err, secret) => {
+    if (err) {
+      console.error("key derivation error.");
+      return;
+    }
+    console.info('key derivation output is ' + secret.data);
+  });
+  ```
+
+- HKDF
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  let spec: cryptoFramework.HKDFSpec = {
+    algName: 'HKDF',
+    key: '123456',
+    salt: new Uint8Array(16),
+    info: new Uint8Array(16),
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
+  kdf.generateSecret(spec, (err, secret) => {
+    if (err) {
+      console.error("key derivation error.");
+      return;
+    }
+    console.info('key derivation output is ' + secret.data);
+  });
+  ```
 
 ### generateSecret
 
-generateSecret(params: KdfSpec): Promise\<DataBlob>
+generateSecret(spec: KdfSpec): Promise\<DataBlob>
 
 Generates a key based on the specified key derivation parameters. This API uses a promise to return the result.
 
@@ -3833,21 +4685,44 @@ For details about the error codes, see [Crypto Framework Error Codes](errorcode-
 
 **Example**
 
-```ts
-import { BusinessError } from '@ohos.base';
+- PBKDF2
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { BusinessError } from '@ohos.base';
 
-let spec: cryptoFramework.PBKDF2Spec = {
-  algName: 'PBKDF2',
-  password: '123456',
-  salt: new Uint8Array(16),
-  iterations: 10000,
-  keySize: 32
-};
-let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
-let kdfPromise = kdf.generateSecret(spec);
-kdfPromise.then(secret => {
-  console.info('key derivation output is ' + secret.data);
-}).catch((error: BusinessError) => {
-  console.error("key derivation error.");
-});
-```
+  let spec: cryptoFramework.PBKDF2Spec = {
+    algName: 'PBKDF2',
+    password: '123456',
+    salt: new Uint8Array(16),
+    iterations: 10000,
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then(secret => {
+    console.info('key derivation output is ' + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+  ```
+
+- HKDF
+  ```ts
+  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { BusinessError } from '@ohos.base';
+
+  let spec: cryptoFramework.HKDFSpec = {
+    algName: 'HKDF',
+    key: '123456',
+    salt: new Uint8Array(16),
+    info: new Uint8Array(16),
+    keySize: 32
+  };
+  let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
+  let kdfPromise = kdf.generateSecret(spec);
+  kdfPromise.then(secret => {
+    console.info('key derivation output is ' + secret.data);
+  }).catch((error: BusinessError) => {
+    console.error("key derivation error.");
+  });
+  ```

@@ -10,6 +10,7 @@
   - [@ohos.multimodalInput.gestureEvent (手势事件)](js-apis-multimodalinput-gestureevent.md)
   - [@ohos.multimodalInput.pointer (鼠标指针)](js-apis-pointer.md)
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
+  <!--Del-->
   - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](js-apis-pointer-sys.md)
   - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](js-apis-shortKey-sys.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](js-apis-inputconsumer-sys.md)
@@ -18,5 +19,13 @@
   - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](js-apis-inputmonitor-sys.md)
   - 已停止维护的接口
     - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](js-apis-cooperate-sys.md)
+  <!--DelEnd-->
+- C API
+  - 模块
+    - [Input](input.md)
+  - 头文件和结构体
+    - 头文件
+        - [oh_input_manager.h](oh__input__manager_8h.md)
+        - [oh_key_code.h](oh__key__code_8h.md)
 - 错误码
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)

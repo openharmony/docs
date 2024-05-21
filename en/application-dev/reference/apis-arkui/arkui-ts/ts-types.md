@@ -45,6 +45,15 @@ The **ResourceStr** type is used to represent the types that can be used by inpu
 | string                | String type.                   |
 | [Resource](#resource) | String referenced from system or application resources.|
 
+## ASTCResource<sup>12+</sup>
+
+The **ASTCResource** type is used to describe texture stitching.
+
+| Type                   | Description                       |
+| --------------------- | ------------------------- |
+| sources               | URI array, indicating the textures to be stitched.                   |
+| column                | Column size, indicating the number of textures to be stitched in each row.|
+
 ## Padding
 
 The **Padding** type is used to describe the paddings in different directions of a component.
@@ -136,12 +145,12 @@ The **RectResult** type is used to describe the position, width, and height of a
 
 The **ResourceColor** type is used to describe the color types of resources.
 
-| Type                                 | Description                                      |
-| ----------------------------------- | ---------------------------------------- |
-| [Color](ts-appendix-enums.md#color) | Color enums.                                  |
-| number                              | Color in hexadecimal notation. RGB is supported. Example: **0xffffff**              |
+| Type                               | Description                                                        |
+| ----------------------------------- | ------------------------------------------------------------ |
+| [Color](ts-appendix-enums.md#color) | Color enums.                                                |
+| number                              | Color in hexadecimal notation. RGB and ARGB are supported. Examples: **0xffffff** and **0xffff0000**.  |
 | string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
-| [Resource](#resource)               | Color referenced from system or application resources.             |
+| [Resource](#resource)               | Color referenced from system or application resources.      |
 
 ## ColoringStrategy<sup>10+</sup>
 
@@ -167,12 +176,12 @@ The **LengthConstrain** type is used to describe the maximum and minimum lengths
 
 The **Font** type is used to set the text style.
 
-| Name    | Type                                      | Mandatory  | Description                                      |
-| ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| size   | [Length](#length)                        | No   | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.<br>Default value: **16.0** |
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No   | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| **FontWeight.Normal** |
-| family | string \| [Resource](#resource)          | No   | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The HarmonyOS Sans font and [register custom fonts](../apis/js-apis-font.md) are supported.|
-| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | No   | Font style.<br>Default value: **FontStyle.Normal**                              |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| size   | [Length](#length)                                            | No  | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.<br>Default value: **16.0**|
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a thicker font.<br>Default value: **400** \| **FontWeight.Normal** |
+| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, HarmonyOS Sans'**. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md)) are supported.|
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | No  | Font style.<br>Default value: **FontStyle.Normal**            |
 
 ## Area<sup>8+</sup>
 
@@ -182,10 +191,10 @@ The **Area** type is used to describe the area information of a component.
 | -------------- | ---------------------- | ------------------------------ |
 | width          | [Length](#length)      | Width of the component. The value is of the number type in vp when used as the return value.|
 | height         | [Length](#length)      | Height of the component. The value is of the number type in vp when used as the return value.|
-| position       | [Position](#position8) | Position of the upper left corner of the component relative to that of its parent container.           |
-| globalPosition | [Position](#position8) | Position of the upper left corner of the component relative to that of the page where the component resides.            |
+| position       | [Position](#position) | Position of the upper left corner of the component relative to that of its parent container.           |
+| globalPosition | [Position](#position) | Position of the upper left corner of the component relative to that of the page where the component resides.            |
 
-## Position<sup>8+</sup>
+## Position
 
 The **Position** type is used to represent coordinates of a point.
 
@@ -193,6 +202,17 @@ The **Position** type is used to represent coordinates of a point.
 | ---- | ----------------- | ---- | --------------------------- |
 | x    | [Length](#length) | No   | X coordinate. The value is of the number type in vp when used as the return value.|
 | y    | [Length](#length) | No   | Y coordinate. The value is of the number type in vp when used as the return value.|
+
+## Edges<sup>12+</sup>
+
+The **Edges** type is used to describe the offset relative to the four edges. If both **top** and **bottom** are set, only **top** takes effect. If both **left** and **right** are set, only **left** takes effect.
+
+| Name  | Type    | Mandatory  | Description                         |
+| ---- | ------ | ---- | --------------------------- |
+| top    | [Dimension](#dimension10) | No   | Offset relative to the top edge.|
+| bottom    | [Dimension](#dimension10) | No   | Offset relative to the bottom edge.|
+| left    | [Dimension](#dimension10) | No   | Offset relative to the left edge.|
+| right    | [Dimension](#dimension10) | No   | Offset relative to the right edge.|
 
 ## ConstraintSizeOptions
 
@@ -241,7 +261,7 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | () =&gt; any | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../quick-start/arkts-builder.md).|
+| CustomBuilder | () =&gt; any \| void | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../../quick-start/arkts-builder.md#builder).|
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
@@ -395,10 +415,49 @@ The **TabContentAnimatedTransition** type is used to define the custom tab switc
 
 ## TabContentTransitionProxy<sup>11+</sup>
 
-Proxy object returned during the execution of the custom tab switching animation. You can use this object to obtain the start and target pages for the custom tab switching animation. In addition, you can call the **finishTransition** API of this object to notify the **\<Tabs>**component of the ending of the custom animation.
+Proxy object returned during the execution of the custom tab switching animation. You can use this object to obtain the start and target pages for the custom tab switching animation. In addition, you can call the **finishTransition** API of this object to notify the **\<Tabs>** component of the ending of the custom animation.
 
 | Name           | Type    |  Mandatory             | Description                                      |
 | ------------- | ---------------------- | ----------------------|------------------ |
 | from | number | Yes| Index of the currently displayed tab before the animation starts.|
 | to | number | Yes| Index of the target tab to switch to.|
 | finishTransition() | void | Yes| Called to notify the **\<Tabs>** component that the custom animation ends.|
+
+## PixelRoundPolicy<sup>11+</sup>
+
+The **PixelRoundPolicy** type is used to describe the rounding strategy for component pixel-level alignment.
+
+| Name    | Type               | Mandatory  | Description                  |
+| ------ | ----------------- | ---- | -------------------- |
+| start | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | No| Rounding for alignment with the start edge.|
+| top | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | No| Rounding for alignment with the top edge.|
+| end | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | No| Rounding for alignment with the end edge.|
+| bottom | [PixelRoundCalcPolicy](ts-appendix-enums.md#pixelroundcalcpolicy11) | No| Rounding for alignment with the bottom edge.|
+
+## VoidCallback<sup>12+</sup>
+
+The **VoidCallback** type is used to represent the callback: **() => void**.
+
+## Callback<sup>12+</sup>
+
+Callback<T,V = void> = (T) => V;
+
+The **Callback** type is used to represent the callback with parameters.
+
+## HoverCallback<sup>12+</sup>
+
+The **HoverCallback** type is used to represent the callback for the hover event.
+
+HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10)) => void
+
+| Name           | Type                  | Description                                      |
+| ------------- | ---------------------- | ---------------------------------------- |
+| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10)) => void | Callback for the hover event.|
+
+## StyledStringValue<sup>12+</sup>
+
+The **StyledStringValue** type is used to set the style for an attribute string.
+
+| Name  | Description      |
+| ------ | ---------- |
+| TextStyle | Text style.|

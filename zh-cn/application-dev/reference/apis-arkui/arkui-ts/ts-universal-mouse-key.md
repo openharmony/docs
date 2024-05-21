@@ -9,9 +9,11 @@
 
 ## onHover
 
-onHover(event: (isHover: boolean, event: HoverEvent) => void)
+onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 
 鼠标进入或退出组件时触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -22,11 +24,19 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void)
 | isHover             | boolean                             | 是   | 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。 |
 | event<sup>10+</sup> | [HoverEvent](#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性。                                       |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## onMouse
 
 onMouse(event: (event: MouseEvent) => void)
 
 当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -38,6 +48,9 @@ onMouse(event: (event: MouseEvent) => void)
 
 
 ## MouseEvent对象说明
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                     | 属性类型                                     | 描述                           |
 | ---------------------- | ---------------------------------------- | ---------------------------- |
@@ -57,6 +70,9 @@ onMouse(event: (event: MouseEvent) => void)
 | screenY<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的y轴坐标。<br>从API verdion 10开始不再维护，建议使用windowY代替。 |
 
 ## HoverEvent<sup>10+</sup>对象说明
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称              | 属性类型       | 描述      |
 | --------------- | ---------- | ------- |
@@ -80,7 +96,7 @@ struct MouseEventExample {
       Button(this.hoverText)
         .width(180).height(80)
         .backgroundColor(this.color)
-        .onHover((isHover?: boolean, event?: HoverEvent):void => {
+        .onHover((isHover: boolean, event: HoverEvent) => {
           // 通过onHover事件动态修改按钮在是否有鼠标悬浮时的文本内容与背景颜色
           if (isHover) {
             this.hoverText = 'hover';
@@ -92,7 +108,7 @@ struct MouseEventExample {
         })
       Button('onMouse')
         .width(180).height(80)
-        .onMouse((event?: MouseEvent):void => {
+        .onMouse((event: MouseEvent):void => {
           if(event){
             switch (event.button) {
               case MouseButton.None:

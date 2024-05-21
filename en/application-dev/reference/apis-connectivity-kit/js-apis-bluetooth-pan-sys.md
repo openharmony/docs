@@ -14,6 +14,9 @@ The **pan** module provides APIs for accessing the Bluetooth personal area netwo
 import pan from '@ohos.bluetooth.pan';
 ```
 
+## PanProfile
+
+Before using any API of **PanProfile**, you need to create an instance of this class by using **createPanProfile()**.
 
 ### disconnect
 

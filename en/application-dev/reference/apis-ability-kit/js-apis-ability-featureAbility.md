@@ -5,7 +5,7 @@ The **FeatureAbility** module provides APIs that enable user interaction. You ca
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module can be used only in the FA model. In the stage model, use the APIs provided by the [UIAbility](js-apis-app-ability-uiAbility.md) and [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) modules instead.
+> The APIs of this module can be used only in the FA model.
 
 ## Constraints
 
@@ -23,14 +23,13 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -77,14 +76,13 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 Starts an ability. This API uses a promise to return the result.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -129,15 +127,15 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 Obtains a **dataAbilityHelper** object.
 
-Observe the following when using this API:
- - To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
- - If an application running in the background needs to call this API to access a DataAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when accessing the DataAbility.)
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> To access a DataAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [dataShare.createDataShareHelper](../apis-arkdata/js-apis-data-dataShare-sys.md#datasharecreatedatasharehelper) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -169,14 +167,13 @@ Starts an ability. This API uses an asynchronous callback to return the result w
  - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) instead.
+**Note**: This API can be used only in the FA model.
 
 
 **Parameters**
@@ -220,20 +217,18 @@ featureAbility.startAbilityForResult(
 
 startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
-Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible to an ability after it is started:
+Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible for a started ability:
  - Normally, you can call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability. The result is returned to the caller.
  - If an exception occurs, for example, the ability is killed, an exception message, in which **resultCode** is **-1**, is returned to the caller.
  - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#featureabilityterminateselfwithresult7) to terminate the ability, the normal result is returned to the last caller, and an exception message, in which **resultCode** is **-1**, is returned to others.
 
-Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2) instead.
-
+**Note**: This API can be used only in the FA model.
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description           |
@@ -286,11 +281,11 @@ featureAbility.startAbilityForResult(
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>): void
 
-Terminates this ability. If the ability is started by calling [startAbilityForResult](#featureabilitystartabilityforresult7), the result is returned to the caller in the form of a callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+Terminates this ability. This API uses an asynchronous callback to return the result. If the ability is started by calling [startAbilityForResult](#featureabilitystartabilityforresult7), the result is returned to the caller when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -340,11 +335,11 @@ featureAbility.terminateSelfWithResult(
 
 terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
-Terminates this ability. If the ability is started by calling [startAbilityForResult](#featureabilitystartabilityforresult7), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+Terminates this ability. This API uses a promise to return the result. If the ability is started by calling [startAbilityForResult](#featureabilitystartabilityforresult7), the result is returned to the caller when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult-1) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -402,13 +397,13 @@ Checks whether the main window of this ability has the focus. This API uses an a
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [on('windowEvent')](../apis-arkui/js-apis-window.md#onwindowevent10) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
 | Name      | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>If the main window has the focus, **true** is returned. Otherwise, **false** is returned.|
+| callback | AsyncCallback\<boolean> | Yes   |Callback used to return the result.<br>If the main window has the focus, **true** is returned. Otherwise, **false** is returned.|
 
 **Example**
 
@@ -454,7 +449,7 @@ Obtains the Want corresponding to the ability to start. This API uses an asynchr
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbility.launchWant](js-apis-app-ability-uiAbility.md#attributes) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -483,7 +478,7 @@ Obtains the Want corresponding to the ability to start. This API uses a promise 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbility.launchWant](js-apis-app-ability-uiAbility.md#attributes) instead.
+**Note**: This API can be used only in the FA model.
 
 **Return value**
 
@@ -508,7 +503,7 @@ Obtains the application context.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbility.context](js-apis-app-ability-uiAbility.md#attributes) instead.
+**Note**: This API can be used only in the FA model.
 
 **Return value**
 
@@ -538,13 +533,13 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
 | Name      | Type                  | Mandatory  | Description      |
 | -------- | -------------------- | ---- | -------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the ability is terminated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -565,7 +560,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1) instead.
+**Note**: This API can be used only in the FA model.
 
 **Return value**
 
@@ -588,15 +583,15 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 Connects this ability to a ServiceAbility.
 
-Observe the following when using this API:
- - To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**)..
- - If an application running in the background needs to call this API to connect to a ServiceAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission. (Applications developed using the SDK of API version 8 or earlier are not restricted by this restriction when connecting to the ServiceAbility.)
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
- - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> **NOTE**
+>
+> For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
+> To connect to a ServiceAbility of another application, the target application must be configured with associated startup (**AssociateWakeUp** set to **true**).
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.connectServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -645,14 +640,14 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
 | Name        | Type                  | Mandatory  | Description                     |
 | ---------- | -------------------- | ---- | ----------------------- |
 | connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
-| callback   | AsyncCallback\<void> | Yes   | Callback used to return the result.               |
+| callback   | AsyncCallback\<void> | Yes   | Callback used to return the result. If the disconnection is successful, **err** is **undefined**. Otherwise, **err** is an error object.     |
 
 **Example**
 
@@ -695,7 +690,7 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -750,7 +745,7 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [window.getLastWindow](../apis-arkui/js-apis-window.md#windowgetlastwindow9) instead.
+**Note**: This API can be used only in the FA model.
 
 **Parameters**
 
@@ -782,7 +777,7 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [window.getLastWindow](../apis-arkui/js-apis-window.md#windowgetlastwindow9-1) instead.
+**Note**: This API can be used only in the FA model.
 
 **Return value**
 
@@ -804,7 +799,7 @@ featureAbility.getWindow().then((data: window.Window) => {
 });
 ```
 
-## AbilityWindowConfiguration
+## AbilityWindowConfiguration<sup>7+</sup>
 
 Defines the window configuration corresponding to this ability. The configuration is obtained through **featureAbility.AbilityWindowConfiguration**.
 
@@ -818,14 +813,14 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 | Name                                    | Value  | Description                                      |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| WINDOW_MODE_UNDEFINED<sup>7+</sup>       | 0    | The PageAbility is in an undefined window display mode.|
-| WINDOW_MODE_FULLSCREEN<sup>7+</sup>      | 1    | The PageAbility is in full screen mode.   |
-| WINDOW_MODE_SPLIT_PRIMARY<sup>7+</sup>   | 100  | The left screen in horizontal direction or the upper screen in vertical direction is the primary window.|
-| WINDOW_MODE_SPLIT_SECONDARY<sup>7+</sup> | 101  | The right screen in horizontal direction or the lower screen in vertical direction is the secondary window.|
-| WINDOW_MODE_FLOATING<sup>7+</sup>        | 102  | The PageAbility is displayed in floating window mode.|
+| WINDOW_MODE_UNDEFINED       | 0    | The PageAbility is in an undefined window display mode.|
+| WINDOW_MODE_FULLSCREEN      | 1    | The PageAbility is in full screen mode.   |
+| WINDOW_MODE_SPLIT_PRIMARY   | 100  | The left screen in horizontal direction or the upper screen in vertical direction is the primary window.|
+| WINDOW_MODE_SPLIT_SECONDARY | 101  | The right screen in horizontal direction or the lower screen in vertical direction is the secondary window.|
+| WINDOW_MODE_FLOATING        | 102  | The PageAbility is displayed in floating window mode.|
 
 
-## AbilityStartSetting
+## AbilityStartSetting<sup>7+</sup>
 
 Defines the window attribute corresponding to this ability. The **abilityStartSetting** attribute is an object defined in the format of [**key: string]: any**, where **key** is an enumerated value of **AbilityStartSetting** and **value** is an enumerated value of **AbilityWindowConfiguration**.
 
@@ -841,9 +836,9 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 | Name                          | Value             | Description                                      |
 | ---------------------------- | --------------- | ---------------------------------------- |
-| BOUNDS_KEY<sup>7+</sup>      | 'abilityBounds' | Ability window size.|
-| WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | Ability window display mode.|
-| DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | Display device ID.|
+| BOUNDS_KEY      | 'abilityBounds' | Ability window size.|
+| WINDOW_MODE_KEY | 'windowMode'    | Ability window display mode.|
+| DISPLAY_ID_KEY  | 'displayId'     | Display device ID.|
 
 ## ErrorCode<sup>7+</sup>
 
@@ -858,7 +853,7 @@ Enumerates the error codes that may be returned when an ability is started.
 | ABILITY_NOT_FOUND | -2   | The ability is not found.|
 | PERMISSION_DENY   | -3   | Permission denied.  |
 
-## DataAbilityOperationType
+## DataAbilityOperationType<sup>7+</sup>
 
 Enumerates the operation types of a DataAbility. The DataAbility can use an enumerated value to specify the operation type when operating data in batches.
 
@@ -866,9 +861,7 @@ Enumerates the operation types of a DataAbility. The DataAbility can use an enum
 
 | Name                      | Value   | Description                                      |
 | ------------------------ | ---- | ---------------------------------------- |
-| TYPE_INSERT<sup>7+</sup> | 1    | Insert operation.|
-| TYPE_UPDATE<sup>7+</sup> | 2    | Update operation.|
-| TYPE_DELETE<sup>7+</sup> | 3    | Deletion operation.|
-| TYPE_ASSERT<sup>7+</sup> | 4    | Assert operation.|
-
- <!--no_check--> 
+| TYPE_INSERT | 1    | Insert operation.|
+| TYPE_UPDATE | 2    | Update operation.|
+| TYPE_DELETE | 3    | Deletion operation.|
+| TYPE_ASSERT | 4    | Assert operation.|

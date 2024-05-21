@@ -3,7 +3,9 @@
 
 ## 概述
 
-音频录制信息。
+音频采样信息。
+
+当audioSampleRate和audioChannels同时为0时，忽略该类型音频相关参数，不录制该类型音频数据。
 
 **系统能力**：SystemCapability.Multimedia.Media.AVScreenCapture
 

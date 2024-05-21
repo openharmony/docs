@@ -22,7 +22,7 @@ import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbi
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | 否 | 否 | 上下文。 |
 
-## UIExtensionAbility.onCreate
+## EmbeddedUIExtensionAbility.onCreate
 
 onCreate(): void
 
@@ -44,7 +44,7 @@ EmbeddedUIExtensionAbility创建时回调，执行初始化业务逻辑操作。
   }
   ```
 
-## UIExtensionAbility.onSessionCreate
+## EmbeddedUIExtensionAbility.onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -75,7 +75,7 @@ onSessionCreate(want: Want, session: UIExtensionContentSession): void
   }
   ```
 
-## UIExtensionAbility.onSessionDestroy
+## EmbeddedUIExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -104,7 +104,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
   }
   ```
 
-## UIExtensionAbility.onForeground
+## EmbeddedUIExtensionAbility.onForeground
 
 onForeground(): void
 
@@ -126,7 +126,7 @@ EmbeddedUIExtensionAbility生命周期回调，当EmbeddedUIExtensionAbility从�
   }
   ```
 
-## UIExtensionAbility.onBackground
+## EmbeddedUIExtensionAbility.onBackground
 
 onBackground(): void
 
@@ -148,7 +148,7 @@ EmbeddedUIExtensionAbility生命周期回调，当EmbeddedUIExtensionAbility从�
   }
   ```
 
-## UIExtensionAbility.onDestroy
+## EmbeddedUIExtensionAbility.onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 

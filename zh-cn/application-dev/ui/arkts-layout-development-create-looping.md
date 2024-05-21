@@ -3,7 +3,7 @@
 
 [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)组件提供滑动轮播显示的能力。Swiper本身是一个容器组件，当设置了多个子组件后，可以对这些子组件进行轮播显示。通常，在一些应用首页显示推荐的内容时，需要用到轮播显示的能力。
 
-针对复杂页面场景，可以使用 Swiper 组件的预加载机制，利用主线程的空闲时间来提前构建和布局绘制组件，优化滑动体验。详细指导见[Swiper高性能开发指导](../performance/swiper_optimization.md)。
+针对复杂页面场景，可以使用 Swiper 组件的预加载机制，利用主线程的空闲时间来提前构建和布局绘制组件，优化滑动体验。<!--Del-->详细指导见[Swiper高性能开发指导](../performance/swiper_optimization.md)。<!--DelEnd-->
 
 
 ## 布局与约束
@@ -120,9 +120,9 @@ Swiper(this.swiperController) {
 
 ## 导航点样式
 
-Swiper提供了默认的导航点样式，导航点默认显示在Swiper下方居中位置，开发者也可以通过indicatorStyle属性自定义导航点的位置和样式。
+Swiper提供了默认的导航点样式，导航点默认显示在Swiper下方居中位置，开发者也可以通过indicator属性自定义导航点的位置和样式。
 
-通过indicatorStyle属性，开发者可以设置导航点相对于Swiper组件上下左右四个方位的位置，同时也可以设置每个导航点的尺寸、颜色、蒙层和被选中导航点的颜色。
+通过indicator属性，开发者可以设置导航点相对于Swiper组件上下左右四个方位的位置，同时也可以设置每个导航点的尺寸、颜色、蒙层和被选中导航点的颜色。
 
 - 导航点使用默认样式
 
@@ -158,7 +158,6 @@ Swiper(this.swiperController) {
 导航点直径设为30vp，左边距为0，导航点颜色设为红色。
 
 ```ts
-let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text('0')
     .width('90%')

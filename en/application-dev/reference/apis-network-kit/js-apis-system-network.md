@@ -48,17 +48,14 @@ Error codes:
 **Example**
 
 ```
-export default {    
-  getType() {        
-    network.getType({            
-      success: function(data) {                
-        console.log('success get network type:' + data.type);            
-      },            
-      fail: function(data, code) {                
-        console.log('fail to get network type code:' + code + ', data:' + data);            
-      },
-    });    
-  },
+export default class Network {
+  getType() {
+    network.getType({
+      success: (data) => {
+        console.log('success get network type:' + data.type);
+      }
+    });
+  }
 }
 ```
 
@@ -91,17 +88,14 @@ Error codes:
 **Example**
 
 ```
-export default {    
-  subscribe() {        
-    network.subscribe({            
-      success: function(data) {                
-        console.log('network type change type:' + data.type);            
-      },            
-      fail: function(data, code) {                
-        console.log('fail to subscribe network, code:' + code + ', data:' + data);            
-      },
-    });    
-  },
+export default class Network {
+  subscribe() {
+    network.subscribe({
+      success: (data) => {
+        console.log('success get network type:' + data.type);
+      }
+    });
+  }
 }
 ```
 
@@ -117,11 +111,9 @@ Cancels listening to the network connection state of this device.
 **Example**
 
 ```
-export default {    
-  unsubscribe() {        
-    network.unsubscribe();    
-  },
-}
+import network from '@system.network';
+
+network.unsubscribe();
 ```
 
 

@@ -16,6 +16,8 @@
 
 ScrollBar(value: ScrollBarOptions)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -23,6 +25,8 @@ ScrollBar(value: ScrollBarOptions)
 | value |  [ScrollBarOptions](#scrollbaroptions对象说明)| 是 | 滚动条组件参数。 |
 
 ## ScrollBarOptions对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -35,8 +39,12 @@ ScrollBar(value: ScrollBarOptions)
 > ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。
 > 
 > 滚动条组件与可滚动组件通过Scroller进行绑定，且只有当两者方向相同时，才能联动，ScrollBar与可滚动组件仅支持一对一绑定。
+>
+> 从API version 12开始，ScrollBar组件没有子节点时，支持显示默认样式的滚动条。
 
 ## ScrollBarDirection枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -44,7 +52,9 @@ ScrollBar(value: ScrollBarOptions)
 | Horizontal | 横向滚动条。 |
 
 
-## 示例
+## 示例1
+
+该示例为ScrollBar组件有子节点时的滚动条样式。
 
 ```ts
 // xxx.ets
@@ -91,3 +101,46 @@ struct ScrollBarExample {
 
 
 ![zh-cn_image_0000001232775585](figures/zh-cn_image_0000001232775585.gif)
+
+## 示例2
+
+该示例为ScrollBar组件没有子节点时的滚动条样式。
+
+```ts
+@Entry
+@Component
+struct ScrollBarExample {
+  private scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+  build() {
+    Column() {
+      Stack({ alignContent: Alignment.End }) {
+        Scroll(this.scroller) {
+          Flex({ direction: FlexDirection.Column }) {
+            ForEach(this.arr, (item: number) => {
+              Row() {
+                Text(item.toString())
+                  .width('80%')
+                  .height(60)
+                  .backgroundColor('#3366CC')
+                  .borderRadius(15)
+                  .fontSize(16)
+                  .textAlign(TextAlign.Center)
+                  .margin({ top: 5 })
+              }
+            }, (item:number) => item.toString())
+          }.margin({ right: 15 })
+        }
+        .width('90%')
+        .scrollBar(BarState.Off)
+        .scrollable(ScrollDirection.Vertical)
+        ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical,state: BarState.Auto })
+      }
+    }
+  }
+}
+```
+
+
+![zh-cn_image_scrollbar](figures/zh-cn_image_scrollbar.gif)

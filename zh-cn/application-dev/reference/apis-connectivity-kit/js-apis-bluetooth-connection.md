@@ -239,7 +239,7 @@ getPairedDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | 已配对蓝牙设备的地址列表。 |
+| Array&lt;string&gt; | 已配对蓝牙设备的地址列表。基于信息安全考虑，此处获取的设备地址为随机MAC地址。配对成功后，该地址不会变更；已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
 
 **错误码**：
 
@@ -360,7 +360,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 设置设备配对请求确认。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -714,6 +714,182 @@ try {
 }
 ```
 
+## connection.setRemoteDeviceName<sup>12+</sup>
+
+setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
+
+设置蓝牙远端设备名称。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                     |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| deviceId     | string                              | 是    | 表示远端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| name | string | 是    | 修改远端设备名称，最大长度为64字节。    |
+
+**返回值：**
+
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | 以Promise形式返回设置蓝牙远端设备名称的结果，设置失败时返回错误码信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+//promise
+try {
+    connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
+        console.info('setRemoteDeviceName success');
+    }, (error: BusinessError) => {
+        console.error('setRemoteDeviceName: errCode:' + error.code + ',errMessage' + error.message);
+    })
+
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.getRemoteDeviceBatteryInfo<sup>12+</sup>
+
+getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
+
+获取蓝牙远端设备的电量信息。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型      | 必填   | 说明                               |
+| ------ | ------- | ---- | -------------------------------- |
+| deviceId | string  | 是    | 表示远端设备MAC地址，例如："11:22:33:AA:BB:FF"。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ------------- |
+| Promise&lt;[BatteryInfo](#batteryinfo12)&gt; | 以Promise形式返回蓝牙远端设备的电量信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+// promise
+try {
+    connection.getRemoteDeviceBatteryInfo('11:22:33:AA:BB:FF').then((data: connection.BatteryInfo) => {
+        console.info('getRemoteDeviceBatteryInfo success, DeviceType:' + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.on('batteryChange')<sup>12+</sup>
+
+on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
+
+订阅蓝牙远程设备的电量信息变更事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                     |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| type     | string                              | 是    | 填写"batteryChange"字符串，表示蓝牙远端设备的电池信息变更事件。 |
+| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | 是    | 表示回调函数的入参，返回电量信息。    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
+    console.info('BatteryInfo = '+ JSON.stringify(data));
+}
+try {
+    connection.on('batteryChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.off('batteryChange')<sup>12+</sup>
+
+off(type: 'batteryChange', callback?: Callback&lt;BatteryInfo&gt;): void
+
+取消订阅蓝牙远程设备的电量信息变更事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| type     | string                              | 是    | 填写"batteryChange"字符串，表示取消蓝牙远端设备的电池信息变更事件。   |
+| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | 否    | 表示回调函数的入参，返回电量信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { BusinessError } from '@ohos.base';
+let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
+    console.info('BatteryInfo = '+ JSON.stringify(data));
+}
+try {
+    connection.on('batteryChange', onReceiveEvent);
+    connection.off('batteryChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 
 ## connection.on('bluetoothDeviceFind')
 
@@ -730,7 +906,7 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | 是    | 填写"bluetoothDeviceFind"字符串，表示蓝牙设备发现事件。 |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。基于信息安全考虑，此处获取的设备地址为随机MAC地址。配对成功后，该地址不会变更；已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。    |
 
 **错误码**：
 
@@ -968,6 +1144,7 @@ try {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string      | 是    | 否    | 表示要配对的设备ID。 |
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
+| cause<sup>12+</sup>| [UnbondCause](#unbondcause12) | 是 | 否 | 表示配对失败的原因。|
 
 
 ## PinRequiredParam
@@ -994,6 +1171,23 @@ try {
 | majorClass      | [MajorClass](js-apis-bluetooth-constant.md#majorclass)           | 是    | 否    | 表示蓝牙设备主要类别的枚举。   |
 | majorMinorClass | [MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | 是    | 否    | 表示主要次要蓝牙设备类别的枚举。 |
 | classOfDevice   | number                              | 是    | 否    | 表示设备类别。          |
+
+
+## BatteryInfo<sup>12+</sup>
+
+描述电量信息的内容。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称       | 类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| batteryLevel  | number | 是    | 否    | 表示远端设备的电量值，如果值为-1，表示没有电量信息。   |
+| leftEarBatteryLevel  | number | 是    | 否    | 表示左侧耳机的电量值，如果值为-1，表示没有电量信息。   |
+| leftEarChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示左侧耳机的充电状态。   |
+| rightEarBatteryLevel  | number | 是    | 否    | 表示右侧耳机的电量值，如果值为-1，表示没有电量信息。   |
+| rightEarChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示右侧耳机的充电状态。   |
+| boxBatteryLevel  | number | 是    | 否    | 表示耳机仓的电量值，如果值为-1，表示没有电量信息。   |
+| boxChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示耳机仓的充电状态。   |
 
 
 ## BluetoothTransport
@@ -1035,3 +1229,32 @@ try {
 | BOND_STATE_INVALID | 0    | 无效的配对。 |
 | BOND_STATE_BONDING | 1    | 正在配对。  |
 | BOND_STATE_BONDED  | 2    | 已配对。   |
+
+
+## UnbondCause<sup>12+</sup>
+
+枚举，配对失败原因。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                 | 值  | 说明     |
+| ------------------ | ---- | ------ |
+| USER_REMOVED        | 0    | 用户主动移除设备。|
+| REMOTE_DEVICE_DOWN  | 1    | 远端设备关闭。|
+| AUTH_FAILURE        | 2    | PIN码错误。|
+| AUTH_REJECTED       | 3    | 远端设备鉴权拒绝。|
+| INTERNAL_ERROR      | 4    | 内部错误。|
+
+
+## DeviceChargeState<sup>12+</sup>
+
+枚举，表示充电状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                 | 值  | 说明     |
+| ------------------ | ---- | ------ |
+| DEVICE_NORMAL_CHARGE_NOT_CHARGED        | 0    | 未充电，不支持超级充电。|
+| DEVICE_NORMAL_CHARGE_IN_CHARGING       | 1    | 正在充电，不支持超级充电。|
+| DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 未充电，支持超级充电。|
+| DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 正在充电，支持超级充电。|

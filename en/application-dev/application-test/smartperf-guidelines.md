@@ -65,7 +65,7 @@ Click **Report** to access the report list. Touch a report to view its details.
 | -PKG  | Sets the bundle name.               | No|
 | -c    | Collects the CPU frequency and usage. If the application bundle name is set, the collected information covers both the system and the target application. If the application bundle name is not set, the collected information covers the system only.    | No|
 | -g    | Collects the GPU frequency and load information.  |No|
-| -f    | Collects the frame rate of the target application. The application bundle name must be specified.       |No|
+| -f    | Collects the screen refresh rate and frame rate of the target application. The application bundle name must be specified.       |No|
 | -profilerfps | Collects the frame rate of the current page.         |No|
 | -t    | Collects temperature information.          |No|
 | -p    | Collects current and voltage information.                |No|
@@ -74,6 +74,10 @@ Click **Report** to access the report list. Touch a report to view its details.
 | -net | Collects the network speed.             |No|
 | -VIEW | Sets the view layer. You must obtain the layer name first.               |No|
 | -screen | Collects the screen resolution and refresh rate.              |No|
+| -d    | Collects the DDR data.                |No|
+| -m  | Collects the process memory information.        |No|
+| -sections| Sets segment-based collection.         |No|
+
 
 **Commands for Starting or Stopping Data Collection**
 
@@ -114,42 +118,37 @@ Click **Report** to access the report list. Touch a report to view its details.
 
   ```
   # SP_daemon --help
-  usage: SP_daemon <options> <arguments>
-  --------------------------------------------------------------------
+  Usage: SP_daemon <options> <arguments>
+  options:
   These are common commands list:
-  -N             set the collection times, for example: -N 10
+  -N             set the collection times(default value is 0) range[1,2147483647], for example: -N 10
   -PKG           set package name, must add, for example: -PKG ohos.samples.ecg
-  -c             get device cpuFreq and cpuUsage, process cpuUsage and cpuLoad ..
-  -g             get device gpuFreq and gpuLoad
-  -f             get app refresh fps and fps jitters
-  -t             get soc-temp gpu-temp ..
-  -p             get current_now and voltage_now
-  -r             get process memory and total memory ..
+  -c             get device CPU frequency and CPU usage, process CPU usage and CPU load ..
+  -g             get device GPU frequency and GPU load 
+  -f             get app refresh fps(frames per second) and fps jitters and refreshrate
+  -profilerfps   get refresh fps and timestamp
+  -sections      set collection time period(using with profilerfps)
+  -t             get remaining battery power and temperature..
+  -p             get battery power consumption and voltage
+  -r             get process memory and total memory
   -snapshot      get screen capture
-  -net           get networkUp and networkDown
+  -net           get uplink and downlink traffic
   -start         collection start command
   -stop          collection stop command
-  -VIEW          set layer, for example: -VIEW DisplayNode
-  -profilerfps   get refresh fps and timestamp
+  -VIEW          set layler, for example: -VIEW DisplayNode
   -screen        get screen resolution
-  --------------------------------------------------------------------
-  Example 1: SP_daemon -N 20 -c -g -t -p -r -net -snapshot
-  --------------------------------------------------------------------
-  ---------------------------------------------------------------------------------------
-  Example 2: SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -net -snapshot
-  ---------------------------------------------------------------------------------------
-  -------------------------------
-  Example 3: SP_daemon -start -c
-  -------------------------------
-  -------------------------------
-  Example 4: SP_daemon -stop
-  -------------------------------
--------------------------------
-  Example 5: SP_daemon -screen
-  -------------------------------
+  -OUT           set csv output path
+  -d             get device DDR information
+  -m             get other memory
+  example:
+  SP_daemon -N 20 -c -g -t -p -r -m -d -net -snapshot
+  SP_daemon -N 20 -PKG ohos.samples.ecg -c -g -t -p -f -r -m -d -net -snapshot
+  SP_daemon -start -c
+  SP_daemon -stop
+  SP_daemon -screen
     
- command exec finished!
- #
+  command exec finished!
+  #
   ```
 
 5. Run the collection commands.
@@ -274,22 +273,16 @@ Click **Report** to access the report list. Touch a report to view its details.
   #
   ```
 
-  5.7 Collect twice the memory information of the system and the target application process.
+  5.7 Collect the memory information of the system and a specified application once.
 
   ```
-  # SP_daemon -N 2 -PKG ohos.samples.ecg -r
+  # SP_daemon -N 1 -PKG ohos.samples.ecg -r
 
-  order:0 timestamp=1705041668525
-  order:1 memAvailable=7350856
-  order:2 memFree=7166896
-  order:3 memTotal=11641840
-  order:4 pss=107232
-
-  order:0 timestamp=1705041669527
-  order:1 memAvailable=7350852
-  order:2 memFree=7166896
-  order:3 memTotal=11641840
-  order:4 pss=107232
+  order:0 timestamp=1711679596851
+  order:1 memAvailable=8267076
+  order:2 memFree=7870760
+  order:3 memTotal=11769320
+  order:4 pss=78045
 
   command exec finished!
   #
@@ -298,7 +291,35 @@ Click **Report** to access the report list. Touch a report to view its details.
   >
   >- Make sure you are on the application screen when running this command.
 
-  5.8 Take two screenshots.
+  5.8 Collect other memory information of the specified application once.
+
+  ```
+  # SP_daemon -N 1 -PKG ohos.samples.ecg -m
+
+  order:0 timestamp=1711681812033
+  order:1 arktsHeapPss=12311
+  order:2 gpuPss=270
+  order:3 graphicPss=0
+  order:4 heapAlloc=46120
+  order:5 heapFree=1582
+  order:6 heapSize=49060
+  order:7 nativeHeapPss=40302
+  order:8 privateClean=64352
+  order:9 privateDirty=2906
+  order:10 sharedClean=74200
+  order:11 sharedDirty=13220
+  order:12 stackPss=624
+  order:13 swap=0
+  order:14 swapPss=0
+
+  command exec finished!
+  #
+  ```
+  >**NOTE**
+  >
+  >- Make sure you are on the application screen when running this command.
+
+  5.9 Take two screenshots.
 
   ```
   # SP_daemon -N 2 -snapshot
@@ -322,7 +343,7 @@ Click **Report** to access the report list. Touch a report to view its details.
   >
   >- To export the screenshots to drive D, open a new CLI and run the **hdc file recv data/local/tmp/screenCap_1700725192774.png D:\** command.
 
-  5.9 Collect twice the network speeds.
+  5.10 Collect the network speeds twice.
 
   ```
   # SP_daemon -N 2 -net
@@ -339,7 +360,7 @@ Click **Report** to access the report list. Touch a report to view its details.
   #
   ```
 
-  5.10 Collect the frame rate of the target application five times.
+  5.11 Collect the frame rate of the target application five times.
 
   ```
   # SP_daemon -N 5 -PKG ohos.samples.ecg -f
@@ -347,54 +368,64 @@ Click **Report** to access the report list. Touch a report to view its details.
   order:0 timestamp=1705306472232
   order:1 fps=43
   order:2 fpsJitters=602261688;;8352083;;8267708;;8305209;;8298437;;8308854;;8313542;;8569271;;8061458;;8300521;;8308333;;8309896;;8429167;;8241667;;8258333;;8318229;;8312500;;8304167;;41760937;;16418750;;8298959;;8319270;;8308334;;8313541;;8302605;;8320312;;8298958;;8326042;;8321354;;8301042;;8310417;;8309895;;8308855;;8331250;;8286458;;8343229;;8278125;;8311458;;8306250;;8312500;;8320834;;8346875;;8283333
+  order:3 refreshrate=120
 
   order:0 timestamp=1705306473234
   order:1 fps=40
-  order:2 fpsJitters=674427313;;8191145;;8310417;;8319271;;8301562;;8318750;;8302084;;8314062;;8333334;;8283854;;8307812;;8311979;;8310417;;8307813;;8309375;;8323958;;8306250;;8308333;;8317709;;8296875;;8721875;;7895833;;8320833;;8340625;;8276563;;8409896;;8216145;;8310938;;8301042;;8362500;;8252604;;8317708;;8376042;;8256250;;8292187;;8303125;;8313542;;8310417;;8520312;;8109375
+  order:2 fpsJitters=674427313;;8191145;;8310417;;8319271;;8301562;;8318750;;8302084;;8314062;;8333334;;8283854;;8307812;;8311979;;8310417;;8307813;;8309375;;8323958;;8306250;;8308333;;8317709;;8296875;;8721875;;7895833;;8320833;;8340625;;8276563;;8409896;;8216145;;8310938;;8301042;;8362500;;8252604;;8317708;;8376042;;8256250;;8292187;;8303125;;8313542;;8310417;;8520312
+  order:3 refreshrate=120
   ...
+
   command exec finished!
   #
   ```
   >**NOTE**
   >
   >- When running this command, make sure you are on the application screen, and then swipe on the screen or switch between screens.
-
-  5.11 Collect the frame rate of the specified view layer of the target application for five times.
-
-  - Obtain the view layer name.
-
-    ```
-    # hidumper -s 10 -a surface | grep surface
-    surface [DisplayNode] NodeId[6781753360410] LayerId[10]:
-    surface [RCDTopSurfaceNode] NodeId[6781753360412] LayerId[12]:
-    surface [RCDBottomSurfaceNode] NodeId[6781753360411] LayerId[11]:
-    #
-    ```
-
-  - Collect the frame rate of the specified view layer.
-
-    ```
-    # SP_daemon -N 10 -VIEW DisplayNode -f
-    order:0 timestamp=1705306822850
-    order:1 fps=15
-    order:2 fpsJitters=876291843;;8314062;;8308334;;8314583;;8310417;;8308333;;8326042;;8314583;;8292708;;8492709;;8143750;;8340104;;8294271;;8302604;;8297396
- 
-    order:0 timestamp=1705306823852
-    order:1 fps=12
-    order:2 fpsJitters=906667363;;8279167;;8311458;;8315625;;8291146;;8313021;;8323438;;8293750;;8303125;;8313541;;8301563;;8317708
-    ...
-    #
-    ```
-  >**NOTE**
   >
-  >- Before running this command, you must obtain the application view layer name.
-  >
-  >- Replace *DisplayNode* following **-VIEW** with the obtained layer name. When running this command, make sure you are on the application screen, and then swipe on the screen or switch between screens.
 
-  5.12 Collect the full information of the system, including the CPU, GPU, temperature, current, screenshot, network speed, and memory information.
+  5.12 Collect the frame rate of the specified view layer for 10 times.
 
   ```
-  # SP_daemon -N 10 -c -g -t -p -snapshot -net -r
+  # SP_daemon -N 10 -VIEW DisplayNode -f
+  order:0 timestamp=1705306822850
+  order:1 fps=15
+  order:2 fpsJitters=876291843;;8314062;;8308334;;8314583;;8310417;;8308333;;8326042;;8314583;;8292708;;8492709;;8143750;;8340104;;8294271;;8302604;;8297396
+  order:3 refreshrate=120
+ 
+  order:0 timestamp=1705306823852
+  order:1 fps=12
+  order:2 fpsJitters=906667363;;8279167;;8311458;;8315625;;8291146;;8313021;;8323438;;8293750;;8303125;;8313541;;8301563;;8317708
+  order:3 refreshrate=120
+  ...
+
+  command exec finished!
+  #
+  ```
+  >**NOTE**
+  >
+  >- **DisplayNode** indicates the name of the specified layer.
+  >
+  >- When using this command to collect data, you need to operate the page on the specified layer.
+  >
+  >- This command cannot be used to collect data with the frame rate of the specified application (**SP_daemon -N 20 -PKG ohos.samples.ecg -f** or **SP_daemon -N 20 -VIEW DisplayNode -f**).
+
+  5.13 Collect DDR information twice.
+
+  ```
+  # SP_daemon -N 2 -d
+  
+  order:0 timestamp=1710916175201
+  order:1 ddrFrequency=1531000000
+  
+  command exec finished!
+  #
+  ```
+
+  5.14 Collect the full information of the system, including the CPU, GPU, temperature, current, memory, DDR, network speed, and screenshot information.
+
+  ```
+  # SP_daemon -N 10 -c -g -t -p -r -d -net -snapshot
 
   order:0 timestamp=1705042018276
   order:1 cpu0Frequency=490000
@@ -407,15 +438,34 @@ Click **Report** to access the report list. Touch a report to view its details.
   order:8 cpu0systemUsage=14.000000
   order:9 cpu0userUsage=18.000000
   ...
+  order:115 gpuFrequency=279000000
+  order:116 gpuload=61.000000
+  order:117 Battery=28.000000
+  order:118 shell_back=31.529000
+  order:119 shell_frame=30.529000
+  order:120 shell_front=30.548000
+  order:121 soc_thermal=49.624000
+  order:122 system_h=30.150000
+  order:123 currentNow=278
+  order:124 voltageNow=4250532
+  order:125 memAvailable=6354252
+  order:126 memFree=5971776
+  order:127 memTotal=11530092
+  order:128 ddrFrequency=1531000000
+  order:129 networkDown=0
+  order:130 networkUp=0
+  order:131 capture=data/local/tmp/capture/screenCap_1711190737580.png
+
+  ...
 
   command exec finished!
   #
   ```
 
-  5.13 Collect the full information of the target application, including the CPU, GPU, temperature, current, frame rate, screenshot, network speed, and memory information.
+  5.15 Collect the full information of the specified application, including the CPU, GPU, temperature, current, frame rate, memory, DDR, network speed, and screenshot information.
 
   ```
-  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -snapshot -net -r
+  # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -p -f -r -m -d -net -snapshot
 
   order:0 timestamp=1705307489445
   order:1 ProcAppName=ohos.samples.ecg
@@ -434,50 +484,92 @@ Click **Report** to access the report list. Touch a report to view its details.
   order:14 cpu0systemUsage=12.500000
   order:15 cpu0userUsage=14.423077
   ...
+  order:115 gpuFrequency=279000000
+  order:116 gpuload=61.000000
+  order:117 Battery=28.000000
+  order:118 shell_back=31.529000
+  order:119 shell_frame=30.529000
+  order:120 shell_front=30.548000
+  order:121 soc_thermal=49.624000
+  order:122 system_h=30.150000
+  order:123 currentNow=278
+  order:124 voltageNow=4250532
+  order:125 fps=3
+  order:126 fpsJitters=881659966;;108846354;;8289583
+  order:127 refreshrate=120
+  order:128 memAvailable=6354252
+  order:129 memFree=5971776
+  order:130 memTotal=11530092
+  order:131 pss=78045
+  order:132 arktsHeapPss=13394
+  order:133 gpuPss=280
+  order:134 graphicPss=0
+  order:135 heapAlloc=48080
+  order:136 heapFree=2576
+  order:137 heapSize=50788
+  order:138 nativeHeapPss=41897
+  order:139 privateClean=67232
+  order:140 privateDirty=12848
+  order:141 sharedClean=76224
+  order:142 sharedDirty=12848
+  order:143 stackPss=1096
+  order:144 swap=0
+  order:145 swapPss=0
+  order:146 ddrFrequency=1531000000
+  order:147 networkDown=0
+  order:148 networkUp=0
+  order:149 capture=data/local/tmp/capture/screenCap_1711190737580.png
+
+  ...
 
   command exec finished!
   #
   ```
 
-  5.14 Collect the frame rate of the current page.
+  5.16 Collect the frame rate of the current page.
 
   ```
   # SP_daemon -profilerfps 10
   set num:10 success
-  fps:82|1707125314494
-  fps:81|1707125534494
-  fps:114|1707125535494
-  fps:114|1707125536494
-  fps:115|1707125537494
-  fps:117|1707125538494
-  fps:112|1707125539494
-  fps:114|1707125540494
-  fps:111|1707125541494
-  fps:114|1707125542494
+  fps:0|1711692357278
+  fps:0|1711692358278
+  fps:1|1711692359278
+  fps:0|1711692360278
+  fps:0|1711692361278
+  fps:0|1711692362278
+  fps:0|1711692363278
+  fps:0|1711692364278
+  fps:26|1711692365278
+  fps:53|1711692366278
   SP_daemon exec finished!
   #
   ```
   >**NOTE**
   >
   >- This command must be executed separately, and its collection result is not written into the **data.csv** file.
+  >
 
-  5.15 Collect the frame rate by time segment.
+  5.17 Collect the frame rate by time segment.
 
   ```
   # SP_daemon -profilerfps 100 -sectrions 10
-  set num:10 success
-  fps:73|1707125301494
-  sectionsFps:0|1707125301494
-  sectionsFps:0|1707125301594
-  sectionsFps:0|1707125301694
-  sectionsFps:40|1707125301794
-  sectionsFps:120|1707125301894
-  sectionsFps:110|1707125301994
-  sectionsFps:110|1707125302094
-  sectionsFps:110|1707125302194
-  sectionsFps:120|1707125302294
-  sectionsFps:120|1707125302394
-  fps:117|1707125302494
+  set num:100 success
+  fps:0|1711692393278
+  fps:0|1711692394278
+  fps:0|1711692395278
+  fps:44|1711692396278
+  sectionsFps:0|1711692396278
+  sectionsFps:0|1711692396378
+  sectionsFps:40|1711692396478
+  sectionsFps:60|1711692396578
+  sectionsFps:60|1711692396678
+  sectionsFps:60|1711692396778
+  sectionsFps:60|1711692396878
+  sectionsFps:40|1711692396978
+  sectionsFps:60|1711692397078
+  sectionsFps:60|1711692397178
+  fps:51|1711692397278
+
   ...
 
   SP_daemon exec finished!
@@ -489,7 +581,7 @@ Click **Report** to access the report list. Touch a report to view its details.
   >
   >- Currently, up to 10 segments can be collected.
 
-  5.16 Start data collection.
+  5.18 Start data collection.
 
   ```
   # SP_daemon -start -c
@@ -498,7 +590,7 @@ Click **Report** to access the report list. Touch a report to view its details.
   #
   ```
 
-  5.17 Stop data collection.
+  5.19 Stop data collection.
 
   ```
   # SP_daemon -stop
@@ -512,7 +604,7 @@ Click **Report** to access the report list. Touch a report to view its details.
   >- The results for the start and stop command are saved to the **data/local/tmp/smartperf/1/t_index_info.csv** file.
   >- To view or export this file, see Step 6.
 
-  5.18 Obtain the screen resolution.
+  5.20 Obtain the screen resolution.
 
   ```
   # SP_daemon -screen
@@ -525,6 +617,19 @@ Click **Report** to access the report list. Touch a report to view its details.
   >- **activeMode** indicates the current screen resolution, and **refreshrate** indicates the screen refresh rate.
   >
   >- This command must be executed separately, and its collection result is not written into the **data.csv** file.
+
+  5.21 Export collection results to the specified path.
+
+  ``` 
+  #SP_daemon -OUT data/1
+  command exec finished!
+  #
+  ```
+  >**NOTE**
+  >
+  >- Run the **cd** command to go to the data directory and run the **ls** command to view the custom file.
+  >
+  >- This command must be executed separately 
 
 6. Export and view the collection results.
 
@@ -558,35 +663,51 @@ Click **Report** to access the report list. Touch a report to view its details.
     | :-----| :--------------------- |:-----|
     | cpuFrequency      | CPU core frequency.       |Unit: Hz|
     | cpuUasge          | CPU core usage.         |%|
-    | cpuidleUsage      | CPU usage in idle state.       |%|
+    | cpuidleUsage      | CPU usage in idle state.       |%| 
     | cpuioWaitUsage    | CPU usage of I/O wait.       |%|
-    | cpuirqUsage       | CPU usage of hard interrupts.        |%|
+    | cpuirqUsage       | CPU usage of hard interrupts.        |%|  
     | cpuniceUsage      | CPU usage of user level processes with lower scheduling priority.   |%|
-    | cpusoftIrqUsage   | CPU usage of software interrupts.        |%|
+    | cpusoftIrqUsage   | CPU usage of software interrupts.        |%| 
     | cpusystemUsage    | CPU usage in kernel mode.     |%|
-    | cpuuserUsage      | CPU usage in user mode.          |%|
+    | cpuuserUsage      | CPU usage in user mode.          |%| 
     | ProcId            | PID.               |
-    | ProcAppName       | Application name.                ||
+    | ProcAppName       | Application name.                || 
     | ProcCpuLoad       | Process CPU load.       |%|
-    | ProcCpuUsage      | CPU usage of the process.         |%|
+    | ProcCpuUsage      | CPU usage of the process.         |%| 
     | ProcUCpuUsage     | CPU usage of the process in user mode.    |%|
-    | ProcSCpuUsage     | CPU usage of the process in kernel mode.    |%|
+    | ProcSCpuUsage     | CPU usage of the process in kernel mode.    |%| 
     | gpuFrequ          | GPU frequency of the system.         |%|
     | gpuLoad           | GPU load of the system.     |%|
-    | currentNow        | Current value.      |Unit: mA|
-    | voltageNow        | Voltage value.      |Unit: μV|
+    | currentNow        | Current value.      |Unit: mA| 
+    | voltageNow        | Voltage value.      |Unit: μV| 
     | fps               | Screen refresh rate.         |Unit: FPS|
     | fpsJitters        | Frame interval.       |Unit: ns|
-    | networkDown       | Downstream rate.             |Unit: bps|
-    | networkUp         | Uplink rate.             |Unit: bps|
+    | refreshrate       | Screen refresh rate.           |Unit: Hz|
+    | networkDown       | Downstream rate.             |Unit: byte/s|
+    | networkUp         | Uplink rate.             |Unit: byte/s|
+    | ddrFrequency      | DDR frequency.              |Unit: Hz|
     | shell_front       | Front cover temperature.             |Unit: °C|
     | shell_frame       | Frame temperature.             |Unit: °C|
     | shell_back        | Rear cover temperature.             |Unit: °C|
-    | soc_thermal       | System chip temperature.         |Unit: °C|
+    | soc_thermal       | SoC temperature.         |Unit: °C|
     | system_h          | System temperature.            |Unit: °C|
     | Battery           | Battery temperature.            |Unit: °C|
-    | memAvailable      | Available memory of the system.        |Unit: byte|
-    | memFree           | Free memory of the system.        |Unit: byte|
-    | memTotal          | Total memory of the system.          |Unit: byte|
-    | pss               | Proportional set size (PSS) of the process.            |Unit: byte|
-    | timeStamp         | Timestamp.          |Collection time.|
+    | memAvailable      | Available memory of the system.        |Unit: KB|
+    | memFree           | Free memory of the system.        |Unit: KB|
+    | memTotal          | Total memory of the system.          |Unit: KB|
+    | pss               | Proportional set size (PSS) of the process.     |Unit: KB|
+    | sharedClean       | Shared unwritten pages.     |Unit: KB|
+    | sharedDirty       | Shared rewritten pages.     |Unit: KB|
+    | priviateClean     | Private unwritten pages.     |Unit: KB|
+    | privateDirty      | Private rewritten pages.     |Unit: KB|
+    | swapTotal         | Total swap memory.         |Unit: KB|
+    | swapPss           | Swapped PSS.       |Unit: KB|
+    | HeapSize          | Heap size.          |Unit: KB|
+    | HeapAlloc         | Heap size that can be allocated.   |Unit: KB|
+    | HeapFree          | Remaining heap size.     |Unit: KB|
+    | gpuPss            | Used GPU size.    |Unit: KB|
+    | graphicPss        | Used graphics memory size.    |Unit: KB|
+    | arktsHeapPss      | Used ArkTS memory size.   |Unit: KB|
+    | nativeHeapPss     | Used native memory size.  |Unit: KB|
+    | stackPss          | Used stack memory size.      |Unit: KB|
+    | timeStamp         | Timestamp.           |Collection time.| 

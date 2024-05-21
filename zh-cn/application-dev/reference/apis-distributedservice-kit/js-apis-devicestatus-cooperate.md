@@ -30,6 +30,16 @@ prepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，准备键鼠穿越成功时，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 示例：
 
 ```ts
@@ -63,6 +73,15 @@ prepareCooperate(): Promise&lt;void&gt;;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+
 **示例**：
 
 ```ts
@@ -93,6 +112,16 @@ unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，取消键鼠穿越准备成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
@@ -126,6 +155,15 @@ unprepareCooperate(): Promise&lt;void&gt;;
 | 参数                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
 
 **示例：**
 
@@ -168,6 +206,9 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Operation failed. |
 
 **示例：**
@@ -218,6 +259,9 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 | 20900001 | Operation failed. |
 
 **示例：**
@@ -255,6 +299,16 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 | ----------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | isUnchained | boolean                   | 是   | 是否关闭跨设备链路。 ture表示关闭跨设备链路，false表示不关闭。 |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数，键鼠穿越停止成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -295,6 +349,15 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+
 **示例**：
 
 ```ts
@@ -328,6 +391,16 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 | --------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | networkId | string                       | 是   | 键鼠穿越目标设备描述符。                                     |
 | callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
@@ -369,6 +442,16 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise对象，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 **示例**：
 
 ```ts
@@ -404,6 +487,16 @@ on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 | type     | string                                                | 是   | 监听类型，取值为'cooperateMessage'   |
 | callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | 是   | 回调函数，异步返回键鼠穿越状态消息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 **示例**：
 
 ```ts
@@ -436,6 +529,16 @@ off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听类型，取值为'cooperate'。                                |
 | callback | Callback&lt;[CooperateMessage](#cooperatemessage11)&gt; | 否   | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -472,6 +575,115 @@ try {
 ```
 
 
+## on('cooperateMouse')<sup>12+</sup>
+
+on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocation&gt;): void;
+
+注册监听指定设备鼠标光标位置。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**参数**：
+
+| 参数名   | 类型                                                  | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| type     | string                                                | 是   | 监听类型，取值为'cooperateMouse'   |
+| networkId| string                                                | 是   | 目标设备描述符   |
+| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | 是   | 回调函数，异步返回指定监听设备鼠标光标位置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
+**示例**：
+
+```ts
+function callback(data: cooperate.MouseLocation) {
+  console.log('displayX:' + data.displayX + 'displayY:' + data.displayX + 'displayWidth:' +
+    data.displayWidth + 'displayHeight:' + data.displayHeight );
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callback);
+} catch (error) {
+  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+
+
+## off('cooperateMouse')<sup>12+</sup>
+
+off(type: 'cooperateMouse', networkId: string, callback?: Callback&lt;MouseLocation&gt;): void;
+
+取消监听指定设备鼠标光标位置。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听类型，取值为'cooperateMouse'。                                |
+| networkId| string                                                | 是   | 目标设备描述符   |
+| callback | Callback&lt;[MouseLocation](#mouselocation12)&gt; | 否   | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
+**示例**：
+
+```ts
+// 取消注册单个回调函数
+function callbackOn(data: cooperate.MouseLocation) {
+  console.log('Register mouse location listener');
+  return false;
+}
+function callbackOff(data: cooperate.MouseLocation) {
+  console.log('Unregister mouse location listener');
+  return false;
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callbackOn);
+  cooperate.off('cooperateMouse', networkId, callbackOff);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```ts
+// 取消注册所有回调函数
+function callbackOn(data: cooperate.MouseLocation) {
+  console.log('Register mouse location listener');
+}
+try {
+  let networkId: string = 'Default';
+  cooperate.on('cooperateMouse', networkId, callbackOn);
+  cooperate.off('cooperateMouse', networkId);
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+
 
 ## CooperateMessage<sup>11+</sup>
 
@@ -486,7 +698,7 @@ try {
 
 
 
-## CooperateState<sup>11+</sup>
+## CooperateState<sup>10+</sup>
 
 键鼠穿越的状态。
 
@@ -503,6 +715,20 @@ try {
 | COOPERATE_DEACTIVATE_FAIL   | number | 是   | 否   | 表示键鼠穿越停止失败。 |
 | COOPERATE_SESSION_DISCONNECTED | number | 是   | 否   | 表示键鼠穿越会话断开。 |
 
+
+
+## MouseLocation<sup>12+</sup>
+
+鼠标光标位置信息。
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+| 名称           | 类型           | 可读 | 可写 | 说明                     |
+| ---------     | -------------- | ---- | ---- | ------------------------ |
+| displayX      | number         | 是   | 否   | 鼠标X坐标位置。 |
+| displayY      | number         | 是   | 否   | 鼠标Y坐标位置。 |
+| displayWidth  | number         | 是   | 否   | 鼠标所在屏幕宽度。 |
+| displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度。 |
 
 
 ## cooperate.prepare<sup>(deprecated)</sup>
@@ -522,6 +748,14 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 | 参数名    | 类型      | 必填  | 说明    |
 | -------- | ------------------------- | ---- | --------------------------- |
 | callback | AsyncCallback&lt;void&gt;  | 是 |回调函数，准备键鼠穿越成功时，err为undefined，否则为错误对象。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -558,7 +792,13 @@ prepare(): Promise&lt;void&gt;;
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt;      | 无返回结果的Promise对象。 |
 
+**错误码：**
 
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -592,6 +832,14 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 | 参数名   | 类型                      | 必填 | 说明                                       |
 | -------- | ------------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，取消键鼠穿越准备成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -627,6 +875,14 @@ unprepare(): Promise&lt;void&gt;;
 | 参数                | 说明                                          |
 | ------------------- | --------------------------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
@@ -672,6 +928,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 20900001 | Operation failed.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -726,6 +983,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 20900001 | Operation failed.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -765,7 +1023,13 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 | isUnchained | boolean | 是 | 是否关闭跨设备链路。<br> ture表示关闭跨设备链路，false表示不关闭。 |
 | callback     | AsyncCallback&lt;void&gt; |  是   | 回调函数，键鼠穿越停止成功时，err为undefined，否则为错误对象。|
 
+**错误码：**
 
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -848,6 +1112,14 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 | networkId | string                       |  是    | 键鼠穿越目标设备描述符。             |
 | callback             | AsyncCallback&lt;boolean&gt; |  是    | 回调函数，返回ture表示目标设备键鼠穿越的开关开启，返回false表示开关未开启。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 **示例**：
 
 ```ts
@@ -884,7 +1156,13 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 | --------   | ---------  | ----  | ----------------------------    |
 | networkId | string     |  是    | 键鼠穿越目标设备描述符。            |
 
+**错误码：**
 
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **返回值**：
 
@@ -931,7 +1209,13 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 | type                 | string                                                          |  是  | 监听类型，取值为'cooperate' |
 | callback             | Callback&lt;{ networkId: string, msg: [CooperateMsg](#cooperatemsgdeprecated) }&gt; |  是  | 回调函数，异步返回键鼠穿越状态消息。 |
 
+**错误码：**
 
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -968,7 +1252,13 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 | type                 | string                                                           |  是    | 监听类型，取值为'cooperate'。 |
 | callback             | AsyncCallback&lt;void&gt; |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
+**错误码：**
 
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 

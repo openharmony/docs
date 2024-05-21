@@ -27,7 +27,7 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 ## Available APIs
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [sms API Reference](../reference/apis/js-apis-sms.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-sms.md).
 
 | Name                                                      | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |

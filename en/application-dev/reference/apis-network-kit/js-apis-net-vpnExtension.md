@@ -193,12 +193,13 @@ Stage model:
 import vpnExt from '@ohos.net.vpnExtension';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
+import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 
+let context: vpnExt.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
+    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
 ```
@@ -245,16 +246,15 @@ import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
+let context: vpnExt.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
+    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     this.SetupVpn();
   }
   SetupVpn() {
@@ -302,7 +302,8 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
         let config = new Config(this.tunIp, this.blockedAppName);
 
         try {
-            this.VpnConnection.create(config, (error, data) => {
+            let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+            VpnConnection.create(config).then((data) => {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
         } catch (error) {
@@ -348,25 +349,25 @@ Protects sockets against a VPN connection. The data sent through sockets is dire
 import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 let g_tunnelFd = -1;
+let context: vpnExt.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
+    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     this.CreateTunnel();
     this.Protect();
   }
   CreateTunnel() {
-      g_tunnelFd = vpn_client.tcpConnect(this.vpnServerIp, 8888);
+      g_tunnelFd = 8888;
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
-        this.VpnConnection.protect(g_tunnelFd).then(() => {
+        let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+        VpnConnection.protect(g_tunnelFd).then(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
         }).catch((err : Error) => {
             hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
@@ -404,15 +405,16 @@ import vpnExt from '@ohos.net.vpnExtension';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let context: vpnExt.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
-    this.VpnConnection.destroy().then(() => {
+    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
+    VpnConnection.destroy().then(() => {
       console.info("destroy success.");
-    }).catch((error) => {
+    }).catch((error : BusinessError) => {
       console.error("destroy fail" + JSON.stringify(error));
     });
   }
@@ -438,5 +440,3 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
-
-<!--no_check-->

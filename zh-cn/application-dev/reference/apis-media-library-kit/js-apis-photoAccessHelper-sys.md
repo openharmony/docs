@@ -46,7 +46,7 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -105,7 +105,7 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName or albumUri is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -159,7 +159,7 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -222,7 +222,7 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401      |  if type displayName is not string.         |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -4545,18 +4545,239 @@ async function example() {
 }
 ```
 
-## PhotoSubtype
+## HighlightAlbum<sup>12+</sup>
 
-枚举，不同[PhotoAsset](#photoasset)的类型。
+时刻相册。
 
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+### constructor<sup>12+</sup>
+
+constructor(album: Album)
+
+构造函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| album | [Album](#album) | 是   | 智慧相册。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.   |
+| 401      | Invalid parameter.          |
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  console.info('HighlightAlbum constructorDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
+    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+  let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+  let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
+  albumFetchResult.close();
+}
+```
+
+### getHighlightAlbumInfo<sup>12+</sup>
+
+getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
+
+获取指定时刻相册的特定信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| type       | [HighlightAlbumInfoType](#highlightalbuminfotype12) | 是    | 需要获取的时刻相册信息类型。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401      | Invalid parameter.          |
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getHighlightAlbumInfoDemo')
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
+    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();、
+    if (album != undefined) {
+      let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
+      let coverInfo: string = await highlightAlbum.getHighlightAlbumInfo(
+        photoAccessHelper.HighlightAlbumInfoType.COVER_INFO);
+      console.info('get cover info result: ' + JSON.stringify(coverInfo));
+    }
+    
+    albumFetchResult.close();
+  } catch (err) {
+    console.error(`getHighlightAlbumInfoDemofailed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getHighlightResource<sup>12+</sup>
+
+getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
+
+获取指定时刻缓存资源的ArrayBuffer。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| resourceUri       | string | 是    | 指定时刻缓存资源uri。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401      | Invalid parameter.          |
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('getHighlightResourceDemo')
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
+    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();、
+    if (album != undefined) {
+      let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
+      let uri: string = 'file://media/highlight/cover/10/1_1/background.png?oper=highlight'
+      let arrayBuffer: ArrayBuffer = await highlightAlbum.getHighlightResource(uri);
+    }
+    albumFetchResult.close();
+  } catch (err) {
+    console.error(`getHighlightResourceDemofailed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### setHighlightUserActionData<sup>12+</sup>
+
+setHighlightUserActionData(type: HighlightUserActionType, actionData: number): Promise&lt;void&gt;
+
+设置指定时刻用户行为数据。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| type       | [HighlightUserActionType](#highlightuseractiontype12) | 是    | 需要设置的用户行为数据类型。 |
+| actionData | number | 是    | 行为数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401      | Invalid parameter.          |
+| 14000011 | Internal system error.            |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('setHighlightUserActionDataDemo')
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
+    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();、
+    if (album != undefined) {
+      let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
+      highlightAlbum.setHighlightUserActionData(photoAccessHelper.HighlightUserActionType.INSERTED_PIC_COUNT, 1);
+    }
+    albumFetchResult.close();
+  } catch (err) {
+    console.error(`setHighlightUserActionDataDemofailed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## PhotoSubtype
+
+枚举，不同[PhotoAsset](#photoasset)的类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| DEFAULT |  0 |  默认照片类型。 |
-| SCREENSHOT |  1 |  截屏录屏文件类型。 |
+| SCREENSHOT |  1 |  截屏录屏文件类型。**系统接口**：此接口为系统接口。 |
 
 ## PositionType
 
@@ -4600,6 +4821,8 @@ async function example() {
 | GEOGRAPHY\_CITY<sup>11+</sup>     | 4100       | 城市相册。**系统接口**：此接口为系统接口。         |
 | SHOOTING\_MODE<sup>11+</sup>      | 4101       | 拍摄模式相册。**系统接口**：此接口为系统接口。       |
 | PORTRAIT<sup>11+</sup>            | 4102       | 人像相册。**系统接口**：此接口为系统接口。         |
+| HIGHLIGHT<sup>12+</sup>           | 4104       | 时刻相册。**系统接口**：此接口为系统接口。         |
+| HIGHLIGHT_SUGGESTIONS<sup>12+</sup> | 4105     | 时刻建议相册。**系统接口**：此接口为系统接口。         |
 
 ## RequestPhotoType<sup>11+</sup>
 
@@ -4632,6 +4855,7 @@ async function example() {
 | DATE_MONTH<sup>11+</sup>  | 'date_month'            | 创建文件的月份。**系统接口**：此接口为系统接口。           |
 | DATE_DAY<sup>11+</sup>  | 'date_day'            | 创建文件的日期。**系统接口**：此接口为系统接口。           |
 | PENDING<sup>11+</sup>  | 'pending'            | pending状态。**系统接口**：此接口为系统接口。           |
+| DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | 删除日期（删除文件时间距1970年1月1日的毫秒数值）。**系统接口**：此接口为系统接口。<br>注意：查询照片时，不支持基于该字段排序。 |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -4685,6 +4909,8 @@ async function example() {
 ## PhotoProxy<sup>11+</sup>
 
 照片代理，相机应用通过该对象写入图片数据。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4760,3 +4986,40 @@ async function example() {
 | ANALYSIS\_COMPOSITION         | 7  | 美学构图分析类别。**系统接口**：此接口为系统接口。   |
 | ANALYSIS\_SALIENCY            | 8  | 最佳呈现主体中心分析类别。**系统接口**：此接口为系统接口。   |
 | ANALYSIS\_DETAIL\_ADDRESS     | 9  | 详细地址分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_HUMAN\_FACE\_TAG<sup>12+</sup>    | 10 | 人像聚类信息分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_HEAD\_POSITION<sup>12+</sup>      | 11 | 人头、宠物头位置分析类别。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_BONE\_POSE<sup>12+</sup>        | 12 | 人体骨骼点信息分析类别。**系统接口**：此接口为系统接口。    |
+
+## HighlightAlbumInfoType<sup>12+</sup>
+
+枚举，时刻相册信息类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称            | 值  | 说明       |
+| :------------ | :- | :------- |
+| COVER\_INFO   | 0  | 封面信息类别。    |
+| PLAY\_INFO    | 1  | 音乐信息类别。    |
+
+## HighlightUserActionType<sup>12+</sup>
+
+枚举，时刻用户行为类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                           | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| INSERTED\_PIC\_COUNT          | 0  | 新增图片数量类别。    |
+| REMOVED\_PIC\_COUNT           | 1  | 移除图片数量类别。    |
+| SHARED\_SCREENSHOT\_COUNT     | 2  | 分享二级界面长图次数类别。    |
+| SHARED\_COVER\_COUNT          | 3  | 分享时刻封面次数类别。    |
+| RENAMED\_COUNT                | 4  | 重命名次数类别。    |
+| CHANGED\_COVER\_COUNT         | 5  | 修改封面次数类别。    |
+| RENDER\_VIEWED\_TIMES         | 100  | 轮播观看次数类别。    |
+| RENDER\_VIEWED\_DURATION      | 101  | 轮播观看总时长类别。   |
+| ART\_LAYOUT\_VIEWED\_TIMES    | 102  | 二级界面观看次数类别。   |
+| ART\_LAYOUT\_VIEWED\_DURATION | 103  | 二级界面观看总时长类别。    |

@@ -1,19 +1,20 @@
-# OpenHarmony Node-API
-
+# Node-API Overview
 
 ## When to Use
 
-Developed based on the Node-API specifications of Node.js, OpenHarmony Node-API allows interaction between ArkTS/JS and C/C++ modules. It provides a set of stable APIs that can be used on different operating systems.
+Developed based on the Node.js 8.x LTS [Node-API](https://nodejs.org/docs/latest-v8.x/api/n-api.html), OpenHarmony Node-API allows interaction between ArkTS/JS and C/C++ modules. It provides a set of stable APIs that can be used on different operating systems.
 
 Unless otherwise specified, Node-API in this document refers to OpenHarmony Node-API.
 
-Generally, ArkTS/JS is used for OpenHarmony application development. However, in compute-intensive scenarios, such as games and physical simulations, the existing C/C++ libraries are required to meet the requirements for performance and efficiency. Node-API encapsulates I/O, CPU-intensive, and OS underlying capabilities and exposes these capabilities in the form of ArkTS/JS interfaces to implement interaction between ArkTS/JS and C/C++ code. Node-API provides the following benefits:
+> **NOTE**
+>
+> For details about the differences between OpenHarmony Node-API and Node.js 8.x LTS Node-API, see [Node-API](../reference/native-lib/napi.md).
 
+Generally, ArkTS/JS is used for OpenHarmony application development. However, in compute-intensive scenarios, such as games and physical simulations, the existing C/C++ libraries are required to meet the requirements for performance and efficiency. Node-API encapsulates I/O, CPU-intensive, and OS underlying capabilities and exposes these capabilities in the form of ArkTS/JS interfaces to implement interaction between ArkTS/JS and C/C++ code. Node-API provides the following benefits:
 
 - The system can open rich module functions of the framework layer to upper-layer applications through the ArkTS/JS APIs.
 
 - You can encapsulate core capabilities in C/C++ and use them with ArkTS/JS APIs to improve the execution efficiency of your application.
-
 
 ## Node-API Architecture
 
@@ -33,8 +34,7 @@ Generally, ArkTS/JS is used for OpenHarmony application development. However, in
 
 - Native engine: ArkTS engine abstraction layer, which unifies the API behavior of the ArkTS engine at the Node-API layer.
 
-- ArkComiler ArkTS runtime: ArkTS runtime.
-
+- ArkCompiler ArkTS Runtime: ArkTS runtime.
 
 ## Key Interaction Process of Node-API
 

@@ -83,7 +83,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | 返回当前设备作为Server端时连接BLE设备地址集合。 |
+| Array&lt;string&gt; | 返回当前设备作为Server端时连接BLE设备地址集合。基于信息安全考虑，此处获取的设备地址为随机MAC地址。配对成功后，该地址不会变更；已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
 
 **错误码**：
 
@@ -1514,7 +1514,7 @@ let notifyCharacter: ble.NotifyCharacteristic = {
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacter).then(() => {
-        console.info('notifyCharacteristicChanged promise successfull');
+        console.info('notifyCharacteristicChanged promise successful');
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -2215,7 +2215,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 ```js
 import { BusinessError } from '@ohos.base';
-// callkback 模式
+// callback 模式
 function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
       let services: Array<ble.GattService> = gattServices;
@@ -2566,7 +2566,7 @@ let characteristic: ble.BLECharacteristic = {serviceUuid: '00001810-0000-1000-80
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
   characteristicValue: bufferCCC, descriptors:descriptors};
 function writeCharacteristicValueCallBack(code: BusinessError) {
-    if (code.code != 0) {
+    if (code != null) {
         return;
     }
     console.log('bluetooth writeCharacteristicValue success');
@@ -3092,7 +3092,7 @@ try {
 
 on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;): void
 
-订阅蓝牙低功耗设备的特征值变化事件。需要先调用setNotifyCharacteristicChanged接口才能接收server端的通知。
+订阅蓝牙低功耗设备的特征值变化事件。需要先调用[setCharacteristicChangeNotification](#setcharacteristicchangenotification)接口才能接收server端的通知。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -3333,7 +3333,7 @@ try {
 | serviceUuid         | string      | 是    | 是    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | characteristicUuid  | string      | 是    | 是    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer | 是    | 是    | 特征对应的二进制值。                               |
-| confirm             | boolean     | 是    | 是    | 如果是notification则对端回复确认设置为true，如果是indication则对端不需要回复确认设置为false。 |
+| confirm             | boolean     | 是    | 是    | 如果是indication，对端需要回复确认，则设置为true；如果是notification，对端不需要回复确认，则设置为false。 |
 
 
 ## CharacteristicReadRequest
@@ -3439,7 +3439,7 @@ try {
 
 | 名称       | 类型        | 可读   | 可写   | 说明                                 |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | 是    | 否    | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string      | 是    | 否    | 表示扫描到的设备地址，例如："XX:XX:XX:XX:XX:XX"。基于信息安全考虑，此处获取的设备地址为随机MAC地址。配对成功后，该地址不会变更；已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
 | rssi     | number      | 是    | 否    | 表示扫描到的设备的rssi值。                    |
 | data     | ArrayBuffer | 是    | 否    | 表示扫描到的设备发送的广播包。                    |
 | deviceName | string | 是    | 否    | 表示扫描到的设备名称。                    |
@@ -3547,7 +3547,7 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 参数名                                     | 类型    | 必填  | 说明                                                         |
+| 名称                                     | 类型    | 必填  | 说明                                                         |
 | ------------------------------------------ | -------- | ---- | ------------------------------------------------------------ |
 | deviceId                                 | string      | 否    | 表示过滤的BLE设备地址，例如："XX:XX:XX:XX:XX:XX"。           |
 | name                                     | string      | 否    | 表示过滤的BLE设备名。                                        |

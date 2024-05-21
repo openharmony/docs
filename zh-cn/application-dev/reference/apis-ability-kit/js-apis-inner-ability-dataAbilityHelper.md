@@ -5,7 +5,7 @@
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。Stage模型下需使用[dataAbility模块](../apis-arkdata/js-apis-data-ability.md)和[dataShare模块](../apis-arkdata/js-apis-data-dataShare-sys.md)。
+> 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。
 
 ## 导入模块
 
@@ -25,11 +25,11 @@ import relationalStore from '@ohos.data.relationalStore';
 
 openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
-打开指定uri对应的文件，返回文件描述符（callback形式）。
+打开指定uri对应的文件，返回文件描述符。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[FileAccessHelper.openFile](../apis-core-file-kit/js-apis-fileAccess-sys.md#openfile-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -37,7 +37,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 | -------- | ---------------------- | ---- | ---------------------------------- |
 | uri      | string                 | 是   | 表示待打开文件的uri。           |
 | mode     | string                 | 是   | 表示文件打开模式，可以设置为‘r’表示只读访问，‘w’表示只写访问，‘rw’表示读写访问等。            |
-| callback | AsyncCallback\<number> | 是   | 表示文件打开的回调方法，返回文件描述符。 |
+| callback | AsyncCallback\<number> | 是   | 回调函数，返回文件描述符。 |
 
 **示例：**
 
@@ -62,11 +62,11 @@ DAHelper.openFile('dataability:///com.example.DataAbility', mode, (error, data) 
 
 openFile(uri: string, mode: string): Promise\<number>
 
-打开指定uri对应的文件，返回文件描述符（promise形式）。
+打开指定uri对应的文件，返回文件描述符。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[FileAccessHelper.openFile](../apis-core-file-kit/js-apis-fileAccess-sys.md#openfile)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -79,7 +79,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 | 类型             | 说明             |
 | ---------------- | ---------------- |
-| Promise\<number> | 返回文件说明符。 |
+| Promise\<number> | Promise对象，返回文件说明符。 |
 
 **示例：**
 
@@ -100,11 +100,11 @@ DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) =>
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
-注册观察者以监听uri指定数据的数据变化通知。
+注册观察者以监听uri指定数据的数据变化通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.on('dataChange')](../apis-arkdata/js-apis-data-dataShare-sys.md#ondatachange)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -112,7 +112,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 表示监听操作类型，'dataChange'表示数据变化操作。               |
 | uri      | string               | 是   | 表示待监听数据变化的uri。 |
-| callback | AsyncCallback\<void> | 是   | 表示数据变化时的回调方法。   |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当注册观察者以监听uri指定数据的数据变化通知成功，err为undefined，否则为错误对象。   |
 
 **示例：**
 
@@ -137,11 +137,11 @@ DAHelper.on(
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-注销观察者以停止监听uri指定数据的数据变化通知。
+注销观察者以停止监听uri指定数据的数据变化通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.off('dataChange')](../apis-arkdata/js-apis-data-dataShare-sys.md#offdatachange)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -149,7 +149,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | 是   | 表示监听操作类型，'dataChange'表示数据变化操作。               |
 | uri      | string               | 是   | 表示待取消监听数据变化的uri。 |
-| callback | AsyncCallback\<void> | 否   | 表示已注册的数据变化回调方法。如果设置数据变化回调为空，将会取消所有数据变化监听。       |
+| callback | AsyncCallback\<void> | 否   | 回调函数。当注销观察者以停止监听uri指定数据的数据变化通知成功，err为undefined，否则为错误对象。       |
 
 **示例：**
 
@@ -178,7 +178,7 @@ DAHelper.off(
 
 getType(uri: string, callback: AsyncCallback\<string>): void
 
-获取给定uri指向数据的媒体资源类型（callback形式）。
+获取给定uri指向数据的媒体资源类型。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -189,7 +189,7 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 | 参数名     | 类型                   | 必填 | 说明                                          |
 | -------- | ---------------------- | ---- | --------------------------------------------- |
 | uri      | string                 | 是   | 表示待获取数据的uri。                      |
-| callback | AsyncCallback\<string> | 是   | 表示获取媒体资源类型的回调方法，返回与uri指向数据匹配的媒体资源类型。 |
+| callback | AsyncCallback\<string> | 是   | 回调函数，返回与uri指向数据匹配的媒体资源类型。 |
 
 **示例：**
 
@@ -213,7 +213,7 @@ DAHelper.getType('dataability:///com.example.DataAbility', (error, data) => {
 
 getType(uri: string): Promise\<string>
 
-获取给定uri指向数据的媒体资源类型（Promise形式）。
+获取给定uri指向数据的媒体资源类型。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -229,7 +229,7 @@ getType(uri: string): Promise\<string>
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<string> | 返回与uri指向数据匹配的媒体资源类型。 |
+| Promise\<string> | Promise对象，返回与uri指向数据匹配的媒体资源类型。 |
 
 **示例：**
 
@@ -249,7 +249,7 @@ DAHelper.getType('dataability:///com.example.DataAbility').then((data) => {
 
 getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\<string>>): void
 
-获取支持的文件媒体资源类型（callback形式）。
+获取支持的文件媒体资源类型。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -261,7 +261,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 | -------------- | ------------------------------ | ---- | ---------------------------------- |
 | uri            | string                         | 是   | 表示待获取文件的uri。           |
 | mimeTypeFilter | string                         | 是   | 表示待获取文件的媒体资源类型。       |
-| callback       | AsyncCallback\<Array\<string>> | 是   | 表示获取媒体资源类型的回调方法，返回匹配的媒体资源类型数组。 |
+| callback       | AsyncCallback\<Array\<string>> | 是   | 回调函数，返回匹配的媒体资源类型数组。 |
 
 **示例：**
 
@@ -285,7 +285,7 @@ DAHelper.getFileTypes( 'dataability:///com.example.DataAbility', 'image/*', (err
 
 getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
-获取支持的文件媒体资源类型（Promise形式）。
+获取支持的文件媒体资源类型。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -302,7 +302,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 | 类型                     | 说明                     |
 | ------------------------ | ------------------------ |
-| Promise\<Array\<string>> | 返回匹配的媒体资源类型数组。 |
+| Promise\<Array\<string>> | Promise对象，返回匹配的媒体资源类型数组。 |
 
 **示例：**
 
@@ -322,18 +322,18 @@ DAHelper.getFileTypes('dataability:///com.example.DataAbility', 'image/*').then(
 
 normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-将引用数据功能的给定uri转换为规范化uri（callback形式）。
+将引用数据功能的给定uri转换为规范化uri。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.normalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#normalizeuri)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
 | 参数名     | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                 | 是   | 表示要规范化的uri对象。                                      |
-| callback | AsyncCallback\<string> | 是   | 表示uri规范化的回调方法。如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
+| callback | AsyncCallback\<string> | 是   | 回调函数，如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
 
 **示例：**
 
@@ -357,11 +357,11 @@ DAHelper.normalizeUri('dataability:///com.example.DataAbility', (error, data) =>
 
 normalizeUri(uri: string): Promise\<string>
 
-将引用数据功能的给定uri转换为规范化uri（Promise形式）。
+将引用数据功能的给定uri转换为规范化uri。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.normalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#normalizeuri-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -373,7 +373,7 @@ normalizeUri(uri: string): Promise\<string>
 
 | 类型             | 说明                                                   |
 | ---------------- | ------------------------------------------------------ |
-| Promise\<string> | 如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
+| Promise\<string> | Promise对象，如果数据功能支持uri规范化，则返回规范化uri对象；否则返回null。 |
 
 **示例：**
 
@@ -393,18 +393,18 @@ DAHelper.normalizeUri('dataability:///com.example.DataAbility',).then((data) => 
 
 denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
-将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri（callback形式）。
+将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.denormalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#denormalizeuri)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
 | 参数名     | 类型                   | 必填 | 说明                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | 是   | 表示要反规范化的uri对象。                             |
-| callback | AsyncCallback\<string> | 是   | 表示反规范化uri的回调方法。如果反规范化成功，则返回反规范化uri对象。 |
+| callback | AsyncCallback\<string> | 是   | 回调函数，返回反规范化uri对象。 |
 
 **示例：**
 
@@ -428,11 +428,11 @@ DAHelper.denormalizeUri('dataability:///com.example.DataAbility', (error, data) 
 
 denormalizeUri(uri: string): Promise\<string>
 
-将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri（Promise形式）。
+将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.denormalizeUri](../apis-arkdata/js-apis-data-dataShare-sys.md#denormalizeuri-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -444,7 +444,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
-| Promise\<string> | 如果反规范化成功，则返回反规范化uri对象。 |
+| Promise\<string> |Promise对象，返回反规范化uri对象。 |
 
 **示例：**
 
@@ -464,18 +464,18 @@ DAHelper.denormalizeUri('dataability:///com.example.DataAbility',).then((data) =
 
 notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
-通知注册的观察者，uri指定数据的数据变化（callback形式）。
+通知注册的观察者，uri指定数据的数据变化。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.notifyChange](../apis-arkdata/js-apis-data-dataShare-sys.md#notifychange)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
 | 参数名     | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | 是   | 表示数据变化的uri。 |
-| callback | AsyncCallback\<void> | 是   | 回调方法。               |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当通知注册的观察者成功，err为undefined，否则为错误对象。               |
 
 **示例：**
 
@@ -499,11 +499,11 @@ DAHelper.notifyChange('dataability:///com.example.DataAbility', (error) => {
 
 notifyChange(uri: string): Promise\<void>
 
-通知注册的观察者，uri指定数据的数据变化（Promise形式）。
+通知注册的观察者，uri指定数据的数据变化。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.notifyChange](../apis-arkdata/js-apis-data-dataShare-sys.md#notifychange-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -515,7 +515,7 @@ notifyChange(uri: string): Promise\<void>
 
 | 类型           | 说明                  |
 | -------------- | --------------------- |
-| Promise\<void> | 返回值为Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -535,11 +535,11 @@ DAHelper.notifyChange('dataability:///com.example.DataAbility').then(() => {
 
 insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
 
-将单个数据记录插入数据库（callback形式）。
+将单个数据记录插入数据库。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.insert](../apis-arkdata/js-apis-data-dataShare-sys.md#insert)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -547,7 +547,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
 | uri          | string                 | 是   | 表示要插入数据的uri。                               |
 | valuesBucket | rdb.ValuesBucket       | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
-| callback     | AsyncCallback\<number> | 是   | 表示数据插入的回调方法，返回插入数据记录的索引。                     |
+| callback     | AsyncCallback\<number> | 是   | 回调函数，返回插入数据记录的索引。                     |
 
 **示例：**
 
@@ -578,11 +578,11 @@ DAHelper.insert('dataability:///com.example.DataAbility', valueBucket, (error, d
 
 insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
-将单个数据记录插入数据库（Promise形式）。
+将单个数据记录插入数据库。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.insert](../apis-arkdata/js-apis-data-dataShare-sys.md#insert-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -595,7 +595,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 | 类型             | 说明                     |
 | ---------------- | ------------------------ |
-| Promise\<number> | 返回插入数据记录的索引。 |
+| Promise\<number> | Promise对象，返回插入数据记录的索引。 |
 
 **示例：**
 
@@ -622,19 +622,18 @@ DAHelper.insert('dataability:///com.example.DataAbility', valueBucket).then((dat
 
 batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: AsyncCallback\<number>): void
 
-将多个数据记录插入数据库（callback形式）。
+将多个数据记录插入数据库。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.batchInsert](../apis-arkdata/js-apis-data-dataShare-sys.md#batchinsert)。
-
+**模型约束**：此接口仅可在FA模型下使用。
 **参数：**
 
 | 参数名         | 类型                    | 必填 | 说明                             |
 | ------------ | ----------------------- | ---- | -------------------------------- |
 | uri          | string                  | 是   | 表示要插入数据的uri。         |
-| valuesBucket | Array\<rdb.ValuesBucket> | 是   | 表示要插入的数据记录数组。           |
-| callback     | AsyncCallback\<number>  | 是   | 表示批量数据插入的回调方法。返回插入的数据记录数。 |
+| valuesBuckets | Array\<[rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)> | 是   | 表示要插入的数据记录数组。           |
+| callback     | AsyncCallback\<number>  | 是   | 回调函数，返回插入的数据记录数。 |
 
 **示例：**
 
@@ -662,24 +661,24 @@ DAHelper.batchInsert('dataability:///com.example.DataAbility', cars, (error, dat
 
 batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<number>
 
-将多个数据记录插入数据库（Promise形式）。
+将多个数据记录插入数据库。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.batchInsert](../apis-arkdata/js-apis-data-dataShare-sys.md#batchinsert-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
 | 参数名         | 类型                    | 必填 | 说明                     |
 | ------------ | ----------------------- | ---- | ------------------------ |
 | uri          | string                  | 是   | 表示要插入数据的uri。 |
-| valuesBucket | Array<rdb.ValuesBucket> | 是   | 表示要插入的数据记录数组。   |
+| valuesBuckets | Array<[rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)> | 是   | 表示要插入的数据记录数组。   |
 
 **返回值：**
 
 | 类型             | 说明                   |
 | ---------------- | ---------------------- |
-| Promise\<number> | 返回插入的数据记录数。 |
+| Promise\<number> | Promise对象，返回插入的数据记录数。 |
 
 **示例：**
 
@@ -703,11 +702,11 @@ DAHelper.batchInsert('dataability:///com.example.DataAbility', cars).then((data)
 
 delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-从数据库中删除一个或多个数据记录（callback形式）。
+从数据库中删除一个或多个数据记录。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -715,7 +714,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要删除数据的uri。                         |
 | predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
-| callback     | AsyncCallback\<number>            | 是   | 表示数据删除的回调方法。返回已删除的数据记录数。               |
+| callback     | AsyncCallback\<number>            | 是   | 回调函数，返回已删除的数据记录数。               |
 
 **示例：**
 
@@ -741,11 +740,11 @@ DAHelper.delete('dataability:///com.example.DataAbility', da, (error, data) => {
 
 delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
-从数据库中删除一个或多个数据记录（Promise形式）。
+从数据库中删除一个或多个数据记录。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -758,7 +757,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 | 类型             | 说明                     |
 | ---------------- | ------------------------ |
-| Promise\<number> | 返回已删除的数据记录数。 |
+| Promise\<number> | Promise对象，返回已删除的数据记录数。 |
 
 **示例：**
 
@@ -780,18 +779,18 @@ DAHelper.delete('dataability:///com.example.DataAbility', da).then((data) => {
 
 delete(uri: string, callback: AsyncCallback\<number>): void
 
-predicates筛选条件为空，自定义数据库删除数据记录的处理逻辑（callback形式）。
+predicates筛选条件为空，自定义数据库删除数据记录的处理逻辑。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](../apis-arkdata/js-apis-data-dataShare-sys.md#delete)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要删除数据的uri。                         |
-| callback     | AsyncCallback\<number>            | 是   | 表示数据删除的回调方法。返回已删除的数据记录数。               |
+| callback     | AsyncCallback\<number>            | 是   | 回调函数，返回已删除的数据记录数。               |
 
 **示例：**
 
@@ -815,11 +814,11 @@ DAHelper.delete('dataability:///com.example.DataAbility', (error, data) => {
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
-更新数据库中的数据记录（callback形式）。
+更新数据库中的数据记录。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -828,7 +827,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 | uri          | string                            | 是   | 表示要更新数据的uri。                         |
 | valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
 | predicates   | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
-| callback     | AsyncCallback\<number>            | 是   | 表示数据更新的回调方法，返回更新的数据记录数。                 |
+| callback     | AsyncCallback\<number>            | 是   | 回调函数，返回更新的数据记录数。                 |
 
 **示例：**
 
@@ -861,11 +860,11 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da, (error, data) 
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
-更新数据库中的数据记录（Promise形式）。
+更新数据库中的数据记录。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -879,7 +878,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 
 | 类型             | 说明                                         |
 | ---------------- | -------------------------------------------- |
-| Promise\<number> | Promise中包含更新的数据记录数。 。 |
+| Promise\<number> | Promise对象，返回更新的数据记录数。 |
 
 **示例：**
 
@@ -908,11 +907,11 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) =>
 
 update(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
 
-predicates筛选条件为空，自定义更新数据库的处理逻辑（callback形式）。
+predicates筛选条件为空，自定义更新数据库的处理逻辑。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](../apis-arkdata/js-apis-data-dataShare-sys.md#update)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -920,7 +919,7 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑（callbac
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要更新数据的uri。                         |
 | valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
-| callback     | AsyncCallback\<number>            | 是   | 表示数据更新的回调方法，返回更新的数据记录数。                 |
+| callback     | AsyncCallback\<number>            | 是   | 回调函数，返回更新的数据记录数。                 |
 
 **示例：**
 
@@ -951,11 +950,11 @@ DAHelper.update('dataability:///com.example.DataAbility', va, (error, data) => {
 
 query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
-查询数据库中的数据（callback形式）。
+查询数据库中的数据。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -964,7 +963,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
 | predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
-| callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | 是   | 回调函数，返回查询结果。                         |
 
 **示例：**
 
@@ -991,18 +990,18 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da, (error, data)
 
 query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
-查询数据库中的数据（callback形式）。
+查询数据库中的数据。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
-| callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | 是   | 回调函数，返回查询结果。                         |
 
 **示例：**
 
@@ -1026,11 +1025,11 @@ DAHelper.query('dataability:///com.example.DataAbility', (error, data) => {
 
 query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>): void
 
-查询数据库中的数据（callback形式）。
+查询数据库中的数据。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -1038,7 +1037,7 @@ query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>)
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
-| callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | 是   | 回调函数，返回查询结果。                         |
 
 **示例：**
 
@@ -1063,11 +1062,11 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, (error, data) => 
 
 query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
-查询数据库中的数据（callback形式）。
+查询数据库中的数据。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -1075,7 +1074,7 @@ query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asyn
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
-| callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
+| callback   | AsyncCallback\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)>         | 是   | 回调函数，返回查询结果。                         |
 
 **示例：**
 
@@ -1101,11 +1100,11 @@ DAHelper.query('dataability:///com.example.DataAbility', da, (error, data) => {
 
 query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
 
-查询数据库中的数据（Promise形式）。
+查询数据库中的数据。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束**：此接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](../apis-arkdata/js-apis-data-dataShare-sys.md#query-1)。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **参数：**
 
@@ -1119,7 +1118,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 | 类型                | 说明           |
 | ------------------- | -------------- |
-| Promise\<ResultSet> | 返回查询结果。 |
+| Promise\<[ResultSet](../apis-arkdata/js-apis-data-relationalStore.md#resultset)> | Promise对象，返回查询结果。 |
 
 **示例：**
 
@@ -1142,7 +1141,7 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da).then((data) =
 
 call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback\<PacMap>): void
 
-调用DataAbility的扩展接口（callback形式）。
+调用DataAbility的扩展接口。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -1156,7 +1155,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 | method    | string                  | 是   | 表示被调用的方法名。   |
 | arg      | string                   | 是   | 表示需传入的参数。      |
 | extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 表示扩展的键值对参数。       |
-| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 是 | 表示数据操作的回调方法，返回操作结果。     |
+| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 是 | 回调函数，返回扩展的键值对参数。     |
 
 **示例：**
 
@@ -1181,7 +1180,7 @@ dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
 
 call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
-调用DataAbility的扩展接口（Promise形式）。
+调用DataAbility的扩展接口。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -1200,7 +1199,7 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 返回操作结果。 |
+|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Promise对象，返回扩展的键值对参数。 |
 
 **示例：**
 
@@ -1224,7 +1223,7 @@ dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
 
 executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void
 
-批量操作数据库中的数据。
+批量操作数据库中的数据。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -1236,7 +1235,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: As
 | ----------| ---------------------------------| ---- | ------------------------------------------------ |
 | uri       | string                           | 是   | 表示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'。|
 | operations    |  Array\<[DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)>        | 是   | 表示数据操作数组，其中可以包含对数据库的多个不同操作。   |
-| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | 是   | 表示批量操作的回调方法，在DataAbilityResult数组中返回每个操作的结果。      |
+| callback      |  AsyncCallback\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>>    | 是   | 回调函数，在DataAbilityResult数组中返回每个操作的结果。      |
 
 **示例：**
 
@@ -1262,7 +1261,7 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>
 
-批量操作数据库中的数据。
+批量操作数据库中的数据。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
@@ -1279,7 +1278,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | 在DataAbilityResult数组中返回每个操作的结果。 |
+|Promise\<Array\<[DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)>> | Promise对象，在DataAbilityResult数组中返回每个操作的结果。 |
 
 **示例：**
 

@@ -33,9 +33,11 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | if the parameters checking failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -47,9 +49,13 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
+  @State text: string = ''
+
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -59,10 +65,13 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
+        .margin(10)
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
+              let text = new UDC.PlainText()
+              text.textContent = 'drag text'
+              text.abstract = 'abstract'
               let unifiedData = new UDC.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
@@ -78,20 +87,34 @@ struct DragControllerPage {
               dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
                 if(eve.event){
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                  // ...
+                    // ...
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                  // ...
+                    // ...
                   }
                 }
               })
             }
           }
         })
+      Text(this.text)
+        .height(100)
+        .width(150)
+        .margin({top:20})
+        .border({color:Color.Black,width:1})
+        .onDrop((dragEvent?:DragEvent)=>{
+          if(dragEvent){
+            let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            this.text = plainText.textContent;
+          }
+        })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
-
+  ![zh-cn_executeDrag1](figures/executeDrag1.gif)
 ## dragController.executeDrag
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
@@ -114,10 +137,10 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 | Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
 **错误码：**
-
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | if the parameters checking failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | if some internal handling failed. |
 
 **示例：**
@@ -131,11 +154,13 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
+  @State pixmap: image.PixelMap|undefined = undefined
+  @State text: string = ''
 
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
     }
     .width(100)
     .height(100)
@@ -145,19 +170,33 @@ struct DragControllerPage {
   @Builder PixmapBuilder() {
     Column() {
       Text("PixmapBuilder")
+        .fontColor(Color.White)
+        .fontSize(15)
     }
     .width(100)
     .height(100)
     .backgroundColor(Color.Blue)
   }
 
+  aboutToAppear() {
+    let pb: CustomBuilder = (): void => {
+      this.PixmapBuilder()
+    }
+    componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+      this.pixmap = pix;
+    })
+  }
+
   build() {
     Column() {
       Button('touch to execute drag')
+        .margin(10)
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
+              let text = new UDC.PlainText()
+              text.textContent = 'drag text'
+              text.abstract = 'abstract'
               let unifiedData = new UDC.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
@@ -165,32 +204,40 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               }
-              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
-              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
-                this.pixmap = pix;
-                let dragItemInfo: DragItemInfo = {
-                  pixelMap: this.pixmap,
-                  builder: ()=>{this.DraggingBuilder()},
-                  extraInfo: "DragItemInfoTest"
-                }
+              let dragItemInfo: DragItemInfo = {
+                pixelMap: this.pixmap,
+                builder: ()=>{this.DraggingBuilder()},
+                extraInfo: "DragItemInfoTest"
+              }
 
-                class tmp{
-                  event:DragResult|undefined = undefined
-                  extraParams:string = ''
-                }
-                let eve:tmp = new tmp()
-                dragController.executeDrag(dragItemInfo, dragInfo)
-                  .then((eve) => {
-                    if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                      // ...
-                    } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                      // ...
-                    }
-                  })
-                  .catch((err:Error) => {
-                  })
-              })
+              class tmp{
+                event:DragResult|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(dragItemInfo, dragInfo)
+                .then((eve) => {
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                    // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                    // ...
+                  }
+                })
+                .catch((err:Error) => {
+                })
             }
+          }
+        })
+      Text(this.text)
+        .height(100)
+        .width(150)
+        .margin({top:20})
+        .border({color:Color.Black,width:1})
+        .onDrop((dragEvent?:DragEvent)=>{
+          if(dragEvent){
+            let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            this.text = plainText.textContent;
           }
         })
     }
@@ -199,7 +246,7 @@ struct DragControllerPage {
   }
 }
 ```
-
+  ![zh-cn_executeDrag2](figures/executeDrag2.gif)
 ## DragInfo
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -211,8 +258,8 @@ struct DragControllerPage {
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
 | data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
-| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。      |
-| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。 |
+| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## dragController.createDragAction<sup>11+</sup>
 
@@ -221,6 +268,8 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
 
 **说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -239,9 +288,10 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401      | If the parameters checking failed |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001   | If some internal handling failed |
 
 **示例：**
@@ -256,11 +306,14 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap | null = null
+  @State text: string = ''
   private dragAction: dragController.DragAction | null = null;
   customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -271,11 +324,23 @@ struct DragControllerPage {
     Column() {
 
       Column() {
-        Text("测试")
+        Text(this.text)
+          .width('100%')
+          .height('100%')
+          .fontColor(Color.White)
+          .fontSize(18)
+          .onDrop((dragEvent?:DragEvent)=>{
+            if(dragEvent){
+              let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+              this.text = plainText.textContent;
+            }
+          })
       }
       .width(100)
       .height(100)
       .backgroundColor(Color.Red)
+      .margin(10)
 
       Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
         if(event){
@@ -285,7 +350,8 @@ struct DragControllerPage {
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new UDC.Text()
+            let text = new UDC.PlainText()
+            text.textContent = 'drag text'
             let unifiedData = new UDC.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
@@ -294,24 +360,24 @@ struct DragControllerPage {
             }
             try{
               this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
-            if(!this.dragAction){
-              console.log("listener dragAction is null");
-              return
-            }
-            this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                console.log("drag has start");
-              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                console.log("drag has end");
-                if (!this.dragAction) {
-                  return
-                }
-                this.dragAction.off('statusChange')
+              if(!this.dragAction){
+                console.log("listener dragAction is null");
+                return
               }
-            })
-            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.log("start drag Error:" + err.message);
-            })
+              this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+                if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                  console.log("drag has start");
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                  console.log("drag has end");
+                  if (!this.dragAction) {
+                    return
+                  }
+                  this.dragAction.off('statusChange')
+                }
+              })
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.log("start drag Error:" + err.message);
+              })
             } catch(err) {
               console.log("create dragAction Error:" + err.message);
             }
@@ -322,10 +388,12 @@ struct DragControllerPage {
   }
 }
 ```
-
+  ![zh-cn_executeDrag3](figures/executeDrag3.gif)
 ## DragAction<sup>11+</sup>
 
 监听状态改变，启动拖拽服务的对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -334,6 +402,8 @@ struct DragControllerPage {
 startDrag(): Promise&lt;void&gt;
 
 启动拖拽服务，返回Promise对象，回调启动成功和失败的结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -388,6 +458,8 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 
 注册监听拖拽状态改变事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -440,6 +512,8 @@ struct DragControllerPage {
 
 取消注册监听拖拽状态改变事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -488,6 +562,8 @@ struct DragControllerPage {
 
 ## DragAndDropInfo<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 拖拽过程中监听到status改变时上报的数据。
@@ -500,6 +576,8 @@ struct DragControllerPage {
 
 ## DragStatus<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 拖拽开始和结束状态。
@@ -510,6 +588,8 @@ struct DragControllerPage {
 | ENDED        | 1                                                  | 拖拽结束。               |
 
 ## AnimationOptions<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -525,6 +605,8 @@ struct DragControllerPage {
 getDragPreview(): DragPreview
 
 返回一个代表拖拽背板的对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -542,13 +624,17 @@ getDragPreview(): DragPreview
 
 拖拽背板的对象，在OnDrop和OnDragEnd回调中使用不生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### setForegroundColor<sup>11+</sup>
 
 setForegroundColor(color: ResourceColor): void
 
-设置背板蒙版颜色，在OnDrop和OnDragEnd回调中使用不生效。
+设置背板蒙版颜色，在OnDrop和OnDragEnd回调中使用不生效，仅支持通过 [getDragPreview()](js-apis-arkui-UIContext.md#getdragpreview11) 方法获取到的对象上使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -566,7 +652,9 @@ setForegroundColor(color: ResourceColor): void
 
 animate(options: AnimationOptions, handler: () => void): void
 
-设置背板蒙版颜色变化动效，在OnDrop和OnDragEnd回调中使用不生效。
+设置背板蒙版颜色变化动效，在OnDrop和OnDragEnd回调中使用不生效，仅支持通过 [getDragPreview()](js-apis-arkui-UIContext.md#getdragpreview11) 方法获取到的对象上使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -634,6 +722,7 @@ import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';
 import { UIContext } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
 
 
 let storages = LocalStorage.getShared();
@@ -646,6 +735,8 @@ struct DragControllerPage {
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -663,27 +754,29 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button('拖拽至此处').onDragEnter(() => {
-          try {
-            let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
-            let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
-            let foregroundColor: ResourceColor = Color.Green;
+      Button('拖拽至此处')
+        .margin(10)
+        .onDragEnter(() => {
+        try {
+          let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+          let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
+          let foregroundColor: ResourceColor = Color.Green;
 
-            let previewAnimation: dragController.AnimationOptions = {
-              curve: curves.cubicBezierCurve(0.2,0,0,1),
-            }
-            previewObj.animate(previewAnimation, () => {
-              previewObj.setForegroundColor(foregroundColor);
-            });
-          } catch (error) {
-            let msg = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
+          let previewAnimation: dragController.AnimationOptions = {
+            curve: curves.cubicBezierCurve(0.2,0,0,1),
           }
+          previewObj.animate(previewAnimation, () => {
+            previewObj.setForegroundColor(foregroundColor);
+          });
+        } catch (error) {
+          let msg = (error as BusinessError).message;
+          let code = (error as BusinessError).code;
+          hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
+        }
       })
-      .onDrop(() => {
-
-      })
+        .onDrop(() => {
+          promptAction.showToast({duration: 100, message: 'Drag Success', bottom: 400})
+        })
       Button('拖起').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
@@ -694,22 +787,22 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
-              }
-              let eve:tmp = new tmp()
-              dragController.executeDrag(() => {
-                this.DraggingBuilder()
-              }, dragInfo, (err , eve) => {
-                hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
-                if (eve && eve.event) {
-                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    hilog.info(0x0000, 'success', '');
-                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                    hilog.info(0x0000, 'failed', '');
-                  }
+            class tmp{
+              event:DragEvent|undefined = undefined
+              extraParams:string = ''
+            }
+            let eve:tmp = new tmp()
+            dragController.executeDrag(() => {
+              this.DraggingBuilder()
+            }, dragInfo, (err , eve) => {
+              hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
+              if (eve && eve.event) {
+                if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  hilog.info(0x0000, 'success', '');
+                } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  hilog.info(0x0000, 'failed', '');
                 }
+              }
             })
           }
         }
@@ -719,4 +812,5 @@ struct DragControllerPage {
     .height('100%')
   }
 }
-
+  ```
+  ![zh-cn_executeDrag5](figures/executeDrag5.gif)

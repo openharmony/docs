@@ -37,7 +37,19 @@ PersistentStorage不允许的类型和值有：
 
 PersistentStorage的持久化变量最好是小于2kb的数据，不要大量的数据持久化，因为PersistentStorage写入磁盘的操作是同步的，大量的数据本地化读写会同步在UI线程中执行，影响UI渲染性能。如果开发者需要存储大量的数据，建议使用数据库api。
 
-PersistentStorage和UIContext相关联，需要在[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)明确的时候才可以调用，可以通过在[runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask)里明确上下文。如果没有在UIContext明确的地方调用，将导致无法持久化数据。
+PersistentStorage和UI实例相关联，持久化操作需要在UI实例初始化成功后（即[loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9-2)传入的回调被调用时）才可以被调用，早于该时机调用会导致持久化失败。
+
+```ts
+// EntryAbility.ets
+onWindowStageCreate(windowStage: window.WindowStage): void {
+  windowStage.loadContent('pages/Index', (err) => {
+    if (err.code) {
+      return;
+    }
+    PersistentStorage.persistProp('aProp', 47);
+  });
+}
+```
 
 ## 使用场景
 

@@ -663,3 +663,88 @@ AST属于编译器编译过程中间数据结构，该数据本身不稳定，�
 **参考链接**
 
 1. [TaskPool和Worker的对比 (TaskPool和Worker)](../arkts-utils/taskpool-vs-worker.md)
+
+
+##  ArkTS 应用运行时出现模块化加载相关的异常报错提示，可能导致报错原因以及解决方法
+
+**报错与定位方法**
+
+1. "Cannot find dynamic-import module 'xxxx'" 报错表示当前加载的模块未被编译到当前应用包内
+
+报错原因: 通过动态加载传入表达式作为入参时，模块路径参数书写有误。
+``` typescript
+  import(module).then(m=>{m.foo();}).catch(e=>{console.log(e)})
+```
+
+定位方法: 将待加载module路径信息打印出来，评估模块路径是否计算有误。
+
+2. "Cannot find module 'xxxx' , which is application Entry Point" 报错表示拉起应用abc时，执行入口文件查找失败
+
+报错原因: 应用拉起时，应用入口文件模块查找失败。
+
+定位方法:
+(1) 打开应用工程级编译构建文件: entry > build-profile.json5
+
+([OpenHarmony工程管理介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V3/ohos-project-overview-0000001218440650-V3))
+([build-profile.json5编译构建信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V3/ohos-building-configuration-0000001218440654-V3))
+
+build-profile.json5部分参数示例如下:
+```
+{
+  "app": {
+    ···
+  },
+  "modules": [
+    {
+      "name": "entry",  // 模块名称
+      "srcPath": "./entry",  // 标明src目录相对工程根目录的相对路径
+      "targets": [  // 定义构建的产物，由product和各模块定义的targets共同定义
+        {
+          "name": "default",  // target名称，由各个模块的build-profile.json5中的targets字段定义
+          "applyToProducts": [  // 产品品类名称，由products字段进行定义
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+(2) 其中，"modules":"srcPath" 参数标记了该应用拉起的入口文件。如报错入口文件加载失败，请检查build-profile.json5内的"srcPath"参数是否书写正确。
+
+3. "No export named 'xxxx' which exported by 'xxxx'" 报错表示加载应用hap或har包内so时，该模块内未查找到特定对象
+
+报错原因: ets在模块化静态编译阶段，会预解析模块间依赖关系。ets文件内的导入变量名书写错误时，ide编译器与应用编译阶段均会报错提示。但目前对于应用内native C++模块的依赖关系检测会在运行阶段。
+
+定位方法:
+检查应用内so是否存在报错提示的导出变量，与加载应用内so导入变量处进行比较，不一致则适配修改。
+
+## taskpool线程中是否可以使用emitter.on等长时间监听接口
+
+不推荐。
+
+**原理澄清**
+
+1. 由于长时间的监听，可能会影响线程回收或复用。
+2. 如果线程被回收会导致线程回调失效或者发生不可预期的错误。
+3. 如果任务函数多次执行，可能会在不同的线程产生监听，导致结果不符合预期。
+
+**解决方案**
+
+建议使用[长时任务](../reference/apis-arkts/js-apis-taskpool.md#longtask12)。
+
+## taskpool中监听任务的接口onEnqueued、onStartExecution、onExecutionFailed、onExecutionSucceeded是否有调用顺序(API 12)
+
+**解决方案**
+
+上述四个接口可独立使用，无调用的先后顺序。
+
+## 如何在HAR中使用Sendable class
+
+**解决方案**
+
+使用TS HAR，具体内容参考以下文档。
+
+**参考链接**
+
+[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)

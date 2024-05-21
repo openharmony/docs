@@ -1,8 +1,8 @@
-# Arkcompiler Subsystem changelog
+# ArkCompiler Subsystem Changelog
 
-## cl.arkcompiler.1 Changes in Implementation of Arkcompiler ets_frontend and ets_runtime
+## cl.arkcompiler.1 Change in ArkCompiler Internal Implementation
 
-Changes in Implementation of Arkcompiler ets_frontend and ets_runtime
+Changed the internal implementation of ArkCompiler.
 
 **Change Since**
 
@@ -10,11 +10,11 @@ OpenHarmony_4.1.6.1
 
 **Reason for Change**
 
-To implements ECMA2022 class new features and sendable class, add some bytecodes.
+To implement the ECMAScript 2022 class and sendable class features, new bytecodes are required.
 
 **Change Description**
 
-Added bytecodes for class:
+The following bytecodes are added to the class feature:
 1. `definefieldbyname`
 2. `callruntime.definefieldbyvalue`
 3. `callruntime.definefieldbyindex`
@@ -26,24 +26,24 @@ Added bytecodes for class:
 9. `stprivateproperty`
 10. `testin`
 
-Added bytecodes for sendable class:
+The following bytecodes are added to the sendable class:
 1. `callruntime.definesendableclass`
 2. `callruntime.ldsendableclass`
 
 **Change Impact**
 
-Because SDK Version OpenHarmony_4.1.6.1 adds bytecodes that need ROM the same version to support，older ROMs in API11 can't run the haps built by SDK Version OpenHarmony_4.1.6.1.
+The new bytecodes added in SDK OpenHarmony_4.1.6.1 require support from ROM in the same version. Therefore, earlier ROM in API version 11 cannot run the HAPs built by SDK OpenHarmony_4.1.6.1.
 
-If using SDK Version OpenHarmony_4.1.6.1 and ROM in API10，developers can config `compatiableSdkVersion: 10` option in IDE to build hap which can run on the ROM.
+If you are using SDK OpenHarmony_4.1.6.1 and ROM in API version 10, you can set the **compatiableSdkVersion: 10** option from DevEco Studio to build a HAP that can run on the ROM.
 
-**Phenomenon**
+**Symptom**
 
-If don't use SDK and ROM in pairs, may lead to one of the following errors:
+If the SDK and ROM do not match, the following errors may occur:
 
-1. jsCrash: `Load file with filename '/data/storage/el1/bundle/entry/ets/module.abc' failed, recordName 'com.example.myapplication/entry/ets/entryability/EntryAbility' not exists` with hilog: `Unable to open file 'filename' with abc file version 11.0.2.0. Maximum supported abc file version on the current system image is 9.0.0.0. Please upgrade the runtime to supported version or generate byte code with former SDK tools`
+1. jsCrash: `Load file with filename '/data/storage/el1/bundle/entry/ets/module.abc' failed, recordName 'com.example.myapplication/entry/ets/entryability/EntryAbility' not exists` along with hilog: `Unable to open file 'filename' with abc file version 11.0.2.0. Maximum supported abc file version on the current system image is 9.0.0.0. Please upgrade the runtime to supported version or generate byte code with former SDK tools`
 
 2. cppCrash: `Unable to open file 'filename' with abc file version 11.0.2.0. Maximum supported abc file version on the current system image is 11.0.1.0. Please upgrade the system image or use former version of SDK tools to generate abc files`
 
-**How to Solve**
+**Solution**
 
-If develops have problem that SDK and ROM in API11 are not compatible , please update ROM to OpenHarmony_4.1.6.1 and above.
+Update the ROM to OpenHarmony_4.1.6.1 or later.

@@ -24,7 +24,7 @@ import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context.|
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| Yes| Context.|
 
 ## ShareExtensionAbility.onCreate
 

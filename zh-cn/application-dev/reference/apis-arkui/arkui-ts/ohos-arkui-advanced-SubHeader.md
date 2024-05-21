@@ -39,54 +39,59 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 **参数：**
 
 
-| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 图标设置项。 | 
-| iconSymbolOptions<sup>12+</sup> | [SymbolOptions](#symboloptions12) | 否 | - | icon为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 | 
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 标题内容。 | 
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 副标题内容。 | 
-| select | [SelectOptions](#selectoptions) | 否 | - | select内容以及事件。 | 
-| operationType | [OperationType](#operationtype) | 否 | \@Prop | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON | 
-| operationItem | Array&lt;[OperationOption](#operationoption)&gt; | 否 | - | 操作区（右侧）的设置项。 | 
-| operationSymbolOptions<sup>12+</sup> | Array&lt;[SymbolOptions](#symboloptions12)&gt; | 否 | - | operationType为OperationType.ICON_GROUP，<br/>operationItem设置多个图标，图标为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 | 
-
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 图标设置项。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| iconSymbolOptions<sup>12+</sup> | [SymbolOptions](#symboloptions12) | 否 | - | icon为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 |
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 标题内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop | 副标题内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| select | [SelectOptions](#selectoptions) | 否 | - | select内容以及事件。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| operationType | [OperationType](#operationtype) | 否 | \@Prop | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| operationItem | Array&lt;[OperationOption](#operationoption)&gt; | 否 | - | 操作区（右侧）的设置项。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| operationSymbolOptions<sup>12+</sup> | Array&lt;[SymbolOptions](#symboloptions12)&gt; | 否 | - | operationType为OperationType.ICON_GROUP，<br/>operationItem设置多个图标，图标为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 |
 
 ## OperationType
 
-| 名称 | 值 | 说明 | 
-| -------- | -------- | -------- |
-| TEXT_ARROW |  0  | 文本按钮（带右箭头）。 | 
-| BUTTON |  1  |  文本按钮（不带右箭头）。 | 
-| ICON_GROUP |  2  |  图标按钮（最多支持配置三张图标）。 | 
-| LOADING |  3  |  加载动画。 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| TEXT_ARROW |  0  | 文本按钮（带右箭头）。 |
+| BUTTON |  1  |  文本按钮（不带右箭头）。 |
+| ICON_GROUP |  2  |  图标按钮（最多支持配置三张图标）。 |
+| LOADING |  3  |  加载动画。 |
 
 ## SelectOptions
 
-| 名称 | 类型 | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption对象说明)&gt; | 是 | 下拉选项内容。 | 
-| selected | number | 否 | 设置下拉菜单初始选项的索引。<br/>第一项的索引为0。<br/>当不设置selected属性时，<br/>默认选择值为-1，菜单项不选中。 | 
-| value | string | 否 | 设置下拉按钮本身的文本内容。 | 
-| onSelect | (index:&nbsp;number,&nbsp;value?:&nbsp;string)&nbsp;=&gt;&nbsp;void | 否 | 下拉菜单选中某一项的回调。<br/>-&nbsp;index：选中项的索引。<br/>-&nbsp;value：选中项的值。 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption对象说明)&gt; | 是 | 下拉选项内容。 |
+| selected | number | 否 | 设置下拉菜单初始选项的索引。<br/>第一项的索引为0。<br/>当不设置selected属性时，<br/>默认选择值为-1，菜单项不选中。 |
+| value | string | 否 | 设置下拉按钮本身的文本内容。 |
+| onSelect | (index:&nbsp;number,&nbsp;value?:&nbsp;string)&nbsp;=&gt;&nbsp;void | 否 | 下拉菜单选中某一项的回调。<br/>-&nbsp;index：选中项的索引。<br/>-&nbsp;value：选中项的值。 |
 
 ## OperationOption
 
-| 名称 | 类型 | 必填 | 说明 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 文本内容。 | 
-| action | ()=&gt;void | 否 | 事件。 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 文本内容。 |
+| action | ()=&gt;void | 否 | 事件。 |
 
 ## SymbolOptions<sup>12+</sup>
 
-| 名称 | 类型 | 必填 | 说明 | 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fontColor | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。 | 
-| fontSize | number \|string \|[Resource](ts-types.md#Resource) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)大小。<br/>默认值：系统默认值。 | 
-| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight)\|number \|string | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 | 
-| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 | 
-| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 | 
+| fontColor | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。 |
+| fontSize | number \|string \|[Resource](ts-types.md#Resource) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)大小。<br/>默认值：系统默认值。 |
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight)\|number \|string | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
@@ -105,8 +110,7 @@ struct SubHeaderExample {
     Column() {
       SubHeader({
         icon: $r('app.media.ic_public_community_messages'),
-        secondaryTitle: '子标题',
-        primaryTitle: '子标题',
+        secondaryTitle: '二级标题',
         operationType: OperationType.BUTTON,
         operationItem: [{ value: '操作',
           action: () => {
@@ -119,7 +123,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题3](figures/zh-cn_image_202307291.png)
+![子标题1](figures/zh-cn_image_subheader_example01.png)
 
 ### 示例2
 
@@ -133,8 +137,8 @@ struct SubHeaderExample {
   build() {
     Column() {
       SubHeader({
-        primaryTitle: '标题',
-        secondaryTitle: '副文本副文本副文本副文本',
+        primaryTitle: '一级标题',
+        secondaryTitle: '二级标题',
         operationType: OperationType.TEXT_ARROW,
         operationItem: [{ value: '更多',
           action: () => {
@@ -147,7 +151,7 @@ struct SubHeaderExample {
 }
 ```
 
-![zh-cn_image_0000001664546481](figures/zh-cn_image_0000001664546481.png)
+![子标题2](figures/zh-cn_image_subheader_example02.png)
 
 ### 示例3
 
@@ -192,7 +196,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题5](figures/zh-cn_image_2023072902.png)
+![子标题5](figures/zh-cn_image_subheader_example03.png)
 
 ### 示例4
 

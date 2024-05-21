@@ -9,7 +9,7 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 ## 导入模块
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
 ```
 
 ## setFormNextRefreshTime
@@ -17,6 +17,8 @@ import formProvider from '@ohos.app.form.formProvider';
 setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置指定卡片的下一次更新时间，使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -46,12 +48,12 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
-  formProvider.setFormNextRefreshTime(formId, 5, (error: Base.BusinessError) => {
+  formProvider.setFormNextRefreshTime(formId, 5, (error: BusinessError) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -59,7 +61,7 @@ try {
     console.log(`formProvider setFormNextRefreshTime success`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -68,6 +70,8 @@ try {
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
 设置指定卡片的下一次更新时间，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -102,18 +106,18 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
     console.log(`formProvider setFormNextRefreshTime success`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -122,6 +126,8 @@ try {
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void
 
 更新指定的卡片，使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -150,9 +156,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData,call
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formBindingData, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
@@ -161,7 +166,7 @@ try {
     'time': '22:00'
   }
   let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
-  formProvider.updateForm(formId, obj, (error: Base.BusinessError) => {
+  formProvider.updateForm(formId, obj, (error: BusinessError) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -169,7 +174,7 @@ try {
     console.log(`formProvider updateForm success`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -178,6 +183,8 @@ try {
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;
 
 更新指定的卡片，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -211,9 +218,8 @@ updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Pr
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formBindingData, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 let param: Record<string, string> = {
@@ -224,11 +230,11 @@ let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData
 try {
   formProvider.updateForm(formId, obj).then(() => {
     console.log(`formProvider updateForm success`);
-  }).catch((error: Base.BusinessError) => {
-    console.error(`promise error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  }).catch((error: BusinessError) => {
+    console.error(`promise error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -237,6 +243,8 @@ try {
 getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 获取设备上当前应用程序的卡片信息，使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -260,8 +268,8 @@ getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): voi
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formProvider.getFormsInfo((error, data) => {
@@ -272,7 +280,7 @@ try {
     console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 ## getFormsInfo
@@ -280,6 +288,8 @@ try {
 getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 获取设备上当前应用程序的卡片信息，并筛选符合条件的信息，使用callback异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -304,9 +314,8 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
+import { formInfo, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -321,7 +330,7 @@ try {
     console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -330,6 +339,8 @@ try {
 getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 获取设备上当前应用程序的卡片信息，使用Promise异步回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -359,9 +370,8 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 **示例：**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formInfo, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -370,11 +380,10 @@ const filter: formInfo.FormInfoFilter = {
 try {
   formProvider.getFormsInfo(filter).then((data: formInfo.FormInfo[]) => {
     console.log(`formProvider getFormsInfo, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
-

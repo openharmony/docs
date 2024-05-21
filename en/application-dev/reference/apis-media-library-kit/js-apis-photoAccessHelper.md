@@ -173,7 +173,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses an asynchronous callback to return the result.
 
-If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../file-management/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -226,7 +226,7 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 Creates an image or video asset with the specified file type and file name extension. This API uses an asynchronous callback to return the result.
 
-If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../file-management/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -275,7 +275,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
-If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../file-management/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+If the application does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can use a security component to create a media asset. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1527,9 +1527,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
-> **NOTE**
->
-> The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1582,9 +1580,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
-> **NOTE**
->
-> The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1634,9 +1630,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
->
-> The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
+**NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 

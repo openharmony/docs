@@ -16,7 +16,6 @@ import Hash from '@ohos.file.hash';
 
 Before using the APIs provided by this module to perform operations on a file or directory, obtain the application sandbox path of the file or directory as follows:
 
-
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import window from '@ohos.window';
@@ -30,7 +29,6 @@ Before using the APIs provided by this module to perform operations on a file or
   ```
 
 For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
-
 
 ## Hash.hash
 
@@ -49,13 +47,13 @@ Calculates a hash value for a file. This API uses a promise to return the result
 
 **Return value**
 
-| Type                   | Description                        |
-| --------------------- | -------------------------- |
-| Promise&lt;string&gt; | Promise used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
+  | Type                   | Description                        |
+  | --------------------- | -------------------------- |
+  | Promise&lt;string&gt; | Promise used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -92,7 +90,7 @@ Calculates a hash value for a file. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 | ID| Error Message|
 | -------- | -------- |

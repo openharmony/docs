@@ -55,7 +55,7 @@ Provides C APIs for the network protocol stack module.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | Constructor used to create an OH_NetStack_WebsocketClient instance. | 
+| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | Constructor used to create a **WebSocketClient** instance. | 
 | [OH_WebSocketClient_AddHeader](#oh_websocketclient_addheader) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_Header](_web_socket___header.md) header) | Adds the header information to the client request. | 
 | [OH_WebSocketClient_Connect](#oh_websocketclient_connect) (struct [WebSocket](_web_socket.md) \*client, const char \*url, struct [WebSocket_RequestOptions](_web_socket___request_options.md) options) | Connects the client to the server. | 
 | [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | Sends data from the client to the server. | 
@@ -69,10 +69,10 @@ Provides C APIs for the network protocol stack module.
 | [NetStack_CertBlob::type](#type) | Certificate type.| 
 | [NetStack_CertBlob::size](#size) | Certificate content length.| 
 | [NetStack_CertBlob::data](#data) | Certificate content.| 
-| [WebSocket_CloseResult::code](#code-13) | Error code for the connection closure. | 
-| [WebSocket_CloseResult::reason](#reason-13) | Error cause for the connection closure. | 
-| [WebSocket_CloseOption::code](#code-23) | Error code for the connection closure. | 
-| [WebSocket_CloseOption::reason](#reason-23) | Error cause for the connection closure. | 
+| [WebSocket_CloseResult::code](#code-13) | Connection close code. | 
+| [WebSocket_CloseResult::reason](#reason-13) | Connection close reason for the WebSocket client. | 
+| [WebSocket_CloseOption::code](#code-23) | Connection close code. | 
+| [WebSocket_CloseOption::reason](#reason-23) | Connection close reason for the WebSocket client. | 
 | [WebSocket_ErrorResult::errorCode](#errorcode) | Error code. | 
 | [WebSocket_ErrorResult::errorMessage](#errormessage) | Error message. | 
 | [WebSocket_OpenResult::code](#code-33) | Connection success code for the WebSocket client. | 
@@ -81,11 +81,11 @@ Provides C APIs for the network protocol stack module.
 | [WebSocket_Header::fieldValue](#fieldvalue) | Header field content. | 
 | [WebSocket_Header](_web_socket___header.md) \* [WebSocket_Header::next](#next) | Next pointer of the header linked list. | 
 | [WebSocket_Header](_web_socket___header.md) \* WebSocket_RequestOptions::headers | Header information.| 
-| [WebSocket_OnOpenCallback](#websocket_onopencallback)[WebSocket::onOpen](#onopen) | Pointer to the callback invoked when the WebSocket client receives a connection message. | 
-| [WebSocket_OnMessageCallback](#websocket_onmessagecallback)[WebSocket::onMessage](#onmessage) | Pointer to the callback invoked when the WebSocket client receives a message. | 
-| [WebSocket_OnErrorCallback](#websocket_onerrorcallback)[WebSocket::onError](#onerror) | Pointer to the callback invoked when the WebSocket client receives an error message. | 
-| [WebSocket_OnCloseCallback](#websocket_onclosecallback)[WebSocket::onClose](#onclose) | Pointer to the callback invoked when the WebSocket client receives a **close** message. | 
-| [WebSocket_RequestOptions](_web_socket___request_options.md)[WebSocket::requestOptions](#requestoptions) | Content of the request for establishing a connection on the client.| 
+| [WebSocket_OnOpenCallback](#websocket_onopencallback) [WebSocket::onOpen](#onopen) | Pointer to the callback invoked when the WebSocket client receives a connection message. | 
+| [WebSocket_OnMessageCallback](#websocket_onmessagecallback) [WebSocket::onMessage](#onmessage) | Pointer to the callback invoked when the WebSocket client receives a message. | 
+| [WebSocket_OnErrorCallback](#websocket_onerrorcallback) [WebSocket::onError](#onerror) | Pointer to the callback invoked when the WebSocket client receives an error message. | 
+| [WebSocket_OnCloseCallback](#websocket_onclosecallback) [WebSocket::onClose](#onclose) | Pointer to the callback invoked when the WebSocket client receives a **close** message. | 
+| [WebSocket_RequestOptions](_web_socket___request_options.md) [WebSocket::requestOptions](#requestoptions) | Content of the request for establishing a connection on the client.| 
 
 
 ## Type Description
@@ -301,9 +301,6 @@ Adds the header information to the client request.
 
 Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
 
-**Required Permissions**
-
-ohos.permission.INTERNET
 
 
 ### OH_WebSocketClient_Close()
@@ -370,7 +367,7 @@ ohos.permission.INTERNET
 struct WebSocket* OH_WebSocketClient_Constructor (WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage, WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose )
 ```
 **Description**
-Constructor used to create an **OH_NetStack_WebsocketClient** instance.
+Constructor used to create a **WebSocketClient** instance.
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -389,9 +386,6 @@ Constructor used to create an **OH_NetStack_WebsocketClient** instance.
 
 Returns the pointer to the WebSocket client if the operation is successful; returns NULL otherwise.
 
-**Required Permissions**
-
-ohos.permission.INTERNET
 
 
 ### OH_WebSocketClient_Destroy()
@@ -443,8 +437,6 @@ Sends data from the WebSocket client to the server.
 
 **Returns**
 
- 
-
 Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
 
 **Required Permissions**
@@ -495,7 +487,7 @@ uint32_t WebSocket_CloseResult::code
 
 **Description**
 
-Error code for the connection closure.
+Connection close code.
 
 
 ### code [2/3]
@@ -506,7 +498,7 @@ uint32_t WebSocket_CloseOption::code
 
 **Description**
 
-Error code for the connection closure.
+Connection close code.
 
 
 ### code [3/3]
@@ -627,7 +619,7 @@ const char* WebSocket_CloseResult::reason
 
 **Description**
 
-Error cause for the connection closure.
+Connection close reason for the WebSocket client.
 
 
 ### reason [2/3]
@@ -638,7 +630,7 @@ const char* WebSocket_CloseOption::reason
 
 **Description**
 
-Error cause for the connection closure.
+Connection close reason for the WebSocket client.
 
 
 ### reason [3/3]

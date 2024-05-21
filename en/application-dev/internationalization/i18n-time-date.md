@@ -16,7 +16,7 @@ Time and date formatting includes date and time formatting, relative time format
 
 ### Date and Time Formatting
 
-Date and time formatting is implemented by the [format](../reference/apis/js-apis-intl.md#format) API of [DateTimeFormat](../reference/apis/js-apis-intl.md#datetimeformat). The development procedure is as follows:
+Date and time formatting is implemented by the [format](../reference/apis-localization-kit/js-apis-intl.md#format) API of [DateTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#datetimeformat). The development procedure is as follows:
 
 1. Import the **intl** module.
    ```ts
@@ -48,7 +48,7 @@ Date and time formatting is implemented by the [format](../reference/apis/js-api
 
 **Date and Time Formatting Options**
 
-The following uses the time **2021-09-17 13:04:00** and locale **zh-CN** as an example to show the values of [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions) and corresponding display effects.
+The following uses the time **2021-09-17 13:04:00** and locale **zh-CN** as an example to show the values of [DateTimeOptions](../reference/apis-localization-kit/js-apis-intl.md#datetimeoptions) and corresponding display effects.
 
 **Table 1** Date display format (dateStyle)
 
@@ -129,7 +129,7 @@ let formattedDate6 = dateFormat6.format(date); // formattedDate6: ٢٠٢١/٩/١
 
 // Format a time segment.
 let dataFormat7 = new Intl.DateTimeFormat('en-GB');
-let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/9/2021 - 18/9/2021
+let formattedDateRange = dataFormat7.formatRange(startDate, endDate); // formattedDateRange: 17/09/2021 - 18/09/2021
 
 // Obtain formatting options.
 let dataFormat8 = new Intl.DateTimeFormat('en-GB', {dateStyle: 'full'});
@@ -139,7 +139,7 @@ let dateStyle = options.dateStyle; // dateStyle: full
 
 ### Relative Time Formatting
 
-Relative time formatting is implemented by the [format](../reference/apis/js-apis-intl.md#format8) API of [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8). The development procedure is as follows:
+Relative time formatting is implemented by the [format](../reference/apis-localization-kit/js-apis-intl.md#format8) API of [RelativeTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformat8). The development procedure is as follows:
 
 1. Import the **intl** module.
    ```ts
@@ -164,12 +164,12 @@ Relative time formatting is implemented by the [format](../reference/apis/js-api
 
 5. Obtain **RelativeTimeFormatInputOptions** and view the configuration of formatting options.
    ```ts
-   let options: IntlRelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
+   let options: Intl.RelativeTimeFormatInputOptions = relativeTimeFormat.resolvedOptions();
    ```
 
 **Relative Time Formatting Options**
 
-The following uses the relative time **one day ago** and locales **fr-FR** and **en-GB** as an example to show different values of [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8) and corresponding display effects.
+The following uses the relative time **one day ago** and locales **fr-FR** and **en-GB** as an example to show different values of [RelativeTimeFormatInputOptions](../reference/apis-localization-kit/js-apis-intl.md#relativetimeformatinputoptions8) and corresponding display effects.
 
 **Table 6** Output message format (numeric)
 

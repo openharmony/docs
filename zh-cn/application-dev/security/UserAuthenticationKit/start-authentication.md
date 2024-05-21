@@ -76,37 +76,38 @@
  发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏密码认证，获取认证结果：
 
 ```ts
+// API version 10
 import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 // 设置认证参数
-const authParam: userIAM_userAuth.AuthParam = {
+const authParam: userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.PIN, userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  authType: [userAuth.UserAuthType.PIN, userAuth.UserAuthType.FACE],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
 };
 // 配置认证界面
-const widgetParam: userIAM_userAuth.WidgetParam = {
+const widgetParam: userAuth.WidgetParam = {
   title: '请进行身份认证',
 };
 try {
   // 获取认证对象
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {
     onResult(result) {
-      console.log(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
       // 可在认证结束或其他业务需要场景，取消订阅认证结果
       userAuthInstance.off('result');
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
 **示例2：**
@@ -114,41 +115,42 @@ try {
 发起用户认证，采用认证可信等级≥ATL3的人脸 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果：
 
 ```ts
+// API version 10
 import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import userAuth from '@ohos.userIAM.userAuth';
 
 // 设置认证参数
-let reuseUnlockResult: userIAM_userAuth.ReuseUnlockResult = {
-  reuseMode: userIAM_userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
-  reuseDuration: 300000,
+let reuseUnlockResult: userAuth.ReuseUnlockResult = {
+  reuseMode: userAuth.ReuseMode.AUTH_TYPE_RELEVANT,
+  reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
 }
-const authParam: userIAM_userAuth.AuthParam = {
+const authParam: userAuth.AuthParam = {
   challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
+  authType: [userAuth.UserAuthType.FACE],
+  authTrustLevel: userAuth.AuthTrustLevel.ATL3,
   reuseUnlockResult: reuseUnlockResult,
 };
 // 配置认证界面
-const widgetParam: userIAM_userAuth.WidgetParam = {
+const widgetParam: userAuth.WidgetParam = {
   title: '请进行身份认证',
 };
 try {
   // 获取认证对象
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
   // 订阅认证结果
   userAuthInstance.on('result', {
     onResult(result) {
-      console.log(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
       // 可在认证结束或其他业务需要场景，取消订阅认证结果
       userAuthInstance.off('result');
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

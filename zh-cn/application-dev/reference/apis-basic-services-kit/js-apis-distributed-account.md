@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import account_distributedAccount from '@ohos.account.distributedAccount';
+import { distributedAccount } from '@kit.BasicServicesKit';
 ```
 
-## account_distributedAccount.getDistributedAccountAbility
+## distributedAccount.getDistributedAccountAbility
 
 getDistributedAccountAbility(): DistributedAccountAbility
 
@@ -28,7 +28,7 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 **示例：**
   ```ts
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   ```
 
 ## DistributedAccountAbility
@@ -43,7 +43,7 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS（仅系统应用可申请） 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS（仅系统应用可申请） 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **参数：**
 
@@ -55,16 +55,17 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo(
-      (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+      (err: BusinessError, data: distributedAccount.DistributedInfo) => {
         if (err) {
           console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
         } else {
@@ -84,7 +85,7 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS（仅系统应用可申请） 或 ohos.permission.GET_DISTRIBUTED_ACCOUNTS（仅系统应用可申请） 或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **返回值：**
 
@@ -96,15 +97,16 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
-    accountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+    accountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
         console.log('distributed information: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
         console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
@@ -125,7 +127,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **参数：**
 
@@ -135,11 +137,11 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo(
-    (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+    (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
         console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
@@ -160,7 +162,7 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
 **返回值：**
 
@@ -170,10 +172,10 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  accountAbility.queryOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  accountAbility.queryOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
       console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
       console.log('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
@@ -188,7 +190,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS，该权限仅系统应用可申请。
 
 **参数：**
 
@@ -201,16 +203,17 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
@@ -233,7 +236,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS，该权限仅系统应用可申请。
 
 **参数：**
 
@@ -251,16 +254,17 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
@@ -285,7 +289,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **参数：**
 
@@ -296,10 +300,10 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
@@ -320,7 +324,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1)。
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
 **参数：**
 
@@ -336,10 +340,10 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
       console.log('updateOsAccountDistributedInfo successfully');

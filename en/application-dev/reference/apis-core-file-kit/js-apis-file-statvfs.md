@@ -34,7 +34,7 @@ Obtains the free size of the specified file system in bytes. This API uses a pro
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -68,7 +68,7 @@ Obtains the free size of the specified file system in bytes. This API uses an as
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -109,7 +109,7 @@ Obtains the free size of the specified file system in bytes. This API returns th
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -144,7 +144,7 @@ Obtains the total size of the specified file system in bytes. This API uses a pr
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -178,7 +178,7 @@ Obtains the total size of the specified file system in bytes. This API uses an a
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -219,7 +219,7 @@ Obtains the total size of the specified file system in bytes. This API returns t
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 

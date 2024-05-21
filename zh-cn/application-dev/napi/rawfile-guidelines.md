@@ -2,7 +2,8 @@
 
 ## 场景介绍
 
-开发者可以通过本指导了解在OpenHarmony应用中，如何使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile。
+开发者可以通过本指导了解在OpenHarmony应用中，如何使用Native Rawfile接口操作Rawfile目录和文件。功能包括文件列表遍历、文件打开、搜索、读取和关闭Rawfile。  
+64后缀相关接口属于新增接口，新接口支持打开更大的rawfile文件(超过2G以上建议使用)，具体请参考：[Rawfile接口介绍](../reference/apis-localization-kit/rawfile.md)。64相关的开发步骤和非64一致，将非64接口替换为64接口即可，例如：OH_ResourceManager_OpenRawFile替换为OH_ResourceManager_OpenRawFile64。
 
 ## 接口说明
 
@@ -23,6 +24,9 @@
 | bool OH_ResourceManager_GetRawFileDescriptor(const RawFile *rawFile, RawFileDescriptor &descriptor) | 获取rawfile的fd。                        |
 | bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor) | 释放rawfile的fd。                        |
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | 释放native resource manager相关资源。    |
+| bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | 判断路径是否是rawfile下的目录    |
+
+
 
 ## 函数介绍
 
@@ -116,6 +120,12 @@
     OH_ResourceManager_ReleaseNativeResourceManager(nativeResourceManager);
     ```
 
+14. 根据传入的rawfile路径，使用OH_ResourceManager_IsRawDir接口判断是否是目录。
+
+    ```c++
+    OH_ResourceManager_IsRawDir(nativeResourceManager, path);
+    ```
+
 ## 开发步骤
 
    以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
@@ -140,7 +150,8 @@
     import resourceManager from '@ohos.resourceManager';
     export const getFileList: (resmgr: resourceManager.ResourceManager, path: string) => Array<String>;
     export const getRawFileContent: (resmgr: resourceManager.ResourceManager, path: string) => Uint8Array;
-    export const getRawFileDescriptor: (resmgr: resourceManager.ResourceManager, path: string) => resourceManager.RawFileDescriptor;    
+    export const getRawFileDescriptor: (resmgr: resourceManager.ResourceManager, path: string) => resourceManager.RawFileDescriptor;
+    export const isRawDir: (resmgr: resourceManager.ResourceManager, path: string) => Boolean;
     ```
 
 **3. 修改源文件**
@@ -154,7 +165,8 @@
         napi_property_descriptor desc[] = {
             { "getFileList", nullptr, GetFileList, nullptr, nullptr, nullptr, napi_default, nullptr },
             { "getRawFileContent", nullptr, GetRawFileContent, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "getRawFileDescriptor", nullptr, GetRawFileDescriptor, nullptr, nullptr, nullptr, napi_default, nullptr }
+            { "getRawFileDescriptor", nullptr, GetRawFileDescriptor, nullptr, nullptr, nullptr, napi_default, nullptr },
+            { "isRawDir", nullptr, IsRawDir, nullptr, nullptr, nullptr, napi_default, nullptr }
         };
 
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -169,6 +181,7 @@
     static napi_value GetFileList(napi_env env, napi_callback_info info)
     static napi_value GetRawFileContent(napi_env env, napi_callback_info info)
     static napi_value GetRawFileDescriptor(napi_env env, napi_callback_info info)
+    static napi_value IsRawDir(napi_env env, napi_callback_info info)
     ```
 
 3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符{fd, offset, length}三种调用方式示例代码如下：
@@ -358,6 +371,43 @@
         // 转为js对象
         return createJsFileDescriptor(env,descriptor);
     }
+    napi_value CreateJsBool(napi_env env, bool &bValue)
+    {
+        napi_value jsValue = nullptr;
+        if (napi_get_boolean(env, bValue, &jsValue) != napi_ok) {
+            return nullptr;
+        }
+        return jsValue;
+    }
+    static napi_value IsRawDir(napi_env env, napi_callback_info info)
+    {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, tag, "NDKTest IsRawDir Begin");
+        size_t requireArgc = 3;
+        size_t argc = 2;
+        napi_value argv[2] = { nullptr };
+        // 获取参数信息
+        napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+
+        napi_valuetype valueType;
+        napi_typeof(env, argv[0], &valueType);
+        // 获取native的resourceManager对象
+        NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
+
+        napi_valuetype valueType1;
+        napi_typeof(env, argv[1], &valueType);
+        if (valueType1 == napi_undefined || valueType1 == napi_null) {
+            bool temp = false;
+            return CreateJsBool(env, temp);
+        }
+        size_t strSize;
+        char strBuf[256];
+        napi_get_value_string_utf8(env, argv[1], strBuf, sizeof(strBuf), &strSize);
+        std::string filename(strBuf, strSize);
+        // 获取rawfile指针对象
+        bool result = OH_ResourceManager_OpenRawFile(mNativeResMgr, filename.c_str());
+        OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
+        return CreateJsBool(env, result);
+    }
     ```
 
 **4. Js侧调用**
@@ -392,6 +442,7 @@
                     console.log("rawfileContet" + rawfileContet);
                     let rawfileDescriptor = testNapi.getRawFileDescriptor(this.resmgr, "rawfile1.txt");
                     console.log("getRawFileDescriptor" + rawfileDescriptor.fd, rawfileDescriptor.offset, rawfileDescriptor.length);
+                    let ret = testNapi.isRawDir(this.resmgr, "rawfile1.txt");
                 })
             }
             .width('100%')

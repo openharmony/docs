@@ -44,6 +44,7 @@ import advertising from '@ohos.advertising';
 import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
 import hilog from '@ohos.hilog'; 
 
+@Entry
 @Component
 export struct ShowCarouselAd {
   private adRequestParam: advertising.AdRequestParams = {

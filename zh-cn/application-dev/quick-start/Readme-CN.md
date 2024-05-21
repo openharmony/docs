@@ -15,9 +15,6 @@
       - [HSP](in-app-hsp.md)
       - [动态import](arkts-dynamic-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
-    - 应用程序包快速修复
-      - [快速修复概述](quickfix-principles.md)
-      - [快速修复命令行调试开发指导](quickfix-debug.md)
   - 应用配置文件（Stage模型）
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
     - [app.json5配置文件](app-configuration-file.md)
@@ -31,10 +28,13 @@
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
+  - [方舟字节码文件格式](arkts-bytecode-file-format.md)
+  - [方舟字节码基本原理](arkts-bytecode-fundamentals.md)
   - 从TypeScript到ArkTS的适配指导
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
+  - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
   - UI范式
     - 基本语法
       - [基本语法概述](arkts-basic-syntax-overview.md)
@@ -78,9 +78,20 @@
     - 状态管理（推荐）
       - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
       - 状态管理（推荐）所属装饰器
-        - [\@observed装饰器和\@track装饰器：类属性变化观测](arkts-new-observed-and-track.md)
+        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-observedV2-and-trace.md)
+        - [\@ComponentV2装饰器：自定义组件](arkts-new-componentV2.md)
+        - [\@Local装饰器：组件内部状态](arkts-new-local.md)
+        - [\@Param装饰器：组件外部输入](arkts-new-param.md)
+        - [\@Once装饰器：初始化同步一次](arkts-new-once.md)
+        - [\@Event装饰器：组件输出](arkts-new-event.md)
+        - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
+        - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](arkts-new-Provider-and-Consumer.md)
+        - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
+        - [!!语法：双向绑定](arkts-new-binding.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
       - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
+      - [Repeat：循环渲染(推荐)](arkts-rendering-control-repeat.md)
+      - [ContentSlot：混合开发](arkts-rendering-control-contentslot.md)

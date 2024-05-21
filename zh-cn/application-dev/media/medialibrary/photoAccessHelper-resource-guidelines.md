@@ -20,7 +20,7 @@
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块读权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 - 导入[dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md)模块。
 
 ### 指定媒体文件名获取图片或视频资源
@@ -81,39 +81,6 @@ async function example() {
 }
 ```
 
-### 指定文件添加的时间获取图片或视频资源
-
-下面以查询指定添加时间为'2022-06-01'至'2023-06-01'这一年内为例。
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // 查询起始时间距1970年1月1日的秒数值。
-  let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;  // 查询结束时间距1970年1月1日的秒数值。
-  let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
-  predicates.between(date_added, startTime, endTime);
-  predicates.orderByDesc(date_added); // 查询结果按照降序排序。
-  let fetchOptions: photoAccessHelper.FetchOptions = {
-    fetchColumns: [date_added], // date_added属性不属于默认查询列，需要自行添加。
-    predicates: predicates
-  };
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    console.info('getAssets count: ' + fetchResult.getCount());
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
-    fetchResult.close();
-  } catch (err) {
-    console.error('getAssets failed with err: ' + err);
-  }
-}
-```
-
 ## 获取图片和视频缩略图
 
 通过接口[PhotoAsset.getThumbnail](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail-2)，传入缩略图尺寸，可以获取图片和视频缩略图。缩略图常用于UI界面展示。
@@ -121,7 +88,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块读权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块读权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 - 导入[dataSharePredicates](../../reference/apis-arkdata/js-apis-data-dataSharePredicates.md)模块。
 
 ### 获取某张图片的缩略图
@@ -168,6 +135,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ## 创建媒体资源
 
 创建[MediaAssetChangeRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#mediaassetchangerequest11)媒体资产变更对象并写入媒体资源内容，然后调用[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口提交创建资产的变更请求。
@@ -175,7 +143,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块读权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'。
 
 ### 创建图片或视频资源（仅向系统应用开放）
 
@@ -212,6 +180,7 @@ async function example() {
 ```
 
 应用还可以调用MediaAssetChangeRequest.addResource接口指定媒体资源内容的数据来源，具体包括[应用沙箱](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11)，[ArrayBuffer](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1)和[PhotoProxy](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#addresource11)。
+<!--DelEnd-->
 
 ## 使用安全控件创建媒体资源
 
@@ -279,7 +248,7 @@ struct Index {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'和'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'和'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以将获取的图片资源中第一个文件重命名为例。
 
@@ -327,7 +296,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'和'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'和'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以将文件检索结果中第一个文件放入回收站为例。
 

@@ -279,7 +279,7 @@ Obtains the MEID of the SIM card. This API uses an asynchronous callback to retu
 
 | Name  | Type                   | Mandatory| Description      |
 | -------- | ----------------------- | ---- | ---------- |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.  If the MEID does not exist, an empty string is returned.|
 
 **Error codes**
 
@@ -327,7 +327,7 @@ Obtains the MEID of the SIM card in the specified slot. This API uses an asynchr
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.       |
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result.  If the MEID does not exist, an empty string is returned.|
 
 **Error codes**
 
@@ -381,7 +381,7 @@ Obtains the MEID of the SIM card in the specified slot. This API uses a promise 
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<string\> | Promise used to return the result.|
+| Promise\<string\> | Promise used to return the result. If the MEID does not exist, an empty string is returned.|
 
 **Error codes**
 
@@ -415,6 +415,8 @@ radio.getMEID(slotId).then((data: string) => {
 getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
 Obtains the unique device ID of the primary SIM card of the device. This API uses an asynchronous callback to return the result.
+
+If the device registers with a 3GPP network, an IMEI is returned. If the device registers with a 3GPP2 network, an MEID is returned.
 
 **System API**: This is a system API.
 
@@ -462,6 +464,8 @@ radio.getUniqueDeviceId((err: BusinessError, data: string) => {
 getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+If the device registers with a 3GPP network, an IMEI is returned. If the device registers with a 3GPP2 network, an MEID is returned.
 
 **System API**: This is a system API.
 
@@ -511,6 +515,8 @@ radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
 getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
 Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
+
+If the device registers with a 3GPP network, an IMEI is returned. If the device registers with a 3GPP2 network, an MEID is returned.
 
 **System API**: This is a system API.
 

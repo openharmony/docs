@@ -774,7 +774,7 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist.                   |
+| 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -816,7 +816,7 @@ isNotificationEnabled(): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist.                   |
+| 1600008  | The user does not exist.                   |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1063,9 +1063,9 @@ getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-no
 import Base from '@ohos.base';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-	console.info("removeGroupByBundle success, data: " + JSON.stringify(data));
+	console.info("getActiveNotifications success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+    console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1167,7 +1167,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 
 | 参数名       | 类型                     | 必填 | 说明                       |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| templateName | string                   | 是   | 模板名称。                   |
+| templateName | string                   | 是   | 模板名称。当前仅支持'downloadTemplate'。                   |
 | callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数（true：存在，false：不存在）。 |
 
 **错误码：**
@@ -1209,7 +1209,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 | 参数名       | 类型   | 必填 | 说明     |
 | ------------ | ------ | ---- | -------- |
-| templateName | string | 是   | 模板名称。 |
+| templateName | string | 是   | 模板名称。当前仅支持'downloadTemplate'。 |
 
 **返回值：**
 
@@ -1353,11 +1353,10 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 ```ts
 import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import window from '@ohos.Window';
 
 class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
       if (err) {
         console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
@@ -1409,11 +1408,10 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 ```ts
 import Base from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import window from '@ohos.Window';
 
 class MyAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     notificationManager.requestEnableNotification(this.context).then(() => {
       console.info("requestEnableNotification success");
     }).catch((err: Base.BusinessError) => {
@@ -1535,9 +1533,9 @@ notificationManager.isDistributedEnabled()
 | 名称                 | 值       | 说明       |
 | -------------------- | -------- | ---------- |
 | UNKNOWN_TYPE         | 0 | 未知类型。 |
-| SOCIAL_COMMUNICATION | 1 | 社交类型。 |
-| SERVICE_INFORMATION  | 2 | 服务类型。 |
-| CONTENT_INFORMATION  | 3 | 内容类型。 |
-| LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗类型。（预留能力，暂未支持）。 |
-| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客户服务类型。该类型用于用户与商家之间的客服消息，需由用户主动发起。  |
-| OTHER_TYPES          | 0xFFFF | 其他类型。 |
+| SOCIAL_COMMUNICATION | 1 | 社交通信。 |
+| SERVICE_INFORMATION  | 2 | 服务提醒。 |
+| CONTENT_INFORMATION  | 3 | 内容资讯。 |
+| LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗。（预留能力，暂未支持）。 |
+| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客服消息。该类型用于用户与商家之间的客服消息，需由用户主动发起。  |
+| OTHER_TYPES          | 0xFFFF | 其他。 |

@@ -14,6 +14,7 @@
 | aac      | AAC              |
 | amr      | AMR(amrnb、amrwb)|
 | raw      | G711mu           |
+<!--RP1--><!--RP1End-->
 
 **适用场景**
 
@@ -28,7 +29,7 @@
 
 详细的API说明请参考[API文档](../../reference/apis-avcodec-kit/_audio_codec.md)。
 
-参考以下示例代码，完成音频编码的全流程，包括：创建编码器，设置编码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
+参考以下示例代码，完成音频编码的全流程，包括：创建编码器、设置编码参数（采样率/码率/声道数等）、开始、刷新、重置、销毁资源。
 
 在应用开发过程中，开发者应按一定顺序调用方法，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
@@ -233,7 +234,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 5. 调用OH_AudioCodec_Prepare()，编码器就绪。
 
     ```cpp
-    ret = OH_AudioCodec_Prepare(audioDec_);
+    ret = OH_AudioCodec_Prepare(audioEnc_);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }

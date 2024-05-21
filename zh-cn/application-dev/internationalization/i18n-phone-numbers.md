@@ -56,17 +56,17 @@ import I18n from '@ohos.i18n'
 
 // 格式化电话号码
 let phoneNumberFormat1 = new I18n.PhoneNumberFormat('CN');
-let formattedPhoneNumber1 = phoneNumberFormat1.format('1582312'); // formattedPhoneNumber1: 158  2312
+let formattedPhoneNumber1 = phoneNumberFormat1.format('158****2312'); // formattedPhoneNumber1: 158 **** 2312
 
 // RFC3966类型的电话号码
 let phoneNumberFormat2 = new I18n.PhoneNumberFormat('CN', {type: 'RFC3966'});
-let formattedPhoneNumber2 = phoneNumberFormat2.format('1582312'); // formattedPhoneNumber2: tel:+86-158--2312
+let formattedPhoneNumber2 = phoneNumberFormat2.format('158****2312'); // formattedPhoneNumber2: tel:+86-158-****-2312
 
 // 判断电话号码是否有效
 let phoneNumberFormat3 = new I18n.PhoneNumberFormat('CN');
-let isValid = phoneNumberFormat3.isValidNumber('1582312'); // isValid: true
+let isValid = phoneNumberFormat3.isValidNumber('158****2312'); // isValid: true
 
 // 以某种语言显示号码归属地
 let phoneNumberFormat4 = new I18n.PhoneNumberFormat("CN");
-let locationName4 = phoneNumberFormat4.getLocationName('1582312', 'en-GB') // locationName4: XiAn, Shanxi
+let locationName4 = phoneNumberFormat4.getLocationName('158****2312', 'en-GB') // locationName4: XiAn, Shanxi
 ```

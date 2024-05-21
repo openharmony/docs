@@ -94,6 +94,8 @@ Allows an application to use biometric recognition for identity authentication.
 
 Allows an application to access the notification policy on the device.
 
+This permission is required only when the ringtone needs to be changed from mute to unmute.
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -366,9 +368,33 @@ Allows an application to use enhanced functions of the devices connected to this
 
 **Valid since**: 11
 
+### ohos.permission.READ_ACCOUNT_LOGIN_STATE
+
+Allows an application to read the login status of user accounts.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO
+
+Allows an application to access the navigation service.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
 ## user_grant Permissions
 
-The [user_grant permission](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).
+The [user_grant permissions](app-permission-mgmt-overview.md#user_grant-user-authorization) are permissions granted by users. For details about how to request this type of permissions, see [Requesting User Authorization](request-user-authorization.md).
 
 ### ohos.permission.ACCESS_BLUETOOTH
 
@@ -446,7 +472,7 @@ Allows the application data to be exchanged between devices.
 
 Allows an application running in the background to obtain the device location.
 
-For security purposes, this permission cannot be granted to applications in a dialog box. If an application needs this permission, guide the user to manually grant this permission on the **Settings** screen.
+For security purposes, this permission cannot be granted to applications in a dialog box. If an application needs this permission, direct the user to manually grant this permission on the **Settings** screen.
 
 **Procedure**:
 

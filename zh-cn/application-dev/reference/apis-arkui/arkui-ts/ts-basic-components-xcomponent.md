@@ -42,6 +42,8 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 ## XComponentType<sup>10+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
 | SURFACE   | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。 |
@@ -64,7 +66,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 ## 属性
 - XComponent显示的内容，可由开发者自定义绘制，通用属性中的[背景设置](ts-universal-attributes-background.md)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)按照type类型有限支持。
 
-- type为SURFACE("surface")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用EGL/OpenGLES提供的接口设置相关内容。
+- type为SURFACE("surface")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow和BlendMode属性，建议使用EGL/OpenGLES提供的接口设置相关内容。
 
   > **说明：**
   >
@@ -72,11 +74,38 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 - type为COMPONENT("component")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用挂载子组件的方式进行设置相关内容。
 
-- type为TEXTURE时通用属性可以支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，[除颜色外的背景设置](ts-universal-attributes-background.md)和其他[图像效果](ts-universal-attributes-image-effect.md)暂不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
+- type为TEXTURE时通用属性可以支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)中的shadow和BlendMode属性，[除颜色外的背景设置](ts-universal-attributes-background.md)和其他[图像效果](ts-universal-attributes-image-effect.md)暂不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
+
+### enableAnalyzer<sup>12+</sup>
+
+enableAnalyzer(enable: boolean)
+
+设置组件支持AI分析，需要搭配XComponentController的[StartImageAnalyzer](#startimageanalyzer12)和[StopImageAnalyzer](#stopimageanalyzer12)一起使用。
+不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| enable | boolean | 是 | 是否启用图像分析功能 |
+
+  > **说明：**
+  >
+  > 仅type为SURFACE和TEXTURE时该功能有效。
 
 ## 事件
 
-仅type为SURFACE("surface")或TEXTURE时以下事件有效。不支持[通用事件](ts-universal-events-click.md)。
+从API version 12开始，type为SURFACE("surface")或TEXTURE时，满足以下条件时支持[通用事件](ts-universal-events-click.md)：
+
+- [点击事件](ts-universal-events-click.md)、[触摸事件](ts-universal-events-touch.md)、[挂载卸载事件](ts-universal-events-show-hide.md)、[按键事件](ts-universal-events-key.md)、[焦点事件](ts-universal-focus-event.md)、[鼠标事件](ts-universal-mouse-key.md)与NDK对应接口互斥，未配置libraryname时生效。
+
+- 其他通用事件无对应NDK接口，无论是否配置libraryname都能生效。
+
+仅type为SURFACE("surface")或TEXTURE时以下事件有效。
 
 ### onLoad
 
@@ -179,6 +208,55 @@ getXComponentSurfaceRect(): SurfaceRect
 | ------------------------------------ | ------------------------------------- |
 | [SurfaceRect](#surfacerect12类型说明) | 获取XComponent持有Surface的显示区域。 |
 
+### onSurfaceCreated<sup>12+</sup>
+
+onSurfaceCreated(surfaceId: string): void
+
+当XComponent持有的Surface创建后进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**参数:**
+
+| 参数名    | 参数类型 | 必填 | 描述                                              |
+| --------- | -------- | ---- | ------------------------------------------------- |
+| surfaceId | string   | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。 |
+
+> **说明：**
+>
+> 仅当XComponent组件未设置libraryname参数时，会进行该回调。
+
+### onSurfaceChanged<sup>12+</sup>
+
+onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void
+
+当XComponent持有的Surface大小改变后（包括首次创建时的大小改变）进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**参数:**
+
+| 参数名    | 参数类型                              | 必填 | 描述                                                    |
+| --------- | ------------------------------------- | ---- | ------------------------------------------------------- |
+| surfaceId | string                                | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。       |
+| rect      | [SurfaceRect](#surfacerect12类型说明) | 是   | 回调该方法的时候，绑定XComponent持有Surface的显示区域。 |
+
+> **说明：**
+>
+> 仅当XComponent组件未设置libraryname参数时，会进行该回调。
+
+### onSurfaceDestroyed<sup>12+</sup>
+
+onSurfaceDestroyed(surfaceId: string): void
+
+当XComponent持有的Surface销毁后进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**参数:**
+
+| 参数名    | 参数类型 | 必填 | 描述                                              |
+| --------- | -------- | ---- | ------------------------------------------------- |
+| surfaceId | string   | 是   | 回调该方法的时候，绑定XComponent持有Surface的ID。 |
+
+> **说明：**
+>
+> 仅当XComponent组件未设置libraryname参数时，会进行该回调。
+
 ### SurfaceRect<sup>12+</sup>类型说明
 
 用于描述XComponent持有Surface的显示区域。
@@ -190,9 +268,59 @@ getXComponentSurfaceRect(): SurfaceRect
 | surfaceWidth  | number | 是   | Surface显示区域的宽度，单位：px。                            |
 | surfaceHeight | number | 是   | Surface显示区域的高度，单位：px。                            |
 
+### startImageAnalyzer<sup>12+</sup>
+
+startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
+
+配置AI分析并启动AI分析功能，使用前需先[使能](#enableanalyzer12)图像AI分析能力。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>若该方法尚未执行完毕，此时重复调用，则会触发错误回调。
+
+> **说明：**
+> 
+> 分析类型不支持动态修改。
+> 该特性依赖设备能力，不支持该能力的情况下，将返回错误码。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型      | 必填 | 说明                                                                   |
+| ------ | --------- | ---- | ---------------------------------------------------------------------- |
+| config   | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是   | 执行AI分析所需要的入参，用于配置AI分析功能。 |
+
+**返回值：**
+
+| 类型              | 说明                                 |
+| ----------------- | ------------------------------------ |
+| Promise\<void>  | Promise对象，用于获取AI分析是否成功执行。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[AI分析类库错误码](../errorcode-image-analyzer.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | -------------------------------------------- |
+| 110001 | AI analysis is unsupported.               |
+| 110002 | AI analysis is ongoing.  |
+| 110003 | AI analysis is stopped.  |
+
+### stopImageAnalyzer<sup>12+</sup>
+
+stopImageAnalyzer(): void
+
+停止AI分析功能，AI分析展示的内容将被销毁。
+
+> **说明：**
+> 
+> 在startImageAnalyzer方法未返回结果时调用本方法，会触发其错误回调。
+> 该特性依赖设备能力。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 示例
 
 示例效果请以真机运行为准，当前IDE预览器不支持。
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -224,6 +352,99 @@ struct PreviewArea {
         .height('480px')
     }
     .position({ x: 0, y: 48 })
+  }
+}
+```
+
+### 示例2
+
+```ts
+// xxx.ets
+class CustomXComponentController extends XComponentController {
+  onSurfaceCreated(surfaceId: string): void {
+    console.log(`onSurfaceCreated surfaceId: ${surfaceId}`)
+  }
+
+  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+    console.log(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`)
+  }
+
+  onSurfaceDestroyed(surfaceId: string): void {
+    console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`)
+  }
+}
+
+@Entry
+@Component
+struct SurfaceCallbackDemo {
+  xComponentController: XComponentController = new CustomXComponentController()
+  @State xcWidth: string = "320px"
+  @State xcHeight: string = "480px"
+
+  build() {
+    Column() {
+      Button("change size")
+        .onClick(() => {
+          this.xcWidth = "640px"
+          this.xcHeight = "960px"
+        })
+      XComponent({
+        id: 'xcomponent',
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+      })
+        .width(this.xcWidth)
+        .height(this.xcHeight)
+    }
+    .width("100%")
+  }
+}
+```
+
+### 示例3
+
+图像分析功能使用示例。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ImageAnalyzerExample {
+  xComponentController: XComponentController = new XComponentController()
+  private config: ImageAnalyzerConfig = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
+  }
+
+  build() {
+    Column() {
+      Button('start')
+        .width(80)
+        .height(80)
+        .onClick(() => {
+          this.xComponentController.startImageAnalyzer(this.config)
+            .then(() => {
+              console.log("analysis complete")
+            })
+            .catch((error: BusinessError) => {
+              console.log("error code: " + error.code)
+            })
+        })
+      Button('stop')
+        .width(80)
+        .height(80)
+        .onClick(() => {
+          this.xComponentController.stopImageAnalyzer()
+        })
+      XComponent({
+        id: 'xcomponent',
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController
+      })
+        .enableAnalyzer(true)
+        .width('640px')
+        .height('480px')
+    }
+    .width("100%")
   }
 }
 ```

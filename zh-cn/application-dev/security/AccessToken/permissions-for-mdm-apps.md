@@ -397,3 +397,27 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+## ohos.permission.ENTERPRISE_OPERATE_DEVICE
+
+允许设备管理应用操作设备。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+## ohos.permission.ENTERPRISE_ADMIN_MANAGE
+
+允许设备管理应用管理设备管理器。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12

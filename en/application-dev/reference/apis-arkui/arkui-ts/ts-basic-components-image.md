@@ -9,7 +9,7 @@ The **\<Image>** component is usually used to display images in applications. It
 
 ## Required Permissions
 
-To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
+To use online images, the application requires the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
 
 
 ## Child Components
@@ -271,7 +271,7 @@ Specifies whether the image is draggable. This attribute cannot be used together
 
 edgeAntialiasing(value: boolean)
 
-Specifies whether to enable the AI analyzer. This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities. 
+Specifies whether to enable the AI image analyzer. This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities. 
 
 Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../../apis-image-kit/js-apis-image.md#pixelmap7) in [RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7) format can be passed in for analysis. For details, see [Example](#enabling-ai-analyzer-for-pixel-maps). 
 
@@ -469,7 +469,7 @@ struct ImageExample1 {
 
 ### Loading Online Images
 
-The default network timeout period is 5 minutes for loading online images. When using an online image, you are advised to use **alt** to configure the placeholder image displayed during loading. If more flexible network configuration is required, you can use [HTTP](../../../connectivity/http-request.md) to send a network request, and then decode the returned data into a **PixelMap** object in the **\<Image>** component. For details about image development, see [Image Processing](../../../media/image-overview.md).
+The default timeout is 5 minutes for loading online images. When using an online image, you are advised to use **alt** to configure a placeholder image displayed during loading. If more flexible network configuration is required, you can use [HTTP](../../../network/http-request.md) to send a network request, and then decode the returned data into a **PixelMap** object in the **\<Image>** component. For details about image development, see [Introduction to Image Kit](../../../media/image/image-overview.md).
 
 To use online images, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
 
@@ -562,3 +562,4 @@ struct ImageExample4 {
   }
 }
 ```
+<!--no_check-->

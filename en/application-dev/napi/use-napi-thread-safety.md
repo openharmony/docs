@@ -16,7 +16,7 @@
 ## Example
 
 1. Define a thread-safe function at the native entry.
-   ```
+   ```c++
    struct CallbackData {
        napi_threadsafe_function tsfn;
        napi_async_work work;
@@ -46,7 +46,7 @@
    ```
 
 2. Call **ExecuteWork** in a worker thread to execute the thread-safe function.
-   ```
+   ```c++
    static void ExecuteWork(napi_env env, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -63,7 +63,7 @@
    ```
 
 3. Execute the asynchronous callback in a JS thread.
-   ```
+   ```c++
    static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
    {
        void *data = nullptr;
@@ -115,7 +115,7 @@
    ```
 
 4. After the task is complete, clear and reclaim resources.
-   ```
+   ```c++
    static void WorkComplete(napi_env env, napi_status status, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
@@ -139,6 +139,8 @@
    }
    
    // Call the API of ArkTS.
+   import nativeModule from'libentry.so'; // Import native capabilities.
+
    let callback = (): Promise<string> => {
      return new Promise((resolve) => {
        setTimeout(() => {

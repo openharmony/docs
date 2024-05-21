@@ -33,6 +33,8 @@ backgroundColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -43,11 +45,13 @@ backgroundColor(value: ResourceColor)
 
 ## backgroundImage
 
-backgroundImage(src: ResourceStr, repeat?: ImageRepeat)
+backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat)
 
 设置组件的背景图片。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,13 +70,15 @@ backgroundImageSize(value: SizeOptions | ImageSize)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
+| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
 
 ## backgroundImagePosition
 
@@ -82,13 +88,15 @@ backgroundImagePosition(value: Position | Alignment)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 是   | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| value  | [Position](ts-types.md#position)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 是   | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## backgroundBlurStyle<sup>9+</sup>
 
@@ -97,6 +105,8 @@ backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
 为当前组件提供一种在背景和内容之间的模糊能力。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,6 +123,8 @@ backgroundEffect(options: BackgroundEffectOptions)
 
 设置组件背景属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -121,9 +133,59 @@ backgroundEffect(options: BackgroundEffectOptions)
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](ts-appendix-enums.md#backgroundeffectoptions11) | 是   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
 
+## backgroundImageResizable<sup>12+</sup>
+
+backgroundImageResizable(value: ResizableOptions)
+
+设置背景图在拉伸时可调整大小的图像选项。
+
+设置合法的ResizableOptions时，[backgroundImage](#backgroundimage)属性中的repeat参数设置不生效。
+
+当设置top+bottom大于原图的高或者left+right大于原图的宽时，ResizableOptions属性设置不生效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                             |
+| ------ | --------------------------------------- | ---- | -------------------------------- |
+| value  | [ResizableOptions](ts-basic-components-image.md#resizableoptions11) | 是   | 图像拉伸时可调整大小的图像选项。 |
+
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
 继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+
+## backgroundBrightness<sup>12+</sup> 
+
+backgroundBrightness(params: BackgroundBrightnessOptions)
+
+设置组件背景提亮效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                 |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
+| params | [BackgroundBrightnessOptions](#backgroundbrightnessoptions12对象说明) | 是   | 设置组件背景提亮效果，包括：亮度变化速率，提亮程度。 |
+
+## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
+
+继承自[BlurStyleOptions](ts-universal-attributes-foreground-blur-style.md)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+## BackgroundBrightnessOptions<sup>12+</sup>对象说明
+
+
+| 名称            | 参数类型                                     | 必填   | 描述                                       |
+| ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| rate          | number | 是    | 亮度变化速率。亮度变化速率越大，亮度下降速度越快，亮度提升程度越低。<br/>默认值：0.0 <br/>取值范围：(0.0, +∞)<br/> |
+| lightUpDegree | number | 是    | 提亮程度。提亮程度越大，亮度提升程度越大。<br/> 默认值：0.0 <br/>取值范围：[-1.0, 1.0]<br/> |
+
 
 ## 示例
 

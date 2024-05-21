@@ -1,4 +1,4 @@
-# JS Service Widget UI Components
+# JavaScript Service Widget UI Components
 
 - Framework Overview
   - [File Organization](js-service-widget-file.md)

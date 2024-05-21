@@ -21,7 +21,7 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 
 **开发步骤**
 
@@ -45,6 +45,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ### 收藏图片和视频（仅向系统应用开放）
 
 通过[MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将图片或视频设置为收藏。
@@ -52,7 +53,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面将以收藏一张图片为例。
 
@@ -88,6 +89,7 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->
 
 ### 获取收藏夹中的图片和视频
 
@@ -96,7 +98,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取收藏夹中的一张图片为例。
 
@@ -136,6 +138,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ### 取消收藏图片或视频（仅向系统应用开放）
 
 通过[MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将图片或视频取消收藏。
@@ -143,7 +146,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
 下面以将一张图片取消收藏为例。
 
@@ -187,6 +190,7 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->
 
 ## 视频相册
 
@@ -199,7 +203,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 
 **开发步骤**
 
@@ -230,7 +234,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取视频相册中的一个视频为例。
 
@@ -270,6 +274,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ## 截屏和录屏相册（仅向系统应用开放）
 
 截屏和录屏相册属于系统相册，用户文件中属于截屏和录屏的媒体文件会自动加入到截屏和录屏相册中。
@@ -281,7 +286,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 
 **开发步骤**
 
@@ -312,7 +317,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- 申请相册管理模块权限'ohos.permission.READ_IMAGEVIDEO'。
+- [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'。
 
 下面以获取截屏和录屏相册中的一个媒体资源为例。
 
@@ -351,3 +356,4 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->

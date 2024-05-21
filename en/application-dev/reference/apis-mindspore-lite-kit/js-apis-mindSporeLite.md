@@ -187,7 +187,7 @@ import common from '@ohos.app.ability.common';
 
 let modelName = '/path/to/xxx.ms';
 getContext(this).resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
-  let modelBuffer : ArrayBuffer = buffer.buffer;
+  let modelBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer, (result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
     console.log(modelInputs[0].name);
@@ -227,7 +227,7 @@ export class Test {
 let globalContext= GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
-  let modelBuffer : ArrayBuffer = buffer.buffer;
+  let modelBuffer = buffer.buffer;
   let context: mindSporeLite.Context = {};
   context.target = ['cpu'];
   mindSporeLite.loadModelFromBuffer(modelBuffer, context, (result : mindSporeLite.Model) => {
@@ -274,7 +274,7 @@ export class Test {
 let globalContext = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 globalContext.resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
-  let modelBuffer : ArrayBuffer = buffer.buffer;
+  let modelBuffer = buffer.buffer;
   mindSporeLite.loadModelFromBuffer(modelBuffer).then((result : mindSporeLite.Model) => {
     let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
     console.log(modelInputs[0].name);
@@ -428,7 +428,7 @@ let globalContext = GlobalContext.getContext().getObject("value") as common.UIAb
 
 let inputName = 'input_data.bin';
 globalContext.resourceManager.getRawFileContent(inputName).then(async (buffer : Uint8Array) => {
-  let modelBuffer : ArrayBuffer = buffer.buffer;
+  let modelBuffer = buffer.buffer;
   let model_file : string = '/path/to/xxx.ms';
   let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFile(model_file);
   let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();

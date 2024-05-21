@@ -33,6 +33,15 @@ Enables listening for global touch (touchscreen) events.
 | type     | string                                   | Yes   | Event type. This field has a fixed value of **touch**.|
 | receiver | [TouchEventReceiver](#toucheventreceiver) | Yes   | Callback used to return touch events asynchronously.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -62,9 +71,18 @@ Enables listening for global mouse events.
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
-| receiver | Callback&lt;MouseEvent&gt; | Yes   | Callback used to return mouse events asynchronously. |
+| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md#mouseevent)&gt; | Yes   | Callback used to return mouse events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
@@ -95,9 +113,19 @@ Enables listening for mouse events. When the mouse pointer moves to the specifie
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
 | rect     | display.Rect[]             | Yes   | Rectangular area where a callback is triggered. One or two rectangular areas can be specified.|
-| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md)&gt; | Yes   | Callback used to return mouse events asynchronously. |
+| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md#mouseevent)&gt; | Yes   | Callback used to return mouse events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
@@ -154,6 +182,15 @@ Disables listening for global touch (touchscreen) events.
 | type     | string                                   | Yes   | Event type. This field has a fixed value of **touch**.|
 | receiver | [TouchEventReceiver](#toucheventreceiver) | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application. |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -205,6 +242,15 @@ Disables listening for global mouse events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
 | receiver | Callback&lt;MouseEvent&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -253,7 +299,7 @@ Defines the callback for touch (touchscreen) events.
 
 | Name        | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](js-apis-touchevent.md) | Yes   | Touch event.|
+| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | Yes   | Touch event.|
 
 **Return value**
 
@@ -294,7 +340,17 @@ Enables listening for global touchpad pinch events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
 | receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return pinch events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
@@ -324,6 +380,16 @@ Disables listening for global touchpad pinch events.
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
 | receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -378,7 +444,17 @@ Enables listening for three-finger swipe events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **threeFingersSwipe**.|
 | receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt; | Yes   | Callback used to return three-finger swipe events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 try {
@@ -407,6 +483,16 @@ Disables listening for three-finger swipe events.
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **threeFingersSwipe**.|
 | receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -461,7 +547,17 @@ Enables listening for four-finger swipe events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **fourFingersSwipe**.|
 | receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt; | Yes   | Callback used to return four-finger swipe events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 try {
@@ -490,6 +586,16 @@ Disables listening for four-finger swipe events.
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **fourFingersSwipe**.|
 | receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -545,7 +651,17 @@ Enables listening for rotation events of the touchpad.
 | fingers     | number                     | Yes   | Number of fingers that trigger a rotation. The value must not be greater than **2**.|
 | receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | Yes   | Callback used to return rotation events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 import type { Rotate } from '@ohos.multimodalInput.gestureEvent';
@@ -576,6 +692,16 @@ Disables listening for rotation events of the touchpad.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **rotate**.|
 | fingers     | number                     | Yes   | Number of fingers that trigger a rotation. The value must not be greater than **2**.|
 | receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -631,7 +757,17 @@ Enables listening for global touchpad pinch events.
 | fingers     | number                     | Yes   | Number of fingers that trigger the pinch. The value must be greater than or equal to **2**.|
 | receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return pinch events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
@@ -662,6 +798,16 @@ Disables listening for global touchpad pinch events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
 | fingers     | number                     | Yes   | Number of fingers that trigger the pinch. The value must be greater than or equal to **2**.|
 | receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -716,7 +862,17 @@ Enables listening for three-finger tap events.
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **threeFingersTap**.|
 | receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | Yes  | Callback used to return three-finger tap events asynchronously.     |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 try {
@@ -745,6 +901,16 @@ Disables listening for three-finger tap events.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **threeFingersTap**.                   |
 | receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

@@ -22,7 +22,7 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | start(elementName: ElementName, aidList: string[]): void                   | 启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。                                                               |
 | stop(elementName: ElementName): void  | 停止HCE业务功能。包括取消APDU数据接收的订阅，退出当前应用前台优先，释放动态注册的AID列表。
-| on(type: "hceCmd", callback: AsyncCallback\<number[]>): void                | 订阅回调，用于接收对端读卡设备发送的APDU数据。
+| on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void                | 订阅回调，用于接收对端读卡设备发送的APDU数据。
 | transmit(response: number[]): Promise\<void>                  | 发送APDU数据到对端读卡设备。|                                                     |
 
 ## 开发步骤
@@ -66,7 +66,7 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
       {
         // Add the permission for nfc card emulation.
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        "reason": "nfc_hce",
+        "reason": "$string:app_name",
       }
     ]
 ```
@@ -74,12 +74,12 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 ```ts
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import { BusinessError } from '@ohos.base';
+import bundleManager from '@ohos.bundle.bundleManager'
 
-var hceElementName;
-var foregroundRegister;
-var hceService;
+let hceElementName: bundleManager.ElementName;
+let hceService: cardEmulation.HceService;
 
-async function hceCommandCb(error, hceCommand) {
+async function hceCommandCb(error : BusinessError, hceCommand : number[]) {
   if (!error) {
     if (hceCommand == null || hceCommand == undefined) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
@@ -103,7 +103,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力和HCE能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -113,8 +113,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
@@ -200,7 +200,7 @@ export default class EntryAbility extends UIAbility {
       {
         // Add the permission for nfc card emulation.
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        "reason": "nfc_hce",
+        "reason": "$string:app_name",
       }
     ]
 ```
@@ -208,11 +208,12 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import { BusinessError } from '@ohos.base';
+import bundleManager from '@ohos.bundle.bundleManager'
 
-var hceElementName;
-var hceService;
+let hceElementName : bundleManager.ElementName;
+let hceService: cardEmulation.HceService;
 
-async function hceCommandCb(error, hceCommand) {
+async function hceCommandCb(error : BusinessError, hceCommand : number[]) {
   if (!error) {
     if (hceCommand == null || hceCommand == undefined) {
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
@@ -237,7 +238,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力和HCE能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -247,8 +248,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();

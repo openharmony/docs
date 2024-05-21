@@ -4,7 +4,9 @@
 
 > **说明：**
 >
-> 本模块首批接口从 API version 6 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从 API version 6 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
+> - 从API version 12开始，本模块接口支持在ArkTS卡片中使用。
 
 ## 导入模块
 
@@ -24,7 +26,9 @@ Callback\<T> {
 
 开发者在使用时，可自定义data的类型，回调将返回对应类型的信息。
 
-**系统能力**：SystemCapability.Base
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Base
 
 | 名称 | 类型 | 必填 | 说明                       |
 | ---- | ---- | ---- | -------------------------- |
@@ -42,7 +46,9 @@ ErrorCallback\<T extends Error = BusinessError> {
 
 回调返回的信息为[BusinessError](#businesserror)类型的信息。
 
-**系统能力**：SystemCapability.Base
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Base
 
 **参数：**
 
@@ -54,7 +60,7 @@ ErrorCallback\<T extends Error = BusinessError> {
 
 AsyncCallback\<T, E = void> {
 
-(err: BusinessError, data: T): void;
+(err: BusinessError\<E>, data: T): void;
 
 }
 
@@ -64,7 +70,9 @@ AsyncCallback\<T, E = void> {
 
 异步返回值的类型由开发者自定义，回调将返回对应类型的信息。
 
-**系统能力**：SystemCapability.Base
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Base
 
 | 名称 | 类型                                                         | 必填 | 说明                         |
 | ---- | ------------------------------------------------------------ | ---- | ---------------------------- |
@@ -82,7 +90,9 @@ data?: T;
 
 错误参数。
 
-**系统能力**：SystemCapability.Base
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Base
 
 | 名称 | 类型   | 必填 | 说明                                                       |
 | ---- | ------ | ---- | ---------------------------------------------------------- |
