@@ -586,22 +586,21 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-    硬件解码在处理buffer数据时（释放数据前），一般需要获取数据的宽高、跨距、像素格式来保证解码输出数据被正确的处理。
-
+    硬件解码在处理buffer数据时（释放数据前），输出回调用户收到的AVbuffer是宽高对齐后的图像数据。
+    一般需要获取数据的宽高、跨距、像素格式来保证解码输出数据被正确的处理。
     ```c++
-        OH_AVFormat *format = OH_VideoDecoder_GetInputDescription(decoder);
+        OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(decoder);
         int widthStride = 0;
         int heightStride = 0;
 
-        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+        int ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
         if (ret != AV_ERR_OK) {
             // 异常处理
         }
-        bool ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
         if (ret != AV_ERR_OK) {
             // 异常处理
         }
         OH_AVFormat_Destory(format);
     ```
-
 后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤11-14。
