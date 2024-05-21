@@ -390,14 +390,22 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 
 ```ts
 // used in UIAbility
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import observer from '@ohos.arkui.observer';
-import { UIContext } from '@ohos.arkui.UIContext';
-function callBackFunc(info: observer.RouterPageInfo) {}
-// callBackFunc is user defined function
-observer.on('routerPageUpdate', this.context, callBackFunc);
-// uiContext could be got by window's function: getUIContext()
-uiContext: UIContext | null = null;
-observer.on('routerPageUpdate', this.uiContext, callBackFunc);
+function Func(info: observer.RouterPageInfo) {
+console.log('[observer] got info: ' + JSON.stringify(info))
+}
+export default class EntryAbility extends UIAbility {
+onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+// 通过匿名函数来设置监听，范围是当前uiContext
+observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
+console.log('[observer] got info: ' + JSON.stringify(info))
+})
+// 通过指定函数来设置监听，范围是当前uiContext
+observer.on('routerPageUpdate', this.context, Func)
+}
+// ... other function in EntryAbility
+}
 ```
 
 ## observer.off('routerPageUpdate')<sup>11+</sup>
@@ -420,14 +428,20 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 
 ```ts
 // used in UIAbility
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import observer from '@ohos.arkui.observer';
-import { UIContext } from '@ohos.arkui.UIContext';
-function callBackFunc(info: observer.RouterPageInfo) {}
-// callBackFunc is user defined function
-observer.off('routerPageUpdate', this.context, callBackFunc);
-// uiContext could be got by window's function: getUIContext()
-uiContext: UIContext | null = null;
-observer.off('routerPageUpdate', this.uiContext, callBackFunc);
+function Func(info: observer.RouterPageInfo) {
+console.log('[observer] got info: ' + JSON.stringify(info))
+}
+export default class EntryAbility extends UIAbility {
+onDestroy(): void {
+// 取消当前uiContext中指定函数Func的监听
+observer.off('routerPageUpdate', this.context, Func)
+// 取消当前uiContext中所有的监听
+observer.off('routerPageUpdate', this.context)
+}
+// ... other function in EntryAbility
+}
 ```
 
 ## observer.on('densityUpdate')<sup>12+</sup>
