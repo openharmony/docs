@@ -18,7 +18,7 @@ Not supported
 
 DataPanel(options: DataPanelOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -37,7 +37,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## DataPanelType<sup>8+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name| Description|
 | -------| ------------ |
@@ -60,12 +60,12 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 
 ## DataPanelShadowOptions<sup>10+</sup>
+
+Inherits from [MultiShadowOptions](ts-types.md#multishadowoptions10) and has all attributes of **MultiShadowOptions**.
+
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource)| No| Shadow blur radius.<br>The default value varies by API version.<br>API version 10 and earlier versions: **5**<br>Since API version 11: **20**<br>Unit: vp<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
 | colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | No| Array of shadow colors for data segments.<br>Default value: same as the value of **valueColors**<br>**NOTE**<br>If the number of the set shadow colors is less than that of the data segments, the number of the displayed shadow colors is the same as the former.<br>If the number of the set shadow colors is greater than that of the data segments, the number of the displayed shadow colors is the same as the latter.|
-| offsetX | number \| [Resource](ts-types.md#resource)| No| Offset on the x-axis.<br>Default value: **5**<br>Unit: vp|
-| offsetY | number \| [Resource](ts-types.md#resource)| No| Offset on the y-axis.<br>Default value: **5**<br>Unit: vp|
 
 ## LinearGradient<sup>10+</sup>
 
@@ -104,7 +104,7 @@ struct DataPanelExample {
     Column({ space: 5 }) {
       Row() {
         Stack() {
-          DataPanel({ values: [25], max: 100, type: DataPanelType.Circle }).width(168).height(168)
+          DataPanel({ values: [30], max: 100, type: DataPanelType.Circle }).width(168).height(168)
           Column() {
             Text('30').fontSize(35).fontColor('#182431')
             Text('1.0.0').fontSize(9.33).lineHeight(12.83).fontWeight(500).opacity(0.6)

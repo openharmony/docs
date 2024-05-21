@@ -70,7 +70,7 @@ Sets the transformation matrix of the component.
 
 ## RotateOptions
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name                     | Type                      | Mandatory| Description                                                        |
 | ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
@@ -85,7 +85,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TranslateOptions
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name| Type                      | Mandatory| Description           |
 | ---- | -------------------------- | ---- | --------------- |
@@ -95,7 +95,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ScaleOptions
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name   | Type                      | Mandatory| Description                                                        |
 | ------- | -------------------------- | ---- | ------------------------------------------------------------ |

@@ -50,9 +50,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## CalendarAlign
 
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name  | Description                    |
+| Name   | Description                    |
 | ------ | ------------------------ |
 | START  | The picker is left aligned with the entry component.  |
 | CENTER | The picker is center aligned with the entry component.|

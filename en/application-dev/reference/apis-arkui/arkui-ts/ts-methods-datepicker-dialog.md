@@ -6,13 +6,13 @@ A date picker dialog box is a dialog box that allows users to select a date from
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 >
-> Since API version 10, you can use the [showDatePickerDialog](../apis/js-apis-arkui-UIContext.md#showdatepickerdialog) API in [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+> Since API version 10, you can use the [showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## DatePickerDialog.show
 
-show(options?: DatePickerDialogOptions)
+static show(options?: DatePickerDialogOptions)
 
 Shows a date picker dialog box.
 
@@ -26,7 +26,7 @@ Shows a date picker dialog box.
 
 ## DatePickerDialogOptions
 
-Inherited from [DatePickerOptions](ts-basic-components-datepicker.md#datepickeroptions).
+Inherits from [DatePickerOptions](ts-basic-components-datepicker.md#datepickeroptions).
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -134,3 +134,7 @@ struct DatePickerDialogExample {
 ```
 
 ![DataPickerDialog](figures/DatePickerDialogApi10.gif)
+
+> **NOTE**
+>
+> To implement a fully customized date picker dialog box, create a [custom dialog box](ts-methods-custom-dialog-box.md) and then implement the [\<DatePicker>](ts-basic-components-datepicker.md) component.

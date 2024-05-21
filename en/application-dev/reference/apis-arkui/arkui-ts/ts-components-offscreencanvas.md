@@ -16,7 +16,7 @@ Not supported
 
 OffscreenCanvas(width: number, height: number)
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -31,8 +31,8 @@ The following attributes are supported.
 
 | Name  | Type  | Default Value| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 0      | Width of the offscreen canvas, in vp. Since API version 9, this API is supported in ArkTS widgets.|
-| height | number | 0      | Height of the offscreen canvas, in vp. Since API version 9, this API is supported in ArkTS widgets.|
+| width  | number | 0      | Width of the offscreen canvas, in vp. This API can be used in ArkTS widgets since API version 9.|
+| height | number | 0      | Height of the offscreen canvas, in vp. This API can be used in ArkTS widgets since API version 9.|
 
 ### width
 
@@ -114,7 +114,7 @@ transferToImageBitmap(): ImageBitmap
 
 Creates an **ImageBitmap** object from the most recently rendered image of the offscreen canvas.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Return value**
 

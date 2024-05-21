@@ -28,7 +28,7 @@ Obtains an image from the specified source for subsequent rendering and display.
 
 If the **\<Image>** component fails to obtain the image or the obtained image size is 0, the **\<Image>** component is automatically resized to 0 and does not follow the layout constraints of its parent component.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -42,26 +42,26 @@ For details about how to use the attributes, see [Setting Attributes](../../../u
 
 | Name                          | Type                                    | Description                                      |
 | ---------------------------- | ---------------------------------------- | ---------------------------------------- |
-| alt                          | string \| [Resource](ts-types.md#resource)      | Placeholder image displayed during loading. Local images (in PNG, JPG, BMP, SVG, or GIF format) are supported. Online images are not supported.<br>Default value: **null**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| objectFit                    | [ImageFit](ts-appendix-enums.md#imagefit)       | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| objectRepeat                 | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | How the image is repeated. When set to repeat, the image is repeated from the center to edges. The last image will be clipped if it does not fit in the component.<br>Default value: **ImageRepeat.NoRepeat**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
-| interpolation                | [ImageInterpolation](#imageinterpolation)       | Interpolation effect of the image, which can alleviate aliasing that occurs when the image is zoomed.<br>Default value: **ImageInterpolation.Low**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
-| renderMode                   | [ImageRenderMode](#imagerendermode)             | Rendering mode of the image, which can be **Original** or **Template** (monochrome).<br>Default value: **ImageRenderMode.Original**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
-| sourceSize                   | {<br>width: number,<br>height: number<br>}      | Decoding size of the image. This attribute can be used to reduce the image resolution when the image display size needs to be smaller than the component size. When used together with **ImageFit.None**, it can display a small image in the component.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute works only when the target size is smaller than the source size.<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
-| matchTextDirection           | boolean                                         | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| fitOriginalSize              | boolean                                         | Whether to fit the component to the original size of the image source when the component size is not set.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| fillColor                    | [ResourceColor](ts-types.md#resourcecolor)      | Fill color to be superimposed on the image.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute applies only to an SVG image. Once set, the fill color will replace that of the SVG image. To set the fill color for a PNG image, use [colorFilter](#colorfilter9).|
-| autoResize                   | boolean                                         | Whether to resize the image source based on the size of the display area during image decoding. This resizing can help reduce the memory usage. For example, if the size of the original image is 1920 x 1080 and the size of the display area is 200 x 200, you can set this attribute to **true** so that the image is downsampled to 200 x 200.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>As downsampling images results in some loss of information, it may reduce the image quality, causing issues such as aliasing. To retain the original image quality, set **autoResize** to **false**, but this may increase the memory usage.<br>If the original image size does not match the display size, the image may be distorted or blurred. Recommended configuration for the optimal definition:<br>When the image is scaled down: .autoResize(false) + .interpolation(.Medium)<br>When the image is scaled up: .interpolation(.High)|
-| syncLoad<sup>8+</sup>        | boolean                                         | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When loading a small image, you are advised to set **syncLoad** to **true** so that the image loading can be quickly completed on the main thread.|
-| copyOption<sup>9+</sup>      | [CopyOptions](ts-appendix-enums.md#copyoptions9)| Whether the image can be copied.<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>SVG images cannot be copied.|
-| colorFilter<sup>9+</sup>     | [ColorFilter](ts-types.md#colorfilter9)         | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| alt                          | string \| [Resource](ts-types.md#resource)      | Placeholder image displayed during loading. Local images (in PNG, JPG, BMP, SVG, or GIF format) are supported. Online images are not supported.<br>Default value: **null**<br>This API can be used in ArkTS widgets since API version 9.|
+| objectFit                    | [ImageFit](ts-appendix-enums.md#imagefit)       | How the image is resized to fit its container.<br>Default value: **ImageFit.Cover**<br>This API can be used in ArkTS widgets since API version 9.|
+| objectRepeat                 | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | How the image is repeated. When set to repeat, the image is repeated from the center to edges. The last image will be clipped if it does not fit in the component.<br>Default value: **ImageRepeat.NoRepeat**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| interpolation                | [ImageInterpolation](#imageinterpolation)       | Interpolation effect of the image, which can alleviate aliasing that occurs when the image is zoomed.<br>Default value: **ImageInterpolation.Low**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| renderMode                   | [ImageRenderMode](#imagerendermode)             | Rendering mode of the image, which can be **Original** or **Template** (monochrome).<br>Default value: **ImageRenderMode.Original**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
+| sourceSize                   | {<br>width: number,<br>height: number<br>}      | Decoding size of the image. This attribute can be used to reduce the image resolution when the image display size needs to be smaller than the component size. When used together with **ImageFit.None**, it can display a small image in the component.<br>Unit: vp<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>This attribute works only when the target size is smaller than the source size.<br>This attribute is not applicable to SVG images.<br>This attribute is not applicable to **PixelMap** objects.|
+| matchTextDirection           | boolean                                         | Whether to display the image in the system language direction. When this parameter is set to true, the image is horizontally flipped in the right-to-left (RTL) language context.<br>Default value: **false**<br>This API can be used in ArkTS widgets since API version 9.|
+| fitOriginalSize              | boolean                                         | Whether to fit the component to the original size of the image source when the component size is not set.<br>Default value: **false**<br>This API can be used in ArkTS widgets since API version 9.|
+| fillColor                    | [ResourceColor](ts-types.md#resourcecolor)      | Fill color to be superimposed on the image.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>This attribute applies only to an SVG image. Once set, the fill color will replace that of the SVG image. To set the fill color for a PNG image, use [colorFilter](#colorfilter9).|
+| autoResize                   | boolean                                         | Whether to resize the image source based on the size of the display area during image decoding. This resizing can help reduce the memory usage. For example, if the size of the original image is 1920 x 1080 and the size of the display area is 200 x 200, you can set this attribute to **true** so that the image is downsampled to 200 x 200.<br>Default value: **false**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>As downsampling images results in some loss of information, it may reduce the image quality, causing issues such as aliasing. To retain the original image quality, set **autoResize** to **false**, but this may increase the memory usage.<br>If the original image size does not match the display size, the image may be distorted or blurred. Recommended configuration for the optimal definition:<br>When the image is scaled down: .autoResize(false) + .interpolation(.Medium)<br>When the image is scaled up: .interpolation(.High)|
+| syncLoad<sup>8+</sup>        | boolean                                         | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>When loading a small image, you are advised to set **syncLoad** to **true** so that the image loading can be quickly completed on the main thread.|
+| copyOption<sup>9+</sup>      | [CopyOptions](ts-appendix-enums.md#copyoptions9)| Whether the image can be copied.<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>SVG images cannot be copied.|
+| colorFilter<sup>9+</sup>     | [ColorFilter](ts-types.md#colorfilter9)         | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>This attribute is not applicable to SVG images.|
 | draggable<sup>9+</sup>       | boolean                                         | Whether the image is draggable. The value **true** means that the image is draggable, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>The default value is **false** in API version 9 and **true** in API version 10.|
 | enableAnalyzer<sup>11+</sup> | boolean                                         | Whether to enable the AI analyzer. The value **true** means to enable the AI analyzer.<br>This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect.<br>Default value: **false**<br>**NOTE**<br> This feature depends on device capabilities.<br> Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../../apis-image-kit/js-apis-image.md#pixelmap7) in [RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7) format can be passed in for analysis. For details, see [Example 4](#example-4).<br> The placeholder images (specified by **alt**) cannot be analyzed. An image can be analyzed only when **objectRepeat** is set to **ImageRepeat.NoRepeat** and [obscured](ts-universal-attributes-obscured.md) is disabled.<br> Analysis is performed based on the complete original image. If the **clip**, **margin**, **borderRadius**, **position**, or **objectFit** attribute is set, the image is not displayed completely. If **renderMode** is used to apply a mask, analysis is still performed based on the complete original image.<br> The **copyOption** attribute does not affect the AI analyzer.|
 | resizable<sup>11+</sup>      | [ResizableOptions](#resizableoptions11)         | Resizable image options.<br> **NOTE**<br> 1. Resizing is effective for drag previews and placeholder images.<br>2. When [ResizableOptions](#resizableoptions11) is set to a valid value, the **objectRepeat** setting does not take effect.<br>3. When the sum of the values of **top** and **bottom** is greater than the original image height or the sum of the values of **left** and **right** is greater than the original image width, the [ResizableOptions](#resizableoptions11) setting does not take effect.<br>|
 
 ## ImageInterpolation
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name    | Description                        |
 | ------ | -------------------------- |
@@ -72,7 +72,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ImageRenderMode
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name      | Description     |
 | -------- | ------- |
@@ -108,7 +108,7 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 Triggered when an image is successfully loaded or decoded. The size of the loaded image is returned.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -131,7 +131,7 @@ onError(callback: [ImageErrorCallback](#imageerrorcallback9))
 
 Triggered when an error occurs during image loading.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -147,7 +147,7 @@ Triggered when the animation playback in the loaded SVG image is complete. If th
 
 Only SVG images are supported.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ## ImageErrorCallback<sup>9+</sup>
 

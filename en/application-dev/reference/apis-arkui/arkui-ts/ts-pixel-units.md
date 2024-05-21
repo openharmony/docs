@@ -21,12 +21,12 @@ Conversion between px and other pixel units is supported.
 
 | API                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| vp2px(value : number) : number | Converts a value in units of vp to a value in units of px.<br>Since API version 9, this API is supported in ArkTS widgets.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio 1:1 is used instead.|
-| px2vp(value : number) : number | Converts a value in units of px to a value in units of vp.<br>Since API version 9, this API is supported in ArkTS widgets.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio 1:1 is used instead.|
-| fp2px(value : number) : number | Converts a value in units of fp to a value in units of px.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| px2fp(value : number) : number | Converts a value in units of px to a value in units of fp.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| vp2px(value : number) : number | Converts a value in units of vp to a value in units of px.<br>This API can be used in ArkTS widgets since API version 9.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio 1:1 is used instead.|
+| px2vp(value : number) : number | Converts a value in units of px to a value in units of vp.<br>This API can be used in ArkTS widgets since API version 9.<br> **NOTE**<br> By default, the virtual pixel ratio of the screen where the current UI instance is located is used for conversion. If no UI instance is available, the virtual pixel ratio 1:1 is used instead.|
+| fp2px(value : number) : number | Converts a value in units of fp to a value in units of px.<br>This API can be used in ArkTS widgets since API version 9.|
+| px2fp(value : number) : number | Converts a value in units of px to a value in units of fp.<br>This API can be used in ArkTS widgets since API version 9.|
+| lpx2px(value : number) : number | Converts a value in units of lpx to a value in units of px.<br>This API can be used in ArkTS widgets since API version 9.|
+| px2lpx(value : number) : number | Converts a value in units of px to a value in units of lpx.<br>This API can be used in ArkTS widgets since API version 9.|
 
 
 ## Example

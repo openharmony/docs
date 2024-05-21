@@ -10,7 +10,7 @@ An **ImageBitmap** object stores pixel data rendered on a canvas.
 
 ImageBitmap(src: string)
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -24,8 +24,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Type    | Description                                      |
 | ------ | ------ | ---------------------------------------- |
-| width  | number | Pixel width of the **ImageBitmap** object, in vp. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| height | number | Pixel height of the **ImageBitmap** object, in vp. The current value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| width  | number | Pixel width of the **ImageBitmap** object, in vp. The current value is **0**.<br>This API can be used in ArkTS widgets since API version 9.|
+| height | number | Pixel height of the **ImageBitmap** object, in vp. The current value is **0**.<br>This API can be used in ArkTS widgets since API version 9.|
 
 **Example**
 
@@ -67,4 +67,4 @@ close()
 
 Releases all graphics resources associated with this **ImageBitmap** object and sets its width and height to **0**.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.

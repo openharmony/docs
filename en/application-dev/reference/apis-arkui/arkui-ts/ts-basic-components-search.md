@@ -18,7 +18,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 
 | Name     | Type                                            | Mandatory| Description                                                    |
 | ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | No  | Text displayed when there is no input.                                    |
 | icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>**NOTE**<br>The icon data source can be a local or online image.<br>- The supported formats include PNG, JPG, BMP, SVG, GIF, and pixelmap.<br>- The Base64 string is supported in the following format: data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br>If this attribute and the **searchIcon** attribute are both set, the **searchIcon** attribute takes precedence.|
 | controller  | [SearchController](#searchcontroller) | No  | Controller of the **\<Search>** component.                                      |
@@ -29,17 +29,17 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                   | Type                                        | Description                                          |
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
-| searchButton | value: string,<br>option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10)            | Text on the search button located next to the search text box. By default, there is no search button.              |
+| searchButton | value: string,<br>option<sup>10+</sup>?: [SearchButtonOptions](#searchbuttonoptions10)            | Text on the search button located next to the search text box. By default, there is no search button.<br>Default value: <br />SearchButtonOptions: {<br />fontSize: '16fp',<br />color: '#ff3f97e9'<br />}    |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.<br>Default value: **'#99182431'**  |
 | placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                        |
 | textFont                | [Font](ts-types.md#font)                         | Style of the text entered in the search box, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                          |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | Text alignment mode in the search text box. Currently, the following alignment modes are supported: **Start**, **Center**, and **End**.<br>Default value: **TextAlign.Start**   |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the text can be pasted, but copy or cut is not allowed. <br>**NOTE**<br>For dragging, **copyOption** only restricts whether text is selected and does not involve the dragging scope.|
-| searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10)                                                  | Style of the search icon on the left.                                      |
-| cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
+| searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10)                                                  | Style of the search icon on the left.<br />Default value: <br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}      |
+| cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.<br>Default value: <br />{<br />style: CancelButtonStyle.INPUT,<br />icon: {<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />}<br />}<br>When **style** is set to **CancelButtonStyle.CONSTANT**, the Cancel button is always displayed. |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the input text.<br>Default value: **'#FF182431'**<br>**NOTE**<br>[Universal text attributes](ts-universal-attributes-text-style.md) **fontSize**, **fontStyle**, **fontWeight**, and **fontFamily** are set in the **textFont** attribute.|
 | caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.<br>Default value:<br>{<br>width: '1.5vp',<br>color: '#007DFF'<br>} |
-| enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
+| enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus in a way other than clicking.<br>Default value: **true**  |
 | selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [stopEditing](#stopediting10) API to close the keyboard.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
 | type<sup>11+</sup>                     | [SearchType](#searchtype11)     | Input box type.<br>Default value: **SearchType.Normal**       |
@@ -77,12 +77,12 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## SearchType<sup>11+</sup>
 
-| Name                | Description           |
-| ------------------ | ------------- |
-| NORMAL   | Normal input mode.<br>In this mode, the following are allowed: digits, letters, underscores (_), spaces, and special characters.|
-| EMAIL    | Email address input mode. In this mode, the following are allowed: digits, letters, underscores (_), and at signs (@); only one at sign (@) can exist.|
-| NUMBER   | Digit input mode.     |
-| PHONE_NUMBER | Phone number input mode.<br>In this mode, the following are allowed: digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.|
+| Name                | Value      | Description           |
+| ------------------ | ------------- | ------------- |
+| NORMAL       | 0     | Normal input mode.<br>In this mode, the following are allowed: digits, letters, underscores (_), spaces, and special characters.|
+| NUMBER       | 2     | Digit input mode. |
+| PHONE_NUMBER | 3     | Phone number input mode.<br>In this mode, the following are allowed: digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited. |
+| EMAIL        | 5     | Email address input mode. In this mode, the following are allowed: digits, letters, underscores (_), and at signs (@); only one at sign (@) can exist. |
 
 ## Events
 
@@ -241,12 +241,13 @@ struct SearchExample {
 @Entry
 @Component
 struct SearchExample {
+  @State changeValue: string = ''
   @State submitValue: string = ''
 
   build() {
     Column() {
       Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
-      Search({ placeholder: 'Type to search...' })
+      Search({ value: this.changeValue, placeholder: 'Type to search...' })
         .searchButton('SEARCH')
         .searchIcon({
           src: $r('app.media.search')
@@ -266,6 +267,9 @@ struct SearchExample {
         .textFont({ size: 14, weight: 400 })
         .onSubmit((value: string) => {
           this.submitValue = value
+        })
+        .onChange((value: string) => {
+          this.changeValue = value
         })
         .margin(20)
     }.width('100%')

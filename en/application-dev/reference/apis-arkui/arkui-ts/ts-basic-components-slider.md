@@ -16,7 +16,7 @@ Not supported
 
 Slider(options?: SliderOptions)
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,24 +28,26 @@ Slider(options?: SliderOptions)
 
 ## SliderOptions
 
+This API can be used in ArkTS widgets since API version 9.
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Current progress.<br>Default value: value of **min**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| value | number | No| Current progress.<br>Default value: value of **min**<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the default value **0** is used for **min** and the default value **100** is used for **max**.<br>If the value is not within the [min, max] range, the value of **min** or **max** is used, whichever is closer.|
-| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0, the default value is used.|
+| step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the value of **max**, the default value is used.|
 | style | [SliderStyle](#sliderstyle) | No| Style of the slider thumb and track.<br>Default value: **SliderStyle.OutSet**|
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | No| Whether the slider moves horizontally or vertically.<br>Default value: **Axis.Horizontal**|
 | reverse<sup>8+</sup> | boolean | No| Whether the slider values are reversed. By default, the values increase from left to right for a horizontal slider and from top to bottom for a vertical slider.<br>Default value: **false**|
 
 ## SliderStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name| Description|
 | -------- | -------- |
-| OutSet | The slider is on the slider track.|
-| InSet | The slider is in the slider track.|
+| OutSet | The thumb is on the track.|
+| InSet  | The thumb is in the track.|
 
 ## Attributes
 
@@ -53,12 +55,12 @@ All the [universal attributes](ts-universal-attributes-size.md) except **respons
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>Default value: **'#ffffff'**<br>When **SliderBlockType.DEFAULT** is used, **blockColor** sets the color of the round slider.<br>When **SliderBlockType.IMAGE** is used, `blockColor` does not work as the slider has no fill color.<br>When **SliderBlockType.SHAPE** is used, **blockColor** sets the color of the slider in a custom shape.|
-| trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>Default value: **'#19182431'**|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>Default value: **'#007dff'**|
-| showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| showTips | value: boolean,<br>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | **value**: whether to display a tooltip when the user drags the slider.<br>Default value: **false**<br>**content**: text content of the tooltip. The default value is the current percentage.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the tooltip is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the tooltip is displayed on the left of the slider.<br>The drawing area of the tooltip is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the tooltip will be clipped.|
-| trackThickness<sup>8+</sup> | [Length](ts-types.md#length) | Track thickness of the slider.<br>Default value: **4.0vp** when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; **20.0vp** when **style** is set to **[SliderStyle](#sliderstyle).InSet**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If the value is less than or equal to 0, the default value is used.|
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the thumb.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>Default value: **'#ffffff'**<br>When **SliderBlockType.DEFAULT** is used, **blockColor** sets the color of the round slider.<br>When **SliderBlockType.IMAGE** is used, `blockColor` does not work as the slider has no fill color.<br>When **SliderBlockType.SHAPE** is used, **blockColor** sets the color of the slider in a custom shape.|
+| trackColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the track.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>Default value: **'#19182431'**|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the portion of the track between the minimum value and the thumb.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>Default value: **'#007dff'**|
+| showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>This API can be used in ArkTS widgets since API version 9.|
+| showTips | value: boolean,<br>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | **value**: whether to display a tooltip when the user drags the slider.<br>Default value: **false**<br>**content**: content of the tooltip. By default, the tooltip shows the current percentage value.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the tooltip is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the tooltip is displayed on the left of the slider.<br>The drawing area of the tooltip is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the tooltip will be clipped.|
+| trackThickness<sup>8+</sup> | [Length](ts-types.md#length) | Track thickness of the slider.<br>Default value: **4.0vp** when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; **20.0vp** when **style** is set to **[SliderStyle](#sliderstyle).InSet**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>If the value is less than or equal to 0, the default value is used.<br>To ensure [SliderStyle](#sliderstyle) works as expected for the thumb and track, **blockSize** should increase or decrease proportionally with **trackThickness**. Specially, when **style** is **[SliderStyle](#sliderstyle).OutSet**, **trackThickness**: **blockSize** = 1:4; when **style** is **[SliderStyle](#sliderstyle).InSet**, **trackThickness**: **blockSize** = 5:3.<br>In changing the value of **trackThickness**, if it or the value of **blockSize** exceeds the width or height of the slider, the default value is used. (When **style** is **[SliderStyle](#sliderstyle).OutSet**, it is possible that only the value of **blockSize** exceeds the height of the slider.)|
 | blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Border color of the slider in the block direction.<br>**NOTE**<br>Default value: **'#00000000'**<br>When **SliderBlockType.DEFAULT** is used, **blockBorderColor** sets the border color of the round slider.<br>When **SliderBlockType.IMAGE** is used, **blockBorderColor** does not work as the slider has no border.<br>When **SliderBlockType.SHAPE** is used, **blockBorderColor** sets the border color of the slider in a custom shape.|
 | blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | Border width of the slider in the block direction.<br>**NOTE**<br>When **SliderBlockType.DEFAULT** is used, **blockBorderWidth** sets the border width of the round slider.<br>When **SliderBlockType.IMAGE** is used, **blockBorderWidth** does not work as the slider has no border.<br>WWhen **SliderBlockType.SHAPE** is used, **blockBorderWidth** sets the border width of the slider in a custom shape.|
 | stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Step color.<br>**NOTE**<br>Default value: **'#19182431'**|
@@ -101,11 +103,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider is dragged or clicked.<br>**value**: current slider value. If the return value contains decimals, you can use the **number.toFixed()** API to process the data to the expected precision.<br>**mode**: state triggered by the event.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The **Begin** and **End** states are triggered when the slider is clicked with a gesture. The **Moving** and **Click** states are triggered when the value of **value** changes.<br>If the coherent action is a drag action, the **Click** state will not be triggered.<br>The value range of **value** is the **steps** value array.|
+| onChange(callback: (value: number, mode: SliderChangeMode) =&gt; void) | Invoked when the slider is dragged or clicked.<br>**value**: current slider value. If the return value contains decimals, you can use the **number.toFixed()** API to process the data to the expected precision.<br>**mode**: state triggered by the event.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>The **Begin** and **End** states are triggered when the slider is clicked with a gesture. The **Moving** and **Click** states are triggered when the value of **value** changes.<br>If the coherent action is a drag action, the **Click** state will not be triggered.<br>The value range of **value** is the **steps** value array.|
 
 ## SliderChangeMode
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |

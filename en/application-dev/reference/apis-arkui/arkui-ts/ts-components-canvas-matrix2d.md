@@ -10,18 +10,18 @@
 
 Matrix2D()
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ## Attributes
 
 | Name                     | Type  | Description                                                        |
 | ------------------------- | ------ | ------------------------------------------------------------ |
-| [scaleX](#scalex)         | number | Horizontal scale factor. Since API version 9, this API is supported in ArkTS widgets.|
-| [scaleY](#scaley)         | number | Vertical scale factor. Since API version 9, this API is supported in ArkTS widgets.|
-| [rotateX](#rotatex)       | number | Horizontal tilt coefficient. Since API version 9, this API is supported in ArkTS widgets.|
-| [rotateY](#rotatey)       | number | Vertical tilt coefficient. Since API version 9, this API is supported in ArkTS widgets.|
-| [translateX](#translatex) | number | Horizontal translation distance, in vp. Since API version 9, this API is supported in ArkTS widgets.|
-| [translateY](#translatey) | number | Vertical translation distance, in vp. Since API version 9, this API is supported in ArkTS widgets.|
+| [scaleX](#scalex)         | number | Horizontal scale factor. This API can be used in ArkTS widgets since API version 9.|
+| [scaleY](#scaley)         | number | Vertical scale factor. This API can be used in ArkTS widgets since API version 9.|
+| [rotateX](#rotatex)       | number | Horizontal tilt coefficient. This API can be used in ArkTS widgets since API version 9.|
+| [rotateY](#rotatey)       | number | Vertical tilt coefficient. This API can be used in ArkTS widgets since API version 9.|
+| [translateX](#translatex) | number | Horizontal translation distance, in vp. This API can be used in ArkTS widgets since API version 9.|
+| [translateY](#translatey) | number | Vertical translation distance, in vp. This API can be used in ArkTS widgets since API version 9.|
 
 >  **NOTE**
 >  
@@ -245,7 +245,7 @@ identity(): Matrix2D
 
 Creates an identity matrix.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Return value**
 
@@ -294,7 +294,7 @@ invert(): Matrix2D
 
 Obtains an inverse of this matrix.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Return value**
 
@@ -349,7 +349,7 @@ multiply(other?: Matrix2D): Matrix2D
 
 Multiplies this matrix by the target matrix.
 
-Since API version 9, this API is supported in ArkTS widgets. This API is a null API.
+This API can be used in ArkTS widgets since API version 9. This API is a null API.
 
 This API is deprecated since API version 10.
 
@@ -419,7 +419,7 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 Performs a rotation operation on this matrix.
 
-Since API version 9, this API is supported in ArkTS widgets. This API is a null API.
+This API can be used in ArkTS widgets since API version 9. This API is a null API.
 
 This API is deprecated since API version 10. You are advised to use [rotate](#rotate10) instead.
 
@@ -483,7 +483,7 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 Performs a right multiplication rotation operation on this matrix, with the specified rotation point as the transform origin.
 
-Since API version 10, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 10.
 
 **Parameters**
 
@@ -546,7 +546,7 @@ translate(tx?: number, ty?: number): Matrix2D
 
 Performs a left multiplication translation operation on this matrix.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -608,7 +608,7 @@ scale(sx?: number, sy?: number): Matrix2D
 
 Performs a right multiplication scaling operation on this matrix.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 

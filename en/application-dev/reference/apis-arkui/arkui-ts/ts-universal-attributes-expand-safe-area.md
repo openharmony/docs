@@ -23,9 +23,11 @@ Sets the safe area to be expanded to.
 
 >  **NOTE**
 >
->To set the **expandSafeArea** attribute for a component, this component cannot have its width and height fixed (except to a percentage).
+>  To set the **expandSafeArea** attribute for a component, this component cannot have its width and height fixed (except to a percentage).
 >
->The safe area does not restrict the layout or size of components inside, nor does it clip the components.
+>  The safe area does not restrict the layout or size of components inside, nor does it clip the components.
+>
+>  If the parent container is a scroll container, the **expandSafeArea** attribute does not take effect.
 
 ## setKeyboardAvoidMode<sup>11+</sup>
 
@@ -128,7 +130,8 @@ import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
     windowStage.loadContent('pages/Index', (err, data) => {
       let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+     // When the virtual keyboard is displayed, the page is resized to its original height minus the keyboard height.
+  windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -165,7 +168,8 @@ import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
 
     windowStage.loadContent('pages/Index', (err, data) => {
       let a = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
+     // When the virtual keyboard is displayed, the page is moved up until the caret is displayed.
+  windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.OFFSET);
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

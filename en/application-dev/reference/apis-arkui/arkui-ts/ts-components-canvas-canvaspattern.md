@@ -14,7 +14,7 @@ setTransform(transform?: Matrix2D): void
 
 Uses a **Matrix2D** object as a parameter to perform matrix transformation on the current **CanvasPattern** object.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 

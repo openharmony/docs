@@ -26,7 +26,7 @@ Sets the state-specific styles for the component.
 
 ## StateStyles
 
-Since API version 9, this API is supported in ArkTS widgets. Only the [universal attributes](ts-universal-attributes-size.md) are supported.
+This API can be used in ArkTS widgets since API version 9. Only the [universal attributes](ts-universal-attributes-size.md) are supported.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

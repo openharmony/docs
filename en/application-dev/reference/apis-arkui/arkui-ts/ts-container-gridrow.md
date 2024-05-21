@@ -17,7 +17,7 @@ This component can contain the **\<GridCol>** child component.
 ## APIs
 GridRow(option?: GridRowOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 | Name|Type|Mandatory|Description|
@@ -27,16 +27,16 @@ Since API version 9, this API is supported in ArkTS widgets.
 ## GridRowOptions
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  No |Number of columns in the grid layout.|
-|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   No |Gutter of the grid layout.|
-|breakpoints|[BreakPoints](#breakpoints)|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.|
-|direction|[GridRowDirection](#gridrowdirection)|   No |Arrangement direction of the grid layout.|
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  No |Number of columns in the grid layout.<br>Default value: **12**|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   No |Gutter of the grid layout.<br>Default value: **0**|
+|breakpoints|[BreakPoints](#breakpoints)|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.<br>Default value:<br />{<br />value: ["320vp", "600vp", "840vp"],<br />reference: BreakpointsReference.WindowSize<br />}|
+|direction|[GridRowDirection](#gridrowdirection)|   No |Arrangement direction of the grid layout.<br>Default value: **GridRowDirection.Row**|
 
 ## GutterOption
 
 Provides the gutter options for the grid layout to define the spacing between child components in different directions.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -47,7 +47,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 Describes the numbers of grid columns for devices with different grid sizes.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -60,7 +60,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **NOTE**
 
-In the **\<GridRow>** component, you can define the value range of [breakpoints](../../ui/arkts-layout-development-grid-layout.md#grid-breakpoints). A maximum of six breakpoints are supported, which are xs, sm, md, lg, xl, and xxl. The breakpoint names cannot be modified. Assume that the input array is [n0, n1, n2, n3, n4], then the value ranges of breakpoints are as follows. 
+In the **\<GridRow>** component, you can define the value range of [breakpoints](../../../ui/arkts-layout-development-grid-layout.md#grid-breakpoints). A maximum of six breakpoints are supported, which are xs, sm, md, lg, xl, and xxl. The breakpoint names cannot be modified. Assume that the input array is [n0, n1, n2, n3, n4], then the value ranges of breakpoints are as follows. 
 |Breakpoint|Value Range|
 |---|-----------|
 |xs |[0, n0)    |
@@ -74,7 +74,7 @@ In the **\<GridRow>** component, you can define the value range of [breakpoints]
 
 Describes the gutter sizes for different device width types.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -89,7 +89,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 Sets breakpoints for the responsive grid container.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -106,7 +106,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## BreakpointsReference
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name| Description|
 | -------- | -------- |
@@ -115,7 +115,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## GridRowDirection
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name| Description|
 | -------- | -------- |
@@ -141,7 +141,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                      | Type                           | Description                                              |
 | ----------------------- | ----------------------------------- | ------------------------------------------- |
-| alignItems<sup>10+</sup>             | ItemAlign | Alignment mode of the **\<GridCol>** cross axis.<br>Default value: **ItemAlign.Start**<br>**NOTE**<br>**ItemAlign** supports the following enums: **ItemAlign.Start**, **ItemAlign.Center**, **ItemAlign.End**, and **ItemAlign.Stretch**.<br>The alignment mode of the **\<GridCol>** component can also be set using **alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))**. If both of the preceding methods are used, the setting of **alignSelf(ItemAlign)** prevails.<br>Since API version 10, this API is supported in ArkTS widgets.|
+| alignItems<sup>10+</sup>             | ItemAlign | Alignment mode of the **\<GridCol>** cross axis.<br>Default value: **ItemAlign.Start**<br>**NOTE**<br>**ItemAlign** supports the following enums: **ItemAlign.Start**, **ItemAlign.Center**, **ItemAlign.End**, and **ItemAlign.Stretch**.<br>The alignment mode of the **\<GridCol>** component can also be set using **alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))**. If both of the preceding methods are used, the setting of **alignSelf(ItemAlign)** prevails.<br>This API can be used in ArkTS widgets since API version 10.|
 
 
 ## Events
@@ -152,7 +152,7 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 
 Triggered when the breakpoint changes.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 

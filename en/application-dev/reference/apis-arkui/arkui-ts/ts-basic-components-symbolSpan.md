@@ -4,7 +4,11 @@ As a child component of the **\<Text>** component, the  **\<SymbolSpan>** compon
 
 >  **NOTE**
 >
->  This component is supported since API version 11. It can inherit attribute settings from its parent component **\<Text>**. This means that, if an attribute is not set in this component, it takes the value (if any) of the attribute from its parent component. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> - This component can inherit attribute settings from its parent component **\<Text>**. This means that, if an attribute is not set in this component, it takes the value of the attribute (if set) from its parent component.
+>
+> - The \<SymbolSpan> component is not dimmed when dragged.
 
 ## Child Components
 
@@ -18,7 +22,7 @@ SymbolSpan(value: Resource)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [Resource](../arkui-ts/ts-types.md#resource)| Yes| Resource of the **\<SymbolSpan>** component, for example, **$r('sys.symbol.ohos_wifi')**.|
+| value | [Resource](ts-types.md#resource)| Yes| Resource of the **\<SymbolSpan>** component, for example, **$r('sys.symbol.ohos_wifi')**.|
 
 >  **NOTE**
 >
@@ -31,12 +35,12 @@ The [universal attributes](ts-universal-attributes-size.md) are not supported. O
 | Name| Type| Mandatory| Description                              |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | No| Color of the symbol span.<br> Default value: depending on the rendering strategy.|
-| fontSize | number \| string \| [Resource](../arkui-ts/ts-types.md#resource) | No| Size of the symbol span.<br>Default value: system default value|
+| fontSize | number \| string \| [Resource](ts-types.md#resource) | No| Size of the symbol span.<br>Default value: system default value|
 | fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No| Weight of symbol span.<br>For the number type, the value ranges from 100 to 900, at an interval of 100. A larger value indicates a heavier font weight. The default value is **400**.<br>For the string type, only strings of the number type are supported, for example, **"400"**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
-| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| No| Rendering strategy of symbol span.<br>Default value: **SymbolRenderingStrategy.SINGLE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_trash_circle**, **ohos_folder_badge_plus**, and **ohos_lungs** support the **MULTIPLE_COLOR** modes.|
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| No| Rendering strategy of symbol span.<br>Default value: **SymbolRenderingStrategy.SINGLE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_folder_badge_plus** supports the **MULTIPLE_COLOR** and **MULTIPLE_OPACITY** modes.|
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| No| Symbol effect of symbol span.<br>Default value: **SymbolEffectStrategy.NONE**<br>**NOTE**<br>For the resources referenced in **$r('sys.symbol.ohos_*')**, only **ohos_wifi** supports the hierarchical effect.|
 
-The figure shows the default color and number of layers of each component in multi-color mode.
+The figure below shows the effects of different rendering strategies.
 
 ![renderingStrategy](figures/renderingStrategy.png)
 
@@ -51,31 +55,31 @@ The [universal events](ts-universal-events-click.md) are not supported.
 @Entry
 @Component
 struct Index {
-  @State scaleplay:boolean = false
-  @State hieraplay:boolean = false
   build() {
     Column() {
       Row() {
-        Column(){
-          Text ("Lighter")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+        Column() {
+          Text("Light")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Lighter)
               .fontSize(96)
           }
         }
-        Column(){
-          Text ("Normal")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("Normal")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Normal)
               .fontSize(96)
           }
         }
-        Column(){
-          Text ("Bold")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text("Bold")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontWeight(FontWeight.Bold)
               .fontSize(96)
           }
@@ -83,36 +87,39 @@ struct Index {
       }
 
       Row() {
-        Column(){
+        Column() {
           Text ("Monochrome")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.SINGLE)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
-        Column(){
+
+        Column() {
           Text ("Multicolor")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
-        Column(){
-          Text ("Multi-opacity")
-          Text(){
-            SymbolSpan($r('sys.symbol.ohos_lungs'))
+
+        Column() {
+          Text ("Multilayer")
+          Text() {
+            SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
               .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
-              .fontColor([Color.Blue,Color.Grey,Color.Green])
+              .fontColor([Color.Black, Color.Green, Color.White])
           }
         }
       }
+
       Row() {
-        Column(){
+        Column() {
           Text ("No effect")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
@@ -120,23 +127,23 @@ struct Index {
               .effectStrategy(SymbolEffectStrategy.NONE)
           }
         }
-        Column(){
+
+        Column() {
           Text ("Overall scale effect")
-          Text(){
+          Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(this.scaleplay ? 1 : 0)
+              .effectStrategy(1)
           }
-          Button(this.scaleplay? 'Off':'Play').onClick(()=>{this.scaleplay = !this.scaleplay})
         }
-        Column(){
+
+        Column() {
           Text ("Hierarchical effect")
-          Text(){
+          Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
               .fontSize(96)
-              .effectStrategy(this.hieraplay ? 2 : 0)
+              .effectStrategy(2)
           }
-          Button(this.hieraplay? 'Off':'Play').onClick(()=>{this.hieraplay = !this.hieraplay})
         }
       }
     }
