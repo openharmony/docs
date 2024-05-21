@@ -1,4 +1,4 @@
-# Distributed Service Kit
+# Distributed Service Kit (Distributed Management Service)
 
 - Distributed Management Service
   - [Introduction to Distributed Service Kit](distributedservice-kit-intro.md)
