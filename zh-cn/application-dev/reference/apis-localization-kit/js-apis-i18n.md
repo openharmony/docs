@@ -670,7 +670,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
   ```
 
 
