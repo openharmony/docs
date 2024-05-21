@@ -512,8 +512,6 @@ selectAll(value: boolean)
 
 设置当初始状态，是否全选文本。不支持内联模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -622,8 +620,6 @@ fontFeature(value: string)
 wordBreak(value: WordBreak)
 
 设置文本断行规则。该属性在组件设置内联模式时样式生效，但对placeholder文本无效。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
