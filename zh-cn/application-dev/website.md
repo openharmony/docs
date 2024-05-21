@@ -228,9 +228,7 @@
       - 应用权限管控
         - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
         - 申请应用权限
-          <!--Del-->
           - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
-          <!--DelEnd-->
           - [声明权限](security/AccessToken/declare-permissions.md)
           - [向用户申请授权](security/AccessToken/request-user-authorization.md)
           - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
@@ -731,7 +729,6 @@
       - 应用文件访问与管理
         - [应用文件访问(ArkTS)](file-management/app-file-access.md)
         - [应用文件访问(C/C++)](file-management/native-fileio-guidelines.md)
-        - [应用文件上传下载](file-management/app-file-upload-download.md)
         - [应用及文件系统空间统计](file-management/app-fs-space-statistics.md)
       <!--Del-->
       - [向应用沙箱推送文件](file-management/send-file-to-app-sandbox.md)
