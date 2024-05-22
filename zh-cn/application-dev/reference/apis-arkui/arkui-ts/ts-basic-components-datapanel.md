@@ -139,6 +139,7 @@ trackShadow(value: DataPanelShadowOptions)
 contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
 
 定制DataPanel内容区的方法。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
