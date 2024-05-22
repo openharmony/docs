@@ -3465,6 +3465,7 @@
         - [JSVM_InitOptions](reference/common/_j_s_v_m___init_options.md)
         - [JSVM_PropertyDescriptor](reference/common/_j_s_v_m___property_descriptor.md)
         - [JSVM_PropertyHandlerConfigurationStruct](reference/common/_j_s_v_m___property_handler_configuration_struct.md)
+        - [JSVM_ScriptOrigin](reference/common/_j_s_v_m___script_origin.md)
         - [JSVM_TypeTag](reference/common/_j_s_v_m___type_tag.md)
         - [JSVM_VMInfo](reference/common/_j_s_v_m___v_m_info.md)
   - 标准库
