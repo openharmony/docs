@@ -475,7 +475,6 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { UIContext } from '@ohos.arkui.UIContext';
-import { BusinessError } from '@ohos.base';
 import { window } from '@kit.ArkUI';
 import observer from '@ohos.arkui.observer';
 
@@ -484,12 +483,12 @@ export default class EntryAbility extends UIAbility {
   private uiContext: UIContext | null = null;
 
   onDestroy(): void {
-    // 注销在当前ability上的所有监听函数
+    // 注销当前abilityContext上的所有routerPageUpdate监听
     observer.off('routerPageUpdate', this.context)
   }
 
   onWindowStageDestroy(): void {
-    // 注销在uiContext上的所有监听函数
+    // 注销在uiContext上的所有routerPageUpdate监听
     if (this.uiContext) {
       observer.off('routerPageUpdate', this.uiContext);
     }
