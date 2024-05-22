@@ -80,7 +80,15 @@ OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
 
 **返回：**
 
-返回一个指向OH_AVSource实例的指针。
+如果执行成功，则返回一个指向OH_AVSource实例的指针，否则返回nullptr。
+
+可能失败的原因：
+
+1. dataSource为nullptr。
+2. dataSource->size == 0。
+3. 设置数据源失败。
+4. 内存不足。
+5. 解码器引擎为nullptr。
 
 
 ### OH_AVSource_CreateWithFD()

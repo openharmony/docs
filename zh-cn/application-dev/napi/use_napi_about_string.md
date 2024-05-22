@@ -156,7 +156,7 @@ cpp部分代码
 ```cpp
 static napi_value CreateStringUtf16(napi_env env, napi_callback_info info)
 {
-    const char16_t  *str = u"你好, World!, successes to create UTF-8 string! 111";
+    const char16_t  *str = u"你好, World!, successes to create UTF-16 string! 111";
     size_t length = NAPI_AUTO_LENGTH;
     napi_value result = nullptr;
     napi_status status = napi_create_string_utf16(env, str, length, &result);

@@ -42,6 +42,12 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 401      | Parameter error. Possible causes: |
+
 **示例**
 
 ```ts
@@ -89,7 +95,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | ------ | ------- | --- | ------------------------------------------------ |
 | enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
 
-**返回值：**
+**返回值：** 
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
@@ -101,8 +107,9 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | ------- | ---------------------------------------------- |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display. |
 
-**示例**
+**示例** 
 
 ```ts
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
