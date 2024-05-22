@@ -481,7 +481,7 @@ class BasicDataSource implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-      // 写法2：listener.onDatasetChange({type: DataOperationType.ADD, index: index});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.ADD, index: index}]);
     })
   }
 

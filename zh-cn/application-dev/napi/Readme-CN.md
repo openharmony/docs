@@ -25,7 +25,8 @@
       - [使用Node-API接口在主线程中进行模块加载](use-napi-load-module.md)
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
       - [使用Node-API接口进行模块加载](use-napi-load-module-with-info.md)
-      - [Node-API扩展能力接口](use-napi-about-extension.md)
+      - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](use-call-threadsafe-function-with-priority.md)
+      - [使用Node-API扩展能力接口](use-napi-about-extension.md)
     - [Node-API常见问题](use-napi-faqs.md)
   - 使用JSVM-API实现JS与C/C++语言交互
     - [JSVM-API简介](jsvm-introduction.md)
