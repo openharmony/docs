@@ -146,7 +146,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    ```ts
    import common from '@ohos.app.ability.common';
    import hilog from '@ohos.hilog';
-   import promptAction from '@ohos.promptAction'
+   import promptAction from '@ohos.promptAction';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
    
@@ -589,7 +589,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    ```ts
    import common from '@ohos.app.ability.common';
    import hilog from '@ohos.hilog';
-   import promptAction from '@ohos.promptAction'
+   import promptAction from '@ohos.promptAction';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
    

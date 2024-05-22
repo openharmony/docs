@@ -42,12 +42,12 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | -------- | ---------------------------------------------------- |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
+| 1600003  | Failed to connect to the service.                           |
+| 1600004  | Notification disabled.                         |
+| 1600005  | Notification slot disabled.                    |
+| 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
-| 1600009  | Over max number notifications per second.            |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No relevant right.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
@@ -117,12 +117,12 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | -------- | ---------------------------------------------------- |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
-| 1600003  | Failed to connect service.                           |
-| 1600004  | Notification is not enabled.                         |
-| 1600005  | Notification slot is not enabled.                    |
-| 1600007  | The notification is not exist.                       |
+| 1600003  | Failed to connect to the service.                           |
+| 1600004  | Notification disabled.                         |
+| 1600005  | Notification slot disabled.                    |
+| 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
-| 1600009  | Over max number notifications per second.            |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No relevant right.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
@@ -182,7 +182,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -237,7 +237,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -283,7 +283,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -342,7 +342,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -394,7 +394,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -448,7 +448,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -486,7 +486,7 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -531,7 +531,7 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -586,7 +586,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -631,7 +631,7 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **示例：**
@@ -684,7 +684,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600008  | The user does not exist..                  |
 
 **示例：**
@@ -729,7 +729,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -783,7 +783,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -828,7 +828,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -881,7 +881,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -933,7 +933,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -982,7 +982,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1039,7 +1039,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1094,7 +1094,7 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1139,7 +1139,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1192,7 +1192,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1238,7 +1238,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1293,7 +1293,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1339,7 +1339,7 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1383,7 +1383,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -1423,7 +1423,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
-| 1600007  | The notification is not exist.           |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1485,7 +1485,7 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 | 错误码ID | 错误信息                                  |
 | -------- | ---------------------------------------- |
-| 1600007  | The notification is not exist.           |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1541,7 +1541,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1596,7 +1596,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -1641,7 +1641,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -1699,7 +1699,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -1748,7 +1748,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
@@ -1809,7 +1809,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
@@ -1860,7 +1860,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -1905,7 +1905,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -1948,7 +1948,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
@@ -2002,7 +2002,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
@@ -2047,7 +2047,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -2091,7 +2091,7 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -2132,7 +2132,7 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **示例：**
@@ -2183,7 +2183,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600010  | Distributed operation failed.       |
 
 **示例：**
@@ -2195,7 +2195,7 @@ let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2227,7 +2227,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2285,7 +2285,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2332,7 +2332,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2386,7 +2386,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2432,7 +2432,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -2475,7 +2475,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -2519,11 +2519,11 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.              |
+| 1600005  | Notification slot disabled.         |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -2593,11 +2593,11 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.              |
+| 1600005  | Notification slot disabled.         |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -2662,11 +2662,11 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
+| 1600003  | Failed to connect to the service.                |
+| 1600004  | Notification disabled.              |
+| 1600005  | Notification slot disabled.         |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -2726,8 +2726,8 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
 
 **示例：**
@@ -2784,8 +2784,8 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.              |
 
 **示例：**
@@ -2839,8 +2839,8 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 | -------- | ----------------------------------------- |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600007  | The notification is not exist.            |
+| 1600003  | Failed to connect to the service.                |
+| 1600007  | The notification does not exist.            |
 | 1600008  | The user does not exist.                    |
 | 1600012  | No memory space.                          |
 
@@ -2890,8 +2890,8 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 1600012  | No memory space.                    |
 | 1600017  | There is no corresponding agent relationship configuration.    |
 
@@ -2940,7 +2940,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
@@ -2994,7 +2994,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
@@ -3048,7 +3048,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
@@ -3096,7 +3096,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3152,7 +3152,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3198,7 +3198,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **示例：**
@@ -3252,7 +3252,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **示例：**
@@ -3297,7 +3297,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **示例：**
@@ -3349,7 +3349,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **示例：**
@@ -3442,7 +3442,7 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 
 **示例：**
 
@@ -3536,8 +3536,8 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3593,7 +3593,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
@@ -3648,7 +3648,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
@@ -3704,7 +3704,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
@@ -3759,7 +3759,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
@@ -3810,7 +3810,7 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 1600010  | Distributed operation failed.            |
 | 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
@@ -3859,7 +3859,7 @@ setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 | 1600017  | There is no corresponding agent relationship configuration.     |
 | 17700001 | The specified bundle name was not found.   |
@@ -3914,7 +3914,7 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Array\<Notif
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -4106,7 +4106,7 @@ addDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprof
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
@@ -4171,7 +4171,7 @@ removeDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbp
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**

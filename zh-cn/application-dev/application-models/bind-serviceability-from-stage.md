@@ -12,7 +12,7 @@ UIAbility关联访问ServiceAbility和UIAbility关联访问ServiceExtensionAbili
 ```ts
 import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction'
+import promptAction from '@ohos.promptAction';
 import Want from '@ohos.app.ability.Want';
 
 const TAG: string = '[Page_StartFAModel]';
@@ -36,7 +36,7 @@ struct Page_StartFAModel {
             let want: Want = {
               bundleName: 'com.samples.famodelabilitydevelop',
               abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
-            }
+            };
             let options: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
@@ -73,7 +73,7 @@ struct Page_StartFAModel {
 ```ts
 import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction'
+import promptAction from '@ohos.promptAction';
 import Want from '@ohos.app.ability.Want';
 
 const TAG: string = '[Page_StartFAModel]';
@@ -97,7 +97,7 @@ struct Page_StartFAModel {
             let want: Want = {
               bundleName: 'com.samples.famodelabilitydevelop',
               abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
-            }
+            };
             let options: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');

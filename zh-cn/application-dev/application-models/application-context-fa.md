@@ -66,7 +66,7 @@ let context = featureAbility.getContext();
        // 获取context并调用相关方法
        let context = featureAbility.getContext();
        context.setDisplayOrientation(bundle.DisplayOrientation.PORTRAIT).then(() => {
-         hilog.info(domain, TAG, 'Set display orientation.')
+         hilog.info(domain, TAG, 'Set display orientation.');
        })
        hilog.info(domain, TAG, 'Application onCreate');
      }

@@ -102,7 +102,7 @@
   ```ts
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction'
+  import promptAction from '@ohos.promptAction';
   
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -166,7 +166,7 @@
   ```ts
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction'
+  import promptAction from '@ohos.promptAction';
   
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -255,7 +255,7 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import contextConstant from '@ohos.app.ability.contextConstant';
 import common from '@ohos.app.ability.common';
-import promptAction from '@ohos.promptAction'
+import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component

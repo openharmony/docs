@@ -37,15 +37,15 @@
 ## 以太网连接-DHCP模式
 
 1. 设备通过硬件接口，插入网线。
-2. 从@ohos.net.ethernet中导入ethernet命名空间。
+2. 从@kit.NetworkKit中导入ethernet命名空间。
 3. 调用getAllActiveIfaces方法，获取所有激活的有线网卡名称，如：“eth0”，“eth1”。
 4. 用户态通过isIfaceActive方法，来判断网口“eth0”是否已激活。
 5. 用户态通过getIfaceConfig方法，来获取指定网口“eth0”的网络属性，未设置过的以太网络默认为DHCP模式，获取自动分配的网络属性。
 
 ```ts
-// 从@ohos.net.ethernet中导入ethernet命名空间
-import ethernet from '@ohos.net.ethernet';
-import { BusinessError } from '@ohos.base';
+// 从@kit.NetworkKit中导入ethernet命名空间
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
 ethernet.getAllActiveIfaces((error: BusinessError, data: string[]) => {
@@ -88,16 +88,16 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
 ### 开发步骤
 
 1. 设备通过硬件接口，插入网线。
-2. 从@ohos.net.ethernet中导入ethernet命名空间。
+2. 从@kit.NetworkKit中导入ethernet命名空间。
 3. 用户态通过getAllActiveIfaces方法，来获取所有活动的网络设备名称，如：“eth0”，“eth1”。
 4. 用户态通过isIfaceActive方法，来判断网口“eth0”是否已激活。
 5. 用户态调用setIfaceConfig方法，来设置指定网口"eth0"为静态模式，手动IP地址，子网掩码，Gateway，DNS等网络属性。
 6. 用户态通过getIfaceConfig方法，来获取指定网口“eth0”的静态网络属性。
 
 ```ts
-// 从@ohos.net.ethernet中导入ethernet命名空间
-import ethernet from '@ohos.net.ethernet';
-import { BusinessError } from '@ohos.base';
+// 从@kit.NetworkKit中导入ethernet命名空间
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
 ethernet.getAllActiveIfaces((error: BusinessError, data: string[]) => {
@@ -157,14 +157,14 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
 
 ### 开发步骤
 
-1. 从@ohos.net.ethernet中导入ethernet命名空间。
+1. 从@kit.NetworkKit中导入ethernet命名空间。
 2. 调用该对象的on()方法，订阅interfaceStateChange事件。可以根据业务需要订阅此消息。
 3. 订阅interfaceStateChange事件后，回调函数会在网卡设备的接口状态发生变化时触发。
 4. 调用该对象的off()方法，取消订阅interfaceStateChange事件。
 
 ```ts
-// 从@ohos.net.ethernet中导入ethernet命名空间
-import ethernet from '@ohos.net.ethernet';
+// 从@kit.NetworkKit中导入ethernet命名空间
+import { ethernet } from '@kit.NetworkKit';
 
 // 订阅interfaceStateChange事件
 class EthernetData{

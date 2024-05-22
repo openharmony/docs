@@ -320,7 +320,7 @@ Image组件播放PixelMap数组时传入AnimatedDrawableDescriptor对象。继�
 
 ### constructor<sup>12+</sup>
 
-constructor(pixelMaps: Array<PixelMap>, options?: AnimationOptions)
+constructor(pixelMaps: Array\<PixelMap>, options?: AnimationOptions)
 
 AnimatedDrawableDescriptor的构造函数。
 
@@ -330,7 +330,7 @@ AnimatedDrawableDescriptor的构造函数。
 
 | 参数名     | 类型              | 必填  | 说明                                       |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| pixelMaps | Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
+| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
 | options   | [AnimationOptions](#animationoptions12) | 否   | 动画控制选项。                               |
 
 **示例：**

@@ -631,7 +631,7 @@ struct Parent {
   ```
 
 
-### 嵌套数据结构中\@Prop和\@ObjectLink之的区别
+### 嵌套数据结构中\@Prop和\@ObjectLink之间的区别
 
 以下示例中：
 

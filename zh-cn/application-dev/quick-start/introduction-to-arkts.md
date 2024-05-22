@@ -1662,7 +1662,9 @@ async function test() {
 }
 ```
 
-更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)
+更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)。
+
+<!--RP1--><!--RP1End-->
 
 ### 顶层语句
 

@@ -4289,7 +4289,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button('test gzip interface')ts
+        Button('test gzip interface')
           .type(ButtonType.Capsule)
           .height(60)
           .width(200)
