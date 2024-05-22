@@ -61,7 +61,7 @@ selected(value: boolean)
 
 ### selectIcon
 
-selectIcon(value: boolean | ResourceStr)
+selectIcon(value: boolean | ResourceStr | SymbolGlyphModifier)
 
 设置当菜单项被选中时，是否显示被选中的图标。
 
