@@ -2384,7 +2384,7 @@ try {
 
 ### bundleManager.isAbilityEnabled
 
-isAbilityEnabled(info: AbilityInfo], callback: AsyncCallback\<boolean>): void
+isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback\<boolean>): void
 
 以异步的方法获取指定组件的禁用或使能状态，使用callback形式返回结果。
 
@@ -2605,7 +2605,7 @@ getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Calling interface without permission 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
@@ -2660,7 +2660,7 @@ getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Calling interface without permission 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
@@ -2719,7 +2719,7 @@ getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Calling interface without permission 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
@@ -2779,7 +2779,7 @@ getLaunchWantForBundleSync(bundleName: string, userId?: number): Want
 
 | 错误码ID | 错误信息                             |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Calling interface without permission 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED'. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
@@ -4029,9 +4029,9 @@ try {
 }
 ```
 
-### bundleManager.getJsonProfile<sup>11+</sup>
+### bundleManager.getJsonProfile<sup>12+</sup>
 
-getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string): string
+getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string, userId?: number): string
 
 以同步的方法根据给定的profileType、bundleName和moduleName查询相应配置文件的JSON字符串。
 
@@ -4050,6 +4050,7 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 | profileType           | [ProfileType](#profiletype11)     | 是   | 表示要查询的配置文件类型。                                   |
 | bundleName            | string                          | 是   | 表示要查询应用程序的bundleName。                                  |
 | moduleName            | string                          | 否   | 表示要查询应用程序的module的名称，缺省时在入口模块中查找。            |
+| userId                | number                          | 否   | 表示用户ID，默认值：调用方所在用户，取值范围：大于等于0。  |
 
 **返回值：**
 
@@ -4068,6 +4069,7 @@ getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found.       |
 | 17700002 | The specified moduleName is not found.       |
+| 17700004 | The specified user ID is not found.      |
 | 17700024 | Failed to get the profile because the specified profile is not found in the HAP. |
 | 17700026 | The specified bundle is disabled.            |
 
@@ -4367,7 +4369,7 @@ try {
 
 ### bundleManager.getDeveloperIds<sup>12+</sup>
 
-getDeveloperIds(appDistributionType?: number): Array<String>
+getDeveloperIds(appDistributionType?: number): Array\<String>
 
 根据给定的应用分发类型获取当前用户下的所有的开发者ID列表。
 
