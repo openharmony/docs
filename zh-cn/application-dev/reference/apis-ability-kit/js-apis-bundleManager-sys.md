@@ -2244,7 +2244,7 @@ try {
 
 ### bundleManager.isAbilityEnabled
 
-isAbilityEnabled(info: AbilityInfo], callback: AsyncCallback\<boolean>): void
+isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback\<boolean>): void
 
 以异步的方法获取指定组件的禁用或使能状态，使用callback形式返回结果。
 
