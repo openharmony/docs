@@ -3934,10 +3934,15 @@ async function example() {
 
 ### onDataPrepared<sup>11+</sup>
 
-onDataPrepared(data: T): void
+onDataPrepared(data: T, map?: Map<string, string>): void
 
 媒体资源就绪通知，当所请求的图片资源准备就绪时系统会回调此方法。如果资源准备出错，则回调的data为undefined。
-T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource)与[MovingPhoto](#movingphoto12)三种数据类型。
+T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。
+
+map支持返回的信息：
+| map键名  | 值说明 |
+|----------|-------|
+| 'quality'  | 图片质量。高质量为'high'，低质量为'low'。 |
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3945,42 +3950,43 @@ T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource
 
 | 参数名  | 类型 | 必填 | 说明                                                                            |
 |------|---| ---- |-------------------------------------------------------------------------------|
-| data | T | 是   | 泛型，支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource)与[MovingPhoto](#movingphoto12)三种数据类型。 |
+| data | T | 是   | 已就绪的图片资源数据。泛型，支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。 |
+| map<sup>12+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。 |
 
 **示例**
 ```ts
 import image from '@ohos.multimedia.image'
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-  onDataPrepared(data: image.ImageSource) {
+  onDataPrepared(data: image.ImageSource, map: Map<string, string>) {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
     }
     // 自定义对ImageSource的处理逻辑
-    console.info('on image data prepared');
+    console.info('on image data prepared, photo quality is ' + map['quality']);
   }
 }
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-  onDataPrepared(data: ArrayBuffer) {
+  onDataPrepared(data: ArrayBuffer, map: Map<string, string>) {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
     }
     // 自定义对ArrayBuffer的处理逻辑
-    console.info('on image data prepared');
+    console.info('on image data prepared, photo quality is ' + map['quality']);
   }
 }
 
-class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<MovingPhoto> {
-  onDataPrepared(data: MovingPhoto) {
+class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  onDataPrepared(data: photoAccessHelper.MovingPhoto, map: Map<string, string>) {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
     }
     // 自定义对MovingPhoto的处理逻辑
-    console.info('on image data prepared');
+    console.info('on image data prepared, photo quality is ' + map['quality']);
   }
 }
 ```
