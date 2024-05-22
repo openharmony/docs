@@ -390,14 +390,39 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 
 ```ts
 // used in UIAbility
-import observer from '@ohos.arkui.observer';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { UIContext } from '@ohos.arkui.UIContext';
-function callBackFunc(info: observer.RouterPageInfo) {}
-// callBackFunc is user defined function
-observer.on('routerPageUpdate', this.context, callBackFunc);
-// uiContext could be got by window's function: getUIContext()
-uiContext: UIContext | null = null;
-observer.on('routerPageUpdate', this.uiContext, callBackFunc);
+import { BusinessError } from '@ohos.base';
+import { window } from '@kit.ArkUI';
+
+import observer from '@ohos.arkui.observer';
+
+export default class EntryAbility extends UIAbility {
+  private uiContext: UIContext | null = null;
+
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // 注册监听，范围是abilityContext内的page
+    observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
+      console.log('[observer][abilityContext] got info: ' + JSON.stringify(info))
+    })
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err) => {
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let windowInfo: window.Window = data;
+        // 获取UIContext实例
+        this.uiContext = windowInfo.getUIContext();
+        // 注册监听，范围是uiContext内的page
+        observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
+          console.log('[observer][uiContext] got info: ' + JSON.stringify(info))
+        })
+      })
+    });
+  }
+
+// ... other function in EntryAbility
+}
 ```
 
 ## observer.off('routerPageUpdate')<sup>11+</sup>
@@ -420,14 +445,29 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 
 ```ts
 // used in UIAbility
-import observer from '@ohos.arkui.observer';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { UIContext } from '@ohos.arkui.UIContext';
-function callBackFunc(info: observer.RouterPageInfo) {}
-// callBackFunc is user defined function
-observer.off('routerPageUpdate', this.context, callBackFunc);
-// uiContext could be got by window's function: getUIContext()
-uiContext: UIContext | null = null;
-observer.off('routerPageUpdate', this.uiContext, callBackFunc);
+import { window } from '@kit.ArkUI';
+import observer from '@ohos.arkui.observer';
+
+export default class EntryAbility extends UIAbility {
+  // 实际使用前uiContext需要被赋值。参见示例observer.on('routerPageUpdate')
+  private uiContext: UIContext | null = null;
+
+  onDestroy(): void {
+    // 注销当前abilityContext上的所有routerPageUpdate监听
+    observer.off('routerPageUpdate', this.context)
+  }
+
+  onWindowStageDestroy(): void {
+    // 注销在uiContext上的所有routerPageUpdate监听
+    if (this.uiContext) {
+      observer.off('routerPageUpdate', this.uiContext);
+    }
+  }
+
+// ... other function in EntryAbility
+}
 ```
 
 ## observer.on('densityUpdate')<sup>12+</sup>
