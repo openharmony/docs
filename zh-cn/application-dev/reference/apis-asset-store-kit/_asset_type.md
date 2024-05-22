@@ -198,7 +198,7 @@ enum Asset_SyncType
 | ASSET_SYNC_TYPE_NEVER | 不允许同步关键资产。 | 
 | ASSET_SYNC_TYPE_THIS_DEVICE | 只在本设备进行同步，如仅在本设备还原的备份场景。 | 
 | ASSET_SYNC_TYPE_TRUSTED_DEVICE | 只在可信设备间进行同步，如克隆场景。 | 
-| ASSET_SYNC_TYPE_TRUSTED_ACCOUNT<sup>12+</sup> | 只在登录可信账号的设备间进行同步，如云同步场景。 | 
+| ASSET_SYNC_TYPE_TRUSTED_ACCOUNT | 只在登录可信账号的设备间进行同步，如云同步场景。<br>**起始版本：** 12 | 
 
 
 ### Asset_Tag
