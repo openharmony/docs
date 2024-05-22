@@ -34,7 +34,7 @@
 **开发实例**
 ```ts
 // 导入模块
-import i18n from '@ohos.i18n'
+import { i18n } from '@kit.LocalizationKit';
 
 // 判断字符是否是数字
 let isDigit = i18n.Unicode.isDigit('1'); // isDigit: true
