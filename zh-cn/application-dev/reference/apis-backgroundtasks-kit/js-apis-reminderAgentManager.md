@@ -592,16 +592,16 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 
 addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
-为指定id的日历添加不提醒日期，即在设定的日期范围内不提醒。使用Promise异步回调。
+为指定id的重复日历添加不提醒日期，即在设定的日期范围内不提醒。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                         |
-| ---------- | ------ | ---- | ---------------------------- |
-| reminderId | number | 是   | 需要添加不提醒日期的日历Id。 |
-| date       | Date   | 是   | 不提醒的日期。               |
+| 参数名     | 类型   | 必填 | 说明                             |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | 是   | 需要添加不提醒日期的重复日历Id。 |
+| date       | Date   | 是   | 不提醒的日期。                   |
 
 **返回值**：
 
@@ -637,15 +637,15 @@ reminderAgentManager.addExcludeDate(reminderId, date).then(() => {
 
 deleteExcludeDates(reminderId: number): Promise\<void>
 
-删除日历设置的所有不提醒日期，通过Id指定具体日历。使用Promise异步回调。
+删除重复日历设置的所有不提醒日期，通过Id指定具体重复日历。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                         |
-| ---------- | ------ | ---- | ---------------------------- |
-| reminderId | number | 是   | 需要删除不提醒日期的日历Id。 |
+| 参数名     | 类型   | 必填 | 说明                             |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | 是   | 需要删除不提醒日期的重复日历Id。 |
 
 **返回值**：
 
@@ -679,15 +679,15 @@ reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
 
 getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
-查询日历设置的所有不提醒日期，通过Id指定具体日历。使用Promise异步回调。
+查询重复日历设置的所有不提醒日期，通过Id指定具体重复日历。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                         |
-| ---------- | ------ | ---- | ---------------------------- |
-| reminderId | number | 是   | 需要查询不提醒日期的日历Id。 |
+| 参数名     | 类型   | 必填 | 说明                             |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | 是   | 需要查询不提醒日期的重复日历Id。 |
 
 **返回值**：
 
@@ -879,6 +879,6 @@ ReminderRequestTimer extends ReminderRequest
 
 | 名称        | 类型                                | 必填 | 说明                  |
 | ----------- | ----------------------------------- | ---- | --------------------- |
-| reminderId  | number                              | NA   | 发布提醒后返回的 Id。 |
-| reminderReq | [ReminderRequest](#reminderrequest) | NA   | 代理提醒对象。        |
+| reminderId  | number                              | N/A  | 发布提醒后返回的 Id。 |
+| reminderReq | [ReminderRequest](#reminderrequest) | N/A  | 代理提醒对象。        |
 
