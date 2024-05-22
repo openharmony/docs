@@ -33,13 +33,11 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 | [lang.ISendable](js-apis-arkts-lang.md#langisendable)   | 所有Sendable类型的父类型。 |
 
 ## collections.ConcatArray
-表示可以进行连接的类似数组的对象。
+表示可以进行连接的类似数组的对象。该接口扩展了`ISendable`接口。
 
 文档中存在泛型的使用，涉及以下泛型标记符：
 
 - T：Type，支持[Sendable的数据类型](../../arkts-utils/arkts-sendable.md)。
-
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 ### 属性
 
@@ -54,8 +52,6 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 join(separator?: string): string
 
 将ConcatArray的所有元素连接成一个字符串，元素之间可以用指定的分隔符分隔。
-
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -84,8 +80,6 @@ slice(start?: number, end?: number): ConcatArray\<T>
 
 返回一个新的ConcatArray，该ConcatArray是原始ConcatArray的切片。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -104,7 +98,7 @@ slice(start?: number, end?: number): ConcatArray\<T>
 
 ```ts
 let concatArray : collections.ConcatArray<number> = new collections.Array<number>(1, 2, 3, 4, 5);
-let slicedArray = concatArray.slice(1, 3); // 返回[2, 3]，Array保持不变
+let slicedArray = concatArray.slice(1, 3); // 返回[2, 3]，原Array保持不变
 ```
 
 ## collections.Array
