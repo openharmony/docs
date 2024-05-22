@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import networkManager from '@ohos.enterprise.networkManager';
+import { networkManager } from '@kit.MDMKit';
 ```
 
 ## networkManager.getAllNetworkInterfaces
@@ -51,7 +51,7 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -104,8 +104,8 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -152,7 +152,7 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -206,8 +206,8 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -254,7 +254,7 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -308,8 +308,8 @@ getMac(admin: Want, networkInterface: string): Promise\<string>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -356,7 +356,7 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -410,8 +410,8 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -459,7 +459,7 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -514,8 +514,8 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -562,8 +562,8 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy, callback: AsyncCall
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import connection from '@ohos.net.connection';
+import { Want } from '@kit.AbilityKit';
+import { connection } from '@kit.NetworkKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -624,9 +624,9 @@ setGlobalProxy(admin: Want, httpProxy: connection.HttpProxy): Promise\<void>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import connection from '@ohos.net.connection';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { connection } from '@kit.NetworkKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -679,7 +679,7 @@ getGlobalProxy(admin: Want, callback: AsyncCallback\<connection.HttpProxy>): voi
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -732,8 +732,8 @@ getGlobalProxy(admin: Want): Promise\<connection.HttpProxy>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -780,7 +780,7 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule, callback: AsyncCal
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -846,8 +846,8 @@ addIptablesFilterRule(admin: Want, filterRule: AddFilterRule): Promise\<void>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -906,7 +906,7 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule, callback: As
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -970,8 +970,8 @@ removeIptablesFilterRule(admin: Want, filterRule: RemoveFilterRule): Promise\<vo
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1027,7 +1027,7 @@ listIptablesFilterRules(admin: Want, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1080,8 +1080,8 @@ listIptablesFilterRules(admin: Want): Promise\<string>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

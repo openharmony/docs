@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import browser from '@ohos.enterprise.browser';
+import { browser } from '@kit.MDMKit';
 ```
 
 ## browser.setPolicies
@@ -53,7 +53,7 @@ setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -109,8 +109,8 @@ setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -154,7 +154,7 @@ getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -204,8 +204,8 @@ getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

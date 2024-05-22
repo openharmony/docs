@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import applicationManager from '@ohos.enterprise.applicationManager';
+import { applicationManager } from '@kit.MDMKit';
 ```
 
 ## applicationManager.addDisallowedRunningBundlesSync
@@ -51,7 +51,7 @@ addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?:
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -100,7 +100,7 @@ removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, account
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -154,7 +154,7 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -199,7 +199,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -251,7 +251,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -308,7 +308,7 @@ getAutoStartApps(admin: Want): Array\<Want>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',

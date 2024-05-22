@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import deviceSettings from '@ohos.enterprise.deviceSettings';
+import { deviceSettings } from '@kit.MDMKit';
 ```
 
 ## deviceSettings.setScreenOffTime<sup>11+</sup>
@@ -50,7 +50,7 @@ setScreenOffTime(admin: Want, time: number): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -95,7 +95,7 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -147,8 +147,8 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -195,8 +195,8 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -258,8 +258,8 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -326,7 +326,7 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -380,8 +380,8 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -427,7 +427,7 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -482,7 +482,7 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

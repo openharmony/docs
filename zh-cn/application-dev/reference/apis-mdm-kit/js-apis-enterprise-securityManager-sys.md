@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import securityManager from '@ohos.enterprise.securityManager';
+import { securityManager } from '@kit.MDMKit';
 ```
 
 ## securityManager.getSecurityPatchTag
@@ -57,7 +57,7 @@ getSecurityPatchTag(admin: Want): string
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -110,7 +110,7 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
