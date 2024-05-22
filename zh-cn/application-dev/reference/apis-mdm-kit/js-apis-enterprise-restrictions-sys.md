@@ -42,10 +42,10 @@ setPrinterDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                       |
+| 9200001 | The application is not an administrator application of the device.           |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -95,10 +95,10 @@ setPrinterDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
+| 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -141,10 +141,10 @@ isPrinterDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                       |
+| 9200001 | The application is not an administrator application of the device.           |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -193,10 +193,10 @@ isPrinterDisabled(admin: Want): Promise\<boolean>
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
+| 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -240,10 +240,10 @@ setHdcDisabled(admin: Want, disabled: boolean, callback: AsyncCallback\<void>): 
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                       |
+| 9200001 | The application is not an administrator application of the device.           |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -293,10 +293,10 @@ setHdcDisabled(admin: Want, disabled: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
+| 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -339,10 +339,10 @@ isHdcDisabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                       |
+| 9200001 | The application is not an administrator application of the device.           |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -391,10 +391,10 @@ isHdcDisabled(admin: Want): Promise\<boolean>
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
+| 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -442,10 +442,10 @@ isMicrophoneDisabled(admin: Want): boolean
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                       |
+| 9200001 | The application is not an administrator application of the device.           |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -488,10 +488,10 @@ disableMicrophone(admin: Want, disable: boolean): void
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
+| 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -535,10 +535,10 @@ setFingerprintAuthDisabled(admin: Want, disabled: boolean): void
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
+| 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -588,10 +588,10 @@ isFingerprintAuthDisabled(admin: Want): boolean
 
 | 错误码ID | 错误信息                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
+| 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**

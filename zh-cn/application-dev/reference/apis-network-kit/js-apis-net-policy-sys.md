@@ -1489,6 +1489,171 @@ policy
   });
 ```
 
+## policy.setNetworkAccessPolicy<sup>12+</sup>
+
+setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise<void>
+
+设置指定 uid 应用能否能访问网络的策略，使用 Promise 方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_NET_STRATEGY
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名         | 类型                                           | 必填 | 说明                                                                          |
+| ------------- | ---------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
+| uid           | number                                         | 是   | app 唯一标识符                                                                |
+| policy        | [NetworkAccessPolicy](#networkaccesspolicy12)  | 是   | 网络策略                                                                      |
+| isReconfirmed | boolean                                        | 否   | 默认false；false 表示需要重确认，应用访问网络会弹框; true 表示不需要重确认，无弹框 |
+
+**返回值：**
+
+| 类型           | 说明                                                          |
+| -------------- | ------------------------------------------------------------ |
+| Promise\<void> | 以 Promise 形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码 ID | 错误信息                                     |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let accessPolicy: policy.NetworkAccessPolicy = {
+  allowWiFi: false,
+  allowCellular: true,
+}
+policy
+  .setNetworkAccessPolicy(11111, accessPolicy)
+  .then(() => {
+    console.log('setNetworkAccessPolicy success');
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  });
+```
+
+## policy.getNetworkAccessPolicy<sup>12+</sup>
+
+getNetworkAccessPolicy(uid: number): Promise<NetworkAccessPolicy>
+
+获取指定 uid 能否访问网络策略，使用 Promise 方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_NET_STRATEGY
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| uid    | number | 是   | app 唯一标识符 |
+
+**返回值：**
+
+| 类型                                                    | 说明                          |
+| ------------------------------------------------------- | ----------------------------- |
+| Promise\<[NetworkAccessPolicy](#networkaccesspolicy12)> | 以 Promise 形式返回设定结果。 |
+
+**错误码：**
+
+| 错误码 ID | 错误信息                                     |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+policy
+  .getNetworkAccessPolicy(11111)
+  .then((data: policy.NetworkAccessPolicy) => {
+    console.log(JSON.stringify(data));
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  });
+```
+
+## policy.getNetworkAccessPolicy<sup>12+</sup>
+
+getNetworkAccessPolicy(): Promise<UidNetworkAccessPolicy>
+
+获取当前用户下所有应用 app 能否访问网络策略信息，使用 Promise 方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_NET_STRATEGY
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                                                          | 说明                        |
+| ------------------------------------------------------------- | --------------------------- |
+| Promise\<[UidNetworkAccessPolicy](#uidnetworkaccesspolicy12)> | 以 Promise 形式返回设定结果。 |
+
+**错误码：**
+
+| 错误码 ID | 错误信息                                     |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+policy
+  .getNetworkAccessPolicy()
+  .then((data: policy.UidNetworkAccessPolicy) => {
+    let keyMap: Map<string, object> = new Map<string, object>(Object.entries(data));
+    let uid:number = 0;
+    let allowWiFi: string = "";
+    let allowCellular: string = "";
+
+    keyMap.forEach((value:object, key:string) => {
+      let valueMap: Map<string, string> = new Map<string, string>(Object.entries(value));
+      uid = Number.parseInt(key);
+      valueMap.forEach((value:string, key:string)=>{
+        if (key == "allowWiFi") {
+          allowWiFi = value;
+        }
+        if (key == "allowCellular") {
+          allowCellular = value;
+        }
+      })
+    })
+    console.log(JSON.stringify(data));
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  });
+```
+
 ## policy.on
 
 网络策略的句柄。
@@ -2141,3 +2306,28 @@ try {
 | NET_POLICY_NONE                      | 0      | 默认网络策略               |
 | NET_POLICY_ALLOW_METERED_BACKGROUND  | 1 << 0 | 允许应用在后台访问计量网络 |
 | NET_POLICY_REJECT_METERED_BACKGROUND | 1 << 1 | 拒绝应用在后台访问计量网络 |
+
+## NetworkAccessPolicy<sup>12+</sup>
+
+应用对应的连接网络的策略。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 名称              | 类型       | 必填 | 说明                          |
+| ----------------- | --------- | ---- | ----------------------------- |
+| allowWiFi         | boolean   | 是   | 能否允许访问wifi网络 |
+| allowCellular     | boolean   | 是   | 能否允许访问蜂窝网络 |
+
+## UidNetworkAccessPolicy<sup>12+</sup>
+
+应用标识以及对应应用连接网络的策略。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 名称       | 类型                                                         | 必填 | 说明                 |
+| --------- | -----------------------------------------------------------  | ---- | ------------------- |
+| undefined | [uid: string]: [NetworkAccessPolicy](#networkaccesspolicy12) | 否   | 数据类型为键值对      |

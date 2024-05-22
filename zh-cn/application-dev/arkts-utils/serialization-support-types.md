@@ -69,7 +69,7 @@ PixelMap对象可以读取或写入图像数据以及获取图像信息，常用
 
 ## Sendable对象
 
-Sendable是ArkTS上拓展的在线程间可传递的类型，使用[@Sendable装饰器](../arkts-utils/arkts-sendable.md)装饰。Sendable类型在线程间传递有两种行为：引用传递（暂未支持）和序列化拷贝传递。当前支持传递的Sendable类型：boolean、number、string、Bigint、[SendableClass](../arkts-utils/arkts-sendable.md#sendable-class)。
+Sendable是ArkTS上拓展的在线程间可传递的类型，使用[@Sendable装饰器](../arkts-utils/arkts-sendable.md)装饰。Sendable类型在线程间传递有两种行为：引用传递和序列化拷贝传递。当前支持传递的Sendable类型详查[Sendable支持的数据类型](../arkts-utils/arkts-sendable.md#sendable支持的数据类型)。
 
 
 ```ts

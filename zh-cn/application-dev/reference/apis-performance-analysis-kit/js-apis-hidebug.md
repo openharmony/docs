@@ -588,7 +588,7 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type | string |  是  | 泄漏资源类型，共四种类型:pss_memory(native内存)、js_heap(js堆内存)、fd(文件描述符)或thread(线程) |
-| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型[1024, 4 * 1024 * 1024](单位：KB), js_heap类型[85, 95](分配给JS堆内存上限的85%~95%), fd类型[10, 10000], thread类型[1, 1000] |
+| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型`[1024, 4 * 1024 * 1024](单位：KB)`, js_heap类型`[85, 95](分配给JS堆内存上限的85%~95%)`, fd类型`[10, 10000]`, thread类型`[1, 1000]` |
 | enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false，请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存 |
 
 **错误码：**

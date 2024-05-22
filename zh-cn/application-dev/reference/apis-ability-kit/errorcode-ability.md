@@ -773,6 +773,24 @@ wangAgent object has been canceled.
 
 检查触发的wantAgent对象是否已取消。
 
+## 16000200 应用缓存后快速启动支持状态设置超过1次
+
+**错误信息**
+
+The supported process cache state cannot be set more than once.
+
+**错误描述**
+
+在单个进程实例的生命周期中，应用缓存后快速启动支持状态设置成功1次后，再次设置方法将返回错误码。
+
+**可能原因**
+
+应用缓存后快速启动支持状态设置超过1次。
+
+**处理步骤**
+
+检查应用缓存后快速启动支持状态是否设置超过1次。
+
 ## 16100001 指定Uri的Ability不存在
 
 **错误信息**

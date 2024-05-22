@@ -38,6 +38,12 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 | -------- | -------- |
 | [window.AvoidArea](js-apis-window.md#avoidarea7) | 宿主窗口内容规避区域。 |
 
+**返回值：** 
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
 **示例**
 
 ```ts
@@ -67,6 +73,12 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 | -------- | ------ | ---- | ---------------------- |
 | type     | string | 是   | 监听的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | 是 | 回调函数：入参用于接收当前规避区的信息，其中，"type"表示窗口规避区类型，"area"表示窗口内容规避区域。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
 **示例**
 
@@ -99,6 +111,12 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 | type     | string | 是   | 注销的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | 否 | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+
 **示例**
 
 ```ts
@@ -127,6 +145,12 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
 **示例**
 
@@ -158,6 +182,12 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即窗口尺寸变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
 **示例**
 
@@ -226,6 +256,12 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+
 **示例**
 
 ```ts
@@ -252,7 +288,7 @@ promise?.then(()=> {
 })
 ```
 
-### createSubWindowWithOptions<sup>12+<sup>
+### createSubWindowWithOptions<sup>12+</sup>
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
 
@@ -261,6 +297,8 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **系统接口：** 此接口为系统接口，三方应用不支持调用。
+
+**模型约束：** StageModelOnly
 
 **参数：**
 
@@ -281,6 +319,8 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+| 801 | Capability not supported on this device. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window proxy is abnormal. |
 
@@ -331,7 +371,7 @@ this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOp
   })
 ```
 
-### setWaterMarkFlag<sup>12+<sup>
+### setWaterMarkFlag<sup>12+</sup>
 
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
@@ -362,6 +402,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | ------- | ---------------------------------------------- |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display. |
 
 **示例**
 
@@ -399,9 +440,9 @@ promise?.then(() => {
 
 **系统接口**：此接口为系统接口
 
-| 属性名                         | 类型        | 说明                             |
-| ------------------------------ | ----------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | UIExtensionComponent的位置和宽高。 |
+| 名称                         | 类型        | 必填      | 说明                             |
+| ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
+| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | 是 | UIExtensionComponent的位置和宽高。 |
 
 ## 完整示例
 

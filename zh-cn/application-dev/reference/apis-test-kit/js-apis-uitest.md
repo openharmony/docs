@@ -1700,7 +1700,6 @@ getDescription(): Promise\<string>
 | -------- | ------------------------------------------------------------ |
 | 17000002 | if the async function was not called with await.             |
 | 17000004 | if the component is invisible or destroyed.                  |
-| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
