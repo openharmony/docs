@@ -33,7 +33,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 | 类型                             | 说明                                                                    |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 返回Pixelmap。<br>当创建的pixelmap大小超过原图大小时，返回原图pixelmap大小。|
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。<br>当创建的pixelMap大小超过原图大小时，返回原图pixelMap大小。|
 
 **示例：**
 
@@ -65,7 +65,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。  |
 | options  | [InitializationOptions](#initializationoptions8) | 是   | 属性。                     |
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 通过回调返回PixelMap对象。 |
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，error为undefined，PixelMap为返回的图片对象；否则为错误对象。 |
 
 **示例：**
 
@@ -199,7 +199,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 **返回值：**
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 成功同步返回PixelMap对象，失败抛出异常。 |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
 
 **错误码：**
 
@@ -380,7 +380,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 | 类型                             | 说明                                                                    |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -492,7 +492,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
 | 类型                             | 说明                                                                    |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -570,7 +570,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 | 类型           | 说明                                            |
 | -------------- | ----------------------------------------------- |
-| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -606,7 +606,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                                                                                                  |
 | -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
 | dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                                                                        |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当读取像素数据到ArrayBuffer成功，error为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -690,7 +690,7 @@ readPixels(area: PositionArea): Promise\<void>
 
 | 类型           | 说明                                                |
 | :------------- | :-------------------------------------------------- |
-| Promise\<void> | Promise实例，用于获取读取结果，失败时返回错误信息。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -731,7 +731,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                           | 必填 | 说明                           |
 | -------- | ------------------------------ | ---- | ------------------------------ |
 | area     | [PositionArea](#positionarea7) | 是   | 区域大小，根据区域读取。       |
-| callback | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void>           | 是   |  回调函数。当读取区域内的图片数据成功，error为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -823,7 +823,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 | 类型           | 说明                                                |
 | :------------- | :-------------------------------------------------- |
-| Promise\<void> | Promise实例，用于获取写入结果，失败时返回错误信息。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -969,7 +969,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 | 类型           | 说明                                            |
 | -------------- | ----------------------------------------------- |
-| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1009,7 +1009,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
 | src      | ArrayBuffer          | 是   | 图像像素数据。                 |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当读取缓冲区中的图片数据并写入PixelMap成功，error为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1132,7 +1132,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[ImageInfo](#imageinfo)> | 是   | 获取图像像素信息回调，异步返回图像像素信息，失败时返回错误信息。 |
+| callback | AsyncCallback\<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图像像素信息成功，error为undefined，否则为错误对象。 |
 
 **示例:**
 
@@ -1189,6 +1189,7 @@ async function Demo() {
         let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
         return imageInfo;
     }
+    rteurn undefined;
 }
 ```
 
@@ -1281,7 +1282,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
 | rate     | number               | 是   | 透明比率的值。   |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当设置透明比率成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1325,7 +1326,7 @@ opacity(rate: number): Promise\<void>
 
 | 类型           | 说明                                            |
 | -------------- | ----------------------------------------------- |
-| Promise\<void> | Promise实例，用于获取结果，失败时返回错误信息。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1398,7 +1399,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 
 | 类型                             | 说明                        |
 | -------------------------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise实例，返回pixelmap。 |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
 
 **示例：**
 
@@ -1432,7 +1433,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 | 参数名   | 类型                     | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | 是   | 获取回调，异步返回结果。 |
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | 是   |  回调函数，当创建PixelMap成功，error为undefined，PixelMap为返回的图片对象；否则为错误对象。 |
 
 **示例：**
 
@@ -1446,7 +1447,7 @@ async function Demo() {
                 console.error(`Failed to obtain new pixel map. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
-                console.info('Succeed in obtaining new pixel map.');
+                console.info('Succeeded in obtaining new pixel map.');
             }
         }) 
     }
@@ -1484,8 +1485,11 @@ createAlphaPixelmapSync(): PixelMap
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
-    return pixelmap;
+    if (pixelMap != undefined) {
+        let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
+        return pixelmap;
+    }
+    rteurn undefined;
 }
 ```
 
@@ -1507,7 +1511,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | ------------------------------- |
 | x        | number               | 是   | 宽度的缩放倍数。|
 | y        | number               | 是   | 高度的缩放倍数。|
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。  |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当对图片进行缩放成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1553,7 +1557,7 @@ scale(x: number, y: number): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -1565,7 +1569,7 @@ async function Demo() {
     let scaleY: number = 1.0;
     if (pixelMap != undefined) {
         pixelMap.scale(scaleX, scaleY).then(() => {
-            console.info('Sucessed in scaling pixelmap.');
+            console.info('Succeeded in scaling pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
             
@@ -1632,7 +1636,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | ----------------------------- |
 | x        | number               | 是   | 区域横坐标。                  |
 | y        | number               | 是   | 区域纵坐标。                  |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当对图片进行位置变换成功，err为undefined，否则为错误对象。|
 
 **示例：**
 
@@ -1678,7 +1682,7 @@ translate(x: number, y: number): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1690,7 +1694,7 @@ async function Demo() {
     let translateY: number = 10.0;
     if (pixelMap != undefined) {
         pixelMap.translate(translateX, translateY).then(() => {
-            console.info('Sucessed in translating pixelmap.');
+            console.info('Succeeded in translating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
         })
@@ -1755,7 +1759,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
 | angle    | number               | 是   | 图片旋转的角度。              |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当对图片进行旋转成功，err为undefined，否则为错误对象。|
 
 **示例：**
 
@@ -1799,7 +1803,7 @@ rotate(angle: number): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1920,7 +1924,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1998,7 +2002,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
 | region   | [Region](#region7)   | 是   | 裁剪的尺寸。                  |
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+| callback | AsyncCallback\<void> | 是   |  回调函数。当对图片进行裁剪成功，err为undefined，否则为错误对象。|
 
 **示例：**
 
@@ -2042,7 +2046,7 @@ crop(region: Region): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -2183,7 +2187,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
 | targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
-| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+| callback | AsyncCallback\<void> | 是   | 回调函数。当对图像像素颜色进行色彩空间转换成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -2236,7 +2240,7 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2258,11 +2262,13 @@ import { BusinessError } from '@ohos.base'
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace).then(() => {
-        console.info('Succeeded in applying color space for pixelmap object.');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`); 
-    })
+    if (pixelMap != undefined) {
+        pixelMap.applyColorSpace(targetColorSpace).then(() => {
+            console.info('Succeeded in applying color space for pixelmap object.');
+        }).catch((error: BusinessError) => {
+            console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`); 
+        })
+    }
 }
 ```
 
@@ -2365,7 +2371,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise实例，用于异步获取结果，失败时返回错误信息。 |
+| Promise\<[PixelMap](#pixelmap7)> |Promise对象，返回PixelMap。 |
 
 **错误码：**
 
@@ -2450,7 +2456,7 @@ release():Promise\<void>
 
 | 类型           | 说明                            |
 | -------------- | ------------------------------- |
-| Promise\<void> | Promise实例，异步返回释放结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -2484,7 +2490,7 @@ release(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明               |
 | -------- | -------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<void> | 是   | 异步返回释放结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当对图像像素颜色进行色彩空间转换成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -2818,7 +2824,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 | 参数名   | 类型                                   | 必填 | 说明                                     |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
 | index    | number                                 | 是   | 创建图片源时的序号。                     |
-| callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 获取图片信息回调，异步返回图片信息对象。 |
+| callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图片信息成功，error为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -2850,7 +2856,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                     |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 获取图片信息回调，异步返回图片信息对象。 |
+| callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图片信息成功，error为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -3176,7 +3182,7 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3229,7 +3235,7 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -3299,7 +3305,7 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3364,7 +3370,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 
 | 类型           | 说明                       |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -3435,7 +3441,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise实例，用于异步返回创建结果。 |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。 |
 
 **示例：**
 
@@ -3999,7 +4005,7 @@ release(): Promise\<void>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise实例，异步返回结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -4237,7 +4243,7 @@ release(): Promise\<void>
 
 | 类型           | 说明                                                   |
 | -------------- | ------------------------------------------------------ |
-| Promise\<void> | Promise实例，用于异步获取释放结果，失败时返回错误信息。|
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -4310,7 +4316,7 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise实例，失败时返回错误信息。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -4393,7 +4399,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise实例，失败时返回错误信息。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -4732,7 +4738,7 @@ release(): Promise\<void>
 
 | 类型           | 说明               |
 | -------------- | ------------------ |
-| Promise\<void> | 异步返回操作结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -4846,7 +4852,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 
 | 参数名        | 类型                                    | 必填 | 说明                 |
 | ------------- | ---------------------------------------| ---- | -------------------- |
-| callback      | AsyncCallback\<[Image](#image9)>                   | 是   | 回调函数，返回最新图片。 |
+| callback      | AsyncCallback\<[Image](#image9)>  | 是   | 回调函数，返回最新图片。 |
 
 **示例：**
 
@@ -4948,7 +4954,7 @@ queueImage(interface: Image): Promise\<void>
 
 | 类型            | 说明           |
 | -------------- | ------------- |
-| Promise\<void> | 获取回调，失败时返回错误信息。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -5043,7 +5049,7 @@ release(): Promise\<void>
 
 | 类型            | 说明           |
 | -------------- | ------------- |
-| Promise\<void> | 获取回调，失败时返回错误信息。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -5177,7 +5183,7 @@ release(): Promise\<void>
 
 | 类型           | 说明                  |
 | -------------- | --------------------- |
-| Promise\<void> | promise返回操作结果。 |
+| Promise\<void> |  Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -5316,14 +5322,14 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称                     | 类型                               | 可读 | 可写 | 说明           |
-| ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
-| editable                 | boolean                            | 是   | 是   | 是否可编辑。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 传入的原始数据像素格式。|
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| size                     | [Size](#size)                      | 是   | 是   | 创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| 名称                     | 类型                               | 只读 |可选 |  说明           |
+| ------------------------ | ---------------------------------- | ----| -----|  -------------- |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 否   | 是| 透明度。默认值为UNKNOWN。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| editable                 | boolean                            | 否   | 是| 是否可编辑。默认值为false。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
+| srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 否 | 是 | 传入的原始数据像素格式。默认值为BGRA_8888。|
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是|像素格式。默认值为UNKNOWN。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 否  | 是 | 缩略值。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| size                     | [Size](#size)                      | 否  | 否|创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 
 ## DecodingOptions<sup>7+</sup>
 
