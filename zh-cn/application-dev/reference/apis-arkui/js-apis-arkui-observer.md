@@ -391,22 +391,37 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { UIContext } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import { window } from '@kit.ArkUI';
+
 import observer from '@ohos.arkui.observer';
 
-function Func(info: observer.RouterPageInfo) {
-  console.log('[observer] got info: ' + JSON.stringify(info))
-}
-
 export default class EntryAbility extends UIAbility {
+  private uiContext: UIContext | null = null;
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    // 通过匿名函数来设置监听，范围是当前AbilityContext
+    // 注册监听，范围是abilityContext内的page
     observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
-      console.log('[observer] got info: ' + JSON.stringify(info))
+      console.log('[observer][abilityContext] got info: ' + JSON.stringify(info))
     })
-    // 通过指定函数来设置监听，范围是当前AbilityContext
-    observer.on('routerPageUpdate', this.context, Func)
   }
-  // ... other function in EntryAbility
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err) => {
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let windowInfo: window.Window = data;
+        // 获取UIContext实例
+        this.uiContext = windowInfo.getUIContext();
+        // 注册监听，范围是uiContext内的page
+        observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
+          console.log('[observer][uiContext] got info: ' + JSON.stringify(info))
+        })
+      })
+    });
+  }
+
+// ... other function in EntryAbility
 }
 ```
 
@@ -431,20 +446,28 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 ```ts
 // used in UIAbility
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { UIContext } from '@ohos.arkui.UIContext';
+import { BusinessError } from '@ohos.base';
+import { window } from '@kit.ArkUI';
 import observer from '@ohos.arkui.observer';
 
-function Func(info: observer.RouterPageInfo) {
-  console.log('[observer] got info: ' + JSON.stringify(info))
-}
-
 export default class EntryAbility extends UIAbility {
+  // 实际使用前uiContext需要被赋值。参见示例observer.on('routerPageUpdate')
+  private uiContext: UIContext | null = null;
+
   onDestroy(): void {
-    // 取消当前AbilityContext中指定函数Func的监听
-    observer.off('routerPageUpdate', this.context, Func)
-    // 取消当前AbilityContext中所有的监听
+    // 注销在当前ability上的所有监听函数
     observer.off('routerPageUpdate', this.context)
   }
-  // ... other function in EntryAbility
+
+  onWindowStageDestroy(): void {
+    // 注销在uiContext上的所有监听函数
+    if (this.uiContext) {
+      observer.off('routerPageUpdate', this.uiContext);
+    }
+  }
+
+// ... other function in EntryAbility
 }
 ```
 
