@@ -35,6 +35,7 @@
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
    }
    let date = new Date(2023, 9, 25);
+   let appPreferredLanguage = "ar";
    let dateTimeFmt = new intl.DateTimeFormat(appPreferredLanguage);
    let result = dateTimeFmt.format(date); // result = "٢٠٢٣/١٠/٢٥"（采用阿语本地数字表示）
    ```
@@ -48,6 +49,7 @@
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
    }
    let date = new Date(2023, 9, 25, 16, 48, 0);
+   let appPreferredLanguage = "ar";
    let dateTimeFmt = new intl.DateTimeFormat(appPreferredLanguage, { timeStyle: "medium" });
    let result = dateTimeFmt.format(date); // result = "16:48:00"
    ```
