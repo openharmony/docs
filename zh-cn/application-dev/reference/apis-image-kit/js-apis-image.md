@@ -5368,12 +5368,12 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                |
-| ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
-| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。质量越高生成图片所占空间越大。 |
-| bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。 |
-| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 是   | 是   | 目标动态范围。 |
+| 名称    | 类型   | 必填 | 说明                                                |
+| ------- | ------ | ---- | --------------------------------------------------- |
+| format  | string | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
+| quality | number | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。 |
+| bufferSize<sup>9+</sup> | number | 否   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。 |
+| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 目标动态范围。默认值为SDR。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
