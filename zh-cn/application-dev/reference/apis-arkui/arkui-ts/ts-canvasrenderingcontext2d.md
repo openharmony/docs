@@ -2003,6 +2003,62 @@ reset(): void
   ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
 
 
+### saveLayer<sup>12+</sup>
+
+saveLayer(): void
+
+创建一个图层。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct saveLayer {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillStyle = "#0000ff"
+          this.context.fillRect(50,100,300,100)
+          this.context.fillStyle = "#00ffff"
+          this.context.fillRect(50,150,300,100)
+          this.context.globalCompositeOperation = 'destination-over'
+          this.context.saveLayer()
+          this.context.globalCompositeOperation = 'source-over'
+          this.context.fillStyle = "#ff0000"
+          this.context.fillRect(100,50,100,300)
+          this.context.fillStyle = "#00ff00"
+          this.context.fillRect(150,50,100,300)
+          this.context.restoreLayer()
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+  }
+
+  ```
+   ![zh-cn_image_CanvasSavelayer](figures/zh-cn_image_CanvasSavelayer.png)
+
+### restoreLayer<sup>12+</sup>
+
+restoreLayer(): void
+
+恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例同saveLayer。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+
 ### resetTransform
 
 resetTransform(): void
