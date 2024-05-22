@@ -275,7 +275,7 @@ aboutToDelete(callback:&nbsp;(value:&nbsp;RichEditorDeleteValue)&nbsp;=&gt;&nbsp
 
 | 参数名 | 类型                                            | 必填 | 说明                               |
 | ------ | ----------------------------------------------- | ---- | ---------------------------------- |
-| value  | [RichEditorDeleteValue](#richeditordeletevalue) | 是   | 准备删除的内容所在的文本Span信息。 |
+| value  | [RichEditorDeleteValue](#richeditordeletevalue) | 是   | 准备删除的内容所在的文本或者图片Span信息。 |
 
 ### onDeleteComplete
 
@@ -548,10 +548,10 @@ Span类型信息。
 
 | 名称            | 类型                                       | 必填   | 描述        |
 | ------------- | ---------------------------------------- | ---- | --------- |
-| size          | [number, number]                         | 是    | 图片的宽度和高度，单位为px。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| size          | [number, number]                         | 是    | 图片的宽度和高度，单位为px。默认值：size的默认值与objectFit的值有关，不同的objectFit值对应的size默认值也不同。objectFit的值为Cover时，图片高度为组件高度减去组件上下内边距，图片宽度为组件宽度减去组件左右内边距。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是    | 图片垂直对齐方式。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | 是    | 图片缩放类型。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| layoutStyle<sup>12+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11)     | 否   | 图片布局风格。 |
+| layoutStyle<sup>12+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11)     | 否   | 图片布局风格。默认值：{"broderRadius":"","margin":""} |
 
 ## RichEditorLayoutStyle<sup>11+</sup> 
 |名称	|类型	|必填|	描述|
@@ -983,8 +983,8 @@ SymbolSpan样式选项。
 
 | 名称            | 类型                                       | 必填   | 描述                 |
 | ------------- | ---------------------------------------- | ---- | ------------------ |
-| textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。  |
-| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，不支持设置百分比，只有图片或BuilderSpan放在段首时不支持。 |
+| textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。默认值：TextAlign.START  <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。  |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，当段首为ImageSpan或BuilderSpan时，此属性值不生效。参数为Dimension类型时，不支持以Percentage形式设置。默认值：{"size":["0.00px","0.00px"]} <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD  |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
@@ -1111,7 +1111,7 @@ SymbolSpan样式选项。
 
 | 名称          | 类型         | 必填   | 描述            |
 | ----------- | ---------- | ---- | ------------- |
-| onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。 |
+| onAppear    | [MenuOnAppearCallback<sup>12+</sup>](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。 |
 | onDisappear | () => void | 否    | 自定义选择菜单关闭时回调。 |
 
 ## PasteEvent<sup>11+</sup>
