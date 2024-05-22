@@ -35,7 +35,7 @@
 接口具体使用方法请参考[getPluralStringValueSync](../reference/apis-localization-kit/js-apis-resource-manager.md#getpluralstringvaluesync10)的API接口文档。
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base'; 
 
 try {  
   this.context.resourceManager.getPluralStringByNameSync("test", 1);} 
