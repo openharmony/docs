@@ -3,6 +3,7 @@
 - ArkTS API 
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (色彩管理)](js-apis-colorSpaceManager.md)
+  - [@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](js-apis-sendableColorSpaceManager.md)
   - [@ohos.graphics.common2D (2D图形通用数据类型)](js-apis-graphics-common2D.md)
   - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
   - [@ohos.graphics.drawing (绘制模块)](js-apis-graphics-drawing.md)
