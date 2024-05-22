@@ -100,8 +100,8 @@ struct PickerDemo {
     Stack() {
       PhotoPickerComponent({
         pickerOptions: this.pickerOptions,
-        onSelect:(uri: string): void => this.onSelect:(uri),
-        onDeselect:(uri: string): void => this.onDeselect:(uri),
+        onSelect:(uri: string): void => this.onSelect(uri),
+        onDeselect:(uri: string): void => this.onDeselect(uri),
         pickerController: this.pickerController,
       }).height('100%').width('100%')
 
