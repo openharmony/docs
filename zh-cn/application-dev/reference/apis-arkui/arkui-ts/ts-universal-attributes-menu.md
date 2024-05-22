@@ -9,6 +9,14 @@
 >  - CustomBuilder里不支持再使用bindMenu、bindContextMenu弹出菜单。多级菜单可使用[Menu组件](ts-basic-components-menu.md)。
 >
 >  - 弹出菜单的文本内容不支持长按选中。
+>
+>  - 从API Version 12开始，菜单支持长按500ms弹出子菜单。
+>
+>  - 从API Version 12开始，菜单支持按压态跟随手指移动。
+>
+>    1. 仅支持使用[Menu组件](ts-basic-components-menu.md)且子组件包含[MenuItem](ts-basic-components-menuitem.md)或[MenuItemGroup](ts-basic-components-menuitemgroup.md)的场景。
+>
+>    2. 仅支持[MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)为NONE的菜单。
 
 ## bindMenu
 
