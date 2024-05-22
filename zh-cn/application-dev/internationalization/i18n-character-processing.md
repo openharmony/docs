@@ -84,7 +84,7 @@ let transliterator = i18n.Transliterator.getInstance('Any-Latn');
 let res = transliterator.transform('中国'); // res: zhōng guó
 
 // 获取音译支持的ID列表
-let ids = i18n.Transliterator.getAvailableIDs(); ids: ['ASCII-Latin', 'Accents-Any', ...]
+let ids = i18n.Transliterator.getAvailableIDs(); // ids: ['ASCII-Latin', 'Accents-Any', ...]
 ```
 
 
