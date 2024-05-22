@@ -69,7 +69,7 @@ let calendar : I18n.Calendar = I18n.getCalendar("zh-Hans", "chinese");
 calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
 //获取农历年月日
 calendar.get("year"); // 返回干支纪年40，范围1-60
-calendar.get("month"); // 5月
+calendar.get("month"); // 结果为5，指6月
 calendar.get("date"); // 8日
 ```
 
