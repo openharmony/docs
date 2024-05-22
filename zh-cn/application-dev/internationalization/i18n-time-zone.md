@@ -80,7 +80,7 @@
    ```ts
    let timezone1 = i18n.getTimeZone("America/Sao_Paulo");
    let timezone2 = i18n.getTimeZone();
-   let appPreferredTimeZoneList = [] // 应用偏好时区列表
+   let appPreferredTimeZoneList: Array<i18n.TimeZone> = [] // 应用偏好时区列表
    appPreferredTimeZoneList.push(timezone1);
    appPreferredTimeZoneList.push(timezone2);
    ```
@@ -89,7 +89,7 @@
    ```ts
    let locale = i18n.System.getSystemLocale();
    for (let i = 0 ; i < appPreferredTimeZoneList.length ; i++) {
-       let timezone = appPreferredTimeZoneList[i];
+       let timezone = appPreferredTimeZoneList[i].getID();
        let calendar = i18n.getCalendar(locale);
        calendar.setTimeZone(timezone); //设置日历对象的时区
        //获取年月日时分秒
