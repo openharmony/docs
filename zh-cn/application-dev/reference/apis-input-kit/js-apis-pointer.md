@@ -528,8 +528,8 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-getContext().resourceManager.getMediaContent($r("app.media.icon")).then((svgFileData) => {
-  const svgBuffer: image.Buffer = svgFileData.buffer;
+getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
   let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
   svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
