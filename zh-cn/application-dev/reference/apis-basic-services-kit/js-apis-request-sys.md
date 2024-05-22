@@ -68,7 +68,7 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
 | 21900006 | task not found error. |
 
@@ -116,7 +116,7 @@ query(id: string): Promise&lt;TaskInfo&gt;
 | -------- | -------- |
 | 201 | permission denied. |
 | 202 | permission verification failed, application which is not a system application uses system API. |
-| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
 | 21900006 | task not found error. |
 
