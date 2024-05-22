@@ -47,9 +47,9 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 | ------- | --------------------------------------------------------------- |
 | 9200003 | the administrator ability component is invalid.                 |
 | 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -106,9 +106,9 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 | ------- | --------------------------------------------------------------- |
 | 9200003 | the administrator ability component is invalid.                 |
 | 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -170,9 +170,9 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 | ------- | --------------------------------------------------------------- |
 | 9200003 | the administrator ability component is invalid.                 |
 | 9200004 | failed to enable the administrator application of the device.   |
-| 9200007 | the system ability work abnormally.                             |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200007 | The system ability works abnormally. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -223,8 +223,8 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -274,8 +274,8 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -324,8 +324,8 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -376,8 +376,8 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 | 错误码ID | 错误信息                                                           |
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
@@ -417,7 +417,7 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 202      | not system application.                                      |
+| 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例**：
@@ -464,7 +464,7 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 202      | not system application.                                      |
+| 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例**：
@@ -516,7 +516,7 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 202      | not system application.                                      |
+| 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例**：
@@ -561,7 +561,7 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 202      | not system application.                                      |
+| 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例**：
@@ -609,7 +609,7 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 202      | not system application.                                      |
+| 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例**：
@@ -684,9 +684,9 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -744,9 +744,9 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -793,8 +793,8 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -845,8 +845,8 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -894,10 +894,10 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200008  | the specified system events enum is invalid.                 |
-| 201      | the application does not have permission to call this function. |
-| 202      | not system application.                                      |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200008  | The specified system event is invalid.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -952,10 +952,10 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1003,10 +1003,10 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1061,10 +1061,10 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
-| 9200008 | the specified system events enum is invalid.          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200008 | The specified system event is invalid.          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1112,11 +1112,11 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
 | 9200002 | the administrator application does not have permission to manage the device.          |
-| 9200009 | authorize permission to the application failed.          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200009 | Failed to grant the permission to the application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1171,11 +1171,11 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device. |
+| 9200001 | The application is not an administrator application of the device. |
 | 9200002 | the administrator application does not have permission to manage the device.          |
-| 9200009 | authorize permission to the application failed.          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200009 | Failed to grant the permission to the application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
