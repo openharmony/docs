@@ -51,89 +51,96 @@
     ```ts
     // 共享模块sharedModule.ets
     import {testStr} from "./test"
+    import { ArkTSUtils } from '@kit.ArkTS';
+    
     "use shared"
-
     // 导出sendable对象
-    export {SingletonA}
-
+    export { SingletonA }
+    
     @Sendable
     class SingletonA {
-        private static instance: SingletonA;
-        private count: number = 0;
-        private str: string = testStr;
-        private constructor() {
-            console.log("taskpool 生成单例 SingletonA");
+      private static instance: SingletonA;
+      private count: number = 0;
+    
+      public static getInstance(): SingletonA {
+        if (SingletonA.instance == undefined) {
+          SingletonA.instance = new SingletonA();
         }
-
-        public static getInstance(): SingletonA {
-            if (!SingletonA.instance) {
-                console.log("!SingletonA.instance");
-                SingletonA.instance = new SingletonA();
-            }
-            return SingletonA.instance;
-        }
-
-        public incrementCount(): number {
-            return this.count++;
-        }
+        return SingletonA.instance;
+      }
+    
+      public fetchCount(): Promise<number> {
+        let lock: ArkTSUtils.locks.AsyncLock = ArkTSUtils.locks.AsyncLock.request("lock");
+        return lock.lockAsync(() => {
+          return this.count;
+        })
+      }
+    
+      public incrementCount() {
+        let lock: ArkTSUtils.locks.AsyncLock = ArkTSUtils.locks.AsyncLock.request("lock");
+        lock.lockAsync(() => {
+          this.count = this.count + 1;
+        })
+      }
+    }
+    
+    @Sendable
+    export class A {
+      num: number = 100;
+      say() {
+        console.log("this is say !");
+      }
     }
     ```
 
     ```ts
     // 非共享模块test.ets
     export let testStr = "Hello World";
-
     ```
 
 2. 非共享模块导入共享模块，并在多个线程中操作共享模块导出的对象。
 
     ```ts
-
-    import {taskpool} from "@kit.ArkTS";
-    import {SingletonA} from "./sharedModule"
-
-    @Sendable
-    class A {
-        num: number = 100;
-        say() {
-            console.log("this is say !");
-        }
-    }
-
+    import taskpool from '@ohos.taskpool';
+    import { SingletonA, A } from './sendableTest'
+    
+    let sig = SingletonA.getInstance();
+    
     @Concurrent
-    function test(b: A) {
-        // 生成共享模块导出对象的单例
-        const instance = SingletonA.getInstance();
-        console.log('tastpool点击累加 count当前的值为: ', instance.incrementCount());
-        b.say();
-        let n = Date.now();
-        // 等待1000us,模拟实际业务
-        while (Date.now() - n < 1000) {
-
-        }
+    async function test2(sig: SingletonA, a: A) {
+      console.info("sendable: taskpool count is:" + await sig.fetchCount());
+      a.say();
+      let n = Date.now();
+      // 等待1000us,模拟实际业务
+      while (Date.now() - n < 1000) {
+    
+      }
     }
-
+    
     @Entry
     @Component
     struct Index {
-        @State message: string = "Hello world";
-        build() {
-            Row() {
-                Column() {
-                    Button("taskpool use es module").onClick(()=>{
-                        let a: A = new A;
-                        let task = new taskpool.Task(test, a);
-                        for (let i = 0; i < 2; i++) {
-                            taskpool.execute(task).then((res)=>{
-                                console.log("execute task sucess !");
-                            })
-                        }
-                    })
-                .width('100%')
-                }
-            .height('100%')
-            }
+      @State message: string = 'Hello World';
+    
+      build() {
+        Row() {
+          Column() {
+            Button("MainThread")
+              .onClick(async () => {
+                // 主线程调用单例sig.incrementCount()、fetchCount();
+                sig.incrementCount();
+                console.info("sendable: main thread count is:" + await sig.fetchCount());
+              })
+            Button("TaskpoolTest")
+              .onClick(async () => {
+                let a: A = new A;
+                let task = new taskpool.Task(test2, sig, a);
+                await taskpool.execute(task);
+              })
+          }
+          .width('100%')
         }
+        .height('100%')
+      }
     }
-
     ```
