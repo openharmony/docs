@@ -42,7 +42,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
@@ -98,7 +98,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
@@ -157,7 +157,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
@@ -209,7 +209,7 @@ subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600012  | No memory space.                    |
 
 **示例：**
@@ -259,7 +259,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -314,7 +314,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -363,8 +363,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
-| 1600007  | The notification is not exist.           |
+| 1600003  | Failed to connect to the service.               |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -427,8 +427,8 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
-| 1600007  | The notification is not exist.           |
+| 1600003  | Failed to connect to the service.               |
+| 1600007  | The notification does not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -480,8 +480,8 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
@@ -533,8 +533,8 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
-| 1600007  | The notification is not exist.      |
+| 1600003  | Failed to connect to the service.          |
+| 1600007  | The notification does not exist.      |
 
 **示例：**
 
@@ -577,7 +577,7 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -629,7 +629,7 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -672,7 +672,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -719,7 +719,7 @@ removeAll(callback: AsyncCallback\<void\>): void
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 
 **示例：**
 
@@ -768,7 +768,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 | -------- | ---------------------------------------- |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
-| 1600003  | Failed to connect service.               |
+| 1600003  | Failed to connect to the service.               |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -811,7 +811,7 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **示例：**
@@ -856,7 +856,7 @@ removeAll(userId: number): Promise\<void>
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 1600003  | Failed to connect to the service.          |
 | 1600008  | The user does not exist.              |
 
 **示例：**
