@@ -18,16 +18,16 @@ import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from 
 
 **参数：**
 
-| 参数名                      | 参数类型                               | 必填  | 参数描述                                       |
-|--------------------------|------------------------------------|-----|--------------------------------------------|
-| pickerOptions            | [PickerOptions](#PickerOptions)    | 否   | picker参数信息。                                |
-| onSelect:(uri： string)   | void                               | 否   | 用户在picker组件中勾选图片是产生的回调事件，将图片uri给到应用。       |
-| onDeselect:(uri： string) | void                               | 否   | 用户在picker组件中取消勾选图片是产生的回调事件，同时也会将图片uri给到应用。 |
-| pickerController         | [PickerController](#PickerController) | 否   | 应用可通过PickerController向picker组件发送数据         |
+| 参数名                      | 参数类型                                  | 必填  | 参数描述                                       |
+|--------------------------|---------------------------------------|-----|--------------------------------------------|
+| pickerOptions            | [PickerOptions](#pickeroptions)       | 否   | picker参数信息。                                |
+| onSelect:(uri： string)   | void                                  | 否   | 用户在picker组件中勾选图片是产生的回调事件，将图片uri给到应用。       |
+| onDeselect:(uri： string) | void                                  | 否   | 用户在picker组件中取消勾选图片是产生的回调事件，同时也会将图片uri给到应用。 |
+| pickerController         | [PickerController](#pickercontroller) | 否   | 应用可通过PickerController向picker组件发送数据         |
 
 ## PickerOptions
 
-PickerOptions继承于BaseSelectOptions。具体信息详见[BaseSelectOptions说明](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#BaseSelectOptions)
+PickerOptions继承于BaseSelectOptions。具体信息详见[BaseSelectOptions说明](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#baseselectoptions12)
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -43,9 +43,9 @@ PickerOptions继承于BaseSelectOptions。具体信息详见[BaseSelectOptions�
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 参数名                                   | 参数类型 | 必填  | 参数描述                                                                  |
-|---------------------------------------|------|-----|-----------------------------------------------------------------------|
-| setData(type: DataType, data: Object) | void | 否   | 应用可通过该接口向picker组件发送数据，并通过[DataType](#DataType)来区分具体发送什么类型的数据。 |
+| 参数名                                   | 参数类型 | 必填  | 参数描述                                                          |
+|---------------------------------------|------|-----|---------------------------------------------------------------|
+| setData(type: DataType, data: Object) | void | 否   | 应用可通过该接口向picker组件发送数据，并通过[DataType](#datatype)来区分具体发送什么类型的数据。 |
 
 
 ## DataType

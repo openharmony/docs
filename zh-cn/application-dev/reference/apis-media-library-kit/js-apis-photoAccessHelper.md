@@ -4581,7 +4581,7 @@ async function example() {
 | recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
 | textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。 |
 
-## BaseSelectOptions
+## BaseSelectOptions<sup>12+</sup>
 
 图库选择选项基类。
 
