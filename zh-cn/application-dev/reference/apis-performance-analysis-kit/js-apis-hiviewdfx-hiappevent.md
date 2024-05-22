@@ -19,6 +19,8 @@ addProcessor(processor: Processor): number
 
 开发者可添加数据处理者，该数据处理者用于提供事件上云功能，数据处理者的实现可预置在设备中，开发者可根据数据处理者的约束设置属性。
 
+Processor的配置信息需要由数据处理者提供，目前设备内暂未预置可供交互的数据处理者，因此当前事件上云功能不可用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
@@ -76,6 +78,8 @@ try {
 | userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name对应[setUserId](#hiappeventsetuserid11)接口的name参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。    |
 | userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name对应[setUserProperty](#hiappeventsetuserproperty11)接口的name参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否   | 数据处理者可以上报的事件数组。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                                                 |
+| configId<sup>12+</sup> | number | 否 | 数据处理者配置id。传入数值必须大于或等于0，小于0时会被置为默认值0。传入的值大于0时，与数据处理者的名称name共同唯一标识数据处理者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| customConfigs<sup>12+</sup> | Record\<string, string> | 否 | 自定义扩展参数。传入参数名和参数值不符合规格会默认不配置扩展参数，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值为string类型，参数值长度需在1024个字符以内。<br>- 参数个数需在32个以内。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## AppEventReportConfig<sup>11+</sup>
 
@@ -87,7 +91,7 @@ try {
 
 | 名称         | 类型    | 必填 | 说明                                                          |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| domain      | string  | 否   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过16个字符。 |
+| domain      | string  | 否   | 事件领域。事件领域名称支持数字、字母、下划线字符，需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。 |
 | name        | string  | 否   | 事件名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 |
 | isRealTime  | boolean | 否   | 是否实时上报事件。配置值为true表示实时上报事件，false表示不实时上报事件。 |
 
@@ -252,10 +256,75 @@ hiAppEvent.write({
 
 | 名称      | 类型                    | 必填 | 说明                                                         |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| domain    | string                  | 是   | 事件领域。事件领域名称支持数字、小写字母、下划线字符，需要以小写字母开头且不能以下划线结尾，长度非空且不超过16个字符。 |
+| domain    | string                  | 是   | 事件领域。事件领域名称支持数字、字母、下划线字符，需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。 |
 | name      | string                  | 是   | 事件名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 |
 | eventType | [EventType](#eventtype) | 是   | 事件类型。                                                   |
-| params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过16个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
+| params    | object                  | 是   | 事件参数对象，每个事件参数包括参数名和参数值，其规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值支持string、number、boolean、数组类型，string类型参数长度需在8*1024个字符以内，超出会做丢弃处理；number类型参数取值需在Number.MIN_SAFE_INTEGER~Number.MAX_SAFE_INTEGER范围内，超出可能会产生不确定值；数组类型参数中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理。<br>- 参数个数需在32个以内，超出的参数会做丢弃处理。 |
+
+## hiAppEvent.setEventParam<sup>12+</sup>
+
+setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt;
+
+事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持崩溃和卡死事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明           |
+| ------ | ------------------------------ | ---- | -------------- |
+| params | Record&lt;string, [ParamType](#paramtype12)&gt; | 是 | 事件自定义参数对象。参数名和参数值规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值为[ParamType](#paramtype12)类型，参数值长度需在1024个字符以内。<br>- 参数个数需在64个以内。 |
+| domain | string                        | 是 | 事件领域。事件领域可支持关联应用事件和系统事件（hiAppEvent.domain.OS）。 |
+| name   | string                        | 否 | 事件名称。默认为空字符串，空字符串表示关联事件领域下的所有事件名称。事件名称可支持关联应用事件和系统事件，其中系统事件仅支持关联崩溃事件（hiAppEvent.event.APP_CRASH）和卡死事件（hiAppEvent.event.APP_FREEZE）。 |
+
+**返回值：**
+
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | --------------------------------------------- |
+| 11101007 | The number of parameter keys exceeds the limit. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "int_data": 100,
+  "str_data": "strValue",
+};
+// 给应用事件追加自定义参数
+hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `success to set svent param`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## ParamType<sup>12+</sup>
+
+事件自定义参数值的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+| 类型                       | 说明                |
+|--------------------------|-------------------|
+| number                   | 表示值类型为数字。         |
+| string                   | 表示值类型为字符串。        |
+| boolean                  | 表示值类型为布尔值。        |
+| Array&lt;string&gt;      | 表示值类型为字符串类型的数组。   |
 
 ## hiAppEvent.configure
 
@@ -825,6 +894,7 @@ hiAppEvent.clearData();
 | CPU_USAGE_HIGH<sup>12+</sup> | string | 应用CPU高负载事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | BATTERY_USAGE<sup>12+</sup> | string | 应用24h功耗器件分解统计事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | RESOURCE_OVERLIMIT<sup>12+</sup> | string | 应用资源泄露事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| ADDRESS_SANITIZER<sup>12+</sup> | string | 应用踩内存事件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## param

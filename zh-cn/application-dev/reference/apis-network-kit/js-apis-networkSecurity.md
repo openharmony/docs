@@ -10,7 +10,6 @@
 
 ```ts
 import networkSecurity from '@ohos.net.networkSecurity';
-import { BusinessError } from '@ohos.base';
 ```
 
 ## 完整实例
@@ -39,7 +38,9 @@ networkSecurity.certVerification(cert, caCert)
   });
 ```
 
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+> 
+> 请务必将示例中的证书数据替换为实际的证书内容。
 
 ## CertType
 
@@ -107,7 +108,9 @@ certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
 
-> **说明：**这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
+> **说明：**
+> 
+> 这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
 
 **示例：**
 
@@ -135,7 +138,9 @@ networkSecurity.certVerification(cert, caCert)
     console.error('Certificate verification failed:', error);
   });
 ```
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+> 
+> 请务必将示例中的证书数据替换为实际的证书内容。
 
 
 
@@ -181,7 +186,9 @@ certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 | 2305024  | Invalid certificate authority (CA).                  |
 | 2305027  | Certificate is untrusted.                            |
 
-> **说明：**这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
+> **说明：**
+>
+> 这些错误代码对应于证书验证过程中的各种失败，提供有关所遇到问题的详细信息。
 
 **示例：**
 
@@ -205,7 +212,7 @@ networkSecurity.certVerification(cert, caCert)
   .then((result) => {
     console.info('Verification Result:', result);
   })
-  .catch((error) => {
+  .catch((error: BusinessError) => {
     console.error('Verification Error:', error);
   });
 
@@ -214,4 +221,6 @@ let resultSync: number = networkSecurity.certVerificationSync(cert, caCert);
 console.info('Synchronous Verification Result:', resultSync);
 ```
 
-> **注意**：请务必将示例中的证书数据替换为实际的证书内容。
+> **注意**：
+>
+> 请务必将示例中的证书数据替换为实际的证书内容。

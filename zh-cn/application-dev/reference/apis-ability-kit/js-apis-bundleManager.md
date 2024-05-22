@@ -141,8 +141,6 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | AUTO_ROTATION_LANDSCAPE_RESTRICTED |10|表述受开关控制的自动横向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | AUTO_ROTATION_PORTRAIT_RESTRICTED  |11|表示受开关控制的自动竖向旋转模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | LOCKED                             |12|表示锁定模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup> |13|受开关控制和由系统判定的自动旋转模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| FOLLOW_DESKTOP<sup>12+</sup> |14|跟随桌面的旋转模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ### CompatiblePolicy<sup>10+</sup>
 
@@ -758,7 +756,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 | -------- | ------------------------------------- |
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **示例：**
 
@@ -813,7 +811,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **示例：**
 
@@ -865,7 +863,7 @@ deleteAbc(abcPath: string): Promise\<void>
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 17700202 | deleteAbc failed. |
+| 17700202 | Failed to delete the abc file. |
 
 **示例：**
 
@@ -893,7 +891,7 @@ canOpenLink(link: string): boolean
 
 查询给定的链接是否可以打开。指定链接的scheme需要在module.json文件的querySchemes字段下配置。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 

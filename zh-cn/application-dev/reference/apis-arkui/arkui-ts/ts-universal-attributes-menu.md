@@ -55,11 +55,11 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 **参数：**
 
-| 参数名       | 类型                                               | 必填 | 说明                                         |
-| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
-| responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。             |
-| options      | [ContextMenuOptions](#contextmenuoptions10)        | 否   | 配置弹出菜单的参数。                         |
+| 参数名       | 类型                                               | 必填 | 说明                             |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------- |
+| content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 自定义菜单内容构造器。           |
+| responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | 是   | 菜单弹出条件，长按或者右键点击。 |
+| options      | [ContextMenuOptions](#contextmenuoptions10)        | 否   | 配置弹出菜单的参数。             |
 
 ## bindContextMenu<sup>12+</sup>
 
@@ -80,7 +80,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | 参数名       | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | isShown | boolean | 是   | 支持开发者通过状态变量控制显隐，默认值为false。menu需要在页面全部构建完成后才能弹窗展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。当前不支持双向绑定，不支持长按触发拖拽。             |
-| content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 配置菜单项图标和文本的数组，或者自定义组件。 |
+| content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 自定义菜单内容构造器。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
 
 ## MenuElement

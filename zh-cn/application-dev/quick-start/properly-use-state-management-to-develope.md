@@ -236,7 +236,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -276,7 +276,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
+            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -437,7 +437,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.needRenderImage.imageWidth) // !! use this.needRenderImage.xxx rather than this.uiStyle.needRenderImage.xxx !!
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
@@ -485,7 +485,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon'))
+          Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // use this.needRenderXxx.xxx rather than this.uiStyle.needRenderXxx.xxx
@@ -631,7 +631,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -671,7 +671,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
+            Image($r('app.media.icon')) // 在API12及以后的工程中使用app.media.app_icon
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -1100,7 +1100,7 @@ ChildList类型在定义的时候使用了@Observed进行装饰，所以用new�
 
 ### 减少使用LazyForEach的重建机制刷新UI
 
-开发过程中通常会将LazyForEach和状态变量结合起来使用。
+开发过程中通常会将[LazyForEach](arkts-rendering-control-lazyforeach.md)和状态变量结合起来使用。
 
 ```typescript
 class BasicDataSource implements IDataSource {
@@ -1203,7 +1203,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
     }
   }
 
@@ -1340,7 +1340,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // 在API12及以后的工程中使用app.media.app_icon
     }
   }
 
@@ -1387,7 +1387,7 @@ struct ChildComponent {
 
 ### 在ForEach中使用自定义组件搭配对象数组
 
-开发过程中经常会使用对象数组和ForEach结合起来使用，但是写法不当的话会出现UI不刷新的情况。
+开发过程中经常会使用对象数组和[ForEach](arkts-rendering-control-foreach.md)结合起来使用，但是写法不当的话会出现UI不刷新的情况。
 
 ```typescript
 @Observed

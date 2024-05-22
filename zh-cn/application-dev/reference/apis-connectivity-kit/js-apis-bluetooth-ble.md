@@ -1514,7 +1514,7 @@ let notifyCharacter: ble.NotifyCharacteristic = {
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacter).then(() => {
-        console.info('notifyCharacteristicChanged promise successfull');
+        console.info('notifyCharacteristicChanged promise successful');
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -2215,7 +2215,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 ```js
 import { BusinessError } from '@ohos.base';
-// callkback 模式
+// callback 模式
 function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
       let services: Array<ble.GattService> = gattServices;

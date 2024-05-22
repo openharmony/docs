@@ -98,8 +98,8 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **示例：**
 
@@ -170,8 +170,8 @@ setUp(config: VpnConfig): Promise\<number\>
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **示例：**
 

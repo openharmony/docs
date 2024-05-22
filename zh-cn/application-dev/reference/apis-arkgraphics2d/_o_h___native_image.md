@@ -52,7 +52,7 @@
 | [OH_NativeImage_SetOnFrameAvailableListener](#oh_nativeimage_setonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image, [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md) listener) | 设置帧可用回调。 |
 | [OH_NativeImage_UnsetOnFrameAvailableListener](#oh_nativeimage_unsetonframeavailablelistener) ([OH_NativeImage](#oh_nativeimage) \*image) | 取消设置帧可用回调。 |
 | [OH_NativeImage_Destroy](#oh_nativeimage_destroy) ([OH_NativeImage](#oh_nativeimage) \*\*image) | 销毁通过OH_NativeImage_Create创建的**OH_NativeImage**实例, 销毁后该**OH_NativeImage**指针会被赋值为空。 |
-
+| int32_t [OH_NativeImage_GetTransformMatrixV2](#oh_nativeimage_gettransformmatrixv2) ([OH_NativeImage](#oh_nativeimage) \*image, float matrix[16]) | 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。  | 
 
 ## 类型定义说明
 
@@ -60,7 +60,7 @@
 ### OH_NativeImage
 
 ```
-typedef struct OH_NativeImageOH_NativeImage
+typedef struct OH_NativeImage OH_NativeImage
 ```
 
 **描述**
@@ -325,6 +325,29 @@ int32_t OH_NativeImage_GetTransformMatrix (OH_NativeImage * image, float matrix[
 
 返回值为0表示执行成功。
 
+
+### OH_NativeImage_GetTransformMatrixV2()
+
+```
+int32_t OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage* image, float matrix[16] )
+```
+**描述**
+根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 是指向**OH_NativeImage**实例的指针。  | 
+| matrix | 用来存储要获取的4\*4的变化矩阵。  | 
+
+**返回：**
+
+返回值为0表示执行成功。
 
 ### OH_NativeImage_SetOnFrameAvailableListener()
 

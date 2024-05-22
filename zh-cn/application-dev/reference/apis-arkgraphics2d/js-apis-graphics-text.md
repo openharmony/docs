@@ -176,10 +176,11 @@ import drawing from '@ohos.graphics.text'
 | decoration    | [Decoration](#decoration)                            | 是 | 否 | 装饰线置，默认初始的Decoration。             |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 否 | 字体色，默认为白色。                         |
 | fontWeight    | [FontWeight](#fontweight)                            | 是 | 否 | 字重，默认为W400。                          |
+| fontStyle     | [FontStyle](#fontstyle)                              | 是 | 否 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 是 | 否 | 文本基线型，默认为ALPHABETIC。               |
 | fontFamilies  | Array\<string>                                       | 是 | 否 | 字体类型，默认为系统字体。                    |
 | fontSize      | number                                               | 是 | 否 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。  |
-| letterSpacing | number                                               | 是 | 否 | 字符间距，整数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为逻辑像素。|
+| letterSpacing | number                                               | 是 | 否 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为逻辑像素。|
 | wordSpacing   | number                                               | 是 | 否 | 单词间距，浮点数，默认为0.0，单位为逻辑像素。                 |
 | heightScale   | number                                               | 是 | 否 | 行高缩放倍数，浮点数，默认为1.0。              |
 | halfLeading   | boolean                                              | 是 | 否 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
@@ -1051,7 +1052,7 @@ struct Index {
 | 名称                      | 值 | 说明                                           |
 | ------------------------- | - | ---------------------------------------------- |
 | TIGHT                     | 0 | 与字形紧贴。                                    |
-| MAX                       | 1 | 扩展宽度，以匹配所有行上最宽矩形的位置。           |
+| MAX                       | 1 | 扩展高度，以匹配所有行上最高矩形的位置。           |
 | INCLUDE_LINE_SPACE_MIDDLE | 2 | 每个矩形的顶部和底部将覆盖行上方和行下方的一半空间。|
 | INCLUDE_LINE_SPACE_TOP    | 3 | 行间距将被添加到矩形的顶部。                      |
 | INCLUDE_LINE_SPACE_BOTTOM | 4 | 行间距将被添加到矩形的底部。                      |

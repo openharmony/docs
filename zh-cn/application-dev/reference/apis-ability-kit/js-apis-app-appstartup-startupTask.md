@@ -16,7 +16,7 @@ import StartupTask from '@ohos.app.appstartup.StartupTask';
 
 ## StartupTask.onDependencyCompleted
 
-onDependencyCompleted(dependency: string, result: ESObject): void
+onDependencyCompleted?(dependency: string, result: any): void
 
 在特定的依赖组件完成初始化时调用。
 
@@ -27,7 +27,7 @@ onDependencyCompleted(dependency: string, result: ESObject): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | dependency | string | 是 | 依赖的组件名称。 |
-| result | ESObject | 是 | 依赖组件初始化的结果。 |
+| result | any | 是 | 依赖组件初始化的结果。 |
 
 **示例：**：
 
@@ -37,7 +37,7 @@ import StartupTask from '@ohos.app.appstartup.StartupTask';
 export default class Sample_001 extends StartupTask {
   onDependencyCompleted(dependence: string, result) {
     console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
-    ...
+    // ...
   }
 }
 ```
@@ -45,7 +45,7 @@ export default class Sample_001 extends StartupTask {
 
 ## StartupTask.init
 
-init(context: AbilityStageContext): Promise\<ESObject\>
+init(context: AbilityStageContext): Promise\<any\>
 
 初始化组件
 
@@ -61,7 +61,7 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<ESObject\> | Promise对象，返回组件初始化结果对象。 |
+| Promise\<any\> | Promise对象，返回组件初始化结果对象。 |
 
 **示例：**：
 
@@ -71,7 +71,7 @@ import StartupTask from '@ohos.app.appstartup.StartupTask';
 export default class Sample_001 extends StartupTask {
   async init(context) {
     console.info("StartupTest Sample_001 init");
-    ...
+    // ...
   }
 }
 ```

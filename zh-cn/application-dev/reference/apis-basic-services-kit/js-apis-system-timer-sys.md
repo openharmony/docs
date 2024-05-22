@@ -39,7 +39,7 @@ import systemTimer from '@ohos.systemTimer';
 | repeat    | boolean                                       | 是   | 是否为循环定时器。<br>true为循环定时器，false为单次定时器。                        |
 | interval  | number                                        | 否   | 定时器时间间隔。<br>如果是循环定时器，interval值应大于5000毫秒；单次定时器interval值为0。 |
 | wantAgent | WantAgent | 否   | 设置通知的WantAgent，定时器到期后通知。（支持拉起应用MainAbility，暂不支持拉起ServiceAbility。） |
-| callback  | number                                        | 是   | 以回调函数的形式返回定时器的ID。                             |
+| callback  | void                                          | 否  | 用户需要执行的回调函数                            |
 
 
 ## systemTimer.createTimer

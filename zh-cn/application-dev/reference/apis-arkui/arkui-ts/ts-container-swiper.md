@@ -216,7 +216,7 @@ displayMode(value: SwiperDisplayMode)
 
 cachedCount(value: number)
 
-设置预加载子组件个数。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
+设置预加载子组件个数, 以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -691,26 +691,46 @@ Swiper自定义切换动画相关信息。
 
 Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知Swiper组件页面自定义动画已结束。
 
+### 属性
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| selectedIndex | number | 是 | Swiper组件的索引，和[onChange](#onchange)事件中的index值变化保持一致。 |
-| index | number | 是 | 视窗内某个页面的索引。 |
-| position | number | 是 | 页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 是 | 主轴方向上页面的长度。 |
-| finishTransition() | void | 是 | 通知Swiper组件，此页面的自定义动画已结束。 |
+| selectedIndex | number | 是 | 当前选中页面的索引。 |
+| index | number | 是 | 视窗内页面的索引。 |
+| position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
+| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
+
+>**说明：** 
+>
+>例如，当前选中的子组件的索引为0，从第0页切换到第1页的动画过程中，每帧都会对视窗内所有页面触发回调，当视窗内有第0
+>页和第1页两页时，每帧会触发两次回调。其中第一次回调的selectedIndex为0，index为0，position为当前帧第0页相对于动画开
+>始前第0页的移动比例，mainAxisLength为主轴方向上第0页的长度；第二次回调的selectedIndex仍为0，index为1，position为当
+>前帧第1页相对于动画开始前第0页的移动比例，mainAxisLength为主轴方向上第1页的长度。
+>
+>若动画曲线为弹簧插值曲线，从第0页切换到第1页的动画过程中，可能会因为离手时的位置和速度，先过滑到第2页，再回弹到
+>第1页，该过程中每帧会对视窗内第1页和第2页触发回调。
+
+
+### finishTransition<sup>12+</sup>
+
+finishTransition()
+
+通知Swiper组件，此页面的自定义动画已结束。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ContentDidScrollCallback<sup>12+</sup>类型说明
 
-Swiper滑动时触发的回调。
+Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)中的说明。
 
 ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| selectedIndex | number | 是 | Swiper组件的索引，和[onChange](#onchange)事件中的index值变化保持一致。 |
-| index | number | 是 | 视窗内某个页面的索引。 |
-| position | number | 是 | 页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 是 | 主轴方向上页面的长度。 |
+| selectedIndex | number | 是 | 当前选中页面的索引。 |
+| index | number | 是 | 视窗内页面的索引。 |
+| position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
+| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
 
 ## 示例
 

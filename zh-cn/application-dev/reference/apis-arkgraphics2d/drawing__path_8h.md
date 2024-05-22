@@ -24,6 +24,8 @@
 | typedef enum [OH_Drawing_PathDirection](_drawing.md#oh_drawing_pathdirection)  [OH_Drawing_PathDirection](_drawing.md#oh_drawing_pathdirection) | 添加闭合轮廓方向枚举。 | 
 | typedef enum [OH_Drawing_PathFillType](_drawing.md#oh_drawing_pathfilltype)  [OH_Drawing_PathFillType](_drawing.md#oh_drawing_pathfilltype) | 定义路径的填充类型枚举。 | 
 | typedef enum [OH_Drawing_PathAddMode](_drawing.md#oh_drawing_pathaddmode)  [OH_Drawing_PathAddMode](_drawing.md#oh_drawing_pathaddmode) | 用于指定路径添加模式的枚举类型。 | 
+| typedef enum [OH_Drawing_PathOpMode](_drawing.md#oh_drawing_pathopmode)  [OH_Drawing_PathOpMode](_drawing.md#oh_drawing_pathopmode) | 路径操作类型枚举。 | 
+| typedef enum [OH_Drawing_PathMeasureMatrixFlags](_drawing.md#oh_drawing_pathmeasurematrixflags)  [OH_Drawing_PathMeasureMatrixFlags](_drawing.md#oh_drawing_pathmeasurematrixflags) | 路径测量获取相应矩阵信息维度枚举。 | 
 
 
 ### 枚举
@@ -33,7 +35,8 @@
 | [OH_Drawing_PathDirection](_drawing.md#oh_drawing_pathdirection) { PATH_DIRECTION_CW, PATH_DIRECTION_CCW } | 添加闭合轮廓方向枚举。 | 
 | [OH_Drawing_PathFillType](_drawing.md#oh_drawing_pathfilltype) { PATH_FILL_TYPE_WINDING, PATH_FILL_TYPE_EVEN_ODD, PATH_FILL_TYPE_INVERSE_WINDING, PATH_FILL_TYPE_INVERSE_EVEN_ODD } | 定义路径的填充类型枚举。 | 
 | [OH_Drawing_PathAddMode](_drawing.md#oh_drawing_pathaddmode) { PATH_ADD_MODE_APPEND, PATH_ADD_MODE_EXTEND } | 用于指定路径添加模式的枚举类型。 | 
-
+| [OH_Drawing_PathOpMode](_drawing.md#oh_drawing_pathopmode) {<br/>PATH_OP_MODE_DIFFERENCE, PATH_OP_MODE_INTERSECT, PATH_OP_MODE_UNION, PATH_OP_MODE_XOR,<br/>PATH_OP_MODE_REVERSE_DIFFERENCE<br/>} | 路径操作类型枚举。 | 
+| [OH_Drawing_PathMeasureMatrixFlags](_drawing.md#oh_drawing_pathmeasurematrixflags) { GET_POSITION_MATRIX, GET_TANGENT_MATRIX, GET_POSITION_AND_TANGENT_MATRIX } | 路径测量获取相应矩阵信息维度枚举。 | 
 
 ### 函数
 
@@ -70,3 +73,11 @@
 | void [OH_Drawing_PathClose](_drawing.md#oh_drawing_pathclose) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*) | 用于闭合路径，会添加一条从路径起点位置到最后点位置的线段。 | 
 | void [OH_Drawing_PathOffset](_drawing.md#oh_drawing_pathoffset) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*dst, float dx, float dy) | 将路径中的所有点沿着x轴和y轴方向偏移一定距离，并将结果存储到目标路径对象中。 | 
 | void [OH_Drawing_PathReset](_drawing.md#oh_drawing_pathreset) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*) | 用于重置自定义路径数据。 | 
+| void [OH_Drawing_PathAddPolygon](_drawing.md#oh_drawing_pathaddpolygon) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*points, uint32_t count, bool isClosed) | 向路径添加多边形。 | 
+| void [OH_Drawing_PathAddCircle](_drawing.md#oh_drawing_pathaddcircle) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, float x, float y, float radius, [OH_Drawing_PathDirection](_drawing.md#oh_drawing_pathdirection)) | 按指定方向，向路径添加圆形。 | 
+| bool [OH_Drawing_PathBuildFromSvgString](_drawing.md#oh_drawing_pathbuildfromsvgstring) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, const char \*str) | 解析SVG字符串表示的路径。 | 
+| void [OH_Drawing_PathGetBounds](_drawing.md#oh_drawing_pathgetbounds) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*, [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*) | 获取包含路径的最小边界框。 | 
+| bool [OH_Drawing_PathIsClosed](_drawing.md#oh_drawing_pathisclosed) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed) | 获取路径是否闭合。 | 
+| bool [OH_Drawing_PathGetPositionTangent](_drawing.md#oh_drawing_pathgetpositiontangent) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*position, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*tangent) | 获取距路径起始点指定距离的坐标点和切线值。 | 
+| bool [OH_Drawing_PathOp](_drawing.md#oh_drawing_pathop) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, const [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*srcPath, [OH_Drawing_PathOpMode](_drawing.md#oh_drawing_pathopmode) op) | 将两个路径按照指定的路径操作类型合并。 | 
+| bool [OH_Drawing_PathGetMatrix](_drawing.md#oh_drawing_pathgetmatrix) ([OH_Drawing_Path](_drawing.md#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*matrix, [OH_Drawing_PathMeasureMatrixFlags](_drawing.md#oh_drawing_pathmeasurematrixflags) flag) | 获取距路径起始点指定距离的相应变换矩阵。 | 

@@ -68,6 +68,20 @@ strokeWidth, startMargin和endMargin不支持设置百分比。
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 是   | ListItem分割线样式。<br/>- strokeWidth:&nbsp;分割线的线宽。<br/>- color:&nbsp;分割线的颜色。<br/>- startMargin:&nbsp;分割线与列表侧边起始端的距离。<br/>- endMargin:&nbsp;分割线与列表侧边结束端的距离。 |
 
+### childrenMainSize<sup>12+</sup>
+
+childrenMainSize(value: ChildrenMainSize)
+
+设置ListItemGroup组件的子组件在主轴方向的大小信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| value | [ChildrenMainSize](ts-container-list.md#childrenmainsize对象说明) | 是   | 1.通过ChildrenMainSize对象向ListItemGroup组件准确提供所有ListItem在主轴方向的大小信息。<br/>2.提供的主轴方向大小必须与子组件实际在主轴方向的大小一致。<br/>3. 必须同时设置List的childrenMainSize属性使用。<br/>4.子组件主轴方向大小变化或者增删子组件时都必须通过ChildrenMainSize对象方法通知ListItemGroup组件。|
+
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。

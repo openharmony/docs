@@ -1,6 +1,6 @@
 # 属性字符串
 
-作为[Text](./ts-basic-components-text.md)组件的入参对象，方便灵活应用文本样式。
+方便灵活应用文本样式的对象，可通过TextController中的[setStyledString](ts-basic-components-text.md#setstyledstring12)方法与Text组件绑定。
 
 >  **说明：**
 >
@@ -9,8 +9,7 @@
 ## 规则说明
 
 * 当组件样式和属性字符串中的样式冲突时，冲突部分以属性字符串设置的样式为准，未冲突部分则生效组件的样式。
-* 当属性字符串和[Text](./ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略[Text](./ts-basic-components-text.md)组件下包含[Span](./ts-basic-components-span.md)等子组件的情况。
-* 属性字符串不支持和其他类型文本入参动态切换。
+* 当属性字符串和[Text](ts-basic-components-text.md)子组件冲突时，属性字符串优先级高，即当Text组件中绑定了属性字符串，忽略Text组件下包含[Span](ts-basic-components-span.md)等子组件的情况。
 * 不支持@State修饰。
 
 ## StyledString
@@ -72,7 +71,7 @@ equals(other: StyledString): boolean
 
 | 类型              |       说明       |
 | ------- | --------------------------------- | 
-| boolean | 两个属性字符串是否相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。<br/>不比较GestureStyle，当属性字符串配置了不同事件，文本和其他样式相同时，亦视为相等。 |
+| boolean | 两个属性字符串是否相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。 |
 
 ### subStyledString
 
@@ -436,27 +435,6 @@ readonly fontColor?: ResourceColor
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 字体颜色。 |
 
-## GestureStyle
-
-事件手势对象说明。
-
-GestureStyle(value?: GestureStyleInterface)
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**参数：**
-
-| 参数名  | 类型                              | 必填 | 说明   |
-| ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [GestureStyleInterface](#gesturestyleinterface对象说明) | 否   | 事件设置项。 |
-
-## GestureStyleInterface对象说明
-
-| 参数名  | 类型                              | 必填 | 说明   |
-| ------- | --------------------------------- | ---- | --------------------------------- |
-| onClick | CallBack\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 设置点击事件。 |
-| onLongPress | CallBack\<[GestureEvent](./ts-gesture-settings.md#gestureevent对象说明)> | 否   | 设置长按事件。 |
-
 ## 示例
 
 ### 示例1
@@ -468,33 +446,56 @@ GestureStyle(value?: GestureStyleInterface)
 @Entry
 @Component
 struct styled_string_demo1 {
-  @State height1:number = 450;
-  @State fontSize1:number = 16;
-  @State fontWeight1:number = 400;
-  @State color1:Color = Color.Blue;
-
+  @State height1: number = 450;
+  @State fontSize1: number = 16;
+  @State fontWeight1: number = 400;
+  @State color1: Color = Color.Blue;
   scroll: Scroller = new Scroller();
-  fontStyleAttr1:TextStyle = new TextStyle({fontColor:Color.Blue});
-  fontStyleAttr2:StyledStringValue = new TextStyle({fontColor:Color.Orange});
+  fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  fontStyleAttr2: StyledStringValue = new TextStyle({ fontColor: Color.Orange });
   // 创建可读写属性字符串的对象mutableStyledString1
   mutableStyledString1: MutableStyledString = new MutableStyledString("运动45分钟");
   // 创建构造入参有字符串和样式的对象mutableStyledString2
-  mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world", [{start:0, length:5, styledKey:StyledStringKey.FONT, styledValue: this.fontStyleAttr1}]);
+  mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world", [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyleAttr1
+  }]);
   // 创建只读属性字符串对象styledString2
   styledString2: StyledString = new StyledString("运动45分钟");
-  spanStyle1:SpanStyle = {start:0, length:5, styledKey:StyledStringKey.FONT, styledValue: new TextStyle({ fontColor:Color.Pink})};
-  spanStyle2:SpanStyle = { start:0, length:2, styledKey:StyledStringKey.FONT, styledValue: new TextStyle({fontColor:Color.Red})};
-  @State string1:string = '';
-  @State fontColor1:ResourceColor = Color.Red;
+  spanStyle1: SpanStyle = {
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontColor: Color.Pink })
+  };
+  spanStyle2: SpanStyle = {
+    start: 0,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({ fontColor: Color.Red })
+  };
+  @State string1: string = '';
+  @State fontColor1: ResourceColor = Color.Red;
+  controller1: TextController = new TextController();
+  controller2: TextController = new TextController();
+  controller3: TextController = new TextController();
 
-  build(){
-    Column(){
-      Scroll(this.scroll){
-        Column(){
+  async onPageShow() {
+    this.controller1.setStyledString(this.styledString2)
+    this.controller2.setStyledString(this.mutableStyledString1)
+    this.controller3.setStyledString(this.mutableStyledString2)
+  }
+
+  build() {
+    Column() {
+      Scroll(this.scroll) {
+        Column() {
           // 显示属性字符串
-          Text(this.styledString2)
-          Text(this.mutableStyledString1).key('mutableStyledString1')
-          Text(this.mutableStyledString2).key('mutableStyledString2')
+          Text(undefined, { controller: this.controller1 })
+          Text(undefined, { controller: this.controller2 }).key('mutableStyledString1')
+          Text(undefined, { controller: this.controller3 }).key('mutableStyledString2')
           Button('修改string1的值')
             .onClick(() => {
               let result = this.mutableStyledString1.equals(this.styledString2);
@@ -506,31 +507,32 @@ struct styled_string_demo1 {
             })
 
           // 属性字符串与Span冲突时忽略Span,以及样式与Text组件属性未冲突部分生效Text设置的属性
-          Text(this.mutableStyledString1){
+          Text(undefined, { controller: this.controller2 }) {
             Span("span and styledString test")
               .fontColor(Color.Yellow)
-              .decoration({type:TextDecorationType.LineThrough})
+              .decoration({ type: TextDecorationType.LineThrough })
             ImageSpan($r('app.media.icon'))
-          }.key('styledString2')
+          }
+          .key('styledString2')
           .fontColor(this.fontColor1)
           .letterSpacing(10)
           .fontSize(32)
           .fontWeight(600)
           .fontStyle(FontStyle.Italic)
           .lineHeight(30)
-          .textShadow({radius:5, color:Color.Blue, offsetX: 5, offsetY:5})
+          .textShadow({ radius: 5, color: Color.Blue, offsetX: 5, offsetY: 5 })
           .textCase(TextCase.UpperCase)
-          .decoration({type:TextDecorationType.LineThrough, color: Color.Yellow})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Yellow })
           .baselineOffset(2)
           .copyOption(CopyOptions.InApp)
-          .margin({top: 10})
+          .margin({ top: 10 })
           .draggable(true)
 
           // 以上冲突测试对照组
-          Text(){
+          Text() {
             Span(this.string1)
               .fontColor(this.color1)
-              .decoration({type:TextDecorationType.LineThrough})
+              .decoration({ type: TextDecorationType.LineThrough })
             ImageSpan($r('app.media.icon'))
               .width(50).height(50)
           }
@@ -539,23 +541,34 @@ struct styled_string_demo1 {
           .fontWeight(600)
           .fontStyle(FontStyle.Italic)
           .lineHeight(30)
-          .textShadow({radius:5, color:Color.Blue, offsetX: 5, offsetY:5})
+          .textShadow({ radius: 5, color: Color.Blue, offsetX: 5, offsetY: 5 })
           .textCase(TextCase.UpperCase)
-          .decoration({type:TextDecorationType.LineThrough, color: Color.Yellow})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Yellow })
           .baselineOffset(2)
 
           Button('设置样式及替换文本')
             .onClick(() => {
-              this.mutableStyledString1.replaceStyle({start:2, length: 2, styledKey:StyledStringKey.FONT, styledValue:this.fontStyleAttr1})
-              this.mutableStyledString1.insertString(0,"压力85偏高，")
-              this.mutableStyledString1.setStyle({start:2, length:2, styledKey:StyledStringKey.FONT, styledValue:this.fontStyleAttr2})
+              this.mutableStyledString1.replaceStyle({
+                start: 2,
+                length: 2,
+                styledKey: StyledStringKey.FONT,
+                styledValue: this.fontStyleAttr1
+              })
+              this.mutableStyledString1.insertString(0, "压力85偏高，")
+              this.mutableStyledString1.setStyle({
+                start: 2,
+                length: 2,
+                styledKey: StyledStringKey.FONT,
+                styledValue: this.fontStyleAttr2
+              })
+              this.controller2.setStyledString(this.mutableStyledString1)
             })
-            .margin({top: 10})
+            .margin({ top: 10 })
 
           Button('查询样式及清空样式')
             .onClick(() => {
-              let styles = this.mutableStyledString1.getStyles(0,this.mutableStyledString1.length)
-              if ( styles.length == 2 ) {
+              let styles = this.mutableStyledString1.getStyles(0, this.mutableStyledString1.length)
+              if (styles.length == 2) {
                 for (let i = 0; i < styles.length; i++) {
                   console.info('StyledString style object start:' + styles[i].start)
                   console.info('StyledString style object length:' + styles[i].length)
@@ -566,94 +579,16 @@ struct styled_string_demo1 {
                   }
                 }
               }
-              this.mutableStyledString2.setStyle(styles[0]);
+              if (styles[0] !== undefined) {
+                this.mutableStyledString2.setStyle(styles[0]);
+                this.controller3.setStyledString(this.mutableStyledString2);
+              }
               this.mutableStyledString1.removeStyles(2, 3);
+              this.controller2.setStyledString(this.mutableStyledString1);
             })
-            .margin({top: 10})
+            .margin({ top: 10 })
         }.width('100%')
 
-      }.expandSafeArea([SafeAreaType.KEYBOARD])
-      .scrollable(ScrollDirection.Vertical)
-      .scrollBar(BarState.On)
-      .scrollBarColor(Color.Gray)
-      .scrollBarWidth(10)
-      .edgeEffect(EdgeEffect.None)
-    }
-    .width('100%')
-  }
-}
-```
-
-![](figures/styledstring_1.jpeg)
-
-### 示例2
-
-属性字符串支持事件接口示例
-
-```ts
-// xxx.ets
-import promptAction from '@ohos.promptAction';
-
-@Entry
-@Component
-struct styled_string_demo2 {
-  scroll: Scroller = new Scroller();
-  fontStyleAttr1: TextStyle = new TextStyle({ fontColor: Color.Blue });
-  clickGestureAttr: GestureStyle = new GestureStyle({
-    onClick: () => {
-      promptAction.showToast({ message: 'clickGestureAttr object trigger click event' })
-      this.backgroundColor1 = Color.Yellow
-    }
-  })
-  gestureStyleAttr: GestureStyle = new GestureStyle({
-    onClick: () => {
-      promptAction.showToast({ message: 'gestureStyleAttr object trigger click event' })
-      this.backgroundColor1 = Color.Green
-    },
-    onLongPress: () => {
-      promptAction.showToast({ message: 'gestureStyleAttr object trigger long press event' })
-      this.backgroundColor1 = Color.Orange
-    }
-  });
-  // 创建事件的对象mutableStyledString3
-  mutableStyledString3: MutableStyledString = new MutableStyledString("hello world", [{
-    start: 0,
-    length: 5,
-    styledKey: StyledStringKey.GESTURE,
-    styledValue: this.clickGestureAttr
-  },
-    {
-      start: 0,
-      length: 5,
-      styledKey: StyledStringKey.FONT,
-      styledValue: this.fontStyleAttr1
-    },
-    {
-      start: 6,
-      length: 5,
-      styledKey: StyledStringKey.GESTURE,
-      styledValue: this.gestureStyleAttr
-    },
-    {
-      start: 6,
-      length: 5,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({ fontColor: Color.Pink })
-    }]);
-  @State fontColor1: ResourceColor = Color.Red;
-  @State backgroundColor1: ResourceColor | undefined = undefined;
-
-  build() {
-    Column() {
-      Scroll(this.scroll) {
-        Column({ space: 30 }) {
-          Button("响应属性字符串事件改变背景色").backgroundColor(this.backgroundColor1).width('80%')
-          // 包含事件的属性字符串
-          Text(this.mutableStyledString3).fontSize(30)
-            .copyOption(CopyOptions.InApp)
-            .draggable(true)
-            .clip(true)
-        }.width('100%')
       }
       .expandSafeArea([SafeAreaType.KEYBOARD])
       .scrollable(ScrollDirection.Vertical)
@@ -667,8 +602,7 @@ struct styled_string_demo2 {
 }
 ```
 
-![](figures/styledstring_2.png)
-
+![](figures/styledstring_1.jpeg)
 
 
 

@@ -105,7 +105,7 @@ let conn = connection.createNetConnection(netSpecifier, timeout);
 
 // 订阅指定网络状态变化的通知
 conn.register((err: BusinessError, data: void) => {
-  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(err));
 });
 
 // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户

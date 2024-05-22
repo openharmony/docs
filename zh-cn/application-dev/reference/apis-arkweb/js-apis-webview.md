@@ -3283,7 +3283,7 @@ getPageHeight(): number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 当前网页的页面高度。 |
+| number | 当前网页的页面高度。单位：px。 |
 
 **错误码：**
 
@@ -5029,6 +5029,52 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### clearPrefetchedResource<sup>12+</sup>
+
+static clearPrefetchedResource(cacheKeyList: Array\<string>): void
+
+根据指定的缓存key列表清除对应的预获取资源缓存。入参中的缓存key必须是[prefetchResource](#prefetchresource12)指定预获取到的资源缓存key。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型        | 必填  | 说明                                                                       |
+| ------------------| ----------- | ---- | ------------------------------------------------------------------------- |
+| cacheKeyList      | Array\<string>      | 是   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: "https://www.example.com/", controller: this.controller})
+        .onAppear(() => {
+            // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+            web_webview.WebviewController.prefetchResource(
+              {url:"https://www.example1.com/post?e=f&g=h",
+              method:"POST",
+              formData:"a=x&b=y",},
+              [{headerKey:"c",
+                headerValue:"z",},],
+              "KeyX", 500);
+        })
+        .onPageEnd(() => {
+            // 清除后续不再使用的预获取缓存。
+            web_webview.WebviewController.clearPrefetchedResource(["KeyX",]);
+        })
+    }
+  }
+}
+```
+
 ### prepareForPageLoad<sup>10+</sup>
 
 static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
@@ -5673,6 +5719,97 @@ struct WebComponent {
       Button('clearIntelligentTrackingPreventionBypassingList')
         .onClick(() => {
           web_webview.WebviewController.clearIntelligentTrackingPreventionBypassingList();
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setRenderProcessMode<sup>12+</sup>
+
+static setRenderProcessMode(mode: RenderProcessMode): void
+
+设置ArkWeb渲染子进程模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名       | 类型           | 必填  | 说明                      |
+| ----------- | ------------- | ---- | ------------------------ |
+| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID  | 错误信息                  |
+| -------- | ------------------------ |
+|  401     | Invalid input parameter. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setRenderProcessMode')
+        .onClick(() => {
+          try {
+            web_webview
+              .WebviewController
+              .setRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+### getRenderProcessMode<sup>12+</sup>
+
+static getRenderProcessMode(): RenderProcessMode
+
+查询ArkWeb的渲染子进程模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [RenderProcessMode](#renderprocessmode12)| 渲染子进程模式类型。 |
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getRenderProcessMode')
+        .onClick(() => {
+          let mode = web_webview.WebviewController.getRenderProcessMode();
+          console.log("getRenderProcessMode: " + mode);
       })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -9669,6 +9806,17 @@ Web组件发送的资源请求信息。
 | PAUSED  | 2    | 页面音视频暂停。   |
 | STOPPED | 3    | 页面音视频停止。   |
 
+## RenderProcessMode<sup>12+</sup>
+
+ArkWeb渲染子进程模式类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| SINGLE        | 0 |ArkWeb单渲染子进程模式。该模式下，多个Web复用一个渲染子进程。|
+| MULTIPLE      | 1 |ArkWeb多渲染子进程模式。该模式下，每个Web一个渲染子进程。|
+
 ## JsMessageExt<sup>10+</sup>
 
 [runJavaScirptExt](#runjavascriptext10)接口执行脚本返回的数据对象。
@@ -10191,7 +10339,7 @@ struct WebComponent {
 
 | 名称           | 类型       | 可读 | 可写 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
+| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
 | isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合[RFC 1738](http://www.ietf.org/rfc/rfc1738.txt)第3.1节中定义的URL规范化和解析规则。           |

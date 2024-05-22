@@ -38,6 +38,9 @@
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
       - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+      - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
+      - [Content](js-apis-arkui-Content.md)
+      - [NodeContent](js-apis-arkui-NodeContent.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
@@ -122,7 +125,6 @@
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
         - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
-        - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -246,6 +248,8 @@
       - [OffscreenCanvas](arkui-ts/ts-components-offscreencanvas.md)
       - [OffscreenCanvasRenderingContext2D](arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
+    - 渲染组件
+      - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
       - [@ohos.arkui.advanced.ComposeListItem (列表)](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)

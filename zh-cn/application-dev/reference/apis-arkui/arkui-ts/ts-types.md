@@ -531,7 +531,6 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | 名称   | 描述       |
 | ------ | ---------- |
 | TextStyle | 文本字体样式。 |
-| GestureStyle | 事件手势样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 
@@ -555,3 +554,30 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | Done                   | 显示为完成样式。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | PREVIOUS<sup>11+</sup> | 显示为上一步样式。 |
 | NEW_LINE<sup>11+</sup> | 显示为换行样式。   |
+
+## LengthMetrics<sup>12+</sup>
+
+用于设置长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**属性：**
+
+| 名称              | 类型       | 必填 | 描述                          |
+| ----------------- | ---------- | ---- | ----------------------------- |
+| value       | number | 是 | 长度属性的值。   |
+| unit | [LengthUnit](#lengthunit12)     | 是 | 长度属性的单位。|
+
+## LengthUnit<sup>12+</sup>
+
+长度属性单位枚举。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| [PX](#px10) | 0 | 长度类型，用于描述以px像素单位为单位的长度。 |
+| [VP](#vp10) | 1 | 长度类型，用于描述以vp像素单位为单位的长度。 |
+| [FP](#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
+| [PERCENT](#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
+| [LPX](#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |

@@ -37,7 +37,7 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
@@ -77,7 +77,7 @@ isSharingSupported(): Promise\<boolean>
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
@@ -121,7 +121,7 @@ isSharing(callback: AsyncCallback\<boolean>): void
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
@@ -161,7 +161,7 @@ isSharing(): Promise\<boolean>
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
@@ -208,12 +208,12 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
 | 2202006   | Bluetooth sharing failed.                    |
-| 2202009   | Network share enable forwarding error.       |
+| 2202009   | Failed to enable forwarding for network sharing.       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **示例：**
@@ -260,12 +260,12 @@ startSharing(type: SharingIfaceType): Promise\<void>
 | 201       | Permission denied.                           |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
 | 2202006   | Bluetooth sharing failed.                    |
-| 2202009   | Network share enable forwarding error.       |
+| 2202009   | Failed to enable forwarding for network sharing.       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **示例：**
@@ -312,7 +312,7 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
@@ -363,7 +363,7 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
@@ -412,7 +412,7 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -452,7 +452,7 @@ getStatsRxBytes(): Promise\<number>
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -496,7 +496,7 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -536,7 +536,7 @@ getStatsTxBytes(): Promise\<number>
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -580,7 +580,7 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -620,7 +620,7 @@ getStatsTotalBytes(): Promise\<number>
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -666,7 +666,7 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -714,7 +714,7 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -761,7 +761,7 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -803,7 +803,7 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState\>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **返回值：**
@@ -856,7 +856,7 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
@@ -904,7 +904,7 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**

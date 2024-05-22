@@ -284,6 +284,34 @@ The previous ability is starting, wait start later.
 
 无需处理，等待启动即可。
 
+## 16000018 限制API 11以上版本三方应用跳转
+
+**错误信息**
+
+The application is not allow jumping to other applications when api version is above 11.
+
+**错误描述**
+
+当应用API版本大于11的时候，不允许显式跳转到其他三方应用。
+
+**处理步骤**
+
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+
+## 16000019 隐式启动未查找到匹配应用
+
+**错误信息**
+
+Can not match any component.
+
+**错误描述**
+
+隐式启动无法查找到匹配的Ability。
+
+**处理步骤**
+
+修改隐式启动的匹配项。
+
 ## 16000050 内部错误
 
 **错误信息**

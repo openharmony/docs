@@ -370,7 +370,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 
 connectToNetwork(networkId: number): void
 
-连接到指定网络（如果当前已经连接到热点，请先使用disconnet（）接口断开连接）。
+连接到指定网络（如果当前已经连接到热点，请先使用disconnect（）接口断开连接）。
 
 **系统接口：** 此接口为系统接口。
 
@@ -410,7 +410,7 @@ connectToNetwork(networkId: number): void
 
 connectToDevice(config: WifiDeviceConfig): void
 
-连接到指定网络（如果当前已经连接到热点，请先使用disconnet（）接口断开连接）。
+连接到指定网络（如果当前已经连接到热点，请先使用disconnect（）接口断开连接）。
 
 **系统接口：** 此接口为系统接口。
 

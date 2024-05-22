@@ -2195,7 +2195,7 @@ let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2842,7 +2842,6 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 | 1600003  | Failed to connect service.                |
 | 1600007  | The notification is not exist.            |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
 **示例：**
@@ -3651,6 +3650,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3706,6 +3706,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3760,6 +3761,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3810,6 +3812,7 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean>
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
 | 1600010  | Distributed operation failed.            |
+| 1600012  | No memory space.                    |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**

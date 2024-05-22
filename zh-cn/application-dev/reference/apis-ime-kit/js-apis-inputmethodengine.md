@@ -144,11 +144,15 @@ let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 
 ## inputMethodEngine.CommandDataType<sup>12+</sup>
 
-**type** CommandDataType = **number** | **string** | boolean;
-
-私有数据类型，包含string，number，boolean。
+表示私有数据类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 类型    | 说明                 |
+| ------- | -------------------- |
+| string  | 表示值类型为字符串。  |
+| number  | 表示值类型为数字。   |
+| boolean | 表示值类型为布尔值。 |
 
 **示例：**
 
@@ -625,7 +629,7 @@ try {
 
 ### on('privateCommand')<sup>12+</sup>
 
-on(**type**: 'privateCommand', callback: Callback<Record<**string**, CommandDataType>>): **void**;
+on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>): void;
 
 订阅输入法私有数据事件。使用callback异步回调。
 
@@ -636,7 +640,7 @@ on(**type**: 'privateCommand', callback: Callback<Record<**string**, CommandData
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | 是   | 设置监听类型，固定取值为'privateCommand'。 |
-| callback | Callback<Record<**string**, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
+| callback | Callback<Record<string, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
 
 **错误码：**
 
@@ -668,7 +672,7 @@ try {
 
 ### off('privateCommand')<sup>12+</sup>
 
-off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
+off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 
 取消订阅输入法私有数据事件。使用callback异步回调。
 
@@ -843,6 +847,14 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 | panel     | [Panel](#panel10) | 是   | 要销毁的面板对象。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -899,6 +911,14 @@ destroyPanel(panel: Panel): Promise\<void>
 | 类型    | 说明                                                                 |
 | ------- | -------------------------------------------------------------------- |
 | Promise\<void> | 无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1307,6 +1327,14 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 | path | string | 是   | 具体页面的路径。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1345,6 +1373,14 @@ setUiContent(path: string): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1376,6 +1412,14 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | path | string | 是   | LocalStorage相关联的具体页面的路径。 |
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变和不可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1418,6 +1462,14 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1455,6 +1507,14 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 | width | number | 是   | 目标面板的宽度，单位为px。|
 | height | number | 是   | 目标面板的高度，单位为px。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1499,6 +1559,14 @@ resize(width: number, height: number): Promise\<void>
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1530,6 +1598,14 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 | x | number | 是   | x轴方向移动的值，值大于0表示右移，单位为px。|
 | y | number | 是   | y轴方向移动的值，值大于0表示下移，单位为px。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板位置移动成功，err为undefined，否则err为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1569,6 +1645,14 @@ moveTo(x: number, y: number): Promise\<void>
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
 | Promise\<void> | 无返回结果的Promise对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1763,6 +1847,14 @@ off(type: 'show', callback?: () => void): void
 | type | string | 是 | 取消监听当前面板的状态类型，固定取值为'show'。 |
 | callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1788,6 +1880,14 @@ off(type: 'hide', callback?: () => void): void
 | type | string | 是 | 要取消监听的当前面板状态类型，固定取值为'hide'。 |
 | callback | () => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -1811,6 +1911,14 @@ changeFlag(flag: PanelFlag): void
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -1838,6 +1946,14 @@ setPrivacyMode(isPrivacyMode: boolean): void
 | 参数名        | 类型    | 必填 | 说明               |
 | ------------- | ------- | ---- | ------------------ |
 | isPrivacyMode | boolean | 是   | 是否设置隐私模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 
@@ -3538,11 +3654,11 @@ try {
 
 ### sendPrivateCommand<sup>12+</sup>
 
-sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**void**>;&gt;
+sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&lt;void&gt;
 
 发送私有数据至需要与输入法应用通信的系统其他部分。
 
->**说明**
+>**说明:**
 >
 > - 私有数据通道是系统预置输入法应用与系统特定组件（如文本框、桌面应用等）的通信机制，常用于设备级厂商在特定设备上实现自定义的输入法功能。
 > - 私有数据规格限制：总大小32KB，数量限制5条。
@@ -3553,7 +3669,7 @@ sendPrivateCommand(commandData: Record<**string**, CommandDataType>): Promise<**
 
 | 参数名      | 类型                            | 必填 | 说明       |
 | ----------- | ------------------------------- | ---- | ---------- |
-| commandData | Record<string, CommandDataType> | 是   | 私有数据。 |
+| commandData | Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)> | 是   | 私有数据。 |
 
 **返回值：**
 

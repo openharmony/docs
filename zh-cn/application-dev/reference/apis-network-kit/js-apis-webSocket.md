@@ -105,7 +105,7 @@ createWebSocket(): WebSocket
 **示例：**
 
 ```ts
-let ws: webSocket = webSocket.createWebSocket();
+let ws: webSocket.WebSocket = webSocket.createWebSocket();
 ```
 
 ## WebSocket<sup>6+</sup>
@@ -903,7 +903,7 @@ ws.off('headerReceive');
 
 网络代理配置信息
 
-**系统能力**：SystemCapability.Communication.NetManager.Core
+**系统能力**：SystemCapability.Communication.NetStack
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |

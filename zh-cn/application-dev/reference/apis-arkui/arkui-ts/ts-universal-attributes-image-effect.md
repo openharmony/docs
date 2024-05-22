@@ -206,7 +206,7 @@ colorBlend(value: Color | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
 | value  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 为当前组件添加颜色叠加效果，入参为叠加的颜色。 |
 
-## linearGradientBlur<sup>10+</sup> 
+## linearGradientBlur<sup>12+</sup> 
 
 linearGradientBlur(value: number, options: LinearGradientBlurOptions)
 
@@ -219,13 +219,15 @@ linearGradientBlur(value: number, options: LinearGradientBlurOptions)
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | number                                                       | 是   | 为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, 60]<br/>线性梯度模糊包含两个部分fractionStops和direction。 |
-| options | [LinearGradientBlurOptions](#lineargradientbluroptions10对象说明) | 是   | 设置线性渐变模糊效果。                                       |
+| options | [LinearGradientBlurOptions](#lineargradientbluroptions12对象说明) | 是   | 设置线性渐变模糊效果。                                       |
 
 ## renderGroup<sup>10+</sup>
 
 renderGroup(value: boolean)
 
 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -310,6 +312,14 @@ pixelStretchEffect(options: PixelStretchEffectOptions)
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | options | [PixelStretchEffectOptions](ts-types.md#pixelstretcheffectoptions10) | 是   | 设置组件的图像边缘像素扩展距离。<br/>参数`options`包括上下左右四个方向的边缘像素扩展距离。<br/>**说明：**<br/>1. 如果距离为正值，表示向外扩展，放大原来图像大小。上下左右四个方向分别用边缘像素填充，填充的距离即为设置的边缘扩展的距离。<br/>2. 如果距离为负值，表示内缩，但是最终图像大小不变。<br/>内缩方式：<br/>图像根据`options`的设置缩小，缩小大小为四个方向边缘扩展距离的绝对值。<br/>图像用边缘像素扩展到原来大小。<br/>3. 对`options`的输入约束：<br/>上下左右四个方向的扩展统一为非正值或者非负值。即四个边同时向外扩或者内缩，方向一致。<br/>所有方向的输入均为百分比或者具体值，不支持百分比和具体值混用。<br/>所有异常情况下，显示为{0，0，0，0}效果，即跟原图保持一致。 |
 
+## systemBarEffect<sup>12+</sup>
+
+systemBarEffect()
+
+根据背景进行智能反色并且带有模糊效果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 
 ## ShadowOptions对象说明
 
@@ -378,18 +388,25 @@ pixelStretchEffect(options: PixelStretchEffectOptions)
 | COLOR           | 保留源像素的饱和度和色调，但会使用目标像素的亮度来替换源像素的亮度。                                   |
 | LUMINOSITY      | 保留目标像素的色调和饱和度，但会用源像素的亮度替换目标像素的亮度。                                     |
 
-## LinearGradientBlurOptions<sup>10+</sup>对象说明
+## LinearGradientBlurOptions<sup>12+</sup>对象说明
 
 | 名称          | 类型                                                        | 必填  | 说明                                                         |
 | ------------- | ----------------------------------------------------------- | ----- | ------------------------------------------------------------ |
-| fractionStops | Array\<[FractionStop](#fractionstop)>                                    | 是    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
+| fractionStops | Array\<[FractionStop](#fractionstop12)>                                    | 是    | 数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效。 |
 | direction     | [GradientDirection](ts-appendix-enums.md#gradientdirection) | 是    | 渐变模糊方向。<br/>默认值：<br/>GradientDirection.Bottom |
 
-## FractionStop
+## FractionStop<sup>12+</sup>
 
 FractionStop = [ number, number ]
 
-定义模糊段。元组中的第一个元素表示分数。该值的范围为[0,1]。值1表示不透明，0表示完全透明。第二个元素表示停止位置。该值的范围为[0,1]。值1表示区域结束位置，0表示区域开始位置。
+定义模糊段。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 取值范围       | 说明                                                       |
+| ------------- | ---------------------------------------------------------- | 
+| number        |   分数,值1表示不透明，0表示完全透明。<br/>取值范围：[0,1]      |
+| number        |   停止位置,值1表示区域结束位置，0表示区域开始位置。<br/> 取值范围:[0,1] | 
 
 ## InvertOptions<sup>11+</sup>对象说明
 
@@ -926,3 +943,31 @@ struct PixelStretchExample {
 
 ![textPixelStretch2](figures/textPixelStretch2.png)
 
+
+### 示例12
+
+系统导航条智能反色
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Stack(){
+        Image($r('app.media.testImage')).width('100%').height('100%')
+         Column().width(150).height(10)
+          .systemBarEffect()
+           .border({radius:5})
+           .margin({bottom:80})
+      }.alignContent(Alignment.Center)
+    }
+  }
+}
+
+```
+
+效果图如下：
+
+![systemBarEffect](figures/systemBarEffect.png)

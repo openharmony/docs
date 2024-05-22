@@ -23,7 +23,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统接口：** 此接口为系统接口。  |
-| FORM_LOCATION_KEY    | 'ohos.extra.param.key.form_location'   | 卡片位置。  |
 
 
 ## FormUsageState
@@ -60,6 +59,17 @@ import formInfo from '@ohos.app.form.formInfo';
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
 | formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
 | formLocation<sup>12+</sup> | [FormLocation](#formlocation)| 是    | 否     | 卡片位置信息。   |
+
+## FormInfoFilter
+
+卡片信息过滤器，仅将符合过滤器内要求的卡片信息返回。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 类型   | 必填         |说明         |
+| ----------- | ---- | ------------ |------------ |
+| bundleName<sup>12+<sup>    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，<br>未填写时则不通过bundleName进行过滤。   |
+| supportedDimensions<sup>12+<sup> | Array\<number\> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
 
 ## formProviderFilter<sup>10+</sup>
 

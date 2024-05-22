@@ -61,7 +61,7 @@ objectFit(value: ImageFit)
 
 ### textBackgroundStyle<sup>11+</sup>
 
-textBackgroundStyle(value: TextBackgroundStyle)
+textBackgroundStyle(style: TextBackgroundStyle)
 
 设置图片的背景样式。作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。
 
@@ -71,7 +71,7 @@ textBackgroundStyle(value: TextBackgroundStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br /> {<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| style | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br /> {<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
 ### baselineOffset<sup>12+</sup>
 

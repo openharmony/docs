@@ -91,7 +91,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -189,7 +189,7 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -280,7 +280,7 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -351,7 +351,7 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |
@@ -415,7 +415,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
@@ -476,7 +476,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
@@ -542,7 +542,7 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800014  | Already closed. |
-| 14800015  | The database is busy. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
@@ -594,12 +594,12 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-|-----------|-------------------------|
-| 202       | if permission verification failed, application which is not a system application uses system API.       |
+| **错误码ID** | **错误信息**     |
+|-----------|--------------|
+| 202       | if permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
-| 801       | Capability not supported.     |
-| 14800014  | Already closed.        |
+| 801       | Capability not supported.  |
+| 14800014  | Already closed.      |
 
 **示例：**
 
@@ -648,12 +648,12 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**      |
-|-----------|-----------|
-| 202       | if permission verification failed, application which is not a system application uses system API.     |
+| **错误码ID** | **错误信息**            |
+|-----------|---------------------------|
+| 202       | if permission verification failed, application which is not a system application uses system API.  |
 | 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
-| 801       | Capability not supported.        |
-| 14800014  | Already closed.                  |
+| 801       | Capability not supported.       |
+| 14800014  | Already closed.      |
 
 **示例：**
 
@@ -708,7 +708,7 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 | 14800000  | Inner error.                      |
 | 14800011  | Database corrupted.           |
 | 14800014  | Already closed.                        |
-| 14800015  | The database is busy.          |
+| 14800015  | The database does not respond.          |
 | 14800021  | SQLite: Generic error.             |
 | 14800022  | SQLite: Callback routine requested an abort.          |
 | 14800023  | SQLite: Access permission denied.         |
@@ -776,7 +776,7 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 | 14800000  | Inner error.          |
 | 14800011  | Database corrupted.       |
 | 14800014  | Already closed.      |
-| 14800015  | The database is busy.        |
+| 14800015  | The database does not respond.        |
 | 14800021  | SQLite: Generic error.        |
 | 14800022  | SQLite: Callback routine requested an abort.         |
 | 14800023  | SQLite: Access permission denied.                    |
@@ -846,7 +846,7 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 | 14800000  | Inner error.            |
 | 14800011  | Database corrupted.         |
 | 14800014  | Already closed.          |
-| 14800015  | The database is busy.          |
+| 14800015  | The database does not respond.          |
 | 14800021  | SQLite: Generic error.           |
 | 14800022  | SQLite: Callback routine requested an abort.    |
 | 14800023  | SQLite: Access permission denied.     |
