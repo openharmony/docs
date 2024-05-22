@@ -27,7 +27,7 @@
    let timeZoneName = timezone.getDisplayName("zh-Hans", true); // 巴西利亚标准时间
    
    // 本地化城市名称
-   let cityDisplayName = i18n.TimeZone.getCityDisplayName("Auckland", "zh-Hans") // 奥克兰（新西兰）
+   let cityDisplayName = i18n.TimeZone.getCityDisplayName("Auckland", "zh-Hans") // 奥克兰 (新西兰)
    
    // 时区的固定偏移量
    let rawOffset = timezone.getRawOffset(); // -10800000
