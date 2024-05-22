@@ -41,6 +41,7 @@
 - 创建及应用文本字体样式对象（TextStyle）
 
   ```ts
+  import { LengthMetrics } from '@ohos.arkui.node'
   @Entry
   @Component
   struct styled_string_demo2 {
@@ -294,7 +295,7 @@
   ]);
   ```
 
-  除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle)更新样式, 同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
+  除了可以在创建属性字符串时就预设样式，也可以后续通过[replaceStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#replacestyle)清空原样式替换新样式, 同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
   import { LengthMetrics } from '@ohos.arkui.node'
@@ -474,44 +475,18 @@
 
 可通过[GestureStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#gesturestyle)设置onClick、onLongPress事件来使文本响应点击长按事件。
 
-除了初始化属性字符串对象即初始样式对象，亦可通过[setStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#setstyle)接口再设置样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
+除了初始化属性字符串对象即初始样式对象，亦可通过[setStyle](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#setstyle)接口再叠加新样式或更新已有样式，同时需要在附加的文本组件controller上主动触发更新绑定的属性字符串。
 
   ```ts
-  import promptAction from '@ohos.promptAction';
-  gestureStyleAttr: GestureStyle = new GestureStyle({
-    onClick: () => {
-      promptAction.showToast({ message: 'gestureStyleAttr object trigger click event' })
-    },
-    onLongPress: () => {
-      promptAction.showToast({ message: 'gestureStyleAttr object trigger long press event' })
-    }
-  });
-  controller: TextController = new TextController();
-  // 创建对象mutableStyledString3
-  mutableStyledString3: MutableStyledString = new MutableStyledString("#属性字符串");
-  // 后续某个节点触发设置事件
-  this.mutableStyledString3.setStyle({
-    start: 0,
-    length: 5,
-    styledKey: StyledStringKey.GESTURE,
-    styledValue: this.gestureStyleAttr
-  })
-  this.controller.setStyledString(this.mutableStyledString3)
-  ```
-
-## 使用自定义绘制
-
-以下示例展示了如何创建自定义Span。可以通过继承[CustomSpan](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#customspan)定义一个自己的Span，在自定义Span中重写onDraw和onMeasure来实现自定义绘制的效果。
-
-```ts
 import drawing from '@ohos.graphics.drawing';
 
 class MyCustomSpan extends CustomSpan {
-  constructor(word: string, width: number, height: number) {
+  constructor(word: string, width: number, height: number, fontSize: number) {
     super();
     this.word = word;
-    this.width = width
-    this.height = height
+    this.width = width;
+    this.height = height;
+    this.fontSize = fontSize;
   }
 
   onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
@@ -524,18 +499,18 @@ class MyCustomSpan extends CustomSpan {
     const brush = new drawing.Brush();
     brush.setColor({ alpha: 255, red: 0, green: 0, blue: 0 })
     const font = new drawing.Font()
-    font.setSize(px2fp(60))
+    font.setSize(vp2px(this.fontSize))
     const textBlob = drawing.TextBlob.makeFromString(this.word.substr(0, 5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
     canvas.attachBrush(brush)
 
     this.onDrawRectByRadius(context, options.x, options.x + vp2px(this.width), options.lineTop, options.lineBottom, 20)
     brush.setColor({ alpha: 255, red: 255, green: 255, blue: 255 })
     canvas.attachBrush(brush)
-    canvas.drawTextBlob(textBlob, options.x, options.lineBottom - 15)
+    canvas.drawTextBlob(textBlob, options.x, options.lineBottom - 30)
     brush.setColor({ alpha: 255, red: 255, green: 228 , blue: 196 })
     canvas.attachBrush(brush)
-    const textBlob1 = drawing.TextBlob.makeFromString(this.word.substr(6), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
-    canvas.drawTextBlob(textBlob1, options.x + 130, options.lineBottom - 15)
+    const textBlob1 = drawing.TextBlob.makeFromString(this.word.substr(5), font, drawing.TextEncoding.TEXT_ENCODING_UTF8)
+    canvas.drawTextBlob(textBlob1, options.x + vp2px(100), options.lineBottom - 30)
 
     canvas.detachBrush()
   }
@@ -564,12 +539,13 @@ class MyCustomSpan extends CustomSpan {
   width: number = 160
   word: string = "drawing"
   height: number = 10
+  fontSize: number = 16
 }
 
 @Entry
 @Component
 struct styled_string_demo6 {
-  customSpan3: MyCustomSpan = new MyCustomSpan("99VIP 8.8折", 150, 40)
+  customSpan3: MyCustomSpan = new MyCustomSpan("99VIP88%off", 200, 40, 30)
   textStyle: MutableStyledString = new MutableStyledString("123");
   textController: TextController = new TextController()
   isPageShow: boolean = true
@@ -595,7 +571,7 @@ struct styled_string_demo6 {
   }
 }
 ```
-![CustomSpanDemo](figures/StyledStringCustomSpan.png)
+![CustomSpanDemo](figures/StyledString_CustomSpan_Scene.PNG)
 
 ## 场景示例
 
@@ -607,7 +583,7 @@ import { LengthMetrics } from '@ohos.arkui.node';
 struct Index {
   alignCenterParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
   //行高样式对象
-  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
+  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(LengthMetrics.vp(24));
   //Bold样式
   boldTextStyle: TextStyle = new TextStyle({ fontWeight: FontWeight.Bold });
   //创建含段落样式的对象paragraphStyledString1
@@ -622,14 +598,14 @@ struct Index {
       start: 0,
       length: 4,
       styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: new LineHeightStyle(new LengthMetrics(40))
+      styledValue: new LineHeightStyle(LengthMetrics.vp(40))
     },
     {
-    start: 11,
-    length: 14,
-    styledKey: StyledStringKey.FONT,
-    styledValue: new TextStyle({ fontSize: LengthMetrics.vp(14), fontColor: Color.Grey })
-  },
+      start: 11,
+      length: 14,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontSize: LengthMetrics.vp(14), fontColor: Color.Grey })
+    },
     {
       start: 11,
       length: 4,
@@ -654,7 +630,7 @@ struct Index {
       start: 0,
       length: 4,
       styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: new LineHeightStyle(new LengthMetrics(60))
+      styledValue: new LineHeightStyle(LengthMetrics.vp(60))
     },
     {
       start: 0,
@@ -698,7 +674,7 @@ struct Index {
       start: 0,
       length: 4,
       styledKey: StyledStringKey.LINE_HEIGHT,
-      styledValue: new LineHeightStyle(new LengthMetrics(30))
+      styledValue: new LineHeightStyle(LengthMetrics.vp(30))
     },
     {
       start: 1,
@@ -714,11 +690,6 @@ struct Index {
     }
   ])
   controller: TextController = new TextController();
-  async onPageShow() {
-    this.paragraphStyledString2.appendStyledString(this.paragraphStyledString3)
-    this.paragraphStyledString1.appendStyledString(this.paragraphStyledString2)
-    this.controller.setStyledString(this.paragraphStyledString1)
-  }
 
   build() {
     Row() {
@@ -727,6 +698,11 @@ struct Index {
           .width(240)
           .copyOption(CopyOptions.InApp)
           .draggable(true)
+          .onAppear(()=>{
+            this.paragraphStyledString2.appendStyledString(this.paragraphStyledString3)
+            this.paragraphStyledString1.appendStyledString(this.paragraphStyledString2)
+            this.controller.setStyledString(this.paragraphStyledString1)
+          })
 
         Button("限时4.88元 立即续费")
           .width(200)

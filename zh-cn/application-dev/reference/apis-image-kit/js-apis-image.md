@@ -3103,9 +3103,9 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 ### getImageProperties<sup>12+</sup>
 
-getImageProperties(key: Array<PropertyKey>): Promise<Record<PropertyKey, string|null>>
+getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-批量获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
+批量获取图片中的指定属性键的值，用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3136,21 +3136,25 @@ getImageProperties(key: Array<PropertyKey>): Promise<Record<PropertyKey, string|
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import image from "@ohos.multimedia.image";
+import fileio from "@ohos.fileio";
+import featureAbility from "@ohos.ability.featureAbility";
 
-const { EXPOSURE_TIME, SCENE_TYPE, F_NUMBER } = image.PropertyKey;
-    let key = [EXPOSURE_TIME, F_NUMBER,SCENE_TYPE];
-    await getFd("test_exif1.jpg");
-    imageSourceApi = image.createImageSource(fdNumber);
-    if (imageSourceApi == undefined) {
-        console.info(`create image source failed`);
-    }
+let filePath;
+let context = await featureAbility.getContext();
+await context.getFilesDir().then((data) => {
+    filePath = data + "/" + "test_exif1.jpg";
+    console.info("image case filePath is " + filePath);
+});
+let key = ["ImageWidth","ImageLength"];
+let imageSourceApi = image.createImageSource(filePath);
+if (imageSourceApi == undefined) {
+    console.info(`create image source failed`);
+} else {
     imageSourceApi.getImageProperties(key)
-        .then((data) => {
-        console.info(JSON.stringify(data));})
-        .catch((error) => {
-        console.log(JSON.stringify(error));
-    });
+        .then((data) => {console.info(JSON.stringify(data));})
+        .catch((error) => {console.log(error);});
+}
 ```
 
 ### modifyImageProperty<sup>11+</sup>
@@ -3279,7 +3283,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 
 ### modifyImageProperties<sup>12+</sup>
 
-modifyImageProperties(records: Record<[PropertyKey](#propertykey7), string|null>): Promise\<void>
+modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
 批量通过指定的键修改图片属性的值，使用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
 
@@ -3289,7 +3293,7 @@ modifyImageProperties(records: Record<[PropertyKey](#propertykey7), string|null>
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| key     | [Record<[PropertyKey](#propertykey7), string|null>]   | 是   | 包含图片属性名和属性值的数组。 |
+| records     | [Record<[PropertyKey](#propertykey7), string \| null>]   | 是   | 包含图片属性名和属性值的数组。 |
 
 **返回值：**
 
@@ -3304,40 +3308,39 @@ modifyImageProperties(records: Record<[PropertyKey](#propertykey7), string|null>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;      |
-| 62980096| The operation failed.             |
-| 62980110| The image source data is incorrect.             |
-| 62980113| Unknown image format.             |
-| 62980116| Failed to decode the image.             |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.             |
+| 62980135| The EXIF value is invalid.             |
+| 62980146| The EXIF data failed to be written to the file.             |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import image from "@ohos.multimedia.image";
+import fileio from "@ohos.fileio";
+import featureAbility from "@ohos.ability.featureAbility";
 
-await getFd("test_exif1.jpg");
-imageSourceApi = image.createImageSource(fdNumber);
-let key = {
-            ExposureTime: "1/33 sec.",
-            ISOSpeedRatings: "400",
-            FNumber: "f/1.8"
-};
-if (imageSourceApi == undefined) {
-	console.info(`create image source failed`);
-}
-imageSourceApi.modifyImageProperties(key)
-.then(() => {
-    imageSourceApi
-    .getImageProperties(key)
-    .then((data) => {
-        console.info(data);
-    })
-    .catch((err) => {
-        console.info(err);
-    });
-})
-.catch((error) => {
-	console.log(JSON.stringify(error));
+let filePath;
+let context = await featureAbility.getContext();
+await context.getFilesDir().then((data) => {
+    filePath = data + "/" + "test_exif1.jpg";
+    console.info("image case filePath is " + filePath);
 });
+let imageSourceApi = image.createImageSource(filePath);
+let key = {"ImageWidth": "1024", "ImageLength": "2048"};
+let checkKey = ["ImageWidth","ImageLength"];
+if (imageSourceApi == undefined) {
+    console.info(`create image source failed`);
+} else {
+    imageSourceApi.modifyImageProperties(key)
+        .then(() => {
+            imageSourceApi.getImageProperties(checkKey)
+                .then((data) => {console.info(JSON.stringify(data));})
+                .catch((err) => {console.info(err);});})
+        .catch((err) => {
+            console.info(err);
+        });
+}
 ```
 
 ### updateData<sup>9+</sup>
@@ -5365,12 +5368,12 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                |
-| ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
-| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。 |
-| bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。 |
-| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 是   | 是   | 目标动态范围。 |
+| 名称    | 类型   | 必填 | 说明                                                |
+| ------- | ------ | ---- | --------------------------------------------------- |
+| format  | string | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
+| quality | number | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。 |
+| bufferSize<sup>9+</sup> | number | 否   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。 |
+| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 目标动态范围。默认值为SDR。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -5407,7 +5410,7 @@ PixelMap的初始化选项。
 | 名称              |   值                    | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
 | BITS_PER_SAMPLE                           | "BitsPerSample"              | 每个像素比特数。                            |
-| ORIENTATION                               | "Orientation"                | 图片方向。                                  |
+| ORIENTATION                               | "Orientation"                | 图片方向。<br/>- Top-left，图像未旋转。<br/>- Top-right，镜像水平翻转。<br/>- Bottom-right，图像旋转180°。<br/>- Bottom-left，镜像垂直翻转。<br/>- Left-top，镜像水平翻转再顺时针旋转270°。<br/>- Right-top，顺时针旋转90°。<br/>- Right-bottom，镜像垂直翻转再顺时针旋转90°。<br/>- Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value。|
 | IMAGE_LENGTH                              | "ImageLength"                | 图片长度。                                  |
 | IMAGE_WIDTH                               | "ImageWidth"                 | 图片宽度。                                  |
 | GPS_LATITUDE                              | "GPSLatitude"                | 图片纬度。                                  |

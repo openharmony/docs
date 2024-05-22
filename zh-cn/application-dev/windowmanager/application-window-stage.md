@@ -456,7 +456,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## 设置悬浮窗
+## <!--RP2-->设置悬浮窗<!--RP2End-->
 
 悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上；开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
 
@@ -606,6 +606,6 @@ export default class EntryAbility extends UIAbility {
 
 - [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
 
-- [窗口管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)
+- [悬浮窗（ArkTS）（API10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
 
-- [窗口（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
+- [窗口管理（ArkTS）（API12）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)

@@ -41,9 +41,9 @@ addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -90,9 +90,9 @@ removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -144,9 +144,9 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -190,9 +190,9 @@ addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -238,9 +238,9 @@ removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acc
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -292,9 +292,9 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -339,9 +339,9 @@ addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acco
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -387,9 +387,9 @@ removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, a
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -440,9 +440,9 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -494,9 +494,9 @@ uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -547,10 +547,10 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 9201002  | the application install failed.                              |
-| 201      | the application does not have permission to call this function. |
+| 9201002  | Failed to install the application.                           |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**

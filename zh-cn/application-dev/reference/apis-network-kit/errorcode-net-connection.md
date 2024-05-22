@@ -66,7 +66,7 @@ System internal error.
 
 **错误信息**
 
-The same callback exists.
+The callback already exists.
 
 **错误描述**
 

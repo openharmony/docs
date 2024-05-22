@@ -25,6 +25,7 @@ Buffer输入是指有一块预先分配好的内存区域，调用者需要将�
 
 1. Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer()输入数据；Surface模式下，应用应在编码器就绪前调用OH_VideoEncoder_GetSurface()，获取OHNativeWindow用于传递视频数据。
 2. Buffer模式下，应用调用OH_VideoEncoder_PushInputBuffer()传入结束flag，编码器读取到尾帧后，停止编码；Surface模式下，需要调用OH_VideoEncoder_NotifyEndOfStream()通知编码器输入流结束。
+3. buffer模式不支持10bit yuv的图像数据。
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
@@ -602,23 +603,22 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         }
     ```
 
-    硬件编码在处理buffer数据时（推送数据前），一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
-
+    硬件编码在处理buffer数据时（推送数据前），需要用户拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
+    一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
     ```c++
-        // OH_NativeBuffer *可以通过图形模块的接口可以获取数据的宽高、跨距等信息。
-        OH_NativeBuffer *ohNativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
-        if (ohNativeBuffer != nullptr) {
-            // 获取OH_NativeBuffer_Config结构体，包含OH_NativeBuffer的数据信息
-            OH_NativeBuffer_Config config;
-            OH_NativeBuffer_GetConfig(ohNativeBuffer, &config);
+        OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(videoEnc);
+        int widthStride = 0;
+        int heightStride = 0;
 
-            // 释放ohNativeBuffer
-            ret = OH_NativeBuffer_Unreference(ohNativeBuffer);
-            if (ret != AV_ERR_OK) {
-                // 异常处理
-            }
-            ohNativeBuffer = nullptr;
+        int32_t ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
+        if (ret != AV_ERR_OK) {
+            // 异常处理
         }
+        ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        if (ret != AV_ERR_OK) {
+            // 异常处理
+        }
+        OH_AVFormat_Destory(format);
     ```
 
 9. 通知编码器结束。

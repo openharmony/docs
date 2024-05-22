@@ -9,6 +9,14 @@
 >  - CustomBuilder里不支持再使用bindMenu、bindContextMenu弹出菜单。多级菜单可使用[Menu组件](ts-basic-components-menu.md)。
 >
 >  - 弹出菜单的文本内容不支持长按选中。
+>
+>  - 从API Version 12开始，菜单支持长按500ms弹出子菜单。
+>
+>  - 从API Version 12开始，菜单支持按压态跟随手指移动。
+>
+>    1. 仅支持使用[Menu组件](ts-basic-components-menu.md)且子组件包含[MenuItem](ts-basic-components-menuitem.md)或[MenuItemGroup](ts-basic-components-menuitemgroup.md)的场景。
+>
+>    2. 仅支持[MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)为NONE的菜单。
 
 ## bindMenu
 
@@ -89,7 +97,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单项图标。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                 |
 | enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。 |
 | action                | ()&nbsp;=&gt;&nbsp;void                | 是   | 点击菜单项的事件回调。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                       |
-| symbolIcon<sup>12+</sup>                | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)                | 是   | 点击菜单项的事件回调。                                       |
+| symbolIcon<sup>12+</sup>                | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)                | 是   | 设置菜单项图标。通过Modifier配置菜单项图标，配置该项时，原icon图标不显示。                                       |
 
 ## MenuOptions<sup>10+</sup>
 

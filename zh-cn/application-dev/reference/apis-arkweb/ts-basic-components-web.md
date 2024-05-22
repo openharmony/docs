@@ -305,20 +305,15 @@ imageAccess(imageAccess: boolean)
 
 ### javaScriptProxy
 
-javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebviewController | WebController, asyncMethodList?: Array\<string\>})
+javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。注册对象时，同步与异步方法列表请至少选择一项不为空，可同时注册两类方法。同一方法在同步与异步列表中重复注册，将默认异步调用。此接口只支持注册一个对象，若需要注册多个对象请使用[registerJavaScriptProxy<sup>9+</sup>](js-apis-webview.md#registerjavascriptproxy)。
 
 **参数：**
 
-| 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
-| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
-| name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
-| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
-| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | []   | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+| 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
+| ---------- | ---------------------------------------- | ---- |---------------------------------------- |
+| javaScriptProxy     | [JavaScriptProxy](#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。                   |
 
 **示例：**
 
@@ -2057,7 +2052,7 @@ Web组件自定义菜单扩展项接口，允许用户设置扩展项的文本�
 
 ### onAlert
 
-onAlert(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 网页触发alert()告警弹窗时触发回调。
 
@@ -2065,15 +2060,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| url     | string                | 当前显示弹窗所在网页的URL。 |
-| message | string                | 弹窗中显示的信息。       |
-| result  | [JsResult](#jsresult) | 通知Web组件用户操作行为。  |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2141,7 +2128,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 ### onBeforeUnload
 
-onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 刷新或关闭场景下，在即将离开当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
 
@@ -2149,15 +2136,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| url     | string                | 当前显示弹窗所在网页的URL。 |
-| message | string                | 弹窗中显示的信息。       |
-| result  | [JsResult](#jsresult) | 通知Web组件用户操作行为。  |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](#onbeforeunloadevent12), boolean\>                | 刷新或关闭场景下，在即将离开当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2226,7 +2205,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 ### onConfirm
 
-onConfirm(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
+onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 网页调用confirm()告警时触发此回调。
 
@@ -2234,15 +2213,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| url     | string                | 当前显示弹窗所在网页的URL。 |
-| message | string                | 弹窗中显示的信息。       |
-| result  | [JsResult](#jsresult) | 通知Web组件用户操作行为。  |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2320,7 +2291,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 ### onPrompt<sup>9+</sup>
 
-onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
+onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
 网页调用prompt()告警时触发此回调。
 
@@ -2328,15 +2299,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | 参数名     | 参数类型                  | 参数描述            |
 | ------- | --------------------- | --------------- |
-| url     | string                | 当前显示弹窗所在网页的URL。 |
-| message | string                | 弹窗中显示的信息。       |
-| result  | [JsResult](#jsresult) | 通知Web组件用户操作行为。  |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2411,7 +2374,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 ### onConsole
 
-onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
+onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 通知宿主应用JavaScript console消息。
 
@@ -2419,13 +2382,7 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
 | 参数名     | 参数类型                              | 参数描述      |
 | ------- | --------------------------------- | --------- |
-| message | [ConsoleMessage](#consolemessage) | 触发的控制台信息。 |
-
-**返回值：**
-
-| 类型      | 说明                                  |
-| ------- | ----------------------------------- |
-| boolean | 当返回true时，该条消息将不会再打印至控制台，反之仍会打印至控制台。 |
+| callback | Callback\<[OnConsoleEvent](#onconsoleevent12), boolean\> | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至控制台，反之仍会打印至控制台。 |
 
 **示例：**
 
@@ -2476,7 +2433,7 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
 ### onDownloadStart
 
-onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
+onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 通知主应用开始下载一个文件。
 
@@ -2484,11 +2441,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 | 参数名                | 参数类型   | 参数描述                                |
 | ------------------ | ------ | ----------------------------------- |
-| url                | string | 文件下载的URL。                           |
-| userAgent          | string | 用于下载的用户代理。                          |
-| contentDisposition | string | 服务器返回的 Content-Disposition响应头，可能为空。 |
-| mimetype           | string | 服务器返回内容媒体类型（MIME）信息。                |
-| contentLength      | number | 服务器返回文件的长度。                         |
+| callback                | Callback\<[OnDownloadStartEvent](#ondownloadstartevent12)\> | 开始下载时触发。                           |
 
 **示例：**
 
@@ -2520,7 +2473,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 ### onErrorReceive
 
-onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResourceError }) => void)
+onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
 网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。
 
@@ -2528,8 +2481,7 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
 
 | 参数名     | 参数类型                                     | 参数描述            |
 | ------- | ---------------------------------------- | --------------- |
-| request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。      |
-| error   | [WebResourceError](#webresourceerror)    | 网页加载资源错误的封装信息 。 |
+| callback | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent12)\> | 网页收到 Web 资源加载错误时触发。      |
 
 **示例：**
 
@@ -2568,7 +2520,7 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
 
 ### onHttpErrorReceive
 
-onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: WebResourceResponse }) => void)
+onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
 网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。
 
@@ -2576,8 +2528,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
 | 参数名      | 参数类型                                     | 参数描述       |
 | -------- | ---------------------------------------- | ---------- |
-| request  | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。 |
-| response | [WebResourceResponse](#webresourceresponse) | 资源响应的封装信息。 |
+| callback  | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent12)\> | 网页收到加载资源加载HTTP错误时触发。 |
 
 **示例：**
 
@@ -2623,7 +2574,7 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
 ### onPageBegin
 
-onPageBegin(callback: (event?: { url: string }) => void)
+onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。
 
@@ -2631,7 +2582,7 @@ onPageBegin(callback: (event?: { url: string }) => void)
 
 | 参数名  | 参数类型   | 参数描述      |
 | ---- | ------ | --------- |
-| url  | string | 页面的URL地址。 |
+| callback  | Callback\<[OnPageBeginEvent](#onpagebeginevent12)\> | 网页加载开始时触发。 |
 
 **示例：**
 
@@ -2659,7 +2610,7 @@ onPageBegin(callback: (event?: { url: string }) => void)
 
 ### onPageEnd
 
-onPageEnd(callback: (event?: { url: string }) => void)
+onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
 网页加载完成时触发该回调，且只在主frame触发。
 
@@ -2667,7 +2618,7 @@ onPageEnd(callback: (event?: { url: string }) => void)
 
 | 参数名  | 参数类型   | 参数描述      |
 | ---- | ------ | --------- |
-| url  | string | 页面的URL地址。 |
+| callback  | Callback\<[OnPageEndEvent](#onpageendevent12)\> | 网页加载结束时触发。 |
 
 **示例：**
 
@@ -2695,7 +2646,7 @@ onPageEnd(callback: (event?: { url: string }) => void)
 
 ### onProgressChange
 
-onProgressChange(callback: (event?: { newProgress: number }) => void)
+onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 网页加载进度变化时触发该回调。
 
@@ -2703,7 +2654,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
 
 | 参数名         | 参数类型   | 参数描述                  |
 | ----------- | ------ | --------------------- |
-| newProgress | number | 新的加载进度，取值范围为0到100的整数。 |
+| callback | Callback\<[OnProgressChangeEvent](#onprogresschangeevent12)\> | 页面加载进度时触发的功能。 |
 
 **示例：**
 
@@ -2731,7 +2682,7 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
 
 ### onTitleReceive
 
-onTitleReceive(callback: (event?: { title: string }) => void)
+onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 网页document标题更改时触发该回调。
 
@@ -2739,7 +2690,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
 
 | 参数名   | 参数类型   | 参数描述          |
 | ----- | ------ | ------------- |
-| title | string | document标题内容。 |
+| callback | Callback\<[OnTitleReceiveEvent](#ontitlereceiveevent12)\> | 定义主应用程序文档标题更改时触发。 |
 
 **示例：**
 
@@ -2767,7 +2718,7 @@ onTitleReceive(callback: (event?: { title: string }) => void)
 
 ### onRefreshAccessedHistory
 
-onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean }) => void)
+onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
 加载网页页面完成时触发该回调，用于应用更新其访问的历史链接。
 
@@ -2775,8 +2726,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 
 | 参数名         | 参数类型    | 参数描述                                     |
 | ----------- | ------- | ---------------------------------------- |
-| url         | string  | 访问的url。                                  |
-| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
+| callback         | Callback\<[OnRefreshAccessedHistoryEvent](#onrefreshaccessedhistoryevent12)\>  | 在网页刷新访问历史记录时触发。                |
 
 **示例：**
 
@@ -2824,7 +2774,7 @@ onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object
 
 ### onRenderExited<sup>9+</sup>
 
-onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => void)
+onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 应用渲染进程异常退出时触发该回调。
 
@@ -2832,7 +2782,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
 | 参数名              | 参数类型                                     | 参数描述             |
 | ---------------- | ---------------------------------------- | ---------------- |
-| renderExitReason | [RenderExitReason](#renderexitreason9枚举说明) | 渲染进程异常退出的具体原因。 |
+| callback | Callback\<[OnRenderExitedEvent](#onrenderexitedevent12)\> | 渲染过程退出时触发。 |
 
 **示例：**
 
@@ -2926,7 +2876,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 ### onShowFileSelector<sup>9+</sup>
 
-onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
+onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
 调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
 
@@ -2934,14 +2884,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 | 参数名          | 参数类型                                     | 参数描述              |
 | ------------ | ---------------------------------------- | ----------------- |
-| result       | [FileSelectorResult](#fileselectorresult9) | 用于通知Web组件文件选择的结果。 |
-| fileSelector | [FileSelectorParam](#fileselectorparam9) | 文件选择器的相关信息。       |
-
-**返回值：**
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback       | Callback\<[OnShowFileSelectorEvent](#onshowfileselectorevent12), boolean\> | 用于通知Web组件文件选择的结果。<br>返回值boolean。当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2997,7 +2940,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 ### onResourceLoad<sup>9+</sup>
 
-onResourceLoad(callback: (event: {url: string}) => void)
+onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 通知Web组件所加载的资源文件url信息。
 
@@ -3005,7 +2948,7 @@ onResourceLoad(callback: (event: {url: string}) => void)
 
 | 参数名  | 参数类型   | 参数描述           |
 | ---- | ------ | -------------- |
-| url  | string | 所加载的资源文件url信息。 |
+| callback  | Callback\<[OnResourceLoadEvent](#onresourceloadevent12)\> | 加载url时触发。 |
 
 **示例：**
 
@@ -3031,7 +2974,7 @@ onResourceLoad(callback: (event: {url: string}) => void)
 
 ### onScaleChange<sup>9+</sup>
 
-onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
+onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
 当前页面显示比例的变化时触发该回调。
 
@@ -3039,8 +2982,7 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 
 | 参数名      | 参数类型   | 参数描述         |
 | -------- | ------ | ------------ |
-| oldScale | number | 变化前的显示比例百分比。 |
-| newScale | number | 变化后的显示比例百分比。 |
+| callback | Callback\<[OnScaleChangeEvent](#onscalechangeevent12)\> | 当前页面显示比例的变化时触发。 |
 
 **示例：**
 
@@ -3110,7 +3052,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 ### onInterceptRequest<sup>9+</sup>
 
-onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
+onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceResponse>)
 
 当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
 
@@ -3118,13 +3060,7 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
 
 | 参数名     | 参数类型                                     | 参数描述        |
 | ------- | ---------------------------------------- | ----------- |
-| request | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
-
-**返回值：**
-
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| [WebResourceResponse](#webresourceresponse) | 返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
+| callback | Callback\<[OnInterceptRequestEvent](#oninterceptrequestevent12)\> | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](#webresourceresponse)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
 
@@ -3187,7 +3123,7 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
 
 ### onHttpAuthRequest<sup>9+</sup>
 
-onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, realm: string}) => boolean)
+onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
 通知收到http auth认证请求。
 
@@ -3195,15 +3131,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
 
 | 参数名     | 参数类型                                 | 参数描述             |
 | ------- | ------------------------------------ | ---------------- |
-| handler | [HttpAuthHandler](#httpauthhandler9) | 通知Web组件用户操作行为。   |
-| host    | string                               | HTTP身份验证凭据应用的主机。 |
-| realm   | string                               | HTTP身份验证凭据应用的域。  |
-
-**返回值：**
-
-| 类型      | 说明                    |
-| ------- | --------------------- |
-| boolean | 返回false表示此次认证失败，否则成功。 |
+| callback | Callback\<[OnHttpAuthRequestEvent](#onhttpauthrequestevent12), boolean\> | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回false表示此次认证失败，否则成功。   |
 
 **示例：**
 
@@ -3258,7 +3186,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   ```
 ### onSslErrorEventReceive<sup>9+</sup>
 
-onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
+onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 
 通知用户加载资源时发生SSL错误，只支持主资源。
 如果需要支持子资源，请使用[OnSslErrorEvent](#onsslerrorevent12)接口。
@@ -3267,8 +3195,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 
 | 参数名     | 参数类型                                 | 参数描述           |
 | ------- | ------------------------------------ | -------------- |
-| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
-| error   | [SslError](#sslerror9枚举说明)           | 错误码。           |
+| callback | Callback\<[OnSslErrorEventReceiveEvent](#onsslerroreventreceiveevent12)\> | 当网页收到SSL错误时触发。 |
 
 **示例：**
 
@@ -3320,7 +3247,6 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 | 参数名     | 参数类型                                 | 参数描述           |
 | ------- | ------------------------------------ | -------------- |
 | callback | [OnSslErrorEventCallback](#onsslerroreventcallback12) | 通知用户加载资源时发生SSL错误。 |
-|
 
 **示例：**
 
@@ -3369,7 +3295,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string\>, issuers : Array<string\>}) => void)
+onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 通知用户收到SSL客户端证书请求事件。
 
@@ -3377,11 +3303,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
 | 参数名      | 参数类型                                     | 参数描述            |
 | -------- | ---------------------------------------- | --------------- |
-| handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。  |
-| host     | string                                   | 请求证书服务器的主机名。    |
-| port     | number                                   | 请求证书服务器的端口号。    |
-| keyTypes | Array<string\>                           | 可接受的非对称秘钥类型。    |
-| issuers  | Array<string\>                           | 与私钥匹配的证书可接受颁发者。 |
+| callback  | Callback\<[OnClientAuthenticationEvent](#onclientauthenticationrequestevent12)\> | 当需要用户提供的SSL客户端证书时触发的回调。  |
 
   **示例：**
 
@@ -3574,7 +3496,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 
 ### onPermissionRequest<sup>9+</sup>
 
-onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
+onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
 通知收到获取权限请求。
 
@@ -3582,7 +3504,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述           |
 | ------- | ---------------------------------------- | -------------- |
-| request | [PermissionRequest](#permissionrequest9) | 通知Web组件用户操作行为。 |
+| callback | Callback\<[OnPermissionRequestEvent](#onpermissionrequestevent12)\> | 通知收到获取权限请求触发。 |
 
 **示例：**
 
@@ -3662,7 +3584,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 
 ### onContextMenuShow<sup>9+</sup>
 
-onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
+onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
 
 长按特定元素（例如图片，链接）或鼠标右键，跳出菜单。
 
@@ -3670,14 +3592,7 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
 
 | 参数名    | 参数类型                                     | 参数描述        |
 | ------ | ---------------------------------------- | ----------- |
-| param  | [WebContextMenuParam](#webcontextmenuparam9) | 菜单相关参数。     |
-| result | [WebContextMenuResult](#webcontextmenuresult9) | 菜单相应事件传入内核。 |
-
-**返回值：**
-
-| 类型      | 说明                       |
-| ------- | ------------------------ |
-| boolean | 自定义菜单返回true，触发的自定义菜单无效返回false。 |
+| callback  | Callback\<[OnContextMenuShowEvent](#oncontextmenushowevent12), boolean\> | 调用时触发的回调，以允许自定义显示上下文菜单。<br>返回值boolean。自定义菜单返回true，触发的自定义菜单无效返回false。     |
 
 **示例：**
 
@@ -3852,7 +3767,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 ### onScroll<sup>9+</sup>
 
-onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+onScroll(callback: Callback\<OnScrollEvent\>): WebAttribute;
 
 通知网页滚动条滚动位置。
 
@@ -3860,8 +3775,7 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 | 参数名     | 参数类型   | 参数描述                   |
 | ------- | ------ | ---------------------- |
-| xOffset | number | 以网页最左端为基准，水平滚动条滚动所在位置。 |
-| yOffset | number | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
+| callback | Callback\<[OnScrollEvent](#onscrollevent12)\> | 当滚动条滑动到指定位置时触发。 |
 
 **示例：**
 
@@ -3887,7 +3801,7 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 ### onGeolocationShow
 
-onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void)
+onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
 通知用户收到地理位置信息获取请求。
 
@@ -3895,8 +3809,7 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
 
 | 参数名         | 参数类型                            | 参数描述           |
 | ----------- | ------------------------------- | -------------- |
-| origin      | string                          | 指定源的字符串索引。     |
-| geolocation | [JsGeolocation](#jsgeolocation) | 通知Web组件用户操作行为。 |
+| callback      | Callback\<[OnGeolocationShowEvent](#ongeolocationshowevent12)\>  | 请求显示地理位置权限时触发。     |
 
 **示例：**
 
@@ -4070,7 +3983,7 @@ onFullScreenExit(callback: () => void)
 
 ### onWindowNew<sup>9+</sup>
 
-onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
+onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 使能multiWindowAccess情况下，通知用户新建窗口请求。
 若不调用event.handler.setWebController接口，会造成render进程阻塞。
@@ -4080,10 +3993,7 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
 
 | 参数名           | 参数类型                                     | 参数描述                          |
 | ------------- | ---------------------------------------- | ----------------------------- |
-| isAlert       | boolean                                  | true代表请求创建对话框，false代表新标签页。    |
-| isUserTrigger | boolean                                  | true代表用户触发，false代表非用户触发。      |
-| targetUrl     | string                                   | 目标url。                        |
-| handler       | [ControllerHandler](#controllerhandler9) | 用于设置新建窗口的WebviewController实例。 |
+| callback       | Callback\<[OnWindowNewEvent](#onwindownewevent12)\>                                  | 网页要求用户创建窗口时触发的回调。    |
 
 **示例：**
 
@@ -4177,7 +4087,7 @@ onWindowExit(callback: () => void)
 
 ### onSearchResultReceive<sup>9+</sup>
 
-onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMatches: number, isDoneCounting: boolean}) => void): WebAttribute
+onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
 
 回调通知调用方网页页内查找的结果。
 
@@ -4185,9 +4095,7 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
 
 | 参数名                | 参数类型    | 参数描述                                     |
 | ------------------ | ------- | ---------------------------------------- |
-| activeMatchOrdinal | number  | 当前匹配的查找项的序号（从0开始）。                       |
-| numberOfMatches    | number  | 所有匹配到的关键词的个数。                            |
-| isDoneCounting     | boolean | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
+| callback | Callback\<[OnSearchResultReceiveEvent](#onsearchresultreceiveevent12)\>  | 通知调用方网页页内查找的结果。         |
 
 **示例：**
 
@@ -4216,7 +4124,7 @@ onSearchResultReceive(callback: (event?: {activeMatchOrdinal: number, numberOfMa
 
 ### onDataResubmitted<sup>9+</sup>
 
-onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
+onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
 设置网页表单可以重新提交时触发的回调函数。
 
@@ -4224,7 +4132,7 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
 | 参数名     | 参数类型                                     | 参数描述        |
 | ------- | ---------------------------------------- | ----------- |
-| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 表单数据重新提交句柄。 |
+| callback | Callback\<[OnDataResubmittedEvent](#ondataresubmittedevent12)\> | 网页表单可以重新提交时触发。 |
 
 **示例：**
 
@@ -4277,7 +4185,7 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
 ### onPageVisible<sup>9+</sup>
 
-onPageVisible(callback: (event: {url: string}) => void)
+onPageVisible(callback: Callback\<OnPageVisibleEvent\>)
 
 设置旧页面不再呈现，新页面即将可见时触发的回调函数。
 
@@ -4285,7 +4193,7 @@ onPageVisible(callback: (event: {url: string}) => void)
 
 | 参数名  | 参数类型   | 参数描述                       |
 | ---- | ------ | -------------------------- |
-| url  | string | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
+| callback  | Callback\<[OnPageVisibleEvent](#onpagevisibleevent12)\> | 旧页面不再呈现，新页面即将可见时触发的回调函数。 |
 
 **示例：**
 
@@ -4351,7 +4259,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 ### onTouchIconUrlReceived<sup>9+</sup>
 
-onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) => void)
+onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
 
 设置接收到apple-touch-icon url地址时的回调函数。
 
@@ -4359,8 +4267,7 @@ onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) =>
 
 | 参数名         | 参数类型    | 参数描述                        |
 | ----------- | ------- | --------------------------- |
-| url         | string  | 接收到的apple-touch-icon url地址。 |
-| precomposed | boolean | 对应apple-touch-icon是否为预合成。   |
+| callback         | Callback\<[OnTouchIconUrlReceivedEvent](#ontouchiconurlreceivedevent12)\>  | 接收到的apple-touch-icon url地址时触发。 |
 
 **示例：**
 
@@ -4384,7 +4291,7 @@ onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) =>
 
 ### onFaviconReceived<sup>9+</sup>
 
-onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
+onFaviconReceived(callback: Callback\<OnFaviconReceivedEvent\>)
 
 设置应用为当前页面接收到新的favicon时的回调函数。
 
@@ -4392,7 +4299,7 @@ onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 | 参数名     | 参数类型                                     | 参数描述                      |
 | ------- | ---------------------------------------- | ------------------------- |
-| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
+| callback | Callback\<[OnFaviconReceivedEvent](#onfaviconreceivedevent12)\> | 当前页面接收到新的favicon时触发。 |
 
 **示例：**
 
@@ -4419,7 +4326,7 @@ onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 ### onAudioStateChanged<sup>10+</sup>
 
-onAudioStateChanged(callback: (event: { playing: boolean }) => void)
+onAudioStateChanged(callback: Callback\<OnAudioStateChangedEvent\>)
 
 设置网页上的音频播放状态发生改变时的回调函数。
 
@@ -4427,7 +4334,7 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
 
 | 参数名     | 参数类型    | 参数描述                               |
 | ------- | ------- | ---------------------------------- |
-| playing | boolean | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+| callback | Callback\<[OnAudioStateChangedEvent](#onaudiostatechangedevent12)\> | 网页上的音频播放状态发生改变时触发。 |
 
 **示例：**
 
@@ -4453,7 +4360,7 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
 
 ### onFirstContentfulPaint<sup>10+</sup>
 
-onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstContentfulPaintMs: number }) => void)
+ onFirstContentfulPaint(callback: Callback\<OnFirstContentfulPaintEvent\>)
 
 设置网页首次内容绘制回调函数。
 
@@ -4461,8 +4368,7 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
 
 | 参数名                    | 参数类型   | 参数描述                              |
 | ---------------------- | ------ | --------------------------------- |
-| navigationStartTick    | number | navigation开始的时间，单位以微秒表示。          |
-| firstContentfulPaintMs | number | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。 |
+| callback    | Callback\<[OnFirstContentfulPaintEvent](#onfirstcontentfulpaintevent12)\> | 网页首次内容绘制回调函数。          |
 
 **示例：**
 
@@ -4563,7 +4469,7 @@ onLargestContentfulPaint(callback: [OnLargestContentfulPaintCallback](#onlargest
 
 ### onLoadIntercept<sup>10+</sup>
 
-onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
+onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
@@ -4571,13 +4477,7 @@ onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
 
 | 参数名     | 参数类型                                     | 参数描述        |
 | ------- | ---------------------------------------- | ----------- |
-| data | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
-
-**返回值：**
-
-| 类型      | 说明                       |
-| ------- | ------------------------ |
-| boolean | 返回true表示阻止此次加载，否则允许此次加载。 |
+| callback | Callback\<[OnLoadInterceptEvent](#onloadinterceptevent12), boolean\> | 截获资源加载时触发的回调。<br>返回值boolean。返回true表示阻止此次加载，否则允许此次加载。 |
 
 **示例：**
 
@@ -4634,7 +4534,7 @@ onRequestSelected(callback: () => void)
   ```
 ### onScreenCaptureRequest<sup>10+</sup>
 
-onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => void)
+onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
 
 通知收到屏幕捕获请求。
 
@@ -4642,7 +4542,7 @@ onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => 
 
 | 参数名     | 参数类型                                     | 参数描述           |
 | ------- | ---------------------------------------- | -------------- |
-| handler | [ScreenCaptureHandler](#screencapturehandler10) | 通知Web组件用户操作行为。 |
+| callback | Callback\<[OnScreenCaptureRequestEvent](#onscreencapturerequestevent12)\> | 通知收到屏幕捕获请求。 |
 
 **示例：**
 
@@ -4687,7 +4587,7 @@ onScreenCaptureRequest(callback: (event?: { handler: ScreenCaptureHandler }) => 
 
 ### onOverScroll<sup>10+</sup>
 
-onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+onOverScroll(callback: Callback\<OnOverScrollEvent\>)
 
 该接口在网页过度滚动时触发，用于通知网页过度滚动的偏移量。
 
@@ -4695,8 +4595,7 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 | 参数名     | 参数类型   | 参数描述                |
 | ------- | ------ | ------------------- |
-| xOffset | number | 以网页最左端为基准，水平过度滚动的偏移量。 |
-| yOffset | number | 以网页最上端为基准，竖直过度滚动的偏移量。 |
+| callback | Callback\<[OnOverScrollEvent](#onoverscrollevent12)\> | 网页过度滚动时触发。 |
 
 **示例：**
 
@@ -5531,7 +5430,7 @@ getResponseMimeType(): string
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string | number \| Resource | ArrayBuffer)
+setResponseData(data: string \| number \| Resource \| ArrayBuffer): void
 
 设置资源响应数据。
 
@@ -5543,7 +5442,7 @@ setResponseData(data: string | number \| Resource | ArrayBuffer)
 
 ### setResponseEncoding<sup>9+</sup>
 
-setResponseEncoding(encoding: string)
+setResponseEncoding(encoding: string): void
 
 设置资源响应的编码。
 
@@ -5555,7 +5454,7 @@ setResponseEncoding(encoding: string)
 
 ### setResponseMimeType<sup>9+</sup>
 
-setResponseMimeType(mimeType: string)
+setResponseMimeType(mimeType: string): void
 
 设置资源响应的媒体（MIME）类型。
 
@@ -5567,7 +5466,7 @@ setResponseMimeType(mimeType: string)
 
 ### setReasonMessage<sup>9+</sup>
 
-setReasonMessage(reason: string)
+setReasonMessage(reason: string): void
 
 设置资源响应的状态码描述。
 
@@ -5579,7 +5478,7 @@ setReasonMessage(reason: string)
 
 ### setResponseHeader<sup>9+</sup>
 
-setResponseHeader(header: Array\<Header\>)
+setResponseHeader(header: Array\<Header\>): void
 
 设置资源响应头。
 
@@ -5591,7 +5490,7 @@ setResponseHeader(header: Array\<Header\>)
 
 ### setResponseCode<sup>9+</sup>
 
-setResponseCode(code: number)
+setResponseCode(code: number): void
 
 设置资源响应的状态码。
 
@@ -5603,7 +5502,7 @@ setResponseCode(code: number)
 
 ### setResponseIsReady<sup>9+</sup>
 
-setResponseIsReady(IsReady: boolean)
+setResponseIsReady(IsReady: boolean): void
 
 设置资源响应数据是否已经就绪。
 
@@ -7396,3 +7295,338 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
 | action    | string                                                         | 是     | 选中的文本信息。|
+
+## OnPageEndEvent<sup>12+</sup>
+
+定义网页加载结束时触发的函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 页面的URL地址。                       |
+
+## OnPageBeginEvent<sup>12+</sup>
+
+定义网页加载开始时触发的函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 页面的URL地址。                       |
+
+## OnProgressChangeEvent<sup>12+</sup>
+
+定义网页加载进度变化时触发该回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| newProgress | number | 是 | 新的加载进度，取值范围为0到100的整数。                       |
+
+## OnTitleReceiveEvent<sup>12+</sup>
+
+定义网页document标题更改时触发该回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| title | string | 是 | document标题内容。                       |
+
+## OnGeolocationShowEvent<sup>12+</sup>
+
+定义通知用户收到地理位置信息获取请求。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| origin | string | 是 | 指定源的字符串索引。                       |
+| geolocation | JsGeolocation | 是 | 通知Web组件用户操作行为。                       |
+
+## OnAlertEvent<sup>12+</sup>
+
+定义网页触发alert()告警弹窗时触发回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
+| message | string | 是 | 弹窗中显示的信息。                       |
+| result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+
+## OnBeforeUnloadEvent<sup>12+</sup>
+
+定义刷新或关闭场景下，在即将离开当前页面时触发此回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
+| message | string | 是 | 弹窗中显示的信息。                       |
+| result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+
+## OnConfirmEvent<sup>12+</sup>
+
+定义网页调用confirm()告警时触发此回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
+| message | string | 是 | 弹窗中显示的信息。                       |
+| result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+
+## OnPromptEvent<sup>12+</sup>
+
+定义网页调用prompt()告警时触发此回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 当前显示弹窗所在网页的URL。                       |
+| message | string | 是 | 弹窗中显示的信息。                       |
+| result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+
+## onConsoleEvent<sup>12+</sup>
+
+定义通知宿主应用JavaScript console消息。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| message | [ConsoleMessage](#consolemessage) | 是 | 触发的控制台信息。                       |
+
+## OnErrorReceiveEvent<sup>12+</sup>
+
+定义网页加载遇到错误时触发该回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| request | [WebResourceRequest](#webresourcerequest) | 是 | 网页请求的封装信息。      |
+| error   | [WebResourceError](#webresourceerror)    | 是 | 网页加载资源错误的封装信息 。 |
+
+## OnHttpErrorReceiveEvent<sup>12+</sup>
+
+定义网页收到加载资源加载HTTP错误时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| request | [WebResourceRequest](#webresourcerequest) | 是 | 网页请求的封装信息。      |
+| response   | [WebResourceResponse](#webresourceresponse)    | 是 | 资源响应的封装信息。 |
+
+## OnDownloadStartEvent<sup>12+</sup>
+
+定义通知主应用开始下载一个文件。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url                | string | 是 | 文件下载的URL。                           |
+| userAgent          | string | 是 | 用于下载的用户代理。                          |
+| contentDisposition | string | 是 | 服务器返回的 Content-Disposition响应头，可能为空。 |
+| mimetype           | string | 是 | 服务器返回内容媒体类型（MIME）信息。                |
+| contentLength      | number | 是 | 服务器返回文件的长度。                         |
+
+## OnRefreshAccessedHistoryEvent<sup>12+</sup>
+
+定义网页刷新访问历史记录时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url         | string  | 是 | 访问的url。                                  |
+| isRefreshed | boolean | 是 | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](js-apis-webview.md#refresh)接口），false表示该页面是新加载的。 |
+
+## OnRenderExitedEvent<sup>12+</sup>
+
+定义渲染过程退出时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| renderExitReason | [RenderExitReason](#renderexitreason9枚举说明) | 是 | 渲染进程异常退出的具体原因。 |
+
+## OnShowFileSelectorEvent<sup>12+</sup>
+
+定义文件选择器结果。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| result       | [FileSelectorResult](#fileselectorresult9) | 是 | 用于通知Web组件文件选择的结果。 |
+| fileSelector | [FileSelectorParam](#fileselectorparam9) | 是 | 文件选择器的相关信息。       |
+
+## onResourceLoadEvent<sup>12+</sup>
+
+定义加载url时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url  | string | 是 | 所加载的资源文件url信息。 |
+
+## onScaleChangeEvent<sup>12+</sup>
+
+定义当前页面显示比例的变化时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| oldScale | number | 是 | 变化前的显示比例百分比。 |
+| newScale | number | 是 | 变化后的显示比例百分比。 |
+
+## OnHttpAuthRequestEvent<sup>12+</sup>
+
+定义通知收到http auth认证请求。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler | [HttpAuthHandler](#httpauthhandler9) | 是 | 通知Web组件用户操作行为。   |
+| host    | string                               | 是 | HTTP身份验证凭据应用的主机。 |
+| realm   | string                               | 是 | HTTP身份验证凭据应用的域。  |
+
+## OnInterceptRequestEvent<sup>12+</sup>
+
+定义当Web组件加载url之前触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| request | [WebResourceRequest](#webresourcerequest) | 是 | url请求的相关信息。 |
+
+## onPermissionRequestEvent<sup>12+</sup>
+
+定义通知收到获取权限请求。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| request | [PermissionRequest](#permissionrequest9) | 是 | 通知Web组件用户操作行为。 |
+
+## onScreenCaptureRequestEvent<sup>12+</sup>
+
+定义通知收到屏幕捕获请求。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler | [ScreenCaptureHandler](#screencapturehandler10) | 是 | 通知Web组件用户操作行为。 |
+
+## onContextMenuShowEvent<sup>12+</sup>
+
+定义调用时触发的回调，以允许自定义显示上下文菜单。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| param  | [WebContextMenuParam](#webcontextmenuparam9) | 是 | 菜单相关参数。     |
+| result | [WebContextMenuResult](#webcontextmenuresult9) | 是 | 菜单相应事件传入内核。 |
+
+## onSearchResultReceiveEvent<sup>12+</sup>
+
+定义通知调用方网页页内查找的结果。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| activeMatchOrdinal | number  | 是 | 当前匹配的查找项的序号（从0开始）。                       |
+| numberOfMatches    | number  | 是 | 所有匹配到的关键词的个数。                            |
+| isDoneCounting     | boolean | 是 | 当次页内查找操作是否结束。该方法可能会回调多次，直到isDoneCounting为true为止。 |
+
+## onScrollEvent<sup>12+</sup>
+
+定义滚动条滑动到指定位置时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| xOffset | number | 是 | 以网页最左端为基准，水平滚动条滚动所在位置。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
+
+## OnSslErrorEventReceiveEvent<sup>12+</sup>
+
+定义网页收到SSL错误时触发。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
+| error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
+
+## onClientAuthenticationRequestEvent<sup>12+</sup>
+
+定义当需要用户提供SSL客户端证书时触发回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 是 | 通知Web组件用户操作行为。  |
+| host     | string                                   | 是 | 请求证书服务器的主机名。    |
+| port     | number                                   | 是 | 请求证书服务器的端口号。    |
+| keyTypes | Array<string\>                           | 是 | 可接受的非对称秘钥类型。    |
+| issuers  | Array<string\>                           | 是 | 与私钥匹配的证书可接受颁发者。 |
+
+## OnWindowNewEvent<sup>12+</sup>
+
+定义网页要求用户创建窗口时触发的回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| isAlert       | boolean                                  | 是 | true代表请求创建对话框，false代表新标签页。    |
+| isUserTrigger | boolean                                  | 是 | true代表用户触发，false代表非用户触发。      |
+| targetUrl     | string                                   | 是 | 目标url。                        |
+| handler       | [ControllerHandler](#controllerhandler9) | 是 | 用于设置新建窗口的WebviewController实例。 |
+
+## onTouchIconUrlReceivedEvent<sup>12+</sup>
+
+定义设置接收到apple-touch-icon url地址时的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url         | string  | 是 | 接收到的apple-touch-icon url地址。 |
+| precomposed | boolean | 是 | 对应apple-touch-icon是否为预合成。   |
+
+## onFaviconReceivedEvent<sup>12+</sup>
+
+定义应用为当前页面接收到新的favicon时的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| favicon | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 接收到的favicon图标的PixelMap对象。 |
+
+## onPageVisibleEvent<sup>12+</sup>
+
+定义旧页面不再呈现，新页面即将可见时触发的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url  | string | 是 | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
+
+## onDataResubmittedEvent<sup>12+</sup>
+
+定义网页表单可以重新提交时触发的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 是 | 表单数据重新提交句柄。 |
+
+## onAudioStateChangedEvent<sup>12+</sup>
+
+定义网页上的音频播放状态发生改变时的回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| playing | boolean | 是 | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
+
+## onFirstContentfulPaintEvent<sup>12+</sup>
+
+定义网页首次内容绘制回调函数。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| navigationStartTick    | number | 是 | navigation开始的时间，单位以微秒表示。          |
+| firstContentfulPaintMs | number | 是 | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。 |
+
+## onLoadInterceptEvent<sup>12+</sup>
+
+定义截获资源加载时触发的回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| data | [WebResourceRequest](#webresourcerequest) | 是 | url请求的相关信息。 |
+
+## onOverScrollEvent<sup>12+</sup>
+
+定义网页过度滚动时触发的回调。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| xOffset | number | 是 | 以网页最左端为基准，水平过度滚动的偏移量。 |
+| yOffset | number | 是 | 以网页最上端为基准，竖直过度滚动的偏移量。 |
+
+## JavaScriptProxy<sup>12+</sup>
+
+定义要注入的JavaScript对象。
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| object     | object                                   | 是    | 参与注册的对象。只能声明方法，不能声明属性。                   |
+| name       | string                                   | 是    | 注册对象的名称，与window中调用的对象名一致。                |
+| methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
+| controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
