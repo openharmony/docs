@@ -156,6 +156,7 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 | 11100001 | Function is disabled.                         |
 | 11101001 | Invalid event domain.                         |
 | 11101002 | Invalid event name.                           |
@@ -216,6 +217,7 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 | 11100001 | Function is disabled.                         |
 | 11101001 | Invalid event domain.                         |
 | 11101002 | Invalid event name.                           |
@@ -291,6 +293,7 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 | 11101007 | The number of parameter keys exceeds the limit. |
 
 **示例：**
@@ -348,6 +351,7 @@ configure(config: ConfigOption): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 | 11103001 | Invalid max storage quota value. |
 
 **示例：**
@@ -561,6 +565,7 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 | 11102001 | Invalid watcher name.           |
 | 11102002 | Invalid filtering event domain. |
 | 11102003 | Invalid row value.              |
@@ -663,6 +668,7 @@ removeWatcher(watcher: Watcher): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
+| 401      | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 | 11102001 | Invalid watcher name. |
 
 **示例：**
@@ -772,6 +778,7 @@ setSize(size: number): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
+| 401      | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 | 11104001 | Invalid size value. |
 
 **示例：**
@@ -803,6 +810,7 @@ setRow(size: number): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
+| 401      | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
 | 11104001 | Invalid size value. |
 
 **示例：**
@@ -850,7 +858,7 @@ let eventPkg = holder4.takeNext();
 | row       | number   | 是   | 事件包的事件数量。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
 | size      | number   | 是   | 事件包的事件大小，单位为byte。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | data      | string[] | 是   | 事件包的事件信息。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | 是   | 事件对象集合。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 是   | 事件对象集合。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## AppEventGroup<sup>11+</sup>
 
