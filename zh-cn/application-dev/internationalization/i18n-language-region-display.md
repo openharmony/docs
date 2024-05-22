@@ -13,7 +13,6 @@
 1. 导入模块。
    ```ts
    import { i18n } from '@kit.LocalizationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 本地化语言名称。
