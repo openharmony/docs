@@ -18,7 +18,7 @@
 2. 本地化语言名称。
    在给用户提供语言名称的场景中，例如切换系统语言时，系统展示用户可读的本地化语言名称，以德语为例。
    ```ts
-   let displayLanguage = i18n.System.getDisplayLanguage("de", "zh-Hans-CN"); // 德语
+   let displayLanguage = i18n.System.getDisplayLanguage("de", "zh-Hans-CN"); // 德文
    // language: 语言两字母代码，如"zh"，"de"，"fr"等
    // locale: 本地化标识符，如"en-GB"、"en-US"、"zh-Hans-CN"等
    // sentenceCase: 返回的语言名称是否需要首字母大写，默认值：true
