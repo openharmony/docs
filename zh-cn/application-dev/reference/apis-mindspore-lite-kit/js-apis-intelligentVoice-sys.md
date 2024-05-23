@@ -72,7 +72,7 @@ getWakeupManager(): WakeupManager
 
 | 类型                          | 说明         |
 | ----------------------------- | ------------ |
-| [WakeupManager](#wakeupManager) | 智能语音管理类。 |
+| [WakeupManager](#wakeupmanager) | 智能语音管理类。 |
 
 **错误码：**
 
@@ -400,7 +400,7 @@ if (intelligentVoiceManager != null) {
 
 ## WakeupManager
 
-唤醒管理类，使用前需要通过[getWakeupManager()](#intelligentvoicegetwakeupmanager)获取唤醒管理实例。
+唤醒管理类，使用前需要通过[getWakeupManager()](#intelligentvoicegetwakeupmanager12)获取唤醒管理实例。
 
 ### setParameter<sup>12+</sup>
 
@@ -518,7 +518,7 @@ getUploadFiles(maxCount: number): Promise&lt;Array&lt;UploadFile&gt;&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;Array&lt;[UploadFile](#uploadFile)&gt;&gt;   | 返回获取的文件。      |
+|  Promise&lt;Array&lt;[UploadFile](#uploadfile12)&gt;&gt;   | 返回获取的文件。      |
 
 **错误码：**
 
@@ -562,7 +562,7 @@ getWakeupSourceFiles(): Promise&lt;Array&lt;WakeupSourceFile&gt;&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;Array&lt;[WakeupSourceFile](#wakeupSourceFile)&gt;&gt;            | 返回唤醒资源文件。                   |
+|  Promise&lt;Array&lt;[WakeupSourceFile](#wakeupsourcefile12)&gt;&gt;            | 返回唤醒资源文件。                   |
 
 **错误码：**
 
@@ -611,7 +611,7 @@ enrollWithWakeupFilesForResult(wakeupFiles: Array\<WakeupSourceFile\>, wakeupInf
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;[EnrollResult](#enrollResult)&gt;    | 返回唤醒资源文件。                   |
+|  Promise&lt;[EnrollResult](#enrollresult)&gt;    | 返回唤醒资源文件。                   |
 
 **错误码：**
 
@@ -1724,7 +1724,7 @@ evaluateForResult(word: string): Promise\<EvaluationResult\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;[EvaluationResult](#evaluationResult)&gt;     | 返回评估结果。      |
+|  Promise&lt;[EvaluationResult](#evaluationresult12)&gt;     | 返回评估结果。      |
 
 **错误码：**
 
