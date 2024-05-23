@@ -40,6 +40,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -98,6 +99,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -151,6 +153,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
@@ -185,6 +188,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -243,6 +247,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -296,6 +301,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -355,6 +361,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -407,6 +414,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus((error, data) => {
@@ -434,6 +442,7 @@ hasWindowFocus(): Promise\<boolean>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
@@ -459,6 +468,7 @@ getWant(callback: AsyncCallback\<Want>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant((error, data) => {
@@ -488,6 +498,7 @@ getWant(): Promise\<Want>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
@@ -513,6 +524,7 @@ getContext(): Context
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
@@ -543,6 +555,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf(
@@ -570,6 +583,7 @@ terminateSelf(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then(() => {
@@ -608,6 +622,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -651,6 +666,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -706,6 +722,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import rpc from '@ohos.rpc';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -755,6 +772,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
@@ -787,6 +805,7 @@ getWindow(): Promise\<window.Window>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
@@ -805,6 +824,7 @@ featureAbility.getWindow().then((data: window.Window) => {
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```
 featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 ```
@@ -828,6 +848,7 @@ featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```
 featureAbility.AbilityStartSetting.BOUNDS_KEY
 ```
