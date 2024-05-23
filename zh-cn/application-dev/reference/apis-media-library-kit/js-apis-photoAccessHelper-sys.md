@@ -46,7 +46,7 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if type displayName is not string.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -105,7 +105,7 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if type displayName or albumUri is not string.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -159,7 +159,7 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if type displayName is not string.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -222,7 +222,7 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if type displayName is not string.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
@@ -283,7 +283,7 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900015       |  File exists.         |
 | 13900020     | Invalid argument.         |
@@ -346,7 +346,7 @@ createAlbum(name: string): Promise&lt;Album&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900015       |  File exists.         |
 | 13900020     | Invalid argument.         |
@@ -400,7 +400,7 @@ deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): v
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -469,7 +469,7 @@ deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -528,7 +528,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: 
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied.         |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -585,7 +585,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchR
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied.         |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -743,7 +743,7 @@ deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000002       | Invalid uri.         |
@@ -816,7 +816,7 @@ deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000002       | Invalid uri.         |
@@ -877,7 +877,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -955,7 +955,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1025,7 +1025,7 @@ saveFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401   | if the argument is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 
@@ -1093,7 +1093,7 @@ saveFormInfo(info:FormInfo):Promise&lt;void&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401   | if the argument is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -1153,7 +1153,7 @@ removeFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401   | if the argument is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -1211,7 +1211,7 @@ removeFormInfo(info:FormInfo):Promise&lt;void&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
 | 202   | Permission verification failed, application which is not a system application uses system API.         |
-| 401   | if the argument is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -1271,7 +1271,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1331,7 +1331,7 @@ open(mode: string): Promise&lt;number&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202     |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1387,7 +1387,7 @@ setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1451,7 +1451,7 @@ setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1511,7 +1511,7 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1577,7 +1577,7 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1637,7 +1637,7 @@ getExif(): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1697,7 +1697,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1772,7 +1772,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1832,7 +1832,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -1897,7 +1897,7 @@ setPending(pendingState: boolean, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -1965,7 +1965,7 @@ setPending(pendingState: boolean): Promise&lt;void&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2013,7 +2013,7 @@ isEdited(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2075,7 +2075,7 @@ isEdited(): Promise&lt;boolean&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2133,7 +2133,7 @@ requestEditData(callback: AsyncCallback&lt;string&gt;): void
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2193,7 +2193,7 @@ requestEditData(): Promise&lt;string&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2247,7 +2247,7 @@ getEditData(): Promise&lt;MediaAssetEditData&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2300,7 +2300,7 @@ requestSource(callback: AsyncCallback&lt;number&gt;): void
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2357,7 +2357,7 @@ requestSource(): Promise&lt;number&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2415,7 +2415,7 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2485,7 +2485,7 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2541,7 +2541,7 @@ revertToOriginal(callback: AsyncCallback&lt;void&gt;)
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2600,7 +2600,7 @@ revertToOriginal(): Promise&lt;void&gt;
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2660,7 +2660,7 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2725,7 +2725,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2789,7 +2789,7 @@ cancelPhotoRequest(requestId: string): void
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -2854,7 +2854,7 @@ getAnalysisData(analysisType: AnalysisType): Promise\<string>
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401      | if parameter is invalid.          |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011 | System inner fail.                |
 
 **示例：**
@@ -2918,7 +2918,7 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&g
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -2988,7 +2988,7 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3054,7 +3054,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3126,7 +3126,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3192,7 +3192,7 @@ setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3264,7 +3264,7 @@ setCoverUri(uri: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
@@ -3337,7 +3337,7 @@ constructor(compatibleFormat: string, formatVersion: string)
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.          |
 
 **示例：**
@@ -3388,7 +3388,7 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000001      | Invalid display name.         |
 | 14000011       | System inner fail.         |
 
@@ -3434,7 +3434,7 @@ setFavorite(favoriteState: boolean): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -3485,7 +3485,7 @@ setHidden(hiddenState: boolean): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -3536,7 +3536,7 @@ setUserComment(userComment: string): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -3588,7 +3588,7 @@ setEditData(editData: MediaAssetEditData): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -3647,7 +3647,7 @@ addResource(type: ResourceType, proxy: PhotoProxy): void
 | 错误码ID    | 错误信息                              |
 |----------|-----------------------------------|
 | 202      | Called by non-system application. |
-| 401      | if parameter is invalid.          |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011 | System inner fail.                | 
 | 14000016 | Operation Not Support.            |
 
@@ -3698,7 +3698,7 @@ setLocation(longitude: number, latitude: number): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      | Called by non-system application. |
-| 401      |  if parameter is invalid.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011 |  System inner fail.         |
 
 **示例：**
@@ -3757,7 +3757,7 @@ constructor(assets: Array&lt;PhotoAsset&gt;)
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.   |
-| 401      |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.          |
 
 **示例：**
@@ -3801,7 +3801,7 @@ setFavorite(favoriteState: boolean): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -3852,7 +3852,7 @@ setHidden(hiddenState: boolean): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -3903,7 +3903,7 @@ setUserComment(userComment: string): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -3973,7 +3973,7 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202   |  Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011   | System inner fail.        |
 
 **示例：**
@@ -4027,7 +4027,7 @@ static deleteAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;vo
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied.         |
 | 202   |  Called by non-system application.  |
-| 401      |  if parameter is invalid.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011 |  System inner fail.         |
 
 **示例：**
@@ -4076,7 +4076,7 @@ setCoverUri(coverUri: string): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -4131,7 +4131,7 @@ moveAssets(assets: Array&lt;PhotoAsset&gt;, targetAlbum: Album): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
@@ -4191,7 +4191,7 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
@@ -4248,7 +4248,7 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016 |  Operation Not Support.     |
 
@@ -4303,7 +4303,7 @@ setDisplayLevel(displayLevel: number): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -4348,7 +4348,7 @@ setIsMe(): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -4399,7 +4399,7 @@ dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016       | Operation Not support.         |
 
@@ -4460,7 +4460,7 @@ mergeAlbum(target: Album): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202        |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 | 14000016       | Operation Not support.         |
 
@@ -4519,7 +4519,7 @@ placeBefore(album: Album): void;
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 202      |  Called by non-system application.         |
-| 401       |  if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
 **示例：**
