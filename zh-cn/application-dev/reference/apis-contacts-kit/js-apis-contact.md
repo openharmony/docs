@@ -38,7 +38,7 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
