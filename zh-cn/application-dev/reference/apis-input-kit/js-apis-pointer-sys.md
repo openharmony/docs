@@ -28,7 +28,7 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为5。   |
+| speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为7。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
@@ -61,7 +61,7 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
+| speed | number | 是    | 鼠标移动速度，范围1-11，默认为7。 |
 
 **返回值**：
 
@@ -947,7 +947,7 @@ setTouchpadPointerSpeed(speed: number, callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed | number                    | 是    |speed代表光标移动速度。speed取值范围[1,11]，默认5。  |
+| speed | number                    | 是    |speed代表光标移动速度。speed取值范围[1,11]，默认6。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -980,7 +980,7 @@ setTouchpadPointerSpeed(speed: number): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed| number | 是    | speed代表光标移动速度。speed取值范围[1,11]，默认5。    |
+| speed| number | 是    | speed代表光标移动速度。speed取值范围[1,11]，默认6。    |
 
 **返回值**：
 
