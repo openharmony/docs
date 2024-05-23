@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 ```
 
@@ -414,7 +414,7 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -484,7 +484,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -552,7 +552,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -640,7 +640,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -717,7 +717,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -790,7 +790,7 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -859,7 +859,7 @@ getPublicKey() : cryptoFramework.PubKey
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -933,7 +933,7 @@ checkValidityWithDate(date: string) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -999,7 +999,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1057,7 +1057,7 @@ getSerialNumber() : number
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1122,7 +1122,7 @@ getCertSerialNumber() : bigint
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -1195,7 +1195,7 @@ getIssuerName() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -1268,7 +1268,7 @@ getSubjectName() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -1341,7 +1341,7 @@ getNotBeforeTime() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -1414,7 +1414,7 @@ getNotAfterTime() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1488,7 +1488,7 @@ getSignature() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1562,7 +1562,7 @@ getSignatureAlgName() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1636,7 +1636,7 @@ getSignatureAlgOid() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -1709,7 +1709,7 @@ getSignatureAlgParams() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -1781,7 +1781,7 @@ getKeyUsage() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -1854,7 +1854,7 @@ getExtKeyUsage() : DataArray
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -1917,7 +1917,7 @@ getBasicConstraints() : number
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1984,7 +1984,7 @@ getSubjectAltNames() : DataArray
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2057,7 +2057,7 @@ getIssuerAltNames() : DataArray
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2130,7 +2130,7 @@ getItem(itemType: CertItemType) : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2208,7 +2208,7 @@ match(param: X509CertMatchParameters): boolean
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2300,7 +2300,7 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2385,7 +2385,7 @@ getSubjectX500DistinguishedName(): X500DistinguishedName
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2470,7 +2470,7 @@ toString(): string
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2555,7 +2555,7 @@ hashCode(): Uint8Array
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2640,7 +2640,7 @@ getExtensionsObject(): CertExtension
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -2724,7 +2724,7 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
@@ -2787,7 +2787,7 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
@@ -2849,7 +2849,7 @@ getEncoded() : EncodingBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
@@ -2921,7 +2921,7 @@ getOidList(valueType : ExtensionOidType) : DataArray
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
@@ -2994,7 +2994,7 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
@@ -3065,7 +3065,7 @@ checkCA() : number
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
@@ -3130,7 +3130,7 @@ hasUnsupportedCriticalExtension(): boolean
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const encodingData = [
@@ -3181,7 +3181,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3252,7 +3252,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -3315,7 +3315,7 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3384,7 +3384,7 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -3454,7 +3454,7 @@ isRevoked(cert : X509Cert) : boolean
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -3539,7 +3539,7 @@ getType() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3607,7 +3607,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3681,7 +3681,7 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -3751,7 +3751,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3909,7 +3909,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -4048,7 +4048,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4116,7 +4116,7 @@ getIssuerName() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4190,7 +4190,7 @@ getLastUpdate() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4264,7 +4264,7 @@ getNextUpdate() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4343,7 +4343,7 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4423,7 +4423,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4518,7 +4518,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4592,7 +4592,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4663,7 +4663,7 @@ getTbsInfo() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4737,7 +4737,7 @@ getSignature() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4811,7 +4811,7 @@ getSignatureAlgName() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4885,7 +4885,7 @@ getSignatureAlgOid() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -4959,7 +4959,7 @@ getSignatureAlgParams() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -5030,7 +5030,7 @@ isRevoked(cert : X509Cert) : boolean
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -5113,7 +5113,7 @@ getType() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5179,7 +5179,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5250,7 +5250,7 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -5318,7 +5318,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -5429,7 +5429,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit'
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -5521,7 +5521,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5587,7 +5587,7 @@ getIssuerName() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -5659,7 +5659,7 @@ getLastUpdate() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -5731,7 +5731,7 @@ getNextUpdate() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -5808,7 +5808,7 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -5886,7 +5886,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -5979,7 +5979,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6051,7 +6051,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6120,7 +6120,7 @@ getSignature() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6192,7 +6192,7 @@ getSignatureAlgName() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6264,7 +6264,7 @@ getSignatureAlgOid() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6336,7 +6336,7 @@ getSignatureAlgParams() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6408,7 +6408,7 @@ getTBSInfo() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6480,7 +6480,7 @@ getExtensions(): DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6557,7 +6557,7 @@ match(param: X509CRLMatchParameters): boolean
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6666,7 +6666,7 @@ getIssuerX500DistinguishedName(): X500DistinguishedName
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6736,7 +6736,7 @@ toString(): string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6806,7 +6806,7 @@ hashCode(): Uint8Array
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6876,7 +6876,7 @@ getExtensionsObject(): CertExtension
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -6957,7 +6957,7 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -7021,7 +7021,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书链二进制数据，需业务自行赋值
@@ -7092,7 +7092,7 @@ validate(certChain : CertChainData) : Promise\<void>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书链二进制数据，需业务自行赋值
@@ -7138,7 +7138,7 @@ algorithm : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -7189,7 +7189,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7271,7 +7271,7 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7341,7 +7341,7 @@ getSerialNumber() : number
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7416,7 +7416,7 @@ getCertIssuer() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7492,7 +7492,7 @@ getRevocationDate() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7570,7 +7570,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7650,7 +7650,7 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7728,7 +7728,7 @@ getSerialNumber() : bigint
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7802,7 +7802,7 @@ getCertIssuer() : DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7876,7 +7876,7 @@ getRevocationDate() : string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -7950,7 +7950,7 @@ getExtensions(): DataBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8024,7 +8024,7 @@ hasExtensions(): boolean
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8098,7 +8098,7 @@ getCertIssuerX500DistinguishedName(): X500DistinguishedName
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8167,7 +8167,7 @@ toString(): string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8236,7 +8236,7 @@ hashCode(): Uint8Array
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8305,7 +8305,7 @@ getExtensionsObject(): CertExtension
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8446,7 +8446,7 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8561,7 +8561,7 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8654,7 +8654,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8753,7 +8753,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8872,7 +8872,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -8997,7 +8997,7 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -9113,7 +9113,7 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -9229,7 +9229,7 @@ createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -9325,7 +9325,7 @@ buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -9430,7 +9430,7 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -9478,7 +9478,7 @@ getCertList(): Array\<X509Cert>
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -9608,7 +9608,7 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -9751,7 +9751,7 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -9878,7 +9878,7 @@ toString(): string
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -10005,7 +10005,7 @@ hashCode(): Uint8Array
 **示例：**
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -10145,7 +10145,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -10216,7 +10216,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -10278,7 +10278,7 @@ getName(): string
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -10344,7 +10344,7 @@ getName(type: string): Array\<string>
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
@@ -10404,7 +10404,7 @@ getEncoded(): EncodingBlob
 **示例：**
 
 ```ts
-import { cert } from '@kit.devicecertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
