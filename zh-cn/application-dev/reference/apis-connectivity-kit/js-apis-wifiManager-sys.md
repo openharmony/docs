@@ -1697,7 +1697,7 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"streamChange"字符串。 |
+| type | string | 是 | 固定填"deviceConfigChange"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置. |
 
 **错误码：**
@@ -1724,7 +1724,7 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"streamChange"字符串。 |
+| type | string | 是 | 固定填"deviceConfigChange"字符串。 |
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
 
 **错误码：**
