@@ -1192,7 +1192,7 @@ function delay(args: number): number {
   return args;
 }
 
-let task: taskpool.Task = new taskpool.Task(test, 1);
+let task: taskpool.Task = new taskpool.Task(delay, 1);
 task.onStartExecution(()=>{
   console.info("taskpool: onStartExecution")
 });
@@ -1230,6 +1230,7 @@ onExecutionFailed(callback: CallbackFunctionWithError): void
 ```ts
 import { taskpool } from '@kit.ArkTS'
 import { BusinessError } from '@kit.BasicServicesKit'
+import { HashMap } from '@kit.ArkTS'
 
 @Concurrent
 function test(args:number) {
