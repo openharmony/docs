@@ -126,7 +126,7 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -210,7 +210,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -290,7 +290,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -368,7 +368,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -452,7 +452,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -546,7 +546,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -636,7 +636,7 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **示例：**
 
@@ -715,7 +715,7 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -792,7 +792,7 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -872,7 +872,7 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -948,7 +948,7 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -1021,7 +1021,7 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1104,7 +1104,7 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1248,7 +1248,7 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 
 **示例：**
 
@@ -1283,7 +1283,7 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1318,7 +1318,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1361,7 +1361,7 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1398,7 +1398,7 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1474,7 +1474,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1558,7 +1558,7 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1639,7 +1639,7 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1734,7 +1734,7 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1823,7 +1823,7 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1896,7 +1896,7 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -1978,7 +1978,7 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2057,7 +2057,7 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2149,7 +2149,7 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2239,7 +2239,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2315,7 +2315,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2399,7 +2399,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2480,7 +2480,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2575,7 +2575,7 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2666,7 +2666,7 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2741,7 +2741,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2825,7 +2825,7 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -2906,7 +2906,7 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3001,7 +3001,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3091,7 +3091,7 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3164,7 +3164,7 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3251,7 +3251,7 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3335,7 +3335,7 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3412,7 +3412,7 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: Mandatory parameters are left unspecified.  |
 
 **示例：**
 
@@ -3483,7 +3483,7 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -3558,7 +3558,7 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
@@ -3647,7 +3647,7 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
 | 201      | Permission denied. |
-| 401      | Parameter error.   |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.  |
 
 **示例：**
 
