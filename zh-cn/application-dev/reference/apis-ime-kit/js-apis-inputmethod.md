@@ -182,11 +182,11 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -212,6 +212,11 @@ try{
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
+
+> **说明：**
+>
+> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
@@ -237,11 +242,11 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -265,6 +270,10 @@ try {
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
+
+> **说明：**
+>
+> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
@@ -309,11 +318,11 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -350,6 +359,10 @@ try {
 }
 ```
 
+> **说明：**
+>
+> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+
 ## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
@@ -378,11 +391,11 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -416,6 +429,10 @@ try {
   console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
+
+> **说明：**
+>
+> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -460,11 +477,11 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -491,6 +508,10 @@ try {
   console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
 }
 ```
+
+> **说明：**
+>
+> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
 
@@ -520,11 +541,11 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -549,6 +570,10 @@ try {
   console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
 }
 ```
+
+> **说明：**
+>
+> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getInputMethodController<sup>(deprecated)</sup>
 
@@ -780,11 +805,11 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -839,11 +864,11 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -1130,11 +1155,11 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.          |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1184,11 +1209,11 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.      |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1227,11 +1252,11 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.          |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1277,11 +1302,11 @@ updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1322,11 +1347,11 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1373,11 +1398,11 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1415,11 +1440,11 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1465,11 +1490,11 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1609,10 +1634,11 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -1652,10 +1678,11 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -1693,10 +1720,11 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -1736,10 +1764,11 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -1846,11 +1875,11 @@ on(type: 'insertText', callback: (text: string) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -1918,11 +1947,11 @@ on(type: 'deleteLeft', callback: (length: number) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -1979,11 +2008,11 @@ on(type: 'deleteRight', callback: (length: number) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2040,11 +2069,11 @@ on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2101,11 +2130,11 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2162,11 +2191,11 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                           |
 | -------- | -------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2223,11 +2252,11 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2288,11 +2317,11 @@ on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -2352,11 +2381,11 @@ on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -2416,11 +2445,11 @@ on(type: 'getLeftTextOfCursor', callback: (length: number) => string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2485,11 +2514,11 @@ on(type: 'getRightTextOfCursor', callback: (length: number) => string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2554,11 +2583,11 @@ on(type: 'getTextIndexAtCursor', callback: () => number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2676,11 +2705,11 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2732,11 +2761,11 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2780,11 +2809,11 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2824,11 +2853,11 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
@@ -2873,11 +2902,11 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.          |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -2927,11 +2956,11 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.         |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -2979,11 +3008,11 @@ getInputMethodsSync(enable: boolean): Array&lt;InputMethodProperty&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | bundle manager error.                 |
 | 12800008 |input method manager service error. |
 
@@ -3013,11 +3042,11 @@ getAllInputMethods(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -3055,11 +3084,11 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800001 | bundle manager error.              |
 | 12800008 | input method manager service error. |
 
