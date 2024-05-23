@@ -352,6 +352,170 @@ Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.cu
 
 ![TabsChange3](figures/TabsChange3.gif)
 
+## 支持适老化
+
+在适老化大字体场景下，底部页签提供大字体弹窗显示内容。当组件识别到大字体时，基于设置的文字和图标等内容，构建长按提示弹窗。当用户长按弹窗后，滑动到下一个页签位置时，使用新页签的弹窗提示内容替换上一个页签提示内容，抬手关闭弹窗并切换到对应TabContent内容页。
+
+>  **说明：** 
+>
+> 弹窗只适用于底部页签BottomTabBarStyle。
+
+**图14** 在适老化场景下通过长按底部页签显示适老化弹窗。
+
+![适老化弹窗](figures/tabs11.png)
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { Configuration } from '@ohos.app.ability.Configuration';
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
+import uiAppearance from '@ohos.uiAppearance';
+
+@Entry
+@Component
+struct Demo {
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  @State currentFontSizeScale: string = '';
+  @State showBuilderTab: boolean = false;
+  @State fontSize: number = 15;
+  private darkModeKey: string[] = Object.keys(uiAppearance.DarkMode).filter(
+    key => typeof uiAppearance.DarkMode[key] === 'number')
+
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      fontSizeScale: scale,
+    };
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (err) {
+        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
+        promptAction.showToast({ message: `scale:${scale}, err:${JSON.stringify(err)}` })
+      } else {
+        this.currentFontSizeScale = String(scale);
+        if (scale > 1) {
+          this.fontSize = 8;
+        } else {
+          this.fontSize = 15;
+        }
+        console.log('updateConfiguration success.');
+        promptAction.showToast({ message: `scale:${scale}, updateConfiguration success.` })
+      }
+    });
+  }
+
+  darkMode(isDarkMode: boolean): void {
+    let mode: uiAppearance.DarkMode = uiAppearance.DarkMode.ALWAYS_LIGHT;
+    if (isDarkMode) {
+      mode = uiAppearance.DarkMode.ALWAYS_DARK;
+    }
+    if (mode == uiAppearance.getDarkMode()) {
+      console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`)
+      return;
+    }
+    try {
+      uiAppearance.setDarkMode(mode).then(() => {
+        console.info(`TitleDarkMode Set ${this.darkModeKey[mode]} successfully.`)
+      }).catch((error: Error) => {
+        console.error(`TitleDarkMode Set ${this.darkModeKey[mode]} failed, ${error.message}`);
+      });
+    } catch (error) {
+      let message = (error as BusinessError).message;
+      console.error(`TitleDarkMode Set dark-mode failed, ${message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Row() {
+          Text(`current fontSizeScale:${this.currentFontSizeScale}`)
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+        }
+
+        Row() {
+          Button('1.75')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(1.75);
+            })
+          Button('2')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(2);
+            })
+        }.margin({ top: 25 })
+
+        Row() {
+          Button('3.2')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(3.2);
+            })
+          Button('1')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              await this.setFontScale(1);
+            })
+        }
+
+        Row() {
+          Button('深色模式')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              this.darkMode(true);
+            })
+          Button('浅色模式')
+            .margin({ top: 5, bottom: 5 })
+            .fontSize(this.fontSize)
+            .width('40%')
+            .onClick(async () => {
+              this.darkMode(false);
+            })
+        }
+      }.alignItems(HorizontalAlign.Start)
+
+      Column() {
+        Tabs({ barPosition: BarPosition.End }) {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Pink)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'OverLength'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Yellow)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'SixLine'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Blue)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Blue'))
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(Color.Green)
+          }.tabBar(new BottomTabBarStyle($r('sys.media.ohos_app_icon'), 'Green'))
+        }
+        .vertical(false)
+        .scrollable(true)
+        .barMode(BarMode.Fixed)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .width('100%')
+        .backgroundColor(0xF1F3F5)
+      }.width('80%').height(200)
+      .margin({ top: 200 })
+    }.width('100%')
+  }
+}
+```
+
 ## 相关实例
 
 如需详细了解Tabs的更多实现，请参考以下示例：
