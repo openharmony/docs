@@ -885,6 +885,34 @@ try {
 }
 ```
 
+## inputMonitor.on('fingerprint')<sup>12+</sup>
+
+on(type: 'fingerprint', receiver: Callback[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt): void;
+
+Enables listening for fingerprint key events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **fingerprint**.|
+| receiver | Callback&lt;[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | Yes  | Callback used to receive the reported data.    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error.       |
+
+
 ## inputMonitor.off('threeFingersTap')<sup>11+</sup>
 
 off(type: 'threeFingersTap', receiver?: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt;): void
@@ -947,3 +975,31 @@ try {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+
+## inputMonitor.off('fingerprint')<sup>12+</sup>
+
+off(type: 'fingerprint', receiver?: Callback[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt): void;
+
+Cancels listening for fingerprint key events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **fingerprint**.     |
+| receiver | Callback&lt;[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | Yes  | Callback used to receive the reported data.    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error.       |

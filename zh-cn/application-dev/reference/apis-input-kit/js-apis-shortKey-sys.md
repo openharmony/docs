@@ -98,3 +98,40 @@ try {
   console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## 枚举类型说明
+
+
+### FingerprintAction
+
+```
+enum FingerprintAction
+```
+
+**描述**
+
+枚举按键事件类型。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+**起始版本：** 12
+
+| 枚举值    | 描述 | 
+| -------- | --------    |
+| DOWN     | 按下事件。   | 
+| UP       | 按下事件。 | 
+| SLIDE    | 滑动事件。 | 
+| RETOUCH  | 双击事件。 | 
+| CLICK    | 点击事件。 | 
+
+
+## FingerprintEvent<sup>12+</sup>
+
+
+**系统能力：** SystemCapability.MultimodalInput.Input.Core
+
+| 名称      | 类型                                       | 说明                    |
+| --------  | --------                                  | --------                |
+| action    | [FingerprintAction](#fingerprintaction)   | 按键事件类型。           |
+| distanceX | number                                    | 相对于光标位置的x轴偏移量【正数表示向右移动，负数表示向左移动】。 |
+| distanceY | number                                    | 相对于光标位置的y轴偏移量【正数表示向上移动，负数表示向下移动】。 |
