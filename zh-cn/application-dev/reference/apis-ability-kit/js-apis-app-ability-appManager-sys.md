@@ -350,17 +350,18 @@ on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bun
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-abilityFirstFrameStateObserverForAll: 	 	      		   appManager.AbilityFirstFrameStateObserver = {
-  onAbilityFirstFrameDrawn(abilityStateData:             		appManager.AbilityFirstFrameStateData) {
-	  console.log("abilityFirstFrame: ",      	              		  JSON.stringify(abilityStateData));
-    }
-  };
+let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
+    console.log("abilityFirstFrame: ", JSON.stringify(abilityStateData));
+  }
+};
 try {
-  appManager.on('abilityFirstFrameState',      				  	  this.abilityFirstFrameStateObserverForAll);
+  appManager.on('abilityFirstFrameState', abilityFirstFrameStateObserverForAll);
 } catch(e) {
-  console.log('error log:' + e.code)
+  console.log('error log:' + (e as BusinessError).code);
 }
 ```
 
@@ -628,12 +629,19 @@ off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): 
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
+    console.log("abilityFirstFrame: ", JSON.stringify(abilityStateData));
+  }
+};
 
 try {
-  appManager.off('abilityFirstFrameState', 		          		this.abilityFirstFrameStateObserverForAll)
+  appManager.off('abilityFirstFrameState', abilityFirstFrameStateObserverForAll);
 } catch (e) {
-  console.log('error log:' + e.code)
+  console.log('error log:' + (e as BusinessError).code);
 }
 ```
 

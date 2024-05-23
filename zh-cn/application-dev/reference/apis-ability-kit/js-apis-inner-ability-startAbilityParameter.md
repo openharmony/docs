@@ -24,6 +24,8 @@ import ability from '@ohos.ability.ability';
 | abilityStartSettings<sup>11+<sup> | Record\<string, Object> | 否    | 启动Ability的特殊属性，当开发者启动Ability时，该属性可以作为调用中的输入参数传递。推荐使用该属性替代abilityStartSetting，设置该属性后，abilityStartSetting不再生效。 |
 
 **示例：**
+
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';

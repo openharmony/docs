@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import startupManager  from '@ohos.app.appstartup.startupManager';
+import { startupManager } from '@kit.AbilityKit';
 ```
 
 ## startupManager.run
@@ -50,30 +50,26 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import startupManager from '@ohos.app.appstartup.startupManager';
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startup = startupManager;
-    let startParams = 'Sample_001';
+    let startParams = ['Sample_001'];
     try {
-        startup.run(startParams).then(() => {
+      startupManager.run(startParams).then(() => {
         console.log('StartupTest startupManager run then, startParams = ')
-        }).catch(error => {
+      }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
         console.info("StartupTest promise catch error, startParams = "
-            + JSON.stringify(startParams));
-        })
+          + JSON.stringify(startParams));
+      })
     } catch (error) {
-        let errmsg = JSON.stringify(error)
-        let errCode = error.code
-        console.log('Startup catch error , errCode= ' + errCode);
-        console.log('Startup catch error ,error= ' + errmsg);
+      let errMsg = (error as BusinessError).message;
+      let errCode = (error as BusinessError).code;
+      console.log('Startup catch error , errCode= ' + errCode);
+      console.log('Startup catch error ,error= ' + errMsg);
+    }
   }
 }
 ```
@@ -89,12 +85,9 @@ removeAllStartupTaskResults(): void
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -106,8 +99,8 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = removeAllStartupTaskResults.removeAllStartupTaskResults();
-    
+    let result = startupManager.removeAllStartupTaskResults();
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -151,12 +144,9 @@ getStartupTaskResult(startupTask: string): Object
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -213,12 +203,9 @@ isStartupTaskInitialized(startupTask: string): boolean
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -273,12 +260,9 @@ removeStartupTaskResult(startupTask: string): void
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
