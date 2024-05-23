@@ -33,11 +33,11 @@ on(type: SensorId.COLOR, callback: Callback&lt;ColorResponse&gt;, options?: Opti
 | -------- | ------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                      |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为ColorResponse。         |
-| options  | [Options](#options)                               | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| options  | [Options](js-apis-sensor.md#options)              | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -81,11 +81,11 @@ on(type: SensorId.SAR, callback: Callback&lt;SarResponse&gt;, options?: Options)
 | -------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                        |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 是   | 回调函数，异步上报的传感器数据固定为SarResponse。           |
-| options  | [Options](#options)                           | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
+| options  | [Options](js-apis-sensor.md#options)          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -133,13 +133,12 @@ off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **示例：** 
 
@@ -187,13 +186,12 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission check failed. A non-system application uses the system API. |
 | 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
-| 14500101 | Service exception.                                           |
 
 **示例：**
 
@@ -233,33 +231,9 @@ try {
 | COLOR<sup>10+</sup> | 14   | 颜色传感器。<br>系统API：此接口为系统接口     |
 | SAR<sup>10+</sup>   | 15   | 吸收比率传感器。<br>系统API：此接口为系统接口 |
 
-## SensorAccuracy<sup>11+</sup>
-
-传感器数据的精度。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称                | 值   | 说明               |
-| ------------------- | ---- | ------------------ |
-| ACCURACY_UNRELIABLE | 0    | 传感器数据不可信。 |
-| ACCURACY_LOW        | 1    | 传感器低挡位精度。 |
-| ACCURACY_MEDIUM     | 2    | 传感器中挡位精度。 |
-| ACCURACY_HIGH       | 3    | 传感器高挡位精度。 |
-
-## Response
-
-传感器数据的时间戳。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称                   | 类型                                              | 可读 | 可写 | 说明                         |
-| ---------------------- | ------------------------------------------------- | ---- | ---- | ---------------------------- |
-| timestamp              | number                                            | 是   | 是   | 传感器数据上报的时间戳。     |
-| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | 是   | 否   | 传感器数据上报的精度挡位值。 |
-
 ## ColorResponse<sup>10+</sup>
 
-颜色传感器数据，继承于[Response](#response)。
+颜色传感器数据，继承于[Response](js-apis-sensor.md#response)。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -273,7 +247,7 @@ try {
 
 ## SarResponse<sup>10+ </sup>
 
-吸收比率传感器数据，继承于[Response](#response)。
+吸收比率传感器数据，继承于[Response](js-apis-sensor.md#response)。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
@@ -283,13 +257,3 @@ try {
 | 名称            | 类型   | 可读 | 可写 | 说明                            |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
 | absorptionRatio | number | 是   | 是   | 表示具体的吸收率，单位 : W/kg。 |
-
-## Options
-
-设置传感器上报频率。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称     | 类型                                                     | 可读 | 可写 | 说明                                                         |
-| -------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number/[SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | 是   | 是   | 表示传感器的上报频率，默认值为200000000ns。该属性有最小值和最大值的限制，由硬件支持的上报频率决定。 |
