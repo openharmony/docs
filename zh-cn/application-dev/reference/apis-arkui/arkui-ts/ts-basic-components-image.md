@@ -345,10 +345,10 @@ resizable(value: ResizableOptions)
 
 | 名称     | 描述                         |
 | ------ | -------------------------- |
-| None   | 不使用图片插值。                   |
-| High   | 高图片插值，插值质量最高，可能会影响图片渲染的速度。 |
-| Medium | 中图片插值。                     |
-| Low    | 低图片插值。                     |
+| None   | 最近邻插值。                   |
+| High   | Cubic插值，插值质量最高，可能会影响图片渲染的速度。 |
+| Medium | MipMap插值。                     |
+| Low    | 双线性插值。                     |
 
 ## ImageRenderMode
 
