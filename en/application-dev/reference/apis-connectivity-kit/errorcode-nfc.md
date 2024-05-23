@@ -80,6 +80,22 @@ The off() API can be called only after on() is called.
 **Solution**
 1. Call **on()** first, and call **off()** before the page exits.
 
+## 3100204
+
+**Error Message**
+
+Tag I/O operation failed.
+
+**Description**
+
+The NFC tag I/O operation fails.
+
+**Possible Causes**
+1. The NFC tag does not support the read/write operation performed.
+
+**Solution**
+1. Implement error handling and display error messages based on service scenarios.
+
 ## 3200101
 
 **Error Message**
