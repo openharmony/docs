@@ -455,6 +455,62 @@ maxFontSize(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
+### onWillInsert<sup>12+</sup>
+
+onWillInsert(callback: Callback\<InsertValue, boolean>)
+
+在将要输入时获取文本值的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。 |
+
+### onDidInsert<sup>12+</sup>
+
+onDidInsert(callback: Callback\<InsertValue>)
+
+完成输入时获取文本值的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。 |
+
+### onWillDelete<sup>12+</sup>
+
+onWillDelete(callback: Callback\<DeleteValue, boolean>)
+
+在将要删除时获取文本值的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。 |
+
+### onDidDelete<sup>12+</sup>
+
+onDidDelete(callback: Callback\<DeleteValue>)
+
+完成输入时获取文本值的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。 |
+
 ## IconOptions<sup>10+</sup>对象说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -481,6 +537,21 @@ maxFontSize(value: number | string | Resource)
 | type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
+
+## InsertValue<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| insertOffset  | number | 是   | 将要插入的值的位置信息。 |
+| insertValue  | string | 是   | 插入的值。 |
+
+## DeleteValue<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| deleteOffset  | number | 是   | 将要删除的值的位置信息。 |
+| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | 是   | 删除值的方向。 |
+| deleteValue  | string | 是   | 删除的值。 | 
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
