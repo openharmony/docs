@@ -1,5 +1,6 @@
 # Flex
 
+
 The **\<Flex>** component allows for flexible layout of child components.
 
 > **NOTE**
@@ -18,9 +19,9 @@ Supported
 
 Flex(value?: FlexOptions)
 
-Creates a standard **\<Flex>** component. For details, see [Flex Layout](../../ui/arkts-layout-development-flex-layout.md).
+Creates a standard **\<Flex>** component. For details, see [Flex Layout](../../../ui/arkts-layout-development-flex-layout.md).
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 

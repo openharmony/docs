@@ -16,13 +16,13 @@ Not supported
 
 Rating(options?: { rating: number, indicator?: boolean })
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
 | Name   | Type| Mandatory| Description                                                    |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
-| rating    | number   | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>A value less than 0 evaluates to the value **0**. A value greater than the value of **stars** evaluates to the value of **stars**.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| rating    | number   | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>A value less than 0 evaluates to the value **0**. A value greater than the value of **stars** evaluates to the value of **stars**.<br>Since API version 10, this parameter two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | indicator | boolean  | No  | Whether the component is used only as an indicator.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.|
 
 
@@ -30,9 +30,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name     | Type                                                    | Description                                                        |
 | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| stars     | number                                                       | Total number of ratings.<br>Default value: **5**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
-| stepSize  | number                                                       | Step of an operation.<br>Default value: **0.5**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0.1 evaluates to the default value.<br>Value range: [0.1, stars]|
-| starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>For details about the image types supported by the **starStyle** attribute, see [Image](ts-basic-components-image.md).<br>Local and online images are supported, but not **PixelMap** and **Resource** objects.<br>By default, the image is loaded in asynchronous mode. Synchronous loading is not supported.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **\<Rating>** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
+| stars     | number                                                       | Total number of ratings.<br>Default value: **5**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
+| stepSize  | number                                                       | Step of an operation.<br>Default value: **0.5**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>A value less than 0.1 evaluates to the default value.<br>Value range: [0.1, stars]|
+| starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUri**: image path for the partially selected star. You can use the default system image or a custom image.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>For details about the image types supported by the **starStyle** attribute, see [Image](ts-basic-components-image.md).<br>Local and online images are supported, but not **PixelMap** and **Resource** objects.<br>By default, the image is loaded in asynchronous mode. Synchronous loading is not supported.<br>If **backgroundUri** or **foregroundUri** is set to **undefined** or an empty string, the **\<Rating>** component loads the default star image source.<br>If **secondaryUri** is set to **undefined** or an empty string or is not set, **backgroundUri** is prioritized, which is equivalent to where only **foregroundUri** and **backgroundUri** are set.|
 
 >  **NOTE**
 >
@@ -45,7 +45,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
-| onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.<br>This API can be used in ArkTS widgets since API version 9.|
 
 ## Sequential Keyboard Navigation Specifications                                   
 | Key        | Description                       | 

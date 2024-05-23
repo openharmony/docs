@@ -64,14 +64,16 @@ declare const Reusable: ClassDecorator;
 **Example**
 
 ```ts
-private dataArray: string[] = [];
-  private listener: DataChangeListener;
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | undefined;
 
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.dataArray[index];
   }
 
@@ -80,7 +82,7 @@ private dataArray: string[] = [];
   }
 
   public reloadListener(): void {
-    this.listener.onDataReloaded();
+    this.listener?.onDataReloaded();
   }
 
   public registerDataChangeListener(listener: DataChangeListener): void {
@@ -88,7 +90,7 @@ private dataArray: string[] = [];
   }
 
   public unregisterDataChangeListener(listener: DataChangeListener): void {
-    this.listener = null;
+    this.listener = undefined;
   }
 }
 
@@ -109,7 +111,7 @@ struct MyComponent {
         ListItem() {
           ReusableChildComponent({ item: item })
         }
-      }, item => item)
+      }, (item: string) => item)
     }
     .width('100%')
     .height('100%')
@@ -121,7 +123,7 @@ struct MyComponent {
 struct ReusableChildComponent {
   @State item: string = ''
 
-  aboutToReuse(params) {
+  aboutToReuse(params: ESObject) {
     this.item = params.item;
   }
 
@@ -251,9 +253,9 @@ struct GoodItems {
 
 Analysis results from the profiler tool in DevEco Studio show that, with component reuse, the average component creation time is reduced from 1800 μs to 570 μs.
 
-![before recycle](./figures/before-recycle.png)
+![before reuse](./figures/before-recycle.png)
 
-![using recycle](./figures/using-recycle.png)
+![using reuse](./figures/using-recycle.png)
 
 | Component Reuse | Component Creation Time|
 | -------------- | ------------ |

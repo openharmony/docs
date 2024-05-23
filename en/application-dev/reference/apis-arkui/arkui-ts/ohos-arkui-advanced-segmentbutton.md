@@ -70,7 +70,7 @@ Implements a constructor.
 
 | Name   | Type                                                    | Mandatory| Description                |
 | ------- | ------------------------------------------------------------ | ---- | -------------------- |
-| options | [TabSegmentButtonConstructionOptions](#tabsegmentbuttonconstructionoptions) \|   [CapsuleSegmentButtonConstructionOptions](#capsulesegmentbuttonconstructionoptions) | Yes| Information about the segment button.|
+| options | [TabSegmentButtonOptions](#tabsegmentbuttonoptions) \| [CapsuleSegmentButtonOptions](#capsulesegmentbuttonoptions) | Yes| Information about the segment button.|
 
 ### tab
 

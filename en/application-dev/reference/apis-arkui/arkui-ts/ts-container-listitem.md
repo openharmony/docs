@@ -13,7 +13,7 @@ This component can contain a single child component.
 
 ## APIs
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 ### ListItem<sup>10+</sup>
 
@@ -46,7 +46,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated) | Sticky effect of the list item.<br>Default value: **Sticky.None**<br>This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the \<List> component](ts-container-list.md#attributes) instead.|
 | editable<sup>(deprecated)</sup>  | boolean \| [EditMode](#editmodedeprecated) | Whether to enter editing mode, where the list item can be deleted or moved.<br>This API is deprecated since API version 9. There is no substitute API.<br>Default value: **false**|
 | selectable<sup>8+</sup> | boolean | Whether the current list item is selectable by mouse drag.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.<br>Default value: **true**|
-| selected<sup>10+</sup> | boolean | Whether the list item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.<br>Default value: **false**|
+| selected<sup>10+</sup> | boolean | Whether the list item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.<br>Default value: **false**|
 | swipeAction<sup>9+</sup> | {<br>start?: [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10),<br>end?:[CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10),<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Swipe action displayed when the list item is swiped out from the screen edge.<br>- **start**: swipe action displayed on the left of the list item when the item is swiped right (in vertical list layout) or above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: swipe action displayed on the right of the list item when the item is swiped left (in vertical list layout) or below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>**NOTE**<br>- The top level of the **@builder** function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.<br> - The swipe gesture works only in the list item area. If a swipe causes a child component to extend beyond the list item area, the portion outside the area does not respond to the swipe. In light of this, avoid setting **swipeAction** to a component too wide in a multi-column list.|
 
 ## Sticky<sup>(deprecated)</sup>

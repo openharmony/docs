@@ -6,11 +6,11 @@ With **animateTo**, you can build explicit animations for state changes caused b
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext).
+>  The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 >
->Since API version 9, this API is supported in ArkTS widgets.
+>This API can be used in ArkTS widgets since API version 9.
 >
->  Since API version 10, you can use the [animateTo](../apis/js-apis-arkui-UIContext.md#animateto) API in [UIContext](../apis/js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+>  Since API version 10, you can use the [animateTo](../js-apis-arkui-UIContext.md#animateto) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
 
 ## APIs
 animateTo(value: AnimateParam, event: () => void): void
@@ -23,30 +23,32 @@ animateTo(value: AnimateParam, event: () => void): void
 | event | () => void                        | Yes   | Closure function that displays the animation. The system automatically inserts the transition animation if the status changes in the closure function.|
 
 ## AnimateParam
-                                                                                                             
+
 | Name        | Type         | Mandatory                | Description                                      |
 | ---------- | ---------------|------------------------ | ---------------------------------------- |
-| duration   | number         |  No | Animation duration, in ms.<br>Default value: **1000**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>- The maximum animation duration on an ArkTS widget is 1000 ms. If the set value exceeds the limit, the value **1000** will be used.<br>- A value less than 0 evaluates to the value **0**.<br>- Floating-point values will be rounded down to integers. For example, if the value set is 1.2, **1** will be used.|
+| duration   | number         |  No | Animation duration, in ms.<br>Default value: **1000**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>- The maximum animation duration on an ArkTS widget is 1000 ms. If the set value exceeds the limit, the value **1000** will be used.<br>- A value less than 0 evaluates to the value **0**.<br>- Floating-point values will be rounded down to integers. For example, if the value set is 1.2, **1** will be used.|
 | tempo      | number         | No| Animation playback speed. A larger value indicates faster animation playback, and a smaller value indicates slower animation playback. The value **0** means that there is no animation.<br>Default value: **1.0**<br>**NOTE**<br>A value less than 0 evaluates to the value **1**.|
-| curve      | [Curve](ts-appendix-enums.md#curve) \| [ICurve<sup>9+</sup>](../apis/js-apis-curve.md#icurve) \| string | No| Animation curve.<br>Default value: **Curve.EaseInOut**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| curve      | [Curve](ts-appendix-enums.md#curve) \| [ICurve<sup>9+</sup>](../js-apis-curve.md#icurve) \| string | No| Animation curve.<br>Default value: **Curve.EaseInOut**<br>This API can be used in ArkTS widgets since API version 9.|
 | delay      | number         | No| Delay of animation playback, in ms. By default, the playback is not delayed.<br>Default value: **0**<br>Value range: (-∞, +∞)<br>**NOTE**<br>- A value greater than 0 means to begin the animation after the specified amount of time has elapsed.<br>A value less than 0 means to begin the animation in advance. If the absolute value of **delay** is less than the actual animation duration, the animation starts its first frame from the state at the absolute value. If the absolute value of **delay** is greater than or equal to the actual animation duration, the animation starts its first frame from the end state. The actual animation duration is equal to the duration of a single animation multiplied by the number of animation playback times.<br>- Floating-point values will be rounded down to integers. For example, if the value set is 1.2, **1** will be used.|
 | iterations | number         | No| Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times. The value **0** indicates that there is no animation.<br>Default value: **1**<br>Value range: [-1, +∞)         |
-| playMode   | [PlayMode](ts-appendix-enums.md#playmode)|No| Playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.<br>For details about the restrictions, see **Notes about PlayMode**.|
-| onFinish   | () =&gt; void      | No| Callback invoked when the animation playback is complete.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11)|No| Type of the **onFinish** callback.<br>Default value: **FinishCallbackType.REMOVED**<br>Since API version 11, this API is supported in ArkTS widgets.|
+| playMode   | [PlayMode](ts-appendix-enums.md#playmode)|No| Playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**<br>This API can be used in ArkTS widgets since API version 9.<br>For details about the restrictions, see **Notes about PlayMode**.|
+| onFinish   | () =&gt; void      | No| Callback invoked when the animation playback is complete.<br>This API can be used in ArkTS widgets since API version 9.|
+| finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11)|No| Type of the **onFinish** callback.<br>Default value: **FinishCallbackType.REMOVED**<br>This API can be used in ArkTS widgets since API version 11.|
 | expectedFrameRateRange<sup>11+</sup>   | [ExpectedFrameRateRange](#expectedframeraterange11) | No| Expected frame rate range of the animation.|
 
+> **Notes about PlayMode**:
+>
+> - **PlayMode.Normal** and **PlayMode.Alternate** are recommended. Under these settings, the first round of the animation is played forwards. If **PlayMode.Reverse** or **PlayMode.AlternateReverse** is used, the first round of the animation is played backwards. In this case, the animation jumps to the end state and then starts from there.
+> - When using **PlayMode.Alternate** or **PlayMode.AlternateReverse**, make sure the final state of the animation is the same as the value of the state variable. In other words, make sure the last round of the animation is played forwards. When **PlayMode.Alternate** is used, **iterations** must be set to an odd number. When **PlayMode.AlternateReverse** is used, **iterations** must be set to an even number.
+> - **PlayMode.Reverse** is not recommended. Under this setting, the animation jumps to the end state at the beginning, and its final state will be different from the value of the state variable.
+
 ## ExpectedFrameRateRange<sup>11+</sup>
+
 | Name | Type    | Description     |
 |-----|--------|---------|
 | min | number | Expected minimum frame rate.|
 | max | number | Expected maximum frame rate.|
 | expected | number | Expected optimal frame rate.|
-
-> **Notes about PlayMode**:
-> - **PlayMode.Normal** and **PlayMode.Alternate** are recommended. Under these settings, the first round of the animation is played forwards. If **PlayMode.Reverse** or **PlayMode.AlternateReverse** is used, the first round of the animation is played backwards. In this case, the animation jumps to the end state and then starts from there.
-> - When using **PlayMode.Alternate** or **PlayMode.AlternateReverse**, make sure the final state of the animation is the same as the value of the state variable. In other words, make sure the last round of the animation is played forwards. When **PlayMode.Alternate** is used, **iterations** must be set to an odd number. When **PlayMode.AlternateReverse** is used, **iterations** must be set to an even number.
-> - **PlayMode.Reverse** is not recommended. Under this setting, the animation jumps to the end state at the beginning, and its final state will be different from the value of the state variable.
 
 ## Example
 

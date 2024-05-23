@@ -12,7 +12,7 @@ align(value: Alignment)
 
 Sets the alignment mode of the component content in the drawing area.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,7 +28,7 @@ direction(value: Direction)
 
 Sets how elements are laid out along the main axis of the container.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,7 +44,7 @@ position(value: Position)
 
 Sets the absolute position of the component, which defines the offset of the component's upper left corner relative to the parent component's.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +60,7 @@ markAnchor(value: Position)
 
 Sets the anchor for locating the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,7 +76,7 @@ offset(value: Position)
 
 Sets the offset of the component relative to itself.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -92,7 +92,7 @@ alignRules(value: AlignRuleOption)
 
 Sets the alignment rules in the relative container. This API is valid only when the container is [\<RelativeContainer>](ts-container-relativecontainer.md).
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -104,7 +104,7 @@ Sets the alignment rules in the relative container. This API is valid only when 
 
 ## AlignRuleOption
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Type                                                        | Description                                                        |
 | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |

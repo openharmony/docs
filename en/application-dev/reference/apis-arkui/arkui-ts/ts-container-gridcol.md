@@ -13,7 +13,7 @@ This component can contain only one child component.
 
 GridCol(option?: GridColOptions)
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 | Name| Type                                                 | Mandatory| Description                                                        |
@@ -42,15 +42,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type                         | Mandatory| Description                                                        |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of occupied columns. If it is set to **0**, the element is not involved in layout calculation, that is, the element is not rendered.<br>Default value: **1**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| gridColOffset | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of offset columns relative to the previous child component of the grid<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| order  | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Sequence number of the element. Child components of the grid are sorted in ascending order based on their sequence numbers.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of occupied columns. If it is set to **0**, the element is not involved in layout calculation, that is, the element is not rendered.<br>Default value: **1**<br>This API can be used in ArkTS widgets since API version 9.|
+| gridColOffset | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of offset columns relative to the previous child component of the grid<br>Default value: **0**<br>This API can be used in ArkTS widgets since API version 9.|
+| order  | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Sequence number of the element. Child components of the grid are sorted in ascending order based on their sequence numbers.<br>Default value: **0**<br>This API can be used in ArkTS widgets since API version 9.|
 
 ## GridColColumnOption
 
 Describes the numbers of grid columns occupied by the **\<GridCol>** component on devices with different width types.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |

@@ -11,7 +11,7 @@ The menu bound to a component through [bindContextMenu](./ts-universal-attribute
 
 |Name|Description|
 |----|---|
-| close() | Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu8) on a page.|
+| static close() | Closes the menu bound to this component through [bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu8) on a page.|
 
 
 ## Example

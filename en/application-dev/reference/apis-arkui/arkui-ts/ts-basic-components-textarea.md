@@ -27,7 +27,7 @@ TextArea(value?: TextAreaOptions)
 | Name                    | Type                                    | Mandatory  | Description          |
 | ----------------------- | ---------------------------------------- | ---- | -------------- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | No   | Text displayed when there is no input.  <br>When only the **placeholder** attribute is set, the text selection handle is still available; the caret stays at the beginning of the placeholder text when the handle is released.    |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| text             | [ResourceStr](ts-types.md#resourcestr)  | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No   | Text area controller.|
 
 
@@ -44,18 +44,21 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | inputFilter<sup>8+</sup>  | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) => void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The specified regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
 | copyOption<sup>9+</sup>   | [CopyOptions](ts-appendix-enums.md#copyoptions9)             | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but the copy and cut operations are not.<br>**NOTE**<br>For dragging, **copyOption** only restricts whether text is selected and does not involve the dragging scope.|
 | maxLength<sup>10+</sup>   | number                                                       | Maximum number of characters in the text input.<br>By default, there is no maximum number of characters.<br>When the maximum number of characters is reached, no more characters can be entered, and the border turns red.|
-| showCounter<sup>10+</sup> | value: boolean, options<sup>11+</sup>?: [InputCounterOptions](ts-basic-components-textinput.md#inputcounteroptions11) | Counter settings. **options** can be set only when **value** is set to **true**, in which case a character counter is displayed below the text box. This attribute must be used together with **maxlength**. The character counter is displayed in this format: Number of characters that have been entered/Maximum number of characters allowed. It is visible when the number of characters that have been entered is greater than the maximum number of characters multiplied by the threshold percentage value. If **options** is not set, the text box border turns red when the number of entered characters reaches the maximum. If **value** is set to **true** and **options** is set, the text box border turns red and the text box shakes when the number of entered characters reaches the maximum, provided that the value of **thresholdPercentage** is valid. If **highlightBorder** is set to **false**, the text box border does not turn red. By default, **highlightBorder** is set to **true**. The character counter is not displayed for text boxes in inline or password input style。|
+| showCounter<sup>10+</sup> | value: boolean, options<sup>11+</sup>?: [InputCounterOptions](ts-basic-components-textinput.md#inputcounteroptions11) | Counter settings. **options** can be set only when **value** is set to **true**, in which case a character counter is displayed below the text box. This attribute must be used together with **maxlength**. The character counter is displayed in this format: Number of characters entered/Character limit. It is visible when the number of characters entered is greater than the character limit multiplied by the threshold percentage value. If **options** is not set, the text box border and character counter subscript turn red when the number of characters entered reaches the limit. If **value** is set to **true** and **options** is set, the text box border and character counter subscript turn red and the text box shakes when the number of characters entered reaches the limit, provided that the value of **thresholdPercentage** is valid. If **highlightBorder** is set to **false**, the text box border does not turn red. By default, **highlightBorder** is set to **true**. The character counter is not displayed for text boxes in inline input style.|
 | style<sup>10+</sup>       | [TextContentStyle](ts-appendix-enums.md#textcontentstyle10)  | Style of the component.<br>Default value: **TextContentStyle.DEFAULT**|
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus in a way other than clicking.<br>Default value: **true**  |
-| selectionMenuHidden<sup>10+</sup> | boolean                                                      | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
-| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#barstate) | Scrollbar state when the inline input style is used.<br>Default value: **BarState.Auto**|
-| maxLines<sup>10+</sup> | number | Maximum number of lines that can be displayed when the inline input style is used.<br>Default value: **3**<br>**NOTE**<br>Value range: (0, +∞)|
+| selectionMenuHidden<sup>10+</sup> | boolean                                                      | Whether to hide the text selection menu when the text box is long-pressed, double-touched, or right-clicked.<br>Default value: **false**|
+| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#barstate) | Scrollbar display mode when the text box is editable.<br>Default value: **BarState.Auto**|
+| maxLines<sup>10+</sup> | number | Maximum number of lines that can be displayed with the inline style in the editing state or with the non-inline style.<br>Default value: **3** with the inline style; **+∞** with the non-inline style, indicating that there is no maximum number of lines<br>**NOTE**<br>Value range: (0, +∞)|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextAreaController](#textareacontroller8).[stopEditing](#stopediting10) API to close the keyboard.<br>When a custom keyboard is set, the text box does not support camera input, even when the device supports.|
 | type<sup>11+</sup>                     | [TextAreaType](#textareatype11)     | Text box type.<br>Default value: **TextAreaType.Normal**       |
 | enterKeyType<sup>11+</sup>  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | Type of the Enter key.<br>Default value: **EnterKeyType.NEW_LINE**|
+
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md#padding) is as follows:<br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }  <br>Since API version 11, **.width('auto')** can be set for the **\<TextArea>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md#padding) is as follows:<br>{<br> top: '8vp',<br> right: '16vp',<br> bottom: '8vp',<br> left: '16vp'<br> }
+>
+>  Since API version 11, **.width('auto')** can be set for the **\<TextArea>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md).
 
 ## Events
 
@@ -173,12 +176,12 @@ Returns the position information of the caret.
 
 ## TextAreaType<sup>11+</sup>
 
-| Name                | Description           |
-| ------------------ | ------------- |
-| NORMAL   | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.|
-| EMAIL    | Email address input mode. The value can contain digits, letters, underscores (_), and at signs (@). Only one at sign (@) is allowed.|
-| NUMBER   | Digit input mode.     |
-| PHONE_NUMBER | Phone number input mode.<br>The value can contain digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.|
+| Name                | Value      | Description           |
+| ------------------ | ------------- | ------------------ |
+| NORMAL   | 0 | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.|
+| NUMBER   | 2 | Digit input mode. |
+| PHONE_NUMBER | 3 | Phone number input mode.<br>The value can contain digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited. |
+| EMAIL    | 5 | Email address input mode. The value can contain digits, letters, underscores (_), and at signs (@). Only one at sign (@) is allowed.|
 
 ## Example
 
@@ -334,6 +337,9 @@ struct TextAreaExample {
 		// The character counter is in this format: Number of characters that have been entered/Maximum number of characters allowed, which is specified by maxLength().
         // The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by 50% (threshold percentage).
         // When highlightBorder is set to false, the text box border turns red when the number of entered characters reaches the maximum. The default value is true.
+        .onChange((value: string) => {
+          this.text = value
+        })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }
@@ -362,7 +368,7 @@ struct TextInputExample {
         .onSubmit((enterKey: EnterKeyType) => {
           console.log("trigger area onsubmit" + enterKey);
         })
-      Button ('Change EnterKeyType').onClick () => {
+      Button ('Change EnterKeyType').onClick(() => {
         this.index = (this.index + 1) % this.enterTypes.length;
       })
 

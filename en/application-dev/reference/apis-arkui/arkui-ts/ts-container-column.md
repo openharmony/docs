@@ -16,7 +16,7 @@ Supported
 
 Column(value?: {space?: string | number})
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -30,8 +30,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **HorizontalAlign.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the vertical direction.<br>Default value: **FlexAlign.Start**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **HorizontalAlign.Center**<br>This API can be used in ArkTS widgets since API version 9.|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the vertical direction.<br>Default value: **FlexAlign.Start**<br>This API can be used in ArkTS widgets since API version 9.|
 
 >  **NOTE**   
 >

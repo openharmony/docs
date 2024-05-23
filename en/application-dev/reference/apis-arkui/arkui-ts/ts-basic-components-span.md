@@ -18,7 +18,7 @@ Not supported
 
 Span(value: string | Resource)
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -33,9 +33,9 @@ Only the [universal text attributes](ts-universal-attributes-text-style.md) are 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None<br>color: Color.Black<br>} <br>Since API version 9, this API is supported in ArkTS widgets.|
-| letterSpacing       | number \| string  | Letter spacing. A negative value tightens the spacing; a positive value loosens the spacing, and the letters are spread farther apart with the value.<br>Since API version 9, this API is supported in ArkTS widgets.                               |
-| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None<br>color: Color.Black<br>} <br>This API can be used in ArkTS widgets since API version 9.|
+| letterSpacing       | number \| string  | Letter spacing. A negative value tightens the spacing; a positive value loosens the spacing, and the letters are spread farther apart with the value.<br>This API can be used in ArkTS widgets since API version 9.                               |
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>This API can be used in ArkTS widgets since API version 9.|
 | font<sup>10+</sup> | [Font](ts-types.md#font) | Text style, covering the font size, font width, Font family, and font style.|
 | textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.|
 | textBackgroundStyle<sup>11+</sup> | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle)                                                                                           | Background style.<br>Default value:<br>{<br>  color: Color.Transparent,<br>  radius: 0<br>} <br>**NOTE**<br>This attribute prioritizes the value separately set for the component. If it is not set, the component can inherit the settings from its parent [\<ContainerSpan>](ts-basic-components-containerspan.md).|

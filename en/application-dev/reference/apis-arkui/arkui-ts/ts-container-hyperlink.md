@@ -9,7 +9,7 @@ The **\<Hyperlink>** component implements a link from a location in the componen
 
 ## Required Permissions
 
-If Internet access is required, you need to apply for the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
+If Internet access is required, you need to apply for the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../../security/AccessToken/declare-permissions.md).
 
 ## Child Components
 
@@ -32,7 +32,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the hyperlink text.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the hyperlink text.<br>Default value: **'#ff007dff'**|
 
 ## Example
 

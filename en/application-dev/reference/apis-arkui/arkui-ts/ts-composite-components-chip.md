@@ -80,13 +80,13 @@ Defines the common icon attributes of the chip.
 
 Defines the attributes of the prefix icon.
 
-Inherited from [IconCommonOptions](#iconcommonoptions).
+Inherits from [IconCommonOptions](#iconcommonoptions).
 
 ## SuffixIconOptions
 
 Defines the attributes of the suffix icon.
 
-Inherited from [IconCommonOptions](#iconcommonoptions).
+Inherits from [IconCommonOptions](#iconcommonoptions).
 
 | Name  | Type      | Mandatory| Description              |
 | ------ | ---------- | ---- | ------------------ |
@@ -156,7 +156,7 @@ struct Index {
 ```
 
 
-![](figures/chip1.jpeg)
+![](figures/chip1.png)
 
 ### Example 2
 
@@ -193,7 +193,7 @@ struct Index {
 ```
 
 
-![](figures/chip2.jpeg)
+![](figures/chip2.png)
 
 ### Example 3
 
@@ -233,4 +233,4 @@ struct Index {
 ```
 
 
-![](figures/chip3.jpeg)
+![](figures/chip3.png)

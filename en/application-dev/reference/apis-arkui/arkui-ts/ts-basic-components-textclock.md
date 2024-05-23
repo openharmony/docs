@@ -15,7 +15,7 @@ Not supported
 
 TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController })
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 **Parameters**
 
@@ -30,9 +30,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name  | Type| Description                                                        |
 | ------ | -------- | ------------------------------------------------------------ |
-| format | string   | Time format.<br>**y**: year (yyyy indicates the complete year, and yy indicates the last two digits of the year.)<br>**M**: month (To display 01 for January, use **MM** instead.)<br>**d**: day (To display 01 for the first day, use **dd** instead.)<br>**E**: day of week (To display the full name, use **EEEE**; to display the abbreviation, use **E**, **EE**, or **EEE**.)<br>**H**: hour (24-hour format)    **h**: hour (12-hour format)<br>**m**: minute<br>**s**: second<br>**SS**: centisecond (If the number of the uppercase letter S is less than 3, the part is processed as centiseconds.)<br>**SSS**: millisecond (If the number of the uppercase letter S is greater than or equal to 3, the part is processed as milliseconds.)<br>**a**: morning/afternoon (This parameter does not take effect when the hour part is set to **H**.)<br>Separators: slashes (/), hyphens (-), dots (.), or any custom characters (which cannot be letters) used to separate the parts of the date<br>The parts of the date can be used alone or combined with each other as needed. The time can be updated as frequent as once per second. As such, whenever possible, avoid setting the centisecond and millisecond parts separately.<br>When an invalid letter is set, the letter is ignored. If the value contains only invalid letters, the time will be displayed in the format of yyyy/MM/dd aa hh:mm:ss.SSS.<br>If **format** is left empty or set to **undefined**, the default value will be used.<br><br>- Default value for non-widgets: aa hh:mm:ss<br>- Default value for widgets: hh:mm<br>- When used in a widget, the minimum time unit is minute. In this case, if the format contains seconds or centiseconds, the default value will be used.<br>Since API version 11, this API is supported in ArkTS widgets.|
-| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.<br>Since API version 11, this API is supported in ArkTS widgets.|
-| fontFeature<sup>11+</sup> | string   | Font feature, for example, monospaced digits.<br>Format: normal \| \<feature-tag-value\><br>- The format of \<feature-tag-value\> is \<string\> \[ \<integer\>\| on \| off ]<br>- There can be multiple \<feature-tag-value\> values, which are separated by commas (,).<br>For example, the input format of the monospaced clock numbers is "ss01" on.<br>Since API version 11, this API is supported in ArkTS widgets.|
+| format | string   | Time format.<br>**y**: year (yyyy indicates the complete year, and yy indicates the last two digits of the year.)<br>**M**: month (To display 01 for January, use **MM** instead.)<br>**d**: day (To display 01 for the first day, use **dd** instead.)<br>**E**: day of week (To display the full name, use **EEEE**; to display the abbreviation, use **E**, **EE**, or **EEE**.)<br>**H**: hour (24-hour format)    **h**: hour (12-hour format)<br>**m**: minute<br>**s**: second<br>**SS**: centisecond (If the number of the uppercase letter S is less than 3, the part is processed as centiseconds.)<br>**SSS**: millisecond (If the number of the uppercase letter S is greater than or equal to 3, the part is processed as milliseconds.)<br>**a**: morning/afternoon (This parameter does not take effect when the hour part is set to **H**.)<br>Separators: slashes (/), hyphens (-), dots (.), or any custom characters (which cannot be letters) used to separate the parts of the date<br>The parts of the date can be used alone or combined with each other as needed. The time can be updated as frequent as once per second. As such, whenever possible, avoid setting the centisecond and millisecond parts separately.<br>When an invalid letter is set, the letter is ignored. If the value contains only invalid letters, the time will be displayed in the format of yyyy/MM/dd aa hh:mm:ss.SSS.<br>If **format** is left empty or set to **undefined**, the default value will be used.<br><br>- Default value for non-widgets: aa hh:mm:ss<br>- Default value for widgets: hh:mm<br>- When used in a widget, the minimum time unit is minute. In this case, if the format contains seconds or centiseconds, the default value will be used.<br>This API can be used in ArkTS widgets since API version 11.|
+| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.<br>This API can be used in ArkTS widgets since API version 11.|
+| fontFeature<sup>11+</sup> | string   | Font feature, for example, monospaced digits.<br>Format: normal \| \<feature-tag-value\><br>- The format of \<feature-tag-value\> is \<string\> \[ \<integer\>\| on \| off ]<br>- There can be multiple \<feature-tag-value\> values, which are separated by commas (,).<br>For example, the input format of the monospaced clock numbers is "ss01" on.<br>This API can be used in ArkTS widgets since API version 11.|
 
 The following table shows how different settings of **format** work out.
 
@@ -74,13 +74,13 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                                        | Description                                                    |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | Triggered when the time changes.<br>- **value**: Unix time stamp, which is the number of seconds that have elapsed since the Unix epoch.<br>- This event is not triggered when the component is invisible.<br>- If the event is not used in a widget, it is triggered when the change occurs in seconds.<br>- If the event is used in a widget, it is triggered when the change occurs in minutes.<br>Since API version 11, this API is supported in ArkTS widgets.|
+| onDateChange(event: (value: number) => void) | Triggered when the time changes.<br>- **value**: Unix time stamp, which is the number of seconds that have elapsed since the Unix epoch.<br>- This event is not triggered when the component is invisible.<br>- If the event is not used in a widget, it is triggered when the change occurs in seconds.<br>- If the event is used in a widget, it is triggered when the change occurs in minutes.<br>This API can be used in ArkTS widgets since API version 11.|
 
 ## TextClockController
 
 Implements the controller of the **\<TextClock>** component. You can bind the controller to the component to control its start and stop. A **\<TextClock>** component can be bound to only one controller.
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 ### Objects to Import
 
@@ -94,7 +94,7 @@ start()
 
 Starts the **<TextClock\>** component.
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 ### stop
 
@@ -102,7 +102,7 @@ stop()
 
 Stops the **<TextClock\>** component.
 
-Since API version 11, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 11.
 
 ## Example
 ### Example 1

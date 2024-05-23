@@ -18,7 +18,7 @@ Progress(options: ProgressOptions\<Type\>)
 
 Creates a progress indicator.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
@@ -30,14 +30,14 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name                       | Type                               | Mandatory  | Description                                    |
 | -------------------------- | ----------------------------------- | ---- | ---------------------------------------- |
-| value                      | number                              | Yes   | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| total                      | number                              | No   | Total progress.<br>Default value: **100**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| type<sup>8+</sup>          | [ProgressType](#progresstype8)   | No   | Style of the progress indicator.<br>Default value: **ProgressType.Linear**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| value                      | number                              | Yes   | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used.<br>This API can be used in ArkTS widgets since API version 9.|
+| total                      | number                              | No   | Total progress.<br>Default value: **100**<br>This API can be used in ArkTS widgets since API version 9.|
+| type<sup>8+</sup>          | [ProgressType](#progresstype8)   | No   | Style of the progress indicator.<br>Default value: **ProgressType.Linear**<br>This API can be used in ArkTS widgets since API version 9.|
 | style<sup>(deprecated)</sup> | [ProgressStyle](#progressstyle) | No   | Style of the progress indicator.<br>This parameter is deprecated since API version 8. You are advised to use **type** instead.<br>Default value: **ProgressStyle.Linear**|
 
 ## ProgressType<sup>8+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
@@ -49,7 +49,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ##  ProgressStyle
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
@@ -65,9 +65,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name              | Type                                                    | Description                                                        |
 | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| value              | number                                                       | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used. Invalid values do not take effect.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| value              | number                                                       | Current progress. If the value is less than 0, the value **0** is used. If the value is greater than that of **total**, the value of **total** is used. Invalid values do not take effect.<br>This API can be used in ArkTS widgets since API version 9.|
 | color              | [ResourceColor](ts-types.md#resourcecolor)    \| [LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | Background color of the progress indicator.<br>Since API version 10, this attribute can be set to **LinearGradient** for the **Ring** style.<br>Default value:<br>- Capsule:<br>   API version 9 or earlier: **'\#ff007dff'**<br>   API version 10: **'\#33006cde'**<br>   API version 11 or later: **'\#33007dff'**<br>- Ring:<br>   API version 9 or earlier: **'\#ff007dff'**<br>   API version 10 or later: start: **'\#ff86c1ff'**, end: **'\#ff254ff7'**<br>- Other styles: **'\#ff007dff'**<br>Since API version 9, this API is supported in ArkTS widgets, except that **LinearGradient** is not supported.|
-| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the progress indicator.<br>Default value:<br>- Capsule:<br>   API version 9 or earlier: **'\#19182431'**<br>   API version 10 or later: **'\#33ffffff'**<br>- Ring:<br>   API version 9 or earlier: **'\#19182431'**<br>   API version 10: **'\#08182431'**<br>   API version 11 or later: **'\#0c182431'**<br>- Other styles: **'\#19182431'**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md) applies to the progress indicator instead of the entire **\<Progress>** component.|
+| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the progress indicator.<br>Default value:<br>- Capsule:<br>   API version 9 or earlier: **'\#19182431'**<br>   API version 10 or later: **'\#33ffffff'**<br>- Ring:<br>   API version 9 or earlier: **'\#19182431'**<br>   API version 10: **'\#08182431'**<br>   API version 11 or later: **'\#0c182431'**<br>- Other styles: **'\#19182431'**<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>The settings of the universal attribute [backgroundColor](./ts-universal-attributes-background.md#backgroundcolor) applies to the progress indicator instead of the entire **\<Progress>** component.|
 | style<sup>8+</sup> | [ProgressStyleOptions<sup>8+</sup>](#progressstyleoptions8) \| [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10) \| [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10) \| [LinearStyleOptions<sup>10+</sup>](#linearstyleoptions10) \| [ScaleRingStyleOptions<sup>10+</sup>](#scaleringstyleoptions10) \| [EclipseStyleOptions<sup>10+</sup>](#eclipsestyleoptions10) | Component style.<br>Since API version 10, the following types are supported:<br>- **CapsuleStyleOptions**: capsule style.<br>- **RingStyleOptions**: ring style.<br>- **LinearStyleOptions**: linear style.<br>- **ScaleRingStyleOptions**: determinate ring style.<br>- **EclipseStyleOptions**: eclipse style.<br>- **ProgressStyleOptions**: basic style.<br>Since API version 9, this API is supported in ArkTS widgets, but only the **ProgressStyleOptions** type is available.|
 
 ## ProgressStyleOptions<sup>8+</sup>

@@ -165,7 +165,7 @@ Shows a dialog box. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+For details about the error codes, see [promptAction Error Codes](errorcode-promptAction.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -253,12 +253,12 @@ Describes the options for showing the dialog box.
 
 | Name   | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| title   | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Title of the dialog box.                                                  |
-| message | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Text body.                                                  |
+| title   | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Title of the dialog box.                                                  |
+| message | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>9+</sup>| No  | Text body.                                                  |
 | buttons  | Array&lt;[Button](#button)&gt;    | No  | Array of buttons in the dialog box. The array structure is {text:'button', color: '\#666666'}. More than one button is supported.
-| alignment<sup>10+</sup>  | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
-| offset<sup>10+</sup>     | [Offset](../arkui-ts/ts-types.md#offset) | No    | Offset of the dialog box based on the **alignment** settings.<br>Default value: **{ dx: 0 , dy: 0 }**|
-| maskRect<sup>10+</sup>| [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| alignment<sup>10+</sup>  | [DialogAlignment](arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
+| offset<sup>10+</sup>     | [Offset](arkui-ts/ts-types.md#offset) | No    | Offset of the dialog box based on the **alignment** settings.<br>Default value: **{ dx: 0 , dy: 0 }**|
+| maskRect<sup>10+</sup>| [Rectangle]arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.|
 | showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
 | isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 
@@ -289,7 +289,7 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 
 **Error codes**
 
-For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+For details about the error codes, see [promptAction Error Codes](errorcode-promptAction.md).
 
 | ID  | Error Message|
 | --------- | ------- |
@@ -397,7 +397,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 Opens a custom dialog box.
 
-This API cannot be used in [ServiceExtension](../../../application-dev/application-models/serviceextensionability.md).
+This API cannot be used in [ServiceExtension](../../application-models/serviceextensionability.md).
 
 **isModal = true** and **showInSubWindow = true** cannot be used at the same time.
 
@@ -519,7 +519,7 @@ Defines the options of the custom dialog box. This API extends [BaseDialogOption
 
 | Name   | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | No  | Content of the custom dialog box.<br>**NOTE**<br>**bind(this)** must be used for the builder.<br>The aspect ratio of the root node is relative to the size of the dialog box container.<br>The aspect ratio of a non-root node is relative to the size of the parent node.|
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | No  | Content of the custom dialog box.<br>**NOTE**<br>**bind(this)** must be used for the builder.<br>The aspect ratio of the root node is relative to the size of the dialog box container.<br>The aspect ratio of a non-root node is relative to the size of the parent node.|
 
 ## BaseDialogOptions<sup>11+</sup>
 
@@ -529,9 +529,9 @@ Defines the options of the dialog box.
 
 | Name           | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| maskRect        | [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No  | Mask area.                                            |
-| alignment       | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.                                |
-| offset          | [Offset](../arkui-ts/ts-types.md#offset)                     | No  | Offset of the dialog box based on the **alignment** settings.                         |
+| maskRect        | [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8) | No  | Mask area.<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.|
+| alignment       | [DialogAlignment](arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.                                |
+| offset          | [Offset](arkui-ts/ts-types.md#offset)                     | No  | Offset of the dialog box based on the **alignment** settings.                         |
 | isModal         | boolean                                                      | No  | Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 | showInSubWindow | boolean                                                      | No  | Whether to show the dialog box in a sub-window.<br>Default value: **false**|
 
@@ -553,6 +553,6 @@ Describes the menu item button in the action menu.
 
 | Name   | Type                                      | Mandatory  | Description     |
 | ----- | ---------------------------------------- | ---- | ------- |
-| text  | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Button text.|
-| color | string\| [Resource](../arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Text color of the button.|
+| text  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Button text.|
+| color | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Text color of the button.|
 <!--no_check-->

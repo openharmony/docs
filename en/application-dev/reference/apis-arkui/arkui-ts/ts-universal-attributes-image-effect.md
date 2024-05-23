@@ -46,7 +46,7 @@ shadow(value: ShadowOptions | ShadowStyle)
 
 Applies a shadow effect to the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets. Yet, the [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) type is not supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9. Yet, the [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) type is not supported in ArkTS widgets.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,7 +86,7 @@ Applies a brightness effect to the component.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Brightness of the component. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than 1, the brightness decreases. If the value is greater than 1, the brightness increases. A larger value indicates a higher brightness. However, if the value is greater than 2, the brightness does not change significantly with the value.<br>Default value: **1.0**<br>Recommended value range: [0, 2]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| value  | number | Yes  | Brightness of the component. The value **1** indicates no effects. The value **0** indicates the complete darkness. If the value is less than 1, the brightness decreases. If the value is greater than 1, the brightness increases. A larger value indicates a higher brightness. However, if the value is greater than 2, the brightness does not change significantly with the value.<br>Default value: **1.0**<br>Recommended value range: [0, 2]<br>**NOTE**<br>A value less than 0 evaluates to the value **0**.<br>This API can be used in ArkTS widgets since API version 9.|
 
 ## saturate
 
@@ -250,7 +250,7 @@ Sets whether to draw shadows of child nodes in the component at the same layer, 
 
 Provides the shadow attributes, including the blur radius, color, and offset along the x-axis and y-axis.
 
-Since API version 9, this API is supported in ArkTS widgets.
+This API can be used in ArkTS widgets since API version 9.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |

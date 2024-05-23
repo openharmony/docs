@@ -34,9 +34,11 @@ GridItem(value?: GridItemOptions)
 | columnEnd | number | End column number of the component.|
 | forceRebuild<sup>(deprecated)</sup> | boolean | Whether to re-create the component when it is being built.<br>This API is deprecated since API version 9. Whether to re-create the component is automatically determined based on the component attributes and child component changes. No manual configuration is required.<br>Default value: **false**|
 | selectable<sup>8+</sup> | boolean | Whether the grid item is selectable by the mouse.<br>> **NOTE**<br>> This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true**|
-| selected<sup>10+</sup> | boolean | Whether the grid item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.<br>Default value: **false**|
+| selected<sup>10+</sup> | boolean | Whether the grid item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md#statestyles) is set.<br>Default value: **false**|
 
 >  **NOTE**
+>
+>  When a grid is used with [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), you are advised to use the [layoutOptions](ts-container-grid.md) parameter of the grid for restricting the layout of the last grid item. For details, see [Example 3 in Grid](ts-container-grid.md#example-3).
 >
 >  Rules for setting **rowStart**, **rowEnd**, **columnStart**, and **columnEnd**:
 >
@@ -78,7 +80,7 @@ GridItem(value?: GridItemOptions)
 
 | Name| Description|
 | -------- | -------- |
-| onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: returns **true** if the grid item is being selected by the mouse; returns **false** otherwise.|
+| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: returns **true** if the grid item is being selected by the mouse; returns **false** otherwise.|
 
 ## Example
 

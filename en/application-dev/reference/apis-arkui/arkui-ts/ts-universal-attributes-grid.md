@@ -5,7 +5,7 @@
 >  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  - The column width and column gap in the grid layout are determined by the nearest parent component **\<GridContainer>**. The component tree that uses grid attributes must contain one **\<GridContainer>** component or more.
-
+>
 >  - To call the **gridSpan** or **gridOffset** attribute, its parent or ancestor component must be **\<GridContainer>**.
 
 ## Attributes
@@ -29,7 +29,7 @@ struct GridContainerExample1 {
     Column() {
       Text('useSizeType').fontSize(15).fontColor(0xCCCCCC).width('90%')
       GridContainer() {
-        Row({}) {
+        Row() {
           Row() {
             Text('Left').fontSize(25)
           }
