@@ -71,9 +71,9 @@
    {
      "forms": [
        {
-         "name": "RequestForm",
-         "description": "$string:widget_requestForm_desc",
-         "src": "./ets/requestForm/pages/RequestFormCard.ets",
+         "name": "widget",
+         "description": "This is a service widget.",
+         "src": "./ets/widget/pages/WidgetCard.ets",
          "uiSyntax": "arkts",
          "window": {
            "designWidth": 720,
@@ -83,7 +83,7 @@
          "isDefault": true,
          "updateEnabled": true,
          "scheduledUpdateTime": "10:30",
-         "updateDuration": 2,
+         "updateDuration": 1,
          "defaultDimension": "2*2",
          "supportDimensions": [
            "2*2"
