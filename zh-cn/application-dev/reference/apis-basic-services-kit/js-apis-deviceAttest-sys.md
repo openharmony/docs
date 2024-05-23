@@ -33,7 +33,9 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect |
+| 20000001 | System service exception, please try again or reboot your device |
 
 **示例：**
 
@@ -78,7 +80,9 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect |
+| 20000001 | System service exception, please try again or reboot your device |
 
 **示例：**
 
@@ -121,7 +125,9 @@ getAttestStatusSync() : AttestResultInfo
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect |
+| 20000001 | System service exception, please try again or reboot your device |
 
 **示例：**
 
