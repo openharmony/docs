@@ -57,10 +57,10 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   
   @Entry
   @Component
-  struct Index {
+  struct Page_EventHub {
     private context = getContext(this) as common.UIAbilityContext;
   
-    startAbilityTest() {
+    startAbilityTest() : void {
       let want: Want = {
         // Want参数信息
       };
@@ -83,9 +83,9 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   
   @Entry
   @Component
-  struct Index {
+  struct Page_UIAbilityComponentsBasicUsage {
   
-    startAbilityTest() {
+    startAbilityTest(): void {
       let context = getContext(this) as common.UIAbilityContext;
       let want: Want = {
         // Want参数信息
