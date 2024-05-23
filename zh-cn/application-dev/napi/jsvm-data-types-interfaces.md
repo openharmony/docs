@@ -1248,7 +1248,7 @@ static JSVM_Value assertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by get requests on an object
+    // 该回调是由对象上的获取请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1270,7 +1270,7 @@ static JSVM_Value GetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value th
 }
 
 static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by set requests on an object
+    // 该回调是由对象上的设置请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1292,7 +1292,7 @@ static JSVM_Value SetPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value pr
 }
 
 static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by delete requests on an object
+    // 该回调是由对象上的删除请求触发的
     char strValue[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, name, strValue, 300, &size);
@@ -1314,7 +1314,7 @@ static JSVM_Value DeleterPropertyCbInfo(JSVM_Env env, JSVM_Value name, JSVM_Valu
 }
 
 static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg, JSVM_Value data) {
-    // this callback is triggered by get all properties requests on an object
+    // 该回调是由获取对象上的所有属性请求触发的
     JSVM_Value testArray = nullptr;
     OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
     JSVM_Value name1 = nullptr;
@@ -1341,7 +1341,7 @@ static JSVM_Value EnumeratorPropertyCbInfo(JSVM_Env env, JSVM_Value thisArg, JSV
 }
 
 static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by getting an indexed property of an instance objec
+    // 该回调是由获取实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
 
@@ -1363,7 +1363,7 @@ static JSVM_Value IndexedPropertyGet(JSVM_Env env, JSVM_Value index, JSVM_Value 
 }
 
 static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value property, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by setting an indexed property of an instance object.
+    // 该回调是由设置实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
     char str[100];
@@ -1387,7 +1387,7 @@ static JSVM_Value IndexedPropertySet(JSVM_Env env, JSVM_Value index, JSVM_Value 
 }
 
 static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by deleting an indexed property of an instance object.
+    // 该回调是由删除实例对象的索引属性触发的
     uint32_t value;
     OH_JSVM_GetValueUint32(env, index, &value);
     JSVM_Value newResult = nullptr;
@@ -1408,7 +1408,7 @@ static JSVM_Value IndexedPropertyDeleter(JSVM_Env env, JSVM_Value index, JSVM_Va
 }
 
 static JSVM_Value IndexedPropertyEnumerator(JSVM_Env env, JSVM_Value thisArg, JSVM_Value data) {
-    // this function triggered by getting all indexed properties requests on an object.
+    // 该回调是由获取对象上的所有索引属性请求触发的
     JSVM_Value testArray = nullptr;
     OH_JSVM_CreateArrayWithLength(env, 2, &testArray);
     JSVM_Value index1 = nullptr;
@@ -1476,7 +1476,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
                 sizeof(*test) / sizeof(uint64_t));
     JSVM_Status status = OH_JSVM_CreateBigintWords(env, 1, 2, reinterpret_cast<const uint64_t *>(test), &res);
 
-    // initialize the propertyCfg
+    // 初始化propertyCfg
     JSVM_PropertyHandlerConfigurationStruct propertyCfg;
     propertyCfg.genericNamedPropertyGetterCallback = GetPropertyCbInfo;
     propertyCfg.genericNamedPropertySetterCallback = SetPropertyCbInfo;
@@ -1518,19 +1518,19 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     JSVM_Value setvalueName = nullptr;
     OH_JSVM_CreateStringUtf8(env, testStr, strlen(testStr), &setvalueName);
 
-    //======= 1. test name property callback ========================
-    // test set property
+    // 1. 名称属性回调
+    // 设置属性
     OH_JSVM_SetNamedProperty(env, instanceValue, "str11", setvalueName);
     OH_JSVM_SetNamedProperty(env, instanceValue, "str123", setvalueName);
 
-    // test get property
+    // 获取属性
     JSVM_Value valueName = nullptr;
     OH_JSVM_GetNamedProperty(env, instanceValue, "str11", &valueName);
     char str[100];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, valueName, str, 100, &size);
 
-    // test get all property names
+    // 获取所有属性的名称
     JSVM_Value allPropertyNames = nullptr;
     OH_JSVM_GetAllPropertyNames(env, instanceValue, JSVM_KEY_OWN_ONLY,
                                 static_cast<JSVM_KeyFilter>(JSVM_KEY_ENUMERABLE | JSVM_KEY_SKIP_SYMBOLS),
@@ -1545,15 +1545,15 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
         OH_JSVM_GetValueStringUtf8(env, propertyName, str, 100, &size);
     }
 
-    // delete property
+    // 删除属性
     bool result = false;
     propertyName = nullptr;
     char propertyChar[] = "str11";
     OH_JSVM_CreateStringUtf8(env, propertyChar, strlen(propertyChar), &propertyName);
     OH_JSVM_DeleteProperty(env, instanceValue, propertyName, &result);
 
-    // ======= 2. test index property callback ===================
-    // test set property
+    // 2. 索引属性回调
+    // 设置属性
     JSVM_Value jsIndex = nullptr;
     uint32_t index = 0;
     OH_JSVM_CreateUint32(env, index, &jsIndex);
@@ -1563,14 +1563,14 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     OH_JSVM_CreateUint32(env, index, &jsIndex1);
     OH_JSVM_SetProperty(env, instanceValue, jsIndex1, setvalueName);
 
-    // test get property
+    // 获取属性
     JSVM_Value valueName1 = nullptr;
     OH_JSVM_GetProperty(env, instanceValue, jsIndex, &valueName1);
     char str1[100];
     size_t size1;
     OH_JSVM_GetValueStringUtf8(env, valueName1, str1, 100, &size1);
 
-    // test get all property names
+    // 获取所有属性的名称
     JSVM_Value allPropertyNames1 = nullptr;
     OH_JSVM_GetAllPropertyNames(env, instanceValue, JSVM_KEY_OWN_ONLY,
                                 static_cast<JSVM_KeyFilter>(JSVM_KEY_ENUMERABLE | JSVM_KEY_SKIP_SYMBOLS),
@@ -1585,11 +1585,11 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
         OH_JSVM_GetValueStringUtf8(env, propertyName1, str, 100, &size);
     }
 
-    // delete property
+    // 删除属性
     bool result1 = false;
     OH_JSVM_DeleteProperty(env, instanceValue, jsIndex, &result1);
 
-    // ======= 3. test call as function callback ===================
+    // 3. 作为函数的回调
     JSVM_Value gloablObj = nullptr;
     OH_JSVM_GetGlobal(env, &gloablObj);
     OH_JSVM_SetNamedProperty(env, gloablObj, "myTestInstance", instanceValue);
