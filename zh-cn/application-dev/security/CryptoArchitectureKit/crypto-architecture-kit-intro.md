@@ -30,7 +30,7 @@ Crypto Architecture Kit屏蔽了第三方密码学算法库实现差异的算法
 
 - [安全随机数生成](crypto-generate-random-number.md)
 
-- [密钥派生](crypto-key-derivation.md)
+- [密钥派生](crypto-key-derivation-overview.md)
 
 ## 基本概念
 

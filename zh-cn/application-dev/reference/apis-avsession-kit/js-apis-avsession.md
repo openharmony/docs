@@ -4418,7 +4418,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | title           | string                  | 否   | 标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                 |
 | artist          | string                  | 否   | 艺术家。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
 | author          | string                  | 否   | 专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
-| avQueueName<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
+| avQueueName<sup>12+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
 | avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
 | album           | string                  | 否   | 专辑名称。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |

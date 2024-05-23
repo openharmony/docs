@@ -1167,7 +1167,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 
 | 参数名       | 类型                     | 必填 | 说明                       |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| templateName | string                   | 是   | 模板名称。                   |
+| templateName | string                   | 是   | 模板名称。当前仅支持'downloadTemplate'。                   |
 | callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数（true：存在，false：不存在）。 |
 
 **错误码：**
@@ -1209,7 +1209,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 | 参数名       | 类型   | 必填 | 说明     |
 | ------------ | ------ | ---- | -------- |
-| templateName | string | 是   | 模板名称。 |
+| templateName | string | 是   | 模板名称。当前仅支持'downloadTemplate'。 |
 
 **返回值：**
 

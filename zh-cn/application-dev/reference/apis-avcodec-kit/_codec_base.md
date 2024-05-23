@@ -1536,7 +1536,7 @@ const char* OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
 
 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。 
 
-可以通过**OH_AVCapability_GetFeatureProperties**接口和枚举值**VIDEO_ENCODER_LONG_TERM_REFERENCE**来查询这个最大值。
+可以通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](_a_v_capability.md#oh_avcapabilityfeature)来查询这个最大值。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1866,7 +1866,7 @@ const char* OH_MD_KEY_DURATION
 
 **描述**
 
-持续时间键，值类型为int64_t。
+持续时间键，单位为微秒，值类型为int64_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2307,7 +2307,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
 
 使能分层编码的键，值类型为int32_t：1表示使能，0表示其它情况。 
 
-使用前可以通过**OH_AVCapability_IsFeatureSupported**接口查询当前视频编码器是否支持分层编码。 
+使用前可以通过[OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported)接口查询当前视频编码器是否支持分层编码。 
 
 该键是可选的且只用于视频编码，在configure阶段使用。
 
@@ -2325,7 +2325,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT
 
 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。 
 
-使用前可以通过**OH_AVCapability_GetFeatureProperties**接口和枚举值**VIDEO_ENCODER_LONG_TERM_REFERENCE**来查询支持的LTR数目。 
+使用前可以通过[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](_a_v_capability.md#oh_avcapabilityfeature)来查询支持的LTR数目。 
 
 该键是可选的且只用于视频编码，在configure阶段使用。
 

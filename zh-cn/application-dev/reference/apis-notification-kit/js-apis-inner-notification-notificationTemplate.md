@@ -12,5 +12,5 @@
 
 | 名称 | 类型                    | 必填 | 说明       |
 | ---- | ---------------------- | ---- | ---------- |
-| name | string                 | 是   | 模板名称。 |
+| name | string                 | 是   | 模板名称。当前仅支持'downloadTemplate'：下载模板。|
 | data | {[key:string]: Object} | 是   | 模板数据。 |

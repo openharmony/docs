@@ -369,6 +369,9 @@ struct SubWindow {
 
 在看视频、玩游戏等场景下，用户往往希望隐藏状态栏、导航栏等不必要的系统窗口，从而获得更佳的沉浸式体验。此时可以借助窗口沉浸式能力（窗口沉浸式能力都是针对应用主窗口而言的），达到预期效果。从API version 10开始，沉浸式窗口默认配置为全屏大小并由组件模块控制布局，状态栏、导航栏背景颜色为透明，文字颜色为黑色；应用窗口调用`setWindowLayoutFullScreen`接口，设置为true表示由组件模块控制忽略状态栏、导航栏的沉浸式全屏布局，设置为false表示由组件模块控制避让状态栏、导航栏的非沉浸式全屏布局。
 
+> **说明：**
+>
+> 当前沉浸式界面开发仅支持window级别的配置，暂不支持Page级别的配置。若有Page级别切换的需要，可以在页面生命周期开始，例如onPageShow中设置沉浸模式，然后在页面退出，例如onPageHide中恢复默认设置来实现。
 
 ### 开发步骤
 
@@ -453,14 +456,16 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## 设置悬浮窗
+## <!--RP2-->设置悬浮窗<!--RP2End-->
 
 悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上；开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
 
 
 ### 开发步骤
 
+<!--RP1-->
 **前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+<!--RP1End-->
 
 1. 创建悬浮窗。
 

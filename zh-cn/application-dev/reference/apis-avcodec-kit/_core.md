@@ -515,6 +515,15 @@ OH_AVBuffer* OH_AVBuffer_Create (int32_t capacity)
 
 如果创建成功，则返回OH_AVBuffer实例的指针，如果失败，则返回nullptr。
 
+可能失败的原因：
+
+1. capacity <=0；
+2. 创建allocator失败；
+3. 创建OH_AVBuffer失败；
+4. 创建的buffer memory为空指针；
+5. 创建的buffer地址为空指针；
+6. new OH_AVBuffer失败。
+
 
 ### OH_AVBuffer_Destroy()
 
@@ -538,7 +547,13 @@ OH_AVErrCode OH_AVBuffer_Destroy (OH_AVBuffer *buffer)
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
+返回函数结果代码[OH_AVErrCode](#oh_averrcode-1)：
+
+AV_ERR_OK：操作成功。
+
+AV_ERR_INVALID_VAL：输入的buffer为空指针或者buffer格式校验失败。
+
+AV_ERR_OPERATE_NOT_PERMIT：输入的buffer不是用户创建的。
 
 
 ### OH_AVBuffer_GetAddr()
@@ -565,6 +580,13 @@ uint8_t* OH_AVBuffer_GetAddr (OH_AVBuffer *buffer)
 
 如果成功，则返回数据缓冲区的虚拟地址，如果失败，则返回nullptr。
 
+可能失败的原因：
+
+1. 输入的buffer为空指针；
+2. buffer格式校验失败；
+3. 输入buffer内的buffer为空指针；
+4. 输入buffer内的memory为空指针。
+
 
 ### OH_AVBuffer_GetBufferAttr()
 
@@ -589,7 +611,11 @@ OH_AVErrCode OH_AVBuffer_GetBufferAttr (OH_AVBuffer *buffer, OH_AVCodecBufferAtt
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
+返回函数结果代码[OH_AVErrCode](#oh_averrcode-1)：
+
+AV_ERR_OK：操作成功。
+
+AV_ERR_INVALID_VAL：输入的buffer为空指针、buffer格式校验失败、输入buffer内的buffer为空指针、输入attr为空指针。
 
 
 ### OH_AVBuffer_GetCapacity()
@@ -616,6 +642,13 @@ int32_t OH_AVBuffer_GetCapacity (OH_AVBuffer *buffer)
 
 如果成功，则返回数据缓冲区的容量，如果失败，则返回-1。
 
+可能失败的原因：
+
+1. 输入的buffer为空指针；
+2. buffer格式校验失败；
+3. 输入buffer内的buffer为空指针；
+4. 输入buffer内的memory为空指针。
+
 
 ### OH_AVBuffer_GetNativeBuffer()
 
@@ -641,6 +674,14 @@ OH_NativeBuffer* OH_AVBuffer_GetNativeBuffer (OH_AVBuffer *buffer)
 
 如果成功，则返回OH_NativeBuffer实例的指针，如果失败，则返回nullptr。
 
+可能失败的原因：
+
+1. 输入的buffer为空指针；
+2. buffer格式校验失败；
+3. 输入buffer内的buffer为空指针；
+4. 输入buffer内的memory为空指针；
+5. 输入buffer内的buffer内存的surfaceBuffer为空指针。
+
 
 ### OH_AVBuffer_GetParameter()
 
@@ -664,7 +705,11 @@ OH_AVFormat* OH_AVBuffer_GetParameter (OH_AVBuffer *buffer)
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
+返回函数结果代码[OH_AVErrCode](#oh_averrcode-1)：
+
+AV_ERR_OK：操作成功。
+
+AV_ERR_INVALID_VAL：输入的buffer为空指针、buffer格式校验失败、输入buffer内的buffer为空指针、输入buffer的meta为空指针。
 
 
 ### OH_AVBuffer_SetBufferAttr()
@@ -690,7 +735,11 @@ OH_AVErrCode OH_AVBuffer_SetBufferAttr (OH_AVBuffer *buffer, const OH_AVCodecBuf
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
+返回函数结果代码[OH_AVErrCode](#oh_averrcode-1)：
+
+AV_ERR_OK：操作成功。
+
+AV_ERR_INVALID_VAL：输入的buffer为空指针、buffer格式校验失败、输入buffer内的buffer为空指针、输入attr为空指针、输入buffer中内存的size或offset是无效值。
 
 
 ### OH_AVBuffer_SetParameter()
@@ -716,7 +765,11 @@ OH_AVErrCode OH_AVBuffer_SetParameter (OH_AVBuffer *buffer, const OH_AVFormat *f
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](#oh_averrcode-1)。
+返回函数结果代码[OH_AVErrCode](#oh_averrcode-1)：
+
+AV_ERR_OK：操作成功。
+
+AV_ERR_INVALID_VAL：输入的buffer为空指针、buffer格式校验失败、输入buffer内的buffer为空指针、输入format为空指针、输入buffer的meta为空指针。
 
 
 ### OH_AVFormat_Copy()
@@ -742,7 +795,12 @@ bool OH_AVFormat_Copy (struct OH_AVFormat *to, struct OH_AVFormat *from)
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入参数为空指针；
+2. 输入的OH_AVFormat参数格式校验失败。
 
 
 ### OH_AVFormat_Create()
@@ -889,8 +947,15 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
 
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针；
+4. 输入addr为空指针；
+5. size为空指针。
 
 ### OH_AVFormat_GetDoubleValue()
 
@@ -916,7 +981,14 @@ bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针；
+4. 输入out为空指针。
 
 
 ### OH_AVFormat_GetFloatValue()
@@ -943,7 +1015,14 @@ bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针；
+4. 输入out为空指针。
 
 
 ### OH_AVFormat_GetIntValue()
@@ -970,7 +1049,14 @@ bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针；
+4. 输入out为空指针。
 
 
 ### OH_AVFormat_GetLongValue()
@@ -997,7 +1083,14 @@ bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针；
+4. 输入out为空指针。
 
 
 ### OH_AVFormat_GetStringValue()
@@ -1024,7 +1117,15 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **返回：**
 
-返回值为true表示成功，为false表示失败
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针；
+4. 输入out为空指针；
+5. malloc出的out字符串为空指针。
 
 
 ### OH_AVFormat_SetBuffer()
@@ -1052,7 +1153,15 @@ bool OH_AVFormat_SetBuffer (struct OH_AVFormat *format, const char *key, const u
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针；
+4. 输入addr为空指针；
+5. size为0。
 
 
 ### OH_AVFormat_SetDoubleValue()
@@ -1079,7 +1188,13 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针。
 
 
 ### OH_AVFormat_SetFloatValue()
@@ -1106,7 +1221,13 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **返回：**
 
-返回值为true表示成功，为false表示失败
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针。
 
 
 ### OH_AVFormat_SetIntValue()
@@ -1133,7 +1254,13 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针。
 
 
 ### OH_AVFormat_SetLongValue()
@@ -1160,7 +1287,13 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针。
 
 
 ### OH_AVFormat_SetStringValue()
@@ -1187,7 +1320,14 @@ bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **返回：**
 
-返回值为true表示成功，为false表示失败。
+返回值为TRUE表示成功，返回值为FALSE表示失败。
+
+可能的失败原因：
+
+1. 输入format为空指针；
+2. 输入format参数格式校验失败；
+3. 输入key为空指针；
+4. 输入value为空指针。
 
 
 ### OH_AVMemory_Create()
@@ -1274,7 +1414,13 @@ uint8_t* OH_AVMemory_GetAddr (struct OH_AVMemory *mem)
 
 **返回：**
 
-如果内存有效，返回内存的虚拟地址，如果内存无效，返回nullptr。
+如果内存有效，返回内存的虚拟地址；如果内存无效，返回nullptr。
+
+可能的失败原因：
+
+1. 输入mem为空指针；
+2. 输入mem参数格式校验失败；
+3. 输入mem中内存为空指针。
 
 
 ### OH_AVMemory_GetSize()
@@ -1303,4 +1449,10 @@ int32_t OH_AVMemory_GetSize (struct OH_AVMemory *mem)
 
 **返回：**
 
-如果内存有效，返回内存长度，如果内存无效，返回-1。
+如果内存有效，返回内存长度；如果内存无效，返回-1。
+
+可能的失败原因：
+
+1. 输入mem为空指针；
+2. 输入mem参数格式校验失败；
+3. 输入mem中内存为空指针。

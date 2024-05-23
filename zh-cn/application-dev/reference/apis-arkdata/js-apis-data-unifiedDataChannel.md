@@ -29,7 +29,7 @@ UDMF支持的设备内使用范围类型枚举。
 
 type GetDelayData = (type: string) => UnifiedData
 
-对UnifiedData的延迟封装，支持延迟获取数据。当前只支持剪贴板场景，后续场景待开发。
+对UnifiedData的延迟封装，支持延迟获取数据。当前只支持同设备剪贴板场景，后续场景待开发。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -97,8 +97,8 @@ type ValueType = number | string | image.PixelMap | Want | ArrayBuffer
 | extras<sup>12+</sup> | Record<string, object> | 否 | 否 | 是一个字典类型对象，用于设置其他附加属性数据。非必填字段，默认值为空字典对象。 |
 | tag<sup>12+</sup> | string | 否 | 否 | 用户自定义标签。非必填字段，默认值为空字符串。 |
 | timestamp<sup>12+</sup> | Date | 是 | 否 | [UnifiedData](#unifieddata)的生成时间戳。默认值为1970年1月1日（UTC）。 |
-| shareOptions<sup>12+</sup> | ShareOptions | 否 | 否 | 指示[UnifiedData](#unifieddata)支持的设备内使用范围，非必填字段，默认值为CROSS_APP。 |
-| getDelayData<sup>12+</sup> | [GetDelayData](#getdelaydata12) | 否 | 否 | 延迟获取数据回调。当前只支持剪贴板场景，后续场景待开发。非必填字段，默认值为undefined。 |
+| shareOptions<sup>12+</sup> | [ShareOptions](#shareoptions12) | 否 | 否 | 指示[UnifiedData](#unifieddata)支持的设备内使用范围，非必填字段，默认值为CROSS_APP。 |
+| getDelayData<sup>12+</sup> | [GetDelayData](#getdelaydata12) | 否 | 否 | 延迟获取数据回调。当前只支持同设备剪贴板场景，后续场景待开发。非必填字段，默认值为undefined。 |
 
 **示例：**
 

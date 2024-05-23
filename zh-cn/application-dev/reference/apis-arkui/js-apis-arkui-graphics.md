@@ -283,7 +283,7 @@ SizeT\<T>
 
 ## LengthMetrics<sup>12+</sup>
 
-用于设置长度属性。
+用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

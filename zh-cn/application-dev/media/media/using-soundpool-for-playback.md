@@ -242,14 +242,14 @@ async function create() {
   }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
   soundId = await soundPool.load(uri);
 }
-async function loadCallback() {
+function loadCallback() {
   // 加载完成回调
   soundPool.on('loadComplete', (soundId_: number) => {
     console.info('loadComplete, soundId: ' + soundId_);
   })
 }
 //设置播放完成监听
-async function finishPlayCallback() {
+function finishPlayCallback() {
   // 播放完成回调
   soundPool.on('playFinished', () => {
     console.info("recive play finished message");
@@ -264,7 +264,7 @@ function setErrorCallback() {
 }
 async function PlaySoundPool() {
   // 开始播放,这边play也可带播放播放的参数PlayParameters
-  await soundPool.play(soundId, playParameters, (error, streamID: number) => {
+  soundPool.play(soundId, playParameters, (error, streamID: number) => {
     if (error) {
       console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
     } else {
@@ -273,15 +273,15 @@ async function PlaySoundPool() {
     }
   });
   // 设置循环播放次数
-  soundPool.setLoop(streamId, 2); // 播放3次
+  await soundPool.setLoop(streamId, 2); // 播放3次
   // 设置对应流的优先级
-  soundPool.setPriority(streamId, 1);
+  await soundPool.setPriority(streamId, 1);
   // 设置音量
-  soundPool.setVolume(streamId, 0.5, 0.5);
+  await soundPool.setVolume(streamId, 0.5, 0.5);
 }
 async function release() {
   // 终止指定流的播放
-  soundPool.stop(streamId);
+  await soundPool.stop(streamId);
   // 卸载音频资源
   await soundPool.unload(soundId);
   //关闭监听

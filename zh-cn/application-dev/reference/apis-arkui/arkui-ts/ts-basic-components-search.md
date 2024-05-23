@@ -186,11 +186,11 @@ caretStyle(value: CaretStyle)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**  
 
 | 参数名 | 类型                                | 必填 | 说明                                                         |
 | ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CaretStyle](#caretstyle10对象说明) | 是   | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
 
 >  **说明：**     
 >   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
@@ -463,15 +463,6 @@ maxFontSize(value: number | string | Resource)
 | size   | [Length](ts-types.md#length)               | 否   | 图标尺寸，不支持百分比。    |
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标颜色。    |
 | src    | [ResourceStr](ts-types.md#resourcestr)     | 否   | 图标/图片源。 |
-
-## CaretStyle<sup>10+</sup>对象说明
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
-| 参数名 | 参数类型                                   | 必填 | 参数描述 |
-| ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
 
 ## SearchButtonOptions<sup>10+</sup>对象说明
 

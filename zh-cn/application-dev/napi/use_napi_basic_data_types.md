@@ -115,7 +115,7 @@ ArkTS侧示例代码
 ```ts
 // 传入非数字“ss”时函数返回undefined
 hilog.info(0x0000, 'NAPI', 'get_value_int32_not_number %{public}s', testNapi.getValueInt32('ss'));
-// 传入int32范围内的数字10时函数返回原数字
+// 传入int32范围内的数字100时函数返回原数字
 hilog.info(0x0000, 'NAPI', 'get_value_int32_number %{public}d', testNapi.getValueInt32(100));
 // 传入68719476735，此数字的二进制为111111111111111111111111111111111111，在int32类型中此二进制代表数字-1
 hilog.info(0x0000, 'NAPI', 'get_value_int32_oversize %{public}d', testNapi.getValueInt32(68719476735));
