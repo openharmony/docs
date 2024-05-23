@@ -2229,7 +2229,7 @@ class MyNodeController extends NodeController {
   }
 
   disposeRenderNode() {
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.removeChild(renderNode);
     }
