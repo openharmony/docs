@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -29,24 +29,30 @@ import appManager from '@ohos.app.ability.appManager';
 
 **示例：**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`onProcessCreated onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`onProcessDied onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
+  onForegroundApplicationChanged(appStateData) {
+    console.log(`onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}`);
+  },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
+  onProcessCreated(processData) {
+    console.log(`onProcessCreated onProcessCreated: ${JSON.stringify(processData)}`);
+  },
+  onProcessDied(processData) {
+    console.log(`onProcessDied onProcessDied: ${JSON.stringify(processData)}`);
+  },
+  onProcessStateChanged(processData) {
+    console.log(`onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}`);
+  },
+  onAppStarted(appStateData) {
+    console.log(`onAppStarted onAppStarted: ${JSON.stringify(appStateData)}`);
+  },
+  onAppStopped(appStateData) {
+    console.log(`onAppStopped onAppStopped: ${JSON.stringify(appStateData)}`);
+  }
 };
 let observerCode = appManager.on('applicationState', applicationStateObserver);
 ```

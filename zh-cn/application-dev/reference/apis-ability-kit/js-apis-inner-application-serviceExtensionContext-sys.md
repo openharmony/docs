@@ -2471,7 +2471,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       });
     }
     catch (e) {
-      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
+      log(`exception occured, errCode ${JSON.stringify((e as BusinessError).code)}`);
     }
   }
 

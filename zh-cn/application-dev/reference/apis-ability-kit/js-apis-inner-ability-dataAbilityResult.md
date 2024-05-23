@@ -24,6 +24,7 @@ import ability from '@ohos.ability.ability';
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';

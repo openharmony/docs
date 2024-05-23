@@ -11,12 +11,12 @@
 ## 导入模块
 
 ```js
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask } from '@kit.AbilityKit';
 ```
 
 ## StartupTask.onDependencyCompleted
 
-onDependencyCompleted?(dependency: string, result: any): void
+onDependencyCompleted?(dependency: string, result: ESObject): void
 
 在特定的依赖组件完成初始化时调用。
 
@@ -27,12 +27,12 @@ onDependencyCompleted?(dependency: string, result: any): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | dependency | string | 是 | 依赖的组件名称。 |
-| result | any | 是 | 依赖组件初始化的结果。 |
+| result | ESObject | 是 | 依赖组件初始化的结果。 |
 
 **示例：**：
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask } from '@kit.AbilityKit';
 
 @Sendable
 export default class Sample_001 extends StartupTask {
@@ -40,7 +40,7 @@ export default class Sample_001 extends StartupTask {
     super();
   }
 
-  onDependencyCompleted(dependence: string, result) {
+  onDependencyCompleted(dependence: string, result: ESObject) {
     console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
     // ...
   }
@@ -50,7 +50,7 @@ export default class Sample_001 extends StartupTask {
 
 ## StartupTask.init
 
-init(context: AbilityStageContext): Promise\<any\>
+init(context: AbilityStageContext): Promise\<ESObject\>
 
 初始化组件
 
@@ -66,12 +66,12 @@ init(context: AbilityStageContext): Promise\<any\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<any\> | Promise对象，返回组件初始化结果对象。 |
+| Promise\<ESObject\> | Promise对象，返回组件初始化结果对象。 |
 
 **示例：**：
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask, common } from '@kit.AbilityKit';
 
 @Sendable
 export default class Sample_001 extends StartupTask {
@@ -79,7 +79,7 @@ export default class Sample_001 extends StartupTask {
     super();
   }
 
-  async init(context) {
+  async init(context: common.AbilityStageContext) {
     console.info("StartupTest Sample_001 init");
     // ...
   }

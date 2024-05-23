@@ -45,19 +45,25 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
   const observerCode = appManager.registerApplicationStateObserver({
     onForegroundApplicationChanged(appStateData) {
-        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+      console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
     onAbilityStateChanged(abilityStateData) {
-        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+      console.log('------------ onAbilityStateChanged -----------', abilityStateData);
     },
     onProcessCreated(processData) {
-        console.log('------------ onProcessCreated -----------', processData);
+      console.log('------------ onProcessCreated -----------', processData);
     },
     onProcessDied(processData) {
-        console.log('------------ onProcessDied -----------', processData);
+      console.log('------------ onProcessDied -----------', processData);
     },
     onProcessStateChanged(processData) {
-        console.log('------------ onProcessStateChanged -----------', processData);
+      console.log('------------ onProcessStateChanged -----------', processData);
+    },
+    onAppStarted(appStateData) {
+      console.log('------------ onAppStarted -----------', appStateData);
+    },
+    onAppStopped(appStateData) {
+      console.log('------------ onAppStopped -----------', appStateData);
     }
   });
   console.log('-------- observerCode: ---------', observerCode);
