@@ -43,7 +43,6 @@ usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addRight�
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
-| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -88,7 +87,6 @@ usbFunctionsFromString(funcs: string): number
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
-| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -130,7 +128,6 @@ usbFunctionsToString(funcs: FunctionType): string
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
-| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -210,11 +207,6 @@ getCurrentFunctions(): FunctionType
 
 以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. No parameters are required.                 |
-| 202      | Permission denied. Normal application do not have permission to use system api. |
-
 **返回值：**
 
 | 类型                          | 说明                              |
@@ -244,11 +236,6 @@ getPorts(): Array\<USBPort\>
 **错误码：**
 
 以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. No parameters are required.                 |
-| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -289,7 +276,6 @@ getSupportedModes(portId: number): PortModeType
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
-| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
 
@@ -359,9 +345,13 @@ addDeviceAccessRight(tokenId: string, deviceName: string): boolean
 
 usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addDeviceAccessRight不会触发弹框，而是直接添加软件包访问设备的权限。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -418,9 +408,13 @@ getFunctionsFromString(funcs: string): number
 
 在设备模式下，将字符串形式的USB功能列表转化为数字掩码。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -458,9 +452,13 @@ getStringFromFunctions(funcs: FunctionType): string
 
 在设备模式下，将数字掩码形式的USB功能列表转化为字符串。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -498,9 +496,13 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 
 在设备模式下，设置当前的USB功能列表。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -543,9 +545,13 @@ getDeviceFunctions(): FunctionType
 
 在设备模式下，获取当前的USB功能列表的数字组合掩码。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -555,7 +561,6 @@ getDeviceFunctions(): FunctionType
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. No parameters are required.                 |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
@@ -576,9 +581,13 @@ getPortList(): Array\<USBPort\>
 
 获取所有物理USB端口描述信息。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -588,7 +597,6 @@ getPortList(): Array\<USBPort\>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **返回值：**
@@ -609,9 +617,13 @@ getPortSupportModes(portId: number): PortModeType
 
 获取指定的端口支持的模式列表的组合掩码。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -648,9 +660,13 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 
 设置指定的端口支持的角色模式，包含充电角色、数据传输角色。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
