@@ -35,7 +35,7 @@ import { formObserver } from '@kit.FormKit';
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -74,7 +74,7 @@ formObserver.on('formAdd', callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -113,7 +113,7 @@ formObserver.on('formAdd', bundleName, callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -157,7 +157,7 @@ formObserver.off('formAdd', bundleName, callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -194,7 +194,7 @@ formObserver.on('formRemove', callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -233,7 +233,7 @@ off(type: "formRemove", hostBundleName?: string, observerCallback?: Callback&lt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -278,7 +278,7 @@ formObserver.off('formRemove', bundleName, callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -318,7 +318,7 @@ formObserver.on('notifyVisible', callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 
 **示例：**
@@ -358,7 +358,7 @@ formObserver.on('notifyVisible', bundleName, callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -404,7 +404,7 @@ formObserver.off('notifyVisible', bundleName, callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -444,7 +444,7 @@ formObserver.on('notifyInvisible', callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -483,7 +483,7 @@ formObserver.on('notifyInvisible', bundleName, callback);
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -530,7 +530,7 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 | -------- | -------- |
 | 201      | Permissions denied.                                          |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 
@@ -578,7 +578,7 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 | -------- | -------- |
 | 201      | Permissions denied.                                          |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 
@@ -631,7 +631,7 @@ getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.Runn
 | -------- | -------- |
 | 201      | Permissions denied.                                          |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 
@@ -683,7 +683,7 @@ getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promis
 | -------- | -------- |
 | 201      | Permissions denied.                                          |
 | 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 
@@ -736,7 +736,7 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
@@ -790,7 +790,7 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
@@ -852,7 +852,7 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
@@ -908,7 +908,7 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;fo
 | -------- | -------- |
 | 201      | Permissions denied.                             |
 | 202      | caller is not system app.                       |
-| 401      | If the input parameter is not valid parameter.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
@@ -958,7 +958,7 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.Runni
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
@@ -1011,7 +1011,7 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: Asyn
 | -------- | -------- |
 | 201      | Permissions denied.                             |
 | 202      | caller is not system app.                       |
-| 401      | If the input parameter is not valid parameter.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
@@ -1060,7 +1060,7 @@ try {
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -1098,7 +1098,7 @@ formObserver.on('router', callback);
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -1137,7 +1137,7 @@ formObserver.on('router', hostBundleName, callback);
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -1175,7 +1175,7 @@ formObserver.off('router', hostBundleName, callback);
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -1213,7 +1213,7 @@ formObserver.on('message', callback);
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -1252,7 +1252,7 @@ formObserver.on('message', hostBundleName, callback);
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -1290,7 +1290,7 @@ formObserver.off('message', hostBundleName, callback);
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -1328,7 +1328,7 @@ formObserver.on('call', callback);
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
@@ -1367,7 +1367,7 @@ formObserver.on('call', hostBundleName, callback);
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification |
 
 **示例：**
 
