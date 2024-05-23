@@ -41,6 +41,7 @@ getIntelligentVoiceManager(): IntelligentVoiceManager
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 | 22700101 | No memory.                              |
 
 **示例：** 
@@ -54,6 +55,46 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`Get IntelligentVoiceManager failed. Code:${error.code}, message:${error.message}`);
+}
+```
+
+## intelligentVoice.getWakeupManager<sup>12+</sup>
+
+getWakeupManager(): WakeupManager
+
+获取唤醒管理类。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**返回值：**
+
+| 类型                          | 说明         |
+| ----------------------------- | ------------ |
+| [WakeupManager](#wakeupManager) | 智能语音管理类。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700101 | No memory.                              |
+| 22700107 | System error.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let wakeupManager: intelligentVoice.WakeupManager | null = null;
+try {
+  wakeupManager = intelligentVoice.getWakeupManager();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Get WakeupManager failed. Code:${error.code}, message:${error.message}`);
 }
 ```
 
@@ -80,6 +121,8 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Input parameter value error.                            |
 
@@ -131,6 +174,8 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Input parameter value error.                            |
 
@@ -175,6 +220,8 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Input parameter value error.                            |
 
@@ -226,6 +273,8 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700101 | No memory.                           |
 | 22700102 | Input parameter value error.                            |
 
@@ -267,6 +316,14 @@ getCapabilityInfo(): Array&lt;IntelligentVoiceEngineType&gt;
 | ----------------------------------------------- | ---------------------------- |
 |  Array\<[IntelligentVoiceEngineType](#intelligentvoiceenginetype)\>            | 支持的智能语音引擎类型数组。              |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **示例：**
 
 ```ts
@@ -291,6 +348,14 @@ on(type: 'serviceChange', callback: Callback&lt;ServiceChangeType&gt;): void
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | 是   | 系统服务变更事件，固定取值为'serviceChange'，表示服务变更事件。 |
 | callback | Callback\<[ServiceChangeType](#servicechangetype)\> | 是   | 服务状态变更对应的处理。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
@@ -317,6 +382,14 @@ off(type: 'serviceChange', callback?: Callback\<ServiceChangeType\>): void
 | type     | string                           | 是   | 系统服务变更事件，固定取值为'serviceChange'。 |
 | callback | Callback\<[ServiceChangeType](#servicechangetype)\> | 否   | 服务状态变更对应的处理，无参数，则取消所有订阅，否则，取消对应的处理。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **示例：**
 
 ```ts
@@ -324,6 +397,359 @@ if (intelligentVoiceManager != null) {
   intelligentVoiceManager.off('serviceChange');
 }
 ```
+
+## WakeupManager
+
+唤醒管理类，使用前需要通过[getWakeupManager()](#intelligentvoicegetwakeupmanager)获取唤醒管理实例。
+
+### setParameter<sup>12+</sup>
+
+setParameter(key: string, value: string): Promise\<void\>
+
+设置指定的唤醒参数，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| key     | string                           | 是   | 键。 |
+| value     | string                           | 是   | 值。 |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700102 | Input parameter value error.                            |
+| 22700107 | System error.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).setParameter('scene', '0').then(() => {
+    console.info(`Succeeded in setting parameter`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### getParameter<sup>12+</sup>
+
+getParameter(key: string): Promise\<string\>
+
+获取指定的智能语音参数，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| key     | string                           | 是   | 键。 |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<string\>            | 返回智能语音参数。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700102 | Input parameter value error.                            |
+| 22700107 | System error.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).getParameter('key').then((data: string) => {
+    let param: string = data;
+    console.info(`Succeeded in getting parameter, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### getUploadFiles<sup>12+</sup>
+
+getUploadFiles(maxCount: number): Promise&lt;Array&lt;UploadFile&gt;&gt;
+
+获取保存的唤醒词文件，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| maxCount     | number                           | 是   | 获取的文件数量。 |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;Array&lt;[UploadFile](#uploadFile)&gt;&gt;   | 返回获取的文件。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700101 | No memory.                        |
+| 22700102 | Input parameter value error.                            |
+| 22700107 | System error.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).getUploadFiles(2).then((data: Array<intelligentVoice.UploadFile>) => {
+    let param: Array<intelligentVoice.UploadFile> = data;
+    console.info(`Succeeded in getting upload files, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get upload files, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+
+### getWakeupSourceFiles<sup>12+</sup>
+
+getWakeupSourceFiles(): Promise&lt;Array&lt;WakeupSourceFile&gt;&gt;
+
+获取唤醒资源文件，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;Array&lt;[WakeupSourceFile](#wakeupSourceFile)&gt;&gt;            | 返回唤醒资源文件。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700101 | No memory.                        |
+| 22700107 | System error.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).getWakeupSourceFiles().then(
+    (data: Array<intelligentVoice.WakeupSourceFile>) => {
+    let param: Array<intelligentVoice.WakeupSourceFile> = data;
+    console.info(`Succeeded in getting upload files, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get upload files, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### enrollWithWakeupFilesForResult<sup>12+</sup>
+
+enrollWithWakeupFilesForResult(wakeupFiles: Array\<WakeupSourceFile\>, wakeupInfo: string): Promise\<EnrollResult\>
+
+使用唤醒文件注册以获得结果，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| wakeupFiles     | Array\<WakeupSourceFile\>                           | 是   | 唤醒资源文件。 |
+| wakeupInfo     | string                           | 是   | 唤醒消息。 |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;[EnrollResult](#enrollResult)&gt;    | 返回唤醒资源文件。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700101 | No memory.                        |
+| 22700102 | Input parameter value error.                        |
+| 22700107 | System error.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let wakeupInfo: string = "version: 123"
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).enrollWithWakeupFilesForResult(
+    filesInfo: Array<intelligentVoice.WakeupSourceFile>, wakeupInfo).then(
+    (data: intelligentVoice.EnrollResult) => {
+    let param: intelligentVoice.EnrollResult = data;
+    console.info(`Succeeded in getting upload files, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get upload files, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### clearUserData<sup>12+</sup>
+
+clearUserData(): Promise&lt;void&gt;
+
+清楚用户数据，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700107 | System error.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupManager != null) {
+  (wakeupManager as intelligentVoice.WakeupManager).clearUserData().then(() => {
+    console.info(`Succeeded in clear user data.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to clear user data, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+## UploadFileType<sup>12+</sup>
+
+枚举，上传文件类型。
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+| 名称                       | 值   | 说明            |
+| ------------------------- | ---- | ------------    |
+| ENROLL_FILE      | 0    | 注册文件。   |
+| WAKEUP_FILE      | 1    | 唤醒文件。   |
+
+## UploadFile<sup>12+</sup>
+
+上传文件包含内容。
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+| 名称   | 类型                            |     必填     | 说明       |
+| ------ | ----------------------------- | -------------- | ---------- |
+| type | UploadFileType |        是       | 文件类型。 |
+| filesDescription | string |        是       | 文件描述。 |
+| filesContent | Array\<ArrayBuffer\> |        是       | 文件内容。 |
+
+## WakeupSourceFile<sup>12+</sup>
+
+唤醒资源文件。
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+| 名称   | 类型                            |     必填     | 说明       |
+| ------ | ----------------------------- | -------------- | ---------- |
+| filePath | string |        是       | 文件路径。 |
+| fileContent | ArrayBuffer |        是       | 文件内容。 |
+
+## EvaluationResultCode<sup>12+</sup>
+
+枚举，自定义唤醒词返回错误码类型。
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+| 名称                       | 值   | 说明            |
+| ------------------------- | ---- | ------------    |
+| UNKNOWN      | 0    | 未知错误。   |
+| PASS      | 1    | 通过。   |
+| WORD_EMPTY      | 2    | 字是空的。。   |
+| CHINESE_ONLY      | 3    | 只支持中文。   |
+| INVALID_LENGTH      | 4    | 无效的长度。   |
+| UNUSUAL_WORD      | 5    | 不寻常的词。  |
+| CONSECUTIVE_SAME_WORD      | 6    | 连续相同的字。   |
+| TOO_FEW_PHONEMES      | 7    | 音素太少。   |
+| TOO_MANY_PHONEMES      | 8    | 音素太多。   |
+| COMMON_INSTRUCTION      | 9    | 包含常用指令。   |
+| COMMON_SPOKEN_LANGUAGE      | 10    | 包含常用口语。  |
+| SENSITIVE_WORD      | 11    | 包含敏感词。   |
+| NO_INITIAL_CONSONANT      | 12    | 两个连续的词，没有首辅音。   |
+| REPEATED_PHONEME      | 13    | 包含重复的音素。   |
+
+## EvaluationResult<sup>12+</sup>
+
+唤醒资源文件。
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+| 名称   | 类型                            |     必填     | 说明       |
+| ------ | ----------------------------- | -------------- | ---------- |
+| score | number |        是       | 评估得分。 |
+| resultCode | EvaluationResultCode |        是       | 描述评估结果代码。 |
 
 ## ServiceChangeType
 
@@ -426,6 +852,22 @@ if (intelligentVoiceManager != null) {
 | INTELLIGENT_VOICE_INVALID_PARAM      | 22700102    | 参数无效。  |
 | INTELLIGENT_VOICE_INIT_FAILED      | 22700103    | 注册失败。   |
 | INTELLIGENT_VOICE_COMMIT_ENROLL_FAILED      | 22700104    | 确认注册结果失败。   |
+| INTELLIGENT_VOICE_START_CAPTURER_FAILED<sup>12+</sup>      | 22700105    | 启动读流失败。  |
+| INTELLIGENT_VOICE_READ_FAILED<sup>12+</sup>      | 22700106    | 读流失败。   |
+| INTELLIGENT_VOICE_SYSTEM_ERROR<sup>12+</sup>      | 22700107    | 系统错误。   |
+
+## CapturerChannel<sup>12+</sup>
+
+枚举，枚举捕获器通道。
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+| 名称                       | 值   | 说明            |
+| ------------------------- | ---- | ------------    |
+| CAPTURER_CHANNEL_1      | 0x1 << 0    | 1声道。   |
+| CAPTURER_CHANNEL_2      | 0x1 << 1    | 2声道。   |
+| CAPTURER_CHANNEL_3     | 0x1 << 2    | 3声道。   |
+| CAPTURER_CHANNEL_4      | 0x1 << 3    | 4声道。   |
 
 ## EnrollResult
 
@@ -487,6 +929,14 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;         | 是   | 返回支持区域的数组，当前只支持中国，对应取值为'CN'。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **示例：**
 
 ```ts
@@ -520,6 +970,14 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;Array&lt;string&gt;&gt;            | 返回支持区域的数组，当前只支持中国，对应取值为'CN'。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
@@ -560,6 +1018,8 @@ init(config: EnrollEngineConfig, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 | 22700103 | Init failed.                           |
 
@@ -611,6 +1071,8 @@ init(config: EnrollEngineConfig): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 | 22700103 | Init failed.                           |
 
@@ -649,6 +1111,15 @@ enrollForResult(isLast: boolean, callback: AsyncCallback&lt;EnrollCallbackInfo&g
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | isLast     | boolean                           | 是   | isLast表示是否为最后一次注册，false为非最后一次，true为最后一次。 |
 | callback     | AsyncCallback&lt;[EnrollCallbackInfo](#enrollcallbackinfo)&gt;                           | 是   | 返回注册结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -690,6 +1161,15 @@ enrollForResult(isLast: boolean): Promise&lt;EnrollCallbackInfo&gt;
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;[EnrollCallbackInfo](#enrollcallbackinfo)&gt;            | 返回注册结果。                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+
 **示例：**
 
 ```ts
@@ -719,6 +1199,14 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     |  AsyncCallback&lt;void&gt;                           | 是   | 返回停止结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
@@ -751,6 +1239,14 @@ stop(): Promise&lt;void&gt;
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
@@ -788,6 +1284,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 | 22700104 | Commit enroll failed.                           |
 
 **示例：**
@@ -828,6 +1325,7 @@ commit(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 | 22700104 | Commit enroll failed.                           |
 
 **示例：**
@@ -867,6 +1365,8 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -911,6 +1411,8 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -954,6 +1456,8 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1000,6 +1504,8 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1040,6 +1546,8 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1087,6 +1595,8 @@ setParameter(key: string, value: string): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1126,6 +1636,8 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1173,6 +1685,8 @@ getParameter(key: string): Promise\<string\>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1186,6 +1700,54 @@ if (enrollIntelligentVoiceEngine != null) {
     console.info(`Succeeded in getting parameter, param:${param}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### evaluateForResult<sup>12+</sup>
+
+evaluateForResult(word: string): Promise\<EvaluationResult\>
+
+自定义唤醒词评估，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| word     | string                           | 是   | 自定义唤醒词。 |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise&lt;[EvaluationResult](#evaluationResult)&gt;     | 返回评估结果。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700107 | System error.                            |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (enrollIntelligentVoiceEngine != null) {
+  (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).evaluateForResult('word').then(
+    (data: intelligentVoice.EvaluationResult) => {
+    let param: intelligentVoice.EvaluationResult = data;
+    console.info(`Succeeded evaluate, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to evaluate, Code:${err.code}, message:${err.message}`);
   });
 }
 ```
@@ -1205,6 +1767,14 @@ release(callback: AsyncCallback&lt;void&gt;): void
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     | AsyncCallback\<void\>                           | 是   | 返回释放注册引擎的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
@@ -1238,6 +1808,14 @@ release(): Promise&lt;void&gt;
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;void&gt;            | 无返回结果的Promise对象。                  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **示例：**
 
 ```ts
@@ -1269,6 +1847,14 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     | AsyncCallback&lt;Array&lt;string&gt;&gt;                           | 是   | 返回支持区域的数组，当前只支持中国，对应取值为'CN'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
@@ -1302,6 +1888,14 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;Array&lt;string&gt;&gt;            | 返回支持区域的数组，当前只支持中国，对应取值为'CN'。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
@@ -1341,6 +1935,8 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1392,6 +1988,8 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1435,6 +2033,8 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1481,6 +2081,8 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1521,6 +2123,8 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1568,6 +2172,8 @@ setParameter(key: string, value: string): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1607,6 +2213,8 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1654,6 +2262,8 @@ getParameter(key: string): Promise\<string\>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 22700102 | Input parameter value error.                            |
 
 **示例：**
@@ -1667,6 +2277,176 @@ if (wakeupIntelligentVoiceEngine != null) {
     console.info(`Succeeded in getting parameter, param:${param}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get parameter, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### getPcm<sup>12+</sup>
+
+getPcm(): Promise\<ArrayBuffer\>
+
+获取脉冲编码调制音频，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<ArrayBuffer\>            | 返回脉冲编码调制音频。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700101 | No memory.                          |
+| 22700107 | System error.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).getPcm().then((data: ArrayBuffer) => {
+    let param: ArrayBuffer = data;
+    console.info(`Succeeded in getting pcm, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get pcm, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### startCapturer<sup>12+</sup>
+
+startCapturer(channels: number): Promise\<void\>
+
+启动捕获器，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| channels     | number                           | 是   | 声道数。 |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<void\>            | 无返回结果的Promise对象。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 22700102 | Input parameter value error.                         |
+| 22700105 | Start capturer failed.                          |
+| 22700107 | System error.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).startCapturer(1).then(() => {
+    console.info(`Succeeded start capturer`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to start capturer, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### read<sup>12+</sup>
+
+read(): Promise\<ArrayBuffer\>
+
+读取数据，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<ArrayBuffer\>            | 返回音频数据结果。                  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700101 | No memory.                          |
+| 22700106 | Read failed.                        |
+| 22700107 | System error.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).read().then((data: ArrayBuffer) => {
+    let param: ArrayBuffer = data;
+    console.info(`Succeeded in read data, param:${param}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to read data, Code:${err.code}, message:${err.message}`);
+  });
+}
+```
+
+### stopCapturer<sup>12+</sup>
+
+stopCapturer(): Promise\<void\>
+
+停止捕获器，使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
+
+**系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+|  Promise\<void\>            | 无返回结果的Promise对象。                     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+| 22700107 | System error.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+if (wakeupIntelligentVoiceEngine != null) {
+  (wakeupIntelligentVoiceEngine as intelligentVoice.WakeupIntelligentVoiceEngine).stopCapturer().then(() => {
+    console.info(`Succeeded in stop capturer`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to stop capturer, Code:${err.code}, message:${err.message}`);
   });
 }
 ```
@@ -1686,6 +2466,14 @@ release(callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | callback     | AsyncCallback\<void\>                           | 是   | 返回释放唤醒引擎的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
@@ -1719,6 +2507,14 @@ release(): Promise\<void\>
 | ----------------------------------------------- | ---------------------------- |
 |  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **示例：**
 
 ```ts
@@ -1750,6 +2546,14 @@ on(type: 'wakeupIntelligentVoiceEvent', callback: Callback\<WakeupIntelligentVoi
 | type     | string          | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'，表示智能语音唤醒事件。 |
 | callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 是   | 收到唤醒事件的对应处理。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
+
 **示例：**
 
 ```ts
@@ -1778,6 +2582,14 @@ off(type: 'wakeupIntelligentVoiceEvent', callback?: Callback\<WakeupIntelligentV
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     |string           | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'。 |
 | callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 否   | 收到唤醒事件的对应处理。无参数，则取消所有的订阅，否则，取消对应的订阅 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied.                              |
 
 **示例：**
 
