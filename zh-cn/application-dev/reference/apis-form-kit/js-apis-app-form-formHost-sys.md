@@ -2490,6 +2490,9 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2542,6 +2545,9 @@ setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2588,6 +2594,9 @@ recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2640,6 +2649,9 @@ recoverForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2692,6 +2704,9 @@ recycleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
 | 16500050 | An IPC connection error happened.                            |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred.                       |
@@ -2732,7 +2747,7 @@ updateFormLocation(formId: string, location: formInfo.FormLocation): void;
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| location |[FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | 是 | 卡片位置。 |
+| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | 是 | 卡片位置。 |
 
 **错误码：**
 
@@ -2760,6 +2775,55 @@ try {
   formHost.updateFormLocation(formId, formInfo.FormLocation.SCREEN_LOCK);
 } catch (error) {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## setPublishFormResult<sup>12+</sup>
+
+setPublishFormResult(formId: string, result: formInfo.PublishFormResult): void;
+
+设置卡片加桌结果。
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| formId | string                                                       | 是   | 卡片标识。         |
+| result | [PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult) | 是   | 发布卡片加桌结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | caller is not system app.                                    |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501001 | The ID of the form to be operated does not exist.            |
+
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
+
+try {
+  let formId: string = '12400633174999288';
+  let res: formInfo.PublishFormResult = {code: formInfo.PublishFormErrorCode.SUCCESS, message: ''};
+  formHost.setPublishFormResult(formId, res);
+} catch (error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
