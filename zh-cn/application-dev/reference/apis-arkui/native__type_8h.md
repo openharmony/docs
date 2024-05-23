@@ -39,6 +39,8 @@
 | typedef struct ArkUI_NativeDialog \* [ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) | 定义ArkUI在Native侧的自定义弹窗控制器对象指针。  | 
 | typedef struct [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) [ArkUI_WaterFlowSectionOption](_ark_u_i___native_module.md#arkui_waterflowsectionoption) | 定义FlowItem分组配置信息。  | 
 | typedef struct ArkUI_Context \* [ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle) | 定义ArkUI native UI的上下文实例对象指针定义。  |  
+| typedef struct [ArkUI_ListItemSwipeActionItem](_ark_u_i___native_module.md#arkui_listitemswipeactionitem)[ArkUI_ListItemSwipeActionItem](_ark_u_i___native_module.md#arkui_listitemswipeactionitem) | 定义ListItemSwipeActionOption方法内Item的配置信息。  | 
+| typedef struct [ArkUI_ListItemSwipeActionOption](_ark_u_i___native_module.md#arkui_listitemswipeactionoption)[ArkUI_ListItemSwipeActionOption](_ark_u_i___native_module.md#arkui_listitemswipeactionoption) | 定义ListItemSwipeActionOption方法的配置信息。  | 
 
 
 ### 枚举
@@ -112,7 +114,8 @@
 | [ArkUI_FinishCallbackType](_ark_u_i___native_module.md#arkui_finishcallbacktype) { [ARKUI_FINISH_CALLBACK_REMOVED](_ark_u_i___native_module.md) = 0, [ARKUI_FINISH_CALLBACK_LOGICALLY](_ark_u_i___native_module.md) } | 在动画中定义onFinish回调的类型。  | 
 | [ArkUI_BlendApplyType](_ark_u_i___native_module.md#arkui_blendapplytype) { [BLEND_APPLY_TYPE_FAST](_ark_u_i___native_module.md) = 0, [BLEND_APPLY_TYPE_OFFSCREEN](_ark_u_i___native_module.md) } | 指定的混合模式应用于视图的内容选项.  | 
 | [ArkUI_SwiperDisplayModeType](_ark_u_i___native_module.md#arkui_swiperdisplaymodetype) { [ARKUI_SWIPER_DISPLAY_MODE_STRETCH](_ark_u_i___native_module.md), [ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR](_ark_u_i___native_module.md) } | 定义 Swiper 组件的主轴方向上元素排列的模式。  | 
-
+| [ArkUI_ListItemSwipeActionState](_ark_u_i___native_module.md#arkui_listitemswipeactionstate) { [ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_COLLAPSED](_ark_u_i___native_module.md) = 0, [ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_EXPANDED](_ark_u_i___native_module.md), [ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_ACTIONING](_ark_u_i___native_module.md) } | 定义 Listitem 组件SwipeAction方法的显隐模式。  | 
+| [ArkUI_ListItemSwipeEdgeEffect](_ark_u_i___native_module.md#arkui_listitemswipeedgeeffect) { [ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING](_ark_u_i___native_module.md) = 0, [ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE](_ark_u_i___native_module.md) } | 定义 Listitem 组件SwipeAction方法的滚动模式。  | 
 
 ### 函数
 
