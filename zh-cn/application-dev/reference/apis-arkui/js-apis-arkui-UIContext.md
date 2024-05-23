@@ -709,7 +709,7 @@ struct TimePickerDialogExample {
       Button('showTimePickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTimePickerDialog({
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
@@ -776,7 +776,7 @@ struct TextPickerDialogExample {
       Button('showTextPickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTextPickerDialog({
+          this.getUIContext().showTextPickerDialog({
             range: this.fruits,
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
