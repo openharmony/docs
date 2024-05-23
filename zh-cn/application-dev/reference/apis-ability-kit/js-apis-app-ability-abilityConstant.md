@@ -91,7 +91,7 @@ class MyAbility extends UIAbility {
         }
         if (launchParam.lastExitReason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
             console.log('The ability has exit last because the rss control，the lastExitReason is '+  launchParam.lastExitReason +
-                ', the LastExitMessage is ' + launchParam.lastExitMessage);
+            ', the LastExitMessage is ' + launchParam.lastExitMessage);
         }
     }
 }
