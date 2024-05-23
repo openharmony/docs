@@ -17,6 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [drawable_descriptor.h](drawable__descriptor_8h.md) | 提供NativeDrawableDescriptor接口的类型定义。  <br>**库：** libace_ndk.z.so |
 | [native_dialog.h](native__dialog_8h.md) | 提供ArkUI在Native侧的自定义弹窗接口定义集合。  <br>**库：** libace_ndk.z.so| 
 | [native_event.h](native__event_8h.md) | 提供ArkUI在Native侧的事件类型定义集合。  <br>**库：** libace_ndk.z.so| 
 | [native_gesture.h](native__gesture_8h.md) | 提供NativeGesture接口的类型定义。  <br>**库：** libace_ndk.z.so| 
@@ -71,6 +72,10 @@
 | typedef struct [ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) [ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) | 定义FlowItem分组配置信息。  | 
 | typedef struct ArkUI_Context \* [ArkUI_ContextHandle](#arkui_contexthandle) | 定义ArkUI native UI的上下文实例对象指针定义。  | 
 | typedef struct [ArkUI_AnimateOption](#arkui_animateoption)[ArkUI_AnimateOption](#arkui_animateoption) | 设置动画效果相关参数。  | 
+| typedef struct [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor)[ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) | 定义 DrawableDescriptor 对象。  |
+| typedef struct OH_PixelmapNative \* [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) | 定义OH_PixelmapNative对象指针类型。  |
+| typedef struct [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem)[ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) | 定义ListItemSwipeActionOption方法内Item的配置信息。  |
+| typedef struct [ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption)[ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) | 定义ListItemSwipeActionOption方法的配置信息。  |
 
 
 ### 枚举
@@ -160,6 +165,8 @@
 | [ArkUI_BlendApplyType](#arkui_blendapplytype) { BLEND_APPLY_TYPE_FAST = 0, BLEND_APPLY_TYPE_OFFSCREEN } | 指定的混合模式应用于视图的内容选项.  | 
 | [ArkUI_LengthMetricUnit](#arkui_lengthmetricunit) { ARKUI_LENGTH_METRIC_UNIT_DEFAULT = -1, ARKUI_LENGTH_METRIC_UNIT_PX = 0, ARKUI_LENGTH_METRIC_UNIT_VP, ARKUI_LENGTH_METRIC_UNIT_FP } | 定义组件的单位模式。  | 
 | [ArkUI_SwiperDisplayModeType](#arkui_swiperdisplaymodetype) { ARKUI_SWIPER_DISPLAY_MODE_STRETCH, ARKUI_SWIPER_DISPLAY_MODE_AUTO_LINEAR } | 定义 Swiper 组件的主轴方向上元素排列的模式。  | 
+| [ArkUI_ListItemSwipeActionState](#arkui_listitemswipeactionstate) { ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_COLLAPSED = 0, ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_EXPANDED, ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_ACTIONING } | 定义 Listitem 组件SwipeAction方法的显隐模式。  |
+| [ArkUI_ListItemSwipeEdgeEffect](#arkui_listitemswipeedgeeffect) { ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING = 0, ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE } | 定义 Listitem 组件SwipeAction方法的滚动模式。  |
 
 
 ### 函数
@@ -244,6 +251,32 @@
 | void [OH_ArkUI_WaterFlowSectionOption_RegisterGetItemMainSizeCallbackByIndex](#oh_arkui_waterflowsectionoption_registergetitemmainsizecallbackbyindex) ([ArkUI_WaterFlowSectionOption](#arkui_waterflowsectionoption) \*option, int32_t index, float(\*callback)(int32_t itemIndex)) | 通过FlowItem分组配置信息根据flowItemIndex获取指定Item的主轴大小。  | 
 | int32_t [OH_ArkUI_GetDrawableDescriptorFromNapiValue](#oh_arkui_getdrawabledescriptorfromnapivalue) (napi_env env, napi_value value, [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*\*drawableDescriptor) |  将ArkTS侧创建的DrawableDescriptor对象映射到native侧的ArkUI_DrawableDescriptor。| 
 | int32_t [OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue](#oh_arkui_getdrawabledescriptorfromresourcenapivalue) (napi_env env, napi_value value, [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*\*drawableDescriptor) | 将ArkTS侧创建的$r资源对象映射到native侧的ArkUI_DrawableDescriptor。 | 
+| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromPixelMap](#oh_arkui_drawabledescriptor_createfrompixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) pixelMap) | 使用 PixelMap 创建 DrawbleDescriptor 对象。  |
+| [ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \* [OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap](#oh_arkui_drawabledescriptor_createfromanimatedpixelmap) ([OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \*array, int32_t size) | 使用 PixelMap 图片数组创建DrawbleDescriptor 对象。  |
+| void [OH_ArkUI_DrawableDescriptor_Dispose](#oh_arkui_drawabledescriptor_dispose) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 销毁 DrawbleDescriptor 对象指针。  |
+| [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle)[OH_ArkUI_DrawableDescriptor_GetStaticPixelMap](#oh_arkui_drawabledescriptor_getstaticpixelmap) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取 PixelMap 图片对象指针。  |
+| [OH_PixelmapNativeHandle](#oh_pixelmapnativehandle) \* [OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray](#oh_arkui_drawabledescriptor_getanimatedpixelmaparray) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取用于播放动画的 PixelMap 图片数组数据。  |
+| int32_t [OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize](#oh_arkui_drawabledescriptor_getanimatedpixelmaparraysize) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取用于播放动画的 PixelMap 图片数组数据。  |
+| void [OH_ArkUI_DrawableDescriptor_SetAnimationDuration](#oh_arkui_drawabledescriptor_setanimationduration) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor, int32_t duration) | 设置 PixelMap 图片数组播放总时长。  |
+| int32_t [OH_ArkUI_DrawableDescriptor_GetAnimationDuration](#oh_arkui_drawabledescriptor_getanimationduration) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取 PixelMap 图片数组播放总时长。  |
+| void [OH_ArkUI_DrawableDescriptor_SetAnimationIteration](#oh_arkui_drawabledescriptor_setanimationiteration) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor, int32_t iteration) | 设置 PixelMap 图片数组播放次数。  |
+| int32_t [OH_ArkUI_DrawableDescriptor_GetAnimationIteration](#oh_arkui_drawabledescriptor_getanimationiteration) ([ArkUI_DrawableDescriptor](#arkui_drawabledescriptor) \*drawableDescriptor) | 获取 PixelMap 图片数组播放次数。  |
+| [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \* [OH_ArkUI_ListItemSwipeActionItem_Create](#oh_arkui_listitemswipeactionitem_create) () | 创建ListItemSwipeActionItem接口设置的配置项。  |
+| void [OH_ArkUI_ListItemSwipeActionItem_Dispose](#oh_arkui_listitemswipeactionitem_dispose) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item) | 销毁ListItemSwipeActionItem实例。  |
+| void [OH_ArkUI_ListItemSwipeActionItem_SetContent](#oh_arkui_listitemswipeactionitem_setcontent) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item, ArkUI_NodeHandle node) | 设置ListItemSwipeActionItem的布局内容。  |
+| void [OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance](#oh_arkui_listitemswipeactionitem_setactionareadistance) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item, float distance) | 设置组件长距离滑动删除距离阈值。  |
+| float [OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance](#oh_arkui_listitemswipeactionitem_getactionareadistance) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item) | 获取组件长距离滑动删除距离阈值。  |
+| void [OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea](#oh_arkui_listitemswipeactionitem_setonenteractionarea) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item, void(\*callback)()) | 设置滑动条目进入删除区域时调用的事件。  |
+| void [OH_ArkUI_ListItemSwipeActionItem_SetOnAction](#oh_arkui_listitemswipeactionitem_setonaction) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item, void(\*callback)()) | 设置组件进入长距删除区后删除ListItem时调用的事件。  |
+| void [OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea](#oh_arkui_listitemswipeactionitem_setonexitactionarea) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item, void(\*callback)()) | 设置滑动条目退出删除区域时调用的事件。  |
+| void [OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange](#oh_arkui_listitemswipeactionitem_setonstatechange) ([ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item, void(\*callback)([ArkUI_ListItemSwipeActionState](#arkui_listitemswipeactionstate) swipeActionState)) | 设置列表项滑动状态变化时候触发的事件。  |
+| [ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) \* [OH_ArkUI_ListItemSwipeActionOption_Create](#oh_arkui_listitemswipeactionoption_create) () | 创建ListItemSwipeActionOption接口设置的配置项。  |
+| void [OH_ArkUI_ListItemSwipeActionOption_Dispose](#oh_arkui_listitemswipeactionoption_dispose) ([ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) \*option) | 销毁ListItemSwipeActionOption实例。  |
+| void [OH_ArkUI_ListItemSwipeActionOption_SetStart](#oh_arkui_listitemswipeactionoption_setstart) ([ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) \*option, [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item) | 设置ListItemSwipeActionItem的左侧（垂直布局）或上方（横向布局）布局内容。  |
+| void [OH_ArkUI_ListItemSwipeActionOption_SetEnd](#oh_arkui_listitemswipeactionoption_setend) ([ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) \*option, [ArkUI_ListItemSwipeActionItem](#arkui_listitemswipeactionitem) \*item) | 设置ListItemSwipeActionItem的右侧（垂直布局）或下方（横向布局）布局内容。  |
+| void [OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect](#oh_arkui_listitemswipeactionoption_setedgeeffect) ([ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) \*option, [ArkUI_ListItemSwipeEdgeEffect](#arkui_listitemswipeedgeeffect) edgeEffect) | 设置滑动效果。  |
+| int32_t [OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect](#oh_arkui_listitemswipeactionoption_getedgeeffect) ([ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) \*option) | 获取滑动效果。  |
+| void [OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange](#oh_arkui_listitemswipeactionoption_setonoffsetchange) ([ArkUI_ListItemSwipeActionOption](#arkui_listitemswipeactionoption) \*option, void(\*callback)(float offset)) | 滑动操作偏移量更改时调用的事件。  |
 
 ## 宏定义说明
 
@@ -275,6 +308,49 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nativeNode
 
 
 ## 类型定义说明
+
+### ArkUI_DrawableDescriptor
+
+```
+typedef struct ArkUI_DrawableDescriptorArkUI_DrawableDescriptor
+```
+**描述**
+定义 DrawableDescriptor 对象。
+
+**起始版本：** 12
+
+
+### ArkUI_ListItemSwipeActionItem
+
+```
+typedef struct ArkUI_ListItemSwipeActionItemArkUI_ListItemSwipeActionItem
+```
+**描述**
+定义ListItemSwipeActionOption方法内Item的配置信息。
+
+**起始版本：** 12
+
+
+### ArkUI_ListItemSwipeActionOption
+
+```
+typedef struct ArkUI_ListItemSwipeActionOptionArkUI_ListItemSwipeActionOption
+```
+**描述**
+定义ListItemSwipeActionOption方法的配置信息。
+
+**起始版本：** 12
+
+
+### OH_PixelmapNativeHandle
+
+```
+typedef struct OH_PixelmapNative* OH_PixelmapNativeHandle
+```
+**描述**
+定义OH_PixelmapNative对象指针类型。
+
+**起始版本：** 12
 
 ### ArkUI_AnimateOption
 
@@ -384,6 +460,39 @@ typedef struct ArkUI_WaterFlowSectionOption ArkUI_WaterFlowSectionOption
 
 
 ## 枚举类型说明
+
+
+### ArkUI_ListItemSwipeActionState
+
+```
+enum ArkUI_ListItemSwipeActionState
+```
+**描述**
+定义 Listitem 组件SwipeAction方法的显隐模式。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_COLLAPSED  | 收起状态，当ListItem与主轴方向相反滑动时操作项处于隐藏状态。&nbsp;&nbsp; |
+| ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_EXPANDED  | 收起状态，当ListItem与主轴方向相反滑动时操作项处于显示状态。&nbsp;&nbsp; |
+| ARKUI_LIST_ITEM_SWIPE_ACTION_STATE_ACTIONING  | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。&nbsp;&nbsp; |
+
+
+### ArkUI_ListItemSwipeEdgeEffect
+
+```
+enum ArkUI_ListItemSwipeEdgeEffect
+```
+**描述**
+定义 Listitem 组件SwipeAction方法的滚动模式。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING  | ListItem划动距离超过划出组件大小后可以继续划动。&nbsp;&nbsp; |
+| ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE  | ListItem划动距离不能超过划出组件大小。&nbsp;&nbsp;
 
 
 ### ArkUI_AccessibilityMode
@@ -2284,6 +2393,494 @@ enum HitTestMode
 
 
 ## 函数说明
+
+
+### OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap()
+
+```
+ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromAnimatedPixelMap (OH_PixelmapNativeHandle * array, int32_t size )
+```
+**描述**
+使用 PixelMap 图片数组创建DrawbleDescriptor 对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| array | PixelMap 图片数组对象指针。  |
+| size | PixelMap 图片数组大小。  |
+
+**返回：**
+
+返回 DrawableDescriptor 对象指针。
+
+
+### OH_ArkUI_DrawableDescriptor_CreateFromPixelMap()
+
+```
+ArkUI_DrawableDescriptor* OH_ArkUI_DrawableDescriptor_CreateFromPixelMap (OH_PixelmapNativeHandle pixelMap)
+```
+**描述**
+使用 PixelMap 创建 DrawbleDescriptor 对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| pixelMap | PixelMap 对象指针。  |
+
+**返回：**
+
+返回 DrawableDescriptor 对象指针。
+
+
+### OH_ArkUI_DrawableDescriptor_Dispose()
+
+```
+void OH_ArkUI_DrawableDescriptor_Dispose (ArkUI_DrawableDescriptor * drawableDescriptor)
+```
+**描述**
+销毁 DrawbleDescriptor 对象指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| drawableDescriptor | DrawbleDescriptor 对象指针。  |
+
+
+### OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray()
+
+```
+OH_PixelmapNativeHandle* OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArray (ArkUI_DrawableDescriptor * drawableDescriptor)
+```
+**描述**
+获取用于播放动画的 PixelMap 图片数组数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| drawableDescriptor | DrawbleDescriptor 对象指针。  |
+
+**返回：**
+
+PixelMap 图片数组指针。
+
+
+### OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize()
+
+```
+int32_t OH_ArkUI_DrawableDescriptor_GetAnimatedPixelMapArraySize (ArkUI_DrawableDescriptor * drawableDescriptor)
+```
+**描述**
+获取用于播放动画的 PixelMap 图片数组数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| drawableDescriptor | DrawbleDescriptor 对象指针。  |
+
+**返回：**
+
+PixelMap 图片数组大小。
+
+
+### OH_ArkUI_DrawableDescriptor_GetAnimationDuration()
+
+```
+int32_t OH_ArkUI_DrawableDescriptor_GetAnimationDuration (ArkUI_DrawableDescriptor * drawableDescriptor)
+```
+**描述**
+获取 PixelMap 图片数组播放总时长。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| drawableDescriptor | DrawbleDescriptor 对象指针。  |
+
+**返回：**
+
+播放总时长，单位毫秒。
+
+
+### OH_ArkUI_DrawableDescriptor_GetAnimationIteration()
+
+```
+int32_t OH_ArkUI_DrawableDescriptor_GetAnimationIteration (ArkUI_DrawableDescriptor * drawableDescriptor)
+```
+**描述**
+获取 PixelMap 图片数组播放次数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| drawableDescriptor | DrawbleDescriptor 对象指针。  |
+
+**返回：**
+
+播放次数。
+
+
+### OH_ArkUI_DrawableDescriptor_GetStaticPixelMap()
+
+```
+OH_PixelmapNativeHandle OH_ArkUI_DrawableDescriptor_GetStaticPixelMap (ArkUI_DrawableDescriptor * drawableDescriptor)
+```
+**描述**
+获取 PixelMap 图片对象指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| drawableDescriptor | DrawbleDescriptor 对象指针。  |
+
+**返回：**
+
+PixelMap 对象指针。
+
+
+### OH_ArkUI_DrawableDescriptor_SetAnimationDuration()
+
+```
+void OH_ArkUI_DrawableDescriptor_SetAnimationDuration (ArkUI_DrawableDescriptor * drawableDescriptor, int32_t duration )
+```
+**描述**
+设置 PixelMap 图片数组播放总时长。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| drawableDescriptor | DrawbleDescriptor 对象指针。  |
+| duration | 播放总时长，单位毫秒。  |
+
+
+### OH_ArkUI_DrawableDescriptor_SetAnimationIteration()
+
+```
+void OH_ArkUI_DrawableDescriptor_SetAnimationIteration (ArkUI_DrawableDescriptor * drawableDescriptor, int32_t iteration )
+```
+**描述**
+设置 PixelMap 图片数组播放次数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| drawableDescriptor | DrawbleDescriptor 对象指针。  |
+| iterations | 播放次数。  |
+
+
+### OH_ArkUI_ListItemSwipeActionItem_Create()
+
+```
+ArkUI_ListItemSwipeActionItem* OH_ArkUI_ListItemSwipeActionItem_Create ()
+```
+**描述**
+创建ListItemSwipeActionItem接口设置的配置项。
+
+**起始版本：** 12
+
+**返回：**
+
+ListItemSwipeActionItem配置项实例。
+
+
+### OH_ArkUI_ListItemSwipeActionItem_Dispose()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_Dispose (ArkUI_ListItemSwipeActionItem * item)
+```
+**描述**
+销毁ListItemSwipeActionItem实例。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| item | 要销毁的ListItemSwipeActionItem实例。  |
+
+
+### OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance()
+
+```
+float OH_ArkUI_ListItemSwipeActionItem_GetActionAreaDistance (ArkUI_ListItemSwipeActionItem * item)
+```
+**描述**
+获取组件长距离滑动删除距离阈值。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  |
+
+**返回：**
+
+组件长距离滑动删除距离阈值。异常时返回值：0。
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetActionAreaDistance (ArkUI_ListItemSwipeActionItem * item, float distance )
+```
+**描述**
+设置组件长距离滑动删除距离阈值。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  |
+| distance | 组件长距离滑动删除距离阈值。  |
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetContent()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetContent (ArkUI_ListItemSwipeActionItem * item, ArkUI_NodeHandle node )
+```
+**描述**
+设置ListItemSwipeActionItem的布局内容。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  |
+| node | 布局信息。  |
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnAction()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnAction (ArkUI_ListItemSwipeActionItem * item, void(*)() callback )
+```
+**描述**
+设置组件进入长距删除区后删除ListItem时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  |
+| callback | 回调事件  |
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnEnterActionArea (ArkUI_ListItemSwipeActionItem * item, void(*)() callback )
+```
+**描述**
+设置滑动条目进入删除区域时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  |
+| callback | 回调事件  |
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnExitActionArea (ArkUI_ListItemSwipeActionItem * item, void(*)() callback )
+```
+**描述**
+设置滑动条目退出删除区域时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  |
+| callback | 回调事件  |
+
+
+### OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange()
+
+```
+void OH_ArkUI_ListItemSwipeActionItem_SetOnStateChange (ArkUI_ListItemSwipeActionItem * item, void(*)(ArkUI_ListItemSwipeActionState swipeActionState) callback )
+```
+**描述**
+设置列表项滑动状态变化时候触发的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| item | ListItemSwipeActionItem实例。  |
+| callback | 回调事件 swipeActionState 变化后的状态。  |
+
+
+### OH_ArkUI_ListItemSwipeActionOption_Create()
+
+```
+ArkUI_ListItemSwipeActionOption* OH_ArkUI_ListItemSwipeActionOption_Create ()
+```
+**描述**
+创建ListItemSwipeActionOption接口设置的配置项。
+
+**起始版本：** 12
+
+**返回：**
+
+ListItemSwipeActionOption配置项实例。
+
+
+### OH_ArkUI_ListItemSwipeActionOption_Dispose()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_Dispose (ArkUI_ListItemSwipeActionOption * option)
+```
+**描述**
+销毁ListItemSwipeActionOption实例。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| option | 要销毁的ListItemSwipeActionOption实例。  |
+
+
+### OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect()
+
+```
+int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect (ArkUI_ListItemSwipeActionOption * option)
+```
+**描述**
+获取滑动效果。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  |
+
+**返回：**
+
+滑动效果。默认返回值：ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING。
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetEdgeEffect (ArkUI_ListItemSwipeActionOption * option, ArkUI_ListItemSwipeEdgeEffect edgeEffect )
+```
+**描述**
+设置滑动效果。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  |
+| edgeEffect | 滑动效果。  |
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetEnd()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetEnd (ArkUI_ListItemSwipeActionOption * option, ArkUI_ListItemSwipeActionItem * item )
+```
+**描述**
+设置ListItemSwipeActionItem的右侧（垂直布局）或下方（横向布局）布局内容。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  |
+| builder | 布局信息。  |
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange (ArkUI_ListItemSwipeActionOption * option, void(*)(float offset) callback )
+```
+**描述**
+滑动操作偏移量更改时调用的事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  |
+| callback | 回调事件 offset 滑动偏移量。  |
+
+
+### OH_ArkUI_ListItemSwipeActionOption_SetStart()
+
+```
+void OH_ArkUI_ListItemSwipeActionOption_SetStart (ArkUI_ListItemSwipeActionOption * option, ArkUI_ListItemSwipeActionItem * item )
+```
+**描述**
+设置ListItemSwipeActionItem的左侧（垂直布局）或上方（横向布局）布局内容。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| option | ListItemSwipeActionItem实例。  |
+| builder | 布局信息。  |
+
 
 ### OH_ArkUI_GetDrawableDescriptorFromNapiValue()
 
