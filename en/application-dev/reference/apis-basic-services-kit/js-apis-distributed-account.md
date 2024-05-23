@@ -9,10 +9,10 @@ The **distributedAccount** module provides APIs for managing distributed account
 ## Modules to Import
 
 ```ts
-import account_distributedAccount from '@ohos.account.distributedAccount';
+import { distributedAccount } from '@kit.BasicServicesKit';
 ```
 
-## account_distributedAccount.getDistributedAccountAbility
+## distributedAccount.getDistributedAccountAbility
 
 getDistributedAccountAbility(): DistributedAccountAbility
 
@@ -28,7 +28,7 @@ Obtains a **DistributedAccountAbility** instance.
 
 **Example**
   ```ts
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   ```
 
 ## DistributedAccountAbility
@@ -43,28 +43,29 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS, ohos.permission.GET_DISTRIBUTED_ACCOUNTS, or ohos.permission.DISTRIBUTED_DATASYNC
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS (available only for system applications), ohos.permission.GET_DISTRIBUTED_ACCOUNTS (available only for system applications), or ohos.permission.DISTRIBUTED_DATASYNC
 
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 | ID| Error Message|
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo(
-      (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+      (err: BusinessError, data: distributedAccount.DistributedInfo) => {
         if (err) {
           console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
         } else {
@@ -84,7 +85,7 @@ Obtains distributed account information. This API uses a promise to return the r
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS, ohos.permission.GET_DISTRIBUTED_ACCOUNTS, or ohos.permission.DISTRIBUTED_DATASYNC
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS (available only for system applications), ohos.permission.GET_DISTRIBUTED_ACCOUNTS (available only for system applications), or ohos.permission.DISTRIBUTED_DATASYNC
 
 **Return value**
 
@@ -96,15 +97,16 @@ Obtains distributed account information. This API uses a promise to return the r
 
 | ID| Error Message|
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   try {
-    accountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+    accountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
         console.log('distributed information: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
         console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
@@ -125,21 +127,21 @@ Obtains distributed account information. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only for system applications) or ohos.permission.DISTRIBUTED_DATASYNC
 
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo(
-    (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+    (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
         console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
       } else {
@@ -160,7 +162,7 @@ Obtains distributed account information. This API uses a promise to return the r
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only for system applications) or ohos.permission.DISTRIBUTED_DATASYNC
 
 **Return value**
 
@@ -170,10 +172,10 @@ Obtains distributed account information. This API uses a promise to return the r
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  accountAbility.queryOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  accountAbility.queryOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
       console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
       console.log('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
@@ -188,29 +190,30 @@ Sets the distributed account information. This API uses an asynchronous callback
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS (available only for system applications)
 
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 | ID| Error Message|
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
@@ -233,7 +236,7 @@ Sets the distributed account information. This API uses a promise to return the 
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS (available only for system applications)
 
 **Parameters**
 
@@ -251,16 +254,17 @@ Sets the distributed account information. This API uses a promise to return the 
 
 | ID| Error Message|
 | -------- | ------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid accountInfo. |
 | 12300003 | Account not found. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
@@ -285,21 +289,21 @@ Updates the distributed account information. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only for system applications)
 
 **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | Yes| New distributed account information.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the distributed account information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err: BusinessError) => {
     if (err) {
@@ -320,7 +324,7 @@ Updates the distributed account information. This API uses a promise to return t
 > This API is supported since API version 7 and deprecated since API version 9. Use [setOsAccountDistributedInfo](#setosaccountdistributedinfo9-1) instead.
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only for system applications)
 
 **Parameters**
 
@@ -336,10 +340,10 @@ Updates the distributed account information. This API uses a promise to return t
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-  let accountInfo: account_distributedAccount.DistributedInfo =
+  const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+  let accountInfo: distributedAccount.DistributedInfo =
     {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
       console.log('updateOsAccountDistributedInfo successfully');
@@ -362,7 +366,7 @@ Defines the distributed information about a system account.
 | nickname<sup>9+</sup> | string |No| Nickname of the distributed account. By default, no value is passed.|
 | avatar<sup>9+</sup> | string |No| Avatar of the distributed account. By default, no value is passed.|
 | status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) |No| Status of the distributed account. The value is of the enumerated type. The default status is unlogged.|
-| scalableData<sup>8+</sup> | object |No| Additional information about the distributed account, in the form of KV pairs. This parameter is left empty by default. |
+| scalableData<sup>8+</sup> | object |No| Additional information about the distributed account, in the form of KV pairs. This parameter is left empty by default.|
 
 ## DistributedAccountStatus<sup>10+</sup>
 
