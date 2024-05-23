@@ -4200,3 +4200,50 @@ notificationManager.removeDoNotDisturbProfile(templates).then(() => {
 | id | Number | 是 | 勿扰模式编号。 |
 | name | string  | 是 | 勿扰模式名称。 |
 | trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |
+
+## notificationManager.setAdditionalConfig<sup>12+</sup>
+
+setAdditionalConfig(key: string, value: string): Promise\<number\>
+
+设置通知的系统附加配置信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明           |
+| ------ | ---------------- | ---- | -------------- |
+| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
+| value   | string | 是  | 附加配置值。参数示例：[bundleName1,bundleName2]。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Promise\<number\> | Promise对象，返回0表示设置成功，返回其他值表示设置失败。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((num: number) => {
+  console.info("Set Additional Config success.");
+}).catch((error: Base.BusinessError) => {
+  console.error(`Set Additional Config fail: ${JSON.stringify(error)}`);
+});
+```
