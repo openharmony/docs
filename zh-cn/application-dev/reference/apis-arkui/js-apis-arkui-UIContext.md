@@ -1989,7 +1989,7 @@ struct Index {
 }
 ```
 
-### observer.on('willDraw')<sup>12+</sup>
+### on('willDraw')<sup>12+</sup>
 
 on(type: 'willDraw', callback: Callback\<void\>): void
 
@@ -2024,7 +2024,7 @@ struct Index {
 }
 ```
 
-### observer.off('willDraw')<sup>12+</sup>
+### off('willDraw')<sup>12+</sup>
 
 off(type: 'willDraw', callback?: Callback\<void\>): void
 
@@ -2064,7 +2064,7 @@ struct Index {
 }
 ```
 
-### observer.on('didLayout')<sup>12+</sup>
+### on('didLayout')<sup>12+</sup>
 
 on(type: 'didLayout', callback: Callback\<void\>): void
 
@@ -2099,7 +2099,7 @@ struct Index {
 }
 ```
 
-### observer.off('didLayout')<sup>12+</sup>
+### off('didLayout')<sup>12+</sup>
 
 off(type: 'didLayout', callback?: Callback\<void\>): void
 
@@ -4702,6 +4702,45 @@ struct DragControllerPage {
 }
 ```
 
+### setDragEventStrictReportingEnabled<sup>12+</sup>
+
+setDragEventStrictReportingEnabled(enable: boolean): void
+
+当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enable | boolean | 是   | 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
+     });
+   });
+ }
+}
+```
+
 ## OverlayManager<sup>12+</sup>
 
 以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
@@ -4905,45 +4944,6 @@ hideAllComponentContents(): void
 **示例：**
 
 请参考[addComponentContent示例](#addcomponentcontent12)
-
-
-### setDragEventStrictReportingEnabled<sup>12+</sup>
-
-setDragEventStrictReportingEnabled(enable: boolean): void
-
-当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
-
-**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-|参数名|类型|必填|说明|
-| ------- | ------- | ------- | ------- |
-| enable | boolean | 是| 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。|
-
-**示例：**
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
- export default class EntryAbility extends UIAbility {
-   onWindowStageCreate(windowStage: window.WindowStage): void {
-       windowStage.loadContent('pages/Index', (err, data) => {
-         if (err.code) {
-         return;
-       }
-       windowStage.getMainWindow((err, data) => {
-         if (err.code) {
-           return;
-         }
-         let windowClass: window.Window = data;
-         let uiContext: UIContext = windowClass.getUIContext();
-         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
-     });
-   });
- }
-}
-```
 
 ## AtomicServiceBar<sup>11+</sup>
 
