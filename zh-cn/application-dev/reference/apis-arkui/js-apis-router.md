@@ -1284,6 +1284,7 @@ router.getParams();
 
 以下代码仅适用于javascript文件，不适用于ArkTS文件
 ```js
+<!--code_no_check-->
 // 在当前页面中
 export default {
   pushPage() {
@@ -1297,6 +1298,7 @@ export default {
 }
 ```
 ```js
+<!--code_no_check-->
 // 在detail页面中
 export default {
   onInit() {
