@@ -100,6 +100,6 @@ try {
 
 For details, see the API reference.
 
-[API Reference](../../../application-dev/reference/apis/js-apis-resource-manager.md)
+[API Reference](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/en/application-dev/reference/apis/js-apis-resource-manager.md)
 
-[Error Codes](../../../application-dev/reference/errorcodes/errorcode-resource-manager.md)
+[Error Codes](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/en/application-dev/reference/errorcodes/errorcode-resource-manager.md)

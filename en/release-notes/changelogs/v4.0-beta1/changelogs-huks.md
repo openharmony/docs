@@ -46,4 +46,4 @@ Released JavaScript APIs remain unchanged, but the parameter set passed to the A
 
 **Adaptation Guide**
 
-For more information, see [HUKS Development](../../../application-dev/security/huks-guidelines.md) and [HUKS](../../../application-dev/reference/apis/js-apis-huks.md).
+For more information, see [HUKS Development](../../../application-dev/security/huks-guidelines.md) and [HUKS](https://gitee.com/openharmony/docs/tree/OpenHarmony-4.1-Beta1/en/application-dev/reference/apis/js-apis-huks.md).

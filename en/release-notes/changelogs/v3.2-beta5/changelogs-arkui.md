@@ -42,7 +42,7 @@
 2. The data type declaration of the **@State**, **@Provide**, **@Link**, or **@Consume** decorated state variables can consist of only one of the primitive data types or reference data types.
 
     The **Length**, **ResourceStr**, and **ResourceColor** types are combinations of primitive data types or reference data types. Therefore, they cannot be used by the aforementioned types of state variables.
-    For details about the definitions of **Length**, **ResourceStr**, and **ResourceColor**, see [Types](../../../application-dev/reference/arkui-ts/ts-types.md).
+    For details about the definitions of **Length**, **ResourceStr**, and **ResourceColor**, see [Types](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/arkui-ts/ts-types.md).
 
     Example:
 

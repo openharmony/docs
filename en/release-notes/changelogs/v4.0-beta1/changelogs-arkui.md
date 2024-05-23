@@ -20,8 +20,8 @@ The scrollbar is displayed during scrolling and is hidden 2 seconds after the sc
 **Key API/Component Changes**
 
 **scrollBar** attribute of the **\<List>** and **\<Gird>** components:
-- [List](../../../application-dev/reference/arkui-ts/ts-container-list.md#attributes)
-- [Grid](../../../application-dev/reference/arkui-ts/ts-container-grid.md#attributes)
+- [List](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-list.md#attributes)
+- [Grid](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md#attributes)
 
 **Adaptation Guide**
 
@@ -55,7 +55,7 @@ struct ListItemExample {
 
 ## cl.arkui.2 Fixing of the Stack Layout Issue
 
-Fixed the issue where child components in the [\<Stack>](../../../application-dev/reference/arkui-ts/ts-container-stack.md) container does not follow the **alignContent** settings when the child components stretch beyond the container.
+Fixed the issue where child components in the [\<Stack>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-stack.md) container does not follow the **alignContent** settings when the child components stretch beyond the container.
 Example:
 
 ```ts

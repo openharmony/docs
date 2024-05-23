@@ -38,7 +38,7 @@ Import the **backgroundTaskManager** module.
 ```
 import bundle form '@ohos.resourceschedule.backgroundTaskManager'
 ```
-Exception handling also needs to be adapted. For details, see the [backgroundTaskManager API reference](../../../application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md).
+Exception handling also needs to be adapted. For details, see the [backgroundTaskManager API reference](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-resourceschedule-backgroundTaskManager.md).
 
 ## c2.resourceschedule.workScheduler 
 Rectified the original APIs of **workScheduler** of the resource scheduler subsystem. All APIs of API version 9 in the **@ohos.workScheduler.d.ts** file are deleted, and the APIs of API version 9 in the **@ohos.resourceschedule.workScheduler.d.ts** file are used. The new APIs in API version 9 comply with the error code specifications.
@@ -108,4 +108,4 @@ Import the **workScheduler** module.
 ```
 import bundle form '@ohos.resourceschedule.workScheduler'
 ```
-Exception handling also needs to be adapted. For details, see the [workScheduler API reference](../../../application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md).
+Exception handling also needs to be adapted. For details, see the [workScheduler API reference](https://gitee.com/openharmony/docs/tree/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-resourceschedule-workScheduler.md).

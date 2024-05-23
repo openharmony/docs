@@ -14,4 +14,4 @@ No API or component change is involved.
 
 **Adaptation Guide**
 
-The resource management subsystem provides the JS interface for accessing resource files. Reference: [Accessing Resource Files](../../../application-dev/reference/apis/js-apis-resource-manager.md#getrawfilecontent9)
+The resource management subsystem provides the JS interface for accessing resource files. Reference: [Accessing Resource Files](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-resource-manager.md#getrawfilecontent9)

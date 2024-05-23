@@ -48,11 +48,11 @@ The deprecated JS APIs in API versions 6 to 8 are affected. Your application nee
 **Adaptation Guide**
 
 See the following:
-[@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](../../../application-dev/reference/apis/js-apis-cardEmulation.md)
 
-[@ohos.nfc.controller (Standard NFC)](../../../application-dev/reference/apis/js-apis-nfcController.md)
+[@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-cardEmulation.md)
 
-[@ohos.nfc.tag (Standard NFC Tags)](../../../application-dev/reference/apis/js-apis-nfcTag.md)
+[@ohos.nfc.controller (Standard NFC)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-nfcController.md)
 
-[tagSession (Standard NFC Tag Session)](../../../application-dev/reference/apis/js-apis-tagSession.md)
-```
+[@ohos.nfc.tag (Standard NFC Tags)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-nfcTag.md)
+
+[tagSession (Standard NFC Tag Session)](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.2-Beta5/en/application-dev/reference/apis/js-apis-tagSession.md)

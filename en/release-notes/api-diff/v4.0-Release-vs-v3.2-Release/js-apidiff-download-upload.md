@@ -109,4 +109,4 @@
 |Added|NA|Class name: Task;<br>Method or attribute name: resume(): Promise\<void>;|@ohos.request.d.ts|
 |Added|NA|Class name: Task;<br>Method or attribute name: stop(callback: AsyncCallback\<void>): void;|@ohos.request.d.ts|
 |Added|NA|Class name: Task;<br>Method or attribute name: stop(): Promise\<void>;|@ohos.request.d.ts|
-|Permission changed|Class name: request;<br>Method or attribute name: declare request<br>Old version information: ohos.permission.INTERNET|Class name: request;<br>Method or attribute name: declare request<br>New version information: |@ohos.request.d.ts|
+|Permission changed|Class name: request;<br>Method or attribute name: declare request<br>Deprecated version: ohos.permission.INTERNET|Class name: request;<br>Method or attribute name: declare request<br>New version: |@ohos.request.d.ts|

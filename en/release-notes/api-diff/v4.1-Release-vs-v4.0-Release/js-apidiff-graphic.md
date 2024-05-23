@@ -1,0 +1,61 @@
+| Change Type | Old Version | New Version | d.ts File |
+| ---- | ------ | ------ | -------- |
+|Cross-platform permission changed|Class name: global;<br>API declaration:  declare namespace colorSpaceManager<br>Differences: NA|Class name: global;<br>API declaration:  declare namespace colorSpaceManager<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: colorSpaceManager;<br>API declaration:  enum ColorSpace<br>Differences: NA|Class name: colorSpaceManager;<br>API declaration:  enum ColorSpace<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpace;<br>API declaration: UNKNOWN = 0<br>Differences: NA|Class name: ColorSpace;<br>API declaration: UNKNOWN = 0<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpace;<br>API declaration: ADOBE_RGB_1998 = 1<br>Differences: NA|Class name: ColorSpace;<br>API declaration: ADOBE_RGB_1998 = 1<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpace;<br>API declaration: DCI_P3 = 2<br>Differences: NA|Class name: ColorSpace;<br>API declaration: DCI_P3 = 2<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpace;<br>API declaration: DISPLAY_P3 = 3<br>Differences: NA|Class name: ColorSpace;<br>API declaration: DISPLAY_P3 = 3<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpace;<br>API declaration: SRGB = 4<br>Differences: NA|Class name: ColorSpace;<br>API declaration: SRGB = 4<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpace;<br>API declaration: CUSTOM = 5<br>Differences: NA|Class name: ColorSpace;<br>API declaration: CUSTOM = 5<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: colorSpaceManager;<br>API declaration:  interface ColorSpacePrimaries<br>Differences: NA|Class name: colorSpaceManager;<br>API declaration:  interface ColorSpacePrimaries<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpacePrimaries;<br>API declaration: redX: number;<br>Differences: NA|Class name: ColorSpacePrimaries;<br>API declaration: redX: number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpacePrimaries;<br>API declaration: redY: number;<br>Differences: NA|Class name: ColorSpacePrimaries;<br>API declaration: redY: number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpacePrimaries;<br>API declaration: greenX: number;<br>Differences: NA|Class name: ColorSpacePrimaries;<br>API declaration: greenX: number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpacePrimaries;<br>API declaration: greenY: number;<br>Differences: NA|Class name: ColorSpacePrimaries;<br>API declaration: greenY: number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpacePrimaries;<br>API declaration: blueX: number;<br>Differences: NA|Class name: ColorSpacePrimaries;<br>API declaration: blueX: number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpacePrimaries;<br>API declaration: blueY: number;<br>Differences: NA|Class name: ColorSpacePrimaries;<br>API declaration: blueY: number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpacePrimaries;<br>API declaration: whitePointX: number;<br>Differences: NA|Class name: ColorSpacePrimaries;<br>API declaration: whitePointX: number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpacePrimaries;<br>API declaration: whitePointY: number;<br>Differences: NA|Class name: ColorSpacePrimaries;<br>API declaration: whitePointY: number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: colorSpaceManager;<br>API declaration:  interface ColorSpaceManager<br>Differences: NA|Class name: colorSpaceManager;<br>API declaration:  interface ColorSpaceManager<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpaceManager;<br>API declaration: getColorSpaceName(): ColorSpace;<br>Differences: NA|Class name: ColorSpaceManager;<br>API declaration: getColorSpaceName(): ColorSpace;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpaceManager;<br>API declaration: getWhitePoint(): Array\<number>;<br>Differences: NA|Class name: ColorSpaceManager;<br>API declaration: getWhitePoint(): Array\<number>;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: ColorSpaceManager;<br>API declaration: getGamma(): number;<br>Differences: NA|Class name: ColorSpaceManager;<br>API declaration: getGamma(): number;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: colorSpaceManager;<br>API declaration: function create(colorSpaceName: ColorSpace): ColorSpaceManager;<br>Differences: NA|Class name: colorSpaceManager;<br>API declaration: function create(colorSpaceName: ColorSpace): ColorSpaceManager;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|Cross-platform permission changed|Class name: colorSpaceManager;<br>API declaration: function create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager;<br>Differences: NA|Class name: colorSpaceManager;<br>API declaration: function create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager;<br>Differences: crossplatform|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT709 = 6<br>Differences: BT709 = 6|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT601_EBU = 7<br>Differences: BT601_EBU = 7|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT601_SMPTE_C = 8<br>Differences: BT601_SMPTE_C = 8|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT2020_HLG = 9<br>Differences: BT2020_HLG = 9|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT2020_PQ = 10<br>Differences: BT2020_PQ = 10|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: P3_HLG = 11<br>Differences: P3_HLG = 11|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: P3_PQ = 12<br>Differences: P3_PQ = 12|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: ADOBE_RGB_1998_LIMIT = 13<br>Differences: ADOBE_RGB_1998_LIMIT = 13|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: DISPLAY_P3_LIMIT = 14<br>Differences: DISPLAY_P3_LIMIT = 14|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: SRGB_LIMIT = 15<br>Differences: SRGB_LIMIT = 15|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT709_LIMIT = 16<br>Differences: BT709_LIMIT = 16|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT601_EBU_LIMIT = 17<br>Differences: BT601_EBU_LIMIT = 17|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT601_SMPTE_C_LIMIT = 18<br>Differences: BT601_SMPTE_C_LIMIT = 18|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT2020_HLG_LIMIT = 19<br>Differences: BT2020_HLG_LIMIT = 19|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: BT2020_PQ_LIMIT = 20<br>Differences: BT2020_PQ_LIMIT = 20|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: P3_HLG_LIMIT = 21<br>Differences: P3_HLG_LIMIT = 21|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: P3_PQ_LIMIT = 22<br>Differences: P3_PQ_LIMIT = 22|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: LINEAR_P3 = 23<br>Differences: LINEAR_P3 = 23|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: LINEAR_SRGB = 24<br>Differences: LINEAR_SRGB = 24|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: LINEAR_BT709 = LINEAR_SRGB<br>Differences: LINEAR_BT709 = LINEAR_SRGB|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: LINEAR_BT2020 = 25<br>Differences: LINEAR_BT2020 = 25|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: DISPLAY_SRGB = SRGB<br>Differences: DISPLAY_SRGB = SRGB|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: DISPLAY_P3_SRGB = DISPLAY_P3<br>Differences: DISPLAY_P3_SRGB = DISPLAY_P3|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: DISPLAY_P3_HLG = P3_HLG<br>Differences: DISPLAY_P3_HLG = P3_HLG|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: ColorSpace;<br>API declaration: DISPLAY_P3_PQ = P3_PQ<br>Differences: DISPLAY_P3_PQ = P3_PQ|api/@ohos.graphics.colorSpaceManager.d.ts|
+|API added|NA|Class name: global;<br>API declaration:  declare namespace hdrCapability<br>Differences:  declare namespace hdrCapability|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: hdrCapability;<br>API declaration:  enum HDRFormat<br>Differences:  enum HDRFormat|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: HDRFormat;<br>API declaration: NONE = 0<br>Differences: NONE = 0|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: HDRFormat;<br>API declaration: VIDEO_HLG = 1<br>Differences: VIDEO_HLG = 1|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: HDRFormat;<br>API declaration: VIDEO_HDR10 = 2<br>Differences: VIDEO_HDR10 = 2|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: HDRFormat;<br>API declaration: VIDEO_HDR_VIVID = 3<br>Differences: VIDEO_HDR_VIVID = 3|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: HDRFormat;<br>API declaration: IMAGE_HDR_VIVID_DUAL = 4<br>Differences: IMAGE_HDR_VIVID_DUAL = 4|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: HDRFormat;<br>API declaration: IMAGE_HDR_VIVID_SINGLE = 5<br>Differences: IMAGE_HDR_VIVID_SINGLE = 5|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: HDRFormat;<br>API declaration: IMAGE_HDR_ISO_DUAL = 6<br>Differences: IMAGE_HDR_ISO_DUAL = 6|api/@ohos.graphics.hdrCapability.d.ts|
+|API added|NA|Class name: HDRFormat;<br>API declaration: IMAGE_HDR_ISO_SINGLE = 7<br>Differences: IMAGE_HDR_ISO_SINGLE = 7|api/@ohos.graphics.hdrCapability.d.ts|
+|Kit changed|NA|ArkGraphics2D|api/@ohos.graphics.colorSpaceManager.d.ts|
