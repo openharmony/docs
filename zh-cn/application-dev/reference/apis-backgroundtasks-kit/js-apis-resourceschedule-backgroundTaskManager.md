@@ -664,7 +664,6 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201 | Permission denied. |
-| 202 | Not System App. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
