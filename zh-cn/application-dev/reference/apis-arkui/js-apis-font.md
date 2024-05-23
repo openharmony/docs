@@ -114,7 +114,7 @@ struct FontExample {
 
 getSystemFontList(): Array\<string>
 
-获取系统字体列表。
+获取风格字体列表。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
