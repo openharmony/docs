@@ -110,7 +110,7 @@ struct FontExample {
 
 getSystemFontList(): Array\<string>
 
-获取系统字体列表。
+获取风格字体列表。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
