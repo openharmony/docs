@@ -83,8 +83,6 @@ struct IfElseTransition {
 
 如下是跨窗口拖拽，拖出窗口示例：
 
-
-
 ```ts
 import image from '@ohos.multimedia.image';
 
@@ -124,16 +122,6 @@ struct Index {
         this.pixelMapReader = data;
       }
     })
-  }
-
-  @Builder pixelMapBuilder() {
-    Text('drag item')
-      .width('100%')
-      .height(100)
-      .fontSize(16)
-      .textAlign(TextAlign.Center)
-      .borderRadius(10)
-      .backgroundColor(0xFFFFFF)
   }
 
   build() {
