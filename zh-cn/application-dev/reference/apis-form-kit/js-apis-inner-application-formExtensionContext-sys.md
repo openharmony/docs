@@ -166,6 +166,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 201      | Permissions denied.             |
+| 401      | If the input parameter is not valid parameter. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -241,6 +243,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
@@ -306,6 +309,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | If the input parameter is not valid parameter. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
