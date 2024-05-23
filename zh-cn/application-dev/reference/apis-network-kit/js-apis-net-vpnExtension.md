@@ -37,7 +37,7 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 
 | 错误码 ID | 错误信息                               |
 | --------- | -------------------------------------- |
-| 401       | Parameter error.                       |
+| 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
 | 16000002  | Incorrect ability type.                |
 | 16000006  | Cross-user operations are not allowed. |
@@ -107,7 +107,7 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 
 | 错误码 ID | 错误信息                               |
 | --------- | -------------------------------------- |
-| 401       | Parameter error.                       |
+| 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
 | 16000002  | Incorrect ability type.                |
 | 16000006  | Cross-user operations are not allowed. |

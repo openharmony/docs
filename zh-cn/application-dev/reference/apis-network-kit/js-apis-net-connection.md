@@ -112,11 +112,12 @@ getDefaultNet(): Promise\<NetHandle>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
+| 错误码ID | 错误信息                         |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.           |
 
 **示例：**
 
@@ -148,11 +149,12 @@ getDefaultNetSync(): NetHandle
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
+| 错误码ID | 错误信息                         |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
+| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.           |
 
 **示例：**
 
@@ -1739,11 +1741,12 @@ unregister(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 401 | Parameter error.         |
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
-| 2100003 | System internal error.         |
+| 2100003 | System internal error.            |
 | 2101007 | The callback already exists.      |
 
 **示例：**
@@ -2068,8 +2071,8 @@ interface Data {
 }
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let tcp = socket.constructTCPSocketInstance();
-  let udp = socket.constructUDPSocketInstance();
+  let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
+  let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
     tcp.bind({address:"192.168.xxx.xxx",
@@ -2154,8 +2157,8 @@ interface Data {
 }
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let tcp = socket.constructTCPSocketInstance();
-  let udp = socket.constructUDPSocketInstance();
+  let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
+  let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
     tcp.bind({address:"192.168.xxx.xxx",
