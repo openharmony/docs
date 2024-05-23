@@ -125,6 +125,24 @@ Data error.
 
 先使用compress进行压缩后再通过uncompress2或uncompress进行解压。
 
+## 17800006 内存分配失败错误
+
+**错误信息**
+
+Memory allocation failed.
+
+**错误描述**
+
+当调用gzclose或gzclosew接口时，内存分配失败。
+
+**可能原因**
+
+在调用gzclose或gzclosew接口前，调用了gzsetparams接口，传入错误的压缩级别或压缩策略。
+
+**处理步骤**
+
+检查gzsetparams接口的调用，传入正确的压缩级别和压缩策略。
+
 ## 17800007 传入的缓冲区错误
 
 **错误信息**
