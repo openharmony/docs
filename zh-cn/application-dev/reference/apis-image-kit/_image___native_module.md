@@ -1768,3 +1768,1089 @@ Image_ErrorCode OH_ImageSourceNative_CreateFromUri (char * uri, size_t uriSize, 
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码数据源异常返回 IMAGE_BAD_SOURCE， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_CreatePixelmap()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmap (OH_ImageSourceNative * source, OH_DecodingOptions * options, OH_PixelmapNative ** pixelmap )
+```
+
+**描述**
+
+通过图片解码参数创建OH_PixelmapNative指针
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| options | 解码参数。 | 
+| resPixMap | 指向c++本地层创建的OH_PixelmapNative对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_CreatePixelmapList()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmapList (OH_ImageSourceNative * source, OH_DecodingOptions * options, OH_PixelmapNative * resVecPixMap[], size_t size )
+```
+
+**描述**
+
+通过图片解码参数创建OH_PixelmapNative数组
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| options | 解码参数。 | 
+| resVecPixMap | 指向c++本地层创建的OH_PixelmapNative对象的指针数组。 | 
+| size | 数组长度。 用户可以使用[OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount)获取。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_GetDelayTimeList()
+
+```
+Image_ErrorCode OH_ImageSourceNative_GetDelayTimeList (OH_ImageSourceNative * source, int32_t * delayTimeList, size_t size )
+```
+
+**描述**
+
+获取图像延迟时间数组
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| delayTimeList | 指向获得的延迟时间列表的指针。它不能是空指针。 | 
+| size | delayTimeList的大小。用户可以从[OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount)获得大小。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_GetFrameCount()
+
+```
+Image_ErrorCode OH_ImageSourceNative_GetFrameCount (OH_ImageSourceNative * source, uint32_t * frameCount )
+```
+
+**描述**
+
+获取图像帧数。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| frameCount | 图像帧数。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_GetImageInfo()
+
+```
+Image_ErrorCode OH_ImageSourceNative_GetImageInfo (OH_ImageSourceNative * source, int32_t index, OH_ImageSource_Info * info )
+```
+
+**描述**
+
+获取指定序号的图片信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| index | 图片序号。对GIF图片可传入[0,N-1],N表示GIF的帧数。对只有一帧数据的图片格式，可传入0。 | 
+| info | 指向获取的图像源信息的OH_ImageSource_Info指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_GetImageProperty()
+
+```
+Image_ErrorCode OH_ImageSourceNative_GetImageProperty (OH_ImageSourceNative * source, Image_String * key, Image_String * value )
+```
+
+**描述**
+
+获取图片指定属性键的值。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| key | 指示指向属性的指针，详情请参见[Image_String](_image___string.md)，key的取值范围参考OHOS_IMAGE_PROPERTY_XXX定义。 使用ImageSource后释放，参见[OH_ImageSourceNative_Release](#oh_imagesourcenative_release)。 | 
+| value | 指向获取的值的指针。用户可以传入一个空指针和零大小， 我们将分配内存，但用户必须在使用后释放内存。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_ModifyImageProperty()
+
+```
+Image_ErrorCode OH_ImageSourceNative_ModifyImageProperty (OH_ImageSourceNative * source, Image_String * key, Image_String * value )
+```
+
+**描述**
+
+通过指定的键修改图片属性的值。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 被操作的OH_ImageSourceNative指针。 | 
+| key | 指向属性键的指针，详情请参见[Image_String](_image___string.md)，key是一个exif常数。 使用ImageSource后释放，参见[OH_ImageSourceNative_Release](#oh_imagesourcenative_release)。 | 
+| value | 需要修改的属性值。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_Release()
+
+```
+Image_ErrorCode OH_ImageSourceNative_Release (OH_ImageSourceNative * source)
+```
+
+**描述**
+
+释放OH_ImageSourceNative指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| source | 要释放的OH_ImageSourceNative指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PackingOptions_Create()
+
+```
+Image_ErrorCode OH_PackingOptions_Create (OH_PackingOptions ** options)
+```
+
+**描述**
+
+创建PackingOptions结构体的指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 用于操作的PackingOptions指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PackingOptions_GetDesiredDynamicRange()
+
+```
+Image_ErrorCode OH_PackingOptions_GetDesiredDynamicRange (OH_PackingOptions * options, int32_t * desiredDynamicRange )
+```
+
+**描述**
+
+获取编码时期望的图片动态范围。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_PackingOptions指针。 | 
+| desiredDynamicRange | 期望的动态范围 [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range)。 | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，参数校验错误返回IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PackingOptions_GetMimeType()
+
+```
+Image_ErrorCode OH_PackingOptions_GetMimeType (OH_PackingOptions * options, Image_MimeType * format )
+```
+
+**描述**
+
+获取MIME类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_PackingOptions指针。 | 
+| format | 图像格式。可传入一个空指针和零大小，系统将分配内存，但必须在使用后释放内存。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PackingOptions_GetQuality()
+
+```
+Image_ErrorCode OH_PackingOptions_GetQuality (OH_PackingOptions * options, uint32_t * quality )
+```
+
+**描述**
+
+获取编码质量。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_PackingOptions指针。 | 
+| quality | 编码质量。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PackingOptions_Release()
+
+```
+Image_ErrorCode OH_PackingOptions_Release (OH_PackingOptions * options)
+```
+
+**描述**
+
+释放OH_PackingOptions指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_PackingOptions指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PackingOptions_SetDesiredDynamicRange()
+
+```
+Image_ErrorCode OH_PackingOptions_SetDesiredDynamicRange (OH_PackingOptions * options, int32_t desiredDynamicRange )
+```
+
+**描述**
+
+设置编码时期望的图片动态范围。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_PackingOptions指针。 | 
+| desiredDynamicRange | 期望的动态范围 [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range)。 | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，参数校验错误返回IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PackingOptions_SetMimeType()
+
+```
+Image_ErrorCode OH_PackingOptions_SetMimeType (OH_PackingOptions * options, Image_MimeType * format )
+```
+
+**描述**
+
+设置MIME类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_PackingOptions指针。 | 
+| format | 图像格式。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PackingOptions_SetQuality()
+
+```
+Image_ErrorCode OH_PackingOptions_SetQuality (OH_PackingOptions * options, uint32_t quality )
+```
+
+**描述**
+
+设置编码质量。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_PackingOptions指针。 | 
+| quality | 编码质量。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapImageInfo_Create()
+
+```
+Image_ErrorCode OH_PixelmapImageInfo_Create (OH_Pixelmap_ImageInfo ** info)
+```
+
+**描述**
+
+创建OH_Pixelmap_ImageInfo指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被创建的OH_Pixelmap_ImageInfo指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapImageInfo_GetAlphaType()
+
+```
+Image_ErrorCode OH_PixelmapImageInfo_GetAlphaType (OH_Pixelmap_ImageInfo * info, int32_t * alphaType )
+```
+
+**描述**
+
+获取透明度类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_Pixelmap_ImageInfo指针。 | 
+| alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapImageInfo_GetDynamicRange()
+
+```
+Image_ErrorCode OH_PixelmapImageInfo_GetDynamicRange (OH_Pixelmap_ImageInfo * info, bool * isHdr )
+```
+
+**描述**
+
+获取Pixelmap是否为高动态范围的信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_Pixelmap_ImageInfo指针。 | 
+| isHdr | 是否为hdr的布尔值。 | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，参数校验错误返回IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapImageInfo_GetHeight()
+
+```
+Image_ErrorCode OH_PixelmapImageInfo_GetHeight (OH_Pixelmap_ImageInfo * info, uint32_t * height )
+```
+
+**描述**
+
+获取图片高。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_Pixelmap_ImageInfo指针。 | 
+| height | 图片高，单位：像素。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapImageInfo_GetPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapImageInfo_GetPixelFormat (OH_Pixelmap_ImageInfo * info, int32_t * pixelFormat )
+```
+
+**描述**
+
+获取像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_Pixelmap_ImageInfo指针。 | 
+| pixelFormat | 像素格式。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapImageInfo_GetRowStride()
+
+```
+Image_ErrorCode OH_PixelmapImageInfo_GetRowStride (OH_Pixelmap_ImageInfo * info, uint32_t * rowStride )
+```
+
+**描述**
+
+获取行跨距。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_Pixelmap_ImageInfo指针。 | 
+| rowStride | 跨距，内存中每行像素所占的空间。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapImageInfo_GetWidth()
+
+```
+Image_ErrorCode OH_PixelmapImageInfo_GetWidth (OH_Pixelmap_ImageInfo * info, uint32_t * width )
+```
+
+**描述**
+
+获取图片宽。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_Pixelmap_ImageInfo指针。 | 
+| width | 图片宽，单位：像素。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapImageInfo_Release()
+
+```
+Image_ErrorCode OH_PixelmapImageInfo_Release (OH_Pixelmap_ImageInfo * info)
+```
+
+**描述**
+
+释放OH_Pixelmap_ImageInfo指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被释放的OH_Pixelmap_ImageInfo指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_Create()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_Create (OH_Pixelmap_InitializationOptions ** options)
+```
+
+**描述**
+
+创建OH_Pixelmap_InitializationOptions指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被创建的OH_Pixelmap_InitializationOptions指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_GetAlphaType()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetAlphaType (OH_Pixelmap_InitializationOptions * options, int32_t * alphaType )
+```
+
+**描述**
+
+获取透明度类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_GetHeight()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetHeight (OH_Pixelmap_InitializationOptions * options, uint32_t * height )
+```
+
+**描述**
+
+获取图片高。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| height | 图片的高，单位：像素。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_GetPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetPixelFormat (OH_Pixelmap_InitializationOptions * options, int32_t * pixelFormat )
+```
+
+**描述**
+
+获取像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| pixelFormat | 像素格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_GetWidth()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_GetWidth (OH_Pixelmap_InitializationOptions * options, uint32_t * width )
+```
+
+**描述**
+
+获取图片宽。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| width | 图片的宽，单位：像素。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_Release()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_Release (OH_Pixelmap_InitializationOptions * options)
+```
+
+**描述**
+
+释放OH_Pixelmap_InitializationOptions指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被释放的OH_Pixelmap_InitializationOptions指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_SetAlphaType()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetAlphaType (OH_Pixelmap_InitializationOptions * options, int32_t alphaType )
+```
+
+**描述**
+
+设置透明度类型。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| alphaType | 透明度类型[PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_SetHeight()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetHeight (OH_Pixelmap_InitializationOptions * options, uint32_t height )
+```
+
+**描述**
+
+设置图片高。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| height | 图片的高，单位：像素。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_SetPixelFormat()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetPixelFormat (OH_Pixelmap_InitializationOptions * options, int32_t pixelFormat )
+```
+
+**描述**
+
+设置像素格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| pixelFormat | 像素格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapInitializationOptions_SetWidth()
+
+```
+Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth (OH_Pixelmap_InitializationOptions * options, uint32_t width )
+```
+
+**描述**
+
+设置图片宽。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_Pixelmap_InitializationOptions指针。 | 
+| width | 图片的宽，单位：像素。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_CreatePixelmap()
+
+```
+Image_ErrorCode OH_PixelmapNative_CreatePixelmap (uint8_t * data, size_t dataLength, OH_Pixelmap_InitializationOptions * options, OH_PixelmapNative ** pixelmap )
+```
+
+**描述**
+
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| data | BGRA_8888格式的颜色数组。 | 
+| dataLength | 数组长度。 | 
+| options | 创建像素的属性。 | 
+| pixelmap | 被创建的OH_PixelmapNative对象指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_Crop()
+
+```
+Image_ErrorCode OH_PixelmapNative_Crop (OH_PixelmapNative * pixelmap, Image_Region * region )
+```
+
+**描述**
+
+根据输入的尺寸对图片进行裁剪
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| region | 裁剪的尺寸。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_Flip()
+
+```
+Image_ErrorCode OH_PixelmapNative_Flip (OH_PixelmapNative * pixelmap, bool shouldFilpHorizontally, bool shouldFilpVertically )
+```
+
+**描述**
+
+根据输入的条件对图片进行翻转。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| shouldFilpHorizontally | 是否水平翻转图像。 | 
+| shouldFilpVertically | 是否垂直翻转图像。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_GetImageInfo()
+
+```
+Image_ErrorCode OH_PixelmapNative_GetImageInfo (OH_PixelmapNative * pixelmap, OH_Pixelmap_ImageInfo * imageInfo )
+```
+
+**描述**
+
+获取图像像素信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| imageInfo | 图像像素信息。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_Opacity()
+
+```
+Image_ErrorCode OH_PixelmapNative_Opacity (OH_PixelmapNative * pixelmap, float rate )
+```
+
+**描述**
+
+通过设置透明比率来让PixelMap达到对应的透明效果
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| rate | 透明比率的值。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_ReadPixels()
+
+```
+Image_ErrorCode OH_PixelmapNative_ReadPixels (OH_PixelmapNative * pixelmap, uint8_t * destination, size_t * bufferSize )
+```
+
+**描述**
+
+读取图像像素数据，结果写入ArrayBuffer里。 指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| destination | 缓冲区，获取的图像像素数据写入到该内存区域内。 | 
+| bufferSize | 缓冲区大小。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_Release()
+
+```
+Image_ErrorCode OH_PixelmapNative_Release (OH_PixelmapNative * pixelmap)
+```
+
+**描述**
+
+释放OH_PixelmapNative指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被释放的OH_PixelmapNative指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_Rotate()
+
+```
+Image_ErrorCode OH_PixelmapNative_Rotate (OH_PixelmapNative * pixelmap, float angle )
+```
+
+**描述**
+
+根据输入的角度对图片进行旋转。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| angle | 图片旋转的角度，单位为deg。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_Scale()
+
+```
+Image_ErrorCode OH_PixelmapNative_Scale (OH_PixelmapNative * pixelmap, float scaleX, float scaleY )
+```
+
+**描述**
+
+根据输入的宽高对图片进行缩放。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| scaleX | 宽度的缩放比例。 | 
+| scaleY | 高度的缩放比例。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_Translate()
+
+```
+Image_ErrorCode OH_PixelmapNative_Translate (OH_PixelmapNative * pixelmap, float x, float y )
+```
+
+**描述**
+
+根据输入的坐标对图片进行位置变换。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| x | 区域横坐标。 | 
+| y | 区域纵坐标。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_WritePixels()
+
+```
+Image_ErrorCode OH_PixelmapNative_WritePixels (OH_PixelmapNative * pixelmap, uint8_t * source, size_t bufferSize )
+```
+
+**描述**
+
+读取缓冲区中的图片数据，结果写入PixelMap中
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的OH_PixelmapNative指针。 | 
+| source | 图像像素数据。 | 
+| bufferSize | 图像像素数据长度。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
