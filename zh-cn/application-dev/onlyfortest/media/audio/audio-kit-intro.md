@@ -339,4 +339,4 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 
 
 ## 验证code中的断链
-和AppStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而AppStorage是应用级的全局状态共享，还相当于整个应用的“中枢”，`[持久化数据PersistentStorage](using-toneplayer-for-playback.md)`是通过AppStorage中转，才可以和UI交互。
+和AppStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而AppStorage是应用级的全局状态共享，还相当于整个应用的“中枢”，`[持久化数据PersistentStorage](using-toneplayer-for-playback.md)`和[需要检查出断链--持久化数据PersistentStorage](using-toneplayer-for-playback.md)是通过AppStorage中转，才可以和UI交互。
