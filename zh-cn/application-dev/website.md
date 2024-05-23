@@ -134,7 +134,7 @@
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
       - 应用间跳转
         - 通用意图跳转
-        - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
+          - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
       - [进程模型](application-models/process-model-stage.md)
       - [线程模型](application-models/thread-model-stage.md)
       <!--Del-->
@@ -1646,12 +1646,14 @@
         - [drawing_font_mgr.h](reference/apis-arkgraphics2d/drawing__font__mgr_8h.md)
         - [drawing_gpu_context.h](reference/apis-arkgraphics2d/drawing__gpu__context_8h.md)
         - [drawing_image.h](reference/apis-arkgraphics2d/drawing__image_8h.md)
+        - [drawing_image_filter.h](reference/apis-arkgraphics2d/drawing__image__filter_8h.md)
         - [drawing_mask_filter.h](reference/apis-arkgraphics2d/drawing__mask__filter_8h.md)
         - [drawing_matrix.h](reference/apis-arkgraphics2d/drawing__matrix_8h.md)
         - [drawing_memory_stream.h](reference/apis-arkgraphics2d/drawing__memory__stream_8h.md)
         - [drawing_path.h](reference/apis-arkgraphics2d/drawing__path_8h.md)
         - [drawing_path_effect.h](reference/apis-arkgraphics2d/drawing__path__effect_8h.md)
         - [drawing_pen.h](reference/apis-arkgraphics2d/drawing__pen_8h.md)
+        - [drawing_pixel_map.h](reference/apis-arkgraphics2d/ddrawing__pixel__map_8h.md)
         - [drawing_point.h](reference/apis-arkgraphics2d/drawing__point_8h.md)
         - [drawing_rect.h](reference/apis-arkgraphics2d/drawing__rect_8h.md)
         - [drawing_region.h](reference/apis-arkgraphics2d/drawing__region_8h.md)
@@ -2076,10 +2078,10 @@
         - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
         - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
         - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
-        <!--Del-->
-        - 已停止维护的组件          
+        - 已停止维护的组件 
+          <!--Del-->         
           - [AbilityComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
-        <!--DelEnd-->
+          <!--DelEnd-->
           - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
         - 已停止维护的接口
