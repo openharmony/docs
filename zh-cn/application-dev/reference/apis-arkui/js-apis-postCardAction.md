@@ -38,6 +38,7 @@ action参数说明：
 **示例：**
 
 ```ts
+<!--code_no_check-->
 Button('跳转')
   .width('40%')
   .height('20%')
