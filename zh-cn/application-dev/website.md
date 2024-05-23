@@ -1653,7 +1653,7 @@
         - [drawing_path.h](reference/apis-arkgraphics2d/drawing__path_8h.md)
         - [drawing_path_effect.h](reference/apis-arkgraphics2d/drawing__path__effect_8h.md)
         - [drawing_pen.h](reference/apis-arkgraphics2d/drawing__pen_8h.md)
-        - [drawing_pixel_map.h](reference/apis-arkgraphics2d/ddrawing__pixel__map_8h.md)
+        - [drawing_pixel_map.h](reference/apis-arkgraphics2d/drawing__pixel__map_8h.md)
         - [drawing_point.h](reference/apis-arkgraphics2d/drawing__point_8h.md)
         - [drawing_rect.h](reference/apis-arkgraphics2d/drawing__rect_8h.md)
         - [drawing_region.h](reference/apis-arkgraphics2d/drawing__region_8h.md)
