@@ -36,7 +36,7 @@ struct Index {
   build() {
     Row() {
       Child({ initMessage: this.message, message: this.message,
-        buildTest: this.buildTest, initbuildTest: this.buildTest })
+        buildTest: this.buildTest, initBuildTest: this.buildTest })
     }
   }
 }
@@ -51,7 +51,7 @@ struct Child {
   }
 
   @Require @BuilderParam buildTest: () => void;
-  @Require @BuilderParam initbuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFuction;
   @Require @Prop initMessage: string = 'Hello';
   @Require @Prop message: string;
 
@@ -61,7 +61,7 @@ struct Child {
         .fontSize(30)
       Text(this.message)
         .fontSize(30)
-      this.initbuildTest();
+      this.initBuildTest();
       this.buildTest();
     }
     .width('100%')
@@ -103,14 +103,14 @@ struct Child {
     }
   }
   // 使用@Require必须构造时传参。
-  @Require @BuilderParam initbuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFuction;
   @Require @Prop initMessage: string = 'Hello';
 
   build() {
     Column() {
       Text(this.initMessage)
         .fontSize(30)
-      this.initbuildTest();
+      this.initBuildTest();
     }
   }
 }
