@@ -197,7 +197,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let ws = webSocket.createWebSocket();
 let options: webSocket.WebSocketRequestOptions | undefined;
 if (options !=undefined) {
-  options.header = undefined;
+  options.header = {
+     name1: "value1",
+     name2: "value2",
+     name3: "value3"
+  };
   options.caPath = "";
 }
 let url = "ws://"
