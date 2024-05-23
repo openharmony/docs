@@ -52,7 +52,7 @@ Opens NFC.
 > **NOTE**
 > This API is supported since API version 7 and deprecated since API version 9. Use [enableNfc](#controllerenablenfc9) instead.
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only for system applications)
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
@@ -68,7 +68,7 @@ enableNfc(): void
 
 Enables NFC.
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only for system applications)
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
@@ -89,7 +89,7 @@ Closes NFC.
 > **NOTE**
 > This API is supported since API version 7 and deprecated since API version 9. Use [disableNfc](#controllerdisablenfc9) instead.
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only for system applications)
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
@@ -105,7 +105,7 @@ disableNfc(): void
 
 Disables NFC.
 
-**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS (available only for system applications)
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
@@ -125,8 +125,6 @@ Checks whether NFC is open.
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                           |
@@ -140,8 +138,6 @@ getNfcState(): [NfcState](#nfcstate)
 Obtains the NFC state.
 
 **System capability**: SystemCapability.Communication.NFC.Core
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -157,14 +153,12 @@ Subscribes to NFC state changes. A callback will be invoked to return the NFC st
 
 **System capability**: SystemCapability.Communication.NFC.Core
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
   
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type to subscribe to. The value is **nfcStateChange**.|
-| callback | Callback&lt;[NfcState](#nfcstate)&gt; | Yes| Callback invoked to return the NFC state.|
+| callback | Callback&lt;[NfcState](#nfcstate)&gt; | Yes| Callback used to return the NFC state.|
 
 ## controller.off('nfcStateChange')
 
@@ -173,8 +167,6 @@ off(type: "nfcStateChange", callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 Unsubscribes from the NFC state changes. The subscriber will not receive NFC state change notifications.
 
 **System capability**: SystemCapability.Communication.NFC.Core
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -193,7 +185,7 @@ controller.on("nfcStateChange", (nfcState : number)=> {
   console.log("controller on callback nfcState: " + nfcState);
 });
 
-// Open NFC. The ohos.permission.MANAGE_SECURE_SETTINGS permission is required.
+// Open NFC. The caller must have the ohos.permission.MANAGE_SECURE_SETTINGS permission. This permission is available only for system applications.
 if (!controller.isNfcOpen()) {
   let ret = controller.openNfc();
   console.log("controller openNfc ret: " + ret);
@@ -207,7 +199,7 @@ try {
   console.error("controller enableNfc busiError: " + busiError);
 }
 
-// Close NFC. The ohos.permission.MANAGE_SECURE_SETTINGS permission is required.
+// Close NFC. The caller must have the ohos.permission.MANAGE_SECURE_SETTINGS permission. This permission is available only for applications.
 if (controller.isNfcOpen()) {
   let ret = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);

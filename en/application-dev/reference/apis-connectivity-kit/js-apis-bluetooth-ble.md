@@ -83,7 +83,7 @@ Obtains the Bluetooth Low Energy (BLE) devices connected to this device.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of the BLE devices connected to this device. For security purposes, the device addresses obtained are random MAC addresses.|
+| Array&lt;string&gt; | Addresses of the BLE devices connected to this device. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 
 **Error codes**
 
@@ -315,7 +315,7 @@ Starts BLE advertising.
 | Name              | Type                                   | Mandatory | Description                            |
 | ------------------- | --------------------------------------- | ----- | ------------------------------- |
 | advertisingParams   | [AdvertisingParams](#advertisingparams11) | Yes   | Parameters for starting BLE advertising.          |
-| callback            | AsyncCallback&lt;number&gt;             | Yes   | Callback invoked to return the advertisement ID.|
+| callback            | AsyncCallback&lt;number&gt;             | Yes   | Callback used to return the advertisement ID.|
 
 **Error codes**
 
@@ -500,7 +500,7 @@ Temporarily enables BLE advertising.
 | Name                   | Type                                                | Mandatory | Description                            |
 | ------------------------- | --------------------------------------------------- | ----- | ------------------------------- |
 | advertisingEnableParams   | [AdvertisingEnableParams](#advertisingenableparams11) | Yes   | Parameters for temporarily enabling BLE advertising.       |
-| callback                  | AsyncCallback&lt;void&gt;                           | Yes   | Callback invoked to return the result.                       |
+| callback                  | AsyncCallback&lt;void&gt;                           | Yes   | Callback used to return the result.                       |
 
 **Error codes**
 
@@ -712,7 +712,7 @@ Disables BLE advertising temporarily.
 | Name                   | Type                                                  | Mandatory | Description                            |
 | ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
 | advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | Yes   | Parameters for temporarily disabling BLE advertising.       |
-| callback                  | AsyncCallback&lt;void&gt;                             | Yes   | Callback invoked to return the result.                       |
+| callback                  | AsyncCallback&lt;void&gt;                             | Yes   | Callback used to return the result.                       |
 
 **Error codes**
 
@@ -917,7 +917,7 @@ Stops BLE advertising.
 | Name                   | Type                         | Mandatory | Description                        |
 | ------------------------- | ---------------------------- | ----- | --------------------------- |
 | advertisingId             | number                       | Yes   | ID of the advertisement to stop.       |
-| callback                  | AsyncCallback&lt;void&gt;    | Yes   | Callback invoked to return the result.                  |
+| callback                  | AsyncCallback&lt;void&gt;    | Yes   | Callback used to return the result.                  |
 
 **Error codes**
 
@@ -1117,7 +1117,7 @@ Subscribes to BLE advertising status.
 | Name     | Type                                                                   | Mandatory  | Description                                                     |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | Yes   | Event type. The value is **advertisingStateChange**, which indicates the advertising status change.       |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | Yes   | Callback invoked to return the advertising status. You need to implement this callback.|
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | Yes   | Callback used to return the advertising status. You need to implement this callback.|
 
 **Error codes**
 
@@ -1204,7 +1204,7 @@ Subscribes to BLE device discovery events.
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEDeviceFind**, which indicates an event of discovering a BLE device.  |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback.|
 
 **Error codes**
 
@@ -1429,7 +1429,7 @@ Notifies a connected client device when a characteristic value changes. This API
 | -------------------- | ---------------------------------------- | ---- | --------------------------------------- |
 | deviceId             | string                                   | Yes   | Address of the client that receives the notifications, for example, XX:XX:XX:XX:XX:XX.|
 | notifyCharacteristic | [NotifyCharacteristic](#notifycharacteristic) | Yes   | New characteristic value.                              |
-| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1514,7 +1514,7 @@ let notifyCharacter: ble.NotifyCharacteristic = {
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.notifyCharacteristicChanged('XX:XX:XX:XX:XX:XX', notifyCharacter).then(() => {
-        console.info('notifyCharacteristicChanged promise successfull');
+        console.info('notifyCharacteristicChanged promise successful');
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -1587,7 +1587,7 @@ Subscribes to characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **characteristicRead**, which indicates a characteristic read request event.|
-| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | Yes   | Callback invoked to return a characteristic read request event from the GATT client.           |
+| callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | Yes   | Callback used to return a characteristic read request event from the GATT client.           |
 
 **Example**
 
@@ -1660,7 +1660,7 @@ Subscribes to characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **characteristicWrite**, which indicates a characteristic write request event.|
-| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
+| callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | Yes   | Callback used to return a characteristic write request from the GATT client.            |
 
 **Example**
 
@@ -1736,7 +1736,7 @@ Subscribes to descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorRead**, which indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | Yes   | Callback used to return a descriptor read request event from the GATT client.       |
 
 **Example**
 
@@ -1809,7 +1809,7 @@ Subscribes to descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **descriptorWrite**, which indicates a descriptor write request event.|
-| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | Yes   | Callback invoked to return a descriptor write request from the GATT client.        |
+| callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | Yes   | Callback used to return a descriptor write request from the GATT client.        |
 
 **Example**
 
@@ -1885,7 +1885,7 @@ Subscribes to BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates BLE connection state changes.|
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback invoked to return the BLE connection state.                         |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback used to return the BLE connection state.                         |
 
 **Example**
 
@@ -1950,7 +1950,7 @@ Subscribes to MTU status changes for the server.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
-| callback | Callback&lt;number&gt; | Yes   | Callback invoked to return the number of MTU bytes.|
+| callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes.|
 
 **Example**
 
@@ -2115,7 +2115,7 @@ Obtains the name of the remote BLE device. This API uses an asynchronous callbac
 
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the remote BLE device name obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the remote BLE device name obtained.|
 
 **Error codes**
 
@@ -2200,7 +2200,7 @@ Obtains all services of the remote BLE device. This API uses an asynchronous cal
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Yes   | Callback invoked to return the services obtained.|
+| callback | AsyncCallback&lt;Array&lt;[GattService](#gattservice)&gt;&gt; | Yes   | Callback used to return the services obtained.|
 
 **Error codes**
 
@@ -2215,7 +2215,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 
 ```js
 import { BusinessError } from '@ohos.base';
-// Callback
+// Callback mode.
 function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
       let services: Array<ble.GattService> = gattServices;
@@ -2295,7 +2295,7 @@ Reads the characteristic value of the specific service of the remote BLE device.
 | Name           | Type                                      | Mandatory  | Description                     |
 | -------------- | ---------------------------------------- | ---- | ----------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic)  | Yes   | Characteristic value to read.               |
-| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the characteristic value read.|
+| callback       | AsyncCallback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback used to return the characteristic value read.|
 
 **Error codes**
 
@@ -2421,7 +2421,7 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 | Name       | Type                                      | Mandatory  | Description                     |
 | ---------- | ---------------------------------------- | ---- | ----------------------- |
 | descriptor | [BLEDescriptor](#bledescriptor)          | Yes   | Descriptor to read.               |
-| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Callback invoked to return the descriptor read.|
+| callback   | AsyncCallback&lt;[BLEDescriptor](#bledescriptor)&gt; | Yes   | Callback used to return the descriptor read.|
 
 **Error codes**
 
@@ -2534,7 +2534,7 @@ Writes a characteristic value to the remote BLE device.
 | -------------- | --------------------------------------- | ---- | ------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | Binary value and other parameters of the BLE device characteristic.|
 | writeType | GattWriteType | Yes   | Write type of the Bluetooth device characteristic value.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the write operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the write operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2656,7 +2656,7 @@ Writes binary data to the specific descriptor of the remote BLE device.
 | Name       | Type                             | Mandatory  | Description                |
 | ---------- | ------------------------------- | ---- | ------------------ |
 | descriptor | [BLEDescriptor](#bledescriptor) | Yes   | Binary value and other parameters of the BLE device descriptor.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the write operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the write operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2760,7 +2760,7 @@ Obtains the RSSI of the remote BLE device. This API uses an asynchronous callbac
 
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | --------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the RSSI, in dBm.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the RSSI, in dBm.|
 
 **Error codes**
 
@@ -2882,7 +2882,7 @@ Sets notification for the change of a characteristic. The GATT client that subsc
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
 | enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2993,7 +2993,7 @@ Sets indication for the change of a characteristic. The GATT client that subscri
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
 | enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite.|
-| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3103,7 +3103,7 @@ Subscribes to BLE characteristic changes. The client can receive a notification 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLECharacteristicChange**, which indicates characteristic value changes.|
-| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback invoked to return the characteristic value changes.                 |
+| callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | Yes   | Callback used to return the characteristic value changes.                 |
 
 **Example**
 
@@ -3168,7 +3168,7 @@ Subscribes to BLE connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEConnectionStateChange**, which indicates BLE connection state changes.|
-| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback invoked to return the BLE connection state.                          |
+| callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | Yes   | Callback used to return the BLE connection state.                          |
 
 **Example**
 
@@ -3232,7 +3232,7 @@ Subscribes to MTU status changes for the client.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
-| callback | Callback&lt;number&gt; | Yes   | Callback invoked to return the number of MTU bytes.|
+| callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes.|
 
 **Example**
 
@@ -3439,7 +3439,7 @@ Defines the scan result.
 
 | Name      | Type       | Readable  | Writable  | Description                                |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | Yes   | No   | Address of the scanned device, for example, XX:XX:XX:XX:XX:XX. For security purposes, the device address is a random MAC address.|
+| deviceId | string      | Yes   | No   | Address of the scanned device, for example, XX:XX:XX:XX:XX:XX. For security purposes, the device address is a random MAC address. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 | rssi     | number      | Yes   | No   | RSSI of the device.                   |
 | data     | ArrayBuffer | Yes   | No   | Advertisement packets sent by the device.                   |
 | deviceName | string | Yes   | No   | Name of the device detected.                   |

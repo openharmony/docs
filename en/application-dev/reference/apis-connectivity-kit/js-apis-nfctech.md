@@ -28,8 +28,6 @@ Obtains the SAK value of this NFC-A tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -53,8 +51,6 @@ getAtqa(): number[]
 Obtains the ATQA value of this NFC-A tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -88,8 +84,6 @@ Obtains the application data of this NFC-B tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -113,8 +107,6 @@ getRespProtocol(): number[]
 Obtains the protocol information of this NFC-B tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -148,8 +140,6 @@ Obtains the system code from this NFC-F tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                           |
@@ -173,8 +163,6 @@ getPmm(): number[]
 Obtains the PMm (consisting of the IC code and manufacturer parameters) information from this NFC-F tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -208,8 +196,6 @@ Obtains the response flags from this NFC-V tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -233,8 +219,6 @@ getDsfId(): number
 Obtains the data storage format identifier (DSFID) from this NFC-V tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -268,8 +252,6 @@ Obtains the historical bytes for the given tag. This API applies only to the Iso
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -293,8 +275,6 @@ getHiLayerResponse(): number[]
 Obtains the higher-layer response bytes for the given tag. This API applies only to the IsoDep cards that use the NFC-B technology.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -321,8 +301,6 @@ Checks whether an extended application protocol data unit (APDU) is supported. T
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -376,13 +354,11 @@ Checks whether an extended APDU is supported. This API uses an asynchronous call
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback invoked to return the result. If the extended APDU is supported, **true** is returned; otherwise, **false** is returned.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the extended APDU is supported, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -432,8 +408,6 @@ Obtains all NDEF records.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -469,8 +443,6 @@ Obtains the NDEF tag type.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -495,8 +467,6 @@ Obtains the NDEF message from this NDEF tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -519,8 +489,6 @@ isNdefWritable(): boolean
 Check whether this NDEF tag is writable. Before calling the data write API, check whether the write operation is supported.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -547,8 +515,6 @@ Reads the NDEF message from this tag. This API uses a promise to return the resu
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -602,13 +568,11 @@ Reads the NDEF message from this tag. This API uses an asynchronous callback to 
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<[NdefMessage](#ndefmessage9)> | Yes  | Callback invoked to return the NDEF message read.|
+| callback | AsyncCallback\<[NdefMessage](#ndefmessage9)> | Yes  | Callback used to return the NDEF message read.|
 
 **Error codes**
 
@@ -657,8 +621,6 @@ Writes an NDEF message to this tag. This API uses a promise to return the result
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -716,14 +678,12 @@ Writes an NDEF message to this tag. This API uses an asynchronous callback to re
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | msg | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -777,8 +737,6 @@ Checks whether this NDEF tag can be set to read-only.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -812,8 +770,6 @@ Sets this NDEF tag to read-only. This API uses a promise to return the result.
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Error codes**
 
@@ -861,13 +817,11 @@ Sets this NDEF tag to read-only. This API uses an asynchronous callback to retur
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -915,8 +869,6 @@ Converts an NFC Forum Type tag to a string defined in the NFC Forum.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
@@ -963,8 +915,6 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -1022,8 +972,6 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
@@ -1031,7 +979,7 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 | sectorIndex | number | Yes  | Index of the sector to authenticate. The sector indexes start from **0**.|
 | key | number[]| Yes  | Key (6 bytes) used for sector authentication.|
 | isKeyA | boolean | Yes  | Whether the key is key A. The value **true** indicates key A, and **false** indicates key B.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1081,8 +1029,6 @@ Reads a block (16 bytes) on this tag. This API uses a promise to return the resu
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -1143,14 +1089,12 @@ Reads a block (16 bytes) on this tag. This API uses an asynchronous callback to 
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to read. The block indexes start from **0**.|
-| callback | AsyncCallback\<number[]> | Yes  | Callback invoked to return the data read.|
+| callback | AsyncCallback\<number[]> | Yes  |Callback used to return the block data read.|
 
 **Error codes**
 
@@ -1200,8 +1144,6 @@ Writes data to a block on this tag. This API uses a promise to return the result
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -1259,15 +1201,13 @@ Writes data to a block on this tag. This API uses an asynchronous callback to re
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the target block. The block indexes start from **0**.|
 | data | number[] | Yes  | 16-byte data to write.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1319,8 +1259,6 @@ Increments a block with the specified value and saves the result in a buffer for
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -1377,15 +1315,13 @@ Increments a block with the specified value and saves the result in a buffer for
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**.|
 | value | number | Yes  | Block data to increment. The value cannot be a negative number.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1436,8 +1372,6 @@ Decrements a block with the specified value and saves the result in a buffer for
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -1494,15 +1428,13 @@ Decrements a block with the specified value. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to decrement. The block indexes start from **0**.|
 | value | number | Yes  | Block data to decrement. The value cannot be a negative number.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1554,13 +1486,11 @@ Transfers data from the temporary register to a block. This API uses a promise t
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes | Index of the destination block. The value starts form **0**.|
+| blockIndex | number | Yes | Index of the block, to which data is transferred. The value starts form **0**.|
 
 **Error codes**
 
@@ -1609,14 +1539,12 @@ Transfers data from the temporary register to a block. This API uses an asynchro
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes  | Index of the destination block. The value starts form **0**.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| blockIndex | number | Yes  | Index of the block, to which data is transferred. The value starts form **0**.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1667,13 +1595,11 @@ Restores data in the temporary register from a block. This API uses a promise to
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes  | Index of the target block. The value starts form **0**.|
+| blockIndex | number | Yes  | Index of the block, from which data is restored. The value starts form **0**.|
 
 **Error codes**
 
@@ -1722,14 +1648,12 @@ Restores data in the temporary register from a block. This API uses an asynchron
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| blockIndex | number | Yes  | Index of the target block. The value starts form **0**.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| blockIndex | number | Yes  | Index of the block, from which data is restored. The value starts form **0**.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1778,8 +1702,6 @@ Obtains the number of sectors in this MIFARE Classic tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -1804,8 +1726,6 @@ getBlockCountInSector(sectorIndex: number): number
 Obtains the number of blocks in a sector.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -1845,8 +1765,6 @@ Obtains the type of this MIFARE Classic tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -1870,8 +1788,6 @@ getTagSize(): number
 Obtains the size of this tag. For details, see [MifareClassicSize](js-apis-nfcTag.md#mifareclassicsize9).
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Return value**
 
@@ -1898,8 +1814,6 @@ Checks whether it is an emulated tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -1924,8 +1838,6 @@ getBlockIndex(sectorIndex: number): number
 Obtains the index of the first block in a sector.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -1964,8 +1876,6 @@ getSectorIndex(blockIndex: number): number
 Obtains the index of the sector that holds the specified block.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -2014,8 +1924,6 @@ Reads four pages of data (4 bytes per page) from this tag. This API uses a promi
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -2077,14 +1985,12 @@ Reads four pages of data (4 bytes per page) from this tag. This API uses an asyn
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | pageIndex | number | Yes  | Index of the first page to read. The page indexes start from **0**.|
-| callback | AsyncCallback\<number[]> | Yes  | Callback invoked to return the data read, which is 16 bytes in total.|
+| callback | AsyncCallback\<number[]> | Yes  | Callback used to return the data read, which is 16 bytes in total.|
 
 **Error codes**
 
@@ -2134,8 +2040,6 @@ Writes one page (4 bytes) of data to this tag. This API uses a promise to return
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -2192,15 +2096,13 @@ Writes one page (4 bytes) of data to this tag. This API uses an asynchronous cal
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                    |
 | -------- | ----------------------- | ---- | ------------------------ |
 | pageIndex | number | Yes  | Index of the page to write. The page indexes start from **0**.|
 | data | number[] | Yes  | 4-byte data to write.|
-| callback|AsyncCallback\<void> |Yes| Callback invoked to return the result.|
+| callback|AsyncCallback\<void> |Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -2250,8 +2152,6 @@ Obtains the type of this MIFARE Ultralight tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Return value**
 
 | **Type**| **Description**                            |
@@ -2285,8 +2185,6 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -2344,8 +2242,6 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
@@ -2356,7 +2252,7 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | Callback invoked to return the result.|
+| callback: AsyncCallback\<void> | Callback used to return the result.|
 
 **Error codes**
 
@@ -2409,8 +2305,6 @@ Formats this tag as an NDEF tag, writes an NDEF message to it, and then sets the
 **Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
-
-**Ability API set**: Since API version 12, this API can be used in abilities.
 
 **Parameters**
 
@@ -2468,8 +2362,6 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
-
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
@@ -2480,7 +2372,7 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | Callback invoked to return the result.|
+| callback: AsyncCallback\<void> | Callback used to return the result.|
 
 **Error codes**
 

@@ -46,7 +46,7 @@ The returned **SEService** instance is available only when **true** is returned 
 | **Name**| **Type**                                            | **Mandatory**| **Description**            |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
 | type       | string                                               | Yes     | Type of the SE service to create. It has a fixed value of **'serviceState'**.     |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback invoked to return the SE service state.|
+| callback   | Callback<[ServiceState](#secureelementservicestate)> | Yes     | Callback used to return the SE service state.|
 
 **Return value**
 
@@ -883,7 +883,7 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses an asynchrono
 | **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the basic channel instance obtained.                           |
+| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the basic channel instance obtained.                           |
 
 **Error codes**
 
@@ -1033,7 +1033,7 @@ Opens a basic channel, as defined in ISO/IEC 7816-4. This API uses an asynchrono
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 | p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.                    |
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the basic channel instance obtained.                           |
+| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the basic channel instance obtained.                           |
 
 **Error codes**
 
@@ -1183,7 +1183,7 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses an asynchro
 | **Name**| **Type**              | **Mandatory**| **Description**                                                    |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the logical channel instance obtained.|
+| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -1333,7 +1333,7 @@ Opens a logical channel, as defined in ISO/IEC 7816-4. This API uses an asynchro
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | Yes     | AID of the Applet to be selected on this channel as a byte array, or an empty array if no Applet is to be selected.|
 | p2         | number                 | Yes     | P2 parameter of the **SELECT APDU** command executed on this channel.|
-| callback   | AsyncCallback\<Channel> | Yes     | Callback invoked to return the logical channel instance obtained.|
+| callback   | AsyncCallback\<Channel> | Yes     | Callback used to return the logical channel instance obtained.|
 
 **Error codes**
 
@@ -1810,7 +1810,7 @@ Transmits APDU data (as per ISO/IEC 7816) to the SE.
 | **Name**| **Type**               | **Mandatory**| **Description**                             |
 | ---------- | ----------------------- | ------ | ------------------------------------- |
 | command    | number[]                | Yes     | APDU data to send.|
-| callback   | AsyncCallback\<number[]> | Yes     | Callback invoked to return the response received, in a number array. |
+| callback   | AsyncCallback\<number[]> | Yes     | Callback used to return the response received, in a number array. |
 
 **Error codes**
 

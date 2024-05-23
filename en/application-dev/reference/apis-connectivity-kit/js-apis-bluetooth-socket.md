@@ -30,7 +30,7 @@ Creates a Serial Port Profile (SPP) listening socket for the server.
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | Yes   | Name of the service.                 |
 | option   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration.             |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the server socket ID.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the server socket ID.|
 
 **Error codes**
 
@@ -80,7 +80,7 @@ Accepts a connection request from the client over a socket of the server.
 | Name         | Type                         | Mandatory  | Description                     |
 | ------------ | --------------------------- | ---- | ----------------------- |
 | serverSocket | number                      | Yes   | Server socket ID.          |
-| callback     | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.|
+| callback     | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.|
 
 **Error codes**
 
@@ -133,7 +133,7 @@ Initiates an SPP connection to a remote device from the client.
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | option   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for the connection.                 |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the client socket ID.       |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.       |
 
 **Error codes**
 
@@ -297,7 +297,7 @@ Subscribes to SPP read request events.
 | ------------ | --------------------------- | ---- | -------------------------- |
 | type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.|
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.             |
-| callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback invoked to return the data read.         |
+| callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback used to return the data read.         |
 
 **Error codes**
 
