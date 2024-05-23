@@ -80,7 +80,7 @@ let config: pipWindow.PiPConfiguration = {
   templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
   contentHeight: contentHeight,
-  controlGroups: [pipWinodw.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
+  controlGroups: [pipWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
 };
 
 let promise : Promise<pipWindow.PiPController> = pipWindow.create(config);
