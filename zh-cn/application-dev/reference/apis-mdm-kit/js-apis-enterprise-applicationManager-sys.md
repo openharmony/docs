@@ -47,7 +47,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 
@@ -100,7 +100,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -157,7 +157,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -207,7 +207,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -259,7 +259,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -316,7 +316,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -365,7 +365,7 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -415,7 +415,7 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -470,7 +470,7 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | the administrator application does not have permission to manage the device. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
