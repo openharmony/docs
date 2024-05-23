@@ -47,4 +47,4 @@ event闭包中要设置的组件属性，必须在其之前设置过。
 
 **返回：**
 
-返回错误码，0 - 成功， 401 - 参数错误。
+错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
