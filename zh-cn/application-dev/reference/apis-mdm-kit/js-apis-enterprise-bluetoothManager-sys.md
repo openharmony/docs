@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import bluetoothManager from '@ohos.enterprise.bluetoothManager';
+import { bluetoothManager } from '@kit.MDMKit';
 ```
 
 ## bluetoothManager.isBluetoothDisabled
@@ -57,8 +57,8 @@ isBluetoothDisabled(admin: Want): boolean
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import bluetoothManager from '@ohos.enterprise.bluetoothManager';
+import { Want } from '@kit.AbilityKit';
+import { bluetoothManager } from '@kit.MDMKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -106,8 +106,8 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import bluetoothManager from '@ohos.enterprise.bluetoothManager';
+import { Want } from '@kit.AbilityKit';
+import { bluetoothManager } from '@kit.MDMKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

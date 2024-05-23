@@ -60,7 +60,7 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 | 名称 | 功能描述 |
 | -------- | -------- |
 | setDirection(value:&nbsp;[PanDirection](#pandirection枚举说明)) | 设置direction属性。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| setDistance(value:&nbsp;number) | 设置distance属性。 |
+| setDistance(value:&nbsp;number) | 设置distance属性。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | setFingers(value:&nbsp;number) | 设置fingers属性。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 
 

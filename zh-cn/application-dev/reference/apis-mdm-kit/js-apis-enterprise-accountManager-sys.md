@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import accountManager from '@ohos.enterprise.accountManager';
+import { accountManager } from '@kit.MDMKit';
 ```
 
 ## accountManager.disallowAddLocalAccount
@@ -53,7 +53,7 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -108,8 +108,8 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -157,7 +157,7 @@ disallowAddOsAccountByUser(admin: Want, userId: number, disallow: boolean): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -211,7 +211,7 @@ isAddOsAccountByUserDisallowed(admin: Want, userId: number): boolean
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -267,8 +267,8 @@ addOsAccount(admin: Want, name: string, type: osAccount.OsAccountType): osAccoun
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import osAccount from '@ohos.account.osAccount';
+import { Want } from '@kit.AbilityKit';
+import { osAccount } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

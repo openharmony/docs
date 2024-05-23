@@ -709,7 +709,7 @@ struct TimePickerDialogExample {
       Button('showTimePickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTimePickerDialog({
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
@@ -776,7 +776,7 @@ struct TextPickerDialogExample {
       Button('showTextPickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTextPickerDialog({
+          this.getUIContext().showTextPickerDialog({
             range: this.fruits,
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
@@ -2157,14 +2157,57 @@ on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwit
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('navDestinationSwitch', callback);
+// Index.ets
+// 演示 UIObserver.on('navDestinationSwitch', callback)
+// UIObserver.off('navDestinationSwitch', callback)
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.on('navDestinationSwitch', callBackFunc);
+  }
+
+  aboutToDisappear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.off('navDestinationSwitch', callBackFunc);
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationSwitch')<sup>12+</sup>
@@ -2182,18 +2225,7 @@ off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSw
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('navDestinationSwitch', callback);
-```
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
 
 ### on('navDestinationSwitch')<sup>12+</sup>
 
@@ -2214,14 +2246,59 @@ on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchO
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+// Index.ets
+// 演示 UIObserver.on('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+// UIObserver.off('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+import observer from '@ohos.arkui.observer';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  aboutToDisappear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .id("myNavId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationSwitch')<sup>12+</sup>
@@ -2240,18 +2317,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
-```
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
 
 ### on('willClick')<sup>12+</sup>
 

@@ -2,6 +2,7 @@
 
 - ArkTS API
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
+  - [@ohos.multimodalInput.infraredEmitter (红外管理)](js-apis-infraredemitter.md)
   - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.intentionCode (意图事件)](js-apis-intentioncode.md)
   - [@ohos.multimodalInput.keyCode (键值)](js-apis-keycode.md)

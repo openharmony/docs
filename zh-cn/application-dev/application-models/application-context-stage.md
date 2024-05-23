@@ -109,7 +109,6 @@
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
@@ -173,7 +172,6 @@
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
@@ -260,7 +258,6 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct Page_Context {
-
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
@@ -323,6 +320,7 @@ struct Page_Context {
   @Component
   struct Page_Context {
     private context = getContext(this) as common.UIAbilityContext;
+
     build() {
       Column() {
         //...

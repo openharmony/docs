@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
+import { deviceControl } from '@kit.MDMKit';
 ```
 
 ## deviceControl.resetFactory
@@ -51,8 +51,8 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
-import Want from '@ohos.app.ability.Want';
+import { deviceControl } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -106,9 +106,9 @@ resetFactory(admin: Want): Promise\<void>
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { deviceControl } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -153,8 +153,8 @@ shutdown(admin: Want): void
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
-import Want from '@ohos.app.ability.Want';
+import { deviceControl } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -200,8 +200,8 @@ reboot(admin: Want): void
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
-import Want from '@ohos.app.ability.Want';
+import { deviceControl } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -247,8 +247,8 @@ lockScreen(admin: Want): void
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
-import Want from '@ohos.app.ability.Want';
+import { deviceControl } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',

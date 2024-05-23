@@ -359,9 +359,13 @@ addDeviceAccessRight(tokenId: string, deviceName: string): boolean
 
 usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addDeviceAccessRight不会触发弹框，而是直接添加软件包访问设备的权限。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -391,6 +395,7 @@ usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addDevice
 
 ```ts
  import bundleManager from '@ohos.bundle.bundleManager';
+ import { BusinessError } from '@ohos.base';
  let devicesName: string = "1-1";
  let tokenId: string = "";
 
@@ -403,7 +408,7 @@ usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addDevice
       if (usb.addDeviceAccessRight(tokenId, devicesName)) {
         console.log(`Succeed in adding right`);
       }
-    }).catch(err => {
+    }).catch((err : BusinessError) => {
       console.error('testTag getBundleInfoForSelf failed' );
     });
   } catch (err) {
@@ -417,9 +422,13 @@ getFunctionsFromString(funcs: string): number
 
 在设备模式下，将字符串形式的USB功能列表转化为数字掩码。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -457,9 +466,13 @@ getStringFromFunctions(funcs: FunctionType): string
 
 在设备模式下，将数字掩码形式的USB功能列表转化为字符串。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -497,9 +510,13 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 
 在设备模式下，设置当前的USB功能列表。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -527,10 +544,11 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 let funcs: number = usb.FunctionType.HDC;
 usb.setDeviceFunctions(funcs).then(() => {
     console.info('usb setDeviceFunctions successfully.');
-}).catch((err) => {
+}).catch(((err : BusinessError)) => {
     console.error('usb setDeviceFunctions failed: ' + err.code + ' message: ' + err.message);
 });
 ```
@@ -541,9 +559,13 @@ getDeviceFunctions(): FunctionType
 
 在设备模式下，获取当前的USB功能列表的数字组合掩码。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -574,9 +596,13 @@ getPortList(): Array\<USBPort\>
 
 获取所有物理USB端口描述信息。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -609,7 +635,7 @@ getPortSupportModes(portId: number): PortModeType
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -646,9 +672,13 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 
 设置指定的端口支持的角色模式，包含充电角色、数据传输角色。
 
+**说明：**
+
+> 从 API version 12开始支持。
+
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**需要权限：** ohos.permission.MANAGE_USB_CONFIG
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -678,10 +708,11 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 let portId: number = 1;
 usb.setPortRoleTypes(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
   console.info('usb setPortRoleTypes successfully.');
-}).catch((err) => {
+}).catch(((err : BusinessError)) => {
   console.error('usb setPortRoleTypes failed: ' + err.code + ' message: ' + err.message);
 });
 ```
