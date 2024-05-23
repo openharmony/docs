@@ -10,7 +10,9 @@
   - [Updating an Asset (ArkTS)](asset-js-update.md)
   - [Querying Assets (ArkTS)](asset-js-query.md)
   - [Querying Assets Used for User Authentication (ArkTS)](asset-js-query-auth.md)
+  <!--Del-->
   - [Performing Asset Operations in Specified User Space (for System Applications Only) (ArkTS)](asset-as-user-sys.md)
+  <!--DelEnd-->
 - Asset Store Kit Development (C/C++)
   - [Adding an Asset (C/C++)](asset-native-add.md)
   - [Removing Assets (C/C++)](asset-native-remove.md)
