@@ -710,3 +710,1061 @@ Image_ErrorCode OH_DecodingOptions_SetDesiredDynamicRange (OH_DecodingOptions * 
 **返回：**
 
 如果操作成功返回IMAGE_SUCCESS，参数校验错误返回IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+
+
+### OH_DecodingOptions_SetDesiredRegion()
+
+```
+Image_ErrorCode OH_DecodingOptions_SetDesiredRegion (OH_DecodingOptions * options, Image_Region * desiredRegion )
+```
+
+**描述**
+
+设置解码区域。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| desiredRegion | 解码区域。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_DecodingOptions_SetDesiredSize()
+
+```
+Image_ErrorCode OH_DecodingOptions_SetDesiredSize (OH_DecodingOptions * options, Image_Size * desiredSize )
+```
+
+**描述**
+
+设置期望输出大小。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| desiredSize | 期望输出大小。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_DecodingOptions_SetIndex()
+
+```
+Image_ErrorCode OH_DecodingOptions_SetIndex (OH_DecodingOptions * options, uint32_t index )
+```
+
+**描述**
+
+设置解码图片序号。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| index | 解码图片序号。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_DecodingOptions_SetPixelFormat()
+
+```
+Image_ErrorCode OH_DecodingOptions_SetPixelFormat (OH_DecodingOptions * options, int32_t pixelFormat )
+```
+
+**描述**
+
+设置pixel格式。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| pixelFormat | pixel格式[PIXEL_FORMAT](#pixel_format)。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_DecodingOptions_SetRotate()
+
+```
+Image_ErrorCode OH_DecodingOptions_SetRotate (OH_DecodingOptions * options, float rotate )
+```
+
+**描述**
+
+设置旋转角度。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_DecodingOptions指针。 | 
+| rotate | 旋转角度，单位为deg。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_GetBufferSize()
+
+```
+Image_ErrorCode OH_ImageNative_GetBufferSize (OH_ImageNative * image, uint32_t componentType, size_t * size )
+```
+
+**描述**
+
+获取native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的缓冲区的大小。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。 | 
+| componentType | 表示组件的类型。 | 
+| size | 表示作为获取结果的缓冲区大小的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_GetByteBuffer()
+
+```
+Image_ErrorCode OH_ImageNative_GetByteBuffer (OH_ImageNative * image, uint32_t componentType, OH_NativeBuffer ** nativeBuffer )
+```
+
+**描述**
+
+获取native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的缓冲区。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。 | 
+| componentType | 表示组件的类型。 | 
+| nativeBuffer | 表示作为获取结果的 **OH_NativeBuffer** 缓冲区对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_GetComponentTypes()
+
+```
+Image_ErrorCode OH_ImageNative_GetComponentTypes (OH_ImageNative * image, uint32_t ** types, size_t * typeSize )
+```
+
+**描述**
+
+获取native [OH_ImageNative](#oh_imagenative) 对象的组件列表信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。 | 
+| types | 表示作为获取结果的组件列表对象的指针。 | 
+| typeSize | 表示作为获取结果的组件列表中，元素个数的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_GetImageSize()
+
+```
+Image_ErrorCode OH_ImageNative_GetImageSize (OH_ImageNative * image, Image_Size * size )
+```
+
+**描述**
+
+获取native [OH_ImageNative](#oh_imagenative) 对象的 [Image_Size](_image___size.md) 信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。 | 
+| size | 表示作为获取结果的 [Image_Size](_image___size.md) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 如果未知原因错误返回 IMAGE_UNKNOWN_ERROR； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_GetPixelStride()
+
+```
+Image_ErrorCode OH_ImageNative_GetPixelStride (OH_ImageNative * image, uint32_t componentType, int32_t * pixelStride )
+```
+
+**描述**
+
+获取native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的像素大小。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。 | 
+| componentType | 表示组件的类型。 | 
+| pixelStride | 表示作为获取结果的像素大小的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_GetRowStride()
+
+```
+Image_ErrorCode OH_ImageNative_GetRowStride (OH_ImageNative * image, uint32_t componentType, int32_t * rowStride )
+```
+
+**描述**
+
+获取native [OH_ImageNative](#oh_imagenative) 对象中某个组件类型所对应的像素行宽。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。 | 
+| componentType | 表示组件的类型。 | 
+| rowStride | 表示作为获取结果的像素行宽的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageNative_Release()
+
+```
+Image_ErrorCode OH_ImageNative_Release (OH_ImageNative * image)
+```
+
+**描述**
+
+释放native [OH_ImageNative](#oh_imagenative) 对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| image | 表示 [OH_ImageNative](#oh_imagenative) native对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImagePackerNative_Create()
+
+```
+Image_ErrorCode OH_ImagePackerNative_Create (OH_ImagePackerNative ** imagePacker)
+```
+
+**描述**
+
+创建OH_ImagePackerNative指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 被操作的OH_ImagePackerNative指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImagePackerNative_PackToDataFromImageSource()
+
+```
+Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource (OH_ImagePackerNative * imagePacker, OH_PackingOptions * options, OH_ImageSourceNative * imageSource, uint8_t * outData, size_t * size )
+```
+
+**描述**
+
+将ImageSource编码为指定格式的数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imagePacker | 被操作的OH_ImagePackerNative指针。 | 
+| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。 | 
+| imageSource | 用于编码的image source指针。 | 
+| outData | 用于存储打包图像输出数据的缓冲区。 | 
+| size | 用于存储打包图像输出数据的缓冲区大小。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码失败返回 IMAGE_DECODE_FAILED，如果申请内存失败返回 IMAGE_ALLOC_FAILED， 如果数据或图片过大返回 IMAGE_TOO_LARGE，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImagePackerNative_PackToDataFromPixelmap()
+
+```
+Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmap (OH_ImagePackerNative * imagePacker, OH_PackingOptions * options, OH_PixelmapNative * pixelmap, uint8_t * outData, size_t * size )
+```
+
+**描述**
+
+将Pixelmap编码为指定格式的数据。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imagePacker | 被操作的OH_ImagePackerNative指针。 | 
+| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。 | 
+| pixelmap | 用于编码的Pixelmap指针。 | 
+| outData | 用于存储打包图像输出数据的缓冲区。 | 
+| size | 用于存储打包图像输出数据的缓冲区大小。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码失败返回 IMAGE_DECODE_FAILED，如果申请内存失败返回 IMAGE_ALLOC_FAILED， 如果数据或图片过大返回 IMAGE_TOO_LARGE，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImagePackerNative_PackToFileFromImageSource()
+
+```
+Image_ErrorCode OH_ImagePackerNative_PackToFileFromImageSource (OH_ImagePackerNative * imagePacker, OH_PackingOptions * options, OH_ImageSourceNative * imageSource, int32_t fd )
+```
+
+**描述**
+
+将一个ImageSource编码到文件中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imagePacker | 被操作的OH_ImagePackerNative指针。 | 
+| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。 | 
+| imageSource | 用于编码的image source指针。 | 
+| fd | 可写的文件描述符。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码失败返回 IMAGE_DECODE_FAILED，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImagePackerNative_PackToFileFromPixelmap()
+
+```
+Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmap (OH_ImagePackerNative * imagePacker, OH_PackingOptions * options, OH_PixelmapNative * pixelmap, int32_t fd )
+```
+
+**描述**
+
+将一个Pixelmap编码到文件中。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imagePacker | 被操作的OH_ImagePackerNative指针。 | 
+| options | 打包选项参数 [OH_PackingOptions](#oh_packingoptions)。 | 
+| pixelmap | 用于编码的pixelmap指针。 | 
+| fd | 可写的文件描述符。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码失败返回 IMAGE_DECODE_FAILED，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImagePackerNative_Release()
+
+```
+Image_ErrorCode OH_ImagePackerNative_Release (OH_ImagePackerNative * imagePacker)
+```
+
+**描述**
+
+释放OH_ImagePackerNative指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| imagePacker | 被操作的OH_ImagePackerNative指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageReceiverNative_Create()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_Create (OH_ImageReceiverOptions * options, OH_ImageReceiverNative ** receiver )
+```
+
+**描述**
+
+创建应用层 OH_ImageReceiverNative 对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 表示 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的指针。 | 
+| receiver | 表示作为获取结果的 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 如果申请内存失败返回 IMAGE_ALLOC_FAILED； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageReceiverNative_GetCapacity()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_GetCapacity (OH_ImageReceiverNative * receiver, int32_t * capacity )
+```
+
+**描述**
+
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取ImageReceiver的容量。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| receiver | 表示 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+| capacity | 表示作为获取结果的图片缓存容量对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverNative](#oh_imagereceivernative)
+
+
+### OH_ImageReceiverNative_GetReceivingSurfaceId()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId (OH_ImageReceiverNative * receiver, uint64_t * surfaceId )
+```
+
+**描述**
+
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取receiver的id。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| receiver | 表示 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+| surfaceId | 表示作为获取结果的id对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 如果未知原因错误返回 IMAGE_UNKNOWN_ERROR； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverNative](#oh_imagereceivernative)
+
+
+### OH_ImageReceiverNative_GetSize()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_GetSize (OH_ImageReceiverNative * receiver, Image_Size * size )
+```
+
+**描述**
+
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取ImageReceiver的大小。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| receiver | 表示 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+| size | 表示作为获取结果的 [Image_Size](_image___size.md) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverNative](#oh_imagereceivernative), [Image_Size](_image___size.md)
+
+
+### OH_ImageReceiverNative_Off()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_Off (OH_ImageReceiverNative * receiver)
+```
+
+**描述**
+
+关闭[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调事件。
+
+关闭被 [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) 开启的回调事件。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| receiver | 表示 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverNative](#oh_imagereceivernative), [OH_ImageReceiverNative_On](#oh_imagereceivernative_on)
+
+
+### OH_ImageReceiverNative_On()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_On (OH_ImageReceiverNative * receiver, OH_ImageReceiver_OnCallback callback )
+```
+
+**描述**
+
+注册一个[OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)回调事件。
+
+每当接收到新的图片，该回调事件就会响应。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| receiver | 表示 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+| callback | 表示 [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) 事件的回调函数。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverNative](#oh_imagereceivernative), [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)
+
+
+### OH_ImageReceiverNative_ReadLatestImage()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage (OH_ImageReceiverNative * receiver, OH_ImageNative ** image )
+```
+
+**描述**
+
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取最新的一张图片。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| receiver | 表示 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+| image | 获取到的应用层的 OH_ImageNative 指针对象。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 如果未知原因错误返回 IMAGE_UNKNOWN_ERROR； 如果申请内存失败返回 IMAGE_ALLOC_FAILED； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverNative](#oh_imagereceivernative), [OH_ImageNative](#oh_imagenative)
+
+
+### OH_ImageReceiverNative_ReadNextImage()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_ReadNextImage (OH_ImageReceiverNative * receiver, OH_ImageNative ** image )
+```
+
+**描述**
+
+通过[OH_ImageReceiverNative](#oh_imagereceivernative)获取下一张图片。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| receiver | 表示 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+| image | 获取到的应用层的 OH_ImageNative 指针对象。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 如果未知原因错误返回 IMAGE_UNKNOWN_ERROR； 如果申请内存失败返回 IMAGE_ALLOC_FAILED； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverNative](#oh_imagereceivernative), [OH_ImageNative](#oh_imagenative)
+
+
+### OH_ImageReceiverNative_Release()
+
+```
+Image_ErrorCode OH_ImageReceiverNative_Release (OH_ImageReceiverNative * receiver)
+```
+
+**描述**
+
+释放native [OH_ImageReceiverNative](#oh_imagereceivernative) 对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| receiver | 表示 [OH_ImageReceiverNative](#oh_imagereceivernative) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverNative](#oh_imagereceivernative)
+
+
+### OH_ImageReceiverOptions_Create()
+
+```
+Image_ErrorCode OH_ImageReceiverOptions_Create (OH_ImageReceiverOptions ** options)
+```
+
+**描述**
+
+创建应用层 OH_ImageReceiverOptions 对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 表示作为获取结果的 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 如果申请内存失败返回 IMAGE_ALLOC_FAILED； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageReceiverOptions_GetCapacity()
+
+```
+Image_ErrorCode OH_ImageReceiverOptions_GetCapacity (OH_ImageReceiverOptions * options, int32_t * capacity )
+```
+
+**描述**
+
+获取 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的图片缓存容量的信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 表示 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的指针。 | 
+| capacity | 表示作为获取结果的图片缓存容量对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageReceiverOptions_GetSize()
+
+```
+Image_ErrorCode OH_ImageReceiverOptions_GetSize (OH_ImageReceiverOptions * options, Image_Size * size )
+```
+
+**描述**
+
+获取 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的 [Image_Size](_image___size.md) 信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 表示 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的指针。 | 
+| size | 表示作为获取结果的 [Image_Size](_image___size.md) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageReceiverOptions_Release()
+
+```
+Image_ErrorCode OH_ImageReceiverOptions_Release (OH_ImageReceiverOptions * options)
+```
+
+**描述**
+
+释放 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 表示 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+**参见：**
+
+[OH_ImageReceiverOptions](#oh_imagereceiveroptions)
+
+
+### OH_ImageReceiverOptions_SetCapacity()
+
+```
+Image_ErrorCode OH_ImageReceiverOptions_SetCapacity (OH_ImageReceiverOptions * options, int32_t capacity )
+```
+
+**描述**
+
+设置 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的图片缓存容量的信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 表示 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的指针。 | 
+| capacity | 表示图片缓存容量对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageReceiverOptions_SetSize()
+
+```
+Image_ErrorCode OH_ImageReceiverOptions_SetSize (OH_ImageReceiverOptions * options, Image_Size size )
+```
+
+**描述**
+
+设置 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的 [Image_Size](_image___size.md) 信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| options | 表示 [OH_ImageReceiverOptions](#oh_imagereceiveroptions) 对象的指针。 | 
+| size | 表示 [Image_Size](_image___size.md) 对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS； 如果参数错误返回 IMAGE_BAD_PARAMETER； 具体释义参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceInfo_Create()
+
+```
+Image_ErrorCode OH_ImageSourceInfo_Create (OH_ImageSource_Info ** info)
+```
+
+**描述**
+
+创建OH_ImageSource_Info指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_ImageSource_Info指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceInfo_GetDynamicRange()
+
+```
+Image_ErrorCode OH_ImageSourceInfo_GetDynamicRange (OH_ImageSource_Info * info, bool * isHdr )
+```
+
+**描述**
+
+获取图片是否为高动态范围的信息。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_ImageSource_Info指针。 | 
+| isHdr | 是否为hdr的布尔值。 | 
+
+**返回：**
+
+如果操作成功返回IMAGE_SUCCESS，参数校验错误返回IMAGE_BAD_PARAMETER。具体请参考[Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceInfo_GetHeight()
+
+```
+Image_ErrorCode OH_ImageSourceInfo_GetHeight (OH_ImageSource_Info * info, uint32_t * height )
+```
+
+**描述**
+
+获取图片的高。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_ImageSource_Info指针。 | 
+| height | 图片的高，单位：像素高 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceInfo_GetWidth()
+
+```
+Image_ErrorCode OH_ImageSourceInfo_GetWidth (OH_ImageSource_Info * info, uint32_t * width )
+```
+
+**描述**
+
+获取图片的宽。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_ImageSource_Info指针。 | 
+| width | 图片的宽，单位：像素。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceInfo_Release()
+
+```
+Image_ErrorCode OH_ImageSourceInfo_Release (OH_ImageSource_Info * info)
+```
+
+**描述**
+
+释放OH_ImageSource_Info指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 被操作的OH_ImageSource_Info指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_CreateFromData()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreateFromData (uint8_t * data, size_t dataSize, OH_ImageSourceNative ** res )
+```
+
+**描述**
+
+通过缓冲区数据创建OH_ImageSourceNative指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| data | 图像缓冲区数据。 | 
+| dataSize | 图像缓冲区数据长度。 | 
+| res | 指向c++本地层创建的OH_ImageSourceNative对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码数据源异常返回 IMAGE_BAD_SOURCE， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_CreateFromFd()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreateFromFd (int32_t fd, OH_ImageSourceNative ** res )
+```
+
+**描述**
+
+通过fd创建OH_ImageSourceNative指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| fd | 文件描述符fd。 | 
+| res | 指向c++本地层创建的OH_ImageSourceNative对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_CreateFromRawFile()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreateFromRawFile (RawFileDescriptor * rawFile, OH_ImageSourceNative ** res )
+```
+
+**描述**
+
+通过图像资源文件的RawFileDescriptor创建OH_ImageSourceNative指针
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| rawFile | 指示raw文件的文件描述符。 | 
+| res | 指向c++本地层创建的OH_ImageSourceNative对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_ImageSourceNative_CreateFromUri()
+
+```
+Image_ErrorCode OH_ImageSourceNative_CreateFromUri (char * uri, size_t uriSize, OH_ImageSourceNative ** res )
+```
+
+**描述**
+
+通过uri创建OH_ImageSourceNative指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| uri | 指向图像源URI的指针。只接受文件URI或Base64 URI。 | 
+| uriSize | URI长度。 | 
+| res | 指向c++本地层创建的OH_ImageSourceNative对象的指针。 | 
+
+**返回：**
+
+如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果解码数据源异常返回 IMAGE_BAD_SOURCE， 具体请参考 [Image_ErrorCode](#image_errorcode)。
