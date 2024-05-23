@@ -210,6 +210,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+<!--code_no_check_fa-->
 ``` ts
 // FA模型
 import featureAbility from '@ohos.ability.featureAbility';

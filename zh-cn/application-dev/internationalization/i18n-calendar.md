@@ -11,13 +11,13 @@
 1. 导入模块。
 
 ```ts
-import I18n from '@ohos.i18n';
+import { i18n } from '@kit.LocalizationKit';
 ```
 
 2. 公历相关用法。
 
 ```ts
-let calendar : I18n.Calendar = I18n.getCalendar("zh-Hans", "gregory");
+let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "gregory");
 //设置日历对象的日期
 calendar.setTime(new Date(2022, 5, 13, 8, 0, 0));
 calendar.setTime(10540800000);
@@ -64,7 +64,7 @@ calendar.compareDays(new Date(2023, 10, 15)); // -3
 3. 获取公历对应的农历日期。
 
 ```ts
-let calendar : I18n.Calendar = I18n.getCalendar("zh-Hans", "chinese");
+let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "chinese");
 //将公历信息设置到calendar对象
 calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
 //获取农历年月日

@@ -1389,7 +1389,7 @@ import installer from '@ohos.bundle.installer';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
-let createAppCloneParam: installer.createAppCloneParam = {
+let createAppCloneParam: installer.CreateAppCloneParam = {
     userId: 100,
     appIndex: 1,
 };

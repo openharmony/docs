@@ -15,8 +15,8 @@
 1. 切换到伪本地化测试区域，如“en-XA”。
    通过代码切换的方法（需要系统应用权限）：
    ```ts
-   import I18n from '@ohos.i18n'
-   I18n.System.setSystemLanguage('en-XA')
+   import { i18n } from '@kit.LocalizationKit';
+   i18n.System.setSystemLanguage('en-XA')
    ```
 
 2. 遍历需要测试的APP。
