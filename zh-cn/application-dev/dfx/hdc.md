@@ -124,7 +124,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       ```shell
       source ~/.zshrc
       ```
-
+<!--Del-->
 **（Linux可选）开启非root用户USB设备操作权限**
 
 - （临时权限）设置USB设备操作权限最大化
@@ -167,6 +167,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 >
 > - 命令行中被[]修饰的参数表示可选参数。
 > - 命令行中的参数若是斜体，表示在使用时该参数需替换为具体的信息，例如：file send _local remote_命令中的local和remote，使用时需替换为本地待发送和远端待接收的文件路径。
+<!--DelEnd-->
 
 ## 开发指导
 
