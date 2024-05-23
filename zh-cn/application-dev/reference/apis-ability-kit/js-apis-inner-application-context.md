@@ -117,7 +117,7 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string): Promise\<string>
 
-通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
+通过使用应用中的Group ID获取对应的共享目录，使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -169,7 +169,7 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
-通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
+通过使用应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
