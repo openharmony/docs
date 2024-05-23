@@ -1093,6 +1093,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 | ----------------------------------- | -------------------------- |
 | [SymKeyGenerator](#symkeygenerator) | 返回对称密钥生成器的对象。 |
 
+**错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1392,6 +1393,7 @@ convertKeySync(key: DataBlob): SymKey
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { buffer } from '@kit.ArkTS';
 
 function testConvertKeySync() {
   // 对称密钥长度为64字节，512比特
@@ -1798,7 +1800,7 @@ let priKeyPkcs1Str1024: string  =
   + "-----END RSA PUBLIC KEY-----\n";
 async function TestConvertPemKeyByPromise() {
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
-  let keyGenPromise = await asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024);
+  let keyGenPromise = asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024);
   keyGenPromise.then(keyPair => {
     console.info('convertPemKey success.');
   }).catch((error: BusinessError) => {
@@ -2480,19 +2482,21 @@ static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Ar
 **示例：**
 
 ```ts
-let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
-let keyPair = await generator.generateKeyPair();
-let eccPkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
-let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
-console.info('ECC_PK_X_BN 16：' + eccPkX.toString(16));
-console.info('ECC_PK_Y_BN 16：' + eccPkY.toString(16));
-// 将eccPkX.toString(16)结果放入x，eccPkY.toString(16)结果放入y
-let returnPoint: cryptoFramework.Point = {
-  x: BigInt('0x' + eccPkX.toString(16)),
-  y: BigInt('0x' + eccPkY.toString(16))
-};
-let returnData = cryptoFramework.ECCKeyUtil.getEncodedPoint('NID_brainpoolP256r1', returnPoint, 'UNCOMPRESSED');
-console.info('returnData: ' + returnData);
+async function doTest() {
+  let generator = cryptoFramework.createAsyKeyGenerator('ECC_BrainPoolP256r1');
+  let keyPair = await generator.generateKeyPair();
+  let eccPkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
+  let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+  console.info('ECC_PK_X_BN 16：' + eccPkX.toString(16));
+  console.info('ECC_PK_Y_BN 16：' + eccPkY.toString(16));
+  // 将eccPkX.toString(16)结果放入x，eccPkY.toString(16)结果放入y
+  let returnPoint: cryptoFramework.Point = {
+    x: BigInt('0x' + eccPkX.toString(16)),
+    y: BigInt('0x' + eccPkY.toString(16))
+  };
+  let returnData = cryptoFramework.ECCKeyUtil.getEncodedPoint('NID_brainpoolP256r1', returnPoint, 'UNCOMPRESSED');
+  console.info('returnData: ' + returnData);
+}
 ```
 
 ## DHKeyUtil<sup>11+</sup>
@@ -2588,16 +2592,17 @@ static genCipherTextBySpec(spec: SM2CipherTextSpec, mode?: string): DataBlob
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
-    let spec : cryptoFramework.SM2CipherTextSpec = {
-      xCoordinate: BigInt('20625015362595980457695435345498579729138244358573902431560627260141789922999'),
-      yCoordinate: BigInt('48563164792857017065725892921053777369510340820930241057309844352421738767712'),
-      cipherTextData: new Uint8Array([100,227,78,195,249,179,43,70,242,69,169,10,65,123]),
-      hashData: new Uint8Array([87,167,167,247,88,146,203,234,83,126,117,129,52,142,82,54,152,226,201,111,143,115,169,125,128,42,157,31,114,198,109,244]),
-    }
-    let data = cryptoFramework.SM2CryptoUtil.genCipherTextBySpec(spec, 'C1C3C2');
-    console.info('genCipherTextBySpec success');
+  let spec : cryptoFramework.SM2CipherTextSpec = {
+    xCoordinate: BigInt('20625015362595980457695435345498579729138244358573902431560627260141789922999'),
+    yCoordinate: BigInt('48563164792857017065725892921053777369510340820930241057309844352421738767712'),
+    cipherTextData: new Uint8Array([100,227,78,195,249,179,43,70,242,69,169,10,65,123]),
+    hashData: new Uint8Array([87,167,167,247,88,146,203,234,83,126,117,129,52,142,82,54,152,226,201,111,143,115,169,125,128,42,157,31,114,198,109,244]),
+  }
+  let data = cryptoFramework.SM2CryptoUtil.genCipherTextBySpec(spec, 'C1C3C2');
+  console.info('genCipherTextBySpec success');
 } catch (err) {
-    console.error(`genCipherTextBySpec error, ${e.code}, ${e.message}`);
+  let e: BusinessError = err as BusinessError;
+  console.error(`genCipherTextBySpec error, ${e.code}, ${e.message}`);
 }
 ```
 
@@ -2637,11 +2642,12 @@ static getCipherTextSpec(cipherText: DataBlob, mode?: string): SM2CipherTextSpec
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
-    let cipherTextArray = new Uint8Array([48,118,2,32,45,153,88,82,104,221,226,43,174,21,122,248,5,232,105,41,92,95,102,224,216,149,85,236,110,6,64,188,149,70,70,183,2,32,107,93,198,247,119,18,40,110,90,156,193,158,205,113,170,128,146,109,75,17,181,109,110,91,149,5,110,233,209,78,229,96,4,32,87,167,167,247,88,146,203,234,83,126,117,129,52,142,82,54,152,226,201,111,143,115,169,125,128,42,157,31,114,198,109,244,4,14,100,227,78,195,249,179,43,70,242,69,169,10,65,123])；
+    let cipherTextArray = new Uint8Array([48,118,2,32,45,153,88,82,104,221,226,43,174,21,122,248,5,232,105,41,92,95,102,224,216,149,85,236,110,6,64,188,149,70,70,183,2,32,107,93,198,247,119,18,40,110,90,156,193,158,205,113,170,128,146,109,75,17,181,109,110,91,149,5,110,233,209,78,229,96,4,32,87,167,167,247,88,146,203,234,83,126,117,129,52,142,82,54,152,226,201,111,143,115,169,125,128,42,157,31,114,198,109,244,4,14,100,227,78,195,249,179,43,70,242,69,169,10,65,123]);
     let cipherText : cryptoFramework.DataBlob = {data : cipherTextArray};
     let spec : cryptoFramework.SM2CipherTextSpec = cryptoFramework.SM2CryptoUtil.getCipherTextSpec(cipherText, 'C1C3C2');
     console.info('getCipherTextSpec success');
 } catch (err) {
+    let e: BusinessError = err as BusinessError;
     console.error(`getCipherTextSpec error, ${e.code}, ${e.message}`);
 }
 ```
@@ -4302,6 +4308,39 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
 
+### generateSecretSync<sup>12+</sup>
+
+generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
+
+基于传入的私钥与公钥进行密钥协商，通过同步返回共享秘密。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| priKey | [PriKey](#prikey) | 是   | 设置密钥协商的私钥输入。 |
+| pubKey | [PubKey](#pubkey) | 是   | 设置密钥协商的公钥输入。 |
+
+**返回值：**
+
+| 类型               | 说明     |
+| ------------------ | -------- |
+|[DataBlob](#datablob) | 共享秘密。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.          |
+| 17620002 | runtime error.          |
+| 17630001 | crypto operation error. |
+
 **callback示例：**
 
 ```ts
@@ -4331,6 +4370,17 @@ keyAgreementPromise.then(secret => {
 }).catch((error: BusinessError) => {
   console.error("keyAgreement error.");
 });
+```
+
+**Sync示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
+let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
+let secret = keyAgreement.generateSecretSync(globalKeyPair.priKey, globalKeyPair.pubKey);
+console.info("[Sync]keyAgreement output is " + secret.data);
 ```
 
 ## cryptoFramework.createMd
