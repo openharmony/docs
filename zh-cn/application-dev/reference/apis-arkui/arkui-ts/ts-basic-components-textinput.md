@@ -308,11 +308,11 @@ showUnit(value: CustomBuilder)
 
 ### showError<sup>10+</sup>
 
-showError(value?: string | undefined)
+showError(value?: ResourceStr | undefined)
 
 设置错误状态下提示的错误文本或者不显示错误状态。
 
-当参数类型为string并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
+当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -322,7 +322,7 @@ showError(value?: string | undefined)
 
 | 参数名 | 类型                          | 必填 | 说明                                                         |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。 |
+| value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>从API version 12开始，value支持Resource类型。 |
 
 ### showUnderline<sup>10+</sup>
 
@@ -535,7 +535,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
 
-TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。
+内联模式和密码模式下字符计数器不显示。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
