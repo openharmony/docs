@@ -8,10 +8,10 @@
 ## 导入模块
 
 ```js
-import { vpnExt } from '@kit.NetworkKit';
+import { vpnExtension } from '@kit.NetworkKit';
 ```
 
-## vpnExt.startVpnExtensionAbility
+## vpnExtension.startVpnExtensionAbility
 
 startVpnExtensionAbility(want: Want): Promise\<void>
 
@@ -51,7 +51,7 @@ Stage 模型示例：
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
-import { vpnExt } from '@kit.NetworkKit';
+import { vpnExtension } from '@kit.NetworkKit';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -73,7 +73,7 @@ struct Index {
           .fontWeight(FontWeight.Bold).onClick(() => {
           console.info("btn click") })
         Button('Start Extension').onClick(() => {
-          vpnExt.startVpnExtensionAbility(want);
+          vpnExtension.startVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
         }.width('100%')
     }.height('100%')
@@ -81,7 +81,7 @@ struct Index {
 }
 ```
 
-## vpnExt.stopVpnExtensionAbility
+## vpnExtension.stopVpnExtensionAbility
 
 stopVpnExtensionAbility(want: Want): Promise\<void>
 
@@ -120,7 +120,7 @@ Stage 模型示例：
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
-import { vpnExt } from '@kit.NetworkKit';
+import { vpnExtension } from '@kit.NetworkKit';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -142,11 +142,11 @@ struct Index {
           .fontWeight(FontWeight.Bold).onClick(() => {
           console.info("btn click") })
         Button('Start Extension').onClick(() => {
-          vpnExt.startVpnExtensionAbility(want);
+          vpnExtension.startVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
         Button('Stop Extension').onClick(() => {
           console.info("btn end")
-          vpnExt.stopVpnExtensionAbility(want);
+          vpnExtension.stopVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
 
         }.width('100%')
@@ -156,7 +156,7 @@ struct Index {
 ```
 
 
-## vpnExt.createVpnConnection
+## vpnExtension.createVpnConnection
 
 createVpnConnection(context: VpnExtensionContext): VpnConnection
 
@@ -188,13 +188,13 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 Stage 模型示例：
 
 ```ts
-import { vpnExt, VpnExtensionAbility } from '@kit.NetworkKit';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
 import { common, Want } from '@kit.AbilityKit';
 
-let context: vpnExt.VpnExtensionContext;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
-    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
@@ -238,16 +238,16 @@ create(config: VpnConfig): Promise\<number\>
 **示例：**
 
 ```js
-import { vpnExt, VpnExtensionAbility } from '@kit.NetworkKit';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let context: vpnExt.VpnExtensionContext;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
-    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     this.SetupVpn();
   }
@@ -296,7 +296,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
         let config = new Config(this.tunIp, this.blockedAppName);
 
         try {
-            let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+            let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
             VpnConnection.create(config).then((data) => {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
@@ -340,16 +340,16 @@ protect(socketFd: number): Promise\<void\>
 **示例：**
 
 ```js
-import { vpnExt, VpnExtensionAbility } from '@kit.NetworkKit';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let g_tunnelFd = -1;
-let context: vpnExt.VpnExtensionContext;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
-    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     this.CreateTunnel();
     this.Protect();
@@ -359,7 +359,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
-        let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+        let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
         VpnConnection.protect(g_tunnelFd).then(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
         }).catch((err : Error) => {
@@ -394,14 +394,14 @@ destroy(): Promise\<void\>
 **示例：**
 
 ```js
-import { vpnExt, VpnExtensionAbility } from '@kit.NetworkKit';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let context: vpnExt.VpnExtensionContext;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
-    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     VpnConnection.destroy().then(() => {
       console.info("destroy success.");
