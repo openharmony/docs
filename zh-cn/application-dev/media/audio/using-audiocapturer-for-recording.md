@@ -58,10 +58,12 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
       offset?: number;
       length?: number;
     }
+   
+    let path = getContext().cacheDir;
+    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+   
     let readDataCallback = (buffer: ArrayBuffer) => {
-      let path = getContext().cacheDir;
-      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
@@ -148,10 +150,12 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 }
+
+let path = getContext().cacheDir;
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+
 let readDataCallback = (buffer: ArrayBuffer) => {
-   let path = getContext().cacheDir;
-   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let options: Options = {
       offset: bufferSize,
       length: buffer.byteLength
@@ -209,6 +213,7 @@ function stop() {
       if (err) {
         console.error('Capturer stop failed.');
       } else {
+        fs.close(file);
         console.info('Capturer stop success.');
       }
     });

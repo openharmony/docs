@@ -99,6 +99,8 @@ borderRadius(value: Length | BorderRadiuses)
 
 ## BorderOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称   | 参数类型                                                     | 必填 | 描述               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup> | 否   | 设置边框宽度。     |
@@ -109,6 +111,8 @@ borderRadius(value: Length | BorderRadiuses)
 ## EdgeWidths<sup>9+</sup>对象说明
 
 引入该对象时，至少传入一个参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 参数类型                         | 必填   | 描述      |
 | ------ | ---------------------------- | ---- | ------- |
@@ -121,6 +125,8 @@ borderRadius(value: Length | BorderRadiuses)
 
 引入该对象时，至少传入一个参数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
 | left   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧边框颜色。 |
@@ -131,6 +137,8 @@ borderRadius(value: Length | BorderRadiuses)
 ## BorderRadiuses<sup>9+</sup>对象说明
 
 引用该对象时，至少传入一个参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称          | 参数类型                         | 必填   | 描述       |
 | ----------- | ---------------------------- | ---- | -------- |
