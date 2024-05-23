@@ -74,7 +74,7 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | APP_FREEZE<sup>10+</sup>  | 5    | 由于watchdog检测出应用Freeze故障，导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足），导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 由于系统资源违规使用（超过CPU、I/O、内存的使用量），导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 由于系统资源违规使用: <br> 1. CPU Highload，CPU高负载 <br> 2. CPU_EXT Highload, CPU执行高负载 <br> 3. IO Manage Control,I/O管控 <br> 4. App Memory Deterioration,应用内存劣化 <br> 5. Temperature Conttrol,温度管控 <br> 6. Memory Pressure,低内存水限 <br> 导致应用程序退出,此类具体信息在可以通过lastExitMessage字段获取。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | UPGRADE<sup>10+</sup>  | 8    | 应用程序因升级而退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 **示例：**
@@ -88,6 +88,9 @@ class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
             console.log('The ability has exit last because the ability was not responding.');
+        }
+        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
+            console.log('The ability has exit last because the rss control，the lastExitReason is '+  launchParam.lastExitReason + ', the LastExitMessage is ' + launchParam.lastExitMessage);
         }
     }
 }
