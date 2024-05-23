@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import adminManager from '@ohos.enterprise.adminManager';
+import { adminManager } from '@kit.MDMKit';
 ```
 
 ## adminManager.disableAdmin
@@ -55,8 +55,8 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -102,7 +102,7 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -152,7 +152,7 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',

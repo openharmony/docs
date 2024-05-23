@@ -9,11 +9,12 @@
 > 本模块接口仅可在Stage模型下使用。
 >
 > 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将设备管理应用激活后调用，实现相应功能。
+>
 
 ## 导入模块
 
 ```ts
-import networkManager from '@ohos.enterprise.networkManager';
+import { networkManager } from '@kit.MDMKit';
 ```
 
 ## networkManager.getAllNetworkInterfacesSync
@@ -53,7 +54,7 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -105,7 +106,7 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -157,7 +158,7 @@ getMacSync(admin: Want, networkInterface: string): string
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -209,7 +210,7 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -256,8 +257,8 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -303,8 +304,8 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import connection from '@ohos.net.connection';
+import { Want } from '@kit.AbilityKit';
+import { connection } from '@kit.NetworkKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -362,8 +363,9 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { connection } from '@kit.NetworkKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -410,7 +412,7 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -463,7 +465,7 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -523,7 +525,7 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -566,7 +568,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -614,7 +616,7 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -669,7 +671,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',

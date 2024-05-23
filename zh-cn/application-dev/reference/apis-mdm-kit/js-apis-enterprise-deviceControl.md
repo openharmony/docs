@@ -8,13 +8,13 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将设备管理应用激活后调用，实现相应功能。
 >
 
 ## 导入模块
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
+import { deviceControl } from '@kit.MDMKit';
 ```
 
 ## deviceControl.operateDevice
@@ -50,8 +50,8 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 **示例：**
 
 ```ts
-import deviceControl from '@ohos.enterprise.deviceControl';
-import Want from '@ohos.app.ability.Want';
+import { deviceControl } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',

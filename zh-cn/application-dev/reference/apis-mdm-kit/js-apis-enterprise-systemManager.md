@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import systemManager from '@ohos.enterprise.systemManager';
+import { systemManager } from '@kit.MDMKit';
 ```
 
 ## systemManager.setNTPServer
@@ -48,8 +48,8 @@ setNTPServer(admin: Want, server: string): void
 **示例：**
 
 ```ts
-import systemManager from '@ohos.enterprise.systemManager';
-import Want from '@ohos.app.ability.Want';
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -99,8 +99,8 @@ getNTPServer(admin: Want): string
 **示例：**
 
 ```ts
-import systemManager from '@ohos.enterprise.systemManager';
-import Want from '@ohos.app.ability.Want';
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',

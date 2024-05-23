@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import dateTimeManager from '@ohos.enterprise.dateTimeManager';
+import { dateTimeManager } from '@kit.MDMKit';
 ```
 
 ## dateTimeManager.setDateTime
@@ -52,7 +52,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -106,8 +106,8 @@ setDateTime(admin: Want, time: number): Promise\<void>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -154,7 +154,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -208,8 +208,8 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -255,7 +255,7 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -308,8 +308,8 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',

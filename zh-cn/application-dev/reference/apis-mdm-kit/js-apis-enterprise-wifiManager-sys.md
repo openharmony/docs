@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import wifiManager from '@ohos.enterprise.wifiManager';
+import { wifiManager } from '@kit.MDMKit';
 ```
 
 ## wifiManager.isWifiActive
@@ -52,7 +52,7 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -106,8 +106,8 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -155,7 +155,7 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -215,8 +215,8 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -273,7 +273,7 @@ isWifiDisabled(admin: Want): boolean
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -320,7 +320,7 @@ setWifiDisabled(admin: Want, disabled: boolean): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

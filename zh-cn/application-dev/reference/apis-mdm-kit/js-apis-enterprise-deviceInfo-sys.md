@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import deviceInfo from '@ohos.enterprise.deviceInfo';
+import { deviceInfo } from '@kit.MDMKit';
 ```
 
 ## deviceInfo.getDeviceSerial
@@ -50,7 +50,7 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -102,8 +102,8 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -148,7 +148,7 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -200,8 +200,8 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -246,7 +246,7 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -298,8 +298,8 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
