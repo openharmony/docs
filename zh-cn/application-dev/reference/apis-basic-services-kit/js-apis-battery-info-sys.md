@@ -46,6 +46,7 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | If the system permission is denied. |
 
 **示例**：
 
@@ -89,6 +90,7 @@ getBatteryConfig(sceneName: string): string
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | If the system permission is denied. |
 
 **示例**：
 
@@ -131,6 +133,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | If the system permission is denied. |
 
 **示例**：
 
