@@ -248,11 +248,11 @@
   - Accessibility Kit（无障碍开发服务）
       - [Accessibility Kit简介](accessibility/accessibilityKit.md)
       - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
+  <!--Del-->
   - Ads Kit（广告服务）
-    - [广告标识服务](ads-service/oaid/oaid-service.md)
-    <!--Del-->
+    - [广告标识服务](ads-service/oaid/oaid-service.md)   
     - [重置OAID信息（仅对系统应用开放）](ads-service/oaid/oaid-service-sys.md)
-    <!--DelEnd-->
+  <!--DelEnd-->
   - ArkData（方舟数据管理）
     - [ArkData简介](database/data-mgmt-overview.md)
     - 标准化数据定义
@@ -1532,20 +1532,20 @@
       <!--DelEnd-->
     - 错误码
       - [无障碍子系统错误码](reference/apis-accessibility-kit/errorcode-accessibility.md)
+  <!--Del-->
   - Ads Kit API参考
     - ArkTS API
       - [@ohos.advertising (广告服务框架)](reference/apis-ads-kit/js-apis-advertising.md)
       - [@ohos.identifier.oaid (广告标识服务)](reference/apis-ads-kit/js-apis-oaid.md)
-      <!--Del-->
       - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)(系统接口)](reference/apis-ads-kit/js-apis-adsserviceextensionability-sys.md)
       - [@ohos.identifier.oaid (广告标识服务)(系统接口)](reference/apis-ads-kit/js-apis-oaid-sys.md)
-      <!--DelEnd-->
     - ArkTS组件
       - [@ohos.advertising.AdComponent (非全屏广告展示组件)](reference/apis-ads-kit/js-apis-adcomponent.md)
       - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](reference/apis-ads-kit/js-apis-autoadcomponent.md)
     - 错误码
       - [广告服务框架错误码](reference/apis-ads-kit/errorcode-ads.md)
       - [广告标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
+  <!--DelEnd-->
   - ArkData API参考
     - ArkTS API 
       - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
