@@ -195,13 +195,13 @@ import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
-let header: Map<string, string> | undefined;
-if (header !=undefined) {
-    header.set("key", "value")
-    header.set("key2", "value2")
+let options: webSocket.WebSocketRequestOptions | undefined;
+if (options !=undefined) {
+  options.header = undefined;
+  options.caPath = "";
 }
 let url = "ws://"
-ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
+ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
