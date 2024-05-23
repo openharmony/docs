@@ -5570,6 +5570,7 @@ PixelMap的初始化选项。
 | FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | 是否是前置相机自拍。 |
 | SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | 场景指针。 |
 | SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | 场景算法版本信息。 |
+| GIF_LOOP_COUNT <sup>12+</sup> | "GIFLoopCount" | GIF图片循环次数。 |
 
 ## ImageFormat<sup>9+</sup>
 
