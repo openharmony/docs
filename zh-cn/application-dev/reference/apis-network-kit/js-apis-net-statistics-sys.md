@@ -441,7 +441,7 @@ getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<Net
 | 参数名         | 类型                            | 必填 | 说明                                         |
 |-------------|-------------------------------|----|--------------------------------------------|
 | uid         | number                        | 是  | 指定查询的应用 UID。                               |
-| networkInfo | [NetworkInfo](#networkinfo12) | 是  | 指定查询的网络信息，参见[NetworkInfo](#networkInfo12)。 |
+| networkInfo | [NetworkInfo](#networkinfo12) | 是  | 指定查询的网络信息，参见[NetworkInfo](#networkinfo12)。 |
 
 **返回值：**
 
