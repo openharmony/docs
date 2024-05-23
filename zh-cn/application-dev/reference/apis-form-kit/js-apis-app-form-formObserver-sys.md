@@ -10,7 +10,7 @@ formObserver模块提供了卡片监听方相关接口的能力，包括对同�
 ## 导入模块
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
+import { formObserver } from '@kit.FormKit';
 ```
 
 ## on('formAdd')
@@ -42,8 +42,7 @@ import formObserver from '@ohos.app.form.formObserver';
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log(`a new form added, data: ${JSON.stringify(data)}`);
@@ -80,8 +79,7 @@ formObserver.on('formAdd', callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -120,8 +118,7 @@ formObserver.on('formAdd', bundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -165,8 +162,7 @@ formObserver.off('formAdd', bundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log(`form deleted, data: ${JSON.stringify(data)}`);
@@ -203,8 +199,7 @@ formObserver.on('formRemove', callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -243,8 +238,7 @@ off(type: "formRemove", hostBundleName?: string, observerCallback?: Callback&lt;
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -289,8 +283,7 @@ formObserver.off('formRemove', bundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo[]) => {
   console.log(`form change visibility, data: ${JSON.stringify(data)}`);
@@ -331,8 +324,7 @@ formObserver.on('notifyVisible', callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -371,8 +363,7 @@ formObserver.on('notifyVisible', bundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -418,8 +409,7 @@ formObserver.off('notifyVisible', bundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo[]) => {
   console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
@@ -459,8 +449,7 @@ formObserver.on('notifyInvisible', callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -499,8 +488,7 @@ formObserver.on('notifyInvisible', bundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -549,12 +537,11 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfos((error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -562,7 +549,7 @@ try {
     }
   }, 'com.example.ohos.formjsdemo');
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -598,12 +585,11 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfos((error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -611,7 +597,7 @@ try {
     }
   }, true, 'com.example.ohos.formjsdemo');
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -652,18 +638,17 @@ getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.Runn
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -705,18 +690,17 @@ getRunningFormInfos(isUnusedIncluded: boolean, hostBundleName?: string):  Promis
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formObserver.getRunningFormInfos(true, 'com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -759,9 +743,8 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: "com.example.formprovide",
@@ -772,11 +755,11 @@ let formInstanceFilter: formInfo.FormProviderFilter = {
 try {
   formObserver.getRunningFormInfosByFilter(formInstanceFilter).then((data: formInfo.RunningFormInfo[]) => {
     console.info('formObserver getRunningFormInfosByFilter success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -815,9 +798,8 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: "com.example.formprovide",
@@ -826,7 +808,7 @@ let formInstanceFilter: formInfo.FormProviderFilter = {
   moduleName: "entry"
 }
 try {
-  formObserver.getRunningFormInfosByFilter(formInstanceFilter,(error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter,(error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -834,7 +816,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -878,19 +860,18 @@ getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId).then((data: formInfo.RunningFormInfo) => {
     console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -935,19 +916,18 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean): Promise&lt;fo
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId, true).then((data: formInfo.RunningFormInfo) => {
     console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -986,13 +966,12 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.Runni
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
-  formObserver.getRunningFormInfoById(formId,(error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
+  formObserver.getRunningFormInfoById(formId,(error: BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1000,7 +979,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1040,13 +1019,12 @@ getRunningFormInfoById(formId: string, isUnusedIncluded: boolean, callback: Asyn
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
-  formObserver.getRunningFormInfoById(formId, true, (error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
+  formObserver.getRunningFormInfoById(formId, true, (error: BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1054,7 +1032,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1087,8 +1065,7 @@ try {
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Router event listening in registered form.' + JSON.stringify(data));
@@ -1126,8 +1103,7 @@ formObserver.on('router', callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1166,8 +1142,7 @@ formObserver.on('router', hostBundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1205,8 +1180,7 @@ formObserver.off('router', hostBundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Message event listening in registered form.' + JSON.stringify(data));
@@ -1244,8 +1218,7 @@ formObserver.on('message', callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1284,8 +1257,7 @@ formObserver.on('message', hostBundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1323,8 +1295,7 @@ formObserver.off('message', hostBundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Call event listening in registered form.' + JSON.stringify(data));
@@ -1362,8 +1333,7 @@ formObserver.on('call', callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1402,8 +1372,7 @@ formObserver.on('call', hostBundleName, callback);
 **示例：**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
