@@ -217,6 +217,18 @@
 
 **起始版本**：8
 
+### ohos.permission.ASSIST_DEVICE_UPDATE
+
+允许拉起升级服务对其他设备做辅助、协同升级。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 允许应用管理系统本地帐号。
@@ -2972,6 +2984,30 @@
 ### ohos.permission.UNINSTALL_CLONE_BUNDLE
 
 允许应用卸载应用分身。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DEVICE_COLLABORATION_PRIVATE_ABILITY
+
+允许系统服务或系统应用访问多屏协同私有应用能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_RINGTONE_RESOURCE
+
+允许系统应用访问和写入铃音数据公共目录的权限。
 
 **权限级别**：system_core
 

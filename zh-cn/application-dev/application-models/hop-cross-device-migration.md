@@ -24,13 +24,12 @@
   >
   > 开发者可以开发具有迁移能力的应用，迁移的触发由系统应用完成。
 
-
 ## 运作机制
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration.png)
 
 1. 在源端，通过`UIAbility`的[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调，开发者可以保存待接续的业务数据。例如，在浏览器应用中完成跨端迁移，开发者需要使用[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调保存页面URL等业务内容，而系统将自动保存页面状态，如当前浏览进度。
-2. 分布式框架提供了跨设备应用界面、页面栈以及业务数据的保存和恢复机制，它负责将数据从源端发送到对端。 
+2. 分布式框架提供了跨设备应用界面、页面栈以及业务数据的保存和恢复机制，它负责将数据从源端发送到对端。
 3. 在对端，同一`UIAbility`可以通过[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)（冷启动）和[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)（热启动）接口来恢复业务数据。
 
 ## 跨端迁移流程
@@ -38,8 +37,6 @@
 以从对端的迁移入口发起迁移为例，跨端迁移流程如下图所示。
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration7.png)
-
-
 
 ## 约束限制
 
@@ -77,38 +74,37 @@
    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调的返回值决定是否支持此次迁移，接口返回值详见[`AbilityConstant.OnContinueResult`](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)。
 
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   
+   import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
-   
+
    export default class MigrationAbility extends UIAbility {
      onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
        let version = wantParam.version;
        let targetDevice = wantParam.targetDevice;
        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
-   
+
        // 获取源端版本号
        let versionSrc: number = -1; // 请填充具体获取版本号的代码
-   
+
        // 兼容性校验
        if (version !== versionSrc) {
          // 在兼容性校验不通过时返回MISMATCH
          return AbilityConstant.OnContinueResult.MISMATCH;
        }
-   
+
        // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
        const continueInput = '迁移的数据';
        wantParam['data'] = continueInput;
-   
+
        return AbilityConstant.OnContinueResult.AGREE;
      }
    }
    ```
 
-3. 源端设备`UIAbility`实例在冷启动和热启动情况下分别会调用不同的接口来恢复数据和加载UI。  
+3. 源端设备`UIAbility`实例在冷启动和热启动情况下分别会调用不同的接口来恢复数据和加载UI。
    在对端设备的`UIAbility`中，需要实现[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口来恢复迁移数据。不同情况下的函数调用如下图所示：
 
    ![hop-cross-device-migration](figures/hop-cross-device-migration8.png)
@@ -118,17 +114,15 @@
    - 数据恢复后调用`restoreWindowStage()`来触发**页面恢复**，包括页面栈信息。
 
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import type Want from '@ohos.app.ability.Want';
-   
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
-   
+
    export default class MigrationAbility extends UIAbility {
      storage : LocalStorage = new LocalStorage();
-   
+
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
@@ -142,7 +136,7 @@
          this.context.restoreWindowStage(this.storage);
        }
      }
-   
+
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
@@ -152,7 +146,7 @@
             continueInput = JSON.stringify(want.parameters.data);
             hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
           }
-          // 触发页面恢复  
+          // 触发页面恢复
           this.context.restoreWindowStage(this.storage);
         }
       }
@@ -175,10 +169,8 @@
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -198,9 +190,8 @@ export default class MigrationAbility extends UIAbility {
 
 ```ts
 // Page_MigrationAbilityFirst.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
+import { AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -226,10 +217,9 @@ struct Page_MigrationAbilityFirst {
 
 ```ts
 // Page_MigrationAbilityFirst.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction';
+import { AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { promptAction } from '@kit.ArkUI';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -259,10 +249,8 @@ struct Page_MigrationAbilityFirst {
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -278,7 +266,7 @@ export default class MigrationAbility extends UIAbility {
       });
     }
   }
-  
+
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // 调用原因为迁移时，设置状态为可迁移，应对热启动情况
@@ -302,11 +290,9 @@ export default class MigrationAbility extends UIAbility {
 
 ```ts
 // MigrationAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
-import type window from '@ohos.window';
+import { AbilityConstant, UIAbility, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -338,10 +324,8 @@ export default class MigrationAbility extends UIAbility {
 示例：`UIAbility`设置迁移成功后，源端不需要退出迁移应用。
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { AbilityConstant, UIAbility, wantConstant } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -357,13 +341,16 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ## 跨端迁移中的数据迁移
-当前支持三种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
+
+当前推荐两种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
   > **说明：**
   >
   > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)。
   >
-  > 如果涉及分布式对象和分布式文件迁移时应注意：
+  > 如果涉及分布式对象迁移时应注意：
+  >
   > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+  >
   > 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 ### 使用wantParam迁移数据
@@ -371,9 +358,7 @@ export default class MigrationAbility extends UIAbility {
 在需要迁移的数据较少（100KB以下）时，开发者可以选择在`wantParam`中增加字段进行数据迁移。示例如下：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -414,19 +399,18 @@ export default class MigrationAbility extends UIAbility {
   }
 }
 ```
-### 使用分布式对象迁移数据       
 
-当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)进行数据迁移。
+### 使用分布式对象迁移数据
+
+当需要迁移的数据较大（100KB以上）或数据以文件形式存在时，可以选择[分布式对象](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md)进行数据迁移。其中，对于文件的迁移，可以使用分布式对象提供的[资产](../../application-dev/reference/apis-arkdata/js-apis-data-commonType.md#asset)迁移方式进行。
 
 1. 在源端`onContinue()`接口中创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中，并将生成的`sessionId`通过`want`传递到对端。
 2. 对端在`onCreate()/onNewWant`中进行数据恢复时，可以从want中读取该`sessionId`，通过分布式对象恢复数据。
 
 使用参考详见[分布式数据对象跨设备数据同步](../../application-dev/database/data-sync-of-distributed-data-object.md)。
 
-### 使用分布式文件迁移数据
-当需要迁移的数据较大（100KB以上）时，也可以选择分布式文件进行数据迁移。相比于分布式对象，分布式文件更适用于需要传输的数据为文件的场景。在源端将数据写入分布式文件路径后，对端迁移后拉起的应用能够在同个分布式文件路径下访问到该文件。
-
-使用参考详见[跨设备文件访问](../../application-dev/file-management/file-access-across-devices.md)。
+  > **说明：**
+  > 自API 12起，为了保证更高的成功率，文件数据的迁移不建议继续通过[跨设备文件访问](../../application-dev/file-management/file-access-across-devices.md)实现，推荐使用分布式对象携带资产的方式进行。开发者此前通过跨设备文件访问实现的文件迁移依然可以使用。
 
 ## 验证指导
 
@@ -446,19 +430,24 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 #### **编译工程文件**
 
-​	a.新建一个工程，找到对应的文件夹替换下载文件  
+​a.新建一个工程，找到对应的文件夹替换下载文件
+
 ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 
-​	b.自动签名，编译安装。
+​b.自动签名，编译安装。
 
-​		DevEco的自动签名模板默认签名权限为normal级。而本应用设计到ohos.permission.MANAGE_MISSIONS权限为system_core级别。自动生成的签名无法获得足够的权限，所以需要将权限升级为system_core级别，然后签名。
+​DevEco的自动签名模板默认签名权限为normal级。而本应用设计到ohos.permission.MANAGE_MISSIONS权限为system_core级别。自动生成的签名无法获得足够的权限，所以需要将权限升级为system_core级别，然后签名。
 
-​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal"改为"apl":"system_core"。
+​c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal"改为"apl":"system_core"。
 
-1. 点击file->Project Structure。  
+1. 点击file->Project Structure。
+
    ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)
-2. 点击Signing Configs  点击OK。  
+
+2. 点击Signing Configs  点击OK。
+
    ![hop-cross-device-migration](figures/hop-cross-device-migration3.png)
+
 3. 连接开发板运行生成demo。
 
 ### 2. 设备组网
@@ -471,9 +460,14 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 ### 3. 发起迁移
 
-1. 在B设备打开多设备协同权限的应用，A设备打开全局任务中心demo，A设备出现A设备名称(即：本机:OpenHarmony 3.2)和B设备名称(OpenHarmony 3.2)。  
+1. 在B设备打开多设备协同权限的应用，A设备打开全局任务中心demo，A设备出现A设备名称(即：本机:OpenHarmony 3.2)和B设备名称(OpenHarmony 3.2)。
+
    ![hop-cross-device-migration](figures/hop-cross-device-migration4.png)
-2. 点击B设备名称，然后出现B设备的应用。  
+
+2. 点击B设备名称，然后出现B设备的应用。
+
    ![hop-cross-device-migration](figures/hop-cross-device-migration5.png)
-3. 最后将应用拖拽到A设备名称处，A设备应用被拉起，B设备应用退出。  
+
+3. 最后将应用拖拽到A设备名称处，A设备应用被拉起，B设备应用退出。
+
    ![hop-cross-device-migration](figures/hop-cross-device-migration6.png)

@@ -102,13 +102,13 @@
 ## 使用场景
 
 ### \@Provider和\@Consumer双向同步
-#### 1. 建立双向绑定
+#### 建立双向绑定
 1. 自定义组件Parent和Child初始化:
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
     - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，为‘hello’。
     - 两者建立双向同步关系。
-  2. 点击Parent中的Button，改变@Provider装饰的str，通知其对应的@Consumer。对应UI刷新。
-  3. 点击Child中Button，改变@Consumer装饰的str，通知其对应的@Provider。对应UI刷新。
+2. 点击Parent中的Button，改变@Provider装饰的str，通知其对应的@Consumer。对应UI刷新。
+3. 点击Child中Button，改变@Consumer装饰的str，通知其对应的@Provider。对应UI刷新。
 
 ```
 @Entry
@@ -142,7 +142,7 @@ struct Child {
   }
 }
 ```
-#### 2. 未双向绑定
+#### 未双向绑定
 
 下面的例子中，\@Provider和\@Consumer由于key值不同，无法建立双向同步关系。
 1. 自定义组件Parent和Child初始化:
@@ -185,7 +185,7 @@ struct Child {
 }
 ```
 
-### \@Provider和\@Consumer可以修饰回调事件，方便组件之间完成行为抽象。
+### \@Provider和\@Consumer可以修饰回调事件，方便组件之间完成行为抽象
 
 当需要在父组件中需要给子组件注册回调函数，可以通过\@Provider和\@Consumer修饰回调方法来解决。
 比如拖拽场景，当发生拖拽事件时，如果希望将子组件的拖拽的起始位置信息同步给父组件。如下面的例子。
@@ -225,10 +225,10 @@ struct Child {
 ```
 
 
-### \@Provider和\@Consumer修饰复杂类型，配合\@Trace一起使用。
+### \@Provider和\@Consumer修饰复杂类型，配合\@Trace一起使用
 
 1. \@Provider和\@Consumer只能观察到数据本身的变化。如果当其修饰复杂数据类型，需要观察属性的变化，需要配合\@Trace一起使用。
-2. 修饰buildin type：Array、Map、Set、Data时，可以观察到某些API的变化，观察能力同[\@Trace](./arkts-new-ObservedV2-and-Trace.md#观察变化)。
+2. 修饰buildin type：Array、Map、Set、Data时，可以观察到某些API的变化，观察能力同[\@Trace](./arkts-new-observedV2-and-trace.md#观察变化)。
 
 ```
 @ObservedV2
@@ -287,7 +287,7 @@ struct Child {
 }
 ```
 
-### \@Provider重名，\@Consumer向上查找其最近的\@Provider。
+### \@Provider重名，\@Consumer向上查找其最近的\@Provider
 \@Provider可以在组件树上重名，\@Consumer会向上查找其最近父节点的\@Provider的数据。
 - AComp中\@Consumer向上查找，查找到Parent中定义的` @Provider() val: number = 10`，所以初始化为10。
 - A1Comp中\@Consumer向上查找，查找到AComp中定义的`@Provider() val: number = 20`，即停止，不会继续向上查找，所以初始化为20。
@@ -330,7 +330,7 @@ struct A1Comp {
 }
 ```
 
-### \@Provider和\@Consumer初始化\@Param。
+### \@Provider和\@Consumer初始化\@Param
 - 点击Text(`@Consumer val: ${this.val}`),触发`@Consumer() val`的变化，变化同步给Parent中`@Provider() val`,从而触发子组件`Text(`@Param val2: ${this.val2}`)`的变化。
 - `@Consumer() val`的变化也会同步给A1Comp，触发`Text(`A1Comp @Param val ${this.val}`)`的改变。
 
@@ -374,3 +374,4 @@ struct A1Comp {
   }
 }
 ```
+<!--no_check-->

@@ -3,7 +3,7 @@
 
 > **说明：**
 >
-> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio 4.1 Beta1**版本为例<!--Del-->，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接<!--DelEnd-->。
 
 ## 创建ArkTS工程
 
@@ -310,4 +310,4 @@
 
    ![zh-cn_image_0000001364254729](figures/zh-cn_image_0000001364254729.png)
 
-恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来<!--Del-->[<!--DelEnd-->探索更多的OpenHarmony功能<!--Del-->](../application-dev-guide.md)<!--DelEnd-->吧。

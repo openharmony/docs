@@ -1,7 +1,7 @@
 # Basics
 
 
-The **&lt;svg&gt;** component is used as the root node of the SVG canvas and can be nested in the SVG. For details, see [svg](../reference/arkui-js/js-components-svg.md).
+The **&lt;svg&gt;** component is used as the root node of the SVG canvas and can be nested in the SVG. For details, see [svg](../reference/apis-arkui/arkui-js/js-components-svg.md).
 
 
 > **NOTE**

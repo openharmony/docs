@@ -75,7 +75,7 @@ struct MyComponent {
 
 queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
-获取NavDestinationInfo实例对象。
+查询自定义组件所属的NavDestination信息。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -92,11 +92,22 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 ```ts
 import observer from '@ohos.arkui.observer';
 
-@Entry
+@Component
+export struct NavDestinationExample {
+  build() {
+    NavDestination() {
+      MyComponent()
+    }
+  }
+}
+
 @Component
 struct MyComponent {
+  navDesInfo: observer.NavDestinationInfo | undefined
+
   aboutToAppear() {
-    let info: observer.NavDestinationInfo | undefined = this.queryNavDestinationInfo();
+    this.navDesInfo = this.queryNavDestinationInfo();
+    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
   }
 
   build() {
@@ -109,7 +120,7 @@ struct MyComponent {
 
 queryNavigationInfo(): NavigationInfo | undefined
 
-获取NavigationInfo实例对象。
+查询自定义组件所属的Navigation信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,17 +133,37 @@ queryNavigationInfo(): NavigationInfo | undefined
 **示例：**
 
 ```ts
-import observer from '@ohos.arkui.observer';
+// index.ets
 
 @Entry
 @Component
-struct MyComponent {
+struct MainPage {
+  pathStack: NavPathStack = new NavPathStack()
+
+  build() {
+    Navigation(this.pathStack) {
+      // ...
+    }.id("NavigationId")
+  }
+}
+
+import observer from '@ohos.arkui.observer';
+@Component
+export struct PageOne() {
+  pathStack: NavPathStack = new NavPathStack()
+
   aboutToAppear() {
-    let info: observer.NavigationInfo | undefined = this.queryNavigationInfo();
+    let navigationInfo: observer.NavigationInfo | undefined = this.queryNavigationInfo()
+    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
+    if (navigationInfo !== undefined) {
+      this.pathStack = navigationInfo.pathStack
+    }
   }
 
   build() {
-    // ...
+    NavDestination() {
+      // ...
+    }.title('PageOne')
   }
 }
 ```

@@ -1,3 +1,4 @@
+<!--Del-->
 # Ads Kit API参考
 
 - ArkTS API
@@ -11,3 +12,4 @@
 - 错误码
   - [广告服务框架错误码](errorcode-ads.md)
   - [广告标识服务错误码](errorcode-oaid.md)
+<!--DelEnd-->

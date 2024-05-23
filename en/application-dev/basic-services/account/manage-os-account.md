@@ -26,13 +26,13 @@ For details about complete system account information, see [OsAccountInfo](../..
 2. Import the **osAccount** module.
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
+   import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. Obtain an **AccountManager** instance.
 
    ```ts
-   let accountManager = account_osAccount.getAccountManager();
+   let accountManager = osAccount.getAccountManager();
    ```
 
 ## Creating a System Account
@@ -45,9 +45,9 @@ Use [createOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-
 
 ```ts
 let name: string = 'Bob';
-let type: account_osAccount.OsAccountType = account_osAccount.OsAccount.NORMAL;
+let type: osAccount.OsAccountType = osAccount.OsAccountType.NORMAL;
 
-accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
   console.log('createOsAccount err:' + JSON.stringify(err));
   console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
 });
@@ -62,7 +62,7 @@ The account management page may need to display information about all the system
 Use [queryAllCreatedOsAccounts](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryallcreatedosaccounts) to obtain informatory about all system accounts. 
 
 ```ts
-accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: account_osAccount.OsAccountInfo[])=>{
+accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
   console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
   console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
 });
@@ -78,7 +78,7 @@ Use [queryOsAccountById](../../reference/apis-basic-services-kit/js-apis-osAccou
 
 ```ts
 let localId: number = 100;
-accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: account_osAccount.OsAccountInfo)=>{
+accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
   console.log('queryOsAccountById err:' + JSON.stringify(err));
   console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
 });

@@ -131,6 +131,8 @@ export default class EntryAbility extends UIAbility {
 
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
 
+直接在onWindowStageCreate里面创建子窗口的整体示例代码如下：
+
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
@@ -218,10 +220,158 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+另外，也可以在某个page页面通过点击按钮创建子窗口，整体示例代码如下：
+
+```ts
+// EntryAbility.ets
+onWindowStageCreate(windowStage: window.WindowStage) {
+  windowStage.loadContent('pages/Index', (err) => {
+    if (err.code) {
+      console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in loading the content.');
+  })
+
+  // 给Index页面传递windowStage
+  AppStorage.setOrCreate('windowStage', windowStage);
+}
+```
+
+```ts
+// Index.ets
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+let windowStage_: window.windowStage | undefined = undefined;
+let sub_windowClass: window.Window | undefined = undefined;
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private CreateSubWindow(){
+    // 获取windowStage
+    windowStage_ = AppStorage.get('windowStage');
+    // 1.创建应用子窗口。
+    if (windowStage_ == null) {
+      console.error('Failed to create the subwindow. Cause: windowStage_ is null');
+    }
+    else {
+      windowStage_.createSubWindow("mySubWindow", (err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        sub_windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        // 2.子窗口创建成功后，设置子窗口的位置、大小及相关属性等。
+        sub_windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to move the window. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in moving the window.');
+        });
+        sub_windowClass.resize(500, 500, (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in changing the window size.');
+        });
+        // 3.为子窗口加载对应的目标页面。
+        sub_windowClass.setUIContent("pages/subWindow", (err: BusinessError) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in loading the content.');
+          // 3.显示子窗口。
+          (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
+            let errCode: number = err.code;
+            if (errCode) {
+              console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in showing the window.');
+          });
+        });
+      })
+    }
+  }
+  private destroySubWindow(){
+    // 4.销毁子窗口。当不再需要子窗口时，可根据具体实现逻辑，使用destroy对其进行销毁。
+    (sub_windowClass as window.Window).destroyWindow((err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in destroying the window.');
+    });
+  }
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Button(){
+          Text('CreateSubWindow')
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+        }.width(220).height(68)
+        .margin({left:10, top:60})
+        .onClick(() => {
+          this.CreateSubWindow()
+        })
+        Button(){
+          Text('destroySubWindow')
+          .fontSize(24)
+          .fontWeight(FontWeight.Normal)
+        }.width(220).height(68)
+        .margin({left:10, top:60})
+        .onClick(() => {
+          this.destroySubWindow()
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+```ts
+// subWindow.ets
+@Entry
+@Component
+struct SubWindow {
+  @State message: string = 'Hello subWindow';
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## 体验窗口沉浸式能力
 
 在看视频、玩游戏等场景下，用户往往希望隐藏状态栏、导航栏等不必要的系统窗口，从而获得更佳的沉浸式体验。此时可以借助窗口沉浸式能力（窗口沉浸式能力都是针对应用主窗口而言的），达到预期效果。从API version 10开始，沉浸式窗口默认配置为全屏大小并由组件模块控制布局，状态栏、导航栏背景颜色为透明，文字颜色为黑色；应用窗口调用`setWindowLayoutFullScreen`接口，设置为true表示由组件模块控制忽略状态栏、导航栏的沉浸式全屏布局，设置为false表示由组件模块控制避让状态栏、导航栏的非沉浸式全屏布局。
 
+> **说明：**
+>
+> 当前沉浸式界面开发仅支持window级别的配置，暂不支持Page级别的配置。若有Page级别切换的需要，可以在页面生命周期开始，例如onPageShow中设置沉浸模式，然后在页面退出，例如onPageHide中恢复默认设置来实现。
 
 ### 开发步骤
 
@@ -306,14 +456,16 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## 设置悬浮窗
+## <!--RP2-->设置悬浮窗<!--RP2End-->
 
 悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上；开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
 
 
 ### 开发步骤
 
+<!--RP1-->
 **前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+<!--RP1End-->
 
 1. 创建悬浮窗。
 
@@ -454,6 +606,6 @@ export default class EntryAbility extends UIAbility {
 
 - [`Window`：一多设置典型页面（Settings）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
 
-- [窗口管理（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowManage)
+- [悬浮窗（ArkTS）（API10）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowRatio)
 
-- [窗口（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/WindowManagement/WindowRatio)
+- [窗口管理（ArkTS）（API12）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowManage)

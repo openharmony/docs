@@ -47,7 +47,7 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: Rend
 | [shadowOffsetY](#shadowoffsety)          | number                                   | 设置绘制阴影时和原有对象的垂直偏移值。<br/>默认值：0。<br/>默认单位：vp。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](ts-canvasrenderingcontext2d.md#imagesmoothingquality-1)                    | imageSmoothingEnabled为true时，用于设置图像平滑度。可选值为：<br/>- 'low'：低画质<br/>- 'medium'：中画质<br/>- 'high'：高画质。<br/>默认值：low<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [direction](#direction)                  | [CanvasDirection](ts-canvasrenderingcontext2d.md#canvasdirection)                          | 用于设置绘制文字时使用的文字方向。可选值为：<br/>- 'inherit'：继承canvas组件已设定的文本方向<br/>- 'ltr'：从左往右<br/>- 'rtl'：从右往左。<br/>默认值：inherit<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [direction](#direction)                  | [CanvasDirection](#canvasdirection)                          | 用于设置绘制文字时使用的文字方向。可选值为：<br/>- 'inherit'：使用系统默认布局方向<br/>- 'ltr'：从左往右<br/>- 'rtl'：从右往左。<br/>默认值：inherit<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [filter](#filter)                        | string                                   | 用于设置图像的滤镜。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 > **说明：**
@@ -2158,6 +2158,63 @@ reset(): void
 
   ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
 
+### saveLayer<sup>12+</sup>
+
+saveLayer(): void
+
+创建一个图层。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct offCanvasSaveLayer {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.fillStyle = "#0000ff"
+            offContext.fillRect(50,100,300,100)
+            offContext.fillStyle = "#00ffff"
+            offContext.fillRect(50,150,300,100)
+            offContext.globalCompositeOperation = 'destination-over'
+            offContext.saveLayer()
+            offContext.globalCompositeOperation = 'source-over'
+            offContext.fillStyle = "#ff0000"
+            offContext.fillRect(100,50,100,300)
+            offContext.fillStyle = "#00ff00"
+            offContext.fillRect(150,50,100,300)
+            offContext.restoreLayer()
+            let image = this.offCanvas.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+   ![zh-cn_image_CanvasSavelayer](figures/zh-cn_image_CanvasSavelayer.png)
+
+### restoreLayer<sup>12+</sup>
+
+restoreLayer(): void
+
+恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例同saveLayer。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 ### resetTransform
  
@@ -3372,3 +3429,15 @@ struct OffscreenCanvasConicGradientPage {
 ```
 
   ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032420.png)
+
+## CanvasDirection
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称      | 描述                  |
+| ------- | ------------------- |
+| inherit | 使用系统默认布局方向。 |
+| ltr     | 从左往右。               |
+| rtl     | 从右往左。               |

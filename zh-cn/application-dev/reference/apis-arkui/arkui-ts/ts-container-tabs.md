@@ -300,11 +300,6 @@ onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 Tab页签切换后触发的事件。
 
-> **说明：**
->
-> - 由于该接口会在布局变化的时候同步触发，容易造成循环反复刷新布局，导致性能问题或其他异常行为。因此不推荐在该回调中更新状态变量。如果必须更新可以通过异步任务的方式如[setTimeout](../../common/js-apis-timer.md#settimeout)来更新状态变量。
->
-
 触发该事件的条件：
 
 1、TabContent支持滑动时，组件触发滑动时触发。
@@ -1242,6 +1237,8 @@ struct TabsExample {
 
 ```ts
 // xxx.ets
+import ComponentUtils from '@ohos.arkui.UIContext';
+
 @Entry
 @Component
 struct TabsExample {
@@ -1250,6 +1247,7 @@ struct TabsExample {
   @State indicatorLeftMargin: number = 0
   @State indicatorWidth: number = 0
   private tabsWidth: number = 0
+  private componentUtils: ComponentUtils.ComponentUtils = this.getUIContext().getComponentUtils()
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1332,14 +1330,8 @@ struct TabsExample {
   }
 
   private getTextInfo(index: number): Record<string, number> {
-    let strJson = getInspectorByKey(index.toString())
-    try {
-      let obj: Record<string, string> = JSON.parse(strJson)
-      let rectInfo: number[][] = JSON.parse('[' + obj.$rect + ']')
-      return { 'left': px2vp(rectInfo[0][0]), 'width': px2vp(rectInfo[1][0] - rectInfo[0][0]) }
-    } catch (error) {
-      return { 'left': 0, 'width': 0 }
-    }
+    let rectangle = this.componentUtils.getRectangleById(index.toString())
+    return { 'left': px2vp(rectangle.windowOffset.x), 'width': px2vp(rectangle.size.width) }
   }
 
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {

@@ -38,13 +38,13 @@ Credential types are further classified into the following subtypes:
 2. Import the **osAccount** module.
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
+   import { osAccount } from '@kit.BasicServicesKit';
    ```
 
 3. Create a **UserIDM** instance.
 
    ```ts
-   let userIDM: account_osAccount.UserIDM = new account_osAccount.UserIDM();
+   let userIDM: osAccount.UserIdentityManager = new osAccount.UserIdentityManager();
    ```
 
 ## Registering a PIN Inputer
@@ -57,8 +57,8 @@ Register a PIN inputer to transmit PIN data.
 
    ```ts
    let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]); // you can obtain a PIN throught other ways.
-   let inputer: IInputer = {
-     onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+   let inputer: osAccount.IInputer = {
+     onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
        callback.onSetData(authSubType, pinData);
      }
    }
@@ -67,7 +67,7 @@ Register a PIN inputer to transmit PIN data.
 2. Use [registerInputer](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerinputer8) to register the PIN inputer.
 
    ```ts
-   let pinAuth: PINAuth = new account_osAccount.PINAuth();
+   let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
    pinAuth.registerInputer(inputer);
    ```
 
@@ -79,9 +79,9 @@ Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.
 
 Use [openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8) to open a session for credential management.
 
-```ts
-let challenge: Uint8Array = await userIDM.openSession();
-```
+   ```ts
+   let challenge: Uint8Array = await userIDM.openSession();
+   ```
 
 ## Enrolling a PIN
 
@@ -92,9 +92,10 @@ Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sy
 1. Defines the PIN authentication credential.
 
    ```ts
-   let credentialInfo: account_osAccount.CredentialInfo = {
-     credType: account_osAccount.AuthSubType.PIN,
-     token: null
+   let credentialInfo: osAccount.CredentialInfo = {
+     credType: osAccount.AuthType.PIN,
+     credSubType: osAccount.AuthSubType.PIN_SIX;
+     token: new Uint8Array([0])
    };
    ```
 
@@ -102,7 +103,7 @@ Use [addCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sy
 
    ```ts
    userIDM.addCredential(credentialInfo, {
-     onResult: (code: number, result: account_osAccount.RequestResult) => {
+     onResult: (code: number, result: osAccount.RequestResult) => {
        console.log('addCredential code = ' + code);
        console.log('addCredential result = ' + result);
      }
@@ -119,16 +120,16 @@ Use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth
 
    ```ts
    let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
-   let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+   let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+   let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
    ```
 
 2. Use [auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8) to perform PIN authentication.
 
    ```ts
-   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
+   let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
    userAuth.auth(challenge, authType, authTrustLevel, {
-     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+     onResult: (result: number, extraInfo: osAccount.AuthResult) => {
        console.log('pin auth result = ' + result);
        console.log('pin auth extraInfo = ' + JSON.stringify(extraInfo));
        let authToken = extraInfo.token;
@@ -147,10 +148,10 @@ Biometric credentials such as face and fingerprint can be enrolled after the PIN
 2. Set face credential information. The following uses 2D face credential as an example.
 
    ```ts
-   let faceCredInfo: account_osAccount.CredentialInfo = {
-     credType: account_osAccount.AuthType.FACE,
-     credSubType: account_osAccount.AuthSubType.FACE_2D,
-     token: authToken
+   let faceCredInfo: osAccount.CredentialInfo = {
+     credType: osAccount.AuthType.FACE,
+     credSubType: osAccount.AuthSubType.FACE_2D,
+     token: new Uint8Array([1, 2, 3, 4, 5])
    }
    ```
 
@@ -158,7 +159,7 @@ Biometric credentials such as face and fingerprint can be enrolled after the PIN
 
    ```ts
    userIDM.addCredential(faceCredInfo, {
-     onResult: (code: number, result: account_osAccount.RequestResult) => {
+     onResult: (code: number, result: osAccount.RequestResult) => {
        console.log('add face credential, resultCode: ' + code);
        console.log('add face credential, request result: ' + result);
      }
@@ -168,10 +169,10 @@ Biometric credentials such as face and fingerprint can be enrolled after the PIN
 4. Set fingerprint credential information.
 
    ```ts
-   let fingerprintCredInfo: account_osAccount.CredentialInfo = {
-     credType: account_osAccount.AuthType.FINGERPRINT,
-     credSubType: account_osAccount.AuthSubType.FINGERPRINT_CAPACITIVE,
-     token: authToken
+   let fingerprintCredInfo: osAccount.CredentialInfo = {
+     credType: osAccount.AuthType.FINGERPRINT,
+     credSubType: osAccount.AuthSubType.FINGERPRINT_CAPACITIVE,
+     token: new Uint8Array([1, 2, 3, 4, 5])
    }
    ```
 
@@ -179,7 +180,7 @@ Biometric credentials such as face and fingerprint can be enrolled after the PIN
 
    ```ts
    userIDM.addCredential(fingerprintCredInfo, {
-     onResult: (code: number, result: account_osAccount.RequestResult) => {
+     onResult: (code: number, result: osAccount.RequestResult) => {
        console.log('add fingerprint credential, resultCode: ' + code);
        console.log('add fingerprint credential, request result: ' + result);
      }
@@ -196,16 +197,16 @@ Biometric authentication can be performed after the biometric credentials are en
 
    ```ts
    let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let authType: account_osAccount.AuthType = account_osAccount.AuthType.FACE;
-   let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+   let authType: osAccount.AuthType = osAccount.AuthType.FACE;
+   let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
    ```
 
 2. Use **auth()** to perform authentication.
 
    ```ts
-   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
+   let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
    userAuth.auth(challenge, authType, authTrustLevel, {
-     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+     onResult: (result: number, extraInfo: osAccount.AuthResult) => {
        console.log('face auth result = ' + result);
        console.log('face auth extraInfo = ' + JSON.stringify(extraInfo));
      }
@@ -223,10 +224,10 @@ The user can update credentials as required. You can use [updateCredential](../.
 2. Specify the credential information to be updated.
 
    ```ts
-   let credentialInfo: account_osAccount.CredentialInfo = {
-     credType: account_osAccount.AuthType.PIN,
-     credSubType: account_osAccount.AuthSubType.PIN_SIX,
-     token: authToken,
+   let credentialInfo: osAccount.CredentialInfo = {
+     credType: osAccount.AuthType.PIN,
+     credSubType: osAccount.AuthSubType.PIN_SIX,
+     token: new Uint8Array([1, 2, 3, 4, 5])
    };
    ```
 
@@ -234,7 +235,7 @@ The user can update credentials as required. You can use [updateCredential](../.
 
    ```ts
    userIDM.updateCredential(credentialInfo, {
-     onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+     onResult: (result: number, extraInfo: osAccount.RequestResult) => {
        console.log('updateCredential result = ' + result);
        console.log('updateCredential extraInfo = ' + extraInfo);
      }
@@ -250,13 +251,13 @@ The enrolled credentials need to be displayed on the credential management page,
 1. Obtain information about all the credentials enrolled.
 
    ```ts
-   let enrolledCredInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo();
+   let enrolledCredInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo();
    ```
 
 2. Use [getAuthInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getauthinfo8) to obtain the credential of the specified type. In the following example, the fingerprint enrolled is obtained.
 
    ```ts
-   let enrolledFingerCredInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo(account_osAccount.AuthType.Fingerprint);
+   let enrolledFingerCredInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
    ```
 
 ## Deleting a Credential
@@ -268,8 +269,9 @@ For example, delete a fingerprint, do as follows:
 1. Obtain the fingerprint information.
 
    ```ts
-   let credInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo(account_osAccount.AuthType.Fingerprint);
-   let credentialId: number = 0;
+   let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
+   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
+   let credInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
    if (credInfoList.length != 0) {
      credentialId = credInfoList[0].credentialId;
    }
@@ -281,7 +283,7 @@ For example, delete a fingerprint, do as follows:
 
    ```ts
    userIDM.delCred(credentialId, token, {
-     onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+     onResult: (result: number, extraInfo: osAccount.RequestResult) => {
        console.log('delCred result = ' + result);
        console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
      }

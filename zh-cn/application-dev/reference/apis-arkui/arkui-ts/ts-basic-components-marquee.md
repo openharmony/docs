@@ -69,7 +69,7 @@ marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value |[MarqueeUpdateStrategy](ts-basic-components-marquee.md#marqueeupdatestrategy12枚举说明) | 是 | 跑马灯组件属性更新后，跑马灯的滚动策略。<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
+| value |[MarqueeUpdateStrategy](ts-appendix-enums.md#marqueeupdatestrategy12枚举说明) | 是 | 跑马灯组件属性更新后，跑马灯的滚动策略。<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
 
 ## 事件
 
@@ -108,12 +108,6 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
-| 名称       | 描述                     |
-| ---------- | ------------------------ |
-| DEFAULT | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
-| PRESERVE_POSITION  | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
 
 ## 示例
 

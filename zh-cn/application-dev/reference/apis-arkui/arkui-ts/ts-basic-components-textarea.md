@@ -192,7 +192,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 style(value: TextContentStyle)
 
-设置文本框多态样式。
+设置文本框多态样式，内联输入风格只支持TextAreaType.Normal类型。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -423,9 +423,9 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
+Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
-
 ### wordBreak<sup>12+</sup>
 
 wordBreak(value: WordBreak)
@@ -470,7 +470,7 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| value  | [CaretStyle](ts-basic-components-textinput.md#caretstyle10对象说明) | 是   | 光标的风格。 |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标的风格。 |
 
 ### textIndent<sup>12+</sup>
 

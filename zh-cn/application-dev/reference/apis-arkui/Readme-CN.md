@@ -10,6 +10,7 @@
     - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
     - [@ohos.arkui.node(自定义节点)](js-apis-arkui-node.md)
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
+    - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
@@ -35,17 +36,19 @@
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
-      - [ContentSlot](js-apis-arkui-contentSlot.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
       - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
+      - [Content](js-apis-arkui-Content.md)
+      - [NodeContent](js-apis-arkui-NodeContent.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window (窗口)](js-apis-window.md)
+    <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
     - [@ohos.display (屏幕属性)(系统接口)](js-apis-display-sys.md)
@@ -53,6 +56,7 @@
     - [@ohos.screenshot (屏幕截图)(系统接口)](js-apis-screenshot-sys.md)
     - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
     - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+    <!--DelEnd-->
   - 已停止维护的接口
     - [@ohos.prompt (弹窗)](js-apis-prompt.md)
     - [@system.app (应用上下文)](js-apis-system-app.md)
@@ -230,6 +234,7 @@
       - [Tabs](arkui-ts/ts-container-tabs.md)
       - [TabContent](arkui-ts/ts-container-tabcontent.md)
       - [WaterFlow](arkui-ts/ts-container-waterflow.md)
+      - [WithTheme](arkui-ts/ts-container-with-theme.md)
       <!--Del-->
       - [EffectComponent (系统接口)](arkui-ts/ts-container-effectcomponent-sys.md)
       - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
@@ -258,6 +263,8 @@
       - [OffscreenCanvas](arkui-ts/ts-components-offscreencanvas.md)
       - [OffscreenCanvasRenderingContext2D](arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
+    - 渲染组件
+      - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
       - [@ohos.arkui.advanced.ChipGroup (操作块组)](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -316,6 +323,7 @@
     - 类型定义
       - [基础类型定义](arkui-ts/ts-types.md)
       - [图像类型定义](arkui-ts/ts-image-common.md)
+      - [文本类型定义](arkui-ts/ts-text-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
@@ -386,6 +394,7 @@
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
     - [图像AI分析错误码](errorcode-image-analyzer.md)
+    - [焦点错误码](errorcode-focus.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
