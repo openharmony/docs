@@ -395,6 +395,7 @@ usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addDevice
 
 ```ts
  import bundleManager from '@ohos.bundle.bundleManager';
+ import { BusinessError } from '@ohos.base';
  let devicesName: string = "1-1";
  let tokenId: string = "";
 
@@ -407,7 +408,7 @@ usb.requestRight (#usbrequestright)会触发弹框请求用户授权；addDevice
       if (usb.addDeviceAccessRight(tokenId, devicesName)) {
         console.log(`Succeed in adding right`);
       }
-    }).catch(err => {
+    }).catch((err : BusinessError) => {
       console.error('testTag getBundleInfoForSelf failed' );
     });
   } catch (err) {
@@ -543,10 +544,11 @@ setDeviceFunctions(funcs: FunctionType): Promise\<void\>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 let funcs: number = usb.FunctionType.HDC;
 usb.setDeviceFunctions(funcs).then(() => {
     console.info('usb setDeviceFunctions successfully.');
-}).catch((err) => {
+}).catch(((err : BusinessError)) => {
     console.error('usb setDeviceFunctions failed: ' + err.code + ' message: ' + err.message);
 });
 ```
@@ -706,10 +708,11 @@ setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleTyp
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
 let portId: number = 1;
 usb.setPortRoleTypes(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
   console.info('usb setPortRoleTypes successfully.');
-}).catch((err) => {
+}).catch(((err : BusinessError)) => {
   console.error('usb setPortRoleTypes failed: ' + err.code + ' message: ' + err.message);
 });
 ```
