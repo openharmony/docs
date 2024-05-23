@@ -178,7 +178,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target | [InputMethodProperty](#inputmethodproperty8) | 是 | 目标输入法。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法切换成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当输入法切换成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -305,7 +305,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法子类型切换成功，err为undefined，data为true；否则为错误对象。|
+| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当输入法子类型切换成功，err为undefined，data为true；否则为错误对象。|
 
 **错误码：**
 
@@ -456,7 +456,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 目标输入法。 |
 |inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| 是 | 目标输入法子类型。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法和子类型切换成功，err为undefined，data为获取到的切换子类型结果true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当输入法和子类型切换成功，err为undefined，data为获取到的切换子类型结果true；否则为错误对象。 |
 
 **错误码：**
 
@@ -776,7 +776,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 | -------- | -------- | -------- | -------- |
 | showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- ture表示拉起，false表示不拉起。 |
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -784,7 +784,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -843,7 +843,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 
@@ -1126,7 +1126,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置成功时，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。当设置成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -1134,7 +1134,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.          |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1188,7 +1188,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.      |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1231,7 +1231,7 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.          |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1326,7 +1326,7 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1377,7 +1377,7 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1419,7 +1419,7 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached.             |
@@ -1469,7 +1469,7 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
 | 12800009 | input method client is detached. |
@@ -1850,7 +1850,7 @@ on(type: 'insertText', callback: (text: string) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 12800009 | input method client is detached. |
 
 **示例：**
@@ -2869,7 +2869,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 | 参数名   | 类型                                                | 必填 | 说明                          |
 | -------- | --------------------------------------------------- | ---- | ----------------------------- |
 | enable   | boolean                                             | 是   |true表示返回已激活输入法列表，false表示返回未激活输入法列表。 |
-| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | 是   | 回调函数，返回已激活/未激活输入法列表。 |
+| callback | AsyncCallback&lt;Array<[InputMethodProperty](#inputmethodproperty8)>&gt; | 否   | 回调函数，返回已激活/未激活输入法列表。 |
 
 **错误码：**
 
@@ -2877,7 +2877,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.          |
 | 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
@@ -2931,7 +2931,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.         |
 | 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
