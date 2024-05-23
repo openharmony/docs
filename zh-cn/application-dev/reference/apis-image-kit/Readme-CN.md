@@ -2,6 +2,7 @@
 
 - ArkTS API
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
+  - [@ohos.multimedia.image (图片处理)(系统接口)](js-apis-image-sys.md)
 - C API
   - 模块
     - [Image](image.md)
