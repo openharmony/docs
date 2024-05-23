@@ -37,10 +37,11 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- | 
+| 401      | parameter error.                    | 
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -89,10 +90,11 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -144,6 +146,14 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | 是   | 表示订阅信息。             |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 是   | 表示创建订阅者的回调方法。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
 
 **示例：**
 
@@ -197,6 +207,14 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 返回订阅者对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
+
 **示例：**
 
 ```ts
@@ -240,6 +258,14 @@ createSubscriber的同步接口。
 | --------------------------------------------------------- | ---------------- |
 | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 返回订阅者对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
+
 **示例：**
 
 ```ts
@@ -281,10 +307,11 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
 | 801  | capability not supported.               |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -355,10 +382,11 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
 | 801  | capability not supported.               |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
