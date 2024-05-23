@@ -407,6 +407,8 @@ struct SurfaceCallbackDemo {
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct ImageAnalyzerExample {
