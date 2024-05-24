@@ -30,7 +30,7 @@ Pairs a Bluetooth device. This API uses an asynchronous callback to return the r
 | Name     | Type    | Mandatory  | Description                                 |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | Yes   | Address of the device to pair, for example, XX:XX:XX:XX:XX:XX.|
-| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result. If the pairing is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the pairing is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -239,7 +239,7 @@ Obtains the paired devices.
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | Addresses of the paired Bluetooth devices. For security purposes, the device addresses obtained are random MAC addresses.|
+| Array&lt;string&gt; | Addresses of the paired Bluetooth devices. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 
 **Error codes**
 
@@ -360,7 +360,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 Sets the device pairing confirmation.
 
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH (available only for system applications)
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -414,7 +414,7 @@ Sets the PIN for the device when **PinType** is **PIN_TYPE_ENTER_PIN_CODE** or *
 | ------ | ------- | ---- | -------------------------------- |
 | deviceId | string  | Yes   | MAC address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | code   | string  | Yes   | PIN to set.       |
-| callback   | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.       |
+| callback   | AsyncCallback&lt;void&gt;  | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.       |
 
 **Error codes**
 
@@ -584,7 +584,7 @@ Obtains the Bluetooth scan mode.
 
 | Type                   | Description     |
 | --------------------- | ------- |
-| [ScanMode](#scanmode) | Bluetooth scan mode obtained. |
+| [ScanMode](#scanmode) | Bluetooth scan mode obtained.|
 
 **Error codes**
 
@@ -612,7 +612,7 @@ try {
 
 startBluetoothDiscovery(): void
 
-Starts discovery of Bluetooth devices.
+Starts to discover Bluetooth devices.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -648,7 +648,7 @@ try {
 
 stopBluetoothDiscovery(): void
 
-Stops discovery of Bluetooth devices.
+Stops discovering Bluetooth devices.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -714,6 +714,7 @@ try {
 }
 ```
 
+
 ## connection.on('bluetoothDeviceFind')
 
 on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -729,7 +730,7 @@ Subscribes to the discovery of a Bluetooth device.
 | Name     | Type                                 | Mandatory  | Description                                    |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | type     | string                              | Yes   | Event type. The value is **bluetoothDeviceFind**, which indicates an event of discovering a Bluetooth device.|
-| callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback invoked to return the discovered devices. You need to implement this callback. For security purposes, the device addresses are random MAC addresses.   |
+| callback | Callback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the discovered devices. You need to implement this callback. For security purposes, the device addresses are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.   |
 
 **Error codes**
 
@@ -769,7 +770,7 @@ Unsubscribes from the discovery of a Bluetooth device.
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | Yes   | Event type. The value is **bluetoothDeviceFind**, which indicates an event of discovering a Bluetooth device.  |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
 
@@ -810,7 +811,7 @@ Subscribes to Bluetooth pairing state changes.
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | Yes   | Event type. The value is **bondStateChange**, which indicates a Bluetooth pairing state change event.|
-| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
+| callback | Callback&lt;[BondStateParam](#bondstateparam)&gt; | Yes   | Callback used to return the pairing state. You need to implement this callback.   |
 
 **Error codes**
 
@@ -891,7 +892,7 @@ Subscribes to the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.    |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | Yes   | Callback invoked to return the pairing request. You need to implement this callback.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | Yes   | Callback used to return the pairing request. You need to implement this callback.|
 
 **Error codes**
 

@@ -18,6 +18,7 @@
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
   - [@ohos.nfc.tag (Standard NFC Tags)](js-apis-nfcTag.md)
+  - [@ohos.secureElement (SE Management)](js-apis-secureElement.md)
   - [@ohos.wifiManager (WLAN) (Recommended)](js-apis-wifiManager.md)
   - [@ohos.wifiManagerExt (WLAN Extension) (Recommended)](js-apis-wifiManagerExt.md)
   - [@ohos.bluetooth.a2dp (Bluetooth A2DP Module) (Recommended) (System API)](js-apis-bluetooth-a2dp-sys.md)

@@ -116,7 +116,7 @@ Checks whether a device supports the absolute volume capability. This API uses a
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the device to check. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the device supports absolute volume, **supported** is returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the device supports absolute volume, **supported** is returned.|
 
 
 **Error codes**
@@ -208,7 +208,7 @@ Checks whether the absolute volume capability is enabled for a device. This API 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the device to check. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If absolute volume is enabled, **enabled** is returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If absolute volume is enabled, **enabled** is returned.|
 
 
 **Error codes**
@@ -300,7 +300,7 @@ Enables the absolute volume capability for a device. This API uses an asynchrono
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the target device. |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
 **Error codes**
@@ -395,7 +395,7 @@ Disables the absolute volume capability for a device. This API uses an asynchron
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the target device. |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
 **Error codes**
