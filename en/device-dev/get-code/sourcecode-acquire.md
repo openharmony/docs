@@ -257,3 +257,5 @@ The following table describes the OpenHarmony source code directories.
 | utils | Commonly used development utilities.|
 | vendor | Vendor-provided software.|
 | build.py | Build script file.|
+
+<!--no_check-->
