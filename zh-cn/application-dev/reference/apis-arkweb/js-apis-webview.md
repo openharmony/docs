@@ -5378,7 +5378,7 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
 
 **示例：**
 
