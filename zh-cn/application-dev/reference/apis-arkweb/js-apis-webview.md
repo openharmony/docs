@@ -83,7 +83,7 @@ postMessageEvent(message: WebMessage): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100010 | Can not post message using this port. |
+| 17100010 | Failed to post messages through the port. |
 
 **示例：**
 
@@ -137,7 +137,7 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
-| 17100006 | Can not register message event using this port. |
+| 17100006 | Failed to register a message event for the port.|
 
 **示例：**
 
@@ -210,7 +210,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100010 | Can not post message using this port. |
+| 17100010 | Failed to post messages through the port. |
 
 ### onMessageEventExt<sup>10+</sup>
 
@@ -232,7 +232,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
-| 17100006 | Can not register message event using this port. |
+| 17100006 | Failed to register a message event for the port. |
 
 **示例：**
 
@@ -2292,7 +2292,7 @@ deleteJavaScriptRegister(name: string): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100008 | Cannot delete JavaScriptProxy.                               |
+| 17100008 | Failed to delete JavaScriptProxy because it does not exist.                               |
 
 **示例：**
 
@@ -2397,7 +2397,7 @@ zoom(factor: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -2971,7 +2971,7 @@ zoomIn(): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -3017,7 +3017,7 @@ zoomOut(): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -4528,7 +4528,7 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 |  401 | Invalid input parameter.    |
-| 17100020 | Register custom schemes failed. |
+| 17100020 | Failed to register custom schemes. |
 
 **示例：**
 
@@ -10279,7 +10279,7 @@ getString(): string
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getNumber<sup>10+</sup>
 
@@ -10301,7 +10301,7 @@ getNumber(): number
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getBoolean<sup>10+</sup>
 
@@ -10323,7 +10323,7 @@ getBoolean(): boolean
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -10345,7 +10345,7 @@ getArrayBuffer(): ArrayBuffer
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArray<sup>10+</sup>
 
@@ -10367,7 +10367,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ## WebMessageExt<sup>10+</sup>
 
@@ -10407,7 +10407,7 @@ getString(): string
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getNumber<sup>10+</sup>
 
@@ -10429,7 +10429,7 @@ getNumber(): number
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getBoolean<sup>10+</sup>
 
@@ -10451,7 +10451,7 @@ getBoolean(): boolean
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -10473,7 +10473,7 @@ getArrayBuffer(): ArrayBuffer
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArray<sup>10+</sup>
 
@@ -10495,7 +10495,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getError<sup>10+</sup>
 
@@ -10517,7 +10517,7 @@ getError(): Error
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setType<sup>10+</sup>
 
@@ -10537,7 +10537,7 @@ setType(type: WebMessageType): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setString<sup>10+</sup>
 
@@ -10557,7 +10557,7 @@ setString(message: string): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setNumber<sup>10+</sup>
 
@@ -10577,7 +10577,7 @@ setNumber(message: number): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setBoolean<sup>10+</sup>
 
@@ -10597,7 +10597,7 @@ setBoolean(message: boolean): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setArrayBuffer<sup>10+</sup>
 
@@ -10619,7 +10619,7 @@ setArrayBuffer(message: ArrayBuffer): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setArray<sup>10+</sup>
 
@@ -10641,7 +10641,7 @@ setArray(message: Array\<string | number | boolean\>): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setError<sup>10+</sup>
 
@@ -10663,7 +10663,7 @@ setError(message: Error): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ## WebStorageOrigin
 
@@ -11985,7 +11985,7 @@ pause(): void
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100019 | The download has not been started yet. |
+| 17100019 | The download task is not started yet. |
 
 **示例：**
 
@@ -12086,7 +12086,7 @@ resume(): void
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100016 | The download is not paused. |
+| 17100016 | The download task is not paused. |
 
 **示例：**
 
@@ -12999,7 +12999,7 @@ initialize(): Promise\<void\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100022 | The http body stream init failed. |
+| 17100022 | Failed to initialize the HTTP body stream. |
 
 **示例：**
 
@@ -13760,7 +13760,7 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 |  401 | Invalid input parameter.    |
-| 17100021 | Resource handler is invalid. |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
@@ -13787,7 +13787,7 @@ didReceiveResponseBody(data: ArrayBuffer): void
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 |  401 | Invalid input parameter.    |
-| 17100021 | Resource handler is invalid. |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
@@ -13807,7 +13807,7 @@ didFinish(): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100021 | Resource handler is invalid. |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
