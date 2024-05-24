@@ -57,7 +57,7 @@ ChipOptions定义chip的样式及具体式样参数。
 >
 > 3.backgroundColor和activatedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
 >
-> 4.prefixSymbol和prefixIcon的默认值保持一致，suffixSymbol和suffixIcon的默认值保持一致。
+> 4.prefixSymbol/suffixSymbol的fontColor默认值，normalFontColor: `[$r('sys.color.ohos_id_color_primary')]`、activatedFontColor: `[$r('sys.color.ohos_id_color_text_primary_contrary')]`。fontColor默认值为16。
 >
 > 5.prefixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_secondary')`，suffixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_primary')`。fillColor对颜色的解析与Image组件保持一致。
 >
@@ -118,8 +118,8 @@ SymbolOptions定义前缀图标和后缀图标的属性。
 
 | 名称   | 类型       | 必填 | 说明               |
 | ------ | ---------- | ---- | ------------------ |
-| normal | SymbolGlyphModifier | 否   | 图标设定事件。 |
-| activated | SymbolGlyphModifier | 否   | 激活时图标设定事件。 |
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 图标设定事件。 |
+| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 激活时图标设定事件。 |
 
 ## LabelOptions
 

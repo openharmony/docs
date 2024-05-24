@@ -59,7 +59,7 @@ import { formInfo } from '@kit.FormKit';
 | dimension | number               | 是    | 否     | 卡片规格。   |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
 | formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
-| formLocation<sup>12+</sup> | [FormLocation](#formlocation)| 是    | 否     | 卡片位置信息。   |
+| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| 是    | 否     | 卡片位置信息。   |
 
 ## formProviderFilter<sup>10+</sup>
 
@@ -79,7 +79,7 @@ import { formInfo } from '@kit.FormKit';
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。        |
 | isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 否     | 是否包含未使用的卡片。        |
 
-## FormLocation
+## FormLocation<sup>12+</sup>
 
 卡片当前位置枚举。
 

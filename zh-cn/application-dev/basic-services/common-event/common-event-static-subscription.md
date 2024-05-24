@@ -23,13 +23,15 @@
    ```ts
    import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
    import type commonEventManager from '@ohos.commonEventManager';
-   
+   import hilog from '@ohos.hilog';
+
    const TAG: string = 'StaticSubscriber';
+   const DOMAIN_NUMBER: number = 0xFF00;
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
      onReceiveEvent(event: commonEventManager.CommonEventData): void {
-       console.info(TAG, 'onReceiveEvent, event: ' + event.event);
-       ...
+       hilog.info(DOMAIN_NUMBER, TAG, 'onReceiveEvent, event: ' + event.event);
+       //...
      }
    }
    ```

@@ -644,6 +644,14 @@ getSuperAdmin(): Promise\<Want>
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Promise\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 返回超级设备管理应用的Promise对象。当设备没有激活超级管理应用时，返回的Promise中Want的bundleName与abilityName为空串。 |
 
+**错误码**:
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+
 **示例**：
 
 ```ts

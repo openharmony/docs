@@ -187,6 +187,8 @@ OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层�
 |FUNC|napi_deserialize|将native数据转为ArkTS对象。|12|
 |FUNC|napi_delete_serialization_data|删除序列化数据。|12|
 |FUNC|napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|12|
+|FUNC|napi_is_sendable|判断给定JS value是否是Sendable的。|12|
+|FUNC|napi_define_sendable_class|创建一个sendable类。|12|
 
 ### napi_qos_t
 
@@ -572,6 +574,73 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 - [in] priority: 指定调用 JavaScript 回调函数的任务优先级。
 
 - [in] isTail: 一个布尔值，指示调用是否应该排队等待在事件循环的尾部执行。如果为 true，则调用将在事件循环的尾部执行；如果为 false，则调用将立即执行，不会排队等待。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_is_sendable
+
+```cpp
+napi_status napi_is_sendable(napi_env env, napi_value value, bool* result)
+```
+
+**描述：**
+
+判断给定JS value是否是Sendable的。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] value: 一个napi_value类型的参数，是需要判断的值。
+
+- [out] result: 一个bool类型的指针，用于存储判断结果。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+
+### napi_define_sendable_class
+
+```cpp
+napi_status napi_define_sendable_class(napi_env env,
+                                       const char* utf8name,
+                                       size_t length,
+                                       napi_callback constructor,
+                                       void* data,
+                                       size_t property_count,
+                                       const napi_property_descriptor* properties,
+                                       napi_value parent,
+                                       napi_value* result)
+
+
+```
+
+**描述：**
+
+创建一个sendable类。
+
+**参数：**
+
+- [in] env: Node-API的环境对象，表示当前的执行环境。
+
+- [in] utf8name：一个const char*类型的参数，表示类的名称。
+
+- [in] length：一个size_t类型的参数，表示类名称的字节数。
+
+- [in] constructor：一个napi_callback类型的参数，表示类的构造函数。
+
+- [in] data：[可选]一个void*类型的参数，表示构造函数的附加数据。
+
+- [in] property_count：一个size_t类型的参数，表示类的属性数量。
+
+- [in] properties：[可选]一个const napi_property_descriptor*类型的参数，表示类的属性描述符数组。
+
+- [in] parent：[可选]一个napi_value类型的参数，表示父类。
+
+- [out] result：一个napi_value类型的指针，用于存储创建的对象。
 
 **返回：**
 

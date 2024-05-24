@@ -33,6 +33,7 @@ Optional\<T>
 ## 示例
 ```ts
 // xxx.ets
+import { FrameNode, UIContext } from '@kit.ArkUI';
 
 @Entry
 @Component

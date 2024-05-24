@@ -2230,6 +2230,72 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
   }
   ```
 
+### getThreeLetterLanguage<sup>12+</sup>
+
+static getThreeLetterLanguage(locale: string): string
+
+将语言代码由二字母转换为三字母。例如，中文的二字母语言代码是zh，对应的三字母语言代码是zho，更多详细信息可参考[ISO 639](https://www.iso.org/iso-639-language-code)。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| locale | string | 是   | 待转换的语言二字母代码，如：zh。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  try {
+    let language : string = I18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
+  } catch(error) {
+    console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### getThreeLetterRegion<sup>12+</sup>
+
+static getThreeLetterRegion(locale: string): string
+
+将地区的二字母代码转换为三字母。例如，中国的二字母地区代码是CN, 三字母是CHN，更多详细信息可参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| locale | string | 是   | 待转换的地区二字母代码，如：CN。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  try {
+    this.message = I18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
+  } catch(error) {
+    console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
 ## Normalizer<sup>10+</sup>
 
 ### getInstance<sup>10+</sup>

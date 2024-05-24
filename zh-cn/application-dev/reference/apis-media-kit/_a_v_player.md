@@ -813,7 +813,7 @@ OH_AVErrCode OH_AVPlayer_ReleaseSync (OH_AVPlayer * player)
 
 同步释放播放器资源。
 
-同步过程保证了播放画面的surfacebuffer释放，但这个界面会花费很长时间（发动机非怠速状态时），要求调用者自己设计异步机制。
+同步过程保证了播放画面的显示缓存释放，但这个过程花费时间较长，要求调用者自己设计异步机制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

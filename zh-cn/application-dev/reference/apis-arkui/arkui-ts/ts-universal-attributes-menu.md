@@ -101,7 +101,7 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | icon<sup>10+</sup>    | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单项图标。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                 |
 | enabled<sup>11+</sup> | boolean                                | 否   | 菜单条目是否可进行交互。<br/>默认值：true, 菜单条目可以进行交互。 |
 | action                | ()&nbsp;=&gt;&nbsp;void                | 是   | 点击菜单项的事件回调。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                       |
-| symbolIcon<sup>12+</sup>                | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)                | 是   | 设置菜单项图标。通过Modifier配置菜单项图标，配置该项时，原icon图标不显示。                                       |
+| symbolIcon<sup>12+</sup>                | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)                | 否   | 设置菜单项图标。通过Modifier配置菜单项图标，配置该项时，原icon图标不显示。                                       |
 
 ## MenuOptions<sup>10+</sup>
 
