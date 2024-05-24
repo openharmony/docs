@@ -1267,12 +1267,13 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 
 **错误码：**
 
+错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1314,12 +1315,13 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 **错误码：**
 
+错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
