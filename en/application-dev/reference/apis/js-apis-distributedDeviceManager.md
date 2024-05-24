@@ -593,7 +593,7 @@ Binds a device.
   | Name    | Type                                               | Mandatory | Description        |
   | ---------- | --------------------------------------------------- | ----- | ------------ |
   | deviceId   | string                                              | Yes   | Device ID.  |
-  | bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following **key** values are carried:<br>**bindType**: binding type.<br>- **1**: PIN.<br>- **2**: QR code.<br>- **3**: NFC.<br>- **4**: No interaction.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
+  | bindParam  | {[key:&nbsp;string]:&nbsp;Object}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following **key** values are carried:<br>**bindType**: binding type, which is mandatory. The values **2**, **3**, and **4** are embedded and are not supported currently.<br>- **1**: PIN.<br>- **2**: QR code.<br>- **3**: NFC.<br>- **4**: No interaction.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;}&gt; | Yes   | Callback invoked to return the authentication result.|
 
 **Error codes**
