@@ -4972,6 +4972,8 @@ IP多媒体系统调用模式。
 | voipCallAttribute<sup>11+</sup> | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
 | crsType<sup>11+</sup> | number                             | 是   | 视频彩振类型|
 | originalCallType<sup>11+</sup> | number                    | 是   | 视频彩振原始呼叫类型|
+| numberLocation<sup>12+</sup> | string | 否 | 号码归属地信息 |
+| numberMarkInfo<sup>12+</sup> | [NumberMarkInfo](#numbermarkinfo12) | 否 | 号码标记信息 |
 
 ## VoipCallAttribute<sup>11+</sup>
 
@@ -6088,3 +6090,40 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | width   | number       | 是   | 本端画面图像尺寸宽(像素)。  |
 | height  | number       | 是   | 本端画面图像尺寸高(像素)。  |
 
+## NumberMarkInfo<sup>12+</sup>
+
+电话号码的标记信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称    |     类型      | 必填 | 说明           |
+| ------- | ------------ | ---- | ------------- |
+| markType | [MarkType](#marktype12) | 是   | 号码的标记类型。 |
+| markContent | string | 否  | 号码的标记内容。 |
+| markCount | number       | 否  | 号码的标记次数。 |
+| markSource | string | 否 | 号码的标记来源供应商。 |
+| isCloud | boolean | 否 | 号码的标记是否来自云端。 |
+
+## MarkType<sup>12+</sup>
+
+号码标记的类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称                           | 值     | 说明     |
+| ------------------------------ | ------ | --------|
+| MARK_TYPE_NONE | 0      | 没有标记 |
+| MARK_TYPE_CRANK | 1      | 骚扰电话 |
+| MARK_TYPE_FRAUD | 2    | 诈骗电话 |
+| MARK_TYPE_EXPRESS | 3    | 快递送餐 |
+| MARK_TYPE_PROMOTE_SALES | 4 | 广告推销 |
+| MARK_TYPE_HOUSE_AGENT | 5 | 房产中介 |
+| MARK_TYPE_INSURANCE | 6 | 保险理财 |
+| MARK_TYPE_TAXI | 7 | 出租车 |
+| MARK_TYPE_CUSTOM | 8 | 用户自定义 |
+| MARK_TYPE_OTHERS | 9 | 其他 |
+| MARK_TYPE_YELLOW_PAGE | 10 | 黄页 |
