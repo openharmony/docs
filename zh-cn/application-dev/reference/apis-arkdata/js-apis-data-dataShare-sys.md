@@ -1580,7 +1580,7 @@ let operations2: Array<dataShare.UpdateOperation> = [];
 
 let pre1: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 pre1.equalTo("name", "ZhangSan");
-let vb1: ValueBucket = {
+let vb1: ValuesBucket = {
   "name": "ZhangSan1",
 }
 let operation1: dataShare.UpdateOperation = {
@@ -1591,7 +1591,7 @@ operations1.push(operation1);
 
 let pre2: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 pre2.equalTo("name", "ZhangSan2");
-let vb2: ValueBucket = {
+let vb2: ValuesBucket = {
   "name": "ZhangSan3",
 }
 let operation2: dataShare.UpdateOperation = {
