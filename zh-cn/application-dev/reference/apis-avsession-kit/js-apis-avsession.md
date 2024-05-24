@@ -4349,14 +4349,11 @@ aVCastController.off('keyRequest');
 ## KeyRequestCallback<sup>12+</sup>
 
 许可证请求事件的回调函数。
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-| 取值范围 | 说明                                      |
-| ------ | ----------------------------------------- |
-| (assetId: string, requestData: Uint8Array) => void     | 许可证请求事件的回调函数。 |
 
 **参数：**
 
@@ -4392,13 +4389,13 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
-| 名称            | 类型                      | 只读 | 必填 | 说明                                                                  |
+| 名称            | 类型                      | 只读 | 可选 | 说明                                                                  |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
-| id            | number                  | 否    | 是    | 投播显示设备的ID，该参数应为整数。  |
-| name     | string                  | 否    | 是    | 投播显示设备的名称。           |
-| state          | [CastDisplayState](#castdisplaystate12)          | 否    | 是    |投播显示设备状态。            |
-| width          | number          | 否    | 是    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
-| height          | number          | 否    | 是    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
+| id            | number                  | 否    | 否    | 投播显示设备的ID，该参数应为整数。  |
+| name     | string                  | 否    | 否    | 投播显示设备的名称。           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 否    | 否    |投播显示设备状态。            |
+| width          | number          | 否    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 否    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
 
 ## ConnectionState<sup>10+</sup>
 
