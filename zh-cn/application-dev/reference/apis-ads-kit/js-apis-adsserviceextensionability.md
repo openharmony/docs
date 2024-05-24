@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import AdsServiceExtensionAbility from '@ohos.advertising.AdsServiceExtensionAbility';
+import { RespCallback } from '@kit.AdsKit';
 ```
 
 ## AdsServiceExtensionAbility.RespCallback
