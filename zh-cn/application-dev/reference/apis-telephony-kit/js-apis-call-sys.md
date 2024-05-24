@@ -4778,6 +4778,56 @@ call.removeMissedIncomingCallNotification().then(() => {
 });
 ```
 
+## call.sendCallUiEvent<sup>12+</sup>
+
+sendCallUiEvent\(callId: number, eventName: string\): Promise\<void\>
+
+发布通话界面事件。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明     |
+| --------- | ------ | ---- | -------- |
+| callId    | number | 是   | 呼叫Id。 |
+| eventName | string | 是   | 事件名称。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let callId: number = 0;
+call.sendCallUiEvent(callId, 'eventName').then(() => {
+    console.log(`sendCallUiEvent success.`);
+}).catch((err: BusinessError) => {
+    console.error(`sendCallUiEvent fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## DialOptions
 
@@ -4989,6 +5039,7 @@ VoIP通话信息。
 | extensionId      | string     | 是   |  三方应用进程Id  |
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
 | voipBundleName    | string     | 是   |  三方应用包名  |
+| showBannerForIncomingCall<sup>12+</sup>    | boolean     | 否   |  上报来电时是否显示来电横幅  |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5112,6 +5163,8 @@ VoIP通话信息。
 | EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | 保持当前通话并接听等待中电话失败事件 |
 | EVENT_COMBINE_CALL_FAILED<sup>11+</sup>  | 5 | 合并通话失败 |
 | EVENT_SPLIT_CALL_FAILED<sup>11+</sup> | 6    | 分离通话失败 |
+| EVENT_SHOW_FULL_SCREEN<sup>12+</sup>  | 7    | 全屏显示通话界面   |
+| EVENT_SHOW_FLOAT_WINDOW<sup>12+</sup> | 8    | 悬浮窗显示通话界面 |
 
 ## DialScene<sup>8+</sup>
 
