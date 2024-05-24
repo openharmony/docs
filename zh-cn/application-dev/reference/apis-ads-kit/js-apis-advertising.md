@@ -110,7 +110,7 @@ function requestAd(context: common.Context): void {
     },
     // 广告请求成功回调
     onAdLoadSuccess: (ads: Array<advertising.Advertisement>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed requestint single ad!');
+      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed in requesting single ad!');
       // 保存请求到的广告内容用于展示
       const returnAds = ads;
     }
@@ -190,7 +190,7 @@ function requestMultiAd(context: common.Context): void {
     },
     // 广告请求成功回调
     onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed requestint multi ads!');
+      hilog.info(0x0000, 'testTag', '%{public}s', 'succeed in requesting multi ads!');
       // 保存请求到的广告内容为数组用于展示
       let returnAds: Array<advertising.Advertisement> = [];
       ads.forEach((adsArray) => returnAds.push(...adsArray));
