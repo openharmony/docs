@@ -4938,7 +4938,6 @@ close(): Promise\<void\>
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
-| 401      | Parameter error.     |
 | 2301009  | Bad file descriptor. |
 
 **示例：**
