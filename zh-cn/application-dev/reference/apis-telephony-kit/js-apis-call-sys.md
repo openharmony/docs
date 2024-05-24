@@ -4821,7 +4821,9 @@ sendCallUiEvent\(callId: number, eventName: string\): Promise\<void\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-call.sendCallUiEvent(1, "全屏展示").then(() => {
+let callId: number = 0;
+let eventName: string = '全屏展示';
+call.sendCallUiEvent(callId, eventName).then(() => {
     console.log(`sendCallUiEvent success.`);
 }).catch((err: BusinessError) => {
     console.error(`sendCallUiEvent fail, promise: err->${JSON.stringify(err)}`);
@@ -5038,7 +5040,7 @@ VoIP通话信息。
 | extensionId      | string     | 是   |  三方应用进程Id  |
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
 | voipBundleName    | string     | 是   |  三方应用包名  |
-| showBannerForIncomingCall<sup>12+</sup>    | boolean     | 否   |  上报来电时是否显示横幅  |
+| showBannerForIncomingCall<sup>12+</sup>    | boolean     | 否   |  上报来电时是否显示来电横幅  |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5162,8 +5164,8 @@ VoIP通话信息。
 | EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | 保持当前通话并接听等待中电话失败事件 |
 | EVENT_COMBINE_CALL_FAILED<sup>11+</sup>  | 5 | 合并通话失败 |
 | EVENT_SPLIT_CALL_FAILED<sup>11+</sup> | 6    | 分离通话失败 |
-| EVENT_SHOW_FULL_SCREEN<sup>12+</sup>  | 7    | 全屏展示     |
-| EVENT_SHOW_FLOAT_WINDOW<sup>12+</sup> | 8    | 浮动窗口展示 |
+| EVENT_SHOW_FULL_SCREEN<sup>12+</sup>  | 7    | 全屏显示通话界面   |
+| EVENT_SHOW_FLOAT_WINDOW<sup>12+</sup> | 8    | 悬浮窗显示通话界面 |
 
 ## DialScene<sup>8+</sup>
 
