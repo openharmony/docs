@@ -2172,6 +2172,49 @@ restoreLayer(): void
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+### reset<sup>12+</sup>
+
+reset(): void
+
+将OffscreenCanvasRenderingContext2D重置为其默认状态，清除后台缓冲区、绘制状态栈、绘制路径和样式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct Reset {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.fillStyle = '#0000ff'
+            offContext.fillRect(20, 20, 150, 100)
+            offContext.reset()
+            offContext.fillRect(20, 150, 150, 100)
+            let image = this.offCanvas.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
+
 ### resetTransform
  
 resetTransform(): void
