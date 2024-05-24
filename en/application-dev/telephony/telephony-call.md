@@ -3,7 +3,9 @@
 ## Scenario Description
 
 You can implement the call service in either of the following ways:
+<!--Del-->
 - For a system application, use the **dialCall** API to make a voice or video call. The call will be displayed on the application page.
+<!--DelEnd-->
 - For a third-party application, use the **makeCall** API to start the system call application. Users can then make calls as needed.
 
 ## Basic Concepts
@@ -32,7 +34,7 @@ You can implement the call service in either of the following ways:
 |                                  Name                                            | Description                                                        |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | hasVoiceCapability(): boolean;                                                      | Checks whether the voice function is available.                                       |
-| dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Makes a call. This is a system API.                                     |
+|<!--DelRow--> dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Makes a call. This is a system API.                                     |
 | makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                 | Redirects to the dial screen and displays the called number.                                 |
 
 The **observer** module provides the functions of subscribing to and unsubscribing from the call service status. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-observer.md).
@@ -43,6 +45,7 @@ The **observer** module provides the functions of subscribing to and unsubscribi
 
 ## How to Develop
 
+<!--Del-->
 ### Making a Call by Using the dialCall API (Only for System Applications)
 
 1. Declare the required permission: **ohos.permission.PLACE_CALL**.
@@ -53,9 +56,8 @@ This permission is of the **system\_basic** level. Before applying for the permi
 5. (Optional) Register the observer for call service status changes.
    ```ts
     // Import the required modules.
-    import call from '@ohos.telephony.call';
-    import observer from '@ohos.telephony.observer';
-    import { BusinessError } from '@ohos.base';
+    import { call, observer } from '@kit.TelephonyKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // Check whether the voice call function is supported.
     let isSupport = call.hasVoiceCapability();
@@ -77,7 +79,7 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
-
+<!--DelEnd-->
 ### Making a Call by Using the makeCall API
 
 1. Import the **call** and **observer** modules.
@@ -87,9 +89,8 @@ This permission is of the **system\_basic** level. Before applying for the permi
 
    ```ts
     // Import the required modules.
-    import call from '@ohos.telephony.call';
-    import observer from '@ohos.telephony.observer';
-    import { BusinessError } from '@ohos.base';
+    import { call, observer } from '@kit.TelephonyKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
    
     // Check whether the voice call function is supported.
     let isSupport = call.hasVoiceCapability();
@@ -115,3 +116,8 @@ This permission is of the **system\_basic** level. Before applying for the permi
     }
    ```
 
+## 相关实例
+
+针对拨打电话，有以下相关实例可供参考：
+
+- [拨打电话（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Call)

@@ -60,15 +60,16 @@ Writes event information to the event file. This API uses an asynchronous callba
 For details about the following error codes, see [HiSysEvent Error Codes](errorcode-hisysevent-sys.md).
 
 | ID| Error Message|
-| ------- | ----------------------------------------------------------------- |
-| 11200001 | Invalid event domain.                                            |
-| 11200002 | Invalid event name.                                              |
-| 11200003 | Abnormal environment.                                            |
-| 11200004 | Length of the event is over limit.                               |
-| 11200051 | Invalid event parameter.                                         |
-| 11200052 | Size of the event parameter of the string type is over limit.    |
-| 11200053 | Count of event parameters is over limit.                         |
-| 11200054 | Count of event parameter of the array type is over limit.        |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200001 | Invalid event domain.                                                                                                                           |
+| 11200002 | Invalid event name.                                                                                                                             |
+| 11200003 | Abnormal environment.                                                                                                                           |
+| 11200004 | The event length exceeds the limit.                                                                                                             |
+| 11200051 | Invalid event parameter.                                                                                                                        |
+| 11200052 | The size of the event parameter of the string type exceeds the limit.                                                                           |
+| 11200053 | The number of event parameters exceeds the limit.                                                                                               |
+| 11200054 | The number of event parameters of the array type exceeds the limit.                                                                             |
 
 **Example**
 
@@ -124,15 +125,16 @@ Writes event information to the event file. This API uses a promise to return th
 For details about the following error codes, see [HiSysEvent Error Codes](errorcode-hisysevent-sys.md).
 
 | ID| Error Message|
-| -------- | ---------------------------------------------------------------- |
-| 11200001 | Invalid event domain.                                            |
-| 11200002 | Invalid event name.                                              |
-| 11200003 | Abnormal environment.                                            |
-| 11200004 | Length of the event is over limit.                               |
-| 11200051 | Invalid event parameter.                                         |
-| 11200052 | Size of the event parameter of the string type is over limit.    |
-| 11200053 | Count of event parameters is over limit.                         |
-| 11200054 | Count of event parameter of the array type is over limit.        |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200001 | Invalid event domain.                                                                                                                           |
+| 11200002 | Invalid event name.                                                                                                                             |
+| 11200003 | Abnormal environment.                                                                                                                           |
+| 11200004 | The event length exceeds the limit.                                                                                                             |
+| 11200051 | Invalid event parameter.                                                                                                                        |
+| 11200052 | The size of the event parameter of the string type exceeds the limit.                                                                           |
+| 11200053 | The number of event parameters exceeds the limit.                                                                                               |
+| 11200054 | The number of event parameters of the array type exceeds the limit.                                                                             |
 
 **Example**
 
@@ -226,9 +228,12 @@ Adds a watcher for event subscription.
 For details about the following error codes, see [HiSysEvent Error Codes](errorcode-hisysevent-sys.md).
 
 | ID| Error Message|
-| -------- | ----------------------------------- |
-| 11200101 | Count of watchers is over limit.    |
-| 11200102 | Count of watch rules is over limit. |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200101 | The number of watchers exceeds the limit.                                                                                                       |
+| 11200102 | The number of watch rules exceeds the limit.                                                                                                    |
 
 **Example**
 
@@ -279,8 +284,11 @@ Removes a watcher used for event subscription.
 For details about the following error codes, see [HiSysEvent Error Codes](errorcode-hisysevent-sys.md).
 
 | ID| Error Message|
-| -------- | --------------------------- |
-| 11200201 | The watcher does not exist. |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200201 | The watcher does not exist.                                                                                                                     |
 
 **Example**
 
@@ -371,11 +379,14 @@ Queries system events.
 For details about the following error codes, see [HiSysEvent Error Codes](errorcode-hisysevent-sys.md).
 
 | ID| Error Message|
-| -------- | ------------------------------------------- |
-| 11200301 | Count of query rules is over limit.         |
-| 11200302 | Invalid query rule.                         |
-| 11200303 | Count of concurrent queriers is over limit. |
-| 11200304 | Query frequency is over limit.              |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200301 | The number of query rules exceeds the limit.                                                                                                    |
+| 11200302 | Invalid query rule.                                                                                                                             |
+| 11200303 | The number of concurrent queriers exceeds the limit.                                                                                            |
+| 11200304 | The query frequency exceeds the limit.                                                                                                          |
 
 **Example**
 
@@ -451,11 +462,14 @@ Exports system events in batches and writes them as a file to the fixed director
 
 For details about the following error codes, see [HiSysEvent Error Codes](errorcode-hisysevent-sys.md).
 
-| ID| Error Message                           |
-| -------- | ----------------------------------- |
-| 11200301 | Count of query rules is over limit. |
-| 11200302 | Invalid query rule.                 |
-| 11200304 | Export frequency is over limit.     |
+| ID| Error Message|
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200301 | The number of query rules exceeds the limit.                                                                                                    |
+| 11200302 | Invalid query rule.                                                                                                                             |
+| 11200304 | The query frequency exceeds the limit.                                                                                                          |
 
 **Example**
 
@@ -537,10 +551,13 @@ Subscribes to real-time system events that occur occasionally or occur in a low 
 
 For details about the following error codes, see [HiSysEvent Error Codes](errorcode-hisysevent-sys.md).
 
-| ID| Error Message                           |
-| -------- | ----------------------------------- |
-| 11200301 | Count of query rules is over limit. |
-| 11200302 | Invalid query rule.                 |
+| ID| Error Message|
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200301 | The number of query rules exceeds the limit.                                                                                                    |
+| 11200302 | Invalid query rule.                                                                                                                             |
 
 **Example**
 
@@ -606,9 +623,12 @@ Unsubscribes from system events.
 
 For details about the following error codes, see [HiSysEvent Error Codes](errorcode-hisysevent-sys.md).
 
-| ID| Error Message           |
-| -------- | ------------------- |
-| 11200305 | Unsubscribe failed. |
+| ID| Error Message|
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200305 | Failed to unsubscribe.                                                                                                                          |
 
 **Example**
 
