@@ -37,7 +37,7 @@ getIntelligentVoiceManager(): IntelligentVoiceManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -72,11 +72,11 @@ getWakeupManager(): WakeupManager
 
 | 类型                          | 说明         |
 | ----------------------------- | ------------ |
-| [WakeupManager](#wakeupmanager) | 智能语音管理类。 |
+| [WakeupManager](#wakeupmanager12) | 智能语音管理类。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -117,7 +117,7 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -170,7 +170,7 @@ createEnrollIntelligentVoiceEngine(descriptor: EnrollIntelligentVoiceEngineDescr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -216,7 +216,7 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -269,7 +269,7 @@ createWakeupIntelligentVoiceEngine(descriptor: WakeupIntelligentVoiceEngineDescr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -318,7 +318,7 @@ getCapabilityInfo(): Array&lt;IntelligentVoiceEngineType&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -351,7 +351,7 @@ on(type: 'serviceChange', callback: Callback&lt;ServiceChangeType&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -384,7 +384,7 @@ off(type: 'serviceChange', callback?: Callback\<ServiceChangeType\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -398,7 +398,7 @@ if (intelligentVoiceManager != null) {
 }
 ```
 
-## WakeupManager
+## WakeupManager<sup>12+</sup>
 
 唤醒管理类，使用前需要通过[getWakeupManager()](#intelligentvoicegetwakeupmanager12)获取唤醒管理实例。
 
@@ -416,18 +416,18 @@ setParameter(key: string, value: string): Promise\<void\>
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | 是   | 键。 |
-| value     | string                           | 是   | 值。 |
+| key     | string                           | 是   | 键,如"wakeup_phrase"等。 |
+| value     | string                           | 是   | 值，如"小华小华"等。 |
 
 **返回值：**
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                   |
+|  Promise&lt;void&gt;            | Promise对象，无返回结果。                   |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -464,17 +464,17 @@ getParameter(key: string): Promise\<string\>
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| key     | string                           | 是   | 键。 |
+| key     | string                           | 是   | 键，如"isEnrolled"等。 |
 
 **返回值：**
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise\<string\>            | 返回智能语音参数。                   |
+|  Promise\<string\>            | Promise对象，返回获取的参数，如底层支持的声道数等。                   |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -518,11 +518,11 @@ getUploadFiles(maxCount: number): Promise&lt;Array&lt;UploadFile&gt;&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;Array&lt;[UploadFile](#uploadfile12)&gt;&gt;   | 返回获取的文件。      |
+|  Promise&lt;Array&lt;[UploadFile](#uploadfile12)&gt;&gt;   | Promise对象，返回获取的文件。      |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -552,7 +552,7 @@ if (wakeupManager != null) {
 
 getWakeupSourceFiles(): Promise&lt;Array&lt;WakeupSourceFile&gt;&gt;
 
-获取唤醒资源文件，使用Promise异步回调。
+获取唤醒资源文件，如注册语料、路径信息等，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -562,11 +562,11 @@ getWakeupSourceFiles(): Promise&lt;Array&lt;WakeupSourceFile&gt;&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;Array&lt;[WakeupSourceFile](#wakeupsourcefile12)&gt;&gt;            | 返回唤醒资源文件。                   |
+|  Promise&lt;Array&lt;[WakeupSourceFile](#wakeupsourcefile12)&gt;&gt;            | Promise对象，返回唤醒资源文件。                   |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -583,9 +583,9 @@ if (wakeupManager != null) {
   (wakeupManager as intelligentVoice.WakeupManager).getWakeupSourceFiles().then(
     (data: Array<intelligentVoice.WakeupSourceFile>) => {
     let param: Array<intelligentVoice.WakeupSourceFile> = data;
-    console.info(`Succeeded in getting upload files, param:${param}`);
+    console.info(`Succeeded in get wakeup source files, param:${param}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to get upload files, Code:${err.code}, message:${err.message}`);
+    console.error(`Failed to get wakeup source files, Code:${err.code}, message:${err.message}`);
   });
 }
 ```
@@ -604,18 +604,18 @@ enrollWithWakeupFilesForResult(wakeupFiles: Array\<WakeupSourceFile\>, wakeupInf
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| wakeupFiles     | Array\<WakeupSourceFile\>                           | 是   | 唤醒资源文件。 |
-| wakeupInfo     | string                           | 是   | 唤醒消息。 |
+| wakeupFiles     | Array\<#wakeupsourcefile12\>                           | 是   | 唤醒资源文件（注册语料、路径信息等）。 |
+| wakeupInfo     | string                           | 是   | 唤醒相关信息（源侧设备类型、版本，目标侧设备类型、版本等）。 |
 
 **返回值：**
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;[EnrollResult](#enrollresult)&gt;    | 返回唤醒资源文件。                   |
+|  Promise&lt;[EnrollResult](#enrollresult)&gt;    | Promise对象，返回注册结果。                   |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -637,9 +637,9 @@ if (wakeupManager != null) {
     filesInfo: Array<intelligentVoice.WakeupSourceFile>, wakeupInfo).then(
     (data: intelligentVoice.EnrollResult) => {
     let param: intelligentVoice.EnrollResult = data;
-    console.info(`Succeeded in getting upload files, param:${param}`);
+    console.info(`Succeeded in enrolling with wakeupFilesForResult, param:${param}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to get upload files, Code:${err.code}, message:${err.message}`);
+    console.error(`Failed to enroll with wakeupFilesForResult, Code:${err.code}, message:${err.message}`);
   });
 }
 ```
@@ -658,11 +658,11 @@ clearUserData(): Promise&lt;void&gt;
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;void&gt;            | 无返回结果的Promise对象。                  |
+|  Promise&lt;void&gt;            | Promise对象，无返回结果。                  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -696,13 +696,13 @@ if (wakeupManager != null) {
 
 ## UploadFile<sup>12+</sup>
 
-上传文件包含内容。
+上传文件内容，包含文件类型，文件描述和内容。
 
 **系统能力：** SystemCapability.AI.IntelligentVoice.Core
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| type | UploadFileType |        是       | 文件类型。 |
+| type | [UploadFileType](#uploadfiletype12) |        是       | 文件类型。 |
 | filesDescription | string |        是       | 文件描述。 |
 | filesContent | Array\<ArrayBuffer\> |        是       | 文件内容。 |
 
@@ -727,7 +727,7 @@ if (wakeupManager != null) {
 | ------------------------- | ---- | ------------    |
 | UNKNOWN      | 0    | 未知错误。   |
 | PASS      | 1    | 通过。   |
-| WORD_EMPTY      | 2    | 字是空的。。   |
+| WORD_EMPTY      | 2    | 字是空的。   |
 | CHINESE_ONLY      | 3    | 只支持中文。   |
 | INVALID_LENGTH      | 4    | 无效的长度。   |
 | UNUSUAL_WORD      | 5    | 不寻常的词。  |
@@ -742,14 +742,14 @@ if (wakeupManager != null) {
 
 ## EvaluationResult<sup>12+</sup>
 
-唤醒资源文件。
+唤醒词评估结果。
 
 **系统能力：** SystemCapability.AI.IntelligentVoice.Core
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| score | number |        是       | 评估得分。 |
-| resultCode | EvaluationResultCode |        是       | 描述评估结果代码。 |
+| score | number |        是       | 自定义唤醒词的评估得分，范围在0到5之间。 |
+| resultCode | [EvaluationResultCode](#evaluationresultcode12) |        是       | 评估结果错误码。 |
 
 ## ServiceChangeType
 
@@ -931,7 +931,7 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -973,7 +973,7 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1014,7 +1014,7 @@ init(config: EnrollEngineConfig, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1067,7 +1067,7 @@ init(config: EnrollEngineConfig): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1114,7 +1114,7 @@ enrollForResult(isLast: boolean, callback: AsyncCallback&lt;EnrollCallbackInfo&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1163,7 +1163,7 @@ enrollForResult(isLast: boolean): Promise&lt;EnrollCallbackInfo&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1202,7 +1202,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1242,7 +1242,7 @@ stop(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1280,7 +1280,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1321,7 +1321,7 @@ commit(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1361,7 +1361,7 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1407,7 +1407,7 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1452,7 +1452,7 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1500,7 +1500,7 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1542,7 +1542,7 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1591,7 +1591,7 @@ setParameter(key: string, value: string): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1632,7 +1632,7 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1681,7 +1681,7 @@ getParameter(key: string): Promise\<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1708,7 +1708,7 @@ if (enrollIntelligentVoiceEngine != null) {
 
 evaluateForResult(word: string): Promise\<EvaluationResult\>
 
-自定义唤醒词评估，使用Promise异步回调。
+评估自定义唤醒词是否可用，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -1724,11 +1724,11 @@ evaluateForResult(word: string): Promise\<EvaluationResult\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise&lt;[EvaluationResult](#evaluationresult12)&gt;     | 返回评估结果。      |
+|  Promise&lt;[EvaluationResult](#evaluationresult12)&gt;     | Promise对象，返回评估结果。      |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1770,7 +1770,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1810,7 +1810,7 @@ release(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1850,7 +1850,7 @@ getSupportedRegions(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1891,7 +1891,7 @@ getSupportedRegions(): Promise&lt;Array&lt;string&gt;&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1931,7 +1931,7 @@ setWakeupHapInfo(info: WakeupHapInfo, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1984,7 +1984,7 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2029,7 +2029,7 @@ setSensibility(sensibility: SensibilityType, callback: AsyncCallback\<void\>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2077,7 +2077,7 @@ setSensibility(sensibility: SensibilityType): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2119,7 +2119,7 @@ setParameter(key: string, value: string, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2168,7 +2168,7 @@ setParameter(key: string, value: string): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2209,7 +2209,7 @@ getParameter(key: string, callback: AsyncCallback\<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2258,7 +2258,7 @@ getParameter(key: string): Promise\<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2295,11 +2295,11 @@ getPcm(): Promise\<ArrayBuffer\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise\<ArrayBuffer\>            | 返回脉冲编码调制音频。                   |
+|  Promise\<ArrayBuffer\>            | Promise对象，返回脉冲编码调制音频。                   |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2342,11 +2342,11 @@ startCapturer(channels: number): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise\<void\>            | 无返回结果的Promise对象。                  |
+|  Promise\<void\>            | Promise对象，无返回结果。                  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2384,11 +2384,11 @@ read(): Promise\<ArrayBuffer\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise\<ArrayBuffer\>            | 返回音频数据结果。                  |
+|  Promise\<ArrayBuffer\>            | Promise对象，返回音频数据结果。                  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2426,11 +2426,11 @@ stopCapturer(): Promise\<void\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-|  Promise\<void\>            | 无返回结果的Promise对象。                     |
+|  Promise\<void\>            | Promise对象，无返回结果。                     |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2469,7 +2469,7 @@ release(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2509,7 +2509,7 @@ release(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2548,7 +2548,7 @@ on(type: 'wakeupIntelligentVoiceEvent', callback: Callback\<WakeupIntelligentVoi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2585,7 +2585,7 @@ off(type: 'wakeupIntelligentVoiceEvent', callback?: Callback\<WakeupIntelligentV
 
 **错误码：**
 
-以下错误码的详细介绍请参见[智能语音错误码](errorcode-intelligentVoice.md)。
+以下错误码的详细介绍请参见[通用错误码](errorcode-universal.md)和[智能语音错误码](errorcode-intelligentVoice.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
