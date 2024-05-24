@@ -429,8 +429,6 @@ fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.
 
 当copyOption设置为CopyOptions.None时，该功能不会生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 

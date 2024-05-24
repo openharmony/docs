@@ -369,7 +369,7 @@ struct Index {
 
 **解决措施**
 
-setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用DevTools工具可以在电脑上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
+setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用DevTools工具可以在2in1上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
 
 **参考链接**
 

@@ -22,6 +22,8 @@ allowDrop(value: Array&lt;UniformDataType&gt;)
 
 设置该组件上允许落入的数据类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**

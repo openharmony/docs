@@ -21,7 +21,7 @@
 - [使用Web组件的下载能力](web-download.md)
 - [加速Web页面的访问](web-predictor.md)
 - [拦截Web组件发起的网络请求](web-scheme-handler.md)
-- [同层渲染绘制XComponent+AVPlayer和Button组件](web-same-layer.md)
+- [同层渲染绘制](web-same-layer.md)
 - [使用智能防跟踪功能](web-intelligent-tracking-prevention.md)
 - [webRTC拉起摄像头和麦克风](web-rtc.md)
 - [解决Web组件本地资源跨域问题](web-cross-origin.md)

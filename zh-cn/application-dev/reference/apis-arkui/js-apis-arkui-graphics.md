@@ -148,7 +148,7 @@ get size(): Size
 
 ### canvas
 
-get canvas(): Canvas
+get canvas(): drawing.Canvas
 
 获取用于绘制的画布。
 
@@ -158,7 +158,7 @@ get canvas(): Canvas
 
 | 类型          | 说明             |
 | ------------- | ---------------- |
-| [Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 用于绘制的画布。 |
+| [drawing.Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 用于绘制的画布。 |
 
 **示例：**
 
@@ -233,9 +233,20 @@ struct Index {
 | [PERCENT](arkui-ts/ts-types.md#percentage10) | 3    | 长度类型，用于描述以%像素单位为单位的长度。   |
 | [LPX](arkui-ts/ts-types.md#lpx10)            | 4    | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
+## SizeT\<T><sup>12+</sup>
+
+用于设置宽高的属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型 | 可读 | 可写 | 说明             |
+| ------ | ---- | ---- | ---- | ---------------- |
+| width   | T    | 是   | 是   | 宽度的属性。 |
+| height    | T    | 是   | 是   | 高度的属性。 |
+
 ## LengthMetrics<sup>12+</sup>
 
-用于设置长度属性。
+用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -263,7 +274,7 @@ LengthMetrics的构造函数。
 
 ### px<sup>12+</sup>
 
-px(value: number): void
+px(value: number): LengthMetrics
 
 用于生成单位为PX的长度属性。
 
@@ -275,9 +286,15 @@ px(value: number): void
 | ------ | ------ | ---- | -------------- |
 | value  | number | 是   | 长度属性的值。 |
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ### vp<sup>12+</sup>
 
-vp(value: number): void
+vp(value: number): LengthMetrics
 
 用于生成单位为VP的长度属性。
 
@@ -289,9 +306,15 @@ vp(value: number): void
 | ------ | ------ | ---- | -------------- |
 | value  | number | 是   | 长度属性的值。 |
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ### fp<sup>12+</sup>
 
-fp(value: number): void
+fp(value: number): LengthMetrics
 
 用于生成单位为FP的长度属性。
 
@@ -303,9 +326,15 @@ fp(value: number): void
 | ------ | ------ | ---- | -------------- |
 | value  | number | 是   | 长度属性的值。 |
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ### percent<sup>12+</sup>
 
-percent(value: number): void
+percent(value: number): LengthMetrics
 
 用于生成单位为PERCENT的长度属性。
 
@@ -317,9 +346,15 @@ percent(value: number): void
 | ------ | ------ | ---- | -------------- |
 | value  | number | 是   | 长度属性的值。 |
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ### lpx<sup>12+</sup>
 
-lpx(value: number): void
+lpx(value: number): LengthMetrics
 
 用于生成单位为LPX的长度属性。
 
@@ -330,6 +365,12 @@ lpx(value: number): void
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | value  | number | 是   | 长度属性的值。 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
 
 ## Corners\<T><sup>12+</sup>
 

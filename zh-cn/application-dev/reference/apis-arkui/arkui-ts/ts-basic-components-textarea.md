@@ -191,7 +191,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 style(value: TextContentStyle)
 
-设置文本框多态样式。
+设置文本框多态样式，内联输入风格只支持TextAreaType.Normal类型。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -342,7 +342,7 @@ lineHeight(value: number | string | Resource)
 
 decoration(value: TextDecorationOptions)
 
-设置文本装饰线样式及其颜色。
+设置文本装饰线类型样式及其颜色。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -350,7 +350,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -770,12 +770,13 @@ getCaretOffset(): CaretOffset
 
 ## TextAreaType<sup>11+</sup>枚举说明
 
-| 名称                 | 描述            |
-| ------------------ | ------------- |
-| NORMAL   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
-| EMAIL    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
-| NUMBER   | 纯数字输入模式。      |
-| PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
+| 名称                 | 值            | 描述            |
+| ------------------ | ------ | ------------- |
+| NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
+| NUMBER   | 2 | 纯数字输入模式。      |
+| PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
+| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
+| NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。 |
 
 ## KeyboardOptions<sup>12+</sup>
 

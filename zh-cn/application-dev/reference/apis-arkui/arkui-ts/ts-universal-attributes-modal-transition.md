@@ -34,13 +34,13 @@ bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCover
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | modalTransition | [ModalTransition](ts-types.md#modaltransition10) | 否    | 全屏模态页面的转场方式。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | onWillDismiss<sup>12+</sup> | Callback&lt;[DismissContentCoverAction](#dismisscontentcoveraction12类型说明)&gt; | 否    | 全屏模态页面交互式关闭回调函数。<br/>**说明：**<br />当用户执行back事件关闭交互操作时，如果注册该回调函数，则不会立刻关闭。在回调函数中可以通过reason得到阻拦关闭页面的操作类型，从而根据原因选择是否关闭全屏模态页面。在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
-| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md##transitioneffect10对象说明) | 否    | 全屏模态页面的转场方式。  |
+| transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否    | 全屏模态页面的转场方式。  |
 
 ## DismissContentCoverAction<sup>12+</sup>类型说明
 | 名称              | 类型                                       | 必填   | 描述            |
 | --------------- | ---------------------------------------- | ---- | ------------- |
 | dismiss | function | 是    | 全屏模态页面关闭回调函数。开发者需要退出页面时调用。 |
-| reason | [DismissReason](ts-methods-alert-dialog-box.md##dismissreason12枚举说明) | 是    | 返回本次拦截全屏模态页面退出的事件原因。  |
+| reason | [DismissReason](ts-methods-alert-dialog-box.md#dismissreason12枚举说明) | 是    | 返回本次拦截全屏模态页面退出的事件原因。  |
 
 ## 示例
 

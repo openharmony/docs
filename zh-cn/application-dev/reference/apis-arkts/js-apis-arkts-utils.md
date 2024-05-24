@@ -47,11 +47,9 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 **示例：**
 
 ```ts
+// 示例一：
 @Sendable
 class A {
-  // 暂不支持AsyncLock跨线程共享，因此@Sendable不能持有AsyncLock，只能用AsyncLock.request。
-  // 如下一行示例代码是错误的。
-  // static lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
   count_: number = 0;
   async getCount(): Promise<number> {
     let lock: ArkTSUtils.locks.AsyncLock = ArkTSUtils.locks.AsyncLock.request("lock_1");
@@ -67,10 +65,26 @@ class A {
   }
 }
 
+// 示例二：
+@Sendable
+class A {
+  count_: number = 0;
+  lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
+  async getCount(): Promise<number> {
+    return this.lock_.lockAsync(() => {
+      return this.count_;
+    })
+  }
+  async setCount(count: number) {
+    await this.lock_.lockAsync(() => {
+      this.count_ = count;
+    })
+  }
+}
+
 @Concurrent
 async function foo(a: A) {
-  let unused = ArkTSUtils.locks.AsyncLock; // 4月版本临时规避代码，需要在@Concurrent函数中使用一下，否则后续逻辑使用异步锁会存在加载失败的异常问题。
-  await a.setNum(10)
+  await a.setCount(10)
 }
 ```
 

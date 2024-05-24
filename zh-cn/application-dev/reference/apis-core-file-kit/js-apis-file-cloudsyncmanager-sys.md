@@ -43,7 +43,7 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Pr
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -83,7 +83,7 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, cal
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -129,7 +129,7 @@ notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -168,7 +168,7 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -227,7 +227,7 @@ notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -270,7 +270,7 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
+| 13600001  | IPC error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -318,7 +318,7 @@ enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;vo
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -362,7 +362,7 @@ enableCloud(accountId: string, switches: Record<string, boolean>, callback: Asyn
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -412,7 +412,7 @@ disableCloud(accountId: string): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -451,7 +451,7 @@ disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -511,7 +511,7 @@ clean(accountId: string, appActions: Record<string, Action>): Promise&lt;void&gt
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -555,7 +555,7 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**

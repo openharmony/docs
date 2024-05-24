@@ -129,7 +129,7 @@ Navigation组件页面切换的信息。
 | context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发页面切换的Navigation对应的上下文信息。 |
 | from         | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的源页面。         |
 | to           | [NavDestinationInfo](#navdestinationinfo) \| "navBar" | 是   | 页面切换的目的页面。         |
-| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md##navigationoperation11枚举说明) | 是   | 页面切换操作类型。         |
+| operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是   | 页面切换操作类型。         |
 
 ## NavDestinationSwitchObserverOptions<sup>12+</sup>
 
@@ -390,14 +390,39 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 
 ```ts
 // used in UIAbility
-import observer from '@ohos.arkui.observer';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { UIContext } from '@ohos.arkui.UIContext';
-function callBackFunc(info: observer.RouterPageInfo) {}
-// callBackFunc is user defined function
-observer.on('routerPageUpdate', this.context, callBackFunc);
-// uiContext could be got by window's function: getUIContext()
-uiContext: UIContext | null = null;
-observer.on('routerPageUpdate', this.uiContext, callBackFunc);
+import { BusinessError } from '@ohos.base';
+import { window } from '@kit.ArkUI';
+
+import observer from '@ohos.arkui.observer';
+
+export default class EntryAbility extends UIAbility {
+  private uiContext: UIContext | null = null;
+
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // 注册监听，范围是abilityContext内的page
+    observer.on('routerPageUpdate', this.context, (info: observer.RouterPageInfo) => {
+      console.log('[observer][abilityContext] got info: ' + JSON.stringify(info))
+    })
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    windowStage.loadContent('pages/Index', (err) => {
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let windowInfo: window.Window = data;
+        // 获取UIContext实例
+        this.uiContext = windowInfo.getUIContext();
+        // 注册监听，范围是uiContext内的page
+        observer.on('routerPageUpdate', this.uiContext, (info: observer.RouterPageInfo)=>{
+          console.log('[observer][uiContext] got info: ' + JSON.stringify(info))
+        })
+      })
+    });
+  }
+
+// ... other function in EntryAbility
+}
 ```
 
 ## observer.off('routerPageUpdate')<sup>11+</sup>
@@ -420,14 +445,29 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 
 ```ts
 // used in UIAbility
-import observer from '@ohos.arkui.observer';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { UIContext } from '@ohos.arkui.UIContext';
-function callBackFunc(info: observer.RouterPageInfo) {}
-// callBackFunc is user defined function
-observer.off('routerPageUpdate', this.context, callBackFunc);
-// uiContext could be got by window's function: getUIContext()
-uiContext: UIContext | null = null;
-observer.off('routerPageUpdate', this.uiContext, callBackFunc);
+import { window } from '@kit.ArkUI';
+import observer from '@ohos.arkui.observer';
+
+export default class EntryAbility extends UIAbility {
+  // 实际使用前uiContext需要被赋值。参见示例observer.on('routerPageUpdate')
+  private uiContext: UIContext | null = null;
+
+  onDestroy(): void {
+    // 注销当前abilityContext上的所有routerPageUpdate监听
+    observer.off('routerPageUpdate', this.context)
+  }
+
+  onWindowStageDestroy(): void {
+    // 注销在uiContext上的所有routerPageUpdate监听
+    if (this.uiContext) {
+      observer.off('routerPageUpdate', this.uiContext);
+    }
+  }
+
+// ... other function in EntryAbility
+}
 ```
 
 ## observer.on('densityUpdate')<sup>12+</sup>
@@ -704,15 +744,110 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 **示例：**
 
 ```ts
-// 在UIAbility中使用
+// EntryAbility.ets
+// 演示 observer.on('navDestinationSwitch', UIAbilityContext, callback)
+// observer.off('navDestinationSwitch', UIAbilityContext, callback)
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
 import observer from '@ohos.arkui.observer';
-import { UIContext } from '@ohos.arkui.UIContext';
-// callBackFunc 是开发者定义的监听回调函数
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
-observer.on('navDestinationSwitch', this.context, callBackFunc);
-// 可以通过窗口的getUIContext()方法获取对应的UIContent
-uiContext: UIContext | null = null;
-observer.on('navDestinationSwitch', this.uiContext, callBackFunc);
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    observer.on('navDestinationSwitch', this.context, callBackFunc);
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+    observer.off('navDestinationSwitch', this.context, callBackFunc);
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+
+// Index.ets
+// 演示 observer.on('navDestinationSwitch', UIContext, callback)
+// observer.off('navDestinationSwitch', UIContext, callback)
+import observer from '@ohos.arkui.observer';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    observer.on('navDestinationSwitch', this.getUIContext(), callBackFunc)
+  }
+
+  aboutToDisappear() {
+    observer.off('navDestinationSwitch', this.getUIContext(), callBackFunc)
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## observer.off('navDestinationSwitch')<sup>12+</sup>
@@ -731,19 +866,7 @@ off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callbac
 | context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面切换事件的范围。 |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在UIAbility中使用
-import observer from '@ohos.arkui.observer';
-import { UIContext } from '@ohos.arkui.UIContext';
-// callBackFunc 是开发者定义的监听回调函数
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
-observer.off('navDestinationSwitch', this.context, callBackFunc);
-// 可以通过窗口的getUIContext()方法获取对应的UIContent
-uiContext: UIContext | null = null;
-observer.off('navDestinationSwitch', this.uiContext, callBackFunc);
-```
+**示例代码参考上述observer.on('navDestinationSwitch')接口的示例代码**
 
 ## observer.on('navDestinationSwitch')<sup>12+</sup>
 
@@ -765,15 +888,111 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observer
 **示例：**
 
 ```ts
-// 在UIAbility中使用
+// EntryAbility.ets
+// 演示 observer.on('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
+// observer.off('navDestinationSwitch', UIAbilityContext, NavDestinationSwitchObserverOptions, callback)
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
 import observer from '@ohos.arkui.observer';
-import { UIContext } from '@ohos.arkui.UIContext';
-// callBackFunc 是开发者定义的监听回调函数
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
-observer.on('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
-// 可以通过窗口的getUIContext()方法获取对应的UIContent
-uiContext: UIContext | null = null;
-observer.on('navDestinationSwitch', this.uiContext, { navigationId: "myNavId" }, callBackFunc);
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    observer.on('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+    observer.off('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+
+// Index.ets
+// 演示 observer.on('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
+// observer.off('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
+import observer from '@ohos.arkui.observer';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    observer.on('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  aboutToDisappear() {
+    observer.off('navDestinationSwitch', this.getUIContext(), { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .id("myNavId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ## observer.off('navDestinationSwitch')<sup>12+</sup>
@@ -793,16 +1012,4 @@ off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observe
 | observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在UIAbility中使用
-import observer from '@ohos.arkui.observer';
-import { UIContext } from '@ohos.arkui.UIContext';
-// callBackFunc 是开发者定义的监听回调函数
-function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
-observer.off('navDestinationSwitch', this.context, { navigationId: "myNavId" }, callBackFunc);
-// 可以通过窗口的getUIContext()方法获取对应的UIContent
-uiContext: UIContext | null = null;
-observer.off('navDestinationSwitch', this.uiContext, { navigationId: "myNavId" }, callBackFunc);
-```
+**示例代码参考上述observer.on('navDestinationSwitch')接口的示例代码**

@@ -4549,14 +4549,11 @@ async function example() {
 
 枚举，不同[PhotoAsset](#photoasset)的类型。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| DEFAULT |  0 |  默认照片类型。 |
-| SCREENSHOT |  1 |  截屏录屏文件类型。 |
+| SCREENSHOT |  1 |  截屏录屏文件类型。**系统接口**：此接口为系统接口。 |
 
 ## PositionType
 
@@ -4632,6 +4629,7 @@ async function example() {
 | DATE_MONTH<sup>11+</sup>  | 'date_month'            | 创建文件的月份。**系统接口**：此接口为系统接口。           |
 | DATE_DAY<sup>11+</sup>  | 'date_day'            | 创建文件的日期。**系统接口**：此接口为系统接口。           |
 | PENDING<sup>11+</sup>  | 'pending'            | pending状态。**系统接口**：此接口为系统接口。           |
+| DATE_TRASHED_MS<sup>12+</sup>  | 'date_trashed_ms'  | 删除日期（删除文件时间距1970年1月1日的毫秒数值）。**系统接口**：此接口为系统接口。<br>注意：查询照片时，不支持基于该字段排序。 |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 

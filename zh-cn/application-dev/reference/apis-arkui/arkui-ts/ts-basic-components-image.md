@@ -39,7 +39,7 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 
 | 参数名  | 参数类型                                     | 必填   | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>- 加载本地图片过程中，如果对图片进行修改或者替换，可能会引起应用崩溃。因此需要覆盖图片文件时，应该先删除该文件再重新创建一个同名文件。<br/>- 网络图片必须支持RFC 9113标准，否则会导致加载失败。<br/>- 如果SVG图片没有原生大小，需要给Image组件设置宽高，否则不显示。 |
+| src  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr)\|&nbsp;[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是    | 图片的数据源，支持本地图片和网络图片，引用方式请参考[加载图片资源](../../../ui/arkts-graphics-display.md#加载图片资源)。<br>1. PixelMap格式为像素图，常用于图片编辑的场景。<br>2. ResourceStr包含Resource和string格式。<br>string格式可用于加载网络图片和本地图片，常用于加载网络图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，不支持跨包/跨模块调用该Image组件，建议使用Resource格式来管理需全局使用的图片资源。<br>- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br>- 支持file://路径前缀的字符串，[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br>Resource格式可以跨包/跨模块访问资源文件，是访问本地图片的推荐方式。<br/>3. 当传入资源id或name为普通图片时，生成DrawableDescriptor对象。传入[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)类型可播放PixelMap数组动画。<br>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持http:/\/等网络相关路径前缀和file:/\/路径前缀的字符串。<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>- 加载本地图片过程中，如果对图片进行修改或者替换，可能会引起应用崩溃。因此需要覆盖图片文件时，应该先删除该文件再重新创建一个同名文件。<br/>- 网络图片必须支持RFC 9113标准，否则会导致加载失败。<br/>- 网络图片支持下载20MB以内的图片，如果大于20MB的网络图片，开发者可以使用[HTTP](../../../network/http-request.md)工具下载。<br/>- 如果SVG图片没有原生大小，需要给Image组件设置宽高，否则不显示。 |
 
 ## 属性
 
@@ -50,6 +50,8 @@ Image组件加载图片失败或图片尺寸为0时，图片组件大小自动�
 alt(value:&nbsp;string&nbsp;|&nbsp;Resource&nbsp;|&nbsp;PixelMap)
 
 设置图片加载时显示的占位图。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -85,6 +87,8 @@ objectRepeat(value: ImageRepeat)
 
 设置图片的重复样式，从中心点向两边重复，剩余空间不足放下一张图片时会截断。svg类型图源不支持该属性。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -102,6 +106,8 @@ objectRepeat(value: ImageRepeat)
 interpolation(value: ImageInterpolation)
 
 设置图片的插值效果，即缓解图片在缩放时的锯齿问题。svg类型图源不支持该属性。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -121,6 +127,8 @@ renderMode(value: ImageRenderMode)
 
 设置图片的渲染模式。svg类型图源不支持该属性。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -138,6 +146,8 @@ renderMode(value: ImageRenderMode)
 sourceSize(value: { width:&nbsp;number;&nbsp;height:&nbsp;number&nbsp;})
 
 设置图片解码尺寸。仅在目标尺寸小于图源尺寸时生效。svg类型图源和PixelMap资源不支持该属性。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -157,6 +167,8 @@ matchTextDirection(value: boolean)
 
 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -175,6 +187,8 @@ fitOriginalSize(value: boolean)
 
 设置图片的显示尺寸是否跟随图源尺寸。图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -192,6 +206,8 @@ fitOriginalSize(value: boolean)
 fillColor(value: ResourceColor)
 
 设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -217,6 +233,8 @@ autoResize(value: boolean)
 
 图片放大显示时：.interpolation(.High)
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -235,6 +253,8 @@ syncLoad(value: boolean)
 
 设置是否同步加载图片。建议加载尺寸较小的本地图片时将syncLoad设为true，因为耗时较短，在主线程上执行即可。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -252,6 +272,8 @@ syncLoad(value: boolean)
 copyOption(value: CopyOptions)
 
 设置图片是否可复制。当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。svg图片不支持复制。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -311,13 +333,15 @@ alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支
 
 基于完整原始图像进行分析，设置clip、margin、borderRadius、position和objectFit属性导致图像显示不完整，或使用renderMode设置蒙层，仍基于完整原始图像进行分析。 copyOption属性不影响AI分析功能。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| enable  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false<br/>**说明：**<br/> |
+| enable  | boolean | 是   | 组件支持AI分析，设置为true时，组件可进行AI分析。<br/>默认值：false |
 
 ### resizable<sup>11+</sup>
 
@@ -328,6 +352,8 @@ resizable(value: ResizableOptions)
 设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。
 
 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -345,10 +371,10 @@ resizable(value: ResizableOptions)
 
 | 名称     | 描述                         |
 | ------ | -------------------------- |
-| None   | 不使用图片插值。                   |
-| High   | 高图片插值，插值质量最高，可能会影响图片渲染的速度。 |
-| Medium | 中图片插值。                     |
-| Low    | 低图片插值。                     |
+| None   | 最近邻插值。                   |
+| High   | Cubic插值，插值质量最高，可能会影响图片渲染的速度。 |
+| Medium | MipMap插值。                     |
+| Low    | 双线性插值。                     |
 
 ## ImageRenderMode
 
@@ -390,6 +416,8 @@ onComplete(callback: (event?: { width: number, height: number, componentWidth: n
 
 图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -417,6 +445,8 @@ onError(callback: ImageErrorCallback)
 
 图片加载异常时触发该回调。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -435,7 +465,7 @@ onFinish(event: () =&gt; void)
 
 当加载的源文件为带动效的svg格式图片时，svg动效播放完成时会触发这个回调。如果动效为无限循环动效，则不会触发这个回调。
 
-仅支持svg格式的图片。
+仅支持svg格式的图片。当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -449,6 +479,8 @@ type ImageErrorCallback = (error: ImageError) => void
 
 图片加载异常时触发的回调。
 
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
+
 | 参数名 | 类型                       | 必填 | 说明                               |
 | ------ | -------------------------- | ---- | ---------------------------------- |
 | error  | [ImageError](#imageerror9) | 是   | 图片加载异常时触发回调的返回对象。 |
@@ -456,6 +488,9 @@ type ImageErrorCallback = (error: ImageError) => void
 ## ImageError<sup>9+</sup>
 
 图片加载异常时触发回调的返回对象。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名          | 类型   | 必填 | 说明                      |
@@ -669,3 +704,81 @@ struct Index {
 ```
 
 ![imageResizable](figures/imageResizable.gif)
+
+### 示例6
+
+播放PixelMap数组动画
+
+```ts
+import {AnimationOptions, AnimatedDrawableDescriptor} from '@ohos.arkui.drawableDescriptor'
+import image from '@ohos.multimedia.image'
+
+@Entry
+@Component
+struct ImageExample {
+  pixelmaps: Array<PixelMap>  = [];
+  options: AnimationOptions = {duration:2000, iterations:1};
+  @State animated: AnimatedDrawableDescriptor | undefined = undefined;
+
+  async aboutToAppear() {
+    this.pixelmaps = await this.getPixelMaps();
+    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.animated)
+          .width('500px').height('280px')
+          .onFinish(() => {
+            console.info("finish")
+          })
+      }.height('50%')
+      Row() {
+        Button('once').width(100).padding(5).onClick(() => {
+          this.options = {duration:2000, iterations:1};
+          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+        }).margin(5)
+        Button('infinite').width(100).padding(5).onClick(() => {
+          this.options = {duration:2000, iterations:-1};
+          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+        }).margin(5)
+      }
+    }.width('50%')
+  }
+
+  private async getPixmapListFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: Array<image.PixelMap> = await imageSource.createPixelMapList({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+
+  private async getPixelMaps() {
+    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.icon'))//gif图, 生成多张PixelMap
+    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.icon'))) //添加一张图片
+    return Mypixelmaps;
+  }
+}
+```

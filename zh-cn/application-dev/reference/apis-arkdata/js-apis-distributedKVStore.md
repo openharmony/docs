@@ -2630,7 +2630,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | ------------------------ |
-| entries  | [Entry](#entry)[]        | 是   | 表示要批量插入的键值对。一个entries对象中允许的最大条目个数为128个。 |
+| entries  | [Entry](#entry)[]        | 是   | 表示要批量插入的键值对。一个entries对象中允许的最大数据量为512M。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。数据批量插入成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2705,7 +2705,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 | 参数名  | 类型          | 必填 | 说明                     |
 | ------- | ----------------- | ---- | ------------------------ |
-| entries | [Entry](#entry)[] | 是   | 表示要批量插入的键值对。一个entries对象中允许的最大条目个数为128个。 |
+| entries | [Entry](#entry)[] | 是   | 表示要批量插入的键值对。一个entries对象中允许的最大数据量为512M。 |
 
 **返回值：**
 
@@ -3289,7 +3289,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名    | 类型                               | 必填 | 说明                                     |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。                     |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
 
 **错误码：**
@@ -3357,7 +3357,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | 参数名    | 类型 | 必填 | 说明                 |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -3426,7 +3426,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名   | 类型                               | 必填 | 说明                                            |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------- |
-| query    | [Query](#query)                         | 是   | 表示要匹配的键前缀。                            |
+| query    | [Query](#query)                         | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回与指定Query对象匹配的键值对列表。 |
 
 **错误码：**
@@ -3564,7 +3564,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | 参数名    | 类型                                                   | 必填 | 说明                                 |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。                 |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
 
 **错误码：**
@@ -3642,7 +3642,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名    | 类型 | 必填 | 说明                 |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -5624,7 +5624,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名    | 类型                                   | 必填 | 说明                                     |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。                     |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
 
 **错误码：**
@@ -5692,7 +5692,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。 |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -5765,7 +5765,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 | 参数名    | 类型                               | 必填 | 说明                                           |
 | --------- | -------------------------------------- | ---- | ---------------------------------------------- |
 | deviceId  | string                                 | 是   | 标识要查询其数据的设备。                       |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。                           |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。|
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数，返回满足给定条件的所有键值对的列表。 |
 
 **错误码：**
@@ -5838,7 +5838,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 | 参数名    | 类型 | 必填 | 说明                     |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | 是   | 标识要查询其数据的设备。 |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。     |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。|
 
 **返回值：**
 
@@ -5909,7 +5909,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                  |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
-| query    | [Query](#query)                         | 是   | 表示要匹配的键前缀。                                  |
+| query    | [Query](#query)                         | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。|
 | callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回本设备与指定Query对象匹配的键值对列表。 |
 
 **错误码：**
@@ -6202,7 +6202,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | 参数名    | 类型                                                       | 必填 | 说明                                 |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。                 |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
 
 **错误码：**
@@ -6279,7 +6279,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。 |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。|
 
 **返回值：**
 
@@ -6358,7 +6358,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | 参数名    | 类型                                                     | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
-| keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。                                         |
+| keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -6419,7 +6419,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 | 参数名    | 类型 | 必填 | 说明                     |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | 是   | 标识要查询其数据的设备。 |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。     |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。|
 
 **返回值：**
 

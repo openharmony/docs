@@ -14,7 +14,7 @@ import systemLoad from '@ohos.resourceschedule.systemload';
 
 ## systemLoad.on('systemLoadChange')
 
-on(type: 'systemLoadChange', callback: Callback<SystemLoadLevel>): void
+on(type: 'systemLoadChange', callback: Callback\<SystemLoadLevel>): void
 
 注册系统负载回调，感知系统负载融合档位变化，使用callback异步回调。
 
@@ -46,7 +46,7 @@ try {
 
 ## systemLoad.off('systemLoadChange')
 
-off(type: 'systemLoadChange', callback?: Callback<SystemLoadLevel>): void
+off(type: 'systemLoadChange', callback?: Callback\<SystemLoadLevel>): void
 
 取消注册系统负载回调，使用callback异步回调。
 

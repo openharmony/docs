@@ -80,6 +80,11 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| typedef enum [OH_Drawing_PathOpMode](#oh_drawing_pathopmode)[OH_Drawing_PathOpMode](#oh_drawing_pathopmode) | 路径操作类型枚举。 | 
+| typedef enum [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags)[OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) | 路径测量获取相应矩阵信息维度枚举。 |
+| typedef enum [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode)[OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) | 区域操作类型枚举。 | 
+| typedef struct [OH_Drawing_ImageFilter](#oh_drawing_imagefilter)[OH_Drawing_ImageFilter](#oh_drawing_imagefilter) | 定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
+| typedef struct [OH_Drawing_Filter](#oh_drawing_filter)[OH_Drawing_Filter](#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器，模板滤波器和图像滤波器。 | 
 | typedef struct [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)  [OH_Drawing_BitmapFormat](#oh_drawing_bitmapformat) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型 | 
 | typedef enum [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint)  [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint) | 源矩形区域约束类型枚举。 | 
 | typedef enum [OH_Drawing_PointMode](#oh_drawing_pointmode)  [OH_Drawing_PointMode](#oh_drawing_pointmode) | 绘制多个点的方式枚举，方式分为离散点、直线或开放多边形。 | 
@@ -168,6 +173,9 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) {<br/>PATH_OP_MODE_DIFFERENCE, PATH_OP_MODE_INTERSECT, PATH_OP_MODE_UNION, PATH_OP_MODE_XOR,<br/>PATH_OP_MODE_REVERSE_DIFFERENCE<br/>} | 路径操作类型枚举。 | 
+| [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) { GET_POSITION_MATRIX, GET_TANGENT_MATRIX, GET_POSITION_AND_TANGENT_MATRIX } | 路径测量获取相应矩阵信息维度枚举。 | 
+| [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) {<br/>REGION_OP_MODE_DIFFERENCE, REGION_OP_MODE_INTERSECT, REGION_OP_MODE_UNION, REGION_OP_MODE_XOR,<br/>REGION_OP_MODE_REVERSE_DIFFERENCE, REGION_OP_MODE_REPLACE<br/>} | 区域操作类型枚举。 | 
 | [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint) { STRICT_SRC_RECT_CONSTRAINT, FAST_SRC_RECT_CONSTRAINT } | 源矩形区域约束类型枚举。 | 
 | [OH_Drawing_PointMode](#oh_drawing_pointmode) { POINT_MODE_POINTS, POINT_MODE_LINES, POINT_MODE_POLYGON } | 绘制多个点的方式枚举，方式分为离散点、直线或开放多边形。 | 
 | [OH_Drawing_VertexMode](#oh_drawing_vertexmode) { VERTEX_MODE_TRIANGLES, VERTEX_MODE_TRIANGLESSTRIP, VERTEX_MODE_TRIANGLEFAN } | 用于指定如何解释给定顶点的几何形状的枚举类型。 | 
@@ -208,6 +216,34 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCopy](#oh_drawing_brushcopy) ([OH_Drawing_Brush](#oh_drawing_brush) \*brush) | 创建一个画刷对象副本[OH_Drawing_Brush](#oh_drawing_brush)，用于拷贝一个已有画刷对象。 | 
+| void [OH_Drawing_FilterSetImageFilter](#oh_drawing_filtersetimagefilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*) | 为滤波器对象设置图像滤波器对象。 | 
+| [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \* [OH_Drawing_ImageFilterCreateBlur](#oh_drawing_imagefiltercreateblur) (float sigmaX, float sigmaY, [OH_Drawing_TileMode](#oh_drawing_tilemode), [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*input) | 创建具有模糊效果的图像滤波器。 | 
+| [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \* [OH_Drawing_ImageFilterCreateFromColorFilter](#oh_drawing_imagefiltercreatefromcolorfilter) ([OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*colorFilter, [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*input) | 创建具有颜色变换效果的图像滤波器。 | 
+| void [OH_Drawing_ImageFilterDestroy](#oh_drawing_imagefilterdestroy) ([OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*) | 销毁图像滤波器对象并回收该对象占有内存。 | 
+| void [OH_Drawing_MatrixMapPoints](#oh_drawing_matrixmappoints) (const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*src, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*dst, int count) | 通过矩阵变换将源点数组映射到目标点数组。 | 
+| bool [OH_Drawing_MatrixMapRect](#oh_drawing_matrixmaprect) (const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, [OH_Drawing_Rect](#oh_drawing_rect) \*dst) | 将目标矩形设置为一个新的矩形，该矩形是能够包围源矩形的四个顶点通过矩阵变换映射后形成的新顶点的最小矩形。 | 
+| void [OH_Drawing_PathAddPolygon](#oh_drawing_pathaddpolygon) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*points, uint32_t count, bool isClosed) | 向路径添加多边形。 | 
+| void [OH_Drawing_PathAddCircle](#oh_drawing_pathaddcircle) ([OH_Drawing_Path](#oh_drawing_path) \*path, float x, float y, float radius, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，向路径添加圆形。 | 
+| bool [OH_Drawing_PathBuildFromSvgString](#oh_drawing_pathbuildfromsvgstring) ([OH_Drawing_Path](#oh_drawing_path) \*path, const char \*str) | 解析SVG字符串表示的路径。 | 
+| void [OH_Drawing_PathGetBounds](#oh_drawing_pathgetbounds) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_Rect](#oh_drawing_rect) \*) | 获取包含路径的最小边界框。 | 
+| bool [OH_Drawing_PathIsClosed](#oh_drawing_pathisclosed) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed) | 获取路径是否闭合。 | 
+| bool [OH_Drawing_PathGetPositionTangent](#oh_drawing_pathgetpositiontangent) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*position, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*tangent) | 获取距路径起始点指定距离的坐标点和切线值。 |
+| bool [OH_Drawing_PathOp](#oh_drawing_pathop) ([OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Path](#oh_drawing_path) \*srcPath, [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) op) | 将两个路径按照指定的路径操作类型合并。 | 
+| bool [OH_Drawing_PathGetMatrix](#oh_drawing_pathgetmatrix) ([OH_Drawing_Path](#oh_drawing_path) \*path, bool forceClosed, float distance, [OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) flag) | 获取距路径起始点指定距离的相应变换矩阵。 | 
+| bool [OH_Drawing_PenGetFillPath](#oh_drawing_pengetfillpath) ([OH_Drawing_Pen](#oh_drawing_pen) \*, const [OH_Drawing_Path](#oh_drawing_path) \*src, [OH_Drawing_Path](#oh_drawing_path) \*dst, const [OH_Drawing_Rect](#oh_drawing_rect) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 获取使用画笔绘制的源路径轮廓，并用目标路径表示。 |
+| [OH_Drawing_Pen](#oh_drawing_pen) \* [OH_Drawing_PenCopy](#oh_drawing_pencopy) ([OH_Drawing_Pen](#oh_drawing_pen) \*pen) | 创建一个画笔对象副本[OH_Drawing_Pen](#oh_drawing_pen)，用于拷贝一个已有画笔对象。 | 
+| [OH_Drawing_PixelMap](#oh_drawing_pixelmap) \* [OH_Drawing_PixelMapGetFromNativePixelMap](#oh_drawing_pixelmapgetfromnativepixelmap) (NativePixelMap_ \*) | 从图像框架定义的像素图对象中获取本模块定义的像素图对象。 | 
+| [OH_Drawing_PixelMap](#oh_drawing_pixelmap) \* [OH_Drawing_PixelMapGetFromOhPixelMapNative](#oh_drawing_pixelmapgetfromohpixelmapnative) (OH_PixelmapNative \*) | 从图像框架定义的像素图对象中获取本模块定义的像素图对象。 | 
+| void [OH_Drawing_PixelMapDissolve](#oh_drawing_pixelmapdissolve) ([OH_Drawing_PixelMap](#oh_drawing_pixelmap) \*) | 解除本模块定义的像素图对象和图像框架定义的像素图对象之间的关系，该关系通过调用 [OH_Drawing_PixelMapGetFromNativePixelMap](#oh_drawing_pixelmapgetfromnativepixelmap)或[OH_Drawing_PixelMapGetFromOhPixelMapNative](#oh_drawing_pixelmapgetfromohpixelmapnative)建立。 | 
+| bool [OH_Drawing_RectJoin](#oh_drawing_rectjoin) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, const [OH_Drawing_Rect](#oh_drawing_rect) \*other) | 将两个矩形取并集。 | 
+| bool [OH_Drawing_RegionContains](#oh_drawing_regioncontains) ([OH_Drawing_Region](#oh_drawing_region) \*region, int32_t x, int32_t y) | 判断区域是否包含指定坐标点。 | 
+| bool [OH_Drawing_RegionOp](#oh_drawing_regionop) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Region](#oh_drawing_region) \*dst, [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) op) | 将两个区域按照指定的区域操作类型合并。 | 
+| bool [OH_Drawing_RegionSetPath](#oh_drawing_regionsetpath) ([OH_Drawing_Region](#oh_drawing_region) \*region, const [OH_Drawing_Path](#oh_drawing_path) \*path, const [OH_Drawing_Region](#oh_drawing_region) \*clip) | 给区域对象设置为指定区域内路径表示的范围。 | 
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateColorShader](#oh_drawing_shadereffectcreatecolorshader) (const uint32_t color) | 创建具有单一颜色的着色器。 | 
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix](#oh_drawing_shadereffectcreatelineargradientwithlocalmatrix) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*startPt, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*endPt, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 创建着色器，在两个指定点之间生成线性渐变。 | 
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix](#oh_drawing_shadereffectcreateradialgradientwithlocalmatrix) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*centerPt, float radius, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 创建着色器，在给定圆心和半径的情况下生成径向渐变。 从起点到终点颜色从内到外进行圆形渐变（从中间向外拉）被称为径向渐变。 | 
+| [OH_Drawing_ShaderEffect](#oh_drawing_shadereffect) \* [OH_Drawing_ShaderEffectCreateTwoPointConicalGradient](#oh_drawing_shadereffectcreatetwopointconicalgradient) (const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*startPt, float startRadius, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*endPt, float endRadius, const uint32_t \*colors, const float \*pos, uint32_t size, [OH_Drawing_TileMode](#oh_drawing_tilemode), const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 创建着色器，在给定两个圆之间生成渐变。 | 
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) \* [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void) | 用于创建一个位图对象。 | 
 | void [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于销毁位图对象并回收该对象占有内存。 | 
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) \* [OH_Drawing_BitmapCreateFromPixels](#oh_drawing_bitmapcreatefrompixels) ([OH_Drawing_Image_Info](_o_h___drawing___image___info.md) \*, void \*pixels, uint32_t rowBytes) | 用于创建一个位图对象，并将位图像素存储内存地址设置为开发者申请内存的地址。 | 
@@ -648,6 +684,69 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 ## 类型定义说明
 
+### OH_Drawing_PathOpMode
+
+```
+typedef enum OH_Drawing_PathOpMode OH_Drawing_PathOpMode
+```
+
+**描述**
+
+路径操作类型枚举。
+
+**起始版本：** 12
+
+
+### OH_Drawing_PathMeasureMatrixFlags
+
+```
+typedef enum OH_Drawing_PathMeasureMatrixFlags OH_Drawing_PathMeasureMatrixFlags
+```
+
+**描述**
+
+路径测量获取相应矩阵信息维度枚举。
+
+**起始版本：** 12
+
+
+### OH_Drawing_RegionOpMode
+
+```
+typedef enum OH_Drawing_RegionOpModeOH_Drawing_RegionOpMode
+```
+
+**描述**
+
+区域操作类型枚举。
+
+**起始版本：** 12
+
+
+### OH_Drawing_ImageFilter
+
+```
+typedef struct OH_Drawing_ImageFilter OH_Drawing_ImageFilter
+```
+
+**描述**
+
+定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。
+
+**起始版本：** 12
+
+
+### OH_Drawing_Filter
+
+```
+typedef struct OH_Drawing_Filter OH_Drawing_Filter
+```
+
+**描述**
+
+定义一个滤波器，用于存储颜色滤波器，模板滤波器和图像滤波器。
+
+**起始版本：** 11
 
 ### OH_Drawing_AlphaFormat
 
@@ -845,19 +944,6 @@ typedef enum OH_Drawing_EllipsisModal OH_Drawing_EllipsisModal
 **描述**
 
 省略号样式枚举
-
-**起始版本：** 11
-
-
-### OH_Drawing_Filter
-
-```
-typedef struct OH_Drawing_Filter OH_Drawing_Filter
-```
-
-**描述**
-
-定义一个滤波器，用于存储颜色滤波器和模板滤波器。
 
 **起始版本：** 11
 
@@ -1747,6 +1833,68 @@ typedef enum OH_Drawing_WordBreakType OH_Drawing_WordBreakType
 ## 枚举类型说明
 
 
+### OH_Drawing_PathMeasureMatrixFlags
+
+```
+enum OH_Drawing_PathMeasureMatrixFlags
+```
+
+**描述**
+
+路径测量获取相应矩阵信息维度枚举。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| GET_POSITION_MATRIX | 获取位置信息对应的矩阵。 | 
+| GET_TANGENT_MATRIX | 获取切线信息对应的矩阵。 | 
+| GET_POSITION_AND_TANGENT_MATRIX | 获取位置和切线信息对应的矩阵。 | 
+
+
+### OH_Drawing_PathOpMode
+
+```
+enum OH_Drawing_PathOpMode
+```
+
+**描述**
+
+路径操作类型枚举。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| PATH_OP_MODE_DIFFERENCE | 差集操作。 | 
+| PATH_OP_MODE_INTERSECT | 交集操作。 | 
+| PATH_OP_MODE_UNION | 并集操作。 | 
+| PATH_OP_MODE_XOR | 异或操作。 | 
+| PATH_OP_MODE_REVERSE_DIFFERENCE | 反向差集操作。 | 
+
+
+### OH_Drawing_RegionOpMode
+
+```
+enum OH_Drawing_RegionOpMode
+```
+
+**描述**
+
+区域操作类型枚举。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| REGION_OP_MODE_DIFFERENCE | 差集操作。 | 
+| REGION_OP_MODE_INTERSECT | 交集操作。 | 
+| REGION_OP_MODE_UNION | 并集操作。 | 
+| REGION_OP_MODE_XOR | 异或操作。 | 
+| REGION_OP_MODE_REVERSE_DIFFERENCE | 反向差集操作。 | 
+| REGION_OP_MODE_REPLACE | 替换操作。 | 
+
+
 ### OH_Drawing_AlphaFormat
 
 ```
@@ -2486,6 +2634,741 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+
+### OH_Drawing_BrushCopy()
+
+```
+OH_Drawing_Brush* OH_Drawing_BrushCopy (OH_Drawing_Brush* brush)
+```
+
+**描述**
+
+创建一个画刷对象副本[OH_Drawing_Brush](#oh_drawing_brush)，用于拷贝一个已有画刷对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Brush | 指向画刷对象的指针。 | 
+
+**返回：**
+
+函数会返回一个指针，指针指向创建的画刷对象副本[OH_Drawing_Brush](#oh_drawing_brush)。如果对象返回NULL，表示创建失败； 可能的原因是可用内存为空，或者是brush为NULL。
+
+
+
+### OH_Drawing_FilterSetImageFilter()
+
+```
+void OH_Drawing_FilterSetImageFilter (OH_Drawing_Filter* , OH_Drawing_ImageFilter* )
+```
+
+**描述**
+
+为滤波器对象设置图像滤波器对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Filter | 指示指向滤波器对象[OH_Drawing_Filter](#oh_drawing_filter)的指针。 | 
+| OH_Drawing_ImageFilter | 指示指向图像滤波器[OH_Drawing_ImageFilter](#oh_drawing_imagefilter)对象的指针。 | 
+
+
+### OH_Drawing_ImageFilterCreateBlur()
+
+```
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur (float sigmaX, float sigmaY, OH_Drawing_TileMode , OH_Drawing_ImageFilter* input )
+```
+
+**描述**
+
+创建具有模糊效果的图像滤波器。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| sigmaX | 表示沿x轴方向上高斯模糊的方差。 | 
+| sigmaY | 表示沿y轴方向上高斯模糊的方差。 | 
+| OH_Drawing_TileMode | 图像滤波器效果平铺模式类型，支持可选的具体模式可见**OH_Drawing_TileMoe**枚举。 | 
+| OH_Drawing_ImageFilter | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 | 
+
+**返回：**
+
+函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](#oh_drawing_imagefilter)。如果对象返回NULL，表示创建失败； 可能的原因是可用内存为空。
+
+
+### OH_Drawing_ImageFilterCreateFromColorFilter()
+
+```
+OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter (OH_Drawing_ColorFilter* colorFilter, OH_Drawing_ImageFilter* input )
+```
+
+**描述**
+
+创建具有颜色变换效果的图像滤波器。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_ColorFilter | 指向具有颜色变换效果的颜色滤波器对象[OH_Drawing_ColorFilter](#oh_drawing_colorfilter)。 | 
+| OH_Drawing_ImageFilter | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 | 
+
+**返回：**
+
+函数会返回一个指针，指针指向创建的图像滤波器对象[OH_Drawing_ImageFilter](#oh_drawing_imagefilter)。如果对象返回NULL，表示创建失败； 可能的原因是可用内存为空，或者是colorFilter为NULL。
+
+
+### OH_Drawing_ImageFilterDestroy()
+
+```
+void OH_Drawing_ImageFilterDestroy (OH_Drawing_ImageFilter* )
+```
+
+**描述**
+
+销毁图像滤波器对象并回收该对象占有内存。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_ImageFilter | 指向图像滤波器对象[OH_Drawing_ImageFilter](#oh_drawing_imagefilter)的指针。 | 
+
+
+### OH_Drawing_MatrixMapPoints()
+
+```
+void OH_Drawing_MatrixMapPoints (const OH_Drawing_Matrix* , const OH_Drawing_Point2D* src, OH_Drawing_Point2D* dst, int count )
+```
+
+**描述**
+
+通过矩阵变换将源点数组映射到目标点数组。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
+| src | 源点数组。 | 
+| dst | 目标点数组，个数要与源点相等。 | 
+| count | 源点数组以及目标点数组的个数。 | 
+
+
+### OH_Drawing_MatrixMapRect()
+
+```
+bool OH_Drawing_MatrixMapRect (const OH_Drawing_Matrix* , const OH_Drawing_Rect* src, OH_Drawing_Rect* dst )
+```
+
+**描述**
+
+将目标矩形设置为一个新的矩形，该矩形是能够包围源矩形的四个顶点通过矩阵变换映射后形成的新顶点的最小矩形。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
+| src | 源矩形。 | 
+| dst | 目标矩形。 | 
+
+**返回：**
+
+函数返回源矩形与映射后的目标矩形是否相等。true表示相等，false表示不相等。
+
+
+### OH_Drawing_PathAddPolygon()
+
+```
+void OH_Drawing_PathAddPolygon (OH_Drawing_Path* path, const OH_Drawing_Point2D* points, uint32_t count, bool isClosed )
+```
+
+**描述**
+
+向路径添加多边形。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向当前路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| points | 表示多边形的顶点坐标数组。 | 
+| count | 表示多边形顶点坐标数组的大小。 | 
+| isClosed | 指示是否添加连接起始点和终止点的线。 | 
+
+
+### OH_Drawing_PathAddCircle()
+
+```
+void OH_Drawing_PathAddCircle (OH_Drawing_Path* path, float x, float y, float radius, OH_Drawing_PathDirection  )
+```
+
+**描述**
+
+按指定方向，向路径添加圆形。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| x | 表示圆心的x轴坐标。 | 
+| y | 表示圆心的y轴坐标。 | 
+| radius | 表示圆形的半径。 | 
+| OH_Drawing_PathDirection | 路径方向[OH_Drawing_PathDirection](#oh_drawing_pathdirection)。 | 
+
+
+### OH_Drawing_PathBuildFromSvgString()
+
+```
+bool OH_Drawing_PathBuildFromSvgString (OH_Drawing_Path* path, const char* str )
+```
+
+**描述**
+
+解析SVG字符串表示的路径。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| str | 表示SVG字符串。 | 
+
+**返回：**
+
+函数返回解析SVG字符串是否成功。true表示成功，false表示不成功。
+
+
+### OH_Drawing_PathGetBounds()
+
+```
+void OH_Drawing_PathGetBounds (OH_Drawing_Path* , OH_Drawing_Rect*  )
+```
+
+**描述**
+
+获取包含路径的最小边界框。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
+
+
+### OH_Drawing_PathIsClosed()
+
+```
+bool OH_Drawing_PathIsClosed (OH_Drawing_Path* path, bool forceClosed )
+```
+
+**描述**
+
+获取路径是否闭合。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 | 
+
+**返回：**
+
+返回路径是否闭合。true表示路径的测量结果为已闭合，false表示路径的测量结果为未闭合。
+
+
+### OH_Drawing_PathGetPositionTangent()
+
+```
+bool OH_Drawing_PathGetPositionTangent (OH_Drawing_Path* path, bool forceClosed, float distance, OH_Drawing_Point2D* position, OH_Drawing_Point2D* tangent )
+```
+
+**描述**
+
+获取距路径起始点指定距离的坐标点和切线值。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 | 
+| distance | 表示距离起始点的距离。 | 
+| position | 表示距路径起始点指定距离的坐标点。 | 
+| tangent | 表示距路径起始点指定距离的切线值。 | 
+
+**返回：**
+
+返回测量是否成功。true表示成功，false表示失败。
+
+
+### OH_Drawing_PathOp()
+
+```
+bool OH_Drawing_PathOp (OH_Drawing_Path* path, const OH_Drawing_Path* srcPath, OH_Drawing_PathOpMode op )
+```
+
+**描述**
+
+将两个路径按照指定的路径操作类型合并。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| srcPath | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| op | 路径操作枚举类型，支持可选的具体模式可见[OH_Drawing_PathOpMode](#oh_drawing_pathopmode)枚举。 | 
+
+**返回：**
+
+返回操作后的路径是否为空。true表示路径不为空，false表示路径为空。
+
+
+### OH_Drawing_PathGetMatrix()
+
+```
+bool OH_Drawing_PathGetMatrix (OH_Drawing_Path* path, bool forceClosed, float distance, OH_Drawing_Matrix* matrix, OH_Drawing_PathMeasureMatrixFlags flag )
+```
+
+**描述**
+
+获取距路径起始点指定距离的相应变换矩阵。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 | 
+| distance | 表示距离起始点的距离。 | 
+| matrix | 表示要获取的变换矩阵。 | 
+| flag | 矩阵信息维度枚举，支持可选的具体模式可见[OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags)枚举。 | 
+
+**返回：**
+
+返回获取变换矩阵是否成功。true表示获取成功，false表示获取失败，失败的原因可能是path为NULL或者长度为0。
+
+
+### OH_Drawing_PenGetFillPath()
+
+```
+bool OH_Drawing_PenGetFillPath (OH_Drawing_Pen* , const OH_Drawing_Path* src, OH_Drawing_Path* dst, const OH_Drawing_Rect* , const OH_Drawing_Matrix*  )
+```
+
+**描述**
+
+获取使用画笔绘制的源路径轮廓，并用目标路径表示。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Pen | 指向画笔对象[OH_Drawing_Pen](#oh_drawing_pen)的指针。 | 
+| src | 指向源路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| dst | 指向目标路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针，推荐使用NULL。 | 
+| OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针，推荐使用NULL, 默认是一个单位矩阵。 | 
+
+**返回：**
+
+获取目标路径是否成功。true表示获取成功，false表示获取失败。
+
+
+### OH_Drawing_PenCopy()
+
+```
+OH_Drawing_Pen* OH_Drawing_PenCopy (OH_Drawing_Pen* pen)
+```
+
+**描述**
+
+创建一个画笔对象副本[OH_Drawing_Pen](#oh_drawing_pen)，用于拷贝一个已有画笔对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_Pen | 指向画笔对象的指针。 | 
+
+**返回：**
+
+函数会返回一个指针，指针指向创建的画笔对象副本[OH_Drawing_Pen](#oh_drawing_pen)。如果对象返回NULL，表示创建失败； 可能的原因是可用内存为空，或者是pen为NULL。
+
+
+### OH_Drawing_PixelMapGetFromNativePixelMap()
+
+```
+OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromNativePixelMap (NativePixelMap_* )
+```
+
+**描述**
+
+从图像框架定义的像素图对象中获取本模块定义的像素图对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| NativePixelMap_ | 指向图像框架定义的像素图对象**NativePixelMap_**的指针。 | 
+
+**返回：**
+
+函数会返回一个指向本模块定义的像素图对象[OH_Drawing_PixelMap](#oh_drawing_pixelmap)的指针。如果对象返回NULL，表示创建失败； 可能的原因是NativePixelMap_为NULL。
+
+
+### OH_Drawing_PixelMapGetFromOhPixelMapNative()
+
+```
+OH_Drawing_PixelMap* OH_Drawing_PixelMapGetFromOhPixelMapNative (OH_PixelmapNative* )
+```
+
+**描述**
+
+从图像框架定义的像素图对象中获取本模块定义的像素图对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_PixelmapNative | 指向图像框架定义的像素图对象**OH_PixelmapNative**的指针。 | 
+
+**返回：**
+
+函数会返回一个指向本模块定义的像素图对象[OH_Drawing_PixelMap](#oh_drawing_pixelmap)的指针。如果对象返回NULL，表示创建失败； 可能的原因是OH_PixelmapNative为NULL。
+
+
+### OH_Drawing_PixelMapDissolve()
+
+```
+void OH_Drawing_PixelMapDissolve (OH_Drawing_PixelMap* )
+```
+
+**描述**
+
+解除本模块定义的像素图对象和图像框架定义的像素图对象之间的关系，该关系通过调用 [OH_Drawing_PixelMapGetFromNativePixelMap](#oh_drawing_pixelmapgetfromnativepixelmap)或[OH_Drawing_PixelMapGetFromOhPixelMapNative](#oh_drawing_pixelmapgetfromohpixelmapnative)建立。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| OH_Drawing_PixelMap | 指向像素图对象[OH_Drawing_PixelMap](#oh_drawing_pixelmap)的指针。 | 
+
+
+### OH_Drawing_RectJoin()
+
+```
+bool OH_Drawing_RectJoin (OH_Drawing_Rect* rect, const OH_Drawing_Rect* other )
+```
+
+**描述**
+
+将两个矩形取并集。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| rect | 指向矩形对象的指针。 | 
+| other | 指向矩形对象的指针。 | 
+
+**返回：**
+
+返回两个矩形取并集的结果。true表示成功，false表示失败，失败的原因可能是两个矩形至少有一个为NULL或者other矩形大小为空。
+
+
+### OH_Drawing_RegionContains()
+
+```
+bool OH_Drawing_RegionContains (OH_Drawing_Region* region, int32_t x, int32_t y )
+```
+
+**描述**
+
+判断区域是否包含指定坐标点。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| region | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
+| int32_t | 表示指定坐标点的x轴坐标。 | 
+| int32_t | 表示指定坐标点的y轴坐标。 | 
+
+**返回：**
+
+返回区域是否包含指定坐标点。true表示区域包含该坐标点，false表示区域不包含该坐标点。
+
+
+### OH_Drawing_RegionOp()
+
+```
+bool OH_Drawing_RegionOp (OH_Drawing_Region* region, const OH_Drawing_Region* dst, OH_Drawing_RegionOpMode op )
+```
+
+**描述**
+
+将两个区域按照指定的区域操作类型合并。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| region | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
+| dst | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
+| op | 区域操作枚举类型，支持可选的具体模式可见[OH_Drawing_RegionOpMode](#oh_drawing_regionopmode)枚举。 | 
+
+**返回：**
+
+返回操作后的区域是否为空。true表示区域不为空，false表示区域为空。
+
+
+### OH_Drawing_RegionSetPath()
+
+```
+bool OH_Drawing_RegionSetPath (OH_Drawing_Region* region, const OH_Drawing_Path* path, const OH_Drawing_Region* clip )
+```
+
+**描述**
+
+给区域对象设置为指定区域内路径表示的范围。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| region | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
+| path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
+| clip | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
+
+**返回：**
+
+返回操作后的区域是否为空。true表示区域不为空，false表示区域为空。
+
+
+### OH_Drawing_ShaderEffectCreateColorShader()
+
+```
+OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateColorShader (const uint32_t color)
+```
+
+**描述**
+
+创建具有单一颜色的着色器。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| color | 表示着色器的颜色. | 
+
+**返回：**
+
+函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](#oh_drawing_shadereffect)。如果对象返回NULL，表示创建失败； 可能的原因是可用内存为空。
+
+
+### OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix()
+
+```
+OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix (const OH_Drawing_Point2D* startPt, const OH_Drawing_Point2D* endPt, const uint32_t* colors, const float* pos, uint32_t size, OH_Drawing_TileMode , const OH_Drawing_Matrix*  )
+```
+
+**描述**
+
+创建着色器，在两个指定点之间生成线性渐变。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| startPt | 表示渐变的起点。 | 
+| endPt | 表示渐变的终点。 | 
+| colors | 表示在两个点之间分布的颜色。 | 
+| pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL, 颜色均匀分布在起点和终点之间。 | 
+| size | 表示颜色和位置的数量(如果pos不为NULL)。 | 
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode)枚举。 | 
+| OH_Drawing_Matrix | 表示作用于着色器上的矩阵变换，如果matrix是NULL, 默认是一个单位矩阵。 | 
+
+**返回：**
+
+函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](#oh_drawing_shadereffect)。如果对象返回NULL，表示创建失败； 可能的原因是可用内存为空，或者是startPt、endPt、colors至少一个为NULL。
+
+
+### OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix()
+
+```
+OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix (const OH_Drawing_Point2D* centerPt, float radius, const uint32_t* colors, const float* pos, uint32_t size, OH_Drawing_TileMode , const OH_Drawing_Matrix*  )
+```
+
+**描述**
+
+创建着色器，在给定圆心和半径的情况下生成径向渐变。 从起点到终点颜色从内到外进行圆形渐变（从中间向外拉）被称为径向渐变。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| centerPt | 表示渐变的圆心。 | 
+| radius | 表示渐变的半径。 | 
+| colors | 表示在径向上分布的颜色。 | 
+| pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL, 颜色均匀分布在径向上。 | 
+| size | 表示颜色和位置的数量(如果pos不为NULL)。 | 
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见**OH_Drawing_TileMoe**枚举。 | 
+| OH_Drawing_Matrix | 表示作用于着色器上的矩阵变换，如果matrix是NULL, 默认是一个单位矩阵。 | 
+
+**返回：**
+
+函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](#oh_drawing_shadereffect)。如果对象返回NULL，表示创建失败； 可能的原因是可用内存为空，或者是centerPt、colors至少一个为NULL。
+
+
+### OH_Drawing_ShaderEffectCreateTwoPointConicalGradient()
+
+```
+OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateTwoPointConicalGradient (const OH_Drawing_Point2D* startPt, float startRadius, const OH_Drawing_Point2D* endPt, float endRadius, const uint32_t* colors, const float* pos, uint32_t size, OH_Drawing_TileMode , const OH_Drawing_Matrix*  )
+```
+
+**描述**
+
+创建着色器，在给定两个圆之间生成渐变。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| startPt | 表示渐变的起点圆心。 | 
+| startRadius | 表示渐变的起点半径。 | 
+| endPt | 表示渐变的终点圆心。 | 
+| endRadius | 表示渐变的终点半径。 | 
+| colors | 表示在两个圆之间分布的颜色。 | 
+| pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL, 颜色均匀分布在两个圆之间。 | 
+| size | 表示颜色和位置的数量(如果pos不为NULL)。 | 
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode-1)枚举。 | 
+| OH_Drawing_Matrix | 表示作用于着色器上的矩阵变换，如果matrix是NULL, 默认是一个单位矩阵。 | 
+
+**返回：**
+
+函数会返回一个指针，指针指向创建的着色器对象[OH_Drawing_ShaderEffect](#oh_drawing_shadereffect)。如果对象返回NULL，表示创建失败； 可能的原因是可用内存为空，或者是startPt、endPt、colors至少一个为NULL。
+
 
 
 ### OH_Drawing_BitmapBuild()
@@ -3450,7 +4333,7 @@ void OH_Drawing_CanvasDrawImageRectWithSrc (OH_Drawing_Canvas* , const OH_Drawin
 | src | 指向源矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
 | dst | 指向目标矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
 | OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针。 | 
-| OH_Drawing_SrcRectConstraint | 约束类型，支持可选的具体类型可见{\@Link OH_Drawing_SrcRectConstraint}枚举。 | 
+| OH_Drawing_SrcRectConstraint | 约束类型，支持可选的具体类型可见[OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint)枚举。 | 
 
 
 ### OH_Drawing_CanvasDrawLine()
@@ -3541,7 +4424,7 @@ void OH_Drawing_CanvasDrawPixelMapRect (OH_Drawing_Canvas* , OH_Drawing_PixelMap
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
-| OH_Drawing_PixelMap | 指向像素分布图[OH_Drawing_PixelMap](#oh_drawing_pixelmap)的指针。 | 
+| OH_Drawing_PixelMap | 指向像素图[OH_Drawing_PixelMap](#oh_drawing_pixelmap)的指针。 | 
 | src | 源画布指定矩形区域，可以为空。 | 
 | dst | 目标画布指定矩形区域。 | 
 | OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针。 | 
@@ -9731,8 +10614,8 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateImageShader (OH_Drawing_Im
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Image | 指向图片对象[OH_Drawing_Image](#oh_drawing_image)的指针。 | 
-| tileX | 水平方向着色器效果平铺模式类型，支持可选的具体模式可见{\@Link OH_Drawing_TileMoe}枚举。 | 
-| tileY | 垂直方向着色器效果平铺模式类型，支持可选的具体模式可见{\@Link OH_Drawing_TileMoe}枚举。 | 
+| tileX | 水平方向着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode-1)枚举。 | 
+| tileY | 垂直方向着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode-1)枚举。 | 
 | OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针。 | 
 | OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。如果矩阵指针为空，默认传入单位矩阵。 | 
 
@@ -9762,9 +10645,9 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateLinearGradient (const OH_D
 | startPt | 表示渐变的起点。 | 
 | endPt | 表示渐变的终点。 | 
 | colors | 表示在两个点之间分布的颜色。 | 
-| pos | 表示每种对应颜色在颜色数组中的相对位置。 | 
-| size | 表示颜色和位置的数量。 | 
-| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见{\@Link OH_Drawing_TileMoe}枚举。 | 
+| pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL，颜色均匀分布在起点和终点之间。 | 
+| size | 表示颜色和位置的数量（如果pos不为NULL）。 | 
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode-1)枚举。 | 
 
 **返回：**
 
@@ -9789,12 +10672,12 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateRadialGradient (const OH_D
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| centerPt | 指示渐变的圆心。 | 
-| radius | 指示此渐变的圆半径。 | 
-| colors | 表示在两个点之间分布的颜色。 | 
-| pos | 表示每种对应颜色在颜色数组中的相对位置。 | 
-| size | 表示颜色和位置的数量。 | 
-| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见{\@Link OH_Drawing_TileMoe}枚举。 | 
+| centerPt | 表示渐变的圆心。 | 
+| radius | 表示渐变的圆半径。 | 
+| colors | 表示在径向上分布的颜色。 | 
+| pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL，颜色均匀分布在径向上。 | 
+| size | 表示颜色和位置的数量（如果pos不为NULL）。 | 
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode-1)枚举。 | 
 
 **返回：**
 
@@ -9809,7 +10692,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateSweepGradient (const OH_Dr
 
 **描述**
 
-创建着色器，在给定中心的情况下生成扇形渐变。
+创建着色器，在给定中心的情况下生成扇形渐变。颜色从0°到360°被称为扇形渐变。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9821,9 +10704,9 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateSweepGradient (const OH_Dr
 | -------- | -------- |
 | centerPt | 表示渐变的圆心。 | 
 | colors | 表示在两个点之间分布的颜色。 | 
-| pos | 表示每种对应颜色在颜色数组中的相对位置。 | 
-| size | 表示颜色和位置的数量。 | 
-| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见{\@Link OH_Drawing_TileMoe}枚举。 | 
+| pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL，颜色均匀分布在0°和360°之间。 | 
+| size | 表示颜色和位置的数量（如果pos不为NULL）。 | 
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode-1)枚举。 | 
 
 **返回：**
 
@@ -10137,7 +11020,7 @@ void OH_Drawing_TextBlobGetBounds (OH_Drawing_TextBlob* , OH_Drawing_Rect*  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextBlob | 指向文本对象[OH_Drawing_TextBlob](#oh_drawing_textblob)的指针。 | 
-| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针， 开发者可调用[OH_Drawing_Rect](#oh_drawing_rect)接口创建。 | 
+| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针， 开发者可调用[OH_Drawing_RectCreate](#oh_drawing_rectcreate)接口创建。 | 
 
 
 ### OH_Drawing_TextStyleAddFontFeature()
@@ -10986,7 +11869,7 @@ void OH_Drawing_TextStyleSetBackgroundRect (OH_Drawing_TextStyle* , const OH_Dra
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) | 指向{\@Link [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)}对象的指针。 | 
+| [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) | 指向[OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)对象的指针。 | 
 | int | 要设置的样式id，仅当背景框为圆角矩形时有效。文本处理时会被划分为多个分段，每个分段都有自己的TextStyle，id标识着这个分段将被绘制于第几个背景矩形框中。 若一行中每个分段的id全为0，表示所有分段绘制在同一个圆角矩形背景框中； 若一行中的id为0, 1，则id为0的分段绘制在一个圆角矩形背景框内，id为1的分段绘制在另一个圆角矩形背景框内，以此类推。 | 
 
 
@@ -11784,7 +12667,7 @@ OH_Drawing_TextDirection OH_Drawing_TypographyGetTextDirection (OH_Drawing_Typog
 
 **返回：**
 
-返回文本方向。1为从左到右，0或其它为从右到左，具体可见{\@Link OH_Drawing_TextDirection}枚举。
+返回文本方向。1为从左到右，0或其它为从右到左，具体可见[OH_Drawing_TextDirection](#oh_drawing_textdirection)枚举。
 
 
 ### OH_Drawing_TypographyGetTextEllipsis()
@@ -12352,6 +13235,9 @@ bool OH_Drawing_TypographyStyleStrutStyleEquals (OH_Drawing_StrutStyle* from, OH
 | from | 被比较的支柱样式结构体。 | 
 | to | 用于比较的支柱样式结构体。 | 
 
+**返回：**
+
+返回支柱样式结构体是否相同，true表示相同，false表示不相同。
 
 ### OH_Drawing_TypographyTextGetHeightBehavior()
 

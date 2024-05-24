@@ -6,6 +6,7 @@
 >
 >  * 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  * 仅支持作为[Grid](ts-container-grid.md)组件的子组件使用。
+>  * 当GridItem配合LazyForEach使用时，GridItem子组件在GridItem创建时创建。配合if/else、ForEach使用时，或父组件为Grid时，GridItem子组件在GridItem布局时创建。
 
 
 ## 子组件

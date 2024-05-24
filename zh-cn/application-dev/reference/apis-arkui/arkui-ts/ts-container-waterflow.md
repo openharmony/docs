@@ -619,6 +619,13 @@ export class WaterFlowDataSource implements IDataSource {
     })
   }
 
+  //通知控制器数据批量修改
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
+    })
+  }
+
   // 获取数据总数
   public totalCount(): number {
     return this.dataArray.length

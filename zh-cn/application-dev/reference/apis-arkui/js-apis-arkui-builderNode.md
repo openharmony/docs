@@ -33,7 +33,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 >
 > 从API version 12开始，新增以下组件支持纹理导出：DatePicker、ForEach、Grid、IfElse、LazyForEach、List、Scroll、Swiper、TimePicker、@Component修饰的自定义组件、NodeContainer以及NodeContainer下挂载的FrameNode和RenderNode。
 >
-> 使用方式可参考[同层渲染绘制XComponent+AVPlayer和Button组件](../../web/web-same-layer.md)。
+> 使用方式可参考[同层渲染绘制](../../web/web-same-layer.md)。
 
 ## RenderOptions
 

@@ -1,35 +1,117 @@
-# Node-API 扩展能力接口
+# 使用Node-API扩展能力接口
 
 ## 简介
 
-扩展能力接口进一步扩展了Node-API的功能，提供了一些额外的接口，用于在Node-API模块中与JavaScript进行更灵活的交互和定制。这些接口可以用于创建自定义JavaScript对象等场景。
+[扩展能力接口](../reference/native-lib/napi.md)进一步扩展了Node-API的功能，提供了一些额外的接口，用于在Node-API模块中与JavaScript进行更灵活的交互和定制，这些接口可以用于创建自定义JavaScript对象等场景。
 
-## 基本概念
+## 模块加载
 
-在理解Node-API扩展能力接口之前，需要了解一些基本概念：
+### 接口描述
 
-- **模块:** 一个模块是一个可重用的、独立的代码单元。它封装了相关功能，并可以被其他模块引用和使用。
-- **命名空间:** 命名空间是一种用于组织代码的机制，可以将相关的函数、变量和类型放置在一个命名空间下，防止命名冲突。
-
-## 场景和功能介绍
-
-以下Node-API接口主要在已有接口进行扩展。使用场景如下：
 | 接口 | 描述 |
 | -------- | -------- |
 | napi_load_module | 用于在Node-API模块中将abc文件作为模块加载，返回模块的命名空间，适用于需要在运行时动态加载模块或资源的应用程序，从而实现灵活的扩展和定制。 |
+| napi_load_module_with_info | 用于在Node-API中进行模块的加载，当模块加载出来之后，可以使用函数napi_get_property获取模块导出的变量，也可以使用napi_get_named_property获取模块导出的函数，该函数可以在[新创建的ArkTs基础运行时环境](use-napi-ark-runtime.md)中使用 |
+| napi_module_register | 有些功能可能需要通过NAPI模块来实现以获得更好的性能，通过将这些功能实现为自定义模块并注册到JavaScript环境中，可以在一定程度上提高整体的性能。 |
+
+### 使用示例
+
+#### napi_load_module
+
+[使用Node-API接口在主线程中进行模块加载](use-napi-load-module.md)
+
+#### napi_load_module_with_info
+
+[使用Node-API接口进行模块加载](use-napi-load-module-with-info.md)
+
+#### napi_module_register
+
+在JavaScript代码环境中使用NAPI模块编写的代码来实现特定的功能，可以将这部分功能封装成自定义模块，然后通过napi_module_register将其注册到JavaScript代码环境中，以实现功能的扩展和复用。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+// 此模块是一个NAPI的回调函数
+static napi_value Add(napi_env env, napi_callback_info info)
+{
+    // 接受传入两个参数
+    size_t requireArgc = 2;
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+
+    // 将传入的napi_value类型的参数转化为double类型
+    double valueLift;
+    double valueRight;
+    napi_get_value_double(env, args[0], &valueLift);
+    napi_get_value_double(env, args[1], &valueRight);
+
+    // 将转化后的double值相加并转成napi_value返回给JavaScript代码使用
+    napi_value sum;
+    napi_create_double(env, valueLift + valueRight, &sum);
+
+    return sum;
+}
+
+// C++函数Init用于初始化插件，用于将JavaScript层的函数或属性与C++层的函数进行关联
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    // 通过napi_property_descriptor结构体，可以定义需要导出的属性，并在NAPI模块中使用。napi_define_properties将属性与实际的C++函数进行关联，使其可以被JavaScript层访问和调用
+    napi_property_descriptor desc[] = {
+        { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr }
+    };
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
+// 插件的初始化被定义在一个名为demoModule的结构体中，其中包含了模块的基本信息，比如模块的版本号、注册函数等
+static napi_module demoModule = {
+    .nm_version =1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void*)0),
+    .reserved = { 0 },
+};
+
+// 在RegisterEntryModule函数中，使用napi_module_register函数注册并导出了这个插件
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
+    napi_module_register(&demoModule);
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const add: (a: number, b: number) => number;
+```
+
+ArkTS侧示例代码
+
+```ts
+hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+
+```
+
+## JS Object相关
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
 | napi_create_object_with_properties | 用于在Node-API模块中使用给定的napi_property_descriptor创建js Object。descriptor的键名必须为string，且不可转为number。 |
 | napi_create_object_with_named_properties | 用于在Node-API模块中使用给定的napi_value和键名创建js Object。键名必须为string，且不可转为number。 |
-| napi_run_script_path | 用于在Node-API模块中运行指定abc文件。 |
-| napi_queue_async_work_with_qos | 用于将异步工作对象加入队列，让开发者能够根据QoS优先级来管理和调度异步工作的执行，从而更好地满足程序的性能和响应需求。 |
-| napi_coerce_to_native_binding_object | 用于给JavaScript对象绑定回调和回调所需的参数，其作用是为了给JavaScript对象携带Native信息。 |
 
-## 使用示例
+### 使用示例
 
-### napi_load_module
-
-[napi_load_module](use-napi-load-module.md)
-
-### napi_create_object_with_properties
+#### napi_create_object_with_properties
 
 用于使用给定的napi_property_descriptor作为属性去创建一个JavaScript对象，并且descriptor的键名必须为string，且不可转为number。
 
@@ -71,7 +153,7 @@ let value = testNapi.createObjectWithProperties('createObject');
 hilog.info(0x0000, 'testTag', 'NAPI napi_create_object_with_properties:%{public}s', JSON.stringify(value));
 ```
 
-### napi_create_object_with_named_properties
+#### napi_create_object_with_named_properties
 
 用于使用给定的napi_value和键名创建一个js对象，并且给定的键名必须为string，且不可转为number。
 
@@ -117,7 +199,17 @@ let value = testNapi.createObjectWithNameProperties('ls');
 hilog.info(0x0000, 'testTag', 'NAPI napi_create_object_with_named_properties:%{public}s', JSON.stringify(value));
 ```
 
-### napi_run_script_path
+## 运行指定abc文件
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_run_script_path | 用于在Node-API模块中运行指定abc文件。 |
+
+### 使用示例
+
+#### napi_run_script_path
 
 在Node-API模块中运行abc文件。
 
@@ -175,13 +267,33 @@ function add(a, b) {
 add(1, 2);
 ```
 
-### napi_queue_async_work_with_qos
+## 异步工作对象加入队列并指定优先级
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_queue_async_work_with_qos | 用于将异步工作对象加入队列，让开发者能够根据QoS优先级来管理和调度异步工作的执行，从而更好地满足程序的性能和响应需求。 |
+
+### 使用示例
+
+#### napi_queue_async_work_with_qos
 
 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。
 
 [指定异步任务调度优先级](../performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md#指定异步任务调度优先级)
 
-### napi_coerce_to_native_binding_object
+## 给JavaScript对象绑定回调和回调所需的参数
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_coerce_to_native_binding_object | 用于给JavaScript对象绑定回调和回调所需的参数，其作用是为了给JavaScript对象携带Native信息。 |
+
+### 使用示例
+
+#### napi_coerce_to_native_binding_object
 
 用于给JS Object绑定回调和回调所需的参数，给JS Object携带Native信息。
 
@@ -277,6 +389,21 @@ parent.onmessage = function(message) {
 
 worker相关开发配置和流程参考以下链接：
 [使用Worker进行线程间通信](../reference/apis-arkts/js-apis-worker.md)
+
+## 事件循环
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_run_event_loop | 触发底层的事件循环。 |
+| napi_stop_event_loop | 停止底层的事件循环。 |
+
+### 使用示例
+
+#### napi_run_event_loop、napi_stop_event_loop
+
+[使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
 
 ### 编译配置、模块注册
 

@@ -50,6 +50,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 获取当前帧所有的历史点。不同设备每帧的触摸事件频率不同，且该接口只能在[TouchEvent](#touchevent对象说明)中调用，可以通过该接口获取触发[onTouch](#ontouch)时当前帧历史点的相关信息。[onTouch](#ontouch)一帧只会调用一次，若当前帧收到的[TouchEvent](#touchevent对象说明)大于1，会将该帧最后一个点通过[onTouch](#ontouch)返还，剩余点作为历史点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **返回值:**
 
 | 类型     | 描述                      |

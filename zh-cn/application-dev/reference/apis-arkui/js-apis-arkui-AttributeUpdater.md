@@ -24,24 +24,11 @@ import { AttributeUpdater } from '@ohos.arkui.modifier'
 >  
 >  3. 一个AttributeUpdater对象只能同时关联一个组件，否则将出现设置的属性只在一个组件上生效的现象。
 >  
->  4. 开发者需要自行保障AttributeUpdater中T和C的类型匹配。比如T为ImageAttribute，C要对应为ImageInterface，否则可能导致
->  使用updateConstructorParams时功能异常。
->  
->  5. updateConstructorParams当前只支持Image，Text和Span组件。
-
-## Initializer
-type Initializer\<T> = () => T
-
-可以将属性更新到本地的修饰器。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## AttributeUpdater
-AttributeUpdater<T, C = Initializer\<T>>
+AttributeUpdater\<T>
 
 为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#AttributeModifier)的实现类，开发者需要自定义class继承AttributeUpdater。
-
-其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等，需要使用updateConstructorParams时才需要传递C类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -157,50 +144,3 @@ struct updaterDemo2 {
 }
 ```
 ![attributeUpdater2](figures/attribute-updater2.gif)
-
-### updateConstructorParams
-updateConstructorParams: C
-
-用来更改组件的构造入参。C代表组件的构造函数类型。
-
-其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**示例：** 
-
-使用updateConstructorParams更新组件构造入参。
-
-```ts
-// xxx.ets
-import { AttributeUpdater } from '@ohos.arkui.modifier'
-
-class MyTextModifier extends AttributeUpdater<TextAttribute, TextInterface> {
-  initializeModifier(instance: TextAttribute) {
-  }
-}
-
-@Entry
-@Component
-struct attributeDemo3 {
-  private modifier: MyTextModifier = new MyTextModifier()
-
-  build() {
-    Row() {
-      Column() {
-        Text("Initialize")
-          .attributeModifier(this.modifier)
-          .fontSize(14).border({ width: 1 }).textAlign(TextAlign.Center).lineHeight(20)
-          .width(200).height(50)
-          .backgroundColor('#fff7f7f7')
-          .onClick(() => {
-            this.modifier.updateConstructorParams("Updated")
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-![attributeUpdater3](figures/attribute-updater3.gif)
