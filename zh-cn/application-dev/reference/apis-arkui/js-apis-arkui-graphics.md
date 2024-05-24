@@ -509,6 +509,15 @@ static resourceColor(color: ResourceColor): ColorMetrics
 | ------------- | ---------------- |
 | [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[系统资源错误码](errorcode-system-resource.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | Parameter error. Possible cause:1.The type of the input color parameter is not ResourceColor;2.The format of the input color string is not RGB or RGBA.             |
+| 180003   | Failed to obtain the color resource.         |
+
 ### blendColor<sup>12+</sup>
 
 blendColor(overlayColor: ColorMetrics): ColorMetrics
@@ -528,6 +537,14 @@ blendColor(overlayColor: ColorMetrics): ColorMetrics
 | 类型          | 说明             |
 | ------------- | ---------------- |
 | [ColorMetrics](#colormetrics12) | 混合后的ColorMetrics 类的实例。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | Parameter error. The type of the input parameter is not ColorMetrics.                |
 
 ### color<sup>12+</sup>
 
@@ -599,6 +616,41 @@ get alpha(): number
 | ------------- | ---------------- |
 | number | 颜色的A分量（透明度），值是0~255的整数。|
 
+**示例：**
+
+```ts
+import { ColorMetrics } from '@ohos.arkui.node';
+import { BusinessError } from '@ohos.base';
+
+function getBlendColor(baseColor: ResourceColor):ColorMetrics {
+  let sourceColor:ColorMetrics;
+  try {
+    //在使用ColorMetrics的resourceColor和blendColor需要追加捕获异常处理
+    //可能返回的arkui子系统错误码有401和180003
+    sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
+  } catch (error) {
+    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " + (error as BusinessError).message);
+    sourceColor = ColorMetrics.resourceColor("#19000000");
+  }
+  return sourceColor;
+}
+
+@Entry
+@Component
+struct ColorMetricsSample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button("ColorMetrics")
+        .width('80%')
+        .align(Alignment.Center)
+        .height(50)
+        .backgroundColor(getBlendColor($r("app.color.background_red")).color)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
 ## Corners\<T><sup>12+</sup>
 
 用于设置四个角的圆角度数。
