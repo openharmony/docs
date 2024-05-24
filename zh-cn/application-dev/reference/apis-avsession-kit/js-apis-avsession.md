@@ -4347,9 +4347,9 @@ off(type: 'keyRequest', callback?: KeyRequestCallback): void
 aVCastController.off('keyRequest');
 ```
 ## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
 许可证请求事件的回调函数。
-type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
