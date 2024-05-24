@@ -11,7 +11,7 @@ hid模块提供了访问蓝牙hid相关功能的方法。
 ## 导入模块
 
 ```js
-import hid from '@ohos.bluetooth.hid';
+import { hid } from '@kit.ConnectivityKit';
 ```
 
 
@@ -32,7 +32,7 @@ createHidHostProfile(): HidHostProfile
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hidHostProfile = hid.createHidHostProfile();
     console.info('hidHost success');

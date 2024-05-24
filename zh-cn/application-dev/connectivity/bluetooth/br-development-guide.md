@@ -33,8 +33,8 @@
 5. 示例代码：
 
 ```ts
-import access from '@ohos.bluetooth.access';
-import { BusinessError } from '@ohos.base';
+import { access } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 // 开启蓝牙
 access.enableBluetooth();

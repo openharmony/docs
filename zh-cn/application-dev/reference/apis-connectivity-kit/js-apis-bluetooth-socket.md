@@ -11,7 +11,7 @@ socket模块提供了操作和管理蓝牙socket的方法。
 ## 导入模块
 
 ```js
-import socket from '@ohos.bluetooth.socket';
+import { socket } from '@kit.ConnectivityKit';
 ```
 
 ## socket.sppListen
@@ -46,7 +46,7 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let serverNumber = -1;
 let serverSocket = (code: BusinessError, number: number) => {
   if (code) {
@@ -96,7 +96,7 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 let serverNumber = -1;
 let acceptClientSocket = (code: BusinessError, number: number) => {
@@ -149,7 +149,7 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let clientNumber = -1;
 let clientSocket = (code: BusinessError, number: number) => {
@@ -197,7 +197,7 @@ sppCloseServerSocket(socket: number): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let serverNumber = -1; // 此处serverNumber需赋值为调用sppListen接口后，回调中得到的serverNumber。
 try {
     socket.sppCloseServerSocket(serverNumber);
@@ -233,7 +233,7 @@ sppCloseClientSocket(socket: number): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 try {
     socket.sppCloseClientSocket(clientNumber);
@@ -270,7 +270,7 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
@@ -311,7 +311,7 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let dataRead = (dataBuffer: ArrayBuffer) => {
   let data = new Uint8Array(dataBuffer);
@@ -344,7 +344,7 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 try {
     socket.off('sppRead', clientNumber);

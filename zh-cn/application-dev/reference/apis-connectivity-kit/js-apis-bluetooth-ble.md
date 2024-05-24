@@ -11,7 +11,7 @@ ble模块提供了对蓝牙操作和管理的方法。
 ## 导入模块
 
 ```js
-import ble from '@ohos.bluetooth.ble';
+import { ble } from '@kit.ConnectivityKit';
 ```
 
 
@@ -60,7 +60,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -98,7 +98,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let result: Array<string> = ble.getConnectedBLEDevices();
 } catch (err) {
@@ -137,7 +137,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
@@ -183,7 +183,7 @@ stopBLEScan(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     ble.stopBLEScan();
 } catch (err) {
@@ -223,7 +223,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -291,7 +291,7 @@ stopAdvertising(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     ble.stopAdvertising();
 } catch (err) {
@@ -333,7 +333,7 @@ startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&l
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -430,7 +430,7 @@ startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -518,7 +518,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: As
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -627,7 +627,7 @@ enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -730,7 +730,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback:
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -836,7 +836,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -935,7 +935,7 @@ stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -1038,7 +1038,7 @@ stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -1133,7 +1133,7 @@ on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeI
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
     console.info('bluetooth advertising state = ' + JSON.stringify(data));
 }
@@ -1176,7 +1176,7 @@ off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChang
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
     console.info('bluetooth advertising state = ' + JSON.stringify(data));
 }
@@ -1217,7 +1217,7 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1258,7 +1258,7 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<ble.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1305,7 +1305,7 @@ server端添加服务。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -1369,7 +1369,7 @@ removeService(serviceUuid: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let server: ble.GattServer = ble.createGattServer();
 try {
     // 调用removeService接口前需要完成server端和client端的配对及连接。
@@ -1403,7 +1403,7 @@ close(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let server: ble.GattServer = ble.createGattServer();
 try {
     server.close();
@@ -1444,7 +1444,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -1503,7 +1503,7 @@ server端特征值发生变化时，主动通知已连接的client设备。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferC = new ArrayBuffer(8);
 let notifyCharacter: ble.NotifyCharacteristic = {
     serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
@@ -1551,7 +1551,7 @@ server端回复client端的读写请求。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
@@ -1592,7 +1592,7 @@ server端订阅特征值读请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
@@ -1635,7 +1635,7 @@ server端取消订阅特征值读请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('characteristicRead');
@@ -1665,7 +1665,7 @@ server端订阅特征值写请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -1711,7 +1711,7 @@ server端取消订阅特征值写请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('characteristicWrite');
@@ -1741,7 +1741,7 @@ server端订阅描述符读请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
@@ -1784,7 +1784,7 @@ server端取消订阅描述符读请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorRead');
@@ -1814,7 +1814,7 @@ server端订阅描述符写请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 let gattServer: ble.GattServer = ble.createGattServer();
@@ -1860,7 +1860,7 @@ server端取消订阅描述符写请求事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('descriptorWrite');
@@ -1890,8 +1890,8 @@ server端订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import constant from '@ohos.bluetooth.constant';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { constant } from '@kit.ConnectivityKit';
 function Connected(bleConnectionChangeState: ble.BLEConnectionChangeState) {
   let deviceId: string = bleConnectionChangeState.deviceId;
   let status: constant.ProfileConnectionState = bleConnectionChangeState.state;
@@ -1925,7 +1925,7 @@ server端取消订阅BLE连接状态变化事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
 let gattServer: ble.GattServer = ble.createGattServer();
 gattServer.off('connectionStateChange');
@@ -1955,7 +1955,7 @@ server端订阅MTU状态变化事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.on('BLEMtuChange', (mtu: number) => {
@@ -1987,7 +1987,7 @@ server端取消订阅MTU状态变化事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattServer: ble.GattServer = ble.createGattServer();
     gattServer.off('BLEMtuChange');
@@ -2025,7 +2025,7 @@ client端发起连接远端蓝牙低功耗设备。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -2058,7 +2058,7 @@ client端断开与远端蓝牙低功耗设备的连接。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
@@ -2091,7 +2091,7 @@ close(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
@@ -2129,7 +2129,7 @@ client获取远端蓝牙低功耗设备名。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2172,7 +2172,7 @@ client获取远端蓝牙低功耗设备名。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2214,7 +2214,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback 模式
 function getServices(code: BusinessError, gattServices: Array<ble.GattService>) {
   if (code.code == 0) {
@@ -2266,7 +2266,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // Promise 模式
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -2310,7 +2310,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function readCcc(code: BusinessError, BLECharacteristic: ble.BLECharacteristic) {
   if (code.code != 0) {
       return;
@@ -2380,7 +2380,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2436,7 +2436,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function readDesc(code: BusinessError, BLEDescriptor: ble.BLEDescriptor) {
     if (code.code != 0) {
         return;
@@ -2499,7 +2499,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -2549,7 +2549,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2616,7 +2616,7 @@ client端向低功耗蓝牙设备写入特定的特征值。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let descriptors: Array<ble.BLEDescriptor>  = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -2671,7 +2671,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -2725,7 +2725,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -2773,7 +2773,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // callback
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2815,7 +2815,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // promise
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -2856,7 +2856,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
@@ -2896,7 +2896,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2954,7 +2954,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3007,7 +3007,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3065,7 +3065,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 创建descriptors
 let descriptors: Array<ble.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -3108,7 +3108,7 @@ on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;)
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
     let serviceUuid: string = characteristicChangeReq.serviceUuid;
     let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
@@ -3143,7 +3143,7 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
@@ -3173,7 +3173,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function ConnectStateChanged(state: ble.BLEConnectionChangeState) {
   console.log('bluetooth connect state changed');
   let connectState: ble.ProfileConnectionState = state.state;
@@ -3207,7 +3207,7 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
@@ -3237,7 +3237,7 @@ client端订阅MTU状态变化事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let gattClient: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     gattClient.on('BLEMtuChange', (mtu: number) => {
@@ -3269,7 +3269,7 @@ client端取消订阅MTU状态变化事件。
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let device: ble.GattClientDevice = ble.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEMtuChange');

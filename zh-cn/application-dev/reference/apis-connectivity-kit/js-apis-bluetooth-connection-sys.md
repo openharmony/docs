@@ -11,7 +11,7 @@ connection模块提供了对蓝牙操作和管理的方法。
 ## 导入模块
 
 ```js
-import connection from '@ohos.bluetooth.connection';
+import { connection } from '@kit.ConnectivityKit';
 ```
 
 
@@ -48,7 +48,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: As
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.pairCredibleDevice('68:13:24:79:4C:8C', connection.BluetoothTransport
         .TRANSPORT_BR_EDR, (err: BusinessError) => {
@@ -102,7 +102,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.pairCredibleDevice('68:13:24:79:4C:8C', 0).then(() => {
         console.info('PairCredibleDevice');
@@ -147,7 +147,7 @@ cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -193,7 +193,7 @@ cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.cancelPairedDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -234,7 +234,7 @@ cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -280,7 +280,7 @@ cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.cancelPairingDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -320,7 +320,7 @@ getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getLocalProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
@@ -362,7 +362,7 @@ getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.getLocalProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getLocalProfileUuids');
@@ -407,7 +407,7 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX', (err: BusinessError, data: Array<connection.ProfileUuids>) => {
         console.info('getRemoteProfileUuids, err: ' + JSON.stringify(err) + ', data: ' + JSON.stringify(data));
@@ -456,7 +456,7 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.getRemoteProfileUuids('XX:XX:XX:XX:XX:XX').then(() => {
         console.info('getRemoteProfileUuids');
@@ -505,7 +505,7 @@ connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
         if (err) {
@@ -561,7 +561,7 @@ connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
         console.info('connectAllowedProfiles');
@@ -610,7 +610,7 @@ disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.disconnectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
         if (err) {
@@ -666,7 +666,7 @@ disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.disconnectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
         console.info('disconnectAllowedProfiles');
@@ -716,7 +716,6 @@ getRemoteProductId(deviceId: string): string
 **示例：**
 
 ```js
-import connection from '@ohos.bluetooth.connection';
 try {
   let remoteDeviceProductId = connection.getRemoteProductId('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -754,7 +753,7 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -796,7 +795,7 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -846,7 +845,7 @@ setRemoteDeviceType(deviceId: string, type: DeviceType): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.setRemoteDeviceType('11:22:33:44:55:66', connection.DeviceType.DEVICE_TYPE_HEADSET).then(() => {
@@ -894,7 +893,7 @@ getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: connection.DeviceType) => {

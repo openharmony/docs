@@ -41,8 +41,8 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 10. 示例代码：
 
 ```ts
-import socket from '@ohos.bluetooth.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 // 创建服务器监听Socket, 返回serverId
 let serverNumber = -1;
@@ -123,8 +123,8 @@ console.info('sppCloseClientSocket success');
 6. 示例代码：
 
 ```ts
-import socket from '@ohos.bluetooth.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 // 开启ble扫描，获取对端设备mac地址
 let deviceId = 'xx:xx:xx:xx:xx:xx';

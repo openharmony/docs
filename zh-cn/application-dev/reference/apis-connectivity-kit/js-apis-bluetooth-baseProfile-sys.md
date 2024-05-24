@@ -11,7 +11,7 @@ baseProfile模块提供了基础的profile方法。
 ## 导入模块
 
 ```js
-import baseProfile from '@ohos.bluetooth.baseProfile';
+import { baseProfile } from '@kit.ConnectivityKit';
 ```
 
 
@@ -65,8 +65,8 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError) => {
@@ -116,8 +116,8 @@ setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&l
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.setConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then(() => {
@@ -163,8 +163,8 @@ getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStr
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 0, (err: BusinessError, data: baseProfile.ConnectionStrategy) => {
@@ -213,8 +213,8 @@ getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import a2dp from '@ohos.bluetooth.a2dp';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { a2dp } from '@kit.ConnectivityKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.getConnectionStrategy('XX:XX:XX:XX:XX:XX', 1).then((data: baseProfile.ConnectionStrategy) => {

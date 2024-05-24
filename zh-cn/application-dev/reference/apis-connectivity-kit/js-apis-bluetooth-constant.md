@@ -11,7 +11,7 @@ constant模块提供了蓝牙中常量的定义。
 ## 导入模块
 
 ```js
-import constant from '@ohos.bluetooth.constant';
+import { constant } from '@kit.ConnectivityKit';
 ```
 
 ## ProfileId

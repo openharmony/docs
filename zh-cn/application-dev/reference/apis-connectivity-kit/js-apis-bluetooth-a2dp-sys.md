@@ -11,7 +11,7 @@ a2dp模块提供了访问蓝牙音频接口的方法。
 ## 导入模块
 
 ```js
-import a2dp from '@ohos.bluetooth.a2dp';
+import { a2dp } from '@kit.ConnectivityKit';
 ```
 
 
@@ -47,7 +47,7 @@ connect(deviceId: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
@@ -89,7 +89,7 @@ disconnect(deviceId: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
@@ -132,7 +132,7 @@ isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&g
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.isAbsoluteVolumeSupported('XX:XX:XX:XX:XX:XX', (err, supported) => {
@@ -180,7 +180,7 @@ isAbsoluteVolumeSupported(deviceId: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.isAbsoluteVolumeSupported('XX:XX:XX:XX:XX:XX').then((supported) => {
@@ -224,7 +224,7 @@ isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.isAbsoluteVolumeEnabled('XX:XX:XX:XX:XX:XX', (err, enabled) => {
@@ -272,7 +272,7 @@ isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.isAbsoluteVolumeEnabled('XX:XX:XX:XX:XX:XX').then((enabled) => {
@@ -316,7 +316,7 @@ enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.enableAbsoluteVolume('XX:XX:XX:XX:XX:XX', (err) => {
@@ -366,7 +366,7 @@ enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.enableAbsoluteVolume('XX:XX:XX:XX:XX:XX').then(() => {
@@ -411,7 +411,7 @@ disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.disableAbsoluteVolume('XX:XX:XX:XX:XX:XX', (err) => {
@@ -461,7 +461,7 @@ disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.disableAbsoluteVolume('XX:XX:XX:XX:XX:XX').then(() => {
@@ -509,7 +509,7 @@ getCurrentCodecInfo(deviceId: string): CodecInfo
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let codecInfo : a2dp.CodecInfo = a2dpSrc.getCurrentCodecInfo('XX:XX:XX:XX:XX:XX');
@@ -550,7 +550,7 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let codecInfo : a2dp.CodecInfo = {
@@ -604,7 +604,7 @@ disableAutoPlay(deviceId: string, duration: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let durationNumber = 1000;
@@ -654,7 +654,7 @@ enableAutoPlay(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.enableAutoPlay('XX:XX:XX:XX:XX:XX').then(() => {
@@ -703,7 +703,7 @@ getAutoPlayDisabledDuration(deviceId: string): Promise&lt;number&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     a2dpSrc.getAutoPlayDisabledDuration('XX:XX:XX:XX:XX:XX').then((data: number) => {
