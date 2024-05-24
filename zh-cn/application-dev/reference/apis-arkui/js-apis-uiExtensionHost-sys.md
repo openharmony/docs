@@ -47,16 +47,21 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 获取宿主应用窗口的避让信息
-let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 获取宿主应用窗口的避让信息
+    const avoidArea = extensionHostWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+    console.log(`avoidArea: ${JSON.stringify(avoidArea)}`);
+  }
+}
 ```
 
 ### on('avoidAreaChange')
@@ -83,17 +88,20 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 注册避让区变化的监听
-this.extensionWindow?.on('avoidAreaChange', (info) => {
-  console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
-});
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注册避让区变化的监听
+    extensionHostWindow.on('avoidAreaChange', (info) => {
+      console.info(`The avoid area of the host window is: ${JSON.stringify(info.area)}.`);
+    });
+  }
+}
 ```
 
 ### off('avoidAreaChange')
@@ -120,15 +128,17 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 注销所有避让区变化的监听
-this.extensionWindow?.off('avoidAreaChange');
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注销所有避让区变化的监听
+    extensionHostWindow.off('avoidAreaChange');
+  }
+}
 ```
 
 ### on('windowSizeChange')
@@ -155,17 +165,20 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 注册避让区变化的监听
-this.extensionWindow?.on('windowSizeChange', (size) => {
-  console.info(`size = ${JSON.stringify(size)}`);
-});
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注册宿主应用窗口大小变化的监听
+    extensionHostWindow.on('windowSizeChange', (size) => {
+      console.info(`The avoid area of the host window is: ${JSON.stringify(size)}.`);
+    });
+  }
+}
 ```
 
 ### off('windowSizeChange')
@@ -192,15 +205,17 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 注销所有宿主应用窗口大小变化的监听
-this.extensionWindow?.off('windowSizeChange');
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注销宿主应用窗口大小变化的监听
+    extensionHostWindow.off('windowSizeChange');
+  }
+}
 ```
 
 ### properties
@@ -220,15 +235,19 @@ properties: UIExtensionHostWindowProxyProperties
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 获取UIExtensionComponent位置和大小信息
-let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 获取UIExtensionComponent位置和大小信息
+    const rect = extensionHostWindow.properties.uiExtensionHostWindowProxyRect;
+    console.log(`Rect Info: ${JSON.stringify(rect)}`);
+  }
+}
 ```
 
 ### hideNonSecureWindows
@@ -265,27 +284,33 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+// ExtensionProvider.ts
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 隐藏非安全窗口
-let promise = this.extensionWindow?.hideNonSecureWindows(true);
-promise?.then(()=> {
-  console.log(`Succeeded in hiding the non-secure windows.`);
-}).catch((err: BusinessError)=> {
-  console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
-})
-// 取消隐藏非安全窗口
-let promise = this.extensionWindow?.hideNonSecureWindows(false);
-promise?.then(()=> {
-  console.log(`Succeeded in showing the non-secure windows.`);
-}).catch((err: BusinessError)=> {
-  console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
-})
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 隐藏非安全窗口
+    extensionHostWindow.hideNonSecureWindows(true).then(()=> {
+      console.log(`Succeeded in hiding the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 取消隐藏非安全窗口
+    extensionHostWindow.hideNonSecureWindows(false).then(()=> {
+      console.log(`Succeeded in showing the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
 ```
 
 ### createSubWindowWithOptions<sup>12+</sup>
@@ -327,48 +352,50 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 **示例：**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-let subWindowOpts: window.SubWindowOptions = {
-  'title': 'This is a subwindow',
-  decorEnabled: true
-};
-// 创建子窗口
-this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
-  .then((subWindow: window.Window) => {
-    this.subWindow = subWindow;
-    this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
-      if (err && err.code != 0) {
-        return;
-      }
-      this.subWindow?.resize(300, 300, (err, data)=>{
-        if (err && err.code != 0) {
-          return;
-        }
-        this.subWindow?.moveWindowTo(100, 100, (err, data)=>{
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const subWindowOpts: window.SubWindowOptions = {
+      title: 'This is a subwindow',
+      decorEnabled: true
+    };
+    // 创建子窗口
+    extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+      .then((subWindow: window.Window) => {
+        subWindow.loadContent('pages/Index', (err, data) =>{
           if (err && err.code != 0) {
             return;
           }
-          this.subWindow?.showWindow((err, data) => {
-            if (err && err.code == 0) {
-              console.info(`The subwindow has been shown!`);
-            } else {
-              console.error(`Failed to show the subwindow!`);
+          subWindow?.resize(300, 300, (err, data)=>{
+            if (err && err.code != 0) {
+              return;
             }
+            subWindow?.moveWindowTo(100, 100, (err, data)=>{
+              if (err && err.code != 0) {
+                return;
+              }
+              subWindow?.showWindow((err, data) => {
+                if (err && err.code == 0) {
+                  console.info(`The subwindow has been shown!`);
+                } else {
+                  console.error(`Failed to show the subwindow!`);
+                }
+              });
+            });
           });
         });
-      });
-    });
-  }).catch((error: BusinessError) => {
-    console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
-  })
+      }).catch((error: BusinessError) => {
+        console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+      })
+  }
+}
 ```
 
 ### setWaterMarkFlag<sup>12+</sup>
@@ -407,29 +434,32 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 **示例**
 
 ```ts
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 添加安全水印标志
-let promise = this.extensionWindow?.setWaterMarkFlag(true);
-promise?.then(() => {
-  console.log(`Succeeded in setting water mark flag of window.`);
-}).catch((err: BusinessError) => {
-  console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
-})
-// 删除安全水印标志
-let promise = this.extensionWindow?.setWaterMarkFlag(false);
-promise?.then(() => {
-  console.log(`Succeeded in deleting water mark flag of window.`);
-}).catch((err: BusinessError) => {
-  console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
-})
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 添加安全水印标志
+    extensionHostWindow.setWaterMarkFlag(true).then(() => {
+      console.log(`Succeeded in setting water mark flag of window.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 删除安全水印标志
+    extensionHostWindow.setWaterMarkFlag(false).then(() => {
+      console.log(`Succeeded in deleting water mark flag of window.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
 ```
 
 ## UIExtensionHostWindowProxyProperties
