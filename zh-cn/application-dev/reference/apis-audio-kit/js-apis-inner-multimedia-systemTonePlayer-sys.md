@@ -54,6 +54,7 @@ getTitle(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
 | 5400103 | I/O error. |
 
 **示例：**
@@ -90,6 +91,7 @@ prepare(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
 | 5400102 | Operation not allowed. |
 | 5400103 | I/O error. |
 
@@ -135,6 +137,8 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 
@@ -184,6 +188,7 @@ stop(id: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 
@@ -215,6 +220,14 @@ release(): Promise&lt;void&gt;
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回释放成功或失败。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
 
 **示例：**
 
