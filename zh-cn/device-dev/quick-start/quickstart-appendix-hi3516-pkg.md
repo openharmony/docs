@@ -264,7 +264,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    3. 单击浏览在步骤1创建的文件夹中选择烧写配置文件（例如Hi3516DV300-emmc.xml）。
       
        ![quickstart-hi3516-standard-hitool-select](figures/quickstart-hi3516-standard-hitool-select.png)
-   4. 单击烧写后，按住开发板上串口旁的按钮（Update键），并拔插USB线（上下电）。。
+   4. 单击烧写后，按住开发板上串口旁的按钮（Update键），并拔插USB线（上下电）。
        
       烧录开始后，可以在HiTool工具下方的控制台区域观察到烧录过程中的打印信息。
 
