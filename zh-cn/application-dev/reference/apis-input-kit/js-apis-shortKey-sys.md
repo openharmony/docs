@@ -99,15 +99,11 @@ try {
 }
 ```
 
-## 枚举
-
-### FingerprintAction
+## FingerprintAction<sup>12+</sup>
 
 按键事件类型的枚举。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
-
-**起始版本：** 12
 
 | 名称                 | 值          | 说明                |
 | ---------------------| ---------- | --------------------|
@@ -127,5 +123,5 @@ try {
 | 名称      | 类型                                       |只读   | 可选  |说明                    |
 | --------  | ------------------------                  |-------|------ |--------               |
 | action    | [FingerprintAction](#fingerprintaction)   | 是    |  否   |按键事件类型。           |
-| distanceX | number                                    | 是    |  否   |相对于光标位置的x轴偏移量【正数表示向右移动，负数表示向左移动】。 |
-| distanceY | number                                    | 是    |  否   |相对于光标位置的y轴偏移量【正数表示向上移动，负数表示向下移动】。 |
+| distanceX | number                                    | 是    |  否   |相对于光标位置的x轴偏移量（正数表示向右移动，负数表示向左移动）。 |
+| distanceY | number                                    | 是    |  否   |相对于光标位置的y轴偏移量（正数表示向上移动，负数表示向下移动）。 |

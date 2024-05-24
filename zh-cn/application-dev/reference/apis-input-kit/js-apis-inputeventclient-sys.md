@@ -329,7 +329,7 @@ permitInjection(result: boolean): void
 
 | 参数名    | 类型    | 必填   | 说明        |
 | -------- | ------  | ----   | --------- |
-| result   | boolean | 是     | 授权结果【true表示：允许事件注入，false表示：不允许事件注入】。 |
+| result   | boolean | 是     | 授权结果（true表示：允许事件注入，false表示：不允许事件注入）。 |
 
 **错误码**：
 
