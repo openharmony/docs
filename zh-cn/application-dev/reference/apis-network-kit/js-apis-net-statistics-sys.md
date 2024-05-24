@@ -367,7 +367,7 @@ statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInf
 
 ## statistics.getTrafficStatsByNetwork<sup>12+</sup>
 
-getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>;
+getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>
 
 获取指定时间段内所有应用在指定网络中的流量使用详情，使用 Promise 方式作为异步方法。
 
@@ -406,8 +406,7 @@ getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo>;
 **示例**
 
 ```js
-import { connection } from '@kit.NetworkKit';
-import { statistics } from '@ohos.net.statistics'
+import { connection, statistics } from '@kit.NetworkKit';
 
 let networkInfo: statistics.NetworkInfo = {
   type: connection.NetBearType.BEARER_CELLULAR,
@@ -417,16 +416,16 @@ let networkInfo: statistics.NetworkInfo = {
 }
 
 statistics.getTrafficStatsByNetwork(networkInfo).then((statsInfo: statistics.UidNetStatsInfo) => {
-  let rank: Map<string, object> = new Map<string, object>(Object.entries(statsInfo))
+  let rank: Map<string, object> = new Map<string, object>(Object.entries(statsInfo));
   rank.forEach((value: object, key: string) => {
-    console.info("getTrafficStatsByNetwork key=" + key + ", value=" + JSON.stringify(value))
+    console.info("getTrafficStatsByNetwork key=" + key + ", value=" + JSON.stringify(value));
   })
 })
 ```
 
 ## statistics.getTrafficStatsByUidNetwork<sup>12+</sup>
 
-getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence>;
+getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence>
 
 获取指定时间段内，应用在指定网络中的流量使用详情，使用 Promise 方式作为异步方法。
 
@@ -466,8 +465,7 @@ getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<Net
 **示例**
 
 ```js
-import { connection } from '@kit.NetworkKit';
-import { statistics } from '@ohos.net.statistics'
+import { connection, statistics } from '@kit.NetworkKit';
 
 let uid: number = 20020147;
 let networkInfo: statistics.NetworkInfo = {
@@ -479,7 +477,7 @@ let networkInfo: statistics.NetworkInfo = {
 
 statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence: statistics.NetStatsInfoSequence) => {
   for (let i = 0; i < statsInfoSequence.length; i--) {
-    console.info("getTrafficStatsByUidNetwork item:" + JSON.stringify(statsInfoSequence[i]))
+    console.info("getTrafficStatsByUidNetwork item:" + JSON.stringify(statsInfoSequence[i]));
   }
 })
 ```
