@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { AdsServiceExtensionAbility } from '@kit.AdsKit';
+import AdsServiceExtensionAbility from '@ohos.advertising.AdsServiceExtensionAbility';
 ```
 
 
@@ -38,29 +38,17 @@ onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions,
 
 **示例：**
 ```ts
-import { AdsServiceExtensionAbility, advertising, RespCallback } from '@kit.AdsKit';
+import advertising from '@ohos.advertising';
+import AdsServiceExtensionAbility from '@ohos.advertising.AdsServiceExtensionAbility';
+import { RespCallback } from '@ohos.advertising.AdsServiceExtensionAbility';
 
 export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
   onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, respCallback: RespCallback) {
     const adType: number | undefined = adParam.adType;
     const ads: Array<advertising.Advertisement> = [];
     const rewardVerifyConfig: Map<string, string> = new Map();
-    ads.push({
-      adType: adType as number,
-      uniqueId: '111111',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    ads.push({
-      adType: adType as number,
-      uniqueId: '222222',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
+    ads.push({adType: adType as number, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
+    ads.push({adType: adType as number, uniqueId: '222222', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     const slot: string = 'test';
     const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
     resMap.set(slot, ads);
@@ -92,95 +80,27 @@ onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: adver
 
 **示例：**
 ```ts
-import { AdsServiceExtensionAbility, advertising, RespCallback } from '@kit.AdsKit';
+import advertising from '@ohos.advertising';
+import AdsServiceExtensionAbility from '@ohos.advertising.AdsServiceExtensionAbility';
+import { RespCallback } from '@ohos.advertising.AdsServiceExtensionAbility';
 
 export default class AdsExtensionAbility extends AdsServiceExtensionAbility {
-  onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions,
-    respCallback: RespCallback) {
-    const adType1: number = adParams[0].adType as number;
+  onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: advertising.AdOptions, respCallback: RespCallback) {
+    const adType1: number = adParams[0].adType as number; 
     const ads1: Array<advertising.Advertisement> = [];
     const rewardVerifyConfig: Map<string, string> = new Map();
-    ads1.push({
-      adType: adType1,
-      uniqueId: '111111',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    ads1.push({
-      adType: adType1,
-      uniqueId: '222222',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
+    ads1.push({adType: adType1, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
+    ads1.push({adType: adType1, uniqueId: '222222', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     const slot1: string = 'test1';
-    const adType2: number = adParams[1].adType as number;
+    const adType2: number = adParams[1].adType as number; 
     const ads2: Array<advertising.Advertisement> = [];
-    ads2.push({
-      adType: adType2,
-      uniqueId: '333333',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
-    ads2.push({
-      adType: adType2,
-      uniqueId: '444444',
-      rewardVerifyConfig: rewardVerifyConfig,
-      rewarded: false,
-      shown: false,
-      clicked: false
-    });
+    ads2.push({adType: adType2, uniqueId: '333333', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
+    ads2.push({adType: adType2, uniqueId: '444444', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false});
     const slot2: string = 'test2';
     const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
     resMap.set(slot1, ads1);
     resMap.set(slot2, ads2);
     respCallback(resMap);
   }
-}
-```
-
-
-## AdsServiceExtensionAbility.RespCallback
-
-(respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void;
-
-广告请求回调。
-
-**系统能力：** SystemCapability.Advertising.Ads
-
-**起始版本：** 11
-
-**参数：**
-
-
-| **参数名** | **类型** | 必填 | 说明 | 
-| -------- | -------- | -------- | -------- |
-| respData | Map&lt;string, Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt;&gt; | 是 | 广告请求回调数据。 | 
-
-
-**示例：**
-```ts
-import { advertising, RespCallback } from '@kit.AdsKit';
-
-function respDemo(respCallback: RespCallback) {
-  const ads: Array<advertising.Advertisement> = [];
-  const rewardVerifyConfig: Map<string, string> = new Map();
-  ads.push({
-    adType: 7,
-    uniqueId: '111111',
-    rewardVerifyConfig: rewardVerifyConfig,
-    rewarded: false,
-    shown: false,
-    clicked: false
-  })
-  const slot: string = "test";
-  const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
-  resMap.set(slot, ads);
-  respCallback(resMap);
 }
 ```
