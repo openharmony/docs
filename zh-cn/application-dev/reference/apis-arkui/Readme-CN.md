@@ -336,6 +336,7 @@
       - [native_node_napi.h](native__node__napi_8h.md)
       - [native_type.h](native__type_8h.md)
       - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
+      - [styled_string.h](styled__string_8h.md)
       - [ui_input_event.h](ui__input__event_8h.md)
       - [oh_window_comm.h](oh__window__comm_8h.md)
       - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
