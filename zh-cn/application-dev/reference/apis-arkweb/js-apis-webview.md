@@ -13253,6 +13253,42 @@ getHttpBodyStream(): WebHttpBodyStream | null
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
 
+### getRequestResourceType<sup>12+</sup>
+
+getRequestResourceType(): WebResourceType
+
+获取资源请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [WebResourceType](#webresourcetype12) | 返回资源请求的资源类型。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+### getFrameUrl<sup>12+</sup>
+
+getFrameUrl(): string
+
+获取触发此请求的Frame的URL。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 返回触发此请求的Frame的URL。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
 ## WebSchemeHandlerResponse<sup>12+</sup>
 
 请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
@@ -13782,6 +13818,8 @@ struct WebComponent {
                 console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame())
                 console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
                 console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
+                console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType())
+                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl())
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
                   console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
@@ -14481,3 +14519,32 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | CSS       | 1 | CSS类型的资源。|
 | CLASSIC_JS       | 2 | 通过<script src="" /\>标签加载的Javascript资源。|
 | MODULE_JS      | 3 |通过<script src="" type="module" /\>标签加载的Javascript资源。|
+
+## WebResourceType<sup>12+</sup>
+
+资源请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| MAIN_FRAME | 0 | 顶层页面。 |
+| SUB_FRAME | 1 | Frame或Iframe。 |
+| STYLE_SHEET | 2 | CSS样式表。 |
+| SCRIPT | 3 | 外部脚本。 |
+| IMAGE | 4 | 图片（jpg/gif/png/以及其他）。 |
+| FONT_RESOURCE | 5 | 字体。 |
+| SUB_RESOURCE | 6 | 其他子资源。如果实际类型未知，则是默认类型。 |
+| OBJECT | 7 | 插件的Object（或embed）标签，或者插件请求的资源。 |
+| MEDIA | 8 | 媒体资源。 |
+| WORKER | 9 | 专用工作线程的主资源。 |
+| SHARED_WORKER | 10 | 共享工作线程的主资源。 |
+| PREFETCH | 11 | 明确的预取请求。 |
+| FAVICON | 12 | 网站图标。 |
+| XHR | 13 | XMLHttpRequest。 |
+| PING | 14 | <a ping\>/sendBeacon的Ping请求。 |
+| SERVICE_WORKER | 15 | service worker的主资源。 |
+| CSP_REPORT | 16 | 内容安全策略违规报告。 |
+| PLUGIN_RESOURCE | 17 | 插件请求的资源。 |
+| NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
+| NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
