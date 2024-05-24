@@ -4,40 +4,30 @@
 当使用方添加了一些周期性刷新的卡片后，由于周期性刷新的时间间隔限制，可以在使用方中提供按钮主动触发卡片的刷新。这种场景下使用方可以通过调用[requestForm](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md#requestform)接口请求卡片刷新，系统会调用卡片提供方FormExtensionAbility中的[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onupdateform)生命周期回调，在回调中，可以使用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片内容。onUpdateForm生命周期回调参考[通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)。
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import hilog from '@ohos.hilog';
+import { formHost } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storage = new LocalStorage();
-const TAG: string = 'Index';
-const DOMAIN_NUMBER: number = 0xFF00;
-
-@Entry(storage)
+@Entry()
 @Component
-struct Index {
-  @StorageLink('formId') formId: number = 0;
+struct WidgetCard {
+  formId: string = 'formId'; // 卡片ID
 
   build() {
-    Column() {
-      Column() {
-        //...
-        Button() {
-          //...
-        }
-        .onClick(() => {
-          hilog.info(DOMAIN_NUMBER, TAG, `FormAbility update form click, formId:  ${JSON.stringify(this.formId.toString())}`);
-          // formId需要为实际需要刷新的卡片ID
-          formHost.requestForm(this.formId.toString()).then(() => {
-            hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in requestForming.');
-          }).catch((error: Base.BusinessError) => {
-            hilog.error(DOMAIN_NUMBER, TAG, `requestForm fail, error:  ${JSON.stringify(error)}`);
-          })
+    Button(`刷新卡片`)
+      .type(ButtonType.Capsule)
+      .width('50%')
+      .height(50)
+      .onClick(() => {
+        console.info('FormAbility update form click');
+        // formId需要为实际需要刷新的卡片ID
+        formHost.requestForm(this.formId.toString()).then(() => {
+          console.info('Succeeded in requestForming.');
+        }).catch((error: BusinessError) => {
+          console.error('requestForm fail, error: ' + JSON.stringify(error));
         })
-        .margin(5)
-      }
-      //...
-    }
-    //...
+      })
+
+    ...
   }
 }
 ```

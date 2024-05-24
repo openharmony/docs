@@ -26,13 +26,23 @@
   
     build() {
       Column() {
-        //...
+        Text($r('app.string.WidgetEventCallEntryAbility_desc'))
+          .fontColor('#FFFFFF')
+          .opacity(0.9)
+          .fontSize(14)
+          .margin({ top: '8%', left: '10%' })
         Row() {
           Column() {
             Button() {
-            //...
+              Text($r('app.string.ButtonA_label'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
             }
-            //...
+            .width(120)
+            .height(32)
+            .margin({ top: '20%' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
             .onClick(() => {
               postCardAction(this, {
                 action: 'call',
@@ -45,9 +55,15 @@
             })
   
             Button() {
-            //...
+              Text($r('app.string.ButtonB_label'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
             }
-            //...
+            .width(120)
+            .height(32)
+            .margin({ top: '8%', bottom: '15vp' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
             .onClick(() => {
               postCardAction(this, {
                 action: 'call',
@@ -60,10 +76,14 @@
               });
             })
           }
-        }
-        //...
+        }.width('100%').height('80%')
+        .justifyContent(FlexAlign.Center)
       }
-      //...
+      .width('100%')
+      .height('100%')
+      .alignItems(HorizontalAlign.Start)
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```
