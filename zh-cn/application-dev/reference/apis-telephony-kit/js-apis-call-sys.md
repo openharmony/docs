@@ -4822,8 +4822,7 @@ sendCallUiEvent\(callId: number, eventName: string\): Promise\<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let callId: number = 0;
-let eventName: string = '全屏展示';
-call.sendCallUiEvent(callId, eventName).then(() => {
+call.sendCallUiEvent(callId, 'eventName').then(() => {
     console.log(`sendCallUiEvent success.`);
 }).catch((err: BusinessError) => {
     console.error(`sendCallUiEvent fail, promise: err->${JSON.stringify(err)}`);
