@@ -818,7 +818,7 @@ ffrt_qos_t ffrt_this_task_get_qos();
 
 ### 串行队列
 <hr />
-* 串行队列基于FFRT协程调度模型，实现了消息队列功能。串行任务执行再FFRT Workers上，用户无需维护一个专用的线程，拥有更轻量级的调度开销。
+* 串行队列基于FFRT协程调度模型，实现了消息队列功能。串行任务执行在FFRT Workers上，用户无需维护一个专用的线程，拥有更轻量级的调度开销。
 
 #### ffrt_queue_attr_t
 
