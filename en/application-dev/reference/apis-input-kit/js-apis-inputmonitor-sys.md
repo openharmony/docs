@@ -887,7 +887,7 @@ try {
 
 ## inputMonitor.on('fingerprint')<sup>12+</sup>
 
-on(type: 'fingerprint', receiver: Callback[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt): void;
+on(type: 'fingerprint', receiver: Callback[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt): void
 
 Enables listening for fingerprint key events.
 
@@ -979,7 +979,7 @@ try {
 
 ## inputMonitor.off('fingerprint')<sup>12+</sup>
 
-off(type: 'fingerprint', receiver?: Callback[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt): void;
+off(type: 'fingerprint', receiver?: Callback[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt): void
 
 Cancels listening for fingerprint key events.
 

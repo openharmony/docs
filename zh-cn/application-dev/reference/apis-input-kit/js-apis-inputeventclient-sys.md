@@ -317,9 +317,9 @@ try {
 }
 ```
 
-## inputEventClient.permitInjection<sup>11+</sup>
+## inputEventClient.permitInjection<sup>12+</sup>
 
-permitInjection(result: boolean): void;
+permitInjection(result: boolean): void
 
 允许事件注入权限。
 
@@ -329,7 +329,7 @@ permitInjection(result: boolean): void;
 
 | 参数名    | 类型    | 必填   | 说明        |
 | -------- | ------  | ----   | --------- |
-| result   | boolean | 是     | 授权结果。 |
+| result   | boolean | 是     | 授权结果【true表示：允许事件注入，false表示：不允许事件注入】。 |
 
 **错误码**：
 
