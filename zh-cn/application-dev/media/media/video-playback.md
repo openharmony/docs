@@ -67,9 +67,9 @@
 
 
 ```ts
-import media from '@kit.MediaKit';
-import fileIo from '@kit.CoreFileKit';
-import common from '@kit.AbilityKit';
+import { media } from '@kit.MediaKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
