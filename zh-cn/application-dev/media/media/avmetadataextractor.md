@@ -30,10 +30,10 @@
 参考以下示例，设置文件描述符，获取一个音频的元数据和专辑封面。
 
 ```ts
-import media from '@kit.MediaKit';
-import image from '@kit.ImageKit';
-import type common from '@kit.AbilityKit';
-import fileIo from '@kit.CoreFileKit';
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo } from '@kit.CoreFileKit';
 
 const TAG = 'MetadataDemo'
 @Entry

@@ -17,8 +17,8 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 1. 调用createSoundPool方法创建SoundPool实例。
 
     ```ts
-    import media from '@kit.MediaKit';
-    import audio from '@kit.AudioKit';
+    import { media } from '@kit.MediaKit';
+    import { audio } from '@kit.AudioKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     let soundPool: media.SoundPool;
@@ -44,7 +44,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
-    import fileIo from '@kit.CoreFileKit';
+    import { fileIo } from '@kit.CoreFileKit';
    
     let soundID: number;
     let uri: string;
@@ -208,9 +208,9 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 下面展示了使用SoundPool进行低时延播放的完整示例代码。
 
 ```ts
-import audio from '@kit.AudioKit';
-import media from '@kit.MediaKit';
-import fileIo from '@kit.CoreFileKit';
+import { audio } from '@kit.AudioKit';
+import { media } from '@kit.MediaKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
