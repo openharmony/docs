@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import I18n from '@ohos.i18n';
+import { i18n } from '@kit.LocalizationKit';
 ```
 
 
@@ -46,14 +46,14 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-      let displayCountry: string = I18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
+      let displayCountry: string = i18n.System.getDisplayCountry("zh-CN", "en-GB"); // displayCountry = "China"
   } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error(`call System.getDisplayCountry failed, error code: ${err.code}, message: ${err.message}.`);
@@ -91,14 +91,14 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let displayLanguage: string = I18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
+    let displayLanguage: string = i18n.System.getDisplayLanguage("zh", "en-GB"); // displayLanguage = Chinese
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getDisplayLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -123,10 +123,10 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemLanguages: Array<string> = I18n.System.getSystemLanguages(); // [ "en-Latn-US", "zh-Hans" ]
+    let systemLanguages: Array<string> = i18n.System.getSystemLanguages(); // [ "ug", "bo", "zh-Hant", "en-Latn-US", "zh-Hans" ]
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemLanguages failed, error code: ${err.code}, message: ${err.message}.`);
@@ -160,14 +160,14 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemCountries: Array<string> = I18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
+    let systemCountries: Array<string> = i18n.System.getSystemCountries('zh'); // systemCountries = [ "ZW", "YT", "YE", ..., "ER", "CN", "DE" ]，共计240个国家或地区
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemCountries failed, error code: ${err.code}, message: ${err.message}.`);
@@ -202,14 +202,14 @@ static isSuggested(language: string, region?: string): boolean
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let res: boolean = I18n.System.isSuggested('zh', 'CN');  // res = true
+    let res: boolean = i18n.System.isSuggested('zh', 'CN');  // res = true
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.isSuggested failed, error code: ${err.code}, message: ${err.message}.`);
@@ -236,10 +236,10 @@ static getSystemLanguage(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemLanguage: string = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
+    let systemLanguage: string = i18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -262,10 +262,10 @@ static getSystemRegion(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemRegion: string = I18n.System.getSystemRegion(); // 获取系统当前地区设置
+    let systemRegion: string = i18n.System.getSystemRegion(); // 获取系统当前地区设置
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
@@ -290,10 +290,10 @@ static getSystemLocale(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let systemLocale: string = I18n.System.getSystemLocale();  // 获取系统当前Locale
+    let systemLocale: string = i18n.System.getSystemLocale();  // 获取系统当前Locale
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
@@ -318,10 +318,10 @@ static is24HourClock(): boolean
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let is24HourClock: boolean = I18n.System.is24HourClock();  // 系统24小时开关是否开启
+    let is24HourClock: boolean = i18n.System.is24HourClock();  // 系统24小时开关是否开启
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.is24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
@@ -345,10 +345,10 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let preferredLanguageList: Array<string> = I18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
+    let preferredLanguageList: Array<string> = i18n.System.getPreferredLanguageList(); // 获取系统当前偏好语言列表
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getPreferredLanguageList failed, error code: ${err.code}, message: ${err.message}.`);
@@ -371,10 +371,10 @@ static getFirstPreferredLanguage(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let firstPreferredLanguage: string = I18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
+    let firstPreferredLanguage: string = i18n.System.getFirstPreferredLanguage();  // 获取系统当前偏好语言列表中的第一个偏好语言
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getFirstPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -402,14 +402,14 @@ static setAppPreferredLanguage(language: string): void
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    I18n.System.setAppPreferredLanguage('zh'); // 设置应用当前语言为 "zh"
+    i18n.System.setAppPreferredLanguage('zh'); // 设置应用当前的偏好语言为 "zh"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -432,10 +432,10 @@ static getAppPreferredLanguage(): string
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let appPreferredLanguage: string = I18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
+    let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // 获取应用偏好语言
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -459,10 +459,10 @@ static getUsingLocalDigit(): boolean
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let status: boolean = I18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
+    let status: boolean = i18n.System.getUsingLocalDigit();  // 判断本地化数字开关是否打开
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
@@ -470,7 +470,7 @@ static getUsingLocalDigit(): boolean
   ```
 
 
-## I18n.isRTL
+## i18n.isRTL
 
 isRTL(locale: string): boolean
 
@@ -492,12 +492,12 @@ isRTL(locale: string): boolean
 
 **示例：**
   ```ts
-  I18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
-  I18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
+  i18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
+  i18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
   ```
 
 
-## I18n.getCalendar<sup>8+</sup>
+## i18n.getCalendar<sup>8+</sup>
 
 getCalendar(locale: string, type? : string): Calendar
 
@@ -520,7 +520,7 @@ getCalendar(locale: string, type? : string): Calendar
 
 **示例：**
   ```ts
-  I18n.getCalendar("zh-Hans", "chinese"); // 获取中国农历日历对象
+  i18n.getCalendar("zh-Hans", "chinese"); // 获取中国农历日历对象
   ```
 
 ## EntityRecognizer<sup>11+</sup>
@@ -546,11 +546,11 @@ constructor(locale?: string)
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
+  let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer("zh-CN");
   ```
 
 ### findEntityInfo<sup>11+</sup>
@@ -583,11 +583,11 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 **示例：**
   ```ts
-  let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
+  let entityRecognizer: i18n.EntityRecognizer = new i18n.EntityRecognizer("zh-CN");
   let text1: string = "如有疑问，请联系158****2312";
-  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result1[0].type = "phone_number", result1[0].begin = 8, result1[0].end = 19
+  let result1: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result1[0].type = "phone_number", result1[0].begin = 8, result1[0].end = 19
   let text2: string = "我们2023年12月1日一起吃饭吧。";
-  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result2[0].type = "date", result2[0].begin = 2, result2[0].end = 12
+  let result2: Array<i18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result2[0].type = "date", result2[0].begin = 2, result2[0].end = 12
   ```
 
 ## EntityInfoItem<sup>11+</sup>
@@ -621,7 +621,7 @@ setTime(date: Date): void
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("en-US", "gregory");
+  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
   let date: Date = new Date(2021, 10, 7, 8, 0, 0, 0);
   calendar.setTime(date);
   ```
@@ -643,7 +643,7 @@ setTime(time: number): void
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("en-US", "gregory");
+  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
   ```
 
@@ -669,8 +669,8 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
   ```
 
 
@@ -690,7 +690,7 @@ setTimeZone(timezone: string): void
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
   ```
 
@@ -711,7 +711,7 @@ getTimeZone(): string
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
   let timezone: string = calendar.getTimeZone(); // timezone = "Asia/Shanghai"
   ```
@@ -733,7 +733,7 @@ getFirstDayOfWeek(): number
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("en-US", "gregory");
+  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 1
   ```
 
@@ -754,7 +754,7 @@ setFirstDayOfWeek(value: number): void
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
   calendar.setFirstDayOfWeek(3);
   let firstDayOfWeek: number = calendar.getFirstDayOfWeek(); // firstDayOfWeek = 3
   ```
@@ -776,7 +776,7 @@ getMinimalDaysInFirstWeek(): number
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 1
   ```
 
@@ -797,7 +797,7 @@ setMinimalDaysInFirstWeek(value: number): void
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
   calendar.setMinimalDaysInFirstWeek(3);
   let minimalDaysInFirstWeek: number = calendar.getMinimalDaysInFirstWeek(); // minimalDaysInFirstWeek = 3
   ```
@@ -825,8 +825,8 @@ get(field: string): number
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
   let hourOfDay: number = calendar.get("hour_of_day"); // hourOfDay = 8
   ```
 
@@ -853,7 +853,7 @@ getDisplayName(locale: string): string
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("en-US", "buddhist");
+  let calendar: i18n.Calendar = i18n.getCalendar("en-US", "buddhist");
   let calendarName: string = calendar.getDisplayName("zh"); // calendarName = "佛历"
   ```
 
@@ -880,7 +880,7 @@ isWeekend(date?: Date): boolean
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
   calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
   calendar.isWeekend(); // true
   let date: Date = new Date(2011, 11, 6, 9, 0, 0);
@@ -910,15 +910,15 @@ add(field: string, amount: number): void
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
-    calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
+    let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
+    calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
     calendar.add("year", 8); // 2021 + 8
     let year: number = calendar.get("year"); // year = 2029
   } catch(error) {
@@ -944,7 +944,7 @@ getTimeInMillis(): number
 
 **示例：**
   ```ts
-  let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+  let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
   calendar.setTime(5000);
   let millisecond: number = calendar.getTimeInMillis(); // millisecond = 5000
   ```
@@ -980,10 +980,10 @@ compareDays(date: Date): number
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let calendar: I18n.Calendar = I18n.getCalendar("zh-Hans");
+    let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
     calendar.setTime(5000);
     let date: Date = new Date(6000);
     let diff: number = calendar.compareDays(date); // diff = 1
@@ -1014,8 +1014,8 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 **示例：**
   ```ts
-  let option: I18n.PhoneNumberFormatOptions = {type: "E164"};
-  let phoneNumberFormat: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN", option);
+  let option: i18n.PhoneNumberFormatOptions = {type: "E164"};
+  let phoneNumberFormat: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
   ```
 
 
@@ -1041,7 +1041,7 @@ isValidNumber(number: string): boolean
 
 **示例：**
   ```ts
-  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let isValidNumber: boolean = phonenumberfmt.isValidNumber("158****2312"); // isValidNumber = true
   ```
 
@@ -1068,7 +1068,7 @@ format(number: string): string
 
 **示例：**
   ```ts
-  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
   ```
 
@@ -1096,7 +1096,7 @@ getLocationName(number: string, locale: string): string
 
 **示例：**
   ```ts
-  let phonenumberfmt: I18n.PhoneNumberFormat = new I18n.PhoneNumberFormat("CN");
+  let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "广东省湛江市"
   ```
 
@@ -1146,7 +1146,7 @@ getInstance(locale?:string): IndexUtil
 
 **示例：**
   ```ts
-  let indexUtil: I18n.IndexUtil = I18n.getInstance("zh-CN");
+  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
   ```
 
 
@@ -1169,7 +1169,7 @@ getIndexList(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  let indexUtil: I18n.IndexUtil = I18n.getInstance("zh-CN");
+  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
   // indexList = [ "...", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
   //              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "..." ]
   let indexList: Array<string> = indexUtil.getIndexList();
@@ -1192,7 +1192,7 @@ addLocale(locale: string): void
 
 **示例：**
   ```ts
-  let indexUtil: I18n.IndexUtil = I18n.getInstance("zh-CN");
+  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
   ```
 
@@ -1219,12 +1219,12 @@ getIndex(text: string): string
 
 **示例：**
   ```ts
-  let indexUtil: I18n.IndexUtil = I18n.getInstance("zh-CN");
+  let indexUtil: i18n.IndexUtil = i18n.getInstance("zh-CN");
   let index: string = indexUtil.getIndex("hi");  // index = "H"
   ```
 
 
-## I18n.getLineInstance<sup>8+</sup>
+## i18n.getLineInstance<sup>8+</sup>
 
 getLineInstance(locale: string): BreakIterator
 
@@ -1246,7 +1246,7 @@ getLineInstance(locale: string): BreakIterator
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   ```
 
 
@@ -1269,7 +1269,7 @@ setLineBreakText(text: string): void
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit."); // 设置短句文本
   ```
 
@@ -1290,7 +1290,7 @@ getLineBreakText(): string
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let breakText: string = iterator.getLineBreakText(); // breakText = "Apple is my favorite fruit."
   ```
@@ -1312,7 +1312,7 @@ current(): number
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let currentPos: number = iterator.current(); // currentPos = 0
   ```
@@ -1334,7 +1334,7 @@ first(): number
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let firstPos: number = iterator.first(); // firstPos = 0
   ```
@@ -1356,7 +1356,7 @@ last(): number
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let lastPos: number = iterator.last(); // lastPos = 27
   ```
@@ -1384,7 +1384,7 @@ next(index?: number): number
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let pos: number = iterator.first(); // pos = 0
   pos = iterator.next(); // pos = 6
@@ -1408,7 +1408,7 @@ previous(): number
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let pos: number = iterator.first(); // pos = 0
   pos = iterator.next(3); // pos = 12
@@ -1438,7 +1438,7 @@ following(offset: number): number
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let pos: number = iterator.following(0); // pos = 6
   pos = iterator.following(100); // pos = -1
@@ -1468,14 +1468,14 @@ isBoundary(offset: number): boolean
 
 **示例：**
   ```ts
-  let iterator: I18n.BreakIterator = I18n.getLineInstance("en");
+  let iterator: i18n.BreakIterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   let isBoundary: boolean = iterator.isBoundary(0); // isBoundary = true;
   isBoundary = iterator.isBoundary(5); // isBoundary = false;
   ```
 
 
-## I18n.getTimeZone
+## i18n.getTimeZone
 
 getTimeZone(zoneID?: string): TimeZone
 
@@ -1497,7 +1497,7 @@ getTimeZone(zoneID?: string): TimeZone
 
 **示例：**
   ```ts
-  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone();
   ```
 
 
@@ -1520,7 +1520,7 @@ getID(): string
 
 **示例：**
   ```ts
-  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone();
   let timezoneID: string = timezone.getID(); // timezoneID = "Asia/Shanghai"
   ```
 
@@ -1548,7 +1548,7 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 **示例：**
   ```ts
-  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone();
   let timezoneName: string = timezone.getDisplayName("zh-CN", false); // timezoneName = "中国标准时间"
   ```
 
@@ -1569,7 +1569,7 @@ getRawOffset(): number
 
 **示例：**
   ```ts
-  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone();
   let offset: number = timezone.getRawOffset(); // offset = 28800000
   ```
 
@@ -1596,7 +1596,7 @@ getOffset(date?: number): number
 
 **示例：**
   ```ts
-  let timezone: I18n.TimeZone = I18n.getTimeZone();
+  let timezone: i18n.TimeZone = i18n.getTimeZone();
   let offset: number = timezone.getOffset(1234567890); // offset = 28800000
   ```
 
@@ -1618,7 +1618,7 @@ static getAvailableIDs(): Array&lt;string&gt;
 **示例：**
   ```ts
   // ids = ["America/Adak", "America/Anchorage", "America/Bogota", "America/Denver", "America/Los_Angeles", "America/Montevideo", "America/Santiago", "America/Sao_Paulo", "Asia/Ashgabat", "Asia/Hovd", "Asia/Jerusalem", "Asia/Magadan", "Asia/Omsk", "Asia/Shanghai", "Asia/Tokyo", "Asia/Yerevan", "Atlantic/Cape_Verde", "Australia/Lord_Howe", "Europe/Dublin", "Europe/London", "Europe/Moscow", "Pacific/Auckland", "Pacific/Easter", "Pacific/Pago-Pago"], 当前共支持24个时区
-  let ids: Array<string> = I18n.TimeZone.getAvailableIDs();
+  let ids: Array<string> = i18n.TimeZone.getAvailableIDs();
   ```
 
 
@@ -1639,7 +1639,7 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 **示例：**
   ```ts
   // cityIDs = ["Auckland", "Magadan", "Lord Howe Island", "Tokyo", "Shanghai", "Hovd", "Omsk", "Ashgabat", "Yerevan", "Moscow", "Tel Aviv", "Dublin", "London", "Praia", "Montevideo", "Brasília", "Santiago", "Bogotá", "Easter Island", "Salt Lake City", "Los Angeles", "Anchorage", "Adak", "Pago Pago"]，当前共支持24个时区城市
-  let cityIDs: Array<string> = I18n.TimeZone.getAvailableZoneCityIDs();
+  let cityIDs: Array<string> = i18n.TimeZone.getAvailableZoneCityIDs();
   ```
 
 
@@ -1666,7 +1666,7 @@ static getCityDisplayName(cityID: string, locale: string): string
 
 **示例：**
   ```ts
-  let displayName: string = I18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "上海(中国)"
+  let displayName: string = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN"); // displayName = "上海 (中国)"
   ```
 
 
@@ -1692,7 +1692,7 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 **示例：**
   ```ts
-  let timezone: I18n.TimeZone = I18n.TimeZone.getTimezoneFromCity("Shanghai");
+  let timezone: i18n.TimeZone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
   ```
 
 ### getTimezonesByLocation<sup>10+</sup>
@@ -1723,11 +1723,11 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  let timezoneArray: Array<I18n.TimeZone> = I18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
+  let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
   for (let i = 0; i < timezoneArray.length; i++) {
       let tzId: string = timezoneArray[i].getID();
   }
@@ -1753,9 +1753,9 @@ static getAvailableIDs(): string[]
 
 **示例：**
   ```ts
-  // ids共支持671个。每一个id由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ["Han-Latin","Latin-ASCII", "Amharic-Latin/BGN","Accents-Any", ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
+  // ids共支持742个。每一个id由使用中划线分割的两部分组成，格式为 source-destination。例如ids = ["Han-Latin","Latin-ASCII", "Amharic-Latin/BGN","Accents-Any", ...]，Han-Latin表示汉语转为译拉丁文，Amharic-Latin表示阿姆哈拉语转为拉丁文。
   // 更多使用信息可以参考ISO-15924。
-  let ids: string[] = I18n.Transliterator.getAvailableIDs();
+  let ids: string[] = i18n.Transliterator.getAvailableIDs();
   ```
 
 
@@ -1781,7 +1781,7 @@ static getInstance(id: string): Transliterator
 
 **示例：**
   ```ts
-  let transliterator: I18n.Transliterator = I18n.Transliterator.getInstance("Any-Latn");
+  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance("Any-Latn");
   ```
 
 
@@ -1807,7 +1807,7 @@ transform(text: string): string
 
 **示例：**
   ```ts
-  let transliterator: I18n.Transliterator = I18n.Transliterator.getInstance("Any-Latn");
+  let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance("Any-Latn");
   let res: string = transliterator.transform("中国"); // res = "zhōng guó"
   ```
 
@@ -1837,7 +1837,7 @@ static isDigit(char: string): boolean
 
 **示例：**
   ```ts
-  let isdigit: boolean = I18n.Unicode.isDigit("1");  // isdigit = true
+  let isdigit: boolean = i18n.Unicode.isDigit("1");  // isdigit = true
   ```
 
 
@@ -1863,7 +1863,7 @@ static isSpaceChar(char: string): boolean
 
 **示例：**
   ```ts
-  let isspacechar: boolean = I18n.Unicode.isSpaceChar("a");  // isspacechar = false
+  let isspacechar: boolean = i18n.Unicode.isSpaceChar("a");  // isspacechar = false
   ```
 
 
@@ -1889,7 +1889,7 @@ static isWhitespace(char: string): boolean
 
 **示例：**
   ```ts
-  let iswhitespace: boolean = I18n.Unicode.isWhitespace("a");  // iswhitespace = false
+  let iswhitespace: boolean = i18n.Unicode.isWhitespace("a");  // iswhitespace = false
   ```
 
 
@@ -1915,7 +1915,7 @@ static isRTL(char: string): boolean
 
 **示例：**
   ```ts
-  let isrtl: boolean = I18n.Unicode.isRTL("a");  // isrtl = false
+  let isrtl: boolean = i18n.Unicode.isRTL("a");  // isrtl = false
   ```
 
 
@@ -1941,7 +1941,7 @@ static isIdeograph(char: string): boolean
 
 **示例：**
   ```ts
-  let isideograph: boolean = I18n.Unicode.isIdeograph("a");  // isideograph = false
+  let isideograph: boolean = i18n.Unicode.isIdeograph("a");  // isideograph = false
   ```
 
 
@@ -1967,7 +1967,7 @@ static isLetter(char: string): boolean
 
 **示例：**
   ```ts
-  let isletter: boolean = I18n.Unicode.isLetter("a");  // isletter = true
+  let isletter: boolean = i18n.Unicode.isLetter("a");  // isletter = true
   ```
 
 
@@ -1993,7 +1993,7 @@ static isLowerCase(char: string): boolean
 
 **示例：**
   ```ts
-  let islowercase: boolean = I18n.Unicode.isLowerCase("a");  // islowercase = true
+  let islowercase: boolean = i18n.Unicode.isLowerCase("a");  // islowercase = true
   ```
 
 
@@ -2019,7 +2019,7 @@ static isUpperCase(char: string): boolean
 
 **示例：**
   ```ts
-  let isuppercase: boolean = I18n.Unicode.isUpperCase("a");  // isuppercase = false
+  let isuppercase: boolean = i18n.Unicode.isUpperCase("a");  // isuppercase = false
   ```
 
 
@@ -2081,7 +2081,7 @@ static getType(char: string): string
 
 **示例：**
   ```ts
-  let type: string = I18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
+  let type: string = i18n.Unicode.getType("a"); // type = "U_LOWERCASE_LETTER"
   ```
 
 ## I18NUtil<sup>9+</sup>
@@ -2113,9 +2113,9 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 **示例：**
   ```ts
-  let fromUnit: I18n.UnitInfo = {unit: "cup", measureSystem: "US"};
-  let toUnit: I18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
-  let res: string = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, "en-US", "long"); // res = 236.588 liters
+  let fromUnit: i18n.UnitInfo = {unit: "cup", measureSystem: "US"};
+  let toUnit: i18n.UnitInfo = {unit: "liter", measureSystem: "SI"};
+  let res: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, "en-US", "long"); // res = 236.588 liters
   ```
 
 
@@ -2141,7 +2141,7 @@ static getDateOrder(locale: string): string
 
 **示例：**
   ```ts
-  let order: string = I18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
+  let order: string = i18n.I18NUtil.getDateOrder("zh-CN");  // order = "y-L-d"
   ```
 
 
@@ -2173,14 +2173,14 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let name: string = I18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "凌晨"
+    let name: string = i18n.I18NUtil.getTimePeriodName(2, "zh-CN");  // name = "凌晨"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getTimePeriodName failed, error code: ${err.code}, message: ${err.message}.`);
@@ -2215,18 +2215,84 @@ static getBestMatchLocale(locale: string, localeList: string[]): string
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let matchedLocaleId: string = I18n.I18NUtil.getBestMatchLocale("zh-Hans-CN", ["en-Latn-US", "en-GB", "zh-Hant-CN", "zh-Hans-MO"]);  // matchedLocaleId = "zh-Hans-MO"
+    let matchedLocaleId: string = i18n.I18NUtil.getBestMatchLocale("zh-Hans-CN", ["en-Latn-US", "en-GB", "zh-Hant-CN", "zh-Hans-MO"]);  // matchedLocaleId = "zh-Hans-MO"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call I18NUtil.getBestMatchLocale failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+### getThreeLetterLanguage<sup>12+</sup>
+
+static getThreeLetterLanguage(locale: string): string
+
+将语言代码由二字母转换为三字母。例如，中文的二字母语言代码是zh，对应的三字母语言代码是zho，更多详细信息可参考[ISO 639](https://www.iso.org/iso-639-language-code)。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| locale | string | 是   | 待转换的语言二字母代码，如：zh。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  try {
+    let language : string = I18n.I18NUtil.getThreeLetterLanguage('zh')  // zho
+  } catch(error) {
+    console.error(`call I18NUtil.getThreeLetterLanguage failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+### getThreeLetterRegion<sup>12+</sup>
+
+static getThreeLetterRegion(locale: string): string
+
+将地区的二字母代码转换为三字母。例如，中国的二字母地区代码是CN, 三字母是CHN，更多详细信息可参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| locale | string | 是   | 待转换的地区二字母代码，如：CN。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  try {
+    this.message = I18n.I18NUtil.getThreeLetterRegion('CN')  // CHN
+  } catch(error) {
+    console.error(`call I18NUtil.getThreeLetterRegion failed, error code: ${error.code}, message: ${error.message}.`);
   }
   ```
 
@@ -2262,7 +2328,7 @@ static getInstance(mode: NormalizerMode): Normalizer
 
 **示例：**
   ```ts
-  let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
   ```
 
 
@@ -2296,7 +2362,7 @@ normalize(text: string): string
 
 **示例：**
   ```ts
-  let normalizer: I18n.Normalizer = I18n.Normalizer.getInstance(I18n.NormalizerMode.NFC);
+  let normalizer: i18n.Normalizer = i18n.Normalizer.getInstance(i18n.NormalizerMode.NFC);
   let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalizedText = ẛ̣
   ```
 
@@ -2338,11 +2404,11 @@ constructor(icsPath: String)
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+  let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
   ```
 
 ### isHoliday<sup>11+</sup>
@@ -2375,10 +2441,10 @@ isHoliday(date?: Date): boolean
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
     let isHoliday = holidayManager.isHoliday();
     console.log(isHoliday.toString());
     let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
@@ -2417,16 +2483,16 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
+    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
-    for (let i =0 ;i < holidayInfoItemArray.length; i++) {
+    for (let i =0; i < holidayInfoItemArray.length; i++) {
         console.log(JSON.stringify(holidayInfoItemArray[i]));
     }
   } catch(error) {
@@ -2461,7 +2527,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 | name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
 
 
-## I18n.getDisplayCountry<sup>(deprecated)</sup>
+## i18n.getDisplayCountry<sup>(deprecated)</sup>
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
@@ -2487,12 +2553,12 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 
 **示例：**
   ```ts
-  let countryName: string = I18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = true
-  countryName = I18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = true
+  let countryName: string = i18n.getDisplayCountry("zh-CN", "en-GB", true); // countryName = China
+  countryName = i18n.getDisplayCountry("zh-CN", "en-GB"); // countryName = China
   ```
 
 
-## I18n.getDisplayLanguage<sup>(deprecated)</sup>
+## i18n.getDisplayLanguage<sup>(deprecated)</sup>
 
 getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
@@ -2518,12 +2584,12 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 
 **示例：**
   ```ts
-  let languageName: string = I18n.getDisplayLanguage("zh", "en-GB", true); // languageName = "Chinese"
-  languageName = I18n.getDisplayLanguage("zh", "en-GB"); // languageName = "Chinese"
+  let languageName: string = i18n.getDisplayLanguage("zh", "en-GB", true); // languageName = "Chinese"
+  languageName = i18n.getDisplayLanguage("zh", "en-GB"); // languageName = "Chinese"
   ```
 
 
-## I18n.getSystemLanguage<sup>(deprecated)</sup>
+## i18n.getSystemLanguage<sup>(deprecated)</sup>
 
 getSystemLanguage(): string
 
@@ -2541,11 +2607,11 @@ getSystemLanguage(): string
 
 **示例：**
   ```ts
-  let systemLanguage: string = I18n.getSystemLanguage(); // 返回当前系统语言
+  let systemLanguage: string = i18n.getSystemLanguage(); // 返回当前系统语言
   ```
 
 
-## I18n.getSystemRegion<sup>(deprecated)</sup>
+## i18n.getSystemRegion<sup>(deprecated)</sup>
 
 getSystemRegion(): string
 
@@ -2563,11 +2629,11 @@ getSystemRegion(): string
 
 **示例：**
   ```ts
-  let region: string = I18n.getSystemRegion(); // 返回当前系统地区
+  let region: string = i18n.getSystemRegion(); // 返回当前系统地区
   ```
 
 
-## I18n.getSystemLocale<sup>(deprecated)</sup>
+## i18n.getSystemLocale<sup>(deprecated)</sup>
 
 getSystemLocale(): string
 
@@ -2585,11 +2651,11 @@ getSystemLocale(): string
 
 **示例：**
   ```ts
-  let locale: string = I18n.getSystemLocale(); // 返回系统Locale
+  let locale: string = i18n.getSystemLocale(); // 返回系统Locale
   ```
 
 
-## I18n.is24HourClock<sup>(deprecated)</sup>
+## i18n.is24HourClock<sup>(deprecated)</sup>
 
 is24HourClock(): boolean
 
@@ -2607,11 +2673,11 @@ is24HourClock(): boolean
 
 **示例：**
   ```ts
-  let is24HourClock: boolean = I18n.is24HourClock();
+  let is24HourClock: boolean = i18n.is24HourClock();
   ```
 
 
-## I18n.set24HourClock<sup>(deprecated)</sup>
+## i18n.set24HourClock<sup>(deprecated)</sup>
 
 set24HourClock(option: boolean): boolean
 
@@ -2638,11 +2704,11 @@ set24HourClock(option: boolean): boolean
 **示例：**
   ```ts
   // 将系统时间设置为24小时制
-  let success: boolean = I18n.set24HourClock(true);
+  let success: boolean = i18n.set24HourClock(true);
   ```
 
 
-## I18n.addPreferredLanguage<sup>(deprecated)</sup>
+## i18n.addPreferredLanguage<sup>(deprecated)</sup>
 
 addPreferredLanguage(language: string, index?: number): boolean
 
@@ -2672,11 +2738,11 @@ addPreferredLanguage(language: string, index?: number): boolean
   // 将语言zh-CN添加到系统偏好语言列表中
   let language: string = 'zh-CN';
   let index: number = 0;
-  let success: boolean = I18n.addPreferredLanguage(language, index);
+  let success: boolean = i18n.addPreferredLanguage(language, index);
   ```
 
 
-## I18n.removePreferredLanguage<sup>(deprecated)</sup>
+## i18n.removePreferredLanguage<sup>(deprecated)</sup>
 
 removePreferredLanguage(index: number): boolean
 
@@ -2704,11 +2770,11 @@ removePreferredLanguage(index: number): boolean
   ```ts
   // 删除系统偏好语言列表中的第一个偏好语言
   let index: number = 0;
-  let success: boolean = I18n.removePreferredLanguage(index);
+  let success: boolean = i18n.removePreferredLanguage(index);
   ```
 
 
-## I18n.getPreferredLanguageList<sup>(deprecated)</sup>
+## i18n.getPreferredLanguageList<sup>(deprecated)</sup>
 
 getPreferredLanguageList(): Array&lt;string&gt;
 
@@ -2726,11 +2792,11 @@ getPreferredLanguageList(): Array&lt;string&gt;
 
 **示例：**
   ```ts
-  let preferredLanguageList: Array<string> = I18n.getPreferredLanguageList(); // 获取系统偏好语言列表
+  let preferredLanguageList: Array<string> = i18n.getPreferredLanguageList(); // 获取系统偏好语言列表
   ```
 
 
-## I18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
+## i18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
 
 getFirstPreferredLanguage(): string
 
@@ -2748,7 +2814,7 @@ getFirstPreferredLanguage(): string
 
 **示例：**
   ```ts
-  let firstPreferredLanguage: string = I18n.getFirstPreferredLanguage();
+  let firstPreferredLanguage: string = i18n.getFirstPreferredLanguage();
   ```
 
 

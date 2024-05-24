@@ -11,7 +11,7 @@
 
 | **接口名** | **描述** |
 | -------- | -------- |
-| isSupportTemplate(templateName:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;):&nbsp;void | 查询模板是否存在。 |
+| isSupportTemplate(templateName: string): Promise\<boolean\> | 查询模板是否存在。 |
 
 
 ## 开发步骤
@@ -21,16 +21,20 @@
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 查询系统是否支持进度条模板，查询结果为支持downloadTemplate模板类通知。
    
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
-     console.info('Succeeded in supporting download template notification.');
+     hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持downloadTemplate模板类通知，false表示不支持
    }).catch((err:Base.BusinessError) => {
-     console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
+     hilog.error(DOMAIN_NUMBER, TAG, `Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
    
@@ -60,9 +64,9 @@
    // 发布通知
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in publishing notification.');
+     hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
    });
    ```

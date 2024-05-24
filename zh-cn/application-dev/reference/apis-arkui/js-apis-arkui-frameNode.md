@@ -938,7 +938,7 @@ setLayoutPosition(position: Position): void
 
 measure(constraint: LayoutConstraint): void
 
-调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。
+调用FrameNode的测量方法，根据父容器的布局约束，对FrameNode进行测量，计算出尺寸，如果测量方法被重写，则调用重写的方法。建议在[onMeasure](#onmeasure12)方法中调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -956,7 +956,7 @@ measure(constraint: LayoutConstraint): void
 
 layout(position: Position): void
 
-调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。
+调用FrameNode的布局方法，为FrameNode及其子节点指定布局位置，如果布局方法被重写，则调用重写的方法。建议在[onLayout](#onlayout12)方法中调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -996,7 +996,8 @@ invalidate(): void
 
 ## 节点操作示例
 ```ts
-import { FrameNode, NodeController } from "@ohos.arkui.node"
+import { FrameNode, NodeController } from "@ohos.arkui.node";
+import { UIContext } from '@ohos.arkui.UIContext';
 import { BusinessError } from '@ohos.base';
 const TEST_TAG : string = "FrameNode"
 class MyNodeController extends NodeController {
@@ -1187,11 +1188,6 @@ class MyNodeController extends NodeController {
     let inspectorInfo = this.frameNode?.getInspectorInfo();
     console.log(TEST_TAG + JSON.stringify(inspectorInfo));
   }
-  getCustomProperty()
-  {
-    let customProperty = this.frameNode?.getCustomProperty();
-    console.log(TEST_TAG + customProperty);
-  }
 
   throwError()
   {
@@ -1365,8 +1361,30 @@ struct Index {
       Button("getCustomProperty")
         .width(300)
         .onClick(()=>{
-          this.myNodeController.getCustomProperty();
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("Test_Button") || null;
+            if (node) {
+              for (let i = 1; i < 4; i++) {
+                const key = 'customProperty' + i;
+                const property = node.getCustomProperty(key);
+                console.log(TEST_TAG + key, JSON.stringify(property));
+              }
+            }
+          }
         })
+        .id('Test_Button')
+        .customProperty('customProperty1', {
+          'number': 10,
+          'string': 'this is a string',
+          'bool': true,
+          'object': {
+            'name': 'name',
+            'value': 100
+          }
+        })
+        .customProperty('customProperty2', {})
+        .customProperty('customProperty2', undefined)
       Button("throwError")
         .width(300)
         .onClick(()=>{
@@ -1550,11 +1568,6 @@ class MyFrameNode extends FrameNode {
       let child = this.getChild(i);
       if (child) {
         child.layout({
-          x: 10,
-          y: 10
-        });
-        child.setNeedsLayout();
-        child.layout({
           x: 20,
           y: y
         });
@@ -1605,6 +1618,10 @@ struct Index {
           .onClick(() => {
             this.nodeController?.rootNode?.addWidth();
             this.nodeController?.rootNode?.invalidate();
+          })
+        Button('UpdateLayout')
+          .onClick(() => {
+            this.nodeController?.rootNode?.setNeedsLayout();
           })
       }
       .width('100%')

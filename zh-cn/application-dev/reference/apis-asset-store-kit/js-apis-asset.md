@@ -174,6 +174,7 @@ remove(query: AssetMap): Promise\<void>
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
@@ -229,6 +230,7 @@ removeSync(query: AssetMap): void
 | 24000011 | Calling the Bundle Manager service failed. |
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 

@@ -40,6 +40,9 @@ shutdown(reason: string): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | If the permission is denied.         |
+| 202     | If the system permission is denied.  |
+
 
 **示例：**
 
@@ -49,6 +52,33 @@ try {
 } catch(err) {
     console.error('shutdown failed, err: ' + err);
 }
+```
+
+## power.rebootDevice<sup>(deprecated)</sup>
+
+rebootDevice(reason: string): void
+
+> **说明：**<br>从API version 7开始支持，从API version 9开始不再维护。建议使用[power.reboot](#powerreboot9)替代，替代接口能力仅对系统应用开放。
+
+重启设备。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.REBOOT
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| reason | string | 是    | 重启原因。 |
+
+**示例：**
+
+```js
+power.rebootDevice('reboot_test');
 ```
 
 ## power.reboot<sup>9+</sup>
@@ -77,6 +107,8 @@ reboot(reason: string): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | If the permission is denied.  |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -112,6 +144,7 @@ wakeup(detail: string): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -147,6 +180,7 @@ suspend(isImmediate?: boolean): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -185,6 +219,8 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.        |
+| 202     | If the system permission is denied.|
 
 **示例：**
 
@@ -230,6 +266,8 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.         |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -268,7 +306,6 @@ setScreenOffTime(timeout: number): void
 | 4900101 | If connecting to the service failed. |
 | 201 | If the permission is denied. |
 | 202 | If the system permission is denied. |
-| 1 | Other unknown reason. |
 
 **示例：**
 

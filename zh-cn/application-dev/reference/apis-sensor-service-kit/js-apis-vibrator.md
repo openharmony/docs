@@ -10,7 +10,7 @@ vibrator模块提供控制马达振动启、停的能力。
 ## 导入模块
 
 ```ts
-import vibrator from '@ohos.vibrator';
+import { vibrator } from '@kit.SensorServiceKit';
 ```
 
 ## vibrator.startVibration<sup>9+</sup>
@@ -37,17 +37,20 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
-| 错误码ID | 错误信息                 |
-| -------- | ------------------------ |
-| 14600101 | Device operation failed. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 801      | Capability not supported.                                    |
+| 14600101 | Device operation failed.                                     |
 
 **示例：** 
 
 按照指定持续时间触发马达振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   vibrator.startVibration({
@@ -72,8 +75,8 @@ try {
 按照预置振动效果触发马达振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   vibrator.startVibration({
@@ -99,9 +102,9 @@ try {
 按照自定义振动配置文件触发马达振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
@@ -158,17 +161,20 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
-| 错误码ID | 错误信息                 |
-| -------- | ------------------------ |
-| 14600101 | Device operation failed. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 801      | Capability not supported.                                    |
+| 14600101 | Device operation failed.                                     |
 
 **示例：** 
 
 按照指定持续时间触发马达振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   vibrator.startVibration({
@@ -191,8 +197,8 @@ try {
 按照预置振动效果触发马达振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   vibrator.startVibration({
@@ -216,9 +222,9 @@ try {
 按照自定义振动配置文件触发马达振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const fileName: string = 'xxx.json';
 
@@ -261,13 +267,22 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): 
 | stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 指定的停止振动模式，支持两种：<br>VIBRATOR_STOP_MODE_TIME：停止固定时长振动；<br>VIBRATOR_STOP_MODE_PRESET：停止预置振动。<br>此接口无法停止自定义振动，请使用[vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10)。                                  |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **示例：** 
 
 停止固定时长振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 按照固定时长振动
@@ -307,8 +322,8 @@ try {
 停止预置振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 按照预置效果振动
@@ -368,13 +383,22 @@ stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt;
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **示例：** 
 
 停止固定时长振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 按照固定时长振动
@@ -410,8 +434,8 @@ try {
 停止预置振动：
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 按照预置效果振动
@@ -463,11 +487,19 @@ stopVibration(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，当马达停止振动成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 停止所有模式的马达振动
@@ -502,11 +534,19 @@ stopVibration(): Promise&lt;void&gt;
 | ------------------- | ------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
+
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 停止所有模式的马达振动
@@ -544,9 +584,9 @@ stopVibrationSync(): void
 
 **示例：** 
 
-```
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+```ts
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 停止任何形式的马达振动
@@ -573,11 +613,20 @@ isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 | effectId | string                       | 是   | 预置的振动效果。                                           |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，当返回true则表示支持该effectId，否则不支持。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 查询是否支持'haptic.clock.timer'
@@ -635,11 +684,20 @@ isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 | ---------------------- | --------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise对象。当返回true则表示支持该effectId，否则不支持。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // 查询是否支持'haptic.clock.timer'
@@ -696,16 +754,16 @@ isSupportEffectSync(effectId: string): boolean
 
 以下错误码的详细介绍请参见 [ohos.vibrator错误码](errorcode-vibrator.md)。
 
-| 错误码ID | 错误信息                 |
-| -------- | ------------------------ |
-| 401      | Parameter error.         |
-| 14600101 | Device operation failed. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14600101 | Device operation failed.                                     |
 
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // 查询是否支持预设'haptic.clock.timer'
@@ -721,7 +779,7 @@ try {
 
 isHdHapticSupported(): boolean
 
-查询是否支持高清高清振动。
+查询是否支持高清振动。
 
 **系统能力：** SystemCapability.Sensors.MiscDevice
 
@@ -742,8 +800,8 @@ isHdHapticSupported(): boolean
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // 查询是否支持高清振动
@@ -897,8 +955,8 @@ vibrate(duration: number): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 vibrator.vibrate(1000).then(() => {
   console.info('Succeed in vibrating');
@@ -929,8 +987,8 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 vibrator.vibrate(1000, (error: BusinessError) => {
   if (error) {
@@ -969,8 +1027,8 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(() => {
   console.info('Succeed in vibrating');
@@ -1002,8 +1060,8 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
   if (error) {
@@ -1041,8 +1099,8 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 按照effectId类型启动振动
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {
@@ -1083,8 +1141,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 **示例：** 
 
 ```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+import { vibrator } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 按照effectId类型启动振动
 vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, (error: BusinessError) => {

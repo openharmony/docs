@@ -90,6 +90,36 @@ onWindowStageCreate(windowStage: window.WindowStage): void
   ```
 
 
+## UIAbility.onWindowStageWillDestroy<sup>12+</sup>
+
+onWindowStageWillDestroy(windowStage: window.WindowStage): void
+
+当WindowStage即将销毁时调用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+
+**示例：**
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
+
+  class MyUIAbility extends UIAbility {
+      onWindowStageWillDestroy(windowStage: window.WindowStage) {
+          console.log('onWindowStageWillDestroy');
+      }
+  }
+  ```
+
+
 ## UIAbility.onWindowStageDestroy
 
 onWindowStageDestroy(): void
@@ -260,8 +290,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 **示例：**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   class MyUIAbility extends UIAbility {
       onContinue(wantParams: Record<string, Object>) {
@@ -275,8 +304,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 支持应用在迁移时，使用异步接口进行数据保存。
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   class MyUIAbility extends UIAbility {
     async setWant(wantParams: Record<string, Object>) {

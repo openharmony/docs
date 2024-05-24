@@ -259,11 +259,12 @@ struct Index {
       address: "0.0.0.0"
     }
     tcp.bind(ipAddress);
+    let netAddress: socket.NetAddress = {
+      address: "192.168.1.11",
+      port: 8888
+    }
     let addressConnect: socket.TCPConnectOptions = {
-      address: {
-        address: "192.168.1.11",
-        port: 8888
-      },
+      address: netAddress,
       timeout: 6000
     }
     tcp.connect(addressConnect);
@@ -335,11 +336,12 @@ struct Index {
       address: "0.0.0.0"
     }
     tcp.bind(ipAddress);
+    let netAddress: socket.NetAddress = {
+      address: "192.168.1.11",
+      port: 8888
+    }
     let addressConnect: socket.TCPConnectOptions = {
-      address: {
-        address: "192.168.1.11",
-        port: 8888
-      },
+      address: netAddress,
       timeout: 6000
     }
     tcp.connect(addressConnect);
@@ -432,6 +434,7 @@ destroy(): Promise\<void\>
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
+| 401       | Parameter error.                                 |
 | 202       | Non-system applications use system APIs.     |
 | 2200002   | Operation failed. Cannot connect to service. |
 | 2200003   | System internal error.                       |

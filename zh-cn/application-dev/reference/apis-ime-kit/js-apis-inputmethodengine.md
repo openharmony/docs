@@ -629,7 +629,7 @@ try {
 
 ### on('privateCommand')<sup>12+</sup>
 
-on(**type**: 'privateCommand', callback: Callback<Record<**string**, CommandDataType>>): **void**;
+on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>): void;
 
 订阅输入法私有数据事件。使用callback异步回调。
 
@@ -640,7 +640,7 @@ on(**type**: 'privateCommand', callback: Callback<Record<**string**, CommandData
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | 是   | 设置监听类型，固定取值为'privateCommand'。 |
-| callback | Callback<Record<**string**, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
+| callback | Callback<Record<string, CommandDataType>> | 是   | 回调函数，返回向输入法应用发送的私有数据。 |
 
 **错误码：**
 
@@ -672,7 +672,7 @@ try {
 
 ### off('privateCommand')<sup>12+</sup>
 
-off(type: 'securityModeChange', callback?: Callback< SecurityMode>): void
+off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 
 取消订阅输入法私有数据事件。使用callback异步回调。
 
@@ -758,13 +758,13 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
 | info    | [PanelInfo](#panelinfo10)   | 是   | 输入法应用信息。 |
-| callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
+| callback | AsyncCallback\<[Panel](#panel10)> | 否   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -814,7 +814,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -847,7 +847,7 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | panel     | [Panel](#panel10) | 是   | 要销毁的面板对象。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void> | 否   | 回调函数。当输入法面板销毁成功，err为undefined，否则为错误对象。  |
 
 **错误码：**
 
@@ -920,7 +920,7 @@ destroyPanel(panel: Panel): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -1327,7 +1327,7 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 具体页面的路径。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback\<void> | 否   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
 
@@ -1508,7 +1508,7 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 | -------- | ---------------------- | ---- | -------- |
 | width | number | 是   | 目标面板的宽度，单位为px。|
 | height | number | 是   | 目标面板的高度，单位为px。|
-| callback | AsyncCallback\<void> | 是   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
+| callback | AsyncCallback\<void> | 否   | 回调函数。当面板大小改变成功，err为undefined，否则err为错误对象。 |
 
 **错误码：**
 
@@ -1607,7 +1607,7 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          |  1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.  |
 
 **示例：**
 
@@ -1654,7 +1654,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          |  1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.  |
 
 **示例：**
 
@@ -1955,7 +1955,7 @@ setPrivacyMode(isPrivacyMode: boolean): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.  |
 
 **示例：**
 
@@ -2251,7 +2251,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键。<br/>- 当值为1时，表示确认键（即回车键）。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -2259,7 +2259,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types         |
 | 12800003 | input method client error. |
 
  **示例：**
@@ -2311,7 +2311,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types          |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -2348,7 +2348,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。不能小于0。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
+| callback | AsyncCallback&lt;string&gt; | 否 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
 
 **错误码：**
 
@@ -2356,7 +2356,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2405,7 +2405,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2481,7 +2481,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。不能小于0。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
+| callback | AsyncCallback&lt;string&gt; | 否 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
 
 **错误码：**
 
@@ -2489,7 +2489,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2538,7 +2538,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2614,7 +2614,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。不能小于0。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -2622,7 +2622,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.         |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2675,7 +2675,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.        |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2720,7 +2720,7 @@ deleteForwardSync(length:number): void
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.         |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2749,7 +2749,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | 是   | 文本长度。不能小于0。     |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 否   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -2757,7 +2757,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2810,7 +2810,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2851,7 +2851,7 @@ deleteBackwardSync(length:number): void
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.          |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2880,7 +2880,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 文本内容。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 否 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
 
@@ -2888,7 +2888,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2936,7 +2936,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2980,7 +2980,7 @@ insertTextSync(text: string): void
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -3117,7 +3117,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名    | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
 | direction | number                    | 是   | 光标移动方向。<br/>- 当值为1时，表示向上。<br/>- 当值为2时，表示向下。<br/>- 当值为3时，表示向左。<br/>- 当值为4时，表示向右。不能小于0。 |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当光标移动成功，err为undefined，否则为错误对象。    |
+| callback  | AsyncCallback&lt;void&gt; | 否   | 回调函数。当光标移动成功，err为undefined，否则为错误对象。    |
 
 **错误码：**
 
@@ -3238,7 +3238,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | range    | [Range](#range10) | 是   | 选中文本的范围。                                             |
-| callback | AsyncCallback&lt;void&gt;                                 | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt;                                 | 否   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3362,7 +3362,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型  | 必填 | 说明   |
 | -------- | ------ | ---- | ------ |
 | movement | [Movement](#movement10)   | 是   | 选中时光标移动的方向。  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3596,7 +3596,7 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | action | [ExtendAction](#extendaction10) | 是   | 要发送的扩展操作。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -3604,7 +3604,7 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -3656,7 +3656,7 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -3707,6 +3707,7 @@ sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
+| 401 | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.                   |
 | 12800003 | input method client error.                     |
 | 12800010 | not default input method configured by system. |
 
@@ -3737,6 +3738,211 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
 })
 ```
 
+### getCallingWindowInfo<sup>12+</sup>
+
+getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
+
+获取当前拉起输入法的输入框所在应用窗口信息。使用promise异步回调。
+
+>**说明：**
+>
+>本接口仅适用于适配使用[Panel](#panel10)作为软键盘窗口的输入法应用。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                       | 说明                                                  |
+| ------------------------------------------ | ----------------------------------------------------- |
+| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise对象，返回拉起输入法的输入框所在应用窗口信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 12800003 | input method client error.        |
+| 12800012 | input method panel doesn't exist. |
+| 12800013 | window manager service error.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  inputClient.getCallingWindowInfo().then((windowInfo: inputMethodEngine.WindowInfo) => {
+    console.log(`windowInfo.rect: ${JSON.stringify(windowInfo.rect)}`);
+    console.log('windowInfo.status: ' + JSON.stringify(windowInfo.status));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to getCallingWindowInfo: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to getCallingWindowInfo: ${JSON.stringify(err)}`);
+}
+```
+
+### setPreviewText<sup>12+</sup>
+
+setPreviewText(text: string, range: Range): Promise&lt;void&gt;
+
+设置预上屏文本。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| text   | string            | 是   | 将被预上屏的文本。                                           |
+| range  | [Range](#range10) | 是   | 目标替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 12800003 | input method client error.                                   |
+| 12800011 | text preview is not supported.                               |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.setPreviewText('test', range).then(() => {
+    console.log('Succeeded in setting preview text.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to setPreviewText: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to setPreviewText: ${JSON.stringify(err)}`);
+}
+```
+
+### setPreviewTextSync<sup>12+</sup>
+
+setPreviewTextSync(text: string, range: Range): void
+
+设置预上屏文本。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                                                         |
+| ------ | ----------------- | ---- | ------------------------------------------------------------ |
+| text   | string            | 是   | 将被预上屏的文本。                                           |
+| range  | [Range](#range10) | 是   | 目标替换的文本范围。<br/>- 当值为{ start: -1, end: -1 }时，默认将参数text替换当前预上屏区域全部文本。<br/>- 当start等于end，默认将参数text插入start对应的光标位置。<br/>- 当start不等于end，将参数text替换range对应区域的文本。<br/>- 当start与end为其他含有负数值的组合，按照参数错误返回。<br/>- 当输入框已有预上屏文本，参数range不得超过预上屏文本范围，否则按照参数错误返回。<br/>- 当输入框无预上屏文本，参数range不得超过输入框文本范围，否则按照参数错误返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 12800003 | input method client error.                                   |
+| 12800011 | text preview is not supported.                               |
+
+**示例：**
+
+```ts
+try {
+  let range: inputMethodEngine.Range = { start: 0, end: 1 };
+  inputClient.setPreviewTextSync('test', range);
+  console.log('Succeeded in setting preview text with synchronized method.');
+} catch (err) {
+  console.error(`Failed to setPreviewTextSync: ${JSON.stringify(err)}`);
+}
+```
+
+### finishTextPreview<sup>12+</sup>
+
+finishTextPreview(): Promise&lt;void&gt;
+
+结束预上屏。使用promise异步回调。
+
+>**说明：**
+>
+>若当前输入框已有预上屏状态文本，调用此接口后，预上屏内容将被系统正式上屏。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800011 | text preview is not supported. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  inputClient.finishTextPreview().then(() => {
+    console.log('Succeeded in finishing text preview.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to finishTextPreview: ${JSON.stringify(err)}`);
+}
+```
+
+### finishTextPreviewSync<sup>12+</sup>
+
+finishTextPreviewSync(): void
+
+结束预上屏。
+
+>**说明：**
+>
+>若当前输入框已有预上屏状态文本，调用此接口后，预上屏内容将被系统正式上屏。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800011 | text preview is not supported. |
+
+**示例：**
+
+```ts
+try {
+  inputClient.finishTextPreviewSync();
+  console.log('Succeeded in finishing text preview with synchronized method.');
+} catch (err) {
+  console.error(`Failed to finishTextPreviewSync: ${JSON.stringify(err)}`);
+}
+```
+
 ## EditorAttribute
 
 编辑框属性值。
@@ -3747,6 +3953,7 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
 | ------------ | -------- | ---- | ---- | ------------------ |
 | enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
+| isTextPreviewSupported | boolean | 是 | 是 | 编辑框是否支持预上屏。 |
 
 ## KeyEvent
 
@@ -3783,14 +3990,25 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textIn
 
 ## PanelInfo<sup>10+</sup>
 
-**系统能力：** SystemCapability.MiscServices.InputMethodFramework
-
 输入法面板属性。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 | 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | type   	| number   | 是   | 是   | 面板的类型。 |
 | flag	    | number   | 是   | 是   | 面板的状态类型。 |
+
+## WindowInfo<sup>12+</sup>
+
+窗口信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称   | 类型                                                         | 可读 | 可写 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
+| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 是   | 是   | 窗口矩形区域。 |
+| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 是   | 是   | 窗口模式类型。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 

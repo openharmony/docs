@@ -25,7 +25,6 @@ import { formInfo } from '@kit.FormKit';
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统接口：** 此接口为系统接口。  |
 | FORM_PERMISSION_NAME_KEY | 'ohos.extra.param.key.permission_name' | 用户授权权限名称 |
 | FORM_PERMISSION_GRANTED_KEY | 'ohos.extra.param.key.permission_granted' | 用户是否授权 |
-| THEME_KEY | 'ohos.extra.param.key.form_is_theme' | 是否是主题卡片 |
 
 ## FormUsageState
 
@@ -60,8 +59,7 @@ import { formInfo } from '@kit.FormKit';
 | dimension | number               | 是    | 否     | 卡片规格。   |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
 | formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
-| formLocation<sup>12+</sup> | [FormLocation](#formlocation)| 是    | 否     | 卡片位置信息。   |
-| extraData<sup>12+</sup> | Record<string, Object>| 是    | 否     | 卡片扩展信息。   |
+| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| 是    | 否     | 卡片位置信息。   |
 
 ## formProviderFilter<sup>10+</sup>
 
@@ -81,7 +79,7 @@ import { formInfo } from '@kit.FormKit';
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。        |
 | isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 否     | 是否包含未使用的卡片。        |
 
-## FormLocation
+## FormLocation<sup>12+</sup>
 
 卡片当前位置枚举。
 

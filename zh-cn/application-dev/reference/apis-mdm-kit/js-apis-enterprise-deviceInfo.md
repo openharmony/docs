@@ -8,13 +8,13 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin)后调用，实现相应功能。
+> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将设备管理应用激活后调用，实现相应功能。
 >
 
 ## 导入模块
 
 ```ts
-import deviceInfo from '@ohos.enterprise.deviceInfo';
+import { deviceInfo } from '@kit.MDMKit';
 ```
 
 ## deviceInfo.getDeviceInfo
@@ -32,7 +32,7 @@ getDeviceInfo(admin: Want, label: string): string
 | 参数名 | 类型                                                    | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| label  | string                                                  | 是   | 管理员的能力信息。<br/>- deviceName：设备名称。<br/>- deviceSerial：设备序列号。<br/>- simInfo：SIM卡信息。 |
+| label  | string                                                  | 是   | 管理员的能力信息。<br/>- deviceName：设备名称。<br/>- deviceSerial：设备序列号。<br/>- simInfo：SIM卡信息。 <!--RP1--><!--RP1End-->|
 
 **返回值：**
 
@@ -46,15 +46,15 @@ getDeviceInfo(admin: Want, label: string): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
+| 9200001  | The application is not an administrator application of the device. |
 | 9200002  | the administrator application does not have permission to manage the device. |
-| 201      | the application does not have permission to call this function. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

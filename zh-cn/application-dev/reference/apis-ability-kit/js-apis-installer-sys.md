@@ -200,14 +200,14 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
 | 17700036 | Failed to install the HSP due to the lack of required permission. |
-| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification failed. |
-| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
@@ -286,14 +286,14 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
 | 17700036 | Failed to install the HSP due to the lack of required permission. |
-| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification failed. |
-| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
@@ -376,14 +376,14 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
 | 17700031 | Failed to install the HAP because the overlay check of the HAP failed. |
 | 17700036 | Failed to install the HSP due to the lack of required permission. |
-| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification failed. |
-| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
 
@@ -450,7 +450,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall the HAP because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 
 **示例：**
 
@@ -514,7 +514,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall the HAP because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 
 **示例：**
 
@@ -579,7 +579,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
-| 17700045 | Failed to uninstall the HAP because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 
 **示例：**
 ```ts
@@ -1082,15 +1082,15 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
-| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **示例：**
@@ -1159,15 +1159,15 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
-| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **示例：**
@@ -1238,15 +1238,15 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 | 17700016 | Failed to install the HAP because of insufficient system disk space. |
 | 17700017 | Failed to install the HAP since the version of the HAP to install is too early. |
 | 17700018 | Failed to install the HAP or HSP because the dependent module does not exist. |
-| 17700039 | Failed to install the HSP because disallow install a shared bundle by hapFilePaths. |
-| 17700041 | Failed to install the HAP because enterprise device management disallow install. |
+| 17700039 | Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed. |
+| 17700041 | Failed to install the HAP because the installation is forbidden by enterprise device management. |
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 | 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 | 17700048 | Failed to install the HAP because the code signature verification failed. |
 | 17700049 | Failed to install the HAP because the bundleName is different from the bundleName of the caller application. |
-| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device. |
+| 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700051 | Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm. |
 
 **示例：**
@@ -1314,7 +1314,7 @@ uninstallUpdates(bundleName: string, installParam?: InstallParam): Promise\<void
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundle name is not found. |
-| 17700045 | Failed to uninstall the HAP because enterprise device management disallow uninstall. |
+| 17700045 | Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management. |
 | 17700057 | Failed to uninstall updates because the HAP is not pre-installed. |
 
 **示例：**
@@ -1389,7 +1389,7 @@ import installer from '@ohos.bundle.installer';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = 'com.ohos.camera';
-let createAppCloneParam: installer.createAppCloneParam = {
+let createAppCloneParam: installer.CreateAppCloneParam = {
     userId: 100,
     appIndex: 1,
 };

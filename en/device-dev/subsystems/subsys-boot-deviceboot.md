@@ -363,7 +363,7 @@ After mounting required partitions, the init process scans each script file in t
   | mnt_point             | Mount point in the root file system.                                      |
   | type                  | File system type. Common file systems are **ext2**, **vfat**, and **NTFS**.                    |
   | mnt_flags and options | Mounting parameters.                                   |
-  | fs_mgr_flags          | File system manager flags (introduced in Android 10).<br>Available values include **check**, **wait**, **required**, **nofail**, and **hvb**.|
+  | fs_mgr_flags          | File system manager flags.<br>Available values include **check**, **wait**, **required**, **nofail**, and **hvb**.|
 
 - Description of mnt_flags and options
 

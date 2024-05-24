@@ -11,14 +11,13 @@ The system provides APIs for registering and unregistering a domain account plug
 2. Import the **osAccount** module.
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
-   import { AsyncCallback, BusinessError } from '@ohos.base';
+   import { osAccount, AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. Obtains an **AccountManager** instance.
 
    ```ts
-   let accountMgr = account_osAccount.getAccountManager()
+   let accountMgr = osAccount.getAccountManager()
    ```
 
 ## Registering a Domain Account Plugin
@@ -30,46 +29,46 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
 1. Define the plugin.
 
    ```ts
-   let plugin: account_osAccount.DomainPlugin = {
-     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-            callback: account_osAccount.IUserAuthCallback) => {
+   let plugin: osAccount.DomainPlugin = {
+     auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+            callback: osAccount.IUserAuthCallback) => {
        console.info("plugin auth domain" + domainAccountInfo.domain)
        console.info("plugin auth accountName" + domainAccountInfo.accountName)
        console.info("plugin auth accountId" + domainAccountInfo.accountId)
 
-       let result: account_osAccount.AuthResult = {
+       let result: osAccount.AuthResult = {
          token: new Uint8Array([0]),
          remainTimes: 5,
          freezingTime: 0
        };
        callback.onResult(0, result);
      },
-     authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                     callback: account_osAccount.IUserAuthCallback) => {
+     authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                     callback: osAccount.IUserAuthCallback) => {
        console.info("plugin authWithPopup domain" + domainAccountInfo.domain)
        console.info("plugin authWithPopup accountName" + domainAccountInfo.accountName)
        console.info("plugin authWithPopup accountId" + domainAccountInfo.accountId)
 
-       let result: account_osAccount.AuthResult = {
+       let result: osAccount.AuthResult = {
          token: new Uint8Array([0]),
          remainTimes: 5,
          freezingTime: 0
        };
        callback.onResult(0, result);
      },
-     authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array, callback: account_osAccount.IUserAuthCallback) => {
+     authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array, callback: osAccount.IUserAuthCallback) => {
        console.info("plugin authWithToken domain" + domainAccountInfo.domain)
        console.info("plugin authWithToken accountName" + domainAccountInfo.accountName)
        console.info("plugin authWithToken accountId" + domainAccountInfo.accountId)
-       let result: account_osAccount.AuthResult = {
+       let result: osAccount.AuthResult = {
          token: new Uint8Array([0]),
          remainTimes: 5,
          freezingTime: 0
        };
        callback.onResult(0, result);
      },
-     getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                      callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {
+     getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                      callback: AsyncCallback<osAccount.DomainAccountInfo>) => {
        console.info("plugin getAccountInfo domain")
        let domainAccountId = Date.now().toString()
        let code: BusinessError = {
@@ -77,16 +76,20 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
          name: "mock_name",
          message: "mock_message"
        };
-       let accountInfo: account_osAccount.DomainAccountInfo = {
-         domain: options.domain,
+       let domainStr: string = '';
+       if (options.domain != undefine) {
+        domainStr = options.domain
+       }
+       let accountInfo: osAccount.DomainAccountInfo = {
+         domain: domainStr,
          accountName: options.accountName,
          accountId: domainAccountId,
          isAuthenticated: false
        };
        callback(code, accountInfo);
      },
-     getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                         callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {
+     getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                         callback: AsyncCallback<osAccount.AuthStatusInfo>) => {
 
        console.info("plugin getAuthStatusInfo domain" + domainAccountInfo.domain)
        console.info("plugin getAuthStatusInfo accountName" + domainAccountInfo.accountName)
@@ -97,13 +100,13 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
          name: "mock_name",
          message: "mock_message"
        };
-       let statusInfo: account_osAccount.AuthStatusInfo = {
+       let statusInfo: osAccount.AuthStatusInfo = {
          remainTimes: 5,
          freezingTime: 0
        };
        callback(code, statusInfo);
      },
-     bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+     bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                    callback: AsyncCallback<void>) => {
        console.info("plugin bindAccount domain" + domainAccountInfo.domain)
        console.info("plugin bindAccount accountName" + domainAccountInfo.accountName)
@@ -115,12 +118,12 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
        };
        callback(code);
      },
-     unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
+     unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
        console.info("plugin unbindAccount domain" + domainAccountInfo.domain)
        console.info("plugin unbindAccount accountName" + domainAccountInfo.accountName)
        console.info("plugin unbindAccount accountId" + domainAccountInfo.accountId)
      },
-     isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+     isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                            callback: AsyncCallback<boolean>) => {
        console.info("plugin isAccountTokenValid domain" + domainAccountInfo.domain)
        console.info("plugin isAccountTokenValid accountName" + domainAccountInfo.accountName)
@@ -132,7 +135,7 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
        };
        callback(code, true);
      },
-     getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
+     getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
        console.info("plugin getAccessToken domain")
        let code: BusinessError = {
          code: 0,
@@ -149,7 +152,7 @@ The domain account plugin prototype is [DomainPlugin](../../reference/apis-basic
 
    ```ts
    try {
-       account_osAccount.DomainAccountManager.registerPlugin(plugin)
+       osAccount.DomainAccountManager.registerPlugin(plugin)
        console.info("registerPlugin success")
    } catch (err) {
        console.info("registerPlugin err: " + JSON.stringify(err));
@@ -164,7 +167,7 @@ Use [unregisterPlugin](../../reference/apis-basic-services-kit/js-apis-osAccount
 
 ```ts
 try {
-  account_osAccount.DomainAccountManager.unregisterPlugin();
+  osAccount.DomainAccountManager.unregisterPlugin();
   console.log('unregisterPlugin success.');
 } catch(err) {
   console.log('unregisterPlugin err:' + JSON.stringify(err));

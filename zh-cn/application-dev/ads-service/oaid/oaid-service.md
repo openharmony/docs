@@ -24,8 +24,8 @@ OAID会在下述场景中发生变化：
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [getOAID()](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid): Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
-| [getOAID(callback:&nbsp;AsyncCallback&lt;string&gt;)](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1):&nbsp; void | 获取OAID，通过Callback回调返回值。 |
+| [getOAID](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid)(): Promise&lt;string&gt; | 获取OAID，通过Promise异步返回结果。 |
+| [getOAID](../../reference/apis-ads-kit/js-apis-oaid.md#identifiergetoaid-1)(callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp; void | 获取OAID，通过Callback回调返回值。 |
 
 > **说明：**
 > 如调用getOAID接口需要申请ohos.permission.APP_TRACKING_CONSENT权限，并获取用户授权。存在如下三种情况：<br/>
@@ -57,11 +57,10 @@ OAID会在下述场景中发生变化：
 
 2. 在应用启动时触发动态授权弹框，向用户请求授权，用户授权成功后，调用getOAID方法获取OAID信息。其中context的获取方式参见[各类Context的获取方式](../../application-models/application-context-stage.md)。示例代码如下所示：
    ```ts
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-   import { BusinessError } from '@ohos.base';
-   import identifier from '@ohos.identifier.oaid';
-   import hilog from '@ohos.hilog';
-   import common from '@ohos.app.ability.common';
+   import { identifier } from '@kit.AdsKit';
+   import { abilityAccessCtrl, common } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    function requestOAIDTrackingConsentPermissions(context: common.Context): void {
      // 进入页面时触发动态授权弹框，向用户请求授权广告跟踪权限
@@ -69,13 +68,13 @@ OAID会在下述场景中发生变化：
      try {
        atManager.requestPermissionsFromUser(context, ["ohos.permission.APP_TRACKING_CONSENT"]).then((data) => {
          if (data.authResults[0] == 0) {
-           hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
+           hilog.info(0x0000, 'testTag', '%{public}s', 'succeeded in requesting permission');
            identifier.getOAID((err: BusinessError, data: string) => {
 			 if (err.code) {
 			   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
 			 } else {
 			   const oaid: string = data;
-			   hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
+			   hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting oaid by callback , oaid: ${oaid}`);
 			 }
            });
          } else {

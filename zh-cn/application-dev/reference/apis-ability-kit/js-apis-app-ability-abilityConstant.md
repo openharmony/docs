@@ -110,8 +110,7 @@ Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue(want
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
     onContinue(wantParam: Record<string, Object>) {
@@ -183,7 +182,7 @@ class MyAbility extends UIAbility {
     this.context.startAbility(want, option).then(()=>{
       console.log('Succeed to start ability.');
     }).catch((error: BusinessError)=>{
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+      console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
   }
 }

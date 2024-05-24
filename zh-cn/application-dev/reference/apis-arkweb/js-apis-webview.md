@@ -3302,7 +3302,7 @@ getPageHeight(): number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 当前网页的页面高度。 |
+| number | 当前网页的页面高度。单位：px。 |
 
 **错误码：**
 
@@ -5019,6 +5019,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                                 |
 
 **示例：**
@@ -7065,8 +7066,8 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
-| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。      |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议，长度不超过2048。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
+| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。内容不能为空。      |
 | cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
 
 **返回值：**
@@ -7081,6 +7082,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -7512,7 +7514,9 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
 
 **示例：**
 
@@ -10759,7 +10763,7 @@ struct WebComponent {
 
 | 名称           | 类型       | 可读 | 可写 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
+| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
 | isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合[RFC 1738](http://www.ietf.org/rfc/rfc1738.txt)第3.1节中定义的URL规范化和解析规则。           |
@@ -13338,6 +13342,24 @@ getHttpBodyStream(): WebHttpBodyStream | null
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
 
+### getRequestResourceType<sup>12+</sup>
+
+getRequestResourceType(): WebResourceType
+
+获取资源请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [WebResourceType](#webresourcetype12) | 返回资源请求的资源类型。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
 ## WebSchemeHandlerResponse<sup>12+</sup>
 
 请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
@@ -13867,6 +13889,7 @@ struct WebComponent {
                 console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame())
                 console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
                 console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
+                console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType())
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
                   console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
@@ -14479,7 +14502,7 @@ exitFullscreen(): void
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
 | id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | {<br/>x: number, <br/>y: number, <br/>width: number, <br/>height: number<br/>} | 否 | N/A | surface 的位置信息。 |
+| rect | [RectEvent](#rectevent12) | 否 | N/A | surface 的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -14549,7 +14572,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称        | 类型   | 可读 | 可写 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin), 如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议。      |
+| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin), 如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议，长度不超过2048。      |
 | resource | Uint8Array | 是   | 是   | 本地离线资源的内容。      |
 | responseHeaders | Array<[WebHeader](#webheader)> | 是   | 是   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。      |
 | type | [OfflineResourceType](#offlineresourcetype12) | 是   | 是   | 资源的类型，目前仅支持Javascript、图片和CSS类型的资源。      |
@@ -14566,3 +14589,45 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | CSS       | 1 | CSS类型的资源。|
 | CLASSIC_JS       | 2 | 通过<script src="" /\>标签加载的Javascript资源。|
 | MODULE_JS      | 3 |通过<script src="" type="module" /\>标签加载的Javascript资源。|
+
+## WebResourceType<sup>12+</sup>
+
+资源请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| MAIN_FRAME | 0 | 顶层页面。 |
+| SUB_FRAME | 1 | Frame或Iframe。 |
+| STYLE_SHEET | 2 | CSS样式表。 |
+| SCRIPT | 3 | 外部脚本。 |
+| IMAGE | 4 | 图片（jpg/gif/png/以及其他）。 |
+| FONT_RESOURCE | 5 | 字体。 |
+| SUB_RESOURCE | 6 | 其他子资源。如果实际类型未知，则是默认类型。 |
+| OBJECT | 7 | 插件的Object（或embed）标签，或者插件请求的资源。 |
+| MEDIA | 8 | 媒体资源。 |
+| WORKER | 9 | 专用工作线程的主资源。 |
+| SHARED_WORKER | 10 | 共享工作线程的主资源。 |
+| PREFETCH | 11 | 明确的预取请求。 |
+| FAVICON | 12 | 网站图标。 |
+| XHR | 13 | XMLHttpRequest。 |
+| PING | 14 | <a ping\>/sendBeacon的Ping请求。 |
+| SERVICE_WORKER | 15 | service worker的主资源。 |
+| CSP_REPORT | 16 | 内容安全策略违规报告。 |
+| PLUGIN_RESOURCE | 17 | 插件请求的资源。 |
+| NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
+| NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
+
+# RectEvent<sup>12+<sup>
+
+矩形定义。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| -------------- | --------- | ---- | ---- | ---------------------------- |
+| x  | number   | 是   | 是   | 矩形区域左上角x坐标。    |
+| y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
+| width  | number   | 是   | 是   | 矩形的宽度。    |
+| height  | number   | 是   | 是   | 矩形的高度。    |

@@ -34,11 +34,11 @@ Adds an MDNS service. This API uses an asynchronous callback to return the resul
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -98,11 +98,11 @@ Adds an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -156,11 +156,11 @@ Removes an MDNS service. This API uses an asynchronous callback to return the re
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -220,11 +220,11 @@ Removes an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -321,11 +321,11 @@ Resolves an MDNS service. This API uses an asynchronous callback to return the r
 | ID     | Error Message|
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -385,11 +385,11 @@ Resolves an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).

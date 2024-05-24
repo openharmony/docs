@@ -518,7 +518,7 @@ The specified shared bundle does not exist.
 
 ## 17700039 不允许安装应用间共享库
 **错误信息**<br/>
-Failed to install the HSP because disallow install a shared bundle by hapFilePaths.
+Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **错误描述**<br/>
 安装应用时，传入的安装包为应用间共享库类型。
@@ -548,7 +548,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 
 ## 17700041 企业设备管理不允许安装该应用
 **错误信息**<br/>
-Failed to install the HAP because enterprise device management disallow install.
+Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **错误描述**<br/>
 安装应用时，企业设备管理不允许安装。
@@ -605,7 +605,7 @@ Failed to install the HAP because the isolationMode configured is not supported.
 
 ## 17700045 企业设备管理不允许卸载该应用
 **错误信息**<br/>
-Failed to uninstall the HAP because enterprise device management disallow uninstall.
+Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **错误描述**<br/>
 卸载应用时，企业设备管理不允许卸载。
@@ -663,7 +663,7 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 
 ## 17700050 企业设备校验失败
 **错误信息**<br/>
-Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **错误描述**<br/>
 安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
@@ -726,7 +726,7 @@ Failed to install the HAP because the HAP requests wrong permissions.
 2. 应用的权限级别比其申请权限的权限级别低。
 
 **处理步骤**<br/>
-1. 排查是否申请了[MDM类型的权限](../../security/AccessToken/permissions-for-mdm-apps.md)，MDM类型的权限仅针对应用类型为MDM的应用开放。
+1. 排查是否申请了<!--Del-->[<!--DelEnd-->MDM类型的权限<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->，MDM类型的权限仅针对应用类型为MDM的应用开放。
 2. 排查申请的权限是否为开放权限。详情请见[权限列表](../../security/AccessToken/permissions-for-all.md)。
 
 ## 17700055 指定的link无效

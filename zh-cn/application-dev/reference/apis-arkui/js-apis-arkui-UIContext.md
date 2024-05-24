@@ -709,7 +709,7 @@ struct TimePickerDialogExample {
       Button('showTimePickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTimePickerDialog({
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
@@ -776,7 +776,7 @@ struct TextPickerDialogExample {
       Button('showTextPickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTextPickerDialog({
+          this.getUIContext().showTextPickerDialog({
             range: this.fruits,
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
@@ -1989,7 +1989,7 @@ struct Index {
 }
 ```
 
-### observer.on('willDraw')<sup>12+</sup>
+### on('willDraw')<sup>12+</sup>
 
 on(type: 'willDraw', callback: Callback\<void\>): void
 
@@ -2024,7 +2024,7 @@ struct Index {
 }
 ```
 
-### observer.off('willDraw')<sup>12+</sup>
+### off('willDraw')<sup>12+</sup>
 
 off(type: 'willDraw', callback?: Callback\<void\>): void
 
@@ -2064,7 +2064,7 @@ struct Index {
 }
 ```
 
-### observer.on('didLayout')<sup>12+</sup>
+### on('didLayout')<sup>12+</sup>
 
 on(type: 'didLayout', callback: Callback\<void\>): void
 
@@ -2099,7 +2099,7 @@ struct Index {
 }
 ```
 
-### observer.off('didLayout')<sup>12+</sup>
+### off('didLayout')<sup>12+</sup>
 
 off(type: 'didLayout', callback?: Callback\<void\>): void
 
@@ -2157,14 +2157,57 @@ on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwit
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('navDestinationSwitch', callback);
+// Index.ets
+// 演示 UIObserver.on('navDestinationSwitch', callback)
+// UIObserver.off('navDestinationSwitch', callback)
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.on('navDestinationSwitch', callBackFunc);
+  }
+
+  aboutToDisappear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.off('navDestinationSwitch', callBackFunc);
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationSwitch')<sup>12+</sup>
@@ -2182,18 +2225,7 @@ off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSw
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('navDestinationSwitch', callback);
-```
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
 
 ### on('navDestinationSwitch')<sup>12+</sup>
 
@@ -2214,14 +2246,59 @@ on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchO
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+// Index.ets
+// 演示 UIObserver.on('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+// UIObserver.off('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+import observer from '@ohos.arkui.observer';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  aboutToDisappear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .id("myNavId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationSwitch')<sup>12+</sup>
@@ -2240,18 +2317,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
-```
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
 
 ### on('willClick')<sup>12+</sup>
 
@@ -2266,7 +2332,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12)<sup>12+</sup>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。  |
 
 **示例：**
 
@@ -2289,10 +2355,10 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                                                         | 必填 | 说明                                                  |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12)<sup>12+</sup>        | 否   | 需要被注销的回调函数。                 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。                                |
 
 **示例：**
 
@@ -2318,7 +2384,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12)<sup>12+</sup>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。   |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。  |
 
 **示例：**
 
@@ -2341,10 +2407,10 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                                                         | 必填 | 说明                                                 |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12)<sup>12+</sup>        | 否   | 需要被注销的回调函数。                 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
@@ -2367,10 +2433,10 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | [ClickEventListenerCallback](#clickeventlistenercallback12)<sup>12+</sup>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。    |
 
 **示例：**
 
@@ -2393,10 +2459,10 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | [ClickEventListenerCallback](#clickeventlistenercallback12)<sup>12+</sup>        | 否   | 需要被注销的回调函数。                 |
+| 参数名   | 类型                                                        | 必填 | 说明                                                  |
+| -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。                                |
 
 **示例：**
 
@@ -2419,10 +2485,10 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | [ClickEventListenerCallback](#clickeventlistenercallback12)<sup>12+</sup>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。    |
 
 **示例：**
 
@@ -2445,10 +2511,10 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | [ClickEventListenerCallback](#clickeventlistenercallback12)<sup>12+</sup>        | 否   | 需要被注销的回调函数。                 |
+| 参数名   | 类型                                                        | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
@@ -2560,9 +2626,9 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2611,9 +2677,9 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2670,9 +2736,9 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2727,9 +2793,9 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2790,8 +2856,8 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
 
@@ -2837,7 +2903,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found, only throw in standard system. |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002 | if the uri is not exist.                 |
 
 **示例：**
@@ -2893,7 +2959,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if can not get the delegate, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
 
@@ -2945,8 +3011,8 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.               |
 
 **示例：**
 
@@ -3004,9 +3070,9 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.   |
 
 **示例：**
 
@@ -3055,9 +3121,9 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.  |
 
 **示例：**
 
@@ -3113,9 +3179,9 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.  |
 
 **示例：**
 
@@ -3170,9 +3236,9 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.   |
 
 **示例：**
 
@@ -3233,8 +3299,8 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004 | Named route error. The named route does not exist.        |
 
 **示例：**
 
@@ -3280,8 +3346,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004 | Named route error. The named route does not exist.         |
 
 **示例：**
 
@@ -3337,7 +3403,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if can not get the delegate, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100004 | Named route error. The named route does not exist.       |
 
 **示例：**
 
@@ -3389,8 +3455,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004 | Named route error. The named route does not exist.        |
 
 **示例：**
 
@@ -3639,7 +3705,7 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3729,7 +3795,7 @@ showToast(options: promptAction.ShowToastOptions): void
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3773,7 +3839,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3842,7 +3908,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3902,7 +3968,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if UI execution context not found. |
+| 100001   | Internal error. |
 
 **示例：**
 
@@ -3963,7 +4029,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -4023,7 +4089,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001 | if UI execution context not found. |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -4087,7 +4153,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
-| 103302 | the ComponentContent has already been opened. |
+| 103302 | Dialog content already exists.|
 
 **示例：**
 
@@ -4356,7 +4422,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
-| 100001   | if some internal handling failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 
@@ -4441,7 +4507,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
-| 100001   | if some internal handling failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 
@@ -4554,7 +4620,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
-| 100001   | if some internal handling failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 1.在EntryAbility.ets中获取UI上下文并保存至LocalStorage中。
@@ -4699,6 +4765,45 @@ struct DragControllerPage {
       }).margin({top:20})
     }
   }
+}
+```
+
+### setDragEventStrictReportingEnabled<sup>12+</sup>
+
+setDragEventStrictReportingEnabled(enable: boolean): void
+
+当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enable | boolean | 是   | 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
+     });
+   });
+ }
 }
 ```
 
@@ -4905,45 +5010,6 @@ hideAllComponentContents(): void
 **示例：**
 
 请参考[addComponentContent示例](#addcomponentcontent12)
-
-
-### setDragEventStrictReportingEnabled<sup>12+</sup>
-
-setDragEventStrictReportingEnabled(enable: boolean): void
-
-当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
-
-**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-|参数名|类型|必填|说明|
-| ------- | ------- | ------- | ------- |
-| enable | boolean | 是| 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。|
-
-**示例：**
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
- export default class EntryAbility extends UIAbility {
-   onWindowStageCreate(windowStage: window.WindowStage): void {
-       windowStage.loadContent('pages/Index', (err, data) => {
-         if (err.code) {
-         return;
-       }
-       windowStage.getMainWindow((err, data) => {
-         if (err.code) {
-           return;
-         }
-         let windowClass: window.Window = data;
-         let uiContext: UIContext = windowClass.getUIContext();
-         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
-     });
-   });
- }
-}
-```
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -5251,7 +5317,7 @@ requestFocus(key: string): void
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
 | 150001 | This component is not focusable. |
-| 150002 | This component has unfocusable ancestor.      |
+| 150002 | This component has an unfocusable ancestor.      |
 | 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
 
 **示例：**

@@ -117,7 +117,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 ## ProtocolType<sup>10+</sup>
 
-远端设备支持的协议类型。
+远端设备支持的协议类型的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -135,11 +135,12 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-| 名称  | 类型   | 说明 |
-| ----- | ------ | ---- |
-| audio | string | 音频 |
-| video | string | 视频 |
-| voice_call<sup>11+<sup> | string | 通话 |
+| 取值范围  | 说明 |
+| -----  | ---- |
+| audio | 音频 |
+| video | 视频 |
+| voice_call<sup>11+<sup> | 音频通话 |
+| video_call<sup>12+<sup> | 视频通话 |
 
 ## AVSession<sup>10+</sup>
 
@@ -3009,7 +3010,7 @@ getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 
 | 类型                                            | 说明                              |
 | ----------------------------------------------- | --------------------------------- |
-| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| 当前支持扩展屏投播的显示设备属性。 |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| Promise对象，返回当前系统中所有支持扩展屏投播的显示设备。 |
 
 **错误码：**
 
@@ -4288,6 +4289,8 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -4321,6 +4324,8 @@ off(type: 'keyRequest', callback?: KeyRequestCallback): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -4348,6 +4353,8 @@ type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -4366,7 +4373,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 ## CastDisplayState<sup>12+</sup>
 
-投播显示设备状态。
+投播显示设备状态的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -4382,13 +4389,13 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
-| 名称            | 类型                      | 可读 | 可写 | 说明                                                                  |
+| 名称            | 类型                      | 只读 | 可选 | 说明                                                                  |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
-| id            | number                  | 是    | 否    | 投播显示设备的ID，该参数应为整数。  |
-| name     | string                  | 是    | 否    | 投播显示设备的名称。           |
-| state          | [CastDisplayState](#castdisplaystate12)          | 是    | 否    |投播显示设备状态。            |
-| width          | number          | 是    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
-| height          | number          | 是    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
+| id            | number                  | 否    | 否    | 投播显示设备的ID，该参数应为整数。  |
+| name     | string                  | 否    | 否    | 投播显示设备的名称。           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 否    | 否    |投播显示设备状态。            |
+| width          | number          | 否    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 否    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
 
 ## ConnectionState<sup>10+</sup>
 
@@ -4418,7 +4425,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | title           | string                  | 否   | 标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                 |
 | artist          | string                  | 否   | 艺术家。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
 | author          | string                  | 否   | 专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
-| avQueueName<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
+| avQueueName<sup>12+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
 | avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
 | album           | string                  | 否   | 专辑名称。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
@@ -7188,7 +7195,7 @@ try {
 
 ## SkipIntervals<sup>11+</sup>
 
-表示session支持的快进快退时间间隔。
+表示session支持的快进快退时间间隔的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 

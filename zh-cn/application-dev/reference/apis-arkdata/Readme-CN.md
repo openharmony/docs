@@ -7,6 +7,7 @@
   - [@ohos.data.distributedDataObject (分布式数据对象)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (分布式键值数据库)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
+  - [@ohos.data.sendablePreferences (共享用户首选项)](js-apis-data-sendablePreferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
   - [@ohos.data.unifiedDataChannel (标准化数据通路)](js-apis-data-unifiedDataChannel.md)
   - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)
@@ -14,8 +15,10 @@
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
   <!--Del-->
   - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](js-apis-application-dataShareExtensionAbility-sys.md)
-  - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
-  - [@ohos.data.cloudData (端云协同)(系统接口)](js-apis-data-cloudData-sys.md)
+  <!--DelEnd-->
+  - [@ohos.data.cloudData (端云服务)](js-apis-data-cloudData.md)
+  <!--Del-->
+  - [@ohos.data.cloudData (端云服务)(系统接口)](js-apis-data-cloudData-sys.md)
   - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](js-apis-data-cloudExtension-sys.md)
   - [@ohos.data.dataShare (数据共享)(系统接口)](js-apis-data-dataShare-sys.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](js-apis-data-dataSharePredicates-sys.md)
