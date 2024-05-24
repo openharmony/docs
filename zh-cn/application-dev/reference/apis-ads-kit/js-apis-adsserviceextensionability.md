@@ -1,4 +1,4 @@
-# @ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)(系统接口)
+# @ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)
 
 
 本模块为设备厂商提供广告扩展能力，设备厂商可自主实现请求广告的回调。
@@ -34,13 +34,19 @@ import AdsServiceExtensionAbility from '@ohos.advertising.AdsServiceExtensionAbi
 
 **示例：**
 ```ts
-import advertising from '@ohos.advertising';
-import { RespCallback } from '@ohos.advertising.AdsServiceExtensionAbility';
+import { advertising, RespCallback } from '@kit.AdsKit';
 
 function respDemo(respCallback: RespCallback) {
   const ads: Array<advertising.Advertisement> = [];
   const rewardVerifyConfig: Map<string, string> = new Map();
-  ads.push({adType: 7, uniqueId: '111111', rewardVerifyConfig: rewardVerifyConfig, rewarded: false, shown: false,  clicked: false})
+  ads.push({
+    adType: 7,
+    uniqueId: '111111',
+    rewardVerifyConfig: rewardVerifyConfig,
+    rewarded: false,
+    shown: false,
+    clicked: false
+  })
   const slot: string = "test";
   const resMap: Map<string, Array<advertising.Advertisement>> = new Map();
   resMap.set(slot, ads);
