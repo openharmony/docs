@@ -4427,12 +4427,12 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | author          | string                  | 否   | 专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
 | avQueueName<sup>12+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  |                       
 | album           | string                  | 否   | 专辑名称。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
 | writer          | string                  | 否   | 词作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
 | duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                             |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  <br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                             |
 | publishDate     | Date                    | 否   | 发行日期。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
 | subtitle        | string                  | 否   | 子标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
 | description     | string                  | 否   | 媒体描述。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
