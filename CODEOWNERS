@@ -271,10 +271,6 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @warehouse12
 
 
 [开发-Form Kit]
-zh-cn/application-dev/application-models/formkit-overview.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/application-models/arkts-ui-widget*.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/application-models/js-ui-widget*.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/application-models/widget*.md @arondave @hehe9876 @nezha-father
 zh-cn/application-dev/form/ @arondave @hehe9876 @nezha-father
 
 
@@ -991,12 +987,7 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @warehouse12
 
 [API参考-Form Kit]
 zh-cn/application-dev/reference/apis-form-kit/  @arondave  @hehe9876  @nezha-fathe
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @hehe9876 @nezha-father
+
 
 
 [API参考-IME kit]
