@@ -453,7 +453,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | The application does not have permission to call the interface. |
-| 202      | Not System App. Interface caller is not a system app. |
+| 202      | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
@@ -496,7 +496,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | The application does not have permission to call the interface. |
-| 202      | Not System App. Interface caller is not a system app. |
+| 202      | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
@@ -542,7 +542,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | The application does not have permission to call the interface. |
-| 202      | Not System App. Interface caller is not a system app. |
+| 202      | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |

@@ -149,7 +149,8 @@ registerContinuation(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -198,7 +199,8 @@ registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -256,7 +258,8 @@ registerContinuation(options?: ContinuationExtraParams): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600003 | The number of token registration times has reached the upper limit. |
 
@@ -429,7 +432,8 @@ on(type: 'deviceSelected', token: number, callback: Callback\<Array\<Continuatio
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -480,7 +484,8 @@ on(type: 'deviceUnselected', token: number, callback: Callback\<Array\<Continuat
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -531,7 +536,8 @@ off(type: 'deviceSelected', token: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -574,7 +580,8 @@ off(type: 'deviceUnselected', token: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 | 16600004 | The specified callback has been registered. |
@@ -734,7 +741,8 @@ startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -783,7 +791,8 @@ startContinuationDeviceManager(token: number, options: ContinuationExtraParams, 
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -842,7 +851,8 @@ startContinuationDeviceManager(token: number, options?: ContinuationExtraParams)
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -975,7 +985,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1031,7 +1042,8 @@ updateContinuationState(token: number, deviceId: string, status: DeviceConnectSt
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1155,7 +1167,8 @@ unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 
@@ -1208,7 +1221,8 @@ unregisterContinuation(token: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 201      | Permission denied. |
+| 401      | The parameter check failed. |
 | 16600001 | The system ability works abnormally. |
 | 16600002 | The specified token or callback is not registered. |
 

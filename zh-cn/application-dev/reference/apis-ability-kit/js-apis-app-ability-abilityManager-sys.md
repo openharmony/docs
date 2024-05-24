@@ -40,9 +40,9 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| ASSERT_TERMINATE | 0 | 表示用户点击终止的操作的断言调试结果。 |
-| ASSERT_CONTINUE | 1 | 表示用户点击继续的操作的断言调试结果。 |
-| ASSERT_RETRY | 2 | 表示用户点击重试的操作的断言调试结果。 |
+| ASSERT_TERMINATE | 0 | 表示用户点击终止的操作的断言调试结果。<br/>**模型约束：** 此属性仅在Stage模型下可用。 |
+| ASSERT_CONTINUE | 1 | 表示用户点击继续的操作的断言调试结果。<br/>**模型约束：** 此属性仅在Stage模型下可用。 |
+| ASSERT_RETRY | 2 | 表示用户点击重试的操作的断言调试结果。<br/>**模型约束：** 此属性仅在Stage模型下可用。 |
 
 ## updateConfiguration
 
@@ -70,7 +70,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -137,7 +137,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -195,7 +195,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -244,7 +244,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 16000050 | Internal error. |
 
 **示例**：
@@ -291,7 +291,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -348,7 +348,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -395,7 +395,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -436,7 +436,7 @@ getTopAbility(): Promise\<ElementName>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 16000050 | Internal error. |
 
 **示例**：
@@ -475,7 +475,7 @@ acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Obj
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -529,7 +529,7 @@ acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -707,7 +707,7 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -757,7 +757,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -817,7 +817,7 @@ getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): vo
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -861,7 +861,7 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 202 | Not system application. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -889,6 +889,8 @@ notifyDebugAssertResult(sessionId: string, status: UserStatus): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**模型约束**: 此接口仅可在Stage模型下可用。
+
 **参数**：
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -908,8 +910,8 @@ notifyDebugAssertResult(sessionId: string, status: UserStatus): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 201 | Permission denied. |
-| 202 | Not System App. Interface caller is not a system app. |
+| 201 | The application does not have permission to call the interface. |
+| 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
 
@@ -949,6 +951,8 @@ isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**: 此接口仅可在Stage模型下可用。
 
 **参数**：
 

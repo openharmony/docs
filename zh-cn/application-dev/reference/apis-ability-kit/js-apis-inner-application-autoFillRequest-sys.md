@@ -76,8 +76,12 @@ onSuccess(response: FillResponse): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -168,8 +172,11 @@ onFailure(): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202      | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -245,7 +252,7 @@ onFailure(): void
 
 ### FillRequestCallback.onCancel
 
-onCancel(): void
+onCancel(fillContent?: string): void
 
 通知自动填充已被取消。
 
@@ -253,8 +260,12 @@ onCancel(): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | The parameter check failed. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -346,6 +357,7 @@ setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 **错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 202  | Permission verification failed. Possible causes: non-system app called system api. |
@@ -464,8 +476,11 @@ onSuccess(): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202      | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -550,8 +565,11 @@ onFailure(): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 202      | Permission denied, non-system app called system api. |
 | 16000050 | Internal error. |
 
 **示例：**
