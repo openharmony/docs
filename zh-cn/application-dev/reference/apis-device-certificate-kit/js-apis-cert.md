@@ -9449,15 +9449,14 @@ async function buildX509CertChain(): Promise<cert.CertChainBuildParameters> {
   const x509Cert = await createX509Cert();
   let certChainResult: cert.CertChainBuildParameters = {} as cert.CertChainBuildParameters;
   let param: cert.CertChainBuildParameters = {
-      certCollection: [x509Cert,x509Cert],
       certMatchParameters: {validDate:'20130212080000Z'},
-      maxlength: 3,
-      validateParameters: {
+      maxLength: 3,
+      validationParameters: {
         date: '20130212080000Z',
         trustAnchors: [{CACert:x509Cert}]}
   }
   try {
-    certChainResult = cert.buildX509CertChain();
+    let certChainBuildResult = cert.buildX509CertChain(certChainResult);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
