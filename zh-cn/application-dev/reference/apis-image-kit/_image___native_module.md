@@ -169,6 +169,153 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_Release](#oh_pixelmapnative_release) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针。 | 
 
 
+### 变量
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| static const char \*[MIME_TYPE_BMP](#mime_type_bmp) = "image/bmp" | bmp图片格式。 | 
+| static const char \*[MIME_TYPE_JPEG](#mime_type_jpeg) = "image/jpeg" | jpeg图片格式。 | 
+| static const char \*[MIME_TYPE_HEIC](#mime_type_heic) = "image/heic" | heif图片格式。 | 
+| static const char \*[MIME_TYPE_PNG](#mime_type_png) = "image/png" | png图片格式。 | 
+| static const char \*[MIME_TYPE_WEBP](#mime_type_webp) = "image/webp" | webp图片格式。 | 
+| static const char \*[MIME_TYPE_GIF](#mime_type_gif) = "image/gif" | gif图片格式。 | 
+| static const char \*[MIME_TYPE_ICON](#mime_type_icon) = "image/x-icon" | ico图片格式。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE](#ohos_image_property_bits_per_sample) = "BitsPerSample" | 每个像素比特数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_ORIENTATION](#ohos_image_property_orientation) = "Orientation" | 图片方向。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_LENGTH](#ohos_image_property_image_length) = "ImageLength" | 图片长度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_WIDTH](#ohos_image_property_image_width) = "ImageWidth" | 图片宽度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LATITUDE](#ohos_image_property_gps_latitude) = "GPSLatitude" | 图片纬度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LONGITUDE](#ohos_image_property_gps_longitude) = "GPSLongitude" | 图片经度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF](#ohos_image_property_gps_latitude_ref) = "GPSLatitudeRef" | 纬度引用，例如N或S。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF](#ohos_image_property_gps_longitude_ref) = "GPSLongitudeRef" | 经度引用，例如W或E。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL](#ohos_image_property_date_time_original) = "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_TIME](#ohos_image_property_exposure_time) = "ExposureTime" | 曝光时间，例如1/33 sec。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_TYPE](#ohos_image_property_scene_type) = "SceneType" | 拍摄场景模式，例如人像、风光、运动、夜景等。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS](#ohos_image_property_iso_speed_ratings) = "ISOSpeedRatings" | ISO感光度，例如400。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_F_NUMBER](#ohos_image_property_f_number) = "FNumber" | 光圈值，例如f/1.8。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL](#ohos_image_property_compressed_bits_per_pixel) = "CompressedBitsPerPixel" | 用于压缩图像的压缩模式，单位为每像素位数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_COMPRESSION](#ohos_image_property_compression) = "Compression" | 图像压缩方案。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION](#ohos_image_property_photometric_interpretation) = "PhotometricInterpretation" | 像素构成，例如RGB或YCbCr。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_STRIP_OFFSETS](#ohos_image_property_strip_offsets) = "StripOffsets" | 每个strip的字节偏移量。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL](#ohos_image_property_samples_per_pixel) = "SamplesPerPixel" | 每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP](#ohos_image_property_rows_per_strip) = "RowsPerStrip" | 每个strip的图像数据行数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS](#ohos_image_property_strip_byte_counts) = "StripByteCounts" | 每个图像数据带的总字节数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_X_RESOLUTION](#ohos_image_property_x_resolution) = "XResolution" | 图像宽度方向的分辨率。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_Y_RESOLUTION](#ohos_image_property_y_resolution) = "YResolution" | 图像高度方向的分辨率。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_PLANAR_CONFIGURATION](#ohos_image_property_planar_configuration) = "PlanarConfiguration" | 表示像素组件的记录格式，chunky格式或是planar格式。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_RESOLUTION_UNIT](#ohos_image_property_resolution_unit) = "ResolutionUnit" | 用于测量XResolution和YResolution的单位。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_TRANSFER_FUNCTION](#ohos_image_property_transfer_function) = "TransferFunction" | 图像的传递函数，通常用于颜色校正。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SOFTWARE](#ohos_image_property_software) = "Software" | 用于生成图像的软件的名称和版本。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_ARTIST](#ohos_image_property_artist) = "Artist" | 创建图像的用户名称。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_WHITE_POINT](#ohos_image_property_white_point) = "WhitePoint" | 图像的白点色度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_PRIMARY_CHROMATICITIES](#ohos_image_property_primary_chromaticities) = "PrimaryChromaticities" | 图像的主要颜色的色度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_COEFFICIENTS](#ohos_image_property_ycbcr_coefficients) = "YCbCrCoefficients" | 从RGB到YCbCr图像数据的转换矩阵系数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_SUB_SAMPLING](#ohos_image_property_ycbcr_sub_sampling) = "YCbCrSubSampling" | 色度分量与亮度分量的采样比率。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_YCBCR_POSITIONING](#ohos_image_property_ycbcr_positioning) = "YCbCrPositioning" | 色度分量相对于亮度分量的位置。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_REFERENCE_BLACK_WHITE](#ohos_image_property_reference_black_white) = "ReferenceBlackWhite" | 参考黑点值和参考白点值。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_COPYRIGHT](#ohos_image_property_copyright) = "Copyright" | 图像的版权信息。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT](#ohos_image_property_jpeg_interchange_format) = "JPEGInterchangeFormat" | JPEG压缩缩略图数据开始字节（SOI）的偏移。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT_LENGTH](#ohos_image_property_jpeg_interchange_format_length) = "JPEGInterchangeFormatLength" | JPEG压缩缩略图数据的字节数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_PROGRAM](#ohos_image_property_exposure_program) = "ExposureProgram" | 拍照时相机用来设置曝光的程序的类别。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SPECTRAL_SENSITIVITY](#ohos_image_property_spectral_sensitivity) = "SpectralSensitivity" | 表示所用相机的每个通道的光谱灵敏度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_OECF](#ohos_image_property_oecf) = "OECF" | 表示ISO 14524中规定的光电转换函数（OECF）。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXIF_VERSION](#ohos_image_property_exif_version) = "ExifVersion" | 支持的Exif标准版本。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_DATE_TIME_DIGITIZED](#ohos_image_property_date_time_digitized) = "DateTimeDigitized" | 图像作为数字数据存储的日期和时间，格式为YYYY:MM:DD HH:MM:SS。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_COMPONENTS_CONFIGURATION](#ohos_image_property_components_configuration) = "ComponentsConfiguration" | 压缩数据的特定信息。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SHUTTER_SPEED_VALUE](#ohos_image_property_shutter_speed_value) = "ShutterSpeedValue" | 快门速度，以APEX（摄影曝光的加法系统）值表示。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_BRIGHTNESS_VALUE](#ohos_image_property_brightness_value) = "BrightnessValue" | 图像的亮度值，以APEX单位表示。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_MAX_APERTURE_VALUE](#ohos_image_property_max_aperture_value) = "MaxApertureValue" | 最小F数镜头。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE](#ohos_image_property_subject_distance) = "SubjectDistance" | 测量单位为米的主体距离。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_AREA](#ohos_image_property_subject_area) = "SubjectArea" | 该标签指示整个场景中主要主体的位置和区域。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_MAKER_NOTE](#ohos_image_property_maker_note) = "MakerNote" | Exif/DCF制造商使用的标签，用于记录任何所需信息。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME](#ohos_image_property_subsec_time) = "SubsecTime" | 用于为DateTime标签记录秒的分数的标签。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME_ORIGINAL](#ohos_image_property_subsec_time_original) = "SubsecTimeOriginal" | 用于为DateTimeOriginal标签记录秒的分数的标签。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBSEC_TIME_DIGITIZED](#ohos_image_property_subsec_time_digitized) = "SubsecTimeDigitized" | 用于为DateTimeDigitized标签记录秒的分数的标签。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FLASHPIX_VERSION](#ohos_image_property_flashpix_version) = "FlashpixVersion" | 该标签表示FPXR文件支持的Flashpix格式版本，增强了设备兼容性。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_COLOR_SPACE](#ohos_image_property_color_space) = "ColorSpace" | 色彩空间信息标签，通常记录为色彩空间指定符。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_RELATED_SOUND_FILE](#ohos_image_property_related_sound_file) = "RelatedSoundFile" | 与图像数据相关的音频文件的名称。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FLASH_ENERGY](#ohos_image_property_flash_energy) = "FlashEnergy" | 图像捕获时的闪光能量，以BCPS表示。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SPATIAL_FREQUENCY_RESPONSE](#ohos_image_property_spatial_frequency_response) = "SpatialFrequencyResponse" | 相机或输入设备的空间频率表。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_X_RESOLUTION](#ohos_image_property_focal_plane_x_resolution) = "FocalPlaneXResolution" | 图像宽度中每FocalPlaneResolutionUnit的像素。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_Y_RESOLUTION](#ohos_image_property_focal_plane_y_resolution) = "FocalPlaneYResolution" | 图像高度中每FocalPlaneResolutionUnit的像素。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FOCAL_PLANE_RESOLUTION_UNIT](#ohos_image_property_focal_plane_resolution_unit) = "FocalPlaneResolutionUnit" | 测量FocalPlaneXResolution和FocalPlaneYResolution的单位。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_LOCATION](#ohos_image_property_subject_location) = "SubjectLocation" | 主要对象相对于左边缘的位置。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_INDEX](#ohos_image_property_exposure_index) = "ExposureIndex" | 捕获时选定的曝光指数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SENSING_METHOD](#ohos_image_property_sensing_method) = "SensingMethod" | 相机上的图像传感器类型。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FILE_SOURCE](#ohos_image_property_file_source) = "FileSource" | 表明图像来源。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_CFA_PATTERN](#ohos_image_property_cfa_pattern) = "CFAPattern" | 图像传感器的色彩滤光片（CFA）几何图案。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_CUSTOM_RENDERED](#ohos_image_property_custom_rendered) = "CustomRendered" | 指示图像数据上的特殊处理。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_EXPOSURE_MODE](#ohos_image_property_exposure_mode) = "ExposureMode" | 拍摄时设置的曝光模式。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_DIGITAL_ZOOM_RATIO](#ohos_image_property_digital_zoom_ratio) = "DigitalZoomRatio" | 捕获时的数字变焦比率。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_CAPTURE_TYPE](#ohos_image_property_scene_capture_type) = "SceneCaptureType" | 捕获的场景类型。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GAIN_CONTROL](#ohos_image_property_gain_control) = "GainControl" | 整体图像增益调整的程度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_CONTRAST](#ohos_image_property_contrast) = "Contrast" | 相机应用的对比度处理方向。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SATURATION](#ohos_image_property_saturation) = "Saturation" | 相机应用的饱和度处理方向。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SHARPNESS](#ohos_image_property_sharpness) = "Sharpness" | 相机应用的锐度处理方向。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_DEVICE_SETTING_DESCRIPTION](#ohos_image_property_device_setting_description) = "DeviceSettingDescription" | 特定相机模型的拍照条件信息。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE_RANGE](#ohos_image_property_subject_distance_range) = "SubjectDistanceRange" | 表示主体到相机的距离范围。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_IMAGE_UNIQUE_ID](#ohos_image_property_image_unique_id) = "ImageUniqueID" | 为每张图片唯一分配的标识符。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_VERSION_ID](#ohos_image_property_gps_version_id) = "GPSVersionID" | GPSInfoIFD的版本。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_ALTITUDE_REF](#ohos_image_property_gps_altitude_ref) = "GPSAltitudeRef" | 用于GPS高度的参照高度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_ALTITUDE](#ohos_image_property_gps_altitude) = "GPSAltitude" | 基于GPSAltitudeRef的高度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SATELLITES](#ohos_image_property_gps_satellites) = "GPSSatellites" | 用于测量的GPS卫星。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_STATUS](#ohos_image_property_gps_status) = "GPSStatus" | 录制图像时GPS接收器的状态。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_MEASURE_MODE](#ohos_image_property_gps_measure_mode) = "GPSMeasureMode" | GPS测量模式。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DOP](#ohos_image_property_gps_dop) = "GPSDOP" | GPS DOP（数据精度等级）。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SPEED_REF](#ohos_image_property_gps_speed_ref) = "GPSSpeedRef" | 用来表示GPS接收器移动速度的单位。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_SPEED](#ohos_image_property_gps_speed) = "GPSSpeed" | GPS接收器的移动速度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_TRACK_REF](#ohos_image_property_gps_track_ref) = "GPSTrackRef" | GPS接收机移动方向的参照。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_TRACK](#ohos_image_property_gps_track) = "GPSTrack" | GPS接收机的移动方向。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION_REF](#ohos_image_property_gps_img_direction_ref) = "GPSImgDirectionRef" | 图像方向的参照。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION](#ohos_image_property_gps_img_direction) = "GPSImgDirection" | 拍摄时图像的方向。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_MAP_DATUM](#ohos_image_property_gps_map_datum) = "GPSMapDatum" | GPS接收器使用的大地测量数据。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE_REF](#ohos_image_property_gps_dest_latitude_ref) = "GPSDestLatitudeRef" | 目的地点的纬度参照。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE](#ohos_image_property_gps_dest_latitude) = "GPSDestLatitude" | 目的地点的纬度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE_REF](#ohos_image_property_gps_dest_longitude_ref) = "GPSDestLongitudeRef" | 目的地点的经度参照。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_PROCESSING_METHOD](#ohos_image_property_gps_processing_method) = "GPSProcessingMethod" | 记录定位方法名的字符字符串。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_AREA_INFORMATION](#ohos_image_property_gps_area_information) = "GPSAreaInformation" | 记录GPS区域名的字符字符串。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DIFFERENTIAL](#ohos_image_property_gps_differential) = "GPSDifferential" | 此字段表示GPS数据是否应用了差分校正，对于精确的位置准确性至关重要。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_BODY_SERIAL_NUMBER](#ohos_image_property_body_serial_number) = "BodySerialNumber" | 相机机身的序列号。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_CAMERA_OWNER_NAME](#ohos_image_property_camera_owner_name) = "CameraOwnerName" | 相机所有者的姓名。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_COMPOSITE_IMAGE](#ohos_image_property_composite_image) = "CompositeImage" | 表示图像是否为合成图像。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_DNG_VERSION](#ohos_image_property_dng_version) = "DNGVersion" | DNG版本标签编码了符合DNG规范的四级版本号。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE](#ohos_image_property_gps_dest_longitude) = "GPSDestLongitude" | 目的地点的经度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING_REF](#ohos_image_property_gps_dest_bearing_ref) = "GPSDestBearingRef" | 指向目的地点的方位参照。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING](#ohos_image_property_gps_dest_bearing) = "GPSDestBearing" | 目的地方位。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE_REF](#ohos_image_property_gps_dest_distance_ref) = "GPSDestDistanceRef" | 目标点距离的测量单位。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE](#ohos_image_property_gps_dest_distance) = "GPSDestDistance" | 到目的地点的距离。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_DEFAULT_CROP_SIZE](#ohos_image_property_default_crop_size) = "DefaultCropSize" | DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GAMMA](#ohos_image_property_gamma) = "Gamma" | 表示系数伽马的值。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEYYY](#ohos_image_property_iso_speed_latitudeyyy) = "ISOSpeedLatitudeyyy" | 该标签指示摄像机或输入设备的ISO速度纬度yyy值，该值在ISO 12232中定义。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEZZZ](#ohos_image_property_iso_speed_latitudezzz) = "ISOSpeedLatitudezzz" | 该标签指示摄像机或输入设备的ISO速度纬度zzz值，该值在ISO 12232中定义。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_LENS_MAKE](#ohos_image_property_lens_make) = "LensMake" | 镜头的制造商。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_LENS_MODEL](#ohos_image_property_lens_model) = "LensModel" | 镜头的型号名称。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER](#ohos_image_property_lens_serial_number) = "LensSerialNumber" | 镜头的序列号。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION](#ohos_image_property_lens_specification) = "LensSpecification" | 使用的镜头规格。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE](#ohos_image_property_new_subfile_type) = "NewSubfileType" | 在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME](#ohos_image_property_offset_time) = "OffsetTime" | 在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED](#ohos_image_property_offset_time_digitized) = "OffsetTimeDigitized" | 此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL](#ohos_image_property_offset_time_original) = "OffsetTimeOriginal" | 此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE](#ohos_image_property_source_exposure_times_of_composite_image) = "SourceExposureTimesOfCompositeImage" | 合成图像的源图像曝光时间。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE](#ohos_image_property_source_image_number_of_composite_image) = "SourceImageNumberOfCompositeImage" | 用于合成图像的源图像数量。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SUBFILE_TYPE](#ohos_image_property_subfile_type) = "SubfileType" | 此标签指示此子文件中的数据类型。标签已弃用，请使用NewSubfileType替代。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GPS_H_POSITIONING_ERROR](#ohos_image_property_gps_h_positioning_error) = "GPSHPositioningError" | 此标签指示水平定位误差，单位为米。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY](#ohos_image_property_photographic_sensitivity) = "PhotographicSensitivity" | 此标签指示拍摄图像时相机或输入设备的灵敏度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_BURST_NUMBER](#ohos_image_property_burst_number) = "HwMnoteBurstNumber" | 连拍次数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_CONF](#ohos_image_property_face_conf) = "HwMnoteFaceConf" | 人脸置信度。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | 左眼中心。被用于 **OH_ImageSource_GetImageProperty** 和 **OH_ImageSource_ModifyImageProperty**。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER](#ohos_image_property_face_mouth_center) = "HwMnoteFaceMouthCenter" | 嘴中心。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_POINTER](#ohos_image_property_face_pointer) = "HwMnoteFacePointer" | 脸部指针。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_RECT](#ohos_image_property_face_rect) = "HwMnoteFaceRect" | 脸部矩形。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_REYE_CENTER](#ohos_image_property_face_reye_center) = "HwMnoteFaceReyeCenter" | 右眼中心。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_SMILE_SCORE](#ohos_image_property_face_smile_score) = "HwMnoteFaceSmileScore" | FaceCount张人脸的笑脸分数。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_VERSION](#ohos_image_property_face_version) = "HwMnoteFaceVersion" | 人脸算法版本信息。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_FRONT_CAMERA](#ohos_image_property_front_camera) = "HwMnoteFrontCamera" | 是否是前置相机自拍。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_POINTER](#ohos_image_property_scene_pointer) = "HwMnoteScenePointer" | 场景指针。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_SCENE_VERSION](#ohos_image_property_scene_version) = "HwMnoteSceneVersion" | 场景算法版本信息。 | 
+| static const char \*[OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT](#ohos_image_property_gif_loop_count) = "GIFLoopCount" | GIF图片循环次数。 | 
+
+
 ## 类型定义说明
 
 
@@ -2854,3 +3001,1841 @@ Image_ErrorCode OH_PixelmapNative_WritePixels (OH_PixelmapNative * pixelmap, uin
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 如果不支持的操作返回 IMAGE_UNSUPPORTED_OPERATION，如果未知错误返回 IMAGE_UNKNOWN_ERROR， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+## 变量说明
+
+
+### MIME_TYPE_BMP
+
+```
+static const char* MIME_TYPE_BMP = "image/bmp"
+```
+
+**描述**
+
+bmp图片格式。
+
+**起始版本：** 12
+
+
+### MIME_TYPE_GIF
+
+```
+static const char* MIME_TYPE_GIF = "image/gif"
+```
+
+**描述**
+
+gif图片格式。
+
+**起始版本：** 12
+
+
+### MIME_TYPE_HEIC
+
+```
+static const char* MIME_TYPE_HEIC = "image/heic"
+```
+
+**描述**
+
+heif图片格式。
+
+**起始版本：** 12
+
+
+### MIME_TYPE_ICON
+
+```
+static const char* MIME_TYPE_ICON = "image/x-icon"
+```
+
+**描述**
+
+ico图片格式。
+
+**起始版本：** 12
+
+
+### MIME_TYPE_JPEG
+
+```
+static const char* MIME_TYPE_JPEG = "image/jpeg"
+```
+
+**描述**
+
+jpeg图片格式。
+
+**起始版本：** 12
+
+
+### MIME_TYPE_PNG
+
+```
+static const char* MIME_TYPE_PNG = "image/png"
+```
+
+**描述**
+
+png图片格式。
+
+**起始版本：** 12
+
+
+### MIME_TYPE_WEBP
+
+```
+static const char* MIME_TYPE_WEBP = "image/webp"
+```
+
+**描述**
+
+webp图片格式。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_ARTIST
+
+```
+static const char* OHOS_IMAGE_PROPERTY_ARTIST = "Artist"
+```
+
+**描述**
+
+创建图像的用户名称。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_BITS_PER_SAMPLE = "BitsPerSample"
+```
+
+**描述**
+
+每个像素比特数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_BODY_SERIAL_NUMBER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_BODY_SERIAL_NUMBER = "BodySerialNumber"
+```
+
+**描述**
+
+相机机身的序列号。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_BRIGHTNESS_VALUE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_BRIGHTNESS_VALUE = "BrightnessValue"
+```
+
+**描述**
+
+图像的亮度值，以APEX单位表示。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_BURST_NUMBER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_BURST_NUMBER = "HwMnoteBurstNumber"
+```
+
+**描述**
+
+连拍次数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_CAMERA_OWNER_NAME
+
+```
+static const char* OHOS_IMAGE_PROPERTY_CAMERA_OWNER_NAME = "CameraOwnerName"
+```
+
+**描述**
+
+相机所有者的姓名。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_CFA_PATTERN
+
+```
+static const char* OHOS_IMAGE_PROPERTY_CFA_PATTERN = "CFAPattern"
+```
+
+**描述**
+
+图像传感器的色彩滤光片（CFA）几何图案。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_COLOR_SPACE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_COLOR_SPACE = "ColorSpace"
+```
+
+**描述**
+
+色彩空间信息标签，通常记录为色彩空间指定符。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_COMPONENTS_CONFIGURATION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_COMPONENTS_CONFIGURATION = "ComponentsConfiguration"
+```
+
+**描述**
+
+压缩数据的特定信息。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_COMPOSITE_IMAGE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_COMPOSITE_IMAGE = "CompositeImage"
+```
+
+**描述**
+
+表示图像是否为合成图像。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL
+
+```
+static const char* OHOS_IMAGE_PROPERTY_COMPRESSED_BITS_PER_PIXEL = "CompressedBitsPerPixel"
+```
+
+**描述**
+
+用于压缩图像的压缩模式，单位为每像素位数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_COMPRESSION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_COMPRESSION = "Compression"
+```
+
+**描述**
+
+图像压缩方案。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_CONTRAST
+
+```
+static const char* OHOS_IMAGE_PROPERTY_CONTRAST = "Contrast"
+```
+
+**描述**
+
+相机应用的对比度处理方向。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_COPYRIGHT
+
+```
+static const char* OHOS_IMAGE_PROPERTY_COPYRIGHT = "Copyright"
+```
+
+**描述**
+
+图像的版权信息。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_CUSTOM_RENDERED
+
+```
+static const char* OHOS_IMAGE_PROPERTY_CUSTOM_RENDERED = "CustomRendered"
+```
+
+**描述**
+
+指示图像数据上的特殊处理。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_DATE_TIME_DIGITIZED
+
+```
+static const char* OHOS_IMAGE_PROPERTY_DATE_TIME_DIGITIZED = "DateTimeDigitized"
+```
+
+**描述**
+
+图像作为数字数据存储的日期和时间，格式为YYYY:MM:DD HH:MM:SS。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL
+
+```
+static const char* OHOS_IMAGE_PROPERTY_DATE_TIME_ORIGINAL = "DateTimeOriginal"
+```
+
+**描述**
+
+拍摄时间，例如2022:09:06 15:48:00。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_DEFAULT_CROP_SIZE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_DEFAULT_CROP_SIZE = "DefaultCropSize"
+```
+
+**描述**
+
+DefaultCropSize指定了原始坐标中的最终图像大小，考虑了额外的边缘像素。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_DEVICE_SETTING_DESCRIPTION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_DEVICE_SETTING_DESCRIPTION = "DeviceSettingDescription"
+```
+
+**描述**
+
+特定相机模型的拍照条件信息。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_DIGITAL_ZOOM_RATIO
+
+```
+static const char* OHOS_IMAGE_PROPERTY_DIGITAL_ZOOM_RATIO = "DigitalZoomRatio"
+```
+
+**描述**
+
+捕获时的数字变焦比率。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_DNG_VERSION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_DNG_VERSION = "DNGVersion"
+```
+
+**描述**
+
+DNG版本标签编码了符合DNG规范的四级版本号。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_EXIF_VERSION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_EXIF_VERSION = "ExifVersion"
+```
+
+**描述**
+
+支持的Exif标准版本。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_EXPOSURE_INDEX
+
+```
+static const char* OHOS_IMAGE_PROPERTY_EXPOSURE_INDEX = "ExposureIndex"
+```
+
+**描述**
+
+捕获时选定的曝光指数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_EXPOSURE_MODE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_EXPOSURE_MODE = "ExposureMode"
+```
+
+**描述**
+
+拍摄时设置的曝光模式。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_EXPOSURE_PROGRAM
+
+```
+static const char* OHOS_IMAGE_PROPERTY_EXPOSURE_PROGRAM = "ExposureProgram"
+```
+
+**描述**
+
+拍照时相机用来设置曝光的程序的类别。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_EXPOSURE_TIME
+
+```
+static const char* OHOS_IMAGE_PROPERTY_EXPOSURE_TIME = "ExposureTime"
+```
+
+**描述**
+
+曝光时间，例如1/33 sec。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_F_NUMBER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_F_NUMBER = "FNumber"
+```
+
+**描述**
+
+光圈值，例如f/1.8。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FACE_CONF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FACE_CONF = "HwMnoteFaceConf"
+```
+
+**描述**
+
+人脸置信度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER = "HwMnoteFaceLeyeCenter"
+```
+
+**描述**
+
+左眼中心。被用于 **OH_ImageSource_GetImageProperty** 和 **OH_ImageSource_ModifyImageProperty**。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER = "HwMnoteFaceMouthCenter"
+```
+
+**描述**
+
+嘴中心。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FACE_POINTER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FACE_POINTER = "HwMnoteFacePointer"
+```
+
+**描述**
+
+脸部指针。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FACE_RECT
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FACE_RECT = "HwMnoteFaceRect"
+```
+
+**描述**
+
+脸部矩形。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FACE_REYE_CENTER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FACE_REYE_CENTER = "HwMnoteFaceReyeCenter"
+```
+
+**描述**
+
+右眼中心。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FACE_SMILE_SCORE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FACE_SMILE_SCORE = "HwMnoteFaceSmileScore"
+```
+
+**描述**
+
+FaceCount张人脸的笑脸分数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FACE_VERSION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FACE_VERSION = "HwMnoteFaceVersion"
+```
+
+**描述**
+
+人脸算法版本信息。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FILE_SOURCE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FILE_SOURCE = "FileSource"
+```
+
+**描述**
+
+表明图像来源。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FLASH_ENERGY
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FLASH_ENERGY = "FlashEnergy"
+```
+
+**描述**
+
+图像捕获时的闪光能量，以BCPS表示。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FLASHPIX_VERSION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FLASHPIX_VERSION = "FlashpixVersion"
+```
+
+**描述**
+
+该标签表示FPXR文件支持的Flashpix格式版本，增强了设备兼容性。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FOCAL_PLANE_RESOLUTION_UNIT
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FOCAL_PLANE_RESOLUTION_UNIT = "FocalPlaneResolutionUnit"
+```
+
+**描述**
+
+测量FocalPlaneXResolution和FocalPlaneYResolution的单位。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FOCAL_PLANE_X_RESOLUTION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FOCAL_PLANE_X_RESOLUTION = "FocalPlaneXResolution"
+```
+
+**描述**
+
+图像宽度中每FocalPlaneResolutionUnit的像素。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FOCAL_PLANE_Y_RESOLUTION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FOCAL_PLANE_Y_RESOLUTION = "FocalPlaneYResolution"
+```
+
+**描述**
+
+图像高度中每FocalPlaneResolutionUnit的像素。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_FRONT_CAMERA
+
+```
+static const char* OHOS_IMAGE_PROPERTY_FRONT_CAMERA = "HwMnoteFrontCamera"
+```
+
+**描述**
+
+是否是前置相机自拍。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GAIN_CONTROL
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GAIN_CONTROL = "GainControl"
+```
+
+**描述**
+
+整体图像增益调整的程度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GAMMA
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GAMMA = "Gamma"
+```
+
+**描述**
+
+表示系数伽马的值。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GIF_LOOP_COUNT = "GIFLoopCount"
+```
+
+**描述**
+
+GIF图片循环次数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_ALTITUDE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_ALTITUDE = "GPSAltitude"
+```
+
+**描述**
+
+基于GPSAltitudeRef的高度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_ALTITUDE_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_ALTITUDE_REF = "GPSAltitudeRef"
+```
+
+**描述**
+
+用于GPS高度的参照高度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_AREA_INFORMATION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_AREA_INFORMATION = "GPSAreaInformation"
+```
+
+**描述**
+
+记录GPS区域名的字符字符串。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING = "GPSDestBearing"
+```
+
+**描述**
+
+目的地方位。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_BEARING_REF = "GPSDestBearingRef"
+```
+
+**描述**
+
+指向目的地点的方位参照。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE = "GPSDestDistance"
+```
+
+**描述**
+
+到目的地点的距离。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_DISTANCE_REF = "GPSDestDistanceRef"
+```
+
+**描述**
+
+目标点距离的测量单位。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE = "GPSDestLatitude"
+```
+
+**描述**
+
+目的地点的纬度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE_REF = "GPSDestLatitudeRef"
+```
+
+**描述**
+
+目的地点的纬度参照。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE = "GPSDestLongitude"
+```
+
+**描述**
+
+目的地点的经度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE_REF = "GPSDestLongitudeRef"
+```
+
+**描述**
+
+目的地点的经度参照。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DIFFERENTIAL
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DIFFERENTIAL = "GPSDifferential"
+```
+
+**描述**
+
+此字段表示GPS数据是否应用了差分校正，对于精确的位置准确性至关重要。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_DOP
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_DOP = "GPSDOP"
+```
+
+**描述**
+
+GPS DOP（数据精度等级）。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_H_POSITIONING_ERROR
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_H_POSITIONING_ERROR = "GPSHPositioningError"
+```
+
+**描述**
+
+此标签指示水平定位误差，单位为米。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION = "GPSImgDirection"
+```
+
+**描述**
+
+拍摄时图像的方向。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_IMG_DIRECTION_REF = "GPSImgDirectionRef"
+```
+
+**描述**
+
+图像方向的参照。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_LATITUDE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE = "GPSLatitude"
+```
+
+**描述**
+
+图片纬度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_LATITUDE_REF = "GPSLatitudeRef"
+```
+
+**描述**
+
+纬度引用，例如N或S。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_LONGITUDE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE = "GPSLongitude"
+```
+
+**描述**
+
+图片经度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_LONGITUDE_REF = "GPSLongitudeRef"
+```
+
+**描述**
+
+经度引用，例如W或E。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_MAP_DATUM
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_MAP_DATUM = "GPSMapDatum"
+```
+
+**描述**
+
+GPS接收器使用的大地测量数据。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_MEASURE_MODE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_MEASURE_MODE = "GPSMeasureMode"
+```
+
+**描述**
+
+GPS测量模式。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_PROCESSING_METHOD
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_PROCESSING_METHOD = "GPSProcessingMethod"
+```
+
+**描述**
+
+记录定位方法名的字符字符串。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_SATELLITES
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_SATELLITES = "GPSSatellites"
+```
+
+**描述**
+
+用于测量的GPS卫星。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_SPEED
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_SPEED = "GPSSpeed"
+```
+
+**描述**
+
+GPS接收器的移动速度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_SPEED_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_SPEED_REF = "GPSSpeedRef"
+```
+
+**描述**
+
+用来表示GPS接收器移动速度的单位。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_STATUS
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_STATUS = "GPSStatus"
+```
+
+**描述**
+
+录制图像时GPS接收器的状态。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_TRACK
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_TRACK = "GPSTrack"
+```
+
+**描述**
+
+GPS接收机的移动方向。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_TRACK_REF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_TRACK_REF = "GPSTrackRef"
+```
+
+**描述**
+
+GPS接收机移动方向的参照。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_GPS_VERSION_ID
+
+```
+static const char* OHOS_IMAGE_PROPERTY_GPS_VERSION_ID = "GPSVersionID"
+```
+
+**描述**
+
+GPSInfoIFD的版本。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_IMAGE_LENGTH
+
+```
+static const char* OHOS_IMAGE_PROPERTY_IMAGE_LENGTH = "ImageLength"
+```
+
+**描述**
+
+图片长度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_IMAGE_UNIQUE_ID
+
+```
+static const char* OHOS_IMAGE_PROPERTY_IMAGE_UNIQUE_ID = "ImageUniqueID"
+```
+
+**描述**
+
+为每张图片唯一分配的标识符。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_IMAGE_WIDTH
+
+```
+static const char* OHOS_IMAGE_PROPERTY_IMAGE_WIDTH = "ImageWidth"
+```
+
+**描述**
+
+图片宽度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEYYY
+
+```
+static const char* OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEYYY = "ISOSpeedLatitudeyyy"
+```
+
+**描述**
+
+该标签指示摄像机或输入设备的ISO速度纬度yyy值，该值在ISO 12232中定义。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEZZZ
+
+```
+static const char* OHOS_IMAGE_PROPERTY_ISO_SPEED_LATITUDEZZZ = "ISOSpeedLatitudezzz"
+```
+
+**描述**
+
+该标签指示摄像机或输入设备的ISO速度纬度zzz值，该值在ISO 12232中定义。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS
+
+```
+static const char* OHOS_IMAGE_PROPERTY_ISO_SPEED_RATINGS = "ISOSpeedRatings"
+```
+
+**描述**
+
+ISO感光度，例如400。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT
+
+```
+static const char* OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT = "JPEGInterchangeFormat"
+```
+
+**描述**
+
+JPEG压缩缩略图数据开始字节（SOI）的偏移。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT_LENGTH
+
+```
+static const char* OHOS_IMAGE_PROPERTY_JPEG_INTERCHANGE_FORMAT_LENGTH = "JPEGInterchangeFormatLength"
+```
+
+**描述**
+
+JPEG压缩缩略图数据的字节数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_LENS_MAKE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_LENS_MAKE = "LensMake"
+```
+
+**描述**
+
+镜头的制造商。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_LENS_MODEL
+
+```
+static const char* OHOS_IMAGE_PROPERTY_LENS_MODEL = "LensModel"
+```
+
+**描述**
+
+镜头的型号名称。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_LENS_SERIAL_NUMBER = "LensSerialNumber"
+```
+
+**描述**
+
+镜头的序列号。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_LENS_SPECIFICATION = "LensSpecification"
+```
+
+**描述**
+
+使用的镜头规格。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_MAKER_NOTE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_MAKER_NOTE = "MakerNote"
+```
+
+**描述**
+
+Exif/DCF制造商使用的标签，用于记录任何所需信息。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_MAX_APERTURE_VALUE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_MAX_APERTURE_VALUE = "MaxApertureValue"
+```
+
+**描述**
+
+最小F数镜头。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_NEW_SUBFILE_TYPE = "NewSubfileType"
+```
+
+**描述**
+
+在Exif中，"NewSubfileType"字段用于标识子文件的数据类型，如全分辨率图像、缩略图或多帧图像的一部分。 其值是位掩码，0代表全分辨率图像，1代表缩略图，2代表多帧图像的一部分。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_OECF
+
+```
+static const char* OHOS_IMAGE_PROPERTY_OECF = "OECF"
+```
+
+**描述**
+
+表示ISO 14524中规定的光电转换函数（OECF）。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_OFFSET_TIME
+
+```
+static const char* OHOS_IMAGE_PROPERTY_OFFSET_TIME = "OffsetTime"
+```
+
+**描述**
+
+在Exif中，OffsetTime字段表示与UTC（协调世界时）的时间偏移，格式为±HH:MM，用于确定照片拍摄的本地时间。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED
+
+```
+static const char* OHOS_IMAGE_PROPERTY_OFFSET_TIME_DIGITIZED = "OffsetTimeDigitized"
+```
+
+**描述**
+
+此标签记录图像数字化时的UTC偏移量，有助于准确调整时间戳。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL
+
+```
+static const char* OHOS_IMAGE_PROPERTY_OFFSET_TIME_ORIGINAL = "OffsetTimeOriginal"
+```
+
+**描述**
+
+此标签记录原始图像创建时的UTC偏移量，对于时间敏感的应用至关重要。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_ORIENTATION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_ORIENTATION = "Orientation"
+```
+
+**描述**
+
+图片方向。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY
+
+```
+static const char* OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY = "PhotographicSensitivity"
+```
+
+**描述**
+
+此标签指示拍摄图像时相机或输入设备的灵敏度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_PHOTOMETRIC_INTERPRETATION = "PhotometricInterpretation"
+```
+
+**描述**
+
+像素构成，例如RGB或YCbCr。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_PLANAR_CONFIGURATION
+
+```
+const char* OHOS_IMAGE_PROPERTY_PLANAR_CONFIGURATION = "PlanarConfiguration"
+```
+
+**描述**
+
+表示像素组件的记录格式，chunky格式或是planar格式。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_PRIMARY_CHROMATICITIES
+
+```
+static const char* OHOS_IMAGE_PROPERTY_PRIMARY_CHROMATICITIES = "PrimaryChromaticities"
+```
+
+**描述**
+
+图像的主要颜色的色度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_REFERENCE_BLACK_WHITE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_REFERENCE_BLACK_WHITE = "ReferenceBlackWhite"
+```
+
+**描述**
+
+参考黑点值和参考白点值。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_RELATED_SOUND_FILE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_RELATED_SOUND_FILE = "RelatedSoundFile"
+```
+
+**描述**
+
+与图像数据相关的音频文件的名称。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_RESOLUTION_UNIT
+
+```
+static const char* OHOS_IMAGE_PROPERTY_RESOLUTION_UNIT = "ResolutionUnit"
+```
+
+**描述**
+
+用于测量XResolution和YResolution的单位。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP
+
+```
+static const char* OHOS_IMAGE_PROPERTY_ROWS_PER_STRIP = "RowsPerStrip"
+```
+
+**描述**
+
+每个strip的图像数据行数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SAMPLES_PER_PIXEL = "SamplesPerPixel"
+```
+
+**描述**
+
+每个像素的分量数。由于该标准适用于 RGB 和 YCbCr 图像，因此该标签的值设置为 3。 在JPEG压缩数据中，使用JPEG标记代替该标签。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SATURATION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SATURATION = "Saturation"
+```
+
+**描述**
+
+相机应用的饱和度处理方向。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SCENE_CAPTURE_TYPE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SCENE_CAPTURE_TYPE = "SceneCaptureType"
+```
+
+**描述**
+
+捕获的场景类型。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SCENE_POINTER
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SCENE_POINTER = "HwMnoteScenePointer"
+```
+
+**描述**
+
+场景指针。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SCENE_TYPE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SCENE_TYPE = "SceneType"
+```
+
+**描述**
+
+拍摄场景模式，例如人像、风光、运动、夜景等。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SCENE_VERSION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SCENE_VERSION = "HwMnoteSceneVersion"
+```
+
+**描述**
+
+场景算法版本信息。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SENSING_METHOD
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SENSING_METHOD = "SensingMethod"
+```
+
+**描述**
+
+相机上的图像传感器类型。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SHARPNESS
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SHARPNESS = "Sharpness"
+```
+
+**描述**
+
+相机应用的锐度处理方向。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SHUTTER_SPEED_VALUE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SHUTTER_SPEED_VALUE = "ShutterSpeedValue"
+```
+
+**描述**
+
+快门速度，以APEX（摄影曝光的加法系统）值表示。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SOFTWARE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SOFTWARE = "Software"
+```
+
+**描述**
+
+用于生成图像的软件的名称和版本。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE = "SourceExposureTimesOfCompositeImage"
+```
+
+**描述**
+
+合成图像的源图像曝光时间。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE = "SourceImageNumberOfCompositeImage"
+```
+
+**描述**
+
+用于合成图像的源图像数量。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SPATIAL_FREQUENCY_RESPONSE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SPATIAL_FREQUENCY_RESPONSE = "SpatialFrequencyResponse"
+```
+
+**描述**
+
+相机或输入设备的空间频率表。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SPECTRAL_SENSITIVITY
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SPECTRAL_SENSITIVITY = "SpectralSensitivity"
+```
+
+**描述**
+
+表示所用相机的每个通道的光谱灵敏度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS
+
+```
+static const char* OHOS_IMAGE_PROPERTY_STRIP_BYTE_COUNTS = "StripByteCounts"
+```
+
+**描述**
+
+每个图像数据带的总字节数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_STRIP_OFFSETS
+
+```
+static const char* OHOS_IMAGE_PROPERTY_STRIP_OFFSETS = "StripOffsets"
+```
+
+**描述**
+
+每个strip的字节偏移量。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SUBFILE_TYPE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SUBFILE_TYPE = "SubfileType"
+```
+
+**描述**
+
+此标签指示此子文件中的数据类型。标签已弃用，请使用NewSubfileType替代。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SUBJECT_AREA
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SUBJECT_AREA = "SubjectArea"
+```
+
+**描述**
+
+该标签指示整个场景中主要主体的位置和区域。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE = "SubjectDistance"
+```
+
+**描述**
+
+测量单位为米的主体距离。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE_RANGE
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SUBJECT_DISTANCE_RANGE = "SubjectDistanceRange"
+```
+
+**描述**
+
+表示主体到相机的距离范围。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SUBJECT_LOCATION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SUBJECT_LOCATION = "SubjectLocation"
+```
+
+**描述**
+
+主要对象相对于左边缘的位置。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SUBSEC_TIME
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SUBSEC_TIME = "SubsecTime"
+```
+
+**描述**
+
+用于为DateTime标签记录秒的分数的标签。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SUBSEC_TIME_DIGITIZED
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SUBSEC_TIME_DIGITIZED = "SubsecTimeDigitized"
+```
+
+**描述**
+
+用于为DateTimeDigitized标签记录秒的分数的标签。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_SUBSEC_TIME_ORIGINAL
+
+```
+static const char* OHOS_IMAGE_PROPERTY_SUBSEC_TIME_ORIGINAL = "SubsecTimeOriginal"
+```
+
+**描述**
+
+用于为DateTimeOriginal标签记录秒的分数的标签。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_TRANSFER_FUNCTION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_TRANSFER_FUNCTION = "TransferFunction"
+```
+
+**描述**
+
+图像的传递函数，通常用于颜色校正。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_WHITE_POINT
+
+```
+static const char* OHOS_IMAGE_PROPERTY_WHITE_POINT = "WhitePoint"
+```
+
+**描述**
+
+图像的白点色度。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_X_RESOLUTION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_X_RESOLUTION = "XResolution"
+```
+
+**描述**
+
+图像宽度方向的分辨率。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_Y_RESOLUTION
+
+```
+static const char* OHOS_IMAGE_PROPERTY_Y_RESOLUTION = "YResolution"
+```
+
+**描述**
+
+图像高度方向的分辨率。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_YCBCR_COEFFICIENTS
+
+```
+static const char* OHOS_IMAGE_PROPERTY_YCBCR_COEFFICIENTS = "YCbCrCoefficients"
+```
+
+**描述**
+
+从RGB到YCbCr图像数据的转换矩阵系数。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_YCBCR_POSITIONING
+
+```
+static const char* OHOS_IMAGE_PROPERTY_YCBCR_POSITIONING = "YCbCrPositioning"
+```
+
+**描述**
+
+色度分量相对于亮度分量的位置。
+
+**起始版本：** 12
+
+
+### OHOS_IMAGE_PROPERTY_YCBCR_SUB_SAMPLING
+
+```
+static const char* OHOS_IMAGE_PROPERTY_YCBCR_SUB_SAMPLING = "YCbCrSubSampling"
+```
+
+**描述**
+
+色度分量与亮度分量的采样比率。
+
+**起始版本：** 12
+
+
