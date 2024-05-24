@@ -407,7 +407,7 @@ customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, op
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation路由栈。
+Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10)。
 
 ### pushPath<sup>10+</sup>
 
@@ -2537,3 +2537,115 @@ struct NavigationExample {
 }
 ```
 ![titlebar_stack.gif](figures/titlebar_stack.gif)
+
+
+### 示例10
+
+```ts
+// 该示例主要演示如下两点功能
+// 1. 如何定义NavPathStack的派生类
+// 2. 派生类在Navigation中的基本用法
+class DerivedNavPathStack extends NavPathStack {
+  // usr defined property 'id'
+  id: string = "__default__"
+
+  // new function in derived class
+  setId(id: string) {
+    this.id = id;
+  }
+
+  // new function in derived class
+  getInfo(): string {
+    return "this page used Derived NavPathStack, id: " + this.id
+  }
+
+  // overwrite function of NavPathStack
+  pushPath(info: NavPathInfo, animated?: boolean): void {
+    console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
+    super.pushPath(info, animated);
+  }
+
+  // overwrite and overload function of NavPathStack
+  pop(animated?: boolean | undefined): NavPathInfo | undefined
+  pop(result: Object, animated?: boolean | undefined): NavPathInfo | undefined
+  pop(result?: Object, animated?: boolean | undefined): NavPathInfo | undefined {
+    console.log('[derive-test] reached DerivedNavPathStack\'s pop');
+    return super.pop(result, animated);
+  }
+
+  // other function of base class...
+}
+
+class param {
+  info: string = "__default_param__";
+  constructor(info: string) { this.info = info }
+}
+
+@Entry
+@Component
+struct Index {
+  derivedStack: DerivedNavPathStack = new DerivedNavPathStack();
+
+  aboutToAppear(): void {
+    this.derivedStack.setId('origin stack');
+  }
+
+  @Builder
+  pageMap(name: string) {
+    PageOne()
+  }
+
+  build() {
+    Navigation(this.derivedStack) {
+      Button('to Page One').margin(20).onClick(() => {
+        this.derivedStack.pushPath({
+          name: 'pageOne',
+          param: new param('push pageOne in homePage')
+        });
+      })
+    }.navDestination(this.pageMap)
+    .title('Home Page')
+  }
+}
+
+@Component
+struct PageOne {
+  derivedStack: DerivedNavPathStack = new DerivedNavPathStack();
+  curStringifyParam: string = "NA";
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text(this.derivedStack.getInfo())
+          .margin(10)
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Start)
+        Text('current page param info:')
+          .margin(10)
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Start)
+        Text(this.curStringifyParam)
+          .margin(20)
+          .fontSize(20)
+          .textAlign(TextAlign.Start)
+      }.backgroundColor(Color.Pink)
+      Button('push Page One').margin(20).onClick(() => {
+        this.derivedStack.pushPath({
+          name: 'pageOne',
+          param: new param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
+        });
+      })
+    }.onReady((context: NavDestinationContext) => {
+      console.log('[derive-test] reached PageOne\'s onReady');
+      // get derived stack from navdestinationContext
+      this.derivedStack = context.pathStack as DerivedNavPathStack;
+      console.log('[derive-test] -- got derivedStack: ' + this.derivedStack.id);
+      this.curStringifyParam = JSON.stringify(context.pathInfo.param);
+      console.log('[derive-test] -- got param: ' + this.curStringifyParam);
+    })
+  }
+}
+```
+![derive_stack.gif](figures/derive_stack.gif)
