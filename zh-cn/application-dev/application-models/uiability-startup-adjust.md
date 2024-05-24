@@ -46,7 +46,8 @@
 }
 ```
 
-2. 在调用方通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口执行跳转，在接口入参需要传入转换后的link和配置[options](js-apis-app-ability-openLinkOptions.md), 不再传入bundleName、moduleName和abilityName。系统会根据传入的link匹配到符合skills配置的应用。<br>当options中的appLinkingOnly为true时，匹配到的应用会经过应用市场域名检查（需联网）返回域名校验检查的唯一匹配项或未匹配结果；当options中的appLinkingOnly为false时，只会通过[uri本地匹配](explicit-implicit-want-mappings.md#uri匹配规则)寻找到匹配项，当匹配到多个时，会拉起应用选择框。
+2. 调用方通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口执行跳转，在接口入参需要传入转换后的link和配置[options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md), 不再传入bundleName、moduleName和abilityName。系统会根据传入的link匹配到符合skill配置的应用。<br>
+<br>当options中的appLinkingOnly为true时，匹配到的应用会经过应用市场域名检查（需联网）返回域名校验检查的唯一匹配项或未匹配结果；当options中的appLinkingOnly为false时，只会通过[uri本地匹配](explicit-implicit-want-mappings.md#uri匹配规则)寻找到匹配项，当匹配到多个时，会拉起应用选择框。
 
 ```ts
 import common from '@ohos.app.ability.common';
@@ -131,7 +132,7 @@ struct Index {
 }
 ```
 
-2. 在调用方通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口执行跳转，在接口入参需要传入转换后的link和配置[options](js-apis-app-ability-openLinkOptions.md), 不再传入bundleName、moduleName和abilityName。系统会根据传入的link匹配到符合skills配置的应用。AbilityResult回调结果返回通过入参传入回调函数，在启动ability死亡时传入处理结果触发回调。启动成功和失败结果仍通过Promise返回。<br>当options中的appLinkingOnly为true时，匹配到的应用会经过应用市场域名检查（需联网）返回域名校验检查的唯一匹配项或未匹配结果；当options中的appLinkingOnly为false时，只会通过[uri本地匹配](explicit-implicit-want-mappings.md#uri匹配规则)寻找到匹配项，当匹配到多个时，会拉起应用选择框。
+2. 调用方通过[openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)接口执行跳转，在接口入参需要传入转换后的link和配置[options](../reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md), 不再传入bundleName、moduleName和abilityName。系统会根据传入的link匹配到符合skills配置的应用。AbilityResult回调结果返回通过入参传入回调函数，在启动ability死亡时传入处理结果触发回调。启动成功和失败结果仍通过Promise返回。<br><br>当options中的appLinkingOnly为true时，匹配到的应用会经过应用市场域名检查（需联网）返回域名校验检查的唯一匹配项或未匹配结果；当options中的appLinkingOnly为false时，只会通过[uri本地匹配](explicit-implicit-want-mappings.md#uri匹配规则)寻找到匹配项，当匹配到多个时，会拉起应用选择框。
 
 ```ts
 import common from '@ohos.app.ability.common';

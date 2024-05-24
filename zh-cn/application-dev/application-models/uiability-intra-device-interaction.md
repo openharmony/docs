@@ -319,7 +319,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 ## 启动其他应用的UIAbility
 
-API 11及以前的接口可通过显式Want启动启动其他应用的UIAbility；从API 12开始，限制应用间的显式Want启动，需要通过openLink接口，改用link匹配的方式启动链接的应用。对应的切换可参考[显示跳转切换link跳转](uiability-startup-adjust.md)。
+API 11及以前的接口可通过显式Want启动启动其他应用的UIAbility；从API 12开始，限制应用间的显式Want启动，需要通过openLink接口，改用link匹配的方式启动链接的应用。对应的切换可参考[显式跳转切换link跳转](uiability-startup-adjust.md)。
 
 启动其他应用的UIAbility，通常用户只需要完成一个通用的操作（例如需要选择一个文档应用来查看某个文档的内容信息），推荐使用[隐式Want启动](want-overview.md#want的类型)。系统会根据调用方的want参数来识别和启动匹配到的应用UIAbility。
 

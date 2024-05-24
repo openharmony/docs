@@ -4,9 +4,9 @@
 
 App Linking是通过https链接直接将用户带到应用程序中的特定内容的一种技术。 App Linking可以增加应用程序的流量，帮助开发者发现最常使用的应用程序内容，并使用户更流畅的浏览已安装应用程序中的内容。
 
-相比Deeplink技术，App Linking更安全可靠，体验更佳。
+相比Deep Linking技术，App Linking更安全可靠，体验更佳。
 
-1. 使用Deeplink技术的场景下，多个应用可以配置相同的域名等链接信息，系统无法识别哪个是受信应用，存在被仿冒的可能。而App Linking通过域名校验技术可以帮助用户消除歧义，识别受信任的目标应用，并直达受信任的目标应用。
+1. 使用Deep Linking技术的场景下，多个应用可以配置相同的域名等链接信息，系统无法识别哪个是受信应用，存在被仿冒的可能。而App Linking通过域名校验技术可以帮助用户消除歧义，识别受信任的目标应用，并直达受信任的目标应用。
 2. 由于App Linking 利用的是HTTPS网址以及与网站的关联，若目标应用未安装，会直接跳转到浏览器打开相应的网页。
 
 ## 集成指南
@@ -20,13 +20,12 @@ App Linking是通过https链接直接将用户带到应用程序中的特定内�
 
 ### 声明应用关联的网站域名
 
-在应用的module.json5文件中进行如下配置，以声明应用关联的域名地址，并开启域名校验开关。
+在应用的[module.json5配置文件](../quick-start/module-configuration-file.md)中进行如下配置，以声明应用关联的域名地址，并开启域名校验开关。
 
 * "actions"列表中包含"ohos.want.action.viewData"。
 * "entities"列表中包含"entity.system.browsable"。
-* "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。
-  uri的匹配规则参考[uri匹配](explicit-implicit-want-mappings.md#uri匹配规则),
-  domainVerify为true代表开启域名校验开关。
+* "uris"列表中包含"scheme"为"https"且"host"为域名地址的元素。
+* "domainVerify"设置为true，表示开启域名校验开关。
 
 例如，声明应用关联在域名是www.test.com，则需进行如下配置：
 
@@ -66,9 +65,6 @@ App Linking是通过https链接直接将用户带到应用程序中的特定内�
   }
 }
 ```
-
-* 注意
-  modules.json5的各个参数配置的说明详见：[module.json5配置文件](../quick-start/module-configuration-file.md)
 
 ### 添加代码到应用的Ability中以处理传入的链接
 
@@ -137,7 +133,7 @@ export default class EntryAbility extends UIAbility {
   1. 仅以App Linking的方式打开应用
      将`appLinkingOnly`参数设为true，若有匹配的应用，则直接打开目标应用。若无App Linking匹配的应用，则抛异常给开发者进行处理。
   2. App Linking优先的方式打开应用
-     将`appLinkingOnly`参数设为false或者默认，则为App Linking优先的方式打开应用。若有App Linking匹配的应用，则直接打开目标应用。若无App Linking匹配的应用，则尝试以deeplink的方式打开应用。
+     将`appLinkingOnly`参数设为false或者默认，则为App Linking优先的方式打开应用。若有App Linking匹配的应用，则直接打开目标应用。若无App Linking匹配的应用，则尝试以Deep Linking的方式打开应用。
 
   为了方便验证App Linking是否配置正确，此处选择方式1进行示例。
 
