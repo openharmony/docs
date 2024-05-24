@@ -4153,7 +4153,6 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 2301011 | Operation would block.  |
 
 **示例：**
 
@@ -4190,6 +4189,12 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 | type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
@@ -4225,6 +4230,12 @@ on(type: 'connect', callback: Callback\<void\>): void;
 | type     | string           | 是   | 订阅的事件类型。                                             |
 | callback | Callback\<void\> | 是   | 以callback的形式异步返回与服务端连接的结果。                     |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
@@ -4250,6 +4261,12 @@ off(type: 'connect', callback?: Callback\<void\>): void;
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。                                             |
 | callback | Callback\<void\> | 否   | 指定传入on中的callback取消一个订阅。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -4284,6 +4301,12 @@ on(type: 'close', callback: Callback\<void\>): void;
 | type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
 | callback | Callback\<void\> | 是   | 以callback的形式异步返回关闭localsocket的结果。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
@@ -4313,6 +4336,12 @@ off(type: 'close', callback?: Callback\<void\>): void;
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
 | callback | Callback\<void\> | 否   | 取消指定传入on中的callback取消一个订阅。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -4344,6 +4373,12 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string        | 是   | 订阅LocalSocket的error事件。   |
 | callback | ErrorCallback | 是   | 以callback的形式异步返回出现错误的结果。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
@@ -4372,6 +4407,12 @@ off(type: 'error', callback?: ErrorCallback): void;
 | -------- | ------------- | ---- | ----------------------------- |
 | type     | string        | 是   | 取消订阅LocalSocket的error事件。 |
 | callback | ErrorCallback | 否   | 指定传入on中的callback取消一个订阅。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
 
 **示例：**
 
@@ -4897,7 +4938,7 @@ close(): Promise\<void\>
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
-| 201      | Permission denied.   |
+| 401      | Parameter error.     |
 | 2301009  | Bad file descriptor. |
 
 **示例：**
