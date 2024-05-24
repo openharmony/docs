@@ -9,11 +9,11 @@ This module implements virtual private network (VPN) management, such as startin
 ## Modules to Import
 
 ```js
-import vpnExt from "@ohos.net.vpnExtension";
+import { vpnExtension } from '@kit.NetworkKit';
 ```
 
 
-## vpnExt.setAlwaysOnVpnEnabled
+## vpnExtension.setAlwaysOnVpnEnabled
 
 setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 
@@ -52,9 +52,9 @@ Enables or disables the **always on** mode.
 Stage model:
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { vpnExtension } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   deviceId: "",
@@ -62,14 +62,14 @@ let want: Want = {
   abilityName: 'MyVpnExtAbility',
 };
 
-vpnExt.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
+vpnExtension.setAlwaysOnVpnEnabled(true, want.bundleName).then(() => {
   console.info('setAlwaysOnVpnEnabled success.');
 }).catch((err : BusinessError) => {
   console.error('setAlwaysOnVpnEnabled fail, err-> ${JSON.stringify(err)}');
 });
 ```
 
-## vpnExt.isAlwaysOnVpnEnabled
+## vpnExtension.isAlwaysOnVpnEnabled
 
 isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 
@@ -107,9 +107,9 @@ Obtains the status of the **always on** mode.
 Stage model:
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { vpnExtension } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   deviceId: "",
@@ -117,14 +117,14 @@ let want: Want = {
   abilityName: 'MyVpnExtAbility',
 };
 
-vpnExt.isAlwaysOnVpnEnabled(want.bundleName).then((data : boolean) => {
+vpnExtension.isAlwaysOnVpnEnabled(want.bundleName).then((data : boolean) => {
   console.info('isAlwaysOnVpnEnabled success.');
 }).catch((err : BusinessError) => {
   console.error('setAlwaysOnVpnEnabled fail, err-> ${JSON.stringify(err)}');
 });
 ```
 
-## vpnExt.updateVpnAuthorizedState
+## vpnExtension.updateVpnAuthorizedState
 
 updateVpnAuthorizedState(bundleName: string): boolean
 
@@ -162,8 +162,8 @@ Updates the VPN pop-up authorization status.
 Stage model:
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
+import { vpnExtension } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
 
 let want: Want = {
   deviceId: "",
@@ -171,6 +171,6 @@ let want: Want = {
   abilityName: 'MyVpnExtAbility',
 };
 
-let result: boolean = vpnExt.updateVpnAuthorizedState(want.bundleName);
+let result: boolean = vpnExtension.updateVpnAuthorizedState(want.bundleName);
 console.log("Result: "+ result);
 ```

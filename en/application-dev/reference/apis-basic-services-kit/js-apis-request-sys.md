@@ -5,7 +5,7 @@ The **request** module provides applications with basic upload, download, and ba
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.request](../apis-basic-services-kit/js-apis-request.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.request](./js-apis-request.md).
 
 
 ## Modules to Import
@@ -65,7 +65,10 @@ Queries a task details based on the task ID. This API uses an asynchronous callb
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
 | ID| Error Message|
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | permission denied. |
+| 202 | permission verification failed, application which is not a system application uses system API. |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 | 13400003 | task service ability error. |
 | 21900006 | task not found error. |
 
@@ -110,7 +113,10 @@ Queries a task details based on the task ID. This API uses a promise to return t
 For details about the error codes, see [Upload and Download Error Codes](errorcode-request.md).
 
 | ID| Error Message|
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | permission denied. |
+| 202 | permission verification failed, application which is not a system application uses system API. |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 | 13400003 | task service ability error. |
 | 21900006 | task not found error. |
 

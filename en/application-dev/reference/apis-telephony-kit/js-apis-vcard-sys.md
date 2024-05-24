@@ -10,7 +10,7 @@ VCard is a file format standard for electronic business cards. It contains infor
 ## Modules to Import
 
 ```ts
-import vcard from '@ohos.telephony.vcard';
+import { vcard } from '@kit.TelephonyKit';
 ```
 
 ## vcard.importVCard<sup>11+</sup>
@@ -49,10 +49,10 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import window from '@ohos.window';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import vcard from '@ohos.telephony.vcard';
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { vcard } from '@kit.TelephonyKit';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -102,10 +102,10 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import window from '@ohos.window';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import vcard from '@ohos.telephony.vcard';
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { vcard } from '@kit.TelephonyKit';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -161,10 +161,10 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import window from '@ohos.window';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import vcard from '@ohos.telephony.vcard';
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { vcard } from '@kit.TelephonyKit';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -215,11 +215,11 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import window from '@ohos.window';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import vcard from '@ohos.telephony.vcard';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { vcard } from '@kit.TelephonyKit';
+import { dataSharePredicates } from '@kit.ArkData';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -271,11 +271,11 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import window from '@ohos.window';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import vcard from '@ohos.telephony.vcard';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { vcard } from '@kit.TelephonyKit';
+import { dataSharePredicates } from '@kit.ArkData';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -334,11 +334,11 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import window from '@ohos.window';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import vcard from '@ohos.telephony.vcard';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { vcard } from '@kit.TelephonyKit';
+import { dataSharePredicates } from '@kit.ArkData';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {

@@ -2042,7 +2042,7 @@ The upload and download SA has the **ohos.permission.SEND_TASK_COMPLETE_EVENT** 
 
 You can use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
 
-For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).
+<!--Del-->For details about event configuration information, see [Subscribing to Common Events in Static Mode (for System Applications Only)](../../basic-services/common-event/common-event-static-subscription.md).<!--DelEnd-->
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2254,7 +2254,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 21900005 | task mode error. |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -2328,7 +2328,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 21900005 | task mode error. |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -2402,7 +2402,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 21900005 | task mode error. |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -2472,6 +2472,10 @@ Subscribes to task pause events. This API uses a callback to return the result a
 
 For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **Example**
 
   ```ts
@@ -2539,6 +2543,10 @@ Subscribes to task resume events. This API uses a callback to return the result 
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -2608,6 +2616,10 @@ Subscribes to task removal events. This API uses a callback to return the result
 
 For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **Example**
 
   ```ts
@@ -2675,6 +2687,10 @@ Subscribes to task response headers. This API uses an asynchronous callback to r
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -2748,7 +2764,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 21900005 | task mode error. |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -2830,7 +2846,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 21900005 | task mode error. |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -2912,7 +2928,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 21900005 | task mode error. |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -2990,6 +3006,10 @@ Unsubscribes from the foreground task pause event.
 
 For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **Example**
 
   ```ts
@@ -3065,6 +3085,10 @@ Unsubscribes from the foreground task resume event.
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -3142,6 +3166,10 @@ Unsubscribes from the task removal event.
 
 For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
 
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **Example**
 
   ```ts
@@ -3217,6 +3245,10 @@ Unsubscribes from task response headers.
 **Error codes**
 
 For details about the error codes, see [Upload and Download Error Codes](./errorcode-request.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **Example**
 
@@ -3299,6 +3331,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900007 | task state error. |
 
@@ -3369,6 +3402,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900007 | task state error. |
 
@@ -3434,7 +3468,6 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   | ID| Error Message|
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -3503,7 +3536,6 @@ For details about the error codes, see [Upload and Download Error Codes](./error
   | ID| Error Message|
   | -------- | -------- |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -3571,8 +3603,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -3645,8 +3677,8 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
-  | 21900005 | task mode error. |
   | 21900007 | task state error. |
 
 **Example**
@@ -4019,7 +4051,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Parameter verification failed |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4056,6 +4088,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4100,6 +4133,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4134,6 +4168,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4175,6 +4210,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4210,7 +4246,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Parameter verification failed |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4253,7 +4289,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Parameter verification failed |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4286,6 +4322,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **Example**
@@ -4320,6 +4357,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **Example**
@@ -4365,6 +4403,7 @@ For details about the error codes, see [Upload and Download Error Codes](./error
 
   | ID| Error Message|
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **Example**

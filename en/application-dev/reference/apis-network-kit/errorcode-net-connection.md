@@ -66,7 +66,7 @@ This error code is reported if a system internal error occurs.
 
 **Error Message**
 
-The same callback exists.
+The callback already exists.
 
 **Description**
 
