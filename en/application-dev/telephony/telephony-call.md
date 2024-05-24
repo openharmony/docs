@@ -115,9 +115,3 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
-
-## 相关实例
-
-针对拨打电话，有以下相关实例可供参考：
-
-- [拨打电话（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Telephony/Call)
