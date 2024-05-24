@@ -193,6 +193,44 @@ import { drawing } from '@kit.ArkGraphics2D'
 
 字体管理器。
 
+### getGlobalInstance
+
+static getGlobalInstance(): FontCollection
+
+获取应用全局FontCollection的实例。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                |
+| ------ | ------------------ |
+| [FontCollection](#fontcollection) | FontCollection对象。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function Text() {
+  let fontCollection = text.FontCollection.getGlobalInstance();
+  fontCollection.loadFontSync('test', 'File://');
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
 ### loadFontSync
 
 loadFontSync(name: string, path: string | Resource): void
