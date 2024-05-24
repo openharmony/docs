@@ -514,8 +514,10 @@ finishAnimation(callback?: () => void): void
 | top    | [Length](ts-types.md#length) | 否    | 设置导航点距离Swiper组件顶部的距离。<br/>默认值：0<br/>单位：vp |
 | right  | [Length](ts-types.md#length) | 否    | 设置导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp |
 | bottom | [Length](ts-types.md#length) | 否    | 设置导航点距离Swiper组件底部的距离。<br/>默认值：0<br/>单位：vp |
-| static dot    |          无           | 否    | 返回一个DotIndicator对象。 |
-| static digit  |          无           | 否    | 返回一个DigitIndicator对象。 |
+| start<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 在RTL模式下为航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离<br/>默认值：0<br/>单位：vp |
+| end<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 在RTL模式下为航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp |
+| static dot | 无 | 否 | 返回一个DotIndicator对象。 |
+| static digit | 无 | 否 | 返回一个DigitIndicator对象。 |
 
 ## DotIndicator<sup>10+</sup>
 
