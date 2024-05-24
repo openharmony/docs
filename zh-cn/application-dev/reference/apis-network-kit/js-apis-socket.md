@@ -247,6 +247,12 @@ close(callback: AsyncCallback\<void\>): void
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。关闭UDPSocket连接后触发回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```ts
@@ -272,6 +278,12 @@ close(): Promise\<void\>
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **返回值：**
 
@@ -357,6 +369,12 @@ getState(): Promise\<SocketStateBase\>
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
 
 **返回值：**
 
@@ -4130,6 +4148,13 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 是   | 以callback的形式异步返回接收的消息。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301011 | Operation would block.  |
+
 **示例：**
 
 ```ts
@@ -5497,6 +5522,12 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。TLSSocket连接订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
@@ -5535,6 +5566,12 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。TLSSocket连接取消订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
@@ -5572,6 +5609,12 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 是   | 回调函数。TLSSocket连接订阅某类事件触发的调用函数。                                                   |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
@@ -5604,6 +5647,12 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 否   | 回调函数。TLSSocket连接订阅某类事件触发的调用函数。          |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
 
 **示例：**
 
@@ -5642,6 +5691,12 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。TLSSocket连接订阅某类error事件触发的调用函数。        |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
@@ -5671,6 +5726,12 @@ off(type: 'error', callback?: ErrorCallback): void
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。TLSSocket连接取消订阅某类error事件触发的调用函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
 
 **示例：**
 
