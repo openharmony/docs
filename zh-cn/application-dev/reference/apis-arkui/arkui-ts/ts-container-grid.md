@@ -1226,3 +1226,79 @@ struct GridExample {
 ```
 
 ![cellLength](figures/cellLength.gif)
+
+### 示例7
+
+双指缩放修改Grid列数。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  @State numbers: String[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19']
+  @State columns: number = 2
+
+  aboutToAppear() {
+    let lastCount = AppStorage.get<number>('columnsCount')
+    if (typeof lastCount != 'undefined') {
+      this.columns = lastCount
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Row() {
+        Text('双指缩放改变列数')
+          .height('5%')
+          .margin({ top: 10, left: 20 })
+      }
+
+      Grid() {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
+            GridItem() {
+              Text(day)
+                .fontSize(16)
+                .backgroundColor(0xF9CF93)
+                .width('100%')
+                .height(80)
+                .textAlign(TextAlign.Center)
+            }
+          }, (day: string) => day)
+        }, (day: string) => day)
+      }
+      .columnsTemplate('1fr '.repeat(this.columns))
+      .columnsGap(10)
+      .rowsGap(10)
+      .width('90%')
+      .scrollBar(BarState.Off)
+      .backgroundColor(0xFAEEE0)
+      .height('100%')
+      .cachedCount(3)
+      // 切换列数item位置重排动画
+      .animation({
+        duration: 300,
+        curve: Curve.Smooth
+      })
+      .priorityGesture(
+        PinchGesture()
+          .onActionEnd((event: GestureEvent) => {
+            console.info('end scale:' + event.scale)
+            // 手指分开，减少列数以放大Item，触发阈值可以自定义，示例为2
+            if (event.scale > 2) {
+              this.columns--
+            } else if (event.scale < 0.6) {
+              this.columns++
+            }
+            // 可以根据设备屏幕宽度设定最大和最小列数，此处以最小1列最大4列为例
+            this.columns = Math.min(4, Math.max(1, this.columns));
+            AppStorage.setOrCreate<number>('columnsCount', this.columns)
+          })
+      )
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![pinch](figures/grid-pinch.gif)

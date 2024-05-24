@@ -1024,3 +1024,121 @@ struct WaterFlowDemo {
 ```
 
 ![waterflowSections.png](figures/waterflowSections.png)
+
+### 示例4
+双指缩放改变列数。
+
+```ts
+// Index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+@Reusable
+@Component
+struct ReusableFlowItem {
+  @State item: number = 0
+
+  // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
+  aboutToReuse(params: Record<string, number>) {
+    this.item = params.item;
+    console.info('Reuse item:' + this.item)
+  }
+
+  aboutToAppear() {
+    console.info('item:' + this.item)
+  }
+
+  build() {
+    Column() {
+      Text("N" + this.item).fontSize(12).height('16')
+      Image('res/waterFlow (' + this.item % 5 + ').JPG')
+        .objectFit(ImageFit.Fill)
+        .width('100%')
+        .layoutWeight(1)
+    }
+  }
+}
+
+@Entry
+@Component
+struct WaterFlowDemo {
+  minSize: number = 80
+  maxSize: number = 180
+  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  @State columns: number = 2
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem的宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    let lastCount = AppStorage.get<number>('columnsCount')
+    if (typeof lastCount != 'undefined') {
+      this.columns = lastCount
+    }
+    this.setItemSizeArray()
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      Row() {
+        Text('双指缩放改变列数')
+          .height('5%')
+          .margin({ top: 10, left: 20 })
+      }
+
+      WaterFlow() {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            ReusableFlowItem({ item: item })
+          }
+          .width('100%')
+          .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('1fr '.repeat(this.columns))
+      .columnsGap(10)
+      .rowsGap(5)
+      .backgroundColor(0xFAEEE0)
+      .width('100%')
+      .height('100%')
+      .layoutWeight(1)
+      // 切换列数item位置重排动画
+      .animation({
+        duration: 300,
+        curve: Curve.Smooth
+      })
+      .priorityGesture(
+        PinchGesture()
+          .onActionEnd((event: GestureEvent) => {
+            console.info('end scale:' + event.scale)
+            // 手指分开，减少列数以放大item，触发阈值可以自定义，示例为2
+            if (event.scale > 2) {
+              this.columns--
+            } else if (event.scale < 0.6) {
+              this.columns++
+            }
+            // 可以根据设备屏幕宽度设定最大和最小列数，此处以最小1列最大4列为例
+            this.columns = Math.min(4, Math.max(1, this.columns));
+            AppStorage.setOrCreate<number>('columnsCount', this.columns)
+          })
+      )
+    }
+  }
+}
+```
+
+![pinch](figures/waterflow-pinch.gif)
