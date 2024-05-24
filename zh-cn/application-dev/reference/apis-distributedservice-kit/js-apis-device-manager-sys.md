@@ -1388,6 +1388,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 **示例：**
 
 示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@ohos.base';
 
