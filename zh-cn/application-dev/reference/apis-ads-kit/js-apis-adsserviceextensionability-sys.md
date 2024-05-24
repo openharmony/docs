@@ -34,7 +34,7 @@ onLoadAd(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions,
 | -------- | -------- | -------- | -------- |
 | adParam | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams) | 是 | 广告请求参数。 | 
 | adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | 是 | 广告配置。 | 
-| respCallback | [RespCallback](#adsserviceextensionabilityrespcallback) | 是 | 广告请求回调。 | 
+| respCallback | [RespCallback](js-apis-adsserviceextensionability#adsserviceextensionabilityrespcallback) | 是 | 广告请求回调。 | 
 
 **示例：**
 ```ts
@@ -88,7 +88,7 @@ onLoadAdWithMultiSlots(adParams: advertising.AdRequestParams[], adOptions: adver
 | -------- | -------- | -------- | -------- |
 | adParams | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)[] | 是 | 广告请求参数。 | 
 | adOptions | advertising.[AdOptions](js-apis-advertising.md#adoptions) | 是 | 广告配置。 | 
-| respCallback | [RespCallback](#adsserviceextensionabilityrespcallback) | 是 | 广告请求回调。 | 
+| respCallback | [RespCallback](js-apis-adsserviceextensionability#adsserviceextensionabilityrespcallback) | 是 | 广告请求回调。 | 
 
 **示例：**
 ```ts
