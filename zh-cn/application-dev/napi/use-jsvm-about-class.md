@@ -149,19 +149,6 @@ napi_value GetObj(napi_env env) {
     return jsResult;
 }
 
-// PrintHello()函数需绑定到JSVM虚拟机, 用于OH_JSVM_CreateSnapshot虚拟机快照的正常创建
-static JSVM_Value PrintHello(JSVM_Env env, JSVM_CallbackInfo info) {
-    JSVM_Value outPut;
-    OH_JSVM_CreateStringUtf8(env, "Hello world!", JSVM_AUTO_LENGTH, &outPut);
-    return outPut;
-}
-// 提供外部引用的方式以便JavaScript环境可以调用绑定的函数
-static JSVM_CallbackStruct helloCb = {PrintHello, nullptr};
-// 外部引用
-static intptr_t externals[] = {
-    (intptr_t)&helloCb,
-    0,
-};
 // 封装c++中的自定义数据结构
 JSVM_Value DefineClass(JSVM_Env env, JSVM_Value exports) {
     JSVM_CallbackStruct param1;
@@ -175,14 +162,11 @@ JSVM_Value DefineClass(JSVM_Env env, JSVM_Value exports) {
 }
 ```
 
-需要将[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)中的RunJsVm方法改动如下两点：
+需要将[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)中的RunJsVm方法改动如下：
 
 ```cpp
     // hello.cpp
-    // 1. InitOptions外部引用赋值
-    initOptions.externalReferences = externals;
-    // 根据传入的JavaScript代码字符串判断是否调用获取自定义结构数据的方法
-    // 2. 将JSVM开发流程文档中defineClass方法的预留位置的代码更改为如下内容
+    // 将JSVM开发流程文档中defineClass方法的预留位置的代码更改为如下内容
     if (strcmp(sourceCodeStr.c_str(), "defineClass") == 0) {
         JSVM_Value obj;
         DefineClass(env, obj);
