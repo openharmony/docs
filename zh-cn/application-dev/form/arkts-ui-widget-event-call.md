@@ -91,13 +91,11 @@
 - 在UIAbility中接收call事件并获取参数，根据传递的method不同，执行不同的方法。其余数据可以通过[readString](../reference/apis-ipc-kit/js-apis-rpc.md#readstring)方法获取。需要注意的是，UIAbility需要onCreate生命周期中监听所需的方法。
   
   ```ts
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import type Base from '@ohos.base';
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  import type rpc from '@ohos.rpc';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import type Want from '@ohos.app.ability.Want';
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'WidgetEventCallEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -148,8 +146,8 @@
           return new MyParcelable(CONST_NUMBER_2, 'bbb');
         });
       } catch (err) {
-        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
-      };
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. Cause: ${JSON.stringify(err as BusinessError)}`);
+      }
     }
   
     // 进程退出时，解除监听
@@ -158,8 +156,8 @@
         this.callee.off('funA');
         this.callee.off('funB');
       } catch (err) {
-        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee off. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
-      };
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee off. Cause: ${JSON.stringify(err as BusinessError)}`);
+      }
     }
   }
   ```

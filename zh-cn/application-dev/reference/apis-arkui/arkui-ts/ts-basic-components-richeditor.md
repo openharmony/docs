@@ -24,6 +24,14 @@ RichEditor(value: RichEditorOptions)
 | ----- | --------------------------------------- | ---- | ----------- |
 | value | [RichEditorOptions](#richeditoroptions) | 是    | 富文本组件初始化选项。 |
 
+RichEditor(value: RichEditorStyledStringOptions)<sup>12+</sup>
+
+
+**参数：**
+
+| 参数名   | 参数类型                                    | 必填   | 参数描述        |
+| ----- | --------------------------------------- | ---- | ----------- |
+| value | [RichEditorStyledStringOptions](#richeditorstyledstringoptions12) | 是    | 富文本组件初始化选项。 |
 
 ## 属性
 
@@ -225,6 +233,8 @@ onSelect(callback:&nbsp;(value:&nbsp;RichEditorSelection&nbsp;=&gt;&nbsp;void)
 
 用手指选择时，松开手指触发回调。
 
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -240,6 +250,8 @@ onSelect(callback:&nbsp;(value:&nbsp;RichEditorSelection&nbsp;=&gt;&nbsp;void)
 aboutToIMEInput(callback:&nbsp;(value:&nbsp;RichEditorInsertValue)&nbsp;=&gt;&nbsp;boolean)
 
 输入法输入内容前，触发回调。
+
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -257,6 +269,8 @@ onIMEInputComplete(callback:&nbsp;(value:&nbsp;RichEditorTextSpanResult)&nbsp;=&
 
 输入法完成输入后，触发回调。
 
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -273,6 +287,8 @@ aboutToDelete(callback:&nbsp;(value:&nbsp;RichEditorDeleteValue)&nbsp;=&gt;&nbsp
 
 输入法删除内容前，触发回调。
 
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -288,6 +304,8 @@ aboutToDelete(callback:&nbsp;(value:&nbsp;RichEditorDeleteValue)&nbsp;=&gt;&nbsp
 onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 输入法完成删除后，触发回调。
+
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -357,6 +375,8 @@ onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
 
 文本变化前，触发回调。
 
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -370,6 +390,8 @@ onWillChange(callback: Callback<RichEditorChangeValue, boolean>)
 onDidChange(callback: Callback\<OnDidChangeCallback\>)
 
 文本变化后，触发回调。
+
+使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件时不支持该回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -579,6 +601,14 @@ RichEditor初始化参数。
 | 名称         | 类型                                       | 必填   | 说明      |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | controller | [RichEditorController](#richeditorcontroller) | 是    | 富文本控制器。 |
+
+## RichEditorStyledStringOptions<sup>12+</sup>
+
+RichEditor初始化参数。
+
+| 名称         | 类型                                       | 必填   | 说明      |
+| ---------- | ---------------------------------------- | ---- | ------- |
+| controller | [RichEditorStyledStringController](#richeditorstyledstringcontroller12) | 是    | 富文本控制器。 |
 
 ## SelectionOptions<sup>12+</sup>
 
@@ -933,6 +963,170 @@ isEditing(): boolean
 stopEditing(): void
 
 退出编辑态。
+
+## RichEditorStyledStringController<sup>12+</sup>
+
+使用属性字符串构建的RichEditor组件的控制器。
+
+### 导入对象
+
+```
+controller: RichEditorStyledStringController = new RichEditorStyledStringController()
+```
+
+### getCaretOffset<sup>12+</sup>
+
+getCaretOffset(): number
+
+返回当前光标所在位置。
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 当前光标所在位置。 |
+
+### setCaretOffset<sup>12+</sup>
+
+setCaretOffset(offset: number): boolean
+
+设置光标位置。
+
+**参数：**
+
+| 参数名    | 参数类型   | 必填   | 参数描述                 |
+| ------ | ------ | ---- | -------------------- |
+| offset | number | 是    | 光标偏移位置。超出文本范围时，设置失败。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+| ------- | --------- |
+| boolean | 光标是否设置成功。 |
+
+### getTypingStyle<sup>12+</sup>
+
+getTypingStyle(): RichEditorTextStyle
+
+获得用户预设的样式。
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| [RichEditorTextStyle](#richeditortextstyle) | 用户预设样式。 |
+
+### setTypingStyle<sup>12+</sup>
+
+setTypingStyle(value: RichEditorTextStyle): void
+
+设置用户预设的样式。
+
+**参数：**
+
+| 参数名   | 参数类型                                     | 必填   | 参数描述  |
+| ----- | ---------------------------------------- | ---- | ----- |
+| value | [RichEditorTextStyle](#richeditortextstyle) | 是    | 预设样式。 |
+
+### closeSelectionMenu<sup>12+</sup>
+
+closeSelectionMenu(): void
+
+关闭自定义选择菜单或系统默认选择菜单。
+
+### setSelection<sup>12+</sup>
+
+setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&nbsp;SelectionOptions): void;
+
+支持设置文本选中，选中部分背板高亮。
+
+selectionStart和selectionEnd均为-1时表示全选。
+
+未获焦时调用该接口不产生选中效果。
+
+从API version 12开始，在2in1设备中，无论options取何值，调用setSelection接口都不会弹出菜单，此外，如果组件中已经存在菜单，调用setSelection接口会关闭菜单。
+
+在非2in1设备中，options取值为MenuPolicy.DEFAULT时，遵循以下规则：
+
+1. 组件内有手柄菜单时，接口调用后不关闭菜单，并且调整菜单位置。
+
+2. 组件内有不带手柄的菜单时，接口调用后不关闭菜单，并且菜单位置不变。
+
+3. 组件内无菜单时，接口调用后也无菜单显示。
+
+**参数：**
+
+| 参数名            | 参数类型   | 必填   | 参数描述    |
+| -------------- | ------ | ---- | ------- |
+| selectionStart | number | 是    | 选中开始位置。 |
+| selectionEnd   | number | 是    | 选中结束位置。 |
+| options<sup>12+</sup>   | [SelectionOptions](#selectionoptions12) | 否    | 选择项配置。 |
+
+### getSelection<sup>12+</sup>
+
+getSelection(): RichEditorRange
+
+获取当前富文本当前的选中区域范围。
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| [RichEditorRange](#richeditorrange) | 选中区域范围。 |
+
+### isEditing<sup>12+</sup>
+
+isEditing(): boolean
+
+获取当前富文本的编辑状态。
+
+**返回值：**
+
+| 类型    | 说明                          |
+| ------- | ----------------------------- |
+| boolean | true为编辑态，false为非编辑态。 |
+
+### stopEditing<sup>12+</sup>
+
+stopEditing(): void
+
+退出编辑态。
+
+### setStyledString<sup>12+</sup>
+
+setStyledString(styledString: StyledString): void;
+
+设置富文本组件显示的属性字符串
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述                |
+| ----- | ------ | ---- | ------------------- |
+| value | [StyledString](ts-universal-styled-string.md#styledstring) | 是    | 属性字符串。<br/>**说明：** <br/>StyledString的子类[MutableStyledString](ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。 |
+
+### getStyledString<sup>12+</sup>
+
+getStyledString(): MutableStyledString;
+
+获取富文本组件显示的属性字符串
+
+**返回值：**
+
+| 类型    | 说明                          |
+| ------- | ----------------------------- |
+| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串 |
+
+### onContentChanged<sup>12+</sup>
+
+onContentChanged(listener: StyledStringChangedListener): void;
+
+注册文本内容变化回调，该回调会在后端程序导致文本内容变更时触发
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述                |
+| ----- | ------ | ---- | ------------------- |
+| listener | [StyledStringChangedListener](ts-universal-attributes-text-style.md#styledstringchangedlistener12) | 是    | 文本内容变化回调监听器 |
 
 ## RichEditorSelection
 
@@ -3641,3 +3835,196 @@ struct LineBreakStrategyExample {
 ```
 
 ![LineBreakStrategy](figures/richEditorLineBreak.gif)
+
+### 示例20
+属性字符串使用示例
+
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+import image from '@ohos.multimedia.image'
+
+@Entry
+@Component
+struct Index {
+  stringLength: number = 0;
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  @State selection: string = "";
+  @State content: string = "";
+  @State range: string = "";
+  @State replaceString: string = "";
+  @State rangeBefore: string = "";
+  @State rangeAfter: string = "";
+  richEditorStyledString: MutableStyledString = new MutableStyledString("");
+  textStyle: TextStyle = new TextStyle({
+    fontWeight: FontWeight.Lighter,
+    fontFamily: 'HarmonyOS Sans',
+    fontColor: Color.Green,
+    fontSize: LengthMetrics.vp(30),
+    fontStyle: FontStyle.Normal
+  })
+  fontStyle1: TextStyle = new TextStyle({ fontColor: Color.Blue });
+  fontStyle2: TextStyle = new TextStyle({
+    fontWeight: FontWeight.Bolder,
+    fontFamily: 'Arial',
+    fontColor: Color.Orange,
+    fontSize: LengthMetrics.vp(30),
+    fontStyle: FontStyle.Italic
+  })
+  // 创建属性字符串对象
+  mutableStyledString: MutableStyledString = new MutableStyledString("初始属性字符串",
+    [{ start: 0, length: 5, styledKey: StyledStringKey.FONT, styledValue: this.fontStyle1 }]);
+  styledString: StyledString = new StyledString("插入属性字符串",
+    [{ start: 2, length: 4, styledKey: StyledStringKey.FONT, styledValue: this.fontStyle2 }]);
+  controller: RichEditorStyledStringController = new RichEditorStyledStringController();
+  options: RichEditorStyledStringOptions = {controller: this.controller};
+  // 文本内容变化回调
+  contentChangedListener: StyledStringChangedListener = {
+    onWillChange: (value: StyledStringChangeValue) => {
+      this.range = '[ ' + value.range.start + ' , ' + value.range.end + ' ]';
+      this.replaceString = value.replacementString.getString();
+      return true;
+    },
+    onDidChange: (rangeBefore, rangeAfter) => {
+      this.rangeBefore = '[ ' + rangeBefore.start + ' , ' + rangeBefore.end + ' ]';
+      this.rangeAfter = '[ ' + rangeAfter.start + ' , ' + rangeAfter.end + ' ]';
+    }
+  }
+
+  async aboutToAppear() {
+    console.info("aboutToAppear initial imagePixelMap");
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'));
+  }
+
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    })
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    })
+    await imageSource.release()
+    return createPixelMap
+  }
+
+
+  build() {
+    Column() {
+      Column() {
+        Text("选中区信息")
+          .fontSize(20)
+          .width("100%")
+        Text("selection range: " + this.selection).width("100%")
+        Text("selection content: " + this.content).width("100%")
+      }
+      .borderWidth(1)
+      .borderColor(Color.Black)
+      .width("100%")
+      .height("10%")
+
+      Column() {
+        Text("onWillChange回调信息")
+          .fontSize(20)
+          .width("100%")
+        Text("range: " + this.range).width("100%")
+        Text("replacementString: " + this.replaceString).width("100%")
+        Text("onWillChange回调信息")
+          .fontSize(20)
+          .width("100%")
+        Text("rangeBefore: " + this.rangeBefore).width("100%")
+        Text("rangeAfter: " + this.rangeAfter).width("100%")
+      }
+      .borderWidth(1)
+      .borderColor(Color.Black)
+      .width("100%")
+      .height("20%")
+
+      RichEditor(this.options)
+        .onReady(() => {
+          // 注册文本变化回调
+          this.controller.onContentChanged(this.contentChangedListener);
+          // 设定组件展示的属性字符串
+          this.controller.setStyledString(this.mutableStyledString);
+        })
+        .height("20%")
+        .width("100%")
+        .borderWidth(1)
+        .borderColor(Color.Black)
+
+      Column() {
+        Row() {
+          Button("插入图片").onClick(() => {
+            if (this.imagePixelMap !== undefined) {
+              let imageStyledString = new MutableStyledString(new ImageAttachment({
+                value: this.imagePixelMap,
+                size: { width: 50, height: 50 },
+                layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+                verticalAlign: ImageSpanAlignment.BASELINE,
+                objectFit: ImageFit.Contain
+              }))
+              // 获取组件展示的属性字符串
+              this.richEditorStyledString = this.controller.getStyledString();
+              this.richEditorStyledString.appendStyledString(imageStyledString);
+              // 使插入图片后的属性字符串展示在组件上
+              this.controller.setStyledString(this.richEditorStyledString);
+              this.controller.setCaretOffset(this.richEditorStyledString.length);
+            }
+          })
+          Button("插入文本").onClick(() => {
+              // 获取组件展示的属性字符串
+              this.richEditorStyledString = this.controller.getStyledString();
+              this.richEditorStyledString.appendStyledString(this.styledString);
+              // 使插入文本后的属性字符串展示在组件上
+              this.controller.setStyledString(this.richEditorStyledString);
+              this.controller.setCaretOffset(this.richEditorStyledString.length);
+          })
+        }
+        Row() {
+          Button("获取选中内容").onClick(() => {
+            // 获取选中范围
+            let richEditorSelection = this.controller.getSelection();
+            let start = richEditorSelection.start ? richEditorSelection.start : 0;
+            let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            // 获取组件展示的属性字符串
+            this.richEditorStyledString = this.controller.getStyledString();
+            this.selection = '[ ' + start + ' , ' + end + ' ]';
+            this.content = this.richEditorStyledString.subStyledString(start, end - start).getString();
+          })
+          Button("更新选中样式").onClick(() => {
+            // 获取选中范围
+            let richEditorSelection = this.controller.getSelection();
+            let start = richEditorSelection.start ? richEditorSelection.start : 0;
+            let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            // 获取组件展示的属性字符串
+            this.richEditorStyledString = this.controller.getStyledString();
+            this.richEditorStyledString.setStyle({
+              start: start,
+              length: end - start,
+              styledKey: StyledStringKey.FONT,
+              styledValue: this.textStyle
+            })
+            // 使变更样式后的属性字符串展示在组件上
+            this.controller.setStyledString(this.richEditorStyledString);
+          })
+          Button("删除选中内容").onClick(() => {
+            // 获取选中范围
+            let richEditorSelection = this.controller.getSelection();
+            let start = richEditorSelection.start ? richEditorSelection.start : 0;
+            let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            // 获取组件展示的属性字符串
+            this.richEditorStyledString = this.controller.getStyledString();
+            this.richEditorStyledString.removeString(start, end - start);
+            // 使删除内容后的属性字符串展示在组件上
+            this.controller.setStyledString(this.richEditorStyledString);
+          })
+        }
+      }
+      .width("100%")
+    }
+  }
+}
+```
+
+![StyledString](figures/richEditorStyledString.gif)

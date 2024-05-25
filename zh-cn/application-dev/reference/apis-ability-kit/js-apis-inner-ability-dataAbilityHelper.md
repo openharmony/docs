@@ -41,6 +41,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -83,6 +84,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -116,6 +118,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -153,6 +156,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -193,6 +197,7 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -233,6 +238,7 @@ getType(uri: string): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -265,6 +271,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -306,6 +313,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -337,6 +345,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -377,6 +386,7 @@ normalizeUri(uri: string): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -408,6 +418,7 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -448,6 +459,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -479,6 +491,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -519,6 +532,7 @@ notifyChange(uri: string): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -551,6 +565,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -599,6 +614,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -637,6 +653,7 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -682,6 +699,7 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -718,6 +736,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -761,6 +780,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -794,6 +814,7 @@ predicates筛选条件为空，自定义数据库删除数据记录的处理逻�
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -831,6 +852,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -882,6 +904,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -923,6 +946,7 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑。使用c
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -967,6 +991,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1005,6 +1030,7 @@ query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1041,6 +1067,7 @@ query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>)
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1078,6 +1105,7 @@ query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asyn
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1122,6 +1150,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1159,6 +1188,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1203,6 +1233,7 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1239,6 +1270,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: As
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1282,6 +1314,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';

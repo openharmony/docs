@@ -150,7 +150,7 @@ float.json文件的内容如下：
             "name":"font_hello",
             "value":"28.0fp"
         },
-	{
+	      {
             "name":"font_world",
             "value":"20.0fp"
         }
@@ -167,18 +167,18 @@ string.json文件的内容如下：
             "name":"string_hello",
             "value":"Hello"
         },
-	{
+	      {
             "name":"string_world",
             "value":"World"
         },
-	{
+	      {
             "name":"message_arrive",
             "value":"We will arrive at %1$s."
         },
-  {
+        {
             "name":"message_notification",
             "value":"Hello, %1$s!,You have %2$d new messages."
-  }
+        }
     ]
 }
 ```

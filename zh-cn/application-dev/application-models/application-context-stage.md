@@ -109,7 +109,6 @@
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
@@ -163,7 +162,6 @@
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
@@ -240,38 +238,23 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct Page_Context {
-
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    //...
-    Button()
-      .onClick(() => {
-        // 存储普通信息前，切换到EL1设备级加密
-        if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
-          this.context.area = contextConstant.AreaMode.EL1; // 修改area
-          promptAction.showToast({
-            message: 'SwitchToEL1'
-          });
-        }
-        // 存储普通信息
-      })
-    
-    //...
-
-    Button()
-      .onClick(() => {
-        // 存储敏感信息前，切换到EL2用户级加密
-        if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
-          this.context.area = contextConstant.AreaMode.EL2; // 修改area
-          promptAction.showToast({
-            message: 'SwitchToEL2'
-          });
-        }
-        // 存储敏感信息
-      })
-    
-    //...
+    Column() {
+      //...
+      Button()
+        .onClick(() => {
+          // 存储普通信息前，切换到EL1设备级加密
+          if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
+            this.context.area = contextConstant.AreaMode.EL1; // 修改area
+            promptAction.showToast({
+              message: 'SwitchToEL1'
+            });
+          }
+          // 存储普通信息
+        })
+    }
   }
 }
 ```
@@ -291,6 +274,7 @@ struct Page_Context {
   @Component
   struct Page_ContextAbility {
     private context = getContext(this) as common.UIAbilityContext;
+
     build() {
       Button()
         .onClick(() => {

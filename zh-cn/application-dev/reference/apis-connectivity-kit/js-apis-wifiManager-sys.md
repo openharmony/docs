@@ -1001,6 +1001,53 @@ startPortalCertification(): void
 	}
 ```
 
+## wifiManager.enableHiLinkHandshake<sup>12+</sup>
+
+enableHiLinkHandshake(isHiLinkEnable: boolean, bssid: string, config: WifiDeviceConfig): void
+
+**系统接口：** 此接口为系统接口。
+
+设置是否使能hiLink。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| isHiLinkEnable | boolean | 是 | 是否使能hiLink。true:使能，&nbsp;false:去使能。 |
+| bssid | string | 是 | 热点的mac地址，例如：00:11:22:33:44:55。 |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN的配置信息。config.bssid必须和第二个参数bssid保持一致。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+	// config数据可以通过getScanInfoList接口获取，只有WifiScanInfo.isHiLinkNetwork为true的热点，才能正常使用该接口
+	let config:wifiManager.WifiDeviceConfig = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 0,
+		bssid : "38:37:8b:80:bf:cc",
+		bssidType : 1,
+		isHiddenSsid : false
+	}	
+	try {
+		wifiManager.enableHiLinkHandshake(true, config.bssid, config);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifiManager.factoryReset<sup>11+</sup>
 
@@ -1697,7 +1744,7 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"streamChange"字符串。 |
+| type | string | 是 | 固定填"deviceConfigChange"字符串。 |
 | callback | Callback&lt;number&gt; | 是 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置. |
 
 **错误码：**
@@ -1724,7 +1771,7 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 固定填"streamChange"字符串。 |
+| type | string | 是 | 固定填"deviceConfigChange"字符串。 |
 | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数，返回0: 添加配置, 1: 更改配置, 2: 删除配置.|
 
 **错误码：**

@@ -6,7 +6,7 @@
 ## 开发企业管理应用
 
 ### 基本概念
-- 设备管理应用：具备<!--Del-->[<!--DelEnd-->企业设备管理扩展能力<!--Del-->](../../application-models/enterprise-extensionAbility.md)<!--DelEnd-->的<!--Del-->系统<!--DelEnd-->应用。
+- 设备管理应用：<!--RP1-->具备[企业设备管理扩展能力](../../application-models/enterprise-extensionAbility.md)的系统应用<!--RP1End-->。
 
 ### 约束与限制
 - 仅支持Stage模型
@@ -21,7 +21,7 @@
 
 2. 如需调用系统接口，需替换为替换full-sdk。且需在[应用签名文件](../../security/AccessToken/app-permission-mgmt-overview.md#应用apl等级)中设置应用为系统应用，即app-feature字段为hos_system_app。<!--DelEnd-->
 
-3. 创建EnterpriseAdminExtensionAbility，创建过程详情请见<!--Del-->[<!--DelEnd-->EnterpriseAdminExtensionAbility开发指南<!--Del-->](../../application-models/enterprise-extensionAbility.md)<!--DelEnd-->。
+3. 创建EnterpriseAdminExtensionAbility，创建过程详情请见<!--RP1-->[EnterpriseAdminExtensionAbility开发指南](../../application-models/enterprise-extensionAbility.md)<!--RP1End-->。
 
 4. 声明接口所需权限。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[声明ACL权限](../../security/AccessToken/declare-permissions-in-acl.md)声明对应权限。
 
@@ -45,8 +45,8 @@
 - [@ohos.enterprise.securityManager（安全管理）](js-apis-enterprise-securityManager.md)
 - [@ohos.enterprise.systemManager （系统管理）](js-apis-enterprise-systemManager.md)
 - [@ohos.enterprise.usbManager（USB管理）](js-apis-enterprise-usbManager.md)
-- [@ohos.enterprise.wifiManager（WiFi管理）](js-apis-enterprise-wifiManager.md)<!--Del-->
-- [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](js-apis-EnterpriseAdminExtensionAbility.md)
+- [@ohos.enterprise.wifiManager（WiFi管理）](js-apis-enterprise-wifiManager.md)
+- [@ohos.enterprise.EnterpriseAdminExtensionAbility（企业设备管理扩展能力）](js-apis-EnterpriseAdminExtensionAbility.md)<!--Del-->
 - [@ohos.enterprise.accountManager（帐户管理）(系统接口)](js-apis-enterprise-accountManager-sys.md)
 - [@ohos.enterprise.adminManager (企业设备管理)(系统接口)](js-apis-enterprise-adminManager-sys.md)
 - [@ohos.enterprise.applicationManager（应用管理）(系统接口)](js-apis-enterprise-applicationManager-sys.md)
@@ -61,5 +61,4 @@
 - [@ohos.enterprise.restrictions （限制类策略）(系统接口)](js-apis-enterprise-restrictions-sys.md)
 - [@ohos.enterprise.securityManager（安全管理）(系统接口)](js-apis-enterprise-securityManager-sys.md)
 - [@ohos.enterprise.usbManager（USB管理）(系统接口)](js-apis-enterprise-usbManager-sys.md)
-- [@ohos.enterprise.wifiManager（WiFi管理）(系统接口)](js-apis-enterprise-wifiManager-sys.md)
-<!--DelEnd-->
+- [@ohos.enterprise.wifiManager（WiFi管理）(系统接口)](js-apis-enterprise-wifiManager-sys.md)<!--DelEnd-->

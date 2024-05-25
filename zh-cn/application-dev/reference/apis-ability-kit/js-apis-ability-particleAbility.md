@@ -39,6 +39,7 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -93,6 +94,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
@@ -132,6 +134,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 
@@ -160,6 +163,7 @@ terminateSelf(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 
@@ -197,6 +201,7 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 
@@ -229,6 +234,7 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 
  **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import notification from '@ohos.notificationManager';
 import particleAbility from '@ohos.ability.particleAbility';
@@ -302,6 +308,7 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import notification from '@ohos.notificationManager';
 import particleAbility from '@ohos.ability.particleAbility';
@@ -362,6 +369,7 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import { BusinessError } from '@ohos.base';
@@ -398,6 +406,7 @@ cancelBackgroundRunning(): Promise&lt;void&gt;
 
  **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import { BusinessError } from '@ohos.base';
@@ -439,6 +448,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
@@ -486,6 +496,7 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
@@ -536,6 +547,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';

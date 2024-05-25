@@ -3242,6 +3242,8 @@ stopImageAnalyzer(): void
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct ImageAnalyzerExample {
@@ -3273,8 +3275,8 @@ struct ImageAnalyzerExample {
           this.context.stopImageAnalyzer()
         })
       Canvas(this.context)
-        .width(80)
-        .height(80)
+        .width(200)
+        .height(200)
         .enableAnalyzer(true)
         .onReady(() => {
           this.context.drawImage(this.img, 0, 0, 200, 200)

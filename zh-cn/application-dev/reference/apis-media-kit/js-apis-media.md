@@ -6218,7 +6218,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| url | string | 是   | 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。  |
+| url | string | 是   | - 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。<br> - 本地m3u8的fd路径。  |
 | header | Record\<string, string> | 否   | 支持流媒体预下载HttpHeader自定义。 |
 
 **返回值：**
@@ -6236,13 +6236,36 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 5400101  | No memory. Return by callback. |
 
-**示例：**
+**示例1：**
 
 ```ts
-import media from '@kit.MediaKit';
+import {media} from '@kit.MediaKit';
 
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+```
+
+**示例2：**
+
+```ts
+import {media} from '@kit.MediaKit';
+import {resourceManager} from '@kit.LocalizationKit';
+
+private mgr: resourceManager.ResourceManager | null = null;
+mrg = ctx.resourceManager;
+this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
+
+let fd:string = this.fileDescriptor.fd.toString();
+let offset:string = this.fileDescriptor.offset.toString();
+let length:string = this.fileDescriptor.length.toString();
+let fdUrl:string = "fd://" + "?offset=" + offset + "&size=" + length;
+
+let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  header);
+
+let mimeType = media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
+mediaSource.setMimeType(mimeType);
+
 ```
 
 ## MediaSource<sup>12+</sup>
@@ -6250,6 +6273,30 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 媒体数据信息。来源自[createMediaSourceWithUrl](#mediacreatemediasourcewithurl12)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+### setMimeType<sup>12+</sup>
+
+setMimeType(mimeType: AVMimeTypes): void
+
+设置媒体MIME类型，以帮助播放器处理扩展的媒体源。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| mimeType | [AVMimeTypes](#mediasource12) | 是   | 媒体MIME类型。 |
+
+## AVMimeTypes<sup>12+</sup>
+
+媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+
+| 名称       | 值   | 说明                                                         |
+| ---------- | ---- | ------------------------------------------------------------ |
+| APPLICATION       | application/m3u8    | 表示m3u8本地文件。 |
+
 
 ## PlaybackStrategy<sup>12+</sup>
 

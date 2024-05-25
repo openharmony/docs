@@ -280,6 +280,128 @@ parent.onmessage = function(message) {
 worker相关开发配置和流程参考以下链接：
 [使用Worker进行线程间通信](../reference/apis-arkts/js-apis-worker.md)
 
+## Sendable相关
+
+### 接口描述
+
+| 接口                       | 描述                               |
+| -------------------------- | ---------------------------------- |
+| napi_is_sendable           | 判断给定JS value是否是Sendable的。 |
+| napi_define_sendable_class | 创建一个sendable类。               |
+
+### 使用示例
+
+#### napi_is_sendable
+
+判断给定JS value是否是Sendable的。
+
+cpp部分代码
+
+```cpp
+static napi_value IsSendable(napi_env env, napi_callback_info info) {
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    bool isSendable = false;
+    napi_is_sendable(env, args[0], &isSendable);
+
+    napi_value result;
+    napi_get_boolean(env, isSendable, &result);
+    return result;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const isSendable: <T>(a: T) => boolean;
+```
+
+ArkTS侧示例代码
+
+```ts
+import testNapi from 'libentry.so';
+
+let value = testNapi.isSendable('createObject');
+hilog.info(0x0000, 'testTag', 'NAPI napi_is_sendable: %{public}s', JSON.stringify(value));
+```
+
+#### napi_define_sendable_class
+
+创建一个sendable类。
+
+cpp部分代码
+
+```cpp
+static napi_value func(napi_env env, napi_callback_info info) {
+    napi_value val;
+    napi_create_string_utf8(env, "func result", NAPI_AUTO_LENGTH, &val);
+    return val;
+}
+
+static napi_value DefineSendableClass(napi_env env) {
+    napi_value str;
+    napi_create_string_utf8(env, "str", NAPI_AUTO_LENGTH, &str);
+
+    napi_property_descriptor props[] = {
+        {"staticStr", nullptr, nullptr, nullptr, nullptr, str,
+         static_cast<napi_property_attributes>(napi_static | napi_writable), nullptr},
+        {"staticFunc", nullptr, func, nullptr, nullptr, nullptr, napi_static, nullptr},
+        {"str", nullptr, nullptr, nullptr, nullptr, str, static_cast<napi_property_attributes>(1 << 9 | napi_writable),
+         nullptr},
+        {"func", nullptr, nullptr, nullptr, nullptr, nullptr,
+         static_cast<napi_property_attributes>(1 << 11 | napi_writable), nullptr},
+    };
+
+    napi_value sendableClass = nullptr;
+    napi_define_sendable_class(
+        env, "SendableClass", NAPI_AUTO_LENGTH,
+        [](napi_env env, napi_callback_info info) -> napi_value {
+            napi_value thisVar = nullptr;
+            napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, nullptr);
+
+            napi_value str;
+            napi_create_string_utf8(env, "instance str", NAPI_AUTO_LENGTH, &str);
+
+            napi_property_descriptor props[] = {
+                {"str", nullptr, nullptr, nullptr, nullptr, str, napi_default, nullptr},
+                {"func", nullptr, func, nullptr, nullptr, nullptr, napi_default, nullptr},
+            };
+
+            napi_define_properties(env, thisVar, sizeof(props) / sizeof(props[0]), props);
+
+            return thisVar;
+        },
+        nullptr, sizeof(props) / sizeof(props[0]), props, nullptr, &sendableClass);
+
+    return sendableClass;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+@Sendable
+export class SendableClass {
+  static staticStr: string;
+  static staticFunc(): string;
+  str: string;
+  func(): string;
+}
+```
+
+ArkTS侧示例代码
+
+```ts
+import testNapi from 'libentry.so';
+
+let value = new testNapi.SendableClass();
+hilog.info(0x0000, 'testTag', 'NAPI napi_define_sendable_class: %{public}s', value.str);
+```
+
 ### 编译配置、模块注册
 
 - 编译配置
@@ -311,7 +433,9 @@ static napi_value Init(napi_env env, napi_value exports)
         {"createObjectWithNameProperties", nullptr, CreateObjectWithNameProperties, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"runScriptPath", nullptr, RunScriptPath, nullptr, nullptr, nullptr, napi_default, nullptr}，
         {"queueAsyncWorkWithQos", nullptr, QueueAsyncWorkWithQos, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"coerceToNativeBindingObject", nullptr, CoerceToNativeBindingObject, nullptr, nullptr, nullptr, napi_default, nullptr}
+        {"coerceToNativeBindingObject", nullptr, CoerceToNativeBindingObject, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"isSendable", nullptr, IsSendable, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"SendableClass", nullptr, nullptr, nullptr, nullptr, SendableClass, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

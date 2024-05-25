@@ -1627,8 +1627,8 @@ export function PageTwoBuilder(name: string, param: Object) {
 }
 
 @Component
-export struct PageTwoTemp {
-  pathInfo: NavPathStack = new NavPathStack()
+export struct PageTwo {
+  pageInfos: NavPathStack = new NavPathStack()
   @State x: number = 300
   pageId: number = 0
 
@@ -2398,6 +2398,10 @@ struct PageOneComponent {
     .onDisAppear(() => { this.eventStr += "<onDisAppear>"; })
     .onShown(() => { this.eventStr += "<onShown>"; })
     .onHidden(() => { this.eventStr += "<onHidden>"; })
+    .onWillAppear(() => { this.eventStr += "<onWillAppear>"; })
+    .onWillDisappear(() => { this.eventStr += "<onWillDisappear>"; })
+    .onWillShow(() => { this.eventStr += "<onWillShow>"; })
+    .onWillHide(() => { this.eventStr += "<onWillHide>"; })
     // onReady会在onAppear之前调用
     .onReady((ctx: NavDestinationContext) => {
       try {

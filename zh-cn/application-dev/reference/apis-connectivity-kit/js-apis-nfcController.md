@@ -197,7 +197,7 @@ controller.on("nfcStateChange", (nfcState : number)=> {
 
 // open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (!controller.isNfcOpen()) {
-  let ret = controller.openNfc();
+  let ret: boolean = controller.openNfc();
   console.log("controller openNfc ret: " + ret);
 }
 
@@ -211,7 +211,7 @@ try {
 
 // close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (controller.isNfcOpen()) {
-  let ret = controller.closeNfc();
+  let ret: boolean = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);
 }
 

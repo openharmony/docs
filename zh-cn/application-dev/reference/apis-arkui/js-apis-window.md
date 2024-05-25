@@ -2862,7 +2862,11 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-const callback = (data: { type: window.AvoidAreaType, area: window.AvoidArea }) => {
+interface Param {
+  type: window.AvoidAreaType,
+  area: window.AvoidArea
+}
+const callback = (data: Param) => {
   // ...
 }
 try {

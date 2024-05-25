@@ -1,6 +1,6 @@
 # ProcessData (系统接口)
 
-进程数据的对象定义。使用接口[registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver)注册生命周期变化监听后，当应用或组件的生命周期变化时，系统通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onProcessCreated等方法回调给开发者。
+进程数据的对象定义。使用接口[on](js-apis-app-ability-appManager-sys.md#appmanageron)注册生命周期变化监听后，当应用或组件的生命周期变化时，系统通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md)的onProcessCreated等方法回调给开发者。
 
 > **说明：**
 > 
@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.application.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -30,7 +30,7 @@ import appManager from '@ohos.application.appManager';
 
 **示例：**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 let observerCode = appManager.on('applicationState', {
     onForegroundApplicationChanged(appStateData) {
@@ -51,6 +51,12 @@ let observerCode = appManager.on('applicationState', {
         console.log(`onProcessStateChanged processData.uid : ${JSON.stringify(processData.uid)}`);
         console.log(`onProcessStateChanged processData.isContinuousTask : ${JSON.stringify(processData.isContinuousTask)}`);
         console.log(`onProcessStateChanged processData.isKeepAlive : ${JSON.stringify(processData.isKeepAlive)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`onAppStarted onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`onAppStopped onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 });
 ```

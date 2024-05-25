@@ -1,6 +1,7 @@
 # @ohos.net.vpn (VPN 管理)（系统接口）
 
 VPN 管理模块，支持 VPN 的启动和停止功能。
+本模块是操作系统提供的内置VPN功能，允许用户通过系统的网络设置进行VPN连接，通常提供的功能较少，而且有比较严格的限制。
 
 > **说明：**
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -259,11 +260,12 @@ struct Index {
       address: "0.0.0.0"
     }
     tcp.bind(ipAddress);
+    let netAddress: socket.NetAddress = {
+      address: "192.168.1.11",
+      port: 8888
+    }
     let addressConnect: socket.TCPConnectOptions = {
-      address: {
-        address: "192.168.1.11",
-        port: 8888
-      },
+      address: netAddress,
       timeout: 6000
     }
     tcp.connect(addressConnect);
@@ -335,11 +337,12 @@ struct Index {
       address: "0.0.0.0"
     }
     tcp.bind(ipAddress);
+    let netAddress: socket.NetAddress = {
+      address: "192.168.1.11",
+      port: 8888
+    }
     let addressConnect: socket.TCPConnectOptions = {
-      address: {
-        address: "192.168.1.11",
-        port: 8888
-      },
+      address: netAddress,
       timeout: 6000
     }
     tcp.connect(addressConnect);

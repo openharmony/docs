@@ -350,17 +350,18 @@ on(type: 'abilityFirstFrameState', observer: AbilityFirstFrameStateObserver, bun
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-abilityFirstFrameStateObserverForAll: 	 	      		   appManager.AbilityFirstFrameStateObserver = {
-  onAbilityFirstFrameDrawn(abilityStateData:             		appManager.AbilityFirstFrameStateData) {
-	  console.log("abilityFirstFrame: ",      	              		  JSON.stringify(abilityStateData));
-    }
-  };
+let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
+    console.log("abilityFirstFrame: ", JSON.stringify(abilityStateData));
+  }
+};
 try {
-  appManager.on('abilityFirstFrameState',      				  	  this.abilityFirstFrameStateObserverForAll);
+  appManager.on('abilityFirstFrameState', abilityFirstFrameStateObserverForAll);
 } catch(e) {
-  console.log('error log:' + e.code)
+  console.log('error log:' + (e as BusinessError).code);
 }
 ```
 
@@ -628,12 +629,19 @@ off(type: 'abilityFirstFrameState', observer?: AbilityFirstFrameStateObserver): 
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
+  onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
+    console.log("abilityFirstFrame: ", JSON.stringify(abilityStateData));
+  }
+};
 
 try {
-  appManager.off('abilityFirstFrameState', 		          		this.abilityFirstFrameStateObserverForAll)
+  appManager.off('abilityFirstFrameState', abilityFirstFrameStateObserverForAll);
 } catch (e) {
-  console.log('error log:' + e.code)
+  console.log('error log:' + (e as BusinessError).code);
 }
 ```
 
@@ -1539,6 +1547,8 @@ try {
 ```
 
 ## appManager.preloadApplication<sup>12+</sup>
+
+preloadApplication(bundleName: string, userId: number, mode: PreloadMode, appIndex?: number): Promise\<void>
 
 预加载应用进程。接口返回成功并不代表预加载成功，具体结果以目标应用进程是否创建成功为准。使用Promise异步回调。
 

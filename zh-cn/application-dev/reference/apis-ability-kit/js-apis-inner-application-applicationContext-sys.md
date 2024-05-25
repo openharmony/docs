@@ -10,7 +10,7 @@ ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
@@ -53,9 +53,8 @@ preloadUIExtensionAbility(want: Want): Promise\<void\>
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
 
@@ -70,7 +69,7 @@ export default class EntryAbility extends UIAbility {
       }
     };
     try {
-        let applicationContext = this.context.getApplicationConext();
+        let applicationContext = this.context.getApplicationContext();
         applicationContext.preloadUIExtensionAbility(want)
         .then(() => {
           // 执行正常业务

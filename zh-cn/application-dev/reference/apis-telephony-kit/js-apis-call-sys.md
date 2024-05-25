@@ -4778,6 +4778,56 @@ call.removeMissedIncomingCallNotification().then(() => {
 });
 ```
 
+## call.sendCallUiEvent<sup>12+</sup>
+
+sendCallUiEvent\(callId: number, eventName: string\): Promise\<void\>
+
+发布通话界面事件。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明     |
+| --------- | ------ | ---- | -------- |
+| callId    | number | 是   | 呼叫Id。 |
+| eventName | string | 是   | 事件名称。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | 以Promise形式异步返回。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](errorcode-telephony.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 801      | Capability not supported.                    |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let callId: number = 0;
+call.sendCallUiEvent(callId, 'eventName').then(() => {
+    console.log(`sendCallUiEvent success.`);
+}).catch((err: BusinessError) => {
+    console.error(`sendCallUiEvent fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## DialOptions
 
@@ -4972,6 +5022,8 @@ IP多媒体系统调用模式。
 | voipCallAttribute<sup>11+</sup> | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
 | crsType<sup>11+</sup> | number                             | 是   | 视频彩振类型|
 | originalCallType<sup>11+</sup> | number                    | 是   | 视频彩振原始呼叫类型|
+| numberLocation<sup>12+</sup> | string | 否 | 号码归属地信息 |
+| numberMarkInfo<sup>12+</sup> | [NumberMarkInfo](#numbermarkinfo12) | 否 | 号码标记信息 |
 
 ## VoipCallAttribute<sup>11+</sup>
 
@@ -4989,6 +5041,7 @@ VoIP通话信息。
 | extensionId      | string     | 是   |  三方应用进程Id  |
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
 | voipBundleName    | string     | 是   |  三方应用包名  |
+| showBannerForIncomingCall<sup>12+</sup>    | boolean     | 否   |  上报来电时是否显示来电横幅  |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5112,6 +5165,8 @@ VoIP通话信息。
 | EVENT_SWAP_CALL_FAILED<sup>11+</sup>  | 4    | 保持当前通话并接听等待中电话失败事件 |
 | EVENT_COMBINE_CALL_FAILED<sup>11+</sup>  | 5 | 合并通话失败 |
 | EVENT_SPLIT_CALL_FAILED<sup>11+</sup> | 6    | 分离通话失败 |
+| EVENT_SHOW_FULL_SCREEN<sup>12+</sup>  | 7    | 全屏显示通话界面   |
+| EVENT_SHOW_FLOAT_WINDOW<sup>12+</sup> | 8    | 悬浮窗显示通话界面 |
 
 ## DialScene<sup>8+</sup>
 
@@ -6088,3 +6143,40 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | width   | number       | 是   | 本端画面图像尺寸宽(像素)。  |
 | height  | number       | 是   | 本端画面图像尺寸高(像素)。  |
 
+## NumberMarkInfo<sup>12+</sup>
+
+电话号码的标记信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称    |     类型      | 必填 | 说明           |
+| ------- | ------------ | ---- | ------------- |
+| markType | [MarkType](#marktype12) | 是   | 号码的标记类型。 |
+| markContent | string | 否  | 号码的标记内容。 |
+| markCount | number       | 否  | 号码的标记次数。 |
+| markSource | string | 否 | 号码的标记来源供应商。 |
+| isCloud | boolean | 否 | 号码的标记是否来自云端。 |
+
+## MarkType<sup>12+</sup>
+
+号码标记的类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称                           | 值     | 说明     |
+| ------------------------------ | ------ | --------|
+| MARK_TYPE_NONE | 0      | 没有标记 |
+| MARK_TYPE_CRANK | 1      | 骚扰电话 |
+| MARK_TYPE_FRAUD | 2    | 诈骗电话 |
+| MARK_TYPE_EXPRESS | 3    | 快递送餐 |
+| MARK_TYPE_PROMOTE_SALES | 4 | 广告推销 |
+| MARK_TYPE_HOUSE_AGENT | 5 | 房产中介 |
+| MARK_TYPE_INSURANCE | 6 | 保险理财 |
+| MARK_TYPE_TAXI | 7 | 出租车 |
+| MARK_TYPE_CUSTOM | 8 | 用户自定义 |
+| MARK_TYPE_OTHERS | 9 | 其他 |
+| MARK_TYPE_YELLOW_PAGE | 10 | 黄页 |

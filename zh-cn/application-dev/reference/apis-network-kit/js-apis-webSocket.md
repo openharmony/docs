@@ -195,13 +195,17 @@ import { webSocket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
-let header: Map<string, string> | undefined;
-if (header !=undefined) {
-    header.set("key", "value")
-    header.set("key2", "value2")
+let options: webSocket.WebSocketRequestOptions | undefined;
+if (options !=undefined) {
+  options.header = {
+     name1: "value1",
+     name2: "value2",
+     name3: "value3"
+  };
+  options.caPath = "";
 }
 let url = "ws://"
-ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
+ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -294,6 +298,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
@@ -301,7 +309,6 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
       console.log("connect fail, err:" + JSON.stringify(err))
     }
 });
-
 ws.on('open', (err: BusinessError, value: Object) => {
   console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
     ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
@@ -357,7 +364,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
-
+class OutValue {
+  status: number = 0
+  message: string = ""
+}
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
