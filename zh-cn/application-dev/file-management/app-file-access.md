@@ -78,7 +78,7 @@ function createFile(): void {
 
 ```ts
 // pages/xxx.ets
-import fs, { ReadOptions } from '@ohos.file.fs';
+import fs, { ReadOptions, WriteOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // 获取应用文件路径
@@ -100,7 +100,7 @@ function readWriteFile(): void {
   let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
-    let writeOptions = {
+    let writeOptions: WriteOptions = {
       length: readLen
     };
     fs.writeSync(destFile.fd, buf, writeOptions);
