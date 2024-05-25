@@ -27,6 +27,16 @@ createA2dpSrcProfile(): A2dpSourceProfile
 | ----------------------------- | ---------- |
 | A2dpSourceProfile | 返回该profile的实例。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter.                         |
+|801 | Capability not supported.                |
+
+
 **示例：**
 
 ```js
@@ -73,6 +83,9 @@ getPlayingState(deviceId: string): PlayingState
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
