@@ -8053,6 +8053,7 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8083,6 +8084,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -8135,6 +8137,7 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8162,6 +8165,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -8214,6 +8218,7 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -8242,6 +8247,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
