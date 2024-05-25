@@ -865,7 +865,11 @@ removeDevice(id: number): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
@@ -903,7 +907,10 @@ get5GChannelList(): Array&lt;number&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
@@ -934,7 +941,9 @@ getDisconnectedReason(): DisconnectedReason
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **返回值：**
@@ -986,7 +995,10 @@ startPortalCertification(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
@@ -1066,7 +1078,10 @@ factoryReset(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
@@ -1097,7 +1112,10 @@ enableHotspot(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1128,7 +1146,10 @@ disableHotspot(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1165,7 +1186,10 @@ isHotspotDualBandSupported(): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1203,7 +1227,10 @@ isHotspotActive(): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1241,7 +1268,11 @@ setHotspotConfig(config: HotspotConfig): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1304,7 +1335,10 @@ getHotspotConfig(): HotspotConfig
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1346,7 +1380,10 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1399,7 +1436,11 @@ addHotspotBlockList(stationInfo: StationInfo)
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1443,7 +1484,11 @@ delHotspotBlockList(stationInfo: StationInfo)
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1526,7 +1571,11 @@ deletePersistentGroup(netId: number): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
@@ -1568,7 +1617,10 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
@@ -1617,7 +1669,10 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.setDeviceName<sup>9+</sup>
@@ -1643,7 +1698,11 @@ setDeviceName(devName: string): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
@@ -1683,7 +1742,11 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('streamChange')<sup>9+</sup>
@@ -1710,7 +1773,11 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
@@ -1752,7 +1819,11 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('deviceConfigChange')<sup>9+</sup>
@@ -1779,7 +1850,11 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
@@ -1822,7 +1897,11 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
@@ -1849,7 +1928,11 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1892,7 +1975,11 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
@@ -1919,7 +2006,11 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
