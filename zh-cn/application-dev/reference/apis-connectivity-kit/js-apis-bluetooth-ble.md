@@ -57,6 +57,15 @@ createGattClientDevice(deviceId: string): GattClientDevice
 | ------------------------------------- | ------------------------------------ |
 | [GattClientDevice](#gattclientdevice) | client端类，使用client端方法之前需要创建该类的实例进行操作。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -91,6 +100,8 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -130,6 +141,9 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -176,6 +190,8 @@ stopBLEScan(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -216,6 +232,10 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -284,6 +304,8 @@ stopAdvertising(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1212,6 +1234,9 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -1253,6 +1278,9 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -1298,6 +1326,9 @@ server端添加服务。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1361,6 +1392,9 @@ removeService(serviceUuid: string): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -1396,6 +1430,8 @@ close(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1437,6 +1473,9 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1496,6 +1535,9 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1544,6 +1586,9 @@ server端回复client端的读写请求。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -1589,6 +1634,16 @@ server端订阅特征值读请求事件。
 | type     | string                                   | 是    | 填写"characteristicRead"字符串，表示特征值读请求事件。 |
 | callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。            |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -1632,6 +1687,16 @@ server端取消订阅特征值读请求事件。
 | type     | string                                   | 是    | 填写"characteristicRead"字符串，表示特征值读请求事件。    |
 | callback | Callback&lt;[CharacteristicReadRequest](#characteristicreadrequest)&gt; | 否    | 表示取消订阅特征值读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -1661,6 +1726,16 @@ server端订阅特征值写请求事件。
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
 | callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
@@ -1708,6 +1783,16 @@ server端取消订阅特征值写请求事件。
 | type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。   |
 | callback | Callback&lt;[CharacteristicWriteRequest](#characteristicwriterequest)&gt; | 否    | 表示取消订阅特征值写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -1737,6 +1822,16 @@ server端订阅描述符读请求事件。
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorRead"字符串，表示描述符读请求事件。 |
 | callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | 是    | 表示回调函数的入参，client端发送的读请求数据。        |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
@@ -1781,6 +1876,16 @@ server端取消订阅描述符读请求事件。
 | type     | string                                   | 是    | 填写"descriptorRead"字符串，表示描述符读请求事件。        |
 | callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | 否    | 表示取消订阅描述符读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -1810,6 +1915,16 @@ server端订阅描述符写请求事件。
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                   | 是    | 填写"descriptorWrite"字符串，表示描述符写请求事件。 |
 | callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。         |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
@@ -1857,6 +1972,16 @@ server端取消订阅描述符写请求事件。
 | type     | string                                   | 是    | 填写"descriptorWrite"字符串，表示描述符写请求事件。       |
 | callback | Callback&lt;[DescriptorWriteRequest](#descriptorwriterequest)&gt; | 否    | 表示取消订阅描述符写请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -1886,6 +2011,16 @@ server端订阅BLE连接状态变化事件。
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示BLE连接状态变化事件。 |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 是    | 表示回调函数的入参，连接状态。                          |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
@@ -1922,6 +2057,16 @@ server端取消订阅BLE连接状态变化事件。
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示BLE连接状态变化事件。 |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 否    | 表示取消订阅BLE连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -1951,6 +2096,16 @@ server端订阅MTU状态变化事件。
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
 | callback | Callback&lt;number&gt; | 是    | 返回MTU字节数的值，通过注册回调函数获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
@@ -1983,6 +2138,16 @@ server端取消订阅MTU状态变化事件。
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
 | callback | Callback&lt;number&gt; | 否    | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
@@ -2018,6 +2183,8 @@ client端发起连接远端蓝牙低功耗设备。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -2051,6 +2218,8 @@ client端断开与远端蓝牙低功耗设备的连接。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -2084,6 +2253,8 @@ close(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -2123,6 +2294,9 @@ client获取远端蓝牙低功耗设备名。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -2166,6 +2340,9 @@ client获取远端蓝牙低功耗设备名。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -2208,6 +2385,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -2260,6 +2440,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -2303,6 +2486,9 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -2373,6 +2559,9 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -2429,6 +2618,9 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
@@ -2492,6 +2684,9 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.               |
 |2901000 | Read forbidden.                |
 |2900099 | Operation failed.              |
@@ -2542,6 +2737,9 @@ client端向低功耗蓝牙设备写入特定的特征值。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -2609,6 +2807,9 @@ client端向低功耗蓝牙设备写入特定的特征值。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -2664,6 +2865,9 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -2718,6 +2922,9 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
@@ -2768,6 +2975,9 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -2810,6 +3020,9 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -2850,6 +3063,9 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -2890,6 +3106,9 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -2948,6 +3167,9 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -3001,6 +3223,9 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -3059,6 +3284,9 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -3105,6 +3333,16 @@ on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;)
 | type     | string                                   | 是    | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 是    | 表示蓝牙低功耗设备的特征值变化事件的回调函数。                  |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -3140,6 +3378,16 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 | type     | string                                   | 是    | 填写"BLECharacteristicChange"字符串，表示特征值变化事件。 |
 | callback | Callback&lt;[BLECharacteristic](#blecharacteristic)&gt; | 否    | 表示取消订阅蓝牙低功耗设备的特征值变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -3169,6 +3417,16 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 是    | 表示连接状态，已连接或断开。                           |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
@@ -3204,6 +3462,16 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 | type     | string                                   | 是    | 填写"BLEConnectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[BLEConnectionChangeState](#bleconnectionchangestate)&gt; | 否    | 表示取消订阅蓝牙低功耗设备的连接状态变化事件。不填该参数则取消订阅该type对应的所有回调。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -3233,6 +3501,16 @@ client端订阅MTU状态变化事件。
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
 | callback | Callback&lt;number&gt; | 是    | 返回MTU字节数的值，通过注册回调函数获取。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
@@ -3265,6 +3543,16 @@ client端取消订阅MTU状态变化事件。
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 必须填写"BLEMtuChange"字符串，表示MTU状态变化事件。填写不正确将导致回调无法注册。 |
 | callback | Callback&lt;number&gt; | 否    | 返回MTU字节数的值，通过注册回调函数获取。不填该参数则取消订阅该type对应的所有回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
