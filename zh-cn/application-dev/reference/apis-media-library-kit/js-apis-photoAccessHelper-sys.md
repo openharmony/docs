@@ -3741,7 +3741,7 @@ async function example() {
 
 setCameraShotKey(cameraShotKey: string): void
 
-修改锁屏相机拍照或录像的标记字段。
+设置锁屏相机拍照或录像的标记字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -4631,8 +4631,8 @@ constructor(album: Album)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 202      |  Called by non-system application.   |
-| 401      | Invalid parameter.          |
+| 202      | Called by non-system application.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14000011 | Internal system error.            |
 
 **示例：**
@@ -4681,7 +4681,7 @@ getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401      | Invalid parameter.          |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14000011 | Internal system error.            |
 
 **示例：**
@@ -4739,7 +4739,7 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401      | Invalid parameter.          |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14000011 | Internal system error.            |
 
 **示例：**
@@ -4796,7 +4796,7 @@ setHighlightUserActionData(type: HighlightUserActionType, actionData: number): P
 | :------- | :-------------------------------- |
 | 201      | Permission denied.                |
 | 202      | Called by non-system application. |
-| 401      | Invalid parameter.          |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 14000011 | Internal system error.            |
 
 **示例：**
