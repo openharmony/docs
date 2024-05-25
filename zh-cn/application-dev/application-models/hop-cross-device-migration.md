@@ -367,6 +367,62 @@ export default class MigrationAbility extends UIAbility {
 }
 ```
 
+### 支持同应用中不同Ability跨端迁移
+一般情况下，跨端迁移的双端是同Ability之间，但有些应用在不同设备类型下的同一个业务Ability名称不同（即异Ability），为了支持该场景下的两个Ability之间能够完成迁移，可以通过在module.json5文件的abilities标签中配置迁移类型continueType进行关联。
+需要迁移的两个Ability的continueType字段取值必须保持一致，示例如下：
+   > **说明：**
+   >
+   > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
+   > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
+
+```json
+   // 设备A
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "Ability-deviceA",
+           "continueType": ['continueType1'], // continueType标签配置
+         }
+       ]
+     }
+   }
+
+   // 设备B
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "Ability-deviceB",
+           "continueType": ['continueType1'], // 与设备A相同的continueType标签
+         }
+       ]
+     }
+   }
+   ```
+
+### 支持快速拉起目标应用
+默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
+
+   ```json
+   {
+     "module": {
+       // ...
+       "abilities": [
+         {
+           // ...
+           "name": "EntryAbility"
+           "continueType": ['EntryAbility_ContinueQuickStart'], // 如果已经配置了continueType标签，可以在该标签值后添加'_ContinueQuickStart'后缀；如果没有配置continueType标签，可以使用AbilityName + '_ContinueQuickStart'作为continueType标签实现快速拉起目标应用
+         }
+       ]
+     }
+   }
+   ```
+
 ## 跨端迁移中的数据迁移
 
 当前推荐两种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
