@@ -913,6 +913,21 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401  | Parameter error.       |
 
 
+```js
+import type { FingerprintEvent } from './@ohos.multimodalInput.shortKey';
+import inputMonitor from '@ohos.multimodalInput.inputMonitor'
+
+try {
+  inputMonitor.on('fingerprint', (fingerprint) => {
+    console.log(`Monitor on success ${JSON.stringify(fingerprint)}`);
+    return false;
+  });
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+
 ## inputMonitor.off('threeFingersTap')<sup>11+</sup>
 
 off(type: 'threeFingersTap', receiver?: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt;): void
@@ -1003,3 +1018,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201  | Permission denied.   |
 | 202  | SystemAPI permission error.  |
 | 401  | Parameter error.       |
+
+
+```js
+import type { FingerprintEvent } from './@ohos.multimodalInput.shortKey';
+import inputMonitor from '@ohos.multimodalInput.inputMonitor'
+
+let callback = (fingerprint: FingerprintEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(fingerprint)}`);
+  return false;
+};
+
+try {
+  inputMonitor.on('fingerprint', callback);
+  inputMonitor.off("fingerprint", callback);
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
