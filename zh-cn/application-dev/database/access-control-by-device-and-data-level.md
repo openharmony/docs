@@ -113,11 +113,12 @@ import { BusinessError } from '@ohos.base';
 import relationalStore from '@ohos.data.relationalStore';
 
 let store: relationalStore.RdbStore;
+let context = getContext(this);
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
   securityLevel: relationalStore.SecurityLevel.S1
 };
-let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
+let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info('Succeeded in getting RdbStore.')
