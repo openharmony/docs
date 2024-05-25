@@ -172,7 +172,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
-| 14400002 | Permission denied.The HDC is disabled by the system.         |
+| 14400002 | Permission denied. The HDC is disabled by the system.         |
 
 **返回值：**
 
