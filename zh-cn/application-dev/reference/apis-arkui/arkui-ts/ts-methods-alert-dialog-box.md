@@ -20,7 +20,7 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名   | 类型  | 必填 | 描述 |
 | ---- | --------------- | -------- | -------- |
@@ -445,3 +445,60 @@ struct AlertDialogExample {
 ```
 
 ![zh-cn_image_alert_animation](figures/zh-cn_image_alert_animation.gif)
+
+### 示例4
+该示例定义了AlertDialog的样式，如宽度、高度、背景色、阴影等等
+```ts
+// xxx.ets
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Column({ space: 5 }) {
+      Button('one button dialog')
+        .onClick(() => {
+          AlertDialog.show(
+            {
+              title: 'title',
+              message: 'text',
+              autoCancel: true,
+              alignment: DialogAlignment.Center,
+              offset: { dx: 0, dy: -20 },
+              gridCount: 3,
+              width: 300,
+              height: 200,
+              cornerRadius: 20,
+              borderWidth: 1,
+              borderStyle: BorderStyle.Dashed,//使用borderStyle属性，需要和borderWidth属性一起使用
+              borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+              backgroundColor: Color.White,
+              shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+              confirm: {
+                value: 'button',
+                action: () => {
+                  console.info('Button-clicking callback')
+                }
+              },
+              cancel: () => {
+                console.info('Closed callbacks')
+              },
+              onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+                console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+                console.log("dialog onWillDismiss")
+                if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                  dismissDialogAction.dismiss()
+                }
+                if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                  dismissDialogAction.dismiss()
+                }
+              }
+            }
+          )
+        })
+        .backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_alert_style](figures/zh-cn_image_alert_style.gif)

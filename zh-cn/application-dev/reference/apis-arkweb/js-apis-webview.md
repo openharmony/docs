@@ -2761,7 +2761,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------- |
 | name   | string                 | 是   | 要发送的消息名称。            |
-| ports  | Array\<WebMessagePort> | 是   | 要发送的消息端口。            |
+| ports  | Array\<[WebMessagePort](#webmessageport)> | 是   | 要发送的消息端口。            |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
 **错误码：**
@@ -6706,7 +6706,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | scheme    | string | 是   | 要拦截的协议。 |
-| handler    | WebSchemeHandler | 是   | 拦截此协议的拦截器。 |
+| handler    | [WebSchemeHandler](#webschemehandler12) | 是   | 拦截此协议的拦截器。 |
 
 **错误码：**
 
@@ -10371,7 +10371,7 @@ getArray(): Array\<string | number | boolean\>
 
 ## WebMessageExt<sup>10+</sup>
 
-[webMessagePort](#webmessageport)接口接收、发送的的数据对象。
+[webMessagePort](#webmessageport)接口接收、发送的数据对象。
 
 ### getType<sup>10+</sup>
 
@@ -13360,6 +13360,24 @@ getRequestResourceType(): WebResourceType
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
 
+### getFrameUrl<sup>12+</sup>
+
+getFrameUrl(): string
+
+获取触发此请求的Frame的URL。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 返回触发此请求的Frame的URL。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
 ## WebSchemeHandlerResponse<sup>12+</sup>
 
 请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
@@ -13857,7 +13875,7 @@ onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResource
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback   | (request: WebSchemeHandlerRequest, handler: WebResourceHandler) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
+| callback   | (request: [WebSchemeHandlerRequest](#webschemehandlerrequest12), handler: [WebResourceHandler](#webresourcehandler12)) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
 
 **示例：**
 
@@ -13890,6 +13908,7 @@ struct WebComponent {
                 console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
                 console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
                 console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType())
+                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl())
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
                   console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
@@ -13972,7 +13991,7 @@ onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | Callback\<WebSchemeHandlerRequest\> | 是   | 对应请求结束的回调函数。 |
+| callback | Callback\<[WebSchemeHandlerRequest](#webschemehandlerrequest12)\> | 是   | 对应请求结束的回调函数。 |
 
 **示例：**
 

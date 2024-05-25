@@ -44,6 +44,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -100,6 +101,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1500004  | not System services or System app.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -163,6 +165,7 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1500004  | not system service.                 |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
@@ -212,6 +215,7 @@ removeStickyCommonEvent(event: string): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1500004  | not system service.                 |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
@@ -254,6 +258,7 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
 
@@ -306,6 +311,7 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
 
@@ -353,6 +359,7 @@ setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1500007  | error sending message to Common Event Service.         |
 | 1500008  | Common Event Service does not complete initialization. |
 

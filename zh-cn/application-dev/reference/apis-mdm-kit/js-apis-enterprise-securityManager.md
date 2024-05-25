@@ -183,6 +183,203 @@ try {
 }
 ```
 
+## securityManager.setPasswordPolicy<sup>12+</sup>
+
+setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
+
+指定设备管理应用设置设备口令策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| policy | [PasswordPolicy](#passwordpolicy) | 是 | 设备口令策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+let policy: securityManager.PasswordPolicy = {
+  complexityRegex: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$',
+  validityPeriod: 1,
+  additionalDescription: '至少八个字符，至少一个大写字母，一个小写字母，一个数字和一个特殊字符',
+}
+try {
+    securityManager.setPasswordPolicy(wantTemp, policy);
+    console.info(`Succeeded in setting password policy.`);
+} catch(err) {
+    console.error(`Failed to set password policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.getPasswordPolicy<sup>12+</sup>
+
+getPasswordPolicy(admin: Want): PasswordPolicy
+
+指定设备管理应用获取设备口令策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| [PasswordPolicy](#passwordpolicy) | 设备口令策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+    let result: securityManager.PasswordPolicy = securityManager.getPasswordPolicy(wantTemp);
+    console.info(`Succeeded in getting password policy, result : ${JSON.stringify(result)}`);
+} catch(err) {
+    console.error(`Failed to get password policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.setAppClipboardPolicy<sup>12+</sup>
+
+setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): void
+
+指定设备管理应用设置设备剪贴板策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| tokenId | number | 是 | 目标应用的身份标识。可通过应用的[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)获得。当前只支持最多100个tokenId被保存策略。 |
+| policy | [ClipboardPolicy](#clipboardpolicy) | 是 | 剪贴板策略。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let tokenId: number = 586874394;
+try {
+    securityManager.setAppClipboardPolicy(wantTemp, tokenId, securityManager.ClipboardPolicy.IN_APP);
+    console.info(`Succeeded in setting clipboard policy.`);
+} catch(err) {
+    console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## securityManager.getAppClipboardPolicy<sup>12+</sup>
+
+getAppClipboardPolicy(admin: Want, tokenId?: number): string
+
+指定设备管理应用获取设备剪贴板策略。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                       |
+| -------- | ---------------------------------------- | ---- | ------------------------------- |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| tokenId | number | 否 | 目标应用的身份标识。可通过应用的[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)获得。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| ClipboardPolicy | 设备剪贴板策略。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                        |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let tokenId: number = 586874394;
+try {
+    let result: string = securityManager.getAppClipboardPolicy(wantTemp, tokenId);
+    console.info(`Succeeded in getting password policy, result : ${result}`);
+} catch(err) {
+    console.error(`Failed to set clipboard policy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## CertBlob
 
 证书信息。
@@ -194,3 +391,27 @@ try {
 | inData | Uint8Array | 是   | 证书的二进制内容。 |
 | alias  | string     | 是   | 证书别名。         |
 
+## PasswordPolicy
+
+设备口令策略。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称         | 类型     | 必填 | 说明                            |
+| ----------- | --------| ---- | ------------------------------- |
+| complexityRegex | string | 否 | 口令复杂度正则表达式。 |
+| validityPeriod | number | 否 | 密码有效期（单位：毫秒）。 |
+| additionalDescription | string | 否 | 描述文本。 |
+
+## ClipboardPolicy
+
+设备剪贴板策略。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称         | 值 | 说明                            |
+| ----------- | -------- | ------------------------------- |
+| DEFAULT | 0  | 默认。 |
+| IN_APP | 1  | 剪贴板可在同一应用使用。 |
+| LOCAL_DEVICE | 2  | 剪贴板可在同一设备使用。 |
+| CROSS_DEVICE | 3  | 剪贴板可跨设备使用。 |
