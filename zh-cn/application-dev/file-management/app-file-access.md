@@ -145,7 +145,8 @@ async function readWriteFileWithStream(): Promise<void> {
   let readLen = await inputStream.read(buf, readOptions);
   readSize += readLen;
   while (readLen > 0) {
-    await outputStream.write(buf);
+    const writeBuf = readLen < bufSize ? buf.slice(0, readLen) : buf;
+    await outputStream.write(writeBuf);
     readOptions.offset = readSize;
     readLen = await inputStream.read(buf, readOptions);
     readSize += readLen;
