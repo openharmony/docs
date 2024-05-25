@@ -106,7 +106,7 @@ Read failed.
 
 **错误描述**
 
-启动捕获器,读取数据[read()](js-apis-intelligentVoice-sys.md#read12)时，返回失败。
+启动捕获器，读取数据[read()](js-apis-intelligentVoice-sys.md#read12)时，返回失败。
 
 **可能原因**
 
@@ -115,7 +115,7 @@ Read failed.
 
 **处理步骤**
 
-1. 停止捕获器，当前处理失败，待下次唤醒后再读取数据。
+停止捕获器，当前处理失败，待下次唤醒后再读取数据。
 
 ## 22700107 系统错误
 
