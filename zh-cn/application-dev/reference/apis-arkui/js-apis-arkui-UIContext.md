@@ -263,82 +263,6 @@ struct AnimateToExample {
   }
 }
 ```
-### animateToImmediately<sup>12+</sup>
-
-animateToImmediately(param: AnimateParam , event: () => void): void
-
-animateToImmediately接口允许用户通过UIContext对象，获取显式立即动画的能力。同时加载多个属性动画的情况下，使用该接口可以立即执行闭包代码中状态变化导致的过渡动效。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填   | 说明                                    |
-| ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| param | [AnimateParam](arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
-| event | () => void                               | 是    | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
-
-**示例：**
-
-该示例实现了通过UIContext对象获取显式立即动画的能力，调用animateToImmediately接口实现参数定义的动画效果。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct AnimateToImmediatelyExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State opacitySize: number = 0
-  private flag: boolean = true
-  uiContext: UIContext | null | undefined = this.getUIContext();
-
-  build() {
-    Column() {
-      Column()
-        .width(this.widthSize)
-        .height(this.heightSize)
-        .backgroundColor(Color.Green)
-        .opacity(this.opacitySize)
-      Button('change size')
-        .margin(30)
-        .onClick(() => {
-          if (this.flag) {
-            this.uiContext?.animateToImmediately({
-              delay: 0,
-              duration: 1000
-            }, () => {
-              this.opacitySize = 1
-            })
-            this.uiContext?.animateTo({
-              delay: 1000,
-              duration: 1000
-            }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
-            })
-          } else {
-            this.uiContext?.animateToImmediately({
-              delay: 0,
-              duration: 1000
-            }, () => {
-              this.widthSize = 250
-              this.heightSize = 100
-            })
-            this.uiContext?.animateTo({
-              delay: 1000,
-              duration: 1000
-            }, () => {
-              this.opacitySize = 0
-            })
-          }
-          this.flag = !this.flag
-        })
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-![animateToImmediately](figures/animateToImmediately.gif) 
 
 ### getSharedLocalStorage<sup>12+</sup>
 
@@ -709,7 +633,7 @@ struct TimePickerDialogExample {
       Button('showTimePickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTimePickerDialog({
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
@@ -776,7 +700,7 @@ struct TextPickerDialogExample {
       Button('showTextPickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTextPickerDialog({
+          this.getUIContext().showTextPickerDialog({
             range: this.fruits,
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
@@ -1989,7 +1913,7 @@ struct Index {
 }
 ```
 
-### observer.on('willDraw')<sup>12+</sup>
+### on('willDraw')<sup>12+</sup>
 
 on(type: 'willDraw', callback: Callback\<void\>): void
 
@@ -2024,7 +1948,7 @@ struct Index {
 }
 ```
 
-### observer.off('willDraw')<sup>12+</sup>
+### off('willDraw')<sup>12+</sup>
 
 off(type: 'willDraw', callback?: Callback\<void\>): void
 
@@ -2064,7 +1988,7 @@ struct Index {
 }
 ```
 
-### observer.on('didLayout')<sup>12+</sup>
+### on('didLayout')<sup>12+</sup>
 
 on(type: 'didLayout', callback: Callback\<void\>): void
 
@@ -2099,7 +2023,7 @@ struct Index {
 }
 ```
 
-### observer.off('didLayout')<sup>12+</sup>
+### off('didLayout')<sup>12+</sup>
 
 off(type: 'didLayout', callback?: Callback\<void\>): void
 
@@ -2157,14 +2081,57 @@ on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwit
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('navDestinationSwitch', callback);
+// Index.ets
+// 演示 UIObserver.on('navDestinationSwitch', callback)
+// UIObserver.off('navDestinationSwitch', callback)
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.on('navDestinationSwitch', callBackFunc);
+  }
+
+  aboutToDisappear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.off('navDestinationSwitch', callBackFunc);
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationSwitch')<sup>12+</sup>
@@ -2182,18 +2149,7 @@ off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSw
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('navDestinationSwitch', callback);
-```
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
 
 ### on('navDestinationSwitch')<sup>12+</sup>
 
@@ -2214,14 +2170,59 @@ on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchO
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+// Index.ets
+// 演示 UIObserver.on('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+// UIObserver.off('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+import observer from '@ohos.arkui.observer';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  aboutToDisappear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .id("myNavId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationSwitch')<sup>12+</sup>
@@ -2240,18 +2241,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
-```
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
 
 ### on('willClick')<sup>12+</sup>
 
@@ -4702,6 +4692,45 @@ struct DragControllerPage {
 }
 ```
 
+### setDragEventStrictReportingEnabled<sup>12+</sup>
+
+setDragEventStrictReportingEnabled(enable: boolean): void
+
+当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enable | boolean | 是   | 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
+     });
+   });
+ }
+}
+```
+
 ## OverlayManager<sup>12+</sup>
 
 以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
@@ -4905,45 +4934,6 @@ hideAllComponentContents(): void
 **示例：**
 
 请参考[addComponentContent示例](#addcomponentcontent12)
-
-
-### setDragEventStrictReportingEnabled<sup>12+</sup>
-
-setDragEventStrictReportingEnabled(enable: boolean): void
-
-当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
-
-**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-|参数名|类型|必填|说明|
-| ------- | ------- | ------- | ------- |
-| enable | boolean | 是| 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。|
-
-**示例：**
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
- export default class EntryAbility extends UIAbility {
-   onWindowStageCreate(windowStage: window.WindowStage): void {
-       windowStage.loadContent('pages/Index', (err, data) => {
-         if (err.code) {
-         return;
-       }
-       windowStage.getMainWindow((err, data) => {
-         if (err.code) {
-           return;
-         }
-         let windowClass: window.Window = data;
-         let uiContext: UIContext = windowClass.getUIContext();
-         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
-     });
-   });
- }
-}
-```
 
 ## AtomicServiceBar<sup>11+</sup>
 

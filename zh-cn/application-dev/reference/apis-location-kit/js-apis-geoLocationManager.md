@@ -1,6 +1,6 @@
 # @ohos.geoLocationManager (位置服务)
 
-位置服务提供GNSS定位、网络定位、地理编码、逆地理编码、国家码和地理围栏等基本功能。
+位置服务提供GNSS定位、网络定位（蜂窝基站、WLAN、蓝牙定位技术）、地理编码、逆地理编码、国家码和地理围栏等基本功能。
 
 > **说明：**
 >
@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import geoLocationManager from '@ohos.geoLocationManager';
+import { geoLocationManager } from '@kit.LocationKit';
 ```
 
 
@@ -28,8 +28,9 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | 是 | 是 | 指定位置描述信息的语言，“zh”代表中文，“en”代表英文。默认值从设置中的“语言和地区”获取。 |
-| latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
-| longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。取值范围为-180到180。 |
+| country<sup>12+</sup> | string | 是 | 是 | 限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2 。“CN”代表中国。默认值从设置中的“语言和地区”获取。 |
+| latitude | number | 是 | 是 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。仅支持WGS84坐标系。 |
+| longitude | number | 是 | 是 | 表示经度信息，正值表示东经，负值表示西经。取值范围为-180到180。仅支持WGS84坐标系。 |
 | maxItems | number | 是 | 是 | 指定返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值是1。 |
 
 
@@ -42,12 +43,13 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。默认值从设置中的“语言和地区”获取。 |
+| country<sup>12+</sup> | string | 是 | 是 | 限制查询结果在指定的国家内，采用ISO 3166-1 alpha-2 。“CN”代表中国。默认值从设置中的“语言和地区”获取。 |
 | description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
 | maxItems | number | 是 | 是 | 表示返回位置信息的最大个数。取值范围为大于等于0，推荐该值小于10。默认值是1。 |
-| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。 |
-| minLongitude | number | 是 | 是 | 表示最小经度信息。取值范围为-180到180。 |
-| maxLatitude | number | 是 | 是 | 表示最大纬度信息。取值范围为-90到90。 |
-| maxLongitude | number | 是 | 是 | 表示最大经度信息。取值范围为-180到180。 |
+| minLatitude | number | 是 | 是 | 表示最小纬度信息，与下面三个参数一起，表示一个经纬度范围。取值范围为-90到90。仅支持WGS84坐标系。 |
+| minLongitude | number | 是 | 是 | 表示最小经度信息。取值范围为-180到180。仅支持WGS84坐标系。 |
+| maxLatitude | number | 是 | 是 | 表示最大纬度信息。取值范围为-90到90。仅支持WGS84坐标系。 |
+| maxLongitude | number | 是 | 是 | 表示最大经度信息。取值范围为-180到180。仅支持WGS84坐标系。 |
 
 
 ## GeoAddress
@@ -58,10 +60,10 @@ import geoLocationManager from '@ohos.geoLocationManager';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number | 是 | 否  | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
-| longitude | number | 是 | 否  | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
+| latitude | number | 是 | 否  | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。仅支持WGS84坐标系。 |
+| longitude | number | 是 | 否  | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。仅支持WGS84坐标系。 |
 | locale | string | 是 | 否  | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
-| placeName | string | 是 | 否  | 表示地区信息。 |
+| placeName | string | 是 | 否  | 表示详细地址信息。 |
 | countryCode | string | 是 | 否  | 表示国家码信息。 |
 | countryName | string | 是 | 否 | 表示国家信息。 |
 | administrativeArea | string | 是 | 否 | 表示国家以下的一级行政区，一般是省/州。 |
@@ -92,7 +94,7 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
 | timeInterval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。 |
 | distanceInterval | number | 是 | 是 | 表示上报位置信息的距离间隔。单位是米，默认值为0，取值范围为大于等于0。等于0时对位置上报距离间隔无限制。 |
-| maxAccuracy | number | 否 | 是 |  表示精度信息，单位是米。<br/>仅在精确位置功能场景（同时授予了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（仅授予了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>默认值为0，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。 |
+| maxAccuracy | number | 是 | 是 |  表示精度信息，单位是米。<br/>仅在精确位置功能场景（同时授予了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（仅授予了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>默认值为0，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。 |
 
 
 ## CurrentLocationRequest
@@ -109,6 +111,34 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | scenario | [LocationRequestScenario](#locationrequestscenario) | 是 | 是 | 表示场景信息。当scenario取值为UNSET时，priority参数生效，否则priority参数不生效；当scenario和priority均取值为UNSET时，无法发起定位请求。取值范围见[LocationRequestScenario](#locationrequestscenario)的定义。 |
 | maxAccuracy | number | 是 | 是|  表示精度信息，单位是米。<br/>仅在精确位置功能场景（同时授予了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（仅授予了ohos.permission.APPROXIMATELY_LOCATION 权限）下该字段无意义。<br/>默认值为0，取值范围为大于等于0。<br/>当scenario为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING或者priority为ACCURACY时建议设置maxAccuracy为大于10的值。<br/>当scenario为DAILY_LIFE_SERVICE/NO_POWER或者priority为LOW_POWER/FIRST_FIX时建议设置maxAccuracy为大于100的值。 |
 | timeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
+
+
+## ContinuousLocationRequest<sup>12+</sup>
+
+持续定位的请求参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| interval | number | 是 | 是 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。|
+| locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | 是 | 是 | 表示定位的场景信息。取值范围见[UserActivityScenario](#useractivityscenario12)和[PowerConsumptionScenario](#powerconsumptionscenario12)的定义。 |
+
+
+## SingleLocationRequest<sup>12+</sup>
+
+单次定位的请求参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| locatingPriority | [LocatingPriority](#locatingpriority12) | 是 | 是 | 表示优先级信息。取值范围见[LocatingPriority](#locatingpriority12)的定义。|
+| locatingTimeoutMs | number | 是 | 是 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
 
 
 ## SatelliteStatusInfo
@@ -184,20 +214,28 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 位置信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Location.Location.Core
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| altitude | number | 是 | 否 | 表示高度信息，单位米。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| accuracy | number | 是 | 否 | 表示精度信息，单位米。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| speed | number | 是 | 否 |表示速度信息，单位米每秒。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| timeStamp | number | 是 | 否 | 表示位置时间戳，UTC格式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| direction | number | 是 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| timeSinceBoot | number | 是 | 否 | 表示位置时间戳，开机时间格式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| additions | Array&lt;string&gt;| 是 | 否 | 附加信息。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| additionSize | number| 是 | 否 | 附加信息数量。取值范围为大于等于0。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 | 
+| latitude | number| 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。仅支持WGS84坐标系。 |
+| longitude | number| 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。仅支持WGS84坐标系。 |
+| altitude | number | 是 | 否 | 表示高度信息，单位米。 |
+| accuracy | number | 是 | 否 | 表示精度信息，单位米。 |
+| speed | number | 是 | 否 |表示速度信息，单位米每秒。 |
+| timeStamp | number | 是 | 否 | 表示位置时间戳，UTC格式。 |
+| direction | number | 是 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。 |
+| timeSinceBoot | number | 是 | 否 | 表示位置时间戳，开机时间格式。 |
+| additions | Array&lt;string&gt;| 是 | 否 | 附加信息。 |
+| additionSize | number| 是 | 否 | 附加信息数量。取值范围为大于等于0。 | 
+| additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| 是 | 否 | 附加信息。具体内容和顺序与additions一致。该字段暂未实现。 |
+| altitudeAccuracy<sup>12+</sup> |number | 是 | 否 | 表示高度信息的精度，单位米。 |
+| speedAccuracy<sup>12+</sup> | number| 是 | 否 | 表示速度信息的精度，单位米每秒。 |
+| directionAccuracy<sup>12+</sup> | number| 是 | 否 | 表示航向信息的精度。单位是“度”，取值范围为0到360。 |
+| uncertaintyOfTimeSinceBoot<sup>12+</sup> | number| 是 | 否 | 表示位置时间戳的不确定度。 |
+| sourceType<sup>12+</sup> | [LocationSourceType](#locationsourcetype12) | 是 | 否 | 表示定位结果的来源。 |
 
 
 ## GeofenceTransition<sup>12+</sup>
@@ -222,7 +260,7 @@ GNSS地理围栏请求参数。
 | -------- | -------- | -------- | -------- | -------- |
 | geofence | [Geofence](#geofence) | 是 | 否 | 表示地理围栏信息，包含圆形围栏圆心坐标、半径等信息。 |
 | monitorTransitionEvents | Array&lt;[GeofenceTransitionEvent](#geofencetransitionevent12)&gt; | 是 | 否 | 表示APP监听的地理围栏事件列表。 |
-| notifications | Array&lt;[NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest)&gt; | 是 | 否 | 表示地理围栏事件发生后弹出的通知对象列表。 |
+| notifications | Array&lt;[NotificationRequest](../apis-notification-kit/js-apis-notification.md#notificationrequest)&gt; | 是 | 否 | 表示地理围栏事件发生后弹出的通知对象列表。<br/>monitorTransitionEvents与notifications中的顺序要一一对应，例如monitorTransitionEvents[0]为[GeofenceTransitionEvent](#geofencetransitionevent12).GEOFENCE_TRANSITION_EVENT_ENTER，那notifications[0]中就需要填入用户进入围栏时需要弹出的通知对象。 |
 | geofenceTransitionCallback | AsyncCallback&lt;[GeofenceTransition](#geofencetransition12)&gt; | 是 | 否 | 表示用于接收地理围栏事件的回调函数。 |
 
 
@@ -237,6 +275,7 @@ GNSS地理围栏请求参数。
 | country | string | 是 | 否 | 表示国家码字符串。 |
 | type |  [CountryCodeType](#countrycodetype) | 是 | 否 | 表示国家码信息来源。 |
 
+
 ## LocationRequestPriority
 
 位置请求中位置信息优先级类型。
@@ -248,7 +287,7 @@ GNSS地理围栏请求参数。
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x200 | 表示未设置优先级，表示[LocationRequestPriority](#locationrequestpriority)无效。 |
-| ACCURACY | 0x201 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，仅在长时间无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。 |
+| ACCURACY | 0x201 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，在2分钟内无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。 |
 | LOW_POWER | 0x202 | 表示低功耗优先。<br/>低功耗定位优先策略主要使用网络定位技术，在室内和户外场景均可提供定位服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，推荐在对定位结果精度要求不高的场景下使用该策略，可以有效节省设备功耗。 |
 | FIRST_FIX | 0x203 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该字段。<br/>快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。 |
 
@@ -264,11 +303,12 @@ GNSS地理围栏请求参数。
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | UNSET | 0x300 | 表示未设置场景信息。<br/>表示[LocationRequestScenario](#locationrequestscenario)字段无效。 |
-| NAVIGATION | 0x301 | 表示导航场景。<br/>适用于在户外获取设备实时位置的场景，如车载、步行导航。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
-| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。 |
-| CAR_HAILING | 0x303 | 表示打车场景。<br/>适用于用户出行打车时定位当前位置的场景，如网约车类应用。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。<br/>当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景时，如果用户在室内或车库等环境，我们会在GNSS提供稳定位置结果之前使用网络定位技术（蜂窝基站、WLAN、蓝牙定位技术）提供服务。 |
+| NAVIGATION | 0x301 | 表示导航场景。<br/>适用于在户外获取设备实时位置的场景，如车载、步行导航。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。 |
+| TRAJECTORY_TRACKING | 0x302 | 表示运动轨迹记录场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。 |
+| CAR_HAILING | 0x303 | 表示打车场景。<br/>适用于用户出行打车时定位当前位置的场景，如网约车类应用。<br/>主要使用GNSS定位技术提供定位服务，功耗较高，在2分钟内无法获取GNSS定位结果时使用网络定位技术。<br/>当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景时，我们会在GNSS提供稳定位置结果之前使用网络定位技术提供服务。 |
 | DAILY_LIFE_SERVICE | 0x304 | 表示日常服务使用场景。<br/>适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。<br/>该场景仅使用网络定位技术提供定位服务，功耗较低。 |
 | NO_POWER | 0x305 | 表示无功耗功场景，这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。 |
+
 
 ## CountryCodeType
 
@@ -342,9 +382,87 @@ GNSS地理围栏请求参数。
 | SATELLITES_ADDITIONAL_INFO_CARRIER_FREQUENCY_EXIST   | 8 | 表示本卫星具有载波频率。 |
 
 
+## PowerConsumptionScenario<sup>12+</sup>
+
+位置请求中的功耗场景类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| HIGH_POWER_CONSUMPTION  | 0x601 | 高功耗。<br/>以GNSS定位技术为主，在2分钟内无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。 |
+| LOW_POWER_CONSUMPTION  | 0x602 | 低功耗。<br/>适用于对用户位置精度要求不高的使用场景，如新闻资讯、网购、点餐类应用。<br/>该场景仅使用网络定位技术提供定位服务，功耗较低。 |
+| NO_POWER_CONSUMPTION   | 0x603 | 无功耗。<br/>这种场景下不会主动触发定位，会在其他应用定位时，才给当前应用返回位置。  |
+
+
+## UserActivityScenario<sup>12+</sup>
+
+位置请求中的用户活动场景类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NAVIGATION  | 0x401 | 表示导航场景。<br/>适用于在户外获取设备实时位置的场景，如车载、步行导航。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。 |
+| SPORT  | 0x402 | 表示运动场景。<br/>适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。 |
+| TRANSPORT   | 0x403 | 表示出行场景。<br/>适用于用户出行场景。<br/>主要使用GNSS定位技术提供定位服务，功耗较高。在2分钟内无法获取GNSS定位结果时使用网络定位技术。<br/>当使用NAVIGATION/SPORT/TRANSPORT场景时，我们会在GNSS提供稳定位置结果之前使用网络定位技术提供服务。  |
+| DAILY_LIFE_SERVICE   | 0x404 | 表示日常服务使用场景。<br/>适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。<br/>该场景仅使用网络定位技术提供定位服务，功耗较低。  |
+
+
+## LocatingPriority<sup>12+</sup>
+
+单次位置请求中的优先级类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| PRIORITY_ACCURACY  | 0x501 | 表示精度优先。<br/>定位精度优先策略主要以GNSS定位技术为主，在2分钟内无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。  |
+| PRIORITY_LOCATING_SPEED  | 0x502 | 表示快速获取位置优先，如果应用希望快速拿到一个位置，可以将优先级设置为该类型。<br/>快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。 |
+
+
+## LocationError<sup>12+</sup>
+
+持续定位过程中的错误信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| LOCATING_FAILED_DEFAULT   | -1 |  默认值。 |
+| LOCATING_FAILED_LOCATION_PERMISSION_DENIED   | -2 | 表示ohos.permission.APPROXIMATELY_LOCATION权限或ohos.permission.LOCATION权限校验失败导致持续定位失败。 |
+| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-guidelines.md#申请位置权限开发指导)。 |
+| LOCATING_FAILED_LOCATION_SWITCH_OFF    | -4 | 表示位置信息开关关闭导致持续定位失败。 |
+| LOCATING_FAILED_INTERNET_ACCESS_FAILURE    | -5 | 表示无法访问网络，导致网络定位失败。 |
+
+
+## LocationSourceType<sup>12+</sup>
+
+定位结果的来源。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| GNSS   | 1 |  表示定位结果来自于GNSS定位技术。 |
+| NETWORK    | 2 | 表示定位结果来自于网络定位技术。 |
+| INDOOR     | 3 | 表示定位结果来自于室内高精度定位技术。 |
+| RTK     | 4 | 表示定位结果来自于室外高精度定位技术。<br/>RTK（Real time kinematic，实时动态）载波相位差分技术，是实时处理两个测量站载波相位观测量的差分方法，将基准站采集的载波相位发给用户接收机，进行求差解算坐标。 |
+
+
 ## geoLocationManager.on('locationChange')
 
-on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
+on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest, callback: Callback&lt;Location&gt;): void
 
 开启位置变化订阅，并发起定位请求。使用callback异步回调。
 
@@ -359,7 +477,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
-  | request |  [LocationRequest](#locationrequest) | 是 | 设置位置请求参数。 |
+  | request |  [LocationRequest](#locationrequest) &#124; [ContinuousLocationRequest](#continuouslocationrequest12) | 是 | 设置位置请求参数。 |
   | callback | Callback&lt;[Location](#location)&gt; | 是 | 回调函数，返回位置信息。 |
 
 **错误码**：
@@ -368,15 +486,19 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  //方式一：使用LocationRequest作为入参
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
@@ -384,9 +506,19 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
-  
+
+  //方式二：使用ContinuousLocationRequest作为入参
+  let request:geoLocationManager.ContinuousLocationRequest = {'interval': 1, 'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION};
+  let locationCallback = (location:geoLocationManager.Location):void => {
+      console.log('locationCallback: data: ' + JSON.stringify(location));
+  };
+  try {
+      geoLocationManager.on('locationChange', request, locationCallback);
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
+  }
   ```
 
 
@@ -415,15 +547,18 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
     console.log('locationChanger: data: ' + JSON.stringify(location));
@@ -432,7 +567,111 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
       geoLocationManager.on('locationChange', requestInfo, locationChange);
       geoLocationManager.off('locationChange', locationChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  ```
+
+
+## geoLocationManager.on('locationError')<sup>12+</sup>
+
+on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void;
+
+订阅持续定位过程中的错误码。使用callback异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“locationError”，表示持续定位过程中的错误码变化。 |
+  | callback | Callback&lt;[LocationError](#locationerror12)&gt; | 是 | 回调函数，返回持续定位过程中的错误码。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
+  let locationChange = (location:geoLocationManager.Location):void => {
+      console.log('locationChanger: data: ' + JSON.stringify(location));
+  };
+  try {
+      geoLocationManager.on('locationChange', requestInfo, locationChange);
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
+  }
+
+  let locationErrorChange = (errcode: geoLocationManager.LocationError):void => {
+    console.log('locationErrorChange: data: ' + JSON.stringify(errcode));
+  };
+  try {
+    geoLocationManager.on('locationError', locationErrorChange);
+  } catch (err) {
+    console.error("errCode:" + JSON.stringify(err));
+  }
+  
+  ```
+
+
+## geoLocationManager.off('locationError')<sup>12+</sup>
+
+off(type: 'locationError', callback?: Callback&lt;LocationError&gt;): void
+
+取消订阅持续定位过程中的错误码。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**需要权限**：ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 设置事件类型。type为“locationError”，表示持续定位过程中的错误码变化。 |
+  | callback | Callback&lt;[LocationError](#locationerror12)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消当前类型的所有订阅。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+
+  let locationErrorChange = (errcode: geoLocationManager.LocationError):void => {
+    console.log('locationErrorChange: data: ' + JSON.stringify(errcode));
+  };
+  try {
+    geoLocationManager.on('locationError', locationErrorChange);
+    geoLocationManager.off('locationError', locationErrorChange);
+  } catch (err) {
+    console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -458,20 +697,22 @@ on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let locationEnabledChange = (state:boolean):void => {
       console.log('locationEnabledChange: ' + JSON.stringify(state));
   }
   try {
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -497,13 +738,15 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let locationEnabledChange = (state:boolean):void => {
       console.log('locationEnabledChange: state: ' + JSON.stringify(state));
   }
@@ -511,7 +754,7 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
       geoLocationManager.on('locationEnabledChange', locationEnabledChange);
       geoLocationManager.off('locationEnabledChange', locationEnabledChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -540,15 +783,18 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
       console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
@@ -556,7 +802,7 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
   try {
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -584,15 +830,18 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let cachedLocationsCb = (locations:Array<geoLocationManager.Location>):void => {
       console.log('cachedGnssLocationsChange: locations: ' + JSON.stringify(locations));
   }
@@ -601,7 +850,7 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
       geoLocationManager.on('cachedGnssLocationsChange', requestInfo, cachedLocationsCb);
       geoLocationManager.off('cachedGnssLocationsChange');
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -629,14 +878,17 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
@@ -644,7 +896,7 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
   try {
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -672,15 +924,18 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.log('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
   }
@@ -688,7 +943,7 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
       geoLocationManager.on('satelliteStatusChange', gnssStatusCb);
       geoLocationManager.off('satelliteStatusChange', gnssStatusCb);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -716,15 +971,18 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let nmeaCb = (str:string):void => {
       console.log('nmeaMessage: ' + JSON.stringify(str));
   }
@@ -732,7 +990,7 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
   try {
       geoLocationManager.on('nmeaMessage', nmeaCb );
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -760,15 +1018,18 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let nmeaCb = (str:string):void => {
       console.log('nmeaMessage: ' + JSON.stringify(str));
   }
@@ -777,7 +1038,7 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
       geoLocationManager.on('nmeaMessage', nmeaCb);
       geoLocationManager.off('nmeaMessage', nmeaCb);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -806,16 +1067,19 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301600 | Failed to operate the geofence.                                     |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import wantAgent from '@ohos.app.ability.wantAgent';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { wantAgent } from '@kit.AbilityKit'
+
 
   let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
@@ -835,7 +1099,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
     try {
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+        console.error("errCode:" + JSON.stringify(err));
     }
   });
   ```
@@ -865,16 +1129,19 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301600 | Failed to operate the geofence.                                     |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import wantAgent from '@ohos.app.ability.wantAgent';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { wantAgent } from '@kit.AbilityKit'
+
   
   let wantAgentInfo:wantAgent.WantAgentInfo = {
       wants: [
@@ -895,7 +1162,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
         geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
         geoLocationManager.off('gnssFenceStatusChange', requestInfo, wantAgentObj);
     } catch (err) {
-        console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+        console.error("errCode:" + JSON.stringify(err));
     }
   });
   ```
@@ -922,15 +1189,17 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.                                       |
 
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let callback = (code:geoLocationManager.CountryCode):void => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
@@ -938,7 +1207,7 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
   try {
       geoLocationManager.on('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -964,14 +1233,16 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.                                       |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+
   let callback = (code:geoLocationManager.CountryCode):void => {
       console.log('countryCodeChange: ' + JSON.stringify(code));
   }
@@ -980,14 +1251,14 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
       geoLocationManager.on('countryCodeChange', callback);
       geoLocationManager.off('countryCodeChange', callback);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
 
 ## geoLocationManager.getCurrentLocation
 
-getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
+getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
 获取当前位置，使用callback异步回调。
 
@@ -1001,7 +1272,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | 是 | 设置位置请求参数。 |
+  | request | [CurrentLocationRequest](#currentlocationrequest) &#124;  [SingleLocationRequest](#singlelocationrequest12) | 是 | 设置位置请求参数。 |
   | callback | AsyncCallback&lt;[Location](#location)&gt; | 是 | 回调函数，返回当前位置信息。 |
 
 **错误码**：
@@ -1010,17 +1281,21 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
+  //方式一：使用CurrentLocationRequest作为入参
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
-  let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location):void => {
+  let locationChange = (err:BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
@@ -1032,7 +1307,24 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   try {
       geoLocationManager.getCurrentLocation(requestInfo, locationChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  
+  //方式二：使用SingleLocationRequest作为入参
+  let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
+  let locationCallback = (err:BusinessError, location:geoLocationManager.Location):void => {
+      if (err) {
+          console.error('locationChanger: err=' + JSON.stringify(err));
+      }
+      if (location) {
+          console.log('locationChanger: location=' + JSON.stringify(location));
+      }
+  };
+
+  try {
+      geoLocationManager.getCurrentLocation(request, locationCallback);
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1060,16 +1352,19 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
-  let locationChange = (err:BusinessError.BusinessError, location:geoLocationManager.Location) => {
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
+  let locationChange = (err:BusinessError, location:geoLocationManager.Location) => {
       if (err) {
           console.error('locationChanger: err=' + JSON.stringify(err));
       }
@@ -1081,13 +1376,13 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
   try {
       geoLocationManager.getCurrentLocation(locationChange);
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
 ## geoLocationManager.getCurrentLocation
 
-getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
+getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Promise&lt;Location&gt;
 
 获取当前位置，使用Promise异步回调。
 
@@ -1101,7 +1396,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | request | [CurrentLocationRequest](#currentlocationrequest) | 否 | 设置位置请求参数。 |
+  | request | [CurrentLocationRequest](#currentlocationrequest) &#124; [SingleLocationRequest](#singlelocationrequest12) | 否 | 设置位置请求参数。 |
 
 **返回值**：
 
@@ -1115,25 +1410,43 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
+
+  //方式一：使用CurrentLocationRequest作为入参
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
           console.log('current location: ' + JSON.stringify(result));
       })  
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
+  }
+  
+  //方式二：使用SingleLocationRequest作为入参
+  let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
+  try {
+      geoLocationManager.getCurrentLocation(request).then((result) => {
+          console.log('current location: ' + JSON.stringify(result));
+      })  
+      .catch((error:BusinessError) => {
+          console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
+      });
+  } catch (err) {
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1162,19 +1475,20 @@ getLastLocation(): Location
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable. |
 |3301100 | The location switch is off.  |
 |3301200 |Failed to obtain the geographical location.  |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       let location = geoLocationManager.getLastLocation();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1201,17 +1515,17 @@ isLocationEnabled(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable. |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       let locationEnabled = geoLocationManager.isLocationEnabled();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1237,14 +1551,15 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 |3301300 | Reverse geocoding query failed.   |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
@@ -1256,7 +1571,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1287,24 +1602,26 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 |3301300 | Reverse geocoding query failed.   |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let reverseGeocodeRequest:geoLocationManager.ReverseGeoCodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocation(reverseGeocodeRequest).then((data) => {
           console.log('getAddressesFromLocation: ' + JSON.stringify(data));
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getAddressesFromLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1330,14 +1647,16 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 |3301400 | Geocoding query failed.   |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest, (err, data) => {
@@ -1349,7 +1668,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1380,24 +1699,26 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 |3301400 | Geocoding query failed.   |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let geocodeRequest:geoLocationManager.GeoCodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
   try {
       geoLocationManager.getAddressesFromLocationName(geocodeRequest).then((result) => {
           console.log('getAddressesFromLocationName: ' + JSON.stringify(result));
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getAddressesFromLocationName: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1421,17 +1742,17 @@ isGeocoderAvailable(): boolean;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
       let isAvailable = geoLocationManager.isGeocoderAvailable();
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1458,14 +1779,17 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCachedGnssLocationsSize((err, size) => {
           if (err) {
@@ -1476,7 +1800,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1503,23 +1827,25 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCachedGnssLocationsSize().then((result) => {
           console.log('promise, getCachedGnssLocationsSize: ' + JSON.stringify(result));
       }) 
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getCachedGnssLocationsSize: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1546,15 +1872,18 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 |3301200 | Failed to obtain the geographical location.   |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.flushCachedGnssLocations((err) => {
           if (err) {
@@ -1562,7 +1891,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1589,24 +1918,26 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 |3301200 | Failed to obtain the geographical location.   |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.flushCachedGnssLocations().then(() => {
           console.log('promise, flushCachedGnssLocations success');
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, flushCachedGnssLocations: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1632,13 +1963,15 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.   |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.  |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo, (err) => {
@@ -1647,7 +1980,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1678,23 +2011,25 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   let requestInfo:geoLocationManager.LocationCommand = {'scenario': 0x301, 'command': "command_1"};
   try {
       geoLocationManager.sendCommand(requestInfo).then(() => {
           console.log('promise, sendCommand success');
       })  
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, sendCommand: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1719,14 +2054,16 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.|
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCountryCode((err, result) => {
           if (err) {
@@ -1737,7 +2074,7 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
           }
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1762,24 +2099,25 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.                                            |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.|
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.getCountryCode()
       .then((result) => {
           console.log('promise, getCountryCode: result=' + JSON.stringify(result));
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getCountryCode: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+      console.error("errCode:" + JSON.stringify(err));
   }
   ```
 
@@ -1815,15 +2153,19 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable. |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable.|
 |3301100  | The location switch is off.|
 |3301601   | The number of geofences exceeds the maximum.|
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
+  import { notificationManager } from '@kit.NotificationKit';
   // 创建围栏
   let geofence: geoLocationManager.Geofence = {
     "latitude": 34.12, "longitude": 124.11, "radius": 10000.0, "expiration": 10000.0
@@ -1869,7 +2211,7 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
     // 地理围栏事件对应的通知对象，该参数为可选
     notifications: notificationRequestList,
     // 用于监听围栏事件的callback
-    geofenceTransitionCallback: (err : BusinessError.BusinessError, transition : geoLocationManager.GeofenceTransition) => {
+    geofenceTransitionCallback: (err : BusinessError, transition : geoLocationManager.GeofenceTransition) => {
       if (err) {
         console.error('geofenceTransitionCallback: err=' + JSON.stringify(err));
       }
@@ -1880,15 +2222,15 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
   }
   try {
     // 添加围栏
-    await geoLocationManager.addGnssGeofence(gnssGeofenceRequest).then((id) => {
+    geoLocationManager.addGnssGeofence(gnssGeofenceRequest).then((id) => {
       // 围栏添加成功后返回围栏ID
       console.log("addGnssGeofence success, fence id: " + id);
       let fenceId = id;
-    }).catch((err: BusinessError.BusinessError) => {
-      console.error("addGnssGeofence failed, promise errCode:" + (err as BusinessError.BusinessError).code + 
-        ",errMessage:" + (err as BusinessError.BusinessError).message);
+    }).catch((err: BusinessError) => {
+      console.error("addGnssGeofence failed, promise errCode:" + (err as BusinessError).code + 
+        ",errMessage:" + (err as BusinessError).message);
     });
-  } catch(error: BusinessError.BusinessError) {
+  } catch(error) {
       console.error("addGnssGeofence failed, err:" + JSON.stringify(error));
   }
   ```
@@ -1924,23 +2266,26 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
+|201 | Permission denied.                 |
+|401 | Parameter error.                 |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable. |
 |3301602 | Failed to delete a geofence due to an incorrect ID. |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit'
   // fenceId是在geoLocationManager.addGnssGeofence执行成功后获取的
   let fenceId = 1;
   try {
-    await geoLocationManager.removeGnssGeofence(fenceId).then(() => {
+    geoLocationManager.removeGnssGeofence(fenceId).then(() => {
       console.log("removeGnssGeofence success fenceId:" + fenceId);
-    }).catch((error : BusinessError.BusinessError) => {
+    }).catch((error : BusinessError) => {
       console.error("removeGnssGeofence: error=" + JSON.stringify(error));
     });
-  } catch(error: BusinessError.BusinessError) {
+  } catch(error) {
     console.error("removeGnssGeofence: error=" + JSON.stringify(error));
   }
   ```
@@ -1966,17 +2311,17 @@ getGeofenceSupportedCoordTypes(): Array&lt;CoordinateSystemType&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|3301000 | Location service is unavailable.  |
+|801 | Capability not supported.          |
+|3301000 | The location service is unavailable. |
 
 **示例**
 
   ```ts
-  import geoLocationManager from '@ohos.geoLocationManager';
-  import BusinessError from "@ohos.base";
+  import { geoLocationManager } from '@kit.LocationKit';
   try {
     let supportedCoordTypes: Array<geoLocationManager.CoordinateSystemType> = geoLocationManager.getGeofenceSupportedCoordTypes();
     console.log("getGeofenceSupportedCoordTypes return:" + JSON.stringify(supportedCoordTypes));
-  } catch(error : BusinessError.BusinessError) {
+  } catch(error) {
     console.error("getGeofenceSupportedCoordTypes: error=" + JSON.stringify(error));
   }
   ```

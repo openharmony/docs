@@ -1283,6 +1283,9 @@ router.getParams();
 ### 基于JS扩展的类Web开发范式
 
 以下代码仅适用于javascript文件，不适用于ArkTS文件
+
+<!--code_no_check-->
+
 ```js
 // 在当前页面中
 export default {
@@ -1296,6 +1299,8 @@ export default {
   }
 }
 ```
+<!--code_no_check-->
+
 ```js
 // 在detail页面中
 export default {

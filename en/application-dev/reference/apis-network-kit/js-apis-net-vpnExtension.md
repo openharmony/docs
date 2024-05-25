@@ -8,10 +8,10 @@ This module implements virtual private network (VPN) management, such as startin
 ## Modules to Import
 
 ```js
-import vpnExt from "@ohos.net.vpnExtension";
+import { vpnExtension } from '@kit.NetworkKit';
 ```
 
-## vpnExt.startVpnExtensionAbility
+## vpnExtension.startVpnExtensionAbility
 
 startVpnExtensionAbility(want: Want): Promise\<void>
 
@@ -37,7 +37,7 @@ Enables the VPN extension ability.
 
 | ID| Error Message                              |
 | --------- | -------------------------------------- |
-| 401       | Parameter error.                       |
+| 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
 | 16000002  | Incorrect ability type.                |
 | 16000006  | Cross-user operations are not allowed. |
@@ -50,9 +50,8 @@ Enables the VPN extension ability.
 Stage model:
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension';
+import { common, Want } from '@kit.AbilityKit';
+import { vpnExtension } from '@kit.NetworkKit';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -74,7 +73,7 @@ struct Index {
           .fontWeight(FontWeight.Bold).onClick(() => {
           console.info("btn click") })
         Button('Start Extension').onClick(() => {
-          vpnExt.startVpnExtensionAbility(want);
+          vpnExtension.startVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
         }.width('100%')
     }.height('100%')
@@ -82,7 +81,7 @@ struct Index {
 }
 ```
 
-## vpnExt.stopVpnExtensionAbility
+## vpnExtension.stopVpnExtensionAbility
 
 stopVpnExtensionAbility(want: Want): Promise\<void>
 
@@ -108,7 +107,7 @@ Stops the VPN extension ability.
 
 | ID| Error Message                              |
 | --------- | -------------------------------------- |
-| 401       | Parameter error.                       |
+| 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
 | 16000002  | Incorrect ability type.                |
 | 16000006  | Cross-user operations are not allowed. |
@@ -120,9 +119,8 @@ Stops the VPN extension ability.
 Stage model:
 
 ```ts
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension';
+import { common, Want } from '@kit.AbilityKit';
+import { vpnExtension } from '@kit.NetworkKit';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -144,11 +142,11 @@ struct Index {
           .fontWeight(FontWeight.Bold).onClick(() => {
           console.info("btn click") })
         Button('Start Extension').onClick(() => {
-          vpnExt.startVpnExtensionAbility(want);
+          vpnExtension.startVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
         Button('Stop Extension').onClick(() => {
           console.info("btn end")
-          vpnExt.stopVpnExtensionAbility(want);
+          vpnExtension.stopVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
 
         }.width('100%')
@@ -158,7 +156,7 @@ struct Index {
 ```
 
 
-## vpnExt.createVpnConnection
+## vpnExtension.createVpnConnection
 
 createVpnConnection(context: VpnExtensionContext): VpnConnection
 
@@ -190,15 +188,13 @@ Creates a **VpnConnection** object.
 Stage model:
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
 
-let context: vpnExt.VpnExtensionContext;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
-    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
@@ -242,18 +238,16 @@ Creates a VPN based on the specified configuration. This API uses a promise to r
 **Example**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import hilog from '@ohos.hilog';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let context: vpnExt.VpnExtensionContext;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
-    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     this.SetupVpn();
   }
@@ -302,7 +296,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
         let config = new Config(this.tunIp, this.blockedAppName);
 
         try {
-            let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+            let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
             VpnConnection.create(config).then((data) => {
                 hilog.error(0x0000, 'developTag', 'tunfd: %{public}s', JSON.stringify(data) ?? '');
             })
@@ -346,17 +340,16 @@ Protects sockets against a VPN connection. The data sent through sockets is dire
 **Example**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import Want from '@ohos.app.ability.Want';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import hilog from '@ohos.hilog';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let g_tunnelFd = -1;
-let context: vpnExt.VpnExtensionContext;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
-    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     this.CreateTunnel();
     this.Protect();
@@ -366,7 +359,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
   }
   Protect() {
         hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
-        let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+        let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
         VpnConnection.protect(g_tunnelFd).then(() => {
             hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
         }).catch((err : Error) => {
@@ -401,16 +394,14 @@ Destroys a VPN. This API uses a promise to return the result.
 **Example**
 
 ```js
-import vpnExt from '@ohos.net.vpnExtension';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let context: vpnExt.VpnExtensionContext;
+let context: vpnExtension.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
   onCreate(want: Want) {
-    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    let VpnConnection : vpnExtension.VpnConnection = vpnExtension.createVpnConnection(context);
     console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
     VpnConnection.destroy().then(() => {
       console.info("destroy success.");

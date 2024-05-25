@@ -31,7 +31,7 @@ Restores the Bluetooth factory settings.
 
 | Name  | Type                                              | Mandatory | Description                                                      |
 | -------- | ------------------------------------------------- | ----- | ---------------------------------------------------------- |
-| callback     | AsyncCallback&lt;void&gt;             | Yes   | Callback invoked to return the result.<br>If the Bluetooth factory settings are restored successfully, **err** is **undefined**. Otherwise, **err** is an error object.      |
+| callback     | AsyncCallback&lt;void&gt;             | Yes   | Callback used to return the result.<br>If the Bluetooth factory settings are restored successfully, **err** is **undefined**. Otherwise, **err** is an error object.      |
 
 **Error codes**
 

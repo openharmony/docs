@@ -324,3 +324,19 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 > 说明第三行
 >
 > <!--Del-->说明第四行<!--DelEnd-->
+
+## 验证优化后的链接
+
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type | string |  是  | 泄漏资源类型，共四种类型:pss_memory(native内存)、js_heap(js堆内存)、fd(文件描述符)或thread(线程) |
+| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型`[1024, 4 * 1024 * 1024](单位：KB)`, js_heap类型`[85, 95](分配给JS堆内存上限的85%~95%)`, fd类型`[10, 10000]`, thread类型`[1, 1000]` |
+| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false，请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存 |
+| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型[1024, 4 * 1024 * 1024](单位：KB), js_heap类型[85, 95](分配给JS堆内存上限的85%~95%), fd类型[10, 10000], thread类型[1, 1000] |
+
+
+## 验证code中的断链
+和AppStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而AppStorage是应用级的全局状态共享，还相当于整个应用的“中枢”，`[持久化数据PersistentStorage](using-toneplayer-for-playback.md)`和[需要检查出断链--持久化数据PersistentStorage](using-toneplayer-for-playback.md)是通过AppStorage中转，才可以和UI交互。

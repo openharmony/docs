@@ -249,9 +249,9 @@ export const runDemo: (a:String, b:Object) => number;
 在 **entry/src/ets/MainAbility/pages/index.ets** 中，定义`onClick()`事件，并在事件回调中调用封装的`runDemo()`接口。
 
 ```ts
-import hilog from '@ohos.hilog'
+import { hilog } from '@kit.PerformanceAnalysisKit'
 import msliteNapi from 'libmslite_napi.so' // 导入msliteNapi模块。
-import resManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit'
 
 const TAG = 'MSLiteNativeDemo'
 

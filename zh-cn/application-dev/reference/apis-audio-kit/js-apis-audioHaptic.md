@@ -235,6 +235,7 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102 | Operation not allowed. |
 | 5400103 | I/O error. |
@@ -475,6 +476,8 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 **示例：**
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 let isPlaying: boolean; // 标识符，表示是否正在渲染
 let isDucked: boolean; // 标识符，表示是否被降低音量
 

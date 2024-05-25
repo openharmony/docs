@@ -11,7 +11,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 
 ## 导入模块
 ```ts
-import mindSporeLite from '@ohos.ai.mindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 ```
 
 ## Context
@@ -182,8 +182,8 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 **示例：** 
 
 ```ts
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 
 let modelName = '/path/to/xxx.ms';
 getContext(this).resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
@@ -213,10 +213,10 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 **示例：** 
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 let modelName = '/path/to/xxx.ms';
 export class Test {
   value:number = 0;
@@ -260,10 +260,10 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 **示例：** 
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 let modelName = '/path/to/xxx.ms';
 export class Test {
   value:number = 0;
@@ -299,9 +299,9 @@ loadModelFromFd(model: number, callback: Callback&lt;Model&gt;): void
 **示例：** 
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 let model_file = '/path/to/xxx.ms';
-let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, (result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
@@ -326,11 +326,11 @@ loadModelFromFd(model: number, context: Context, callback: Callback&lt;Model&gt;
 **示例：** 
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 let model_file = '/path/to/xxx.ms';
 let context : mindSporeLite.Context = {};
 context.target = ['cpu'];
-let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, context, (result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
@@ -360,9 +360,9 @@ loadModelFromFd(model: number, context?: Context): Promise&lt;Model&gt;
 **示例：** 
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 let model_file = '/path/to/xxx.ms';
-let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFd(file.fd);
 let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
 console.log(modelInputs[0].name);
@@ -414,10 +414,10 @@ predict(inputs: MSTensor[], callback: Callback&lt;MSTensor[]&gt;): void
 **示例：** 
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {
@@ -465,10 +465,10 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 **示例：** 
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 export class Test {
     value:number = 0;
     foo(): void {
@@ -575,10 +575,10 @@ getData(): ArrayBuffer
 **示例：** 
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {
@@ -619,10 +619,10 @@ setData(inputArray: ArrayBuffer): void
 **示例：** 
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {

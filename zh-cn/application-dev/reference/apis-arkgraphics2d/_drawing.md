@@ -81,11 +81,12 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [OH_Drawing_PathOpMode](#oh_drawing_pathopmode)[OH_Drawing_PathOpMode](#oh_drawing_pathopmode) | 路径操作类型枚举。 | 
-| typedef enum [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags)[OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) | 路径测量获取相应矩阵信息维度枚举。 |
-| typedef enum [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode)[OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) | 区域操作类型枚举。 | 
-| typedef struct [OH_Drawing_ImageFilter](#oh_drawing_imagefilter)[OH_Drawing_ImageFilter](#oh_drawing_imagefilter) | 定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
-| typedef struct [OH_Drawing_Filter](#oh_drawing_filter)[OH_Drawing_Filter](#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器，模板滤波器和图像滤波器。 | 
+| typedef enum [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_ErrorCode](#oh_drawing_errorcode) | 枚举本模块可能产生的错误码。 | 
+| typedef enum [OH_Drawing_PathOpMode](#oh_drawing_pathopmode)  [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) | 路径操作类型枚举。 | 
+| typedef enum [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags)  [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) | 路径测量获取相应矩阵信息维度枚举。 |
+| typedef enum [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode)  [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) | 区域操作类型枚举。 | 
+| typedef struct [OH_Drawing_ImageFilter](#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) | 定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
+| typedef struct [OH_Drawing_Filter](#oh_drawing_filter)  [OH_Drawing_Filter](#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器，模板滤波器和图像滤波器。 | 
 | typedef struct [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)  [OH_Drawing_BitmapFormat](#oh_drawing_bitmapformat) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型 | 
 | typedef enum [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint)  [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint) | 源矩形区域约束类型枚举。 | 
 | typedef enum [OH_Drawing_PointMode](#oh_drawing_pointmode)  [OH_Drawing_PointMode](#oh_drawing_pointmode) | 绘制多个点的方式枚举，方式分为离散点、直线或开放多边形。 | 
@@ -179,6 +180,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) { OH_DRAWING_SUCCESS = 0, OH_DRAWING_ERROR_NO_PERMISSION = 201, OH_DRAWING_ERROR_INVALID_PARAMETER = 401, OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE = 26200001 } | 枚举本模块可能产生的错误码。 | 
 | [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) {<br/>PATH_OP_MODE_DIFFERENCE, PATH_OP_MODE_INTERSECT, PATH_OP_MODE_UNION, PATH_OP_MODE_XOR,<br/>PATH_OP_MODE_REVERSE_DIFFERENCE<br/>} | 路径操作类型枚举。 | 
 | [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) { GET_POSITION_MATRIX, GET_TANGENT_MATRIX, GET_POSITION_AND_TANGENT_MATRIX } | 路径测量获取相应矩阵信息维度枚举。 | 
 | [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) {<br/>REGION_OP_MODE_DIFFERENCE, REGION_OP_MODE_INTERSECT, REGION_OP_MODE_UNION, REGION_OP_MODE_XOR,<br/>REGION_OP_MODE_REVERSE_DIFFERENCE, REGION_OP_MODE_REPLACE<br/>} | 区域操作类型枚举。 | 
@@ -225,6 +227,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget) () | 获取本模块的错误码。 | 
 | [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCopy](#oh_drawing_brushcopy) ([OH_Drawing_Brush](#oh_drawing_brush) \*brush) | 创建一个画刷对象副本[OH_Drawing_Brush](#oh_drawing_brush)，用于拷贝一个已有画刷对象。 | 
 | void [OH_Drawing_FilterSetImageFilter](#oh_drawing_filtersetimagefilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*) | 为滤波器对象设置图像滤波器对象。 | 
 | [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \* [OH_Drawing_ImageFilterCreateBlur](#oh_drawing_imagefiltercreateblur) (float sigmaX, float sigmaY, [OH_Drawing_TileMode](#oh_drawing_tilemode), [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*input) | 创建具有模糊效果的图像滤波器。 | 
@@ -721,6 +724,20 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 
 ## 类型定义说明
+
+### OH_Drawing_ErrorCode
+
+```
+typedef enum OH_Drawing_ErrorCodeOH_Drawing_ErrorCode
+```
+
+
+**描述**
+
+枚举本模块可能产生的错误码。
+
+**起始版本：** 12
+
 
 ### OH_Drawing_PathOpMode
 
@@ -1937,6 +1954,24 @@ typedef enum OH_Drawing_WordBreakType OH_Drawing_WordBreakType
 
 ## 枚举类型说明
 
+### OH_Drawing_ErrorCode
+
+```
+enum OH_Drawing_ErrorCode
+```
+
+**描述**
+
+枚举本模块可能产生的错误码。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| OH_DRAWING_SUCCESS | 操作成功完成。 | 
+| OH_DRAWING_ERROR_NO_PERMISSION | 权限校验失败。 | 
+| OH_DRAWING_ERROR_INVALID_PARAMETER | 无效的输入参数，如参数中传入了NULL。 | 
+| OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE | 输入参数不在有效的范围内。 | 
 
 ### OH_Drawing_PathMeasureMatrixFlags
 
@@ -2801,6 +2836,24 @@ enum OH_Drawing_WordBreakType
 
 ## 函数说明
 
+
+### OH_Drawing_ErrorCodeGet()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_ErrorCodeGet ()
+```
+
+**描述**
+
+获取本模块的错误码。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**返回：**
+
+函数返回错误码枚举值。
 
 ### OH_Drawing_BrushCopy()
 

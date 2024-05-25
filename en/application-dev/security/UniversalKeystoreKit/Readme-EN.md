@@ -50,8 +50,10 @@
   - Development
     - [Anonymous Key Attestation (ArkTS)](huks-key-anon-attestation-arkts.md)
     - [Anonymous Key Attestation (C/C++)](huks-key-anon-attestation-ndk.md)
+    <!--Del-->
     - [Non-anonymous Key Attestation (ArkTS)](huks-key-attestation-arkts.md)
     - [Non-anonymous Key attestation (C/C++)](huks-key-attestation-ndk.md)
+    <!--DelEnd-->
 - Other Operations
   - Checking Key Existence
     - [Checking a Key (ArkTS)](huks-check-key-arkts.md)
@@ -62,4 +64,5 @@
   - Exporting a Key
     - [Exporting a Key (ArkTS)](huks-export-key-arkts.md)
     - [Exporting a Key (C/C++)](huks-export-key-ndk.md)
+   <!--Del-->
   - [Specifying the User for Key Operations (for System Applications Only)](huks-as-user-sys.md)

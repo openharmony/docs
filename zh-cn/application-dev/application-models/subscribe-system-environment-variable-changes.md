@@ -162,7 +162,6 @@ export default class EntryAbility extends UIAbility {
       systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
     }
   }
-
   // ...
 }
 ```
@@ -180,10 +179,14 @@ ExtensionAbility组件提供了`onConfigurationUpdate()`回调方法用于订阅
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import { Configuration } from '@ohos.app.ability.Configuration';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onConfigurationUpdate(newConfig: Configuration) {
-    console.info(`newConfig is ${JSON.stringify(newConfig)}`);
+  onConfigurationUpdate(config: Configuration) {
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
 
   // ...

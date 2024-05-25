@@ -8,7 +8,7 @@
 
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)和[加解密算法库模块](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md)。
    ```ts
-   import { cert } from '@kit.DeviceCertificatekit';
+   import { cert } from '@kit.DeviceCertificateKit';
    import { cryptoFramework } from '@kit.CryptoArchitectureKit';
    ```
 
@@ -33,7 +33,7 @@
 9.  调用[X509CRLEntry.getRevocationDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevocationdate11)获取被吊销日期。
 
 ```ts
-import { cert } from '@kit.DeviceCertificatekit';
+import { cert } from '@kit.DeviceCertificateKit';
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';

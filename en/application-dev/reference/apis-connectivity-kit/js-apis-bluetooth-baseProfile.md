@@ -25,6 +25,23 @@ Represents the profile state change parameters.
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
 | deviceId | string                        | Yes  | No  | Address of the Bluetooth device.  |
 | state    | ProfileConnectionState        | Yes  | No  | Profile connection state of the device.|
+| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | Yes| No| Cause of the disconnection.|
+
+
+## DisconnectCause<sup>12+</sup>
+
+Enumerates the possible causes of a Bluetooth disconnection.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                | Value | Description    |
+| ------------------ | ---- | ------ |
+| USER_DISCONNECT            | 0    | The user proactively disconnects the connection.|
+| CONNECT_FROM_KEYBOARD      | 1    | The connection should be initiated from a keyboard.|
+| CONNECT_FROM_MOUSE         | 2    | The connection should be initiated from a mouse device.|
+| CONNECT_FROM_CAR           | 3    | The connection should be initiated from a head unit side.|
+| TOO_MANY_CONNECTED_DEVICES | 4    | The number of connections exceeds the limit.|
+| CONNECT_FAIL_INTERNAL      | 5    | Internal error.|
 
 
 ## baseProfile.getConnectedDevices
@@ -41,7 +58,7 @@ Obtains the connected devices.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | Addresses of the connected devices. For security purposes, the device addresses obtained are random MAC addresses.|
+| Array&lt;string&gt; | Addresses of the connected devices. For security purposes, the device addresses obtained are random MAC addresses. The random MAC address remains unchanged after a device is paired successfully. It changes when the paired device is unpaired and scanned again or the Bluetooth service is turned off.|
 
 **Error codes**
 
@@ -130,7 +147,7 @@ Subscribes to profile connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | Yes   | Callback invoked to return the profile connection state change.                              |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | Yes   | Callback used to return the profile connection state change.                              |
 
 **Example**
 
@@ -164,7 +181,7 @@ Unsubscribes from profile connection state changes.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **connectionStateChange**, which indicates a profile connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | No   | Callback to unregister.                |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | No   | Callback to unregister.                              |
 
 **Example**
 

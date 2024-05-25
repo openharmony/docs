@@ -302,6 +302,7 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
 | 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
@@ -357,6 +358,7 @@ getPrivateCertificate(keyUri: string) : Promise\<CMResult>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
 | 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
@@ -406,6 +408,7 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : vo
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
 | 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
@@ -456,6 +459,7 @@ uninstallPrivateCertificate(keyUri: string) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
 | 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
@@ -501,6 +505,7 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
 | 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
@@ -558,6 +563,7 @@ init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
 | 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
@@ -609,6 +615,7 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
 | 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API.     |
 
@@ -665,6 +672,7 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
 | 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API.     |
 
@@ -714,6 +722,7 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
 | 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API.     |
 
@@ -767,6 +776,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
 | 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API.     |
 
@@ -823,6 +833,7 @@ finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
 | 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API.     |
 
@@ -886,6 +897,7 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
 | 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API.     |
 
@@ -938,6 +950,7 @@ abort(handle: Uint8Array) : Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
 | 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API.     |
 

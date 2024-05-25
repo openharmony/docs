@@ -308,11 +308,11 @@ showUnit(value: CustomBuilder)
 
 ### showError<sup>10+</sup>
 
-showError(value?: string | undefined)
+showError(value?: ResourceStr | undefined)
 
 设置错误状态下提示的错误文本或者不显示错误状态。
 
-当参数类型为string并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
+当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2)。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -322,7 +322,7 @@ showError(value?: string | undefined)
 
 | 参数名 | 类型                          | 必填 | 说明                                                         |
 | ------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。 |
+| value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;undefined | 否   | 错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。<br/>**说明：** <br/>从API version 12开始，value支持Resource类型。 |
 
 ### showUnderline<sup>10+</sup>
 
@@ -535,7 +535,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数超过最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色，框体抖动。
 
-TextInput组件显示边框需要设置为下划线模式，内联模式和密码模式下字符计数器不显示。
+内联模式和密码模式下字符计数器不显示。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -767,6 +767,62 @@ lineBreakStrategy(value: LineBreakStrategy)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/> 非Inline模式该属性不生效 |
 
+### onWillInsert<sup>12+</sup>
+
+onWillInsert(callback: Callback\<InsertValue, boolean>)
+
+在将要输入时获取文本值的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。 |
+
+### onDidInsert<sup>12+</sup>
+
+onDidInsert(callback: Callback\<InsertValue>)
+
+完成输入时获取文本值的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。 |
+
+### onWillDelete<sup>12+</sup>
+
+onWillDelete(callback: Callback\<DeleteValue, boolean>)
+
+在将要删除时获取文本值的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。 |
+
+### onDidDelete<sup>12+</sup>
+
+onDidDelete(callback: Callback\<DeleteValue>)
+
+完成输入时获取文本值的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。 |
+
 >  **说明：**    
 >  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
 >  
@@ -843,6 +899,21 @@ lineBreakStrategy(value: LineBreakStrategy)
 | ---------- | ---------------------------------------- | ---- | ------------------------- |
 | onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
 | offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+
+## InsertValue<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| insertOffset  | number | 是   | 将要插入的值的位置信息。 |
+| insertValue  | string | 是   | 插入的值。 |
+
+## DeleteValue<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| deleteOffset  | number | 是   | 将要删除的值的位置信息。 |
+| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | 是   | 删除值的方向。 |
+| deleteValue  | string | 是   | 删除的值。 |
 
 ## 事件
 

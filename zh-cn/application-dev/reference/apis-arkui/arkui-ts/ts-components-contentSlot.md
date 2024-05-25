@@ -28,6 +28,7 @@ ContentSlot(content: Content)
 import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
 import { NodeContent } from '@ohos.arkui.node'
 
+@Entry
 @Component
 struct Parent {
     private nodeContent: Content = new NodeContent();

@@ -37,6 +37,15 @@ enableScreenCurtain(isEnable: boolean): void;
 | ----------- | ---------------------------------------- | ---- | -------------- |
 | isEnable | boolean | 是    | true表示打开幕帘屏功能，false表示关闭幕帘屏功能。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
+
 **示例：**
 
 ```ts
