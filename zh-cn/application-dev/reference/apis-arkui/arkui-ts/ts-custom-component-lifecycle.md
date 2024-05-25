@@ -163,7 +163,7 @@ struct Child {
 
 onWillApplyTheme?(theme: Theme): void
 
-onWillApplyTheme函数用于获取当前使用的Theme对象，在创建自定义组件的新实例后，在执行其build()函数之前执行。允许在onWillApplyTheme函数中改变状态变量，更改将在后续执行build()函数中生效。
+onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创建自定义组件的新实例后，在执行其build()函数之前执行。允许在onWillApplyTheme函数中改变状态变量，更改将在后续执行build()函数中生效。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -191,7 +191,7 @@ class PageCustomTheme implements CustomTheme {
 }
 const BlueColorsTheme = new PageCustomTheme(new BlueColors());
 // setDefaultTheme应该在应用入口页面调用或者在Ability中调用。
-// 在入口页面处统一设置，需要在页面build前执行ThemeControl。 其中，onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
+// 在入口页面处统一设置，需要在页面build前执行ThemeControl。其中，onWillApplyTheme回调函数用于获取当前组件上下文的Theme对象。
 ThemeControl.setDefaultTheme(BlueColorsTheme);
 
 @Entry
@@ -200,7 +200,7 @@ struct IndexComponent {
   @State textColor: ResourceColor = $r('sys.color.font_primary');
   @State columBgColor: ResourceColor = $r('sys.color.background_primary');
 
-  // onWillApplyTheme中可获取当前使用的Theme对象，此处在onWillApplyTheme中将状态变量textColor、columBgColor，赋值为当前使用的Theme对象（BlueColorsTheme）中的配色。
+  // onWillApplyTheme中可获取当前组件上下文的Theme对象。此处在onWillApplyTheme中将状态变量textColor、columBgColor，赋值为当前使用的Theme对象（BlueColorsTheme）中的配色。
   onWillApplyTheme(theme: Theme) {
     this.textColor = theme.colors.fontPrimary;
     this.columBgColor = theme.colors.backgroundPrimary;
