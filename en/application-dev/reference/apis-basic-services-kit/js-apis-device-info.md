@@ -1,11 +1,12 @@
 # @ohos.deviceInfo (Device Information)
 
-The **deviceInfo** module provides product information.
+The **deviceInfo** module provides terminal device information query, which cannot be configured by developers.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > Some parameters whose return value is the default value are not yet available.
+> The APIs of this module return information about device constants. You're not expected to call these APIs frequently.
 
 ## Modules to Import
 
@@ -14,14 +15,16 @@ import deviceInfo from '@ohos.deviceInfo';
 ```
 
 ## Attributes
+> **NOTE**
+> Unless otherwise specified, the maximum data length is 96 bytes.
 
 **System capability**: SystemCapability.Startup.SystemInfo
 
- 
+**Required permissions**: The items in the table below require different system capabilities.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | string | Yes| No| Device type. It is used only for query purposes, but not for service code development.|
+| deviceType | string | Yes| No| Device type. It is used only for query purposes, but not for service code development. For details, see [deviceTypes tag](../../quick-start/module-configuration-file.md#devicetypes).|
 | manufacture | string | Yes| No| Device manufacturer.|
 | brand | string | Yes| No| Device brand.|
 | marketName | string | Yes| No| Marketing name.|
@@ -29,8 +32,8 @@ import deviceInfo from '@ohos.deviceInfo';
 | productModel | string | Yes| No| Product model.|
 | softwareModel | string | Yes| No| Software model.|
 | hardwareModel | string | Yes| No| Hardware model.|
-| hardwareProfile | string | Yes| No| Hardware profile.|
-| serial | string | Yes| No| Device serial number.<br>**Constraints**: This API is available for system applications only.|
+| hardwareProfile<sup>(deprecated) </sup> | string | Yes| No| Hardware profile.<br>**NOTE**<br>This API is supported since API version 6 and deprecated since API version 9.|
+| serial | string | Yes| No| Device SN, available only for system applications.<br>**NOTE**<br>The device SN can be used as the unique identifier of a device.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID|
 | bootloaderVersion | string | Yes| No| Bootloader version.|
 | abiList | string | Yes| No| Application binary interface (Abi) list.|
 | securityPatchTag | string | Yes| No| Security patch tag.|
@@ -50,7 +53,7 @@ import deviceInfo from '@ohos.deviceInfo';
 | buildHost | string | Yes| No| Build host.|
 | buildTime | string | Yes| No| Build time.|
 | buildRootHash | string | Yes| No| Build root hash.|
-| udid<sup>7+</sup> | string | Yes| No| Device UDID.<br>**Constraints**: This API is available for system applications only.|
+| udid<sup>7+</sup> | string | Yes| No| Device UDID, available only for system applications.<br>**NOTE**<br>The data length is 65 bytes. The UDID can be used as the unique identifier of a device.<br>**Required permissions**: ohos.permission.sec.ACCESS_UDID|
 | distributionOSName<sup>10+</sup> | String | Yes| No| Name of the distribution OS.|
 | distributionOSVersion<sup>10+</sup> | String | Yes| No| Version number of the distribution OS.|
 | distributionOSApiVersion<sup>10+</sup> | number| Yes| No| API version of the distribution OS.|

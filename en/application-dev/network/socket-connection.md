@@ -749,4 +749,3 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 // Unsubscribe from events of the TLSSocketServer object.
 tlsServer.off('connect');
 ```
-

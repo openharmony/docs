@@ -107,7 +107,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 Obtains the list of system languages.
 
-**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
+Since API version 11, this API is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -216,7 +216,7 @@ static getSystemLanguage(): string
 
 Obtains the system language.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 

@@ -16,6 +16,8 @@ The system provides the following location permissions:
 
 If your application needs to access the device location information, it must first apply for required permissions.
 
+Currently, only the WGS-84 coordinate system is supported.
+
 **Table 1** Ways to apply for location permissions
 
 | Target API Level| Location Permission| Permission Application Result| Location Accuracy|
@@ -64,7 +66,7 @@ The following table lists the APIs used to obtain the device location informatio
 
 ### How to Develop
 
-1. Before using system basic location capabilities, check whether your application has been granted the permission to access the device location information. If not, your application first needs to apply for the required permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
+1. Before using basic location capabilities, check whether your application has been granted the permission to access device location information. If not, your application first needs to apply for the required permission. For details, see [Applying for Location Permissions](#applying-for-location-permissions).
 
 2. Import the **geoLocationManager** module by which you can implement all APIs related to the basic location capabilities.
    
@@ -350,7 +352,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
 
 4. Call **getWantAgent()** to create a **WantAgent** object.
 
-Call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
+   Call the geofencing API to add a geofence after obtaining the **WantAgent** object, and have the system automatically trigger the action defined for the **WantAgent** object when a device enters or exits the geofence.
 
    ```ts
    // Create a WantAgent object.
@@ -361,7 +363,7 @@ Call the geofencing API to add a geofence after obtaining the **WantAgent** obje
        }
        console.info('getWantAgent success');
        wantAgentObj = data;
-       let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 121, "longitude": 26, "radius": 100, "expiration": 10000}};
+       let requestInfo:geoLocationManager.GeofenceRequest = {'scenario': 0x301, "geofence": {"latitude": 31.12, "longitude": 121.11, "radius": 100, "expiration": 10000}};
        try {
            geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
        } catch (err) {

@@ -45,7 +45,7 @@ constructor()
 
 Creates a **Locale** object.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -64,7 +64,7 @@ constructor(locale: string, options?: LocaleOptions)
 
 Creates a **Locale** object.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -89,7 +89,7 @@ toString(): string
 
 Obtains the string representation of a **Locale** object.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -113,7 +113,7 @@ maximize(): Locale
 
 Maximizes information of the **Locale** object. If the script and locale information is missing, add the information.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -145,7 +145,7 @@ minimize(): Locale
 
 Minimizes information of the **Locale** object. If the script and locale information is present, delete the information.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -215,7 +215,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 
 Creates a **DateTimeOptions** object for the specified locale.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -246,7 +246,7 @@ format(date: Date): string
 
 Formats the specified date and time.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -281,7 +281,7 @@ formatRange(startDate: Date, endDate: Date): string
 
 Formats the specified date range.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -314,7 +314,7 @@ resolvedOptions(): DateTimeOptions
 
 Obtains the formatting options for **DateTimeFormat** object.
 
-Since API version 11, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
 **System capability**: SystemCapability.Global.I18n
 

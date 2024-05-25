@@ -99,6 +99,7 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 
 ```ts
 // Import the mdns namespace from @ohos.net.mdns.
+import common from '@ohos.app.ability.common';
 import mdns from '@ohos.net.mdns';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
@@ -135,7 +136,7 @@ class EntryAbility extends UIAbility {
   }
 }
 
-let context = GlobalContext.getContext().getObject("value");
+let context = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
 // Create a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
 let serviceType = "_print._tcp";

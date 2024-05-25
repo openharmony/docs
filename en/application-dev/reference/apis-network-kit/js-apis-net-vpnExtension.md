@@ -1,6 +1,7 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management)
 
-This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
+The **vpnExtension** module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
+Third-party VPNs refer to VPN services provided by third parties. They usually provide more security and privacy functions and more comprehensive customization options.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -193,12 +194,13 @@ Stage model:
 import vpnExt from '@ohos.net.vpnExtension';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
+import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 
+let context: vpnExt.VpnExtensionContext;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnection;
   onCreate(want: Want) {
-    this.VpnConnection = vpnExt.createVpnConnection(this.context);
-    console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
+    let VpnConnection : vpnExt.VpnConnection = vpnExt.createVpnConnection(context);
+    console.info("vpn createVpnConnection: " + JSON.stringify(VpnConnection));
   }
 }
 ```

@@ -91,7 +91,7 @@ Creates a WebSocket connection. You can use this API to create or close a WebSoc
 **Example**
 
 ```ts
-let ws: webSocket = webSocket.createWebSocket();
+let ws: webSocket.WebSocket = webSocket.createWebSocket();
 ```
 
 ## WebSocket<sup>6+</sup>
@@ -177,13 +177,17 @@ import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
-let header: Map<string, string> | undefined;
-if (header !=undefined) {
-    header.set("key", "value")
-    header.set("key2", "value2")
+let options: webSocket.WebSocketRequestOptions | undefined;
+if (options !=undefined) {
+  options.header = {
+     name1: "value1",
+     name2: "value2",
+     name3: "value3"
+  };
+  options.caPath = "";
 }
 let url = "ws://"
-ws.connect(url, header as webSocket.WebSocketRequestOptions, (err: BusinessError, value: Object) => {
+ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
@@ -273,7 +277,16 @@ import { BusinessError } from '@ohos.base';
 let ws = webSocket.createWebSocket();
 let url = "ws://"
 ws.connect(url, (err: BusinessError, value: boolean) => {
-  ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+    ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
     } else {
@@ -282,6 +295,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   });
 });
 ```
+
+> **Description**
+>
+> The **send** API can be called only after an **open** event is listened.
 
 ### send<sup>6+</sup>
 
@@ -320,7 +337,17 @@ import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
 let url = "ws://"
+
 ws.connect(url, (err: BusinessError, value: boolean) => {
+    if (!err) {
+      console.log("connect success");
+    } else {
+      console.log("connect fail, err:" + JSON.stringify(err))
+    }
+});
+
+ws.on('open', (err: BusinessError, value: Object) => {
+  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
   let promise = ws.send("Hello, server!");
   promise.then((value: boolean) => {
     console.log("send success")
@@ -329,6 +356,10 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   });
 });
 ```
+
+> **Description**
+>
+> The **send** API can be called only after an **open** event is listened.
 
 ### close<sup>6+</sup>
 
