@@ -241,6 +241,7 @@ showAd(ad: Advertisement, options: AdDisplayOptions, context?: common.UIAbilityC
 
 | 错误码ID | 错误信息 | 
 | -------- | -------- |
+| 401 | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified.| 
 | 21800001 | System internal error. | 
 | 21800004 | Failed to display the ad. | 
 
