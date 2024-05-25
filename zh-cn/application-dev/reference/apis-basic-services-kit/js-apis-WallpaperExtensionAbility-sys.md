@@ -20,7 +20,7 @@ import WallpaperExtensionAbility from '@ohos.WallpaperExtensionAbility';
 
 onCreate(want: object): void
 
-初始化壁纸拓展应用。在拉起Extension壁纸拓展应用时触发回调，执行初始化应用操作。不支持多线程并发调用。
+初始化壁纸拓展应用。在拉起Extension壁纸拓展应用时触发回调，执行初始化应用操作。
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
 
@@ -47,7 +47,7 @@ class WallpaperExt extends WallpaperExtensionAbility {
 
 onWallpaperChange(wallpaperType: number): void
 
-监听壁纸变化。在壁纸变化时触发回调。不支持多线程并发调用。
+监听壁纸变化。在壁纸变化时触发回调。
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
 
@@ -74,7 +74,7 @@ class WallpaperExt extends WallpaperExtensionAbility {
 
 onDestroy(): void
 
-清理壁纸拓展应用资源。在销毁壁纸拓展应用时触发回调，执行资源清理。不支持多线程并发调用。
+清理壁纸拓展应用资源。在销毁壁纸拓展应用时触发回调，执行资源清理。
 
 **系统能力：** SystemCapability.MiscServices.Wallpaper
 

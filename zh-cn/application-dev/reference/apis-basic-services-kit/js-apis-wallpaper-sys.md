@@ -237,7 +237,7 @@ try {
 
 on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
-订阅壁纸变化通知事件。不支持多线程并发调用。
+订阅壁纸变化通知事件。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -276,7 +276,7 @@ try {
 
 off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
-取消订阅壁纸变化通知事件。不支持多线程并发调用。
+取消订阅壁纸变化通知事件。
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
