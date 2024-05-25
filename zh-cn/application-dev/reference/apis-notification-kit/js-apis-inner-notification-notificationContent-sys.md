@@ -33,6 +33,18 @@
 | lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) |  否  |  否  | 通知在锁屏界面显示的图片。预留能力，暂未支持。   |
 | isLocalUpdateOnly<sup>12+</sup> | boolean                                           | 否  | 否  | 实况窗是否只在本地更新。     |
 
+## NotificationCapsule<sup>11+</sup>
+
+描述通知胶囊。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称            | 类型                                          | 只读 | 必填 | 说明                            |
+| --------------- | -------------------------------------------- | --- | --- | -------------------------------- |
+| content<sup>12+</sup>           | string                                       | 否  | 否  | 胶囊的拓展文本。                 |
+
 ## LiveViewStatus<sup>11+</sup>
 
 描述普通实况通知的状态。
