@@ -18,6 +18,8 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 
 产生特定频率和特定电平大小的红外信号。
 
+**需要权限**：ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
+
 **系统能力**：SystemCapability.MultimodalInput.Input. InfraredEmitter
 
 **参数**：
@@ -42,6 +44,8 @@ try {
 getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
 查询手机支持的红外信号的频率范围。
+
+**需要权限**：ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InfraredEmitter
 
