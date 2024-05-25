@@ -887,6 +887,7 @@ type AssetMap = Map\<Tag, Value>
 | 名称                       | 值    | 说明 |
 | -------------------------- | ----- | ---- |
 | PERMISSION_DENIED | 201     |The caller doesn't have the permission.|
+| NOT_SYSTEM_APPLICATION | 202     |The caller is not a system application.|
 | INVALID_ARGUMENT | 401    |The argument is invalid.|
 | SERVICE_UNAVAILABLE | 24000001    |The ASSET service is unavailable.|
 | NOT_FOUND | 24000002    |The asset is not found.|
