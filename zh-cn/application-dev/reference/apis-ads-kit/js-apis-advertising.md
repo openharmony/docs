@@ -515,6 +515,12 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise<str
 
 **系统能力：** SystemCapability.Advertising.Ads
 
+**返回值：**
+
+| 类型 | 说明 | 
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise对象，返回字符类型的广告数据。| 
+
 **参数：**
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
